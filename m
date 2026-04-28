@@ -4,128 +4,177 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47274FF886F
-	for <nouveau@archiver.kernel.org>; Tue, 28 Apr 2026 19:06:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 930E5FF886D
+	for <nouveau@archiver.kernel.org>; Tue, 28 Apr 2026 20:24:00 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 206DB10EDB2;
-	Tue, 28 Apr 2026 19:06:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id ED8D810E378;
+	Tue, 28 Apr 2026 20:23:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gm/Bsmnm";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="fCFzC/CW";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 658D045C84;
-	Tue, 28 Apr 2026 18:54:32 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1777402472;
- b=sED0IiFdBc4iPDh+DscqMW82JfLMtE6AmQUjNoA4nZJQqgA/4JvYn0fCctB8QjuiTDC6q
- Tg5LDFX7qdwI7sDHRuxAWxThPO0rd9ls1I11sCr08iWGpUvxPG8oLE5g003eeYn0rfkfJKv
- +ovbDumcGw7p/5MnTyIXl2JVPk8Fu9EhQJEEQSC8qGtMmGXw5VkBGiDQm1PjVafkrZPLTm6
- eghMqucQJeCirST2K0kn+L92YVbzqTsOuFx8ThSCs3h1JPQ5IXKc6V9m+8d9M2D/ezrxv/K
- fCLF6mJr0ll3pVDicaPPCLrcO+A55O+gpfLG4UrsVxSOit1ZCc5mfbyDCN2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1777402472; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 0CDA945D0E;
+	Tue, 28 Apr 2026 20:11:37 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1777407096;
+ b=zBec9vlbwZOz8N6Xx+CsurcNKbnBYCXHw3Dp7qSy1JhFzAxJ7U8LnYh5/lqV5oKUbWBYy
+ RkWJx6Rp7QRakgKwyr1elc2mUtadNG/AM25Zv7zoMWeNRQZb4kItlYe7oR9QifLTSjvonEP
+ gtsaBlE16kWdRX6XZiTZXuzqcIYBeiyhgigndDFx7gJofL4yn0BE+c5OGBTk8JUZo3hYR5d
+ J8w0xft3TVIWH34fsGEnLD8msvTJjAnuOnUCxlbrAb49E+KhcycDBggzeCLYFdZFOhTVV53
+ lPEJwkLZMX4/6HCUFbNjePw/Y3CGQjwtyfI1X8iD7v9qAaUK1kxBMkZiD4cw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1777407096; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=2Bvf4a4wjki5kPsVAcJeQTyv2vLgBAptsdexDo8PbPA=;
- b=j0p6tnDwFtisfxh2gYn3X6YbA/9+eIVHW/jEUVyLYJ2rfFqKlHNSmTyCXVF5iDf/7pbiy
- Pr50y5O8i5bxsEAehBiYlaJXnM5KMYW/j7tNiWtN4K+4fNssF4Sy+9oVXjvs2w03bhIW0w0
- 1TN4JdbB8D3gx2OkWUGUlawlM8orgB7wP421DeR8S4p2p/ZRzngbqDiKMJAz2bgNn/CP/vD
- 6Nvnem1YgzbAFmj6CnsoGgc6bpnQWtl7oJYtrCGgTnRS3EoYu8lA1VD6TwY9QBCVvKXtOeJ
- fKUHgOAiQH07rnZbCFQ+jZKY/0J3cZ9INKkh3JlT1eXneIbhtgSpUGqCH/aw==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+ bh=N7nwxd+em1yREFHeTw72YmRPd6uQKzrJ2Zw6PO8VtQo=;
+ b=KEjGOuo3F7bTo6qaVke3DCwGqZcVNlZWnmRBgq3X3o1ydBw/UMSciwUzMwDWZ1ZFI+xfG
+ ikPFtcIQ4WhD++cg9a+j/mTbpkd8ZfXub8lz/L0KGQGQEHynKRzVPxLiIOt8BYBtd7WGOSa
+ jSyCv1WGnlaxfHn7LQCHyc3OQN9F6j+jGEPibcNv9CD/qeh1j+YA7Q+G8GjLUi+X6XAm/Ey
+ akuljOAvxVoIsXOMuicQd4QQeuCNwjGDyynwZutXZtIbioXT8hQD562dQKLf6ijaJoKQYqC
+ sZxEFQJYBaRKRTMkiwHenK2sGdgz3GgeZRtWWvJOf3mHGAAlRYpV+OxEhxqg==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id F116945563
-	for <nouveau@lists.freedesktop.org>; Tue, 28 Apr 2026 18:54:29 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 60BDD10EDAE
-	for <nouveau@lists.freedesktop.org>; Tue, 28 Apr 2026 19:06:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1777403211;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2Bvf4a4wjki5kPsVAcJeQTyv2vLgBAptsdexDo8PbPA=;
-	b=gm/Bsmnm5DR3ciSICq+1tRBhL/nH6ZCotx9c8QZWirHMbi4g/K2LIGQZ2WJVM4QNmwSn29
-	WbmmujTW6tKebp/O+Vlk1oz4qEBYKM82P5I3sZIJGgb0Rsr7WnWaeG87IfQIapI86uNKR9
-	pvqxOYyI77NXJ7PPD7Ma2bEK7H/BVoA=
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-417-F9y5MLoyPVG9D8FVLeVI4A-1; Tue,
- 28 Apr 2026 15:06:46 -0400
-X-MC-Unique: F9y5MLoyPVG9D8FVLeVI4A-1
-X-Mimecast-MFC-AGG-ID: F9y5MLoyPVG9D8FVLeVI4A_1777403203
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id DB1CC1956095;
-	Tue, 28 Apr 2026 19:06:42 +0000 (UTC)
-Received: from GoldenWind.lan (unknown [10.22.88.40])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 63A401800351;
-	Tue, 28 Apr 2026 19:06:39 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: nouveau@lists.freedesktop.org,
-	Gary Guo <gary@garyguo.net>,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	rust-for-linux@vger.kernel.org,
-	Danilo Krummrich <dakr@kernel.org>,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v13 5/5] rust: drm: gem: Add vmap functions to shmem bindings
-Date: Tue, 28 Apr 2026 15:03:45 -0400
-Message-ID: <20260428190605.3355690-6-lyude@redhat.com>
-In-Reply-To: <20260428190605.3355690-1-lyude@redhat.com>
-References: <20260428190605.3355690-1-lyude@redhat.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1624C45D01
+	for <nouveau@lists.freedesktop.org>; Tue, 28 Apr 2026 20:11:33 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012049.outbound.protection.outlook.com
+ [40.107.200.49])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 937CC10E0DB
+	for <nouveau@lists.freedesktop.org>; Tue, 28 Apr 2026 20:23:55 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tGe2o1Sellfl5IDTZ3sRnklUu8wWDbvtWKALdkdXv79LXhfcg0VJdlffuOlXj+rIL12ibeRoXJmLQSCWEs2kOgu0YmsO0EvGUBqFhDNo2jtsECIlMollxRF8S2Zg5Ocg2ryqJ3hNgo8MHmXH/t0tpJyDx8mBn51eLbOUZI47PFtQK6J+iuSvrvKiYSlOSSyUeHg7m7WiayxMFXmTIAGPpGBk5ijf0Z+OwOAafv2KfnYwU5npaAJlNj9ZQ9pl0uMJjPKROMNkW4Zm1hhlMpr+nALajv96QIglSPBs/IJT9kVTCW8mNDYZKVbJPFzkkXmSRPjpWcQaiERwGLxl5+ZB2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=N7nwxd+em1yREFHeTw72YmRPd6uQKzrJ2Zw6PO8VtQo=;
+ b=aypXudumEzN6Q71gkHN+GOLKLav8YYXD8LVx9LzE+sO7w0kKohSh5TgQUyYYg+SqGZf4cLi78qrhGojU8r8UrWEuPG2JIlekzvamqzT+2f/6BgoZ8OC6KIbNJm03o9ruaj+RO3BmfmaUolPnM8ZVYCXJ6pFg/X5wmEfHG+rhuDH0NoH7O98KrQTV3phpYtkPSbs4TdWqQiDMsVJ1YJwkuu9lBEqMI/EJNcu96ZD/MtC5ufdrxIMDnnvJlEdjRmhF7NkrP0qIEHRfDWFr/NBlBa9sNnpWBpYRFDzBbRvtQvFbzmgCwYJ+ApMBr29/k8M8wkLVvY07wjXTFwi3+BOLHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=N7nwxd+em1yREFHeTw72YmRPd6uQKzrJ2Zw6PO8VtQo=;
+ b=fCFzC/CWhaWLB3sCi2tW5LY61yZlW2d+AWca8+QSSffLlPFBtLNd8LBuEliJNxiKMvrF8VAPbFK1eGvUP3GsrIv51ruBDBL+u388Wrsoz5Y/1MS/IcKSGHAd8dW7YKjpSu4cYv4DRlpjGRGwKDsPlWkB+gm9H4aHfNKQFoGre67KUH+VeZ+nsQrtCdmOjEwblq/KCPlxwq3XWmk6ru3njxZGE8ijX8tZcz2V2yJk8M2HuRK6xuZoELJPaZ5EMy7LJPG6dnUkPjiZoY+xbi306G58m+109/J+2cPXEa10hQihTYXU6Cl4TIH8ZJ/flohwu8W2a0UnBiX09PGCMTsI6A==
+Received: from CY8PR12MB8412.namprd12.prod.outlook.com (2603:10b6:930:6f::11)
+ by BL4PR12MB9479.namprd12.prod.outlook.com (2603:10b6:208:58e::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.15; Tue, 28 Apr
+ 2026 20:23:51 +0000
+Received: from CY8PR12MB8412.namprd12.prod.outlook.com
+ ([fe80::76e6:4d65:7ed1:6970]) by CY8PR12MB8412.namprd12.prod.outlook.com
+ ([fe80::76e6:4d65:7ed1:6970%5]) with mapi id 15.20.9870.016; Tue, 28 Apr 2026
+ 20:23:50 +0000
+From: Timur Tabi <ttabi@nvidia.com>
+To: "dakr@kernel.org" <dakr@kernel.org>
+Subject: Re: [PATCH] drm/nouveau: expose VBIOS via debugfs on GSP-RM systems
+Thread-Topic: [PATCH] drm/nouveau: expose VBIOS via debugfs on GSP-RM systems
+Thread-Index: AQHcxr/cXbD/rSZLEkK/9jEBDzGKnrX0wL2AgABLlwA=
+Date: Tue, 28 Apr 2026 20:23:50 +0000
+Message-ID: <45dccce37d37d4a2830f10f3cfb79f55fc203b7c.camel@nvidia.com>
+References: <20260407185306.3024695-1-ttabi@nvidia.com>
+	 <DI4WQHWHRT4Z.10GC877YXSKWJ@kernel.org>
+In-Reply-To: <DI4WQHWHRT4Z.10GC877YXSKWJ@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.52.3-0ubuntu1.1 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY8PR12MB8412:EE_|BL4PR12MB9479:EE_
+x-ms-office365-filtering-correlation-id: d78ffac6-7b07-4724-842a-08dea5640f80
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|366016|1800799024|376014|56012099003|18002099003|22082099003|38070700021;
+x-microsoft-antispam-message-info: 
+ GtqenLKQSvDN215+l2LiiEA+SrTiqhT05Qc7orUFCFOS11ARiBK3P2XMQaKFP1c9AlgiAhmcGxkCgk4N+q1oooLL98pqdN6Quq5Qpe5o5Q9iiDmppot27330q8Z0966v/V5EgDgIhGB0w/9mC1BqIWxbfUbbl1A54jM1zgU6ANcG0L1mQNMjCElv2fyTohHQtenlOUO2cqhVgyUMd5cBQjCMPK9NyAuHC+uGyrFpajnN0eiw/WjWBQj199MXDyY1goeD1/zVsrYZGiJHjte7Ek/6Yv9/Qaec4RTVvSazFJFgmlGxOOAIbaanNqiMV2lwagSIl9bo26YgCM3pJXqwZ2regwFtDzoz+qsLbkHujMd5oqFU7/YiMnrdTJWqj64WJoPIewvY1WMg/tU1+wh0/XucJCF6OwfIQOVjOaStSywx/uSrKOy3LSdmsfTlhJuRhSO02kWvC7+2E9voCvJh8OXF7MczAiBIddgh44aKfckJohO6juZRNkMhnxTf/D5W30kUlzAc3Vjkzc/45NwEHgAfNnd4/Yf0681Y9LLuoyrNQGYcPN5zXWjePAPopbRkBC2WGrQgoBkknfmzgdyFDjKUV19GRb6VgjLC6JpVZ6cRnJlUDNEZGy2MGh1GDh/QUNk/fBpbFjgYwBNewVdkMUJCZKVe0SWUdQZWf2QOT0E1zsO4Ogs+hY8Jt7HkeN/Mi9nBxtzlDQw4Tz23Tszxj1H5SB8Amlpgwb6QxkkYAW9/9qOHjX2Y4bSaWpDNxhF2xbM5Y67QKztVgOoTKqB3laAaPAvqWFXO/IYekDr4lwM=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY8PR12MB8412.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(18002099003)(22082099003)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?TTdVaWNLNWRHVC9UWC90VXlIU1hXL0s3eHF4L3RtM05vRFJKVjZJK0ZzNmIr?=
+ =?utf-8?B?MXBkelVWSjcySjRueTdpUi9oSHBIeExSQ2xaMUZYRGVhQTNkMkRLeG9HbTZQ?=
+ =?utf-8?B?OTBUTEtqYlNwR3ZqbEJxbGNBRktRdmZkdHlQYVlwQmdVQzhyblFiR2xuYm1q?=
+ =?utf-8?B?SmJBSG9wTVgwVjA1TzQwQzQ1U1hLR1RHQkNOT1NSVDB3ZmtwMlpRSVFnbXZj?=
+ =?utf-8?B?bVBXRWNlS1pTd0psc2NjUlNwWUVRWnhlQUYxKzc5T005dDcrQit3WVNKS2oy?=
+ =?utf-8?B?UUZCTlBIRWJ4V0NwNHlwV1RRVS9vOXlJY1hBRGplMjI3NUR4NFptM0RWekMw?=
+ =?utf-8?B?ZEFjZkJyTlptMmF3R3JIRnlmRnY1WmwvdzVEVWJyTGgrcHB1Rm5nY2ppc1cz?=
+ =?utf-8?B?TmxwRWtMc0s1Y1pQaC9ONFgyTUtwMzVYK0pOVFZEeFhlNVlLT252c3orT3Vn?=
+ =?utf-8?B?RGVXTmxQOXlJelcxRG51cG1QOU8rTkFQYkxtS1VDWnN4QndJMExGeS81VmE1?=
+ =?utf-8?B?bm1Db2gzUkN0RzA3b3VkakhNUFp2bjk2RkdPdC9XeDdPeDl2MEFxUTJJOWx1?=
+ =?utf-8?B?Zmc3TUQvaWFEU3RJWFA4UGNXUFZEdWQ5RkhRZWZqYlI4aTFkTXVzak9IbTJS?=
+ =?utf-8?B?T1hkOVVnQmF2emRhNWYvd0ZpMUFkZElnNTRCMTFGbGpmdUdiK2NHSktRbHdN?=
+ =?utf-8?B?c0c4QjZ0TEl6SUt2OFNpdnJ3NHdpZWpCR1g2ai8yeldVZDFmdEFuMEJiVUsw?=
+ =?utf-8?B?Y1FISFNxTUhsTzkvU3pTdGwrWlpLVURlTU12TUNuYTUyZjUwV0pRNVNUZDhZ?=
+ =?utf-8?B?VkkwTjUrODdIVGtvUm4xZXZBbW1WS0xHV1QzMU5WKzNpOVB4U09FTzFqOXRE?=
+ =?utf-8?B?Tmc1aWd4MzlHeVNqdnRZbUpXdDJhOHdML3ZHY2NNanYwZ0NVQ2tsZURvcVY0?=
+ =?utf-8?B?MklBU3JiSkJSZEt0OEp5bTFJeVh2OTFualRBeGRkbmhJRWhtb0RXLzFyRkV0?=
+ =?utf-8?B?REVxNWlqVnhMaTBEMGs0VXh3WEl3d044dTBkKzZNK29lSWtsdTBLZTR0RVo5?=
+ =?utf-8?B?dHY5eUpWeTJMc2NBTXM0SUNLQkF1cmZiblVpV1RVbXpFbXo5T3VncFVzK1JY?=
+ =?utf-8?B?WmZZdHJsSjdXYjNFbzNhTXh6bVl0R2tZb3pFRkdOdU1pbDEySWdoNnI5eDBW?=
+ =?utf-8?B?alF4aFJSbTRCWVZsbVZaUUZpM0VjbnFoOTlNOGVzUmM4M3hNZkN2REs1enp5?=
+ =?utf-8?B?N3lId0dMaFQzdmZXWDlDNzNUV0lLbzdVY1BvZ05TY0Q1VFJuaXR0OE16bEta?=
+ =?utf-8?B?R3dSM3dYWGxoaWlxS3BoNVp6SmdzdHlSZks4WEw4b1o1S29mMERWNW5xN1Q4?=
+ =?utf-8?B?Slp6ZFVXeXZPVmRFTlJpU2xsNFB2aHRReUUrOFhiVkdvTU9FWi9KTTNuTjBW?=
+ =?utf-8?B?NHpUOTdNSFhPMnFFcWFTaUNOdHRhcVVwWTVsTEg1cXcvMkxSZUhUWlJEaDls?=
+ =?utf-8?B?bVhyZUIvQ09ja1VQOGs1Vm40cjRsdlJoS1VKUU5Qa1BnMkN4c3dTa2YvRmZn?=
+ =?utf-8?B?cEM4Mys5dklITDU4bUdLWHlYN3U5SjZZYk9YaXF2QTd0OVRFVUJWellBd2kr?=
+ =?utf-8?B?VE5JdTJsME9mTXgyWUpxcmFCUWNYNW5sVUxvdVZVcnpmRzVxUnBSUVA5MGtB?=
+ =?utf-8?B?YzBDVk5JV3ptc1F0Y2daTGd2REUwM3ozWTV4WndxNWh6U0lMK3YzekpjS3I0?=
+ =?utf-8?B?RjMwR3crSUkvQm9KYkhWZ0VYNHNTdXUzbkV4ZVN6QldHcXN0N3laU0htTDh6?=
+ =?utf-8?B?UU1EZy81UVk3RUU0VDNURjhQRXRldlRrU0J3WGlXb0dRUVNubk0zNTZJRUx2?=
+ =?utf-8?B?U2ZFczdhSWZvbEZqeWhxOVhMUVJHVE9UbGkxNWFmQW9nMmc1MTJRUkFmeEZS?=
+ =?utf-8?B?UmdQUDMxYnpEczIzRnFxdk9IYTcvRk5sVVE4VTRySnhXOWtIMjlBK0Jyb0Vk?=
+ =?utf-8?B?SjA1TVZPSlFwdWswZlQ0VGJBdzNmMjBIa29sNE1GT3JvSVdRczhvM0VNb1U1?=
+ =?utf-8?B?eVBEK0Z2bUY4empoTmlldjZ0TEhYb0VQWFJqOFIxd0FnSmtkNU1ZMS9VZTZJ?=
+ =?utf-8?B?WEUzTVFQczVuczJyOFVxTnpJL21uZHpNTWdLUHNoaFF0dHdyZkhzNXBzQ2tS?=
+ =?utf-8?B?eTJqbWpYeThoQ1JJWlNEakk1VlBGNkoyNWNiR1J4aG5SME1GdzlLWU1zT3hD?=
+ =?utf-8?B?U2wwUVVDdVlFWFl4eHg0R0NsT1ZEZDJiZFM1RzFWdnk4MGRPRWRxOTgzN1VG?=
+ =?utf-8?B?bWJ3RDhLdkhlREFsNWN6bmI1N08wbnR6b0QyMEhjeU5KNUJWaVQzZz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <4E01A64282CCD345BFD5D09EF1897059@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
-X-Mimecast-MFC-PROC-ID: FZEzPr84-_ooro5wSEN7GcG_E-7YsS9FB_qz-Rd4xd4_1777403203
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: 7HMZBUOYSWPR2ROPA5AVSRGCSMSCWFQQ
-X-Message-ID-Hash: 7HMZBUOYSWPR2ROPA5AVSRGCSMSCWFQQ
-X-MailFrom: lyude@redhat.com
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB8412.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ d78ffac6-7b07-4724-842a-08dea5640f80
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Apr 2026 20:23:50.7568
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ uXCq7iau66ZUhlBR3pQ7ajFygck85j3qxRDtxr+Jgw5GrNa/DHdmtqevM6TrY7twPeNorg6vEvTYd9vYyP87SQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR12MB9479
+Message-ID-Hash: MX4SD66ICQEB3OO6G6OLQHP2DLIVYM6N
+X-Message-ID-Hash: MX4SD66ICQEB3OO6G6OLQHP2DLIVYM6N
+X-MailFrom: ttabi@nvidia.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Matthew Maurer <mmaurer@google.com>,
- FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, christian.koenig@amd.com,
- Asahi Lina <lina@asahilina.net>, Miguel Ojeda <ojeda@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Alice Ryhl <aliceryhl@google.com>, Boqun Feng <boqun@kernel.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Krishna Ketan Rai <prafulrai522@gmail.com>, linux-media@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, linaro-mm-sig@lists.linaro.org,
- Asahi Lina <lina+kernel@asahilina.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, kernel@vger.kernel.org
+ loop; banned-address
+CC: "airlied@redhat.com" <airlied@redhat.com>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7HMZBUOYSWPR2ROPA5AVSRGCSMSCWFQQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MX4SD66ICQEB3OO6G6OLQHP2DLIVYM6N/>
 Archived-At: 
- <https://lore.freedesktop.org/20260428190605.3355690-6-lyude@redhat.com/>
+ <https://lore.freedesktop.org/45dccce37d37d4a2830f10f3cfb79f55fc203b7c.camel@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -135,443 +184,25 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-One of the more obvious use cases for gem shmem objects is the ability to
-create mappings into their contents. So, let's hook this up in our rust
-bindings.
-
-Similar to how we handle SGTables, we make sure there's two different types
-of mappings: owned mappings (kernel::drm::gem::shmem::VMap) and borrowed
-mappings (kernel::drm::gem::shmem::VMapRef).
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-
----
-V7:
-* Switch over to the new iosys map bindings that use the Io trait
-V8:
-* Get rid of iosys_map bindings for now, only support non-iomem types
-* s/as_shmem()/as_raw_shmem()
-V9:
-* Get rid of some outdated comments I missed
-* Add missing SIZE check to raw_vmap()
-* Add a proper unit test that ensures that we actually validate SIZE at
-  compile-time.
-  Turns out it takes only 34 lines to make a boilerplate DRM driver for a
-  kunit test :)
-* Add unit tests
-* Add some missing #[inline]s
-V10:
-* Correct issue with iomem error path
-  We previously called raw_vunmap() if we got an iomem allocation, but
-  raw_vunmap() was written such that it assumed all allocations were sysmem
-  allocations. Fix this by just making raw_vunmap() accept a iosys_map.
-V11:
-* Use Alexandre's clever solution to remove the macros we were using for
-  maintaining two different VMap types.
-* Change the order of items in Object<T> to ensure that sgt_res is always
-  dropped before obj.
-* Fix typo in Object.raw_vmap()
-* s/raw_vmap()/make_vmap()/
-  Deduplicate code a bit more as well by using more generics here
-
- rust/kernel/drm/gem/shmem.rs | 352 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 351 insertions(+), 1 deletion(-)
-
-diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
-index c0187ff22e526..d68b6e3896915 100644
---- a/rust/kernel/drm/gem/shmem.rs
-+++ b/rust/kernel/drm/gem/shmem.rs
-@@ -26,6 +26,11 @@
-         from_err_ptr,
-         to_result, //
-     },
-+    io::{
-+        Io,
-+        IoCapable,
-+        IoKnownSize, //
-+    },
-     prelude::*,
-     scatterlist,
-     sync::{
-@@ -37,7 +42,11 @@
-     types::Opaque, //
- };
- use core::{
--    mem,
-+    ffi::c_void,
-+    mem::{
-+        self,
-+        MaybeUninit, //
-+    },
-     ops::{
-         Deref,
-         DerefMut, //
-@@ -48,6 +57,7 @@
-     },
- };
- use gem::{
-+    BaseObject,
-     BaseObjectPrivate,
-     DriverObject,
-     IntoGEMObject, //
-@@ -274,6 +284,80 @@ pub fn owned_sg_table(&self, dev: &device::Device<Bound>) -> Result<SGTable<T>>
-         // `Devres<SGTableMap<T>>`.
-         Ok(SGTable(self.into()))
-     }
-+
-+    /// Attempt to create a vmap from the gem object, and confirm the size of said vmap.
-+    fn make_vmap<'a, R, const SIZE: usize>(&'a self) -> Result<VMap<T, R, SIZE>>
-+    where
-+        R: Deref<Target = Self> + From<&'a Self>,
-+    {
-+        // INVARIANT: We check here that the gem object is at least as large as `SIZE`.
-+        if self.size() < SIZE {
-+            return Err(ENOSPC);
-+        }
-+
-+        let mut map: MaybeUninit<bindings::iosys_map> = MaybeUninit::uninit();
-+        let guard = DmaResvGuard::new(self);
-+
-+        // SAFETY: drm_gem_shmem_vmap can be called with the DMA reservation lock held
-+        to_result(unsafe {
-+            bindings::drm_gem_shmem_vmap_locked(self.as_raw_shmem(), map.as_mut_ptr())
-+        })?;
-+
-+        // Drop the guard explicitly here, since we may need to call raw_vunmap() (which re-acquires
-+        // the lock).
-+        drop(guard);
-+
-+        // SAFETY: The call to drm_gem_shmem_vmap_locked succeeded above, so we are guaranteed that
-+        // map is properly initialized.
-+        let map = unsafe { map.assume_init() };
-+
-+        // XXX: We don't currently support iomem allocations
-+        if map.is_iomem {
-+            // SAFETY:
-+            // - The vmap operation above succeeded, guaranteeing that `map` points to a valid
-+            //   memory mapping.
-+            // - We checked that this is an iomem allocation, making it safe to read vaddr_iomem
-+            unsafe { self.raw_vunmap(map) };
-+
-+            Err(ENOTSUPP)
-+        } else {
-+            Ok(VMap {
-+                // SAFETY: We checked that this is not an iomem allocation, making it safe to read
-+                // vaddr
-+                addr: unsafe { map.__bindgen_anon_1.vaddr },
-+                owner: self.into(),
-+            })
-+        }
-+    }
-+
-+    /// Unmap a vmap from the gem object.
-+    ///
-+    /// # Safety
-+    ///
-+    /// - The caller promises that `map` is a valid vmap on this gem object.
-+    /// - The caller promises that the memory pointed to by map will no longer be accesed through
-+    ///   this instance.
-+    unsafe fn raw_vunmap(&self, mut map: bindings::iosys_map) {
-+        let _guard = DmaResvGuard::new(self);
-+
-+        // SAFETY:
-+        // - This function is safe to call with the DMA reservation lock held.
-+        // - Our `ARef` is proof that the underlying gem object here is initialized and thus safe to
-+        //   dereference.
-+        unsafe { bindings::drm_gem_shmem_vunmap_locked(self.as_raw_shmem(), &mut map) };
-+    }
-+
-+    /// Creates and returns a virtual kernel memory mapping for this object.
-+    #[inline]
-+    pub fn vmap<const SIZE: usize>(&self) -> Result<VMapRef<'_, T, SIZE>> {
-+        self.make_vmap()
-+    }
-+
-+    /// Creates and returns an owned reference to a virtual kernel memory mapping for this object.
-+    #[inline]
-+    pub fn owned_vmap<const SIZE: usize>(&self) -> Result<VMapOwned<T, SIZE>> {
-+        self.make_vmap()
-+    }
- }
- 
- impl<T: DriverObject> Deref for Object<T> {
-@@ -407,6 +491,155 @@ unsafe impl<T: DriverObject> Send for SGTableMap<T> {}
- // it points to is guaranteed to be thread-safe.
- unsafe impl<T: DriverObject> Sync for SGTableMap<T> {}
- 
-+macro_rules! impl_vmap_io_capable {
-+    ($impl:ident, $ty:ty) => {
-+        impl<D, R, const SIZE: usize> IoCapable<$ty> for $impl<D, R, SIZE>
-+        where
-+            D: DriverObject,
-+            R: Deref<Target = Object<D>>,
-+        {
-+            #[inline(always)]
-+            unsafe fn io_read(&self, address: usize) -> $ty {
-+                let ptr = address as *mut $ty;
-+
-+                // SAFETY: The safety contract of `io_read` guarantees that address is a valid
-+                // address within the bounds of `Self` of at least the size of $ty, and is properly
-+                // aligned.
-+                unsafe { ptr::read(ptr) }
-+            }
-+
-+            #[inline(always)]
-+            unsafe fn io_write(&self, value: $ty, address: usize) {
-+                let ptr = address as *mut $ty;
-+
-+                // SAFETY: The safety contract of `io_write` guarantees that address is a valid
-+                // address within the bounds of `Self` of at least the size of $ty, and is properly
-+                // aligned.
-+                unsafe { ptr::write(ptr, value) }
-+            }
-+        }
-+    };
-+}
-+
-+/// A reference to a virtual mapping for an shmem-based GEM object in kernel address space.
-+///
-+/// # Invariants
-+///
-+/// - The size of `owner` is >= SIZE.
-+/// - The memory pointed to by addr remains valid at least until this object is dropped.
-+pub struct VMap<D, R, const SIZE: usize = 0>
-+where
-+    D: DriverObject,
-+    R: Deref<Target = Object<D>>,
-+{
-+    addr: *mut c_void,
-+    owner: R,
-+}
-+
-+/// An alias type for a reference to a shmem-based GEM object's VMap.
-+pub type VMapRef<'a, D, const SIZE: usize = 0> = VMap<D, &'a Object<D>, SIZE>;
-+
-+/// An alias type for an owned reference to a shmem-based GEM object's VMap.
-+pub type VMapOwned<D, const SIZE: usize = 0> = VMap<D, ARef<Object<D>>, SIZE>;
-+
-+impl<D, R, const SIZE: usize> VMap<D, R, SIZE>
-+where
-+    D: DriverObject,
-+    R: Deref<Target = Object<D>>,
-+{
-+    /// Borrows a reference to the object that owns this virtual mapping.
-+    #[inline(always)]
-+    pub fn owner(&self) -> &Object<D> {
-+        &self.owner
-+    }
-+}
-+
-+impl<D, R, const SIZE: usize> Drop for VMap<D, R, SIZE>
-+where
-+    D: DriverObject,
-+    R: Deref<Target = Object<D>>,
-+{
-+    #[inline(always)]
-+    fn drop(&mut self) {
-+        // SAFETY:
-+        // - Our existence is proof that this map was previously created using self.owner.
-+        // - Since we are in Drop, we are guaranteed that no one will access the memory
-+        //   through this mapping after calling this.
-+        unsafe {
-+            self.owner.raw_vunmap(bindings::iosys_map {
-+                is_iomem: false,
-+                __bindgen_anon_1: bindings::iosys_map__bindgen_ty_1 { vaddr: self.addr },
-+            })
-+        };
-+    }
-+}
-+
-+impl<D, R, const SIZE: usize> Io for VMap<D, R, SIZE>
-+where
-+    D: DriverObject,
-+    R: Deref<Target = Object<D>>,
-+{
-+    #[inline(always)]
-+    fn addr(&self) -> usize {
-+        self.addr as usize
-+    }
-+
-+    #[inline(always)]
-+    fn maxsize(&self) -> usize {
-+        self.owner.size()
-+    }
-+}
-+
-+impl<D, R, const SIZE: usize> IoKnownSize for VMap<D, R, SIZE>
-+where
-+    D: DriverObject,
-+    R: Deref<Target = Object<D>>,
-+{
-+    const MIN_SIZE: usize = SIZE;
-+}
-+
-+impl_vmap_io_capable!(VMap, u8);
-+impl_vmap_io_capable!(VMap, u16);
-+impl_vmap_io_capable!(VMap, u32);
-+#[cfg(CONFIG_64BIT)]
-+impl_vmap_io_capable!(VMap, u64);
-+
-+impl<D: DriverObject, const SIZE: usize> Clone for VMapOwned<D, SIZE> {
-+    #[inline]
-+    fn clone(&self) -> Self {
-+        // SAFETY: We have a successful vmap already, so this can't fail.
-+        unsafe { self.owner.owned_vmap().unwrap_unchecked() }
-+    }
-+}
-+
-+impl<'a, D: DriverObject, const SIZE: usize> Clone for VMapRef<'a, D, SIZE> {
-+    #[inline]
-+    fn clone(&self) -> Self {
-+        // SAFETY: We have a successful vmap already, so this can't fail.
-+        unsafe { self.owner.vmap().unwrap_unchecked() }
-+    }
-+}
-+
-+impl<'a, D: DriverObject, const SIZE: usize> From<VMapRef<'a, D, SIZE>> for VMapOwned<D, SIZE> {
-+    #[inline]
-+    fn from(value: VMapRef<'a, D, SIZE>) -> Self {
-+        let this = Self {
-+            addr: value.addr,
-+            owner: value.owner.into(),
-+        };
-+
-+        mem::forget(value);
-+        this
-+    }
-+}
-+
-+// SAFETY: VMap is thread-safe, and the fact that this VMap has an owned reference to the object
-+// means this object will remain valid until dropped.
-+unsafe impl<D: DriverObject, const SIZE: usize> Send for VMapOwned<D, SIZE> {}
-+// SAFETY: VMap is thread-safe, and the fact that this VMap has an owned reference to the object
-+// means this object will remain valid until dropped.
-+unsafe impl<D: DriverObject, const SIZE: usize> Sync for VMapOwned<D, SIZE> {}
-+
- /// An owned reference to a scatter-gather table of DMA address spans for a GEM shmem object.
- ///
- /// This object holds an owned reference to the underlying GEM shmem object, ensuring that the
-@@ -446,3 +679,120 @@ fn deref(&self) -> &Self::Target {
-         unsafe { (*self.0.sgt_res.data.get()).as_ref().unwrap_unchecked() }
-     }
- }
-+
-+#[kunit_tests(rust_drm_gem_shmem)]
-+mod tests {
-+    use super::*;
-+    use crate::{
-+        drm,
-+        faux,
-+        page::PAGE_SIZE, //
-+    };
-+
-+    // The bare minimum needed to create a fake drm driver for kunit
-+
-+    #[pin_data]
-+    struct KunitData {}
-+    struct KunitDriver;
-+    struct KunitFile;
-+    #[pin_data]
-+    struct KunitObject {}
-+
-+    const INFO: drm::DriverInfo = drm::DriverInfo {
-+        major: 0,
-+        minor: 0,
-+        patchlevel: 0,
-+        name: c"kunit",
-+        desc: c"Kunit",
-+    };
-+
-+    impl drm::file::DriverFile for KunitFile {
-+        type Driver = KunitDriver;
-+
-+        fn open(_dev: &drm::Device<KunitDriver>) -> Result<Pin<KBox<Self>>> {
-+            Ok(KBox::new(Self, GFP_KERNEL)?.into())
-+        }
-+    }
-+
-+    impl gem::DriverObject for KunitObject {
-+        type Driver = KunitDriver;
-+        type Args = ();
-+
-+        fn new(
-+            _dev: &drm::Device<KunitDriver>,
-+            _size: usize,
-+            _args: Self::Args,
-+        ) -> impl PinInit<Self, Error> {
-+            try_pin_init!(KunitObject {})
-+        }
-+    }
-+
-+    #[vtable]
-+    impl drm::Driver for KunitDriver {
-+        type Data = KunitData;
-+        type File = KunitFile;
-+        type Object = Object<KunitObject>;
-+
-+        const INFO: drm::DriverInfo = INFO;
-+        const IOCTLS: &'static [drm::ioctl::DrmIoctlDescriptor] = &[];
-+    }
-+
-+    fn create_drm_dev() -> Result<(faux::Registration, ARef<drm::Device<KunitDriver>>)> {
-+        // Create a faux DRM device so we can test gem object creation.
-+        let data = try_pin_init!(KunitData {});
-+        let dev = faux::Registration::new(c"Kunit", None)?;
-+        let drm = drm::Device::<KunitDriver>::new(dev.as_ref(), data)?;
-+
-+        Ok((dev, drm))
-+    }
-+
-+    #[test]
-+    fn compile_time_vmap_sizes() -> Result {
-+        let (_dev, drm) = create_drm_dev()?;
-+
-+        // Create a gem object to test with
-+        let cfg_ = ObjectConfig::<KunitObject> {
-+            map_wc: false,
-+            parent_resv_obj: None,
-+        };
-+        let obj = Object::<KunitObject>::new(&drm, PAGE_SIZE, cfg_, ())?;
-+
-+        // Try creating a normal vmap
-+        obj.vmap::<PAGE_SIZE>()?;
-+
-+        // Try creating a vmap that's smaller then the size we specified
-+        obj.vmap::<{ PAGE_SIZE - 100 }>()?;
-+
-+        // Make sure creating a vmap that's too large fails
-+        assert!(obj.vmap::<{ PAGE_SIZE + 200 }>().is_err());
-+
-+        Ok(())
-+    }
-+
-+    #[test]
-+    fn vmap_io() -> Result {
-+        let (_dev, drm) = create_drm_dev()?;
-+
-+        // Create a gem object to test with
-+        let cfg_ = ObjectConfig::<KunitObject> {
-+            map_wc: false,
-+            parent_resv_obj: None,
-+        };
-+        let obj = Object::<KunitObject>::new(&drm, PAGE_SIZE, cfg_, ())?;
-+
-+        let vmap = obj.vmap::<PAGE_SIZE>()?;
-+
-+        vmap.write8(0xDE, 0x0);
-+        assert_eq!(vmap.read8(0x0), 0xDE);
-+        vmap.write32(0xFFFFFFFF, 0x20);
-+
-+        assert_eq!(vmap.read32(0x20), 0xFFFFFFFF);
-+
-+        assert_eq!(vmap.read8(0x20), 0xFF);
-+        assert_eq!(vmap.read8(0x21), 0xFF);
-+        assert_eq!(vmap.read8(0x22), 0xFF);
-+        assert_eq!(vmap.read8(0x23), 0xFF);
-+
-+        Ok(())
-+    }
-+}
--- 
-2.54.0
-
+T24gVHVlLCAyMDI2LTA0LTI4IGF0IDE3OjUzICswMjAwLCBEYW5pbG8gS3J1bW1yaWNoIHdyb3Rl
+Og0KPiBPbiBUdWUgQXByIDcsIDIwMjYgYXQgODo1MyBQTSBDRVNULCBUaW11ciBUYWJpIHdyb3Rl
+Og0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Jpb3Mu
+YyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmlvcy5jDQo+ID4gaW5kZXggYzgz
+MzVmNWI0OWRiLi4yOGJjZjM4Y2RkZGYgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9iaW9zLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2Jpb3MuYw0KPiA+IEBAIC0yMDg1LDEwICsyMDg1LDI0IEBAIG5vdXZlYXVfYmlv
+c19pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpDQo+ID4gwqAJaW50IHJldDsNCj4gPiDCoA0K
+PiA+IMKgCS8qIG9ubHkgcmVsZXZhbnQgZm9yIFBDSSBkZXZpY2VzICovDQo+ID4gLQlpZiAoIWRl
+dl9pc19wY2koZGV2LT5kZXYpIHx8DQo+ID4gLQnCoMKgwqAgbnZrbV9nc3Bfcm0obnZ4eF9kZXZp
+Y2UoZHJtKS0+Z3NwKSkNCj4gPiArCWlmICghZGV2X2lzX3BjaShkZXYtPmRldikpDQo+ID4gwqAJ
+CXJldHVybiAwOw0KPiA+IMKgDQo+ID4gKwlpZiAobnZrbV9nc3Bfcm0obnZ4eF9kZXZpY2UoZHJt
+KS0+Z3NwKSkgew0KPiA+ICsJCXN0cnVjdCBudmttX2Jpb3MgKm52a21fYmlvcyA9IG52eHhfYmlv
+cyhkcm0pOw0KPiANCj4gQ2FuIHRoaXMgcG9pbnRlciBldmVyIGJlIE5VTEw/IEJlZm9yZSB3ZSBo
+YWQgYSBudmttX2dzcF9ybSgpIGNoZWNrIGFuZCBJIHRoaW5rDQo+IHRoYXQgc29tZSBHU1AgY2hp
+cHNldHMgY2FuIGhhdmUgYSBudnh4X2Jpb3MoKSByZXR1cm4gYSBOVUxMIHBvaW50ZXIuDQoNClll
+cywgeW91IGFyZSBjb3JyZWN0LCB0aGlzIGNhbiBiZSBOVUxMLiAgSSB3aWxsIHBvc3QgYSB2Mi4N
+Cg0KQlRXLCB0aGVyZSdzIGFub3RoZXIgZGVidWdmcyBwYXRjaCB0aGF0IHdhcyBwb3N0ZWQgbW9u
+dGhzIGFnbyB0aGF0IHlvdSBzaG91bGQgY29uc2lkZXI6DQoNCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL2FyY2hpdmVzL25vdXZlYXUvMjAyNS1BdWd1c3QvMDUxMjM1Lmh0bWwNCg0KTG9v
+a3MgbGlrZSB0aGUgYXV0aG9yIG5ldmVyIGZvbGxvd2VkLXVwIHRvIG1ha2Ugc3VyZSBpdCB3YXMg
+cmV2aWV3ZWQuDQo=
