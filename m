@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33163FF886C
-	for <nouveau@archiver.kernel.org>; Tue, 28 Apr 2026 09:02:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99721FF886C
+	for <nouveau@archiver.kernel.org>; Tue, 28 Apr 2026 09:03:04 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 37E3410EAA0;
-	Tue, 28 Apr 2026 09:02:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7883210EAA7;
+	Tue, 28 Apr 2026 09:03:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NAK5XUKF";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aFyKzykH";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6B02D45C81;
-	Tue, 28 Apr 2026 08:50:35 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id AAF2945C87;
+	Tue, 28 Apr 2026 08:50:42 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1777366235;
- b=C5xOkuoKHIouw+blJtu3U4fHSFMs0rxNZ67EzwQNUbAUegLlYSpAllHGSVoYti0OXXyc8
- 1tMsLpBk287NZCWVn+MYfR/0vStIzc/IIloReEo/GzB2Qgu12cLWRXTfd5Tm9klUN87rjjO
- YcOF0V7f+bKVDKNH+8vhs4YcL55q4ED2kBSAopg04g6ji1GLt6B2LWiyakXCVKpaYd7LnqS
- o1yS/K38arDSasdtmxMgb4ye9c/aICJNcHR7840lkanC4aFz3kac0esedTFcToVprkIPgWq
- Kup/aJEmtgHimb+aWiui07cmLZZ02FnhkIAf7diQmaixTjusikEoMm5JUn+w==
+ s=20240201; t=1777366242;
+ b=kw7+eujtvM4mZqgLvmuCdNXQ4xTv8Sj6YTxJGoFxMYRC1jOTgOaFG46TQUNbs1Se59cFe
+ eKcbIOJHLM5kQvZMbXOJrdOFLQVO+cBWx6cVUlCygyIIOYwcRhekbh33qcLgr3w47ED4A1C
+ nvX+m+jhUHb9E6wMxAe1TP8tTXb15kWYj9h9ehBZ3mHWgD/+p6g5DkS73mlE779iSUCmrcb
+ 8dwy/o1hfZ/179tAKP5IuPB56nwLpB1HarAO4RJh3GYuuUgTE8PS3idQ0R8DWtOWNvTKo82
+ RYN0VpEL+bKmetP94JsnVA9YGMvbEhL9sUS1egGu711PTrnhL/0k6P3D8gbQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1777366235; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1777366242; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=PKClDgr1wdejR+52WQGzIzuBpKe+/ihFHqwm7WwPm/o=;
- b=H1XuQzEyu35SHJCIi9tSi3csX1y9gx0lxPClVd0qOjgxArSr2XJCKoohoEacf4Do7GzQy
- d8xROIAopSyTDlXovyTGOAKBK5giI7genntzpPvSAfjUhqGe8rL++vRwHxhwQp4hYmiyLc2
- vwonJP+OOSPipEeyigFckh4etE0KmBVkoGKIOVtl4YSCci7OMR6338LgPPw9pmvPBRRfEiJ
- WLQJ++TpUmUPh6tx9/Qm+cSzMj3Jq7DZCxi+Og7ryXBBHKdizI4iyRlOqnzKdRQGY0gUsPB
- IIwF76nqSuc9NpcKfBdrQqv6QcqI6r624mSAEvNtJZHRlc6h5sxsq/fKmshw==
+ bh=f2d9JK5Mvq/32NvAXiqghSTW9L2cVmlYCVilePt1VDI=;
+ b=FD57x7hRuJnp6RxgbW0URtr3IALbs9cN1nI53G3zAiGsmxAF9LEQqkTGClT2ClQnAzL9k
+ ViFoWr8kSUSseVl2ruY9kcPmtHfeK5o35BdDNnDitzYgXNzkHQ3DjnUJqt4c233l6LOcExv
+ fEHbculQ3KzRxMdPOXRSBEqRKI75S0PZp8II8o/N9Bdxzi9dGzdOH7bM8msgQI42mgt1H62
+ /a++2ZCG3ysYdpu0kWgRVCqXCk2bUZimdXl0pOVQMi/EFHgm4NF0IAdeGnquWiiE+m+1RdO
+ stpQaEMW/DlDxvuPW8n5OjRkGxXZAFSgdelvBrrgSkEBwAPtlWQdlmWBpEEg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 1776B45560
-	for <nouveau@lists.freedesktop.org>; Tue, 28 Apr 2026 08:50:33 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 5328845560
+	for <nouveau@lists.freedesktop.org>; Tue, 28 Apr 2026 08:50:39 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id ACB6910EA8F;
-	Tue, 28 Apr 2026 09:02:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DDCA210EA8D;
+	Tue, 28 Apr 2026 09:03:00 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2C4CB6014C;
+	by tor.source.kernel.org (Postfix) with ESMTP id 6300E6057A;
+	Tue, 28 Apr 2026 09:03:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A52EEC2BCFB;
 	Tue, 28 Apr 2026 09:02:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 850B2C2BCB8;
-	Tue, 28 Apr 2026 09:02:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777366974;
-	bh=8yzRRXLfiwZ2u7ZWEAZNz76TJ2spxwIMhj+GhPigBKI=;
+	s=k20201202; t=1777366980;
+	bh=sMh3Q4aYjvxwlp3vAR4VOlGoadf0UJaonFkGF4Bi6tA=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=NAK5XUKFRmLvqRelgIUloT12JrGj0EmUjRNIskUaTVK2a5V/ox1zt+THQitdNIg9c
-	 RqGpzHBeqlKpoaJq4I4DoXIo/SECYCRRAqBZcxsYI3YegEMHORAK+l/81mLmRYoki7
-	 qP4nEhF/iftVYz6t6sSWxhVv63EnzjjbXykiPMSwQxa62dPSmrJH1afsQZoLOkhm/3
-	 QE83XQUuL+MeT3hqVsqg3QynmRI9RU8UhyjT0l9o/ucbSFZzLgoTR4liXiKzYHweiE
-	 luji4sr8gPkUUwLuCu+dE49xwvCG4M4W9ED397hh5YoBfZJB6l/rMhQ1z4WHhlhtc4
-	 +4bziSKpNX6zg==
+	b=aFyKzykHlwyNer/6emLE2w2vZjnqPDqkR3/CfY8qwjrtva/XCUC6Nn07Q5RUBwO7d
+	 JkbUclwj6yjVCzRkbIP2TRiPg3pBDCtX6ey0Oeq4deHwe8j4iq5/bfjmhtxnK1Xzim
+	 AzJSOqurqt3DLQ+rRUmitgFQix2R75s3BQoluqbDSf0AW+zn25wcMeVMxyASmx0xDy
+	 03Xx+xdkdw0TBYmhlXPQ39U1hI02aLAR027MG1urY8LBdp8Ho5AP9GM23twbdRnRPH
+	 zz4rC+T6gSBJJ/7nsQbbfyNEmNX1oQMQigb7CHYjWZi+etDNgeJf2X9H7SsaBw6rHi
+	 Jo26Cu18ObL5A==
 From: Andreas Hindborg <a.hindborg@kernel.org>
 To: Gary Guo <gary@garyguo.net>, Greg Kroah-Hartman
  <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
@@ -80,17 +80,16 @@ To: Gary Guo <gary@garyguo.net>, Greg Kroah-Hartman
  <abdiel.janulgue@gmail.com>, Robin Murphy <robin.murphy@arm.com>,
  Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>
-Subject: Re: [PATCH v2 05/11] rust: io: restrict untyped IO access and
- `register!` to `Region`
-In-Reply-To: <20260421-io_projection-v2-5-4c251c692ef4@garyguo.net>
+Subject: Re: [PATCH v2 03/11] rust: io: use pointer types instead of address
+In-Reply-To: <20260421-io_projection-v2-3-4c251c692ef4@garyguo.net>
 References: <20260421-io_projection-v2-0-4c251c692ef4@garyguo.net>
- <20260421-io_projection-v2-5-4c251c692ef4@garyguo.net>
-Date: Tue, 28 Apr 2026 11:02:34 +0200
-Message-ID: <874ikvqwyd.fsf@t14s.mail-host-address-is-not-set>
+ <20260421-io_projection-v2-3-4c251c692ef4@garyguo.net>
+Date: Tue, 28 Apr 2026 09:12:05 +0200
+Message-ID: <87a4unr22i.fsf@t14s.mail-host-address-is-not-set>
 MIME-Version: 1.0
 Content-Type: text/plain
-Message-ID-Hash: FRGSOIAYTKLCAJYXSGZ525IHGDSITACL
-X-Message-ID-Hash: FRGSOIAYTKLCAJYXSGZ525IHGDSITACL
+Message-ID-Hash: NEJIPRYA6JJXUNSWISNCU7QFET4OSSPE
+X-Message-ID-Hash: NEJIPRYA6JJXUNSWISNCU7QFET4OSSPE
 X-MailFrom: a.hindborg@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -103,9 +102,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FRGSOIAYTKLCAJYXSGZ525IHGDSITACL/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NEJIPRYA6JJXUNSWISNCU7QFET4OSSPE/>
 Archived-At: 
- <https://lore.freedesktop.org/874ikvqwyd.fsf@t14s.mail-host-address-is-not-set/>
+ <https://lore.freedesktop.org/87a4unr22i.fsf@t14s.mail-host-address-is-not-set/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -117,34 +116,108 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 Gary Guo <gary@garyguo.net> writes:
 
-> Currently the `Io` trait exposes a bunch of untyped IO accesses, but if the
-> `Io` region itself is typed, then it might be weird to have
+> This carries the size information with the pointer type and metadata, makes
+> it possible to use I/O projections and paves the way for IO view types.
 >
->     let io: Mmio<u32> = /* ... */;
->     io.read8(1);
+> With this change, minimum size information becomes available through types;
+> so `KnownSize::MIN_SIZE` can be used and `IoKnownSize` trait is no longer
+> necessary. The trait is kept for compatibility and can be removed when
+> users stop using it for bounds.
 >
-> while not unsound, it is surely strange. Thus, restrict the untyped methods
-> and also the register macro to `Region` type only.
+> PCI config space uses only offsets and not pointers like MMIO; for this
+> null pointers (with proper size metadata) is used. This is okay as I/O
+> trait impl and I/O projections can operate on invalid pointers, and for PCI
+> config space we will only use address info and ignore the provenance.
 >
-> The way it is implemented is by adding a generic type to `IoLoc`. This also
-> paves the way to add typed register blocks in the future; for example, we
-> could use this mechanism to block driver A's `register!()` generated macro
-> from being used on driver B's MMIO. The same mechanism could be used for
-> relative IO registers. These are future opoortunities, and for this patch I
-> just restricted everything to require `IoLoc<Region<SIZE>, _>`.
+> Signed-off-by: Gary Guo <gary@garyguo.net>
+> ---
+>  rust/kernel/devres.rs |   2 +-
+>  rust/kernel/io.rs     | 123 +++++++++++++++++++++-----------------------------
+>  rust/kernel/io/mem.rs |   2 +-
+>  rust/kernel/pci/io.rs |  74 ++++++++++++++++++------------
+>  4 files changed, 99 insertions(+), 102 deletions(-)
+>
+> diff --git a/rust/kernel/devres.rs b/rust/kernel/devres.rs
+> index 3e22c63efb98..ea86e9c62cdf 100644
+> --- a/rust/kernel/devres.rs
+> +++ b/rust/kernel/devres.rs
+> @@ -101,7 +101,7 @@ struct Inner<T> {
+>  /// impl<const SIZE: usize> Drop for IoMem<SIZE> {
+>  ///     fn drop(&mut self) {
+>  ///         // SAFETY: `self.0.addr()` is guaranteed to be properly mapped by `Self::new`.
+> -///         unsafe { bindings::iounmap(self.0.addr() as *mut c_void); };
+> +///         unsafe { bindings::iounmap(self.0.as_ptr().cast()); };
+>  ///     }
+>  /// }
+>  ///
+> diff --git a/rust/kernel/io.rs b/rust/kernel/io.rs
+> index 0b9c97c0a1d7..1682f2a0d20d 100644
+> --- a/rust/kernel/io.rs
+> +++ b/rust/kernel/io.rs
+> @@ -105,8 +105,8 @@ pub fn new_region(addr: usize, size: usize) -> Result<Self> {
+>  impl<T: ?Sized + KnownSize> MmioRaw<T> {
+>      /// Returns the base address of the MMIO region.
+>      #[inline]
+> -    pub fn addr(&self) -> usize {
+> -        self.addr.addr()
+> +    pub fn as_ptr(&self) -> *mut T {
+> +        self.addr
+>      }
+>  
+>      /// Returns the size of the MMIO region.
+> @@ -166,7 +166,7 @@ pub fn size(&self) -> usize {
+>  /// impl<const SIZE: usize> Drop for IoMem<SIZE> {
+>  ///     fn drop(&mut self) {
+>  ///         // SAFETY: `self.0.addr()` is guaranteed to be properly mapped by `Self::new`.
+> -///         unsafe { bindings::iounmap(self.0.addr() as *mut c_void); };
+> +///         unsafe { bindings::iounmap(self.0.as_ptr().cast()); };
+>  ///     }
+>  /// }
+>  ///
+> @@ -217,14 +217,14 @@ pub trait IoCapable<T> {
+>      /// # Safety
+>      ///
+>      /// The range `[address..address + size_of::<T>()]` must be within the bounds of `Self`.
+> -    unsafe fn io_read(&self, address: usize) -> T;
+> +    unsafe fn io_read(&self, address: *mut T) -> T;
+>  
+>      /// Performs an I/O write of `value` at `address`.
+>      ///
+>      /// # Safety
+>      ///
+>      /// The range `[address..address + size_of::<T>()]` must be within the bounds of `Self`.
+> -    unsafe fn io_write(&self, value: T, address: usize);
+> +    unsafe fn io_write(&self, value: T, address: *mut T);
+>  }
+>  
+>  /// Describes a given I/O location: its offset, width, and type to convert the raw value from and
+> @@ -291,23 +291,35 @@ fn offset(self) -> usize {
+>  /// For MMIO regions, all widths (u8, u16, u32, and u64 on 64-bit systems) are typically
+>  /// supported. For PCI configuration space, u8, u16, and u32 are supported but u64 is not.
+>  pub trait Io {
+> -    /// Returns the base address of this mapping.
+> -    fn addr(&self) -> usize;
+> +    /// Type of this I/O region. For untyped I/O regions, [`Region`] type can be used.
+> +    type Type: ?Sized + KnownSize;
+> +
+> +    /// Returns the base pointer of this mapping.
+> +    ///
+> +    /// This is a pointer to capture metadata. The specific meaning of the pointer depends on
+> +    /// I/O backend and is not necessarily valid.
+> +    fn as_ptr(&self) -> *mut Self::Type;
+> +
+> +    /// Returns the absolute I/O address for a given `offset`,
+> +    /// performing compile-time bound checks.
+> +    // Always inline to optimize out error path of `build_assert`.
+> +    #[inline(always)]
+> +    fn io_addr_assert<U>(&self, offset: usize) -> *mut U {
+> +        build_assert!(offset_valid::<U>(offset, Self::Type::MIN_SIZE));
 
-Does this not prevent `usize` from being used to index anything but
-`Mmio<Region<_>>`?
+Consider renaming this function `io_addr_build_assert` for clarity.
 
-It is my understanding that the following would work before this patch:
+At any rate:
 
-   fn do_read(io: &Mmio<u32>) -> Result {
-       let v: u32 = io.try_read(8usize)?;
-       Ok(())
-   }
-
-But I think this will no longer work with this patch. Is that the intention?
-
+Reviewed-by: Andreas Hindborg <a.hindborg@kernel.org>
 
 Best regards,
 Andreas Hindborg
