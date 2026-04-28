@@ -4,152 +4,194 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D39B8FF8860
-	for <nouveau@archiver.kernel.org>; Mon, 27 Apr 2026 17:29:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18418FF886C
+	for <nouveau@archiver.kernel.org>; Tue, 28 Apr 2026 08:58:55 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AD74810E870;
-	Mon, 27 Apr 2026 17:29:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AD67210EA7D;
+	Tue, 28 Apr 2026 08:58:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gmTgAPEc";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="TEksz7HS";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="G+KFKy1s";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="TEksz7HS";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="G+KFKy1s";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 318E845C7D;
-	Mon, 27 Apr 2026 17:17:23 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id D111B45C83;
+	Tue, 28 Apr 2026 08:46:31 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1777310243;
- b=A7lmN/b1YBEqab9PBo6nFTWwhMSDNUuoycqYq4dP4Y3DUs56q9A5pJcxVQ0Vyo2lbjyVm
- Yub/MC4sTyG4jyHbXTSG3YnKMTpMiHLCDrRMGpa1W4VDY+QIDjfhb2ulkjqRVEu4jAS6E05
- L912Wteud5QBhkwMy0Soh2cot1T21g+ds+RmSq7Le2aJyMWNj+jk7MFHmbzRjWLPitOURm4
- T97uz7hoI6V6xTJ/3KtcPXH5m+eEqQvTjzfDGjbJ99mYcANOt3P0Ff7nOVj2nkoySyICyed
- WpUGK815VlPUcUhcrga/Ed9rxph5wzbc8KgVnkRVPhSmrUryhzvqTdodJ3HQ==
+ s=20240201; t=1777365991;
+ b=iH1t54H+Q/HNr9PQbS5Gbd6F6w+eILvgzTdlSOJIh9GQOYSLVnBN5YjH3fCL85yiq8pAt
+ 2DK6pQk1WL0HKsr3VnBDCWiaBzJlVl1oAb4EY7sDLFBaAbpmED1QMBRNWjcKTEA8LGN1gz6
+ Q0ZJ4kBiny9rWZpxBj3L+gzEhO51MWeUA709WtZghzmf/pIHanJqxTGOnMLVbWxN83FwPLr
+ OjcOU1DzsnMaIbAM4pS8S0Myetvf96bJxy/W08mbSdThAi7Zb86oqt6unlnCT96aQBzoGVI
+ eTdYyd+1/wAuf0dBsilGOi6UyAvcyJLIKJu/0bhn4a8jCNWdCeFgeAuwa5Cw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1777310243; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1777365991; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=KF7u6ZoNxfK3+BpCCoO5erH9nqzrz/OiFIJaWAx89LM=;
- b=JG8wYFGEgD1CIq1vxA9E8+lwXIr9ytuoSXF0J5ZjVNLuJfx5ForRRkQJHI3ONHroi3oLS
- i/1SIeTCMlw7aScaReD4ynybbCD5+Y1GytyZPAB8hExuxSlfaLcsQBT3wPwtBWdVSo+ZQ90
- tlp4fOkDVbvMQT8Q4c9NqOLcom951ScA69CNAshn2TUSyTAiyWUt41KPBwJKU+QbXBz7YOF
- vP8YFxwGMfqyR3VYhVPi3XFsJY5k9ksT4KpKHmFTwKvCv/FrIZWUpEN83Gp9McXRRMUC+yv
- rs/shZ0jSsc14gSGsWMVrVb+4G08UEYRvhVxXI6Y9o4uw4ROyM1Zd2h3GOzw==
+ bh=sAelGM4F2Xt39Qz+f3wRmNahIYA7wMpiN6w+FWEsXTk=;
+ b=Ii1QxwG+Bw0XbMZI5LpsgHryiAxh5TCR49QK8auf886418yun9QN8oSm0v2XqI/xnLETn
+ hx0lgp+xllPQfUWNzpUCsM+vgtSRIm+k6LwedXOG0C38eCBgfooLx2z3088xXbuPs6BG1CD
+ duZSKJgQnlCoLIjJfLQEmFfsOX78Aj5Wq+maMb7vP/idSAVG4H5NxcK/MddA9v4pGOEZ8ek
+ yEHluePwuQCVHNuUwtb9KRNbKmdVqp7mURUyXk47Pv2E5prbkzeG6mMG+SsNt1OxA/2haWe
+ aApRHMGT2Am7HGv0rBj1jGNHU+X0/h7pBpaRkmbyQyS6mWoBuSXNbm4O6WUw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 7448E40F62
-	for <nouveau@lists.freedesktop.org>; Mon, 27 Apr 2026 17:17:19 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7EAD810E861
-	for <nouveau@lists.freedesktop.org>; Mon, 27 Apr 2026 17:29:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1777310978;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6B3A044F5F
+	for <nouveau@lists.freedesktop.org>; Tue, 28 Apr 2026 08:46:29 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AA2F610E320
+	for <nouveau@lists.freedesktop.org>; Tue, 28 Apr 2026 08:58:50 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 5987D6A81E;
+	Tue, 28 Apr 2026 08:58:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1777366729;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=KF7u6ZoNxfK3+BpCCoO5erH9nqzrz/OiFIJaWAx89LM=;
-	b=gmTgAPEcpbuCgYDJs8VxFmdPHbiS3t5mmZTww+MSTu3T6v92Dim+UMcperz8kog9w9BfcI
-	2MNyCRxcBSysNPJnd/v/VyZWrAi9h74XmUMeGEEvpG35hsoTZbG2sP3HuC71XFGq6Wn3nK
-	c9GbRN8kX4Mv5oDb0M34mpnqwAqw6ZM=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-489-2jS8JyYxONaqxFeT1NXQbQ-1; Mon, 27 Apr 2026 13:29:37 -0400
-X-MC-Unique: 2jS8JyYxONaqxFeT1NXQbQ-1
-X-Mimecast-MFC-AGG-ID: 2jS8JyYxONaqxFeT1NXQbQ_1777310974
-Received: by mail-qt1-f199.google.com with SMTP id
- d75a77b69052e-50faf575af4so49671891cf.0
-        for <nouveau@lists.freedesktop.org>;
- Mon, 27 Apr 2026 10:29:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777310974; x=1777915774;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KF7u6ZoNxfK3+BpCCoO5erH9nqzrz/OiFIJaWAx89LM=;
-        b=kO3ObeQcyi4cmAISgzmzJpP9BLJbgDIml+QpEPNW4EyuUhKByTBk4uyQrCiy6BUsDz
-         WjSYEalMrWtMAZPqnKXfbRPZoOXabeB/TgoQF2Nn4roRWavR8rm27uN1qrzPKTatoRrn
-         3ObwYzPr8b8h8txHfcEK1da+m2+7I7fWcK4msyxn9rthIhFJL82bbGtZ9QukTYpqJ6f4
-         Kq+qf/o84UQ7BKjNVlmde4kkkPbQ8pHkCiCJGqr42464FEOvpOu83hL34NTejUF2pk9o
-         ePo30GHO1XLcacwXOKC13Y2V9zxGS4jD2K/S+919NvoQpUXPVwCKeB++AN1sEffA94QY
-         bkiQ==
-X-Gm-Message-State: AOJu0YwEvBRowbSuYmWkJqaFlSt3EHD3op55+ToJGPXYJ2vitHEP+bTy
-	u8t/sOQoJ0duLp4CJC36UrY+iVjs//KjaR1A5PaqA9keNxlfQhvd8igaeaa6IisBh4Auj1iZAwQ
-	nUD7tdwAeElYC36INT16VkITN2BemkWOGu5yl5FpDhDYG1Apt8U0Im9fADLt0zk0reBM=
-X-Gm-Gg: AeBDietrCEUDqR8Ff+PkY4dqmX8HYwy1twee4MHnqLMS33vSNUKetldm2+qwovVn2Jl
-	QbgzvukXbF1YSJion7InSwP3aQlKGhx4vupcPdw7uUiunGEzi9zEYEdF4iSBzAiFPLsUT2aC002
-	yWYV7Pk0xUGkAHFI5QybolGKW+HshZSLGIPxdLfLfcA3JJKfg3SMFcWF92gRrne6XONUyJdJI8b
-	j/kjHstEbyRugKezo0X5Lm8IVl6c+rA6GRBS+nTP3qph8Z/KZEz0w8/JOUEPPKo/6/8bVNoTYSC
-	r4F6DL12xtOTznuWJ5d07NOADOTCz4ImKSqmwS2bf6KJWI9ebPTtwjSDZXGeLgCGFle78DsqtJM
-	NwQrqL1ug2jsJUnNRDx4yj1XdZ7iS
-X-Received: by 2002:a05:622a:486:b0:509:1009:e7a6 with SMTP id
- d75a77b69052e-5100c97933emr2571131cf.43.1777310973781;
-        Mon, 27 Apr 2026 10:29:33 -0700 (PDT)
-X-Received: by 2002:a05:622a:486:b0:509:1009:e7a6 with SMTP id
- d75a77b69052e-5100c97933emr2570391cf.43.1777310973161;
-        Mon, 27 Apr 2026 10:29:33 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93])
-        by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-8b3e29932fasm285886d6.45.2026.04.27.10.29.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Apr 2026 10:29:32 -0700 (PDT)
-Message-ID: <2f8a8b96473d99cee6f33075532a97f956ce21bc.camel@redhat.com>
-Subject: Re: [PATCH v12 5/5] rust: drm: gem: Add vmap functions to shmem
- bindings
-From: lyude@redhat.com
-To: Alexandre Courbot <acourbot@nvidia.com>
-Date: Mon, 27 Apr 2026 13:29:31 -0400
-In-Reply-To: <DI0MII8J4P2Y.309VKYVMQJNVK@nvidia.com>
-References: <20260421235346.672794-1-lyude@redhat.com>
-	 <20260421235346.672794-6-lyude@redhat.com>
-	 <DI0MII8J4P2Y.309VKYVMQJNVK@nvidia.com>
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=sAelGM4F2Xt39Qz+f3wRmNahIYA7wMpiN6w+FWEsXTk=;
+	b=TEksz7HSbxv66EkVAk2W9BQ95Lb+a6IWhKQaD9WbNGZnnG/OQCCp+tqvRg6VSVlrkMUGHw
+	f1bvYYdNAqFv3ZLSXEd+6a9g7hQLleMXf8ufZ2JGVTLGNhDtZ12vyIdmKmZ03Btmrm53+O
+	hI7A6/sz9yxzzRQz1rKlgCCXIglM70A=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1777366729;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=sAelGM4F2Xt39Qz+f3wRmNahIYA7wMpiN6w+FWEsXTk=;
+	b=G+KFKy1sebyAu+imx3r1I5yqGsim39KBOU30h+0wgP66QHMgODXVZrs3YbAgs0ZRhUCksE
+	4mhL7xnT8PYLwQAw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1777366729;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=sAelGM4F2Xt39Qz+f3wRmNahIYA7wMpiN6w+FWEsXTk=;
+	b=TEksz7HSbxv66EkVAk2W9BQ95Lb+a6IWhKQaD9WbNGZnnG/OQCCp+tqvRg6VSVlrkMUGHw
+	f1bvYYdNAqFv3ZLSXEd+6a9g7hQLleMXf8ufZ2JGVTLGNhDtZ12vyIdmKmZ03Btmrm53+O
+	hI7A6/sz9yxzzRQz1rKlgCCXIglM70A=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1777366729;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=sAelGM4F2Xt39Qz+f3wRmNahIYA7wMpiN6w+FWEsXTk=;
+	b=G+KFKy1sebyAu+imx3r1I5yqGsim39KBOU30h+0wgP66QHMgODXVZrs3YbAgs0ZRhUCksE
+	4mhL7xnT8PYLwQAw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5EBC4593B0;
+	Tue, 28 Apr 2026 08:58:48 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id rb8+Fch28GkHVQAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Tue, 28 Apr 2026 08:58:48 +0000
+Message-ID: <32a383db-6dde-4c4c-b6b0-9d728b20b949@suse.de>
+Date: Tue, 28 Apr 2026 10:58:47 +0200
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 3WHRFDl3re9_QXlpyntEltsOS2jq_8eGFp6G1fJ3jBE_1777310974
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: NBIOWIPBXOQJMSHNGXECSAOLEJ2YHH6L
-X-Message-ID-Hash: NBIOWIPBXOQJMSHNGXECSAOLEJ2YHH6L
-X-MailFrom: lyude@redhat.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/nouveau: replace use of system_unbound_wq with
+ system_dfl_wq
+To: Marco Crivellari <marco.crivellari@suse.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+References: <20251031102020.95349-1-marco.crivellari@suse.com>
+ <20251031102020.95349-2-marco.crivellari@suse.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20251031102020.95349-2-marco.crivellari@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-4.30 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	URIBL_BLOCKED(0.00)[suse.com:url,suse.com:email,suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:helo];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linutronix.de,suse.com,redhat.com,linux.intel.com,ffwll.ch];
+	RCVD_TLS_ALL(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,suse.com:email,suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:helo]
+Message-ID-Hash: GQUMC6CSDGOFIU6SKCPJF4OUQKQHBUMK
+X-Message-ID-Hash: GQUMC6CSDGOFIU6SKCPJF4OUQKQHBUMK
+X-MailFrom: tzimmermann@suse.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: nouveau@lists.freedesktop.org, Gary Guo <gary@garyguo.net>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
- dri-devel@lists.freedesktop.org, Matthew Maurer <mmaurer@google.com>,
- FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, christian.koenig@amd.com,
- Asahi Lina <lina@asahilina.net>, Miguel Ojeda <ojeda@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Alice Ryhl <aliceryhl@google.com>, Boqun Feng <boqun@kernel.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Krishna Ketan Rai <prafulrai522@gmail.com>, linux-media@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, linaro-mm-sig@lists.linaro.org,
- Asahi Lina <lina+kernel@asahilina.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, kernel@vger.kernel.org
+CC: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
+ Frederic Weisbecker <frederic@kernel.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Michal Hocko <mhocko@suse.com>, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NBIOWIPBXOQJMSHNGXECSAOLEJ2YHH6L/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GQUMC6CSDGOFIU6SKCPJF4OUQKQHBUMK/>
 Archived-At: 
- <https://lore.freedesktop.org/2f8a8b96473d99cee6f33075532a97f956ce21bc.camel@redhat.com/>
+ <https://lore.freedesktop.org/32a383db-6dde-4c4c-b6b0-9d728b20b949@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -159,32 +201,53 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri, 2026-04-24 at 00:01 +0900, Alexandre Courbot wrote:
-> > =C2=A0=C2=A0 dropped before obj.
->=20
-> I am not sure this is enough to solve the double-free issue -
-> although my GEM
-> knowledge is lacking, so please take this with a grain of salt.
->=20
-> Take an object where we called `sg_table`, so the SGT has been
-> created.
->=20
-> When the object is dropped by DRM, `free_callback` is first called.
-> It
-> calls `drm_gem_shmem_release`, which frees the SGT.
->=20
-> Then, the `Drop` implementation of `Object` is called, and `sgt_res`
-> is
-> dropped... which attempts to free the SGT again.
->=20
-> I haven't tested that and rely only on a quick look at the code and
-> my
-> partial understanding, but the correct fix appears to be to clearing
-> `sgt_res` in `free_callback`.
 
-Whoops! No you're right, and so is Deborah (she mentioned this
-previously, but when reading through it I completely forgot that
-free_callback() was in the picture). We can't clear SetOnce, but we can
-use mem::take() which should be essentially the same thing. Will fix in
-the next respin
+
+Am 31.10.25 um 11:20 schrieb Marco Crivellari:
+> Currently if a user enqueue a work item using schedule_delayed_work() the
+> used wq is "system_wq" (per-cpu wq) while queue_delayed_work() use
+> WORK_CPU_UNBOUND (used when a cpu is not specified). The same applies to
+> schedule_work() that is using system_wq and queue_work(), that makes use
+> again of WORK_CPU_UNBOUND.
+>
+> This lack of consistency cannot be addressed without refactoring the API.
+>
+> system_unbound_wq should be the default workqueue so as not to enforce
+> locality constraints for random work whenever it's not required.
+>
+> Adding system_dfl_wq to encourage its use when unbound work should be used.
+>
+> The old system_unbound_wq will be kept for a few release cycles.
+>
+> Suggested-by: Tejun Heo <tj@kernel.org>
+> Signed-off-by: Marco Crivellari <marco.crivellari@suse.com>
+
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+> ---
+>   drivers/gpu/drm/nouveau/dispnv50/disp.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> index e97e39abf3a2..50b7aade5f0a 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> @@ -2474,7 +2474,7 @@ nv50_disp_atomic_commit(struct drm_device *dev,
+>   	pm_runtime_get_noresume(dev->dev);
+>   
+>   	if (nonblock)
+> -		queue_work(system_unbound_wq, &state->commit_work);
+> +		queue_work(system_dfl_wq, &state->commit_work);
+>   	else
+>   		nv50_disp_atomic_commit_tail(state);
+>   
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+
 
