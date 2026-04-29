@@ -4,120 +4,117 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A348FF885A
-	for <nouveau@archiver.kernel.org>; Wed, 29 Apr 2026 03:04:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4C07FF8867
+	for <nouveau@archiver.kernel.org>; Wed, 29 Apr 2026 08:04:18 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AC2AB10E521;
-	Wed, 29 Apr 2026 03:04:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7D8E810EEB9;
+	Wed, 29 Apr 2026 08:04:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="by+gccDS";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LeUJuCmi";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2DABA45D19;
-	Wed, 29 Apr 2026 02:52:11 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 7F50F45D12;
+	Wed, 29 Apr 2026 07:51:54 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1777431131;
- b=jwvS7p3Xrj+JZZc4kFr61okzKEteTaSzB4dZsvKy5hn8M3JJrVVzogKywnvOR+knmArSm
- 0GxZv9QADwW8Ie2zXqR5urnRt+CgnwxyEqeuy1d/BRXKYvd4xh3tTTtDaFdY9Asv+QEORtU
- bhmEhCk2WrDMGMbaDsev2oTKF5uCX+1iUjPcn1b0fYEnM+ADv8nCzXaX59MAd2UJCVACvOI
- dcM9j3TCXClfpK+6TiqZ29uidgMI5/FVVru7jLZmi6fgqik0aq3pHx0x7QEy5viU9K+QNi+
- kVyY5DtpJFL5uVunh1+au5/0h8+iOwr3Y4gjYhjN6sFKWnQCmv+zKWpN9zcw==
+ s=20240201; t=1777449114;
+ b=ULJB2v4L4f3qceWFK0YRvoEV2KkmUpHLZy0co8f4FkXFtn8L6F5G5AVAood+AO3O5n5Pu
+ D2bVw8QpNRtSNrKXeGasWYN9nHb/ED++jEI77zTPAusK/NatTpZGehVol56dGvi+fZhH14F
+ AAfM4KgSupgkC6+mVgtnPZWSLdreElQcLs7GpMtGYP+tYrgTxZ+CnAYxq+HHKa0i17gXC7m
+ IlYZedllkyYSJUCGX0ujM7sGy1e4WXtlksX0SNh0Yu7Xwa5sDvy1vtf7zEng2rcgGsxeX/A
+ fbFFgdc73UbJZ3Yzg7AgCZ45yQmLG+O4MbtpTtfIuj2YZHWQm2B2RJOvREhg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1777431131; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1777449114; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ldwwJIVF7m6VyRD35VYHAOudLjUCD6MJS07MQJZaKIw=;
- b=zPCxs7EqT62dRUFJ2LSypj3xIV0aKoL4neTFQCA9qMJq+efXsbk6BI2Mfju52xPqINLid
- u+3L6Ez80rFDBe/zc1zfj/IZ40Cn9k7Hbb54CMOewSD6P1ZvyoTySMgTbVcKznagOkUSmbD
- Fd6mDyPsnbprTwICJXb+r+RPkklqMxv7JweN4eU8pp2UjMqJd6nq0wvq2rbtHqs5Uwv/gCv
- kObvhnTyjTB+dB4b8qhAHBlQBNAtb/+uUcvdlkbALuB9uA1UpSpeHgstfNY7OZOvIeEmlz3
- saBDX33ndURq3BGeeSdQlE0pPjxk5OMqJMKGF+BUqvK1/HOD7Wub6/t7cm2g==
+ bh=GGIlJocKNB3iRq8vZ2TS6Y48JRlqzlQLb6ETaP74nU0=;
+ b=Ojahrn+x7dxCBbN4yOxlhVIF+wDrYF2n7h5InD7T3iKyCakfGNmXZKQJ4dXfXmUo3EzM1
+ ImmnOPVJ1rzcRNzwhJnzwV7q7jtRIj4N18EbbQmX+ql7KGXT/8144TBzK2jvpyPQD5IxZae
+ fLY9a+aOeuoT0rtbZiMP1YXs7JRYt3Ff5rOOo9zohpIKKUmw+fM5rp4cWAk/amHYb1v1NnR
+ 7MUTNMfSDJDziMlG5Ku1uoGgeEq6vUO3EH8HaRPIbE4NaIbHu/qXWb4TENBwVYj5xfalHoe
+ XfY1GUSNcyZKBPIMj8glPGpqx6UWDgeAwLa5pEGPcCfLZRfTA/UwCuugCLeQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9AED244C05
-	for <nouveau@lists.freedesktop.org>; Wed, 29 Apr 2026 02:52:08 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B8BB110E4A7
-	for <nouveau@lists.freedesktop.org>; Wed, 29 Apr 2026 03:04:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1777431870;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=ldwwJIVF7m6VyRD35VYHAOudLjUCD6MJS07MQJZaKIw=;
-	b=by+gccDS4mBbEwyNOTScavSQHX942HRppgavzdT1hwYGLZ73HclaLh9Np518lSPPcYLjoP
-	AsNjS8WbJBvlNicxzk3G2KaMmg4yO8UjbLcAaU4cTbaCnZIkkjqNrhJKpC7Q549wpmdru4
-	vugVL15abgWpvfIAZBdxPAzDRYNP6/M=
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-104-OmYw-u2QM62O1aSfJHEcfQ-1; Tue,
- 28 Apr 2026 23:04:24 -0400
-X-MC-Unique: OmYw-u2QM62O1aSfJHEcfQ-1
-X-Mimecast-MFC-AGG-ID: OmYw-u2QM62O1aSfJHEcfQ_1777431862
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 94521195609F;
-	Wed, 29 Apr 2026 03:04:21 +0000 (UTC)
-Received: from GoldenWind.lan (unknown [10.22.88.40])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id C0B31180047F;
-	Wed, 29 Apr 2026 03:04:17 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org,
-	nouveau@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/nouveau/disp/r535: Add scanline position support + head
- state support
-Date: Tue, 28 Apr 2026 23:03:40 -0400
-Message-ID: <20260429030348.3930866-1-lyude@redhat.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3DDF445563
+	for <nouveau@lists.freedesktop.org>; Wed, 29 Apr 2026 07:51:51 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E48DE10E0B0;
+	Wed, 29 Apr 2026 08:04:14 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id E660960180;
+	Wed, 29 Apr 2026 08:04:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06159C19425;
+	Wed, 29 Apr 2026 08:04:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777449853;
+	bh=GGIlJocKNB3iRq8vZ2TS6Y48JRlqzlQLb6ETaP74nU0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=LeUJuCmic1zvLoN87Fkn17i0m2S/j3AsHuwJQ+ZKmDHh0X/bfkURdCdh9kz0hcv5S
+	 bldFD+DqtrolQRrFA2GkXnLJXwrM8TQNOhh29xnE2m+NtVKt4pHuDIi6NsJl0iEzVE
+	 zqUBQ2j5fljSSjhvICtZmlP0APNRn4dLF/p31aw5BmZ0uSf9fmCLH3TI4Q33YYO+VF
+	 SHQD4q7hlTbAsUHuHKvzTsPnQU5vgJ82xRv7mmNrs0c3wPDzzzGOMCOMWKmb36lftZ
+	 Z4sDeZbHU/MYtVmsSfob24lP7eJ+0pE0kz7jdnTkEqaTgvsHheCQEwGjclJqKvJtG8
+	 3wCesWXFOxACA==
+From: Andreas Hindborg <a.hindborg@kernel.org>
+To: Danilo Krummrich <dakr@kernel.org>
+Subject: Re: [PATCH v2 05/11] rust: io: restrict untyped IO access and
+ `register!` to `Region`
+In-Reply-To: <DI4VHH97CABG.3VW1RVS2O10K7@kernel.org>
+References: <20260421-io_projection-v2-0-4c251c692ef4@garyguo.net>
+ <20260421-io_projection-v2-5-4c251c692ef4@garyguo.net>
+ <874ikvqwyd.fsf@t14s.mail-host-address-is-not-set>
+ <vYp32vOGPut322JQ-5jSBZQNd6eXvnOvg8b6YDhYcYzBqTBVUvSajCJng33oXSQ9wiMvb62VLERzLYSa4g2pJQ==@protonmail.internalid>
+ <DI4QT2U1098S.3K9K7INQ86M0Q@garyguo.net>
+ <87tssvp9sq.fsf@t14s.mail-host-address-is-not-set>
+ <DI4SY1NXU1XW.2VHPFEKIFBQVW@garyguo.net>
+ <87ik9bp2og.fsf@t14s.mail-host-address-is-not-set>
+ <DI4VHH97CABG.3VW1RVS2O10K7@kernel.org>
+Date: Wed, 29 Apr 2026 10:04:02 +0200
+Message-ID: <87fr4ep4zx.fsf@t14s.mail-host-address-is-not-set>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
-X-Mimecast-MFC-PROC-ID: znZKRRhUcdxkXRWfj9bZC0M3aFKkpDYduNB0LzMwK6o_1777431862
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: ZEW6TKXAMOWAGWUTPIQRQXEWHFAZRHVX
-X-Message-ID-Hash: ZEW6TKXAMOWAGWUTPIQRQXEWHFAZRHVX
-X-MailFrom: lyude@redhat.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: S6R252HZN6QTXBCIY4JQG5LB6DLHQX3X
+X-Message-ID-Hash: S6R252HZN6QTXBCIY4JQG5LB6DLHQX3X
+X-MailFrom: a.hindborg@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>,
- Ben Skeggs <bskeggs@nvidia.com>,
- Faith Ekstrand <faith.ekstrand@collabora.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>, Aaron Kling <webgeek1234@gmail.com>,
- Danilo Krummrich <dakr@kernel.org>, Zhang Enpei <zhang.enpei@zte.com.cn>,
- stable@vger.kernel.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Kees Cook <kees@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Maxime Ripard <mripard@kernel.org>
+CC: Gary Guo <gary@garyguo.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun@kernel.org>,
+ =?utf-8?Q?Bj=C3=B6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ Simona Vetter <simona@ffwll.ch>, driver-core@lists.linux.dev,
+ rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZEW6TKXAMOWAGWUTPIQRQXEWHFAZRHVX/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/S6R252HZN6QTXBCIY4JQG5LB6DLHQX3X/>
 Archived-At: 
- <https://lore.freedesktop.org/20260429030348.3930866-1-lyude@redhat.com/>
+ <https://lore.freedesktop.org/87fr4ep4zx.fsf@t14s.mail-host-address-is-not-set/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -127,100 +124,29 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-That's right! It looks like this never actually got finished, something
-which I just noticed today when I saw this fun message spamming one of my
-test machine's kernel logs when enabling display debug output for nouveau:
+"Danilo Krummrich" <dakr@kernel.org> writes:
 
-  [drm:drm_crtc_vblank_helper_get_vblank_timestamp_internal] crtc 0 : scanoutpos query failed.
+> On Tue Apr 28, 2026 at 4:41 PM CEST, Andreas Hindborg wrote:
+>> That is probably a good call =F0=9F=98=85 Going over the pieces again, I=
+ am not
+>> sure when and where I decided this was an index rather than a byte
+>> offset.
+>
+> This is not the first time I see someone stumble over this, assuming this=
+ has
+> index semantics, i.e. I assume there might be something creating this
+> impression.
+>
+> However, I can't see what that might be (probably I'm too used to the C
+> primitives). In case you know, I'd be interesting for me to know.
 
-So it looks like we've been falling back to DRM's core fallback for a while
-now, whoops.
+Not sure, I think I just conflated things from `CoherentAllocation`
+where we used to have `item_from_index`. Once the mind is in that frame
+of understanding, it is easy to read `ptr.wrapping_byte_add` as
+`ptr.wrapping_add`.
 
-So, while it seems that we do have the option of doing this through GSP -
-that doesn't seem like a great idea. Mainly because reading this from GSP
-would involve a lot more latency then we should have for vblank handling
-due to the RPC communication. So instead of implementing that, just use
-gv100_head_state and gv100_head_rgpos for implementing .state and .rgpos.
-It seems to work perfectly fine!
 
-Fixes: 9e9944449023 ("drm/nouveau/disp/r535: initial support")
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Timur Tabi <ttabi@nvidia.com>
-Cc: Ben Skeggs <bskeggs@nvidia.com>
-Cc: James Jones <jajones@nvidia.com>
-Cc: Faith Ekstrand <faith.ekstrand@collabora.com>
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Aaron Kling <webgeek1234@gmail.com>
-Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: Zhang Enpei <zhang.enpei@zte.com.cn>
-Cc: <stable@vger.kernel.org> # v6.7+
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c       | 4 ++--
- drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h        | 2 ++
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c | 8 ++------
- 3 files changed, 6 insertions(+), 8 deletions(-)
+Best regards,
+Andreas Hindborg
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c
-index dbd984da75014..0608266188d3e 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c
-@@ -253,7 +253,7 @@ gv100_head_vblank_get(struct nvkm_head *head)
- 	nvkm_mask(device, 0x611d80 + (head->id * 4), 0x00000004, 0x00000004);
- }
- 
--static void
-+void
- gv100_head_rgpos(struct nvkm_head *head, u16 *hline, u16 *vline)
- {
- 	struct nvkm_device *device = head->disp->engine.subdev.device;
-@@ -263,7 +263,7 @@ gv100_head_rgpos(struct nvkm_head *head, u16 *hline, u16 *vline)
- 	*hline = nvkm_rd32(device, 0x616334 + hoff) & 0x0000ffff;
- }
- 
--static void
-+void
- gv100_head_state(struct nvkm_head *head, struct nvkm_head_state *state)
- {
- 	struct nvkm_device *device = head->disp->engine.subdev.device;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h b/drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h
-index 856252bf559a4..b642729c254fe 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h
-@@ -53,6 +53,8 @@ void gf119_head_rgclk(struct nvkm_head *, int);
- 
- int gv100_head_cnt(struct nvkm_disp *, unsigned long *);
- int gv100_head_new(struct nvkm_disp *, int id);
-+void gv100_head_state(struct nvkm_head *head, struct nvkm_head_state *state);
-+void gv100_head_rgpos(struct nvkm_head *head, u16 *hline, u16 *vline);
- 
- #define HEAD_MSG(h,l,f,a...) do {                                              \
- 	struct nvkm_head *_h = (h);                                            \
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-index 6e63df816d855..49a1eef9bdf14 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-@@ -625,14 +625,10 @@ r535_head_vblank_get(struct nvkm_head *head)
- 	nvkm_mask(device, 0x611d80 + (head->id * 4), 0x00000002, 0x00000002);
- }
- 
--static void
--r535_head_state(struct nvkm_head *head, struct nvkm_head_state *state)
--{
--}
--
- static const struct nvkm_head_func
- r535_head = {
--	.state = r535_head_state,
-+	.state = gv100_head_state,
-+	.rgpos = gv100_head_rgpos,
- 	.vblank_get = r535_head_vblank_get,
- 	.vblank_put = r535_head_vblank_put,
- };
-
-base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
--- 
-2.54.0
 
