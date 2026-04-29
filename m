@@ -4,183 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1869AFF8867
-	for <nouveau@archiver.kernel.org>; Wed, 29 Apr 2026 11:29:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 713ECFF8875
+	for <nouveau@archiver.kernel.org>; Wed, 29 Apr 2026 21:40:37 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6C8F610EFA3;
-	Wed, 29 Apr 2026 11:29:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 29AEF10F18B;
+	Wed, 29 Apr 2026 21:40:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="LmN3bwZY";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=collabora.com header.i=deborah.brouwer@collabora.com header.b="LuyuGTHZ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2925845D43;
-	Wed, 29 Apr 2026 11:17:33 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id E607045D49;
+	Wed, 29 Apr 2026 21:28:10 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1777461453;
- b=s+BxbF606q+tUcFhBfp4+bs9rKZ+LGLw45Y1Xdr18d9oMWZCU0KRudIvo5oquTmj+Q98V
- FZEniCb6nbUV3VMHJb0ievkBWqeNmx2IMUonZd5K+LxnWdvZfvR/G9RFZFZOY/VuqXhdsCu
- c1Hxx05mUvLINlNM7rRfXZEgdeeEaMeNbBh3efH0VIH7/twHjXxBbCKHI7witE2ECE0zurg
- ZiPVLaruRmkbOwRyC2wHs05hOofif190X5ME8GG+UskPDRnMfDRN6vcvH0QJCezVxtvCcMi
- aDGOufcqjH1s+QLhPPX+srWlMaVzuJatrDeu8WmpADFzo1VVdzKxoIOtNtyg==
+ s=20240201; t=1777498090;
+ b=E/na/lTG7ba7OmDmiofE5XCyFwZiiWZAWxPVH6476BbOp1SqAI3J0XF75rJM0nm8fESKm
+ C1e/+MOPz64+CsTSWAUODFDSNAZEo9PxIIxZ172LMXTsnsW6kdIdwLNcPewLnx/kzhrLa+y
+ 7fWSFHVRdoerCQuGBQTt5PPODVWLmjuq4ewgmnjR4SmcRKzxBYnlXutQOG6DvnidSGw+HEn
+ 2eKlikAw/WkT4b9TeSIC6VpIy3y1JH2TAqoX/HuUE7PnAs2Du2xzd7Ao5eFRzzkktfs/ftg
+ 8af/3ivkMrVH5ehywDqhovlyt0pFybohe426qNgKJ0zO6x+apsKOFBRyU1+w==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1777461453; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1777498090; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=EwOXNQGrtvpzicuJ7h0cTsziM2v0gnPSQw6LF5ho47o=;
- b=C7ICqeF7FhXOnd/ICDczIUHZk0WmIuR1ZrevkwFEigXxeLHrr0n05I11i26foJv9ZopSz
- BEL4hCid8ooe9gegsXflP70XvaXrsnEzblaUKPyOFcak1qpdS57+Jm4hYtWAzKE8MyzPCbb
- TKrScMe3s7UFMhisURdcYMT4egFs+jg8Hc9jYPNHfKb/CaBiSWTePIDxwNA58ab52FWEuyw
- UNUqn0h28JRMU/JiHcmdE3gesOjK/Pwk5MtN0Hl8OlT1fGJG3RNepbFrux4k4QxCfR8CeQF
- njEso0c5GI/JrDqQ0Vyuq4J7RWXATh5j1zX9m3BN4vVu3OD4xNkbXuAgrvpw==
+ bh=WJX7xHCfvTT+uoYdGdgResyGTcDES1g9sRJnLBitFRQ=;
+ b=E0hTsEKtGQJfPhTeaQpga0DBG66ZVlKS1ootZ0BBaJey+5DENOPiv85XWMbp6HBiTeKRE
+ 7DnnDpWP2nJGLNuG/304icq5qBEHckz8UzqGC1LtJTa6qswRRdAhFH3vnNI7pgcs6Ivv6S4
+ H09qNowL/YiBJnd7HHDRnsmcgCz6lrJrUZ9pqUhNcpheq0oNDBa+dExSjPYu65MCeJgygtQ
+ m1oBiyIRilAwxqA6Ogl39KSWihSdsIpjMuln0eJrJo0v6m6eBurplJifRlTxo3/7BbMcD9U
+ lHL2maXFinNm+dmqEFVsbuEtG1n/9E0ws062yGTTpmoxAzADChlE/PgOaMKA==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
+ dkim=pass header.d=collabora.com header.i=deborah.brouwer@collabora.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=garyguo.net
+  dmarc=pass (Used From Domain Record) header.from=collabora.com
  policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=collabora.com header.i=deborah.brouwer@collabora.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=collabora.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 0693645D26
-	for <nouveau@lists.freedesktop.org>; Wed, 29 Apr 2026 11:17:30 +0000 (UTC)
-Received: from LO3P265CU004.outbound.protection.outlook.com
- (mail-uksouthazon11020089.outbound.protection.outlook.com [52.101.196.89])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D17A910EF91;
-	Wed, 29 Apr 2026 11:29:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=das23J1br+o/GODeXzNAq4LqYcbgjlsBJSbzthLWIsQDwpqlNotD08EO7mZ4KaBP5U5UytciX7kM7d+s/xQOPkKHAfccPmEAjV7yxTkFPuSEj2uXZl5oQUXQxOJMU++CeMWSfDvS9nE8EClfM8Q55qRJRPxP0McUhUBVCb+IOi61tZ5tEBliZpMH7xrLoRq7L7ZigHaWbjfzJaSnDKULoaNfjAGrghA54xBfvv23C5rX5LiW09ZYAHILaHuhydNTbdY+QucKq/74qoBGCAQOLwcfc17l/XQSs8l77PuocRTWA08l79j/QxRe27J4s9/wambnFMSXSrP6ncP8T4smDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EwOXNQGrtvpzicuJ7h0cTsziM2v0gnPSQw6LF5ho47o=;
- b=CPucrJoyVczVtAMqsuOZOPZ50lwM7jOjb2tjSw6u32LzJBSEyE51GvYOwaICGLVwVWmZHRFe/gRnwc+bdFNzhN3E+dlMzEchLuIQ+/5hoYlPrpwKtacImKMeqOvphsXkqlkVIa8IAeHJbrLxDORiov3lwgew7QjQ+/oP20liDvG4flxoamHjAbNKsOIM12Uo2d7pAUO3cJlE0YoXH6kjWTHxqm5Y5Zw3TeqX5A504527x94hUOHUyNp0iwt2gMS1UR0A6QAYxQK5BfiGvoVBppXRXR+j8/ofybOFzInhPsxWrpPgyrHviJOPgjI3MA8xRSIHYsMaDpom1jrEcghJdw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EwOXNQGrtvpzicuJ7h0cTsziM2v0gnPSQw6LF5ho47o=;
- b=LmN3bwZYooD69eSxN6337X8FaCCbxkQ3lw5u6L1O6g3nxiSUqu2wgkYp3/yyU3hxVGIlVqD8QpX2Xu0eebbgn0PLNERjC29/QLHXb9MWDEUCy8pTRDpbc368H2mm7hT8K2gUpb16L1ByGNf/Su/p48xH2PcDIONPGOnA7AhkWlo=
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by LO6P265MB6031.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2a4::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.19; Wed, 29 Apr
- 2026 11:29:49 +0000
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986%4]) with mapi id 15.20.9870.020; Wed, 29 Apr 2026
- 11:29:49 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 29 Apr 2026 12:29:48 +0100
-Message-Id: <DI5LRCUUKJJW.24ZCQBQYEPPVZ@garyguo.net>
-Subject: Re: [PATCH 1/5] rust: ptr: add panicking index projection variant
-From: "Gary Guo" <gary@garyguo.net>
-To: "Alexandre Courbot" <acourbot@nvidia.com>, "Gary Guo" <gary@garyguo.net>
-X-Mailer: aerc 0.21.0
-References: <20260415-projection-syntax-rework-v1-0-450723cb3727@garyguo.net>
- <20260415-projection-syntax-rework-v1-1-450723cb3727@garyguo.net>
- <DI5LLN2V3XCS.34H4CG99N4MPA@nvidia.com>
-In-Reply-To: <DI5LLN2V3XCS.34H4CG99N4MPA@nvidia.com>
-X-ClientProxiedBy: LO4P123CA0111.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:192::8) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:488::16)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 000DD4515B
+	for <nouveau@lists.freedesktop.org>; Wed, 29 Apr 2026 21:28:07 +0000 (UTC)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D3DD310E11F;
+	Wed, 29 Apr 2026 21:40:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1777498828; cv=none;
+	d=zohomail.com; s=zohoarc;
+	b=iIg3N6KVM9tGksa69tR+Rw1tKEpC6Drno8ArxLJ+CAFg1++FHLqbkE/kTIoPArU6/Zme/Z5PcBWTjDWJuP1LP5LMUgNPrh0uE+FY4rBjxlsNHCqIQTFTE416t+j0Iu8NgXAyPnFFLs2nj3vXx5l1sAgt9hVUYIkk55j5eOeaxbw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc;
+	t=1777498828;
+ h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+	bh=WJX7xHCfvTT+uoYdGdgResyGTcDES1g9sRJnLBitFRQ=;
+	b=npG/D4rtyXZda4rONm0viZ5L1zr5IWnx9dwv0K6yYVWUiC0b5+GRxvYd2rBAK8elrBhRwiXJ3Etk0vCGml+7DGylGGXSjmFMauds/0KMrzTAv4dWkbK6W2B15uuoq8Zeq4s3llV1WuopU3VyBeYfcpCjzqkUuKg+Bjn2oSk/6fQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=deborah.brouwer@collabora.com;
+	dmarc=pass header.from=<deborah.brouwer@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1777498828;
+	s=zohomail; d=collabora.com; i=deborah.brouwer@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=WJX7xHCfvTT+uoYdGdgResyGTcDES1g9sRJnLBitFRQ=;
+	b=LuyuGTHZLbfXwpbIMZKOdT6zYqCBj4Na+Yeg3vPMSnUTr5q4KBF+YBb76zVsjYa4
+	ePRNj3SgjFJgMyEqoS5x68X1qTdST/sl+8Bv4BOw0/hi5T6oyHrxfEyiyXLg+t3DbjQ
+	wYI48w5ZSKE6nIzfZEaA3wuQBkZvkj+lQoOk/OLo=
+Received: by mx.zohomail.com with SMTPS id 1777498826399615.4481576439005;
+	Wed, 29 Apr 2026 14:40:26 -0700 (PDT)
+Date: Wed, 29 Apr 2026 14:40:25 -0700
+From: Deborah Brouwer <deborah.brouwer@collabora.com>
+To: Alice Ryhl <aliceryhl@google.com>
+Subject: Re: [PATCH v13 4/5] rust: drm: gem: Introduce shmem::SGTable
+Message-ID: <afJ6ySox_f7g0sfn@um790>
+References: <20260428190605.3355690-1-lyude@redhat.com>
+ <20260428190605.3355690-5-lyude@redhat.com>
+ <afG_HUjCMH2qKjPS@google.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO6P265MB6031:EE_
-X-MS-Office365-Filtering-Correlation-Id: 16eeb77c-e3db-4c60-81dd-08dea5e29f9e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|10070799003|366016|376014|1800799024|7416014|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 
-	IYgha/YLa7tnr7XzUhTbQUN+E4OJO9gZNrr6X2s0BExCiW4b4Zmwy614TAmX9Kds3KMTmGlATyO27xXfZUNAf/PKFRE2xAuVBjBEY7hgbhvk2QyBEGXEXPgQIDHi52lty8aIyLezG9JDHUWxm0YDBXI20G6x6pbjqaVEnTNr5QkhSnK804CRyOHkn8e9o9SngvkdmqD5+UdywYxdY+rbrIWsCmM0c1NVRkwpFKFjaDWEzJtULDBfNR7vJ12NbimI9AMSxCXl43zI5icAwJilYabMRi0Dvzbc4YZtp8WKu+GsqwVBk3rb8iwX7NizshkwcHU6RaEe0u46gg4hrUwzxDaNTCwggz/I4KYaG+0H4ecsAMrlidj0vlqBPAdCq3KGLExqOy77xAGVg4H96lpJShCt+hiNuxeQZ7um9BPGY8X1BLebpzxshsQIwCc6PjM2kFbNW4Xwkgne1zk1TzUrfZqWlwe217Va1book6RlcYKrEgfHI6rCm+PA5TVxI8KUi4hsxHr4selVLwNCrGtVVGNyOwYNRTg9lnGnvfwETS8z117EUk++0xaA3BbpFQT9m6gbdhQXSW1mqEcQLLoisJSGreSiLwni70QZVMUzOiNURq074x3sWBEqwFeQ8dnTTa+W+jaaeAuhXcrSCmOzN6vP+WZjOiz03a7NKEEx0R/AeBT3HmVthn3zaKMMkwJXgUSuCfyu+5TQFPaAZHc8n0ui1744IeelECqgHczozrE=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(366016)(376014)(1800799024)(7416014)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?RGFsbk4xRDkzeVMwdkVKNExpZ1c2cEFlTEZIMzMvbWdLZ1U3bXRrckZGOE9F?=
- =?utf-8?B?Z2V3R0lhMkorMnVraXd2czlWYUNVZ1dweDJoR0NNc0NQMnZZcTBuQTltam9C?=
- =?utf-8?B?cGRGakpBUkdGOWNGYXJHRkFReWxKTi9ieDNSaGx0RUdwMk0zaEFzSWpsTlIx?=
- =?utf-8?B?ZEpIRHFSajVDVmtrM21DOGRVZ3NLUkFvbmNyelhBVDlNcE1hMDF3NUdYU0s2?=
- =?utf-8?B?UEtBQTFJK1ZXU1NPVDdVR084TXU3aDR1NmkxTmdKNXlNQTQ2YnZQTDlTdmJJ?=
- =?utf-8?B?Z2duK20rMUJISnhmQzhBVk9LNU5XdEtJMFQ3cEZkL0k2VVE4TlFKZUVjQ29E?=
- =?utf-8?B?WDVsVWk0dHB6RUZBQ2xLMjRSMDVIVXRpSGtsb2w4aEdYcHdNT29tRVpKWk9R?=
- =?utf-8?B?MWc2TWZTMkpIMGxheVQvZmRYUFlIeHZRRFE4Y09UREM3WUY1YUd1TG1RWU9o?=
- =?utf-8?B?MmJFSFh5TXZVYzFyK0xUdTdLeUtwMGlwSFgrblRiM2h0dkYwWk5UdENlZFFj?=
- =?utf-8?B?ZGx1UFh5dFYvSWtiQTVDQUUvRXdjL1d4RStNUVovam9ZUW84YkFZamJLdFpx?=
- =?utf-8?B?bmFvK1FLczNpNlBNRmZMNnFPaGpBZ2JnK3BRTWJoMTNUdElvdkJlNllQVnlv?=
- =?utf-8?B?bVIyQ3lWQm1MN1lrM21oUnhoSGoxRWhsMEhTRFgycWhITDVWNSs3SDRkUk1s?=
- =?utf-8?B?d1gzRURkYUJuOFF4SjFVSzdtL0VETkFZVFlCWmhvbjJUTDBrV0ZRT1lySEtU?=
- =?utf-8?B?NG44NWd2UVZvWEpVOXgrK2EyVlhKRmVJSWxHQnlQWU5UN3RPVkFwY1QxYlRD?=
- =?utf-8?B?NGhLRGlqNG1IY0hPYjRVNGxXTEliSzlHYVlERHBuZXVJUFh4eTIvRWtGeU5l?=
- =?utf-8?B?Z09WeUFaVElpNVNZSTg4RmtSVDA5MUY0WXJvMTlaVjBVQzBuZWhMc3d3QUlQ?=
- =?utf-8?B?NnVmNWJPaUphOFREY0hnZVEySTA5cmVRM0M2QU9KN3BKYTBjZmJkUll1bTdt?=
- =?utf-8?B?Mlh0WmlTV0MrTUhQdkdiUVRHRHdkeDBGRk5XbitaSHNPNitScElPbFNBVDg4?=
- =?utf-8?B?a2I0T1hTb21keUVlbG1KQVdRcTBTTG1EdjhCbGlJR0htZVJPS3NCOHdvZFN5?=
- =?utf-8?B?ekVGZ1hqV1hJaEpPdWxYdnBpMzlvRHMrVkpiWEZqNG1DRUxkUDVHT2V0ZEEv?=
- =?utf-8?B?dzhZczhMejRMREx6eEVUbGJyS3NJQU5YdzJmQ1V6bDdXaktOSFU3SExRYkRQ?=
- =?utf-8?B?UFZudVdCTlNnNDI2NElFR0ZCN1JUM3hBWWZhbS8wQVpNTW84bm5jRFZXcWUx?=
- =?utf-8?B?bnFzSk1tY2N2ellyZlE5cnNhU2REU3cyR2JIeVBsb2dDZVlDOUlmamhOVFRF?=
- =?utf-8?B?ZFNucGhRQnY4MGZ1c0tCOTkyZ0JpbU10Mnd3dmNkaU9mdGw4dkVDZ1RaRkNX?=
- =?utf-8?B?NFIrekZqdjc5QmhNZW8yQndYeXk0NE1kaW1ZVE9hemFWR0ZMdU0wZGJzeEFL?=
- =?utf-8?B?THFZSWpTYTkyQ2I0MFpXcHgxa1U4M29UWFdEbVF6LzM0bFpQQ2NiUUdIRm1v?=
- =?utf-8?B?enNrT0YrVWtrMXhXeXJZcFZxakdXd2ptWmhWZXFWbXJaWDRGa1RPbFV0emo2?=
- =?utf-8?B?U2ZXWS9WVWt5V0lDN01sVVhkYVJzNXliRnM5R09GWDdrUlZBRk1YbnBYa3pT?=
- =?utf-8?B?aTJEMW9tT1JzVXFwdnRlWTN6WHBjK3VxbGUzYkU2MHhpM3BZRWpnNlkxZ0Zt?=
- =?utf-8?B?bnVYc21WeFdTMndBTGloaDl1UUxxQ1ZocHgxZ2MyYWRMK3dvSnFiQldMN0Q5?=
- =?utf-8?B?dnhNcVZDa1lJNk0wZWJjZS96aGZLS2pCVnppc3lJK2RZWnJOK21Pc2o3d3Fa?=
- =?utf-8?B?bE5vb01PT01XRkY4V1RLZUdHc1FGRmllb0ZRNlI0UUFEYi85blVWQjdKSmkr?=
- =?utf-8?B?OUhHdjYyWEp3RVpZN1VsRUlHcTB3K0hLWHVUbTdMcFZSdmlYZVo4ZDF0WGVV?=
- =?utf-8?B?TDU5Y2ZiYjd0aHJ6V05wSTVuNzBETXlJUDJPN1VtK09KL3JjK0VlM29qTVQv?=
- =?utf-8?B?MEZkazJlL3JLbUN6WDVGbENMKytJTGxiRDIvTUVSREF0ak1TQk5LZkFGMDl0?=
- =?utf-8?B?TmFHdjNiVkZ6ZU5qcTJkMlFOamxqWDNEN2FJQ0p3cXVDVTZzRk13eDBNOEtj?=
- =?utf-8?B?KzBremU2M3BKaXJUaThpMEl4am9xQ1JEVThuT29XaFJ3dXJKZXdaeFFyYmJk?=
- =?utf-8?B?WHZOU0hnYWsvV2NuU2IyWUxQdDZWdkpvdTlTMFJoSE4xK1pubnFuSzI3YUNL?=
- =?utf-8?B?a21LdFJvalhwY2xjWTJMSkdtSGtRWFMvcDcwRHZaVlVETHFYRzR6Zz09?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 16eeb77c-e3db-4c60-81dd-08dea5e29f9e
-X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2026 11:29:49.3335
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- +/iPSwl4IOUFWqA/1rj1k5IiNfwgfDmRhA1yMMRg8EGxhldsy6mN3jsmZGKZoFepmPSe9/rPluy0iX/AwjZMgg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO6P265MB6031
-Message-ID-Hash: 75QUZNPVCWB46G44JWU3P3GKQYFCYXM3
-X-Message-ID-Hash: 75QUZNPVCWB46G44JWU3P3GKQYFCYXM3
-X-MailFrom: gary@garyguo.net
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <afG_HUjCMH2qKjPS@google.com>
+Message-ID-Hash: JIZKS4ZSFFL2S6I7Q23GQ444GGGRMK7T
+X-Message-ID-Hash: JIZKS4ZSFFL2S6I7Q23GQ444GGGRMK7T
+X-MailFrom: deborah.brouwer@collabora.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Danilo Krummrich <dakr@kernel.org>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: nouveau@lists.freedesktop.org, Gary Guo <gary@garyguo.net>,
  Daniel Almeida <daniel.almeida@collabora.com>,
- Robin Murphy <robin.murphy@arm.com>,
- Andreas Hindborg <a.hindborg@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, Simona Vetter <simona@ffwll.ch>,
- driver-core@lists.linux.dev, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+ rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
+ dri-devel@lists.freedesktop.org, Matthew Maurer <mmaurer@google.com>,
+ FUJITA Tomonori <fujita.tomonori@gmail.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, christian.koenig@amd.com,
+ Asahi Lina <lina@asahilina.net>, Miguel Ojeda <ojeda@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Boqun Feng <boqun@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Krishna Ketan Rai <prafulrai522@gmail.com>, linux-media@vger.kernel.org,
+ Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, linaro-mm-sig@lists.linaro.org,
+ Asahi Lina <lina+kernel@asahilina.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/75QUZNPVCWB46G44JWU3P3GKQYFCYXM3/>
-Archived-At: 
- <https://lore.freedesktop.org/DI5LRCUUKJJW.24ZCQBQYEPPVZ@garyguo.net/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JIZKS4ZSFFL2S6I7Q23GQ444GGGRMK7T/>
+Archived-At: <https://lore.freedesktop.org/afJ6ySox_f7g0sfn@um790/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -190,122 +122,45 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed Apr 29, 2026 at 12:22 PM BST, Alexandre Courbot wrote:
-> On Thu Apr 16, 2026 at 4:57 AM JST, Gary Guo wrote:
->> There have been a few cases where the programmer knows that the indices =
-are
->> in bounds but compiler cannot deduce that. This is also
->> compiler-version-dependent, so using build indexing here can be
->> problematic. On the other hand, it is also not ideal to use the fallible
->> variant, as it adds error handling path that is never hit.
->>
->> Add a new panicking index projection for this scenario. Like all panicki=
-ng
->> operations, this should be used carefully only in cases where the user
->> knows the index is going to be in bounds, and panicking would indicate
->> something is catastrophically wrong.
->>
->> To signify this, require users to explicitly denote the type of index be=
-ing
->> used. The existing two types of index projections also gain the keyworde=
-d
->> version, which will be the recommended way going forward.
->>
->> The keyworded syntax also paves the way of perhaps adding more flavors i=
-n
->> the future, e.g. `unsafe` index projection. However, unless the code is
->> extremely performance sensitive and bounds checking cannot be tolerated,
->> panicking variant is safer and should be preferred, so it will be left t=
-o
->> future when demand arises.
->
-> Review nit (no need to respin for this): this patch would probably be
-> easier to review if the renaming of `index` to `build_index` was split
-> into its own patch. It would reduce the diff, while also removing the
-> burden of having to keep in mind that `index` means a different thing
-> depending on whether the line is removed or added. I've found it a bit
-> difficult to keep track of this.
+On Wed, Apr 29, 2026 at 08:19:41AM +0000, Alice Ryhl wrote:
+> On Tue, Apr 28, 2026 at 03:03:44PM -0400, Lyude Paul wrote:
+> > In order to do this, we need to be careful to ensure that any interface we
+> > expose for scatterlists ensures that any mappings created from one are
+> > destroyed on driver-unbind. To do this, we introduce a Devres resource into
+> > shmem::Object that we use in order to ensure that we release any SGTable
+> > mappings on driver-unbind. We store this in an UnsafeCell and protect
+> 
+> Outdated? No longer UnsafeCell.
+> 
+> > access to it using the dma_resv lock that we already have from the shmem
+> > gem object, which is the same lock that currently protects
+> > drm_gem_object_shmem->sgt.
+> > 
+> > We also provide two different methods for acquiring an sg table:
+> > self.sg_table(), and self.owned_sg_table(). The first function is for
+> > short-term uses of mapped SGTables, the second is for callers that need to
+> > hold onto the mapped SGTable for an extended period of time. The second
+> > variant uses Devres of course, whereas the first simply relies on rust's
+> > borrow checker to prevent driver-unbind when using the mapped SGTable.
+> > 
+> > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> 
+> >      obj: Opaque<bindings::drm_gem_shmem_object>,
+> >      /// Parent object that owns this object's DMA reservation object.
+> >      parent_resv_obj: Option<ARef<Object<T>>>,
+> > +    /// Devres object for unmapping any SGTable on driver-unbind.
+> > +    /// TODO: Drop the mutex once we can use Init with SetOnce.
+> > +    #[pin]
+> > +    sgt_res: Mutex<SetOnce<Devres<SGTableMap<T>>>>,
+> 
+> As far as I can tell, you don't need this Mutex. Also, it causes
+> problems like requiring the reference transmute below.
 
-This'll need a respin anyway (to merge with the IO view series) for patch
-logistics reason, so I'll make that change.
+I think it is also causing a lockdep warning pointing to this sgt_res mutex.
+It only happens when KUnit tests are enabled.
+If the KUnit tests register a lock class for this mutex first, then when Tyr
+later locks it via sg_table(), lockdep complains about the same key being used
+for a different class.
 
->
->>
->> Signed-off-by: Gary Guo <gary@garyguo.net>
->> ---
->>  rust/kernel/dma.rs            |  3 ++
->>  rust/kernel/ptr/projection.rs | 98 +++++++++++++++++++++++++++++++++++-=
--------
->>  2 files changed, 84 insertions(+), 17 deletions(-)
->>
->> diff --git a/rust/kernel/dma.rs b/rust/kernel/dma.rs
->> index 4995ee5dc689..3e4d44749aaf 100644
->> --- a/rust/kernel/dma.rs
->> +++ b/rust/kernel/dma.rs
->> @@ -1207,6 +1207,9 @@ macro_rules! dma_write {
->>      (@parse [$dma:expr] [$($proj:tt)*] [.$field:tt $($rest:tt)*]) =3D> =
-{
->>          $crate::dma_write!(@parse [$dma] [$($proj)* .$field] [$($rest)*=
-])
->>      };
->> +    (@parse [$dma:expr] [$($proj:tt)*] [[$flavor:ident: $index:expr] $(=
-$rest:tt)*]) =3D> {
->> +        $crate::dma_write!(@parse [$dma] [$($proj)* [$flavor: $index]] =
-[$($rest)*])
->> +    };
->>      (@parse [$dma:expr] [$($proj:tt)*] [[$index:expr]? $($rest:tt)*]) =
-=3D> {
->>          $crate::dma_write!(@parse [$dma] [$($proj)* [$index]?] [$($rest=
-)*])
->>      };
->> diff --git a/rust/kernel/ptr/projection.rs b/rust/kernel/ptr/projection.=
-rs
->> index 140ea8e21617..845811795393 100644
->> --- a/rust/kernel/ptr/projection.rs
->> +++ b/rust/kernel/ptr/projection.rs
->> @@ -26,14 +26,14 @@ fn from(_: OutOfBound) -> Self {
->>  ///
->>  /// # Safety
->>  ///
->> -/// The implementation of `index` and `get` (if [`Some`] is returned) m=
-ust ensure that, if provided
->> -/// input pointer `slice` and returned pointer `output`, then:
->> +/// The implementation of `index`, `build_index` and `get` (if [`Some`]=
- is returned) must ensure
->> +/// that, if provided input pointer `slice` and returned pointer `outpu=
-t`, then:
->>  /// - `output` has the same provenance as `slice`;
->>  /// - `output.byte_offset_from(slice)` is between 0 to
->>  ///   `KnownSize::size(slice) - KnownSize::size(output)`.
->>  ///
->> -/// This means that if the input pointer is valid, then pointer returne=
-d by `get` or `index` is
->> -/// also valid.
->> +/// This means that if the input pointer is valid, then pointer returne=
-d by `get`, `index` or
->> +/// `build_index` is also valid.
->>  #[diagnostic::on_unimplemented(message =3D "`{Self}` cannot be used to =
-index `{T}`")]
->>  #[doc(hidden)]
->>  pub unsafe trait ProjectIndex<T: ?Sized>: Sized {
->> @@ -42,9 +42,12 @@ pub unsafe trait ProjectIndex<T: ?Sized>: Sized {
->>      /// Returns an index-projected pointer, if in bounds.
->>      fn get(self, slice: *mut T) -> Option<*mut Self::Output>;
->> =20
->> +    /// Returns an index-projected pointer; panic if out of bounds.
->> +    fn index(self, slice: *mut T) -> *mut Self::Output;
->
-> This looks like this could have a default implementation:
->
->     fn index(self, slice: *mut T) -> *mut Self::Output {
->         Self::get(self, slice).unwrap()
->     }
->
-> I'm sure there is a good reason for now having this though, so at least
-> for my education: why not? :)
-
-It could, but the implementation is going to be dead code.
-
-Best,
-Gary
-
+> 
+> Alice
