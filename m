@@ -4,177 +4,120 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E091FF885A
-	for <nouveau@archiver.kernel.org>; Tue, 28 Apr 2026 23:41:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A348FF885A
+	for <nouveau@archiver.kernel.org>; Wed, 29 Apr 2026 03:04:36 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 69E4310E379;
-	Tue, 28 Apr 2026 23:41:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AC2AB10E521;
+	Wed, 29 Apr 2026 03:04:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="tG/spTLT";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="by+gccDS";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 472E945D14;
-	Tue, 28 Apr 2026 23:28:56 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1777418936;
- b=dz87QbgsxU8TNO2shqq4ywDL8+AnhhOHatvZN/ca0kgU0R7oXqeVtXG0lEJP4Hu2X8zJd
- jAdOTpkqWhYXfUiy3XdAJYn98GdMKgGw3oYJiXyFwUocVPR8AetVDbe7L03pnbf7Och5gjW
- t/G2sqZz7BBz42b4Qh/auH2eWVVEhKNTjkaasXfMGW2Ogf/pn7bjuWT9PGPJBnGInGQmmsz
- Rf1KoYgHGO3IH2ldfOA+fA0P5iewYhHeu6w7Qwx9ddyTC3UYRYzErVEH1+Ku586t+S7fHlG
- hQkTte0vBMqkfpdlYvym+/UjiaJy+0L77XTgztWWrrBS9gnKKT0nXKDeuS8Q==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1777418936; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 2DABA45D19;
+	Wed, 29 Apr 2026 02:52:11 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1777431131;
+ b=jwvS7p3Xrj+JZZc4kFr61okzKEteTaSzB4dZsvKy5hn8M3JJrVVzogKywnvOR+knmArSm
+ 0GxZv9QADwW8Ie2zXqR5urnRt+CgnwxyEqeuy1d/BRXKYvd4xh3tTTtDaFdY9Asv+QEORtU
+ bhmEhCk2WrDMGMbaDsev2oTKF5uCX+1iUjPcn1b0fYEnM+ADv8nCzXaX59MAd2UJCVACvOI
+ dcM9j3TCXClfpK+6TiqZ29uidgMI5/FVVru7jLZmi6fgqik0aq3pHx0x7QEy5viU9K+QNi+
+ kVyY5DtpJFL5uVunh1+au5/0h8+iOwr3Y4gjYhjN6sFKWnQCmv+zKWpN9zcw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1777431131; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=acCZrIPFF3CCKyQXRkGR90alZbZ5lX0hLpOiY0wyRss=;
- b=nBeVvCu6Oy+hTEgHkRjcVL9sXSCQIF0az2WzxZoUdftL+eixdVtONV0SEnRbDXmC+X1+i
- Q6NlO9c4ovQnELKpynL+DN5IQl4LKTTdzpenNAaIw/zSnuqN4EtGMuXP/Ix5AKyN7OnHvYY
- W6CYD7e15zk8fDFThhHYCUJ4OMLNkhUSXBUXDttsJa2VDp9FDQE5G34c6UKQqvwLJ55/pik
- heTHDr9/w82VxE+1tYWJGTHOaFsVTlezBg/O+pZBnPQV5kRFaOKeJY93Cqp6kg2aoontEHP
- dcy/6tc1Ik8JB7A8u+8w/OMc1xZCYORZYWltpz5+iZlOBJ85LHripi2jFFcA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=ldwwJIVF7m6VyRD35VYHAOudLjUCD6MJS07MQJZaKIw=;
+ b=zPCxs7EqT62dRUFJ2LSypj3xIV0aKoL4neTFQCA9qMJq+efXsbk6BI2Mfju52xPqINLid
+ u+3L6Ez80rFDBe/zc1zfj/IZ40Cn9k7Hbb54CMOewSD6P1ZvyoTySMgTbVcKznagOkUSmbD
+ Fd6mDyPsnbprTwICJXb+r+RPkklqMxv7JweN4eU8pp2UjMqJd6nq0wvq2rbtHqs5Uwv/gCv
+ kObvhnTyjTB+dB4b8qhAHBlQBNAtb/+uUcvdlkbALuB9uA1UpSpeHgstfNY7OZOvIeEmlz3
+ saBDX33ndURq3BGeeSdQlE0pPjxk5OMqJMKGF+BUqvK1/HOD7Wub6/t7cm2g==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 499E244C05
-	for <nouveau@lists.freedesktop.org>; Tue, 28 Apr 2026 23:28:53 +0000 (UTC)
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010000.outbound.protection.outlook.com [52.101.61.0])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1BBB110E107
-	for <nouveau@lists.freedesktop.org>; Tue, 28 Apr 2026 23:41:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=q494AN8VgyEeq0iIDVRynTknkJsS7tIdA8L6cy2IFqoqtGCGASkgwfYy5TFf+ZGpExJIy5Nser4neuCLuZben7qDVXAwmthO/ce5wOIM5afHLoW1jGZeoaSoz9vTCiGs0grlSdo/0JbA03mYZhdmr6xtfDJYt8r52c8+qP+AM61Ep7cW6jlIYQ+D4Y+7Zxcl00J1E5+o2Z9VJ3FiLHkJrXK5KQ1DAnyfsLw7sTUanCe04a6RgNWpyqzDEjcGb0wzMpstoVmmOwp2jh/RKwW4vkWYZ0mZyNOp4Mop0o/dy3FZw/Ha6dmnd2WwIF+5qmL3sWGlBpdwpbxRgiDYqyEy6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=acCZrIPFF3CCKyQXRkGR90alZbZ5lX0hLpOiY0wyRss=;
- b=G0pO8Mds+yjTzCtVnEfODMIwKczQPN/pqBJ5lwaLpoBhEeTopLxEPStKGYkU+eYyct2Vv3y2mp+mlKvuZAoow4D8NGrAc5QOsAr5fpkt9GKEqBeCy2U6HKo8anpkcpgnAL+EbWo4nIU14GTEnHZLJ5JR/m6ju/HVQX+OH8tdK64q1WtWmxNwojXTQHH5rAwuyySb2jOZBAVC62Tjaunwl4tuhIKlnUPI/J2r/ud7h6kBDVICUZLTWs/VfcYZKCzKI6MgkPeboB8Bj8xnZY+ul1Kj2bMw5hCOx5M3oDByhYvyV24puu/fvV4giwRnD3QTRUnx//mM13JvGYngh05SwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=acCZrIPFF3CCKyQXRkGR90alZbZ5lX0hLpOiY0wyRss=;
- b=tG/spTLTM9I3k/qHB36xIPlboypmFzH4kc0rNre5i/2t0xzzxeq5OdB+lH0y2mSNYrRQZqu9f24DSBboQcsjbaTG7gWyMQglCUL1HMoc6a46R9nwKdtjagsOon6FkPLClYNMnFN3aK7NqAOT6tj2LNTor4/HWdfCvNquwrrxep26jWGoE2gjV1dD1R4GNx7a0N++qhgraQByxTprmknpwYbUGik9PyVrr7AK2o4TOxHmJ/bLmkxtEKYFXXvSlECc8/CgO9i3W3Vc19bx4fjq/WBvLSY+uxQdmrpib5hB1kbPgT1ko2Um6sZ8tZMLiim1qpCFUKnUVrzDMr8K0Jg/LA==
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
- by IA1PR12MB8588.namprd12.prod.outlook.com (2603:10b6:208:44f::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.18; Tue, 28 Apr
- 2026 23:41:04 +0000
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989%4]) with mapi id 15.20.9870.013; Tue, 28 Apr 2026
- 23:41:04 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 29 Apr 2026 08:41:00 +0900
-Message-Id: <DI56ONOL6ET1.C6F6WBG9322Y@nvidia.com>
-Subject: Re: [PATCH] Documentation: gpu: nova-core: document the IFR header
- layout
-From: "Alexandre Courbot" <acourbot@nvidia.com>
-To: "Timur Tabi" <ttabi@nvidia.com>
-References: <20260408142132.3911466-1-ttabi@nvidia.com>
- <f86f2dec2c3b6198ec0d175bc69ad3cf8962cf3b.camel@nvidia.com>
- <DHV4SOWXL1YB.103OO4XT2QR2J@nvidia.com>
-In-Reply-To: <DHV4SOWXL1YB.103OO4XT2QR2J@nvidia.com>
-X-ClientProxiedBy: OS0P286CA0119.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:604:169::15) To CH2PR12MB3990.namprd12.prod.outlook.com
- (2603:10b6:610:28::18)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9AED244C05
+	for <nouveau@lists.freedesktop.org>; Wed, 29 Apr 2026 02:52:08 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B8BB110E4A7
+	for <nouveau@lists.freedesktop.org>; Wed, 29 Apr 2026 03:04:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1777431870;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ldwwJIVF7m6VyRD35VYHAOudLjUCD6MJS07MQJZaKIw=;
+	b=by+gccDS4mBbEwyNOTScavSQHX942HRppgavzdT1hwYGLZ73HclaLh9Np518lSPPcYLjoP
+	AsNjS8WbJBvlNicxzk3G2KaMmg4yO8UjbLcAaU4cTbaCnZIkkjqNrhJKpC7Q549wpmdru4
+	vugVL15abgWpvfIAZBdxPAzDRYNP6/M=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-104-OmYw-u2QM62O1aSfJHEcfQ-1; Tue,
+ 28 Apr 2026 23:04:24 -0400
+X-MC-Unique: OmYw-u2QM62O1aSfJHEcfQ-1
+X-Mimecast-MFC-AGG-ID: OmYw-u2QM62O1aSfJHEcfQ_1777431862
+Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 94521195609F;
+	Wed, 29 Apr 2026 03:04:21 +0000 (UTC)
+Received: from GoldenWind.lan (unknown [10.22.88.40])
+	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id C0B31180047F;
+	Wed, 29 Apr 2026 03:04:17 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org,
+	nouveau@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/nouveau/disp/r535: Add scanline position support + head
+ state support
+Date: Tue, 28 Apr 2026 23:03:40 -0400
+Message-ID: <20260429030348.3930866-1-lyude@redhat.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|IA1PR12MB8588:EE_
-X-MS-Office365-Filtering-Correlation-Id: ee6b91e5-285b-4e4c-6ba1-08dea57f9cf8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|10070799003|1800799024|376014|366016|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 
-	LOGYr6jSYeB88nlj0b3syGnSHUlVEaRpLTAIb13KuwnkhgOHi+ni4lgFqIgIg0HDg7yZkTFIAu2uvfzhleNzOPeGwX5yMC6mX1TFu/JvCjARFfIMrsw1QWSrPzgDYiNXSyGhytf41F1YJZ3otW/Hu6UAlf6CeNxaoWh9IW5IFTXEZLJKDViI01+xti149kh+0VhPEkx1hlNojs65ke33PGcrPJphyaJ+aiighdhcgv3taJk01bxqHA2Z3s0i91caRhkyGf8mQnfIbO0M9LwfTkGiyjsW3MSYmaicUuC5h/yCoMSyfMWjNUGyUPTQTvzjkaJpDrv8f8a90IzQkJLKxPfnbAF5BgfJhyD9+cfUCLs5Lrbo/NR7+xhrTEdRGyW2SonybSeEwr8GTrqffbbJ7wrzTQYATxgGgEQUNR9h0yAqASNy3mISQ12DgMR+uZqk8Zw3vpItqmq+oF+4ECiTMsaAoh+rM+TfZ/6nDF6wIq1ApN9zVqPv2m0HFr4yOt7rx2JS1+iVz0/tfcsZwd+3t1UoPguLFhBrYGWQr781KTN4e6mhusxXNiHv9f505LG8pLv29Tbgn3AA92kcWjxdSiiPCTwLlEwcBfx1SPybX3mmg+zrKu40DmUrK/FnkgGyjzjrpA9AHlj+beCy+6RU2n6j0koZdn3xp7vVWtU6QQJcLF7UkXd3J4dUm4o32GjcmFSd19DkOGhUZ6vGLs3KG1laISrydo9EuWyDhlUt1YU=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(376014)(366016)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?TkIzekVLNEo1eVpkWXFDbU53RldsaEd3UUJHV2JPclptdWVrb1R5TzFYWTNB?=
- =?utf-8?B?dzFNNmVqdHJ4YTBoMTlXWHhzOHc2OGJkcHA4b2FWQk5nTFd3b1hnMWEwL0Ro?=
- =?utf-8?B?S1V1K3R4WXVmM2xXeWxmN1hJOG5vdEEyTDZjRlpvaW5qK2YvYlRNNzBMQWZW?=
- =?utf-8?B?WDU0YnRpVTNseVVXWUllQ3VMT1NqRzFCK21CYXZDbmZJbmJvcFdKUHNZYk1V?=
- =?utf-8?B?c1VKOGlaa0lTUlNQeW5YVDgwWG1oT3U2QXQxQ29taWxNSDVNbWtqcUplbnk2?=
- =?utf-8?B?Y1o0Q1UxWXd3RGFwS3lxYXg2bUhQNmlKVXowSXBSWTJxcFRqazN0T0hDR2tQ?=
- =?utf-8?B?RzJ1TFc5U2tDdnlETzFTSnRxY28zOVhYRzhCREtiMmZkcWV6S3h0UVFrNTNi?=
- =?utf-8?B?YnRnU2NQNmd1cVNONUlRdnlYMGZYalZ3Tk1LQkR6N3JKcXA5WTVTZTJUL3pi?=
- =?utf-8?B?U3pmSWJ6VTdwR0RFVDNTUUtqWkIvUlozRCtQSktzZFJTNVdkRkVZWUdzK2ty?=
- =?utf-8?B?K2FYcTU2NHl6emRDdVowaDVsYVJtTHVFS2h6clFlM3VqUE1GSUtpZ2hyd3hz?=
- =?utf-8?B?UHJtNHdBZDNtM251OUFGa0d4d3FycnlQSE11QmhHZDBOV1RJYzQrUDFnMnl4?=
- =?utf-8?B?RVMyejgxYzh6dmRFK2VkOHBwSklrYUI4RG5FeVFZNm5lVjhDOGo0L2NXZ0pJ?=
- =?utf-8?B?R0pSaEdCeGh0T003TnBsbHdmNnZ5V1g5eC8zVVNDbnp2WDRycktaM2ZuZ0s1?=
- =?utf-8?B?d2NqQWQySE1hN05TcGx1RGdWdDZ4VmhWNkI2NU13aXFUb1hNdkdQUnl5UThw?=
- =?utf-8?B?cjNwQVdzWTZSVWtWY0xNd0hGODQ2ZkVIUEVmbG5seWI5d0tkT0pmQ2c0dlNo?=
- =?utf-8?B?eVVBSG9Qa2RtaVhkZFJITkd2V3RyMjJ0Q3N3MmVYNnNYNmFhRGlmbC94QUkv?=
- =?utf-8?B?am1OR3hQVXIyZjlJNkpISUFaVU4vREVsT1NCZ0dISElnOG9SZ3pNRjlsbEtY?=
- =?utf-8?B?c2xzbnZiQUR4Vm9RV1VmV1RvSUdJbXNiTGsvRmFPUit2R2RqS3ZmUTAxSGQz?=
- =?utf-8?B?OFBhNXZjKzlUcVV3UzhNTEVpTXBwcGRPSGVHMHZUZWNFbUJhaGRMZUZqeGw2?=
- =?utf-8?B?eWFhMnBicTZOY3IzRWFNbEFvZTN5V2c0Mi9vVDZ3T1F5Q0lWZVpTUjFUSmF6?=
- =?utf-8?B?c1BZU2Zsa1F1WFJKWWJ6MEt5Qi85MnhyYmhlRDQxWFJkRVVVbVdnQ3UrU2dH?=
- =?utf-8?B?THo0TnFxdmRvZ0JBMmo1YlpBbHpQTTdBWVZ1Ri83b2J4dHZrRzlVcWdNbzRr?=
- =?utf-8?B?R015T2wwUVpvWVBudUQzWVhUT1ZNV1Y4NkdDd1JKQ2NhdjNVKzh5Um5qYzVi?=
- =?utf-8?B?RTJhR0dOOUhHNVdqVUhIOGM2UVVnL05lU3Q2SWFhMGVicUxkSTZHNTA0OS9j?=
- =?utf-8?B?SDBWU1FYZ2ROakcxQ1NaLytGdVdNbGdpSzROb1hVWThZR0tOMmZJS0pUd2lm?=
- =?utf-8?B?WlBIc283NG1YM1Nidm5pMTAyR2dUQ2drc0hoR1FPeDRwUGRVbVdEMHZVT3VQ?=
- =?utf-8?B?cS9pbHFGNUd3MFExSEMrcEVZT0I2aVlLd1ZWYmZ6TTVaN2htVktvYjRRWnF6?=
- =?utf-8?B?Sm9kUVpyUGdoYzB0WTJLU1NmWVpYZmdpVXNObjhqUE5aQ0I1aHVQamdZTm9W?=
- =?utf-8?B?TzYxTXBSbFF2ZjVLVVFQOU9WRTFLUGw1MG5WYUtPR2ExRmpoVFpFM2crNmZS?=
- =?utf-8?B?aWtYNjJNUGNpUGNLMktWOWdZZ3IyZGFJbkRCSTBEb3h6S096TnZmMkwrQWFK?=
- =?utf-8?B?UXEvaVA5MTBqaFZvUVgvK3VBcnpJdk16dTYwcmljbS8zbmdWcGdhS1F0Znh0?=
- =?utf-8?B?aFdGdEJMZFZxbmFGRnJTc2NHMlBGSUVlV0dEUU9KalE0V2ZzMzRvaU9VeHVQ?=
- =?utf-8?B?VTFvTVREYVRTWXFVclRSOWRwUkpOVE5nY1cxVU1jQWZJWDV0dStmRE1iZUtZ?=
- =?utf-8?B?MDFsMU1Ici9yNmhRbitCSTBnSGRyakdzbVpGTkw3cVJXQUxjOUNIZzljZjFZ?=
- =?utf-8?B?dm1HMFBBU2ZKaWRsRGx0V2ZVZjQrUFJQYXBzb05MRnQ3TEdFR0ZucVRtZDlY?=
- =?utf-8?B?OEVhMW91TzlYNzlDVFhrMnNYdFhXemxKdFh2Ly9uU3hkbFdNUGdyOVBBS2NW?=
- =?utf-8?B?cE0xR1dMcms2ckpINWZBNzM3ODNSSmFpYmc5T1ByM1AzdmlLaDhpeTcvNHVU?=
- =?utf-8?B?bngzelZnQWEvMnNTZW1DbEVuNXVrYjdHNVBWUTFHdWZMSFAxUjI1L1RIZjJJ?=
- =?utf-8?B?VUp4TGZXWHhyamV0bG9KaVhqMlZGRklnTXRocGhEdDZrbDJOd3lMSHMwSmZ5?=
- =?utf-8?Q?zubtK6IYCxMqePdYiX9nz56e7P9Okd6+ZNo0Ntc0FiT6b?=
-X-MS-Exchange-AntiSpam-MessageData-1: XpF6HvCQ9pPkFA==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- ee6b91e5-285b-4e4c-6ba1-08dea57f9cf8
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 23:41:04.8662
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- f+SLqr/0E0qynvjPcxGbUAklaBhJsGQdsQBvHaqwjRkJLqSQzTg6BFEgad4J1E01a/2VwtqJcUHegre3TOi/Wg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8588
-Message-ID-Hash: SPY2NBB67E6JK4BAHWUWZV3ZGZMGIRDK
-X-Message-ID-Hash: SPY2NBB67E6JK4BAHWUWZV3ZGZMGIRDK
-X-MailFrom: acourbot@nvidia.com
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+X-Mimecast-MFC-PROC-ID: znZKRRhUcdxkXRWfj9bZC0M3aFKkpDYduNB0LzMwK6o_1777431862
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+content-type: text/plain; charset="US-ASCII"; x-default=true
+Message-ID-Hash: ZEW6TKXAMOWAGWUTPIQRQXEWHFAZRHVX
+X-Message-ID-Hash: ZEW6TKXAMOWAGWUTPIQRQXEWHFAZRHVX
+X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: "airlied@redhat.com" <airlied@redhat.com>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "dakr@kernel.org" <dakr@kernel.org>, Joel Fernandes <joelagnelf@nvidia.com>,
- "rust-for-linux@vger.kernel.org" <rust-for-linux@vger.kernel.org>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ Ben Skeggs <bskeggs@nvidia.com>,
+ Faith Ekstrand <faith.ekstrand@collabora.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>, Aaron Kling <webgeek1234@gmail.com>,
+ Danilo Krummrich <dakr@kernel.org>, Zhang Enpei <zhang.enpei@zte.com.cn>,
+ stable@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Kees Cook <kees@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Maxime Ripard <mripard@kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SPY2NBB67E6JK4BAHWUWZV3ZGZMGIRDK/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZEW6TKXAMOWAGWUTPIQRQXEWHFAZRHVX/>
 Archived-At: 
- <https://lore.freedesktop.org/DI56ONOL6ET1.C6F6WBG9322Y@nvidia.com/>
+ <https://lore.freedesktop.org/20260429030348.3930866-1-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -184,40 +127,100 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri Apr 17, 2026 at 1:05 PM JST, Alexandre Courbot wrote:
-> On Thu Apr 9, 2026 at 6:36 AM JST, Timur Tabi wrote:
->> On Wed, 2026-04-08 at 09:21 -0500, Timur Tabi wrote:
->>> +=C2=A0=C2=A0=C2=A0 Offset=C2=A0 Name=C2=A0=C2=A0=C2=A0=C2=A0 Fields
->>> +=C2=A0=C2=A0=C2=A0 ------=C2=A0 -------=C2=A0 ------
->>> +=C2=A0=C2=A0=C2=A0 0x00=C2=A0=C2=A0=C2=A0 FIXED0=C2=A0=C2=A0 bits 31:0=
-=C2=A0 - Signature (must be 0x4947564E, ASCII "NVGI")
->>> +=C2=A0=C2=A0=C2=A0 0x04=C2=A0=C2=A0=C2=A0 FIXED1=C2=A0=C2=A0 bit=C2=A0=
- 31=C2=A0=C2=A0=C2=A0 - Reserved
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bits 30:16 - FIXED_DATA=
-_SIZE Fixed data size (offset to extended section)
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bits 15:8=C2=A0 - VERSI=
-ONSW Software version
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bits 7:0=C2=A0=C2=A0 - =
-Reserved
->>> +=C2=A0=C2=A0=C2=A0 0x08=C2=A0=C2=A0=C2=A0 FIXED2=C2=A0=C2=A0 bit=C2=A0=
- 31=C2=A0=C2=A0=C2=A0 - Reserved
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bits 30:20 - Reserved (=
-zero)
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bits 19:0=C2=A0 - Total=
- data size
->>> +
->>
->> I just noticed that this should say=20
->>
->>                     bits 19:0  - TOTAL_DATA_SIZE Total data size
->>
->> to match the documentation below it.
->
-> I'll fix it when applying - staging this for merging, thanks!
+That's right! It looks like this never actually got finished, something
+which I just noticed today when I saw this fun message spamming one of my
+test machine's kernel logs when enabling display debug output for nouveau:
 
-Pushed to `drm-rust-next`, thanks!
+  [drm:drm_crtc_vblank_helper_get_vblank_timestamp_internal] crtc 0 : scanoutpos query failed.
+
+So it looks like we've been falling back to DRM's core fallback for a while
+now, whoops.
+
+So, while it seems that we do have the option of doing this through GSP -
+that doesn't seem like a great idea. Mainly because reading this from GSP
+would involve a lot more latency then we should have for vblank handling
+due to the RPC communication. So instead of implementing that, just use
+gv100_head_state and gv100_head_rgpos for implementing .state and .rgpos.
+It seems to work perfectly fine!
+
+Fixes: 9e9944449023 ("drm/nouveau/disp/r535: initial support")
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Timur Tabi <ttabi@nvidia.com>
+Cc: Ben Skeggs <bskeggs@nvidia.com>
+Cc: James Jones <jajones@nvidia.com>
+Cc: Faith Ekstrand <faith.ekstrand@collabora.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Aaron Kling <webgeek1234@gmail.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: Zhang Enpei <zhang.enpei@zte.com.cn>
+Cc: <stable@vger.kernel.org> # v6.7+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c       | 4 ++--
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h        | 2 ++
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c | 8 ++------
+ 3 files changed, 6 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c
+index dbd984da75014..0608266188d3e 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c
+@@ -253,7 +253,7 @@ gv100_head_vblank_get(struct nvkm_head *head)
+ 	nvkm_mask(device, 0x611d80 + (head->id * 4), 0x00000004, 0x00000004);
+ }
+ 
+-static void
++void
+ gv100_head_rgpos(struct nvkm_head *head, u16 *hline, u16 *vline)
+ {
+ 	struct nvkm_device *device = head->disp->engine.subdev.device;
+@@ -263,7 +263,7 @@ gv100_head_rgpos(struct nvkm_head *head, u16 *hline, u16 *vline)
+ 	*hline = nvkm_rd32(device, 0x616334 + hoff) & 0x0000ffff;
+ }
+ 
+-static void
++void
+ gv100_head_state(struct nvkm_head *head, struct nvkm_head_state *state)
+ {
+ 	struct nvkm_device *device = head->disp->engine.subdev.device;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h b/drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h
+index 856252bf559a4..b642729c254fe 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h
+@@ -53,6 +53,8 @@ void gf119_head_rgclk(struct nvkm_head *, int);
+ 
+ int gv100_head_cnt(struct nvkm_disp *, unsigned long *);
+ int gv100_head_new(struct nvkm_disp *, int id);
++void gv100_head_state(struct nvkm_head *head, struct nvkm_head_state *state);
++void gv100_head_rgpos(struct nvkm_head *head, u16 *hline, u16 *vline);
+ 
+ #define HEAD_MSG(h,l,f,a...) do {                                              \
+ 	struct nvkm_head *_h = (h);                                            \
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+index 6e63df816d855..49a1eef9bdf14 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+@@ -625,14 +625,10 @@ r535_head_vblank_get(struct nvkm_head *head)
+ 	nvkm_mask(device, 0x611d80 + (head->id * 4), 0x00000002, 0x00000002);
+ }
+ 
+-static void
+-r535_head_state(struct nvkm_head *head, struct nvkm_head_state *state)
+-{
+-}
+-
+ static const struct nvkm_head_func
+ r535_head = {
+-	.state = r535_head_state,
++	.state = gv100_head_state,
++	.rgpos = gv100_head_rgpos,
+ 	.vblank_get = r535_head_vblank_get,
+ 	.vblank_put = r535_head_vblank_put,
+ };
+
+base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+-- 
+2.54.0
+
