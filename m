@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1420DFF8875
-	for <nouveau@archiver.kernel.org>; Wed, 29 Apr 2026 21:57:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98268FF8875
+	for <nouveau@archiver.kernel.org>; Thu, 30 Apr 2026 03:25:49 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C003E10F1A1;
-	Wed, 29 Apr 2026 21:57:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3310510F1EF;
+	Thu, 30 Apr 2026 03:25:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tr//Kw2J";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="V5dcZx5w";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7FB7E45D4B;
-	Wed, 29 Apr 2026 21:45:21 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 6A3C945D4F;
+	Thu, 30 Apr 2026 03:13:23 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1777499121;
- b=hG5E8yii8UU1933JuF+UwBF5nKZ+/HfDzr0WKLJ3rbqMSvsktxoAmrLyYsTDKINGuZDjD
- gtUH/QLrSHmfXX/DhqgkC5QOdHbsBrdHLkI1kgeBcpo7Dq96ABCjIXMnJ3jBhuSPsHSbVjc
- 2h8AEfs//v+YRm2VhoWLkPrMp+8kXLHoI07PVNpn3XmzQkTrXCq801ZdhwbN6EDUfLAjmDj
- z4OUIvwTDODu0fH9fAk1FxHBh3CvryYqwfzO0wStjg0Y4JEn0OpXM2xGh7o1pDvNAAa239L
- uIzmvdTf7Vqz3YkGe2QE17+lIxpX7wPtxZMf77UdnCFRrgnngHiM4ZKu3tEw==
+ s=20240201; t=1777518803;
+ b=j2G7Yaj3NA1pIUj5J13NgFlkBSYTnKGSvKySuC5XERmmkbFhdGZ6FXe58UpGXprOXul9r
+ a7TrB6mRy+W/oEPGCfYjdisRDLhg63QvEy/rdZFRFaa5UUR7//S3xeak0Cwqy1MVUUzul1/
+ kEU/RNyGS5rLPLM7GRv9Ne7fhGdGy0DvShJoDX2Ze8eFC8kd4uWud+EA0S/FDcqggEhva38
+ YrRQVhFsSuvq+VW82Yv7+wgSxAaoT7XrWRorEIjVKPDCsX7Yy+VBQVMpenv2SEbnPPLgvbO
+ 8B3EpItfQZUgauNu481tBNRFN7YQSQKI6lxbU8Sj6u8kR4iCdJqwwNIIeXYw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1777499121; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1777518803; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=v03iEOHN0LyozBtnajJ7bQh/kfefsbnc5U3BJcWJTy8=;
- b=nbGVhFtcB74HkQv6YGhPSBU07ESFXtEjbX/6gfWIS2+HHWB+RecN3Kn31m+5r8WHajuUt
- Xp3m3hYyvmkWl4irXs4gtTv+p/xC5tLs3MpvcDgYWWh2/a9JoezVlbLRd+ZhE3/l+KffNiI
- 2GiQF23a4l3OCM50cs4tAkbGmPT9SPwcv71s5TlYSJYNexSVUx0MlBSwQmX4Bz7AYf6kwyz
- 6FR+pIS8cPdt5f9+sxq5A2Fw9PkoY2XwE7NeIiJcXk+IVnwEG1dRfqyvC5vp1e6yxDJk5Ik
- lAsyLWHVGf90AyrzjQmbolK1pVi7KUhXdm1jhetvaWRVlYZ7lL+c0vUwSNyQ==
+ bh=oC2HSGABae+E+AaNQbmJTtlkMR5x7reMHu9iRIfpc4s=;
+ b=hoBa+LuMYfqbJJjWTU7NTSQrG19rM86gFMFrPfm4U04YOIOOm1ufZKGjd60cVMyKO4h6h
+ Ky6XMXsRbk3CL4p7euDSDIsW0bQcjfA1wPohTGzO8jEfSIO1yE5iQn4TqGF9ILZTY5rEuTe
+ R2ZYtVZOIF1DFJCNVixO8YB8/rXpodF3WrwfwZCbvyVMoxZw1YQY+Xo1Kv21LNF1m9igFiG
+ MifCLnoAK+0YJnT3BNLU7gnh69t06aLOQ+dKSV9LIg5EqNYcOn7WpaF/7ZIADiTucCjF0KC
+ QuprEmad4Cxih/2jzqpnx/edSfgcLwDZ/7oiQQVBEA6lX2ciCXOWgAxYsQhg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,53 +46,73 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id BFBBC45D38
-	for <nouveau@lists.freedesktop.org>; Wed, 29 Apr 2026 21:45:17 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0001E433B9
+	for <nouveau@lists.freedesktop.org>; Thu, 30 Apr 2026 03:13:20 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CEF0210E119
-	for <nouveau@lists.freedesktop.org>; Wed, 29 Apr 2026 21:57:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 713B010E021;
+	Thu, 30 Apr 2026 03:25:46 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 82C4840BD7;
-	Wed, 29 Apr 2026 21:57:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 172EBC19425;
-	Wed, 29 Apr 2026 21:57:40 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id ABA5B4447A;
+	Thu, 30 Apr 2026 03:25:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FEFFC2BCB9;
+	Thu, 30 Apr 2026 03:25:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777499862;
-	bh=N01a/k5MXOieQhcloMxSXNGdvUKXSc+hvLYYZNJ9LaQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=tr//Kw2J17Ed2WiVTy4Lf1pJUFQKcMjmSyvEOJ9oPrMSWKJuXhwPH1pM2+eBjnOp5
-	 ww4KqyL0ctIlSAflVoffSPl9oGklLxGnuPx6xvuBqe/guema3kOzm+Ja15Y1YpjmTZ
-	 DU37rn8tOckISfEd/vihUQAFIDIbigN874g9XcQngqbgoY0FGs+VN/TCJOQn19FVMX
-	 K53/F5hyv44yb8D+caHzz04NXRV/PX1q5ttLRqrFRfi21A3QrPeIa7RCsfQdiuXOTB
-	 ItqHDEAL8Ipm09W5pFLWF4Yp5zKdIFtUg2mfq6l71lYdTvWm4rG5fx3lsKkqpPKSed
-	 qOHCsDaKasovg==
-From: Danilo Krummrich <dakr@kernel.org>
-To: Timur Tabi <ttabi@nvidia.com>
-Subject: Re: [PATCH v2] drm/nouveau: expose VBIOS via debugfs on GSP-RM
- systems
-Date: Wed, 29 Apr 2026 23:57:34 +0200
-Message-ID: <20260429215734.5282-1-dakr@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260428202825.1123719-1-ttabi@nvidia.com>
-References: <20260428202825.1123719-1-ttabi@nvidia.com>
-X-Patch-Reply: applied
+	s=k20201202; t=1777519545;
+	bh=Ut5G69bc29PiPzWoT/741NVv5Kk/lOmdOdb5wKBmZHY=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=V5dcZx5w6ZsNbkLQRDMzB2RWL/aoneaFsqWWBCOjQU9YtIWRYDD+T+yLL0c1uuBhY
+	 qEq09wxP51HP2ucG5VcbFYEWu1xwrI3mLVWalChYNFLQKJVV2/uPNO5bNsVTmGtBYW
+	 y+MFexZXsUKBzIR9VcaG11CGAPdXCh5mrQ4ITyVmu2dzJeTpqYPZZKRQaFN8mTUumj
+	 qe1015WQ5bGNHETaFFAMkfQbXS+479tE5rufj5GTm7FfEY/F/wwiBzlApZyMLXQ7Xj
+	 eN4jVc9crSFreUj8YqywmtdyQ9MC4GHMaLaL9pIVAuwmWk3hGgC+ZxtKtJbApg/ERF
+	 YZVQLUUCYw1Pw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id
+ DA1FF3809A07;
+	Thu, 30 Apr 2026 03:25:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 2UZGDZMFMXQT7KQURV4CNW2FI56EWSGH
-X-Message-ID-Hash: 2UZGDZMFMXQT7KQURV4CNW2FI56EWSGH
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+Subject: Re: [PATCH v2 00/33] rust: bump minimum Rust and `bindgen` versions
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: 
+ <177751950055.2274119.12088060080551439561.git-patchwork-notify@kernel.org>
+Date: Thu, 30 Apr 2026 03:25:00 +0000
+References: <20260405235309.418950-1-ojeda@kernel.org>
+In-Reply-To: <20260405235309.418950-1-ojeda@kernel.org>
+To: Miguel Ojeda <ojeda@kernel.org>
+Message-ID-Hash: VWF37J4MRQRTQDNEA4LEZT7PF646PL7V
+X-Message-ID-Hash: VWF37J4MRQRTQDNEA4LEZT7PF646PL7V
+X-MailFrom: patchwork-bot+linux-riscv@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: linux-riscv@lists.infradead.org, nathan@kernel.org, nsc@kernel.org,
+ dakr@kernel.org, a.hindborg@kernel.org, catalin.marinas@arm.com,
+ will@kernel.org, pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ acourbot@nvidia.com, simona@ffwll.ch, brendan.higgins@linux.dev,
+ david@davidgow.net, gregkh@linuxfoundation.org, arve@android.com,
+ tkjos@android.com, christian@brauner.io, cmllamas@google.com,
+ aliceryhl@google.com, corbet@lwn.net, boqun@kernel.org, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, lossin@kernel.org, tmgross@umich.edu,
+ rust-for-linux@vger.kernel.org, linux-kbuild@vger.kernel.org,
+ lorenzo.stoakes@oracle.com, vbabka@kernel.org, Liam.Howlett@oracle.com,
+ urezki@gmail.com, linux-block@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, alex@ghiti.fr,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ raemoar63@gmail.com, linux-kselftest@vger.kernel.org,
+ kunit-dev@googlegroups.com, nick.desaulniers+lkml@gmail.com,
+ morbo@google.com, justinstitt@google.com, llvm@lists.linux.dev,
+ linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
+ linux-doc@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2UZGDZMFMXQT7KQURV4CNW2FI56EWSGH/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6EZFH5OONRJM3GHNB2IV56DERV2VGUXV/>
 Archived-At: 
- <https://lore.freedesktop.org/20260429215734.5282-1-dakr@kernel.org/>
+ <https://lore.freedesktop.org/<177751950055.2274119.12088060080551439561.git-patchwork-notify@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -102,19 +122,92 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue, 28 Apr 2026 15:28:25 -0500, Timur Tabi wrote:
-> [PATCH v2] drm/nouveau: expose VBIOS via debugfs on GSP-RM systems
+Hello:
 
-Applied, thanks!
+This series was applied to riscv/linux.git (fixes)
+by Miguel Ojeda <ojeda@kernel.org>:
 
-  Branch: drm-misc-next
-  Tree:   https://gitlab.freedesktop.org/drm/misc/kernel.git
+On Mon,  6 Apr 2026 01:52:36 +0200 you wrote:
+> As proposed in the past in e.g. LPC 2025 and the Maintainers Summit [1],
+> we are going to follow Debian Stable's Rust versions as our minimum
+> supported version.
+> 
+> Debian Trixie was released with a Rust 1.85.0 toolchain [2], which it
+> still uses to this day [3] (i.e. no update to Rust 1.85.1).
+> 
+> [...]
 
-[1/1] drm/nouveau: expose VBIOS via debugfs on GSP-RM systems
-      commit: a5640267d6d3
+Here is the summary with links:
+  - [v2,01/33] rust: kbuild: remove `--remap-path-prefix` workarounds
+    https://git.kernel.org/riscv/c/c8cbe2fc22e4
+  - [v2,02/33] rust: kbuild: remove "`try` keyword" workaround for `bindgen` < 0.59.2
+    https://git.kernel.org/riscv/c/518b9ad2fab3
+  - [v2,03/33] rust: kbuild: remove unneeded old `allow`s for generated layout tests
+    https://git.kernel.org/riscv/c/92cc022f044f
+  - [v2,04/33] gpu: nova-core: bindings: remove unneeded `cfg_attr`
+    https://git.kernel.org/riscv/c/341c51ee3293
+  - [v2,05/33] rust: bump Rust minimum supported version to 1.85.0 (Debian Trixie)
+    https://git.kernel.org/riscv/c/f32fb9c58a5b
+  - [v2,06/33] rust: bump Clippy's MSRV and clean `incompatible_msrv` allows
+    https://git.kernel.org/riscv/c/b6cfba436623
+  - [v2,07/33] rust: allow globally `clippy::incompatible_msrv`
+    https://git.kernel.org/riscv/c/7ed188605e1d
+  - [v2,08/33] rust: simplify `RUSTC_VERSION` Kconfig conditions
+    https://git.kernel.org/riscv/c/b28711ac98e8
+  - [v2,09/33] rust: remove `RUSTC_HAS_SLICE_AS_FLATTENED` and simplify code
+    https://git.kernel.org/riscv/c/9b398d056543
+  - [v2,10/33] rust: remove `RUSTC_HAS_COERCE_POINTEE` and simplify code
+    https://git.kernel.org/riscv/c/4ab22c543f18
+  - [v2,11/33] rust: kbuild: remove skipping of `-Wrustdoc::unescaped_backticks`
+    https://git.kernel.org/riscv/c/0f6e1e0705f0
+  - [v2,12/33] rust: kbuild: remove `feature(...)`s that are now stable
+    https://git.kernel.org/riscv/c/d1aa40daa777
+  - [v2,13/33] rust: transmute: simplify code with Rust 1.80.0 `split_at_*checked()`
+    https://git.kernel.org/riscv/c/f309a6edda53
+  - [v2,14/33] rust: alloc: simplify with `NonNull::add()` now that it is stable
+    https://git.kernel.org/riscv/c/161dd7b51e96
+  - [v2,15/33] rust: macros: simplify code using `feature(extract_if)`
+    https://git.kernel.org/riscv/c/42ec980024f0
+  - [v2,16/33] rust: block: update `const_refs_to_static` MSRV TODO comment
+    https://git.kernel.org/riscv/c/961b72d45ae4
+  - [v2,17/33] rust: bump `bindgen` minimum supported version to 0.71.1 (Debian Trixie)
+    https://git.kernel.org/riscv/c/c3a00a3f31ff
+  - [v2,18/33] rust: rust_is_available: remove warning for `bindgen` 0.66.[01]
+    https://git.kernel.org/riscv/c/41cfbb4295cf
+  - [v2,19/33] rust: rust_is_available: remove warning for `bindgen` < 0.69.5 && libclang >= 19.1
+    https://git.kernel.org/riscv/c/ae64324ad5c1
+  - [v2,20/33] rust: kbuild: update `bindgen --rust-target` version and replace comment
+    https://git.kernel.org/riscv/c/276ed30c558e
+  - [v2,21/33] rust: kbuild: remove "dummy parameter" workaround for `bindgen` < 0.71.1
+    https://git.kernel.org/riscv/c/93553d9922b0
+  - [v2,22/33] docs: rust: quick-start: openSUSE provides `rust-src` package nowadays
+    https://git.kernel.org/riscv/c/53c9647c0a48
+  - [v2,23/33] docs: rust: quick-start: update Ubuntu versioned packages
+    https://git.kernel.org/riscv/c/982e1aa6de73
+  - [v2,24/33] docs: rust: quick-start: update minimum Ubuntu version
+    https://git.kernel.org/riscv/c/6767147cb941
+  - [v2,25/33] docs: rust: quick-start: add Ubuntu 26.04 LTS and remove subsection title
+    https://git.kernel.org/riscv/c/780f847e1419
+  - [v2,26/33] docs: rust: quick-start: remove Gentoo "testing" note
+    https://git.kernel.org/riscv/c/99c672426aed
+  - [v2,27/33] docs: rust: quick-start: remove Nix "unstable channel" note
+    https://git.kernel.org/riscv/c/b69a14650009
+  - [v2,28/33] docs: rust: quick-start: remove GDB/Binutils mention
+    https://git.kernel.org/riscv/c/a4392ed1c8b9
+  - [v2,29/33] docs: rust: general-information: simplify Kconfig example
+    https://git.kernel.org/riscv/c/9375ea727d7e
+  - [v2,30/33] docs: rust: general-information: use real example
+    https://git.kernel.org/riscv/c/86c5d1c6740c
+  - [v2,31/33] rust: declare cfi_encoding for lru_status
+    https://git.kernel.org/riscv/c/9e5946de3a38
+  - [v2,32/33] rust: kbuild: support global per-version flags
+    https://git.kernel.org/riscv/c/b2aa1535ecdd
+  - [v2,33/33] rust: kbuild: allow `clippy::precedence` for Rust < 1.86.0
+    https://git.kernel.org/riscv/c/2e2f8b5a0656
 
-The patch will appear in the next linux-next integration (typically within 24
-hours on weekdays).
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-The patch is queued up for the upcoming merge window for the next major kernel
-release.
+
