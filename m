@@ -4,185 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C152CCFA13
-	for <nouveau@archiver.kernel.org>; Thu, 30 Apr 2026 11:54:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FF66FF886F
+	for <nouveau@archiver.kernel.org>; Thu, 30 Apr 2026 22:39:19 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4817610E43F;
-	Thu, 30 Apr 2026 11:54:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 586D410F498;
+	Thu, 30 Apr 2026 22:39:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="vGgQ9C0+";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="dyweLikv";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id AA00845D61;
-	Thu, 30 Apr 2026 11:41:48 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id BC23745D70;
+	Thu, 30 Apr 2026 22:26:50 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1777549308;
- b=x65G5axi+UNUVPv3ZOPf5/mQSpiHZbFmhhvRh7X1rc9JPgDpPky8WhXR+nYcrXL/pHior
- HTpO/22WdWL4I31m+sGFIVAwy5VN92ptfEzvCZmQdbocOEfvEj6x+6EsK0YsChpLsMGHWyi
- is3FoUSyOGtNdbLBg3e1pHEx0vvcneJW9ckn3bW6AYPCsk/QlVXWC3kQjc5woVa32Bj0W5t
- 0GEJTf0LFcHjHKEIx2aabKsyku1OTFsxNNNwvMr6lbk1ib8HOC//lc4IWgm+8R7px3nxPQM
- a19yLweR7wq7uc79KA54y8LPlWeLtok++FJ+NCJcSLopZUEhpvLNnpBRz4kw==
+ s=20240201; t=1777588010;
+ b=QFGad2ks01iAICxTkX2ivcHhGh692KhyZ/Vf7yudLo0JaCBtGtz4dzwAMbux4AFHsRtfK
+ Rv0B8Az8fcnjI03i/7H5rzKFcc7EMSTAc4tavCtpIQ8kPqs6FwTlxcZVt61QMT+VOQmso7b
+ xsEVv/XWejI5HukjJF+cx4T8PwF3XW7JF4sKLSOz5CsShsZplkhLwtNKEjQ3pCZdDVSQicH
+ kFRZCTKT28sJzilMlAtlPv7McR7MTwUQZSj/I26x70JjQwx5rhK7AyNcn72g0Nwf2JPuwQI
+ 7nXT70X2whr6M/DPUhCCjR6998bw64I1sr+Xy3/jk0ba6g9WdPBwmcXkP/bg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1777549308; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1777588010; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=7p7CHnyYewfGs2rCmgs3lupW6G/2UtHPejBZiDJGqqE=;
- b=Ti20sJEYPnW4FCQE0Tw0YqJkNNeSzubz3CV/QZhkOqFcNwd3ExO62XVhwY5q9V5QgrTAA
- P5GzobAT1z2LpfhX+otldL55CBLrsW3MVQZCpvJdXhWkvwJ9HXgOmPPEBx/Kvuz7uqgHc2z
- PrN1xbmauDKRGEfsip7h6sD+NAA+8brOhqWjIUWaAL/aVYbu/LSxSW19HyaLcdzGNe8rcGH
- 6SgFMnejbTqJJ4QlvufmPTtLE5t3gPUAI6Sr/hQxbf4dSj6BLRMiIYU6+S/GBvBrlZGoJ5e
- YK+74XL/fHgA+f4RszuwnC7J0dzP0g1mZ0z96lorPqEniKzJyNiSXEN8bksQ==
+ bh=Wk3H0f01LiNEdfpRELNDlyvUf+tIRyuHKj/f1ePg2ME=;
+ b=OSybnQp/zdrvn5lMyX2FPvbvNtlK3cdscZ+rP05+QRu3H0JN7S8PnSx5h//Svmz7eEmY4
+ yw93/xPXRM+OT6tMFtnJ6wqFESBtCaheqzw6IA3CrRLGJ88hnoGxkFDmGerM1A4CFtFlRCw
+ iReKPWAmH9CQd+BoilUR0Wcf4AKpnrPxKxAXjR0K6bybHpfFtdlmsoJODmM7qhunr3Bc3Jg
+ Ld7EN/Zjaq0F+6vn//J+h4RfUm/KfZnLtyfb1ngyjiWKCRUpwfhtgCGAt/8HYoNKhcDK9oK
+ toAWJpmZ9jZF4RQGGypYeMgR/ymNSQLi3XWf4qgB6E/WvCHTkJWtYYH4GiRQ==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
+ dkim=pass header.d=Nvidia.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=garyguo.net
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 0AB1545D5A
-	for <nouveau@lists.freedesktop.org>; Thu, 30 Apr 2026 11:41:45 +0000 (UTC)
-Received: from LO0P265CU003.outbound.protection.outlook.com
- (mail-uksouthazon11022077.outbound.protection.outlook.com [52.101.96.77])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E496010E429;
-	Thu, 30 Apr 2026 11:54:10 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id C103545D51
+	for <nouveau@lists.freedesktop.org>; Thu, 30 Apr 2026 22:26:47 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010028.outbound.protection.outlook.com [52.101.46.28])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D692B10E4B0
+	for <nouveau@lists.freedesktop.org>; Thu, 30 Apr 2026 22:39:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=A+6ZtmEo/aFcBTSe5j2kvN46MmpV7rIIoLikGDwDnbOmT/5k5KgdwDX0lAbZ0byqI+foVDQAaPlz3c+XxBPQngiJ439aSLVFytmD9afQhBGOWWou2gcvjFg/zV06A6aWr2A+i1sCcq953PGnk4Cq0Mn0qLdUSCEot3CxkvgcU9BB6nd8PYGcsI9drr4Nb/hr/b0k6Yb/jsFbRgfmDk3AXOjlxLZk7DABGQMLLZEvFA1gfJtxYwD5I5ZcYnwzcqu+yXV0ujxWgMJVjhQvlMWt/2dEVf82k8AJ3819GqXYN8or7eCkbNA1LSEC9/bJ/1j0fBUHdUpIUnvPfvaGtir/Zw==
+ b=XlH0S3IaEAJ2LGJ8r2Lf69JJ+cQyZLaj01M/sueVckJ6hdOEsYz6qQhT3KDZ7nTkMdqkGXBgf7PSPnYFf6p7gnTT2ebqmm1QN86/5a1jrXnC8QQzs4tr6lvsndHVbxCne7S5eSrQCkftNHX28LdCcgGeB9839QwAP/Itp0Bj7GYXWHgm5QVz+E4v9OXJGAXGWa5GMvLkOhbii/EpSlw/PLvnHKyaGcky6Lgu2MUMy7VPT4URiYRXp/EhmA6lYx1xVS0QS7XtkMXkeBua/LFEZX/sGYyEGqv6zTV6jCckLW8zqynnS7Ceryv6iaYI+ZEkcw5373L6SSFg0Tgbx58wSA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7p7CHnyYewfGs2rCmgs3lupW6G/2UtHPejBZiDJGqqE=;
- b=qzFCC8yTjcxhKzwByE3UhLPlhSm2f7W5WIhiwP+VfnjhK25C76M0UgNWaFGyv6Fag7o9Te0RMBweEa1hEfuj7WM/OLDUA6JFXyZDbVULhftDRGl7IvvdZ7eiOK4U8zdf8cG5UsrlCx8cSclVPyJ9QvA3ngA8TCRs0dnjFfN0XwiUztGWl15Ervi7w9indegSmyVEfsw4nOXXYFgEMfuQwmSLyyAJKtKTPH1qENcjqFT/zXPuiOBBtXEyOYrSUsFXB2ltgiViTNaGUF7XlGAoAT0cDRdmPQ3oA80czYgCmyN5kvII9+YD1ypRFIaCp5uelGk3fajEquyQGMaUsX8HaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
+ bh=Wk3H0f01LiNEdfpRELNDlyvUf+tIRyuHKj/f1ePg2ME=;
+ b=CNEbbg72p+lcZo+iL9VjLlpmx672cNdsrvcJ4HFwW/BU0f7GShgz/n3dL4Zgju8oD2roKGW5LVFPXgJz59sDkfO1a1O24DR5HmqCgrHWgo6gwzSx20+tsCSA6l1WWlBacEoNsMZybefI2axUvqI40SlqNYgxbaoP7SoCUpfaEQWQr1RaVoGiCzdl6yJX8x3GoafZNMqjcYa27wPzMHc1A7BqeSxPf49MEjZpGOKt1JgkACY9F9sP0m9KgeGpcfQa9HaAGAYifD/ykVuR1ToKS/eKm5s8p9ZAhR1K4g6hspWCqTSU27eP3D48E9G57PCk7j9TQZ1xo4Nk0AEscZsxRw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=redhat.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7p7CHnyYewfGs2rCmgs3lupW6G/2UtHPejBZiDJGqqE=;
- b=vGgQ9C0+Z2no8bAuCCYtIzBPtclqFg3tcfBAk9re0PI74evviJXKiWvIlK3xRHWzBxBr+KdnLBJLKudRw0L8nNcMu8GJd1iVfMdqzTgX5PnO3fRisnqjWVJHHumZgjJDIiK2l2ccB523mQQZq9d1SZ21iX3uZAZLdrOw/ymiqB4=
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by CW1P265MB7531.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:214::6) with
+ bh=Wk3H0f01LiNEdfpRELNDlyvUf+tIRyuHKj/f1ePg2ME=;
+ b=dyweLikvBmTaQdLdtspopBquuRhRpDGKnG0EaF4IgV1sVt0TbiNMqagYQjkzZ/fO8iR0Dc5fTcx+n0AThLWoSIvgP0qawIx8ETAyBZ1hxlRbEv1FAudXyO37QW+/ui2dcURWU2MkdSoH7Vc7kkRJWDiCPEdP81cR2pOjY8LURIF5aykp9iuYacivIea4ERYuc6bgVomKKvClvCMqBmVE63UnKKW+HBk93IH2wQoi1TPNWRdHmidTq0t/vBF/Op2rOd+PeOSHcA1Q8EHRSXFpnJIyVbyECx33aWtUT/tNWpCqZLhKiOY4xwd1ib+QAZBzjNWH4w5aQWO8+qk3a/tWCQ==
+Received: from SJ0PR13CA0102.namprd13.prod.outlook.com (2603:10b6:a03:2c5::17)
+ by BL1PR12MB5875.namprd12.prod.outlook.com (2603:10b6:208:397::7) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.21; Thu, 30 Apr
- 2026 11:54:06 +0000
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986%4]) with mapi id 15.20.9870.020; Thu, 30 Apr 2026
- 11:54:06 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 30 Apr 2026 12:54:05 +0100
-Message-Id: <DI6GWHHRIPDV.1R8KJL5AOUG5T@garyguo.net>
-Subject: Re: [PATCH 1/5] rust: ptr: add panicking index projection variant
-From: "Gary Guo" <gary@garyguo.net>
-To: "Alexandre Courbot" <acourbot@nvidia.com>, "Gary Guo" <gary@garyguo.net>
-X-Mailer: aerc 0.21.0
-References: <20260415-projection-syntax-rework-v1-0-450723cb3727@garyguo.net>
- <20260415-projection-syntax-rework-v1-1-450723cb3727@garyguo.net>
- <DI5LLN2V3XCS.34H4CG99N4MPA@nvidia.com>
- <DI5LRCUUKJJW.24ZCQBQYEPPVZ@garyguo.net>
- <DI6G9FSQHM1B.4KGHIQWPC94J@nvidia.com>
-In-Reply-To: <DI6G9FSQHM1B.4KGHIQWPC94J@nvidia.com>
-X-ClientProxiedBy: LO4P123CA0016.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:150::21) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:488::16)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.22; Thu, 30 Apr
+ 2026 22:39:07 +0000
+Received: from MWH0EPF000A6730.namprd04.prod.outlook.com
+ (2603:10b6:a03:2c5:cafe::f3) by SJ0PR13CA0102.outlook.office365.com
+ (2603:10b6:a03:2c5::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.5 via Frontend Transport; Thu,
+ 30 Apr 2026 22:39:06 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ MWH0EPF000A6730.mail.protection.outlook.com (10.167.249.22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9870.22 via Frontend Transport; Thu, 30 Apr 2026 22:39:06 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 30 Apr
+ 2026 15:38:52 -0700
+Received: from ttabi.nvidia.com (10.126.230.37) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 30 Apr
+ 2026 15:38:51 -0700
+From: Timur Tabi <ttabi@nvidia.com>
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, "David
+ Airlie" <airlied@gmail.com>, <nouveau@lists.freedesktop.org>
+Subject: [PATCH v2 01/10] Revert "drm/nouveau/gsp: add support for GA100"
+Date: Thu, 30 Apr 2026 17:38:29 -0500
+Message-ID: <20260430223838.2530778-2-ttabi@nvidia.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260430223838.2530778-1-ttabi@nvidia.com>
+References: <20260430223838.2530778-1-ttabi@nvidia.com>
 MIME-Version: 1.0
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.126.230.37]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|CW1P265MB7531:EE_
-X-MS-Office365-Filtering-Correlation-Id: f600b1a2-0c3f-4f49-4ab1-08dea6af2e2c
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A6730:EE_|BL1PR12MB5875:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e4337c7-3d77-44fd-e92c-08dea70949ae
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|7416014|366016|376014|1800799024|10070799003|18002099003|56012099003|22082099003;
+	BCL:0;ARA:13230040|376014|1800799024|36860700016|82310400026|56012099003|22082099003|18002099003;
 X-Microsoft-Antispam-Message-Info: 
-	RugDp7lQdPlJ6mZmiVQrpF1EAVtMEzhPgypFkWZ7GKXdu0uO1HcGQvAtw6mfISmZk8/0BZLSaxLsPzifWcHonJU6BrmS3J9FCQNjuUA39gRj1o15roJaNb6L+LJ4IoTuvkTt8W06ZFyl1HJYxeHm/cRwsWipGcMIkz671siB/I6w1eS7+DioHdcuGwFNIpozpKJj+g6DemXUUrQQQdI6VQiv3/mgjo2XGvAqmlUvONIpro9kSKfPVt8einH+oQcZgN9K0lCjaDHOqqFK+vj3txA7ieDFm20X9e5oiSLpZ7EHaIYK0H/ulX4bp1sg6nWslR1wUq6F4Z5SCxkoQimoyejB2rtOa2NN35vVsxE4QCWfoFVS7aPu5zUICBxOGajmKeTVzwIi/Np86bC5Qj5f7K1J8/Kq2RT6WZGruWWSmu3xVEUI9thffI94MvMbjXOhNOmceyPeMw0L4OH7XIMO5AR7AORAhzF+iqcig1Mm1po0vnLywHGcoP7WmTl6i9G9Erq4i4U3ya8uysiI1RlrVYNYyWEGFuya5Ytke6MGGyiBtaWHN54cSfoqahB7uRcNR0mmNyFPNlevOen1NykdbPpYOUAMiSYg6QVRbwO3GRc4cMpqpaKeUUHjTB384eolP8ChPBbgGTWsL8kXuI5TWnDJMZmux9Vi62V5GQUVlAi+GSvdtBz81xy8wwTcYiDaM2DzYvoxaIc3oEOv9NnnF4hiOoYRTBKTIq8adHY451Q=
+	zbLyKe0B+XYF+qrvCUiL1bOfEF9ofC4tUDL6guXQow6N2iBaXmx+Hrg7tGIyrKoxuxxEPp3MH8OYULVVd+i0L2FZ0KRYSVIoK4DSN+YrS4iN8DHAVz5MJ65fno86dHBFbJJgUYzcG9+jMW6SenC7xG+L/LuyPhfp1leuN4tcqRXnrKqDSnCLQ3tz2rBrnbnQ3uvq1vnKXd3AoIK0QTPZ/Baxq0sbe5HTivCdKgCmkH4QMeh+uQcNgP4l0rmZCYCIYX2fv8JNUs7WDK9OgYAnqcwOkzUmz/JQiTaheEfo1ybttKrHtTxJ2C3CF6CFkxpX1HHD4wGsyCv4U+CSVZwPZVIuwJn3TLpSK+kVVixe+j2TysE7EA3Uprpwol57X/CyfnbXjlxAgKbxGTn4ZsjVFC1aIP9kTmADu4Q42+nwUzwSHZi6ruAq43piNCBhEJ59NDBTi1KBuKzw3STgwppwVYcqCWDs7ruFmbJx5COQpaYZeoYCEhAbv9n/xm2cZ5+nwNmqXK9Ynhbe5uTR7zfr9a9BEWhnUbZx0FlKyNHB0na/4n+vBjrSWz5PbRhGH1cvRPgUaMtUJJlVh22PowJAHfI/R2QlImwVUAYU7V+HswGZVcKXb9obxo+GXkNePJobW65ioKwTK85NUKFLYiuO+1OmfW2uTBQ8gnYqhu55N/NNGtwHua24OiRQatoxRGeVK6C8uY76Xenn7kvQYIIvSWmp3rGlF3TcOxHS8KF8e94=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(1800799024)(10070799003)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1102;
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700016)(82310400026)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?ZW5mOWQveERGb3NaNmxudDZJdnZ5QzkyanZJMUp6azl6R2tlYnFzOTVIZktl?=
- =?utf-8?B?aDduSjlQT0tlNXdhcVcwVzVQa05ZT2lqUEN6VThSdEhNNDdkdlZVM0pYanox?=
- =?utf-8?B?Q3A3RzJvdXdnUURxUUUyaU43U2JIV3Vsb0RveXhtNERka2dDQVBVUFAyd0tW?=
- =?utf-8?B?VnVuUjg0UTFUMlNMODlQM0ZMbXIwN2NtSC9pbm9mUCs0V2l1T1NDbDFLdE4r?=
- =?utf-8?B?NnRnaEY4MlFWdjVTbnRudlluckN3ZWtnd0IrNFNRZzE1SXZuaWVqNVByT0Fv?=
- =?utf-8?B?QXBGOVdtRkpkZDJKNmRUZ2VwemdlbXoyTGRrQ3hueW53Y0RNQU55ejlHYkxW?=
- =?utf-8?B?YlBKQ3hKT2h6cXZLUU1pNHRkY0lMa1JjM09WYnpGVU5vajZNS0dHOGw3OXl3?=
- =?utf-8?B?UUFQb0RuQVFGUmMrMFVGczdiYTZCeGY5cU5iRzlQSmZPa2FwZkM4aDNGVzQ0?=
- =?utf-8?B?UFZWajY4RUxaVkNhMjdUVjhBZ3RsN2NjNjYyUHZSa3hyNzJGNHFQQWxlb1V1?=
- =?utf-8?B?Mk0xNDg3WXhYbFJxQUFCMW9DNVJxTGJVNkxUQ3c4cGVNUUMySW1pc2hITzM0?=
- =?utf-8?B?RW8yVDdoUUdHeWFSWUJVQzZ4VXRUVDNXZCtaV3RRY0tNbGRxOGFlY1RnU3RY?=
- =?utf-8?B?QytOcmRzczJJNEsrV2pjblEvTGRmS0tQWFkxbkZKMTBTamNSNGJiandaMGtF?=
- =?utf-8?B?eWNZekk0ckdqTjA5OGh4a2RUQ3VQQU9sR3VTOE5la0hDNHI4UDg1VjJXL2Ev?=
- =?utf-8?B?QXBiWkF3c3AxTFZ3VTE0MzhoQ0tPNVVxejV1cGlTSTNKMTMvc1h0a0NrWW1m?=
- =?utf-8?B?bFJpMlZOSWMrQ1BBb1pBczRDUFlhVkVxbmY3UjFXS2I2YVNaeG5lUkdkczZL?=
- =?utf-8?B?NkU4SkRzUUpNcG5aRGVyL253eUxUSWhpbmJzUTYvN2hscTRjaVo2UGdTbFUw?=
- =?utf-8?B?R1VLTXp0M2dlQ1FoaS9XMnd5NlpwYjljVWEzTTJJcnpOMmhEZWNjWG5ab3FY?=
- =?utf-8?B?Y1l6WWg0SlJKQzBRUGhBT2NzdWZQT0tqUEg5OUNGSzV3eWhxazJHVzVGN2Za?=
- =?utf-8?B?MGFLMzA3bGUxWG5NUW1CVmZHd2JsdzNqY3FiRlVSNElBaTBkSlFTdlNZWUdH?=
- =?utf-8?B?R0JoZXlPUXVuaEwyOTgxaCtWV0ZsTXJYbCsvNndaUFZMZ2xRSUVsS3RWOTRM?=
- =?utf-8?B?Vm9aQ0Y4dTFJOWd0dlZZNEhzd2QvZXFYUHJEbHgycDg2NlRkb1orWTBEVXNL?=
- =?utf-8?B?NFR5V3Z0YmpCYitCaCt1anNOVGhUcTFzOEpiZC9LVGErMHVqM0gwR1VMak9F?=
- =?utf-8?B?dTM3ZnVGdGJwSDkrcVMyY01Qb0NaaG9ZT3NjQ3lTa1BpN1N0bzk1SmkwYjdH?=
- =?utf-8?B?bXlGZHJFYUw3TEorb3ZYRWNBRWdQOENQWmU5dHdFWFNMRGduYzdPV2hPWE9D?=
- =?utf-8?B?WVE5MDdRQnBGTHU5ZzF5SUs5WWI2UVBYbTRtcldMYXZ2eUxhRlBuMlZvMEVx?=
- =?utf-8?B?bkEwV1lSYlhnWWYwVTdyTzFNNE5nUXJhOEl6Skd5NHdjU1poNU5MQ3oxd2tS?=
- =?utf-8?B?aW0xU1oraTNSRFJkZUlLdHpORkdYUkFiTVhkZXhISkF6RS83MUZzU2syUWp0?=
- =?utf-8?B?d25XUFJXWjR1SHpvZjUxZDNwT2lzLzRaZDFYSkFvckduVnVraCtRTmIrVVJP?=
- =?utf-8?B?SE45NndKYW5RTmRZS2ErYjgzYVFGMHMzaE9VZDJLWkpZeFczaTZmMVdDZEpp?=
- =?utf-8?B?YldpUEs0WFNYcEdVTDJiUDFIRlNlTUFMSWRRaFBqc0xqZGVNRHRrdnQwSEtq?=
- =?utf-8?B?MEJZYXUwMFMwMWc0RUdBOXNtRDVDVTE1cWh6NWFXYVhSVGJxK0laTHFmV1la?=
- =?utf-8?B?UGc4K3pJUGV3ZDdCb0xwdEZoeHFrUi93NnZtaGoxYXlHWkdiRlRpMWRnazVn?=
- =?utf-8?B?Q0ZaeWN6Y01BMnJONURERmxmZ0JjWWl0MmY5UE12NE55VHd5eTdlUHVQbWV3?=
- =?utf-8?B?OU5SaXh4UnhHSU5zd1dPWGJHZ0IyOWdFTGtvWUxTanR3bE95NlR4RWhGNmpS?=
- =?utf-8?B?UXpNY2ttc0trVzZVcU1ETDFZTFBZZmk1WWhEL3NwNkVTcy9sU3pacjRTYnAy?=
- =?utf-8?B?Zll0a2habEdXekxzYzl0ZExkNXBWNUFwT0JUeHdDQ05uTXBDVjFoSG9xSUdi?=
- =?utf-8?B?aFVIdnFEdWIrOTR1RDFOb01xYnBjb3ZIVk9iV3RXVERJaGJBYW1WZTRmdFpv?=
- =?utf-8?B?TFIreVF1V3BibkNxd2pVWldBdUYzem1pRW1US1N4TFgxWEtQYk5YbXF1MmRt?=
- =?utf-8?B?d1FHWkY1VWwvK0dWZHcrUktTaHNudW13OElsa05tVldoMFRaOHlIUT09?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- f600b1a2-0c3f-4f49-4ab1-08dea6af2e2c
-X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 11:54:05.9774
+	03aWvWYUo4k1Utf794whPN/X54zBon6AKSYC1HqftZjNcY2W1yfpxubXfHSX7fLtbEJpLZEhb7d3kbLNMXjYFRRN0xc+AFV2KEL6IQJ4h0YEeEK+DTUiSGjxlQEFTjhbuzZ/iLAhyNr9Z13cyKKvBsjSO5iz8IfvfGcUNdU06053arF71HNh5r7GFZJOeqQWkQZjdRstYmclB8F1WKSKCG601O7i9L+XAQH7nDCae+bw/l+/d11giTKtZ1u4bRhooTg5OHRMRYNxU/B4WY725O9LJBdbw8RtlgN1QK9HVUv7u6jolRtcqE84RD6v8QkQtca543p2apju9dMNw7zBkKHVkNBuoGKPcLBL49WDxPzwSlDVOI3MJAGMwHxG39i280tcLKdjjjjXcizxrGJoG9q9ePXwiGQHP3WumcVVMTbL7W5ePE1OghLSWQ86QABw
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 22:39:06.4993
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- TYYo0geCLOZ/YUqjBEmlcZdrz8VwpixLTXUXrhf0lCDzrYBVSfh7Q9nxWXH314y7QadHqh8Byv0T3po0xt6llA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CW1P265MB7531
-Message-ID-Hash: VEVSZPEGBXUGHQ5WM3ZYTBI6O3HPNPFK
-X-Message-ID-Hash: VEVSZPEGBXUGHQ5WM3ZYTBI6O3HPNPFK
-X-MailFrom: gary@garyguo.net
-X-Mailman-Rule-Hits: nonmember-moderation
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 6e4337c7-3d77-44fd-e92c-08dea70949ae
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
+ TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	MWH0EPF000A6730.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5875
+Message-ID-Hash: HNWOQ4BT57K7QESG3BSVLHJFFSE54TNX
+X-Message-ID-Hash: HNWOQ4BT57K7QESG3BSVLHJFFSE54TNX
+X-MailFrom: ttabi@nvidia.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Danilo Krummrich <dakr@kernel.org>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Robin Murphy <robin.murphy@arm.com>,
- Andreas Hindborg <a.hindborg@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, Simona Vetter <simona@ffwll.ch>,
- driver-core@lists.linux.dev, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+ loop; banned-address
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VEVSZPEGBXUGHQ5WM3ZYTBI6O3HPNPFK/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HNWOQ4BT57K7QESG3BSVLHJFFSE54TNX/>
 Archived-At: 
- <https://lore.freedesktop.org/DI6GWHHRIPDV.1R8KJL5AOUG5T@garyguo.net/>
+ <https://lore.freedesktop.org/20260430223838.2530778-2-ttabi@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -192,147 +161,128 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu Apr 30, 2026 at 12:23 PM BST, Alexandre Courbot wrote:
-> On Wed Apr 29, 2026 at 8:29 PM JST, Gary Guo wrote:
->> On Wed Apr 29, 2026 at 12:22 PM BST, Alexandre Courbot wrote:
->>> On Thu Apr 16, 2026 at 4:57 AM JST, Gary Guo wrote:
->>>> There have been a few cases where the programmer knows that the indice=
-s are
->>>> in bounds but compiler cannot deduce that. This is also
->>>> compiler-version-dependent, so using build indexing here can be
->>>> problematic. On the other hand, it is also not ideal to use the fallib=
-le
->>>> variant, as it adds error handling path that is never hit.
->>>>
->>>> Add a new panicking index projection for this scenario. Like all panic=
-king
->>>> operations, this should be used carefully only in cases where the user
->>>> knows the index is going to be in bounds, and panicking would indicate
->>>> something is catastrophically wrong.
->>>>
->>>> To signify this, require users to explicitly denote the type of index =
-being
->>>> used. The existing two types of index projections also gain the keywor=
-ded
->>>> version, which will be the recommended way going forward.
->>>>
->>>> The keyworded syntax also paves the way of perhaps adding more flavors=
- in
->>>> the future, e.g. `unsafe` index projection. However, unless the code i=
-s
->>>> extremely performance sensitive and bounds checking cannot be tolerate=
-d,
->>>> panicking variant is safer and should be preferred, so it will be left=
- to
->>>> future when demand arises.
->>>
->>> Review nit (no need to respin for this): this patch would probably be
->>> easier to review if the renaming of `index` to `build_index` was split
->>> into its own patch. It would reduce the diff, while also removing the
->>> burden of having to keep in mind that `index` means a different thing
->>> depending on whether the line is removed or added. I've found it a bit
->>> difficult to keep track of this.
->>
->> This'll need a respin anyway (to merge with the IO view series) for patc=
-h
->> logistics reason, so I'll make that change.
->>
->>>
->>>>
->>>> Signed-off-by: Gary Guo <gary@garyguo.net>
->>>> ---
->>>>  rust/kernel/dma.rs            |  3 ++
->>>>  rust/kernel/ptr/projection.rs | 98 ++++++++++++++++++++++++++++++++++=
-+--------
->>>>  2 files changed, 84 insertions(+), 17 deletions(-)
->>>>
->>>> diff --git a/rust/kernel/dma.rs b/rust/kernel/dma.rs
->>>> index 4995ee5dc689..3e4d44749aaf 100644
->>>> --- a/rust/kernel/dma.rs
->>>> +++ b/rust/kernel/dma.rs
->>>> @@ -1207,6 +1207,9 @@ macro_rules! dma_write {
->>>>      (@parse [$dma:expr] [$($proj:tt)*] [.$field:tt $($rest:tt)*]) =3D=
-> {
->>>>          $crate::dma_write!(@parse [$dma] [$($proj)* .$field] [$($rest=
-)*])
->>>>      };
->>>> +    (@parse [$dma:expr] [$($proj:tt)*] [[$flavor:ident: $index:expr] =
-$($rest:tt)*]) =3D> {
->>>> +        $crate::dma_write!(@parse [$dma] [$($proj)* [$flavor: $index]=
-] [$($rest)*])
->>>> +    };
->>>>      (@parse [$dma:expr] [$($proj:tt)*] [[$index:expr]? $($rest:tt)*])=
- =3D> {
->>>>          $crate::dma_write!(@parse [$dma] [$($proj)* [$index]?] [$($re=
-st)*])
->>>>      };
->>>> diff --git a/rust/kernel/ptr/projection.rs b/rust/kernel/ptr/projectio=
-n.rs
->>>> index 140ea8e21617..845811795393 100644
->>>> --- a/rust/kernel/ptr/projection.rs
->>>> +++ b/rust/kernel/ptr/projection.rs
->>>> @@ -26,14 +26,14 @@ fn from(_: OutOfBound) -> Self {
->>>>  ///
->>>>  /// # Safety
->>>>  ///
->>>> -/// The implementation of `index` and `get` (if [`Some`] is returned)=
- must ensure that, if provided
->>>> -/// input pointer `slice` and returned pointer `output`, then:
->>>> +/// The implementation of `index`, `build_index` and `get` (if [`Some=
-`] is returned) must ensure
->>>> +/// that, if provided input pointer `slice` and returned pointer `out=
-put`, then:
->>>>  /// - `output` has the same provenance as `slice`;
->>>>  /// - `output.byte_offset_from(slice)` is between 0 to
->>>>  ///   `KnownSize::size(slice) - KnownSize::size(output)`.
->>>>  ///
->>>> -/// This means that if the input pointer is valid, then pointer retur=
-ned by `get` or `index` is
->>>> -/// also valid.
->>>> +/// This means that if the input pointer is valid, then pointer retur=
-ned by `get`, `index` or
->>>> +/// `build_index` is also valid.
->>>>  #[diagnostic::on_unimplemented(message =3D "`{Self}` cannot be used t=
-o index `{T}`")]
->>>>  #[doc(hidden)]
->>>>  pub unsafe trait ProjectIndex<T: ?Sized>: Sized {
->>>> @@ -42,9 +42,12 @@ pub unsafe trait ProjectIndex<T: ?Sized>: Sized {
->>>>      /// Returns an index-projected pointer, if in bounds.
->>>>      fn get(self, slice: *mut T) -> Option<*mut Self::Output>;
->>>> =20
->>>> +    /// Returns an index-projected pointer; panic if out of bounds.
->>>> +    fn index(self, slice: *mut T) -> *mut Self::Output;
->>>
->>> This looks like this could have a default implementation:
->>>
->>>     fn index(self, slice: *mut T) -> *mut Self::Output {
->>>         Self::get(self, slice).unwrap()
->>>     }
->>>
->>> I'm sure there is a good reason for now having this though, so at least
->>> for my education: why not? :)
->>
->> It could, but the implementation is going to be dead code.
->
-> Would the generated code from this default implementation be worse than
-> the specialized ones you wrote? I'd have expected the compiler to
-> optimize things in such a way that they would be equivalent, only with
-> less code. Haven't looked at it though.
+This reverts commit 20e0c197802c545db220157fafd567a10f2b7672.
 
-Panic in bounds checking have the index being included in the part of messa=
-ge.
-They're also size-optimized by having the panic path outlined. The speciali=
-zed
-ones can always re-use these outlined code paths. Of course, unwrap also ha=
-ve
-this optimization, but the message is just a generic "called `Option::unwra=
-p()`
-on a `None` value").
+Despite claiming to add GA100 support, that commit actually has quite
+a few problems.  It falsely claims that there is no VBIOS.  GA100 does
+have a VBIOS, but it has no display engine, so it cannot use the
+PRAMIN method the read VBIOS and must fall back to using PROM.
 
-For the case of built-in indexing (not subslicing), it also has its own MIR
-primitive (TerminatorKind::Assert) so the MIR generated is small and more e=
-asily
-analyzable/optimizable by MIR passes.
+For whatever reason, the VBIOS on GA100 has an "Init-from-ROM"
+(IFR) header where the PCI Expansion ROM would normally be found.
+So to find that ROM, Nouveau needs to parse the IFR header.
 
-Best,
-Gary
+The commit also falsely claimed that there is no graphics (GR) engine.
+
+So rather than try to fix that commit, just revert it and start over
+from scratch.
+
+Signed-off-by: Timur Tabi <ttabi@nvidia.com>
+---
+ .../gpu/drm/nouveau/nvkm/engine/device/base.c  | 11 +++++++++--
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c    |  4 ++++
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c    | 18 +++++-------------
+ 3 files changed, 18 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+index 72848ed80df7..b101e14f841e 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+@@ -2513,6 +2513,7 @@ static const struct nvkm_device_chip
+ nv170_chipset = {
+ 	.name = "GA100",
+ 	.bar      = { 0x00000001, tu102_bar_new },
++	.bios     = { 0x00000001, nvkm_bios_new },
+ 	.devinit  = { 0x00000001, ga100_devinit_new },
+ 	.fault    = { 0x00000001, tu102_fault_new },
+ 	.fb       = { 0x00000001, ga100_fb_new },
+@@ -2529,7 +2530,6 @@ nv170_chipset = {
+ 	.vfn      = { 0x00000001, ga100_vfn_new },
+ 	.ce       = { 0x000003ff, ga100_ce_new },
+ 	.fifo     = { 0x00000001, ga100_fifo_new },
+-	.sec2     = { 0x00000001, tu102_sec2_new },
+ };
+ 
+ static const struct nvkm_device_chip
+@@ -3341,7 +3341,6 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
+ 	case 0x166: device->chip = &nv166_chipset; break;
+ 	case 0x167: device->chip = &nv167_chipset; break;
+ 	case 0x168: device->chip = &nv168_chipset; break;
+-	case 0x170: device->chip = &nv170_chipset; break;
+ 	case 0x172: device->chip = &nv172_chipset; break;
+ 	case 0x173: device->chip = &nv173_chipset; break;
+ 	case 0x174: device->chip = &nv174_chipset; break;
+@@ -3361,6 +3360,14 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
+ 	case 0x1b6: device->chip = &nv1b6_chipset; break;
+ 	case 0x1b7: device->chip = &nv1b7_chipset; break;
+ 	default:
++		if (nvkm_boolopt(device->cfgopt, "NvEnableUnsupportedChipsets", false)) {
++			switch (device->chipset) {
++			case 0x170: device->chip = &nv170_chipset; break;
++			default:
++				break;
++			}
++		}
++
+ 		if (!device->chip) {
+ 			nvdev_error(device, "unknown chipset (%08x)\n", boot0);
+ 			ret = -ENODEV;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
+index fdd820eeef81..27a13aeccd3c 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
+@@ -41,11 +41,15 @@ ga100_gsp_flcn = {
+ static const struct nvkm_gsp_func
+ ga100_gsp = {
+ 	.flcn = &ga100_gsp_flcn,
++	.fwsec = &tu102_gsp_fwsec,
+ 
+ 	.sig_section = ".fwsignature_ga100",
+ 
+ 	.booter.ctor = tu102_gsp_booter_ctor,
+ 
++	.fwsec_sb.ctor = tu102_gsp_fwsec_sb_ctor,
++	.fwsec_sb.dtor = tu102_gsp_fwsec_sb_dtor,
++
+ 	.dtor = r535_gsp_dtor,
+ 	.oneinit = tu102_gsp_oneinit,
+ 	.init = tu102_gsp_init,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
+index dd82c76b8b9a..19cb269e7a26 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
+@@ -318,13 +318,8 @@ tu102_gsp_oneinit(struct nvkm_gsp *gsp)
+ 	if (ret)
+ 		return ret;
+ 
+-	/*
+-	 * Calculate FB layout. FRTS is a memory region created by the FWSEC-FRTS firmware.
+-	 * FWSEC comes from VBIOS.  So on systems with no VBIOS (e.g. GA100), the FRTS does
+-	 * not exist.  Therefore, use the existence of VBIOS to determine whether to reserve
+-	 * an FRTS region.
+-	 */
+-	gsp->fb.wpr2.frts.size = device->bios ? 0x100000 : 0;
++	/* Calculate FB layout. */
++	gsp->fb.wpr2.frts.size = 0x100000;
+ 	gsp->fb.wpr2.frts.addr = ALIGN_DOWN(gsp->fb.bios.addr, 0x20000) - gsp->fb.wpr2.frts.size;
+ 
+ 	gsp->fb.wpr2.boot.size = gsp->boot.fw.size;
+@@ -348,12 +343,9 @@ tu102_gsp_oneinit(struct nvkm_gsp *gsp)
+ 	if (ret)
+ 		return ret;
+ 
+-	/* Only boot FWSEC-FRTS if it actually exists */
+-	if (gsp->fb.wpr2.frts.size) {
+-		ret = nvkm_gsp_fwsec_frts(gsp);
+-		if (WARN_ON(ret))
+-			return ret;
+-	}
++	ret = nvkm_gsp_fwsec_frts(gsp);
++	if (WARN_ON(ret))
++		return ret;
+ 
+ 	/* Reset GSP into RISC-V mode. */
+ 	ret = gsp->func->reset(gsp);
+-- 
+2.54.0
+
