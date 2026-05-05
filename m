@@ -4,150 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18D3DCD3423
-	for <nouveau@archiver.kernel.org>; Mon,  4 May 2026 04:01:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFBF5CD3439
+	for <nouveau@archiver.kernel.org>; Tue,  5 May 2026 09:23:48 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 21A9A10E36C;
-	Mon,  4 May 2026 04:01:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A0B2910EA17;
+	Tue,  5 May 2026 09:23:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="K/thZJr8";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="FpaXi/Re";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 5C9F245DA2;
-	Mon,  4 May 2026 03:49:16 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1777866556;
- b=qI71iDG+kxnWX7liF5Sswzb92PHg29AJXpLTicvxUTAxuKOO6I3BtQk15yJcREkh8pNIn
- E4Sm4/4eJ3lvg7pXK2e9IZ+38JE+MN0Ph62vRIo2FUMh2+3HCbKIxy+vvpbuGgYZ/WuKJeb
- fz8Vq+STC0ze5AxnPAdxBore3e30G7GqIZrJ5Zo03uzLMGd+bKGaJZ0a+/AdtU+Us1KP493
- t6cfVc+dzzp2dLa5Dv6/OHleO1y8Lmt2f/7BYf5vqtQZDL1UCc9ZxNvGf3Ee0kLZQmOTniO
- uF4tccqDVEI/iEOPeXS04YrA8mh2vNMnGhbFxg/txne73E2yUCWsB/UOwLxg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1777866556; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 2E7C245DBA;
+	Tue,  5 May 2026 09:11:10 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1777972270;
+ b=l435UY+JvITYjGVlfOcFNcjcmI/JRjT89QiH6NxY9Y+JlTJVkx8Artg1zMHQp97jqUn1i
+ eTLkzgrsaBraU+iMumD/XTwj1fXBzqLBX4OGkLk6jtqtvd0ZRDu5ac5T5M8zuEaYO1N8mm2
+ RcrojD5WlPlojrNkgbXGkQ6rzt9Qs15azTjkF8Kriz1lW6IvYPYZhb/9QBfOkIhU8vKyGY9
+ h+5joLifeesCXLUMfvyODXuwzXG5AIeIR2C7idfu7Wz3Gnkm1+awEaxiRjbNyRHrylbAI0K
+ L8DQndpkw5aWiBfwC9GVuNCSmTEl2jTQOpqW8xGIVLu5/wjQMR5gibWLxfGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1777972270; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=oGlVUVNCo7t578SnF0/FJlFOI+mo4qIG1hmcAiuexlk=;
- b=gMctYra9kxdEwWivd/ULyisJiUyYXd5dwZiE2uWn8p82xvceFxRp4XAp7NeAZbWCQtLDb
- szBPfOTKpuCoPJWCe1i2ln0QDZeunneDf0Am2YbZdc672sDQwMVb+GL9JsA6+y//ado27jH
- qcUOA2Nv5mYnPq8olwmQ4z/q4k94OfK/OTSFxVMbgoVmWsFuuNtIu0wRPueD0uTY+7wG98j
- jfjykZjSPO/uuYvD1eKXVb7q9136Tm33GqldnM0WTDspVKVT/b092+PVBeAKOY720lzOGhf
- 2TVhgfPrqiDlwYwWQ7A+555WlTxlx/larOylUoje1I4Eao4IHbB2U8A+KnkA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+ bh=ZtIf7whWk3h5wqf3PRPlnAK3kiuwP+gRbrUiinGqvEs=;
+ b=iNDi7Ddr6IfLD1o9hiGg+ePNhe7MSXjmWYtPkFHwjMPSH8Cm6iExdMdYCljgD9oMgplKx
+ apgni1MXcSkRJ6xfBeZoKjxQAJaF5vgJP01+bcokTLDE0varkcDC112btic0MBq978haDew
+ vwDFBmhzE5EfHzgPVclPkeAnyp+Ea4izXy1ry5K6JP9M/U5Br7+Gs5a5CfeoPVqU6yBdFLK
+ 1sf/KlZmcL0cp/iHHbN/xuCDkAOtZtaiaHJ5m1LGyf1IPEogLiSF6VVbpwIUXri9EMHEJjM
+ 3WwJNm9qHZBbCvaFBd9wQaO6rzJ+zVUarrt9auaLx6TT0yleahLTU+TcRnww==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=collabora.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=collabora.com; arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 191A04525F
-	for <nouveau@lists.freedesktop.org>; Mon,  4 May 2026 03:49:13 +0000 (UTC)
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com
- [209.85.222.175])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9362F10E366
-	for <nouveau@lists.freedesktop.org>; Mon,  4 May 2026 04:01:47 +0000 (UTC)
-Received: by mail-qk1-f175.google.com with SMTP id
- af79cd13be357-8ee63e91acfso280066085a.2
-        for <nouveau@lists.freedesktop.org>;
- Sun, 03 May 2026 21:01:47 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1777867306; cv=none;
-        d=google.com; s=arc-20240605;
-        b=WbMZfVPH+PaZj9U8p1db8wQ1WpHMOFa18qWWXzc1m4GecaFot7W9iczVKzMrPTnbq1
-         nGq9ua1grcBi4K/X78zRPZ1r+omMFl0RtKV2XqQxBn8sQulEKJgWt1IIafNkVUMYzmV5
-         TDSBeqFNWueQfkvNu2IiL5srZcG1GtTOBAPPNTA1iszozdh3JK7NftgBTXQmB9JEN8vp
-         9ZKHWRapgRMyzLyD0YtQNhjLouwEdgJgMjP/JYowJBaBl5+N+UpyWN6D6VNTXspmZDzx
-         hfa+JdAh6tiMxYSojGrQMb1EiF2FTA0As1OOc1p2SWOeVZHULadGT7ydszYzMwjD2FJu
-         eAmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=oGlVUVNCo7t578SnF0/FJlFOI+mo4qIG1hmcAiuexlk=;
-        fh=qIvVfNSAgMGh/Bc/xwakUNlxxHU5+THqqiudxtWjW+U=;
-        b=F7puqfuxlWnr2RAYJ0m1APluZJ4eT4QghCqwNCySvfMZvICZXIWzF2T/GmSgr7llRn
-         epjEp3mSZAyTvrsSu8Vpe2WHTBe32gbZcFLISRsfThVE0iwN7Pf0noL3HjFsbO0rDPSu
-         GPsbAbEVLrXcsPWQzbCAveBTjQviOP0G3IDUQIyZaPBw+A3GFqrOX7nP0wYaYG0lpe4/
-         Rc8xnIDYthEf9j3NlxwOc8aXjWONM7XoZTYNcggslakl9K9qdPsKSlVIg3PehCON9Hro
-         Yc3j6wh9+UfyQ7yxiQ1ypYCcillPapUzQ6FcAhhCN6bYvK8rt0nfGeyWBWElwDuVc1IV
-         N2SQ==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777867306; x=1778472106;
- darn=lists.freedesktop.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=oGlVUVNCo7t578SnF0/FJlFOI+mo4qIG1hmcAiuexlk=;
-        b=K/thZJr8LMDez1Ul+LA5Zc0zpDI1vIDQALvtTRNa++AZAVGRHcjkTv1yswIRIAArOD
-         ug+7KSz6R4MMgAsoUzRmN0i3LR2YvlcuqjHFpzq03yAIbUmzIRloBvtzbFtaVc7wcljD
-         kb8mdGCWC7aawdYy+kL3o8kGxgepOnC8/2/68kBfxLjmmHoOS+bePsXefCZ9EL+aeHts
-         YQFVkh+j6nCuUrxaYKBDe1zR1+7oaIN/wpwEWNJC/lzn2nZTdmN2vimUkNAscJXfFe0L
-         tLjGc0aujL9qrqbselwYwta9eQjEPjYII5BpJa0p8K5qPGd490+LyD7hBnBGyLElkjnP
-         P7bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777867306; x=1778472106;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oGlVUVNCo7t578SnF0/FJlFOI+mo4qIG1hmcAiuexlk=;
-        b=rv0OmPcrC2eYJHd3W0qqWC20mX527csTJ181aSSCQBckwbW7qWGlb85BqIMhE1xOn3
-         HUQPDq4txmBxWQt8WR91w11dbl/fC0PPYCUwihDTVoC3rCMJi5oYSmGO2lQyy7ATDEMb
-         cFUmb41CCc853P3tuF+i9x+Ep+ZElP9WTmgCEjAhLiBKVK+GRLmZicbM9/eWG0PLTVzo
-         xncuVgqheEbv/uvYL9b9o0fM5RBUpplijpu/NRVadE/sVtK+Mx2g+7zWEpVT3l7lRaqe
-         Mgc+6A/Fug8aXSzswflWZr4WqA/i1eXpzQBwf3mhaOirqDJR6PCO42JF3dizUWmtmDU1
-         HHLw==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8Bg0XnsSQ7COfdgO0xgGBf1Av5vNii8Z1jsMo55ppts4kt2QDLKViTB8VGZPchEeTi5ClcegnJ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxYQUAOUCEP8cwAibUHhCZ1eQBtR4P7Xilz9AU9R5A48cnPa3AK
-	EwdYg3qhkYqXS2BoKhFc1glBCpUkCLbAXnda1egGCUXOLPeoTEBsJBwmUq5Frk31JNqhtzLFRMx
-	bEAxiYRX7Ck7/DmlXHso81GIlRF8+8QE=
-X-Gm-Gg: AeBDievctDXYlRHyFAad8DeXqhLTpZfEE8O4841TP3FlV2HT/wO/X7mCyTHV6auSmx2
-	0oPYfM8FshdyrwGSY/ZTA+zs2t8PnocOg/Bv8Ygz5zA/qiDavjSjs5ummihjsUWgmDAVmSp2VnU
-	eO1o/Qex6b0s6LhBtF1UObtTJ5FUJhUalcaSlYmFLo9ynYPANWzTxxdowG+gDJktVXbFIUFF3DF
-	LeNMXrIF71GSqORyYzIJcsSid+E+7Pefo+oyHfJQe9jsTwdZlsKRl9SZyKpDAot1J5JdYVBtwdi
-	GTuqMnMPdyVxbYokDxjzGIlBN1AvDa+buPiWLwC9tbj7VKFRCxLUkcWeYlaQxt2FJky/j1QRvS4
-	d+A==
-X-Received: by 2002:a05:620a:708a:b0:8f1:5e8f:fff3 with SMTP id
- af79cd13be357-8fd16c9964fmr1319335285a.26.1777867306422; Sun, 03 May 2026
- 21:01:46 -0700 (PDT)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 13517403F0
+	for <nouveau@lists.freedesktop.org>; Tue,  5 May 2026 09:11:07 +0000 (UTC)
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1F83910EA07;
+	Tue,  5 May 2026 09:23:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1777973022;
+	bh=6ByzArm6c9srdkzSpiFI1EwobrNc4kEF+ciE/WkIMy8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=FpaXi/Re+zbxWlAeTNktVEuXjWs0uMKcTPRyK0hzVYseTj/H0I6eI5eYRXkJhseDa
+	 QhfVCmTnSxMZVvuTjv1xJsjw6L9Nx1mU1JavtaIgKbPxMEczpQiZam2b+DOGUnh5Q6
+	 +m30XnN99Im5hXCSg1mjueRZaS1YfCHLaO55Up0rBeW/nu/HFwUv3Iqf9MDYpylCnc
+	 BHSyo/Gor0YE4I+5mrJeak5yvu1HKPy6IiR6gGJvk2W8z+jnbtrpeWfrJy4TkzX9rc
+	 B3rTPC2s3GRbqWfX+AsZbimnp+J/WwuunqcCqD/TSbOK3GXO0Cu2bLsTu74u+JkI17
+	 AyPv1cL93BMCw==
+Received: from laura.lan (unknown [100.64.0.215])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laura.nao)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 16D8117E1301;
+	Tue,  5 May 2026 11:23:42 +0200 (CEST)
+From: Laura Nao <laura.nao@collabora.com>
+To: dakr@kernel.org,
+	aliceryhl@google.com,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	ojeda@kernel.org,
+	boqun@kernel.org,
+	gary@garyguo.net,
+	bjorn3_gh@protonmail.com,
+	lossin@kernel.org,
+	a.hindborg@kernel.org,
+	tmgross@umich.edu,
+	boris.brezillon@collabora.com
+Subject: [PATCH v2 0/1] DRM 'feature' support for DRM drivers
+Date: Tue,  5 May 2026 11:23:03 +0200
+Message-Id: <20260505092304.108262-1-laura.nao@collabora.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-References: <20260501215856.840898-1-lyude@redhat.com>
-In-Reply-To: <20260501215856.840898-1-lyude@redhat.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Mon, 4 May 2026 14:01:35 +1000
-X-Gm-Features: AVHnY4LmcMo5jkCCXrsqxOpC_hYtr1-nSy7Wtvdm85s7TmkVILKxYJXd3dyZi5U
-Message-ID: 
- <CAPM=9tyVOHU4KZxpGeKn=V3zhGnBwq4v5QfXvzdUE4QPQ2zMOA@mail.gmail.com>
-Subject: Re: [PATCH] drm/nouveau/kms/nvd9-: Use contiguous memory for CRC
- notifier context
-To: Lyude Paul <lyude@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Message-ID-Hash: HUD7ZHFKWTO5L2PKEF3KG6CNRAN757VL
-X-Message-ID-Hash: HUD7ZHFKWTO5L2PKEF3KG6CNRAN757VL
-X-MailFrom: airlied@gmail.com
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: 676ZH5QIES5TO5WLDAR6DARXX7K3MQUS
+X-Message-ID-Hash: 676ZH5QIES5TO5WLDAR6DARXX7K3MQUS
+X-MailFrom: laura.nao@collabora.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
 CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
- Dave Airlie <airlied@redhat.com>, Suraj Kandpal <suraj.kandpal@intel.com>,
- Faith Ekstrand <faith.ekstrand@collabora.com>, stable@vger.kernel.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Ben Skeggs <bskeggs@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
- Maxime Ripard <mripard@kernel.org>
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ kernel@collabora.com, Laura Nao <laura.nao@collabora.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HUD7ZHFKWTO5L2PKEF3KG6CNRAN757VL/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/676ZH5QIES5TO5WLDAR6DARXX7K3MQUS/>
 Archived-At: 
- <https://lore.freedesktop.org/CAPM=9tyVOHU4KZxpGeKn=V3zhGnBwq4v5QfXvzdUE4QPQ2zMOA@mail.gmail.com/>
+ <https://lore.freedesktop.org/20260505092304.108262-1-laura.nao@collabora.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -157,83 +115,52 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Sat, 2 May 2026 at 07:59, Lyude Paul <lyude@redhat.com> wrote:
->
-> It looks like CRC read back has been slightly broken for a while now, in
-> particular on GPUs using GSP. On my test machines, it's worked normally
-> when attempting to use it from fbcon. After gnome-shell gets started
-> however, attempting to read /sys/kernel/debug/dri/$CARD/$CRTC/crc/data just
-> returns -EINVAL.
->
-> It turns out what's been happening is that since we've been using
-> nvif_mem_ctor_map() to both allocate and map the CRC notifier region - we
-> haven't actually asked for a contiguous allocation, and simply ask for
-> whatever type of memory allocation nouveau can find first. This doesn't
-> work because the CRC engine on nvidia GPUs doesn't support non-contiguous
-> allocations, which also causes us to fail setting up the kmsCrcNtfyCtxDma
-> object on pre-blackwell platforms since we don't have a single memory
-> address we can point nvif_object_ctor() to. Instead, ctx->mem.addr gets set
-> to ~0ULL.
->
-> It does however, seem to work when fbcon is running. The only reason I can
-> think of this is that before we start up a display environment, there is
-> pretty much nothing allocated in our VRAM that wasn't allocated by nouveau
-> itself - making it dramatically more likely that we end up finding a
-> contiguous allocation by default.
->
-> So, fix this by manually requesting a contiguous allocation when we
-> allocate our context notifiers.
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Fixes: 12885ecbfe62 ("drm/nouveau/kms/nvd9-: Add CRC support")
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Dave Airlie <airlied@gmail.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Timur Tabi <ttabi@nvidia.com>
-> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-> Cc: James Jones <jajones@nvidia.com>
-> Cc: Faith Ekstrand <faith.ekstrand@collabora.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Cc: <stable@vger.kernel.org> # v5.9+
-> ---
->  drivers/gpu/drm/nouveau/dispnv50/crc.c | 17 +++++++++++++----
->  1 file changed, 13 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/crc.c b/drivers/gpu/drm/nouveau/dispnv50/crc.c
-> index deb6af40ef328..5817f39934a8b 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/crc.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/crc.c
-> @@ -10,6 +10,7 @@
->  #include <nvif/class.h>
->  #include <nvif/cl0002.h>
->  #include <nvif/timer.h>
-> +#include <nvif/if900b.h>
->
->  #include <nvhw/class/cl907d.h>
->
-> @@ -499,16 +500,24 @@ nv50_crc_raster_type(enum nv50_crc_source source)
->   * notifier needs it's own handle
->   */
->  static inline int
-> -nv50_crc_ctx_init(struct nv50_head *head, struct nvif_mmu *mmu,
-> +nv50_crc_ctx_init(struct drm_device *dev, struct nv50_head *head, struct nvif_mmu *mmu,
->                   struct nv50_crc_notifier_ctx *ctx, size_t len, int idx)
->  {
-> -       struct nv50_core *core = nv50_disp(head->base.base.dev)->core;
-> +       struct nv50_core *core = nv50_disp(dev)->core;
->         int ret;
->
-> -       ret = nvif_mem_ctor_map(mmu, "kmsCrcNtfy", NVIF_MEM_VRAM, len, &ctx->mem);
-> +       /* The display engine requires a contiguous region of memory for the CRC notifier context */
-> +       ret = nvif_mem_ctor(mmu, "kmsCrcNtfy", mmu->mem, NVIF_MEM_VRAM | NVIF_MEM_MAPPABLE, 0, len,
-> +                           &(struct gf100_mem_v0) {
-> +                               .contig = true,
-> +                           }, sizeof(struct gf100_mem_v0), &ctx->mem);
+This is a follow up to [1], which introduces feature support for DRM
+drivers, as will soon be needed by Tyr and rvkms.
 
-I don't think you can just throw gf100_mem_v0 in here like that, I
-think you should maybe make nvif_mem_ctor_map deal with this since you
-want a kernel mappable vram region it needs contig.
+Based on feedback and discussion on the first iteration, render node
+support has been reworked.
 
-Dave.
+Support for render nodes was initially modeled as an unsafe trait, to
+require drivers to comply with any safety requirements tied to enabling
+a given feature. For DRIVER_RENDER specifically, the intent was to force
+implementors to ensure that any ioctl declared with DRM_RENDER_ALLOW
+does not call KMS/modesetting APIs or require DRM_MASTER.
+
+However, the C DRM core already enforces render node access control at
+the ioctl dispatch level: if a client opens a render node, any ioctl
+without the DRM_RENDER_ALLOW flag will fail. So the C DRM framework
+already ensures the rules are respected for core ioctls, and the
+unsafe trait doesn't add any meaningful protection beyond this.
+
+For these reasons and since enabling DRIVER_RENDER doesn't require any
+particular method to be implemented, there's no real need to model this
+as a trait, and a boolean flag is sufficient.
+
+This does not prevent other driver features to be modeled differently
+based on their requirements. Features that require additional ops (e.g.
+FEAT_MODESET) could instead be modeled as a trait, and some other
+constant type that can only be constructed when the relevant trait is
+implemented.
+
+Introducing the RENDER_CAPABILITY bool flag here leaves room for
+implementing other features differently at a later stage.
+
+Changes since v1:
+- Replaced DriverFeatures trait and ZSTs with single
+  RENDER_CAPABILITY: bool constant
+- Squashed changes into a single patch
+
+[1] v1: https://lore.kernel.org/rust-for-linux/20260119-drm-render-v1-0-8326e4d5cb44@collabora.com/
+
+Laura Nao (1):
+  rust: drm: add RENDER_CAPABILITY flag for render node support
+
+ drivers/gpu/drm/tyr/driver.rs |  1 +
+ rust/kernel/drm/device.rs     | 12 +++++++++++-
+ rust/kernel/drm/driver.rs     |  5 +++++
+ 3 files changed, 17 insertions(+), 1 deletion(-)
+
+-- 
+2.39.5
+
