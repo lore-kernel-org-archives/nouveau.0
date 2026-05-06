@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69C89CD342C
-	for <nouveau@archiver.kernel.org>; Wed,  6 May 2026 13:42:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAD21CD343B
+	for <nouveau@archiver.kernel.org>; Wed,  6 May 2026 13:42:23 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 39FDF10EDAE;
-	Wed,  6 May 2026 13:42:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6F57810EDB9;
+	Wed,  6 May 2026 13:42:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="THtIptsl";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pm9Rnq6K";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 3A28545DD5;
-	Wed,  6 May 2026 13:29:39 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 7012C45DD8;
+	Wed,  6 May 2026 13:29:43 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1778074179;
- b=IjPsMpu8jd1E6L9Jq4BkHSM3Ky5N0uphem6apf7g63j4g9yP2Axsl/WQoYNc2Y58VWsoh
- Xzns+0/nDsM3v0b+xUpqGCQDkdOTEe+QfqiY44VBJ5ibqWYR/W3xhm8r9M27+GGzn4NNXR5
- MvYOfofKpxsIM3vF5pLxNoZsjZjgR2xM8H7L7MKe/re2nhmqgWioMJjGHh0keZilDzt/qee
- ImYPkLB5tO/K8hlqt3yOtaFjbh7cuUdz2FWjT90mTEug6/kQLpcqokUCuHEVCxW6omzi2Rp
- Dmk+An3VaJCkD8PczdVgi182vzkClE8ramXDti7m/DUossAJ1XOinJvtJD+A==
+ s=20240201; t=1778074183;
+ b=wiE/jLnkZCjoxmoqOSEQS/+eyo1tf8orc4+EwPZbHicai6XMdxszQ7zDJnkfEb1b+xijU
+ JlnJFk9grkMt6NjrIoLCnVwaMtzQvIxWP0avrSdYjKQlUdy6Pei9Aaebu0UBmmRyUgbMJtH
+ BvZlvRCurU7ELcsGoUGgV9avKdqrfHsZtFfCEoGp6b9W6xHuPDOpzVH7C0m1GNY0UOELDlz
+ wveTF8M/olbx+7AinpyxBPXRU3Zs5y+vEoRyrvo7v+Y0dQZZqAl3ADvNrSCUV3ndPASfukI
+ aitPG6Gv5ihN4/SAviu7oLtlod1apuCq2phrdWQEi/WG84n6z/2ntWIELz2w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1778074179; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1778074183; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=9VT2uplXsSFb56aFp/yRgAXU8SwD+uaVXBkyrggv0Tk=;
- b=qVYOazv9926Ao2Hl7gFlp7Okt7W4vMGgHNLoaivZZ9wC9PuDmosxebR9k74YiBoa8xpWN
- G9M8ZmvKfaTfOlve/tmbUqx0x2cTnFhfCveiX/xqVG0N0eO7TR8WDZyPcjQTBiIj1eN2fEb
- tp3Yo+pLSmiIGqLpUx7+KnkuEBwQm/I2y0NEobhIqgj1LokQVvunww01L+mRFj35YXVvcyp
- Sobm/jcqoq2WweU7lkxdmMwzJQsC/Z4oT5eiAYjYBjMH/bqvAwUhLFxUJ5gPFMdWtgVKwVl
- LHZyCt+zjA1NVS2FwFhZX42wEznqcDyu3oWvprWxvRgUeTcWn7HSXYCAqR+w==
+ bh=1OJnrko19Fwog+tTjtgzV72i47d2AzG+M/5bCHADNIY=;
+ b=IxCW4zXyBY0TCvtnHDZ5HbEZm1zp677SK/0nGUp57xC+w9w8FpylM/f8CaJUAja6AT7QI
+ 1JunYR8jdPreplGxduNv+Iyd9y8i8rknetSObiTbTnVqROfvsf2qeCJkuInpGq+L9xfCi/i
+ y6EtVnK5N98a6bpzlDUPf2/ab/qKWgjvsJZrKZb2nWZaLBG8umgSM8vQiOiag2MHGtBbQSq
+ IXwgPC63pztmpA/1+ErtbuveeZ0DbY4UarhDhBTp30Od85ofK8sIamdehlDZvANc47gp06m
+ LexIVdR68zTHrYGsllLHvewzCSEdE9knaDYCFf6oncP4uNh4jqJCWdZQovMg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,34 +46,34 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 35870459AA
-	for <nouveau@lists.freedesktop.org>; Wed,  6 May 2026 13:29:37 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 00FF510E54D;
-	Wed,  6 May 2026 13:42:16 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id AD8ED459AA
+	for <nouveau@lists.freedesktop.org>; Wed,  6 May 2026 13:29:40 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8B06F10EDB0;
+	Wed,  6 May 2026 13:42:20 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7A6656015B;
-	Wed,  6 May 2026 13:42:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 516DEC2BCC9;
-	Wed,  6 May 2026 13:42:15 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 2898843BF3;
+	Wed,  6 May 2026 13:42:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29468C2BCB8;
+	Wed,  6 May 2026 13:42:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778074936;
-	bh=mBnLUZMGhM091DpLc/U5zErdLqXnLgpupJv9YgGKdUI=;
+	s=k20201202; t=1778074940;
+	bh=yAYc840Jzox92Oy7x86kKq1dkgwkDjAdvn1/sg+lx58=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=THtIptsl/EzTcknji8Sr7FZocfL59iionTpaj9jsaQAsNkW59Js6CON4LILpwJmR0
-	 oLdboQHRAfNjp4OPCsxOQv02ppiDM9CLZ0xqHMTvJdOzdMqTSvgPx19bWd8M6sKJaz
-	 90b3OmrPxHplmwJT2afntzUpR9iNzmuZ6SEIGKAzoRhl2MRyXCRtwnw9b/mAg+0/0c
-	 TlKdskWrN6+E3o1LcsPisph5lJhM2D0PlACMZ1tte43bSRB88PdcpgF29UUQoZgpBp
-	 Nu9exKX7YtAifz5j97TwBGMd18glKob487U6z17EieQIbvmv0/22ekvFpGej+dOOxr
-	 0XBfEHreJ8JQQ==
+	b=pm9Rnq6K9gJJMNXIWLrgyFOp68t+rA2iV/LHBaqJKRCAsPQCeM/ZAEWs6vAwLlZGJ
+	 d9z+KkaMzo55TamZ/uLbZtAxvhH+EIiCH/F1X//24cn77f+JSN3VYwpzEUKdJUyjqZ
+	 hW2neer6M21yjLAD2atOXu7qbVlI7QrlBdwoiWyXYhiH53m1K4CCl4uFSWz+rj+rVb
+	 wdIGyT0llWeOZMvuOd3gym3r0l8MxBH1OLwVk3Dx++Yebh4lVvgdn7qP2TqjRkXXJA
+	 40mWCdHBvWGbXP71vf3PRqUXO2Zy7PK8Bal4/vfx6aAB3cp2rFwakpoy0tYXhQdBM2
+	 OhzjoTpF0J+UA==
 From: Thierry Reding <thierry.reding@kernel.org>
-Date: Wed, 06 May 2026 15:41:52 +0200
-Subject: [PATCH 1/9] ata: ahci_tegra: Explicitly specify PMC instance to
+Date: Wed, 06 May 2026 15:41:53 +0200
+Subject: [PATCH 2/9] drm/nouveau: tegra: Explicitly specify PMC instance to
  use
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260506-pmc-v1-1-a6de5da7216b@nvidia.com>
+Message-Id: <20260506-pmc-v1-2-a6de5da7216b@nvidia.com>
 References: <20260506-pmc-v1-0-a6de5da7216b@nvidia.com>
 In-Reply-To: <20260506-pmc-v1-0-a6de5da7216b@nvidia.com>
 To: Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
@@ -93,24 +93,24 @@ To: Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Philipp Zabel <p.zabel@pengutronix.de>
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2433; i=treding@nvidia.com;
- h=from:subject:message-id; bh=CzZgWVZZSZZ3cjegVsK5oiOvQGLlRFg7d8ikashi5Ls=;
- b=owEBbQKS/ZANAwAKAd0jrNd/PrOhAcsmYgBp+0UvwgGq03mhNWzC/Ms1bLh5lNTjVlpCh+IHt
- YPQUMgqVaiJAjMEAAEKAB0WIQSI6sMIAUnM98CNyJ/dI6zXfz6zoQUCaftFLwAKCRDdI6zXfz6z
- obDtD/9X/qtjzKNCvjJ1NN5bLe5DDKPANAIxNXbNDKMmYnrdRH3rAzFrl5eNg4E7GB72CADzGvi
- e9x77y2TmP/+jeZjbQ0KXZtseKmDMBqqYwMUvbd8KVFp0AXCMklVBdpfGZB3iCPw0qK2UlqmaUn
- Fud3PfVmxypldtelOZHVw/YH6r2ZfNvHnGE03XUclDfu1MkoVpdjPM+b/1MTBWmmsik/R+RB4GB
- Iw6TLbbUQwHrJwAF/rCNJxacbnXgKhdhhGB+jmOKJIWQe9VNO+MMw6hezHyGYCjFTD685fzqFm+
- SzzjV3gQ29jU4kYDqJlx/9+g/WbOuYHK3Wa1YbWeUzI5HKx+lbJRe0Oj6H94PXOsmHGIz0JD28n
- cHl7bHrZlAKQOoIvo8Q88SYHg8VmPrS6vj+ZjJrlOZYcKw7M0s6tx4BIP5NQ4jJAfMUoTnR3ngV
- t1uAci/JktTzGCsn91tQBxMfZbHUhU9yd1tekKDx8KEpGvD6jlfr3+rtW5iJpm/1Jgbe8N/P0b2
- dEgKpALYXVeMYixFdtlpU/D/8TAn5SG4PEd3IwTqAcOVhdOBfQCBy8615wrwgPDQcC+FT3H+2hI
- VAm8EFtN1iorZQelz0wvngIceHQqiwtYvc/6Q/zaIEFnhQLn6SzoUf9ZkY58QVWvkWdJJIkigGE
- b8rYJVlg885kbyg==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1790; i=treding@nvidia.com;
+ h=from:subject:message-id; bh=8+nv7sk7Akwz75J9dY7T6KYUmn88Q/uMOZjp/QVHnwE=;
+ b=owEBbQKS/ZANAwAKAd0jrNd/PrOhAcsmYgBp+0UwWa1SvQWmP/QpBTIYpH/p5BjW/vNe3PQFW
+ PIJtKK0Yc+JAjMEAAEKAB0WIQSI6sMIAUnM98CNyJ/dI6zXfz6zoQUCaftFMAAKCRDdI6zXfz6z
+ oT55D/9UlLXiJUGNHvbif1WyheZOPAmCfQiBGs4tT3nSsGD8ADVsjiCwxXPwjZLNPbJHn7cbFVF
+ ysSL8Eu8nGtZq8uzRoV48KFaDU2hheMMjC32m/Vwlqq6Mi8HTtbd/pAxKNJcHFebCHCNQSQiVZ9
+ Hj7RPGo7EE++sFH78dSJyxFS26Ls+O51QEGh2GT/2M05Jn/N8WPHdGRZ+tvKf9wSmj7yljpcxeq
+ hxs7zZgwaTxiMPqux14/8a+wyfC9qKiOWYvrqyYa6QVd7ox5OMLOgHc3eWp9oE7JoWpmuz2RCkv
+ h4Z12oUWR2Zb9JGgeaQ9uazJ0gnRmI4qiC6hvI6O/znhvHL44z1ys/MJ23jNaeIREOGj926+qTU
+ U+HYS42RwN6q01vAYwbcmp/2b/gCcXxnZBvtBzwvFQaIqb1AI4Qyfs1OBgcQdI+xTeLYbmTWcSg
+ mP8/kKzYvqzYROVlX7OloVAR68X4SESXFKM9MA0v+iojV5I9JNsxVdXYW8BoQ1J8sZAA6dOwm3u
+ vWFxSpJuLw6Du+t0ET3+7dhymYxHiw7SbgfU+Bev3DIvyNfwTNXykX02Vrh2wqblBVnIeMKbnVt
+ kK7TY61hKlczNad2u16XUyDACkaE64sjKVfPoc0d6TDZEL+BaGgM2SBtoMNSrtEsGc2aNeSxahD
+ TaS1nZNuBTY0KJQ==
 X-Developer-Key: i=treding@nvidia.com; a=openpgp;
  fpr=88EAC3080149CCF7C08DC89FDD23ACD77F3EB3A1
-Message-ID-Hash: 7J2C72ZZOYZEH25FIFF7JKW3SHLWMNT7
-X-Message-ID-Hash: 7J2C72ZZOYZEH25FIFF7JKW3SHLWMNT7
+Message-ID-Hash: M5HFQQVCS2YMDHHLAJC2LAEOEN4SY42V
+X-Message-ID-Hash: M5HFQQVCS2YMDHHLAJC2LAEOEN4SY42V
 X-MailFrom: thierry.reding@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -125,9 +125,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7J2C72ZZOYZEH25FIFF7JKW3SHLWMNT7/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/M5HFQQVCS2YMDHHLAJC2LAEOEN4SY42V/>
 Archived-At: 
- <https://lore.freedesktop.org/20260506-pmc-v1-1-a6de5da7216b@nvidia.com/>
+ <https://lore.freedesktop.org/20260506-pmc-v1-2-a6de5da7216b@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -145,65 +145,50 @@ PMC APIs.
 
 Signed-off-by: Thierry Reding <treding@nvidia.com>
 ---
- drivers/ata/ahci_tegra.c | 17 ++++++++++++-----
- 1 file changed, 12 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/nouveau/include/nvkm/core/tegra.h  | 2 ++
+ drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 9 ++++++++-
+ 2 files changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/ata/ahci_tegra.c b/drivers/ata/ahci_tegra.c
-index 44584eed6374..554f05e09f98 100644
---- a/drivers/ata/ahci_tegra.c
-+++ b/drivers/ata/ahci_tegra.c
-@@ -175,6 +175,7 @@ struct tegra_ahci_priv {
- 	struct reset_control	   *sata_cold_rst;
- 	/* Needs special handling, cannot use ahci_platform */
- 	struct clk		   *sata_clk;
-+	struct tegra_pmc	   *pmc;
- 	struct regulator_bulk_data *supplies;
- 	const struct tegra_ahci_soc *soc;
- };
-@@ -246,9 +247,10 @@ static int tegra_ahci_power_on(struct ahci_host_priv *hpriv)
- 		return ret;
+diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/tegra.h b/drivers/gpu/drm/nouveau/include/nvkm/core/tegra.h
+index 57bc542780bb..6aaa30ef167f 100644
+--- a/drivers/gpu/drm/nouveau/include/nvkm/core/tegra.h
++++ b/drivers/gpu/drm/nouveau/include/nvkm/core/tegra.h
+@@ -18,6 +18,8 @@ struct nvkm_device_tegra {
  
- 	if (!tegra->pdev->dev.pm_domain) {
--		ret = tegra_powergate_sequence_power_up(TEGRA_POWERGATE_SATA,
--							tegra->sata_clk,
--							tegra->sata_rst);
-+		ret = tegra_pmc_powergate_sequence_power_up(tegra->pmc,
-+							    TEGRA_POWERGATE_SATA,
-+							    tegra->sata_clk,
-+							    tegra->sata_rst);
- 		if (ret)
- 			goto disable_regulators;
- 	}
-@@ -269,7 +271,7 @@ static int tegra_ahci_power_on(struct ahci_host_priv *hpriv)
- 	clk_disable_unprepare(tegra->sata_clk);
+ 	struct regulator *vdd;
  
- 	if (!tegra->pdev->dev.pm_domain)
--		tegra_powergate_power_off(TEGRA_POWERGATE_SATA);
-+		tegra_pmc_powergate_power_off(tegra->pmc, TEGRA_POWERGATE_SATA);
- 
- disable_regulators:
- 	regulator_bulk_disable(tegra->soc->num_supplies, tegra->supplies);
-@@ -289,7 +291,7 @@ static void tegra_ahci_power_off(struct ahci_host_priv *hpriv)
- 
- 	clk_disable_unprepare(tegra->sata_clk);
- 	if (!tegra->pdev->dev.pm_domain)
--		tegra_powergate_power_off(TEGRA_POWERGATE_SATA);
-+		tegra_pmc_powergate_power_off(tegra->pmc, TEGRA_POWERGATE_SATA);
- 
- 	regulator_bulk_disable(tegra->soc->num_supplies, tegra->supplies);
- }
-@@ -571,6 +573,11 @@ static int tegra_ahci_probe(struct platform_device *pdev)
- 		return PTR_ERR(tegra->sata_clk);
- 	}
- 
-+	tegra->pmc = devm_tegra_pmc_get(&pdev->dev);
-+	if (IS_ERR(tegra->pmc))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(tegra->pmc),
-+				     "failed to get PMC\n");
++	struct tegra_pmc *pmc;
 +
- 	tegra->supplies = devm_kcalloc(&pdev->dev,
- 				       tegra->soc->num_supplies,
- 				       sizeof(*tegra->supplies), GFP_KERNEL);
+ 	struct {
+ 		/*
+ 		 * Protects accesses to mm from subsystems
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
+index 46bb55a1f565..3c8d0878891a 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
+@@ -54,7 +54,8 @@ nvkm_device_tegra_power_up(struct nvkm_device_tegra *tdev)
+ 		reset_control_assert(tdev->rst);
+ 		udelay(10);
+ 
+-		ret = tegra_powergate_remove_clamping(TEGRA_POWERGATE_3D);
++		ret = tegra_pmc_powergate_remove_clamping(tdev->pmc,
++							  TEGRA_POWERGATE_3D);
+ 		if (ret)
+ 			goto err_clamp;
+ 		udelay(10);
+@@ -307,6 +308,12 @@ nvkm_device_tegra_new(const struct nvkm_device_tegra_func *func,
+ 		goto free;
+ 	}
+ 
++	tdev->pmc = devm_tegra_pmc_get(&pdev->dev);
++	if (IS_ERR(tdev->pmc)) {
++		ret = PTR_ERR(tdev->pmc);
++		goto free;
++	}
++
+ 	/**
+ 	 * The IOMMU bit defines the upper limit of the GPU-addressable space.
+ 	 */
 
 -- 
 2.52.0
