@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0BC2CD342C
-	for <nouveau@archiver.kernel.org>; Wed,  6 May 2026 13:42:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C33BFCD342C
+	for <nouveau@archiver.kernel.org>; Wed,  6 May 2026 13:54:11 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8DDFB10EDC6;
-	Wed,  6 May 2026 13:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 19C7210EDBA;
+	Wed,  6 May 2026 13:54:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ap1J+KX6";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EztVb4Ma";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8EDC645DF0;
-	Wed,  6 May 2026 13:30:14 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 0754B45DF4;
+	Wed,  6 May 2026 13:41:31 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1778074214;
- b=pWq76U1w6FpSU2gXYSNMKWtAEVIVwbzc7vNLoZU3lbJVZH14IVEG95nq2yQIg9toE0M6e
- iNID+Yho/jX5wop+QC/FbV1gjqg3lAR4BizWQi8q7YlS+9Y/2WukO7L5NjOqEy3WRiEmlRk
- wDxLyhO5w+DnEkDKis9E6DuIAcrFuFdWSZeWjYqP3Af0J64nbFcQc8SkankmjtNGIvYpcR/
- I32XR5Od9pPH7GkPxI7m0baTqKSz9fiGfVrlvZ/zbimWWDqE2zPAt04VCDns8jBAuRi6ZRm
- uD8hEbtGF2vFZGCliCYAIKLsUmmp6gWH882/K+WEDhizT7Dih6AbRr75IRqw==
+ s=20240201; t=1778074890;
+ b=TEg6lzOcy5EO8rNHGf+/SW5C7+AsTqygrOQj7a4nhStseRrpXP4C3aB9S1OSECVmdkoIq
+ Wu+ApvXqK/zn22VMJCPdA0vmHClgmB1yNAkC4XSuiR755lvgICESfcG2Xe1JHAGX+WP6QRT
+ sdiUGUDCDD5KrM5wbpfHRzweM48VE/poYKnuAzUiErXhnJ4zCNb1v33G25x5segr01ltIWt
+ RUXsFN5B2wWJL2pkKj79JwW0tJuPpQMpz+1wVIKZVUXWA8mhhDmBJ6EMk4Pr94SQOUxtcfJ
+ /ESUF5RlYeKBW/ghQVn2mK3Jgu+Vi0QQeaLmv+mMymgkLWas/PVHx4kFSJ1Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1778074214; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1778074890; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=dUPS67UygSbqqxymA9MSODM3YysPN8er4/x+N5RO2q8=;
- b=jdmuZmFrApuXXpzccHHtwAPGXY53QJlodfB80EMubxeBTF/CxC+s1zz4sEz1We30AGlDi
- NpyQm05YrIieAfcz8ZiR3+xDbtyruJ1XGpS5Km++aTprAO5I9/03NYddtTI4EPawE4NAezd
- D2l1Eni0HazT7Pu7P9AiDDf2Qw3/UzTMyW+y/QozIAshKPwDXrfq3AJOMPmkB3FMGoUvFF9
- c2WOmxgDhdS/vYXQcbL83y85UzXjrD5oGllmrdoYEri/lVF7O7kOslcpVN7WVD7tETpbC6C
- ccj3KiV8zcKuYA9VpKiiqJHz1xBkKtIzE+7uCBAHTtyf8sOHO919fZ/2fEWw==
+ bh=anogzW8WFSULikUai57bbBawT0NPDNcAYQERips/7dM=;
+ b=FNPBoYcb8183XP+1DdeEeKvI3wsWB/Tr26zLq07H3cSNTSdaatFkKqmUQWy44P/MKbOxr
+ JZOgF+UvmcoMResfertaND+G5d0zpqY/V74kZuIFJouBwegzVYWJ12BsCLUdPbxZ+yRsJki
+ oxK/PTT2kLeBDQ5/x+EVLweUP0P2bsF+cmktu1pRLydaSm0QiD7NOiEZ3mrvn8fc6s62Opz
+ s1FzfKY7lLzq0g//6Riho/OFcP+K/flJZKICSaoM0JMKNsIhLkziP+appGKM4n4h34KgHas
+ Gyt5AobOK/ebTOBS9FeSt/b17LEnQgQtmn3SIUeEAYQf8SiVMUxUyXE54MJg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,72 +46,57 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 10A24459AA
-	for <nouveau@lists.freedesktop.org>; Wed,  6 May 2026 13:30:11 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CE80A10EDAF;
-	Wed,  6 May 2026 13:42:50 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id A425D459AA
+	for <nouveau@lists.freedesktop.org>; Wed,  6 May 2026 13:41:28 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6590B10EDAC;
+	Wed,  6 May 2026 13:54:08 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 44AD960252;
-	Wed,  6 May 2026 13:42:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8FC5C2BCB8;
-	Wed,  6 May 2026 13:42:47 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 3421C436D6;
+	Wed,  6 May 2026 13:54:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 134EFC2BCB2;
+	Wed,  6 May 2026 13:54:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778074970;
-	bh=8clIhaG9YT+RicfNbrRJG1fzZK7c593cBoVydv8+je0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Ap1J+KX6D+abcfbsFFSliI+BiD2p3yOoMy3Zr3WwBOdo7/3uM79CwAn9N/CuoOZ+/
-	 woEtsubpWmET1bjIwaDT3nUjkbtsek7AQqyUrtpDdUqmD/rqyurnYTG+qUb/bqUxwc
-	 prlRSEdKiu1Az141DnKzbkYm4QgM/sfXdV7/vjH2+sRsKfaYUZSIaPQJZQjcVnqFxU
-	 /1pM5CeXE4Txr85tZz8V/CM5haea7bjmY6rAVUyf7GLIIILvN2iaxQy1s5NZuLWDA9
-	 N3+O4jN3oEiJmZzO51mJVmlZ5bYcAf5BFFS0OFrR2axBZg58qVlP8NRYojchETbIMw
-	 bUzGk6fQ4K0iA==
-From: Thierry Reding <thierry.reding@kernel.org>
-Date: Wed, 06 May 2026 15:42:00 +0200
-Subject: [PATCH 9/9] soc/tegra: pmc: Move legacy code behind CONFIG_ARM
- guard
+	s=k20201202; t=1778075648;
+	bh=NoI8j3F1YW25tR0zL0cDFy/lvZ5oPDxPYyIFiIeRMtE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EztVb4MarZed7S8kuN33gAfdyd2gdT1d8RmOJSSFKQBihDeycyARB7Zhi+PL+C9yq
+	 R/+vcTzXRksxQ4zwZpvTD6wqftzB10Ga7gpdTM7GQ4zQrRzw55F+U/Nk3g+BS7rxAe
+	 yJCHf5Cgg2KVl/CRkbJt8CbMzRcsR7MngJkPDmLw+woqflg8wXWdWsAFF/dbk7Qj8z
+	 UAQfxxezNET+jbe/+3m39trZkzCd7adVhIZWKuPKj14mUbK2McYqK0Hc7M8eFXdL36
+	 HmN2psbcmeCn0x/fBlXNQFIMyKyq79uNEbKjV+Z+dYpIXcyygxbfPThvTvfgp9jFDM
+	 +nsbDI3QOR8xw==
+Message-ID: <758ab729-dc5a-4837-b255-9462aaa6b0a3@kernel.org>
+Date: Wed, 6 May 2026 15:54:00 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260506-pmc-v1-9-a6de5da7216b@nvidia.com>
-References: <20260506-pmc-v1-0-a6de5da7216b@nvidia.com>
-In-Reply-To: <20260506-pmc-v1-0-a6de5da7216b@nvidia.com>
-To: Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
- Thierry Reding <thierry.reding@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/9] ata: ahci_tegra: Explicitly specify PMC instance to
+ use
+To: Thierry Reding <thierry.reding@kernel.org>,
+ Niklas Cassel <cassel@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Mikko Perttunen <mperttunen@nvidia.com>, Dmitry Osipenko <digetx@gmail.com>,
  Mauro Carvalho Chehab <mchehab@kernel.org>,
  Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
  Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Mathias Nyman <mathias.nyman@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Mathias Nyman
+ <mathias.nyman@intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Philipp Zabel <p.zabel@pengutronix.de>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=11347; i=treding@nvidia.com;
- h=from:subject:message-id; bh=rnaTW07ykMQIUMrTm2x41oL5ZIPzV0A53TZ/cWTcvIk=;
- b=owEBbQKS/ZANAwAKAd0jrNd/PrOhAcsmYgBp+0Uw+Om1CC6cWGLXkcsRH4QOzUfPEehLKUXB+
- /aWRr/jutiJAjMEAAEKAB0WIQSI6sMIAUnM98CNyJ/dI6zXfz6zoQUCaftFMAAKCRDdI6zXfz6z
- ofO5D/4n6GWlwbtRKEFnXQPHzN+4U2vIXY7E/Q4XCMNpcLlktsuaOWLcAUr6cafqI7LOf5XGcPS
- Wj9loKFIMs7ozQCBRafPYWCy+8kPy9kUHsjf6JznJ9u9fymj3R6NgZVIv5WQYsg4LlMB93lp48M
- eYqGkGxih+tFqNhINd2FETG/86cTg2QDw1C3dnnSg2HxW1tDiYJmIRbkjcMs9JPBNxUk7pVHvss
- zqSzgxXSLbIQvh62YHNMqWWpX+guAPedavt1Duzas2P0hl7Fe8PIfUcnDdXZNrzf68hw4IT8XD3
- 4GYVr3knvs1mmWvaA8fCnsyFDUmQKUFIfSjR4R/RGecba/fhcr9Ma+92jUhfRXeD7j4hn+lsRod
- S9i4uEG2UlEu+V6QUaJ+CC0okb27pU7Q/G16Ws2UBZcIaEr0jlSo0BERJfvKN4FfZibw2TMiGRU
- h2l00BFL7BZ8FMqEIvKU1GXAjyGEtV+ydWaimoMaz7msHmdC/Ggw9IfWAPpq0PtbwPlQ5aBEDdR
- NMAaaZsy8LA3KyTBm4YW+IrPGDYzsiNHg8qvnba0IzjOopAnv1I948Zgg74LvJrxDjVkOFAIDgo
- 6Y6Qg65xdFlvMgVglXomSHtYoKqg/lbE3RxgRxnhNI9m8gmEwZDV2PshyeaTYtSylMM8fVN/l7B
- /Roh/kWUeC0ipUw==
-X-Developer-Key: i=treding@nvidia.com; a=openpgp;
- fpr=88EAC3080149CCF7C08DC89FDD23ACD77F3EB3A1
-Message-ID-Hash: 3JOR2E2OIMQZRF6YJXDIODXX2IFIDOE6
-X-Message-ID-Hash: 3JOR2E2OIMQZRF6YJXDIODXX2IFIDOE6
-X-MailFrom: thierry.reding@kernel.org
+References: <20260506-pmc-v1-0-a6de5da7216b@nvidia.com>
+ <20260506-pmc-v1-1-a6de5da7216b@nvidia.com>
+Content-Language: en-US
+From: Damien Le Moal <dlemoal@kernel.org>
+Organization: Western Digital Research
+In-Reply-To: <20260506-pmc-v1-1-a6de5da7216b@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: TAFRF7ZSHHCDX4HZNUMSYMLP25LO5YRT
+X-Message-ID-Hash: TAFRF7ZSHHCDX4HZNUMSYMLP25LO5YRT
+X-MailFrom: dlemoal@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
@@ -125,9 +110,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3JOR2E2OIMQZRF6YJXDIODXX2IFIDOE6/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TAFRF7ZSHHCDX4HZNUMSYMLP25LO5YRT/>
 Archived-At: 
- <https://lore.freedesktop.org/20260506-pmc-v1-9-a6de5da7216b@nvidia.com/>
+ <https://lore.freedesktop.org/758ab729-dc5a-4837-b255-9462aaa6b0a3@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -137,416 +122,20 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Thierry Reding <treding@nvidia.com>
+On 2026/05/06 15:41, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Currently the kernel relies on a global variable to reference the PMC
+> context. Use an explicit lookup for the PMC and pass that to the public
+> PMC APIs.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 
-None of this legacy code is needed on 64-bit ARM devices, so it can be
-moved behind a corresponding preprocessor guard. This more cleanly
-separates out the legacy code from code needed on current platforms.
+Acked-by: Damien Le Moal <dlemoal@kernel.org>
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
-Changes in v2:
-- fix build issue for ARM && !PM_SLEEP
----
- drivers/soc/tegra/pmc.c | 244 +++++++++++++++++++++++++-----------------------
- include/soc/tegra/pmc.h |  42 ++++-----
- 2 files changed, 147 insertions(+), 139 deletions(-)
+Applying this through the Tegra tree is fine with me.
 
-diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
-index f25c8e73475c..210ee5124119 100644
---- a/drivers/soc/tegra/pmc.c
-+++ b/drivers/soc/tegra/pmc.c
-@@ -512,10 +512,12 @@ struct tegra_pmc {
- 	u32 *wake_status;
- };
- 
-+#if defined(CONFIG_ARM)
- static struct tegra_pmc *early_pmc = &(struct tegra_pmc) {
- 	.base = NULL,
- 	.suspend_mode = TEGRA_SUSPEND_NOT_READY,
- };
-+#endif
- 
- static inline struct tegra_powergate *
- to_powergate(struct generic_pm_domain *domain)
-@@ -1151,68 +1153,6 @@ int tegra_pmc_powergate_sequence_power_up(struct tegra_pmc *pmc,
- }
- EXPORT_SYMBOL(tegra_pmc_powergate_sequence_power_up);
- 
--/**
-- * tegra_get_cpu_powergate_id() - convert from CPU ID to partition ID
-- * @pmc: power management controller
-- * @cpuid: CPU partition ID
-- *
-- * Returns the partition ID corresponding to the CPU partition ID or a
-- * negative error code on failure.
-- */
--static int tegra_get_cpu_powergate_id(struct tegra_pmc *pmc,
--				      unsigned int cpuid)
--{
--	if (pmc->soc && cpuid < pmc->soc->num_cpu_powergates)
--		return pmc->soc->cpu_powergates[cpuid];
--
--	return -EINVAL;
--}
--
--/**
-- * tegra_pmc_cpu_is_powered() - check if CPU partition is powered
-- * @cpuid: CPU partition ID
-- */
--bool tegra_pmc_cpu_is_powered(unsigned int cpuid)
--{
--	int id;
--
--	id = tegra_get_cpu_powergate_id(early_pmc, cpuid);
--	if (id < 0)
--		return false;
--
--	return tegra_powergate_is_powered(early_pmc, id);
--}
--
--/**
-- * tegra_pmc_cpu_power_on() - power on CPU partition
-- * @cpuid: CPU partition ID
-- */
--int tegra_pmc_cpu_power_on(unsigned int cpuid)
--{
--	int id;
--
--	id = tegra_get_cpu_powergate_id(early_pmc, cpuid);
--	if (id < 0)
--		return id;
--
--	return tegra_powergate_set(early_pmc, id, true);
--}
--
--/**
-- * tegra_pmc_cpu_remove_clamping() - remove power clamps for CPU partition
-- * @cpuid: CPU partition ID
-- */
--int tegra_pmc_cpu_remove_clamping(unsigned int cpuid)
--{
--	int id;
--
--	id = tegra_get_cpu_powergate_id(early_pmc, cpuid);
--	if (id < 0)
--		return id;
--
--	return tegra_pmc_powergate_remove_clamping(early_pmc, id);
--}
--
- static void tegra_pmc_program_reboot_reason(struct tegra_pmc *pmc,
- 					    const char *cmd)
- {
-@@ -1486,11 +1426,6 @@ static int tegra_powergate_add(struct tegra_pmc *pmc, struct device_node *np)
- 	return err;
- }
- 
--bool tegra_pmc_core_domain_state_synced(void)
--{
--	return early_pmc->core_domain_state_synced;
--}
--
- static int
- tegra_pmc_core_pd_set_performance_state(struct generic_pm_domain *genpd,
- 					unsigned int level)
-@@ -1904,57 +1839,6 @@ static int tegra_io_pad_get_voltage(struct tegra_pmc *pmc, enum tegra_io_pad id)
- 	return TEGRA_IO_PAD_VOLTAGE_3V3;
- }
- 
--#ifdef CONFIG_PM_SLEEP
--enum tegra_suspend_mode tegra_pmc_get_suspend_mode(void)
--{
--	return early_pmc->suspend_mode;
--}
--
--void tegra_pmc_set_suspend_mode(enum tegra_suspend_mode mode)
--{
--	if (mode < TEGRA_SUSPEND_NONE || mode >= TEGRA_MAX_SUSPEND_MODE)
--		return;
--
--	early_pmc->suspend_mode = mode;
--}
--
--void tegra_pmc_enter_suspend_mode(enum tegra_suspend_mode mode)
--{
--	unsigned long long rate = 0;
--	u64 ticks;
--	u32 value;
--
--	switch (mode) {
--	case TEGRA_SUSPEND_LP1:
--		rate = 32768;
--		break;
--
--	case TEGRA_SUSPEND_LP2:
--		rate = early_pmc->rate;
--		break;
--
--	default:
--		break;
--	}
--
--	if (WARN_ON_ONCE(rate == 0))
--		rate = 100000000;
--
--	ticks = early_pmc->cpu_good_time * rate + USEC_PER_SEC - 1;
--	do_div(ticks, USEC_PER_SEC);
--	tegra_pmc_writel(early_pmc, ticks, PMC_CPUPWRGOOD_TIMER);
--
--	ticks = early_pmc->cpu_off_time * rate + USEC_PER_SEC - 1;
--	do_div(ticks, USEC_PER_SEC);
--	tegra_pmc_writel(early_pmc, ticks, PMC_CPUPWROFF_TIMER);
--
--	value = tegra_pmc_readl(early_pmc, PMC_CNTRL);
--	value &= ~PMC_CNTRL_SIDE_EFFECT_LP0;
--	value |= PMC_CNTRL_CPU_PWRREQ_OE;
--	tegra_pmc_writel(early_pmc, value, PMC_CNTRL);
--}
--#endif
--
- static int tegra_pmc_parse_dt(struct tegra_pmc *pmc, struct device_node *np)
- {
- 	u32 value, values[2];
-@@ -3092,6 +2976,7 @@ static int tegra_pmc_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	int err;
- 
-+#if defined(CONFIG_ARM)
- 	/*
- 	 * Early initialisation should have configured an initial
- 	 * register mapping and setup the soc data pointer. If these
-@@ -3099,6 +2984,7 @@ static int tegra_pmc_probe(struct platform_device *pdev)
- 	 */
- 	if (WARN_ON(!early_pmc->base || !early_pmc->soc))
- 		return -ENODEV;
-+#endif
- 
- 	pmc = devm_kzalloc(&pdev->dev, sizeof(*pmc), GFP_KERNEL);
- 	if (!pmc)
-@@ -3247,10 +3133,12 @@ static int tegra_pmc_probe(struct platform_device *pdev)
- 	if (err < 0)
- 		goto cleanup_powergates;
- 
-+#if defined(CONFIG_ARM)
- 	mutex_lock(&early_pmc->powergates_lock);
- 	iounmap(early_pmc->base);
- 	early_pmc->base = pmc->base;
- 	mutex_unlock(&early_pmc->powergates_lock);
-+#endif
- 
- 	tegra_pmc_clock_register(pmc, pdev->dev.of_node);
- 	platform_set_drvdata(pdev, pmc);
-@@ -4833,6 +4721,125 @@ static struct platform_driver tegra_pmc_driver = {
- };
- builtin_platform_driver(tegra_pmc_driver);
- 
-+#if defined(CONFIG_ARM)
-+/**
-+ * tegra_get_cpu_powergate_id() - convert from CPU ID to partition ID
-+ * @pmc: power management controller
-+ * @cpuid: CPU partition ID
-+ *
-+ * Returns the partition ID corresponding to the CPU partition ID or a
-+ * negative error code on failure.
-+ */
-+static int tegra_get_cpu_powergate_id(struct tegra_pmc *pmc,
-+				      unsigned int cpuid)
-+{
-+	if (pmc->soc && cpuid < pmc->soc->num_cpu_powergates)
-+		return pmc->soc->cpu_powergates[cpuid];
-+
-+	return -EINVAL;
-+}
-+
-+/**
-+ * tegra_pmc_cpu_is_powered() - check if CPU partition is powered
-+ * @cpuid: CPU partition ID
-+ */
-+bool tegra_pmc_cpu_is_powered(unsigned int cpuid)
-+{
-+	int id;
-+
-+	id = tegra_get_cpu_powergate_id(early_pmc, cpuid);
-+	if (id < 0)
-+		return false;
-+
-+	return tegra_powergate_is_powered(early_pmc, id);
-+}
-+
-+/**
-+ * tegra_pmc_cpu_power_on() - power on CPU partition
-+ * @cpuid: CPU partition ID
-+ */
-+int tegra_pmc_cpu_power_on(unsigned int cpuid)
-+{
-+	int id;
-+
-+	id = tegra_get_cpu_powergate_id(early_pmc, cpuid);
-+	if (id < 0)
-+		return id;
-+
-+	return tegra_powergate_set(early_pmc, id, true);
-+}
-+
-+/**
-+ * tegra_pmc_cpu_remove_clamping() - remove power clamps for CPU partition
-+ * @cpuid: CPU partition ID
-+ */
-+int tegra_pmc_cpu_remove_clamping(unsigned int cpuid)
-+{
-+	int id;
-+
-+	id = tegra_get_cpu_powergate_id(early_pmc, cpuid);
-+	if (id < 0)
-+		return id;
-+
-+	return tegra_pmc_powergate_remove_clamping(early_pmc, id);
-+}
-+
-+bool tegra_pmc_core_domain_state_synced(void)
-+{
-+	return early_pmc->core_domain_state_synced;
-+}
-+
-+#ifdef CONFIG_PM_SLEEP
-+enum tegra_suspend_mode tegra_pmc_get_suspend_mode(void)
-+{
-+	return early_pmc->suspend_mode;
-+}
-+
-+void tegra_pmc_set_suspend_mode(enum tegra_suspend_mode mode)
-+{
-+	if (mode < TEGRA_SUSPEND_NONE || mode >= TEGRA_MAX_SUSPEND_MODE)
-+		return;
-+
-+	early_pmc->suspend_mode = mode;
-+}
-+
-+void tegra_pmc_enter_suspend_mode(enum tegra_suspend_mode mode)
-+{
-+	unsigned long long rate = 0;
-+	u64 ticks;
-+	u32 value;
-+
-+	switch (mode) {
-+	case TEGRA_SUSPEND_LP1:
-+		rate = 32768;
-+		break;
-+
-+	case TEGRA_SUSPEND_LP2:
-+		rate = early_pmc->rate;
-+		break;
-+
-+	default:
-+		break;
-+	}
-+
-+	if (WARN_ON_ONCE(rate == 0))
-+		rate = 100000000;
-+
-+	ticks = early_pmc->cpu_good_time * rate + USEC_PER_SEC - 1;
-+	do_div(ticks, USEC_PER_SEC);
-+	tegra_pmc_writel(early_pmc, ticks, PMC_CPUPWRGOOD_TIMER);
-+
-+	ticks = early_pmc->cpu_off_time * rate + USEC_PER_SEC - 1;
-+	do_div(ticks, USEC_PER_SEC);
-+	tegra_pmc_writel(early_pmc, ticks, PMC_CPUPWROFF_TIMER);
-+
-+	value = tegra_pmc_readl(early_pmc, PMC_CNTRL);
-+	value &= ~PMC_CNTRL_SIDE_EFFECT_LP0;
-+	value |= PMC_CNTRL_CPU_PWRREQ_OE;
-+	tegra_pmc_writel(early_pmc, value, PMC_CNTRL);
-+}
-+#endif /* CONFIG_PM_SLEEP */
-+
- /*
-  * Early initialization to allow access to registers in the very early boot
-  * process.
-@@ -4911,3 +4918,4 @@ static int __init tegra_pmc_early_init(void)
- 	return 0;
- }
- early_initcall(tegra_pmc_early_init);
-+#endif /* CONFIG_ARM */
-diff --git a/include/soc/tegra/pmc.h b/include/soc/tegra/pmc.h
-index 8b4bcdea849e..4bcbf19d75ac 100644
---- a/include/soc/tegra/pmc.h
-+++ b/include/soc/tegra/pmc.h
-@@ -18,10 +18,6 @@ struct clk;
- struct reset_control;
- struct tegra_pmc;
- 
--bool tegra_pmc_cpu_is_powered(unsigned int cpuid);
--int tegra_pmc_cpu_power_on(unsigned int cpuid);
--int tegra_pmc_cpu_remove_clamping(unsigned int cpuid);
--
- /*
-  * powergate and I/O rail APIs
-  */
-@@ -163,12 +159,6 @@ int tegra_pmc_powergate_sequence_power_up(struct tegra_pmc *pmc,
- int tegra_pmc_io_pad_power_enable(struct tegra_pmc *pmc, enum tegra_io_pad id);
- int tegra_pmc_io_pad_power_disable(struct tegra_pmc *pmc, enum tegra_io_pad id);
- 
--/* legacy */
--void tegra_pmc_set_suspend_mode(enum tegra_suspend_mode mode);
--void tegra_pmc_enter_suspend_mode(enum tegra_suspend_mode mode);
--
--bool tegra_pmc_core_domain_state_synced(void);
--
- #else
- static inline struct tegra_pmc *devm_tegra_pmc_get(struct device *dev)
- {
-@@ -213,28 +203,38 @@ tegra_pmc_io_pad_power_disable(struct tegra_pmc *pmc, enum tegra_io_pad id)
- {
- 	return -ENOSYS;
- }
-+#endif /* CONFIG_SOC_TEGRA_PMC */
- 
--static inline void tegra_pmc_set_suspend_mode(enum tegra_suspend_mode mode)
-+/* 32-bit ARM platforms only */
-+#if defined(CONFIG_ARM)
-+bool tegra_pmc_cpu_is_powered(unsigned int cpuid);
-+int tegra_pmc_cpu_power_on(unsigned int cpuid);
-+int tegra_pmc_cpu_remove_clamping(unsigned int cpuid);
-+bool tegra_pmc_core_domain_state_synced(void);
-+
-+#if defined(CONFIG_SOC_TEGRA_PMC) && defined(CONFIG_PM_SLEEP)
-+enum tegra_suspend_mode tegra_pmc_get_suspend_mode(void);
-+void tegra_pmc_set_suspend_mode(enum tegra_suspend_mode mode);
-+void tegra_pmc_enter_suspend_mode(enum tegra_suspend_mode mode);
-+#else
-+static inline enum tegra_suspend_mode tegra_pmc_get_suspend_mode(void)
- {
-+	return TEGRA_SUSPEND_NONE;
- }
- 
--static inline void tegra_pmc_enter_suspend_mode(enum tegra_suspend_mode mode)
-+static inline void tegra_pmc_set_suspend_mode(enum tegra_suspend_mode mode)
- {
- }
- 
--static inline bool tegra_pmc_core_domain_state_synced(void)
-+static inline void tegra_pmc_enter_suspend_mode(enum tegra_suspend_mode mode)
- {
--	return false;
- }
--
--#endif /* CONFIG_SOC_TEGRA_PMC */
--
--#if defined(CONFIG_SOC_TEGRA_PMC) && defined(CONFIG_PM_SLEEP)
--enum tegra_suspend_mode tegra_pmc_get_suspend_mode(void);
-+#endif
- #else
--static inline enum tegra_suspend_mode tegra_pmc_get_suspend_mode(void)
-+/* needed for COMPILE_TEST */
-+static inline bool tegra_pmc_core_domain_state_synced(void)
- {
--	return TEGRA_SUSPEND_NONE;
-+	return false;
- }
- #endif
- 
 
 -- 
-2.52.0
-
+Damien Le Moal
+Western Digital Research
