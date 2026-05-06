@@ -4,120 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E569CD3439
-	for <nouveau@archiver.kernel.org>; Wed,  6 May 2026 16:48:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98EB3CD343B
+	for <nouveau@archiver.kernel.org>; Wed,  6 May 2026 16:49:20 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 14E9010EE3B;
-	Wed,  6 May 2026 16:48:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6057510EE39;
+	Wed,  6 May 2026 16:49:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="o3WSAUkA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YS5tB5Tk";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B3DDC45DFC;
-	Wed,  6 May 2026 16:35:21 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 0D35345E00;
+	Wed,  6 May 2026 16:36:40 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1778085321;
- b=ubovUEjaVQfLdx1COhTY1bCHJmkRxLAPbksChTM1BZxdxHYd2oTLZKSA5mxk8K30c+kr8
- IchxZs1YKEAfTuVmbXRGDjyGgG2SBlASGe6IdZ5dKTu1dxH5Ya+3i2vQb6KLDA3IvKeIwoh
- t72ZLbPq/NfHSqGt6QC2VC+vFtvNnn2Bx3Wr9CLDoDtWGr3kMj4/x950NqROEeGpSRoxOAT
- tuj36UA5fHCm/ztTsG+d4w6FJJHxEOcbZPGGI8SgKWSS6L7T62DrPUipD3S0s7uQf9czFaJ
- vZedg/qg2ARf0nVqv3pbrqKTTi7GIgWrUeBDUYR1T7izOn0AoKgGj0tazu8A==
+ s=20240201; t=1778085399;
+ b=ppI999XwGo7INB5vq0hSrXWG2sxRVuY+K8ACHrQQlIYJqzqt4YjLdP88xapFqxPqOycwz
+ EUXCFrscvQXxl66A0lnQlT7/V4pb/e1epGpZqO2ABiHoCru8wLBhj3VeS5ivpEahGYVOgpo
+ ms+djWWoMvwjfKPxx60LrJg3GFVP5gz4aaPGQdPcJODMdYuzoB4bLKO9IlN3mQyKskDAyMB
+ hL8ZHF74e+hzzGEn/tYqnSgIgn+XH9+NjuKVslvJFRjy6gHi9fvU8y8cjroAL1TqWJBtyuB
+ rjIfzFSy8eoOiKRVo868wteC8aBMUF04R1FS7FmJdNArzjxbKcu8xniN3IJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1778085321; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1778085399; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=BMbRicsmqm4MzHYDZN/YERLhC9G7DFrPOd780YtnKHs=;
- b=TipgaFBHyo5w6Vj3XcpMEo/ypKf3mczQHmVBdp3Kbt3V8EFjfUEyVVV6WaRQO52Q5Snex
- 9rd8XxGkhwdnI4wmnTwXA3IwilDuSUrT+6xd5t5+pF9EgO53R0EGJiL9n675KhugxVYX93Y
- E2aJBbKd6ldYNw7jygZn2JDgJPCwC/yHuwcDHP/fpszF2tbHIqBISl3I0//gRG6N1/LZjV+
- NlLyMZuzSks0/COFkTCUTSCZxk4p0soNQuYH+7CPbRLv//qbG/vkMtH2eqoGgY6JNTWajiV
- CebWzdGx8eKD7o7rePoK2pcw0wl6OLXGQcKEDd1UU01BSUbqiTbXUZfMkg7A==
+ bh=zqAqFen5VqadetPQBTdp38DxpOmtB/64SzLHXItI+ak=;
+ b=KTrrHnDXbxBbcx90f9yD+T7cJ9+szx34w7jkiaewLU+ih3T4R0bq3Y1FHnmb2E30k9doc
+ fHVVvuE/Fn9DHafwkdI7e8ncBWMZOASsk80aYRz5jgNFj5IR0bokvbF7jJV+5doyov+Nl+J
+ 42X0lW/sUD/hNlXviavLZGRddNgkXZRRL+lhQOIBcf3yTFbCHHV8Xc+849dUqLp/GtoanLu
+ 7lucjS36MuFqZ2CWjkz4xAAgHQN7qXGs8nZuYjUFzY8s+f5tR+6Zi9S1xnuBZtAPBdQbwSI
+ 9n+6bzlKGl3JtIGhNTrEB+GmlzbmjdAP+G1Ztt5pYPPNgkL0JGe+RnsMLZBQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B117D45DC9
-	for <nouveau@lists.freedesktop.org>; Wed,  6 May 2026 16:35:18 +0000 (UTC)
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
- [209.85.216.52])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D276D10EE37
-	for <nouveau@lists.freedesktop.org>; Wed,  6 May 2026 16:47:58 +0000 (UTC)
-Received: by mail-pj1-f52.google.com with SMTP id
- 98e67ed59e1d1-35fbca04006so3487216a91.1
-        for <nouveau@lists.freedesktop.org>;
- Wed, 06 May 2026 09:47:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778086078; x=1778690878;
- darn=lists.freedesktop.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=BMbRicsmqm4MzHYDZN/YERLhC9G7DFrPOd780YtnKHs=;
-        b=o3WSAUkAP6iVjc0WeiId+OToBAn2KmqqkXZYG7VY4SuWtMatkLg6V873DuQ/YJHDfk
-         GV97E3lqtYYHPDO3jbkiaxb7ZjDWW1eEPYW4XQqUgVjnqoEIy5XfOU+7MZp0VnXJSFWp
-         1Ol+Wbq+hTMkUIgSvAF/otz9T9HdvbI65ewTWn8ftx8yil7PyL+viLnWMxm32KtjoqDS
-         JzKgLt8gTnuSMEcduYEOONnAr1FI8f4ydXzM4LWUsl/KMXmVAio0k+73mn9sqPBPpuKQ
-         CxjMZwUOTctHZDfHLGAqddYD85E/3YXcsTysueQomlTCQzCNAEGd5u41t/XTae+iYGsE
-         S6Bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778086078; x=1778690878;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BMbRicsmqm4MzHYDZN/YERLhC9G7DFrPOd780YtnKHs=;
-        b=DMzkWYZvDM3456QF0cXDRV+ELaCiji+YtKNiRjCOL4gwtMvTX8kOBBRxtYQ9qwvZyd
-         0vXmJK/4glfAEWNRAlbDz8jrSCbyvZuFkNVcgEYCPP06uLhmShMe0f8/6DaYb+UlT0qo
-         xAxBEqdtEfHYhzPFWwl5CzFrruV9XUApDk50O0ruGka8JmgKxKmk97B8idVXtp52XQS6
-         LV26fFcMcbX0UqJbttaYH8B/c0nzUqzTMqNoNqL08NQE8XXRHaiQZG9eBdc0eq/UFRyb
-         K1Fs/XXX2Yiq5kVJXm4PN87kpkx7YVEbxzGK9dRjO/8uvE18OqMvmynJOIdRDKm+6tre
-         K8ug==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+q37TJiPDxPtBPupPfLZRQ9Y1mANksrZsEgzZEaX+DB1tAzf1doV1ylUD7SGHtHGm2GWMjVuVd@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyp/CrF0VGIHKRqG5tP3AUJeWns+3BpA/6F9cmVj8Q2/rh2ZXbO
-	lu/2eipOXV18WrMKMhM5zd4p3rypnM8vEVadb9G7qCn0wcRKysNGBokB
-X-Gm-Gg: AeBDieuXkMbM4MNeZyKouWuixiU0kAA+iUtwDTE8H0HO8LO40jwkG2jkhYVgSuxCMQk
-	TYl7EIlCnARvjj7JMGqII23uicQ2mcNBTXCQHs7vv3BqA3nN4COUCm79chF9ThzBWEmtCUdHI0O
-	nupMLMTdDOlrNd+8Sp9woYcSl4N7kscpSimWJZMWKP9PAz3FGJwrSgGAcsUfqSpCYiRwKip2fOf
-	O/WExxpINCbPtO4HJcgDdldVAz/grd44xL9yqyM4UH8fpA/dW8TDP3BKLfmGT3aMJinA+zliaH5
-	EgkDs2lyTzJmnuuukqS6y1rQdfD1lvym3rILnXydnH3HTVhjhqiOIV80l835kovc9wtcX9id+jc
-	2XWAMbioyyzhktaGNV+wAWnerkJYFRBTT+Vh5MvluF2HZqbHHFzpdKdhofS6f9ZVEZOJoMuD6rb
-	BnFICRj+rvdmGauXT3lIQ/cSa7FTMehep+aOhwgwS8jFj6ZmbCpXMt44NpCVYxp4iGjlTcDoOeL
-	bh8dvhd2OkqxMUc
-X-Received: by 2002:a17:90b:1c8b:b0:365:a5f6:4a5c with SMTP id
- 98e67ed59e1d1-365ab9b8c92mr4104026a91.1.1778086078112;
-        Wed, 06 May 2026 09:47:58 -0700 (PDT)
-Received: from cchengyang.duckdns.org (36-225-99-238.dynamic-ip.hinet.net.
- [36.225.99.238])
-        by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-365df6f88cesm1024275a91.3.2026.05.06.09.47.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 May 2026 09:47:57 -0700 (PDT)
-Date: Thu, 7 May 2026 00:47:53 +0800
-From: Cheng-Yang Chou <yphbchou0911@gmail.com>
-To: Danilo Krummrich <dakr@kernel.org>
+	by kara.freedesktop.org (Postfix) with ESMTPS id A598045DFB
+	for <nouveau@lists.freedesktop.org>; Wed,  6 May 2026 16:36:37 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CD8DB10EE30;
+	Wed,  6 May 2026 16:49:17 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 92C5142A64;
+	Wed,  6 May 2026 16:49:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE787C2BCC7;
+	Wed,  6 May 2026 16:49:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778086157;
+	bh=zqAqFen5VqadetPQBTdp38DxpOmtB/64SzLHXItI+ak=;
+	h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
+	b=YS5tB5Tkh2OeWs0QCCxjecg+tlCPkNt91P+5g6NR3YiN08X5RvdixR+JnYttFHAlw
+	 npP5L0ntxJga6GYPC5nQfvl3WyjIwIPJ9oNQgkzFVluyizR9IXtP9gBuAMEiZ03w5a
+	 SgzPxajMkszVMSIYtzrBx69l7fTiOKZNLxiOiE8+BOEzWWljrPSBcOZeKlmzrwBpNw
+	 flmcafFI9OLYj43lmialq0z/jOjXSyT7soQV3n6yi4f92b5zDyJHC97UmDztzMTYW2
+	 urLM15FEikjyLVeNxbyjOzUWVGvE9cDqXB+jMfem8+Q0CKtO8ZxAurjA5Y1ho0cE0I
+	 0eMKu19VtWdJg==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 06 May 2026 18:49:13 +0200
+Message-Id: <DIBQXQ8J3N3H.10YAS0C3O6O2J@kernel.org>
+To: "Cheng-Yang Chou" <yphbchou0911@gmail.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
 Subject: Re: [PATCH v2 1/2] gpu: nova: rename drivers to use kebab-case
  convention
-Message-ID: <20260507004701.G4851@cchengyang.duckdns.org>
 References: <20260316120820.2117081-1-yphbchou0911@gmail.com>
  <20260316120820.2117081-2-yphbchou0911@gmail.com>
  <DH56PG8GLW4X.2QMHJ91J9D29N@kernel.org>
  <DIBP25O5HJ09.2SRQU8QS7VUDN@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DIBP25O5HJ09.2SRQU8QS7VUDN@kernel.org>
-Message-ID-Hash: IOF5HWCK4RGNKCSEHNITR3FZ4RLFTVKK
-X-Message-ID-Hash: IOF5HWCK4RGNKCSEHNITR3FZ4RLFTVKK
-X-MailFrom: yphbchou0911@gmail.com
+ <20260507004701.G4851@cchengyang.duckdns.org>
+In-Reply-To: <20260507004701.G4851@cchengyang.duckdns.org>
+Message-ID-Hash: VZTWS4LBZ44OXMHDBFC42S4SG4BNWGYN
+X-Message-ID-Hash: VZTWS4LBZ44OXMHDBFC42S4SG4BNWGYN
+X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
@@ -131,9 +97,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IOF5HWCK4RGNKCSEHNITR3FZ4RLFTVKK/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VZTWS4LBZ44OXMHDBFC42S4SG4BNWGYN/>
 Archived-At: 
- <https://lore.freedesktop.org/20260507004701.G4851@cchengyang.duckdns.org/>
+ <https://lore.freedesktop.org/DIBQXQ8J3N3H.10YAS0C3O6O2J@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -143,25 +109,7 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hi Danilo,
+On Wed May 6, 2026 at 6:47 PM CEST, Cheng-Yang Chou wrote:
+> Sorry for totally missing this! Will send a v3 patch by this weekend.
 
-On Wed, May 06, 2026 at 05:20:58PM +0200, Danilo Krummrich wrote:
-> On Tue Mar 17, 2026 at 5:06 PM CET, Danilo Krummrich wrote:
-> > Can you please move this into the second patch. Additionally, in the second
-> > patch, please only keep the Kconfig change and use the following in the
-> > Makefile.
-> >
-> > 	obj-$(CONFIG_DRM_NOVA) += nova-drm.o
-> > 	nova-drm-y := nova.o
-> >
-> > I.e. keep the directory and filenames as they are.
-> >
-> > We can use the same trick for nova-core, so we get nova-core.ko and nova-drm.ko.
-> 
-> Do you plan to follow up on this one?
-
-Sorry for totally missing this! Will send a v3 patch by this weekend.
-
--- 
-Cheers,
-Cheng-Yang
+No worries -- thanks!
