@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 257FFCD3442
-	for <nouveau@archiver.kernel.org>; Thu,  7 May 2026 18:50:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE943CD3442
+	for <nouveau@archiver.kernel.org>; Thu,  7 May 2026 18:50:34 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id F14BA10E2BA;
-	Thu,  7 May 2026 18:50:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3019D10E5BB;
+	Thu,  7 May 2026 18:50:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Jrd69Sex";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="rZnM6kIl";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 31F6045E10;
-	Thu,  7 May 2026 18:37:49 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 777CD45E10;
+	Thu,  7 May 2026 18:37:51 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1778179069;
- b=qvBUcARzsXTrcX+foUlKgBDqJOtxJQW2CdHQJ+XWdEETuVaJClJGDPAA4GnHCVRMHbF1h
- s+xFTBuc7js4HUiVXkNOYUgpgjLN0x4stwtfhSL1NqmIFcWV3QydvIzP17Aqk/v8YSsWHCu
- xZHu5wPlfds6LNhdYqGG15gE53MP/08bH4jqPp45asMZFiN/NAMCl0zfG0tC7nPbuRBXu2s
- 6B2H1n5yTvUbn2WgLUtJdBLsHmokjeDjk+UR7G6JwDadXNBX5aXNs2FxL8YJbRebN5Z519n
- zhjNmUz2zNNkr1Ct9xEOKNcMTytjP7cZcK8pXM4X0MPhVZccNUkvO58KIcyw==
+ s=20240201; t=1778179071;
+ b=GeqP4fT+dNYMbtwUDdwwCtPhtYxkaBXVxhAqRgpuR9Z65v4JgRYDxPMCCwAO3/EDX115x
+ UZKoV86Z8CHeouzRFMp7pwMo+BbJUHMVu4y4G4Mu68w304XXgA7jFZ30SGaPahDSUZ8m0M/
+ LyYmwjW+oB5mEZxBe7PFbDeKiQUMx5z6sqplrG1cFUc365J23KsanidPFmb8iftpycWLoX6
+ Z+Sg8cDdV8MwRNt6i8tphMmbNOwdx8fYjLe4ueUQGoS4YKAULp5lJojvwkZhN6yRULilEUS
+ QgfWapl0WI1VHi8M6q3KNrisNF78x80kjsp6Dfn0gIIX8eTCY3pO7aD81lNA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1778179069; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1778179071; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=dQn2lC111HIsJYeBhDzQtByq++XP+cE0Vqnv+qmfSTU=;
- b=g5/i/Si9vfLyxnT6piFV/TFNmcPu7MQGZYh5CrNqkp16Uw+T723MOVrnwiJq0RaoZENO2
- absO2GEhao5ZlCR5p/qVNrQ7M02pdtQCxyU7pJ6MyhCUVLk5rD2wKFonwPSBEGN50MpXOaD
- NvQGvkDkya1b4pAoZIskLzY2cx+Dxq+uy4EHXQ3evuUTfa4LJ3FXF5banunQN2pz226Ro+D
- vO642cG+f8EHc22oQavv88ZWyaFlW9KvQ+lLP2Da7zzAVNIJjRn9rS3Z+SSvtAVCyNw0ZKv
- usBiCxoRY7owhdGx0twc37GhIEAcHjCb9G06xWn3o/4hGQyNxMKU6E9cPlWw==
+ bh=cuuY9z0rIedXPeFqO2cyF/fMdOdBTdI3139yGpjZsbQ=;
+ b=xP+hl8w6DW5dQo4+/44zDD00yqh5FLIZSF7gqXfuoZ4WtQ+LUoSBg5gViI1zlkt/O/y/d
+ KKZPaTGVmlSEI8NVo7ZzHiQvNBaLtTAjN2eGjBtf4qI21LfEIKBVdNsii977BWt/RGfaLGq
+ 03kBhLXyxbHSCHJ4GhjLaFW4xuSZB8xG0YvHoNFFr8zqff+LRWc/ZNHQ35jZuOArMVKIN0e
+ ZdU4EJK8XfrhpgprXB/7NxfAus5f/w792CS/910Ji+puWwbhGVpG8fi/WUSjSGHzitNk1/O
+ KjwwSM/9s9wXPuled1/uak2HXuCziRe6ahIlafmsxD994qYMpYkqATe9dHZw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,58 +46,59 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 13DBA43397
-	for <nouveau@lists.freedesktop.org>; Thu,  7 May 2026 18:37:46 +0000 (UTC)
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
- [209.85.214.173])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE8610E29D
-	for <nouveau@lists.freedesktop.org>; Thu,  7 May 2026 18:50:28 +0000 (UTC)
-Received: by mail-pl1-f173.google.com with SMTP id
- d9443c01a7336-2ba1e9d3687so7540595ad.3
+	by kara.freedesktop.org (Postfix) with ESMTPS id AD1F545E0B
+	for <nouveau@lists.freedesktop.org>; Thu,  7 May 2026 18:37:48 +0000 (UTC)
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
+ [209.85.214.169])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 46AE910E29D
+	for <nouveau@lists.freedesktop.org>; Thu,  7 May 2026 18:50:31 +0000 (UTC)
+Received: by mail-pl1-f169.google.com with SMTP id
+ d9443c01a7336-2b4650d5f5cso4560965ad.0
         for <nouveau@lists.freedesktop.org>;
- Thu, 07 May 2026 11:50:28 -0700 (PDT)
+ Thu, 07 May 2026 11:50:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778179828; x=1778784628;
+        d=gmail.com; s=20251104; t=1778179831; x=1778784631;
  darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=dQn2lC111HIsJYeBhDzQtByq++XP+cE0Vqnv+qmfSTU=;
-        b=Jrd69SexTwLqCwVXgHbQ7BQTze7oqNAbkFx+Q+kenJWm2M8nJjx6BmPOS1gUGZ9P7S
-         kM4fn/w0iGWWxkMzxjdiREDOKpHaK3i0aiAfReX7pk5+rx9A/YNCs9iIewD378Mz8Jhk
-         Jlhp611dIShHExXF05xmMYOKMJa4ruOaKFv6pc37e47ohCIAWMaC6wvz2L31xXYtlez9
-         osyk9q0RWkuTJAuQBrS+Gh2uVI4EZ2UyJx0L3AfnWVUn/mCbgg9aaXgJX8aLCvMYExW/
-         ybzRvdMrGAR9R9ItuY/Uln0Ki1HPy3I0KbI29s0yARuxqvg3FD/K8jLXHpBtcoX786Ww
-         5Wsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778179828; x=1778784628;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dQn2lC111HIsJYeBhDzQtByq++XP+cE0Vqnv+qmfSTU=;
-        b=ZsxZM75b10AG8QwDm2zKXbN4+B9okbXKezEZ1Yr0nO05fPXo/W87nAj9DSg6eEUlbt
-         vd87AqYrYiP8a/CMYQzOU7Ki7CqaLmU+OICbrSqLfwE9MTLrZdII1Pw5h2jtvjJH9UQD
-         70dnRIQbQiAT77De5sANyakgd/ekNygPoizq8Ygl1n+T0j+kwh0gec4asOJeqvMsc5PB
-         ZvcWfuInbPE7zMRSR7WFoZ5sKdGD9jSbU71wlYnaaIY/i3RoQ9Dd5EQBF5B23dCiAyW2
-         9iVKHU9IHCGVEfNqSLQSPPhS2kGP1xOmOy+jqVmKSQJgUOtwmxzXLFLYEaVr5qW3brrC
-         Uezw==
-X-Gm-Message-State: AOJu0Yz36caAf/1HRZefm9tqSo7OYG8f/GL3Qsl7bA0qiEImtbK+uAYA
-	5Jc8bR538LkVnKEQQWHGvyN62BqL4UG0rVHm9B6vUCVMtfcthmGIics5
-X-Gm-Gg: Acq92OEs7rRvOqvYFoyCRDT+2vpWjiyi0zsB1/iwwzkC7Su0IioxqA55nr1jAX+C4aR
-	M3YaUqn75bf/iQbttgysAT4y08F79kS7sTNc19bLnwfviz2mq492iqdGfD04/7KwBt9O4HnWre5
-	eaRUj3dmjNk0EwwguPKVwgzPTQnJbWGA3dDCpqqOvG5C4Hv2hLtdDwT4Z2/Lxyj3IXPqmdCvUfJ
-	9iPQ3W+omqB4ThilyhVbSxCe7YllYl9hp0CdJBa99Rhw7OhT7+JjCqIELPm2EYLUlg+h6fNM27j
-	WTcFugzaYLJvhCa9w/zEB3gqjgbA79OdzeI2/ASEoCr5MuGPoFedQZJu9u1JAhQfMlI1nsEQ5/7
-	FKiBYX/90D7I27mBfWH3rKxw4qcjwhtB/uey26VfeLV6ovx09F2lmcXBArU2SxmRLhC+XLxYlkx
-	MmzogKvNMWzDQxFARoVEccaViZD3rgd0pcwfcRkKEb24MzJUlbKJMcW9EkRV2EM9A=
-X-Received: by 2002:a17:903:2bcb:b0:2ba:924b:3948 with SMTP id
- d9443c01a7336-2ba924b3b5bmr77979445ad.15.1778179828134;
-        Thu, 07 May 2026 11:50:28 -0700 (PDT)
+        bh=cuuY9z0rIedXPeFqO2cyF/fMdOdBTdI3139yGpjZsbQ=;
+        b=rZnM6kIlG9RI7UNvWTVseOj/yatYk779Ec0S/adVS9Q1XUMEUIU7xZ2M/1ioaZa5fT
+         rOPJni8GDCA3SXuAl+mqaPXRF6KFSBOQnRA3UvVK/AA3AjJXKLJmTMpOMOVohuaO4mMK
+         p9O6BzPjKQHCNRTmeCnQe3digjSMOcRyFnIzH74Ts8EUyqi6lGd7rXrUbXVnADax1jQ6
+         Q44kfuIQ0GfwPcNI6IgrgRZ/yN+tv7ghkwDsHhOllZK4X0apDc6l3BWOGf4DdguglzNL
+         y6MuYou6XjqqKl2+VZOHCmUUNahX8nrXPShdQqE/dRCoYNa8hVQrQ6BgPUTTYKMp4ho3
+         +Jgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778179831; x=1778784631;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=cuuY9z0rIedXPeFqO2cyF/fMdOdBTdI3139yGpjZsbQ=;
+        b=ZU4x6C70R6THKtmkZ5GxSHeDa4vL1rcm4kphkfQAMLwm5HhIMZ75vBaVUipotTgwOO
+         Cm2DvpoP/zb1hTbI5FBkTKTCfn9vvF9i9bQY9gfH6mu3j203gatoEi7hNRNCOCMrx5mo
+         JeGJIF5NrDwku8edj+8UJj4vVkOdIWZoV0AHF2ytVMPKYOkW2c6e9D7KgNrXz2oiZH8F
+         6VNcT7wpsfmNa9H5rDz5yZnOkEfr4XXRuw05W5H7Jq43jvbx1lwaHBKork50UHPZY2nI
+         EKBtH1O97WEzHnHqHQmJLsxz/3n938cStQGH7sd0SlSZqywFDmzDvkVKkAVwPtmbN5ax
+         s2Og==
+X-Gm-Message-State: AOJu0Yy77JIpMPBQHVj3dnLH1fUlOuIE/PIDK86LCnxQ5T/nJbTeh8Mv
+	sixoKvYR2LmSuVPch7ZeOEPIaIF9m8UvKJmlNh3wK7EhOb/1/gNzqAza
+X-Gm-Gg: Acq92OFSX0E3W8CYThwcxJ5Wd/1xXhRPfqiYX06rbBJKrx8J9ML3ru//AedWnf6Gj5R
+	nASPumzcjoYNigGGvJS6qmIdb5CiNLNyf2V1Kd/gP0snj9kNJeXschKAMn0xPDbKnk6GM2gQu58
+	dsgDmx1PpWYl2+cCoo3pisbmkfEciZfZotpcERIS6fX09M+zbQNLO2+VyxubZspyNjtEUQ0V+YM
+	3bPJjt2VQtXNBkSPYvmU5/ZIzrSHohAJ4ofbELspfwOQkvI3eIcF6hXTGbKcU8VbaOcRAqbpSvM
+	7EZbKwxDMWAHcXSMROxjmHXqmDPdP3OY3SmCFOkCS1+0N4ua9qAUny1kGwGhK/jzGfL/XB7XnV4
+	ZEyE/s+bi+V7G3uffrzmADtHvps63hW1yke1OuAd4Ywx3j3vvmQGwNmNwHc4rOlZEe7hNb3A/tC
+	hktToC3XdkmHGcyqEstsZVsT2XjhZLPywBpBewA4KRWRoRhgLWFPfN
+X-Received: by 2002:a17:903:3d4b:b0:2b0:608d:d8a8 with SMTP id
+ d9443c01a7336-2ba78f5005cmr66704655ad.1.1778179830621;
+        Thu, 07 May 2026 11:50:30 -0700 (PDT)
 Received: from eric-wcnlab.tail151456.ts.net
  ([2001:288:7001:1099:1e70:8174:f80d:ff44])
         by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2bae78709d1sm4272595ad.67.2026.05.07.11.50.25
+ d9443c01a7336-2bae78709d1sm4272595ad.67.2026.05.07.11.50.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 May 2026 11:50:27 -0700 (PDT)
+        Thu, 07 May 2026 11:50:30 -0700 (PDT)
 From: Cheng-Yang Chou <yphbchou0911@gmail.com>
 To: Danilo Krummrich <dakr@kernel.org>,
 	Alice Ryhl <aliceryhl@google.com>,
@@ -106,15 +107,16 @@ To: Danilo Krummrich <dakr@kernel.org>,
 	Simona Vetter <simona@ffwll.ch>,
 	Gary Guo <gary@garyguo.net>,
 	John Hubbard <jhubbard@nvidia.com>
-Subject: [PATCH v3 0/2] gpu: nova,
- nova-core: rename drivers and directory to follow kebab-case
-Date: Fri,  8 May 2026 02:49:24 +0800
-Message-ID: <20260507185012.1527139-1-yphbchou0911@gmail.com>
+Subject: [PATCH v3 1/2] gpu: nova, nova-core: Rename to kebab-case
+Date: Fri,  8 May 2026 02:49:25 +0800
+Message-ID: <20260507185012.1527139-2-yphbchou0911@gmail.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20260507185012.1527139-1-yphbchou0911@gmail.com>
+References: <20260507185012.1527139-1-yphbchou0911@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 453D75EXVNY4IW7HHBFO7EMQ2VXD4N3Q
-X-Message-ID-Hash: 453D75EXVNY4IW7HHBFO7EMQ2VXD4N3Q
+Message-ID-Hash: 7YKG2JZNXDXTMSLMEHYZRMQUUW4CVDGI
+X-Message-ID-Hash: 7YKG2JZNXDXTMSLMEHYZRMQUUW4CVDGI
 X-MailFrom: yphbchou0911@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -125,9 +127,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/453D75EXVNY4IW7HHBFO7EMQ2VXD4N3Q/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7YKG2JZNXDXTMSLMEHYZRMQUUW4CVDGI/>
 Archived-At: 
- <https://lore.freedesktop.org/20260507185012.1527139-1-yphbchou0911@gmail.com/>
+ <https://lore.freedesktop.org/20260507185012.1527139-2-yphbchou0911@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -137,53 +139,65 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Rename the nova-core and nova-drm drivers to follow kernel naming
-conventions before these names become UAPI (e.g. exposed via
-driver_override).
+Module names must follow kernel kebab-case convention before they
+are exposed as UAPI via driver_override.
 
-Changes in v3:
-- Move drm::DriverInfo name/desc update from patch 1 to patch 2
-  (Danilo Krummrich)
-- Add kbuild composite object rule to nova/Makefile to produce
-  nova-drm.ko (Danilo Krummrich)
-- Add kbuild composite object rule to nova-core/Makefile to produce
-  nova-core.ko (Danilo Krummrich)
-- Fix debugfs directory name in nova_core.rs to "nova-core" to match
-  module name
-- Patch 2 has been reworked, no review tags carried over
-- Link to v2:
-  https://lore.kernel.org/r/20260316120820.2117081-1-yphbchou0911@gmail.com/
+Rename the nova-drm module from "Nova" to "nova-drm" and the
+nova-core module from "NovaCore" to "nova-core".
 
-Changes in v2:
-- Also fix nova-drm driver description from "Nvidia Graphics" to
-  "NVIDIA Graphics and Compute" (John Hubbard)
-- Rename drivers/gpu/drm/nova/ directory to drivers/gpu/drm/nova-drm/
-  and nova.rs to nova_drm.rs to match the module name (Danilo Krummrich)
-- Link to v1:
-  https://lore.kernel.org/r/20260310062443.2763230-1-yphbchou0911@gmail.com/
+Update NOVA_CORE_MODULE_NAME to match the renamed nova-core module.
 
-Link: https://github.com/Rust-for-Linux/linux/issues/1228
-
-Thanks,
-Cheng-Yang
-
+Suggested-by: Gary Guo <gary@garyguo.net>
+Reviewed-by: Gary Guo <gary@garyguo.net>
+Reviewed-by: John Hubbard <jhubbard@nvidia.com>
+Acked-by: Timur Tabi <ttabi@nvidia.com>
+Closes: https://github.com/Rust-for-Linux/linux/issues/1228
+Signed-off-by: Cheng-Yang Chou <yphbchou0911@gmail.com>
 ---
-
-Cheng-Yang Chou (2):
-  gpu: nova, nova-core: Rename to kebab-case
-  gpu: nova-drm: Rename nova to nova-drm
-
- drivers/gpu/drm/nova/Kconfig       | 2 +-
- drivers/gpu/drm/nova/Makefile      | 3 ++-
- drivers/gpu/drm/nova/driver.rs     | 6 +++---
+ drivers/gpu/drm/nova/driver.rs     | 2 +-
  drivers/gpu/drm/nova/nova.rs       | 2 +-
- drivers/gpu/nova-core/Kconfig      | 2 +-
- drivers/gpu/nova-core/Makefile     | 3 ++-
- drivers/gpu/nova-core/nova_core.rs | 4 ++--
- 7 files changed, 12 insertions(+), 10 deletions(-)
+ drivers/gpu/nova-core/nova_core.rs | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-
-base-commit: 37f748ed0c19e007e7c5677f5d605d6b93841792
+diff --git a/drivers/gpu/drm/nova/driver.rs b/drivers/gpu/drm/nova/driver.rs
+index b1af0a099551..f8f7beeccb13 100644
+--- a/drivers/gpu/drm/nova/driver.rs
++++ b/drivers/gpu/drm/nova/driver.rs
+@@ -36,7 +36,7 @@ pub(crate) struct NovaData {
+     desc: c"Nvidia Graphics",
+ };
+ 
+-const NOVA_CORE_MODULE_NAME: &CStr = c"NovaCore";
++const NOVA_CORE_MODULE_NAME: &CStr = c"nova-core";
+ const AUXILIARY_NAME: &CStr = c"nova-drm";
+ 
+ kernel::auxiliary_device_table!(
+diff --git a/drivers/gpu/drm/nova/nova.rs b/drivers/gpu/drm/nova/nova.rs
+index 8893e58ee0db..1fd454c7e0df 100644
+--- a/drivers/gpu/drm/nova/nova.rs
++++ b/drivers/gpu/drm/nova/nova.rs
+@@ -10,7 +10,7 @@
+ 
+ kernel::module_auxiliary_driver! {
+     type: NovaDriver,
+-    name: "Nova",
++    name: "nova-drm",
+     authors: ["Danilo Krummrich"],
+     description: "Nova GPU driver",
+     license: "GPL v2",
+diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/nova_core.rs
+index 3a609f6937e4..80264094d44b 100644
+--- a/drivers/gpu/nova-core/nova_core.rs
++++ b/drivers/gpu/nova-core/nova_core.rs
+@@ -67,7 +67,7 @@ fn init(module: &'static kernel::ThisModule) -> impl PinInit<Self, Error> {
+ 
+ module! {
+     type: NovaCoreModule,
+-    name: "NovaCore",
++    name: "nova-core",
+     authors: ["Danilo Krummrich"],
+     description: "Nova Core GPU driver",
+     license: "GPL v2",
 -- 
 2.48.1
 
