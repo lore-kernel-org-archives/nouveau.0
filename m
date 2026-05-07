@@ -4,102 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98EB3CD343B
-	for <nouveau@archiver.kernel.org>; Wed,  6 May 2026 16:49:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F2A3CD3445
+	for <nouveau@archiver.kernel.org>; Thu,  7 May 2026 08:09:52 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6057510EE39;
-	Wed,  6 May 2026 16:49:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2682110EFDF;
+	Thu,  7 May 2026 08:09:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YS5tB5Tk";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="hv/yPiVn";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0D35345E00;
-	Wed,  6 May 2026 16:36:40 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 6014C45E06;
+	Thu,  7 May 2026 07:57:09 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1778085399;
- b=ppI999XwGo7INB5vq0hSrXWG2sxRVuY+K8ACHrQQlIYJqzqt4YjLdP88xapFqxPqOycwz
- EUXCFrscvQXxl66A0lnQlT7/V4pb/e1epGpZqO2ABiHoCru8wLBhj3VeS5ivpEahGYVOgpo
- ms+djWWoMvwjfKPxx60LrJg3GFVP5gz4aaPGQdPcJODMdYuzoB4bLKO9IlN3mQyKskDAyMB
- hL8ZHF74e+hzzGEn/tYqnSgIgn+XH9+NjuKVslvJFRjy6gHi9fvU8y8cjroAL1TqWJBtyuB
- rjIfzFSy8eoOiKRVo868wteC8aBMUF04R1FS7FmJdNArzjxbKcu8xniN3IJg==
+ s=20240201; t=1778140629;
+ b=sIXZVVguPOwqXTJ3RyJQtT7tyeYaA0QHLl23oDa7tgABbSUx/DzBZ7bu3z0JeppVPoAHC
+ fOICs9dTOpd49ciAfPOCVddk5BwpH7uGlXGmD3xLPMx1KqcE/zT5icCyfNNMwuy1SFXcKQo
+ GlYJK9U9tJ6G+eYuh7dvDsfyAO8S/w7gH3BKno1vFIFFz/4mpLPW3zM/Hqmm5aXmmWrljeY
+ WOpqM9q6dCtB02DGVPrOxJP2NNy82ofBSqxlo50cmYCROgctImiiCiTcBr1CfesZWWqS4mP
+ VSyiqC0dEFLwXNv7YRHpHBsTuyKF9fm1CtCdE7+xGVx4SBe49yd0Zu3kkasQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1778085399; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1778140629; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=zqAqFen5VqadetPQBTdp38DxpOmtB/64SzLHXItI+ak=;
- b=KTrrHnDXbxBbcx90f9yD+T7cJ9+szx34w7jkiaewLU+ih3T4R0bq3Y1FHnmb2E30k9doc
- fHVVvuE/Fn9DHafwkdI7e8ncBWMZOASsk80aYRz5jgNFj5IR0bokvbF7jJV+5doyov+Nl+J
- 42X0lW/sUD/hNlXviavLZGRddNgkXZRRL+lhQOIBcf3yTFbCHHV8Xc+849dUqLp/GtoanLu
- 7lucjS36MuFqZ2CWjkz4xAAgHQN7qXGs8nZuYjUFzY8s+f5tR+6Zi9S1xnuBZtAPBdQbwSI
- 9n+6bzlKGl3JtIGhNTrEB+GmlzbmjdAP+G1Ztt5pYPPNgkL0JGe+RnsMLZBQ==
+ bh=jE1HbCaoyzHVWim3Bx3dBln6qMQUyoLxDCS0Dd09bJE=;
+ b=adhLvkuB1mnKfspeWc6c4xb+HLF3pwmusueUHunm7HtMaVGbMpSMo0ihCuiDZF6njvlsS
+ yzDtluNzYBkgZy68YnCYpnGTVFsiOhYR4TI9im+uLWFnmBItJZGA1qwg66M9SXO3ybBB/ff
+ MjpKCnIhl/WY2dcftEv8ul2dF6EeILfMgcUwfNxEypC0hom4n9PXkukOBnLyR9FJgkAfrPR
+ EqpORpdoW+uCUjy8IAPmGl2Bx13b4ad202RCqFJ3nqGDs12VXXKzfBNEQL4k80qxR+fWL7s
+ P20b08sN18ZE4fMjwzFv7shq/cCcXm25Pi62/l1cfEQvziq/h9xjI1T36GAw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=collabora.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+  dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=collabora.com; arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A598045DFB
-	for <nouveau@lists.freedesktop.org>; Wed,  6 May 2026 16:36:37 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CD8DB10EE30;
-	Wed,  6 May 2026 16:49:17 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 92C5142A64;
-	Wed,  6 May 2026 16:49:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE787C2BCC7;
-	Wed,  6 May 2026 16:49:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778086157;
-	bh=zqAqFen5VqadetPQBTdp38DxpOmtB/64SzLHXItI+ak=;
-	h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
-	b=YS5tB5Tkh2OeWs0QCCxjecg+tlCPkNt91P+5g6NR3YiN08X5RvdixR+JnYttFHAlw
-	 npP5L0ntxJga6GYPC5nQfvl3WyjIwIPJ9oNQgkzFVluyizR9IXtP9gBuAMEiZ03w5a
-	 SgzPxajMkszVMSIYtzrBx69l7fTiOKZNLxiOiE8+BOEzWWljrPSBcOZeKlmzrwBpNw
-	 flmcafFI9OLYj43lmialq0z/jOjXSyT7soQV3n6yi4f92b5zDyJHC97UmDztzMTYW2
-	 urLM15FEikjyLVeNxbyjOzUWVGvE9cDqXB+jMfem8+Q0CKtO8ZxAurjA5Y1ho0cE0I
-	 0eMKu19VtWdJg==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 06 May 2026 18:49:13 +0200
-Message-Id: <DIBQXQ8J3N3H.10YAS0C3O6O2J@kernel.org>
-To: "Cheng-Yang Chou" <yphbchou0911@gmail.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v2 1/2] gpu: nova: rename drivers to use kebab-case
- convention
-References: <20260316120820.2117081-1-yphbchou0911@gmail.com>
- <20260316120820.2117081-2-yphbchou0911@gmail.com>
- <DH56PG8GLW4X.2QMHJ91J9D29N@kernel.org>
- <DIBP25O5HJ09.2SRQU8QS7VUDN@kernel.org>
- <20260507004701.G4851@cchengyang.duckdns.org>
-In-Reply-To: <20260507004701.G4851@cchengyang.duckdns.org>
-Message-ID-Hash: VZTWS4LBZ44OXMHDBFC42S4SG4BNWGYN
-X-Message-ID-Hash: VZTWS4LBZ44OXMHDBFC42S4SG4BNWGYN
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+	by kara.freedesktop.org (Postfix) with ESMTPS id C464945DBC
+	for <nouveau@lists.freedesktop.org>; Thu,  7 May 2026 07:57:06 +0000 (UTC)
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 26EF610EFD6;
+	Thu,  7 May 2026 08:09:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1778141386;
+	bh=QPfTt+pyBlnDFF1TwXqztL0WqBfkEElueSQtmdgH5To=;
+	h=From:To:Cc:Subject:Date:From;
+	b=hv/yPiVncdmnZ13tD75UzM5X5p5h068RXRGnc7vRhfPMdWvhSPk1aBAp2eyF/HRiP
+	 yNb6N73Q6LQOyaCwABxEosR4WN1+6MxrLWRr6b/SmjXjUCwvZGfMh0ul8TYzEWPUv0
+	 2NEwLuGoiBENgl+0Bf/Kp7+KNAr4TYEXT88lM6eRXhGoCx1sVmqd81K+xgXBcGb6JA
+	 14R9EU22sE8U0Dc3mSCBQxmMWJnj5AM/shI+7eZTeb4BXkAwTONZt7qZ5sdr//TleM
+	 2cS9ocWUftzEQsf7/kmWc3LtouOymQmsJK5skFLD1Jl6dvYY+R3Q6ZEv12kN/dKlhU
+	 hEutmloxNvc7w==
+Received: from laura.lan (unknown [100.64.0.215])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laura.nao)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D7CF917E04AE;
+	Thu,  7 May 2026 10:09:45 +0200 (CEST)
+From: Laura Nao <laura.nao@collabora.com>
+To: dakr@kernel.org,
+	aliceryhl@google.com,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	ojeda@kernel.org,
+	boqun@kernel.org,
+	gary@garyguo.net,
+	bjorn3_gh@protonmail.com,
+	lossin@kernel.org,
+	a.hindborg@kernel.org,
+	tmgross@umich.edu,
+	boris.brezillon@collabora.com
+Subject: [PATCH v3 0/1] DRM 'feature' support for DRM drivers
+Date: Thu,  7 May 2026 10:09:13 +0200
+Message-Id: <20260507080914.95478-1-laura.nao@collabora.com>
+X-Mailer: git-send-email 2.39.5
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: AEQC3ECT4RI7DFL62OZMXCSS3HS4DXDG
+X-Message-ID-Hash: AEQC3ECT4RI7DFL62OZMXCSS3HS4DXDG
+X-MailFrom: laura.nao@collabora.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Alice Ryhl <aliceryhl@google.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
- Gary Guo <gary@garyguo.net>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ching-Chun Huang <jserv@ccns.ncku.edu.tw>,
- Chia-Ping Tsai <chia7712@gmail.com>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ kernel@collabora.com, Laura Nao <laura.nao@collabora.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VZTWS4LBZ44OXMHDBFC42S4SG4BNWGYN/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AEQC3ECT4RI7DFL62OZMXCSS3HS4DXDG/>
 Archived-At: 
- <https://lore.freedesktop.org/DIBQXQ8J3N3H.10YAS0C3O6O2J@kernel.org/>
+ <https://lore.freedesktop.org/20260507080914.95478-1-laura.nao@collabora.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -109,7 +115,52 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed May 6, 2026 at 6:47 PM CEST, Cheng-Yang Chou wrote:
-> Sorry for totally missing this! Will send a v3 patch by this weekend.
+This is a follow up to [1], which introduces feature support for DRM
+drivers, as will soon be needed by Tyr and rvkms.
 
-No worries -- thanks!
+Based on feedback and discussion on the first iteration, render node
+support has been reworked.
+
+Support for render nodes was initially modeled as an unsafe trait, to
+require drivers to comply with any safety requirements tied to enabling
+a given feature. For DRIVER_RENDER specifically, the intent was to force
+implementors to ensure that any ioctl declared with DRM_RENDER_ALLOW
+does not call KMS/modesetting APIs or require DRM_MASTER.
+
+However, the C DRM core already enforces render node access control at
+the ioctl dispatch level: if a client opens a render node, any ioctl
+without the DRM_RENDER_ALLOW flag will fail. So the C DRM framework
+already ensures the rules are respected for core ioctls, and the
+unsafe trait doesn't add any meaningful protection beyond this.
+
+For these reasons and since enabling DRIVER_RENDER doesn't require any
+particular method to be implemented, there's no real need to model this
+as a trait, and a boolean flag is sufficient.
+
+This does not prevent other driver features to be modeled differently
+based on their requirements. Features that require additional ops (e.g.
+FEAT_MODESET) could instead be modeled as a trait, and some other
+constant type that can only be constructed when the relevant trait is
+implemented.
+
+Introducing the FEAT_RENDER bool flag here leaves room for
+implementing other features differently at a later stage.
+
+Changes since v2[2]:
+- Renamed RENDER_CAPABILITY const to FEAT_RENDER
+- Expanded documentation for FEAT_RENDER
+
+[1] v1: https://lore.kernel.org/rust-for-linux/20260119-drm-render-v1-0-8326e4d5cb44@collabora.com/
+[2] v2: https://lore.kernel.org/rust-for-linux/20260505092304.108262-1-laura.nao@collabora.com/
+
+Laura Nao (1):
+  rust: drm: add FEAT_RENDER flag for render node support
+
+ drivers/gpu/drm/tyr/driver.rs |  1 +
+ rust/kernel/drm/device.rs     | 12 +++++++++++-
+ rust/kernel/drm/driver.rs     | 12 ++++++++++++
+ 3 files changed, 24 insertions(+), 1 deletion(-)
+
+-- 
+2.39.5
+
