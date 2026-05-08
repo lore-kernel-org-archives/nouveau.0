@@ -4,111 +4,126 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 987DBCD3436
-	for <nouveau@archiver.kernel.org>; Fri,  8 May 2026 05:21:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6990CD3445
+	for <nouveau@archiver.kernel.org>; Fri,  8 May 2026 18:54:12 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6418010F333;
-	Fri,  8 May 2026 05:21:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7CA0F10F5D0;
+	Fri,  8 May 2026 18:54:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="m02Zt4Wz";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UNR6cmvL";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id A75E745E02;
-	Fri,  8 May 2026 05:08:33 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 7F5E545E21;
+	Fri,  8 May 2026 18:41:27 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1778216913;
- b=vMIY39bizmYGGBQSVb9yEfP7OGHfhiKqkx4McpiZ6mzK4T9zcR2jPovobbgWmdh9R3o4d
- PbcIePiUO4+skSBXeLYp0dINSUN8PsSH2EIHiUNGSXoEq5FCvZ0h9ebi2eh837ceocpnFVn
- uM/vex1dvalLTt2EfDhygjWyzZp0TcinO1xrsntc5Gp03jvDrZtD4ALi22s+KMKlPB4gWL3
- EMkAiwLLMInMjtiIoAWR5SLgMzx/fcFQUw/YmDFS8ciIqWR7e209OCJxJAP1R9M87oImkhz
- QnEVYLjdu1Z94AtsXYV6uh9CI+bMCEmz3XjS8Yk8PjPFmX/Bxdk+XmobD1IQ==
+ s=20240201; t=1778265687;
+ b=Q35/rCeZLFoxPmVlqdRIz686IpWW9zIhIZ/xdAFqHJDsLIgcPfmocSUCuMri2tBx+L4Sz
+ 3pRF9iBENj1jGsCE30J+uYQKqicfMYtgMF/lqGdZ7x3k3zIPUThkp1FScXsbfpgxZwlUALE
+ 5N++oFd6hh+Od7d0DsQx+Q8vBh/IbOVp+7xjxncQu24Z2+Igoh8i+h8cnh1GjeO2uodP3Q4
+ Lvd3UKr6M8eRxCyRWm9pWj/kVAyXUou9ZLvKcd/a3Zo+JNBbPx7Pyp/ybnb7aZFup4NKro6
+ mX7gBhKyBmKpsrJBAGFqWP4RQVqIfkMYYloNsrTkHyafL/NyVEzZv/tdjA6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1778216913; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1778265687; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=xCkIDeOyP4KM5t1o/lKb0daBHuqvkylgQbtw6G+k/MU=;
- b=BQIYiETjAgn1rMfQI+xQbz45IwrEnHLlHMkU+m5O92M2xQ4rM9eD7HnLagTPmIPT2lhbt
- QMqMxbIglNQFpEKSIwhWEntv4avoR2XO2/H/nbwnnGhlBdgHTZGVVHNLw09i2PKgRQnH2u/
- 8i1FzaeVb3hkYXmWWJs+LnNt0yf3/WzrOMbts3VcCyPl6MI46n6+cLIuHOiqqU7Mc4AJhtY
- yTlwnzTNFQ+1yvaL1nv55ytg6sXp0LCWYqKQbGdkw1Dc8ug3shC09McOB2ITeShMpfB3fzw
- VNyB1d8AoYpHV0oQkOm+odHDLVhwsqh8jUIUZRYyl8VIhA8mqRsX0L3SQ57A==
+ bh=0YhjsTWluBMG0VD0yeK46oKsqKSKzhoowDRLmjDkdWY=;
+ b=xxyTuqu5svuuDCwFxBpsrKPQKmypGteiuNfpqJXkGURswmacTY+mKTlHvfO120dnKjKlg
+ TVoFl5oPYITjN4sS+ifi/8QUkP/W2z4/UdMPRX7eCBtU6aiMH5jUcjsClHmeWd7uiG3JNrR
+ 8cZvrMv5ngj1pSfPBjSJcwx3Vsaqcy9p/dSsxfV/AOH/jkc2RxBfdf9uwtqTmMiUMOpoy2O
+ H/xZ1ZhIl0bvg6ABy/1X2mI/XIu6tMcUJmF0chto8gybgUzAr1XJgF0CG+qig3CHriq+Zfc
+ HGrHz0XKf9sstAytYkNTO5ahaYcH4YjyG6iQuHfwWeSN+TIFEpdBfyLU2Qvg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 96FBC44FF1
-	for <nouveau@lists.freedesktop.org>; Fri,  8 May 2026 05:08:31 +0000 (UTC)
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com
- [209.85.216.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 22E6710E2E1
-	for <nouveau@lists.freedesktop.org>; Fri,  8 May 2026 05:21:15 +0000 (UTC)
-Received: by mail-pj1-f44.google.com with SMTP id
- 98e67ed59e1d1-366330b6751so710262a91.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id 58BBD45E16
+	for <nouveau@lists.freedesktop.org>; Fri,  8 May 2026 18:41:24 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E266D10E348
+	for <nouveau@lists.freedesktop.org>; Fri,  8 May 2026 18:54:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1778266448;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0YhjsTWluBMG0VD0yeK46oKsqKSKzhoowDRLmjDkdWY=;
+	b=UNR6cmvLj6cQEwtkFSbPF9/jsVFEDk71mfEHHNPNJDgHJ2yK1SRtm9A9LSXE5Hlths8UnD
+	2kSofuwiQn29MzTsvqxrVUONh5C5aivwYx09JoJpI3F1bC3QJPRcHOu2gy/TpzVh0XiuEF
+	K5ctpI49UkENUkClYwwJhenlNwqAOss=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-258-pqNjEXl6N0q5T8GpOwJY2w-1; Fri, 08 May 2026 14:54:04 -0400
+X-MC-Unique: pqNjEXl6N0q5T8GpOwJY2w-1
+X-Mimecast-MFC-AGG-ID: pqNjEXl6N0q5T8GpOwJY2w_1778266443
+Received: by mail-qt1-f199.google.com with SMTP id
+ d75a77b69052e-50faf575af4so52941731cf.0
         for <nouveau@lists.freedesktop.org>;
- Thu, 07 May 2026 22:21:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778217674; x=1778822474;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xCkIDeOyP4KM5t1o/lKb0daBHuqvkylgQbtw6G+k/MU=;
-        b=m02Zt4WzgX+b5w1r5IkNROtGs9Z191uZOPTGfybLTRRRMeJ0TYVU7SMNpG8lejiwCd
-         a/MYvBmPK1zsepHsZGV+TbcR9WNWthrgZ8IF89YncqZKVwqbFeBOt17rfVdiaWdqew+Y
-         dbI8tYFQ+gao49J/gG8A+tw7CWbCn0cdqxVW1Xd6tlVtIEgdblF9j5s4242ZlZ5VDj6e
-         3GrC4AvjRHWJF3BqA75AkZ2mPOeny1G9/s30rxve0GLTzSahzCDGAQ+O/dY53J5cEgiB
-         qXNYjXamrPm25RtT8nHIdcpu4qoJH21o+tUkn1gXb0xtPLBywBp2SmuVB4d5ywOn0GRW
-         spiw==
+ Fri, 08 May 2026 11:54:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778217674; x=1778822474;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xCkIDeOyP4KM5t1o/lKb0daBHuqvkylgQbtw6G+k/MU=;
-        b=gBRkwnXC3AtdpDVfvNjDim9cg6Su3C42xYhAwoNsy1OuOXLqxLfd/w5DjHaoEf+9RE
-         ac5v0+MpMf5HoLwikv+lOq0OT8jBwYYER18iEVtkAC+s955ocFblGSvw3FrrARrWuXK6
-         8HEXEzFhLa3cNe7g604z6X3RAwz4det7bm5BkgPctTxV3kdbnBAdSzLobxWBzYFaZLr5
-         l4++0KVibtxyCuojaZDotx/l71P4rYK0UxPia7w69GkVVTYLQMmhmzRtyeElsoSBkQWK
-         aoVkOslAgib77LQvSWZy0SDZoa3XvKq8psU/CqvU5Xln9yE+0bgoyKmh6rNSG1bkZ9mU
-         92nA==
-X-Gm-Message-State: AOJu0YwvHbKS+zSDzllOVzhS0ec9Fc5O03QhHovOD0S+T9kv5lxFbbB/
-	45+Q/96DVQ89ELKsdK49Jh3HyUr+KaFanLO4XWWqsSiD05ALlCMX9ZCaNtOtCO9O
-X-Gm-Gg: Acq92OGu5beDR7w8wAYJaiMHKXB5pl5byN3qFCHL0/PAR0GP1xKdKPC0sfCOaIUgDXf
-	wHmqWrpjYiryUw+IRmyjEgmmqYaJWtJ/H4yVL89fJ4QIY+XSVuAvWpMzRmyoPe5xX5mONK8dGa8
-	n4+/Z4LKHq9vbZ6wg7aJtYD40YveP7rfq14hbJW2PSdJ283uQi5u839wX7zrH/k00WrXjNnAT7X
-	E2Il5OdjNG8rnVmw3gunKqzmbViExKrcnYoAaRWjcvPhVqVGdsGEBX4kT8HIiTEQp1eZGlOEbWy
-	C8853cW4oqxhSWwUJFGGI7hXU4QmCqemg40Of2s90kehRc5+dvd5pkoUDUe/XwS+c6uVv2nir/S
-	HiKaZrUj19XYSrp/ogEeLPRwPjAHTmmzdnqjahTTwF9rLayTHMEIVBMqvgNEQodySXB5UniY7so
-	wAK2YEgzXnWptsBd/VKLoaKBwGCIQlzMHvlIutx/BrOTrWe+KIs8/b0riUVbCIw7gEcUZpQoX4g
-	fyviv7n6VYK11GH7oVpgGGgOP5dJCicWEg=
-X-Received: by 2002:a17:90b:2248:b0:35f:b348:63e with SMTP id
- 98e67ed59e1d1-365abbe373cmr11193012a91.9.1778217674186;
-        Thu, 07 May 2026 22:21:14 -0700 (PDT)
-Received: from ryzen ([2601:644:8000:5b5d:7285:c2ff:fe45:8a32])
+        d=1e100.net; s=20251104; t=1778266443; x=1778871243;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nw5Hfi8KU2h83icRdaxsQgdWasba3ZiPDgOGZW2eFxA=;
+        b=i1ZQ2a/3nFSI0dxo8WcXvl5TkWaGrnQ/syos1qEVbnn6oBlaG08CgvemWpx/lXrlJC
+         49FPdKk2qAc8q6rxqgXCGMJ145r+WxgCStfd0JLL4bJa1Yi5s/c8PL9uuw3i4zIHkMWm
+         yeKjywwBoXNG4IKgA79IjrgnkFVj4iBN6Ku8v+62GwYTwUlAlMSTI5xu5PqhHJcCxJY4
+         U8AudhWOxDKFP34UYsrIAuk/t212fpIxYBS92DzfgjNL1lV5fq5pKJkqNvteD9dIGswY
+         yC6axpLqd6X5F9uF/U9p4+bNZqXrRoGRpewyoLS7X9lMX0iGChdEdvMvTrGPy9Eq8wb6
+         lzFA==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/MAgMJt1qMJ5t25Md/DR9FWVS2Rrf4H0a6im61NJ/c7M3FYi+gyjXUm7Xdux8e7qAiC12Xlqfd@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YycZluEo0pR49dQ7vFw7OiXCp2+YVVMMirEeGDJe5SAbu0D2Mti
+	F8xFLYROGL+SIJhI4xFxLXvmn9WNKy6QQjpe9Kbxk8PJ2q+iGnPElh+ET/ubVP00Lj1bR8wwZms
+	ZQFZ5jDh7XvMm7meZMrWv5Gep2TQHQiaL7jkfONBsHuB5Z/9t8y6W0cq2QCSst3J8s34=
+X-Gm-Gg: AeBDieuSz8/MKWPUvvTgQ+yGlVJhIe7WWOZygBPaJw8D+JTX+lin/VseK/CU6hzZNCW
+	aBeZX1htGwXSs4u5/CFeO+l+CoNZD2bYKheNZi/NQktL57rlkJqC3X6d0oUGXakI6btOMqxA9hO
+	8uAFREZNGJqZb9NXQIJa6l/qEdjqsYDj4f3GR60d6awrrV4jf3kjie7BSUvKg5nHUGEN7O1p/Ed
+	+IFP0giVm4Moj6YyfFgVBvu7TwgnO3T6CFvWKbnYAUnsduxQ1sRs6M/pwPT1xKhqUc0Lunt+CWH
+	TqyIPR8kCE/XLUvh4Mgh4s9Sj8fPHW2oeXIqB4hyXTJNrdYxhTCjAcMO836QddXSq3aK4OmAKQv
+	Kb0BF0N4dlXPOCR0a7gJMMZoqgG+G
+X-Received: by 2002:ac8:59d3:0:b0:509:23ee:b9a5 with SMTP id
+ d75a77b69052e-514619ddbddmr188660071cf.5.1778266443458;
+        Fri, 08 May 2026 11:54:03 -0700 (PDT)
+X-Received: by 2002:ac8:59d3:0:b0:509:23ee:b9a5 with SMTP id
+ d75a77b69052e-514619ddbddmr188659591cf.5.1778266442983;
+        Fri, 08 May 2026 11:54:02 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-3664db05828sm714910a91.12.2026.05.07.22.21.13
+ d75a77b69052e-5148e7c0289sm27365411cf.18.2026.05.08.11.54.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 May 2026 22:21:13 -0700 (PDT)
-From: Rosen Penev <rosenp@gmail.com>
-To: nouveau@lists.freedesktop.org
-Subject: [PATCH] drm/nouveau/gsp: Use kzalloc_flex() for r535 display funcs
-Date: Thu,  7 May 2026 22:20:56 -0700
-Message-ID: <20260508052056.1744665-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.54.0
+        Fri, 08 May 2026 11:54:02 -0700 (PDT)
+Message-ID: <e76465b097afa44f472294b0fdf775b7abd7da95.camel@redhat.com>
+Subject: Re: [PATCH] drm/nouveau/gsp: Use kzalloc_flex() for r535 display
+ funcs
+From: lyude@redhat.com
+To: Rosen Penev <rosenp@gmail.com>, nouveau@lists.freedesktop.org
+Date: Fri, 08 May 2026 14:54:01 -0400
+In-Reply-To: <20260508052056.1744665-1-rosenp@gmail.com>
+References: <20260508052056.1744665-1-rosenp@gmail.com>
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: CZNZ7YBLWWYUSOUVHGMNYQDZSGB4ZZZ4
-X-Message-ID-Hash: CZNZ7YBLWWYUSOUVHGMNYQDZSGB4ZZZ4
-X-MailFrom: rosenp@gmail.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: GnovDusge6DnlVPRipTP-UzHm_DzHsmCYNUuD5YZfxs_1778266443
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: B4LLL7EEQBMIGJUCSYRUHMCRXZUWKMMQ
+X-Message-ID-Hash: B4LLL7EEQBMIGJUCSYRUHMCRXZUWKMMQ
+X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
@@ -122,9 +137,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CZNZ7YBLWWYUSOUVHGMNYQDZSGB4ZZZ4/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/B4LLL7EEQBMIGJUCSYRUHMCRXZUWKMMQ/>
 Archived-At: 
- <https://lore.freedesktop.org/20260508052056.1744665-1-rosenp@gmail.com/>
+ <https://lore.freedesktop.org/e76465b097afa44f472294b0fdf775b7abd7da95.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -134,33 +149,47 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-struct nvkm_disp_func ends with the user flexible array member. Allocate the
-r535 display function table with kzalloc_flex() instead of open-coding the
-size calculation with sizeof().
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-This makes the allocation describe the object being allocated directly and
-keeps the fixed six user entries unchanged.
+There's one change to make below, but I will just handle it locally
+before pushing:
 
-Assisted-by: Codex:GPT-5.5
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On Thu, 2026-05-07 at 22:20 -0700, Rosen Penev wrote:
+> struct nvkm_disp_func ends with the user flexible array member.
+> Allocate the
+> r535 display function table with kzalloc_flex() instead of open-
+> coding the
+> size calculation with sizeof().
+>=20
+> This makes the allocation describe the object being allocated
+> directly and
+> keeps the fixed six user entries unchanged.
+>=20
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-index 6e63df816d85..1155f079b0c3 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-@@ -1734,7 +1734,8 @@ r535_disp_new(const struct nvkm_disp_func *hw, struct nvkm_device *device,
- 	struct nvkm_disp_func *rm;
- 	int ret;
- 
--	if (!(rm = kzalloc(sizeof(*rm) + 6 * sizeof(rm->user[0]), GFP_KERNEL)))
-+	rm = kzalloc_flex(*rm, user, 6);
-+	if (!rm)
- 		return -ENOMEM;
- 
- 	rm->dtor = r535_disp_dtor;
--- 
-2.54.0
+I assume this was the AI talking, but this sentence seems like a
+nothing-burger. Will just drop it from the commit.
+
+> Assisted-by: Codex:GPT-5.5
+> Signed-off-by: Rosen Penev <rosenp@gmail.com>
+> ---
+> =C2=A0drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c | 3 ++-
+> =C2=A01 file changed, 2 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> index 6e63df816d85..1155f079b0c3 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> @@ -1734,7 +1734,8 @@ r535_disp_new(const struct nvkm_disp_func *hw,
+> struct nvkm_device *device,
+> =C2=A0=09struct nvkm_disp_func *rm;
+> =C2=A0=09int ret;
+> =C2=A0
+> -=09if (!(rm =3D kzalloc(sizeof(*rm) + 6 * sizeof(rm->user[0]),
+> GFP_KERNEL)))
+> +=09rm =3D kzalloc_flex(*rm, user, 6);
+> +=09if (!rm)
+> =C2=A0=09=09return -ENOMEM;
+> =C2=A0
+> =C2=A0=09rm->dtor =3D r535_disp_dtor;
 
