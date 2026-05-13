@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E365CD37AC
-	for <nouveau@archiver.kernel.org>; Wed, 13 May 2026 17:50:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11FDBCD4F3D
+	for <nouveau@archiver.kernel.org>; Wed, 13 May 2026 17:50:22 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C99FB10EFB2;
-	Wed, 13 May 2026 17:50:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1C8B610EFD2;
+	Wed, 13 May 2026 17:50:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WGdjWHHC";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qd5QElXj";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C78F541C76;
-	Wed, 13 May 2026 17:37:24 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 271A941C75;
+	Wed, 13 May 2026 17:37:25 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
  s=20240201; t=1778693844;
- b=AQAJ4paRSNf+rMYRx7bBuw3KkX+GeauYzYArqQT8t0mMLwFGAMcs2f8vDdDy1pghdwTdC
- VWakszXjDdeX6UNnKQs6Mu2GBMtahRyoXmBJDb63RkbDV9SrFjEjtnekn3z1MKsUHK+hGiy
- fRpigO2wpDRNEE2pgDpc+rob95hTwiSek13cvXGDDrpvsFlo2qaqS6ypcl6wHp1/Tfu6fsj
- 0vYOfC44tja9z/PDItLvDyMiBD+GTl3/iaXdt06gDeJyODdCPg06vZnIpuXSs8YTYt/RZZM
- AxH9xilqZS+6CeTiBpa+o5uR+pXmJwx7P8mRVKsRZOkym3FcsQMNG1aiFO5w==
+ b=ZQbRXOZhRA6SDk3ZQkf+f/SN0v1deYPaE4+anoQLS071ybhxfzqd4xpqEwduf6WOJ5f5O
+ lmUmqwJ3rusczScnd4S9Q0IHr+KVdMSFWviFOWjxt6FOOXCCUlBLgUwgwp2HDOiHUKptISt
+ fK87ylILk03lZPk7TfIrmLZQfRaLSvD4UrG6IFdtFCLtp9UrZqk4MhwL4PacjibXH6rpD1/
+ oWLvnmuFD54ulRoU23IPDhHadcO1zO9lfljKrBRAgw1H/w+keAMm8SRGvd4utQqYTE/FWCV
+ FKNFqBdTsM73xEH8TL4OGkVsUSlzQQXhCXymg0Un52Sd0e047mFtBG/PaJwA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  d=lists.freedesktop.org; s=20240201; t=1778693844; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
@@ -30,12 +30,12 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=qH/V54VhhqPOZledFsLbM+R0VpSJHUS2eyEFY9ZqlwU=;
- b=0NcyxHGR9w6GAvR7iej7ibrWUmlddjK5w6eALQMSlwCkvj3aEJzwSZ1M5d0F4WWA6FhkB
- XCCib/GHNE/5Aw8yW1XYrvacjkisE34pM1ToNHaxld+IHYi6RYD5pGCZxL3J9rfm+aSSQst
- 1lfFauLKQRXlTEVEs1UvvBIlzQQiOR5QjakI/Bh9P0w1BhfCyQhyqHz17Q8hmU7ULQJYZ3c
- XwApXJ6g7XdD1ZKx/0jj/CekABhJATRTlKssEm5s0G8uJ3yXMGbz1+/lWLU0gQ/V3Qh6GrM
- ZvKmbGLs1u38voQpJH0IRhcE8hpEKz/8oQaIRCxgl2lL77lSPi95Cw1C3Y1Q==
+ bh=C3sIh5375gOTbKLogW0nu2FPAiE6cFaR5WSblCu7vM0=;
+ b=LY7S52WnYlDaWLUhJ3TVH6ruCoLRzdq+Is+5GFGbkT1IQx/dF6KfUcK8QCGsv+I+MPehI
+ mMiFDcTA/gKFphffYuesg8wwv1qmJDm8VTAvJ/Sjyw24dp4e7n4Hr2OSl2SdYNHYT3TsgHW
+ zM4fbn46vS9pthWsi9j/c35GcYCEa/QeNNyAgECIaZ8yS+rFX1MN/JYnuNJ0KDFHqWvvsby
+ G3cWk7beByH3yzYkq+R9a7t9bUvP8Ue7nYEAHis+Pq7R35eLo9b3swBWci6ZvTskPMpGzk6
+ GB/HEMhAYNT9sqv0n5orDzJZPD+VJqWY3LEErAz3a2GVqrw9nFGO+/K5sYtQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,70 +46,74 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id F22AA40564
-	for <nouveau@lists.freedesktop.org>; Wed, 13 May 2026 17:37:21 +0000 (UTC)
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BE62510EFC0
-	for <nouveau@lists.freedesktop.org>; Wed, 13 May 2026 17:50:17 +0000 (UTC)
-Received: by mail-wr1-f50.google.com with SMTP id
- ffacd0b85a97d-44ad87a57f6so752057f8f.2
+	by kara.freedesktop.org (Postfix) with ESMTPS id CF7AB40564
+	for <nouveau@lists.freedesktop.org>; Wed, 13 May 2026 17:37:22 +0000 (UTC)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A0E5A10EFD2
+	for <nouveau@lists.freedesktop.org>; Wed, 13 May 2026 17:50:18 +0000 (UTC)
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-48e72b02bf6so5076515e9.3
         for <nouveau@lists.freedesktop.org>;
- Wed, 13 May 2026 10:50:17 -0700 (PDT)
+ Wed, 13 May 2026 10:50:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778694616; x=1779299416;
+        d=gmail.com; s=20251104; t=1778694617; x=1779299417;
  darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qH/V54VhhqPOZledFsLbM+R0VpSJHUS2eyEFY9ZqlwU=;
-        b=WGdjWHHCH+KjBCGLaqxf35P01XmiCQNQI/DCKZQBIEjkQGMR4xKlUarPxsiw87DxaR
-         czcL2lz6a5lOl275qPcNwilpH9M7HA3+BLdfGUNi4XyFVzNQs76Myd+wwh6AP7EDVQtV
-         2Q5ixFpTLlJsRVTzthKzlBcQ7My9VGVuHfGTS9DOx8DGFmHKemswSkhNSm/rrx1G/Q/6
-         MXw5/+2PjhIh318IoIiK81too9Oe2wYJfmTouVTylKqWDTb6IK3/RZBG+0PxWm4HSpHZ
-         snSxxkqjh7E6USD6SEWKKI8c4HnEBBbbMhMVJydCrPXCE3+mQqnAdvyN3l9PKyIqX3Jb
-         N6bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778694616; x=1779299416;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qH/V54VhhqPOZledFsLbM+R0VpSJHUS2eyEFY9ZqlwU=;
-        b=WInUIwuR0AlV7AWyi33oJlwE90+s2o7bO25tTxdvw5UM9IJ/qJozvDmNHNJw3mOgDa
-         bQtfJBahIUx5W+3o1EBdunS//wDted1p66lp/m0GfzWbJCmQhs1E37Hp9OLParl4gIiQ
-         6ysN4Md6fi3UP5xOpppwrHp0k5P4RlJoS4rijMzS90FTLxnxnQbhYkpWgwcXa7Uo8+Kv
-         gHIp7IV4WWPVC5WWe9dkp1JvSv/dTOQS3h8NdjCfAfR2VFRjnE/X89ttHlaksP97H/X2
-         BgUxs9oH0LXjycDdw2HjtqQp8FKUiarxhmVa566CAlLbMp7zRk9UOPd8AVVThoE3MZmg
-         Pj7w==
-X-Gm-Message-State: AOJu0YxyCoYzMuJAGk+3UbE8ONegbxSMVVO/lD5MoSoK0PLWy9DodRXQ
-	edx3sCeDn1eDmak/rc0f/w77tlcqYt7+m72w1ZqPNS2GU+deZK/bVcKrJKYVMv1LNX4=
-X-Gm-Gg: Acq92OFa/kNxckHIe+qnCio6PpdlTtgDdr2Qa6x5QrN81t6kmLActdQV+303lij2I7f
-	3YS3Vaocexv/TCXL5xWoQMqY8cxLwjTPZ9M7ChZtVahlMBYPNPgmvHzHK3lf2kO9qWz8WhKGzZi
-	s6DrLVvvwxzmPTMr0IdK5/pG8AXSEuyrDeY8YbBL6sdlUg3oZ7LMbd4bFsg9FcAsFjVQL8XSGAd
-	SDbCJ41yOAeyFOf5Knccaipz4QdtTPi/+o6ezSvnKf2bIas4JKDFfmZL800n2zJj/Vh/0AZLc9J
-	4cZOVneiPmobrvvO6g5pMdDBdtKuDDDu8GZxruTtyuEHmkK0t3HWDognVtpSI1xsCWo69airCqK
-	d9J9iny3a3Qg8X+wDPMr1mYrZzbrP9F30JOlRLzV868KjGYf852gXTuzdld7VjQkR7Efmr1n6of
-	rt3JJ2TQ68ccxAWbQAO2J57yu9XctlKa19ir/iKrOjUqGPRBC05oolUXyqovLMFuv0yG5D0FxNS
-	Rya9+Ww3FlxnxWe+Oa8mHHqBQ==
-X-Received: by 2002:a05:6000:29d1:b0:456:3af2:852e with SMTP id
- ffacd0b85a97d-45c58b6782cmr2147922f8f.1.1778694616038;
+        bh=C3sIh5375gOTbKLogW0nu2FPAiE6cFaR5WSblCu7vM0=;
+        b=qd5QElXjDhUxP7b7ClvHWAkc6Oq1NZYaerFp/qhu9yEbhX6ilH/BVGpJXJ8O+76XPo
+         XojbzmpkKN3L3xik8csu7ceDQzHMz7AiDVhqocwVSu3JIUk9Ihf0SeAx9LT6a+XeJUPF
+         TFKAE3gJQ4fKS0qtTfot3OOxH0xIHPGauWzhOPfVRr4nBfbV3wTtzTEkdxLq4EBRGL0n
+         R2+9F2eJeKHiafBrTK6vuk1+NxdWS5fpTL1dLxeVnHQKUgaLdHoY+XJpjM1oOteEBRkJ
+         UEJqKxYgpG3xT5uQVgHn1mY+2rXGNPyb2YSORvnI81GiEtzsCIGNvtZXyXrS4/VXLOYj
+         CUcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778694617; x=1779299417;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=C3sIh5375gOTbKLogW0nu2FPAiE6cFaR5WSblCu7vM0=;
+        b=UD4DmWAcPnqPJkQczPCB4rhjHtHFBDXRP3OQ6OqmpytipEwIDPODZtW/tZpVkD4Q1+
+         mKeJyHFddWYyS4sHE1cPMQruPRf9gcV1SS0tj5GUE3Pw2mfvMPPsBclOne3MXH22jTfs
+         vcLxkiQqQONdGUrO+0hfO3zZJoOHEtfxA9Kdp6QEaYDf9Q1Wquylyx5RCFij4kG0HNB6
+         xwOcOn2Ai2S6+4GkaQpmXSRjRTCO8ANsmottYOcptmWrUw8IEmd9gSRN/AXZ0aGgtGLW
+         CDuyZkifjfMq+Onz7gcibWgYdSu5Ioza1/ziYT2knTqk2/8YTmoVRTwTPIJnFcxm8tXG
+         RpGw==
+X-Gm-Message-State: AOJu0YybNElEpwiRXVXRNjnxcDst2Of+lARWAjZ54a5VCeFwlHHsVuEN
+	1li89bqRNIzG5h9mie45x4+kgzaXAE2mZRHxc9mym/kptE+vYlUL652GbIy/q1Tb7h4=
+X-Gm-Gg: Acq92OHiofHIdhoXVzD8qLn0z1p/OWoGXMEFwDweIcJkTsPdaQ5ehVMJ1Tcw9ny5C+Y
+	B3graofNmmUr+mviGq6xP7sG+mQhjWZppwgHS3arRjM9XDaxaqBy0YOelkV36ohhG+x39jIztFK
+	Y7FXJxwZJv7PWo7Wym1yA0O9+ZNKJXyPpHiIbFwbiAWkfKpwGy5vh1Xfw4eQZHEqI05OARFccEQ
+	Cd5XnYlOPosO3pWRKaQBElSIw0IxVx+hyDai0Q4zI7F2WJYzyEPBpfKp6Xr/SuF83HOdHv+Ts60
+	KsegOQjWJH5qiWoMsLTPPWVkZVxFbylecewOaCANYgB+iJkVkFguns44RKOuRwAYFSnCyozyenJ
+	bClEmRXb0ItLk9oyYQAN/M2X+VfC4Mf7XZcCNsda0+2Mad+w5KqVAR0hzh6OAGSGeP4QZdX/AZc
+	17l5UeMe5qeJrtCTOiLrIaLV8p66C+ao5FL4HxzWS2VgryZdnn5kpGiLiU63N/i/mEt2WbSjg1X
+	MknIf8Obgy3bFk0X8T+ZpMtTw==
+X-Received: by 2002:a05:600c:19ce:b0:48a:58e1:6cf7 with SMTP id
+ 5b1f17b1804b1-48fc9a362f9mr27622065e9.4.1778694616986;
         Wed, 13 May 2026 10:50:16 -0700 (PDT)
 Received: from Neo.taile6b6ba.ts.net
  (ip-109-193-028-214.um39.pools.vodafone-ip.de. [109.193.28.214])
         by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45da0fe13a7sm486730f8f.29.2026.05.13.10.50.15
+ ffacd0b85a97d-45da0fe13a7sm486730f8f.29.2026.05.13.10.50.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 May 2026 10:50:15 -0700 (PDT)
+        Wed, 13 May 2026 10:50:16 -0700 (PDT)
 From: Marek Czernohous <mczernohous@gmail.com>
 X-Google-Original-From: Marek Czernohous <marek@czernohous.de>
 To: nouveau@lists.freedesktop.org
-Subject: [PATCH 0/2] drm/nouveau: nv04 FIFO cleanup + recovery for Tesla
-Date: Wed, 13 May 2026 19:50:11 +0200
-Message-ID: <20260513175014.96599-1-marek@czernohous.de>
+Subject: [PATCH 1/2] drm/nouveau/fifo/nv04: filter benign CACHE_ERROR from
+ Mesa NV50 bind probe
+Date: Wed, 13 May 2026 19:50:12 +0200
+Message-ID: <20260513175014.96599-2-marek@czernohous.de>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260513175014.96599-1-marek@czernohous.de>
+References: <20260513175014.96599-1-marek@czernohous.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 7DOKD7J7OLKZ73ITE3SWWYIX5JSJ2L2Z
-X-Message-ID-Hash: 7DOKD7J7OLKZ73ITE3SWWYIX5JSJ2L2Z
+Message-ID-Hash: R57LGCMMV6NNWZMBVXHPJ3VSWCWHLV2W
+X-Message-ID-Hash: R57LGCMMV6NNWZMBVXHPJ3VSWCWHLV2W
 X-MailFrom: mczernohous@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -120,9 +124,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7DOKD7J7OLKZ73ITE3SWWYIX5JSJ2L2Z/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/R57LGCMMV6NNWZMBVXHPJ3VSWCWHLV2W/>
 Archived-At: 
- <https://lore.freedesktop.org/20260513175014.96599-1-marek@czernohous.de/>
+ <https://lore.freedesktop.org/20260513175014.96599-2-marek@czernohous.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -132,96 +136,59 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hi all,
+The Mesa userspace driver issues a method-0x0060 / data-0xbeef02xx
+binding probe on Tesla GPUs that ends up triggering CACHE_ERROR in the
+PFIFO interrupt handler. The probe is harmless and recovers cleanly,
+but it floods dmesg at error level on every X/Wayland session start.
 
-Two-patch series for the legacy nv04_fifo path covering Tesla
-(MCP77/MCP79 and G80-GT218). Daily-driven on the reference NVAC
-hardware (Apple Mac mini Late 2009, GeForce 9400M) since 2026-05-05.
+Filter that specific pattern down to debug level so dmesg stays clean
+while real CACHE_ERROR conditions are still logged at error level.
 
-Patch 1 demotes a benign CACHE_ERROR that fires once per Mesa session
-start on Tesla GPUs. The Mesa NV50 userspace driver issues a method-
-0x0060 / data-0xbeef02xx binding probe that recovers cleanly via
-nv04_fifo_swmthd(), but currently logs at error level on every X or
-Wayland session, dominating dmesg noise on this hardware class. This
-clears the channel for patch 2 to identify real faults from noise.
+Tested on Apple Mac Mini (MCP79, NVAC 0xac080b1) and a G94: dmesg has
+no CACHE_ERROR spam during normal operation, the previously visible
+beef02xx pattern now only appears at debug level.
 
-Patch 2 adds a two-tier fault-recovery path for Tesla FIFO faults:
+Signed-off-by: Marek Czernohous <marek@czernohous.de>
+---
+ .../gpu/drm/nouveau/nvkm/engine/fifo/nv04.c   | 25 ++++++++++++++-----
+ 1 file changed, 19 insertions(+), 6 deletions(-)
 
-  Tier 1 (per fault). Look up the channel via nvkm_chan_get_chid,
-  call nvkm_chan_error(chan, true), fire tracepoint
-  nouveau:fifo_chan_killed. Idempotent through the existing
-  chan->errored short-circuit.
-
-  Tier 2 (sliding window). When the per-fifo fault count in a
-  configurable window reaches the threshold, schedule a worker that
-  calls drm_dev_wedged_event(drm, DRM_WEDGE_RECOVERY_REBIND, NULL)
-  and fires tracepoint nouveau:fifo_dev_wedged. Worker context is
-  needed because kobject_uevent_env may sleep.
-
-Motivation: Fermi+ gets channel-kill and device-wedge automatically
-through nvkm_runl_rc; Tesla was feature-frozen before the DRM wedge
-uAPI existed. Three observable consequences on the reference
-hardware:
-
-  1. Silent state corruption (channel produces wrong output after a
-     fault, no notice to userspace).
-  2. Observability gap (no counters, tracepoints, or wedge event,
-     only dmesg).
-  3. Repeated-fault loop (the log-and-reset cycle repeats forever on
-     a persistently faulting channel instead of killing it).
-
-Validation. A debugfs fault-injector (kept on a separate
-DO-NOT-MERGE branch, not part of this submission) was used to drive
-both Tier-1 and Tier-2 paths through their full state space. Phases
-1-5 of the test plan were exercised that way. Phase 6 (no manual
-injection, real workload soak) ran 2026-05-05 through 2026-05-13:
-one organic DRM_WEDGE_RECOVERY_REBIND event was captured on
-2026-05-05 09:08; the rest of the soak was fault-free.
-
-Companion userland tool nouveau-pstate-daemon v0.2.0 [1] subscribes
-to the WEDGED=rebind uevent in log-only mode and was used to confirm
-end-to-end propagation through udev.
-
-Module parameters:
-
-  nouveau.fifo_wedge_count     (uint, 0..32, default 10)
-  nouveau.fifo_wedge_window_ms (uint, 100..600000, default 60000)
-
-Setting fifo_wedge_count=0 disables Tier-2 entirely while keeping
-Tier-1 channel-kill active.
-
-A note on MAINTAINERS. The series adds a new file
-drivers/gpu/drm/nouveau/nvkm/engine/fifo/recover.c. The change is
-covered by the existing nouveau MAINTAINERS section
-(drivers/gpu/drm/nouveau/), so no MAINTAINERS update is included.
-checkpatch.pl flags this as a hint; it is not load-bearing.
-
-This is a follow-up to the April 9 NVAC stability series [2], which
-is still awaiting review. The two patches here are independent of
-that series and apply against current Linus master.
-
-[1] https://github.com/hibbes/nouveau-pstate-daemon (v0.2.0)
-[2] https://lore.kernel.org/dri-devel/20260409-nouveau-nvac-stability-series
-
-Marek Czernohous (2):
-  drm/nouveau/fifo/nv04: filter benign CACHE_ERROR from Mesa NV50 bind
-    probe
-  drm/nouveau/fifo: add recovery path for Tesla cache_error/dma_pusher
-
- .../drm/nouveau/include/nvkm/engine/fifo.h    |  12 ++
- .../include/trace/events/nouveau_fifo.h       |  58 +++++++++
- drivers/gpu/drm/nouveau/nouveau_drm.c         |  29 +++++
- .../gpu/drm/nouveau/nvkm/engine/fifo/Kbuild   |   1 +
- .../gpu/drm/nouveau/nvkm/engine/fifo/base.c   |   3 +
- .../gpu/drm/nouveau/nvkm/engine/fifo/nv04.c   |  29 ++++-
- .../gpu/drm/nouveau/nvkm/engine/fifo/priv.h   |  10 ++
- .../drm/nouveau/nvkm/engine/fifo/recover.c    | 121 ++++++++++++++++++
- 8 files changed, 257 insertions(+), 6 deletions(-)
- create mode 100644 drivers/gpu/drm/nouveau/include/trace/events/nouveau_fifo.h
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/fifo/recover.c
-
-
-base-commit: 1f63dd8ca0dc05a8272bb8155f643c691d29bb11
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv04.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv04.c
+index c4b8e567d86f..fa13cd55b593 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv04.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv04.c
+@@ -327,12 +327,25 @@ nv04_fifo_intr_cache_error(struct nvkm_fifo *fifo, u32 chid, u32 get)
+ 
+ 	if (!(pull0 & 0x00000100) ||
+ 	    !nv04_fifo_swmthd(device, chid, mthd, data)) {
+-		chan = nvkm_chan_get_chid(&fifo->engine, chid, &flags);
+-		nvkm_error(subdev, "CACHE_ERROR - "
+-			   "ch %d [%s] subc %d mthd %04x data %08x\n",
+-			   chid, chan ? chan->name : "unknown",
+-			   (mthd >> 13) & 7, mthd & 0x1ffc, data);
+-		nvkm_chan_put(&chan, flags);
++		/*
++		 * Filter benign Mesa NV50 bind probe: mthd 0x0060 with
++		 * data 0xbeef02xx is a harmless userspace probe on Tesla
++		 * GPUs and does not indicate an actual error condition.
++		 * Demote to debug to keep dmesg clean while still catching
++		 * real CACHE_ERROR events.
++		 */
++		if ((mthd & 0x1ffc) == 0x0060 &&
++		    (data & 0xffffff00) == 0xbeef0200) {
++			nvkm_debug(subdev, "CACHE_ERROR - ch %d subc %d mthd %04x data %08x (benign, skipped)\n",
++				   chid, (mthd >> 13) & 7, mthd & 0x1ffc, data);
++		} else {
++			chan = nvkm_chan_get_chid(&fifo->engine, chid, &flags);
++			nvkm_error(subdev, "CACHE_ERROR - "
++				   "ch %d [%s] subc %d mthd %04x data %08x\n",
++				   chid, chan ? chan->name : "unknown",
++				   (mthd >> 13) & 7, mthd & 0x1ffc, data);
++			nvkm_chan_put(&chan, flags);
++		}
+ 	}
+ 
+ 	nvkm_wr32(device, NV04_PFIFO_CACHE1_DMA_PUSH, 0);
 -- 
 2.53.0
 
