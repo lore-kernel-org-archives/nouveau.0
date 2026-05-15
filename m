@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF872CD4F25
-	for <nouveau@archiver.kernel.org>; Fri, 15 May 2026 16:56:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D5E3CD4F25
+	for <nouveau@archiver.kernel.org>; Fri, 15 May 2026 16:58:07 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id F102510E443;
-	Fri, 15 May 2026 16:56:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4D53B10F59D;
+	Fri, 15 May 2026 16:58:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Xa3pZcmi";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HnufnKRZ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9B632428F6;
-	Fri, 15 May 2026 16:43:15 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 0632742907;
+	Fri, 15 May 2026 16:45:07 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1778863395;
- b=ZFj8TdvJ0eC51Dme/i3RfuD7eCJ67yfP/7RfFfzXfWVPh3bXtM+S92fMejWTAUHOParM7
- QXm+lWLN8mYeKpkXvtuBKNEb9cgEKtYEt19MbcfXafpMN+i6RQ+dEHnuXKj7XndZr6w0MKu
- SuUU2zLe0WylvXSCqdlHqmz5PwKUlLCUrLUOBePVHFLd1VdIkd+1JvRh3yNexQttpHUqQ8e
- hArTfWKwLEIj7flhqJyv9vyGPlLixyvqqFf26ufRjNX8XwJ3LiZZrer/x//+2sDA4Q4VGZ0
- FTqFoifv4dH73QHAkgbxDz5XubxpQqdyP0fMgvV1umVtb8fZ7vvDlsYdz2Fw==
+ s=20240201; t=1778863506;
+ b=UF02nS3Fci4sqVZZdyKHi3eVirLb2ZvC0USNIDkO+N4S5dHnFplYflPddOfhoW66rOsq6
+ I2KGoH1p869QPgzjFoIoh414e3oI/K3QR0V2JYpLLgZxk1Ia+bBY3tA7jdGJUOpi/jpqRnV
+ QLJ9Xriimb2231z7EhYtLW+xA3Hs9SrrTcDe1ePdqHD2sq6AgHE/YgXkOuTQGKygXQCDSnw
+ g0SpINLv5YymIeNHGHOccYORyQWveqAffi73O7Kdycq1964HBcwDMFRVraxdEc9KbzNKY/4
+ jCvPDuIbLdm5fX80OXC2Xfnb680RK7emXn/6NAJqDhws0KOXKWLhuNBatskg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1778863395; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1778863506; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=qjqiLHL/KfX9muA3nNzVtU6V1gWqpRgkJWytVAkJPic=;
- b=oGYox/vyhCWm9VvzlZv1Tox/t6by75vo9oPRiKj2RjktOEekWD8KpF3xCduQs3P11G1yY
- cB9RemWq8l5jHH33DJEbhIj5GVA8Ug6DFbe0cEkutU58gzgmUDQPyc97tWTFbK2igmbBOsi
- 27Owvfy/Eyj24fqkR/INF/nOmFXLtNXvB7ezTM0o+8jWmlfgjoHQ/lq0jAj3PNEEO6H/1w9
- SItOL0P6lWUfe2IKA9xawAybuja8+K7deT9N7jprpaEv7KrMoFLLTuyVPdCgtNTVTGX2ixv
- T7AadytcEHlqD5jPnm3dZ4spA8+TbcMricq6w9rS45OEdGl1ItGUxPl9UEMg==
+ bh=Mbd4wRglgdnaLuNMtJT9Geg3ba9VR0Ba02KcUQZ5FLk=;
+ b=ht6TkXXQkDChKeg5Rnmg9fn9RET39a1DWkkIrDGE9IGVCNFfNXHduM31Hhss4GJTOcWv4
+ qEuDlAvzGZj9lSBAKcB6sII4u5vXlSvoaGZZA62aDpAiRVf6WgLsio7GKD3Nc2ZEPF0K3T6
+ dBsVSHuoTPQAtgAaQUxmmRrz7rU94F5txo44NKloPIbti/UnXmhvBfquBzLs1bKro6R78Ow
+ aZDwPofALbkrdv0kkXekYXzkH5YdP3nTnHFF13LkeiDSRpPxkZwfGxzrlKEQD63ATPOOxq5
+ vH7uozVv4+XfWFB4PhQJPsh5h109x+GEM1/l4hs8M8M4uMbBJwDXldLVdzvA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,40 +46,41 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3FB55414DF
-	for <nouveau@lists.freedesktop.org>; Fri, 15 May 2026 16:43:12 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5F3F610E351;
-	Fri, 15 May 2026 16:56:12 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 489EB41A02
+	for <nouveau@lists.freedesktop.org>; Fri, 15 May 2026 16:45:04 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5872D10E3AA;
+	Fri, 15 May 2026 16:58:04 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 252C842E3C;
-	Fri, 15 May 2026 16:56:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 979D9C2BCB0;
-	Fri, 15 May 2026 16:56:03 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 8C5DF600FC;
+	Fri, 15 May 2026 16:58:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EE8AC2BCB3;
+	Fri, 15 May 2026 16:57:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778864172;
-	bh=SedbGXwK4aJOlbTTWEI5B8hx7KCD74sgdfit/X5/dJM=;
+	s=k20201202; t=1778864283;
+	bh=2z5dLIWyL/gV1rAo31oirSt/RVWW0XQ4DifQczJePGI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xa3pZcmiApyLXNIWHocH1qtmaMryAJkTWFgl+rng4s+TItk7aPdEyki3iosuzdkpy
-	 dgMoi/zAjmq1PaylNozIrTBcWx2+miI4B3X/5vpx2wIA4hyWqf/WnNbnV9bsUNJdi0
-	 A2/NaH5AKgVd7c5/xDWZpgPnsQ6J66Ni0O3qxYhlMkyNkAonTG/uiTVDQ9sQ0ismet
-	 gkX84eIz9xXaskpFWuRsmZ01UJ8CUA/lAInYKclnjXLC68dSmjN8pdCc2G31aiAxC0
-	 UucbSO9ecDfCOoB5pNipj0B2O1REqoFub+DwkVlt7VWbjAZx43vX5E1L7xODkNvcyH
-	 ewY6CfpJxGZkg==
-Date: Fri, 15 May 2026 22:25:59 +0530
+	b=HnufnKRZfSdE7NKiVIkh8SzMZ2amgPWr0mdJncaBe+aG4KWO/zp+vLxAajbedi7FS
+	 b0zrl4MVSTnTtguuW9Ns0M+VFlzwwLo3mG2DkbaeExbvnlsaSNWLOQdhX8hQzbZo/Y
+	 lrM699UVFIkjtTtEEKz4+o4n/y9ZJVRdTKvoesVlNAeQmjXNWiSyWcPuXYQVCCnF/r
+	 kDZx/6/JrTSufawkMoMXxYUpVZj8M34oR9RtwMweLiVt+Tp2KPyYemeBpW8ecASvQU
+	 RBXPYe6XMGQezQvP2wa+/fslwbs1mVIqj4dyikM619smxSRzaHRitYfR4vTpqNqohH
+	 fE+JrFZQ5w45w==
+Date: Fri, 15 May 2026 22:27:48 +0530
 From: Manivannan Sadhasivam <mani@kernel.org>
 To: Thierry Reding <thierry.reding@kernel.org>
 Subject: Re: [PATCH 5/9] PCI: tegra: Explicitly specify PMC instance to use
-Message-ID: <rt3tpcu7eucylbxurtvraghnyljkv52zau75jwkkbtyfslc2ox@2bjkryjd4nqp>
+Message-ID: <5gtqxwkjw6adv65tz7ji5wxdyscqe5zlk2ugkogrsrnwituhhm@f3iaamhyxdcm>
 References: <20260506-pmc-v1-0-a6de5da7216b@nvidia.com>
  <20260506-pmc-v1-5-a6de5da7216b@nvidia.com>
+ <rt3tpcu7eucylbxurtvraghnyljkv52zau75jwkkbtyfslc2ox@2bjkryjd4nqp>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260506-pmc-v1-5-a6de5da7216b@nvidia.com>
-Message-ID-Hash: MJ5NNVJO753TXFBITOHRTOU7OGTQEFNJ
-X-Message-ID-Hash: MJ5NNVJO753TXFBITOHRTOU7OGTQEFNJ
+In-Reply-To: <rt3tpcu7eucylbxurtvraghnyljkv52zau75jwkkbtyfslc2ox@2bjkryjd4nqp>
+Message-ID-Hash: KJQSM6Y3CYFLR4YQVEDEZ3CGK33FLMAC
+X-Message-ID-Hash: KJQSM6Y3CYFLR4YQVEDEZ3CGK33FLMAC
 X-MailFrom: mani@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -105,9 +106,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MJ5NNVJO753TXFBITOHRTOU7OGTQEFNJ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KJQSM6Y3CYFLR4YQVEDEZ3CGK33FLMAC/>
 Archived-At: 
- <https://lore.freedesktop.org/rt3tpcu7eucylbxurtvraghnyljkv52zau75jwkkbtyfslc2ox@2bjkryjd4nqp/>
+ <https://lore.freedesktop.org/5gtqxwkjw6adv65tz7ji5wxdyscqe5zlk2ugkogrsrnwituhhm@f3iaamhyxdcm/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -117,85 +118,93 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, May 06, 2026 at 03:41:56PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Fri, May 15, 2026 at 10:26:12PM +0530, Manivannan Sadhasivam wrote:
+> On Wed, May 06, 2026 at 03:41:56PM +0200, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> > 
+> > Currently the kernel relies on a global variable to reference the PMC
+> > context. Use an explicit lookup for the PMC and pass that to the public
+> > PMC APIs.
+> > 
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >  drivers/pci/controller/pci-tegra.c | 20 +++++++++++++++-----
+> >  1 file changed, 15 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
+> > index 512309763d1f..2c6c521e6901 100644
+> > --- a/drivers/pci/controller/pci-tegra.c
+> > +++ b/drivers/pci/controller/pci-tegra.c
+> > @@ -340,6 +340,8 @@ struct tegra_pcie {
+> >  	struct reset_control *afi_rst;
+> >  	struct reset_control *pcie_xrst;
+> >  
+> > +	struct tegra_pmc *pmc;
+> > +
+> >  	bool legacy_phy;
+> >  	struct phy *phy;
+> >  
+> > @@ -1165,7 +1167,7 @@ static void tegra_pcie_power_off(struct tegra_pcie *pcie)
+> >  	clk_disable_unprepare(pcie->afi_clk);
+> >  
+> >  	if (!dev->pm_domain)
+> > -		tegra_powergate_power_off(TEGRA_POWERGATE_PCIE);
+> > +		tegra_pmc_powergate_power_off(pcie->pmc, TEGRA_POWERGATE_PCIE);
+> >  
+> >  	err = regulator_bulk_disable(pcie->num_supplies, pcie->supplies);
+> >  	if (err < 0)
+> > @@ -1183,7 +1185,7 @@ static int tegra_pcie_power_on(struct tegra_pcie *pcie)
+> >  	reset_control_assert(pcie->pex_rst);
+> >  
+> >  	if (!dev->pm_domain)
+> > -		tegra_powergate_power_off(TEGRA_POWERGATE_PCIE);
+> > +		tegra_pmc_powergate_power_off(pcie->pmc, TEGRA_POWERGATE_PCIE);
+> >  
+> >  	/* enable regulators */
+> >  	err = regulator_bulk_enable(pcie->num_supplies, pcie->supplies);
+> > @@ -1191,12 +1193,14 @@ static int tegra_pcie_power_on(struct tegra_pcie *pcie)
+> >  		dev_err(dev, "failed to enable regulators: %d\n", err);
+> >  
+> >  	if (!dev->pm_domain) {
+> > -		err = tegra_powergate_power_on(TEGRA_POWERGATE_PCIE);
+> > +		err = tegra_pmc_powergate_power_on(pcie->pmc,
+> > +						   TEGRA_POWERGATE_PCIE);
+> >  		if (err) {
+> >  			dev_err(dev, "failed to power ungate: %d\n", err);
+> >  			goto regulator_disable;
+> >  		}
+> > -		err = tegra_powergate_remove_clamping(TEGRA_POWERGATE_PCIE);
+> > +		err = tegra_pmc_powergate_remove_clamping(pcie->pmc,
+> > +							  TEGRA_POWERGATE_PCIE);
+> >  		if (err) {
+> >  			dev_err(dev, "failed to remove clamp: %d\n", err);
+> >  			goto powergate;
+> > @@ -1234,7 +1238,7 @@ static int tegra_pcie_power_on(struct tegra_pcie *pcie)
+> >  	clk_disable_unprepare(pcie->afi_clk);
+> >  powergate:
+> >  	if (!dev->pm_domain)
+> > -		tegra_powergate_power_off(TEGRA_POWERGATE_PCIE);
+> > +		tegra_pmc_powergate_power_off(pcie->pmc, TEGRA_POWERGATE_PCIE);
+> >  regulator_disable:
+> >  	regulator_bulk_disable(pcie->num_supplies, pcie->supplies);
+> >  
+> > @@ -1432,6 +1436,12 @@ static int tegra_pcie_get_resources(struct tegra_pcie *pcie)
+> >  		return err;
+> >  	}
+> >  
+> > +	pcie->pmc = devm_tegra_pmc_get(dev);
+> > +	if (IS_ERR(pcie->pmc)) {
+> > +		dev_err_probe(dev, PTR_ERR(pcie->pmc), "failed to get PMC\n");
+> > +		return err;
 > 
-> Currently the kernel relies on a global variable to reference the PMC
-> context. Use an explicit lookup for the PMC and pass that to the public
-> PMC APIs.
+> As Sashiko pointed out, you need to return dev_err_probe() directly.
 > 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  drivers/pci/controller/pci-tegra.c | 20 +++++++++++++++-----
->  1 file changed, 15 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
-> index 512309763d1f..2c6c521e6901 100644
-> --- a/drivers/pci/controller/pci-tegra.c
-> +++ b/drivers/pci/controller/pci-tegra.c
-> @@ -340,6 +340,8 @@ struct tegra_pcie {
->  	struct reset_control *afi_rst;
->  	struct reset_control *pcie_xrst;
->  
-> +	struct tegra_pmc *pmc;
-> +
->  	bool legacy_phy;
->  	struct phy *phy;
->  
-> @@ -1165,7 +1167,7 @@ static void tegra_pcie_power_off(struct tegra_pcie *pcie)
->  	clk_disable_unprepare(pcie->afi_clk);
->  
->  	if (!dev->pm_domain)
-> -		tegra_powergate_power_off(TEGRA_POWERGATE_PCIE);
-> +		tegra_pmc_powergate_power_off(pcie->pmc, TEGRA_POWERGATE_PCIE);
->  
->  	err = regulator_bulk_disable(pcie->num_supplies, pcie->supplies);
->  	if (err < 0)
-> @@ -1183,7 +1185,7 @@ static int tegra_pcie_power_on(struct tegra_pcie *pcie)
->  	reset_control_assert(pcie->pex_rst);
->  
->  	if (!dev->pm_domain)
-> -		tegra_powergate_power_off(TEGRA_POWERGATE_PCIE);
-> +		tegra_pmc_powergate_power_off(pcie->pmc, TEGRA_POWERGATE_PCIE);
->  
->  	/* enable regulators */
->  	err = regulator_bulk_enable(pcie->num_supplies, pcie->supplies);
-> @@ -1191,12 +1193,14 @@ static int tegra_pcie_power_on(struct tegra_pcie *pcie)
->  		dev_err(dev, "failed to enable regulators: %d\n", err);
->  
->  	if (!dev->pm_domain) {
-> -		err = tegra_powergate_power_on(TEGRA_POWERGATE_PCIE);
-> +		err = tegra_pmc_powergate_power_on(pcie->pmc,
-> +						   TEGRA_POWERGATE_PCIE);
->  		if (err) {
->  			dev_err(dev, "failed to power ungate: %d\n", err);
->  			goto regulator_disable;
->  		}
-> -		err = tegra_powergate_remove_clamping(TEGRA_POWERGATE_PCIE);
-> +		err = tegra_pmc_powergate_remove_clamping(pcie->pmc,
-> +							  TEGRA_POWERGATE_PCIE);
->  		if (err) {
->  			dev_err(dev, "failed to remove clamp: %d\n", err);
->  			goto powergate;
-> @@ -1234,7 +1238,7 @@ static int tegra_pcie_power_on(struct tegra_pcie *pcie)
->  	clk_disable_unprepare(pcie->afi_clk);
->  powergate:
->  	if (!dev->pm_domain)
-> -		tegra_powergate_power_off(TEGRA_POWERGATE_PCIE);
-> +		tegra_pmc_powergate_power_off(pcie->pmc, TEGRA_POWERGATE_PCIE);
->  regulator_disable:
->  	regulator_bulk_disable(pcie->num_supplies, pcie->supplies);
->  
-> @@ -1432,6 +1436,12 @@ static int tegra_pcie_get_resources(struct tegra_pcie *pcie)
->  		return err;
->  	}
->  
-> +	pcie->pmc = devm_tegra_pmc_get(dev);
-> +	if (IS_ERR(pcie->pmc)) {
-> +		dev_err_probe(dev, PTR_ERR(pcie->pmc), "failed to get PMC\n");
-> +		return err;
 
-As Sashiko pointed out, you need to return dev_err_probe() directly.
+With the change,
+
+Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+
+Feel free to take it through Tegra tree.
 
 - Mani
 
