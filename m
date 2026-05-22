@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 523BBCD5BAF
-	for <nouveau@archiver.kernel.org>; Thu, 21 May 2026 15:34:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69C8ECD5BAC
+	for <nouveau@archiver.kernel.org>; Fri, 22 May 2026 10:15:41 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 18A8410F3C2;
-	Thu, 21 May 2026 15:34:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 44F5210F546;
+	Fri, 22 May 2026 10:15:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jHRC13cG";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GLBrR/TX";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 95F9846102;
-	Thu, 21 May 2026 15:20:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id F065446161;
+	Fri, 22 May 2026 10:02:25 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1779376856;
- b=jdPhysHBlHRpG2ywpSUmq4ldLRBfelS4CRqY2QiDB1ja3QV+nUAFhN0KtJMvcVtnx4oqR
- qGWdAgWGgYaxBy+GDrGQ5GmlDbYACebfXLMik244Nzm4/nMNIm+aP+PrAS+zYRNaM1O5b7u
- I2wtm6JJUvTw+NqWgC/CCepvbi/C77ybgzvEwINu8JV4UlgWUlyESmz/fF2ryvYuN6WOQej
- gteVdFRfA18PpypXv8zm+iF5T3IryUFavW2tPhmx4112G2kPXtCyaku9bE6bWX/Nrnz9IQ7
- kyeIXapvTGYarGuyVhB6QwKVa4jBzUZJeRg9l4GCH28s09QgQY3T8Y5zMuIQ==
+ s=20240201; t=1779444145;
+ b=YvY61HmgJ3upDwOxbFzBQlpw5S0RO0bKlf8/h2NPgLYpufm78SDcIdFV4IlBNt8/SfyTh
+ vtJtkJICLQ1zegyrW9sq2KQjzo2Ty6VqgD7Ol+ME1umI4sIkKOvyrRItnnX8YUUM6bDOoQN
+ KCuaDJ4KUUAQR/4Cu1kyyqvAoQ/LTBaQmWt10a7NDnld/16VU+9LdIT0STYnlzN9/T+aAxB
+ TKlMI9ozG8jqoJy+zvMn9L2HaftJ75pviBQKX9Jl7xzkLDlVqcxreyx/X7sgTYB5hSkwric
+ e3i68NV1EbOLY9ajvjQ1H0Be6YB/ysrlaRCH2ADeQokaQgU6nnAHRIKgnMqQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1779376856; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1779444145; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=CAGm6nF0wdUN0d2423OYPWZUGqBbg4/Jc7nYqxEaHM8=;
- b=I5t9XOzUlvro0Gji4xRJBWdtoR+Nz6Sc0ZET/IiX/q3PHtsmfc59pawzOXGX6qCgdgANN
- cY8jNkpGS/wqln4A6O7PHEPMlX61RmBidA4xiDo1Z01s62iE4QuSbGtDmZ19QUrMEk9CcKz
- c0neWAwZmG6EdpS+xt3jURhF37XDgjOfdjJBn6WQfwRIsW3xKDt6SGaQuFVXliIe93zOFb9
- CTNpj3xuW6Efagn66FvlPlVmp8znugUSSbvOuKQtrm84OBigA79HjOXKUxfSaojteKx03eO
- JVQdmLjkq42kgq7s8cH74CMWDtzngDUusiamius2pAKuJGCFKp8U3h48NRYg==
+ bh=hFoNmBbf70FRqGV5pmUwMEHTZE5OKrs8CbDRqYE1oiQ=;
+ b=rlXkR1gUqXmMEEKft8CvrfYF6Jau7TA+MSr5N/NdM/mhBZXHJG2nt3+Tp4uIVvGeJC8NG
+ vcjzPKS6U2pIs3QpdkHzAK7l/Zcf/+EtkgSpvFNBCjh6WpX6jTJjvBpCvXAfkaqVdI/8WLv
+ WEmvV6JSeaJWDM350SEXzZJUPOMfZEC+VBYaddjNs6PRyefxafH13lEmzsY0Jmkt/aObius
+ LepCNFYks+bva1jTUj5ryXxbgDzu0hC8mJPPW2Jl+GmeALA7UnnOMiURhJrJYsf6V4ZCUHT
+ eEeQGfUtfGRwNE+jpgQlMTle/kFGMPqAuOsCKZUNXqbuXqSEYkUfno60L5UQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,83 +46,84 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 70DFF46103
-	for <nouveau@lists.freedesktop.org>; Thu, 21 May 2026 07:48:01 +0000 (UTC)
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1805810F24F
-	for <nouveau@lists.freedesktop.org>; Thu, 21 May 2026 08:01:14 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-449d6c68ed8so2836232f8f.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 77EFC42910
+	for <nouveau@lists.freedesktop.org>; Fri, 22 May 2026 10:02:22 +0000 (UTC)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
+ [209.85.128.45])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 85ECE10F53F
+	for <nouveau@lists.freedesktop.org>; Fri, 22 May 2026 10:15:37 +0000 (UTC)
+Received: by mail-wm1-f45.google.com with SMTP id
+ 5b1f17b1804b1-4903cbfad68so10474995e9.0
         for <nouveau@lists.freedesktop.org>;
- Thu, 21 May 2026 01:01:14 -0700 (PDT)
+ Fri, 22 May 2026 03:15:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779350472; x=1779955272;
+        d=gmail.com; s=20251104; t=1779444936; x=1780049736;
  darn=lists.freedesktop.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CAGm6nF0wdUN0d2423OYPWZUGqBbg4/Jc7nYqxEaHM8=;
-        b=jHRC13cGSWYgmNSjxnwJQ6PzgSR4e/aAPLJ3s8fr8AuArWYJr4L20vYdp4SrpCQfWG
-         QYZS45Dl+NPN0TvXBE3k937IMcDyObrBsAU/oPeZ4Y64GB2VAi/nHddz37nQKm1NHp1x
-         q9L1Xs9Z34eoaEA02XwinkkmmsEEA4CiZk+W/NdmZWGu7Go2Qk+k3fccOJetcoSxfACi
-         9H+LMufqPwTxxBXidkxo8zr3GFy8o9UArTlqQY3b5WJUq+2jeHpoFNBy1XkcNYeHzRHt
-         QNg4D54Ly01wF+YCV6B1BLEHNk2h/ApncHATeyGSNv19f1BD0U+2gCRanca5G2Kyr6mb
-         2duA==
+        bh=hFoNmBbf70FRqGV5pmUwMEHTZE5OKrs8CbDRqYE1oiQ=;
+        b=GLBrR/TXb2/KUKzSLXdsQji15DkWmnBk75AusilyOQl5pyj9iO/TbWWSIV+6+kXi5s
+         35EW+iWNbMDsif6rxLPIbeEj0uLYoqeSPDI4VebryhOx9d9Qe5YWs1TBIuUYbytIhzSj
+         liBZ2LJWmjh0tjFMICLYf7p41g8g9ENf32eG94Pp4KwLeQXHCcSp9L90tvbQ+M5UdXHO
+         5ag6IFUr3BJuY4pkwmtpUHny+orQt4AKgdc7jQT1u1j8mz9B5gD8k01zBAYaEvupoKti
+         jMUj3ywTmspdcKmGUyNIxtwL+wd52QR5J5hJ15pIRHNldzw4I7AASYuGBercORLsX0R+
+         27QA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779350472; x=1779955272;
+        d=1e100.net; s=20251104; t=1779444936; x=1780049736;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CAGm6nF0wdUN0d2423OYPWZUGqBbg4/Jc7nYqxEaHM8=;
-        b=GWy9uoJjeBIj0xGoIQ0p34oG31u8jaf4yatNB/oQutY9SeodPqIsN6d5pQl97FJ23v
-         EBvKmkebZB3I5hnSFT3D/mnunMQ8uqUEdqxD+He1I/ujKRcK3AzNv6oS4iPnyDkecN3C
-         MM0K2MaGqH8j96mAwdROhg6IUelTmxOw2GLYNzwEmM+oW+96cbCqvDv53DOSiwgU2m8B
-         SxojRaFrOKqQP8HsBfl8V5HizqCL+UpWHRH7vwXZIj3tCojy6dqSQF5/FIEUVmz9STXC
-         26iU0YBO7qmvIGo6wCHvaJTM/d4n8DUkTqc/82OGI/OdTPIbxRQjc6ZoYlX7jGbve5mI
-         clpQ==
+        bh=hFoNmBbf70FRqGV5pmUwMEHTZE5OKrs8CbDRqYE1oiQ=;
+        b=O9+tybv5HC19Sp4pypUXZMoOSEUzQhp/m06+5E6macijLbIOPbcDNk/Tj1T7bZsbyE
+         HF8DwvNaJG9a8yHzMFG+S6BJnRa8gq+PAW1op0X72cmJ7rod+JwmnwuPXfAXRzXHBSTx
+         WpFE5SBiUzEk8jgrMq/sn1XOC823DWbJa9hRm00Bt67D1K6/ppf3IM94PW3JMGkeew4p
+         zBoy7OnRe57aTG9hxmLf9OTMQd1WSakuDsJU0V8lUKgDCnnRShhRkibdZWDDfg6HZ4dX
+         eeF8yN/8hayWbl0jORhGv/QDDSi60Z71O8Zjjr8s/J7kRGE7Nob77wVFmrOcpwwZxrmv
+         WE5Q==
 X-Forwarded-Encrypted: i=1;
- AFNElJ9obFIb0Fu9q21ghkHS9ka+RIxEMAnNc/lZVeOzEqTKwU6ESc9uueFLLV9LINMZqpleRf1vW9iK@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwZqMWKZNYKBnZ++1suEyrerQINNvf+7xCokUgOkLAsn86JiEw9
-	bR3Z2V5Li9n2yghgWe50x73bipb4Hx7O7+KiE2pdgfw0ENjml91qIpHa
-X-Gm-Gg: Acq92OGsyCFBKIroX9F66c9/MT+ka6Z5lfPgfOXelJuZaQ2h68lLwYQGy9L0LWRAdER
-	/IkZ7f8gctC5Z30S2fn02k4siFGDuscumrMGDcunVlI/+GNZO29g2PZgpE/EOsUAVMKpOFCWvm4
-	GGGtUTCbWE8Vg9QTp4Uduz7JePlXqyQ488THfjNTI/Mp4Q0Zm2UOxvPHG8jP5Z0CXRtCRx0YZmq
-	uJS6X40p5CtLwwoHHWapTumJhwmXClS1Hm26CR9Ns1x+F8eFYHtUFxB8k3+tv7RI6TtNLJ0kHSa
-	2SRqe6r2vfuAXS3kiounDZ/8O7zYPrdi9yyrUcQv3CCTirOrVvYYT+20IxE/9AD8V7mgA7hmTZ1
-	qwHlqWEcIkUSzgRhxXsrWGj61Jl8w6i89CqZMFwvqaRGHJiKXpWaWcdFQh4E4HNQ5DWIw2IcsMM
-	bxjrDV151uOu7usys7MHUwt0636wfhXMfhoJYMXeM4OGaErAAcKNaUpg+wf8oK78Vug2WfXvrH0
-	w65gsAXTmqR/X3NNbRRUbyS
-X-Received: by 2002:a05:6000:4027:b0:45e:a0ab:8bc9 with SMTP id
- ffacd0b85a97d-45ea3dead2amr2513624f8f.41.1779350445635;
-        Thu, 21 May 2026 01:00:45 -0700 (PDT)
+ AFNElJ9fLmnoqh6Xm3rt4X3lEZWT7BCOjSjbKl1ySNYRLd4QCG1IPdAkcy2XT5uX8plCZbTdkNxNJjPK@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwEwOHXGebmiLbBQCCL6mmg3ZWZ7htdrJ1jLFo/QQsKm1gsU38P
+	5Hj5eEorZ+eDECGjC5BzXx7O72emYB9SxrgOAuB+mwS5FGiI2Myjr9sJ
+X-Gm-Gg: Acq92OEFc1UkfvAJj31xoNX5qBHjSJQhFkjFm8wjTyqe5rI6PVoN45RFxTYmC5BjOif
+	Bnwaxm94/UMpyEzG010OJio8OWVecyfhrx/2DJayyygBYhPLXFs/WkeTkJnF6muQerdUlpIy4bD
+	dCTngVCoopk8jbuMIXrgPj93aIXOnjXtZURNvMFDsHgb0Y+N0gQb4WhWkvDCS3wg8Np0NWhTi97
+	lPtI19h60Hd/XHVrYKiJwGKl5ZbMxRP1k6H1O98PawThjB4qiGDUCjZ0KhoKdwQnsL3Vw41L+oN
+	3WV2L2xboQ2q+hUA0PemEsKAX7XKKRbbV8lmobKH5DqJyR+YhyfhXjeWaCF9xfUUHzu+C2VaF2e
+	WZ2HYUM/2oxVa037oEBHTW0n9zLMlE9YloA+MkW4RTlo4n33IBWNxN4hRZTXfYIUuq+LmT5Uxej
+	xa/c9CcT49HYEP/V3EKb4PXh75hT3fb2jT6TmZeWuoEvkz/86qoYMdKVzIHFezoxKnvGNsMCrUX
+	ZAPLQDFr6603f7jjCbacfNO
+X-Received: by 2002:a05:600c:a402:b0:48f:e230:29f5 with SMTP id
+ 5b1f17b1804b1-490426b0c92mr24655565e9.16.1779444935807;
+        Fri, 22 May 2026 03:15:35 -0700 (PDT)
 Received: from orome (p200300e41f291e00f22f74fffe1f3a53.dip0.t-ipconnect.de.
  [2003:e4:1f29:1e00:f22f:74ff:fe1f:3a53])
         by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45eaa7dd9e6sm857662f8f.16.2026.05.21.01.00.43
+ 5b1f17b1804b1-4904527dbf3sm30624875e9.6.2026.05.22.03.15.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 May 2026 01:00:44 -0700 (PDT)
-Date: Thu, 21 May 2026 10:00:41 +0200
+        Fri, 22 May 2026 03:15:29 -0700 (PDT)
+Date: Fri, 22 May 2026 12:15:25 +0200
 From: Thierry Reding <thierry.reding@gmail.com>
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Danilo Krummrich <dakr@kernel.org>
 Subject: Re: [PATCH 2/9] drm/nouveau: tegra: Explicitly specify PMC instance
  to use
-Message-ID: <ag67dmFtSDBC6aPK@orome>
+Message-ID: <ahAst802sjuJr7-l@orome>
 References: <20260506-pmc-v1-0-a6de5da7216b@nvidia.com>
  <20260506-pmc-v1-2-a6de5da7216b@nvidia.com>
+ <ag67dmFtSDBC6aPK@orome>
+ <f08c6164-78d4-4c79-b4d9-d7e883e5a0c0@kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5oal4jl4ykfwr5c4"
+	protocol="application/pgp-signature"; boundary="qtz3f4pwlb7uchwq"
 Content-Disposition: inline
-In-Reply-To: <20260506-pmc-v1-2-a6de5da7216b@nvidia.com>
+In-Reply-To: <f08c6164-78d4-4c79-b4d9-d7e883e5a0c0@kernel.org>
+Message-ID-Hash: TSPOVHVLAS7RZR276ARYG7QDXHRHRWM5
+X-Message-ID-Hash: TSPOVHVLAS7RZR276ARYG7QDXHRHRWM5
 X-MailFrom: thierry.reding@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: LQWNQVL4ZL7OPEEQ7DCNZDQGIKUFDRYX
-X-Message-ID-Hash: LQWNQVL4ZL7OPEEQ7DCNZDQGIKUFDRYX
-X-Mailman-Approved-At: Thu, 21 May 2026 15:20:54 +0000
-CC: Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
  Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
  Mikko Perttunen <mperttunen@nvidia.com>, Dmitry Osipenko <digetx@gmail.com>,
  Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -140,8 +141,8 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LQWNQVL4ZL7OPEEQ7DCNZDQGIKUFDRYX/>
-Archived-At: <https://lore.freedesktop.org/ag67dmFtSDBC6aPK@orome/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TSPOVHVLAS7RZR276ARYG7QDXHRHRWM5/>
+Archived-At: <https://lore.freedesktop.org/ahAst802sjuJr7-l@orome/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -152,7 +153,7 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 
---5oal4jl4ykfwr5c4
+--qtz3f4pwlb7uchwq
 Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
@@ -160,45 +161,36 @@ Subject: Re: [PATCH 2/9] drm/nouveau: tegra: Explicitly specify PMC instance
  to use
 MIME-Version: 1.0
 
-On Wed, May 06, 2026 at 03:41:53PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Thu, May 21, 2026 at 04:04:28PM +0200, Danilo Krummrich wrote:
+> On 5/21/26 10:00 AM, Thierry Reding wrote:
+> > would any of you mind giving an Acked-by so I can pick this up into the
+> > Tegra tree with the rest of the series?
+> Sorry, I thought I already replied to this.
 >=20
-> Currently the kernel relies on a global variable to reference the PMC
-> context. Use an explicit lookup for the PMC and pass that to the public
-> PMC APIs.
->=20
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  drivers/gpu/drm/nouveau/include/nvkm/core/tegra.h  | 2 ++
->  drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 9 ++++++++-
->  2 files changed, 10 insertions(+), 1 deletion(-)
+> Acked-by: Danilo Krummrich <dakr@kernel.org>
 
-Danilo, Lyude, Maarten,
+Thanks!
 
-would any of you mind giving an Acked-by so I can pick this up into the
-Tegra tree with the rest of the series?
-
-Thanks,
 Thierry
 
---5oal4jl4ykfwr5c4
+--qtz3f4pwlb7uchwq
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmoOu6kACgkQ3SOs138+
-s6FK8BAAgs0A7wFYJOVZxTTW6MNa4zXSjm64uXobpTYaWzKll6wOHDvn6C9dcp/v
-MLtSLfP1p1SW/dO74lgYcFcwNaDIZdDsJZmNba+3Jf6PpFLkFdvor5IxklQDCq7p
-CTff6BCXl8nTZkHm57wdzn9MMiduUUlKEc1foNpP34dKfb148QjLYdxi/2hFY/ap
-VNo3Lr54eMkr3RXicgdgDHq5TXk2gKfSdy+Tve1QiUcemkc36olxR3tcgVSLxPJC
-Q66EiKj9g3bjK+fEzB7hA/GeAQOfpuUIObaCdcASbPeCBTyZJY23WbYAF5XMMRDs
-LjCs2r/E0EtZLwKY0NGBEZjwzWxF8PddUoqi3TngTTfv/EJ4qx3QzqvAf2DIVKsA
-xJgxWd1rDD2HclOQ4GojKyO7CYLt4Xa8hWXPt4V7ajU03l8bOCvKOBNmg6hRD5jp
-vHxVRmM/KOteKe7c9VJCMmxmo1oi9lE3e6BCB/VAGm7tzXHK9/43ug3tlh4A4Yk/
-ad3eKm3kJxNa4FvJor3dadP6+6C0HUwZkk40TGgkYubsdPfR2kyGI3YZlr1J7cBI
-jdRqcYoo/S+HmsreQgBpPXcTUhKqLsTU9/eqQ7V+9SItN6mvX8pPWmUaf+UexFht
-1fkm9VtVD/H5bQ0QeOiRpJMXOe/ozNGH0hUKOEywfy7W8syQACc=
-=YTdM
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmoQLL0ACgkQ3SOs138+
+s6G6mg//ZTSVOV0O5XnlSqUo1fdyiV44Qxo3ysbWUv2+O3w+r5WwMjgdyUM9yAbS
+cdsRz3LHOAYcXBxYZhtdkLh5KhhvjdkUk4e1fdo/5QSGjRPARHPS3bQAZbnpZy46
+tWvdiKwj2fM2rZ5JQHvYEjGCSQ9hGa/9Ri3OnGti51rcUbCJhJS/J1KgyJ/UOmyn
+ZKLr/2FfTbmC8w0Ukki+CV3d4JV/pxY1UNjyt7x568o6JlebDPK6M7PKMI/IM6GW
+fHt0U+f335ljan2LD8HZfSia4sa2nZJnbJDtIEj1ov6suhrowY9Mne4JQTEwjuLX
+db6abSI9ox3O3vkx7Zd1G795TZUWTXKlw2SHr5vMyOBXhJHtipm7y0bAwj4ZJiAp
+5ghmBQzl9HdBVy8x8x8SjmVCygxrt2rOVocYDG1/Uc5DSZWa8aa3VQJMK6WZy9gB
+9G47X1VZPs9B/KeqE5TWRwB05OHuLeCIVQz8Nd06DjN0IEUStecgDWXm0bs4UNWZ
+zMwz/HPgK4zp59HRlVqgoYRNrIRXCd5wmz5t+JdqDwbytna2YVTV7u/3FOGgn/rD
+HgxwYqtJsO3KosQ3UN/HKPoEk67noCBWMrSzZbwFhw/DziZwEn4mr+slHKizUvrF
+40Ir94vEC6DhMDCNJClxmU6S9zhRoKUOqW3FLyPgC1Ghfp5RQrQ=
+=MZIt
 -----END PGP SIGNATURE-----
 
---5oal4jl4ykfwr5c4--
+--qtz3f4pwlb7uchwq--
