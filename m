@@ -4,96 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E58BCD5BC8
-	for <nouveau@archiver.kernel.org>; Tue, 26 May 2026 13:17:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D75F1CD5BB1
+	for <nouveau@archiver.kernel.org>; Tue, 26 May 2026 15:09:32 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 07CBF10E653;
-	Tue, 26 May 2026 13:17:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cG214dNa";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9320C10E506;
+	Tue, 26 May 2026 15:09:31 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9785B46442;
-	Tue, 26 May 2026 13:03:38 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 036884644C;
+	Tue, 26 May 2026 14:56:07 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1779800618;
- b=fxU7LABTCWHISmqQiSq07llUmVgpqstSGClGfHVXIJJ2vNDj1cXAxcTAiIimA05Du/mdJ
- uHhNO0dQrVC2ZMnAXIDPzbcBLULvCKXgSloSPn1PMZu5augEban2ipkOo++wbXP3JdbFH74
- fOR9Ggm55grbd03HfFonSNis4K0P4XQQoy4oLZ3U7ldPNpvddkCreR+bzTcyW5ZkMm9crnH
- X3dhoXc5kkoqaiEGAqb0Aj1mLQ8WCilqVzUfr5YUCVmPIR8XoNLyKMvHw2KL1sGUPTwzKYU
- xoIV/CG0wdM/qveWDfpz5abPu7M6A+Q0WImOEiaUzvS4mdhdbm6K4JWPqPlw==
+ s=20240201; t=1779807366;
+ b=zxxbB/JInEuM1I+reFjVT4+dD3MxT8X42N9/wOo/Ry+7CMdYnkGeatDw7npVsAaKO5Alq
+ iDKgRy1SIjAivGLoQkkiqsDumwZL6FiIToGF368B7YUeulL8S8gC44FGFzaiUbZ+cMfqcKx
+ jW7fIsxFuGISBFdB7EKpy8Yw/UFSYn+MmY4IKa9wezirT3NYKuqhgk6OdeNv0HzDas8ajkG
+ fXsBjb8BVoxHipaYf4VJbWC1wGfXTqM2GjzVTDlzNj8TdAxzDyY7alzqmAOVoWIofcKkIrM
+ KGZWZSuXJj3CHBqrk9/CSnBSInuunATIkMqQnOCUTRVYfGuJj5BugjPqhLLw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1779800618; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1779807366; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=JE0l0J/Q4cmSCbkBtHlHYstq0L2VtzMwueKDyLmSf5U=;
- b=tLrJCze/zFKJAUDJMkkSTmmdAZWfr7eSc3vxo3sSMSCmclaxLyGNvr6euMUFiZqy9F+Ce
- +ns2AjH0VQDw4y3VEZnN/36O88FPYfepF19id2H/d6TVPtU701AdlMLFrf2sxi8Hz7ISaZI
- Nzf5RK4R9i50yDgMyYXK4ppqgnndgNVWFDHPpNuT677/66c0UQuuetojZKcreEnu/1t0huw
- 0y4HB4pJab0hxEEvlN8EqL+jIDNfG71gY7TAq2LxGJQZ346HyZ1imUGQ4eCGT50E3iGKP8F
- EEc2+Iq/nyEKG9Ps5xtFOQ3soL9DIZqWe4hm51S6ijQnosNxSGNxusc24yVg==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ bh=dDRPmRfM2iDmd+BnBQqZ07gJLCLMMaZVCkLxYiEXn9k=;
+ b=G7mFYN1u4Q3qFs7R+942Jtv9L8RIuXqpi52Xkn98epCFCU5WyNn+ojE3uUfcr/P6W/q4Y
+ Pvu3fq8DCulzyPBCotHO/YRYYeLF1LTaM6/eRHtwiMRTYn9Omrbtrqh0ky9K8zf9GJ935W7
+ Pd448S8BCJNBoSbYFQECMlDMKoYXC1HJ4pUdU/GC6yn4APAeQWkYhfR45uf8zqtRCOLhWGM
+ de0PlAZ4IMUMTZJtrRnNdjlOShdaG74/Swzgj/AWOJwwvSoDZv9Kd2eQpQ3/oFg4NJzg4hw
+ Ok/1SAUzVaDQLY8ZOArs8xt8RDidf8ti1EmOSta9kZNUQWZX5mn8NYc9RBRA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+  dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=fail;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 0B2E44641C
-	for <nouveau@lists.freedesktop.org>; Tue, 26 May 2026 13:03:35 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3DF1310E146;
-	Tue, 26 May 2026 13:16:59 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DEFFB416A7;
-	Tue, 26 May 2026 13:16:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24B471F000E9;
-	Tue, 26 May 2026 13:16:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779801418;
-	bh=JE0l0J/Q4cmSCbkBtHlHYstq0L2VtzMwueKDyLmSf5U=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To;
-	b=cG214dNa11lOiy46AORsXkv4bUe7G6t792Zz1McUEExu49YQuzsGWtnjMFhpT/q5B
-	 MrWm4yWs+7MGpCUCObANSrsl8H/A53DJXfmh/222L8XI5XR3vgOsg9FTL9a5N4RvVF
-	 /IQgh/8GaVvCxaAdLesrjnrwjwBy5AMiFXGJQityPEoWKRCSgP5efR4ZjeTTgOJezo
-	 PwBvoko/tjwmeO2XhNDL2BKxA1yJcrPddVH1UdV4FzAY7pxcLcCPIn4RxUalJYhNwW
-	 azzU0WcX+XhCrOXM7HeDL8YEIyMvt8RdnFSmqajqRMyEIyISiN7yQG8bwpdY8bRSrW
-	 +HGWRV9/6y6MA==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 26 May 2026 15:16:54 +0200
-Message-Id: <DISMY2BS8E1D.Q85V8DKCPM1C@kernel.org>
-Subject: Re: [PATCH] nouveau/gsp: fix NULL pointer dereference in r535
- nvenc/ofs alloc
-To: "Hongling Zeng" <zenghongling@kylinos.cn>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260526014721.13299-1-zenghongling@kylinos.cn>
-In-Reply-To: <20260526014721.13299-1-zenghongling@kylinos.cn>
-Message-ID-Hash: NNLUZH3PNZB5PE7ZIQKKPN2DMRVOZTRL
-X-Message-ID-Hash: NNLUZH3PNZB5PE7ZIQKKPN2DMRVOZTRL
-X-MailFrom: dakr@kernel.org
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9DA1A4150B
+	for <nouveau@lists.freedesktop.org>; Tue, 26 May 2026 01:34:09 +0000 (UTC)
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 190AD10E432;
+	Tue, 26 May 2026 01:47:31 +0000 (UTC)
+X-UUID: d8dd33c658a411f1aa26b74ffac11d73-20260526
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12,REQID:f2a4c120-bc7d-45c2-ad90-49a96698b607,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:e7bac3a,CLOUDID:2f75ae6802a4740e16f1367a3d665be0,BulkI
+	D:nil,BulkQuantity:0,Recheck:0,SF:102|850|865|898,TC:nil,Content:0|15|50,E
+	DM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA
+	:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: d8dd33c658a411f1aa26b74ffac11d73-20260526
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 830269961; Tue, 26 May 2026 09:47:26 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: lyude@redhat.com,
+	dakr@kernel.org,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	airlied@redhat.com,
+	ttabi@nvidia.com,
+	bskeggs@nvidia.com,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH] nouveau/gsp: fix NULL pointer dereference in r535 nvenc/ofs
+ alloc
+Date: Tue, 26 May 2026 09:47:21 +0800
+Message-Id: <20260526014721.13299-1-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-MailFrom: zenghongling@kylinos.cn
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: maarten.lankhorst@linux.intel.com, mripard@kernel.org, simona@ffwll.ch,
- airlied@redhat.com, bskeggs@nvidia.com, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- zhongling0719@126.com
+Message-ID-Hash: Z66HSNIKVWNWOGTTDBH2RIDFVV5SUIUK
+X-Message-ID-Hash: Z66HSNIKVWNWOGTTDBH2RIDFVV5SUIUK
+X-Mailman-Approved-At: Tue, 26 May 2026 14:56:03 +0000
+CC: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ zhongling0719@126.com, Hongling Zeng <zenghongling@kylinos.cn>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NNLUZH3PNZB5PE7ZIQKKPN2DMRVOZTRL/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Z66HSNIKVWNWOGTTDBH2RIDFVV5SUIUK/>
 Archived-At: 
- <https://lore.freedesktop.org/DISMY2BS8E1D.Q85V8DKCPM1C@kernel.org/>
+ <https://lore.freedesktop.org/20260526014721.13299-1-zenghongling@kylinos.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -103,25 +107,50 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue May 26, 2026 at 3:47 AM CEST, Hongling Zeng wrote:
-> nvkm_gsp_rm_alloc_get() can return NULL as well as error pointers.
-> The current code only checks for error pointers with IS_ERR(), which
-> would lead to a NULL pointer dereference if NULL is returned.
->
-> Fix by using IS_ERR_OR_NULL() instead of IS_ERR(), matching the
-> pattern used in nvkm_gsp_rm_alloc().
+nvkm_gsp_rm_alloc_get() can return NULL as well as error pointers.
+The current code only checks for error pointers with IS_ERR(), which
+would lead to a NULL pointer dereference if NULL is returned.
 
-There was a similar patch [1] a while ago for another callsite. I replied:
+Fix by using IS_ERR_OR_NULL() instead of IS_ERR(), matching the
+pattern used in nvkm_gsp_rm_alloc().
 
-	Are we sure that this can ever return NULL in the first place? I know
-	that nvkm_gsp_rm_alloc_get() internally checks for IS_ERR_OR_NULL(), but
-	I couldn't find anything within the callchain that would actually return
-	NULL.
-=09
-	That said, I think IS_ERR_OR_NULL() checks are misleading.
+Fixes: 7c2d25f1e408 ("drm/nouveau/gsp: add common code for engines/engine objects")
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvenc.c | 4 ++--
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/ofa.c   | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-Is there a real case where NULL can be returned? If not, let's remove the
-IS_ERR_OR_NULL() throughout the whole chain instead.
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvenc.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvenc.c
+index acb3ce8bb9de..a67cc65abfcf 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvenc.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvenc.c
+@@ -30,8 +30,8 @@ r535_nvenc_alloc(struct nvkm_gsp_object *chan, u32 handle, u32 class, int inst,
+ 	NV_MSENC_ALLOCATION_PARAMETERS *args;
+ 
+ 	args = nvkm_gsp_rm_alloc_get(chan, handle, class, sizeof(*args), nvenc);
+-	if (WARN_ON(IS_ERR(args)))
+-		return PTR_ERR(args);
++	if (WARN_ON(IS_ERR_OR_NULL(args)))
++		return args ? PTR_ERR(args) : -EIO;
+ 
+ 	args->size = sizeof(*args);
+ 	args->engineInstance = inst;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/ofa.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/ofa.c
+index 2156808cba4f..6d3b554108f9 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/ofa.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/ofa.c
+@@ -30,8 +30,8 @@ r535_ofa_alloc(struct nvkm_gsp_object *chan, u32 handle, u32 class, int inst,
+ 	NV_OFA_ALLOCATION_PARAMETERS *args;
+ 
+ 	args = nvkm_gsp_rm_alloc_get(chan, handle, class, sizeof(*args), ofa);
+-	if (WARN_ON(IS_ERR(args)))
+-		return PTR_ERR(args);
++	if (WARN_ON(IS_ERR_OR_NULL(args)))
++		return args ? PTR_ERR(args) : -EIO;
+ 
+ 	args->size = sizeof(*args);
+ 
+-- 
+2.25.1
 
-[1] https://lore.kernel.org/lkml/20260418071412.86022-1-sunliming@linux.dev=
-/
