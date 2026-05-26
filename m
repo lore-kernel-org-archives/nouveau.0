@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE1FDCD5BC8
-	for <nouveau@archiver.kernel.org>; Tue, 26 May 2026 21:29:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E751CD5BB1
+	for <nouveau@archiver.kernel.org>; Tue, 26 May 2026 21:29:33 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 88E0910E6F7;
-	Tue, 26 May 2026 21:29:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C394310E57E;
+	Tue, 26 May 2026 21:29:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="i1eqoFi0";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="NcT7XqoW";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6882646468;
-	Tue, 26 May 2026 21:16:03 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A46494646E;
+	Tue, 26 May 2026 21:16:07 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1779830163;
- b=jrPVghHl59Goqk7kQFEXtj5Wp643LMswxphT2iT3sumuthS0rieqT4yytNgPWkLQsitJs
- B43NfSPOCmwe+yQ0rqY7h6Yd2ABbi6PbRmMJalJgFhqyRR+acSA27ON9IBkE0wFLb9sJikb
- JdS4c/JhtSxANZCBJIARR39kV24XKr/YkJLJTSNLDXWDTXLGTmDoMjFtWOM8tMvPraaC8KS
- 4qlUpCBn2dqFqwd6qCitnpuKy6qGEO+5XXxmWIrpccDrXX9HgcO1pnCa6P15Gd3W2OYnn7F
- 8BYTrBddJkyNYVN81jYvsrn3y4plmKxxasYAGHOViaZv0NgB9MGkNYwCDaGg==
+ s=20240201; t=1779830167;
+ b=g3fmpPy+hdjjr2gCYxUrx48t2VabvFx+8CR34N7nyFlmMyUtjEGbmuTae1n5WxLhBoYuV
+ DcK7ZatrmgtcMnYAYRHEhhEhqzZRKRNOyKcRspl6/LBQMQ282p+w0doucPcNnVHN/RUHOil
+ rG+Kd0WLa4PGWAUAftM+TlCyNxvOgus9pTSGaZFtuzm5NIoLXXHOhsZPQXY0hhoskR9XrRK
+ c+61l5EHbAAv8HGbBvhuLQXWeky7Srym/QzLLuE/Fe+8n4nWB7qg8htTv4ZSK9X29xq06Dh
+ VB9zO3k2/ptKU1s2uCeYpDPGb9JzkkcRPHBt27fJXmyH1a/bel/CLCxwVGiA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1779830163; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1779830167; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=35xOY5UpjGtZddGUxJfTOaK/u/wc0iWDPCGCXs5Om6w=;
- b=I3PrGdrIwYrfxgt6gDG+3YH2CTV4k+fC89GuHBSkwLZFFPTKFQXcn5CON8vC2DKNzY0Qn
- IpydqVb2oYld9abAblXFQMNeclYqE80RJjQSSx4HX8RqK2Hc6D5TjKcvgHjaQK6OB/weruo
- EeUYV1DBxUqeLvbHq5kfjRzMUFlPwvbAr2iBpqaf9GHul4Fmui9ZJiMilXyIU2l1uhFPKGr
- Bds9diwWzKeKFFc/8BTBAARuL5+SyhZGk20POgpy00IcEeb0wRP3XTDaxAQ+afq/tDdykdS
- U4lgrdOgh6Z6IRimzUi8NEfkCY6bkfOi7bxIGCqQ08j/PKTGcJWIkUYR6UMQ==
+ bh=dGTPG3QEQJmlnLPRQxC3z6rB8s3h7HSZZcCP8Kz7ue8=;
+ b=k7Xl3c+eh9ynwwX2FSirXGdxfMcnr6YcPXHYYeJi1/PEDy4eGlCzp7bMo/nHg/vX4wEkx
+ FHv3u18JoVJcLROsNa/WbejmRsU6pSbEMIYwjyiXaK643cF5PhpMFDYXVC95NMkYbKox6i8
+ 7wy3Rsa8GGFO6m4miFbGxkLlSjg1fDgC/K4fA0B43DCPb3kUpmKT5n+mcgyn40+WcrI6MKK
+ wXSxCQEdHInWzU2ZFq+UbpEKFN234exUXXswSidAQzgTWbWOdETjlFOcMsSkyNw+IWwO3cG
+ 3s1TC9xTIxGZjyYy/bKRC0r3PclrL98KpkqTQ7+GBeR0Gvc5awD/++0wXt+w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,60 +46,59 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 959CC4641C
-	for <nouveau@lists.freedesktop.org>; Tue, 26 May 2026 21:16:00 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9319546463
+	for <nouveau@lists.freedesktop.org>; Tue, 26 May 2026 21:16:05 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 75F0710E6BA
-	for <nouveau@lists.freedesktop.org>; Tue, 26 May 2026 21:29:25 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6E96E10E57F
+	for <nouveau@lists.freedesktop.org>; Tue, 26 May 2026 21:29:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1779830964;
+	s=mimecast20190719; t=1779830969;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=35xOY5UpjGtZddGUxJfTOaK/u/wc0iWDPCGCXs5Om6w=;
-	b=i1eqoFi0Ud3YJ1OG1qgUWxBRhwefCbO9GHUyGeZhnDdJc57vC7uyZ/iSaJ1X5AsNN3BWwf
-	6LWuQhUbtUlXNigtyeSV1Bdbeob5WyzbF6cAVcKTYpIwGKlsf0UI8SuKuDBEYXn57m/Ddq
-	qO10JffXsluVNlXtCV5HiVPhrhs4+Yc=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+	bh=dGTPG3QEQJmlnLPRQxC3z6rB8s3h7HSZZcCP8Kz7ue8=;
+	b=NcT7XqoWY09f2Ql2ipGFDS5D3etEu5hwrkmp/wtlJd448dkyauL2miSLGlRHsmeS8DtQXi
+	2MH+uuRf0wCxPV9vH3KvW4rOUUyBsj49q7RKYzmRbdLdCEHZmepbYytbWv7QNEROeTnrxH
+	l1wz+w2cmzP24wRKsYI6RV2Zb8Es0vk=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-587-cEgIZJ2IMoG2W1xSPwgxqA-1; Tue,
- 26 May 2026 17:29:19 -0400
-X-MC-Unique: cEgIZJ2IMoG2W1xSPwgxqA-1
-X-Mimecast-MFC-AGG-ID: cEgIZJ2IMoG2W1xSPwgxqA_1779830956
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-690-LsvWmM20M52MIdIkOVigtg-1; Tue,
+ 26 May 2026 17:29:23 -0400
+X-MC-Unique: LsvWmM20M52MIdIkOVigtg-1
+X-Mimecast-MFC-AGG-ID: LsvWmM20M52MIdIkOVigtg_1779830960
 Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 408E01955F25;
-	Tue, 26 May 2026 21:29:16 +0000 (UTC)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 3F77C19560B7;
+	Tue, 26 May 2026 21:29:20 +0000 (UTC)
 Received: from GoldenWind.lan (unknown [10.22.64.238])
 	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id C072E30001BB;
-	Tue, 26 May 2026 21:29:12 +0000 (UTC)
+ id 7065130001BE;
+	Tue, 26 May 2026 21:29:16 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org,
 	rust-for-linux@vger.kernel.org,
 	nouveau@lists.freedesktop.org
-Subject: [PATCH v14 2/6] rust: gem: shmem: Fix Default implementation for
- ObjectConfig
-Date: Tue, 26 May 2026 17:28:53 -0400
-Message-ID: <20260526212857.1158294-3-lyude@redhat.com>
+Subject: [PATCH v14 3/6] rust: drm: gem: s/device::Device/Device/ for shmem.rs
+Date: Tue, 26 May 2026 17:28:54 -0400
+Message-ID: <20260526212857.1158294-4-lyude@redhat.com>
 In-Reply-To: <20260526212857.1158294-1-lyude@redhat.com>
 References: <20260526212857.1158294-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-MFC-PROC-ID: pYXsvgl8xOq1reiqd9h6to1VElaGMf1llpRVRZumIKE_1779830956
+X-Mimecast-MFC-PROC-ID: bogd8xp7f_iHMVcDeVYSst_Qbd1aJ5jBjn6NwXopKDw_1779830960
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: 6YWDEQ3YRUYPJVRKXIS2TWPAGFRS3AHY
-X-Message-ID-Hash: 6YWDEQ3YRUYPJVRKXIS2TWPAGFRS3AHY
+Message-ID-Hash: XKTJQT2AFYUEVKIHRWGGMHQHHTYCGDUC
+X-Message-ID-Hash: XKTJQT2AFYUEVKIHRWGGMHQHHTYCGDUC
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -121,9 +120,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6YWDEQ3YRUYPJVRKXIS2TWPAGFRS3AHY/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XKTJQT2AFYUEVKIHRWGGMHQHHTYCGDUC/>
 Archived-At: 
- <https://lore.freedesktop.org/20260526212857.1158294-3-lyude@redhat.com/>
+ <https://lore.freedesktop.org/20260526212857.1158294-4-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -133,48 +132,58 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-I completely forgot when coming up with this type that #[derive(Default)]
-only works if all generics mentioned in the type implement Default (and T
-usually doesn't). This being said: We don't use `T` for anything besides
-using it for a reference type, so whether or not it implements `Default`
-shouldn't actually need to matter.
-
-So, fix this by just manually implementing Default instead of deriving it.
+We're about to start explicitly mentioning kernel devices as well in this
+file, so this makes it easier to differentiate the two by allowing us to
+import `device` as `kernel::device`.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
+Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
+
 ---
- rust/kernel/drm/gem/shmem.rs | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+V11:
+* Fix location of //
+
+ rust/kernel/drm/gem/shmem.rs | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
-index e1b648920d2f6..8b7de136ab1f9 100644
+index 8b7de136ab1f9..116ed0a13eac2 100644
 --- a/rust/kernel/drm/gem/shmem.rs
 +++ b/rust/kernel/drm/gem/shmem.rs
-@@ -39,7 +39,6 @@
- ///
- /// This is used with [`Object::new()`] to control various properties that can only be set when
- /// initially creating a shmem-backed GEM object.
--#[derive(Default)]
- pub struct ObjectConfig<'a, T: DriverObject> {
-     /// Whether to set the write-combine map flag.
-     pub map_wc: bool,
-@@ -50,6 +49,16 @@ pub struct ObjectConfig<'a, T: DriverObject> {
-     pub parent_resv_obj: Option<&'a Object<T>>,
- }
+@@ -12,10 +12,10 @@
+ use crate::{
+     container_of,
+     drm::{
+-        device,
+         driver,
+         gem,
+-        private::Sealed, //
++        private::Sealed,
++        Device, //
+     },
+     error::to_result,
+     prelude::*,
+@@ -115,7 +115,7 @@ fn as_raw_shmem(&self) -> *mut bindings::drm_gem_shmem_object {
+     ///
+     /// Additional config options can be specified using `config`.
+     pub fn new(
+-        dev: &device::Device<T::Driver>,
++        dev: &Device<T::Driver>,
+         size: usize,
+         config: ObjectConfig<'_, T>,
+         args: T::Args,
+@@ -157,9 +157,9 @@ pub fn new(
+     }
  
-+impl<'a, T: DriverObject> Default for ObjectConfig<'a, T> {
-+    #[inline(always)]
-+    fn default() -> Self {
-+        Self {
-+            map_wc: false,
-+            parent_resv_obj: None,
-+        }
-+    }
-+}
-+
- /// A shmem-backed GEM object.
- ///
- /// # Invariants
+     /// Returns the `Device` that owns this GEM object.
+-    pub fn dev(&self) -> &device::Device<T::Driver> {
++    pub fn dev(&self) -> &Device<T::Driver> {
+         // SAFETY: `dev` will have been initialized in `Self::new()` by `drm_gem_shmem_init()`.
+-        unsafe { device::Device::from_raw((*self.as_raw()).dev) }
++        unsafe { Device::from_raw((*self.as_raw()).dev) }
+     }
+ 
+     extern "C" fn free_callback(obj: *mut bindings::drm_gem_object) {
 -- 
 2.54.0
 
