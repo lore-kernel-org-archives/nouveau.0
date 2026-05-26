@@ -4,191 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91558CD5BC8
-	for <nouveau@archiver.kernel.org>; Tue, 26 May 2026 10:17:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E58BCD5BC8
+	for <nouveau@archiver.kernel.org>; Tue, 26 May 2026 13:17:03 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2654810E474;
-	Tue, 26 May 2026 10:17:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 07CBF10E653;
+	Tue, 26 May 2026 13:17:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Uedi+Mby";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cG214dNa";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id F409346424;
-	Tue, 26 May 2026 10:04:28 +0000 (UTC)
-ARC-Seal: i=2; cv=fail; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1779789868;
- b=vgOGFZcBpCgKiBABzT6P4xuKfQEoKwn9+/GYerId8d1zjlfCwrTGb6+DxAYqEeOp+k9tI
- uBSHLCuZHeMAfFAFzalkETDrWSmteUeQL+ydfvawaX5dA2ObfhhcOO0PquVPMqDjyF6DdVf
- GNUGsf6zkDHK0HxPeeTs0tHV5k20fD1XKWrpNbk5oYEa9u3I2yw2xg3qyyMrdmQBGMSbtgG
- ZrZdkrxVyx1unnCSEVb++3c+4ng+idY1XUGeSfYO7/+EOM/SaFaeifb0EZduDCnKZSuxdc3
- E4AVUviNU/6a6Soty4Lb19TPfeoXF7SXitT2KbZbMCDZ81dYyqw+ZYvn8ugQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1779789868; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 9785B46442;
+	Tue, 26 May 2026 13:03:38 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1779800618;
+ b=fxU7LABTCWHISmqQiSq07llUmVgpqstSGClGfHVXIJJ2vNDj1cXAxcTAiIimA05Du/mdJ
+ uHhNO0dQrVC2ZMnAXIDPzbcBLULvCKXgSloSPn1PMZu5augEban2ipkOo++wbXP3JdbFH74
+ fOR9Ggm55grbd03HfFonSNis4K0P4XQQoy4oLZ3U7ldPNpvddkCreR+bzTcyW5ZkMm9crnH
+ X3dhoXc5kkoqaiEGAqb0Aj1mLQ8WCilqVzUfr5YUCVmPIR8XoNLyKMvHw2KL1sGUPTwzKYU
+ xoIV/CG0wdM/qveWDfpz5abPu7M6A+Q0WImOEiaUzvS4mdhdbm6K4JWPqPlw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1779800618; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Nu/A+i3bC4bFOi5+pds3322Nzg9L3QD2Xmox3C7zxq4=;
- b=FoADDfCsG93Ql1Xyur7ZM7KiDras3PlakbKAMnYZBveXrXBhz32la28zaEVzGq/icfJxR
- 2HO5HqCUzYj9LpUyMvAuYRHng3u1ZXWEg3KE9YmC4VwYNy+DoRWw6L8VybjgeZvYHNeGGuB
- 0JK9Mcjvf4LV05Najitb2476ihWmudl8kRtrYbEftXGJo1RLES9Au2vpRicIA3UDIdo7z2y
- EfgV+dVFkgYZ6OJQ4xxtUSFtD8Xiwwr0weulmlaRwyCwOTZYA8CeEM/jCXUtOQej+TCUxSM
- EbVqOwmynFY3uq4AyFdeQWYgh2R41LuqeVa0nIn93ynP6jOJ/7ZBDfbE9T3Q==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=fail (Most recent ARC-Message-Signature did not validate);
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=fail (Most recent ARC-Message-Signature did not validate);
- dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
+ bh=JE0l0J/Q4cmSCbkBtHlHYstq0L2VtzMwueKDyLmSf5U=;
+ b=tLrJCze/zFKJAUDJMkkSTmmdAZWfr7eSc3vxo3sSMSCmclaxLyGNvr6euMUFiZqy9F+Ce
+ +ns2AjH0VQDw4y3VEZnN/36O88FPYfepF19id2H/d6TVPtU701AdlMLFrf2sxi8Hz7ISaZI
+ Nzf5RK4R9i50yDgMyYXK4ppqgnndgNVWFDHPpNuT677/66c0UQuuetojZKcreEnu/1t0huw
+ 0y4HB4pJab0hxEEvlN8EqL+jIDNfG71gY7TAq2LxGJQZ346HyZ1imUGQ4eCGT50E3iGKP8F
+ EEc2+Iq/nyEKG9Ps5xtFOQ3soL9DIZqWe4hm51S6ijQnosNxSGNxusc24yVg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E88354013C
-	for <nouveau@lists.freedesktop.org>; Tue, 26 May 2026 10:04:24 +0000 (UTC)
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013047.outbound.protection.outlook.com
- [40.93.201.47])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B10D610E107;
-	Tue, 26 May 2026 10:17:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I+M/AU9C6dkIRLL6zGo4EsEa2r6b6cf3fsRR3ScZu5JhKmJRy/YQoIxvYm7uAw8WbpnsHOWyxF7CDBjGuN0wUdokAgL5wJbxV+SdgsuOyOc7bAQu0xwXKbFPk0bWDXq+eJSROcaJ5P8Cco9le1RuT8tmXuMZ7Y2OvwrqyF8fxMtUzSOR/DYd37ql97BWqoGvNfikq8XDDkisiAFohBW1Sx5q71d3ysPAosu9A7dAe91EP5MOS6FVWaNUkxCNPhAd8hvkJxq88fjEKnekHjCKHoTlHGvxFNBhS1N8OltqTuttEJAalEJ/G0jUKyVCJIOJj897y1Uzomz+/0hGn0FZ2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Nu/A+i3bC4bFOi5+pds3322Nzg9L3QD2Xmox3C7zxq4=;
- b=b951k6bakv9D3gUvy3U/cfISJNXufl+pJL4s5B8Vavq4849EFVIYUyNjBFVEofHVIfMLrm3ZN+gjbF7+o/Tzu1v/m9MvT66+0m8Vd6ARf/m1wusQawUPSzrWNevnsm60RjeI4JCgNvCgvkXkJUb3Xnx8FSpw7lDgtVh2BhFk0jj5tBKptl98soGP+wGe0VrMOEuAbEvs6yW451v3E8alPqrF7RrgoTSuI8oUWv18BQjLwo7k3TKurkeNP4jvbz3B3Cb38arpSpDJMfxNim1jlFua5DBVVTFTK4jcWYbw/wBeqla12Tq2KmX19eohfsa0XXRLHJ73mWm3l2Kyc6vOtg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Nu/A+i3bC4bFOi5+pds3322Nzg9L3QD2Xmox3C7zxq4=;
- b=Uedi+MbyrNNE5hTpjFe+9KGGiwoz2x6YmOIW7V8+0yr0nWlN7NNeglDdBAjPVbSRdB+3dYE23Dz3OUJbiC7dawKVu6PfrNFKZ4A5CQkjA0CzSU+mCsSQSpKZK6KvuvSC47gfXPuwdg9AidwMfcUqAfIb/2i+C4Td5wBdIomR/0CWP5KSGiL/8g2p7I4CxK2neE3iUJNTA3O0cFN7IUWcStZgwrdcvd9EeyhXOVpZR+4oGVL+pY3d3/evP24giavTRn2SHzTejqvjX+Yc3ZIu6gConBp4YP0C48OkD9+bw+Q3uMtNJWRz7+XsQKoozID4qOBEpWhPdAbWNPnC/lb9gA==
-Received: from LV5PR12MB9754.namprd12.prod.outlook.com (2603:10b6:408:305::12)
- by SJ0PR12MB6878.namprd12.prod.outlook.com (2603:10b6:a03:483::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.11; Tue, 26 May
- 2026 10:17:44 +0000
-Received: from LV5PR12MB9754.namprd12.prod.outlook.com
- ([fe80::9667:3c95:27d2:73da]) by LV5PR12MB9754.namprd12.prod.outlook.com
- ([fe80::9667:3c95:27d2:73da%7]) with mapi id 15.21.0048.019; Tue, 26 May 2026
- 10:17:44 +0000
-Message-ID: <5bb4e29e-10e8-43f0-9a62-a2d9ec8ecb32@nvidia.com>
-Date: Tue, 26 May 2026 11:17:38 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/9] soc/tegra: pmc: Clean up legacy code
-To: Thierry Reding <thierry.reding@kernel.org>,
- Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Mikko Perttunen <mperttunen@nvidia.com>, Dmitry Osipenko <digetx@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Mathias Nyman
- <mathias.nyman@intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
-References: <20260506-pmc-v1-0-a6de5da7216b@nvidia.com>
-From: Jon Hunter <jonathanh@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <20260506-pmc-v1-0-a6de5da7216b@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PR1P264CA0031.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:102:19f::18) To LV5PR12MB9754.namprd12.prod.outlook.com
- (2603:10b6:408:305::12)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV5PR12MB9754:EE_|SJ0PR12MB6878:EE_
-X-MS-Office365-Filtering-Correlation-Id: decae07e-6e75-41c3-4d47-08debb1006d6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|376014|7416014|366016|6133799003|921020|11063799006|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: 
-	Qfhf98gZZxalUTPmk6d6Xl9Efuszw4z9cvC/XANB7RY5CXfCFtyvpbaZ7O01vlOb9/TF1v5H2kNqdZeA5xo5Ym8h2xLUqvWpK+b2/kL0UsGmiHDMJyOb2Nz7m8Tk8plpgUkwZcQoQXnsY5fh9zeXz+Fo2VKy1j1DTlGuOwK64Ybce2aUGPyrzC0YMA7JpLjqOEVXWQtNAEOQhelBrkHdoa3Z74cDKGeUv8nRNh8UUPNF307t63kK3bsw6KoL5wmC9czrDPDrwsFVrShoSsVUDVvd4QVXHp89buguNq83P3Mp0x+fNYxCIPbUpZCNiuPJZ9yP5/PS2hZ/Gk7rxV1gMy4eIKDV7XJu8Uxuu7lv4Y1WkwaBl1fHqAoB7066HL1O/Vfr2+9zVpbDz/zmp3r5CyLv3AMpcwfl3xKzgxQT90Sgis85p9/3dIHzOvduYYcly7wyJpk8DJk9aMVmhbrYImHeDyXwU0n1N6QlsP2cSesTotCh3oRF7l+vttRgi2cepl70hKBX5314vtj21pgEymUS2X1eAwHxTHkbqunEYx5glhrqLbSipAjAGx0FOuWiMwye304H/G+ZaCVCXWjTFss5GAbUlUstdZCaX/MW1S42CU+lpPA6vkThObevAYbiS2UxfSbVJ+hqAQs7FjLt0Mdckk3UE8GvQMc/W1w3oyR0GxgB3XAEgTcTX24SMI3/toyNld6sdalh8gLSeVRxttBtPf6oTw8MZddHXJpPuic=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV5PR12MB9754.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(6133799003)(921020)(11063799006)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?UWJ2VUI0TEFYaVgvT0ZRMUpsQUE0RHAybUpWVkY5MTZYbC96LzdCWUhVVzh0?=
- =?utf-8?B?dnU4RmFxNE1tc2pDNGxRWkhVSHY3L0E4L3Y4V2x0N09ZZWtKT0FiN1ZjMXJT?=
- =?utf-8?B?ZldUUXlNTFlSSENoQVdENlRaejMrSTZ3bHNETHJETmdJU2pmbW5pNG9ycVBB?=
- =?utf-8?B?cGZCWmpHQ1dXQWFiT3RGbklrU1E5MUN2bnBBamUyRER5b2ZIRm43bU9xWWx6?=
- =?utf-8?B?cUtVL1Z3NUpmRzVMYklMRnRrMDhNaU1ienlvYUVVa1BBUndBYW9PY2htVlk4?=
- =?utf-8?B?S1V3VE1pRUlMQU40WE9lZTlQTUNhZXM4bGhuengwMVBFc0xkWEthWUJmZWsy?=
- =?utf-8?B?MWhqd0t6bnpsTHFRZGRZazJyNng5UGdnOGZOT2FKcW5PQlVPNnpnamFidDhX?=
- =?utf-8?B?d3JIVllISEdZRS8zblUxempKNVRnR3QybFBra3JTV0NjTDRMQldkVG1RbTNk?=
- =?utf-8?B?QXkyczNVWHZaMUlubS9iajBRakVyeUwxSTIwQXVveUJzUXlIODY4Y1pmKzd3?=
- =?utf-8?B?MldCM0ZNMUVGOHE1RzQ4K1dBdFQxRUpLcFAzWDhpbGxzclB1aWg1THZpa2w5?=
- =?utf-8?B?bVE0S1JvNTQ5RkM1U3Nubi9uanRTYXRtb0FLRFErUjdCdmRlSGNhaTk3SVlM?=
- =?utf-8?B?VVpFd0g5aHRxNGg4NWthYjdkNEFjZzVhd3NscU1JMzYyMTRnU3UzNXZBRU5P?=
- =?utf-8?B?enMwSVU5RGpPbjl2elFpSnRPblNlNmxiQUZmbVpTZFRGTFhtQTJzV2NNbnZM?=
- =?utf-8?B?Skx0Qlhha2hna29VQUUrSVlyUy8xUmdLS2JuVTBrajdyY09LTlRpWHBvRDlF?=
- =?utf-8?B?QStsa05PZDRvWnl6S3hkVVlCMFlNOGNmRE0zaEVlUnRkZ2NQdWVQd1lvV1lx?=
- =?utf-8?B?TVlxU0NOZzRjbG9lTnU4TlJ5cUFXSEV0RkszZ1NqWjJEeXFmWVhMbmNHQ3VT?=
- =?utf-8?B?TlpFZENCY2ZGU0VsVkMwZEtldGFQL3A5R2NmeFhid3pqZmVuakg4b0lqdjdR?=
- =?utf-8?B?S3h0U0QzaUthckp6YXpvekF2RkJ3Z0w0TGdrU1RSejkvY3BLUVVJMjU5djBU?=
- =?utf-8?B?SDU2TEEvNndrZGh5OUNNVmlLY3lXZWtJVUdtUHZvTStVcFNGY1BlWmNkR0x5?=
- =?utf-8?B?U2tCVzlVcmF4Y2hUNE5CYnZEbmlHZlRHSUZRZ01SN3NMOTM5WUZtWlMwaDR2?=
- =?utf-8?B?U29ieE9MRE9Kc2FmLzFGVkdFZ044K1lvRVNvWWp4VDF3cUNJZ3JMUHB2ZDNC?=
- =?utf-8?B?eGw2d0tTRTlCNWw2a0dUZE1LN1BCaTRmVUpMNmFBZUJDS0ZNbmJGdlkrVFp2?=
- =?utf-8?B?cVFMZCtIVklYU3Z6aWcxZ1Z2NlJLMlViVDZSQUtKQnVGRENZZTdvbndrbG9a?=
- =?utf-8?B?UDlSV2d0cDc4cHkxb00yVnNxQXd1eUM3bWozU3lmSUVEa1RxMHBORTVMOUFx?=
- =?utf-8?B?N2VsVFhUeVNqak52Y0Z0YzlMN3FPYnZCcTM3S1ZqTjdYeDZEdEhPd2VwUThM?=
- =?utf-8?B?bDdIMitXaE1TUkczQkMxZVJ6SmthTm14d0NKUjFLWHlpTGpJTmFvaklCSEZW?=
- =?utf-8?B?UWgxT1VLS2Vid3hMTjVwVDdIWW1MandtWVJJZTMwbHdlM0dwMkFOcEZjQXFL?=
- =?utf-8?B?RWVEK3YzajhzSU9lL0dCams4bStNMURjdkNOMzNQT1NJY3czSGYycEppVXVE?=
- =?utf-8?B?R2l1WW1GaXBjUW5SZzQ4RVZhaFRTUFFnMExCbTFzWnI3SjNCK0JINml4WGRn?=
- =?utf-8?B?UjQvWU9wNnduRVZ2ODBVNk9lUjNyWTFSdFJTSWtRV21zSVFva0JzUjliMjdx?=
- =?utf-8?B?UjUrN29sY1llTHQwYzJKMFd2cnJZQVZ5amgzWlc3Ykk3K2NUQU1VZ245UldR?=
- =?utf-8?B?b3VCQ3MxVnUweWlpYVRjL2NkWXV4WmgxRTE0MWVhTzZ0N2FoZTBLOTZ4c2pD?=
- =?utf-8?B?THMyMFV0U3cxaXBtL3BnWmlnWmRVRFZoL29FamI4cXpVYXk2cFcxN3g4UkZ4?=
- =?utf-8?B?NUdZYmNoQS9UdHFmdloyZDVsekpIVktTUVZvMUtLanVrOS9rdGM0VzJ3QmRy?=
- =?utf-8?B?VSsxaXlYTlZ2WmdmKzZJRWRSTjRUWGVXSTR3N0ZFVXpScjhEMXA3QWlPcks5?=
- =?utf-8?B?dldUdmtpR2twY1ZjRUFHb1pUZFdNa1d2VElvbm5vNVZZd3R5bU5yZDRyZHVo?=
- =?utf-8?B?SWl0MG8zZmU5aVZSMnRlak1vejhLN1Y1R3U4MkZYWVNrUTZpc0NKb0kzQnFh?=
- =?utf-8?B?L1Jjenp6MFZyR0JiVjlQRU5zTGpuSTg5RkJKclV0dnloUUJ6L2ZRS1owUEVD?=
- =?utf-8?B?ZUpaaDhqMVpaMURYR3orLzZtd1V6NG82MTFVVHIvQ1g4Zy92N3RmZz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- decae07e-6e75-41c3-4d47-08debb1006d6
-X-MS-Exchange-CrossTenant-AuthSource: LV5PR12MB9754.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 10:17:44.3677
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- vs3K6A/sNK3Kwy6Vrc33JOor1//7/rOgP4xJXeBxYHKmYTiyIW1IjuiqscjjVWlefF2TAlPELAmjAr7g3OJ0EQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6878
-Message-ID-Hash: V6XFIGBFGCO7ASJCBER5FVNCYWDBW6YU
-X-Message-ID-Hash: V6XFIGBFGCO7ASJCBER5FVNCYWDBW6YU
-X-MailFrom: jonathanh@nvidia.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0B2E44641C
+	for <nouveau@lists.freedesktop.org>; Tue, 26 May 2026 13:03:35 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3DF1310E146;
+	Tue, 26 May 2026 13:16:59 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id DEFFB416A7;
+	Tue, 26 May 2026 13:16:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24B471F000E9;
+	Tue, 26 May 2026 13:16:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779801418;
+	bh=JE0l0J/Q4cmSCbkBtHlHYstq0L2VtzMwueKDyLmSf5U=;
+	h=Date:Subject:Cc:To:From:References:In-Reply-To;
+	b=cG214dNa11lOiy46AORsXkv4bUe7G6t792Zz1McUEExu49YQuzsGWtnjMFhpT/q5B
+	 MrWm4yWs+7MGpCUCObANSrsl8H/A53DJXfmh/222L8XI5XR3vgOsg9FTL9a5N4RvVF
+	 /IQgh/8GaVvCxaAdLesrjnrwjwBy5AMiFXGJQityPEoWKRCSgP5efR4ZjeTTgOJezo
+	 PwBvoko/tjwmeO2XhNDL2BKxA1yJcrPddVH1UdV4FzAY7pxcLcCPIn4RxUalJYhNwW
+	 azzU0WcX+XhCrOXM7HeDL8YEIyMvt8RdnFSmqajqRMyEIyISiN7yQG8bwpdY8bRSrW
+	 +HGWRV9/6y6MA==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 26 May 2026 15:16:54 +0200
+Message-Id: <DISMY2BS8E1D.Q85V8DKCPM1C@kernel.org>
+Subject: Re: [PATCH] nouveau/gsp: fix NULL pointer dereference in r535
+ nvenc/ofs alloc
+To: "Hongling Zeng" <zenghongling@kylinos.cn>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260526014721.13299-1-zenghongling@kylinos.cn>
+In-Reply-To: <20260526014721.13299-1-zenghongling@kylinos.cn>
+Message-ID-Hash: NNLUZH3PNZB5PE7ZIQKKPN2DMRVOZTRL
+X-Message-ID-Hash: NNLUZH3PNZB5PE7ZIQKKPN2DMRVOZTRL
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: linux-ide@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-media@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-usb@vger.kernel.org,
- Thierry Reding <treding@nvidia.com>
+ loop; banned-address; member-moderation
+CC: maarten.lankhorst@linux.intel.com, mripard@kernel.org, simona@ffwll.ch,
+ airlied@redhat.com, bskeggs@nvidia.com, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ zhongling0719@126.com
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/V6XFIGBFGCO7ASJCBER5FVNCYWDBW6YU/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NNLUZH3PNZB5PE7ZIQKKPN2DMRVOZTRL/>
 Archived-At: 
- <https://lore.freedesktop.org/5bb4e29e-10e8-43f0-9a62-a2d9ec8ecb32@nvidia.com/>
+ <https://lore.freedesktop.org/DISMY2BS8E1D.Q85V8DKCPM1C@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -198,43 +103,25 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
+On Tue May 26, 2026 at 3:47 AM CEST, Hongling Zeng wrote:
+> nvkm_gsp_rm_alloc_get() can return NULL as well as error pointers.
+> The current code only checks for error pointers with IS_ERR(), which
+> would lead to a NULL pointer dereference if NULL is returned.
+>
+> Fix by using IS_ERR_OR_NULL() instead of IS_ERR(), matching the
+> pattern used in nvkm_gsp_rm_alloc().
 
-On 06/05/2026 14:41, Thierry Reding wrote:
-> The Tegra PMC has accumulated a bit of cruft over the years. Most of the
-> legacy code has since been replaced by standard APIs, but for certain 32
-> bit platforms we cannot get rid of all remnants, unfortunately.
-> 
-> In addition, future SoC generations can have multiple instances of the
-> PMC, making some of the old APIs unusable. Preliminary work was merged
-> recently to allow passing a PMC instance to the custom PMC APIs to solve
-> this problem.
-> 
-> This series of patches is a final cleanup pass that makes use of the new
-> APIs in existing drivers. At the end of the series, only some old 32-bit
-> support code will use the old APIs, so they can be made exclusive to the
-> 32-bit ARM builds (which is about as good as it's going to get).
-> 
-> Note that the first 6 patches can be applied to subsystem trees
-> independently since they only rely on patches that were merged into 7.0.
-> Patch 8 depends on these patches being applied, so some coordination is
-> needed. The simplest solution would probably be to merge them all
-> through the Tegra tree, if everyone agrees. Otherwise, maintainers
-> should feel free to apply patches to their subsystems and I'll monitor
-> things and apply the last three patches once all others have landed.
-> 
-> Thanks,
-> Thierry
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+There was a similar patch [1] a while ago for another callsite. I replied:
 
+	Are we sure that this can ever return NULL in the first place? I know
+	that nvkm_gsp_rm_alloc_get() internally checks for IS_ERR_OR_NULL(), but
+	I couldn't find anything within the callchain that would actually return
+	NULL.
+=09
+	That said, I think IS_ERR_OR_NULL() checks are misleading.
 
-For the series ...
+Is there a real case where NULL can be returned? If not, let's remove the
+IS_ERR_OR_NULL() throughout the whole chain instead.
 
-Acked-by: Jon Hunter <jonathanh@nvidia.com>
-
-Thanks
-Jon
-
--- 
-nvpublic
-
+[1] https://lore.kernel.org/lkml/20260418071412.86022-1-sunliming@linux.dev=
+/
