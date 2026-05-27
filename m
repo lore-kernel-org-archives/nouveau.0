@@ -4,130 +4,128 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD4CBCD4F54
-	for <nouveau@archiver.kernel.org>; Wed, 27 May 2026 12:16:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73FC2CD5BD0
+	for <nouveau@archiver.kernel.org>; Wed, 27 May 2026 12:38:21 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 95D8810E7AE;
-	Wed, 27 May 2026 12:16:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 52FC810E7B4;
+	Wed, 27 May 2026 12:38:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="B7/oJzEa";
+	dkim=pass (2048-bit key; unprotected) header.d=dorfdsl.de header.i=@dorfdsl.de header.b="ZKv+F0iN";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0F1C846492;
-	Wed, 27 May 2026 12:03:04 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id B97514649B;
+	Wed, 27 May 2026 12:24:54 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1779883383;
- b=E74XHD4sTpRYAzVaIVmgeYYkJsyPpq+Wvo0Q1opclVwW3mK3H1oy17dZ0QbPu6kh2XrMu
- uN74YafDN0RikKbzdLcJSJdlNA8G1kPIVxhb2l3B6QtPqgeJI+rv8Vs06qOfKMMBekZkl7j
- B39roeBzDAwvGIyWT/sK2OWcZzXXm4M5U/OuoIg6xepWHKfaACicAZBYx5mixJAycS1heoW
- 2Nq+xSzZBett0q8Fqinc7c0FQkco5vBfRK+wOXsrUqREqhE6ElC0FYGqZxSggjZMvbzfn9i
- q293mtXxk2hfpGY2rJ/G7cMBM7fgzjiBOs8Wp4a7R8y/GMqfSsz4q6Sz9Ejw==
+ s=20240201; t=1779884694;
+ b=pzgn5c9QLsGluwnAkB+hQdDCAalJQnOP3g2tegbvMTiMFdbnqQW0SjAja1q+wWKCeNMT4
+ rdlqbwAzYf5xjbDeCfrvWcyc34/fzrf67EUuA2QMpGGaBrGrUi5JpgtGF6cLEYF/AaExrh5
+ JHOPBr9Ht1CU8n4TdkGLYmMAnUYczqOwD3G4hiAxWB/v73yEVyhpIn8mxMqTndZ92sosxmb
+ OmcgQlQEU/iJkqsRDbp/qR5QfSEjwUbBF1fK5nQWRTYWPuvLeU/A7pxXeyA0CyIYnCxsl2p
+ tLW6t9Fa6Kvb2HVWn6xwDtAT8hOV5NTX8o3WEpAvEDSFK2hq4TMcsrWd6UUA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1779883383; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1779884694; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=3GySeGqKvH9w0k+SKK+eNFV995XnhG9D+usTEWb/rPg=;
- b=IJRf5hmtZ+bNNbXqD2tnF6jQU6SUE6sHwnycUPknIEXLEO5cUZZts76B7zR2fhV+U7vYC
- KBynSGUf2ZQQ6SROeZd1BGFgZYbIcDuhCdS/v3ipNEAmRqDa6xl3eJqV8Id0HM1lf/YLlyy
- R+3mNYRnkNljcZwd6+/tm9d7c9qtyO1uiE5L/SNP80xHokfOhc3s4gmA2uQTFNkNTJvzTnq
- 4F0pOH/D9qBtg7OBv5u8wtwoZkVTH7Zu72OMj71gd+enDeWWqQlAUH2hN1UhSSsmoFmv/ML
- Es+0Fzswh3VwHOiaJ+BV2+DGYHi128J2cqgPURZLZjA7Uy15fA219ExvFCHw==
+ bh=3Kp0xEREEGGktA9QzfKFQxpKkGtOfZXxpICYg3tO/Aw=;
+ b=lzwUVgCvnbDpryvhdlmta4zvdDP1p4EAum+ecODmQBNSIhN5Hdju+/EJD69WSPZDxz9zy
+ abqMKGbPYLiAIU98p6Op9fUDqtRN0+KzciC0lqCpFVq5t1YoMMJO/g8roHjq+085+k+Ypmj
+ 22NmTaDw46PNpWRZIrixtGo0w1I6f0f8jG2up7Fju2kfMGteViBTSG4WAruI+HrKwmqnJNS
+ RoDXO5XsVZJuU5JBxbetcgMPLoVpwrMuboz1Ad1rNDEHHzeiM9TtRE64XyRXmt0fkhNX4zi
+ rtfz/AWuTWRAKd13D4tOf0gqdOjOdfCwWfwcInbIBpVMkDoL/Uf1X1ATEAOQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=google.com;
+ dkim=pass header.d=dorfdsl.de;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=google.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=google.com;
+  dmarc=pass (Used From Domain Record) header.from=dorfdsl.de
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=dorfdsl.de;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=google.com
- policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=dorfdsl.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 76185462C2
-	for <nouveau@lists.freedesktop.org>; Wed, 27 May 2026 12:03:00 +0000 (UTC)
-Received: from mail-lj1-f202.google.com (mail-lj1-f202.google.com
- [209.85.208.202])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A863410E7AC
-	for <nouveau@lists.freedesktop.org>; Wed, 27 May 2026 12:16:26 +0000 (UTC)
-Received: by mail-lj1-f202.google.com with SMTP id
- 38308e7fff4ca-3945aa4b39bso59216991fa.2
-        for <nouveau@lists.freedesktop.org>;
- Wed, 27 May 2026 05:16:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20251104; t=1779884185; x=1780488985;
- darn=lists.freedesktop.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3GySeGqKvH9w0k+SKK+eNFV995XnhG9D+usTEWb/rPg=;
-        b=B7/oJzEar2T6mEt6lwclf9dK1ECEPsOWfVQDOhGjS5coyL7wAXkC+Bas2zK+x7DYZX
-         kGLFYzfM2HVwXor/zTt/Td0WkRlhQFQONlZu5NUobLWkuDmgEoziDzgZIjDMlC9WK9P+
-         CzsXeHzwMCg7IFGQ1gHFPDMTEOfh2af9hhWhZ70LcuR4lh+rveR5NW9XeDsCB5ro6iD5
-         wqR2BKmfSTRhFK4BxL20uyOLAmdqlZkbuoJd/xnvyLSJl0j6Tbw5yIO8XCnEI+PHOZuK
-         iJF+OhJS2amFyx0dRLrquRs3QORdOb1w6kiXzUrQnFj5EjV5LRSZxFq51JSsNjljIH2f
-         zAFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779884185; x=1780488985;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3GySeGqKvH9w0k+SKK+eNFV995XnhG9D+usTEWb/rPg=;
-        b=tFB/C2GrA6C2Uw2B1kqugukMYVpXE26dsTkSQ0ePK7BpZJXDM2gju59bQ7r3HeFuVU
-         DNKMxIQPJik/Q99QrdeXSImL7+HY+0scNjCk7i4fC4xxSPBrCqJXygGjjgRDKRKi+60K
-         Cu9GtmlJLUm/uARozFLAFQgvbIHyyF42XQokavixBwtJ4jBbjcs1mae80ztwkYZsmFQ5
-         eJgQC2S7uNpLx7HQVf7d9c5a43EgINH02OpGA4hao76+OglWwJlEu+/P5GE3w2Rovn28
-         EiCZRgP9k8R2oE0whp/KOdgp4RqvcJTvSLDIBp95onwXBuQs7uHzlbSnBJOkvF+7Y8OS
-         y0wg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9ihmONsgMfuArZFl+EdgQu7ClfDtldfB+I4pC4ObZjkOCiswyTQESGsYqJvCjQQlmLLr/+d2fm@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw9RNOE3HCZnpcBmuYHcIUFd1hZF2tmXGhmR+zdWN9axCS25Xf4
-	UKK3r9i/jgsqbyoVtrLgeXfnCCVG9yq/2uz2D/U/+VobhQ1TE1W+Z6dFEAQbkHqSfbJcjMDctgx
-	SEB8dLFOYAtrRaVYz8w==
-X-Received: from ljey13.prod.google.com ([2002:a2e:bb8d:0:b0:393:7fb2:6b5a])
- (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:651c:907:b0:396:c3c:d27e with SMTP id
- 38308e7fff4ca-3960c3cd3femr45362351fa.12.1779884184566;
- Wed, 27 May 2026 05:16:24 -0700 (PDT)
-Date: Wed, 27 May 2026 12:16:23 +0000
-In-Reply-To: <20260526212857.1158294-6-lyude@redhat.com>
-Mime-Version: 1.0
-References: <20260526212857.1158294-1-lyude@redhat.com>
- <20260526212857.1158294-6-lyude@redhat.com>
-Message-ID: <ahbglxo5yePyjE81@google.com>
-Subject: Re: [PATCH v14 5/6] rust: drm: gem/shmem: Add DmaResvGuard helper
-From: Alice Ryhl <aliceryhl@google.com>
-To: Lyude Paul <lyude@redhat.com>
-Content-Type: text/plain; charset="utf-8"
-Message-ID-Hash: DYIMVFKB32I76BZQOB3WYLAH6YGUH3VP
-X-Message-ID-Hash: DYIMVFKB32I76BZQOB3WYLAH6YGUH3VP
-X-MailFrom: 
- 3mOAWagkKBw0nyvpr4Buyt11tyr.p1z0178rn7yv565.s4rrqr5x612.14t@flex--aliceryhl.bounces.google.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id A3C83414FA
+	for <nouveau@lists.freedesktop.org>; Wed, 27 May 2026 12:24:50 +0000 (UTC)
+X-Greylist: delayed 837 seconds by postgrey-1.36 at gabe;
+ Wed, 27 May 2026 12:38:16 UTC
+Received: from srv1.dorfdsl.de (srv1.dorfdsl.de [82.139.252.16])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A37AF10E7AF
+	for <nouveau@lists.freedesktop.org>; Wed, 27 May 2026 12:38:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=dorfdsl.de;
+	s=default; t=1779884657;
+	bh=PpvPXIQgQ1r/YJzZgztRnNNKRaUhV1uNIM5FBvTCM+o=;
+	h=Date:From:Subject:To:From;
+	b=ZKv+F0iNqkUkC/QJrymNc9lrW4oWRPItFGH+rYznF/dpygzUbRy999p1oK80v2HIz
+	 SPG36tzY4oUNeadQCFBskgMktGaUM9VbuSSycTQezzRBQ6EhhrUmvSkos7Xlnz5Z97
+	 N2M60g/JbooVIKB+0oDVzoeAjHEBqiz2kv7SDGTOYfIH0L5vF7lPzGV3jIFCU5UwMA
+	 ugXNzPfh9URfazuWll87p0qPn3kHnhm9Kb/dQonnaF4D+aasZvem4i+8833TDo/xau
+	 vFUTGzWq9arI+hdFUnNBZ46WAxAo+PYuBW3ObdWM0G5bphlwm59V+MYDIivv76Lqiv
+	 wkbN8dfrYmIxA==
+Received: from [IPV6:2a01:170:118f:1:f5f4:a4f0:5b6b:d795]
+ ([IPv6:2a01:170:118f:1:f5f4:a4f0:5b6b:d795])
+	(authenticated bits=0)
+	by srv1.dorfdsl.de (8.18.1/8.18.1/Debian-6) with ESMTPSA id 64RCOHAf015215
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <nouveau@lists.freedesktop.org>; Wed, 27 May 2026 14:24:17 +0200
+Message-ID: <934530dd-61d0-4c43-a323-8947eb9be137@dorfdsl.de>
+Date: Wed, 27 May 2026 14:24:17 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Marco Moock <mm@dorfdsl.de>
+Subject: display issues on Quadro K2100M with nouveau
+Content-Language: en-US, de-DE
+Autocrypt: addr=mm@dorfdsl.de; keydata=
+ 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
+ MCwzZXR/AA==
+To: nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: RUK76B4CHJGKGJDSJMCGOQFFW6GEZIEP
+X-Message-ID-Hash: RUK76B4CHJGKGJDSJMCGOQFFW6GEZIEP
+X-MailFrom: mm@dorfdsl.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, Alexandre Courbot <acourbot@nvidia.com>,
- Gary Guo <gary@garyguo.net>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- driver-core@lists.linux.dev, Miguel Ojeda <ojeda@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
- Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org,
- "Rafael J . Wysocki" <rafael@kernel.org>, Maxime Ripard <mripard@kernel.org>,
- Benno Lossin <lossin@kernel.org>, linaro-mm-sig@lists.linaro.org,
- Danilo Krummrich <dakr@kernel.org>,
- Mukesh Kumar Chaurasiya <mkchauras@gmail.com>,
- Asahi Lina <lina+kernel@asahilina.net>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DYIMVFKB32I76BZQOB3WYLAH6YGUH3VP/>
-Archived-At: <https://lore.freedesktop.org/ahbglxo5yePyjE81@google.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RUK76B4CHJGKGJDSJMCGOQFFW6GEZIEP/>
+Archived-At: 
+ <https://lore.freedesktop.org/934530dd-61d0-4c43-a323-8947eb9be137@dorfdsl.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -137,68 +135,32 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue, May 26, 2026 at 05:28:56PM -0400, Lyude Paul wrote:
-> Just a temporary holdover to make locking/unlocking the dma_resv lock much
-> easier.
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Co-authored-by: Alexandre Courbot <acourbot@nvidia.com>
+Hello!
 
-Missing SoB for Alexandre.
+An HP laptop with Fedora has the issue that text and icons are not
+displayed properly, e.g. in xterm an Konsole. The issue is gone when the 
+window is being moved.
+It affects 2 identical machines (ZBook 15 G1, HD4600 and Quadro K2100M, 
+so I exclude a hardware defect.
 
-> ---
->  rust/kernel/drm/gem/shmem.rs | 31 ++++++++++++++++++++++++++++++-
->  1 file changed, 30 insertions(+), 1 deletion(-)
-> 
-> diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
-> index 116ed0a13eac2..1b24cb1129a8b 100644
-> --- a/rust/kernel/drm/gem/shmem.rs
-> +++ b/rust/kernel/drm/gem/shmem.rs
-> @@ -27,7 +27,10 @@
->          Deref,
->          DerefMut, //
->      },
-> -    ptr::NonNull,
-> +    ptr::{
-> +        self,
-> +        NonNull, //
-> +    },
->  };
->  use gem::{
->      BaseObjectPrivate,
-> @@ -233,3 +236,29 @@ impl<T: DriverObject> driver::AllocImpl for Object<T> {
->          dumb_map_offset: None,
->      };
->  }
-> +
-> +/// Private helper-type for holding the `dma_resv` object for a GEM shmem object.
-> +///
-> +/// When this is dropped, the `dma_resv` lock is dropped as well.
-> +///
-> +// TODO: This should be replace with a WwMutex equivalent once we have such bindings in the kernel.
-> +struct DmaResvGuard<'a, T: DriverObject>(&'a Object<T>);
 
-Is this missing a NotThreadSafe, or is it safe to unlock on a different
-thread than where it was locked?
+It only happens on monitors connected to DP or DVI, eDP is fine (but I 
+assume this port is connected to the Intel HD 4600).
+Both graphics cards are enabled in the UEFI.
 
-> +impl<'a, T: DriverObject> DmaResvGuard<'a, T> {
-> +    #[inline(always)]
-> +    #[expect(unused)]
-> +    fn new(obj: &'a Object<T>) -> Self {
-> +        // SAFETY: This lock is initialized throughout the lifetime of `object`.
-> +        unsafe { bindings::dma_resv_lock(obj.raw_dma_resv(), ptr::null_mut()) };
-> +
-> +        Self(obj)
-> +    }
-> +}
-> +
-> +impl<'a, T: DriverObject> Drop for DmaResvGuard<'a, T> {
-> +    #[inline(always)]
-> +    fn drop(&mut self) {
-> +        // SAFETY: We are releasing the lock grabbed during the creation of this object.
-> +        unsafe { bindings::dma_resv_unlock(self.0.raw_dma_resv()) };
-> +    }
-> +}
-> -- 
-> 2.54.0
-> 
+It happens on xterm with xwayland and other applications, including the
+KDE desktop. It also affects the menues of Thunderbird.
+
+Is that an issue in nouveau or at the X server or wayland?
+
+I would like to track down the issue. Please let me know which further 
+steps are required to identify the issue.
+
+dmesg does not output errors.
+
+-- 
+kind regards
+Marco
+
+Send unsolicited bulk mail to 1766588993muell@stinkedores.dorfdsl.de
+
