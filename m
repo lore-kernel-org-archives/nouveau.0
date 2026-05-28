@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE0C2CD6E45
-	for <nouveau@archiver.kernel.org>; Thu, 28 May 2026 20:48:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 186E7CD6E45
+	for <nouveau@archiver.kernel.org>; Thu, 28 May 2026 21:07:35 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6404610E6DD;
-	Thu, 28 May 2026 20:48:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2C99310F5FA;
+	Thu, 28 May 2026 21:07:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jOyHkSwV";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FZSu0fT0";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D891C46683;
-	Thu, 28 May 2026 20:34:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 73BC546688;
+	Thu, 28 May 2026 20:54:03 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1780000496;
- b=Ea7CxiA5a6hvzboAg4t7FV3SRLZZ8yrCidtoZMlf21ugLEu9vUd4E15UQq045qxG+Jwsv
- qh8hH+8NT6GdVfszjH8Gz7V9GxbrTT65fRKvzAygSPmZz4B8z9n18VBJwrTz8+wMgO3dZ04
- A1R97ptWEE78JnkF1ha+F+zajnZ/dtZmGDu7tXxFsqEONI/032sb0YamhYG8Bx7B/qSn1DI
- 63BuBfVQYZ3ZscGLmvgo7gd6ZV+17ZTJ6o04aL50H3FoEUMn/rf1M/N6e1Sa15k3NZG557P
- p3cypnww/5GOnVH87tcHXj/t4nTpx7m7XLYI3yJjgOMsnv7LkUpsgmoBn8fQ==
+ s=20240201; t=1780001643;
+ b=Wn+Gs3MJXcTCOcUE87Qv4Iv0GlOowERrsJHECxs8Whhj6HYsO/P0ejxUazqaFWNYWcsmi
+ ALqO10hGPtEb8QKXHsHzmIND+7dBF6Ry8+bPH/IsQbe3g8kxQUeZrziHnry57LYsK0Lz56q
+ XDthttP1PcvYOrQI36Y7yZ/T9F0HhaRWZvsHrflm3beY5GJixDlQINYGMi1ldY1Z5ai8V7Q
+ g4blXHZRdpsSBS9g/N00OWC1VqwARe4Ijk/STlT5eE1zDdmhsiX6jPh6cW2AoC46E5EmKbX
+ 9NhqG7/63S0ZP2Dz9HN4iVylU/s2iZbt+AFXESWnKNdT096IDBdzt1tQ7evA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1780000496; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1780001643; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=FpQud1RDgcM36CY4JFAfny+s7huVK65jhoq2kaa9jkQ=;
- b=HUFxYGc2zywwLFoLq0Qp1igmi1OcA5V4ys3CzadQIu1Wauk3DFOXkPjfg+qguC2M/K2eV
- QMl4rwa7rd+S3Nz/+xNvp474v1jdHEECrMhrhmLvK1vc0aMTITHQK3hU8rp8pvtDKiup25P
- dRneKpNZ6foWhv1XYbmW0GfWWUhJxSMdYy7XCMZRpAiNhxaQK+DLOaXT/rOQY3UAuy4Ev36
- +/FNXWn46F/WA+MN8kxZSZB1yT5WMXYETVuidud+vCpZ907yOUe/mD6ul3pzB9FbF6wtKY6
- UC2x9Uf0iX/Pe3QqIgFGAtvb6UA7HdNkcIJesV2d024EAZjcOQLPdB5hajAQ==
+ bh=fowJXGyder4bQsc7MfVmAwFTMAFL1nJkdD2VVv22884=;
+ b=W+dQtVlciiB2BP3Qw4HaWI1NiyYMwMArfwPE0PiGBOxa6BaNTDUdZK0JsZJxAwHUwjyYw
+ ZU0Jd2FL8ztNLLt4qd6SkBqovyQJA9sYbl9c/DzXHGFfhPOa4RvLFxh4F98Of5w3FAEPuRH
+ Fx68Fl898uMPpjCijvX+1JgYIPSknq6xBhO41U7E4FAc1ja1sPlftXtWVdDmKu6f5dgExqH
+ r2U2twCpWVJTwFLYTMTnO/gFb7n1do2mJajKSu3a6OhpoSl3UEdVXxnPZD0MEB1JdkC82Cp
+ QwV/7NLBfAYc+vMLEwurOkMl/D60glmGXgT7csg6w4RlAGEkUi026/biCuvQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,62 +46,58 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3BBE04667C
-	for <nouveau@lists.freedesktop.org>; Thu, 28 May 2026 20:34:54 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 26BE745DAC
+	for <nouveau@lists.freedesktop.org>; Thu, 28 May 2026 20:54:01 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8C2A510E5E5;
-	Thu, 28 May 2026 20:48:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8119410E7B0;
+	Thu, 28 May 2026 21:07:30 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5EAF643F33;
-	Thu, 28 May 2026 20:48:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4330F1F000E9;
-	Thu, 28 May 2026 20:48:20 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 3C9FC40837;
+	Thu, 28 May 2026 21:07:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8F5A1F000E9;
+	Thu, 28 May 2026 21:07:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780001303;
-	bh=FpQud1RDgcM36CY4JFAfny+s7huVK65jhoq2kaa9jkQ=;
-	h=Date:From:Subject:Cc:To:References:In-Reply-To;
-	b=jOyHkSwVCO70aJ4Ov/94NwYVAy9n5PAM8hPSejYwgQIExxEYZNmEbWq7U0TWFEOdd
-	 K32gMY1WhKQA+DvPEHgopFQc3JP2M0ykroQ8dB0Wj86HuT08+iBhBvGvOy6koG2EiL
-	 DAlnC/FvXx6253dt5qhslZ/cqwceHP6v9WSIOucB4rLfmQRgw2v3HNmZ3+Sel8rOKu
-	 4umK7DtSkJPOLDgbPSa2qf1l2CLC/senmm3oCzL/LnF3rc+Ia/ky6LhbxeiBBKDOiq
-	 XDkoqqzaDzTE9xot3M3lN5ra9OrYN06Od/8WTxSA2lvsltKIzq50/WZUHYTy14vgHf
-	 FBmncuzlJWGBA==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 28 May 2026 22:48:18 +0200
-Message-Id: <DIULSRTZPQ0H.39RB5RF1NTFYA@kernel.org>
-From: "Danilo Krummrich" <dakr@kernel.org>
+	s=k20260515; t=1780002450;
+	bh=fowJXGyder4bQsc7MfVmAwFTMAFL1nJkdD2VVv22884=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=FZSu0fT0FGaAH4AxLkt3DS93Ph42wwlCCSS/HHZyqQN80np3ElAgAtffQg/CawLcs
+	 ukFTIJ2TjDGKRPUPrskQbq+qMejlyWhIYS5GGSlUR9wZ1KAGICMchAWgy8FHfNhTNL
+	 XmcjmniR90FZvsTd3k2gVHNZKocRdFUjGov4TfUkAEQ1v2jfvKLvrElXFSUgCWvXA3
+	 3sDtu8Rv1FtPa8UsmhdgaFVkY8DTsvqN0NrdpfpMmfAIzP8g8i6ZBu7fvlTZHH7HOa
+	 dM/qShlMIKyGc28aE+nIwTTDZ8Xbs3qgSDwyj/2g3NG7URZGbXdTukv/siE4/HLsmR
+	 yrL0yPgIJkGSQ==
+From: Danilo Krummrich <dakr@kernel.org>
+To: Lyude Paul <lyude@redhat.com>
 Subject: Re: [PATCH 0/5] Revert cleanups for IS_ERR_OR_NULL() usage
-To: "Timur Tabi" <ttabi@nvidia.com>, "Hongling Zeng"
- <zenghongling@kylinos.cn>
+Date: Thu, 28 May 2026 23:07:17 +0200
+Message-ID: <20260528210717.7078-1-dakr@kernel.org>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260528192847.4077458-1-lyude@redhat.com>
 References: <20260528192847.4077458-1-lyude@redhat.com>
- <DIUKG7F2VAC7.17L4VHNNI7YL2@kernel.org>
- <4f4b7a4a89a253e515b009ccfa7ddfd21853b64d.camel@nvidia.com>
-In-Reply-To: <4f4b7a4a89a253e515b009ccfa7ddfd21853b64d.camel@nvidia.com>
-Message-ID-Hash: 4PCDVZDTVWL43VOLTLL2EOAKIPHIXFHO
-X-Message-ID-Hash: 4PCDVZDTVWL43VOLTLL2EOAKIPHIXFHO
+X-Patch-Reply: applied
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: D46BSIUKUO5KY4RVJHDEEZRFNGCJLE6X
+X-Message-ID-Hash: D46BSIUKUO5KY4RVJHDEEZRFNGCJLE6X
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: "rongqianfeng@vivo.com" <rongqianfeng@vivo.com>,
- "kees@kernel.org" <kees@kernel.org>, "simona@ffwll.ch" <simona@ffwll.ch>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Zhi Wang <zhiw@nvidia.com>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "airlied@redhat.com" <airlied@redhat.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "zenghongling@kylinos.cn" <zenghongling@kylinos.cn>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "mripard@kernel.org" <mripard@kernel.org>
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Dave Airlie <airlied@redhat.com>,
+ Qianfeng Rong <rongqianfeng@vivo.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Kees Cook <kees@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Maxime Ripard <mripard@kernel.org>, Hongling Zeng <zenghongling@kylinos.cn>,
+ Danilo Krummrich <dakr@kernel.org>, Zhi Wang <zhiw@nvidia.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4PCDVZDTVWL43VOLTLL2EOAKIPHIXFHO/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/D46BSIUKUO5KY4RVJHDEEZRFNGCJLE6X/>
 Archived-At: 
- <https://lore.freedesktop.org/DIULSRTZPQ0H.39RB5RF1NTFYA@kernel.org/>
+ <https://lore.freedesktop.org/20260528210717.7078-1-dakr@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -111,59 +107,27 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu May 28, 2026 at 10:23 PM CEST, Timur Tabi wrote:
-> On Thu, 2026-05-28 at 21:44 +0200, Danilo Krummrich wrote:
->>=20
->> @Timur: I do think cleaning this up is the right call in general though,=
- and I
->> also don't think that the whole driver necessarily needs to be consisten=
-t on
->> whether IS_ERR_OR_NULL() or IS_ERR() is used -- it depends on the contex=
-t
->> (although I usually prefer not to mix up NULL and ERR semantics in the f=
-irst
->> place).
->>=20
->> It should however be consistent in terms of what functions can actually =
-return.
->>=20
->> 	ret =3D foo();
->> 	if (IS_ERR_OR_NULL(ret))
->> 		return ret;
->>=20
->> If foo() can never return NULL, the above is misleading, as it puts an
->> obligation on the caller to somehow handle the NULL case and come up wit=
-h an
->> actual error code for it.
->
-> Sure, I get that.  My point is that it's often not clear whether foo() ac=
-tually can never return
-> NULL. =20
->
-> It's been a while since I've dug through the RPC call chains in Nouveau, =
-so my memory is a little
-> hazy here.  I do remember noticing that Nouveau frequently has situations=
- where foo() call bar1()
-> and bar2(), where bar1() can return NULL but bar2() can't.  So the questi=
-on is not whether foo() can
-> return NULL, it's whether bar1() should not return NULL, or whether bar2(=
-) should.
+On Thu, 28 May 2026 15:27:14 -0400, Lyude Paul wrote:
+> [PATCH 0/5] Revert cleanups for IS_ERR_OR_NULL() usage
 
-If there are multiple, it has to be the superset of course.
+Applied, thanks!
 
->> So, I think it is the right call to align that to what functions can act=
-ually
->> return, but while doing this, the contract should be properly documented=
-, such
->> that subsequent changes can be properly validated.
->
-> "Properly documented" and "Nouveau" are not two things that go together.
+  Branch: drm-misc-next-fixes
+  Tree:   https://gitlab.freedesktop.org/drm/misc/kernel.git
 
-Unfortunately -- but the changes submitted by Hongling can add the document=
-ation
-for the places that are touched.
+[1/5] Revert "nouveau/gsp/rm: cleanup remaining IS_ERR_OR_NULL usage"
+      commit: ebddb00faa82
+[2/5] Revert "nouveau/gsp/rm: cleanup IS_ERR_OR_NULL in core implementation"
+      commit: 1a8117455d0d
+[3/5] Revert "nouveau/gsp/rm: cleanup WARN_ON(IS_ERR_OR_NULL)"
+      commit: dd516da348f1
+[4/5] Revert "nouveau/gsp: cleanup IS_ERR_OR_NULL in rpc_rd"
+      commit: 80fa10569b90
+[5/5] Revert "nouveau/gsp: cleanup IS_ERR_OR_NULL in rm_alloc functions"
+      commit: 18178f2ac176
 
-@Hongling, can you consider this in a v2 please?
+The patches will appear in the next linux-next integration (typically within 24
+hours on weekdays).
 
-Thanks,
-Danilo
+The patches are queued up for the upcoming merge window for the next major
+kernel release.
