@@ -4,150 +4,190 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE22CCD5BD5
-	for <nouveau@archiver.kernel.org>; Thu, 28 May 2026 19:21:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91A57CD5BD5
+	for <nouveau@archiver.kernel.org>; Thu, 28 May 2026 19:22:44 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3931710F5C8;
-	Thu, 28 May 2026 19:21:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 73A3010F5C8;
+	Thu, 28 May 2026 19:22:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="V5m3izTx";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Sl33tTDZ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CA94846602;
-	Thu, 28 May 2026 19:08:06 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1779995286;
- b=fk7j1elJVblDjiwCs9PUuDnSbikG9zIkfZRJbPSDWBjvKX6zdTZBH6ObIpdRKWqZpJQtT
- MXqFOWDyh4Q037VYRIPizRgJ+EYWcDOcLvi3NMzJQxr+YRGxeHXAYwFl5+bu4Z3djeeOybI
- mnwEqFj7SehF3LTWPUi/Loq4En0valjhe/NjLnxdzYnGtYaDoT8xgsiYh+0Z/2C/fJyukPb
- L7uwfVxVl5SHh3GPwZBsyl3owPSfFRSIOZKmP8215lw14moJomisgNlgNe5+xdSmNe/sTAA
- 8vP017qnWi9lp4Qsr9vdsCBnxj7IQ1vJZ+NLQTh7cc6rTw7bNRAWoGHGThjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1779995286; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 1A38346607;
+	Thu, 28 May 2026 19:09:15 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1779995354;
+ b=OlA9P9j0FKijvd7y4V4kJj1nr1niIlCilbZ3TwONDzl6AO+6VKLajKAaCA2mf0ihLXUCY
+ jax8omVdVPjlRr+cEkMGkk07c+TnfaxfenUC4a6MemLBAH+7Wrn6jQZ58FaYV/EqBeQrK3w
+ kAGaXqdcH8jYcNjjq2IXlV39QLcy/z3ZQYcWPyQxiNel+LoZLDxTdALmcLooB8qEFyb7UKJ
+ c6wmAHDVFFSG3N3Boupe5gbdaRCTZc+yJq6CLXDhru81YUxfPeemDbW+syQy/gbv5nttl+O
+ h0AM520/YeCJXk/HX/lvzNhHNNFMdGK4D+CsFjoXIVQWKOKrnViQiffnLdxw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1779995354; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=UYcN4au38G2Xy5ZRseiMwYK5kGSwTZoITrWGoAbnKlM=;
- b=TsNjljvXXW+K/3lkE/ESYsOfygJVmz4tEY5/7xI5i+l5kpj+B0cXhxm9PljUyHcWvonB3
- sWm8dnSh+/HIFhcauZcSVZ6yX4pohgH9CAKRWR/NeW/JcZNEV3gkVOrReYdfba3R8eyUKnh
- R2bvJ3VkOngPq6PY7Aqy6numVjaFzQ03wPxVExgb7di7lufx7Nsn+fOYCkcr+Qb+2+l+JCo
- I3H2HpQ5yksIr7P+BXWyde8dXuR9MgrqFQhmQumUjZzU0wstQCuUA5Rd2N0fMM4YuPAngcR
- ex2MlKcsfF1bSl5RZ6zgoudsTeNwTlgQH+qbW6VrazW1MjzS+rfAlzWeAHRg==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+ bh=IlKSe+jkDct0RgF/uXGvg+6AnaN/42RkF+0g/Pr/kUk=;
+ b=gisxNi8MQt7Ue80AW/InFzcjP9ysrOu/I9DLs7XeYPm7HnOK8e4GJD4SZfNi4yOXeGIML
+ NZ/vR7WZPE9ouop91IVsudWA6NrCgQzbC2V8gAavoYKNaME53p3LPQiPOCOe/BNfJ8DtnPF
+ cLhNPxhYt7qzS3aKiCrghXnYF+xr2y4tBWuTyE2zTI0lX2Qoi0vZx9LyPwLNDcjMk2NtGvC
+ QK2UDTu78oM+3OZ2AHjgXQIWpTORX8fgaydTE+xrGfvZPzu1kCU89wr5XPp4FBGbQW+G47Q
+ GwrOqa30gcpO911HFyu9yBDdvaKaw8N1MDP3Xd4fJgRIz2+nNJX0cbUAO4dg==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id F00194021F
-	for <nouveau@lists.freedesktop.org>; Thu, 28 May 2026 19:08:03 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0AE3810F5CC
-	for <nouveau@lists.freedesktop.org>; Thu, 28 May 2026 19:21:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1779996092;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=UYcN4au38G2Xy5ZRseiMwYK5kGSwTZoITrWGoAbnKlM=;
-	b=V5m3izTxAVerFRekLLMMiS10Wzwtp1UeiKf+8nTnzd4xdkE/U1Kv/R+LnIWF53xSlu3Ndf
-	unFUFNaC2X9GLRqsfAOfUJtz51kCdrPMvdT/HZrtX69+QDw1QyRFEOvsZGp5kUgDhFk2Wz
-	5hkUaETnJERtSDEbq41dwKgE8rs/ODY=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-584-HYw1QIlhMK--vdQUd_3z8g-1; Thu, 28 May 2026 15:21:30 -0400
-X-MC-Unique: HYw1QIlhMK--vdQUd_3z8g-1
-X-Mimecast-MFC-AGG-ID: HYw1QIlhMK--vdQUd_3z8g_1779996090
-Received: by mail-qv1-f69.google.com with SMTP id
- 6a1803df08f44-8cce1c3c26bso2416036d6.2
-        for <nouveau@lists.freedesktop.org>;
- Thu, 28 May 2026 12:21:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779996090; x=1780600890;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UYcN4au38G2Xy5ZRseiMwYK5kGSwTZoITrWGoAbnKlM=;
-        b=jx3V29ICFWWUOXB4tk2fK9TSwpy9eu4jPkmF4stbDr2pg8w9Lb6BuLz5aGaJvjnUuN
-         /Bm0OQVmdQwWc+B9QOT1KxMwSNivvtDbqAYGktyCs3zJoCVqT1sNUAHNoVeYoD1/w0Q1
-         csnHGQWDg1qRYCtqPNVvpFJryQRywceCQ5YRxAA0yXdzzhqsmWgAPuqrDLSPKKNUBogM
-         fMrfhvMcvk0UrT84nl+w4z//Hk0e9pmDmxrO8d9fLVn+8Nf+JvAU6YqVEixtC8WXIL9m
-         qEZAi411q+XAwFhOgoLdtnfh6eAWxxgXIJoaA9vXU4qWFB1GwQjDxHyHvqTqhZ+REVZC
-         iTJA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ81oDvx4a2lL1W3O5vn9Tk5a5AZUn2J4J+TZBj5YacEirLS8O8mo1CNNOArl2mKE0HEJeeZ2wZc@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzT6+PfzldYam86cGn37viV9ZTY2M+ndBbdF+sIhjQTeE5N8r/w
-	K0EgcMfoVRMkvVB3CBkfYGp8Q1VMd44hRRXog4SSQ/p+k+PObzcy9Q/DmHUH3rC9Evqs3i3437O
-	VjBYNQThI2K4p1RDpxa6W1OFTtb/JbNZgMxopMpauH30xqB1T5iBJSmuStPEoAFU68p4=
-X-Gm-Gg: Acq92OH+eeXO9hzc551i4GIE98AmpCLwcBFVxrDXPS5Q6FmpzBBZTFGqSrxdCaMYKId
-	Z376Mhw6T1opafpjQZpXW+Y9hfachCWLWhg+CdSwr8iP0B7s4g9W85YB4zE19GYz8LX2gShlWnp
-	BdcFKAAOtr3RPn/NraSn9181rHtlV6Di1rBiHakrHeI0tdFzIeuVSM9Y+rX5Arg3UynpC+VF8zG
-	BdqisiEQbaPzFhOApu47+saRIgmyVdIfmeyRD3eWRAdaFt1Ov0/1DRkghVi7Ao5FwGGZ4gvfsRL
-	k7l8shFyjFNeJEZgLaGAQejzcAPuKKJy/hRI/XgGouJqfQnWUKvL8laD3N1bz3xihGhfAu+2VMk
-	6UjwK3W+0oX2AryZzLR4TVq+aUxOY
-X-Received: by 2002:a05:622a:451:b0:517:282c:b894 with SMTP id
- d75a77b69052e-5172cdf83eemr1615691cf.53.1779996089870;
-        Thu, 28 May 2026 12:21:29 -0700 (PDT)
-X-Received: by 2002:a05:622a:451:b0:517:282c:b894 with SMTP id
- d75a77b69052e-5172cdf83eemr1615191cf.53.1779996089434;
-        Thu, 28 May 2026 12:21:29 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93])
-        by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-51706b08199sm82817831cf.29.2026.05.28.12.21.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 May 2026 12:21:27 -0700 (PDT)
-Message-ID: <3c74f55d233e1607d2b427f758ed01b2694fb704.camel@redhat.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id F1CD24021F
+	for <nouveau@lists.freedesktop.org>; Thu, 28 May 2026 19:09:12 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011065.outbound.protection.outlook.com [52.101.52.65])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 193B910F5C3;
+	Thu, 28 May 2026 19:22:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Mi1xf7GsXnTqGcT1eWs+DY8LUJrGl4oZswJgSmEu4h8OtQXjwsnx+94yp53CCqPgtmEgO4mhLzpb4MRR7bD5Elk8ib5mjI/X0yzMeVlWWO9IbwPsz8qB1ZnD2Mn289YMo6dAL0DDWDa4G70P1uikGdYuOjHFCgEszjuTko/S+udwXTSyi5G1yv1DwRrIwovEF9pVlRPaMq4ftMYKGHfF/oHi6wheEOXTKNJ0hSGqntIarFoAtkhG+NTnBS3NLmk/JHB8AhD7Eh0fy9x76WZuv8q6426D8rf+0mmIscd2XdbKthZtRcFSXrp7kcVB+wop+4IZ06DdpRlwSzZAx7yEPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IlKSe+jkDct0RgF/uXGvg+6AnaN/42RkF+0g/Pr/kUk=;
+ b=DQPN4AHCpv36uCm1hti39Kjcz3c6EDouhiaXOXzzjEGiy+kOBsJQ5OJ9nie+O1Z1/NiOaygiTqVWgjOGdNzgucm8RXGnEff4pyLH8t4CRjy/DrkVOhy0lHnnqgNkogYdRmN7wbtkgaewELVUMM8vn/Npk7OzwN6nTK6V30FafEKIzVoXTbkjueufe0dIP/g4UvdJP4cqrl6NAYyaqb1dZ2paxZZI6JWpHaFZhaEId4POUYL1QB0DFMEOwX5sSWG6iT2GvKDWbSR0z/RuCP1MBbAdPeJNNrBCuAXqH9ne//s9cgZE8dIhQRFbGyysm+uqP+RBm421+fh3CJKWBpdd9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IlKSe+jkDct0RgF/uXGvg+6AnaN/42RkF+0g/Pr/kUk=;
+ b=Sl33tTDZBVDoeS49HyOXznNE6QgT5h3xJIOCjWkpi1e+p1zSmEdwcw8klLrU+ElWis8cTJkXoHxWVAUXXp5IjMByh9EvefcQJDLjYwjrHUIFz4/wQvnEcxyW8ofHYagHttWq60g6UJCaxOmvZIOv4ggsqmRLvF8U8WMvJiKesxbgE43BqxB628I23wPSF5TkZq3qjw4nv2WCCwSeypA9ST1wJCjjN5rktyTbIQ9RuZwKjHqyeFuQK+DF9q7zV17Sk2l0NI9ck7aNWEv5Vh2kSDjao5D09WkxDiUPR4r4OCwxZp4nP0Yn6zwtz5cmdF94wWNfRIk0qh34Jk7BAVSLyg==
+Received: from CY8PR12MB8412.namprd12.prod.outlook.com (2603:10b6:930:6f::11)
+ by PH7PR12MB6633.namprd12.prod.outlook.com (2603:10b6:510:1ff::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.14; Thu, 28 May
+ 2026 19:22:37 +0000
+Received: from CY8PR12MB8412.namprd12.prod.outlook.com
+ ([fe80::76e6:4d65:7ed1:6970]) by CY8PR12MB8412.namprd12.prod.outlook.com
+ ([fe80::76e6:4d65:7ed1:6970%5]) with mapi id 15.21.0071.011; Thu, 28 May 2026
+ 19:22:37 +0000
+From: Timur Tabi <ttabi@nvidia.com>
+To: "lyude@redhat.com" <lyude@redhat.com>, "dakr@kernel.org" <dakr@kernel.org>
 Subject: Re: [PATCH 0/5] nouveau/gsp: Cleanup IS_ERR_OR_NULL() usage
-From: lyude@redhat.com
-To: Timur Tabi <ttabi@nvidia.com>, "dakr@kernel.org" <dakr@kernel.org>
-Date: Thu, 28 May 2026 15:21:27 -0400
-In-Reply-To: <6f1e4f968777c0e78b2bcd1c3ef2812b28a0ec41.camel@nvidia.com>
+Thread-Topic: [PATCH 0/5] nouveau/gsp: Cleanup IS_ERR_OR_NULL() usage
+Thread-Index: 
+ AQHc7mq8OsOwNXpeJUCGv9myN2oJCbYjpM+AgAAU9gCAABN1AIAAAQeAgAACvACAAACJgIAAAFIA
+Date: Thu, 28 May 2026 19:22:37 +0000
+Message-ID: <5d385e2828f8de93c40270d04008de3743b39bbf.camel@nvidia.com>
 References: <20260528062451.54107-1-zenghongling@kylinos.cn>
-				 <794dbd35fd81f03478cdd3238d3d506d0d800187.camel@redhat.com>
-				 <DIUI56CABZAF.3TU7XCIKTV93R@kernel.org>
-			 <ad1ab3a555ca34f37ca4d7c20af5f4cadc4558b5.camel@nvidia.com>
-		 <c45c2e9096df0b407fa67ee5caee6b4641e2c8ab.camel@redhat.com>
-	 <6f1e4f968777c0e78b2bcd1c3ef2812b28a0ec41.camel@nvidia.com>
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
+					 <794dbd35fd81f03478cdd3238d3d506d0d800187.camel@redhat.com>
+					 <DIUI56CABZAF.3TU7XCIKTV93R@kernel.org>
+				 <ad1ab3a555ca34f37ca4d7c20af5f4cadc4558b5.camel@nvidia.com>
+			 <c45c2e9096df0b407fa67ee5caee6b4641e2c8ab.camel@redhat.com>
+		 <6f1e4f968777c0e78b2bcd1c3ef2812b28a0ec41.camel@nvidia.com>
+	 <3c74f55d233e1607d2b427f758ed01b2694fb704.camel@redhat.com>
+In-Reply-To: <3c74f55d233e1607d2b427f758ed01b2694fb704.camel@redhat.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.56.2-9 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY8PR12MB8412:EE_|PH7PR12MB6633:EE_
+x-ms-office365-filtering-correlation-id: eea55c5b-43e8-441b-8181-08debcee7a57
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|366016|1800799024|376014|7416014|18002099003|22082099003|56012099006|11063799006|4143699003|38070700021;
+x-microsoft-antispam-message-info: 
+ YAfSdOhNA6aInsWZtYxkMU23WR1vy2mZ60WDYn+T4fMAstCx4fGS7+JjKKWzYmhn9K3w7wqA0H1ux9Dxv189OX6ojW94bXpwBqSnbCQNRHhgHnNJMlQJTgivMzYa/c2h0NZ12llMAy2Um3LwI7OkeLKXzvNk/YWZxzX7cbil6L1bHtZY7BT7bst9u/JwtOI7OvHyafpnFWP9lRa+Byeg8GUPtUoGBd5V9bXfGCtcHdOk9tZBEM5gfIrx6YkMORiZtdbMNmFh1MsrXP7y05tbcg7eCJwCdBS1P2elCh5QNr/3ojcG93nBOaIVLvFrKnNZWAoPKl1F2S+lwovGVYrxi2UVwI9GmQeKnxWV4rsBq0zhyuHSqVJgZ0HIBQEU9tQ4RSmxrPoJEt1vawUd6ArSpK0B/K9ptcuoFTAFCDDrXVpv1i6jqhMwHKwJeyVdG8PQH5O5cGtzg3xfT2hcxQHBivVoWpNaPxTvFLBHMldtUxRi2MBKYLAzG7AiXi1E0/yeU1GsjPdRC4vhNLrg3P1CZoZar3X76GOlPRsSWd+grHLg3zIxihCi3liCTEqYeb9Zfq/NwXkvrRM9EOcz19ulb02GTiCnaOKqYocoUS4U9KzzABreQ6ffgOiVjL1uZc9Cl9+iqSjCa6pAuI2n2WTHYyAKNxhvS+yhS0ckzTnPS76sC3JZZze3FQoiS7MfazrBNddaFsc6k+2SADeTFIdcj9DARvFvGIn4KyjVKxrSDWPXP2nrL2VRtD3pWM9xsphf
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY8PR12MB8412.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(18002099003)(22082099003)(56012099006)(11063799006)(4143699003)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?OHdjOVowNmdkbE1ldk10ZGZtK1huTjJDUmxGYkNrZ2F4VjhEbnp0TGJVQWlQ?=
+ =?utf-8?B?bXkveFZIajBkZStBL1d3NERwYXNBRk00bk9Mbk1IaCtTZzFCL2lLYlUzbWJt?=
+ =?utf-8?B?TGNzYWZIZWRNVzEwa3lNajFDbEtUd3RVZS9XaFJTNEY3RnQ5UFFDZjNEcDNw?=
+ =?utf-8?B?UFdVUHp3N1d4L3pJWTZYVXBpWkM0dkVtSUFQVXd2Ny8yRkUxdWFVZTJtY2hz?=
+ =?utf-8?B?Rmhsb01KR0QybEVVempLenRqTWxNamhtMk80NGtWSlMvOVA0ditsTkRuY0sy?=
+ =?utf-8?B?V1hhQXVUT0kzSUpVS0xSZkI3Y3p4NGx5QlU4UDIrY1BBdkx0eEwxRktWQzYr?=
+ =?utf-8?B?bkVHdWVkQXh3dHp6Q0FyRDVLMWorTVFMRmdxY0dPelJpT2hnc1FQYmpvRk10?=
+ =?utf-8?B?QUR2YUVCUWVrclIxdFRMSnRTNzNkcVJqUE5aMk5FYkExTDlmR1loVnFnaWpu?=
+ =?utf-8?B?Q3Y0NjcyMHF3WkFWeUxFS1ZURU5vUzJnY0IyNGl6bk04SUQrais4aGtCRVFi?=
+ =?utf-8?B?cmdFQzg1RUFpVjhBSFdTcEtTMnRqN04yY3NidTI2a2xyYzZna3ExbHZvTUwv?=
+ =?utf-8?B?dVZmamVRdW9JQkI1QkRwZ2xMRjhieGZMOHhEZzJtd3JLcFExTXJidG9qR2g1?=
+ =?utf-8?B?V3ZvN0E2UEZra1lTR3F2OU5OZkZFdklETkk1L0pZRlQ1Y01iRUQxUDlCb1dU?=
+ =?utf-8?B?aWJCR1FKemtodHRwaldjZTZmSXlkTDd3U25IT2ZwTlpOanE1VDFvWXI4WHdG?=
+ =?utf-8?B?cGl1VTBzaHBxVnAvdGZobzl1VzRnYThDNGd5dmtEMi9UMWRZYW1sMHNHYW1R?=
+ =?utf-8?B?Wk9QNjBiMFRRdkNub2ppWGZsVFRIRCthbEpXb2c1bjZmL0VpT1N0TEdrODJS?=
+ =?utf-8?B?N1BIdmFVREYrcitUOFZZSU5Mckk3alRZVjFCT3BrWXNRbDZNMTJrRlFpWitC?=
+ =?utf-8?B?V0EvaitqcTFkUTNrNDNRcFhwakNMK2dObDlHUmUreUgyckFzazFubWQzbUVy?=
+ =?utf-8?B?QzIwZldNRmY1a0dZVExDREpWRlUySWV4WGIrTVl6SFJjVWJYVlBZWHZWYWVW?=
+ =?utf-8?B?ek1EcEJCSUpCeEpQdzc3NFB3WFBiYTY3R1YxSXZBYUhzd1VGcER4aFlqdU52?=
+ =?utf-8?B?WlNMeFVpUTY0T3BCREU3elR4UlFuSTNMakRvc0NQTlpBQmNvSHV3bllWNFFl?=
+ =?utf-8?B?T0JOeDg4MlloRWx2SG80SU84SEx4RFVzbDhOc1NvUG03TXlwZC9CcStHaXVw?=
+ =?utf-8?B?ZVM5VnFTWVNYcy81ai85MUUxaEFja3hhMWhkZjRDMVBiNUZPdjdqNmR6dE93?=
+ =?utf-8?B?SnozK3hSdGJTZXc3d1gvL3g2bm8vaFllb05uNkFiYXZIN2VMc0lEMlJVbGdY?=
+ =?utf-8?B?dGlRSDV5b2QyREdLQlY5dnFnTHRwaGlBdXdLSi82MTJUYkpvTndiRjRNOFh6?=
+ =?utf-8?B?bTh0eUQ1dGhaNkNlR1lpeVhQSVE4WFIxQzdSZGlLcWQyakhJUk1oSWFLTFZm?=
+ =?utf-8?B?eUQ0dG5aY1g2cmtIUGNHczk3T0MvK3JXQk5Cd1JVeTRDUmFDSTVDRnNuZ0ps?=
+ =?utf-8?B?cWZycWMzazJUand2Ykt4QzhPdmcrVlY5SHRibmVWVjhpSXEzdHpjZ0N5UElo?=
+ =?utf-8?B?azRVM2xKVkI4WHczb1VTOHhENUQ1YlZlckFyU1Evclh5QVFwMm1xdVkxekdZ?=
+ =?utf-8?B?NkxkYUR0SFFxY0xsOGpha2ZwU0xoMXo0NjlpTXNXY3l4NFJHQ084SjVVMEEr?=
+ =?utf-8?B?NXNxWkxReCs5WitRSmRqV3dJeVRIL0l5NVhHcytkOUxaOVZlK3ZOM0VpWGxp?=
+ =?utf-8?B?VGx0NHRDTkd6S20vL2VReDdUSThWbWdoZnE4SkdLdWV0QnlPWkN2dHlKdGtS?=
+ =?utf-8?B?TmNzZ3JUQm5KNXdKR050UURFaUVySGNlV1hzaXVVTFV4OGZGaGNkcm5ya292?=
+ =?utf-8?B?MnZBV0FiRWVRSkFkUGlNVGlHRGF6bnJHVW56S0dNSnl6cUt1OGZWUCtXSW5w?=
+ =?utf-8?B?aTg5eUpmNWJicDhVL1JDK2F0QlZnS0FRS0kzbXYvVWFSMmRNTmE5UzdJM1Fw?=
+ =?utf-8?B?QXF5UVVDNEdUT1grQkt4bzFKT1hFaW9oN2J4dHpMajI0LzlmamVPYk44ZDZo?=
+ =?utf-8?B?U2dpMTFvTGducjRrK3RWYmJjdVVzWk1VdlhhUGRRSVBoV0t4ZUxGUVdxTnFW?=
+ =?utf-8?B?UDJCYkV5MEk3STZmNE41eEl1cWw2Vlc5Rk9heWZOdnJTMmtrSjFyQVNzOXd0?=
+ =?utf-8?B?c29WVnd1QlNNZjJMQzdiSU9wRzgwbnBhUDBnNVFIejFWbEFEZ2ZQWDRzMTFV?=
+ =?utf-8?B?L0wzMllaUkJjRXVCV2lKdytIcmZSdWJrenJocklQV1ZnTGFGbnJzQT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <CBF4296FF9EBCC44BCD623ADEDB7FEB2@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: OxCPoWtpjF2_Qcd85vtu4zjAlFbwlt8tuV7sPr0P2mo_1779996090
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: FHMZL63JRDLISJJEU7EHZDDWWPEZLBCB
-X-Message-ID-Hash: FHMZL63JRDLISJJEU7EHZDDWWPEZLBCB
-X-MailFrom: lyude@redhat.com
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB8412.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ eea55c5b-43e8-441b-8181-08debcee7a57
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 May 2026 19:22:37.3602
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ hePuEtntJPi+qEU9IsTpqtC3tNW57P1wew9fwGNAkHXxyPprRNcTHS+lztxeEMect7b9WTf20io1Y8BzyTHD5A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6633
+Message-ID-Hash: RVD2M7HSAOUNOKD4UHMTRX3FT4IGGPCG
+X-Message-ID-Hash: RVD2M7HSAOUNOKD4UHMTRX3FT4IGGPCG
+X-MailFrom: ttabi@nvidia.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address
-CC: "airlied@redhat.com" <airlied@redhat.com>,
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "airlied@redhat.com" <airlied@redhat.com>,
  "simona@ffwll.ch" <simona@ffwll.ch>,
  "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
  "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
  "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
  "zenghongling@kylinos.cn" <zenghongling@kylinos.cn>,
  "bskeggs@nvidia.com" <bskeggs@nvidia.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
  "zhongling0719@126.com" <zhongling0719@126.com>,
  "mripard@kernel.org" <mripard@kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FHMZL63JRDLISJJEU7EHZDDWWPEZLBCB/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RVD2M7HSAOUNOKD4UHMTRX3FT4IGGPCG/>
 Archived-At: 
- <https://lore.freedesktop.org/3c74f55d233e1607d2b427f758ed01b2694fb704.camel@redhat.com/>
+ <https://lore.freedesktop.org/5d385e2828f8de93c40270d04008de3743b39bbf.camel@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -157,32 +197,7 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu, 2026-05-28 at 19:19 +0000, Timur Tabi wrote:
-> On Thu, 2026-05-28 at 15:09 -0400, lyude@redhat.com=C2=A0wrote:
-> > You are right - I did actually sit down and try to run through all
-> > of
-> > the codepaths for all these functions, but there's clearly a number
-> > that I missed and should have checked sashiko for.
->=20
-> Even if you could narrow down the list to those functions that are
-> 100% okay with IS_ERR, that's not
-> future proof.=C2=A0 I wouldn't be surprised if there are some code paths
-> where IS_ERR_OR_NULL is
-> required, but then the NULL is converted to an ERR, and so the top-
-> level caller will see only ERR.=20
-> But what happens if there's a refactor or some other major code
-> change?=C2=A0=20
->=20
-> Like I implied earlier, the real problem is that Nouveau is
-> inconsistent in how it returns failure.
-> Sometimes it returns NULL, sometimes it returns ERR, sometimes it
-> could be either.=C2=A0 So a proper fix
-> is not replacing IS_ERR_OR_NULL with IS_ERR wherever we can get away
-> with it today.=C2=A0 The proper fix
-> is to revamp the entire code base to be consistent, and no one wants
-> to do that work.
-
-
-Yeah - that's a good point. I will go ahead and send the revert for the
-whole series then, would you mind helping to review it?
-
+T24gVGh1LCAyMDI2LTA1LTI4IGF0IDE1OjIxIC0wNDAwLCBseXVkZUByZWRoYXQuY29tIHdyb3Rl
+Og0KPiBZZWFoIC0gdGhhdCdzIGEgZ29vZCBwb2ludC4gSSB3aWxsIGdvIGFoZWFkIGFuZCBzZW5k
+IHRoZSByZXZlcnQgZm9yIHRoZQ0KPiB3aG9sZSBzZXJpZXMgdGhlbiwgd291bGQgeW91IG1pbmQg
+aGVscGluZyB0byByZXZpZXcgaXQ/DQoNClN1cmUuDQo=
