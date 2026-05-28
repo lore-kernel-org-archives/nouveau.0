@@ -4,119 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72BC2CD4F54
-	for <nouveau@archiver.kernel.org>; Thu, 28 May 2026 19:29:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABF81CD6E45
+	for <nouveau@archiver.kernel.org>; Thu, 28 May 2026 19:45:02 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5178210F5E6;
-	Thu, 28 May 2026 19:29:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id ECCF910F5F6;
+	Thu, 28 May 2026 19:45:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="AwQGQyt2";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="i7WgIx7u";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id EB6114661D;
-	Thu, 28 May 2026 19:16:11 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 7B4DF46629;
+	Thu, 28 May 2026 19:31:31 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1779995771;
- b=nP2eB9X8AVfgR1NdDzzBtjGwbNdIB0lAm8rc9qrEzj2xVh1uSXgaOHQHwt0IfjqjBalcM
- 7Y6PZUi4xHQHtO9xjG/5mYd7x1ZDjjSk8w/kZ1rkyn2XxJpwwVQRqAxzrS6hsz7EEDGLk98
- UyHtU1RwqEtbFLtLk1R8pstRFjTSc+P4c7BNRNeeTF/w2hUSu6g2+/bqUXgatGhIrEZDrYt
- 0F1l2ULeZb5HpH9i0FGG7rY1oG0svq0S8dRqZ3JT6HimUxFFkwKgWKGjKOdzBQoXP4AkEE7
- hv3ohIhGkBbdZqoXUqKkBD/RgLhkWZYZevgs+qaC+VUy1oRylljHltYVsHNw==
+ s=20240201; t=1779996691;
+ b=U+7SzB9c/hKHnR0aujEEcFG3MJzE6TRlB/20QzwZwCWVRTPnY10LcirSOi2OYi7YWivJB
+ LWhoucLK0ubS6+VgV63IPDKcBBjz81/sCkETSmaQjWQVbX6u/UwjSk5uPVcInBgxvuaiKvG
+ UPl+U6bXpbZKbqDt87CGfVGT91+qqYD/A0oH0XRxiQtUJSYa+BVE5s+2dRjfQjEp8G9WfLB
+ zWo/psnGEVWC3IBAGL0zmfJsaoIpj9zKMJEPtN7d0mh3J/q3q14ctTmAkKU4nYn63lx0Dc4
+ sTgWdDppmjpoY3wBt6huQCdgGhJO0FP1hI+9pFGlTFkzw2006BVzXr5lMQ+Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1779995771; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1779996691; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=gXEMs3m1iU9CvSjiofzhaHKNsr4M9NI1nJV5PXEBxJY=;
- b=pCVzgQ+L0Btu1xB5V/nSIQvldWsccxT7/0zY5Kt0GPtqg/W00jJR5nyrsSUbGxy42rV3q
- swv6U6kZbR6GO5bMvZAIVek6Alq+rVmizaYKq3/OZVGOuUZa4CpnmORyd92qToRLgBMPcAR
- d630Mydsm4EKeC1UK0TMSEe+7sTpeMYhxQnpwQ/lJUQlafWeav4tfReTw0JlT1ZuRKBWPAz
- qhGDWJcNBLiElGtRMvPk8+Px1rESqxGTks0zKwNRACvF2B76yW0DxCe9nwvBfvS5V2f4a4x
- GQrsj+U3FiAf8gILxxgaEeLsx1Dj9mOxy5H67a8I0GCUOKJo/xGeL7yupprA==
+ bh=Al1Rdb0qP+tKYEA5EKgoaK4bwuBTFrZINc4pk3eqfec=;
+ b=hV6nXU1wDgsVl71gb9Z94S2zM1E9zC93YMLV4P1NVqLLQxS2vMGNqvDEHB8aDetLG0zyZ
+ di3lKc0y0TzZhZzzmnMlFc9uO8soymWzNj8SLvCyttN21U1Bl3wxGu86XMMaQd8vFt3y27y
+ SGNUzQZTWoiAxA0POwz8ePyiZDi7IfBsNewEjXanNI6dRkU0yYfzQ+nelManHMpjjJX3Pld
+ cZ2C8y6qrhBRgL/qNLNIkIeyHk2tq62eXh08rmXupDj6fQZAMMf5jA0z/t3NVIsSLSBQYde
+ g+mf+QMvcMnXiZVQ9RgIzaMDLtmGdWXTPliqN8ESy+wNEcC8fiVA2KrfwwRA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A861B401C5
-	for <nouveau@lists.freedesktop.org>; Thu, 28 May 2026 19:16:08 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C595F10F5DD
-	for <nouveau@lists.freedesktop.org>; Thu, 28 May 2026 19:29:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1779996577;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=gXEMs3m1iU9CvSjiofzhaHKNsr4M9NI1nJV5PXEBxJY=;
-	b=AwQGQyt2sg4HIOw+t9KN7dis2oi/fgx+drYtWZRvfx0j6FPtLmxBe8FB/Rc1o0JP7IvIo+
-	vgmBT4v82wkaZiRQuVJicKnAU4kUbQK9A8rCQ2GTZbV9x4rlPd1gFXVZUmweWVi786e82W
-	OPYYSDxCivw6pl4aW+SoudQ9h7GZmBw=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-63-NpLvq8C8N86CP8_axzjxIA-1; Thu,
- 28 May 2026 15:29:33 -0400
-X-MC-Unique: NpLvq8C8N86CP8_axzjxIA-1
-X-Mimecast-MFC-AGG-ID: NpLvq8C8N86CP8_axzjxIA_1779996570
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 2C84619540DC;
-	Thu, 28 May 2026 19:29:26 +0000 (UTC)
-Received: from GoldenWind.lan (unknown [10.22.89.248])
-	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 1A0DF19560AD;
-	Thu, 28 May 2026 19:29:23 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org,
-	Timur Tabi <ttabi@nvidia.com>,
-	nouveau@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] Revert "nouveau/gsp: cleanup IS_ERR_OR_NULL in rm_alloc
- functions"
-Date: Thu, 28 May 2026 15:27:19 -0400
-Message-ID: <20260528192847.4077458-6-lyude@redhat.com>
-In-Reply-To: <20260528192847.4077458-1-lyude@redhat.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id A20D1401C5
+	for <nouveau@lists.freedesktop.org>; Thu, 28 May 2026 19:31:28 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D22D810F5B3;
+	Thu, 28 May 2026 19:44:57 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 31C21601E4;
+	Thu, 28 May 2026 19:44:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27CA61F000E9;
+	Thu, 28 May 2026 19:44:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779997496;
+	bh=Al1Rdb0qP+tKYEA5EKgoaK4bwuBTFrZINc4pk3eqfec=;
+	h=Date:From:Subject:Cc:To:References:In-Reply-To;
+	b=i7WgIx7u93jihOGlS5GspsKjabCLij0u1nfESdcJQM9boPVNsHzFgmJNP29FW4scX
+	 VezJW37R8sJfQv4/YtN0rxZseENN+xhdCoMong9NuORcDhHWGVihrF7cE7eOQk46kI
+	 xzV8ftI0TI/ubVNDNBz13zAL0TgFgRz+W7D/+ogNC5Oj5yKySNsoRa47heYGKfmTLV
+	 LhAH+GPoEKq4NmQYIw94WJd3CVa3iiF0LN+JUikwmkXjeunokxTnnVNZUQUukyopeA
+	 EJ4e+MSFG5YCi3LWXHGso7ip/8C40NcxIAdVXN0XXhUJDhOvFc0PeFTdYhLMM9GGuy
+	 6idtrbPntPJuw==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 28 May 2026 21:44:52 +0200
+Message-Id: <DIUKG7F2VAC7.17L4VHNNI7YL2@kernel.org>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH 0/5] Revert cleanups for IS_ERR_OR_NULL() usage
+To: "Lyude Paul" <lyude@redhat.com>, "Timur Tabi" <ttabi@nvidia.com>
 References: <20260528192847.4077458-1-lyude@redhat.com>
-MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
-X-Mimecast-MFC-PROC-ID: TEji9IzGY_TqhYya4DNJwFEwfrfbozuSqc9dgB_qwLA_1779996570
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: NJXJWHREC3YD4GOO2CQ5PANBGCLW6INU
-X-Message-ID-Hash: NJXJWHREC3YD4GOO2CQ5PANBGCLW6INU
-X-MailFrom: lyude@redhat.com
-X-Mailman-Rule-Hits: member-moderation
+In-Reply-To: <20260528192847.4077458-1-lyude@redhat.com>
+Message-ID-Hash: 26SG44YKWE4R7RYUXG3YR7NICP6E4JGD
+X-Message-ID-Hash: 26SG44YKWE4R7RYUXG3YR7NICP6E4JGD
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
-CC: Dave Airlie <airlied@redhat.com>, Qianfeng Rong <rongqianfeng@vivo.com>,
+ loop; banned-address; member-moderation
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Dave Airlie <airlied@redhat.com>,
+ Qianfeng Rong <rongqianfeng@vivo.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Kees Cook <kees@kernel.org>, Simona Vetter <simona@ffwll.ch>,
  Maxime Ripard <mripard@kernel.org>, Hongling Zeng <zenghongling@kylinos.cn>,
- Danilo Krummrich <dakr@kernel.org>, Zhi Wang <zhiw@nvidia.com>
+ Zhi Wang <zhiw@nvidia.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NJXJWHREC3YD4GOO2CQ5PANBGCLW6INU/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/26SG44YKWE4R7RYUXG3YR7NICP6E4JGD/>
 Archived-At: 
- <https://lore.freedesktop.org/20260528192847.4077458-6-lyude@redhat.com/>
+ <https://lore.freedesktop.org/DIUKG7F2VAC7.17L4VHNNI7YL2@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -126,41 +105,47 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-This is probably too risky, see the discussion here:
+On Thu May 28, 2026 at 9:27 PM CEST, Lyude Paul wrote:
+> Lyude Paul (5):
+>   Revert "nouveau/gsp/rm: cleanup remaining IS_ERR_OR_NULL usage"
+>   Revert "nouveau/gsp/rm: cleanup IS_ERR_OR_NULL in core implementation"
+>   Revert "nouveau/gsp/rm: cleanup WARN_ON(IS_ERR_OR_NULL)"
+>   Revert "nouveau/gsp: cleanup IS_ERR_OR_NULL in rpc_rd"
+>   Revert "nouveau/gsp: cleanup IS_ERR_OR_NULL in rm_alloc functions"
 
-  https://lists.freedesktop.org/archives/dri-devel/2026-May/570353.html
+Reverting the whole thing for now is the right call, as it needs some more
+review.
 
-This reverts commit 281fe11c6c4aebc1a1eb9d21eaab7323ee5af979.
+@Timur: I do think cleaning this up is the right call in general though, an=
+d I
+also don't think that the whole driver necessarily needs to be consistent o=
+n
+whether IS_ERR_OR_NULL() or IS_ERR() is used -- it depends on the context
+(although I usually prefer not to mix up NULL and ERR semantics in the firs=
+t
+place).
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+It should however be consistent in terms of what functions can actually ret=
+urn.
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-index ab2bd88eebce5..64fed208e4cf8 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-@@ -373,7 +373,7 @@ nvkm_gsp_rm_alloc_get(struct nvkm_gsp_object *parent, u32 handle, u32 oclass, u3
- 	object->handle = handle;
- 
- 	argv = gsp->rm->api->alloc->get(object, oclass, argc);
--	if (IS_ERR(argv)) {
-+	if (IS_ERR_OR_NULL(argv)) {
- 		object->client = NULL;
- 		return argv;
- 	}
-@@ -415,8 +415,8 @@ nvkm_gsp_rm_alloc(struct nvkm_gsp_object *parent, u32 handle, u32 oclass, u32 ar
- {
- 	void *argv = nvkm_gsp_rm_alloc_get(parent, handle, oclass, argc, object);
- 
--	if (IS_ERR(argv))
--		return PTR_ERR(argv);
-+	if (IS_ERR_OR_NULL(argv))
-+		return argv ? PTR_ERR(argv) : -EIO;
- 
- 	return nvkm_gsp_rm_alloc_wr(object, argv);
- }
--- 
-2.54.0
+	ret =3D foo();
+	if (IS_ERR_OR_NULL(ret))
+		return ret;
 
+If foo() can never return NULL, the above is misleading, as it puts an
+obligation on the caller to somehow handle the NULL case and come up with a=
+n
+actual error code for it.
+
+So, I think it is the right call to align that to what functions can actual=
+ly
+return, but while doing this, the contract should be properly documented, s=
+uch
+that subsequent changes can be properly validated.
+
+I can pick this up later, but in case you want to pick it up Lyude, note th=
+at
+this now has to go into drm-misc-next-fixes.
+
+Thanks,
+Danilo
