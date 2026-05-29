@@ -4,99 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FAD9CD4F54
-	for <nouveau@archiver.kernel.org>; Thu, 28 May 2026 22:29:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6205CCD6E45
+	for <nouveau@archiver.kernel.org>; Fri, 29 May 2026 04:43:48 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 199D110F6A1;
-	Thu, 28 May 2026 22:29:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FW2IwTF5";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 88F4A10F882;
+	Fri, 29 May 2026 04:43:46 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6CAE846692;
-	Thu, 28 May 2026 22:15:35 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 38FE94669B;
+	Fri, 29 May 2026 04:30:16 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1780006535;
- b=DxA+TghPBe+x0OiuDx2tpYfHl6sJDXhoygEZj3JOexR0LsNDG5OofJMwt0n/eSsW1D5fd
- J2bdIWqN5gkgeCE3uGOYoaXUMwGy2fHEhfY8ADcXYPfPHf/qU7I0xAMyEx9b/awPEXCyWfw
- kh5NY03TlXfLkbu7wwyLtN/ZekiTjuvwEk42ejy65S81Ox9ltg8PaIyQ9tTlH0fV51uPJFs
- MECpf9wGidnPTLGQoYj4yG3+W3g7qnPz6PUxxSCfBZq2pKnmufZHioPgupZvaK7P3w9m1Kc
- mcBUmq21r07R3lpXHEj1auaWbEqKpsiVV01/KNo+QJqUn+Bo3rS2sGtTcX3A==
+ s=20240201; t=1780029016;
+ b=ygQrUzP0QcZghBk81vTXwYrGl0nE7Be0Gq5tvBC8pe69Ttx3G4YUSraiwiTVdyP03/ee8
+ LMV4V2IOYV0flE8jUt3dQQq2Uh8tdOIBwg2TSafRvq0VKhdZZl3URSe5tVDwS3JJ1dUW26q
+ 30ul1DandAHNU1HCxLmOLSt11MQXr82YvUMPcYGx6YzJtUQaoE7II20hl6D2PF85jSiODTh
+ Qfmi9flAoai0BafKOYGJhPrVXlj1MpGs0IdM/8/todKwUI0E9COCSjO5M4bupyLzD9gg2Jm
+ R3WTYlLKQIEmh4dE9hea0E0xah3BjtK6AxVT3emDRUDmVfhOYgp8fMSmECUA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1780006535; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1780029016; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=AcmcKtW66rkEfNJaPB3hjWA/qrjMeNxbkC1G44RKtHU=;
- b=X0f3B6ZwPqw3SEGEU2ykPeeKobcd6RwXfL/Ns/UGZ2Yn0Y+TTAFewpeBRjmqwpuuNFUqg
- foN9b6KTem46newMp7lHCM8c6nsDAwLyz3peH3kaDmNLcOiUWIER8FxoyAqH2/TP4p3c0pO
- NLq+IxVX39pB/qMXQppF0gFSXNjmbvHBprH9zJZImxu/hYo6D0xb7qBiyOIksaoHDHsQLXc
- ghxev1BbQMnBa7YYv0S6ou4/hF21ohYi0vVDbHz9SQxVfke53bLusLCei4z9rc3qTG7MHaN
- /NkGI7Oapb0dGIuq3dq7HHi71HveKYh/x+3Jy+hmrsUz4O4UD086pijUwPQQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ bh=ALcrCPaWwVRhjwjlJ1vmfWaxUMnwCk6sqb/4Cp9MHA8=;
+ b=wG/sRV4LVBOzKXMZprRLbhsSDbJe7mFeF+cWhYXUl67BPKlknU+ZgPNcb25qng+eP9+7S
+ 9XPRyul3inL7YcB2E6ZWfoNw+F4g8BiI+6jlWJkoByjlJIdW8rdWbVOkwzYMHfJIXhjWUJW
+ 74bjufgWbgyksblqvbAdOCKqNS+XfWEBKc3rO73CN5JBbxRASq2bOYUAd/8TB4OhVa5k2SE
+ Bw1lE0HY5+Gu2kBTjOC6OVHDHrbkDkIzEBAppLdMapQq09cay3F6l77EwzANhcEKupczCyx
+ c730n8EjNHZiZpRadhA6kM7PjV0v7YyD/XF2eN8amqBLDii/5c7JeQgEupPQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+  dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=fail;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 190BC46627
-	for <nouveau@lists.freedesktop.org>; Thu, 28 May 2026 22:15:32 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8C7EB10F6AC;
-	Thu, 28 May 2026 22:29:01 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id DAB4460565;
-	Thu, 28 May 2026 22:29:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 118821F000E9;
-	Thu, 28 May 2026 22:28:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780007340;
-	bh=AcmcKtW66rkEfNJaPB3hjWA/qrjMeNxbkC1G44RKtHU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=FW2IwTF5y9ZTJHIUsJ2SS3nGEQy5vUaaBxX8bfIoe4NiHEvLjMAxJFtWijE0kOL0o
-	 DlwBmtz+uBzA+RYuar+B2CvYv8buHUqFwQj+JZIOQy6zbxLfoqW2IdVyNMJ3hkb6zz
-	 0GHVni9rBrJj14wdOuxBYq95Zhqp/5ceCowk8iHappxHh7uO/rAjH88BmivtumwsrW
-	 GcnH9kRUukwlWWGw+pxf7uXqS5BrU4h7+BTIznifQeucJw50GDkycao+ZC3AueXhn8
-	 p8RDOQ81JPE2Xty24VUsG+khyywa/ya162f3Se7MTc4RD1qGqGsM1rJutYosnTUu7Q
-	 mCWFeH29qG2LA==
-From: Danilo Krummrich <dakr@kernel.org>
-To: Laura Nao <laura.nao@collabora.com>
-Subject: Re: [PATCH v3 0/1] DRM 'feature' support for DRM drivers
-Date: Fri, 29 May 2026 00:28:54 +0200
-Message-ID: <20260528222854.2129473-1-dakr@kernel.org>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260507080914.95478-1-laura.nao@collabora.com>
-References: <20260507080914.95478-1-laura.nao@collabora.com>
-X-Patch-Reply: applied
+	by kara.freedesktop.org (Postfix) with ESMTPS id 368C944C91
+	for <nouveau@lists.freedesktop.org>; Fri, 29 May 2026 04:30:14 +0000 (UTC)
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 77DB710F87A;
+	Fri, 29 May 2026 04:43:43 +0000 (UTC)
+X-UUID: f4b46b205b1811f1aa26b74ffac11d73-20260529
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12,REQID:b145bf94-5b2a-4fa2-bebc-6556a60e8fbe,IP:0,U
+	RL:0,TC:0,Content:0,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:e7bac3a,CLOUDID:76aae8069c6d673d2c1e12c0709a837c,BulkI
+	D:nil,BulkQuantity:0,Recheck:0,SF:102|850|865|898,TC:nil,Content:0|15|50,E
+	DM:2,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:
+	0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: f4b46b205b1811f1aa26b74ffac11d73-20260529
+X-User: zenghongling@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <zenghongling@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 118597435; Fri, 29 May 2026 12:43:36 +0800
+From: Hongling Zeng <zenghongling@kylinos.cn>
+To: lyude@redhat.com,
+	dakr@kernel.org,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	airlied@redhat.com,
+	ttabi@nvidia.com,
+	bskeggs@nvidia.com,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH 0/7] nouveau/gsp: Fix NULL pointer dereference and cleanup
+ IS_ERR_OR_NULL
+Date: Fri, 29 May 2026 12:43:23 +0800
+Message-Id: <20260529044330.96832-1-zenghongling@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 7VC26BPY7NLVI73JOWV4ZTXRSPRXAYV2
-X-Message-ID-Hash: 7VC26BPY7NLVI73JOWV4ZTXRSPRXAYV2
-X-MailFrom: dakr@kernel.org
+Message-ID-Hash: KVX5RA7GW7SMFSHBUE5522WF6NTEOYNQ
+X-Message-ID-Hash: KVX5RA7GW7SMFSHBUE5522WF6NTEOYNQ
+X-MailFrom: zenghongling@kylinos.cn
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: dakr@kernel.org, aliceryhl@google.com, simona@ffwll.ch, ojeda@kernel.org,
- boqun@kernel.org, gary@garyguo.net, bjorn3_gh@protonmail.com,
- lossin@kernel.org, a.hindborg@kernel.org, tmgross@umich.edu,
- boris.brezillon@collabora.com, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, kernel@collabora.com
+CC: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ zhongling0719@126.com, Hongling Zeng <zenghongling@kylinos.cn>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7VC26BPY7NLVI73JOWV4ZTXRSPRXAYV2/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KVX5RA7GW7SMFSHBUE5522WF6NTEOYNQ/>
 Archived-At: 
- <https://lore.freedesktop.org/20260528222854.2129473-1-dakr@kernel.org/>
+ <https://lore.freedesktop.org/20260529044330.96832-1-zenghongling@kylinos.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -106,19 +106,53 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu,  7 May 2026 10:09:13 +0200, Laura Nao wrote:
-> [PATCH v3 0/1] DRM 'feature' support for DRM drivers
+This patch series fixes NULL pointer dereference bugs introduced in the
+previous IS_ERR_OR_NULL cleanup series and adds documentation as requested
+by Danilo Krummrich.
 
-Applied, thanks!
+Background
 
-  Branch: drm-rust-next
-  Tree:   https://gitlab.freedesktop.org/drm/rust/kernel.git
+The previous IS_ERR_OR_NULL cleanup series introduced serious bugs that
+caused actual kernel crashes:
 
-[1/1] rust: drm: add FEAT_RENDER flag for render node support
-      commit: 9c81596851a3
+  BUG: kernel NULL pointer dereference, address: 000000000000002c
+  RIP: 0010:r535_gsp_rpc_rm_ctrl_push+0x60/0x110 [nouveau]
 
-The patch will appear in the next linux-next integration (typically within 24
-hours on weekdays).
+The root cause was that underlying functions (r535_gsp_msgq_recv() and
+r535_gsp_msg_recv()) could return NULL, but the upper layers only checked
+with IS_ERR(), missing the NULL cases.
 
-The patch is queued up for the upcoming merge window for the next major kernel
-release.
+Changes in V2
+
+Compared to the previous series, this version:
+
+1. **Fixes underlying functions first** (Patch 1)
+   - r535_gsp_msgq_recv(): Return ERR_PTR(-EINVAL) instead of NULL
+   - r535_gsp_msg_recv(): Return ERR_PTR(-EIO) instead of NULL
+   
+2. **Adds documentation** (Patch 2, per Danilo's request)
+   - Kernel-doc comments for all affected functions
+   - Clear return value contracts: "never NULL"
+   
+3. **Safe cleanup** (Patches 3-7)
+   - IS_ERR_OR_NULL() -> IS_ERR() now safe
+   - No NULL pointer dereference risks
+
+Hongling Zeng (7):
+  nouveau/gsp/rm: Fix NULL return values in message receive  functions
+  nouveau/gsp: Add documentation for RPC functions return  values
+  nouveau/gsp: cleanup IS_ERR_OR_NULL in rpc_rd
+  nouveau/gsp: cleanup IS_ERR_OR_NULL in rm_alloc functions
+  nouveau/gsp: cleanup IS_ERR_OR_NULL in core  implementation
+  nouveau/gsp/rm: cleanup WARN_ON(IS_ERR_OR_NULL)
+  nouveau/gsp/rm: cleanup remaining IS_ERR_OR_NULL usage
+
+ .../gpu/drm/nouveau/include/nvkm/subdev/gsp.h |  8 +--
+ .../nouveau/nvkm/subdev/gsp/rm/r535/alloc.c   |  4 +-
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r535/bar.c |  2 +-
+ .../nouveau/nvkm/subdev/gsp/rm/r535/ctrl.c    |  2 +-
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c | 55 ++++++++++++++++---
+ 5 files changed, 55 insertions(+), 16 deletions(-)
+
+-- 
+2.25.1
