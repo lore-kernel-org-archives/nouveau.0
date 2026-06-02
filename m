@@ -4,104 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C7DBCD6E60
-	for <nouveau@archiver.kernel.org>; Mon,  1 Jun 2026 10:05:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA7AFCD5BD1
+	for <nouveau@archiver.kernel.org>; Tue,  2 Jun 2026 17:28:30 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 496901130AB;
-	Mon,  1 Jun 2026 10:05:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 23BA010F431;
+	Tue,  2 Jun 2026 17:28:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=126.com header.i=@126.com header.b="SQuf0+UC";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="dqIyZtfL";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D55974672F;
-	Mon,  1 Jun 2026 09:52:09 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C64F646757;
+	Tue,  2 Jun 2026 17:14:47 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1780307529;
- b=w5e8YMu6vJ/uQiBOShvtzBQUP1DyCSbkgu+Me15eAVUZKna2eHMFdmQNgbhOg7Z7oUiKb
- zAFppqJR0mWp97BL5ODcWtS6PJ00bMbgrdN9tFbtm3kAZ1Pc2QqottMcKD7z1r0kjEdOgtC
- MMEKe3WQB4TebWSTo1ebaJmLaEarjN+hgeHQx9olDQRRTRQF2qSued/E5Y2FG/GhUbZ3xL7
- v4anpTuVBcuzYdyHqNTd42qv/K+/iHrCscfk2H8I6fUwaQmwpP21ga/gypObeoHADe22/PM
- H0AId9tYWsRf4cYqdLakopoZrXwrx/xB/ND2KyqD9nsa0Pf4HoU+8SfyAVKg==
+ s=20240201; t=1780420487;
+ b=mh31ymJPCcU91GWcIKm56NF9u8+Sqr/wZuqVWPDtxWhoYU2Rl522zQLB539BNExoMIo5I
+ dP6krHXDCcjRUtA1LkYy48VkHCE+NrFHOY4+3IhD7VmxvpoDtbsoT9yEAhXxBBomiEWnFm/
+ 5Mo0+V+eotVxkLJvnktUFpG4wd6lu+fICYXr9puXgxLeDbYNtwy5Y8UZLcd+aqY6nnwlCoo
+ BdlB7/LjzWnjkhp9juLDsLuNNEBvfQKi8dv1ClRfuMQDKPYWSxt08mZB//wjfylAe7dt2EH
+ vim2poqAuwvxDH8pgk6xJkipkdDNno1a7H0Rv5XF6w6vq6Wwq7i+Ki6CBmrA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1780307529; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1780420487; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=GpqjxkI6HTsNPXTHknXZXvJU5tQpuWx9d1v/8ydLUPY=;
- b=VACZvCntgsg2q5jOS2LZHP1nEppE5GGDehpTIhwNIw8C4JhaG/d7s3w9HIXYWuIRFK3cv
- Fps0bl7ZQmgN8UO2adocC/LTWgGNM5U66XUaKMxuG6924rQVbff7kLdqc3T30hKZv3B5t8p
- /J/vTncc32dijfJXwdc+iY81SnafMq5Rtteh44P9wMV1+AMY7dxXHsoE83u249LazdGzMmW
- mFa0Zk3L3WyGhSoaKzdXUOZDMI4WVT4BYd+PKkAL6mSoFJHA7Pf9T3vy/Un36NawCV+ndps
- 5UxdREReLY9JERpnTdoFjxtP3Kx7OiKXZ/SQM5FCOyelkXpcHObVPc8ikrIQ==
+ bh=hyCRQp3GrefoVTPCTFK8DAP9FsTwrDk6t14u2kcfyc4=;
+ b=KxgBv9M36OWIsPdNw1ScbgS5nOnFutSnlKRqN9gPrqnCv8wcHFoWGvNlyevJjA0vZc/Ks
+ KfxlfRblr3tGaUfqHu4reu1YXDUR13WXQZh8ru6y582ZoWw+P9UN9CzrOJTUSn1Yj1NGZav
+ T6zJPO1Trt4nVLYfzEpT1d9nugnZkZ374qbMEfgSZnmgZBQTGFutkSMAn4OJv0REIbLcI6A
+ 5yuPsgPfMGtYks+0+kQRyjRE5A4pbhtdKBUSyYjdkwvLxl9W9XCLxBVG0uk9GjEoRIQTYC5
+ EAkj5yxSlLNZaS4z6Y2+tHeXtw3OaLtCzZUkZ7rwLrMxIxBloXkz1loXwHCw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=126.com;
+ dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=126.com policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=126.com;
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=126.com policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D8D7641511
-	for <nouveau@lists.freedesktop.org>; Mon,  1 Jun 2026 09:52:06 +0000 (UTC)
-Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.8])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5E03E10E64F;
-	Mon,  1 Jun 2026 10:05:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Message-ID:Date:From:MIME-Version:To:Subject:
-	Content-Type; bh=GpqjxkI6HTsNPXTHknXZXvJU5tQpuWx9d1v/8ydLUPY=;
-	b=SQuf0+UC/7nFo/+HlOKZzqH/gWx8d2ASi+g6yJSc2qaaqNMhs2D3lo8Q0xEGyS
-	KJ7estbu2mNLl6XsvrrXb6gI5cvKxsBxXbyDyXeWoXbv+2a1QjIZZghL8FDWf2xM
-	vtD1tFTW73rY9CLYQseJxjUPcMKyU+iVUp0re0P8YQQcE=
-Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id
- _____wDn106zVx1q+XTYAg--.13632S2;
-	Mon, 01 Jun 2026 17:58:12 +0800 (CST)
-Message-ID: <6A1D57B9.6000504@126.com>
-Date: Mon, 01 Jun 2026 17:58:17 +0800
-From: Hongling Zeng <zhongling0719@126.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
- rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 8C88240183
+	for <nouveau@lists.freedesktop.org>; Tue,  2 Jun 2026 17:14:45 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 789D210F42E
+	for <nouveau@lists.freedesktop.org>; Tue,  2 Jun 2026 17:28:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1780421304;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=hyCRQp3GrefoVTPCTFK8DAP9FsTwrDk6t14u2kcfyc4=;
+	b=dqIyZtfLjYpL6DboIt7jlQnmR6R6HcgzwGU6KOaJgjsbO4NNupzSOB7uLN1NBnAD3Atge6
+	U+bK/F6eCezekz42bimrTxAS8xx+NArrhErUuyKGzcLC0C5NJ0FoT+3Wdvj9t0mhBZMCJ9
+	jbBZxDm2VV1S98IE9HCzU0omhLoqTm0=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-396-CBXskntOOLCcOo43wZ7QGg-1; Tue,
+ 02 Jun 2026 13:28:20 -0400
+X-MC-Unique: CBXskntOOLCcOo43wZ7QGg-1
+X-Mimecast-MFC-AGG-ID: CBXskntOOLCcOo43wZ7QGg_1780421297
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 51F4919560A7;
+	Tue,  2 Jun 2026 17:28:16 +0000 (UTC)
+Received: from GoldenWind.lan (unknown [10.22.81.216])
+	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 26F4819560B0;
+	Tue,  2 Jun 2026 17:28:11 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org,
+	rust-for-linux@vger.kernel.org,
+	nouveau@lists.freedesktop.org
+Subject: [PATCH v16 0/6] Rust bindings for gem shmem
+Date: Tue,  2 Jun 2026 13:24:59 -0400
+Message-ID: <20260602172807.1051806-1-lyude@redhat.com>
 MIME-Version: 1.0
-To: Danilo Krummrich <dakr@kernel.org>
-Subject: Re: =?UTF-8?B?5Zue5aSNOiBSZTogW1BBVENIIDAvNV0gUmV2ZXJ0IGNsZWFudXA=?=
- =?UTF-8?B?cyBmb3IgSVNfRVJSX09SX05VTEwoKSB1c2FnZQ==?=
-References: DIULSRTZPQ0H.39RB5RF1NTFYA@kernel.org
- <823rnittrvj-82932fejdy8@nsmail8.2--kylin--1>
-In-Reply-To: <823rnittrvj-82932fejdy8@nsmail8.2--kylin--1>
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
+X-Mimecast-MFC-PROC-ID: LQRL0P5g_7ul7hMd9Ilg-dbznX5Or6lrgM_eVl8GJ5Y_1780421297
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wDn106zVx1q+XTYAg--.13632S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxZw4xJw13WFWrury8Jw4rGrg_yoWrWFW7pw
-	13K3yqka1qkF93tFy2va1rA3WfAr4fKF48uas3ta9xZw15XF9xJF40qF1Y9a4rCr4rua1j
-	q39FgFWrZw1DA3JanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U5PEfUUUUU=
-X-Originating-IP: [112.64.161.44]
-X-CM-SenderInfo: x2kr0wpolqwiqxrzqiyswou0bp/xtbBrxTktWodV7Q1eQAA3y
-Message-ID-Hash: DZ6RFQ5N6L2WGRTRHIUNTJH6RZ2LOJAB
-X-Message-ID-Hash: DZ6RFQ5N6L2WGRTRHIUNTJH6RZ2LOJAB
-X-MailFrom: zhongling0719@126.com
-X-Mailman-Rule-Hits: nonmember-moderation
+content-type: text/plain; charset="US-ASCII"; x-default=true
+Message-ID-Hash: 7CPTCBKMDX2WY7NDRBRLRYCTXUBQ24JV
+X-Message-ID-Hash: 7CPTCBKMDX2WY7NDRBRLRYCTXUBQ24JV
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: =?UTF-8?B?5pu+57qi546y?= <zenghongling@kylinos.cn>,
- "rongqianfeng@vivo.com" <rongqianfeng@vivo.com>,
- "kees@kernel.org" <kees@kernel.org>, "simona@ffwll.ch" <simona@ffwll.ch>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Zhi Wang <zhiw@nvidia.com>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "airlied@redhat.com" <airlied@redhat.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "mripard@kernel.org" <mripard@kernel.org>
+ loop; banned-address
+CC: Alexandre Courbot <acourbot@nvidia.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ driver-core@lists.linux.dev, Miguel Ojeda <ojeda@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
+ linux-kernel@vger.kernel.org, Sumit Semwal <sumit.semwal@linaro.org>,
+ linux-media@vger.kernel.org, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Benno Lossin <lossin@kernel.org>,
+ linaro-mm-sig@lists.linaro.org, Danilo Krummrich <dakr@kernel.org>,
+ Mukesh Kumar Chaurasiya <mkchauras@gmail.com>,
+ Asahi Lina <lina+kernel@asahilina.net>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DZ6RFQ5N6L2WGRTRHIUNTJH6RZ2LOJAB/>
-Archived-At: <https://lore.freedesktop.org/6A1D57B9.6000504@126.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7CPTCBKMDX2WY7NDRBRLRYCTXUBQ24JV/>
+Archived-At: 
+ <https://lore.freedesktop.org/20260602172807.1051806-1-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -111,98 +129,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-   Hi Danilo,
+Most of this patch series has already been pushed upstream, this is just
+the second half of the patch series that has not been pushed yet + some
+additional changes which were required to implement changes requested by
+the mailing list. This patch series is originally from Asahi, previously
+posted by Daniel Almeida.
 
-   I apologize for the confusion with my previous patch submission. 
-Please disregard the  patches I submitted earlier.
+The previous version of the patch series can be found here:
 
-   I have now regenerated a v2 patch series following your requirements 
-to properly document return value contracts and clean up IS_ERR_OR_NULL
-   usage.
+	https://patchwork.freedesktop.org/series/164580/
 
-   Return value analysis:
-   - r535_gsp_msgq_peek(): Never returns NULL
-   - r5sp_msgq_recv_one_elem(): Never returns NULL
-   - r535_gsp_msgq_recv(): CAN return NULL (when RPC length invalid)
-   - r535_gsp_msg_recv(): CAN return NULL (queue drained/no matching 
-message)
-   - r535_gsp_rpc_get(): Never returns NULL
-   - r535_gsp_rpc_handle_reply(): CAN return NULL (NOWAIT/NOSEQ policies)
-   - r535_gsp_rpc_send(): CAN return NULL (via handle_reply)
-   - r535_gsp_rpc_push(): CAN return NULL (via handle_reply)
+Branch with patches applied available here:
 
-   I've been careful to only clean up IS_ERR_OR_NULL() for functions 
-that actually never return NULL, while preserving the checks for functions
-   that can return NULL (like r5_gsp_msg_recv() and r535_gsp_msg_recv()).
+	https://gitlab.freedesktop.org/lyudess/linux/-/commits/rust/gem-shmem
 
-   Could you please review if this approach is correct?
+This patch series applies on top of drm-rust-next
 
-   Thanks,
-   Hongling
+Patch-series wide changes since V15:
+* Fix some major rebasing errors I somehow didn't notice :(
+* Drop the dependency on LazyInit, use the trick that Alice suggested
+  instead.
+* Fix dependency ordering so that Tyr can get the vmap stuff first
+  without the other bits.
+
+Lyude Paul (6):
+  rust: drm: gem/shmem: Add DmaResvGuard helper
+  rust: drm: gem: Add vmap functions to shmem bindings
+  rust: sync: Add SetOnce::reset()
+  rust: gem: shmem: Fix Default implementation for ObjectConfig
+  rust: faux: Allow retrieving a bound Device
+  rust: drm: gem: Introduce shmem::Object::sg_table()
+
+ rust/kernel/drm/gem/shmem.rs | 507 ++++++++++++++++++++++++++++++++++-
+ rust/kernel/faux.rs          |   7 +-
+ rust/kernel/sync/set_once.rs |  60 ++++-
+ 3 files changed, 552 insertions(+), 22 deletions(-)
 
 
-
-在 2026年05月29日 17:40, 曾红玲 写道:
->
-> Hi Danilo Krummrich:
->
-> like this?
->
->  1. r535_gsp_msgq_peek(): ERR_PTR on error, valid pointer on success, 
-> never NULL
-> 2. r535_gsp_msgq_recv_one_elem(): ERR_PTR on error, valid pointer on 
-> success, never NULL
-> 3. r535_gsp_msgq_recv(): ERR_PTR on error, valid pointer on success, 
-> never NULL
-> 4. r535_gsp_msg_recv(): ERR_PTR on error, valid pointer on success, 
-> NULL for queue drained or no payload
-> 5. r535_gsp_rpc_get(): ERR_PTR on error, valid pointer on success, 
-> never NULL
-> 6. r535_gsp_rpc_handle_reply(): Depends on policy, can return NULL
->
-> TKS!
->
->
->
->
-> *主   题：*Re: [PATCH 0/5] Revert cleanups for IS_ERR_OR_NULL() usage
-> *日   期：*2026年05月29日04:48
-> *发件人：*Danilo Krummrich
-> *收件人：*Timur Tabi,Danilo Krummrich
-> *抄送 
-> 人：*lyude@redhat.com,rongqianfeng@vivo.com,airlied@gmail.com,kees@kernel.org,simona@ffwll.ch,dri- 
-> devel@lists.freedesktop.org,Zhi 
-> Wang,nouveau@lists.freedesktop.org,airlied@redhat.com,maarten.lankhorst@linux.intel.com,tzimmermann@suse.de,linux-kernel@vger.kernel.org,mripard@kernel.org
->
-> On Thu May 28, 2026 at 10:23 PM CEST, Timur Tabi wrote: > On Thu, 
-> 2026-05-28 at 21:44 +0200, Danilo Krummrich wrote: >> >> @Timur: I do 
-> think cleaning this up is the right call in general though, and I >> 
-> also don't think that the whole driver necessarily needs to be 
-> consistent on >> whether IS_ERR_OR_NULL() or IS_ERR() is used -- it 
-> depends on the context >> (although I usually prefer not to mix up 
-> NULL and ERR semantics in the first >> place). >> >> It should however 
-> be consistent in terms of what functions can actually return. >> >> 
-> ret = foo(); >> if (IS_ERR_OR_NULL(ret)) >> return ret; >> >> If foo() 
-> can never return NULL, the above is misleading, as it puts an >> 
-> obligation on the caller to somehow handle the NULL case and come up 
-> with an >> actual error code for it. > > Sure, I get that. My point is 
-> that it's often not clear whether foo() actually can never return > 
-> NULL. > > It's been a while since I've dug through the RPC call chains 
-> in Nouveau, so my memory is a little > hazy here. I do remember 
-> noticing that Nouveau frequently has situations where foo() call 
-> bar1() > and bar2(), where bar1() can return NULL but bar2() can't. So 
-> the question is not whether foo() can > return NULL, it's whether 
-> bar1() should not return NULL, or whether bar2() should. If there are 
-> multiple, it has to be the superset of course. >> So, I think it is 
-> the right call to align that to what functions can actually >> return, 
-> but while doing this, the contract should be properly documented, such 
-> >> that subsequent changes can be properly validated. > > "Properly 
-> documented" and "Nouveau" are not two things that go together. 
-> Unfortunately -- but the changes submitted by Hongling can add the 
-> documentation for the places that are touched. @Hongling, can you 
-> consider this in a v2 please? Thanks, Danilo
->
->
-> ---
->
+base-commit: b78dab829760aee9b83f5cf15550a0fe36c6f4b0
+-- 
+2.54.0
 
