@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64441CD6E4A
-	for <nouveau@archiver.kernel.org>; Thu,  4 Jun 2026 11:49:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D344CD6E6B
+	for <nouveau@archiver.kernel.org>; Thu,  4 Jun 2026 11:58:16 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EDFC8113F9C;
-	Thu,  4 Jun 2026 11:49:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 66014113FB0;
+	Thu,  4 Jun 2026 11:58:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="SN5rpTCy";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="QDtOojWP";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B4664467BF;
-	Thu,  4 Jun 2026 11:35:50 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 29202467C8;
+	Thu,  4 Jun 2026 11:44:31 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1780572950;
- b=SFMViMfBPElQvNYr3h+VgiBu48WO+Z0O/i1+SflWLY8XBgjQ/cGvRtfixwlnnIHz4p04p
- wtySaLxog07ZE1YPwMBHog8byfJxPD4bRypkTxzK63I0t936B17A8C9Cc3r4cDfvVslfsd2
- Upnn2rgfw268kSYETdbcC9KI0lnemOgMYKOW63C+5MngQPoxVxSKFohXAF5AHvQFIKg/R/N
- JxjPXkZKJdtac4LDJRIRZ+WuNANfQ0NG6k0O2XQYDjXnknk9YIduwDbuvuv9banATijk0e4
- WOJ8ygRcbFp4p3jAOOrcEJbbfsv0kNZtsm3zw2UjGEhgt9P0F0+UPPd7LIIQ==
+ s=20240201; t=1780573471;
+ b=liSiKG0N9TDf8fD6K59XXEl4R5SNxRECHnaGhM11UMd+gCT6Y9Mfln6eBceq3sRQJoVLV
+ LKSY8On+NNUaAmcbuc62FXSafcIll8KGLmlBDp/RJicRwxQxAltqJpK+kq3IlF55KGeg5o0
+ t60b8rCO77ib0+7kZYBHKxbfjLaKLj6h6y2FEYjSihjYiJ8OcZvOJEfyIwxcxeWFxe7h60V
+ 2yZiveep+2wIu+t39tPkjhmyfxK1ZV8kgK/EJ5pFqYMwz66In+SlLEtO9DCBPRJVp8Zvpbk
+ 4LBu399bNaCC6kIvuzZq+ZCJz4ojtlKYXHvkCVSBUfXzBGwa5QUc0Pgtu7Cw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1780572950; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1780573471; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=IDsisrKoiSBYw8b45wvLvNabX1p1YR55LCjFQrLjodw=;
- b=j2YvVv73gLv+vrvq64XzMOpWOoxFfpZp4sTCCnzV3TYL1GZiUWc63ohz5l3HSnL5Ov6E7
- UatGAkF72BBP3baO3EvxmbA3Qrd/keYSwuoydxqiB1Deto26opEH/jh8krPNjMvDeSfkxze
- LoHcS4VdGSLkLi2jOzAHhDdSiuhHqYmAM8zZxSXQlbLjGph7nutIGyBXrtsetdXJcXZyKQT
- 2LnPCmJnjoGgEX4AWcoSV49fiEv56kLwI8CBw3FMRcf3gtLEd/MM8ZX6qsC6qGQ9JdJ5bp4
- SLBKYNrJU4M25SX8I3HVnG9Y/U0bqlPfxNBkVXOKwgy+KPVSIDccOcpe+UrA==
+ bh=tsDBf51o8QHp6SAQ5/8ziLKktk7y3LjUQBohqdmyxqM=;
+ b=GITufe0lCbUrawiJ3QkgFlj7mNAjnAICUP9BYK/5/nvuD2qG17n8A1ZzdduSSkdgiunP9
+ RP0YRT6MwqHh38OnRlTlCLX2hAKV3rAtXS7aCVbObBR08KgUe3UaDMjq50KrzClMXOnm/6h
+ M4sVxpwlFb/x2Vghweu5SdRGCWhqSnAoygN5lQNfUf3raahlOobUmDyhRdlvgSalG3LTWjH
+ UgUKxj5Zs4NQ3b5G9zyRV4GLAipDLubquWVHm2iyp8kAWcPJjnBpTq7Og2ZpG1vzFavQhG/
+ rveUv+BDyoGj9my06l9n5ggvva/kG4hF+x78YHMoWeWTeO89urpoIeD2b7PA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=google.com;
   arc=none (Message is not ARC signed);
@@ -46,64 +46,63 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=google.com;
  dmarc=pass (Used From Domain Record) header.from=google.com
  policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B57A94677C
-	for <nouveau@lists.freedesktop.org>; Thu,  4 Jun 2026 11:35:47 +0000 (UTC)
-Received: from mail-wr1-f73.google.com (mail-wr1-f73.google.com
- [209.85.221.73])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C507E113FAE
-	for <nouveau@lists.freedesktop.org>; Thu,  4 Jun 2026 11:49:31 +0000 (UTC)
-Received: by mail-wr1-f73.google.com with SMTP id
- ffacd0b85a97d-45ef93c359fso556583f8f.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6126A40638
+	for <nouveau@lists.freedesktop.org>; Thu,  4 Jun 2026 11:44:28 +0000 (UTC)
+Received: from mail-ed1-f74.google.com (mail-ed1-f74.google.com
+ [209.85.208.74])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6E683113FAC
+	for <nouveau@lists.freedesktop.org>; Thu,  4 Jun 2026 11:58:12 +0000 (UTC)
+Received: by mail-ed1-f74.google.com with SMTP id
+ 4fb4d7f45d1cf-68d2339febdso930522a12.1
         for <nouveau@lists.freedesktop.org>;
- Thu, 04 Jun 2026 04:49:31 -0700 (PDT)
+ Thu, 04 Jun 2026 04:58:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20251104; t=1780573770; x=1781178570;
+        d=google.com; s=20251104; t=1780574291; x=1781179091;
  darn=lists.freedesktop.org;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IDsisrKoiSBYw8b45wvLvNabX1p1YR55LCjFQrLjodw=;
-        b=SN5rpTCyFr9AE/eIjmM6WzlL1iOCeDE4MnmWsXc+aDnszcxkvHCUFCS4dCytfd9Soa
-         ruYJYnSYb9tMxiBxlhigtJXW0QeUn2a9K8wnroJMEgUmSG4VCvnloiIz6YWZLw4R9sy4
-         wUlh1nOHkOFDmRucYWgl64DICe/Mep2uLy7xzlrQRXnTlIOXltoJW7CGaNEtUvoPS4q3
-         x2b9kzcsTwnDdLmtbEc/y4Cok8+Gbgq0RPFpXyExJkM4PZ1x7kA8TZaoGSpKIOnK0pS6
-         759S21f85l5x6696grRJu1HCkImIWMvAM/qQE/q6l5vRzocV/FXYknxSGgfl707itOal
-         N9IA==
+        bh=tsDBf51o8QHp6SAQ5/8ziLKktk7y3LjUQBohqdmyxqM=;
+        b=QDtOojWP8WqmKQDlCXhLBgfVurGfjDE4QYRxSQHc5MpfyRP8Bdu3RaInbtDLXmZSU4
+         fbJlLNliALWfvBTYH4ESf9QLUKx0LzW0fr/TIZR/VRWHinTdFFqZmg3YCM33MkbDUUTL
+         tDVxr+BW//YGOiTppSzanvMcLAbF3yZ0ct/9z649eXwndSJBDTpnLmxf4pfSsFEad/Ms
+         FHpVUew/kfu1ULvREtT3XeNauLAAziTm4hMVTfcD9PZEx1tvsPGUZ2faS6gwGeE6fCCI
+         2ySilosVVklX1SPPR9FvLULoKq0avgHBap5dC/nDnUVgGsEnk8FK8vjNrwuqBfpKo2yj
+         xGpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780573770; x=1781178570;
+        d=1e100.net; s=20251104; t=1780574291; x=1781179091;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IDsisrKoiSBYw8b45wvLvNabX1p1YR55LCjFQrLjodw=;
-        b=bXLJ35uLqUDvwv8WD1iADgCPABW/b3PMMp1zqfYoaIZgHIJCleEUhUUDj8tCXo5AzE
-         1get+bTQUUvlOXfN+UK4VFL4WEUhOuS0fiQK8O0/I9AG7gHC3Cybtql5Fi5jEOWbsHNd
-         YTYrHt7PwWrqFItd9OV3+BeXFHqRwKyIv0sc9wZEdWnAV2jfNL9VuBvrzrMSZ94BWROa
-         rLZL2V7+naGRXQJLB+PqzChKf6YBxNzJ/SE/rgoj9lUIU+esP+hp7AMXvsV/WqDYWrX+
-         Ko1TIT13NsFNKG5EaAzc9Q2fJaO6Gobh8FXu1IolvJDK0IjS9cuwoIpoHW141WHVm4mD
-         bIkw==
+        bh=tsDBf51o8QHp6SAQ5/8ziLKktk7y3LjUQBohqdmyxqM=;
+        b=SxHYdsUnMWadzua3uZi+CXTBet7hs8dpdDJdQwMIRMnk1RVIww+yiNiqCgP3lNMShu
+         IuL3C3b0M64dpBNYL4WtXR8bOcNB9SNgKKcPpcFSwbd5kEJweDx0N8VOpAI6ggEMboAL
+         dx2xBIBhkUlcunJ262r8G6stQ/cW5ZEzUhuB/yzRuiEhnArhrO8kUKBNtVBNvKFVwJuo
+         U6sPwnKh4eEAcT45NzZITeVFFRDskEHiUKnGJ87wbzcW5zwvBzXUZsWhwcFbn5dOAX9W
+         ew1v9clc7uSpat+joRguj81dqbXFPu0+hQT8nPrYWZcU9OHzQYSfZCAQvsGM15us7lCD
+         a7yQ==
 X-Forwarded-Encrypted: i=1;
- AFNElJ/ZvgdS6eU7mQ8RSTwL/HUHC/slPWosh6BjdhMpDQmmibEgnlTJgUG+Mzscy5J/7qBjwDrdC47+@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyjd67LQkQkAM0Off3r7f2RfX1vvYbjkBrPpBz0rYSmStUlyXRg
-	XAR0HNCFSlsAD+fZl0lPZ/ZFQyoKgRc20B0d3+ROObtPN/luZAr6cxUkTTyp06DhfrPzwT219Lt
-	0jC07tjicUcv8W4f2Mw==
-X-Received: from wmbc9.prod.google.com ([2002:a7b:c009:0:b0:48a:7f8c:a95a])
+ AFNElJ+CnmNkoFhke8JBJbg3xnmr5IsEXmoZOzrAhuHaNm9SOvNWzlJzzXqc82LqjvNOgfKvQYvq8ChE@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzhDbHbrFkc4twHw4pEZyLl9DMvyrWLxq0EZSswzmnqLjUi4Pdq
+	K8VLYO7ln1nKovnebeQHBE6OOPsBVIbPTqVgQ4apPpNHKd+nbrs38OjHB2VkqBhdiHSorjQy4Gm
+	sltSvfLV3mUFArq3OQg==
+X-Received: from edrm6.prod.google.com ([2002:aa7:d346:0:b0:68b:163d:99f3])
  (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600c:1d86:b0:490:6869:46c3 with SMTP id
- 5b1f17b1804b1-490b5fe79f8mr132548195e9.30.1780573770264;
- Thu, 04 Jun 2026 04:49:30 -0700 (PDT)
-Date: Thu, 4 Jun 2026 11:49:29 +0000
-In-Reply-To: <20260603195210.693856-2-lyude@redhat.com>
+ 2002:a05:6402:27cf:b0:688:1d5:44c5 with SMTP id
+ 4fb4d7f45d1cf-68e6f79352amr4016032a12.2.1780574290900;
+ Thu, 04 Jun 2026 04:58:10 -0700 (PDT)
+Date: Thu, 4 Jun 2026 11:58:09 +0000
+In-Reply-To: <20260603195210.693856-6-lyude@redhat.com>
 Mime-Version: 1.0
 References: <20260603195210.693856-1-lyude@redhat.com>
- <20260603195210.693856-2-lyude@redhat.com>
-Message-ID: <aiFmSUi0ZHVIj5Q1@google.com>
-Subject: Re: [PATCH v17 1/6] rust: drm: gem: shmem: Fix Default implementation
- for ObjectConfig
+ <20260603195210.693856-6-lyude@redhat.com>
+Message-ID: <aiFoUauWYLz-Oyrx@google.com>
+Subject: Re: [PATCH v17 5/6] rust: sync: Add SetOnce::reset()
 From: Alice Ryhl <aliceryhl@google.com>
 To: Lyude Paul <lyude@redhat.com>
 Content-Type: text/plain; charset="utf-8"
-Message-ID-Hash: ANPDP626VQOBKDAI2X7M7RZQ7MLI437N
-X-Message-ID-Hash: ANPDP626VQOBKDAI2X7M7RZQ7MLI437N
+Message-ID-Hash: LQ6WWUX2NC4U4ZSGGE35JZFJM4ISLGDR
+X-Message-ID-Hash: LQ6WWUX2NC4U4ZSGGE35JZFJM4ISLGDR
 X-MailFrom: 
- 3SmYhagkKB_MVgdXZmtcgbjjbgZ.XjhijpqZVpgdnon.amZZYZnfojk.jmb@flex--aliceryhl.bounces.google.com
+ 3UmghagkKBwEbmjdfszimhpphmf.dpnopvwfbvmjtut.gsffeftlupq.psh@flex--aliceryhl.bounces.google.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
@@ -127,8 +126,8 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ANPDP626VQOBKDAI2X7M7RZQ7MLI437N/>
-Archived-At: <https://lore.freedesktop.org/aiFmSUi0ZHVIj5Q1@google.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LQ6WWUX2NC4U4ZSGGE35JZFJM4ISLGDR/>
+Archived-At: <https://lore.freedesktop.org/aiFoUauWYLz-Oyrx@google.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -138,18 +137,15 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, Jun 03, 2026 at 03:42:30PM -0400, Lyude Paul wrote:
-> I completely forgot when coming up with this type that #[derive(Default)]
-> only works if all generics mentioned in the type implement Default (and T
-> usually doesn't). This being said: We don't use `T` for anything besides
-> using it for a reference type, so whether or not it implements `Default`
-> shouldn't actually need to matter.
-> 
-> So, fix this by just manually implementing Default instead of deriving it.
+On Wed, Jun 03, 2026 at 03:42:34PM -0400, Lyude Paul wrote:
+> This function simply drops the contents of the SetOnce, given a mutable
+> reference - since that proves we have exclusive access to the SetOnce.
+> Additionally, update the invariants for SetOnce to make it clear as to why
+> this is safe.
 > 
 > Signed-off-by: Lyude Paul <lyude@redhat.com>
 
-This one is so simple I went ahead and applied it to drm-rust-next right
-away.
+This isn't needed, you can just do:
 
-Alice
+unsafe { (*this).sgt_res = SetOnce::new() };
+
