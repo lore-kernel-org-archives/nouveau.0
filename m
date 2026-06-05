@@ -4,102 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1B2FCD6E75
-	for <nouveau@archiver.kernel.org>; Thu,  4 Jun 2026 20:45:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9CCDCD6E7C
+	for <nouveau@archiver.kernel.org>; Fri,  5 Jun 2026 16:28:06 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A036E113850;
-	Thu,  4 Jun 2026 20:45:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BFEFB11A982;
+	Fri,  5 Jun 2026 16:28:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="Myq8l+z3";
+	dkim=pass (1024-bit key; unprotected) header.d=seu.edu.cn header.i=@seu.edu.cn header.b="G4y7xzCU";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 91DA3467F7;
-	Thu,  4 Jun 2026 20:31:36 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1780605096;
- b=ifcErVkj7C3F1w0dKbH9pJaW2KdNbu1jSzA1tI4Kf9NKq6aOmf06NaDfiojrX0UzswgHU
- sasEWMGdu6uN4eZyiOVN0iRq2mIeDczDT3wky28JPvuc05Ah2h98ciEuOi60MVVQ4cIYO0C
- CztXTuGEYW9+cTyISs00egeXaUFGd4VsOMK4cnrYaQhXQC6RwXNv9xI/JsawIzXk/JHkOUP
- 816qH9mqb0LN+qYYBt6gVEOk75FX+VOcbAvGl0d7S0WEqEX62y/3kBjxTdBP+TJSBxOhwGq
- 3/SXqTPpUdCLEJJwj4h2aFEkMWN7ddM3ZFo4KWezBqZCM+esLchiTLO6mMJw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1780605096; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id D8F294680D;
+	Fri,  5 Jun 2026 16:14:18 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1780676058;
+ b=e6pWLEz/WAW8TVDVV8ut4Pqmlsu5g4LzBOmcVHadTjDRGqESDmr4orw/fOjVhX3HsXmnF
+ mOCeb4qIa7FOeMWqsre8CU0tbPIcBHotFwAp5Zr580z2GXWziniON+gxUDlLf8uondwr3dZ
+ s7gzLpangFIHZsDlpYh8yZTF4/H00bS/xQ2Io4SRfn1gbC75h3MUvmPNzytdmkKv5PXRkY4
+ 2oOaJbzvJ02DhKeUjTV0xewc0bc9XlexoqL6/saEe3hLUY3AUCBY33M6J2PtIGKoB07oA1c
+ KKRyZNDMOhLH5Dn+cVDrjW9ZOmz5tKXmbckBrfGlT4fHxMTojTDkETQKA97A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1780676058; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=muC6rawBX3CykhRdzS4yBFWa650rEAb1z3ELNMgRXrs=;
- b=glFs8qxbjO0yllyn6SwQ884uzHA/IrKCiMXqXDWx0qeDKHOlUO+RY2VwqCkjDrGa2qKXq
- uDlpXXC9DMllAMTXn4auZ+rViM1QTQVL03gJbXzvLNARhVjk0jnVXuL5/bAgT+xTzj5Z+Fo
- JtbJ6dzcEsRnhp1L/bgKz+9Fg/tHNMCB0nE3cm0IjRXXuygrQMrjSB+JzCnYPOBa64oe+nV
- ONeYawfXxf3xsdXIoKOItEJjievZWB8ONtg7oyGEz/WswccyaSIp9o11imrwD0r+L1KMaC4
- DyC+nmynq0KG05W0cpjVetMVWGVtEAowImzUhFWb7MNAM0E/6R4Q+IIT72ag==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=collabora.com header.i=mark.filion@collabora.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=collabora.com
+ bh=9hPQlir0LYpa42uuWLi8uH8JCnnafnPqkGo+wT4cuCU=;
+ b=zJjPt6XnLkWfSmpGZ+nDP6p/LDagF6n9eQkI1x2gQoq0cf8EPC69YJZTpKYvAv9p9UhdQ
+ 2cIZktrYSlNQ6OmG4fLGETFZdt2KasITeO9iBD/K3NRa2GbTK7dfu4l6bWFyxJWCAbAU9t7
+ pH1tCCCr4lkQtKjI9z/6ewC9NpkKKlDTkvoGeIhWfLMtTh5cWG0CgKuGEmq9mmFCMvcBrD+
+ aKV/7B+40lcD67MRT2LhwFsJFaaT3xqeBVk4GM+RblKwly4XBvcvePZjIvHOJNmI89QMDdh
+ 7AVzOy5+cM+5EAbEn0yzthmy6M1R8T5EGF+LMezO9vbzugFxiOpW2cDkhwmA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=seu.edu.cn;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=seu.edu.cn
  policy.dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=collabora.com header.i=mark.filion@collabora.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=collabora.com policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=seu.edu.cn;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=seu.edu.cn policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 35B37467B9
-	for <nouveau@lists.freedesktop.org>; Thu,  4 Jun 2026 20:31:35 +0000 (UTC)
-X-Greylist: delayed 903 seconds by postgrey-1.36 at gabe;
- Thu, 04 Jun 2026 20:45:19 UTC
-Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com
- [136.143.188.16])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 369C31135AD
-	for <nouveau@lists.freedesktop.org>; Thu,  4 Jun 2026 20:45:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1780605015; cv=none;
-	d=zohomail.com; s=zohoarc;
-	b=blpPOiV19DAIP+eHtzRExw79FdUkcnkPvG9Z1D5YrNC6agORCyn/c0gWm8CohKdrgGZf6a/lxfdqtAByUmpGkNiUamlR8PuHrbdd1xmCm1lBmrf06Fj+J7BwWYkG+HMK8vYjGKVk6WNFZrYpFT+DGTMNp3eeCNwjHNVhL7F+fz8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc;
-	t=1780605015;
- h=Content-Type:Content-Transfer-Encoding:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
-	bh=muC6rawBX3CykhRdzS4yBFWa650rEAb1z3ELNMgRXrs=;
-	b=RcXtT0BCS4slwXENt3M/lVf2+rZKd23hK1hImUk6anQUIS1n4pwfrEd2axhMj3Z/UtoqvPHbsvIznSohtBS/3hCey3I6eF6lZgln5fPAxDTwr8XhGc9yayMX3xa1CHFmna6uZiJnETKl13CyGHUXiAwIdREwTDQ18VuE11dVpuI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=mark.filion@collabora.com;
-	dmarc=pass header.from=<mark.filion@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1780605015;
-	s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
-	h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To:Cc;
-	bh=muC6rawBX3CykhRdzS4yBFWa650rEAb1z3ELNMgRXrs=;
-	b=Myq8l+z31v83jDaTJNOyqMPad5tny3p7eNAI4wS4LEsGF0mL2LT1jutccIfD4SHO
-	w0l8kwkQhBncPxPELFA3Iyi2aBGpnigNnb2voQqrZRs6nEIbpJI92dXM4v2Wt/RHNs7
-	6yo4fAWBYbgP+KRsjppy0IO/5w0NAU6Nkc57iT9U=
-Received: by mx.zohomail.com with SMTPS id 1780605014129561.7890082678962;
-	Thu, 4 Jun 2026 13:30:14 -0700 (PDT)
-Message-ID: <25315075290481f0c77a56cd0c18576e0193338e.camel@collabora.com>
-Subject: XDC 2026: Registration & Call for Proposals now open!
-From: Mark Filion <mark.filion@collabora.com>
-To: nouveau@lists.freedesktop.org
-Date: Thu, 04 Jun 2026 16:30:13 -0400
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.60.1 (3.60.1-1.fc44app2) 
+	by kara.freedesktop.org (Postfix) with ESMTPS id ACC5A4411E
+	for <nouveau@lists.freedesktop.org>; Fri,  5 Jun 2026 02:00:51 +0000 (UTC)
+X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
+ Fri, 05 Jun 2026 02:14:32 UTC
+Received: from mail-m2411.xmail.ntesmail.com (mail-m2411.xmail.ntesmail.com
+ [45.195.24.11])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id ADBF711A3B5;
+	Fri,  5 Jun 2026 02:14:32 +0000 (UTC)
+Received: from DESKTOP-SUEFNF9.taila7e912.ts.net (unknown [223.112.146.162])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 412814aef;
+	Fri, 5 Jun 2026 10:09:26 +0800 (GMT+08:00)
+From: Dawei Feng <dawei.feng@seu.edu.cn>
+To: lyude@redhat.com
+Subject: [PATCH] nouveau/firmware: fix memory leak on BL load failure
+Date: Fri,  5 Jun 2026 10:07:52 +0800
+Message-Id: <20260605020752.1707562-1-dawei.feng@seu.edu.cn>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-ZohoMailClient: External
-Message-ID-Hash: S6F34CGKQDNQAR4III7YPZYHZWRCRAFU
-X-Message-ID-Hash: S6F34CGKQDNQAR4III7YPZYHZWRCRAFU
-X-MailFrom: mark.filion@collabora.com
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9e958adbad03a2kunme8b1df4229401
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCHR0fVktOGB0aSR9MQ08eSlYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUhVSkpJVUpPTVVKTUlZV1kWGg8SFR0UWUFZT0tIVUpLSU
+	hOQ0NVSktLVUtZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=G4y7xzCU87m6TM2r9nqttfnEpiwLXLmAUtmfJsKWNCxv2FIyJYSir3x5/iUP8pSqaa+aY9iIgL912ZjwsfFULxFMchyYUkPUhw90xVpfeHcY96zWxdGiTejHAeKcF2alBT9G+d7lUCcQrHWK3tFhXb3f3tp28LoWBKB7MIkwVtQ=;
+ c=relaxed/relaxed; s=default; d=seu.edu.cn; v=1;
+	bh=9hPQlir0LYpa42uuWLi8uH8JCnnafnPqkGo+wT4cuCU=;
+	h=date:mime-version:subject:message-id:from;
+X-MailFrom: dawei.feng@seu.edu.cn
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
+ loop; banned-address; member-moderation
+Message-ID-Hash: DH3WUNOUPUIQ2JB52T33UGQAATECIBSS
+X-Message-ID-Hash: DH3WUNOUPUIQ2JB52T33UGQAATECIBSS
+X-Mailman-Approved-At: Fri, 05 Jun 2026 16:14:16 +0000
+CC: dakr@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ simona@ffwll.ch, namcao@linutronix.de, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ jianhao.xu@seu.edu.cn, Dawei Feng <dawei.feng@seu.edu.cn>,
+ stable@vger.kernel.org, Zilin Guan <zilin@seu.edu.cn>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/S6F34CGKQDNQAR4III7YPZYHZWRCRAFU/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DH3WUNOUPUIQ2JB52T33UGQAATECIBSS/>
 Archived-At: 
- <https://lore.freedesktop.org/25315075290481f0c77a56cd0c18576e0193338e.camel@collabora.com/>
+ <https://lore.freedesktop.org/20260605020752.1707562-1-dawei.feng@seu.edu.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -109,46 +103,51 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hello!
+If loading the HS bootloader blob fails, nvkm_falcon_fw_ctor_hs() returns
+immediately. This skips the common cleanup path and leaks the firmware
+state allocated by nvkm_falcon_fw_ctor() and nvkm_falcon_fw_sign().
 
-Registration and Call for Proposals are now open for XDC 2026,
-taking place at the Daniels Spectrum in Toronto, Canada,
-September 28=E2=80=9330, organized by Arm.
+Fix this by routing the load failure to the 'done' label so
+nvkm_falcon_fw_dtor() can properly clean up the partially initialized
+state. Also clear the original 'blob' pointer after releasing it so the
+final nvkm_firmware_put() remains balanced after a failed bootloader
+reload.
 
-    https://xdc2026.x.org
-=20
-As usual, the conference is free of charge and open to the general
-public. If you plan on attending, please make sure to register as early
-as possible:
+The bug was first flagged by an experimental analysis tool we are
+developing for kernel memory-management bugs while analyzing
+v6.13-rc1. The tool is still under development and is not yet publicly
+available. Manual inspection confirms that the bug is still present in
+v7.1-rc6.
 
-    https://indico.freedesktop.org/event/12/registrations/
+An x86_64 allyesconfig build showed no new warnings. As we do not have a
+supported NVIDIA GPU with the required firmware to test this path, no
+runtime testing was able to be performed.
 
-In addition to registration, the CfP is now open for talks, demos, and
-workshops at XDC 2026. While any serious proposal will be carefully
-considered, topics of interest to X.Org and freedesktop.org developers
-are encouraged. The program focus is on new development, ongoing
-challenges and anything else that will spark discussions among
-attendees in the hallway track.
+Fixes: 2541626cfb79 ("drm/nouveau/acr: use common falcon HS FW code for ACR FWs")
+Cc: stable@vger.kernel.org
+Signed-off-by: Zilin Guan <zilin@seu.edu.cn>
+Signed-off-by: Dawei Feng <dawei.feng@seu.edu.cn>
+---
+ drivers/gpu/drm/nouveau/nvkm/falcon/fw.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-We are open to talks across all layers of the graphics stack, from the
-kernel to desktop environments / graphical applications and about how
-to make things better for the developers who build them. Head to the
-CfP page to learn more:
+diff --git a/drivers/gpu/drm/nouveau/nvkm/falcon/fw.c b/drivers/gpu/drm/nouveau/nvkm/falcon/fw.c
+index 4e8b3f1c7e25..71f55c5b0837 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/falcon/fw.c
++++ b/drivers/gpu/drm/nouveau/nvkm/falcon/fw.c
+@@ -278,10 +278,11 @@ nvkm_falcon_fw_ctor_hs(const struct nvkm_falcon_fw_func *func, const char *name,
+ 
+ 	if (bl) {
+ 		nvkm_firmware_put(blob);
++		blob = NULL;
+ 
+ 		ret = nvkm_firmware_load_name(subdev, bl, "", ver, &blob);
+ 		if (ret)
+-			return ret;
++			goto done;
+ 
+ 		hdr = nvfw_bin_hdr(subdev, blob->data);
+ 		desc = nvfw_bl_desc(subdev, blob->data + hdr->header_offset);
+-- 
+2.34.1
 
-    https://indico.freedesktop.org/event/12/abstracts/
-
-The deadline for submissions Friday, July 3, 2026.
-
-We are looking forward to seeing you in Toronto! If you have any
-questions, please email the organizer (charlie.dixon at arm.com), and
-CC=20
-the X.Org board (board at foundation.x.org).
-
-Don't forget, you can follow us on Mastodon for all the latest
-updates and to stay connected:
-
-    https://floss.social/@XOrgDevConf
-
-Best,
-
-Mark
