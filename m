@@ -4,96 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9CCDCD6E7C
-	for <nouveau@archiver.kernel.org>; Fri,  5 Jun 2026 16:28:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A267BCD6E7B
+	for <nouveau@archiver.kernel.org>; Fri,  5 Jun 2026 18:22:57 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BFEFB11A982;
-	Fri,  5 Jun 2026 16:28:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC3810E710;
+	Fri,  5 Jun 2026 18:22:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=seu.edu.cn header.i=@seu.edu.cn header.b="G4y7xzCU";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="I9Rfzneu";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D8F294680D;
-	Fri,  5 Jun 2026 16:14:18 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1780676058;
- b=e6pWLEz/WAW8TVDVV8ut4Pqmlsu5g4LzBOmcVHadTjDRGqESDmr4orw/fOjVhX3HsXmnF
- mOCeb4qIa7FOeMWqsre8CU0tbPIcBHotFwAp5Zr580z2GXWziniON+gxUDlLf8uondwr3dZ
- s7gzLpangFIHZsDlpYh8yZTF4/H00bS/xQ2Io4SRfn1gbC75h3MUvmPNzytdmkKv5PXRkY4
- 2oOaJbzvJ02DhKeUjTV0xewc0bc9XlexoqL6/saEe3hLUY3AUCBY33M6J2PtIGKoB07oA1c
- KKRyZNDMOhLH5Dn+cVDrjW9ZOmz5tKXmbckBrfGlT4fHxMTojTDkETQKA97A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1780676058; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 5E57444BAE;
+	Fri,  5 Jun 2026 18:09:10 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1780682950;
+ b=RCDbv2um35hPkek/SW1DS0q94Y8k4GPFY4VASBhsS7T+dBcDejeKEHaeZsBz0gMFBqMAP
+ O2qdewU4s0h3yKBDnheGT9S/+NdgTCZBwOuVHEb5OG/274R3xyocv7+aesBukzyVIE2R1kq
+ koMj+CU5PV9NlXZOySwVQSECLT1YcuIxGWeGYw6kwRzBEGO6ZBa+FpixERbAsm2qwMHE0zK
+ yGvqQYrdYdhLTBc+WiCOe6K+Ss1wuEx1/T0+dIBhyygEPoFERyYPv67KUbNoKR0Y55VdoV7
+ 1lBnQeV/1d/4/gXtSdQdhPIEEWFIvAj4uxzei6sZo/V8zXMmGeytevjNjLwQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1780682950; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=9hPQlir0LYpa42uuWLi8uH8JCnnafnPqkGo+wT4cuCU=;
- b=zJjPt6XnLkWfSmpGZ+nDP6p/LDagF6n9eQkI1x2gQoq0cf8EPC69YJZTpKYvAv9p9UhdQ
- 2cIZktrYSlNQ6OmG4fLGETFZdt2KasITeO9iBD/K3NRa2GbTK7dfu4l6bWFyxJWCAbAU9t7
- pH1tCCCr4lkQtKjI9z/6ewC9NpkKKlDTkvoGeIhWfLMtTh5cWG0CgKuGEmq9mmFCMvcBrD+
- aKV/7B+40lcD67MRT2LhwFsJFaaT3xqeBVk4GM+RblKwly4XBvcvePZjIvHOJNmI89QMDdh
- 7AVzOy5+cM+5EAbEn0yzthmy6M1R8T5EGF+LMezO9vbzugFxiOpW2cDkhwmA==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=seu.edu.cn;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=seu.edu.cn
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=seu.edu.cn;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=seu.edu.cn policy.dmarc=none
+ bh=WnuHqSoEaLkFdRd72GkQfSxUh5QVT/9gIPgtDaXWLwI=;
+ b=LXNbBImcK0rFx18s1tupL3k6cnezUlSfWafVfyR6RkbSLQ59a5DxsTY62t6UPk4+WzKc8
+ xbRWVItA9/Pctp+78CLgpn1oxfRg9QS+HyAzptMhUkcLiMfggIm84P9YrVzKC4JeX9f7XLa
+ 2kd6bxWFrXJvXCO2Cx3l57j5nqV981Ijx/UbHGfb+yHur6bfgjGQmQdAxWbLP4k6nipt/7a
+ 4phCm4q7LkygisoXKft0+5yC8p6S3u9M1uzLMzEOQAB+wjj0z1zALHHfd2/+aKeZrLC7LJG
+ 1i1NtXkD9c+xS0ae5NEfBW1p7s/Sje1nDDtLv7BNEUzLsYKTWf6i2yBORlEQ==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id ACC5A4411E
-	for <nouveau@lists.freedesktop.org>; Fri,  5 Jun 2026 02:00:51 +0000 (UTC)
-X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
- Fri, 05 Jun 2026 02:14:32 UTC
-Received: from mail-m2411.xmail.ntesmail.com (mail-m2411.xmail.ntesmail.com
- [45.195.24.11])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id ADBF711A3B5;
-	Fri,  5 Jun 2026 02:14:32 +0000 (UTC)
-Received: from DESKTOP-SUEFNF9.taila7e912.ts.net (unknown [223.112.146.162])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 412814aef;
-	Fri, 5 Jun 2026 10:09:26 +0800 (GMT+08:00)
-From: Dawei Feng <dawei.feng@seu.edu.cn>
-To: lyude@redhat.com
-Subject: [PATCH] nouveau/firmware: fix memory leak on BL load failure
-Date: Fri,  5 Jun 2026 10:07:52 +0800
-Message-Id: <20260605020752.1707562-1-dawei.feng@seu.edu.cn>
-X-Mailer: git-send-email 2.34.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2320D44BAE
+	for <nouveau@lists.freedesktop.org>; Fri,  5 Jun 2026 18:09:07 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011043.outbound.protection.outlook.com [40.107.208.43])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DEACA10E702;
+	Fri,  5 Jun 2026 18:22:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=o8LlLdVdGUAn16t18cNoGzhvax0Zpa7ATzh6eX54jiBA/sZldQ08/qxS66EfHNWiZeVqURTvnx59cHBlJpTFdtYhxLjnuUGT164Xgg97cZqcW5fr5i92sT0LTtmQKyqrEOYMhhw6uzfLnIdiPQHu8+2hPbJFq75kcNWi2/k1dAvfnyiPgTgKWp4xb65qp7ofWGRIQLPtatzepZW8B2YTeYKWOvjpLom+/E8rZrPbHpYz0UiGEl/ZpwCtQy3osLzHTysqcvix55zMRwTZXaFBoProf2WlXWBYRNBh5xZ9UdbBnl5zN2iCn2kQVpGp+2xxeFuMdctVZ0XSHOW2Rhst2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WnuHqSoEaLkFdRd72GkQfSxUh5QVT/9gIPgtDaXWLwI=;
+ b=pXPIbTBr08RDntVEmYd5wpbrzrFIVmCbb2kQojIqIOOH0yFtr/i80on3QG+o7mIf0O9MgBVGhHpjgTwbF41rDrG7SCExUlFktbTnbetTAfx8h4SUanLEMEtX1IubDujDTk7lCxVru46Cd0uf1nFqWUa2oMwgZBTYqjZ7ikekeigUbvH70H9axK8rQl4gWH9Gi1D2jBKrUN5ZM95AOMq+nkGg+4v+RfoMz1sR/sL5YZFD2ExOXc5PfrDgM4hyJOEqu1t6AJpNmFo3CeEf8P74qcqR+fPcZMNBvNmZqG3b5qn11BP+0IjBs6uk6Yu+pVGJxXuTEcIUi+BEVwkPtdHksQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WnuHqSoEaLkFdRd72GkQfSxUh5QVT/9gIPgtDaXWLwI=;
+ b=I9RfzneuzS2ZDphG4IilWYFGVehnMOEyFksiuHeYkZ1KQmPlVLssyehRfjl4QvnvfjetuxjfrdK6RxlrHRw7o9pw7I3wv4JQLhikV1E3BgNJ9P0aPzLl5u/ddpqdThvqvlfQrqnOSYxv6/Y8ZvyLQfkKEcAnF9Fhg3HibzoddbtzLF7T7ktgC7BUxvCT0f3Gw4MWOt5gBlucQOytKsCBzjntk0gfBJao8CQR5bsjuyzlX7f+s6ZRw2zkS4NG5bmO+aIuZ2sCrN8hmtQBE1rYtZyH+/a0AT3f+6Rs5/AR1ZooJbUv+3wYc9okQBWdjRfR4tZUFvI4uBle6ooaDKYoNg==
+Received: from CY8PR12MB8412.namprd12.prod.outlook.com (2603:10b6:930:6f::11)
+ by IA0PPF002462CFE.namprd12.prod.outlook.com (2603:10b6:20f:fc04::bc4) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Fri, 5 Jun 2026
+ 18:22:42 +0000
+Received: from CY8PR12MB8412.namprd12.prod.outlook.com
+ ([fe80::76e6:4d65:7ed1:6970]) by CY8PR12MB8412.namprd12.prod.outlook.com
+ ([fe80::76e6:4d65:7ed1:6970%5]) with mapi id 15.21.0092.007; Fri, 5 Jun 2026
+ 18:22:42 +0000
+From: Timur Tabi <ttabi@nvidia.com>
+To: "lyude@redhat.com" <lyude@redhat.com>, "dawei.feng@seu.edu.cn"
+	<dawei.feng@seu.edu.cn>
+Subject: Re: [PATCH] nouveau/firmware: fix memory leak on BL load failure
+Thread-Topic: [PATCH] nouveau/firmware: fix memory leak on BL load failure
+Thread-Index: AQHc9QhQDYV/oMN/d02/Uz0YAF01qbYwRoUA
+Date: Fri, 5 Jun 2026 18:22:41 +0000
+Message-ID: <aa2e39a828634f20852d066f593f26510fbdc2d9.camel@nvidia.com>
+References: <20260605020752.1707562-1-dawei.feng@seu.edu.cn>
+In-Reply-To: <20260605020752.1707562-1-dawei.feng@seu.edu.cn>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.56.2-9 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY8PR12MB8412:EE_|IA0PPF002462CFE:EE_
+x-ms-office365-filtering-correlation-id: f687b39f-f213-4c4a-ec71-08dec32f6e9e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|366016|7416014|376014|1800799024|22082099003|56012099006|11063799006|18002099003|38070700021;
+x-microsoft-antispam-message-info: 
+ eShHWpziUyBxNB9dP7PZVSY/TaM3BkhDXi4pZfnwdUkB+qeSPhNsonTgO7DcqFmepOIIXYeERSgbCFDOXegelolskqGGNKzIGxwiD2fPQIMsu11eZyZaODqiTHT8CkfuJPSBEoFyfWAtWcpeNvrlFbVMLaOy78AcYdqfejcHXPNVT9iLL2PryhDNwJ5CL3AlgFZRNhE7AmsrZeAGYcYqySXhIlBQc8wjX+SDUucm1CGLSEhNjPbp6OB+/shGM5bpjEKuV5NqI5ukfQn2FpxKEyArm0NZTgtX7lNIJpwiCFnezXUdrplzxdSyiKfGDy0Qtf27712E/4ofTFFvgW02HZ4RG+ct5R+LhzLf2u1OKn+0iaZQClfGtAX87yDSLznb83p0cCLGVcLHeXRQcOrRG9e56VF4GgpfjxeJ75E+yCsgSyAyUxLjgRvqCcBbBJeApWipb5WyQr/bl1fDedeCvrngJI7YuI9ugvtR5N8FatTiqWVle1akmTP54mD4xFlXqDSBZSwTMubTPOu8pqV0Ejz6XXm0Kj1icqpAzR+RN2Zf7EhMDwyIpzwmicYkRyZ89MJca7acboNu1nK4NSRHQYZGHO1IA0jDfYDaJr89EgVryJGYHl2Jw5Du0z6B+2YaVGPGwmBshVE85UwjzBm7tcGlrIZFoU53mppflQiIuefxlcfjKL6OXzcWFsIrbVRx58zbtzUHMONeKYKeoc2FkBFGt37/6UtQydmbBQGIfg9n3cAE2RYWd4CubbWazJ4U
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY8PR12MB8412.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(22082099003)(56012099006)(11063799006)(18002099003)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?ZWwzVThtNjdCQkxUTWc2SFhweEt1M21POEE1SjhEMVhYLzZxNUJSMWVEUDhL?=
+ =?utf-8?B?ejJTUlY2a1M2M0xuYkk5SDFad3V5Q0h6dm5MWGRTa3BWT3ZoOU9DSE9Ka2lq?=
+ =?utf-8?B?YmdVMlBLSE5rUXZGVVpYZDR5WVlTSjl6TGJsMlhVendvSWIvZk4vUTltaUZM?=
+ =?utf-8?B?WEx1UXh2K2toVWVKYjlaSUxPMVN2SmIxQlBBaGFnNWcxOGsrUTV1TDVGSHkv?=
+ =?utf-8?B?TUtJczhIMWd4eGpiYk1NalpVN2FZV3lab2RsYUlnbTlBNzEzaUxjVzhMY29j?=
+ =?utf-8?B?VXMveUlsUTlXWEZYRmxTQWxmd1dPZUE2b05pd3FaZDFYSWZXdU1EYkV4UGky?=
+ =?utf-8?B?NnVHa0Q1elpSUkt1VmxVcjJJdlQ3UTZ1MWpLQStSbkNURmo4TnhNa0JDOUxl?=
+ =?utf-8?B?ZDdRSFJzMXZCZzV2elpQaEI0a25vT2dONGQwOWpZVXpoZVFSUjFsZXBkWHJY?=
+ =?utf-8?B?eThwMmZSY1FZSkdQN0lkWG9MWkUyUW9haUgvL2lGb3JISW9KeER3Sng0ZkJG?=
+ =?utf-8?B?M0lFdysxK1Bka3FQYzRyWDhxMVZQTGdMQS9kaUdTc0FuL1Jua3h6bmNYZEoz?=
+ =?utf-8?B?Yzd4NW43akNmN1JBSzkwZFRqMy90RWxWem9vekhDS1Y5d1ZUVG1WUlp6ekNM?=
+ =?utf-8?B?eUVOS1FhRVBrNndiN1VMUlRrN2FxTnJtL1BHMlBlOE5zSHJEamtDamNBeE9m?=
+ =?utf-8?B?bThqVTh5QTFkYXFtZWFnTWRLWDhpd1UrSHZTUWFmKzhKZEM4VnprVENkQ3ZT?=
+ =?utf-8?B?OWFSRGgzYmNEeExTZHdHc3ZPblMrMHpteFVTT3RxWGx1VlNSc3p2Zytidnor?=
+ =?utf-8?B?dG5iK251dlNwZEhzL0xmUXRjUUR5TDBqRUNvY3F1TFZ3Ris3Yzg0N1BTVEpp?=
+ =?utf-8?B?cVZRSmU0R0hiS2ZMVEVQakQxQnp2YzFod1E1K2JXaytoTlczVTNXeXp6S1dB?=
+ =?utf-8?B?ZFd0NGh4WUVGRmtXKzFjMllkRFNnbjR5Ti9oYVk0b1BUbCswRG1nMFFUOUdP?=
+ =?utf-8?B?bXNDUjV1VS82dTQ0SnZ2MGladjBXb09EWDYremQrdzc5Z2VWNzdvYSttdTE0?=
+ =?utf-8?B?U1lQM3JGUFRSTHR0VUhhK2hWV1QxcUhrNlZoTmtFNVByUm1Vdkw3QThZc1lr?=
+ =?utf-8?B?eVhHK2ZGQTlyQnRSeVFDR2toKzRleHJCZnZqY0NabDE0bjg1WGoxUTByaXdI?=
+ =?utf-8?B?WjFYQ24xZ1BCcE1hOURNMlNWb1BHSjlwejVZdlhpM1ZoZTk3aW1sdDJVYUQr?=
+ =?utf-8?B?ZW9ESmhFK1VRTzRPdXhnL1EycjJhdCtIc3d5eENWeHhtTGZDTXozcWxtM0tx?=
+ =?utf-8?B?S3dNZitqYjJxcWx6MWRTamNaUmxybjM5SCsybEhnU1pOSFl4QkovaGQ0VDJ4?=
+ =?utf-8?B?K0NFYjBBT0M4TkpNUWpaRXZacUFGWlNFazB6VkxXbndyeENGYTlLdFZLRmNQ?=
+ =?utf-8?B?R1dxeHJ3L0x2QzFJRWhYTVdWV09xTVprK3V2V1ZxcTNmVzgvSURXanlFV3BR?=
+ =?utf-8?B?V2tJUFpvWUtGUnZseHZZZHp1czFFRnhHSTllOWUwRGU4alZTanNsaGd6OWQw?=
+ =?utf-8?B?OTRySzZhaW1YYk5NVEZlZUtUaFd3TGcxekZDQjVnRm9jVmduK0h6NlRLdTM2?=
+ =?utf-8?B?TStFS2lGM2U4REhSYkY2Q0FSb0JqQ2JCWEtwTkxqbXduOVZNemJjdzl3RGg4?=
+ =?utf-8?B?SlE3QkFvTFlyNU9KWWVBVkVMZFhpWkZ0KzNqeWdIMVlMazdITU0vQi85eGI1?=
+ =?utf-8?B?VGtna09qSHZTbk5UUGE5eWRQNkpkT1BOYWFQUWVDQjF6aFdPL0wycUxhdCtZ?=
+ =?utf-8?B?MGQ0Tkg0a05PdEN1aHlrSlNxS2gwVWEzMDhRdVJtNGtQcFJ1NlQ5R3hnUmp4?=
+ =?utf-8?B?bTQzbVF2TC9JTHptQjdUOWdWZnF2MU95MlJTWU45RzFVK2ZvMnZ4b3pMVVI3?=
+ =?utf-8?B?QzhGbUR2V3BTTk9ENEMwbm00cnZ1dmppMVlmQ3ZTaTY3N3NWMWF6dWtmaEtk?=
+ =?utf-8?B?a2JEblRab01URTlJZEFCcExvSHNXYXRQSkdrRFhXUENrckJmd0xrbkZOa0tY?=
+ =?utf-8?B?TnovbnVESVV5WEJqV29SbmtNUnVMSUFjckhFa0lYQzNPT2tvNit6UDlYZ2VP?=
+ =?utf-8?B?ZkVvV0dLbHVHQTkvaVpUd2RVRjN3c05rZnNXclNJV2hQUTNLUlJVRzZPdkdF?=
+ =?utf-8?B?MWdVR2FyMUtHWUVmK01tc0JTSkN2L2hlekkwampmZXhKUmtRUVpna3o2Qjl5?=
+ =?utf-8?B?V2Z3YlEwNE9nUGt4QXJGNis4WnJQLzBoSGF3MElzVmhVVGtRckp2K2lHZlp5?=
+ =?utf-8?B?cE5OZ0JGRW4wdFQ4MWJNV01jd2R2b25jc2tSY2d6RTQvSnN3aGJMdz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <11D9100BF1BE174B96A3E14C92BE211C@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9e958adbad03a2kunme8b1df4229401
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCHR0fVktOGB0aSR9MQ08eSlYeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUhVSkpJVUpPTVVKTUlZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	hOQ0NVSktLVUtZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=G4y7xzCU87m6TM2r9nqttfnEpiwLXLmAUtmfJsKWNCxv2FIyJYSir3x5/iUP8pSqaa+aY9iIgL912ZjwsfFULxFMchyYUkPUhw90xVpfeHcY96zWxdGiTejHAeKcF2alBT9G+d7lUCcQrHWK3tFhXb3f3tp28LoWBKB7MIkwVtQ=;
- c=relaxed/relaxed; s=default; d=seu.edu.cn; v=1;
-	bh=9hPQlir0LYpa42uuWLi8uH8JCnnafnPqkGo+wT4cuCU=;
-	h=date:mime-version:subject:message-id:from;
-X-MailFrom: dawei.feng@seu.edu.cn
-X-Mailman-Rule-Hits: nonmember-moderation
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB8412.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ f687b39f-f213-4c4a-ec71-08dec32f6e9e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2026 18:22:41.9629
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 
+ fW7cQmSFtSyniudcGtAhvikOG9iNQwmlhXwKzhI22qAKQEMgRMtx4py3X9jsLy+uZAh3i+L7ulUve+0c6ek9/Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PPF002462CFE
+Message-ID-Hash: TXCY5RTLFGFVTNHOZYVIVVCXHVZ44XTF
+X-Message-ID-Hash: TXCY5RTLFGFVTNHOZYVIVVCXHVZ44XTF
+X-MailFrom: ttabi@nvidia.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: DH3WUNOUPUIQ2JB52T33UGQAATECIBSS
-X-Message-ID-Hash: DH3WUNOUPUIQ2JB52T33UGQAATECIBSS
-X-Mailman-Approved-At: Fri, 05 Jun 2026 16:14:16 +0000
-CC: dakr@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- simona@ffwll.ch, namcao@linutronix.de, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- jianhao.xu@seu.edu.cn, Dawei Feng <dawei.feng@seu.edu.cn>,
- stable@vger.kernel.org, Zilin Guan <zilin@seu.edu.cn>
+ loop; banned-address
+CC: "jianhao.xu@seu.edu.cn" <jianhao.xu@seu.edu.cn>,
+ "zilin@seu.edu.cn" <zilin@seu.edu.cn>,
+ "namcao@linutronix.de" <namcao@linutronix.de>,
+ "simona@ffwll.ch" <simona@ffwll.ch>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "dakr@kernel.org" <dakr@kernel.org>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ "mripard@kernel.org" <mripard@kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DH3WUNOUPUIQ2JB52T33UGQAATECIBSS/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TXCY5RTLFGFVTNHOZYVIVVCXHVZ44XTF/>
 Archived-At: 
- <https://lore.freedesktop.org/20260605020752.1707562-1-dawei.feng@seu.edu.cn/>
+ <https://lore.freedesktop.org/aa2e39a828634f20852d066f593f26510fbdc2d9.camel@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -103,51 +192,10 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-If loading the HS bootloader blob fails, nvkm_falcon_fw_ctor_hs() returns
-immediately. This skips the common cleanup path and leaks the firmware
-state allocated by nvkm_falcon_fw_ctor() and nvkm_falcon_fw_sign().
-
-Fix this by routing the load failure to the 'done' label so
-nvkm_falcon_fw_dtor() can properly clean up the partially initialized
-state. Also clear the original 'blob' pointer after releasing it so the
-final nvkm_firmware_put() remains balanced after a failed bootloader
-reload.
-
-The bug was first flagged by an experimental analysis tool we are
-developing for kernel memory-management bugs while analyzing
-v6.13-rc1. The tool is still under development and is not yet publicly
-available. Manual inspection confirms that the bug is still present in
-v7.1-rc6.
-
-An x86_64 allyesconfig build showed no new warnings. As we do not have a
-supported NVIDIA GPU with the required firmware to test this path, no
-runtime testing was able to be performed.
-
-Fixes: 2541626cfb79 ("drm/nouveau/acr: use common falcon HS FW code for ACR FWs")
-Cc: stable@vger.kernel.org
-Signed-off-by: Zilin Guan <zilin@seu.edu.cn>
-Signed-off-by: Dawei Feng <dawei.feng@seu.edu.cn>
----
- drivers/gpu/drm/nouveau/nvkm/falcon/fw.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/falcon/fw.c b/drivers/gpu/drm/nouveau/nvkm/falcon/fw.c
-index 4e8b3f1c7e25..71f55c5b0837 100644
---- a/drivers/gpu/drm/nouveau/nvkm/falcon/fw.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/falcon/fw.c
-@@ -278,10 +278,11 @@ nvkm_falcon_fw_ctor_hs(const struct nvkm_falcon_fw_func *func, const char *name,
- 
- 	if (bl) {
- 		nvkm_firmware_put(blob);
-+		blob = NULL;
- 
- 		ret = nvkm_firmware_load_name(subdev, bl, "", ver, &blob);
- 		if (ret)
--			return ret;
-+			goto done;
- 
- 		hdr = nvfw_bin_hdr(subdev, blob->data);
- 		desc = nvfw_bl_desc(subdev, blob->data + hdr->header_offset);
--- 
-2.34.1
-
+T24gRnJpLCAyMDI2LTA2LTA1IGF0IDEwOjA3ICswODAwLCBEYXdlaSBGZW5nIHdyb3RlOg0KPiDC
+oAlpZiAoYmwpIHsNCj4gwqAJCW52a21fZmlybXdhcmVfcHV0KGJsb2IpOw0KPiArCQlibG9iID0g
+TlVMTDsNCj4gwqANCg0KSSB0aGluayBpdCB3b3VsZCBiZSBjbGVhbmVyIHRvIGluc3RlYWQgZGVs
+ZXRlIHRoaXMgbnZrbV9maXJtd2FyZV9wdXQoYmxvYikgY2FsbCBoZXJlLCBhbmQganVzdCByZWx5
+DQpvbiB0aGUgY2FsbCB0byBudmttX2Zpcm13YXJlX3B1dCgpIGF0IHRoZSBlbmQgb2YgbnZrbV9m
+YWxjb25fZndfY3Rvcl9ocygpLiAgVGhlbiB5b3Ugd29uJ3QgbmVlZA0KImJsb2IgPSBOVUxMIi4N
+Cg==
