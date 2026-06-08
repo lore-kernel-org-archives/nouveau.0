@@ -4,186 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E334FCD8C92
-	for <nouveau@archiver.kernel.org>; Mon,  8 Jun 2026 08:31:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1EACCD8C9D
+	for <nouveau@archiver.kernel.org>; Mon,  8 Jun 2026 13:57:31 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5893010EF5A;
-	Mon,  8 Jun 2026 08:31:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id F1C7A10F411;
+	Mon,  8 Jun 2026 13:57:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="rCyY24hg";
+	dkim=pass (1024-bit key; unprotected) header.d=seu.edu.cn header.i=@seu.edu.cn header.b="mSUBhBoh";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8218046859;
-	Mon,  8 Jun 2026 08:17:13 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1780906633;
- b=mdoanwTYn4rRZCsFhcqozKvzp0V1g2vk+H2AuVCVMQZkmK2zY7jCgHtAuh5Ukt+kX2OYl
- DqVVzpVjNKzg7oOQJP4s0YqpFNwhS641qWYUVpUPW1Ql72cILh41GdImxKEkExDMr26jfs8
- qVEWtPUEdj94t3SEn45It2qZXH0ALULvp7oMkAkl7I4WQv+f5ry75g5z/GDxS9RH7gmbFlt
- dPPPso2NKi+BMFf1BO3sniXLei9KbXiHWDav84c7WAnAykUr/1bdJaDOIyCAHezsnlD9cTn
- /Oe9KUjuIam+rqwA53dh+Gx/24PI959+6s9PIlfa0qWkvOfGU5cYWEg5wRkQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1780906633; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id A75974685A;
+	Mon,  8 Jun 2026 13:43:36 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1780926216;
+ b=QiPXsgyyNOAcZJMliZ2hDFKBwq0oqRBF0E7OKL80ONUBMSd9Kd6AdEUwPW/pUndFhWO+B
+ ka3l2Ofil3vqGLpYfKqqCvgvcQNuS/gsyWVpE0953a5d3vnJQOXMTzvU5gS21Fau5JXlheY
+ 5VJpqbxeVNmFPZWCeEhQ/nQrnZb4VBSINtFzqq/EHnH0A7vZusdvPEFlgRhGQqxiHhiuUy8
+ 0YBeeTp+b7QowKwiob0NX3lB4Lg8MtcQet53/nSbRvxfr7EAFvbiYBBpDmFdt85o+chE5M0
+ iNF6RKGaEOaoDcZHh4MmItGO3j6l39OtQcbbZKtbzeWQPuTVFqvliIV8iNiQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1780926216; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Rmaf/Wll3uf0MlDFPIUnZsTqrNE7ymawUAMqChDcXfA=;
- b=x54U0bllfnKNUovQ7spnP3mY0wxEVQdln2u42fH30aNkg/e7G5UM4eY1kU6jXg7NHAiX3
- eCkksJVEfsO6gaOXMuNs1kysydV4glz4Sqhis/r3jEoMFskquykfhif0tZYLU76WXiB5IJb
- MpYlBGIHsVH2LXLloDRYnIzXJF597ZVlFRK3oPREjh5gW3ycZ3HTUwgZoGmAHbwYdBwbWz/
- CgKX02QWDf2f3WvhOEpCHz1or7rGgYfE1zknMD+EdN9FHKR9HXUejumzf6S9HOy9ZlYh27q
- Wex26O3FM9ccaOgD2tM0BvzmNTuTLjSey4GfdzpfrUnJEAK+HAU8w1CAQCdA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=PUAzZqFOE1r8m01APLHVgv/zFAIdkEgJl07BOOwnD+Q=;
+ b=JbMt3oHPlpWs9MlXpzd6RecGZAyJdJ6jOd6cmXxiHS17R+n7L4nSa7bJc+RgR+HK0MeOd
+ nmvgO4IjCNFHtiFyjDQemHHHniaxUFbCcwkGV6lSU2xrgi4zJg6Gi3re0sbjT2cxi+ygnt9
+ 9ONmT8g5YukKWwRsZrIyvKlpsK//rG3hBKFenNvCFKVyefUI2DXhU0p3AfrFDp/T60682Wa
+ ih8t4KECgeaoyq+PYSmBDEdeRYwV48MudQWeSwuoMSoFxXeKlWcn6ENE2WpSJD9IpdkZdPb
+ knUhI0oaMLeTysVcmD7E5ElXzlWlTIVzXvyCX3H2CWCQgyVrM1g7w8fQF61g==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=seu.edu.cn;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=seu.edu.cn
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=seu.edu.cn;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=seu.edu.cn policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 082D64680A
-	for <nouveau@lists.freedesktop.org>; Mon,  8 Jun 2026 08:17:11 +0000 (UTC)
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011027.outbound.protection.outlook.com
- [40.93.194.27])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8663C10EF32;
-	Mon,  8 Jun 2026 08:31:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vjSw5OjGYZugmWspXCxIpVv3UA6cxk0FR/aL8V68R3TlRgZTa8fr+BzOTrgdU+d9uXkGVifHvL6XUANy0vO0guRmZE7SwIAnHW4s2F38KOaR2/AbYTZB0Dmg6YQAU/2fh1nnHHIx7aMN95Qb9TI9QdUda0paUPgS5ykePvsI1wvHH8dJZ2cqTVGiXlaBaeUie8CzyJf1StXjItcbQONP+9WT6NyWmcvlPICX3hLHy/Sw2JeOBs3LMPodfaWQ2ejwodA8oFZgP/Qhh7CGYLeRINkEp101zSBMTk2rcBRYRxK3IWmDn/aY71zXGaCVJFR2dOqQGimnl1nHVMV8xl+P6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Rmaf/Wll3uf0MlDFPIUnZsTqrNE7ymawUAMqChDcXfA=;
- b=Uxord7CB8EBWHqSVj2Im66UOTltxYn7DqtH5XIroscvCN46m+6ZF7hMUKZCbCjHl4bKXLISuwQBJXgzwAVs+ho887fHA+BVxxsbmY32W/DgS1lxiOMdg1TOCSZ1QAc0nLsPpp9VmeVlUFtET3D9x4S+oX2s1WN23hPOWya+Q72zQGmKEXn39m5YK0403eoDi9QhJRzQkkUmX3oJF3X3Wx7ry4mD9uG9U4UKt/dy8ObBbsE3mylb7RGYIwji1lcfk2+2QVn0Z5+0DFpHTZ5n/KwuXRwCUCOBUJ17a17gnNGxAeFRIXNAMU5XmXQFWkFVxiTcQBxnxhRI/1yVn2DzB1Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Rmaf/Wll3uf0MlDFPIUnZsTqrNE7ymawUAMqChDcXfA=;
- b=rCyY24hg62Wcvf4dEjJE0HfF7YEuqKVc/j8GuSldLdV2UJ15jEvA3MNv92uMoD0jcVJe//pRF5h+N/cpq7f7LwDlXk+XaoWOS0dqEfxit6puSdug9rCU/tRHvuFEDF0MhhDUKBNl3vsCP/qdLUkj44Mo8VzYmH0SVNc3M4iijnWwgEYBPW83IfDey2UGg1EHRR/S/rezGzQGrvskd8JVxmJqmQdPW875+H4VbO3Q3jvE1qMp1UmDoRl+v2RrDdES/1dvNrqTKQPf5FrjybT5HR64TvciX04mS2ueAYP+Z/bQmTmhZpgnGClPRRk0EstvD9Qgw+oqgYFPE7Lmst9JGw==
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
- by CY8PR12MB7658.namprd12.prod.outlook.com (2603:10b6:930:9e::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.13; Mon, 8 Jun 2026
- 08:30:57 +0000
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989%4]) with mapi id 15.21.0092.011; Mon, 8 Jun 2026
- 08:30:57 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 08 Jun 2026 17:30:53 +0900
-Message-Id: <DJ3J05KYZ0TO.1O4R56QTR8NOG@nvidia.com>
-To: "Lyude Paul" <lyude@redhat.com>
-Subject: Re: [PATCH v18 3/4] rust: faux: Allow retrieving a bound Device
-From: "Alexandre Courbot" <acourbot@nvidia.com>
-References: <20260604192740.659240-1-lyude@redhat.com>
- <20260604192740.659240-4-lyude@redhat.com>
-In-Reply-To: <20260604192740.659240-4-lyude@redhat.com>
-X-ClientProxiedBy: TY4P301CA0041.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:405:2be::15) To CH2PR12MB3990.namprd12.prod.outlook.com
- (2603:10b6:610:28::18)
+	by kara.freedesktop.org (Postfix) with ESMTPS id BF394466E9
+	for <nouveau@lists.freedesktop.org>; Mon,  8 Jun 2026 13:43:33 +0000 (UTC)
+X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
+ Mon, 08 Jun 2026 13:57:24 UTC
+Received: from mail-m10230.netease.com (mail-m10230.netease.com
+ [154.81.10.230])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2F5C810F40C;
+	Mon,  8 Jun 2026 13:57:23 +0000 (UTC)
+Received: from DESKTOP-SUEFNF9.taila7e912.ts.net (unknown [221.228.238.82])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 418697a0a;
+	Mon, 8 Jun 2026 21:52:17 +0800 (GMT+08:00)
+From: Dawei Feng <dawei.feng@seu.edu.cn>
+To: ttabi@nvidia.com
+Subject: Re: [PATCH] nouveau/firmware: fix memory leak on BL load failure
+Date: Mon,  8 Jun 2026 21:52:18 +0800
+Message-Id: <20260608135218.3413471-1-dawei.feng@seu.edu.cn>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <aa2e39a828634f20852d066f593f26510fbdc2d9.camel@nvidia.com>
+References: <aa2e39a828634f20852d066f593f26510fbdc2d9.camel@nvidia.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|CY8PR12MB7658:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6e5d8307-2a99-4407-7278-08dec538430e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|376014|7416014|366016|10070799003|22082099003|18002099003|56012099006|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: 
-	V8ud9wF3ZakJJ60wX8U3khQJKVDQwdPoJyXVqfJEbVWtyOmPyPCQmDLZhY1dxzwi2rzt2jx+61SguLc11S5h4X/YYt+npZirkFs+0IPNAG6BR9hiW9NI5ICdZehAmIT9+p4003b6ptaOetJZ4VtAe8tCj63eaWkfZAqUhd7Fz1vUOwnX8IEu9AHPiGUlo0b7FJzWOIP2WS7wTq5I1bQBNigCII0gBy0PAoiJ5N/1MMQ1NVOTPZ1ARUraGetK6owWmbV7pAptX5IxFxcR5w5EAhn7/H8AmOgbcqrlHaPUCJAaKYFHotIAV5sztjHCOGEKyH8bAsloFiazBsgkFqPxsdVOGL4v2fj2RElvx8PHcnJG0mVc2zrBT92nXk1KkywI5t3v11gQRvrV11JaR91+F63v/6Xi1SsR/BliYrxub1g18fcBm/MmnpacNaufMp1CcJjqYql+ICUwLGwD1k9Wx+bJDe2oCjXxbB8VfNyV0di5SM7ylZxkyMiAg8mlz0jOxJLnUhS/F3WunHIfOwWq6bQlKl4cGMrr3MfxkUt/UPbOix0xopJVUSIbCv0CFGn830z82INdJTDGWsTYcUG5BFddQSBeTmxVFVjzpqRORe3j59zRk6NCBNM4JKrvlMAqgKevCPRZ6cpcri1Ifte2a2I3m1JOTNZDH0wr7S0yZBw3aVwtQ38t/ml8fyZA5yBP
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(10070799003)(22082099003)(18002099003)(56012099006)(11063799006)(4143699003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?em1Dck52U2FvRVhQV3hXN3FDWWR0V2R0UWhJdjdoMy95YlVOZWVyd2pDVXFI?=
- =?utf-8?B?R2ZCQmoxaHdnbmRKVTJMNFcxYlBmSTZ6L1MwUjlnaEUrV2VCWVRtNjlxeWtU?=
- =?utf-8?B?S2FhbjBhd2JsSEF6R28xSmV2Tm1kbnZ1Y2lLM20wa0l2dGc3dTJmdGZWbG1n?=
- =?utf-8?B?VGJ3Vi9SRjVjVlFPdHhwaHdZaUV3VEVSeG1iMnA3VHhCUGxIdjROTHFNM0RT?=
- =?utf-8?B?SFk5SHZOQ2VFNlgxQUcyZnkxcGMrYUtnbGtvUEpUa09SNjJRaHovbGFVZThV?=
- =?utf-8?B?MFdaR1o3TW5qS0tTbXV0WmhzbDhFamhBT05IOCtGMVArOUVmRFphQnpwNkZM?=
- =?utf-8?B?RUJQZlVvZlExMXVJQ2pzaW1idmlyM1BtMEllUmJIMmltK0JlYXc0T3gvcFhz?=
- =?utf-8?B?ZHZkeHVzWFlzVFVvOXF6RUdaelpxWGNEVUpHUjZxbE0yUWZrV0VjYWtXL2h1?=
- =?utf-8?B?RDh0Z2Nic0NlclUrM2RsQno5dEZ2SDVtK1A4cFROQzQzeVpVQkFCVGw3ZW8x?=
- =?utf-8?B?RkZPRHlkQXFtWXNDSVdBbFlqSDVmUGY2Vm9POG4yYis2OXhCN0o5RVpvbnhs?=
- =?utf-8?B?ZGZmQysySkZpTmhSUFZCQzBGQ2xGbk5tVk5VZjhHaXdaaytoODUyYUg0N2xN?=
- =?utf-8?B?UmVOdnZ1Zk5HZ1ZRZy9HUnFiNU5mUkNud3F6c24xbGtVYWNUbkFNeXFFMklk?=
- =?utf-8?B?YkRDQWVDcW9GOHVOaGhlUXdNaU9tYlFNZWlkekgrRXJwbGVoUUV3ckVBZWVU?=
- =?utf-8?B?RytQeEZaaWtxSk1ZSXBWMTl5QXMvcDdpNXVXaVJwZktZL1JGNVRibzIxOG1E?=
- =?utf-8?B?NUxmMkIzRmQrbkdrUm9KeVEybk9MTmlaUWp6WHZaNEtPbzIrRXpqc3BUUm9X?=
- =?utf-8?B?MWtxMld6WjNRS0d4TUh4QytLM055MTlMVDEzYzFyZC80Si9IZzRjUnFIUGw1?=
- =?utf-8?B?Skx6Qkd1QVJUWHdPSVlib1RRcjV3MFhXZ0d0dll2YXY4U01KdE5pUzQ1eDl0?=
- =?utf-8?B?alZMdVJZbkUyNW5zWmRaU1JkUDNHWDR6d003K1dzNUxnOExjV2dvNEN6eEdn?=
- =?utf-8?B?YWxic0MwazUyenJMbXI4cTJWRzBJWVJvV3lYRmJiM2QwV0J2ZFhjeU90c1lo?=
- =?utf-8?B?MUFqbUh4RWc2TVdoVTg2UmVPL1lZYnl3NjIrOEZpMDNZcmJJa2ZwNzFIU1Er?=
- =?utf-8?B?TGdCaVdyOHhNTTdlYUV0cmJaRzZrL2xGc2oyMGJIS1U3ZlM2MWRJTVdYak5a?=
- =?utf-8?B?RU5kVGphZlh4TGpFby9KMDQ2bW45Yk4xby91b3V1Q0hsY0FJdTI5dm5TTS9t?=
- =?utf-8?B?Y3Irek9YaWRGVE9sSmF2T1lvMXE4c1VqYzNJbFY1OTc1T3pXbG5lMHpUU09Q?=
- =?utf-8?B?MWNzSGsxMWRmSGhLRCtLZ1lsRzFaN3AvdUtzQkFsNk1BQk1oU1lETlg4VlN6?=
- =?utf-8?B?amlzSS84S2NrSGJHVjJ5UE54elJFWFN4VVk4dWlnbEw5SC9mYWd5MUF1Lzcv?=
- =?utf-8?B?S0p1TmI0YThkdjltcWQxNDVCdzFqK0N6Zk1vTUc3ditCVGRFUjV2eFg0NUdD?=
- =?utf-8?B?Q0tkeHZBRGNpcWIycDZqNmpRVUljOUtvODdYbEFETEhpVXdtNkREd3BQby9v?=
- =?utf-8?B?OFF5NW54ZmdaUGF4c3c5NWdPR01EWWZXM0QwNHJySG9zUFBYZlprU1lMajFh?=
- =?utf-8?B?Mk9uZWo1UkpPd0tQSGpPMTdSQWhSODQyN05xL3IwcU1DWjJVNUZPMVRPVENU?=
- =?utf-8?B?cHZxL09UdkVDby9Bd3AreFJWdEhrRWFzSEVhdWdPNXBXeEwvUDJ2R1N2elJs?=
- =?utf-8?B?MkdBSTlXMWNNWGVmSEpQVnRhOVhsOGFndHdFa2dyVlNPT1ZkWDEyQStrYzFN?=
- =?utf-8?B?cXZadlI3bGY4bnlCa2JBbERiUWFlcmU1OE5iZVVsSE5JbE8rVkovZ2JsZjRl?=
- =?utf-8?B?NFhlMms5UERSWFBCQ04yWVJSM3FiakFwQzQyV2ZvWEJqdDZTSktkakJqTnIy?=
- =?utf-8?B?T1hDS0c4YTlxZ2c2QlhHNWtRYTVKbmhpYzUvTndLSTViemdsS3loYURZRXRu?=
- =?utf-8?B?RmxqNW9Ka2ZlNVhBN1pMWXFLdHRmN1Q4bk5zQmFteEpHZFB3cm95TjlxNHFE?=
- =?utf-8?B?bnRyZHpkR1pONkZzMjFwbnZ0cktyakxmQ216VE5TRisvQkFDKzd0S0pDQVZ2?=
- =?utf-8?B?UW4rYkI1TUgvb2p5d2JLeVdQSXRiaVlFSloxaWtLbGNQTXZsSkZoNGFLUXln?=
- =?utf-8?B?LzRRaVdnUHVndHBocXlJRGZWWmhwdGJxaWhyeDE5cjVzbWNYOFBzZ2lXdnQ4?=
- =?utf-8?B?OVpxM2hCa0Z2ZVV5d0x4MWNDZVBWaVVrYUZ5NUNTZSszalAyTDhQejRxN1hs?=
- =?utf-8?Q?Yk1vDB1igJqzz5la57Cu9SOgR545VFT6A4V9bUj0KLN9j?=
-X-MS-Exchange-AntiSpam-MessageData-1: dxG1zWeNfJXQDQ==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 6e5d8307-2a99-4407-7278-08dec538430e
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2026 08:30:57.0295
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- 8TacqNG/w9aTh2CJJvCZb+5tDA6fbvC+N0VY/o5ACSC1Oq+2Jd0h4RwYNlINOlbqCrY55TtSa4VMY8cEntG8iw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7658
-Message-ID-Hash: TY63Q3FLTEEDXDXCGYMCYLUN2X3V2W6F
-X-Message-ID-Hash: TY63Q3FLTEEDXDXCGYMCYLUN2X3V2W6F
-X-MailFrom: acourbot@nvidia.com
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9ea7816a8a03a2kunm10e519bdf5324
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaTk5JVhpJS0lPGkkaT0NDTVYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUpVSUlDVUlIQ1VDSVlXWRYaDxIVHRRZQVlPS0hVSktISk
+	5MTlVKS0tVSkJLS1kG
+DKIM-Signature: a=rsa-sha256;
+	b=mSUBhBoh0496xG4IiMYv5fe7It4OxD9eTPVOkNlmdB4vm520ELI4bYLj9R/YziGnOA7drsT3LqfYmPOjmRkbMJhKYoGBKqtDLXlWUPp9ktE+vZsjFQRIgsJGS79ZnfDIAxg2lMUGCv3s3wkryPG5OOUZJvv/6CxUIZjLG0kTwuI=;
+ c=relaxed/relaxed; s=default; d=seu.edu.cn; v=1;
+	bh=PUAzZqFOE1r8m01APLHVgv/zFAIdkEgJl07BOOwnD+Q=;
+	h=date:mime-version:subject:message-id:from;
+Message-ID-Hash: LWRZIF27BYC2374PKH3JVIBLSGV5NNT3
+X-Message-ID-Hash: LWRZIF27BYC2374PKH3JVIBLSGV5NNT3
+X-MailFrom: dawei.feng@seu.edu.cn
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- driver-core@lists.linux.dev, Miguel Ojeda <ojeda@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
- linux-kernel@vger.kernel.org, Sumit Semwal <sumit.semwal@linaro.org>,
- linux-media@vger.kernel.org, "Rafael J . Wysocki" <rafael@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Benno Lossin <lossin@kernel.org>,
- linaro-mm-sig@lists.linaro.org, Danilo Krummrich <dakr@kernel.org>,
- Mukesh Kumar Chaurasiya <mkchauras@gmail.com>,
- Asahi Lina <lina+kernel@asahilina.net>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC: dakr@kernel.org, dawei.feng@seu.edu.cn, dri-devel@lists.freedesktop.org,
+ jianhao.xu@seu.edu.cn, linux-kernel@vger.kernel.org,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, namcao@linutronix.de,
+ nouveau@lists.freedesktop.org, simona@ffwll.ch, stable@vger.kernel.org,
+ zilin@seu.edu.cn
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TY63Q3FLTEEDXDXCGYMCYLUN2X3V2W6F/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LWRZIF27BYC2374PKH3JVIBLSGV5NNT3/>
 Archived-At: 
- <https://lore.freedesktop.org/DJ3J05KYZ0TO.1O4R56QTR8NOG@nvidia.com/>
+ <https://lore.freedesktop.org/20260608135218.3413471-1-dawei.feng@seu.edu.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -193,14 +104,24 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri Jun 5, 2026 at 4:24 AM JST, Lyude Paul wrote:
-> When writing up some rust code that used faux devices for unit testing, I
-> noticed that we never actually added the Bound device context to
-> faux::Registration's AsRef<device::Device> implementation. This being sai=
-d:
-> the Registration object itself is proof that a driver is bound to the
-> device - so this should be safe.
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
+Hi Timur,
 
-Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
+On Fri, Jun 05, 2026 at 06:22:41PM +0000, Timur Tabi wrote:
+> I think it would be cleaner to instead delete this
+> nvkm_firmware_put(blob) call here, and just rely on the call to
+> nvkm_firmware_put() at the end of nvkm_falcon_fw_ctor_hs(). Then you
+> won't need "blob = NULL".
+
+Thanks for your review.
+
+I don't think we can drop the nvkm_firmware_put(blob) here. At this
+point, blob still points to the image firmware loaded at the beginning of
+nvkm_falcon_fw_ctor_hs(). The later nvkm_firmware_load_name(..., &blob)
+call overwrites blob with the bootloader firmware pointer on success.
+
+If we only rely on the final nvkm_firmware_put(blob), the success path
+would release the bootloader firmware, but the original image firmware
+pointer would be lost and leaked.
+
+Best regards,
+Dawei
