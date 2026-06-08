@@ -4,127 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A2A9CD8CA4
-	for <nouveau@archiver.kernel.org>; Mon,  8 Jun 2026 18:41:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAE2ACD8CA4
+	for <nouveau@archiver.kernel.org>; Mon,  8 Jun 2026 18:50:29 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2F42410F8A6;
-	Mon,  8 Jun 2026 18:41:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9BEB610F8CE;
+	Mon,  8 Jun 2026 18:50:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=yahoo.fr header.i=@yahoo.fr header.b="lQE7NlPk";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JerpZAoU";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 67C0D46883;
-	Mon,  8 Jun 2026 18:27:19 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id D215C46887;
+	Mon,  8 Jun 2026 18:36:35 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1780943239;
- b=UsjDoQK84rHPkQVCvt8ewrVJdffvbU0ye6HUeB60X7bR0KUAsDBLnD+e6GLmtkNWGlM33
- fuNc6lw272GZQCTvNpxSzeSPOpt4g56NTievHYRar7h/VSz22uBsrkunDYWWte4+Jy4Y5J8
- dTlR8AOCDH/R3ovKaArzix6zIgNU1AbQ2XoGBUvtXotq6L4+H7yqLNcDDnlTDPyCijKR5ol
- HwXC78UmYoJjB96cP/T78yTLsv1KpRctLTY0+kfFwatme0TbckoVruzrxlUfIrFUnIzSnE8
- xREdZ1jgiFsijO3+DovVDABR4uVm5nnLZx2hTqvkhfIYu9VyyVYX+eg5iRVQ==
+ s=20240201; t=1780943795;
+ b=T2br4DSMmvYfBuQ8v0+m9YUqj5mweIU0Vyu5vZihWDAVdqcOtegh5Xph6yVpZRCJWS1Op
+ LgWKp3tY3oKr5GXvdTJnYchaFJeOFYmmRjU/fGiPQQsii0ZDeuNoPqlEuFi58AQdbisvoKI
+ dqdC/Lh72O/DnyOTFFAO4qapbk7JH2HoTd7vfUZydIlDvlQa65EPLR+MiRiX1riN9BqucR3
+ sSs2VijVFujVsI2NJu4gSM5W0yda//1nI2tXrJlXzKgkovyg435nGynWmspmljJLQNwhoyr
+ 3CUY+O3DEDBgTLyFYcvCuj3fSRc2izOHzpc0TOLYUu4nT+NcO+5x1YHAvdMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1780943239; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1780943795; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=FHllyc6VezQ4fvRQCARiMi7vOSKPKXIjBA5YjKzRXZ8=;
- b=cugFxm5dgA3GGtQbfhvf82IojVhXseHk1t4K8TUlCm2TjRDwyWWxwJ+O3BwsMx3/VhjpU
- XdLRfZZJij8/ZBGRNx+hLtaLMNf76itB9msgf77V6+BkdVg8hxG5eCQqmFNwMpXZUyFqXNf
- 9jaNDKunLXJBm8Nrlr//gQDyrhInKcEPrNVOLAQzg9oys6QRVrdTvjNmTUcoXzUo8DfgNXx
- 4Ta2Zb96dfEkuk5NihC0ggLa7fJz/EQuR05bHc+khIhyREn3tdYV3t+EbNus4um14J48wSu
- sXZZKW6RYOsM4rZRUMiXxE1SfrtUYQ+6cGnurKX780dHZBIxw5LcHC5f5Rnw==
+ bh=HjZFDO402ZDsm7mMfRjPVjHrawSFxpu7iqkTSYlsac0=;
+ b=mDxsYPOFgEvlo/4zfqxYFfW9LMiVq6YZ8lwtZPqFMHFZFyAv0UqGzBgtrjbv3ddZemaTy
+ GImn7ksodC1e2BIVW91uArX1cuW5ZkCIpWUgxphQVB0Mq/7tOo945PxspOO+A/vl/H9zuz/
+ 2yUKHAxxIfuHMi99QVOry76JTX6MhJjcWd1jMbeVJg5L4660azU+XOGgSTavEw/BJTXbppY
+ oIoBjySk8flHTb0WpP5nYAgMB6wZs15ocFMJyVv0BhhsxMv0sDKMH+zOY+wNc1hfCCMta2f
+ xTA/yKfw0z6uUrHgJ28pKT+1R+4Vk+TFTXB3qaGLbJJtNVwnqXRQxs9l/4Mg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=yahoo.fr;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=yahoo.fr
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=yahoo.fr;
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=yahoo.fr policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9FEF14685C
-	for <nouveau@lists.freedesktop.org>; Mon,  8 Jun 2026 18:27:16 +0000 (UTC)
-Received: from sonic302-21.consmr.mail.ir2.yahoo.com
- (sonic302-21.consmr.mail.ir2.yahoo.com [87.248.110.84])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D867610F8A2
-	for <nouveau@lists.freedesktop.org>; Mon,  8 Jun 2026 18:41:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.fr; s=s2048;
- t=1780944068; bh=FHllyc6VezQ4fvRQCARiMi7vOSKPKXIjBA5YjKzRXZ8=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To;
- b=lQE7NlPk9LWqLNtpDfo60n7WYQD/0LeYi3/1kjb6qrD2iQjzBPRK/DJolHx5Z72cPSuIpye0O3ejcEW5lNnVFViu1l1KW4QemVPXwdv3GRG1KmTiIeto6Ck2eo8rw5UFlAZvx3TktWVTK1libvSWAyXjhJIJm7XmaiR5UM2WfUm1DaqMzXgkMuRK/UWucKjWjqGg0OcgKwSBmeQOFFhz7bqjDRcV7EgmXEoDiXmXEx9z0zvvBC/46DscPwWlftvOqvNM3n68tuMtqmalSH0d5FnGIFK/M2b9JeqYg8T2P4tuuQ54PVnyBRt4V5c3302EtS87XcZ1S1efU6PvBAFq1w==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1780944068; bh=OKOpqJZcwkijyqkR5gxUTs/v2Yb4DtuRNM/f0v9gIdT=;
- h=X-Sonic-MF:Date:Subject:To:From:From:Subject;
- b=C+zpn9fv5z0YAj/jVWPW/ZRP4E41ANXgszRZi/ByfXIE5jsMTQXB6aNme6hXEFcQHzKkY+v67PGrjxM8mqWhUtypIlcrTrPjNr5ZnqwtKhJN5EURf0l57gJqP0B0oCv1d6/czqaA8B2FjE2/zYYjfRxHjF5QUvTB1n1aSQuHR9MqQcQIuGN4xk/oFNP2ZQbV4GxRyvLZly/ZJVkdGAW5do6nA/YvmafeL1ck9eR8jSTbXgG1NmIrq60PS+4KP802c+08BfJbPu1jEHWFneoJIacRPx2bQmtk9F3547C1kvl3yKyGEtbXMseYnM+aK5SXPBRELzrvfpXYwyRkxy7PtA==
-X-YMail-OSG: AFq77pQVM1mWsa.uL3w5liBtvgbhSqCf_xEph03Eh4JATFE0T5Mb8iHfzQ3U1wJ
- NsT7PysDiuXtLWwDWgsec6m.afX4zBmFXZy.QtlBE8hfAx2haXpRBbcApXoc0dmqHTe8a6t2jar1
- 7Btwp5.lGWH7ZpI3f5zos3V.G934CD7Cg0VKoKVL8bInXOkVrUPLuJAFh2gbRBRvgTXlGv0s42Up
- gZFsxoN5wWzAlg.LtBAxV6Xw25yjJXlU2iI0Y57eF5msw7t7EkxdsEwnzeOrO98H5q8Hvm1qz1FW
- mwJWJyzmsiRAwMonsbbzfDtzx5bSiql0ekp9ZBVexdLYc1geFwoRE8QDIuChQSwQTBQofgYaxQ8R
- LIhBapH4kOsqxT5IJbybDgDtQDPIsT9OvElSdDlWWleZgkK8Xl9OoXvvaCIe346tuJMesOrmxdKk
- m_tibyhWi9IE3mbi_nNft8gF.lNpq1MWj.FJwlU314oej5VeYr2qkL1cDKfCtqLwjvdkYPZp5R3j
- DJ5aF3yxKk3pF47GuPzU32mPbOs_GBLGcbFRTumGtmGyOkJ2J3yajcCq.aJWGFCYTgyyNMZK5tg1
- A8wbDhGL_RTa7h9pb7qUsr9wfXsyEHOwrXEyHu3YFuvCicjZxIK8rH_5ZBXNVTXvA10O9Q2AZI9F
- HwxYoo0tnAmvaq8Gh9yJcnfhqEOqJuowN6zARIe0NZ.449dR8MsRnOeruBChkULWBlv72v52XsGM
- GLQ.gxLXL7mZHGA245xjkQN9BAgtDdFJ15sbDdIwpWvQB3QskwENuRr5e2PJypCXo9js_figm6Xk
- 7mTLJiacnHHyIhBZb0wBcG6QZR7SjNVxXVfvqw2HYUdZAbUyq_8AGt6mZP67ZZE57gNJNFmBs1zg
- RDXX248QTFV5IJdsAkDGqdqg.x7jEv_nBwpHCfZUCvBF9Ext4SIH5EAMZxRWqHB68rGdwNSotE51
- gCS_snrYUb__WCrulNzghUwOwEsgFukBAZjnhiPn4wCX8fPTM4obOOU54Q4M0DcNxabVfYkxu_Js
- t9eg1FzMJUwT60FeHa5rU1y7jDM4uu0pCQTSisVrvGvgtlmrbmZcc6AAUJ0FOD6L.iLl90HEC4qG
- Ut7dMYryWjl4m2QhRlA4kIqg7E0U2zM6MD_bVxTw6HEIEheuXB5573V5MmlmhOyb9zTalbWuA7Ye
- oh0w5jgp8xMleF55L.1pAgfOhIeqOxLWAlXmWP0PGyeqj9qQMRn9GtI9FAmRzX9DoU_ET9Kf7khi
- LNE6KyUHS2FQxMW7NkMn8Dm45tdkVLihZnOEfXYegyqor6fhP66TY.0o16cc.BjdQWBp8UDWPzEk
- IGM8CLtd.x5Mpf4wcCLG1oS8dUV77uBNZAEk7kKb29Qafsl1Rk1l0zkorrN1vnGwAO39FYGaNeEF
- HZKXELNQ6uv3gWIahX99_yp_sTYtZebJMbEgoqFTM1l0s57.Ev_CsM9frKk6lE.54GEVmbUE72W5
- WTM3_n16NAUJ6mt0LL1EVchTVm7bgNG1QtdYqtyICrH4HAgkk7TTFR4YiMUAabN145j.UhX1dkV8
- gH_TTMXZKJNNEKpYap0xhz_NblsAQkFnnmNzxb0wfbsacR9PIMBznXgf3TLcmFlQNeYjabt_zwnM
- dakC42zu.nHwEV.JjADYMrS.xXI_dujHmkJV7P2mpdHmq5_N849jyJItEWH2bldjAsR699r7Zj13
- e4bi4krQIcOhrsUkth2udWRcOxGS4F5_p2xnkCZibsU9zM7Ky3dln6A4nmKI4r65p6Gb0m3zH48h
- pGdvTbpyqXSRw4TkxIigm15uUaGEdhAbHMmGp8y9hk__Sf0OLB_qwrBWfuDZLRve2W15vbkuWxp_
- qR4PpdOwvCdzubV5dbrUfizuxZveF54tlAGHx4GsyXVkwJI38vWk.jSlBxBTc45gcjjjHo6Q7Ywk
- MH7BET7cHMLkSqKS9vOhjutxFFkG5cU18zESVS.i6.CXs2KTwUQjTnqkHQDhYZDE_tZJB44sOlnV
- Xka5KJkPzteGbCxVR9Y1ARXKYouIXKdrNF8wZ9XyPqQncKPZl83zJoROzgCky9Bq7IQnIHiXHbNQ
- 3eFLJcgLza3qhR1e3XTR2oucDMBxIgXdca1sOzStykNWLCj5iFb6aojHy35Km7FHzjLILVIgYvaO
- 0z15geY5Z8TPViGVENeQeufLDbXgl_u5J3SQCnHTtDCs_qw01QY4hH8D_Zp_4ShkUdJOUzU3RJnS
- gWiI.UvIv7d.xk2KDBPerHq_o1nBXs7YJdka1M8HmTNt.W3Rhq3U_RIY8IEAoibqJzIm4bA--
-X-Sonic-MF: <fabstz-it@yahoo.fr>
-X-Sonic-ID: 7e108b7f-0f51-4b5c-af87-f3b4256b6292
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic302.consmr.mail.ir2.yahoo.com with HTTP; Mon, 8 Jun 2026 18:41:08 +0000
-Received: by hermes--production-ir2-89844b765-82cnf (Yahoo Inc. Hermes SMTP
- Server) with ESMTPA ID d8ebc36e7d9adde9f67d0ffa69cc2f1c;
-          Mon, 08 Jun 2026 18:41:02 +0000 (UTC)
-Message-ID: <2c6340fe-2d3f-4d38-ae6c-d89adfea98b6@yahoo.fr>
-Date: Mon, 8 Jun 2026 20:41:01 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] drm/nouveau: stability fixes for NVAC (MCP79/MCP7A)
-To: Marek Czernohous <mczernohous@gmail.com>, nouveau@lists.freedesktop.org
-References: <20260409172126.115441-1-marek@czernohous.de>
-Content-Language: en-US
-From: Fab Stz <fabstz-it@yahoo.fr>
-In-Reply-To: <20260409172126.115441-1-marek@czernohous.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
-X-Mailer: WebService/1.1.25918
- mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-Message-ID-Hash: NJENIH2XZ5LEYTGWYPSX3HYKX3HG6AMT
-X-Message-ID-Hash: NJENIH2XZ5LEYTGWYPSX3HYKX3HG6AMT
-X-MailFrom: fabstz-it@yahoo.fr
+	by kara.freedesktop.org (Postfix) with ESMTPS id DA36846870
+	for <nouveau@lists.freedesktop.org>; Mon,  8 Jun 2026 18:36:32 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6CED610F8CA;
+	Mon,  8 Jun 2026 18:50:26 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4088D40173;
+	Mon,  8 Jun 2026 18:50:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AE231F00893;
+	Mon,  8 Jun 2026 18:50:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780944626;
+	bh=HjZFDO402ZDsm7mMfRjPVjHrawSFxpu7iqkTSYlsac0=;
+	h=Date:From:Subject:Cc:To:References:In-Reply-To;
+	b=JerpZAoUcN8RRH6FY2mqcHqv3G9EBFHXMREWaesJnn/P9WJewz66UROs393HxHyNT
+	 ur6WEDzFmvjKrRgJiyAQdlQ0h9LJ5XksGmmcDUeqAI/TOG2eh2omxxjcb7fftns4vf
+	 mNAu6qSjSuHJopkqS1bpoAnoghSHEJZF7XlHAlCc361Ux8P9Dx1DumrofMHOjm99xB
+	 1vuwNzws+r24uxhfZjPVHQlarkTbXD/ZQOKrM+eCfXEClU2U0+JP2cYzIS4lxsBSkh
+	 DgTkOvD5ooFE6SdVaRMsaubs0F/Rwmf73eQTkCpX8dEeBQdn+hQI236VVWJw2SDkiA
+	 E0kApa1eeJWTQ==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 08 Jun 2026 20:50:20 +0200
+Message-Id: <DJ3W6FP39GZZ.3988HCMO7NN86@kernel.org>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v19 0/4] Rust bindings for gem shmem
+To: "Lyude Paul" <lyude@redhat.com>
+References: <20260608183057.2001376-1-lyude@redhat.com>
+In-Reply-To: <20260608183057.2001376-1-lyude@redhat.com>
+Message-ID-Hash: WXH6QDR5AP5C7CJ32BPR4KTZZK7D3LPY
+X-Message-ID-Hash: WXH6QDR5AP5C7CJ32BPR4KTZZK7D3LPY
+X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: dri-devel@lists.freedesktop.org, Marek Czernohous <marek@czernohous.de>
+CC: dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Alexandre Courbot <acourbot@nvidia.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ driver-core@lists.linux.dev, Miguel Ojeda <ojeda@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
+ linux-kernel@vger.kernel.org, Sumit Semwal <sumit.semwal@linaro.org>,
+ linux-media@vger.kernel.org, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Benno Lossin <lossin@kernel.org>,
+ linaro-mm-sig@lists.linaro.org,
+ Mukesh Kumar Chaurasiya <mkchauras@gmail.com>,
+ Asahi Lina <lina+kernel@asahilina.net>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NJENIH2XZ5LEYTGWYPSX3HYKX3HG6AMT/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WXH6QDR5AP5C7CJ32BPR4KTZZK7D3LPY/>
 Archived-At: 
- <https://lore.freedesktop.org/2c6340fe-2d3f-4d38-ae6c-d89adfea98b6@yahoo.fr/>
+ <https://lore.freedesktop.org/DJ3W6FP39GZZ.3988HCMO7NN86@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -134,49 +113,11 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-SGVsbG8gTWFyZWssDQoNCkkgaGF2ZSBhIHZlcnkgc2ltaWxhciBkZXZpY2UgaU1hYzkuMSwg
-YWxzbyB3aXRoIE1DUDc5DQoNCjAzOjAwLjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxlciBb
-MDMwMF06IE5WSURJQSBDb3Jwb3JhdGlvbiBDNzkgW0dlRm9yY2UgOTQwMF0gWzEwZGU6MDg2
-N10gKHJldiBiMSkNCg0KSSdtIGZhY2luZyB2YXJpb3VzIGlzc3VlcywgaW5jbHVkaW5nIHRo
-ZSBidWcgYmVsb3cNCg0KaHR0cHM6Ly9sb3JlLmZyZWVkZXNrdG9wLm9yZy9ub3V2ZWF1L2I3
-ZjUyM2RjLWZlNDEtNDUxNC1hMWE1LTc0NzAwNTMxMWNiZUB5YWhvby5mci9ULyN1DQoNCkRv
-IHlvdSB0aGluayB5b3VyIHBhdGNoIHdvdWxkIGZpeCB0aGlzPyBXb3VsZCBpdCBhcHBseSBh
-bHNvIHRvIGtlcm5lbCA2LjEyIG9yIGRvZXMgaXQgZGVwZW5kIG9uIHNvbWUgbmV3IGNoYW5n
-ZXMgaW4gNi4xOC4NCg0KUmVnYXJkcw0KRmFiDQoNCg0KTGUgMDkvMDQvMjAyNiDDoCAxNzow
-OSwgTWFyZWsgQ3plcm5vaG91cyBhIMOpY3JpdMKgOg0KPiBIaSwNCj4gDQo+IHRoaXMgaXMg
-bXkgZmlyc3QgcGF0Y2ggc2VyaWVzIGZvciB0aGUga2VybmVsLiBJJ20gcnVubmluZyBhbiBB
-cHBsZSBNYWMNCj4gTWluaSB3aXRoIGFuIE5WQUMgKE1DUDc5KSBjaGlwc2V0IGFuZCBEaXNw
-bGF5UG9ydCBvdXRwdXQsIGFuZCBoaXQgdGhyZWUNCj4gc2VwYXJhdGUgc3RhYmlsaXR5IGlz
-c3VlcyB3aXRoIHRoZSBub3V2ZWF1IGRyaXZlciBvbiBrZXJuZWwgNi4xOC4NCj4gDQo+IFRo
-ZSBwYXRjaGVzIGFyZSBpbmRlcGVuZGVudCBidXQgdG9nZXRoZXIgdGhleSBicmluZyB0aGUg
-TlZBQyBmcm9tDQo+ICJuZWVkcyBOdk1TST0wIHdvcmthcm91bmQgYW5kIGNhbid0IHJ1biBX
-YXlsYW5kIiB0byBmdWxseSBzdGFibGUNCj4gb3BlcmF0aW9uIHdpdGggTVNJIGVuYWJsZWQs
-IHdvcmtpbmcgRFBNUywgYW5kIGZ1bmN0aW9uYWwgV2F5bGFuZA0KPiAodGVzdGVkIHdpdGgg
-V2VzdG9uKS4NCj4gDQo+IFBhdGNoIDE6IFRoZSBNU0kgcmUtYXJtIGZ1bmN0aW9uIGZvciBH
-OTQgdXNlcyBtZW1vcnktbWFwcGVkIHJlZ2lzdGVyDQo+IGFjY2VzcyAobnY0MCksIHdoaWNo
-IGlzIHVucmVsaWFibGUgb24gTlZBQyDigJQgdGhlIHNpc3RlciBjaGlwc2V0IE5WQUENCj4g
-YWxyZWFkeSBoYXMgTVNJIGRpc2FibGVkIGVudGlyZWx5IGZvciB0aGlzIHJlYXNvbi4gU3dp
-dGNoaW5nIHRvIHRoZQ0KPiBQQ0kgY29uZmlnIHNwYWNlIG1ldGhvZCAobnY0NikgZml4ZXMg
-c3BvcmFkaWMgRklGTyBlcnJvcnMgYW5kIGhhbmdzLg0KPiANCj4gUGF0Y2ggMjogbnY1MF9z
-b3JfYXRvbWljX2Rpc2FibGUoKSBkZXJlZmVyZW5jZXMgbnZfZW5jb2Rlci0+Y3J0Yw0KPiB1
-bmNvbmRpdGlvbmFsbHkgdmlhIGNvbnRhaW5lcl9vZigpLiBVbmRlciBXYXlsYW5kIGF0b21p
-YyBtb2Rlc2V0dGluZywNCj4gdGhlIENSVEMgY2FuIGJlY29tZSBOVUxMIGJldHdlZW4gY2hl
-Y2sgYW5kIGNvbW1pdCwgY2F1c2luZyBhIGtlcm5lbA0KPiBjcmFzaC4gQWRkaW5nIGEgTlVM
-TCBndWFyZCBmaXhlcyBXYXlsYW5kIHNlc3Npb24gdGVhcmRvd24uDQo+IA0KPiBQYXRjaCAz
-OiBUcmFuc2llbnQgRGlzcGxheVBvcnQgbGluayBnbGl0Y2hlcyBvbiBOVkFDIGNhdXNlIHVu
-bmVjZXNzYXJ5DQo+IGRpc2Nvbm5lY3QvcmVjb25uZWN0IGN5Y2xlcy4gQSBzaW5nbGUgMTAw
-bXMgcmV0cnkgaW4gdGhlIEhQRCBJUlENCj4gaGFuZGxlciBjYXRjaGVzIHRoZXNlIHdpdGhv
-dXQgYWZmZWN0aW5nIHJlYWwgdW5wbHVnIGRldGVjdGlvbi4NCj4gDQo+IEFsbCB0aHJlZSBw
-YXRjaGVzIHdlcmUgdGVzdGVkIG9uIHRoZSBzYW1lIG1hY2hpbmUgKE5WQUMgMHhhYzA4MGIx
-LA0KPiBEUCBvdXRwdXQpIG92ZXIgbXVsdGlwbGUgZGF5cyB3aXRoIERQTVMgY3ljbGluZywg
-VlQgc3dpdGNoaW5nLCBhbmQNCj4gV2F5bGFuZCBzZXNzaW9ucy4NCj4gDQo+IFRoYW5rcywN
-Cj4gTWFyZWsNCj4gDQo+IE1hcmVrIEN6ZXJub2hvdXMgKDMpOg0KPiAgICBkcm0vbm91dmVh
-dS9wY2k6IHVzZSBudjQ2IE1TSSByZWFybSBmb3IgRzk0IChOVkFDL01DUDc5KQ0KPiAgICBk
-cm0vbm91dmVhdS9rbXM6IGFkZCBOVUxMIGNoZWNrIGZvciBDUlRDIGluIG52NTBfc29yX2F0
-b21pY19kaXNhYmxlDQo+ICAgIGRybS9ub3V2ZWF1L2RwOiByZXRyeSBsaW5rIGNoZWNrIG9u
-Y2Ugb24gSFBEIElSUSBiZWZvcmUgZGlzY29ubmVjdA0KPiANCj4gICBkcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgICAgICAgfCA4ICsrKysrKystDQo+ICAgZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgICAgIHwgNCArKysrDQo+
-ICAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2c5NC5jIHwgMiAr
-LQ0KPiAgIDMgZmlsZXMgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMo
-LSkNCj4gDQoNCg==
+On Mon Jun 8, 2026 at 8:29 PM CEST, Lyude Paul wrote:
+> Lyude Paul (4):
+>   rust: drm: gem: shmem: Add DmaResvGuard helper
+>   rust: drm: gem: shmem: Add vmap functions
+>   rust: faux: Allow retrieving a bound Device
+>   rust: drm: gem: Introduce shmem::Object::sg_table()
+
+Acked-by: Danilo Krummrich <dakr@kernel.org>
