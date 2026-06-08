@@ -4,125 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1C57CD6E79
-	for <nouveau@archiver.kernel.org>; Mon,  8 Jun 2026 18:31:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A2A9CD8CA4
+	for <nouveau@archiver.kernel.org>; Mon,  8 Jun 2026 18:41:13 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 843B610F8A0;
-	Mon,  8 Jun 2026 18:31:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2F42410F8A6;
+	Mon,  8 Jun 2026 18:41:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="LgAeh6hw";
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.fr header.i=@yahoo.fr header.b="lQE7NlPk";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D389C4687D;
-	Mon,  8 Jun 2026 18:17:40 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 67C0D46883;
+	Mon,  8 Jun 2026 18:27:19 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1780942660;
- b=yJvlwfp7xhg0ekIEEkHuz8zcOjaFkFqOeleEEEdS9nWwFHXop1iH8QZWl8LtisD+4oLSv
- KiZOYaUIAMrsrkdbFfMz8gq4xVf8Tn9gFfPf4ow7dskAfJcTIpNPOE+ttN9ONeQ/DvzPr5V
- zJ15Z96xhYxTf2lJyoSnkeIoLEdJ9LAUVvtGYGJOIGQM0O28R77i/UjjXjp81KfUK3FPbsO
- A5f6aTlT84qeXljXaVHWE83H7/Hi3dl6WQf3JrF22Evoz1RdCYtw4BbvDvtJIkBPjJ7iRm7
- zLShEpYBEeZFvz3wOnqSLtsres5uBKp7Ppu4cTj7nvDft8vWIfDVA0o27ZUQ==
+ s=20240201; t=1780943239;
+ b=UsjDoQK84rHPkQVCvt8ewrVJdffvbU0ye6HUeB60X7bR0KUAsDBLnD+e6GLmtkNWGlM33
+ fuNc6lw272GZQCTvNpxSzeSPOpt4g56NTievHYRar7h/VSz22uBsrkunDYWWte4+Jy4Y5J8
+ dTlR8AOCDH/R3ovKaArzix6zIgNU1AbQ2XoGBUvtXotq6L4+H7yqLNcDDnlTDPyCijKR5ol
+ HwXC78UmYoJjB96cP/T78yTLsv1KpRctLTY0+kfFwatme0TbckoVruzrxlUfIrFUnIzSnE8
+ xREdZ1jgiFsijO3+DovVDABR4uVm5nnLZx2hTqvkhfIYu9VyyVYX+eg5iRVQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1780942660; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1780943239; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=xNXtOay3gnq7R0jyd1tgp6XVTjzltDEVLqTF84fZSVA=;
- b=LxNWbHZk74ai3pWCEJaVnSEwy4QcKn1rTu5PtGvdR/9zj4e3CMLMSNmqoPt9UG2MhN/01
- i9rXoWzY9U87WNpgbQ153QG8ETIoXwJAFdRFXShFNsiCmgF6J0LmmFMJXzjnlai6PgHtyUL
- /t9IyfmrU6lz5lU3vCBkUABQNbj9/KEHalVBYZMpg4hMBCcuh1a7X3yGSYHOxQqLUJM0Q/t
- n0OlVEDOaY/jWynT5iAu1TX5hfqYF1kdZdiAuImitBMhudSIBC6SpvtM3toi6zxI4wRK4Hs
- NorJaYaEuREw4jFflEtc8Y8755FgDe7uOw2pPO8pCIwLTH3a0BXpJDGtjfGQ==
+ bh=FHllyc6VezQ4fvRQCARiMi7vOSKPKXIjBA5YjKzRXZ8=;
+ b=cugFxm5dgA3GGtQbfhvf82IojVhXseHk1t4K8TUlCm2TjRDwyWWxwJ+O3BwsMx3/VhjpU
+ XdLRfZZJij8/ZBGRNx+hLtaLMNf76itB9msgf77V6+BkdVg8hxG5eCQqmFNwMpXZUyFqXNf
+ 9jaNDKunLXJBm8Nrlr//gQDyrhInKcEPrNVOLAQzg9oys6QRVrdTvjNmTUcoXzUo8DfgNXx
+ 4Ta2Zb96dfEkuk5NihC0ggLa7fJz/EQuR05bHc+khIhyREn3tdYV3t+EbNus4um14J48wSu
+ sXZZKW6RYOsM4rZRUMiXxE1SfrtUYQ+6cGnurKX780dHZBIxw5LcHC5f5Rnw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ dkim=pass header.d=yahoo.fr;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+  dmarc=pass (Used From Domain Record) header.from=yahoo.fr
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=yahoo.fr;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=yahoo.fr policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 2644A46872
-	for <nouveau@lists.freedesktop.org>; Mon,  8 Jun 2026 18:17:38 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7883910F8A0
-	for <nouveau@lists.freedesktop.org>; Mon,  8 Jun 2026 18:31:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1780943490;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xNXtOay3gnq7R0jyd1tgp6XVTjzltDEVLqTF84fZSVA=;
-	b=LgAeh6hwoMnC1A0lIker62LOulB7s/A0GCTTW37LOeOiyvyBtNRSrIKpq7jQ8Q2MCQOvPU
-	WdOhOw6NAoxI2FJP5DagqN/z/zBfi7Uv1Nf2LCoy3YVyNZppLc/0XZPPddGuKcQujwhlWV
-	Ge3nx9C1l38xPR2+yVpR8cMknmCh82o=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-656-S61WMudCM16dCpKliXhNvQ-1; Mon,
- 08 Jun 2026 14:31:24 -0400
-X-MC-Unique: S61WMudCM16dCpKliXhNvQ-1
-X-Mimecast-MFC-AGG-ID: S61WMudCM16dCpKliXhNvQ_1780943481
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 9A6391830473;
-	Mon,  8 Jun 2026 18:31:20 +0000 (UTC)
-Received: from GoldenWind.redhat.com (unknown [10.22.89.147])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id F1A9F180058F;
-	Mon,  8 Jun 2026 18:31:16 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org,
-	rust-for-linux@vger.kernel.org,
-	nouveau@lists.freedesktop.org
-Subject: [PATCH v19 4/4] rust: drm: gem: Introduce shmem::Object::sg_table()
-Date: Mon,  8 Jun 2026 14:29:04 -0400
-Message-ID: <20260608183057.2001376-5-lyude@redhat.com>
-In-Reply-To: <20260608183057.2001376-1-lyude@redhat.com>
-References: <20260608183057.2001376-1-lyude@redhat.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9FEF14685C
+	for <nouveau@lists.freedesktop.org>; Mon,  8 Jun 2026 18:27:16 +0000 (UTC)
+Received: from sonic302-21.consmr.mail.ir2.yahoo.com
+ (sonic302-21.consmr.mail.ir2.yahoo.com [87.248.110.84])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D867610F8A2
+	for <nouveau@lists.freedesktop.org>; Mon,  8 Jun 2026 18:41:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.fr; s=s2048;
+ t=1780944068; bh=FHllyc6VezQ4fvRQCARiMi7vOSKPKXIjBA5YjKzRXZ8=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To;
+ b=lQE7NlPk9LWqLNtpDfo60n7WYQD/0LeYi3/1kjb6qrD2iQjzBPRK/DJolHx5Z72cPSuIpye0O3ejcEW5lNnVFViu1l1KW4QemVPXwdv3GRG1KmTiIeto6Ck2eo8rw5UFlAZvx3TktWVTK1libvSWAyXjhJIJm7XmaiR5UM2WfUm1DaqMzXgkMuRK/UWucKjWjqGg0OcgKwSBmeQOFFhz7bqjDRcV7EgmXEoDiXmXEx9z0zvvBC/46DscPwWlftvOqvNM3n68tuMtqmalSH0d5FnGIFK/M2b9JeqYg8T2P4tuuQ54PVnyBRt4V5c3302EtS87XcZ1S1efU6PvBAFq1w==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1780944068; bh=OKOpqJZcwkijyqkR5gxUTs/v2Yb4DtuRNM/f0v9gIdT=;
+ h=X-Sonic-MF:Date:Subject:To:From:From:Subject;
+ b=C+zpn9fv5z0YAj/jVWPW/ZRP4E41ANXgszRZi/ByfXIE5jsMTQXB6aNme6hXEFcQHzKkY+v67PGrjxM8mqWhUtypIlcrTrPjNr5ZnqwtKhJN5EURf0l57gJqP0B0oCv1d6/czqaA8B2FjE2/zYYjfRxHjF5QUvTB1n1aSQuHR9MqQcQIuGN4xk/oFNP2ZQbV4GxRyvLZly/ZJVkdGAW5do6nA/YvmafeL1ck9eR8jSTbXgG1NmIrq60PS+4KP802c+08BfJbPu1jEHWFneoJIacRPx2bQmtk9F3547C1kvl3yKyGEtbXMseYnM+aK5SXPBRELzrvfpXYwyRkxy7PtA==
+X-YMail-OSG: AFq77pQVM1mWsa.uL3w5liBtvgbhSqCf_xEph03Eh4JATFE0T5Mb8iHfzQ3U1wJ
+ NsT7PysDiuXtLWwDWgsec6m.afX4zBmFXZy.QtlBE8hfAx2haXpRBbcApXoc0dmqHTe8a6t2jar1
+ 7Btwp5.lGWH7ZpI3f5zos3V.G934CD7Cg0VKoKVL8bInXOkVrUPLuJAFh2gbRBRvgTXlGv0s42Up
+ gZFsxoN5wWzAlg.LtBAxV6Xw25yjJXlU2iI0Y57eF5msw7t7EkxdsEwnzeOrO98H5q8Hvm1qz1FW
+ mwJWJyzmsiRAwMonsbbzfDtzx5bSiql0ekp9ZBVexdLYc1geFwoRE8QDIuChQSwQTBQofgYaxQ8R
+ LIhBapH4kOsqxT5IJbybDgDtQDPIsT9OvElSdDlWWleZgkK8Xl9OoXvvaCIe346tuJMesOrmxdKk
+ m_tibyhWi9IE3mbi_nNft8gF.lNpq1MWj.FJwlU314oej5VeYr2qkL1cDKfCtqLwjvdkYPZp5R3j
+ DJ5aF3yxKk3pF47GuPzU32mPbOs_GBLGcbFRTumGtmGyOkJ2J3yajcCq.aJWGFCYTgyyNMZK5tg1
+ A8wbDhGL_RTa7h9pb7qUsr9wfXsyEHOwrXEyHu3YFuvCicjZxIK8rH_5ZBXNVTXvA10O9Q2AZI9F
+ HwxYoo0tnAmvaq8Gh9yJcnfhqEOqJuowN6zARIe0NZ.449dR8MsRnOeruBChkULWBlv72v52XsGM
+ GLQ.gxLXL7mZHGA245xjkQN9BAgtDdFJ15sbDdIwpWvQB3QskwENuRr5e2PJypCXo9js_figm6Xk
+ 7mTLJiacnHHyIhBZb0wBcG6QZR7SjNVxXVfvqw2HYUdZAbUyq_8AGt6mZP67ZZE57gNJNFmBs1zg
+ RDXX248QTFV5IJdsAkDGqdqg.x7jEv_nBwpHCfZUCvBF9Ext4SIH5EAMZxRWqHB68rGdwNSotE51
+ gCS_snrYUb__WCrulNzghUwOwEsgFukBAZjnhiPn4wCX8fPTM4obOOU54Q4M0DcNxabVfYkxu_Js
+ t9eg1FzMJUwT60FeHa5rU1y7jDM4uu0pCQTSisVrvGvgtlmrbmZcc6AAUJ0FOD6L.iLl90HEC4qG
+ Ut7dMYryWjl4m2QhRlA4kIqg7E0U2zM6MD_bVxTw6HEIEheuXB5573V5MmlmhOyb9zTalbWuA7Ye
+ oh0w5jgp8xMleF55L.1pAgfOhIeqOxLWAlXmWP0PGyeqj9qQMRn9GtI9FAmRzX9DoU_ET9Kf7khi
+ LNE6KyUHS2FQxMW7NkMn8Dm45tdkVLihZnOEfXYegyqor6fhP66TY.0o16cc.BjdQWBp8UDWPzEk
+ IGM8CLtd.x5Mpf4wcCLG1oS8dUV77uBNZAEk7kKb29Qafsl1Rk1l0zkorrN1vnGwAO39FYGaNeEF
+ HZKXELNQ6uv3gWIahX99_yp_sTYtZebJMbEgoqFTM1l0s57.Ev_CsM9frKk6lE.54GEVmbUE72W5
+ WTM3_n16NAUJ6mt0LL1EVchTVm7bgNG1QtdYqtyICrH4HAgkk7TTFR4YiMUAabN145j.UhX1dkV8
+ gH_TTMXZKJNNEKpYap0xhz_NblsAQkFnnmNzxb0wfbsacR9PIMBznXgf3TLcmFlQNeYjabt_zwnM
+ dakC42zu.nHwEV.JjADYMrS.xXI_dujHmkJV7P2mpdHmq5_N849jyJItEWH2bldjAsR699r7Zj13
+ e4bi4krQIcOhrsUkth2udWRcOxGS4F5_p2xnkCZibsU9zM7Ky3dln6A4nmKI4r65p6Gb0m3zH48h
+ pGdvTbpyqXSRw4TkxIigm15uUaGEdhAbHMmGp8y9hk__Sf0OLB_qwrBWfuDZLRve2W15vbkuWxp_
+ qR4PpdOwvCdzubV5dbrUfizuxZveF54tlAGHx4GsyXVkwJI38vWk.jSlBxBTc45gcjjjHo6Q7Ywk
+ MH7BET7cHMLkSqKS9vOhjutxFFkG5cU18zESVS.i6.CXs2KTwUQjTnqkHQDhYZDE_tZJB44sOlnV
+ Xka5KJkPzteGbCxVR9Y1ARXKYouIXKdrNF8wZ9XyPqQncKPZl83zJoROzgCky9Bq7IQnIHiXHbNQ
+ 3eFLJcgLza3qhR1e3XTR2oucDMBxIgXdca1sOzStykNWLCj5iFb6aojHy35Km7FHzjLILVIgYvaO
+ 0z15geY5Z8TPViGVENeQeufLDbXgl_u5J3SQCnHTtDCs_qw01QY4hH8D_Zp_4ShkUdJOUzU3RJnS
+ gWiI.UvIv7d.xk2KDBPerHq_o1nBXs7YJdka1M8HmTNt.W3Rhq3U_RIY8IEAoibqJzIm4bA--
+X-Sonic-MF: <fabstz-it@yahoo.fr>
+X-Sonic-ID: 7e108b7f-0f51-4b5c-af87-f3b4256b6292
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic302.consmr.mail.ir2.yahoo.com with HTTP; Mon, 8 Jun 2026 18:41:08 +0000
+Received: by hermes--production-ir2-89844b765-82cnf (Yahoo Inc. Hermes SMTP
+ Server) with ESMTPA ID d8ebc36e7d9adde9f67d0ffa69cc2f1c;
+          Mon, 08 Jun 2026 18:41:02 +0000 (UTC)
+Message-ID: <2c6340fe-2d3f-4d38-ae6c-d89adfea98b6@yahoo.fr>
+Date: Mon, 8 Jun 2026 20:41:01 +0200
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
-X-Mimecast-MFC-PROC-ID: tj4IJHuG4oRtbrXVsgtnn7hgwctKB54PM-9J7wHCOzo_1780943481
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: HH7IYUQHIOZHS3MBOIPMLTLRU2U77URC
-X-Message-ID-Hash: HH7IYUQHIOZHS3MBOIPMLTLRU2U77URC
-X-MailFrom: lyude@redhat.com
-X-Mailman-Rule-Hits: member-moderation
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] drm/nouveau: stability fixes for NVAC (MCP79/MCP7A)
+To: Marek Czernohous <mczernohous@gmail.com>, nouveau@lists.freedesktop.org
+References: <20260409172126.115441-1-marek@czernohous.de>
+Content-Language: en-US
+From: Fab Stz <fabstz-it@yahoo.fr>
+In-Reply-To: <20260409172126.115441-1-marek@czernohous.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
+X-Mailer: WebService/1.1.25918
+ mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+Message-ID-Hash: NJENIH2XZ5LEYTGWYPSX3HYKX3HG6AMT
+X-Message-ID-Hash: NJENIH2XZ5LEYTGWYPSX3HYKX3HG6AMT
+X-MailFrom: fabstz-it@yahoo.fr
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
-CC: Alexandre Courbot <acourbot@nvidia.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- driver-core@lists.linux.dev, Miguel Ojeda <ojeda@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
- linux-kernel@vger.kernel.org, Sumit Semwal <sumit.semwal@linaro.org>,
- linux-media@vger.kernel.org, "Rafael J . Wysocki" <rafael@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Benno Lossin <lossin@kernel.org>,
- linaro-mm-sig@lists.linaro.org, Danilo Krummrich <dakr@kernel.org>,
- Mukesh Kumar Chaurasiya <mkchauras@gmail.com>,
- Asahi Lina <lina+kernel@asahilina.net>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+ loop; banned-address; member-moderation
+CC: dri-devel@lists.freedesktop.org, Marek Czernohous <marek@czernohous.de>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HH7IYUQHIOZHS3MBOIPMLTLRU2U77URC/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NJENIH2XZ5LEYTGWYPSX3HYKX3HG6AMT/>
 Archived-At: 
- <https://lore.freedesktop.org/20260608183057.2001376-5-lyude@redhat.com/>
+ <https://lore.freedesktop.org/2c6340fe-2d3f-4d38-ae6c-d89adfea98b6@yahoo.fr/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -132,341 +134,49 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-In order to do this, we need to be careful to ensure that any interface we
-expose for scatterlists ensures that any mappings created from one are
-destroyed on driver-unbind. To do this, we introduce a Devres resource into
-shmem::Object that we use in order to ensure that we release any SGTable
-mappings on driver-unbind.
-
-There's some other slightly unfortunate caveats of this:
-
-* Drivers don't have explicit control at the moment over when unmapping
-  happens (which is exactly the same as the C side atm, so it might not be
-  a problem).
-* We can't just return `SGTableMap` to the user through an Arc to attempt
-  to fix the last caveat - because that implies the gem object would need
-  to hold a reference count to the scatterlist mapping, which just leaves
-  us with the same problem.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
-
----
-V3:
-* Rename OwnedSGTable to shmem::SGTable. Since the current version of the
-  SGTable abstractions now has a `Owned` and `Borrowed` variant, I think
-  renaming this to shmem::SGTable makes things less confusing.
-  We do however, keep the name of owned_sg_table() as-is.
-V4:
-* Clarify safety comments for SGTable to explain why the object is
-  thread-safe.
-* Rename from SGTableRef to SGTable
-V10:
-* Use Devres in order to ensure that SGTables are revocable, and are
-  unmapped on driver-unbind.
-V11:
-* s/create_sg_table()/get_sg_table()
-* Get rid of extraneous `ret = ` in shmem::Object::get_sg_table()
-V12:
-* Actually move sgt_res in this patch and not the next one
-V13:
-* Use DmaResvGuard suggestion from Alexander
-* Use Alexander's (much better) solution for get_sg_table()
-* Use SetOnce instead of UnsafeCell
-* s/SGTableRef/SGTableMap
-* Fix typo in SGTableMap documentation
-* Create fallible constructor for SGTableMap
-* Don't reuse dma_resv lock for protecting Object contents, just use Mutex
-  + SetOnce
-* Drop use of drm_gem_shmem_get_pages_sgt_locked(), since we don't need to
-  hold the dma_resv lock ourselves for anything but this function.
-* Check that the device we receive in the bounds for sg_table() and
-  owned_sg_table() that said Device is in fact, the correct device.
-* Remove redundant docs in owned_sg_table(), just point it back to
-  sg_table().
-* Implement Deborah's suggestion to fix double-free in
-  free_callback()
-* Restore original order of Object<T>
-* Fix doc typo for SGTableMap
-V14:
-* Use new InitOnce container over the Mutex/SetOnce horror show we had
-  before.
-* Start using LazyInit container for storing Devres for sgt unmap
-* Add some kunit tests for sg_table (not sure why I didn't do this before)
-  using some of the boilerplate code leftover from the vmap bindings
-* Get rid of the owned SGTable variant for now, we'll add it back in a
-  future patch if people actually need it.
-* Use new LazyInit container from me to get rid of the horrid
-  Mutex<SetOnce<>> mess.
-* Add the best we can do for unit tests w/r/t SGTable at the moment
-V16:
-* Get rid of LazyInit, go back to SetOnce, use trick that Alice recommended
-  that is a lot cleaner.
-* Fix horrid rebasing mistake
-V17:
-* Rebase
-* Fix missing safety comment in free_callback() (we forgot to justify why
-  &mut is safe in `unsafe { &mut (*this).sgt_res }.reset()`)
-V18:
-* Use ManuallyDrop instead of SetOnce::reset()
-V19:
-* Explain that populate() will always return true in sg_table()
-* Fix outdated comment in SGTableMap
-* Fix invariant comment in SGTableMap
-
- rust/kernel/drm/gem/shmem.rs | 174 +++++++++++++++++++++++++++++++++--
- 1 file changed, 164 insertions(+), 10 deletions(-)
-
-diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
-index ffaa00a1af109..91441252482da 100644
---- a/rust/kernel/drm/gem/shmem.rs
-+++ b/rust/kernel/drm/gem/shmem.rs
-@@ -11,6 +11,11 @@
- 
- use crate::{
-     container_of,
-+    device::{
-+        self,
-+        Bound, //
-+    },
-+    devres::*,
-     drm::{
-         driver,
-         gem,
-@@ -19,14 +24,23 @@
-         DeviceContext,
-         Registered, //
-     },
--    error::to_result,
-+    error::{
-+        from_err_ptr,
-+        to_result, //
-+    },
-     io::{
-         Io,
-         IoCapable,
-         IoKnownSize, //
-     },
-     prelude::*,
--    sync::aref::ARef,
-+    scatterlist,
-+    sync::{
-+        aref::ARef,
-+        new_mutex,
-+        Mutex,
-+        SetOnce, //
-+    },
-     types::{
-         NotThreadSafe,
-         Opaque, //
-@@ -35,7 +49,10 @@
- use core::{
-     ffi::c_void,
-     marker::PhantomData,
--    mem::MaybeUninit, //
-+    mem::{
-+        ManuallyDrop,
-+        MaybeUninit, //
-+    },
-     ops::{
-         Deref,
-         DerefMut, //
-@@ -90,6 +107,11 @@ pub struct Object<T: DriverObject, C: DeviceContext = Registered> {
-     obj: Opaque<bindings::drm_gem_shmem_object>,
-     /// Parent object that owns this object's DMA reservation object.
-     parent_resv_obj: Option<ARef<Object<T, C>>>,
-+    /// Devres object for unmapping any SGTable on driver-unbind.
-+    sgt_res: ManuallyDrop<SetOnce<Devres<SGTableMap<T, C>>>>,
-+    #[pin]
-+    /// Lock for protecting initialization of `sgt_res`.
-+    sgt_lock: Mutex<()>,
-     #[pin]
-     inner: T,
-     _ctx: PhantomData<C>,
-@@ -148,6 +170,8 @@ pub fn new(
-             try_pin_init!(Self {
-                 obj <- Opaque::init_zeroed(),
-                 parent_resv_obj: config.parent_resv_obj.map(|p| p.into()),
-+                sgt_res: ManuallyDrop::new(SetOnce::new()),
-+                sgt_lock <- new_mutex!(()),
-                 inner <- T::new(dev, size, args),
-                 _ctx: PhantomData::<C>,
-             }),
-@@ -192,18 +216,26 @@ extern "C" fn free_callback(obj: *mut bindings::drm_gem_object) {
-         // - DRM always passes a valid gem object here
-         // - We used drm_gem_shmem_create() in our create_gem_object callback, so we know that
-         //   `obj` is contained within a drm_gem_shmem_object
--        let this = unsafe { container_of!(obj, bindings::drm_gem_shmem_object, base) };
--
--        // SAFETY:
--        // - We're in free_callback - so this function is safe to call.
--        // - We won't be using the gem resources on `this` after this call.
--        unsafe { bindings::drm_gem_shmem_release(this) };
-+        let base = unsafe { container_of!(obj, bindings::drm_gem_shmem_object, base) };
- 
-         // SAFETY:
-         // - We verified above that `obj` is valid, which makes `this` valid
-         // - This function is set in AllocOps, so we know that `this` is contained within a
-         //   `Object<T, C>`
--        let this = unsafe { container_of!(Opaque::cast_from(this), Self, obj) }.cast_mut();
-+        let this = unsafe { container_of!(Opaque::cast_from(base), Self, obj) }.cast_mut();
-+
-+        // We need to drop `sgt_res` first, since doing so requires that the GEM object is still
-+        // alive.
-+        // SAFETY:
-+        // - We verified above that `this` is valid.
-+        // - We are in free_callback, guaranteeing we have exclusive access to `this` and that
-+        //   `sgt_res` will not be used after dropping it here.
-+        unsafe { ManuallyDrop::drop(&mut (*this).sgt_res) };
-+
-+        // SAFETY:
-+        // - We're in free_callback - so this function is safe to call.
-+        // - We won't be using the gem resources on `this` after this call.
-+        unsafe { bindings::drm_gem_shmem_release(base) };
- 
-         // SAFETY: We're recovering the Kbox<> we created in gem_create_object()
-         let _ = unsafe { KBox::from_raw(this) };
-@@ -279,6 +311,46 @@ pub fn vmap<const SIZE: usize>(&self) -> Result<VMapRef<'_, T, C, SIZE>> {
-     pub fn owned_vmap<const SIZE: usize>(&self) -> Result<VMapOwned<T, C, SIZE>> {
-         self.make_vmap()
-     }
-+
-+    /// Creates (if necessary) and returns an immutable reference to a scatter-gather table of DMA
-+    /// pages for this object.
-+    ///
-+    /// This will pin the object in memory. It is expected that `dev` should be a pointer to the
-+    /// same [`device::Device`] which `self` belongs to, otherwise this function will return
-+    /// `Err(EINVAL)`.
-+    pub fn sg_table<'a>(
-+        &'a self,
-+        dev: &'a device::Device<Bound>,
-+    ) -> Result<&'a scatterlist::SGTable> {
-+        if dev.as_raw() != self.dev().as_ref().as_raw() {
-+            return Err(EINVAL);
-+        }
-+
-+        let sgt_res = 'out: {
-+            // Fast path: sgt_res is already initialized
-+            if let Some(sgt_res) = self.sgt_res.as_ref() {
-+                break 'out sgt_res;
-+            }
-+
-+            // Slow path: Grab the lock and see if we need to initialize sgt_res.
-+            let _guard = self.sgt_lock.lock();
-+
-+            // If someone initialized it while we were waiting, we can exit early.
-+            if let Some(sgt_res) = self.sgt_res.as_ref() {
-+                break 'out sgt_res;
-+            }
-+
-+            // If not, finish initializing and return. `populate()` cannot return false, as
-+            // `sgt_res` must be unpopulated, and we must hold `sgt_lock` to reach this point.
-+            self.sgt_res
-+                .populate(Devres::new(dev, SGTableMap::new(self))?);
-+
-+            // SAFETY: We just populated sgt_res above.
-+            unsafe { self.sgt_res.as_ref().unwrap_unchecked() }
-+        };
-+
-+        Ok(sgt_res.access(dev)?)
-+    }
- }
- 
- impl<T: DriverObject, C: DeviceContext> Deref for Object<T, C> {
-@@ -477,6 +549,64 @@ unsafe fn io_write(&self, value: $ty, address: usize) {
- #[cfg(CONFIG_64BIT)]
- impl_vmap_io_capable!(u64);
- 
-+/// A reference to a GEM object that is known to have a mapped [`SGTable`].
-+///
-+/// This is used by the Rust bindings with [`Devres`] in order to ensure that mappings for SGTables
-+/// on GEM shmem objects are revoked on driver-unbind.
-+///
-+/// # Invariants
-+///
-+/// - `self.obj` always points to a valid GEM object.
-+/// - This object is proof that `self.obj.owner.sgt_res` has an initialized and valid pointer to an
-+///   [`SGTable`].
-+///
-+/// [`SGTable`]: scatterlist::SGTable
-+pub struct SGTableMap<T: DriverObject, C: DeviceContext> {
-+    obj: NonNull<Object<T, C>>,
-+}
-+
-+impl<T: DriverObject, C: DeviceContext> Deref for SGTableMap<T, C> {
-+    type Target = scatterlist::SGTable;
-+
-+    fn deref(&self) -> &Self::Target {
-+        // SAFETY:
-+        // - The NonNull is guaranteed to be valid via our type invariants.
-+        // - The sgt field is guaranteed to be initialized and valid via our type invariants.
-+        unsafe { scatterlist::SGTable::from_raw((*self.obj.as_ref().as_raw_shmem()).sgt) }
-+    }
-+}
-+
-+impl<T: DriverObject, C: DeviceContext> Drop for SGTableMap<T, C> {
-+    fn drop(&mut self) {
-+        // SAFETY: `obj` is always valid via our type invariants
-+        let obj = unsafe { self.obj.as_ref() };
-+        let _lock = DmaResvGuard::new(obj);
-+
-+        // SAFETY: We acquired the lock needed for calling this function above
-+        unsafe { bindings::__drm_gem_shmem_free_sgt_locked(obj.as_raw_shmem()) };
-+    }
-+}
-+
-+impl<T: DriverObject, C: DeviceContext> SGTableMap<T, C> {
-+    fn new(obj: &Object<T, C>) -> impl Init<Self, Error> {
-+        // INVARIANT:
-+        // - We call drm_gem_shmem_get_pages_sgt below and check whether or not it succeeds,
-+        //   fulfilling the invariant of SGTableMap that the object's `sgt` field is initialized.
-+        // SAFETY:
-+        // - `obj` is fully initialized, making this function safe to call.
-+        from_err_ptr(unsafe { bindings::drm_gem_shmem_get_pages_sgt(obj.as_raw_shmem()) })?;
-+
-+        Ok(Self { obj: obj.into() })
-+    }
-+}
-+
-+// SAFETY: The NonNull in SGTableMap is guaranteed valid by our type invariants, and the GEM object
-+// it points to is guaranteed to be thread-safe.
-+unsafe impl<T: DriverObject, C: DeviceContext> Send for SGTableMap<T, C> {}
-+// SAFETY: The NonNull in SGTableMap is guaranteed valid by our type invariants, and the GEM object
-+// it points to is guaranteed to be thread-safe.
-+unsafe impl<T: DriverObject, C: DeviceContext> Sync for SGTableMap<T, C> {}
-+
- #[kunit_tests(rust_drm_gem_shmem)]
- mod tests {
-     use super::*;
-@@ -591,4 +721,28 @@ fn vmap_io() -> Result {
- 
-         Ok(())
-     }
-+
-+    // TODO: I would love to actually test the success paths of sg_table(), but that would require
-+    // also implementing dummy dma_ops so that trying to create a mapping doesn't explode. So, leave
-+    // that for someone else.
-+
-+    // Ensures that passing the wrong device to sg_table() fails as we expect, and also ensure it
-+    // skips initializing `sgt_res` since we could otherwise create `sgt_res` with the wrong device
-+    // bound to it.
-+    #[test]
-+    fn fail_sg_table_on_wrong_dev() -> Result {
-+        let (_dev, drm) = create_drm_dev()?;
-+        let wrong_dev = faux::Registration::new(c"EvilKunit", None)?;
-+
-+        let obj = Object::<KunitObject, _>::new(&drm, PAGE_SIZE, ObjectConfig::default(), ())?;
-+
-+        assert_eq!(obj.sg_table(wrong_dev.as_ref()).err().unwrap(), EINVAL);
-+
-+        // If sgt_res was not initialized mistakenly with the wrong device, this should still fail.
-+        assert_eq!(obj.sg_table(wrong_dev.as_ref()).err().unwrap(), EINVAL);
-+
-+        // TODO: Someday, we should test that creating an sg_table here still succeeds.
-+
-+        Ok(())
-+    }
- }
--- 
-2.54.0
-
+SGVsbG8gTWFyZWssDQoNCkkgaGF2ZSBhIHZlcnkgc2ltaWxhciBkZXZpY2UgaU1hYzkuMSwg
+YWxzbyB3aXRoIE1DUDc5DQoNCjAzOjAwLjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxlciBb
+MDMwMF06IE5WSURJQSBDb3Jwb3JhdGlvbiBDNzkgW0dlRm9yY2UgOTQwMF0gWzEwZGU6MDg2
+N10gKHJldiBiMSkNCg0KSSdtIGZhY2luZyB2YXJpb3VzIGlzc3VlcywgaW5jbHVkaW5nIHRo
+ZSBidWcgYmVsb3cNCg0KaHR0cHM6Ly9sb3JlLmZyZWVkZXNrdG9wLm9yZy9ub3V2ZWF1L2I3
+ZjUyM2RjLWZlNDEtNDUxNC1hMWE1LTc0NzAwNTMxMWNiZUB5YWhvby5mci9ULyN1DQoNCkRv
+IHlvdSB0aGluayB5b3VyIHBhdGNoIHdvdWxkIGZpeCB0aGlzPyBXb3VsZCBpdCBhcHBseSBh
+bHNvIHRvIGtlcm5lbCA2LjEyIG9yIGRvZXMgaXQgZGVwZW5kIG9uIHNvbWUgbmV3IGNoYW5n
+ZXMgaW4gNi4xOC4NCg0KUmVnYXJkcw0KRmFiDQoNCg0KTGUgMDkvMDQvMjAyNiDDoCAxNzow
+OSwgTWFyZWsgQ3plcm5vaG91cyBhIMOpY3JpdMKgOg0KPiBIaSwNCj4gDQo+IHRoaXMgaXMg
+bXkgZmlyc3QgcGF0Y2ggc2VyaWVzIGZvciB0aGUga2VybmVsLiBJJ20gcnVubmluZyBhbiBB
+cHBsZSBNYWMNCj4gTWluaSB3aXRoIGFuIE5WQUMgKE1DUDc5KSBjaGlwc2V0IGFuZCBEaXNw
+bGF5UG9ydCBvdXRwdXQsIGFuZCBoaXQgdGhyZWUNCj4gc2VwYXJhdGUgc3RhYmlsaXR5IGlz
+c3VlcyB3aXRoIHRoZSBub3V2ZWF1IGRyaXZlciBvbiBrZXJuZWwgNi4xOC4NCj4gDQo+IFRo
+ZSBwYXRjaGVzIGFyZSBpbmRlcGVuZGVudCBidXQgdG9nZXRoZXIgdGhleSBicmluZyB0aGUg
+TlZBQyBmcm9tDQo+ICJuZWVkcyBOdk1TST0wIHdvcmthcm91bmQgYW5kIGNhbid0IHJ1biBX
+YXlsYW5kIiB0byBmdWxseSBzdGFibGUNCj4gb3BlcmF0aW9uIHdpdGggTVNJIGVuYWJsZWQs
+IHdvcmtpbmcgRFBNUywgYW5kIGZ1bmN0aW9uYWwgV2F5bGFuZA0KPiAodGVzdGVkIHdpdGgg
+V2VzdG9uKS4NCj4gDQo+IFBhdGNoIDE6IFRoZSBNU0kgcmUtYXJtIGZ1bmN0aW9uIGZvciBH
+OTQgdXNlcyBtZW1vcnktbWFwcGVkIHJlZ2lzdGVyDQo+IGFjY2VzcyAobnY0MCksIHdoaWNo
+IGlzIHVucmVsaWFibGUgb24gTlZBQyDigJQgdGhlIHNpc3RlciBjaGlwc2V0IE5WQUENCj4g
+YWxyZWFkeSBoYXMgTVNJIGRpc2FibGVkIGVudGlyZWx5IGZvciB0aGlzIHJlYXNvbi4gU3dp
+dGNoaW5nIHRvIHRoZQ0KPiBQQ0kgY29uZmlnIHNwYWNlIG1ldGhvZCAobnY0NikgZml4ZXMg
+c3BvcmFkaWMgRklGTyBlcnJvcnMgYW5kIGhhbmdzLg0KPiANCj4gUGF0Y2ggMjogbnY1MF9z
+b3JfYXRvbWljX2Rpc2FibGUoKSBkZXJlZmVyZW5jZXMgbnZfZW5jb2Rlci0+Y3J0Yw0KPiB1
+bmNvbmRpdGlvbmFsbHkgdmlhIGNvbnRhaW5lcl9vZigpLiBVbmRlciBXYXlsYW5kIGF0b21p
+YyBtb2Rlc2V0dGluZywNCj4gdGhlIENSVEMgY2FuIGJlY29tZSBOVUxMIGJldHdlZW4gY2hl
+Y2sgYW5kIGNvbW1pdCwgY2F1c2luZyBhIGtlcm5lbA0KPiBjcmFzaC4gQWRkaW5nIGEgTlVM
+TCBndWFyZCBmaXhlcyBXYXlsYW5kIHNlc3Npb24gdGVhcmRvd24uDQo+IA0KPiBQYXRjaCAz
+OiBUcmFuc2llbnQgRGlzcGxheVBvcnQgbGluayBnbGl0Y2hlcyBvbiBOVkFDIGNhdXNlIHVu
+bmVjZXNzYXJ5DQo+IGRpc2Nvbm5lY3QvcmVjb25uZWN0IGN5Y2xlcy4gQSBzaW5nbGUgMTAw
+bXMgcmV0cnkgaW4gdGhlIEhQRCBJUlENCj4gaGFuZGxlciBjYXRjaGVzIHRoZXNlIHdpdGhv
+dXQgYWZmZWN0aW5nIHJlYWwgdW5wbHVnIGRldGVjdGlvbi4NCj4gDQo+IEFsbCB0aHJlZSBw
+YXRjaGVzIHdlcmUgdGVzdGVkIG9uIHRoZSBzYW1lIG1hY2hpbmUgKE5WQUMgMHhhYzA4MGIx
+LA0KPiBEUCBvdXRwdXQpIG92ZXIgbXVsdGlwbGUgZGF5cyB3aXRoIERQTVMgY3ljbGluZywg
+VlQgc3dpdGNoaW5nLCBhbmQNCj4gV2F5bGFuZCBzZXNzaW9ucy4NCj4gDQo+IFRoYW5rcywN
+Cj4gTWFyZWsNCj4gDQo+IE1hcmVrIEN6ZXJub2hvdXMgKDMpOg0KPiAgICBkcm0vbm91dmVh
+dS9wY2k6IHVzZSBudjQ2IE1TSSByZWFybSBmb3IgRzk0IChOVkFDL01DUDc5KQ0KPiAgICBk
+cm0vbm91dmVhdS9rbXM6IGFkZCBOVUxMIGNoZWNrIGZvciBDUlRDIGluIG52NTBfc29yX2F0
+b21pY19kaXNhYmxlDQo+ICAgIGRybS9ub3V2ZWF1L2RwOiByZXRyeSBsaW5rIGNoZWNrIG9u
+Y2Ugb24gSFBEIElSUSBiZWZvcmUgZGlzY29ubmVjdA0KPiANCj4gICBkcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgICAgICAgfCA4ICsrKysrKystDQo+ICAgZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgICAgIHwgNCArKysrDQo+
+ICAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2c5NC5jIHwgMiAr
+LQ0KPiAgIDMgZmlsZXMgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMo
+LSkNCj4gDQoNCg==
