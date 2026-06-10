@@ -4,186 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCB62CD8CAA
-	for <nouveau@archiver.kernel.org>; Tue,  9 Jun 2026 15:00:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22752CD8CB2
+	for <nouveau@archiver.kernel.org>; Wed, 10 Jun 2026 00:20:20 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 40E0410E499;
-	Tue,  9 Jun 2026 15:00:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9727010E69C;
+	Wed, 10 Jun 2026 00:20:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Kmn3xDAT";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=collabora.com header.i=deborah.brouwer@collabora.com header.b="kZOwsiH2";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 98C6746992;
-	Tue,  9 Jun 2026 14:46:50 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 14BF5469E0;
+	Wed, 10 Jun 2026 00:06:23 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1781016410;
- b=qroyXiv/nGndpMrBJ5gTUwBYirsRuG5TiC56Ko0oOFYctG/2eckZhuB6FpYD+b14aPiIY
- yPcYrJ68IO8nn3c4ivBYiMjJAL9ebwOBfK6Ci9YGIoXteqPJS4U4XBHr2iqR1RUMqggL3P3
- 03KhzxaZ6y/qAs+LMRQnpZhDiNJTNBT1Y32Evf+5PIOfLB12sSrFMz79l5Ohv8BvKk6xkYU
- HcFYBiLbg8NlTKfZb35H4HbqWh6BkONNlHgqffcZnQMc+cf6hVi6HgthhI8uspYf7/SZM4y
- OxuwxNb/VHQgJN43Wiyz9xLxx8eY5E08/Ez8ajIUlslbeGSIQOsWSxI8FlYw==
+ s=20240201; t=1781049982;
+ b=Ak8oxKeCdsl6lH3lmykkHhM/X9SUwOvM4D4cYMosLMGC8FqMD9QBpCOnH8AQRPcEWWMCP
+ fdVZ6yuAHLIZy8DH9s1v/EuDBm9JKYR3HnBacYyyw/MhnbTfu9E5bhi3Ev8i4MSsQ6fNoqL
+ 6238iUOEiZuosmL4vxljdNdpGCO3Z6ehc7ij0Uzww4aT+Zdv3e6xjEvQIVKeVWPDyqZmE9b
+ LypIfPZCOVxUrSjE08M4ommDRcMb0A7wCbCU2tGiGfeA9lhZiMoYBhq7XxAk73qahB21vIG
+ 1xoRuUKrL1SU0LrGU8mNURO1zw+RDfRL9ktHZIGnipMwNM/ztOA5/b/3oPKw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1781016410; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1781049982; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=hMjTCayCofmYIPyH46Okc9v6tXg635m4YF8eJvpFMpc=;
- b=b1kRUtpOo56wDIzgSIJQlCt311N/4KAMEDAmUgvaJqrFvQd94NhjQq5j1kSrVcgJFCufA
- GnpMhRGXVjeSVSsEPntAFTWgoMcMnSwjhpdBYqNliuXQdLboTDeabjaVzPYHmi3zeCpE+bX
- W8P96pQWsgSt4nhIcn6gq6bCJfhgwIYmB4XznJE441BIRECX4p3V1ogPCIr1bRcf26novXw
- uX10iPNsFh1rzMvTcuyMntVGmFTe5h23GYrrpM5chuS59F65rY9Zlr/EmL8wnvkInUeiPoa
- C7wE20bAo4IQuOiB425EArZiFSSDXMY5/AUX+j2AGOhfVZ7TqsV79Pwr/osA==
+ bh=O9fNTHv6wbBG42jHa8mAw6pvJNsDpQ9M5O3qhn0l1Vo=;
+ b=cixI/099BJC+rSG7caSskwOoIIUhuPLkvezuQ5RdyH+C6YGsVtEVpKlOJAJgZm3YoMEOa
+ aXEwTnyM8nk6UhJOmWh54MLfEaEiWBfWf18RaRUmcFmQ2uIMWuS4vTc4L4YMbepdL8EupUN
+ qDsM59ZcOGfdVH92RGtYDvavZ3/2wr2SzDfnaQ0ArKU3+0wfqTmM1PFIAw7srJmk8TH8xQE
+ dWdtc/WBmUA5GHCg4BJdBhe83mUYM5ArVYe2Hyvtu0M0W3u2SoFOLlphcb2x/oCXk4CN8gK
+ G9ICSbh0RaznI6qfZHwgpXcOhiMXV3vtHc/Mr6rOtvFVIqeDlW+l0w9qOfAQ==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
+ dkim=pass header.d=collabora.com header.i=deborah.brouwer@collabora.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+  dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=collabora.com header.i=deborah.brouwer@collabora.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=collabora.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 7178C446D2
-	for <nouveau@lists.freedesktop.org>; Tue,  9 Jun 2026 14:46:47 +0000 (UTC)
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012042.outbound.protection.outlook.com [52.101.43.42])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B70AB10E33E;
-	Tue,  9 Jun 2026 15:00:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sKHUTSi28xJ+D+/1obAuZLhQIPjVz2Nz230Yb87ud6qbJ3tPhSOlRNLhsBNmrkYyPJhSRSSMewUu9oX2Khh156YtRDTMVe7yBCFv3VrnQtpvNiFZG6klrmh7GSzOOsO6a0z3k+vSvwL8v4imVebl4F7pKZSguPjHHoY6kGs1cMlhXMYouKAtOU5irggXbiOErzRPtdE2OUckbYq3IEOvZV4Kpgqcn3quTMFc8v/XG1hBVrhF/RUxFZ7cZvks6BcuBFdtkNrnjLnxQUnR9sKpRDgNZ9zFUqMSFoJ6R9srhqQfizMtf4tS5HSwvb0tF4HbVklgvDC0I5FzDjrbDivdQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hMjTCayCofmYIPyH46Okc9v6tXg635m4YF8eJvpFMpc=;
- b=MTvi1vVvkmEJ1rVAEa/Rf1P1oatCuziTGOuT2C2eORqpUXmqdXd2ewdAzVCrNy1VkcWVG/QH2YkVPMEl0ZPH7I+T3ajMkC6h6myqq/8E+Me8xCTbZ8XIJnc/kr8wx6VzP4omuPMwy1ea0CLHfaVLY4KZDur7cDyCByL3iHOvpZBLkIJuLElf2s0N7sgI8Mn0OzbIlaRvsiXkAG/R2VQ8iSr5i8EHzUdSWRPR5socqYIMo11zsk/qN2XkleozsHJDYqQEgttS8VX5I8VNcDXJD0ATiYGJgS2tPFEsZmwx+Pq42I1bzTScGXjnR5GfIOtPZh+9o32WrY/nCqUCoeZ0ew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hMjTCayCofmYIPyH46Okc9v6tXg635m4YF8eJvpFMpc=;
- b=Kmn3xDATDMEiIDG/q2lL3HJeJfFfnBKLMlSZnEBfME7Mmyr2Z2c47Ls4wfxMSjRtFbgVMcbDx8v4AUx1gVFrCXj38ZHYmQz0m+y7DygdP8RQxj8+C7wFy06I3t0MLDByAFSNUVRpsOPWchNH0XChdR7fx9l5Gr6dXbImD12Dol0oduY2G2X6a0nw6Qf4G8YYkfhm9ZllHBRayQkPwEEAh74t1kewpZGloS/GgF2lEnSR3TFxSpP5BCqq0DUrNvlkRnfiQjOtrIQzTUt6GG6NE6U1Lw7tPqq4odJv+LVQ8hzMkYr/ZvFi2v3WTOOmEp4aCx5zWDInVjOoYWAb7PkdeQ==
-Received: from CY8PR12MB8412.namprd12.prod.outlook.com (2603:10b6:930:6f::11)
- by DM4PR12MB9072.namprd12.prod.outlook.com (2603:10b6:8:be::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.92.13; Tue, 9 Jun 2026 15:00:27 +0000
-Received: from CY8PR12MB8412.namprd12.prod.outlook.com
- ([fe80::76e6:4d65:7ed1:6970]) by CY8PR12MB8412.namprd12.prod.outlook.com
- ([fe80::76e6:4d65:7ed1:6970%5]) with mapi id 15.21.0092.011; Tue, 9 Jun 2026
- 15:00:27 +0000
-From: Timur Tabi <ttabi@nvidia.com>
-To: "dawei.feng@seu.edu.cn" <dawei.feng@seu.edu.cn>
-Subject: Re: [PATCH] nouveau/firmware: fix memory leak on BL load failure
-Thread-Topic: [PATCH] nouveau/firmware: fix memory leak on BL load failure
-Thread-Index: AQHc9QhQDYV/oMN/d02/Uz0YAF01qbYwRoUAgARrdACAAENQgIAA/KaAgABlaAA=
-Date: Tue, 9 Jun 2026 15:00:27 +0000
-Message-ID: <23b088e0b3d594c5a4d70b63fc70a63c3ee5337d.camel@nvidia.com>
-References: <0045b3583272df0b82f146fd96dee13d03377b4a.camel@nvidia.com>
-	 <20260609085729.3786763-1-dawei.feng@seu.edu.cn>
-In-Reply-To: <20260609085729.3786763-1-dawei.feng@seu.edu.cn>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.56.2-9 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY8PR12MB8412:EE_|DM4PR12MB9072:EE_
-x-ms-office365-filtering-correlation-id: 8b49e804-3596-4bc9-859c-08dec637d75d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|1800799024|10070799003|366016|376014|7416014|22082099003|18002099003|38070700021|4143699003|11063799006|56012099006;
-x-microsoft-antispam-message-info: 
- EUSJF852JcZUjpFqHJWnHSKYby/eeVfUf7ANGU3222NbiNN6wpP9xoiYUSkBiJ11/qDAUW2bBsxcYp3e4k0BKAdKcGPV4NjAKyoa6m+hFk62du+HSFSxaKEfRl9Q4r773GuBcKaYFcIbIjHKchnwLmFP7nQqKPOzqvjshmosGDTpFaUV3+vd2567ywzypKY8biWJOzB3RCph1hu8ngIJ6y9n61O9zZaHB3qHNL/R06d6zrXhISf3CDHuFhMc+LXhBGbzhEmJGrIdL0a+YML0SuwQDHefSbuhtVCwB3HyfNV31vjfHvN1w9EUC1OoSnDKDNSPfeEWRHyJXW8gXaSTob9IAGra3H+XJDOGuGJZb8Lj3dCqfBP6Rj4FOoTPNMjlK1x0pnfLaOuDkp8YCT4qUVA1eM8Ed6tU3alRAdlwYLOlAHmC1dS71Lh+X8yd95cjiLhynawIkRundk8jfO3aobxoMtie7Fo0pU385v2ThbGnDOLbvpSUVzBzcPLVUqmpq7xlecxytS+JHoUjRbOwDfsIpkdIAiPV8+4WTG/2b8PY0t19FhPCOzxV+Wz7guwtCQtx8nbCbOYyw5UgzEUclP4JAVfj8t3pPAQf/HN1d6J64f6gwALWBuWBFTZdPs5NWgLMSUCcnJgyE250dzEhvlXJ0iAvNWAsfJR1Uxo3+lN7rnCKgOxl2+/Rf8d3XLmczPCQKaOTZCbE7QZEqz54azvvJ9SLxODwUP5UFcCQvMEOeQVC8/Rw5xFum5q5WNs9
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY8PR12MB8412.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(366016)(376014)(7416014)(22082099003)(18002099003)(38070700021)(4143699003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?MVZUL1JRT0oyQi9YOGxGQlpua1hGUzBpZlhaSm1CMG0vV1MvMU9XS3ZodjU5?=
- =?utf-8?B?NndlSlFHQjRPS3lCWjBzczM5UkFuNWwraDJLa3A5VFgya2c1OGs5QkZHR005?=
- =?utf-8?B?Tld5dVRGUHJqbG5LaEs4cWp2SzVpOFA0S0hmUENxTithdUExOHRSNFRyUXp0?=
- =?utf-8?B?SXJDekNLcU1DbTJxVVJFMkdmR2RUREVkdysvUjF1cDAwNjRJZXNTQzBwdDF5?=
- =?utf-8?B?UlpDVEdVWU1PNEhvUlJ3T3ZJZk1yTndGTXA3d3dMYk5aUmJ1dE8xdmpmZVRn?=
- =?utf-8?B?NUo2c3crRGpOUlVOSDVsc2o1R211c1NQRnBmczhYeUF3d1NvTUtVZnpTWmlp?=
- =?utf-8?B?aHA0QXFkS3dYVm1rTGNhWkFPZ1RMcWZPSzNIbGdJc2lVanFrNE9Jbk1HTXZH?=
- =?utf-8?B?alBZbW5iaGlRN1Z1cHNhRituZGtiTCtUbVRmZkV6RHkvbVdBbjd2M3VxREJI?=
- =?utf-8?B?aVRQdTZZK2pqWFhKT2lFTjRMdHI1WFRlcGdFdkh3bTUwSGluUnVHMW5LNVZP?=
- =?utf-8?B?Mk1VV0swdHZobDM2L3BJQ2RIOWM4bTFVUjRsK2RwSVpsSHRkU3RZWW5VZzV6?=
- =?utf-8?B?NmptVDlIUTNwL3ppRnVYVVpZdlBraS9IT2pKWm5jRGh5clZWNTdLK1hTYTBF?=
- =?utf-8?B?MmJzaS9BOUlBTE05RHlQVkJROWZYMzJpZktZUlVWRjFleEFMdXZyOFdtb25w?=
- =?utf-8?B?akx4TERrN3BtMXJkNENIRThEbU5WZ0NiSWFkRWNHRU9pNHhSZWJJT2dwU3dt?=
- =?utf-8?B?MWh1L1ZRUzBBUUJHM3FMU0hTWXcvNGF1YTlFT1c5MXliUE5GdzNNTjc0bTJx?=
- =?utf-8?B?b3hJYXVwcGRMT04zbENjOE1QeXhHcCs4WEtNY0hSczYxdGxHNytSL3FYU3c1?=
- =?utf-8?B?QkVmeklLblUvRXZlSmhRUUhhWkpwMGxZOC8vVjB1L3hGbE5vYlI1ZXRQZ1dY?=
- =?utf-8?B?T3B4NjFybDQ3bitMU0lsVkRacE4vQXFha0JSK0RwVVhVRHM1M0hYZG42bHVH?=
- =?utf-8?B?QjhUU0JOSGJPKzVBWFB1RHAyUXR0LzgvVDgyZ042TUJZaTMzV0l1SXEwblRr?=
- =?utf-8?B?bXhGZ3lVa0NuaFdvbnNyOVhuREs2Q0VMMS9hNTVNMHJnTW1jYjFaSDVZUjZR?=
- =?utf-8?B?Mmh4MURrdlU4cGpBa1g1clE5YXAyL0FEcVdGWWt4R3RNWTNKK2FQZ2UxZDBJ?=
- =?utf-8?B?L08zbW1wSTZtTVY1Tjdkc3dPTVpla0U2YllOTmpiTm1VVmtGTVVuWVR4L25F?=
- =?utf-8?B?SnZvM1p6aTlyU3gxc2hianlkTERvbkRyWG01TUJjQnhzUnRZaktWMDZhdkZx?=
- =?utf-8?B?bFdMdldLQ3VheWNXbTFBOGNzNWZpQXVXOXBuMkZIZlZGM3hUMzl0Y3I2UE5i?=
- =?utf-8?B?UG1GNVZmVW91ZjhJSjJ4T0MrVkdEVVRmV0lod0pZSGM2d082V0MzaFFmMXVC?=
- =?utf-8?B?WGhJSjV2a1FLTHRkSU43QnlZcXlPekZnTVNTZkdQWnQ1UzgvYVdNRXZNNFo5?=
- =?utf-8?B?YUFlUW1BMElyMlpnRHRZWU9VeWlOenV0RzlIcGpkaTRGd1QxUWtNY0Y3TlF0?=
- =?utf-8?B?MzJISWJ4L0NxbURQczAxaVBsTDRURHFaalUxczFCTjJsb1M0eEJTME93NlFF?=
- =?utf-8?B?a0xDc3JDYSs2NTNYRkgyZnUrSml0Sm0xSVVoazJLUXhidDNTS3hFZGp5NFky?=
- =?utf-8?B?cjdLclJBUFZDZmZjN1lMNHJKa1RwVFVJcTFiVWpVWTJIb1RkMXNiQ0JIY01O?=
- =?utf-8?B?dWd6cjg3ekJKSncydnJPOXF4SWt1bUxQUnRBYzFKK3JqWnNjeWl4aXdFUjFK?=
- =?utf-8?B?TnlVNHJjQjVrT05DTkovNnFVSGlWdnJDcGxSaU5teXlra253NFBhbUlBWWtI?=
- =?utf-8?B?Y0QwTmcrSDQ1TmQ2SDZsL1lsUnBoODg4VjFNMU5UdUZyY3Y1T0w5UXg2Zzd5?=
- =?utf-8?B?eTZQWnBOSjFqYWtMMVlpendpY2ZMbHh3bEhXdG80TTBjQy9hR2p5ZGNSZ0l3?=
- =?utf-8?B?QVFyOXdJbDFMYjk1Wjgva0hNMWw3QnRDb2lQNWxrdVlyNXZqSmRqOXhTTTV4?=
- =?utf-8?B?K01MY2ZDN3dsb0RaZlREenozV01teVA4MHJaQTRXdkJoaFoxdXNDRFdyZUpL?=
- =?utf-8?B?N0JFTkFzN0VhQW5qeFVDdzFmQS9QckVzMGVIallHZkR3OFd0N2RkLzRWcEtK?=
- =?utf-8?B?RjZVUFZtUFB4ZVJ3OTNUWTZsQVhPREZCcU9jditua3p5VzdLa0k5Wmlrd0l2?=
- =?utf-8?B?M1pqb3p3WWxpYzhsWEs0RUx4UjZLSFhENkZiNWc4dTE0cElTbUdvMUlqOEdZ?=
- =?utf-8?B?eHpxUW81S0xXNnphaEVHRnFtSlZlcUNtUzVyVlF1YVFxdHJpTlJOTEV0ZGEz?=
- =?utf-8?Q?i3FDrFprcnkNZJ47/9CIbSl6kRqoJCM9NulBeo4EHwPGW?=
-x-ms-exchange-antispam-messagedata-1: 1kfxjriTVm+u8Q==
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FC758DE8AB51EC41A85B07091986D86D@namprd12.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by kara.freedesktop.org (Postfix) with ESMTPS id 56ECF46980
+	for <nouveau@lists.freedesktop.org>; Wed, 10 Jun 2026 00:06:19 +0000 (UTC)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA4110E3A1;
+	Wed, 10 Jun 2026 00:20:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1781050811; cv=none;
+	d=zohomail.com; s=zohoarc;
+	b=Md6nNVHOEmyf92T+nDS9CJqqPti1DRSk4EGTpu6C0HNPBqi7DA1DYIbBx6XVRwZKGYg+7FAMp+zRe7yCffEmmdzShm8ChVUIErNYfWJ2C0Z5rs+Jr8hsTWIn9J8BQuxRZb4sbMgl4VDNNe+Fp/YF9+TLnLcWHr/2HsETWIA/0Fs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc;
+	t=1781050811;
+ h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+	bh=O9fNTHv6wbBG42jHa8mAw6pvJNsDpQ9M5O3qhn0l1Vo=;
+	b=CtLCFoN/HUmgdMdaKxivguNvewtVOqnOf/GU04aTbIVSPmsAiqq9UfL62Sh1qJdTXzHGhlCky8R8LX2pYa39GqhrE6Q5y6NWBjh3JAboYzSpnuOv/I0JcGJ2wxwR6L9BGZsTO/owZFYHVWFWX4701w6nqoN2HlVw+vD+Fu7sY3Q=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=deborah.brouwer@collabora.com;
+	dmarc=pass header.from=<deborah.brouwer@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1781050811;
+	s=zohomail; d=collabora.com; i=deborah.brouwer@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=O9fNTHv6wbBG42jHa8mAw6pvJNsDpQ9M5O3qhn0l1Vo=;
+	b=kZOwsiH29/dAC81lSN65kYEuoTOcxiFWnRZI3eUfAzUyKksZvENO4jOoeUKfRUoY
+	DRrLnkZ+tvZiLYP+qTTiiMl8pibUI+SDHnj/H9Qez+JfTBfn21bbtaEiqZZVW628ZQS
+	t+lDFRobsq/ZdrPqaZCGglTpHn7wVk4iLg/THklE=
+Received: by mx.zohomail.com with SMTPS id 1781050810087120.3536602556942;
+	Tue, 9 Jun 2026 17:20:10 -0700 (PDT)
+Date: Tue, 9 Jun 2026 17:20:09 -0700
+From: Deborah Brouwer <deborah.brouwer@collabora.com>
+To: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH v19 0/4] Rust bindings for gem shmem
+Message-ID: <aiituaFg3i4Qpb-a@um790>
+References: <20260608183057.2001376-1-lyude@redhat.com>
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB8412.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 8b49e804-3596-4bc9-859c-08dec637d75d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jun 2026 15:00:27.1578
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 
- iirzE2v36T2X3n86ME09tHuGH9dGE5/0hYPMsmiSHE+U1wgT2PD5YEKSWrktjXUSjKRfZtwlVGQEOqfhEbwyCg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB9072
-Message-ID-Hash: FLG4XDE73M26TCT2NLWWM2LBOPXX6SLJ
-X-Message-ID-Hash: FLG4XDE73M26TCT2NLWWM2LBOPXX6SLJ
-X-MailFrom: ttabi@nvidia.com
-X-Mailman-Rule-Hits: member-moderation
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260608183057.2001376-1-lyude@redhat.com>
+Message-ID-Hash: GZNLXTKZSSTMQZ6EXCMOWDJGLPF353LQ
+X-Message-ID-Hash: GZNLXTKZSSTMQZ6EXCMOWDJGLPF353LQ
+X-MailFrom: deborah.brouwer@collabora.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
-CC: "jianhao.xu@seu.edu.cn" <jianhao.xu@seu.edu.cn>,
- "zilin@seu.edu.cn" <zilin@seu.edu.cn>,
- "namcao@linutronix.de" <namcao@linutronix.de>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "simona@ffwll.ch" <simona@ffwll.ch>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "dakr@kernel.org" <dakr@kernel.org>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>,
- "mripard@kernel.org" <mripard@kernel.org>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Alexandre Courbot <acourbot@nvidia.com>,
+ Gary Guo <gary@garyguo.net>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ driver-core@lists.linux.dev, Miguel Ojeda <ojeda@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
+ linux-kernel@vger.kernel.org, Sumit Semwal <sumit.semwal@linaro.org>,
+ linux-media@vger.kernel.org, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Benno Lossin <lossin@kernel.org>,
+ linaro-mm-sig@lists.linaro.org, Danilo Krummrich <dakr@kernel.org>,
+ Mukesh Kumar Chaurasiya <mkchauras@gmail.com>,
+ Asahi Lina <lina+kernel@asahilina.net>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FLG4XDE73M26TCT2NLWWM2LBOPXX6SLJ/>
-Archived-At: 
- <https://lore.freedesktop.org/23b088e0b3d594c5a4d70b63fc70a63c3ee5337d.camel@nvidia.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GZNLXTKZSSTMQZ6EXCMOWDJGLPF353LQ/>
+Archived-At: <https://lore.freedesktop.org/aiituaFg3i4Qpb-a@um790/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -193,19 +121,56 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-T24gVHVlLCAyMDI2LTA2LTA5IGF0IDE2OjU3ICswODAwLCBEYXdlaSBGZW5nIHdyb3RlOgo+IMKg
-wqDCoMKgwqDCoMKgIGlmIChibCkgewo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBj
-b25zdCBzdHJ1Y3QgZmlybXdhcmUgKmJsb2JfYmw7Cj4gCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIHJldCA9IG52a21fZmlybXdhcmVfbG9hZF9uYW1lKHN1YmRldiwgYmwsICIiLCB2
-ZXIsICZibG9iX2JsKTsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKHJldCkK
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdvdG8gZG9u
-ZTsKPiAKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLi4uCj4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIG52a21fZmlybXdhcmVfcHV0KGJsb2JfYmwpOwo+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoIWZ3LT5ib290KQo+IMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0ID0gLUVOT01FTTsKPiDCoMKgwqDCoMKg
-wqDCoCB9IGVsc2Ugewo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBmdy0+Ym9vdF9h
-ZGRyID0gZnctPm5tZW1fYmFzZTsKPiDCoMKgwqDCoMKgwqDCoCB9Cj4gCj4gZG9uZToKPiDCoMKg
-wqDCoMKgwqDCoCBpZiAocmV0KQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBudmtt
-X2ZhbGNvbl9md19kdG9yKGZ3KTsKPiAKPiDCoMKgwqDCoMKgwqDCoCBudmttX2Zpcm13YXJlX3B1
-dChibG9iKTsKPiDCoMKgwqDCoMKgwqDCoCByZXR1cm4gcmV0OwoKWWVzLCB0aGlzIGlzIGdvb2Qu
-ICBUaGFua3MuCg==
+On Mon, Jun 08, 2026 at 02:29:00PM -0400, Lyude Paul wrote:
+> Most of this patch series has already been pushed upstream, this is just
+> the second half of the patch series that has not been pushed yet + some
+> additional changes which were required to implement changes requested by
+> the mailing list. This patch series is originally from Asahi, previously
+> posted by Daniel Almeida.
+> 
+> The previous version of the patch series can be found here:
+> 
+> 	https://patchwork.freedesktop.org/series/164580/
+> 
+> Branch with patches applied available here:
+> 
+> 	https://gitlab.freedesktop.org/lyudess/linux/-/commits/rust/gem-shmem
+> 
+> This patch series applies on top of drm-rust-next
+> 
+> Patch-series wide changes since V15:
+> * Fix some major rebasing errors I somehow didn't notice :(
+> * Drop the dependency on LazyInit, use the trick that Alice suggested
+>   instead.
+> * Fix dependency ordering so that Tyr can get the vmap stuff first
+>   without the other bits.
+> Patch-series wide changes since V16:
+> * Fix ordering one more time (SetOnce::reset() doesn't need to come
+>   before adding vmap functions)
+> * Rebase against the latest DeviceContext changes from me that got
+>   pushed.
+> 
+> Lyude Paul (4):
+>   rust: drm: gem: shmem: Add DmaResvGuard helper
+>   rust: drm: gem: shmem: Add vmap functions
+>   rust: faux: Allow retrieving a bound Device
+>   rust: drm: gem: Introduce shmem::Object::sg_table()
+> 
+>  rust/kernel/drm/gem/shmem.rs | 524 ++++++++++++++++++++++++++++++++++-
+>  rust/kernel/faux.rs          |  16 +-
+>  2 files changed, 524 insertions(+), 16 deletions(-)
+> 
+> 
+> base-commit: fea3a2dd7d3fc1936211ced5f84420e610435730
+> -- 
+> 2.54.0
+> 
+Thanks, it's working nicely with Tyr. To make this work with [1] I did
+have to make a few changes to the KunitDriver and tests, but that
+is a separate issue.
+
+[1] [PATCH v2 0/7] rust: drm: Higher-Ranked Lifetime private data
+https://lore.kernel.org/rust-for-linux/20260603011711.2077361-1-dakr@kernel.org/
+
+Tested-by: Deborah Brouwer <deborah.brouwer@collabora.com>
+
