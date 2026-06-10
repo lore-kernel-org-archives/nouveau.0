@@ -4,131 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BA35CD98CC
-	for <nouveau@archiver.kernel.org>; Thu, 11 Jun 2026 12:45:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDE8BCD98CE
+	for <nouveau@archiver.kernel.org>; Thu, 11 Jun 2026 15:07:53 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 06A4610EF1A;
-	Thu, 11 Jun 2026 12:45:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1C01110EF9F;
+	Thu, 11 Jun 2026 15:07:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lq+k76j2";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="M7t6/i91";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 34C2446A61;
-	Thu, 11 Jun 2026 12:31:44 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 0612946A38;
+	Thu, 11 Jun 2026 14:53:53 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1781181104;
- b=bU5yd4uiDjqkBy3ZqcrHad39pD0b2eiYs7v+z0S+XZX6+58dPHxL7g+yPa64PTR75O11G
- XlSEt4bBwhRVbntGC9nCVFrbX11Miwun+ZKyd7bKqLdsW97W94lC2KJoyrZp6G13JYojSfN
- zUrhLe5KlQ88vmX0gSmQTvnZVDpR+SBnHmIILWG93wJd8u1AvMKRfKby/1OGCjQT5boVJdj
- 6Hp5/KfJ3pxq3s6zHZciWCblZU7+aydS+ChG37d3g+Sni1QEbE4JkP7WE4W85tBmrrGa26L
- Felemh1mlU0gt4NcmRDipd8WsIJIUhMDlHZ+gOhrHDfRM1so/4n+bzOJzy8Q==
+ s=20240201; t=1781189632;
+ b=x3EuMNcshsKgpwMn0gFtes9rO6ciGe/L3U1k52Zll2s4k/J0iq9H6T+lX8/5lkgmPkGuW
+ AqQ5B5UOj01raTJ9b4oyTvOWt+X9wsLrxDdwnltgd6tfZNiUTsoJUbuntFrID4/JsnTEqpx
+ UbHxVZM4aOqcjXwJwt+XUHFGqw5lweAD6BM/aC+6Z2SdhfnGuGF8J7oWWTWFbl1yXYlssQo
+ aMtsxckdq6MfLsrpC2WbSDT3/xBTX1NZeZR7ZsdWiV8Vgx3N2n84UIFXQc0t7HH9QV7eisK
+ iB0Gdh7iAJUrk4O+SRK8mU9H9QVL2UvZon93GtUE5lWvzGQ5T4rm/ZqxrDxg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1781181104; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1781189632; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=cZC8AOgwDUkqE3FrJgyPhYy8Ulxsg9q9DK142dUYM4M=;
- b=DQ12t4qaQzJRCDPkfkPPvH5R6FE9xeG4VmnCwraY6cXCrGiSk/tcHFRt7FJp+r2tunqcW
- pB8hqoR1uegMh0dxMhvLkoUX4eQ+ENZ+eJXw3gb92slgo4qY2fE00h4UuM2clSpe0PAQU4i
- Yq0WD2Kg6hUVS7gtuLk2Qa6dEjG5/DpcpBw9iy9ha9KWUyArthmI482w4qQje+D5kTmz3fR
- SAeTdnbg87r8nQGhNcX4+3hq/D+n4YgqEYCOfry9quyOS/gA1pu+vVsSSFHACr5T5LUP/si
- JSMLV+6vprUiDTnfjsxPN0uzRZCxbJBenmEgE2VV8Wz3Yrp23AkUe7zzqMGQ==
+ bh=YJe1xz1ZMNVnBlNAhTok//gR+6F59R46BnGd4lcF8bY=;
+ b=qEtlPa7aHIwBo814sNZxJREIZt7+NWJtDCwJGhdFoulAt982B5Vgdx9QyppAdQivGKnl+
+ b1HJeaGBZfVrsv7MpogiToRLKKUhEix6C6LLCc9FLmIW9U28Ji2bXpjc01dID9JgHwpv+SM
+ +Mm4c7xXTgq9N7Cq7DuEA5TDNV6vRer7xVikU1VPBFV3LQtT7JJQ04XB6vPuZoO9+lCgmSy
+ OFz7MxV9SdBnI80CuOxjrRRC+cEdgRKOf/sCSRzG7RY+eTLspe9x3aqcyPBEICBoDnD2848
+ LEqom03xkiwzAmRCBFyGEkbxz6e0HB6Ugev4weibZrt6Tno3Zf155a0+ERsQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=fail header.d=ursulin.net;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+  dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=fail header.d=ursulin.net;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 8B94D46A45
-	for <nouveau@lists.freedesktop.org>; Thu, 11 Jun 2026 12:31:41 +0000 (UTC)
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
- [209.85.221.52])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 39A6510EEEA
-	for <nouveau@lists.freedesktop.org>; Thu, 11 Jun 2026 12:45:41 +0000 (UTC)
-Received: by mail-wr1-f52.google.com with SMTP id
- ffacd0b85a97d-45ef74860bfso562834f8f.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id E47CE469FA
+	for <nouveau@lists.freedesktop.org>; Wed, 10 Jun 2026 11:58:28 +0000 (UTC)
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
+ [209.85.208.44])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF1B10E91D
+	for <nouveau@lists.freedesktop.org>; Wed, 10 Jun 2026 12:12:26 +0000 (UTC)
+Received: by mail-ed1-f44.google.com with SMTP id
+ 4fb4d7f45d1cf-691c5776f95so5896613a12.3
         for <nouveau@lists.freedesktop.org>;
- Thu, 11 Jun 2026 05:45:41 -0700 (PDT)
+ Wed, 10 Jun 2026 05:12:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781181940; x=1781786740;
+        d=ursulin.net; s=google; t=1781093545; x=1781698345;
  darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cZC8AOgwDUkqE3FrJgyPhYy8Ulxsg9q9DK142dUYM4M=;
-        b=lq+k76j2Zqtjb+bm1Q4hO2yM4r8UOq0mHBTieV+MSY9O30Hvw9ASjhoLe0sNIt3ZeF
-         bEaHgIWY9bEh/C0qmSZl+LLTk/hFB2akHeYiUBjczkoqzCFKmYzN3rmJWwLqjBfiVL65
-         hRqdFqyTeAK7nTNzOJnMe1fCPpq5MLyiaIZ3z02F3G3Z1R69O/jWk/XFz4cfVXMF4aoE
-         194YDwqeXwPzxUqqk2xPeCgNEhdR2xrpSWfQQg+wNTWFlLnDqe2CMnCD+8yRHtMrNCHi
-         MddRVNNMzU4WP2uCAgtY/v1gAxg0x0fgC1cg9KDi/Q1M1KWZWuLHmzVS5IHAoxibnTe6
-         6ivw==
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YJe1xz1ZMNVnBlNAhTok//gR+6F59R46BnGd4lcF8bY=;
+        b=M7t6/i91iRfqU1TN97bLsiq9zQUABlMEGWfsK8kEQ7naQBP1YUAyNqY7dULffieTa5
+         5zKwGStwmg5P0WRARB3pDkfMW1UGx6x0Ftl8CIgYKJPj6b8gFr+ukPibw6lWc4UMwCRJ
+         V9zZXagJ+jI3XU6UwGzrhztR1GGWtkXpPO2Wa3iTSCYpd3n7x+VhgNhE1fyiUO4oG0E9
+         PKkWqYarxc/rz6mn9mL9ASMo66TlwGrXYMotaGnvrGSEiuawYq7zCqWSxUL5I0HmCYtt
+         bpZmhsDmkcUiiVgQOKsGs4Mdhs6awrOXMpNrU4nLzqYztmExUSlm8CmUCKlybil1LaJ4
+         gFjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781181940; x=1781786740;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=cZC8AOgwDUkqE3FrJgyPhYy8Ulxsg9q9DK142dUYM4M=;
-        b=nTyHB/ND9w9f9K4qlD4r+bgVOScU/Xafl+Yo/SoHfRbtCeuhKPYaa3kZG6QGwhHRpP
-         rebok7Gqor6s5BlC7yrGsDMeuS0a9iph8i+uCXclh88CQyRypp1spFFeDCMBUHcPwG1D
-         UmSeBFhPCaB9kh7zdDlA18YuK2AfJa5y+TOaF11AeFO1o4CSfs6nKrf/Y6EtM4epRc9z
-         agZNeb7AqHaUr5ic7HCy82ok1LuOuc1pEpHUdlAKK3DsxmgKAgNRVzJrZEsW1m1VuNq4
-         vrOJSqI/ewNKNympYW0hM71g231tCTv0Ik8ajI8P3rWW3jUGKAR89zfJD4hHkWmwVI7w
-         KU+Q==
+        d=1e100.net; s=20251104; t=1781093545; x=1781698345;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YJe1xz1ZMNVnBlNAhTok//gR+6F59R46BnGd4lcF8bY=;
+        b=ncqHxjRACVgcUf7mM+V/SQEp/MJb3oFeU0kBgSRpA4MTBYrjQWaG2HbdseGLq9Vn0x
+         NBucTxVv8VqkZ9IaHH7Rskxb/q+6ig9HrNttFCEN3C8q6HU9Gyw+ZF0iluI8+YCBo838
+         6BG8H41CkQvVcDe6x7PHDFShF+pnyZezGgmx1+VWM6b73ATTnSzSz0f9nWjcFpG7puSe
+         5HxpDi7K/i87Pawjt6kvp6BxrVqJ2ZSecv/P6x+ssD+3/dio1g4xQKgdgV7w8OzxX65k
+         lpAN0jNOYTYRSgzduFjSxtXVUpIf39GvfW559QikKxh/c23ymtZHDqEzkkkMkyR6Vv5a
+         spcw==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8j2nYLN1yjZfEFIxsiAS/GgLNwpvdkMZBfmkFHBbRtpEhlTUIaPF02jKdbrredmGQboBd4CmEw@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz1BWsZ5Ah9wedkI65zDPU8apnxpo+3WJjaLmK4mVV5dKC8VIAH
-	iYapYXMxJSi+frU+vej9aY4+6sXSGsbxmDJw/9x/johav8omfgwVQGee
-X-Gm-Gg: Acq92OHa0Hvak41CJnhQ/I+00TKnEh7Z04mFhj1p3mE/7+CVMuBr1Dk+KgB5tcEfqlg
-	O9gRp3qyDPCeBY0UsVeYF0GVeOuHFlHooaNsOUf6jEE37LiumUUjlRMMjHW58gV/B9ZzyLO/Gkv
-	lfzvwBKDjtVAu0DdSp4edIHPRHYpX2dOxTNBM2b7wpyjNxapvpcY0sf598WfWew3PBM1t2+NzHP
-	j25TvpT8fN+sWbFokWlW/CUN2JTWdd08RxLJcg8V1mlXQ/dXMrBqh39Q52YKdUTUmM5A+j/tt2F
-	VPk7Rfr7dwl5Ywk+CkRRhRykEu+dNJQ6A77w0xJnt3b5kSYOQcNDa3R+gJEkgDlVgzUGIccOUMd
-	5DRLv100+veXF5KIjXKZ4C6Jwoqy8ht43LY2RGmYfZRVVC9s2MkkybtpXvTkUWiFiyf/td0+dKt
-	nzggnQRL86zk90X7SCHkxTMugzl5onNI0OLbaDdOirAaLS89WfO7b6F1+Rqg3Y5HUZyY7ukn/8/
-	ATp5aQe++4XnC3RPXLcNqQfYprS
-X-Received: by 2002:a05:600c:1d16:b0:490:e919:7bba with SMTP id
- 5b1f17b1804b1-490e9197c83mr3700335e9.8.1781181939386;
-        Thu, 11 Jun 2026 05:45:39 -0700 (PDT)
-Received: from localhost.localdomain
- (ip-109-193-028-127.um39.pools.vodafone-ip.de. [109.193.28.127])
+ AFNElJ8e9NGpl1NXxFw6XRsHDFgas0SO1FNt+6OFKp3PHGzo5sheklCAjoT4RS0FbLlVfz5omL8FcE5r@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx2qKGKcglkM76xX8doogJ6HabcQpdAr9X83xHaSEFsuFF1/isb
+	RReyHe7gKn7cd3hGZRFITJeC68RPTad1y2FeXl30RNPVhQy53Jk+ILoDYWUU0SrGtprwsYGe7uf
+	8/SEBO/Q=
+X-Gm-Gg: Acq92OGw9ZTPM6pdX560LYrRFxDKdjBX/BTMw6+Kp+MNURaQm6PWORm8S0ZzJXlLcsj
+	g81sJl6FwH31U/PdwLgzvp2oBfCM6kKUWIXzJE3NT+5ARkVutXb+XuIBuW+uSOX3FiITVE8xLKv
+	KTaH/oVRt/sn+ihv5UJWjaZnZqvSF44oq2HHGQcKOKXqIJZTUxYnUU51JRtXECW8cN1A6l+yfa+
+	pDsFRrbijYW70KhXfBJdhWernD0MrSNSQMzAJpy7SALty3R+qt9eIAFrQI7f7CGQQI90Qfew2p5
+	GBCrMGc8xM7d2jzK3FoL/R7caSSdixLxhmLok2wn3T+FvBiYslemPBHlC9/obNMYBvWzhjm6u+f
+	OGKbs///YWQvv8Blzceh8ujTPm6jLr/NZwhMn0xBYx5WsqB46KFWldVEU+pJf9W2sQq0aBwpFTs
+	RnijqPThkX2wdQWv8H0D1qXp5In0J2aXyqA84e2mPKlgoJm1tulX8NYqpBzhACysIOiA==
+X-Received: by 2002:a05:6402:5193:b0:66e:abe5:ab22 with SMTP id
+ 4fb4d7f45d1cf-68fa4c0039fmr11944776a12.5.1781093544179;
+        Wed, 10 Jun 2026 05:12:24 -0700 (PDT)
+Received: from [192.168.0.116] ([90.240.106.137])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-490e532c778sm48697645e9.14.2026.06.11.05.45.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jun 2026 05:45:38 -0700 (PDT)
-From: Marek Czernohous <mczernohous@gmail.com>
-To: Lyude Paul <lyude@redhat.com>,
-	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH v3 2/2] drm/nouveau/kms: guard NULL crtc in
- nv50_sor_atomic_disable()
-Date: Thu, 11 Jun 2026 14:45:35 +0200
-Message-ID: <20260611124535.527275-3-mczernohous@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260611124535.527275-1-mczernohous@gmail.com>
-References: <20260611124535.527275-1-mczernohous@gmail.com>
+ 4fb4d7f45d1cf-68e64e2c810sm9966710a12.9.2026.06.10.05.12.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jun 2026 05:12:22 -0700 (PDT)
+Message-ID: <b5f634e3-ca52-4674-82a7-fabce99ec364@ursulin.net>
+Date: Wed, 10 Jun 2026 13:12:21 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 7X54BA7HFTF6LYP54FEPY6QD7SY2DBCY
-X-Message-ID-Hash: 7X54BA7HFTF6LYP54FEPY6QD7SY2DBCY
-X-MailFrom: mczernohous@gmail.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/nouveau: Document weird looking bugfix
+To: Philipp Stanner <phasta@kernel.org>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+References: <20260610082602.1292853-2-phasta@kernel.org>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20260610082602.1292853-2-phasta@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MailFrom: tursulin@ursulin.net
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
+Message-ID-Hash: WUSNZ52R5IXCX6RS47RT56XU3EOUT4FP
+X-Message-ID-Hash: WUSNZ52R5IXCX6RS47RT56XU3EOUT4FP
+X-Mailman-Approved-At: Thu, 11 Jun 2026 14:53:50 +0000
 CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Fab Stz <fabstz-it@yahoo.fr>
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7X54BA7HFTF6LYP54FEPY6QD7SY2DBCY/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WUSNZ52R5IXCX6RS47RT56XU3EOUT4FP/>
 Archived-At: 
- <https://lore.freedesktop.org/20260611124535.527275-3-mczernohous@gmail.com/>
+ <https://lore.freedesktop.org/b5f634e3-ca52-4674-82a7-fabce99ec364@ursulin.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -138,109 +142,89 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Marek Czernohous <marek@czernohous.de>
 
-nv50_sor_atomic_disable() unconditionally computes
-nv50_head(nv_encoder->crtc) and dereferences the result a few lines
-later.  nv_encoder->crtc is nouveau's own shadow pointer, set in
-.atomic_enable and cleared at the end of .atomic_disable.
-Commit f575f2bdb6c3 ("drm/nouveau/kms/nv50-: Remove (nv_encoder->crtc)
-checks in ->disable callbacks") removed the NULL check here,
-reasoning that the atomic helpers never call ->disable without a
-crtc.  On NVAC (MCP79) under Wayland sessions (observed with Weston's
-DRM backend and with labwc/wlroots) we have hit the NULL case in
-practice during session teardown and VT switches: disable runs without
-(or after) its matching enable, and because nv50_head() is
-container_of(), the NULL does not stay NULL but becomes a bogus
-non-NULL pointer, so the subsequent head dereferences fault and the
-kernel oopses.
+On 10/06/2026 09:26, Philipp Stanner wrote:
+> commit c8a5d5ea3ba6 ("nouveau: fix client work fence deletion race")
+> fixed a race. To do so, it replaced the automatically locking
+> dma_fence_is_signaled() with manual locks plus
+> dma_fence_is_signaled_locked().
+> 
+> For someone browsing through the code, this reads very much like a
+> cleanup or rework leftover. Future contributors and / or new maintainers
+> not familiar with the history might be tempted to remove that bugfix.
+> 
+> Document the bugfix.
+> 
+> Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> ---
+> (I did not test this)
+> ---
+>   drivers/gpu/drm/nouveau/nouveau_drm.c | 7 +++++++
+>   1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> index 42a81166f3a9..519a0c164a72 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -159,6 +159,13 @@ nouveau_cli_work_ready(struct dma_fence *fence)
+>   	unsigned long flags;
+>   	bool ret = true;
+>   
+> +	/*
+> +	 * This is not a cleanup / rework leftover, but a bugfix to prevent a
+> +	 * race with someone signalling the fence. The locked
+> +	 * dma_fence_is_signaled() cannot be used. The dma_fence implementation
+> +	 * is not fully synchronized with locks, but also uses atomic bits,
+> +	 * which can cause the dma_fence_put() below to be executed too soon.
+> +	 */
 
-Restore the guard, as drm_WARN_ON_ONCE() instead of a silent return:
-a NULL crtc here still indicates a state-tracking inconsistency that
-should stay visible.  Return without touching the output; in this path
-either enable never ran (nothing to tear down) or an earlier disable
-already did the teardown, and the encoder release is handled by the
-commit_tail release loop in both cases.  (That loop then rejects the
-release of a never-acquired output with -EINVAL in the nvif layer,
-which is harmless; the vanilla code oopsed before ever reaching it.)
+IMHO it would also be interesting to document why this happens from the 
+nouveau point of view.
 
-The same inconsistent-state path can also leave the encoder without an
-old connector state, in which case nv50_outp_get_old_connector()
-returns NULL while the backlight teardown dereferenced it
-unconditionally, so the oops would only have moved there.  Hoist the
-guard above all of that and look at the old connector only after
-checking it.
+For example I see the two references held on this fences in the call 
+chain, but apparently neither are enough to close the race. Which 
+suggests a third party has a pointer to this fence but with no reference.
 
-Fixes: f575f2bdb6c3 ("drm/nouveau/kms/nv50-: Remove (nv_encoder->crtc) checks in ->disable callbacks")
-Cc: <stable@vger.kernel.org>
-Tested-by: Fab Stz <fabstz-it@yahoo.fr>
-Assisted-by: Claude:claude-opus-4-7
-Assisted-by: Claude:claude-opus-4-8
-Signed-off-by: Marek Czernohous <marek@czernohous.de>
----
-v2 -> v3: hoisted the guard above the CONFIG_DRM_NOUVEAU_BACKLIGHT
-block and made the old-connector lookup NULL-safe (reported by the
-Sashiko AI review on the v2 posting: the unconditional
-nv_connector->backlight initializer ran before the guard); folded
-review nits (pointer wording, release-loop note, comment).  Tested-by
-carried over; the changes stay confined to the inconsistent-state
-path, normal-path behavior is unchanged.
-v1 -> v2: dropped the nvif_outp_release() call from the early return
-(the release is owned by the commit_tail release loop; calling it here
-released twice and detached the OR before the disable flush); turned
-the silent return into drm_WARN_ON_ONCE(); reworded the commit message.
-v2: https://lore.kernel.org/all/66ea307dd4fa080db27b2b9a0caa31b562d72c2b.1781162589.git.marek@czernohous.de/
-v1: https://lore.kernel.org/nouveau/20260409172126.115441-3-marek@czernohous.de/
+I talk about this:
 
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 30 ++++++++++++++++++++-----
- 1 file changed, 25 insertions(+), 5 deletions(-)
+nouveau_gem_object_unmap -> nouveau_cli_work_queue
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 6c3a871..47e15a4 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -1565,16 +1565,36 @@ static void
- nv50_sor_atomic_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
- {
- 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
--	struct nv50_head *head = nv50_head(nv_encoder->crtc);
-+	struct nv50_head *head;
- #ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
--	struct nouveau_connector *nv_connector = nv50_outp_get_old_connector(state, nv_encoder);
-+	struct nouveau_connector *nv_connector;
- 	struct nouveau_drm *drm = nouveau_drm(nv_encoder->base.base.dev);
--	struct nouveau_backlight *backlight = nv_connector->backlight;
--	struct drm_dp_aux *aux = &nv_connector->aux;
-+	struct nouveau_backlight *backlight;
- 	int ret;
-+#endif
- 
-+	/* nv_encoder->crtc is the driver's shadow pointer, set in
-+	 * .atomic_enable (and by the boot-time hardware readback) and
-+	 * cleared at the end of this function.  NULL here
-+	 * means disable-without-enable or a double disable; bail before
-+	 * container_of() turns it into a bogus head pointer (checking the
-+	 * result would not work, container_of(NULL) is never NULL).  The
-+	 * encoder release is handled by the commit_tail release loop, so
-+	 * there is nothing to clean up here.
-+	 */
-+	if (drm_WARN_ON_ONCE(encoder->dev, !nv_encoder->crtc))
-+		return;
-+	head = nv50_head(nv_encoder->crtc);
-+
-+#ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
-+	/* The same inconsistent-state path can leave us without an old
-+	 * connector state, so check before touching it.
-+	 */
-+	nv_connector = nv50_outp_get_old_connector(state, nv_encoder);
-+	backlight = nv_connector ? nv_connector->backlight : NULL;
- 	if (backlight && backlight->uses_dpcd) {
--		ret = drm_edp_backlight_disable(aux, &backlight->edp_info);
-+		ret = drm_edp_backlight_disable(&nv_connector->aux,
-+						&backlight->edp_info);
- 		if (ret < 0)
- 			NV_ERROR(drm, "Failed to disable backlight on [CONNECTOR:%d:%s]: %d\n",
- 				 nv_connector->base.base.id, nv_connector->base.name, ret);
--- 
-2.53.0
+There it grabs a reference before queing the worker. In the worker it 
+drops it before calling the callback nouveau_gem_object_unmap installed:
+
+static void
+nouveau_cli_work(struct work_struct *w)
+{
+	struct nouveau_cli *cli = container_of(w, typeof(*cli), work);
+	struct nouveau_cli_work *work, *wtmp;
+	mutex_lock(&cli->lock);
+	list_for_each_entry_safe(work, wtmp, &cli->worker, head) {
+		if (!work->fence || nouveau_cli_work_ready(work->fence)) {
+
+... nouveau_cli_work_ready can drop one reference
+
+			list_del(&work->head);
+			work->func(work);
+
+... then work->func was set to nouveau_gem_object_delete_work by 
+nouveau_gem_object_unmap, which will end up calling:
+
+nouveau_gem_object_delete -> nouveau_fence_unref
+
+On possibly the same fence.
+
+So if there a path inside nouveau itself which signals the fence without 
+holding a reference then could be it that the problem is self-inflicted 
+and not due a dma-fence quirks?
+
+I am not entirely sure since it is not very clear. It needs someone with 
+nouveau expertise to clarify.
+
+Regards,
+
+Tvrtko
+
+>   	dma_fence_lock_irqsave(fence, flags);
+>   	if (!dma_fence_is_signaled_locked(fence))
+>   		ret = false;
 
