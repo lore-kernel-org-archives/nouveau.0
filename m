@@ -4,135 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDE8BCD98CE
-	for <nouveau@archiver.kernel.org>; Thu, 11 Jun 2026 15:07:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77BD5CD98CC
+	for <nouveau@archiver.kernel.org>; Thu, 11 Jun 2026 15:08:03 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1C01110EF9F;
-	Thu, 11 Jun 2026 15:07:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 50AE110EFA9;
+	Thu, 11 Jun 2026 15:08:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="M7t6/i91";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nxp.com header.i=@nxp.com header.b="B2M6i+EU";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0612946A38;
-	Thu, 11 Jun 2026 14:53:53 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1781189632;
- b=x3EuMNcshsKgpwMn0gFtes9rO6ciGe/L3U1k52Zll2s4k/J0iq9H6T+lX8/5lkgmPkGuW
- AqQ5B5UOj01raTJ9b4oyTvOWt+X9wsLrxDdwnltgd6tfZNiUTsoJUbuntFrID4/JsnTEqpx
- UbHxVZM4aOqcjXwJwt+XUHFGqw5lweAD6BM/aC+6Z2SdhfnGuGF8J7oWWTWFbl1yXYlssQo
- aMtsxckdq6MfLsrpC2WbSDT3/xBTX1NZeZR7ZsdWiV8Vgx3N2n84UIFXQc0t7HH9QV7eisK
- iB0Gdh7iAJUrk4O+SRK8mU9H9QVL2UvZon93GtUE5lWvzGQ5T4rm/ZqxrDxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1781189632; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 4BEFF46A5A;
+	Thu, 11 Jun 2026 14:54:03 +0000 (UTC)
+ARC-Seal: i=2; cv=fail; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1781189643;
+ b=hV8AKqhVTpAAcRupARClDqnVa2p+RX0yEOrLN9pn2q5dw4boYEhQED/3HiPp+NjkburDD
+ W+ragT58y5e4Is7XWqb+XLK2J+q6Q3utki7TkB1ADy6OkCdHDcRYvDhU087CPlD4KAi7Unl
+ jbHlCYnnTkKTDE0F12RBzR2SiayO3/vuqyllxjZSB4ldGQgG6eLHYa7EyWBpiEHDzf0QQf9
+ h9u8x2pY0P38g9f7EwM1JavSOd41ZHrToVd/gw6MhM1u7LsEsjQoMrhH0BqjcvOR7TwxD8G
+ oG7gBjnjIUXwgnQEAKEADJZ/cFSSvr+3hTrdfZI+7YcM2rt/3TjHM1ZAz/DQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1781189643; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=YJe1xz1ZMNVnBlNAhTok//gR+6F59R46BnGd4lcF8bY=;
- b=qEtlPa7aHIwBo814sNZxJREIZt7+NWJtDCwJGhdFoulAt982B5Vgdx9QyppAdQivGKnl+
- b1HJeaGBZfVrsv7MpogiToRLKKUhEix6C6LLCc9FLmIW9U28Ji2bXpjc01dID9JgHwpv+SM
- +Mm4c7xXTgq9N7Cq7DuEA5TDNV6vRer7xVikU1VPBFV3LQtT7JJQ04XB6vPuZoO9+lCgmSy
- OFz7MxV9SdBnI80CuOxjrRRC+cEdgRKOf/sCSRzG7RY+eTLspe9x3aqcyPBEICBoDnD2848
- LEqom03xkiwzAmRCBFyGEkbxz6e0HB6Ugev4weibZrt6Tno3Zf155a0+ERsQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=fail header.d=ursulin.net;
-  arc=none (Message is not ARC signed);
-  dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=fail header.d=ursulin.net;
- arc=none (Message is not ARC signed); dmarc=none
+ bh=aL4yIgEzckfFxxHw1FGgVUlspMq2ERpxZoja2/8xK9A=;
+ b=NlaVB3rPzeccEPMutzkyLDX6fWjDL4a9UxCaSOaMELlGu+PNlMBFhsnTTF7JgA14cBaOJ
+ yhFU/VhC3Kz9wKoT+d0JzSvbnn7LNV8+F+sVvb80GLLcCBP6+oP/wFh9zQVZzC7RHlLZIEy
+ +EWa085pgNeD3cjr5AkIcJKVs+Xnsx9ihsBLXHzIQ5/7/RejwyyfNzHi6fZxqtP5tgituWT
+ Ka/uvYBTUIFMAPXS+g8I/d+ds9YKtP76n15rSAo8YU+rncBFuj8p+qGcTqaNk6fYA7Enrfh
+ X7mHyUZbvFGGdpFUGQylWKS7IvezRhnmmP3VU3dXJPjaHTjeote4apzxLxtw==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=fail header.d=nxp.com;
+  arc=fail (Most recent ARC-Message-Signature did not validate);
+  dmarc=fail (Used From Domain Record) header.from=nxp.com policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=fail header.d=nxp.com;
+ arc=fail (Most recent ARC-Message-Signature did not validate);
+ dmarc=fail (Used From Domain Record) header.from=nxp.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E47CE469FA
-	for <nouveau@lists.freedesktop.org>; Wed, 10 Jun 2026 11:58:28 +0000 (UTC)
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
- [209.85.208.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF1B10E91D
-	for <nouveau@lists.freedesktop.org>; Wed, 10 Jun 2026 12:12:26 +0000 (UTC)
-Received: by mail-ed1-f44.google.com with SMTP id
- 4fb4d7f45d1cf-691c5776f95so5896613a12.3
-        for <nouveau@lists.freedesktop.org>;
- Wed, 10 Jun 2026 05:12:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ursulin.net; s=google; t=1781093545; x=1781698345;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YJe1xz1ZMNVnBlNAhTok//gR+6F59R46BnGd4lcF8bY=;
-        b=M7t6/i91iRfqU1TN97bLsiq9zQUABlMEGWfsK8kEQ7naQBP1YUAyNqY7dULffieTa5
-         5zKwGStwmg5P0WRARB3pDkfMW1UGx6x0Ftl8CIgYKJPj6b8gFr+ukPibw6lWc4UMwCRJ
-         V9zZXagJ+jI3XU6UwGzrhztR1GGWtkXpPO2Wa3iTSCYpd3n7x+VhgNhE1fyiUO4oG0E9
-         PKkWqYarxc/rz6mn9mL9ASMo66TlwGrXYMotaGnvrGSEiuawYq7zCqWSxUL5I0HmCYtt
-         bpZmhsDmkcUiiVgQOKsGs4Mdhs6awrOXMpNrU4nLzqYztmExUSlm8CmUCKlybil1LaJ4
-         gFjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781093545; x=1781698345;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YJe1xz1ZMNVnBlNAhTok//gR+6F59R46BnGd4lcF8bY=;
-        b=ncqHxjRACVgcUf7mM+V/SQEp/MJb3oFeU0kBgSRpA4MTBYrjQWaG2HbdseGLq9Vn0x
-         NBucTxVv8VqkZ9IaHH7Rskxb/q+6ig9HrNttFCEN3C8q6HU9Gyw+ZF0iluI8+YCBo838
-         6BG8H41CkQvVcDe6x7PHDFShF+pnyZezGgmx1+VWM6b73ATTnSzSz0f9nWjcFpG7puSe
-         5HxpDi7K/i87Pawjt6kvp6BxrVqJ2ZSecv/P6x+ssD+3/dio1g4xQKgdgV7w8OzxX65k
-         lpAN0jNOYTYRSgzduFjSxtXVUpIf39GvfW559QikKxh/c23ymtZHDqEzkkkMkyR6Vv5a
-         spcw==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8e9NGpl1NXxFw6XRsHDFgas0SO1FNt+6OFKp3PHGzo5sheklCAjoT4RS0FbLlVfz5omL8FcE5r@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx2qKGKcglkM76xX8doogJ6HabcQpdAr9X83xHaSEFsuFF1/isb
-	RReyHe7gKn7cd3hGZRFITJeC68RPTad1y2FeXl30RNPVhQy53Jk+ILoDYWUU0SrGtprwsYGe7uf
-	8/SEBO/Q=
-X-Gm-Gg: Acq92OGw9ZTPM6pdX560LYrRFxDKdjBX/BTMw6+Kp+MNURaQm6PWORm8S0ZzJXlLcsj
-	g81sJl6FwH31U/PdwLgzvp2oBfCM6kKUWIXzJE3NT+5ARkVutXb+XuIBuW+uSOX3FiITVE8xLKv
-	KTaH/oVRt/sn+ihv5UJWjaZnZqvSF44oq2HHGQcKOKXqIJZTUxYnUU51JRtXECW8cN1A6l+yfa+
-	pDsFRrbijYW70KhXfBJdhWernD0MrSNSQMzAJpy7SALty3R+qt9eIAFrQI7f7CGQQI90Qfew2p5
-	GBCrMGc8xM7d2jzK3FoL/R7caSSdixLxhmLok2wn3T+FvBiYslemPBHlC9/obNMYBvWzhjm6u+f
-	OGKbs///YWQvv8Blzceh8ujTPm6jLr/NZwhMn0xBYx5WsqB46KFWldVEU+pJf9W2sQq0aBwpFTs
-	RnijqPThkX2wdQWv8H0D1qXp5In0J2aXyqA84e2mPKlgoJm1tulX8NYqpBzhACysIOiA==
-X-Received: by 2002:a05:6402:5193:b0:66e:abe5:ab22 with SMTP id
- 4fb4d7f45d1cf-68fa4c0039fmr11944776a12.5.1781093544179;
-        Wed, 10 Jun 2026 05:12:24 -0700 (PDT)
-Received: from [192.168.0.116] ([90.240.106.137])
-        by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-68e64e2c810sm9966710a12.9.2026.06.10.05.12.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jun 2026 05:12:22 -0700 (PDT)
-Message-ID: <b5f634e3-ca52-4674-82a7-fabce99ec364@ursulin.net>
-Date: Wed, 10 Jun 2026 13:12:21 +0100
+	by kara.freedesktop.org (Postfix) with ESMTPS id 583A94640E
+	for <nouveau@lists.freedesktop.org>; Thu, 11 Jun 2026 02:00:17 +0000 (UTC)
+Received: from DU2PR03CU002.outbound.protection.outlook.com
+ (mail-northeuropeazon11011023.outbound.protection.outlook.com [52.101.65.23])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B36AA10EC65;
+	Thu, 11 Jun 2026 02:14:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=V40iJ/Vl6/g893Wle2RbQ51f/lqViglNUnyNMDJRyfX8U6KES4100hNqdvSq79KWhc/OYOBMCedCe8LcG05qD39ctyGYeDiBU4IrmZABtDTi9BOp8y5gHGVwV7HzIkkhde3/FPceDm8zvv7yWPR50Nz/KoToo09KJTwm/gyFInjbDw5V0sK6PJo4GAw/HCEqRzNcuL2YUatP/2rjTwqiIBTD8kMsMgDnmrO4gUGSVoLCNRRd7tNN1PzmfYAcRhhHqNkNF92zkSvOVAORX4zi1WyOnJDfJL6xFQoDcftuDoltNOqGzd3sHociopRIvC8Xt591ZfCSBLqvyxTjkw5LPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yUFn/eu40vieuCk7Q6EVwlMpWVxA7fZmTFVlTJrU8Go=;
+ b=AoeQ3NZm8p4hP722jnhDV8SgVuSKjmEre84xeymVZskniPJ8igqDHLl9lnhzNA4w4hA+lLTVwInYsEAbCo/px1ctShJQWPZ2zshHObMLlICmIa/OYm8VMuSa6Yvxk5XgjCSnuPrjYzEBWEjYo8C3yFPM/uQQ4u3VsB3cOePBt2vz4V+6Ixj0PYTHG26UKYkDlhoYpbCmNrr9sPULRxwC+KsoaO+b2B2gV881nAJ/5f8pUau6dNoFPeuFcGp4yEO5to/ia/YSqBaXe9F7hfF4YUeH29SmA76OA6VrzJixwSl4JYod1jmOcNv78uy+/EX3Nzc+BUSDSevC0GPOPbQRRg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yUFn/eu40vieuCk7Q6EVwlMpWVxA7fZmTFVlTJrU8Go=;
+ b=B2M6i+EUaW82XznetIsdxjVqBqA6URfVVcP8yONOES6EyFbjrgvn0dP4FJ2acE/e5YUMPif59UBkJ+j9PWVu9ho0qp+kzwfGU74kL3ljM6EeCfsfHH0yUEof1hbxQxyU+9gSU12Jw3bOWmuaVUiJ3QXvBtOpFc7s9rWogzEQshl1fWfihzAPOnaIhD4TIzkNTCbsVIkfDedltQAtuROPk2HroKYp6KnMRVdrboE/ZhUhV0miYgYyfMXIUYmVe/k4L8i/aokqNwX6Vlm/i1fSuXK+aTRGztgFRKuBRa9a60y9iTh7HvAkX4iDMlemJsEoP8MqldJ4xK/LhAWedg9BPA==
+Received: from AS1PR04MB9287.eurprd04.prod.outlook.com (2603:10a6:20b:4dd::8)
+ by AMBPR04MB12231.eurprd04.prod.outlook.com (2603:10a6:20b:758::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.14; Thu, 11 Jun
+ 2026 02:14:09 +0000
+Received: from AS1PR04MB9287.eurprd04.prod.outlook.com
+ ([fe80::6f30:763d:17d2:b79c]) by AS1PR04MB9287.eurprd04.prod.outlook.com
+ ([fe80::6f30:763d:17d2:b79c%3]) with mapi id 15.21.0113.011; Thu, 11 Jun 2026
+ 02:14:09 +0000
+Date: Thu, 11 Jun 2026 10:15:36 +0800
+From: Liu Ying <victor.liu@nxp.com>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig_=28The_Capable_Hub=29?=
+ <u.kleine-koenig@baylibre.com>
+Subject: Re: [PATCH] drm: Use named initializers for arrays of i2c_device_data
+Message-ID: <aioaSKDk9LJYD6i3@raspi>
+References: <20260518100401.631351-2-u.kleine-koenig@baylibre.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260518100401.631351-2-u.kleine-koenig@baylibre.com>
+X-ClientProxiedBy: SI2P153CA0018.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::9)
+ To AS1PR04MB9287.eurprd04.prod.outlook.com (2603:10a6:20b:4dd::8)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/nouveau: Document weird looking bugfix
-To: Philipp Stanner <phasta@kernel.org>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-References: <20260610082602.1292853-2-phasta@kernel.org>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20260610082602.1292853-2-phasta@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MailFrom: tursulin@ursulin.net
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS1PR04MB9287:EE_|AMBPR04MB12231:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8f2f1acf-55eb-406e-b879-08dec75f1f22
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+ BCL:0;ARA:13230040|23010399003|376014|1800799024|366016|19092799006|7416014|22082099003|18002099003|5023799004|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: 
+ 6StVr6IYyT5KBLq9g+8WGDcugUvibZm/Bg7LP7A6RXapaJmOqer2pFspbV1RaRO4+b/EeeU7jPSw1YZE7ibCFuiPnHY+lUXqUoGDlaryHRyHOeSe4+s/iJEElbsFeC8hL1vlRHW1xqRNZ4Mn5PFq98PJrXUyjJ3xhehzI7AZh2gyRZ3WcXqZ35na3cuHrfj7fI9FE0iAkUFLtVKfJUBG/FfQgnFwtYhqEMLw5C9bxq107yGHwK4bincvSnqvxAsljj37VELYiFlGTbA6eaC16FxDnfeavGzq82rXHTSvPokyDlrFTtXsPQFEeDLg4ze7nZ1lh6N8UyPbTeFz91M6weGal2JPMytIbgmzQPtd4Bf6f+sJ77fM/+hk+oWvfF0/W/28FqzsQZ7jcqrFbzbI4OtnY/Mt/HQypMM8wuZku4o4+Njw9tDgtD/NzB3/q9kYMU3XT7lg8grwBI2IlyXd72AoRGWpwc3bUpQHsfcesXkFVja2PbLtEYwrxsmR2ur47wVqkoaW72CJDJMT2RH2fY8cJblr8uTjhWIRUmHPl8WUbTpRYEtEpB17j20hLsHzqmznVSF1xoC54qFTKD53lRHq8OLmkFeKkQP6CDWEchWMeqgeoks0MuXUYF/ms7u8pmxCXRJe7UCupXZ71MK41g==
+X-Forefront-Antispam-Report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS1PR04MB9287.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(19092799006)(7416014)(22082099003)(18002099003)(5023799004)(11063799006)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+ =?iso-8859-1?Q?LiNfnh/LjXPDQVfg7ZDyJUHDzli364zCpZDha3bHwg3/p3NytDJa/lxP0i?=
+ =?iso-8859-1?Q?NHNIBT+SjEl3kAHgBEfb0/fYazx32LMcMN63CAICPfUpJaFlnKA/h7mQ3V?=
+ =?iso-8859-1?Q?7CneEh2z/M3Qf+T9AeSmFxtDURKOiIUh+cUeTpO8CSSLmWRtnxovBgWGck?=
+ =?iso-8859-1?Q?GLhtilxQsT7OIeNIuf3zMJttbkcw+oTPOW9h94tjXu9jf4/p7PrAjiyip7?=
+ =?iso-8859-1?Q?16KzY7CjHXYaR3afIPS5MQMItrL4ORKYJx57CEtf3ZIwRsBcHc5JQtc8+m?=
+ =?iso-8859-1?Q?NTFSZEu76JY4YPkDViXR7BWnva3UZxcvKJFryYKI8bvzNTvYewWmge+6WJ?=
+ =?iso-8859-1?Q?OZFvbpKoZ8JWGgzWM0CsgRRz5hx8zNyQPd5wTNtBu3v/R31muAu6dxPNUf?=
+ =?iso-8859-1?Q?aCglg22Ae0vWV/XuP4XEFe80dIelkk00713qVU84hPPBhfKJhW7dFCtHOg?=
+ =?iso-8859-1?Q?/GDfaurcR6MC/24J/IPfajPUe2XaawoNTn6TQSg67KshFiac3jnLPpYzTb?=
+ =?iso-8859-1?Q?Y5kS+3AG8UAkxwhYFQ2/tgeDSNLUEjSRVNitvjAbEBMNcFccuDr0IJC391?=
+ =?iso-8859-1?Q?5UenxKeLa4vVkjEXESK8zj6TyGIo5OJYBPhYKIqTfZGCgcvREdGe4XT+uF?=
+ =?iso-8859-1?Q?+ajYFq3WMsUIxrkG/8hjwLHU+PSCbRFGHq9pObB+qjeJOASyTPVWvs/vG9?=
+ =?iso-8859-1?Q?cHH23FHYkg6xJlRX3nA6mOV2mxHPatJQN7+gVndYL5eClXm/OxRyrid9Gk?=
+ =?iso-8859-1?Q?QWq1kHxSSszqyHqUqRoavN3HZL7/Ow2+96V+WVoieUIUOKiGDroi75AaEm?=
+ =?iso-8859-1?Q?CDUeIoboykI99q2XPjkNHHMOZ06q7OxW1ncgsKRBK3UjAzB/t8KWTMGtLf?=
+ =?iso-8859-1?Q?QkcFLNuVm4Vz1DReiYB/5jjNMEGQi87Z421vDr5O6QOWDmvqrT/jInqRLt?=
+ =?iso-8859-1?Q?WCvuiyTKX+ZVRTSpXiVD83+UVxVZleJce435wfwv9dBiSg/F1VS97oGrpi?=
+ =?iso-8859-1?Q?DDpJimp86RsEvjfriti6A7frU0XlsFrOEn7hO1JfY3aDD0u+U0KyWrFXwK?=
+ =?iso-8859-1?Q?Bxl7/3MMOyRn1YkuchrEIhbU22vwn0tqXEKNuOVPGE89L2+JeEjtPwJ1q2?=
+ =?iso-8859-1?Q?/ny6b8rwZ2EKTeQ91dERKivcF3YJdVOvKe7prJfq1TRG3BOx4ywEoQTdvU?=
+ =?iso-8859-1?Q?4CQZ2otZIDGQwnvo5ZkMDZN+e5fJL3OGfivLMON1HrcmdSKzccnR0aIXkw?=
+ =?iso-8859-1?Q?N8hSZjbfyEciWju+WCM8cVch1VA58ZeqXOtCQ/vryRzcNkDXXHXymVV52s?=
+ =?iso-8859-1?Q?cd4uXEBxR0vwZ88hdWLT/lLiktsbBavnrXZSwq21DM/MYZCeeEFs2NVLcO?=
+ =?iso-8859-1?Q?4nLsTuhbTIerapdbR2EunC40u0wWyVEekReNEXBDYq09RApXAtOE+lKhae?=
+ =?iso-8859-1?Q?NINLU/FT5h3Pn3S7eqhc3mh6rulEf9m0aW9ODMggEFedjRrqsZh9PZ0OTD?=
+ =?iso-8859-1?Q?l8dSzC4Z2XepCmpk3dIJj52mdok6aS5rZ/HgJrOUg3oCc8tBxaS4NyKiu8?=
+ =?iso-8859-1?Q?0FmwCaSQoOX39DtoiMBdpdtdaiUrDnEm87uQ+J0JFbFGLZUgfeua98JFvF?=
+ =?iso-8859-1?Q?sAzkfR0gdvHhjaH6V8lez5qkiHnxWh2G8pv5bd9A15OIb1sC9GMtQ2kvKK?=
+ =?iso-8859-1?Q?J9Iezg35ryF3URyh2NVJjxkesyJDrZs38AH+MNVOqFYLxtEtThZYwjt0Il?=
+ =?iso-8859-1?Q?A8Z2fJ14IDyRxiMtBa/gvCzqyN+FJtWN1BHw6sNWrIu6HvbzMPWqJ+BNJ6?=
+ =?iso-8859-1?Q?gJ3h+WVWRw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 8f2f1acf-55eb-406e-b879-08dec75f1f22
+X-MS-Exchange-CrossTenant-AuthSource: AS1PR04MB9287.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2026 02:14:09.5138
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ 6wXf3yUzHAna9yeLpVJc7O+EIf0BmtK9obNkQqGfAcrCWzG5mRIikzjBgl1D3jfX3RWy0O5/88YAHg2A9M+vBQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMBPR04MB12231
+X-MailFrom: victor.liu@nxp.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: WUSNZ52R5IXCX6RS47RT56XU3EOUT4FP
-X-Message-ID-Hash: WUSNZ52R5IXCX6RS47RT56XU3EOUT4FP
-X-Mailman-Approved-At: Thu, 11 Jun 2026 14:53:50 +0000
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+Message-ID-Hash: T2QL3QFMCMG4SWZ2HO6VBHOCUQL35UDG
+X-Message-ID-Hash: T2QL3QFMCMG4SWZ2HO6VBHOCUQL35UDG
+X-Mailman-Approved-At: Thu, 11 Jun 2026 14:54:01 +0000
+CC: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jagan Teki <jagan@amarulasolutions.com>,
+ Adrien Grassein <adrien.grassein@gmail.com>,
+ Peter Senna Tschudin <peter.senna@gmail.com>, Ian Ray <ian.ray@ge.com>,
+ Martyn Welch <martyn.welch@collabora.co.uk>,
+ Russell King <linux@armlinux.org.uk>,
+ Douglas Anderson <dianders@chromium.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+ Manikandan Muralidharan <manikandan.m@microchip.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Andy Yan <andy.yan@rock-chips.com>, Xin Ji <xji@analogixsemi.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, Fei Shao <fshao@chromium.org>,
+ Arnd Bergmann <arnd@arndb.de>, Kees Cook <kees@kernel.org>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WUSNZ52R5IXCX6RS47RT56XU3EOUT4FP/>
-Archived-At: 
- <https://lore.freedesktop.org/b5f634e3-ca52-4674-82a7-fabce99ec364@ursulin.net/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/T2QL3QFMCMG4SWZ2HO6VBHOCUQL35UDG/>
+Archived-At: <https://lore.freedesktop.org/aioaSKDk9LJYD6i3@raspi/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -142,89 +190,106 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-
-On 10/06/2026 09:26, Philipp Stanner wrote:
-> commit c8a5d5ea3ba6 ("nouveau: fix client work fence deletion race")
-> fixed a race. To do so, it replaced the automatically locking
-> dma_fence_is_signaled() with manual locks plus
-> dma_fence_is_signaled_locked().
+On Mon, May 18, 2026 at 12:04:01PM +0200, Uwe Kleine-König (The Capable Hub) wrote:
+> While being less compact, using named initializers allows to more easily
+> see which members of the structs are assigned which value without having
+> to lookup the declaration of the struct. And it's also more robust
+> against changes to the struct definition.
 > 
-> For someone browsing through the code, this reads very much like a
-> cleanup or rework leftover. Future contributors and / or new maintainers
-> not familiar with the history might be tempted to remove that bugfix.
+> The mentioned robustness is relevant for a planned change to struct
+> i2c_device_id that replaces .driver_data by an anonymous union.
 > 
-> Document the bugfix.
+> While touching all these arrays, unify usage of whitespace in the list
+> terminator and drop trailing commas there.
 > 
-> Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> This patch doesn't modify the compiled arrays, only their representation
+> in source form benefits. The former was confirmed with x86 and arm64
+> builds.
+> 
+> Signed-off-by: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
 > ---
-> (I did not test this)
-> ---
->   drivers/gpu/drm/nouveau/nouveau_drm.c | 7 +++++++
->   1 file changed, 7 insertions(+)
+> Hello,
 > 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> index 42a81166f3a9..519a0c164a72 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> @@ -159,6 +159,13 @@ nouveau_cli_work_ready(struct dma_fence *fence)
->   	unsigned long flags;
->   	bool ret = true;
->   
-> +	/*
-> +	 * This is not a cleanup / rework leftover, but a bugfix to prevent a
-> +	 * race with someone signalling the fence. The locked
-> +	 * dma_fence_is_signaled() cannot be used. The dma_fence implementation
-> +	 * is not fully synchronized with locks, but also uses atomic bits,
-> +	 * which can cause the dma_fence_put() below to be executed too soon.
-> +	 */
+> the mentioned change to i2c_device_id is the following:
+> 
+> 	diff --git a/include/linux/mod_devicetable.h b/include/linux/mod_devicetable.h
+> 	index 23ff24080dfd..aebd3a5e90af 100644
+> 	--- a/include/linux/mod_devicetable.h
+> 	+++ b/include/linux/mod_devicetable.h
+> 	@@ -477,7 +477,11 @@ struct rpmsg_device_id {
+> 	 
+> 	 struct i2c_device_id {
+> 		char name[I2C_NAME_SIZE];
+> 	-	kernel_ulong_t driver_data;	/* Data private to the driver */
+> 	+	union {
+> 	+		/* Data private to the driver */
+> 	+		kernel_ulong_t driver_data;
+> 	+		const void *driver_data_ptr;
+> 	+	};
+> 	 };
+> 	 
+> 	 /* pci_epf */
+> 
+> and this requires that .driver_data is assigned via a named initializer
+> for static data. This requirement isn't a bad one because named
+> initializers are also much better readable than list initializers.
+> 
+> The union added to struct i2c_device_id enables further cleanups like:
+> 
+> 	diff --git a/drivers/regulator/ad5398.c b/drivers/regulator/ad5398.c
+> 	index 0123ca8157a8..84272ba65d08 100644
+> 	--- a/drivers/regulator/ad5398.c
+> 	+++ b/drivers/regulator/ad5398.c
+> 	@@ -207,8 +207,8 @@ struct ad5398_current_data_format {
+> 	 static const struct ad5398_current_data_format df_10_4_120 = {10, 4, 0, 120000};
+> 	 
+> 	 static const struct i2c_device_id ad5398_id[] = {
+> 	-	{ .name = "ad5398", .driver_data = (kernel_ulong_t)&df_10_4_120 },
+> 	-	{ .name = "ad5821", .driver_data = (kernel_ulong_t)&df_10_4_120 },
+> 	+	{ .name = "ad5398", .driver_data_ptr = &df_10_4_120 },
+> 	+	{ .name = "ad5821", .driver_data_ptr = &df_10_4_120 },
+> 		{ }
+> 	 };
+> 	 MODULE_DEVICE_TABLE(i2c, ad5398_id);
+> 	@@ -219,8 +219,7 @@ static int ad5398_probe(struct i2c_client *client)
+> 		struct regulator_init_data *init_data = dev_get_platdata(&client->dev);
+> 		struct regulator_config config = { };
+> 		struct ad5398_chip_info *chip;
+> 	-	const struct ad5398_current_data_format *df =
+> 	-			(struct ad5398_current_data_format *)id->driver_data;
+> 	+	const struct ad5398_current_data_format *df = id->driver_data_ptr;
+> 	 
+> 		chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
+> 		if (!chip)
+> 
+> that are an improvement for readability (again!) and it keeps some
+> properties of the pointers (here: being const) without having to pay
+> attention for that. (I didn't find a nice driver below drivers/gpu that
+> benefits, so this is "only" a regulator driver example.)
+> 
+> My additional motivation for this effort is CHERI[1]. This is a hardware
+> extension that uses 128 bit pointers but unsigned long is still 64 bit.
+> So with CHERI you cannot store pointers in unsigned long variables.
+> 
+> I was unsure if I should split the patch. I guess doing all of
+> drivers/gpu/drm/bridge together is fine, please tell if I should split
+> off drivers/gpu/drm/nouveau/ and/or drivers/gpu/drm/sitronix/.
+> 
+> Best regards
+> Uwe
+> 
+> [1] https://cheri-alliance.org/discover-cheri/
+>     https://lwn.net/Articles/1037974/
+> 
+>  drivers/gpu/drm/bridge/adv7511/adv7511_drv.c           | 10 +++++-----
+>  drivers/gpu/drm/bridge/analogix/analogix-anx6345.c     |  2 +-
+>  drivers/gpu/drm/bridge/analogix/anx7625.c              |  4 ++--
+>  drivers/gpu/drm/bridge/chipone-icn6211.c               |  4 ++--
+>  drivers/gpu/drm/bridge/chrontel-ch7033.c               |  2 +-
+>  drivers/gpu/drm/bridge/ite-it6263.c                    |  2 +-
 
-IMHO it would also be interesting to document why this happens from the 
-nouveau point of view.
+Reviewed-by: Liu Ying <victor.liu@nxp.com> # ite-it6263.c
 
-For example I see the two references held on this fences in the call 
-chain, but apparently neither are enough to close the race. Which 
-suggests a third party has a pointer to this fence but with no reference.
-
-I talk about this:
-
-nouveau_gem_object_unmap -> nouveau_cli_work_queue
-
-There it grabs a reference before queing the worker. In the worker it 
-drops it before calling the callback nouveau_gem_object_unmap installed:
-
-static void
-nouveau_cli_work(struct work_struct *w)
-{
-	struct nouveau_cli *cli = container_of(w, typeof(*cli), work);
-	struct nouveau_cli_work *work, *wtmp;
-	mutex_lock(&cli->lock);
-	list_for_each_entry_safe(work, wtmp, &cli->worker, head) {
-		if (!work->fence || nouveau_cli_work_ready(work->fence)) {
-
-... nouveau_cli_work_ready can drop one reference
-
-			list_del(&work->head);
-			work->func(work);
-
-... then work->func was set to nouveau_gem_object_delete_work by 
-nouveau_gem_object_unmap, which will end up calling:
-
-nouveau_gem_object_delete -> nouveau_fence_unref
-
-On possibly the same fence.
-
-So if there a path inside nouveau itself which signals the fence without 
-holding a reference then could be it that the problem is self-inflicted 
-and not due a dma-fence quirks?
-
-I am not entirely sure since it is not very clear. It needs someone with 
-nouveau expertise to clarify.
-
+-- 
 Regards,
-
-Tvrtko
-
->   	dma_fence_lock_irqsave(fence, flags);
->   	if (!dma_fence_is_signaled_locked(fence))
->   		ret = false;
-
+Liu Ying
