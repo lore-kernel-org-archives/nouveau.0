@@ -4,183 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77BD5CD98CC
-	for <nouveau@archiver.kernel.org>; Thu, 11 Jun 2026 15:08:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99CE3CD98C7
+	for <nouveau@archiver.kernel.org>; Thu, 11 Jun 2026 17:01:31 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 50AE110EFA9;
-	Thu, 11 Jun 2026 15:08:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E22DD10F039;
+	Thu, 11 Jun 2026 17:01:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nxp.com header.i=@nxp.com header.b="B2M6i+EU";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=collabora.com header.i=deborah.brouwer@collabora.com header.b="XNcIsfeV";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4BEFF46A5A;
-	Thu, 11 Jun 2026 14:54:03 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 9F65F46A72;
+	Thu, 11 Jun 2026 16:47:30 +0000 (UTC)
 ARC-Seal: i=2; cv=fail; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1781189643;
- b=hV8AKqhVTpAAcRupARClDqnVa2p+RX0yEOrLN9pn2q5dw4boYEhQED/3HiPp+NjkburDD
- W+ragT58y5e4Is7XWqb+XLK2J+q6Q3utki7TkB1ADy6OkCdHDcRYvDhU087CPlD4KAi7Unl
- jbHlCYnnTkKTDE0F12RBzR2SiayO3/vuqyllxjZSB4ldGQgG6eLHYa7EyWBpiEHDzf0QQf9
- h9u8x2pY0P38g9f7EwM1JavSOd41ZHrToVd/gw6MhM1u7LsEsjQoMrhH0BqjcvOR7TwxD8G
- oG7gBjnjIUXwgnQEAKEADJZ/cFSSvr+3hTrdfZI+7YcM2rt/3TjHM1ZAz/DQ==
+ s=20240201; t=1781196450;
+ b=ev2/nClGcHaXEQuoQaRiatsPv0AmDXECv2b804BCFIQXfLnms/U4ClB+erIrcB61Faah+
+ y0bNOD2T5kIwC+VoRo8lLBHK8eRg2bKhtsui/yFdNbqPFlEy/dqXIr6Ny7MtfGToxgjTdwK
+ oARYbFXk3W7KC8gYPIWBssuAEoQHBMWDRW4DoPik0MjeCT6+9imcRoMX7BRjuNZlZfPIU/C
+ ElovfIQBGYJEPXfdFAfN0l+El2A8YtLh8+t8lYjk3GmHJn3tscpaAJtkp8cSKKDoSQByiLM
+ 0qAWLQZj0ejGbyf4O2JM3inZVZtHcF03Zplq1j6irOxvpLyqdcooQqvthUMQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1781189643; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1781196450; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=aL4yIgEzckfFxxHw1FGgVUlspMq2ERpxZoja2/8xK9A=;
- b=NlaVB3rPzeccEPMutzkyLDX6fWjDL4a9UxCaSOaMELlGu+PNlMBFhsnTTF7JgA14cBaOJ
- yhFU/VhC3Kz9wKoT+d0JzSvbnn7LNV8+F+sVvb80GLLcCBP6+oP/wFh9zQVZzC7RHlLZIEy
- +EWa085pgNeD3cjr5AkIcJKVs+Xnsx9ihsBLXHzIQ5/7/RejwyyfNzHi6fZxqtP5tgituWT
- Ka/uvYBTUIFMAPXS+g8I/d+ds9YKtP76n15rSAo8YU+rncBFuj8p+qGcTqaNk6fYA7Enrfh
- X7mHyUZbvFGGdpFUGQylWKS7IvezRhnmmP3VU3dXJPjaHTjeote4apzxLxtw==
+ bh=2fJfyqbH35YYbgEIjIgvDNDQswgvPgvQ2KhSG/JJtTQ=;
+ b=KAefquGlwGodNiuUSGTGd7miMyzapnKyPpQLFZvg7x3QJre/OvVDKgj0IuzV4XBl1Yo1I
+ eoFrgP8pcR/2Waow9dG/qV0ba5gYnncd5D1c5okaGaJfEnTEXzlaWoGFV1uZT3g0sWpNFei
+ ykBUe0hxfhdj+vASLQUGFfKndtwK+jRofgPdzrMnk8ZaRPW39cldMZXPg+0F9fvkrkG2QXO
+ M3TzO/qIejnjAUOf8gNM/exK1jPW68IgPdP3iN7TLXophRBAs496p4tulRujAfVctpHdW32
+ ACk05kXjIShuu+QRe46Sdz5no4IheEb0M91FJRUH2zXm9k69KyHz9hMc5g7w==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=fail header.d=nxp.com;
+ dkim=pass header.d=collabora.com header.i=deborah.brouwer@collabora.com;
   arc=fail (Most recent ARC-Message-Signature did not validate);
-  dmarc=fail (Used From Domain Record) header.from=nxp.com policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=fail header.d=nxp.com;
+  dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=collabora.com header.i=deborah.brouwer@collabora.com;
  arc=fail (Most recent ARC-Message-Signature did not validate);
- dmarc=fail (Used From Domain Record) header.from=nxp.com policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 583A94640E
-	for <nouveau@lists.freedesktop.org>; Thu, 11 Jun 2026 02:00:17 +0000 (UTC)
-Received: from DU2PR03CU002.outbound.protection.outlook.com
- (mail-northeuropeazon11011023.outbound.protection.outlook.com [52.101.65.23])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B36AA10EC65;
-	Thu, 11 Jun 2026 02:14:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=V40iJ/Vl6/g893Wle2RbQ51f/lqViglNUnyNMDJRyfX8U6KES4100hNqdvSq79KWhc/OYOBMCedCe8LcG05qD39ctyGYeDiBU4IrmZABtDTi9BOp8y5gHGVwV7HzIkkhde3/FPceDm8zvv7yWPR50Nz/KoToo09KJTwm/gyFInjbDw5V0sK6PJo4GAw/HCEqRzNcuL2YUatP/2rjTwqiIBTD8kMsMgDnmrO4gUGSVoLCNRRd7tNN1PzmfYAcRhhHqNkNF92zkSvOVAORX4zi1WyOnJDfJL6xFQoDcftuDoltNOqGzd3sHociopRIvC8Xt591ZfCSBLqvyxTjkw5LPA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yUFn/eu40vieuCk7Q6EVwlMpWVxA7fZmTFVlTJrU8Go=;
- b=AoeQ3NZm8p4hP722jnhDV8SgVuSKjmEre84xeymVZskniPJ8igqDHLl9lnhzNA4w4hA+lLTVwInYsEAbCo/px1ctShJQWPZ2zshHObMLlICmIa/OYm8VMuSa6Yvxk5XgjCSnuPrjYzEBWEjYo8C3yFPM/uQQ4u3VsB3cOePBt2vz4V+6Ixj0PYTHG26UKYkDlhoYpbCmNrr9sPULRxwC+KsoaO+b2B2gV881nAJ/5f8pUau6dNoFPeuFcGp4yEO5to/ia/YSqBaXe9F7hfF4YUeH29SmA76OA6VrzJixwSl4JYod1jmOcNv78uy+/EX3Nzc+BUSDSevC0GPOPbQRRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yUFn/eu40vieuCk7Q6EVwlMpWVxA7fZmTFVlTJrU8Go=;
- b=B2M6i+EUaW82XznetIsdxjVqBqA6URfVVcP8yONOES6EyFbjrgvn0dP4FJ2acE/e5YUMPif59UBkJ+j9PWVu9ho0qp+kzwfGU74kL3ljM6EeCfsfHH0yUEof1hbxQxyU+9gSU12Jw3bOWmuaVUiJ3QXvBtOpFc7s9rWogzEQshl1fWfihzAPOnaIhD4TIzkNTCbsVIkfDedltQAtuROPk2HroKYp6KnMRVdrboE/ZhUhV0miYgYyfMXIUYmVe/k4L8i/aokqNwX6Vlm/i1fSuXK+aTRGztgFRKuBRa9a60y9iTh7HvAkX4iDMlemJsEoP8MqldJ4xK/LhAWedg9BPA==
-Received: from AS1PR04MB9287.eurprd04.prod.outlook.com (2603:10a6:20b:4dd::8)
- by AMBPR04MB12231.eurprd04.prod.outlook.com (2603:10a6:20b:758::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.14; Thu, 11 Jun
- 2026 02:14:09 +0000
-Received: from AS1PR04MB9287.eurprd04.prod.outlook.com
- ([fe80::6f30:763d:17d2:b79c]) by AS1PR04MB9287.eurprd04.prod.outlook.com
- ([fe80::6f30:763d:17d2:b79c%3]) with mapi id 15.21.0113.011; Thu, 11 Jun 2026
- 02:14:09 +0000
-Date: Thu, 11 Jun 2026 10:15:36 +0800
-From: Liu Ying <victor.liu@nxp.com>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig_=28The_Capable_Hub=29?=
- <u.kleine-koenig@baylibre.com>
-Subject: Re: [PATCH] drm: Use named initializers for arrays of i2c_device_data
-Message-ID: <aioaSKDk9LJYD6i3@raspi>
-References: <20260518100401.631351-2-u.kleine-koenig@baylibre.com>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260518100401.631351-2-u.kleine-koenig@baylibre.com>
-X-ClientProxiedBy: SI2P153CA0018.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::9)
- To AS1PR04MB9287.eurprd04.prod.outlook.com (2603:10a6:20b:4dd::8)
+	by kara.freedesktop.org (Postfix) with ESMTPS id CB18844C6E
+	for <nouveau@lists.freedesktop.org>; Thu, 11 Jun 2026 16:47:26 +0000 (UTC)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C394910E803;
+	Thu, 11 Jun 2026 17:01:26 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1781197283; cv=none;
+	d=zohomail.com; s=zohoarc;
+	b=JEa515L5eioPTrrthXNlAnWUVojm6OHfMSyG/7d7rU8toMzLV2Y39VxoMnK6t7pnecWjFs1TMSbsxGPxJi3nG0Dev3pBLxRLJVL8skJeufgcgOt+YXv3HJvYWbF+272NFRgle2mpGhtUcdPm7kfDoP00E17RJdSOoVIqlRQImrw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc;
+	t=1781197283;
+ h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+	bh=2fJfyqbH35YYbgEIjIgvDNDQswgvPgvQ2KhSG/JJtTQ=;
+	b=Qo6AfqUY6p6bT18Ox+zyLXn7fpRtnJCx5UPqhZlK5blt9syZ8qxoN4CVNyL5jNPk4IVKbLUCWr1ehosZDClBG8zXdt47zUwlWFSxpUVwNuV5ypnKw0H/+fJWEm42T/FvCwe2P+8bKOhBhzMcR5hdnTw40aACmBJJxK2qraMUxrQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=deborah.brouwer@collabora.com;
+	dmarc=pass header.from=<deborah.brouwer@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1781197283;
+	s=zohomail; d=collabora.com; i=deborah.brouwer@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=2fJfyqbH35YYbgEIjIgvDNDQswgvPgvQ2KhSG/JJtTQ=;
+	b=XNcIsfeVt5XfcVZDmUv/90Wn9Ua7M7fiX+C/2lWJsFw80uYQ8qUYBG5FxNxD6yWd
+	ax7P0IuJzICtxZ6TLYU1mmlL8BxnF5/U1DPBXP661iW0c8pedAf0j4KhLUcLStinTis
+	izD5QLqlU0HLmIObeqrR9NRoknIABMnuDQo/jtbg=
+Received: by mx.zohomail.com with SMTPS id 1781197281571203.9158288337478;
+	Thu, 11 Jun 2026 10:01:21 -0700 (PDT)
+Date: Thu, 11 Jun 2026 10:01:20 -0700
+From: Deborah Brouwer <deborah.brouwer@collabora.com>
+To: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH v20 2/4] rust: drm: gem: shmem: Add vmap functions
+Message-ID: <airp4AHxiJKWn5tr@um790>
+References: <20260610162433.923550-1-lyude@redhat.com>
+ <20260610162433.923550-3-lyude@redhat.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS1PR04MB9287:EE_|AMBPR04MB12231:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8f2f1acf-55eb-406e-b879-08dec75f1f22
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
- BCL:0;ARA:13230040|23010399003|376014|1800799024|366016|19092799006|7416014|22082099003|18002099003|5023799004|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: 
- 6StVr6IYyT5KBLq9g+8WGDcugUvibZm/Bg7LP7A6RXapaJmOqer2pFspbV1RaRO4+b/EeeU7jPSw1YZE7ibCFuiPnHY+lUXqUoGDlaryHRyHOeSe4+s/iJEElbsFeC8hL1vlRHW1xqRNZ4Mn5PFq98PJrXUyjJ3xhehzI7AZh2gyRZ3WcXqZ35na3cuHrfj7fI9FE0iAkUFLtVKfJUBG/FfQgnFwtYhqEMLw5C9bxq107yGHwK4bincvSnqvxAsljj37VELYiFlGTbA6eaC16FxDnfeavGzq82rXHTSvPokyDlrFTtXsPQFEeDLg4ze7nZ1lh6N8UyPbTeFz91M6weGal2JPMytIbgmzQPtd4Bf6f+sJ77fM/+hk+oWvfF0/W/28FqzsQZ7jcqrFbzbI4OtnY/Mt/HQypMM8wuZku4o4+Njw9tDgtD/NzB3/q9kYMU3XT7lg8grwBI2IlyXd72AoRGWpwc3bUpQHsfcesXkFVja2PbLtEYwrxsmR2ur47wVqkoaW72CJDJMT2RH2fY8cJblr8uTjhWIRUmHPl8WUbTpRYEtEpB17j20hLsHzqmznVSF1xoC54qFTKD53lRHq8OLmkFeKkQP6CDWEchWMeqgeoks0MuXUYF/ms7u8pmxCXRJe7UCupXZ71MK41g==
-X-Forefront-Antispam-Report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS1PR04MB9287.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(19092799006)(7416014)(22082099003)(18002099003)(5023799004)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
- =?iso-8859-1?Q?LiNfnh/LjXPDQVfg7ZDyJUHDzli364zCpZDha3bHwg3/p3NytDJa/lxP0i?=
- =?iso-8859-1?Q?NHNIBT+SjEl3kAHgBEfb0/fYazx32LMcMN63CAICPfUpJaFlnKA/h7mQ3V?=
- =?iso-8859-1?Q?7CneEh2z/M3Qf+T9AeSmFxtDURKOiIUh+cUeTpO8CSSLmWRtnxovBgWGck?=
- =?iso-8859-1?Q?GLhtilxQsT7OIeNIuf3zMJttbkcw+oTPOW9h94tjXu9jf4/p7PrAjiyip7?=
- =?iso-8859-1?Q?16KzY7CjHXYaR3afIPS5MQMItrL4ORKYJx57CEtf3ZIwRsBcHc5JQtc8+m?=
- =?iso-8859-1?Q?NTFSZEu76JY4YPkDViXR7BWnva3UZxcvKJFryYKI8bvzNTvYewWmge+6WJ?=
- =?iso-8859-1?Q?OZFvbpKoZ8JWGgzWM0CsgRRz5hx8zNyQPd5wTNtBu3v/R31muAu6dxPNUf?=
- =?iso-8859-1?Q?aCglg22Ae0vWV/XuP4XEFe80dIelkk00713qVU84hPPBhfKJhW7dFCtHOg?=
- =?iso-8859-1?Q?/GDfaurcR6MC/24J/IPfajPUe2XaawoNTn6TQSg67KshFiac3jnLPpYzTb?=
- =?iso-8859-1?Q?Y5kS+3AG8UAkxwhYFQ2/tgeDSNLUEjSRVNitvjAbEBMNcFccuDr0IJC391?=
- =?iso-8859-1?Q?5UenxKeLa4vVkjEXESK8zj6TyGIo5OJYBPhYKIqTfZGCgcvREdGe4XT+uF?=
- =?iso-8859-1?Q?+ajYFq3WMsUIxrkG/8hjwLHU+PSCbRFGHq9pObB+qjeJOASyTPVWvs/vG9?=
- =?iso-8859-1?Q?cHH23FHYkg6xJlRX3nA6mOV2mxHPatJQN7+gVndYL5eClXm/OxRyrid9Gk?=
- =?iso-8859-1?Q?QWq1kHxSSszqyHqUqRoavN3HZL7/Ow2+96V+WVoieUIUOKiGDroi75AaEm?=
- =?iso-8859-1?Q?CDUeIoboykI99q2XPjkNHHMOZ06q7OxW1ncgsKRBK3UjAzB/t8KWTMGtLf?=
- =?iso-8859-1?Q?QkcFLNuVm4Vz1DReiYB/5jjNMEGQi87Z421vDr5O6QOWDmvqrT/jInqRLt?=
- =?iso-8859-1?Q?WCvuiyTKX+ZVRTSpXiVD83+UVxVZleJce435wfwv9dBiSg/F1VS97oGrpi?=
- =?iso-8859-1?Q?DDpJimp86RsEvjfriti6A7frU0XlsFrOEn7hO1JfY3aDD0u+U0KyWrFXwK?=
- =?iso-8859-1?Q?Bxl7/3MMOyRn1YkuchrEIhbU22vwn0tqXEKNuOVPGE89L2+JeEjtPwJ1q2?=
- =?iso-8859-1?Q?/ny6b8rwZ2EKTeQ91dERKivcF3YJdVOvKe7prJfq1TRG3BOx4ywEoQTdvU?=
- =?iso-8859-1?Q?4CQZ2otZIDGQwnvo5ZkMDZN+e5fJL3OGfivLMON1HrcmdSKzccnR0aIXkw?=
- =?iso-8859-1?Q?N8hSZjbfyEciWju+WCM8cVch1VA58ZeqXOtCQ/vryRzcNkDXXHXymVV52s?=
- =?iso-8859-1?Q?cd4uXEBxR0vwZ88hdWLT/lLiktsbBavnrXZSwq21DM/MYZCeeEFs2NVLcO?=
- =?iso-8859-1?Q?4nLsTuhbTIerapdbR2EunC40u0wWyVEekReNEXBDYq09RApXAtOE+lKhae?=
- =?iso-8859-1?Q?NINLU/FT5h3Pn3S7eqhc3mh6rulEf9m0aW9ODMggEFedjRrqsZh9PZ0OTD?=
- =?iso-8859-1?Q?l8dSzC4Z2XepCmpk3dIJj52mdok6aS5rZ/HgJrOUg3oCc8tBxaS4NyKiu8?=
- =?iso-8859-1?Q?0FmwCaSQoOX39DtoiMBdpdtdaiUrDnEm87uQ+J0JFbFGLZUgfeua98JFvF?=
- =?iso-8859-1?Q?sAzkfR0gdvHhjaH6V8lez5qkiHnxWh2G8pv5bd9A15OIb1sC9GMtQ2kvKK?=
- =?iso-8859-1?Q?J9Iezg35ryF3URyh2NVJjxkesyJDrZs38AH+MNVOqFYLxtEtThZYwjt0Il?=
- =?iso-8859-1?Q?A8Z2fJ14IDyRxiMtBa/gvCzqyN+FJtWN1BHw6sNWrIu6HvbzMPWqJ+BNJ6?=
- =?iso-8859-1?Q?gJ3h+WVWRw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 8f2f1acf-55eb-406e-b879-08dec75f1f22
-X-MS-Exchange-CrossTenant-AuthSource: AS1PR04MB9287.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2026 02:14:09.5138
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- 6wXf3yUzHAna9yeLpVJc7O+EIf0BmtK9obNkQqGfAcrCWzG5mRIikzjBgl1D3jfX3RWy0O5/88YAHg2A9M+vBQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMBPR04MB12231
-X-MailFrom: victor.liu@nxp.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260610162433.923550-3-lyude@redhat.com>
+Message-ID-Hash: TZNR6FWJG53JF6MMLIKG6IJUT5J4LLLZ
+X-Message-ID-Hash: TZNR6FWJG53JF6MMLIKG6IJUT5J4LLLZ
+X-MailFrom: deborah.brouwer@collabora.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: T2QL3QFMCMG4SWZ2HO6VBHOCUQL35UDG
-X-Message-ID-Hash: T2QL3QFMCMG4SWZ2HO6VBHOCUQL35UDG
-X-Mailman-Approved-At: Thu, 11 Jun 2026 14:54:01 +0000
-CC: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Alexandre Courbot <acourbot@nvidia.com>,
+ Gary Guo <gary@garyguo.net>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ driver-core@lists.linux.dev, Miguel Ojeda <ojeda@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Marcus Folkesson <marcus.folkesson@gmail.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jagan Teki <jagan@amarulasolutions.com>,
- Adrien Grassein <adrien.grassein@gmail.com>,
- Peter Senna Tschudin <peter.senna@gmail.com>, Ian Ray <ian.ray@ge.com>,
- Martyn Welch <martyn.welch@collabora.co.uk>,
- Russell King <linux@armlinux.org.uk>,
- Douglas Anderson <dianders@chromium.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Biju Das <biju.das.jz@bp.renesas.com>,
- Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
- Manikandan Muralidharan <manikandan.m@microchip.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Andy Yan <andy.yan@rock-chips.com>, Xin Ji <xji@analogixsemi.com>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>, Fei Shao <fshao@chromium.org>,
- Arnd Bergmann <arnd@arndb.de>, Kees Cook <kees@kernel.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org
+ Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
+ linux-kernel@vger.kernel.org, Sumit Semwal <sumit.semwal@linaro.org>,
+ linux-media@vger.kernel.org, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Benno Lossin <lossin@kernel.org>,
+ linaro-mm-sig@lists.linaro.org, Danilo Krummrich <dakr@kernel.org>,
+ Mukesh Kumar Chaurasiya <mkchauras@gmail.com>,
+ Asahi Lina <lina+kernel@asahilina.net>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/T2QL3QFMCMG4SWZ2HO6VBHOCUQL35UDG/>
-Archived-At: <https://lore.freedesktop.org/aioaSKDk9LJYD6i3@raspi/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TZNR6FWJG53JF6MMLIKG6IJUT5J4LLLZ/>
+Archived-At: <https://lore.freedesktop.org/airp4AHxiJKWn5tr@um790/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -190,106 +123,459 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon, May 18, 2026 at 12:04:01PM +0200, Uwe Kleine-König (The Capable Hub) wrote:
-> While being less compact, using named initializers allows to more easily
-> see which members of the structs are assigned which value without having
-> to lookup the declaration of the struct. And it's also more robust
-> against changes to the struct definition.
+On Wed, Jun 10, 2026 at 12:21:29PM -0400, Lyude Paul wrote:
+> One of the more obvious use cases for gem shmem objects is the ability to
+> create mappings into their contents. So, let's hook this up in our rust
+> bindings.
 > 
-> The mentioned robustness is relevant for a planned change to struct
-> i2c_device_id that replaces .driver_data by an anonymous union.
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
 > 
-> While touching all these arrays, unify usage of whitespace in the list
-> terminator and drop trailing commas there.
-> 
-> This patch doesn't modify the compiled arrays, only their representation
-> in source form benefits. The former was confirmed with x86 and arm64
-> builds.
-> 
-> Signed-off-by: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
 > ---
-> Hello,
+> V7:
+> * Switch over to the new iosys map bindings that use the Io trait
+> V8:
+> * Get rid of iosys_map bindings for now, only support non-iomem types
+> * s/as_shmem()/as_raw_shmem()
+> V9:
+> * Get rid of some outdated comments I missed
+> * Add missing SIZE check to raw_vmap()
+> * Add a proper unit test that ensures that we actually validate SIZE at
+>   compile-time.
+>   Turns out it takes only 34 lines to make a boilerplate DRM driver for a
+>   kunit test :)
+> * Add unit tests
+> * Add some missing #[inline]s
+> V10:
+> * Correct issue with iomem error path
+>   We previously called raw_vunmap() if we got an iomem allocation, but
+>   raw_vunmap() was written such that it assumed all allocations were sysmem
+>   allocations. Fix this by just making raw_vunmap() accept a iosys_map.
+> V11:
+> * Use Alexandre's clever solution to remove the macros we were using for
+>   maintaining two different VMap types.
+> * Change the order of items in Object<T> to ensure that sgt_res is always
+>   dropped before obj.
+> * Fix typo in Object.raw_vmap()
+> * s/raw_vmap()/make_vmap()/
+>   Deduplicate code a bit more as well by using more generics here
+> V15:
+> * Add these patches back
+> * We only have one VMap type now!
+> * Use ObjectConfig::default() in unit tests since we unbroke it.
+> V16:
+> * Fix huge rebase error I made and did not notice that squashed 1.5 patches
+>   together that were definitely not supposed to be squashed
+> * Update old commit message
+> V17:
+> * Rebase
+> * Fix format of commit message title
+> V19:
+> * Drop outdated safety comment
+> * Move impl_vmap_io_capable! definition to right before it gets used
+> * Add missing `` in rustdoc for VMap type
+> * Add a bunch of missing `` in make_vmap()
+> * Remove one outdated safety comment about reading vaddr_iomem
+> * Add some missing periods in safety comments in make_vmap().
+> * Use read_volatile/write_volatile() instead of read()/write() to prevent
+>   compiler reordering.
+> * Remove impl argument from impl_vmap_io_capable!()
+> * Check .owner() and .maxsize() in compile_time_vmap_sizes()
+> * Use more varied pattern in vmap_io()
+> V20:
+> * Add missing Send/Sync implementations for VMap
+> * Use #[inline] not #[inline(always)]
+> * Add missing invariant comment to VMap instantiation
+> * Make sure that kunit test doesn't fail on big endian
 > 
-> the mentioned change to i2c_device_id is the following:
+>  rust/kernel/drm/gem/shmem.rs | 337 ++++++++++++++++++++++++++++++++++-
+>  1 file changed, 336 insertions(+), 1 deletion(-)
 > 
-> 	diff --git a/include/linux/mod_devicetable.h b/include/linux/mod_devicetable.h
-> 	index 23ff24080dfd..aebd3a5e90af 100644
-> 	--- a/include/linux/mod_devicetable.h
-> 	+++ b/include/linux/mod_devicetable.h
-> 	@@ -477,7 +477,11 @@ struct rpmsg_device_id {
-> 	 
-> 	 struct i2c_device_id {
-> 		char name[I2C_NAME_SIZE];
-> 	-	kernel_ulong_t driver_data;	/* Data private to the driver */
-> 	+	union {
-> 	+		/* Data private to the driver */
-> 	+		kernel_ulong_t driver_data;
-> 	+		const void *driver_data_ptr;
-> 	+	};
-> 	 };
-> 	 
-> 	 /* pci_epf */
-> 
-> and this requires that .driver_data is assigned via a named initializer
-> for static data. This requirement isn't a bad one because named
-> initializers are also much better readable than list initializers.
-> 
-> The union added to struct i2c_device_id enables further cleanups like:
-> 
-> 	diff --git a/drivers/regulator/ad5398.c b/drivers/regulator/ad5398.c
-> 	index 0123ca8157a8..84272ba65d08 100644
-> 	--- a/drivers/regulator/ad5398.c
-> 	+++ b/drivers/regulator/ad5398.c
-> 	@@ -207,8 +207,8 @@ struct ad5398_current_data_format {
-> 	 static const struct ad5398_current_data_format df_10_4_120 = {10, 4, 0, 120000};
-> 	 
-> 	 static const struct i2c_device_id ad5398_id[] = {
-> 	-	{ .name = "ad5398", .driver_data = (kernel_ulong_t)&df_10_4_120 },
-> 	-	{ .name = "ad5821", .driver_data = (kernel_ulong_t)&df_10_4_120 },
-> 	+	{ .name = "ad5398", .driver_data_ptr = &df_10_4_120 },
-> 	+	{ .name = "ad5821", .driver_data_ptr = &df_10_4_120 },
-> 		{ }
-> 	 };
-> 	 MODULE_DEVICE_TABLE(i2c, ad5398_id);
-> 	@@ -219,8 +219,7 @@ static int ad5398_probe(struct i2c_client *client)
-> 		struct regulator_init_data *init_data = dev_get_platdata(&client->dev);
-> 		struct regulator_config config = { };
-> 		struct ad5398_chip_info *chip;
-> 	-	const struct ad5398_current_data_format *df =
-> 	-			(struct ad5398_current_data_format *)id->driver_data;
-> 	+	const struct ad5398_current_data_format *df = id->driver_data_ptr;
-> 	 
-> 		chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
-> 		if (!chip)
-> 
-> that are an improvement for readability (again!) and it keeps some
-> properties of the pointers (here: being const) without having to pay
-> attention for that. (I didn't find a nice driver below drivers/gpu that
-> benefits, so this is "only" a regulator driver example.)
-> 
-> My additional motivation for this effort is CHERI[1]. This is a hardware
-> extension that uses 128 bit pointers but unsigned long is still 64 bit.
-> So with CHERI you cannot store pointers in unsigned long variables.
-> 
-> I was unsure if I should split the patch. I guess doing all of
-> drivers/gpu/drm/bridge together is fine, please tell if I should split
-> off drivers/gpu/drm/nouveau/ and/or drivers/gpu/drm/sitronix/.
-> 
-> Best regards
-> Uwe
-> 
-> [1] https://cheri-alliance.org/discover-cheri/
->     https://lwn.net/Articles/1037974/
-> 
->  drivers/gpu/drm/bridge/adv7511/adv7511_drv.c           | 10 +++++-----
->  drivers/gpu/drm/bridge/analogix/analogix-anx6345.c     |  2 +-
->  drivers/gpu/drm/bridge/analogix/anx7625.c              |  4 ++--
->  drivers/gpu/drm/bridge/chipone-icn6211.c               |  4 ++--
->  drivers/gpu/drm/bridge/chrontel-ch7033.c               |  2 +-
->  drivers/gpu/drm/bridge/ite-it6263.c                    |  2 +-
+> diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
+> index 090c5d869fdb7..68a1ce3330b11 100644
+> --- a/rust/kernel/drm/gem/shmem.rs
+> +++ b/rust/kernel/drm/gem/shmem.rs
+> @@ -20,6 +20,11 @@
+>          Registered, //
+>      },
+>      error::to_result,
+> +    io::{
+> +        Io,
+> +        IoCapable,
+> +        IoKnownSize, //
+> +    },
+>      prelude::*,
+>      sync::aref::ARef,
+>      types::{
+> @@ -28,7 +33,9 @@
+>      },
+>  };
+>  use core::{
+> +    ffi::c_void,
+>      marker::PhantomData,
+> +    mem::MaybeUninit, //
+>      ops::{
+>          Deref,
+>          DerefMut, //
+> @@ -39,6 +46,7 @@
+>      },
+>  };
+>  use gem::{
+> +    BaseObject,
+>      BaseObjectPrivate,
+>      DriverObject,
+>      IntoGEMObject, //
+> @@ -200,6 +208,79 @@ extern "C" fn free_callback(obj: *mut bindings::drm_gem_object) {
+>          // SAFETY: We're recovering the Kbox<> we created in gem_create_object()
+>          let _ = unsafe { KBox::from_raw(this) };
+>      }
+> +
+> +    /// Attempt to create a vmap from the gem object, and confirm the size of said vmap.
+> +    fn make_vmap<'a, R, const SIZE: usize>(&'a self) -> Result<VMap<T, R, C, SIZE>>
+> +    where
+> +        R: Deref<Target = Self> + From<&'a Self>,
+> +    {
+> +        // INVARIANT: We check here that the gem object is at least as large as `SIZE`.
+> +        if self.size() < SIZE {
+> +            return Err(ENOSPC);
+> +        }
+> +
+> +        let mut map: MaybeUninit<bindings::iosys_map> = MaybeUninit::uninit();
+> +        let guard = DmaResvGuard::new(self);
+> +
+> +        // SAFETY: `drm_gem_shmem_vmap()` can be called with the DMA reservation lock held.
+> +        to_result(unsafe {
+> +            bindings::drm_gem_shmem_vmap_locked(self.as_raw_shmem(), map.as_mut_ptr())
+> +        })?;
+> +
+> +        // Drop the guard explicitly here, since we may need to call `raw_vunmap()` (which
+> +        // re-acquires the lock).
+> +        drop(guard);
+> +
+> +        // SAFETY: The call to `drm_gem_shmem_vmap_locked()` succeeded above, so we are guaranteed
+> +        // that map is properly initialized.
+> +        let map = unsafe { map.assume_init() };
+> +
+> +        // XXX: We don't currently support iomem allocations
+> +        if map.is_iomem {
+> +            // SAFETY: The vmap operation above succeeded, guaranteeing that `map` points to a valid
+> +            // memory mapping.
+> +            unsafe { self.raw_vunmap(map) };
+> +
+> +            Err(ENOTSUPP)
+> +        } else {
+> +            Ok(VMap {
+> +                // INVARIANT: `addr` remains valid for as long as `owner` does, which extends to the
+> +                // lifetime of `VMap` itself.
+> +                // SAFETY: We checked that this is not an iomem allocation, making it safe to read
+> +                // vaddr.
+> +                addr: unsafe { map.__bindgen_anon_1.vaddr },
+> +                owner: self.into(),
+> +            })
+> +        }
+> +    }
+> +
+> +    /// Unmap a vmap from the gem object.
+> +    ///
+> +    /// # Safety
+> +    ///
+> +    /// - The caller promises that `map` is a valid vmap on this gem object.
+> +    /// - The caller promises that the memory pointed to by map will no longer be accesed through
+> +    ///   this instance.
+> +    unsafe fn raw_vunmap(&self, mut map: bindings::iosys_map) {
+> +        let _guard = DmaResvGuard::new(self);
+> +
+> +        // SAFETY:
+> +        // - This function is safe to call with the DMA reservation lock held.
+> +        // - The caller promises that `map` is a valid vmap on this gem object.
+> +        unsafe { bindings::drm_gem_shmem_vunmap_locked(self.as_raw_shmem(), &mut map) };
+> +    }
+> +
+> +    /// Creates and returns a virtual kernel memory mapping for this object.
+> +    #[inline]
+> +    pub fn vmap<const SIZE: usize>(&self) -> Result<VMapRef<'_, T, C, SIZE>> {
+> +        self.make_vmap()
+> +    }
+> +
+> +    /// Creates and returns an owned reference to a virtual kernel memory mapping for this object.
+> +    #[inline]
+> +    pub fn owned_vmap<const SIZE: usize>(&self) -> Result<VMapOwned<T, C, SIZE>> {
+> +        self.make_vmap()
+> +    }
+>  }
+>  
+>  impl<T: DriverObject, C: DeviceContext> Deref for Object<T, C> {
+> @@ -263,7 +344,6 @@ struct DmaResvGuard<'a, T: DriverObject, C: DeviceContext = Registered>(
+>  
+>  impl<'a, T: DriverObject, C: DeviceContext> DmaResvGuard<'a, T, C> {
+>      #[inline]
+> -    #[expect(unused)]
+>      fn new(obj: &'a Object<T, C>) -> Self {
+>          // SAFETY: This lock is initialized throughout the lifetime of `object`.
+>          unsafe { bindings::dma_resv_lock(obj.raw_dma_resv(), ptr::null_mut()) };
+> @@ -279,3 +359,258 @@ fn drop(&mut self) {
+>          unsafe { bindings::dma_resv_unlock(self.0.raw_dma_resv()) };
+>      }
+>  }
+> +
+> +/// A reference to a virtual mapping for an shmem-based GEM object in kernel address space.
+> +///
+> +/// # Invariants
+> +///
+> +/// - The size of `owner` is >= SIZE.
+> +/// - The memory pointed to by `addr` remains valid at least until this object is dropped.
+> +pub struct VMap<D, R, C = Registered, const SIZE: usize = 0>
+> +where
+> +    D: DriverObject,
+> +    C: DeviceContext,
+> +    R: Deref<Target = Object<D, C>>,
+> +{
+> +    addr: *mut c_void,
+> +    owner: R,
+> +}
+> +
+> +/// An alias type for a reference to a shmem-based GEM object's VMap.
+> +pub type VMapRef<'a, D, C, const SIZE: usize = 0> = VMap<D, &'a Object<D, C>, C, SIZE>;
+> +
+> +/// An alias type for an owned reference to a shmem-based GEM object's VMap.
+> +pub type VMapOwned<D, C, const SIZE: usize = 0> = VMap<D, ARef<Object<D, C>>, C, SIZE>;
+> +
+> +impl<D, R, C, const SIZE: usize> VMap<D, R, C, SIZE>
+> +where
+> +    D: DriverObject,
+> +    C: DeviceContext,
+> +    R: Deref<Target = Object<D, C>>,
+> +{
+> +    /// Borrows a reference to the object that owns this virtual mapping.
+> +    #[inline]
+> +    pub fn owner(&self) -> &Object<D, C> {
+> +        &self.owner
+> +    }
+> +}
+> +
+> +impl<D, R, C, const SIZE: usize> Drop for VMap<D, R, C, SIZE>
+> +where
+> +    D: DriverObject,
+> +    C: DeviceContext,
+> +    R: Deref<Target = Object<D, C>>,
+> +{
+> +    #[inline]
+> +    fn drop(&mut self) {
+> +        // SAFETY:
+> +        // - Our existence is proof that this map was previously created using self.owner.
+> +        // - Since we are in Drop, we are guaranteed that no one will access the memory
+> +        //   through this mapping after calling this.
+> +        unsafe {
+> +            self.owner.raw_vunmap(bindings::iosys_map {
+> +                is_iomem: false,
+> +                __bindgen_anon_1: bindings::iosys_map__bindgen_ty_1 { vaddr: self.addr },
+> +            })
+> +        };
+> +    }
+> +}
+> +
+> +// SAFETY: VMaps are safe to send across threads.
+> +unsafe impl<D, R, C, const SIZE: usize> Send for VMap<D, R, C, SIZE>
+> +where
+> +    D: DriverObject,
+> +    C: DeviceContext,
+> +    R: Deref<Target = Object<D, C>>,
+> +{
+> +}
+> +
+> +// SAFETY: VMaps are safe to access from multiple threads.
+> +unsafe impl<D, R, C, const SIZE: usize> Sync for VMap<D, R, C, SIZE>
+> +where
+> +    D: DriverObject,
+> +    C: DeviceContext,
+> +    R: Deref<Target = Object<D, C>>,
+> +{
+> +}
+> +
+> +impl<D, R, C, const SIZE: usize> Io for VMap<D, R, C, SIZE>
+> +where
+> +    D: DriverObject,
+> +    C: DeviceContext,
+> +    R: Deref<Target = Object<D, C>>,
+> +{
+> +    #[inline]
+> +    fn addr(&self) -> usize {
+> +        self.addr as usize
+> +    }
+> +
+> +    #[inline]
+> +    fn maxsize(&self) -> usize {
+> +        self.owner.size()
+> +    }
+> +}
+> +
+> +impl<D, R, C, const SIZE: usize> IoKnownSize for VMap<D, R, C, SIZE>
+> +where
+> +    D: DriverObject,
+> +    C: DeviceContext,
+> +    R: Deref<Target = Object<D, C>>,
+> +{
+> +    const MIN_SIZE: usize = SIZE;
+> +}
+> +
+> +macro_rules! impl_vmap_io_capable {
+> +    ($ty:ty) => {
+> +        impl<D, R, C, const SIZE: usize> IoCapable<$ty> for VMap<D, R, C, SIZE>
+> +        where
+> +            D: DriverObject,
+> +            C: DeviceContext,
+> +            R: Deref<Target = Object<D, C>>,
+> +        {
+> +            #[inline]
+> +            unsafe fn io_read(&self, address: usize) -> $ty {
+> +                let ptr = address as *mut $ty;
+> +
+> +                // SAFETY: The safety contract of `io_read` guarantees that address is a valid
+> +                // address within the bounds of `Self` of at least the size of $ty, and is properly
+> +                // aligned.
+> +                unsafe { ptr::read_volatile(ptr) }
+> +            }
+> +
+> +            #[inline]
+> +            unsafe fn io_write(&self, value: $ty, address: usize) {
+> +                let ptr = address as *mut $ty;
+> +
+> +                // SAFETY: The safety contract of `io_write` guarantees that address is a valid
+> +                // address within the bounds of `Self` of at least the size of $ty, and is properly
+> +                // aligned.
+> +                unsafe { ptr::write_volatile(ptr, value) }
+> +            }
+> +        }
+> +    };
+> +}
+> +
+> +impl_vmap_io_capable!(u8);
+> +impl_vmap_io_capable!(u16);
+> +impl_vmap_io_capable!(u32);
+> +#[cfg(CONFIG_64BIT)]
+> +impl_vmap_io_capable!(u64);
+> +
+> +#[kunit_tests(rust_drm_gem_shmem)]
+> +mod tests {
+> +    use super::*;
+> +    use crate::{
+> +        drm::{
+> +            self,
+> +            UnregisteredDevice, //
+> +        },
+> +        faux,
+> +        page::PAGE_SIZE, //
+> +    };
+> +
+> +    // The bare minimum needed to create a fake drm driver for kunit
+> +
+> +    #[pin_data]
+> +    struct KunitData {}
+> +    struct KunitDriver;
+> +    struct KunitFile;
+> +    #[pin_data]
+> +    struct KunitObject {}
+> +
+> +    const INFO: drm::DriverInfo = drm::DriverInfo {
+> +        major: 0,
+> +        minor: 0,
+> +        patchlevel: 0,
+> +        name: c"kunit",
+> +        desc: c"Kunit",
+> +    };
+> +
+> +    impl drm::file::DriverFile for KunitFile {
+> +        type Driver = KunitDriver;
+> +
+> +        fn open(_dev: &drm::Device<KunitDriver>) -> Result<Pin<KBox<Self>>> {
+> +            Ok(KBox::new(Self, GFP_KERNEL)?.into())
+> +        }
+> +    }
+> +
+> +    impl gem::DriverObject for KunitObject {
+> +        type Driver = KunitDriver;
+> +        type Args = ();
+> +
+> +        fn new<C: DeviceContext>(
+> +            _dev: &drm::Device<KunitDriver, C>,
+> +            _size: usize,
+> +            _args: Self::Args,
+> +        ) -> impl PinInit<Self, Error> {
+> +            try_pin_init!(KunitObject {})
+> +        }
+> +    }
+> +
+> +    #[vtable]
+> +    impl drm::Driver for KunitDriver {
+> +        type Data = KunitData;
+> +        type File = KunitFile;
+> +        type Object<Ctx: DeviceContext> = Object<KunitObject, Ctx>;
+> +
+> +        const INFO: drm::DriverInfo = INFO;
+> +        const IOCTLS: &'static [drm::ioctl::DrmIoctlDescriptor] = &[];
+> +    }
+> +
+> +    fn create_drm_dev() -> Result<(faux::Registration, UnregisteredDevice<KunitDriver>)> {
+> +        // Create a faux DRM device so we can test gem object creation.
+> +        let data = try_pin_init!(KunitData {});
+> +        let dev = faux::Registration::new(c"Kunit", None)?;
+> +        let drm = UnregisteredDevice::new(dev.as_ref(), data)?;
+> +
+> +        Ok((dev, drm))
+> +    }
+> +
+> +    #[test]
+> +    fn compile_time_vmap_sizes() -> Result {
+> +        let (_dev, drm) = create_drm_dev()?;
+> +
+> +        let obj = Object::<KunitObject, _>::new(&drm, PAGE_SIZE, ObjectConfig::default(), ())?;
+> +
+> +        // Try creating a normal vmap
+> +        obj.vmap::<PAGE_SIZE>()?;
+> +
+> +        // Try creating a vmap that's smaller then the size we specified
+> +        let vmap = obj.vmap::<{ PAGE_SIZE - 100 }>()?;
+> +
+> +        // Verify the owner matches
+> +        assert!(ptr::eq(vmap.owner(), obj.deref()));
+> +
+> +        // Verify the max size matches the actual object size
+> +        assert_eq!(vmap.maxsize(), PAGE_SIZE);
+> +
+> +        // Make sure creating a vmap that's too large fails
+> +        assert!(obj.vmap::<{ PAGE_SIZE + 200 }>().is_err());
+> +
+> +        Ok(())
+> +    }
+> +
+> +    #[test]
+> +    fn vmap_io() -> Result {
+> +        let (_dev, drm) = create_drm_dev()?;
+> +
+> +        let obj = Object::<KunitObject, _>::new(&drm, PAGE_SIZE, ObjectConfig::default(), ())?;
+> +
+> +        let vmap = obj.vmap::<PAGE_SIZE>()?;
+> +
+> +        vmap.write8(0xDE, 0x0);
+> +        assert_eq!(vmap.read8(0x0), 0xDE);
+> +        vmap.write32(0xFEDCBA98, 0x20);
+> +
+> +        assert_eq!(vmap.read32(0x20), 0xFEDCBA98);
+> +
+> +        // Ensure the ordering in memory is correct
+> +        let offsets = (0x20..0x23).into_iter();
 
-Reviewed-by: Liu Ying <victor.liu@nxp.com> # ite-it6263.c
+Hi Lyude, i've got a clippy error here that "into_iter()" is redundant
+because it converts a Range<usize> into a Range<usize>.
 
--- 
-Regards,
-Liu Ying
+> +        let expected = 0xFEDCBA98_u32.to_ne_bytes().into_iter();
+> +        for (offset, expected) in offsets.zip(expected) {
+> +            assert_eq!(vmap.read8(offset), expected);
+> +        }
+> +
+> +        Ok(())
+> +    }
+> +}
+> -- 
+> 2.54.0
+> 
