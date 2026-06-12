@@ -4,166 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCF3CCD98CF
-	for <nouveau@archiver.kernel.org>; Fri, 12 Jun 2026 19:02:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3F56CD98CF
+	for <nouveau@archiver.kernel.org>; Fri, 12 Jun 2026 19:45:10 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0A48010EB21;
-	Fri, 12 Jun 2026 19:02:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3906110F67C;
+	Fri, 12 Jun 2026 19:45:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="z3RDyBfM";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gkkYCuZM";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 5B66B46ABD;
-	Fri, 12 Jun 2026 18:48:16 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1781290096;
- b=od1WJBSQvjML0L2jxXh2mRvpNfVa+NX15wEGLCC2x9Hd/m5RT3yzluy/fAK4Y+MGASOLB
- eu0Oz7+ltNf1y6BS8Y4unoJDVqVr/qVyD2A2O+k4c9tZjf1mcCPCyfXiWjpe+jXadlU2vmO
- BTZpBCobafCVCBbP6dtCDCXqHrUqEEhNqstfh//ON6GIwSCCkEG9s2IqPUdMu3bOkgH0elg
- FWyR58ZgEG3bbbTZ7ECkDrlh0BlVnPipsCRLjK5fFXcaLCFXoH9g/ZUX8JWL5Oo7K2wledh
- L4InLt3PckHL/+K/vx5SKD7tEoyw/Hl5xdkB6zTVwRkNXSIsNR9T9rak69TA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1781290096; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 7991846AC1;
+	Fri, 12 Jun 2026 19:31:07 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1781292667;
+ b=sE6JD7I8ha1JpSJtHmrezrQL/RStwgEgvMsHYG/wykTdx3XNy6k0O+ZJHtiWsRGO+W3Pe
+ TcjH6M/Rp11GqTuLrQ27qhorWGh8U8ZMgCKnFct4oP6yLt+T38Ki7MEbaM8NZAu+DT6wiQV
+ U6AEhBpmR/sxD5x2vohumvdjmyYR+26Jw8eAsa4ShIqFqOw76Kr6nQaOLl6yoSNRLg0qiqn
+ IjUi0riGpwfx1gEwcKXeWBi8SQHwqhWJm50Bjp9AmFP9J+zr5B7VWmMrz1+nqr83J3R+Xn0
+ xQCPh7nkbrgEjpPQW+pxxYsC5+63cL4RT85uLK8KJqThZZ3xGNZnHaZBDlyg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1781292667; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=wcn3UYHRGu4nlSzcnBGx2fAF5QPrS5x4bKyVjaflA1I=;
- b=S3n6F6JScHzgP4jimcBB8wvkqK6KARwxkwqCEoArcj4FdzwDN8cRBS6W4LpDGqkf1v0ge
- +kyx+xdi26bLImsP9ZPIdV9zERYQ0IsrSicz5au8yCQb/sM+H8m/XgoyCKi2aJopgWGRExd
- GQ5gCrbusFjCwp1UkBTM5UwcZPC9PkIjTHIrz9VBGO57TJIYj5tbczcb1ti0l5kVxxtsXBE
- CS54Eof6YJFD7ihYT+LsVlaTAbcR2BKG3FSgad68aXzEP4bVS1y3FsVO2zhPYp/tcwP6cpd
- HZ8D8BXNz4m1tzSgtymyLxFD86MK3vPoYbZJh9qGR5b/b0lV5sTdCP8tKppw==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=garyguo.net
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ bh=7b8BfvuRiy4Pcy82h5os3g4dxiw9VsvNdGsH4ELAsj4=;
+ b=SYalv//buFJ5Zu33UmH3St7XI9gysE0PqLw8hXWWw69f77ubzGTR8FMVGlwqJfntxdddA
+ pHi6bsghjpyQb53n7Adf/s98mEJQSe2I7L2YsWZap5kOH4X7YFSy/l7tHPjn2EQUc3585Cb
+ L/ulBKe7jSBNt0ynCgtGbEYed4+I/Q1xuDwn1EoQO33CoH0BrsLYJ/UhW8kvmJSbjMYB0xr
+ 6OOkoPMNEb+29HjBFv477+MxCkQ5IaCfo2j/u7QqTa1U9V7xVDA7G4g81gIKm7U5d4tU8jQ
+ yuU8kpMb6BSno99yIQ4ypXKzoQtrGDbW5dKXvQ3ycyR7055cyPtUczkQ44iA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 925EB46812
-	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 18:48:12 +0000 (UTC)
-Received: from CWXP265CU008.outbound.protection.outlook.com
- (mail-ukwestazon11020088.outbound.protection.outlook.com [52.101.195.88])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id DB5C510E309;
-	Fri, 12 Jun 2026 19:02:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JVjDnzWnqF0BQcrpnNF5Ljz7XJKThfiH1SoWtCz8Gyh3YUTT8kD+YHlC6PL+wCFdbu85rtiGd9G6CUpGJh03rtnTckhl1CxkO4byo81qZyEOiEBsmvKgJMO71U6YvYxCxCI1lG47H1sycM6ww4quJO67B0r30d9rkr3IZtVewVSJeWYHun5TcOQz6UD1QAm/dz9Zr9Nt9d6M9Yzfo1yt0mu5/uyk4itJ30itkD9ethRe1ex//jdqu6VhY01MLmWk2lwI9WXXVPy90TIFe9H33FyI+Nk/6xqY41DgV1Hi+iTH8DbzifXAA0wUoSjLoPi/0x54cFMylnSbeoFOlmJ1HA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wcn3UYHRGu4nlSzcnBGx2fAF5QPrS5x4bKyVjaflA1I=;
- b=lOieEOrg7jRh0fkezqetriHufIqcxN/yfdlSmMuGmNhH2h+ievwHFPZTOJJt7WMuA/Rlf4OiR5Ec2Vq1D9ow65YxdPYfLlORasqW3xZGi8+xWlTtyTtLEojD6CItkZtou6DnVTKW+1XsTfzqDRl+2Cfhh4lRm4OqR1iuoc0duOfyjlwZXcX06hxaO8Gmb+l57FXMz2Pp6m7z75nNM7NpshELimo04S1Pc0kk9NbUhnvBLFLU7QD9e3fB0hsEoT1ERPZwRNdGL4n49Du9MLL6WpKs4Gmo4tSOE7QwUc2duCGtCaHKvu1ryPiQccHVmcRw+rxlAbpGujCCdzDeLa7hLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wcn3UYHRGu4nlSzcnBGx2fAF5QPrS5x4bKyVjaflA1I=;
- b=z3RDyBfMFo4d7XaSItzyddi99VSNTrw7KNTDSDPKTehdeei/Sa7/rC4QudNahVJTA1lr371ZOOhpHoDRylICETFbtcK8UrZ3r9MsGjVNYGDjGd37Ur3SKgFPO52QIgvPMjNVgn0yICvmxzDjx/ZDSEelFkYip4m8Ty48ze4lWkI=
-Received: from CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:27c::13)
- by LO2P265MB2832.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:178::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.15; Fri, 12 Jun
- 2026 19:02:11 +0000
-Received: from CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
- ([fe80::6c9e:93c8:10db:e995]) by CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
- ([fe80::6c9e:93c8:10db:e995%6]) with mapi id 15.21.0113.011; Fri, 12 Jun 2026
- 19:02:11 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 12 Jun 2026 20:02:10 +0100
-Message-Id: <DJ7AXOH0W92V.1L1869KO4C1H9@garyguo.net>
-Subject: Re: [PATCH v20 3/4] rust: faux: Allow retrieving a bound Device
-From: "Gary Guo" <gary@garyguo.net>
-To: "Lyude Paul" <lyude@redhat.com>, <dri-devel@lists.freedesktop.org>,
- <rust-for-linux@vger.kernel.org>, <nouveau@lists.freedesktop.org>
-X-Mailer: aerc 0.21.0
-References: <20260610162433.923550-1-lyude@redhat.com>
- <20260610162433.923550-4-lyude@redhat.com>
-In-Reply-To: <20260610162433.923550-4-lyude@redhat.com>
-X-ClientProxiedBy: LO4P123CA0272.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:195::7) To CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:400:27c::13)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 02235460F9
+	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 19:31:05 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4D15A10EB38
+	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 19:45:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1781293506;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=7b8BfvuRiy4Pcy82h5os3g4dxiw9VsvNdGsH4ELAsj4=;
+	b=gkkYCuZM9hPu6K9gBUpj5qiu23Ud3ktRC828mG1Vk9UVlWidFWb2k+Dr/8cJcIuYkPk7IY
+	51YNiyRK/PHbqn626gLesh2YnuRKCex2jzklIL4RByOUOmdJ6FqZ3zcZjSVFYdBbI9Myel
+	RTCCAs+oq5wziaHZrRk6jpWSfVDPODA=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-644-192hq6shMfulbFCjN5AYqw-1; Fri,
+ 12 Jun 2026 15:45:00 -0400
+X-MC-Unique: 192hq6shMfulbFCjN5AYqw-1
+X-Mimecast-MFC-AGG-ID: 192hq6shMfulbFCjN5AYqw_1781293496
+Received: from mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.95])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 857911805C29;
+	Fri, 12 Jun 2026 19:44:55 +0000 (UTC)
+Received: from GoldenWind.redhat.com (unknown [10.22.80.21])
+	by mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id D41B1404;
+	Fri, 12 Jun 2026 19:44:51 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org,
+	rust-for-linux@vger.kernel.org,
+	nouveau@lists.freedesktop.org
+Subject: [PATCH v21 0/4] Rust bindings for gem shmem
+Date: Fri, 12 Jun 2026 15:43:32 -0400
+Message-ID: <20260612194436.585385-1-lyude@redhat.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CW1P265MB8877:EE_|LO2P265MB2832:EE_
-X-MS-Office365-Filtering-Correlation-Id: 80dd0634-cffd-42a8-4c9f-08dec8b51b92
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|10070799003|23010399003|7416014|376014|366016|18002099003|22082099003|4143699003|6133799003|56012099006;
-X-Microsoft-Antispam-Message-Info: 
-	R4PRSHqsaMe93FQDj/h3mGT6Uy/O85IwDJWokijxQSuoBC/WjU6x2+ffBHkTByDKD0ctIGE9NVxBeNoiQBJsJ/UhTw5qaASWN8KAkXAOGTvAusvh2tx/l7CN+mGr3OHFHp3FWf9l7qRhm1fJ/ekVGyMvYAvfrbg9l9wDC4/uJvy5KYnX3pZZM1RGJXonvlvZlfWOew1mD++fUEtkUuEAZEgoADWpRDxdNzT6m26awk8Z0JEFK+buU20ojKsOhNiwQZsuYyJSabGRn+ZOOMuOV/KIdBazQyL6zHI38UJJfuij6vQtYWwyEDpDgq9E/zY9xwJjrML2GAugQhrozBdcw1Nt4ExvuptQDILxzSQNX73UtrjY0G3TaRx+SYWtF9pKViinGRHB7PK+ey0DETtEQaH50Ij4yNxC4DcOrL55xJI3dby6rr9Tk4TV7iwYHaTCoDjJmtwhF9eCVjVJH+QoGKSmPzxHCta9xkqJe0fksw0UKjqgqSaQdj+1Tbl/9RYP8Dq7gmSljUIVH3QKm9TFdLTTKJ+e40JwKHs6mOYAQZsw+3HS3b4x84NtUxG6uM1Rak7IH08sMt87uxGyV62Dgs6yF70QoJZlvtRu0cwuXbPCO6Q03vn8ylsOl2JRrPAPR3jbrlpNNXeGY2rFJwMWuqrQWI6R7wHCmiUoYPcBLR9ZymcOpwc8KlIrAxUp8hEN
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(23010399003)(7416014)(376014)(366016)(18002099003)(22082099003)(4143699003)(6133799003)(56012099006);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?MHAyMUh3OXNHaCtTdGNFS0NkcEw3SS9mYmRjampXY3pxd1JETDJSYkpGRkwv?=
- =?utf-8?B?VVIzQm5zWGYxT1VTVmIyUlduaHQ2dXdqS1RHYkdwYkRGN00vdFBrd3VQbXpT?=
- =?utf-8?B?NkVCUnloeFBiZGtNK0ZpUEMxNmYwNFdxelg2dllUcFpjcnBWbExaSFhXSG9X?=
- =?utf-8?B?eHJTRFhQMm9YMVUwcmZLVUZPY0cxcDA2a0lRSVhNem1ydVJMWTR4VXVWWTVH?=
- =?utf-8?B?QWE2WTNYK3czdm94RDVFekxnNDBtaDlJanByOGNnWVVqQi9lVFcreXYybFpm?=
- =?utf-8?B?aUlRQUI5aDUwajJPWlYvNUgwS0FNeTE4YnFhVzlLbUhBUGx4MkxaSFk3bkFo?=
- =?utf-8?B?eGdjSzk3Tmo5aWVGSlZDdlUrclY4V2JkcUVJQmN3aGFwaEJ1eGlnVkcyTG5L?=
- =?utf-8?B?SkhnbGN1dUd6cEpLSVMrSW5NTXphTHkyMDZLMld4ZjY5elhaTllvTjZwaWRj?=
- =?utf-8?B?MElKQzRaQ1JjN1FCVWlZTzdLRmY1aHI5dVVKNklFTHp4c0tTUlRjNmtuMVdQ?=
- =?utf-8?B?NHVCaG50R3NyT09KNVl4RDJDZE5sRitVS3ZQbmVrMnY3R0ZSVTVmV09kK3d6?=
- =?utf-8?B?cWlVMC9qNTVsQ0NDY09EYUkyMzRhUmFXNSt2aHgzQXMybndWbWR6ajk0elY2?=
- =?utf-8?B?SS8rc0FYN245cExoVFFsUEZiaHN5b1pBR05mQ01iSUNRWDJneTYydStLSWwz?=
- =?utf-8?B?SktoeWV3NHdYeXJrWW1mcTBlVXczYWthd3RCeUpjbjROSXFRSlBqeFh1eDZQ?=
- =?utf-8?B?bGlIanAwdGdxK0JqZmx1dWRyNUdaNXBEWEc1L0h0MjhBOVpVNEZBcTJVSTBs?=
- =?utf-8?B?aUxjajE2L3BoTEVIVnJjK2p3YlVseENUdzAvRGxwYUk5WlNiY3JnMy9rT2Fp?=
- =?utf-8?B?RExoLzE4SzdyaGxZTGtsOTNkMWZ1cFNNVWcvdktKa3Z2OE81T0NDN2Izdm1P?=
- =?utf-8?B?UnBHdUk3dksrSlJuNEMzbVJaTzVDTWxCZjQ5SHBGNFlvTDVOM2l0TXZRT3pi?=
- =?utf-8?B?U05mUmVQOStab0FoNkxLRzdyYWtNVVMraE5BenhkRXRsZGVMLzJxMWdUYWF6?=
- =?utf-8?B?dURVeXovMVpmckxBUUJaRXBGdWtodVYvRU9SL1BxVGZIKzhDUkptMk9qNjY1?=
- =?utf-8?B?VG1rMGpQYXE5b0NXSkFmMHFVb3o0RjVQa29pM0p1eHBEYmdKNkRFTURKRlhF?=
- =?utf-8?B?UVFqcWt4TTlHbHAvYm54Z2V1K0o4QXRxclhRQTR1OWVzc1NsNFZYOC9tMEh5?=
- =?utf-8?B?L0RNTEMzNUlOUFNBTmR6RkhENmI3QndzSTYrOTdjbHRhdnVQeTZtTU01VXpo?=
- =?utf-8?B?T24zdkNJR2ptS1JyYjJKVnNzNS92Njk0Sm1qZHAybHJOQndKZ3ZKa2Q0L21W?=
- =?utf-8?B?WER3WXhlSWk1UG1hSEVnRUJEdHFhb3NoODhOV3VzUVZNdWlFNmVsbENXZUk4?=
- =?utf-8?B?NU5hNUorN05teHZidTZ5WG95V2wzOTNNQ3lGTzRyemFkdURuTkQ0NWVMSG42?=
- =?utf-8?B?eE5JeVJEQzBQRUc0QVg0NmhBak5iVnpheVRKeDNZZlZ5UU1La254V2grQmZM?=
- =?utf-8?B?RWRuMUh6YmVGUHArUE8wOXRmb2U3NWhFVWNNeE43SW1xM2RRNGhIait5VDlM?=
- =?utf-8?B?WHNOY0l5NXRscE8rR3MvYnVwanNzQWJjQmZpRzE1dzJhZ0tpN0lFbGIvK2Rq?=
- =?utf-8?B?NnVxT2czZjJiNS83UGlRQ05sUGVyVzhpNFVYbEF6VS8zbnJpL0MwV3BnQnVT?=
- =?utf-8?B?d2JqVjc1S0VpVXNsdThDZHZRT0NpblJtZTdXb3dubHdTWDFCNHZmQ2k0TXMv?=
- =?utf-8?B?V1NsdXk5UE52bm1uZWdUUUliNVFGaXVVUEZWblNoWHdiMzU4cUZuOXBmalZw?=
- =?utf-8?B?b2YvTDRWRXFET3J0Yjd5Wm1kcFpoZlphM3JvaFkxZTFCVURpZFNRekkzbS9t?=
- =?utf-8?B?ZnhkM1FzcXlwdUYyVFhsMC9mN1VjZGlPVlBFcXNES21mSmdWVmdlaHA0UjNv?=
- =?utf-8?B?Wi9oM1hkdWxoVTlnNXJkRHRvQ3dlMTgwSUJ5dWtMYlZiNnJGdUF4Q0xnOEdm?=
- =?utf-8?B?NGFSVzdqcUFCYjF3dzFEMXpsOG9YcFRPVUg3YkQ3OE9heUVlckdSamJHcmUr?=
- =?utf-8?B?d3FKNmVYTmcxb29YVG1xeGdKaTZwQ3cxNDA5Uy9udmV4V1pldnN3RkJ5M0xD?=
- =?utf-8?B?YURnS2pLZ1lZeWVqMUEvaWgxdWdUZW5NSmZzcU1TMktSbzVaQmN1U1EwMm1x?=
- =?utf-8?B?Qjg4c1c3dEtZYkpMTDFQdUk0dlYweGhBWWFBZXdZaEhEN1pjTnZPVzVJeHNG?=
- =?utf-8?B?MW4zWUtSMTZYZ294STdFT3lmRWRqRHE5aFJkRERxRUhnbk9kVUI3dz09?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 80dd0634-cffd-42a8-4c9f-08dec8b51b92
-X-MS-Exchange-CrossTenant-AuthSource: CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 19:02:11.1092
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- gek+W2Q864mccp/niugAYqaP6ha03ewIQCyKfpAsG7IwyAbBoFzQOdt/RL6LPXP+QVX0/BaiVErIxAbC4RVPHw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO2P265MB2832
-Message-ID-Hash: GLF7DFXJUSTTSBA64TVCLKFVV4VN7XAQ
-X-Message-ID-Hash: GLF7DFXJUSTTSBA64TVCLKFVV4VN7XAQ
-X-MailFrom: gary@garyguo.net
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Scanned-By: MIMEDefang 3.6 on 10.30.177.95
+X-Mimecast-MFC-PROC-ID: nqDX1N3z798f14QIcSlXHQoqC3XNxPfW7QOWKtZncPQ_1781293496
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+content-type: text/plain; charset="US-ASCII"; x-default=true
+Message-ID-Hash: NLJ5HYRPVVWRFWU4VG643DJO7A64LQD6
+X-Message-ID-Hash: NLJ5HYRPVVWRFWU4VG643DJO7A64LQD6
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
+ loop; banned-address
 CC: Alexandre Courbot <acourbot@nvidia.com>, Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  driver-core@lists.linux.dev, Miguel Ojeda <ojeda@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
@@ -179,9 +117,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GLF7DFXJUSTTSBA64TVCLKFVV4VN7XAQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NLJ5HYRPVVWRFWU4VG643DJO7A64LQD6/>
 Archived-At: 
- <https://lore.freedesktop.org/DJ7AXOH0W92V.1L1869KO4C1H9@garyguo.net/>
+ <https://lore.freedesktop.org/20260612194436.585385-1-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -191,82 +129,49 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed Jun 10, 2026 at 5:21 PM BST, Lyude Paul wrote:
-> When writing up some rust code that used faux devices for unit testing, I
-> noticed that we never actually added the Bound device context to
-> faux::Registration's AsRef<device::Device> implementation. This being sai=
-d:
-> the Registration object itself is proof that a driver is bound to the
-> device - so this should be safe.
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
->
-> ---
-> V18:
-> - Add notes from Danilo to safety comment.
->
->  rust/kernel/faux.rs | 16 +++++++++++-----
->  1 file changed, 11 insertions(+), 5 deletions(-)
->
-> diff --git a/rust/kernel/faux.rs b/rust/kernel/faux.rs
-> index 43b4974f48cd2..20ab638885354 100644
-> --- a/rust/kernel/faux.rs
-> +++ b/rust/kernel/faux.rs
-> @@ -25,7 +25,8 @@
->  ///
->  /// # Invariants
->  ///
-> -/// `self.0` always holds a valid pointer to an initialized and register=
-ed [`struct faux_device`].
-> +/// - `self.0` always holds a valid pointer to an initialized and regist=
-ered [`struct faux_device`].
-> +/// - This object is proof that the object described by this `Registrati=
-on` is bound to a device.
+Most of this patch series has already been pushed upstream, this is just
+the second half of the patch series that has not been pushed yet + some
+additional changes which were required to implement changes requested by
+the mailing list. This patch series is originally from Asahi, previously
+posted by Daniel Almeida.
 
-Sashiko mentioned that this added invariant is not justified in `// INVARIA=
-NT:`
-comments. However, I think instead of adding additional justifcation there,=
- the
-safety comment below is sufficient and this doesn't need to be additional
-invariant.
+The previous version of the patch series can be found here:
 
-Just dropping this hunk should be okay I think.
+	https://patchwork.freedesktop.org/series/164580/
 
->  ///
->  /// [`struct faux_device`]: srctree/include/linux/device/faux.h
->  pub struct Registration(NonNull<bindings::faux_device>);
-> @@ -59,10 +60,15 @@ fn as_raw(&self) -> *mut bindings::faux_device {
->      }
->  }
-> =20
-> -impl AsRef<device::Device> for Registration {
-> -    fn as_ref(&self) -> &device::Device {
-> -        // SAFETY: The underlying `device` in `faux_device` is guarantee=
-d by the C API to be
-> -        // a valid initialized `device`.
-> +impl AsRef<device::Device<device::Bound>> for Registration {
-> +    fn as_ref(&self) -> &device::Device<device::Bound> {
-> +        // SAFETY:
-> +        // - The underlying `device` in `faux_device` is guaranteed by t=
-he C API to be a valid
-> +        //   initialized `device`.
-> +        // - faux_match() always returns 1, and probe runs synchronously=
- (PROBE_FORCE_SYNCHRONOUS).
+Branch with patches applied available here:
 
-Please quote all code with backticks.
+	https://gitlab.freedesktop.org/lyudess/linux/-/commits/rust/gem-shmem
 
-Best,
-Gary
+This patch series applies on top of drm-rust-next
 
-> +        // - suppress_bind_attrs =3D true on faux_driver prevents usersp=
-ace-triggered unbind via sysfs
-> +        // - mem::forget(Registration) is not a problem; if the Registra=
-tion is leaked, the faux
-> +        //   device stays bound forever.
->          unsafe { device::Device::from_raw(addr_of_mut!((*self.as_raw()).=
-dev)) }
->      }
->  }
+Patch-series wide changes since V15:
+* Fix some major rebasing errors I somehow didn't notice :(
+* Drop the dependency on LazyInit, use the trick that Alice suggested
+  instead.
+* Fix dependency ordering so that Tyr can get the vmap stuff first
+  without the other bits.
+Patch-series wide changes since V16:
+* Fix ordering one more time (SetOnce::reset() doesn't need to come
+  before adding vmap functions)
+* Rebase against the latest DeviceContext changes from me that got
+  pushed.
+Patch-series wide changes since V20:
+* Lots of Sashiko fixes, excluding the comments that I couldn't prove
+  weren't just bogus.
 
+Lyude Paul (4):
+  rust: drm: gem: shmem: Add DmaResvGuard helper
+  rust: drm: gem: shmem: Add vmap functions
+  rust: faux: Allow retrieving a bound Device
+  rust: drm: gem: Introduce shmem::Object::sg_table()
+
+ rust/kernel/drm/gem/shmem.rs | 547 ++++++++++++++++++++++++++++++++++-
+ rust/kernel/faux.rs          |  18 +-
+ 2 files changed, 549 insertions(+), 16 deletions(-)
+
+
+base-commit: 550dc7536644db2d67c6f8cf525bba682fba08d9
+-- 
+2.54.0
 
