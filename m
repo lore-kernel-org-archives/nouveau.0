@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3F56CD98CF
-	for <nouveau@archiver.kernel.org>; Fri, 12 Jun 2026 19:45:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF31CCD98CF
+	for <nouveau@archiver.kernel.org>; Fri, 12 Jun 2026 19:45:14 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3906110F67C;
-	Fri, 12 Jun 2026 19:45:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8AECE10F690;
+	Fri, 12 Jun 2026 19:45:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gkkYCuZM";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Y6RUs8AE";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7991846AC1;
-	Fri, 12 Jun 2026 19:31:07 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id CEA3346AC2;
+	Fri, 12 Jun 2026 19:31:11 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1781292667;
- b=sE6JD7I8ha1JpSJtHmrezrQL/RStwgEgvMsHYG/wykTdx3XNy6k0O+ZJHtiWsRGO+W3Pe
- TcjH6M/Rp11GqTuLrQ27qhorWGh8U8ZMgCKnFct4oP6yLt+T38Ki7MEbaM8NZAu+DT6wiQV
- U6AEhBpmR/sxD5x2vohumvdjmyYR+26Jw8eAsa4ShIqFqOw76Kr6nQaOLl6yoSNRLg0qiqn
- IjUi0riGpwfx1gEwcKXeWBi8SQHwqhWJm50Bjp9AmFP9J+zr5B7VWmMrz1+nqr83J3R+Xn0
- xQCPh7nkbrgEjpPQW+pxxYsC5+63cL4RT85uLK8KJqThZZ3xGNZnHaZBDlyg==
+ s=20240201; t=1781292671;
+ b=N3ilkAkAGKi/LVtG7EnZZ/J/6fscI55Y3siNRTbtZ56ZN8Qf1uXJEehOhrypTbj4OpC0X
+ by/6RdoYshujDUmmD7IqZzBYhWvRmqep4wMdO6z/xMUbXVZ4Phvsi0x6LMQYDlgOv4yPdSz
+ D+5gVxEBSV3lR/5iOWtm8znW5cD82MI43nJj33UOHd6MDgc5aMiEejQ9kdrjYN8xmzxNol4
+ 1d0sd6OTD9OW+RrKY5xcst5gSdakilOt9b9LbMu8DTEW+BK3LPs+HgqIMmH0cwXzCGD/ix1
+ ng+FADfotlmK1P8hVHHmW6gfNe/pp+/QasyCAAtJ9SB+YonHbb9sLwPTk4qA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1781292667; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1781292671; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=7b8BfvuRiy4Pcy82h5os3g4dxiw9VsvNdGsH4ELAsj4=;
- b=SYalv//buFJ5Zu33UmH3St7XI9gysE0PqLw8hXWWw69f77ubzGTR8FMVGlwqJfntxdddA
- pHi6bsghjpyQb53n7Adf/s98mEJQSe2I7L2YsWZap5kOH4X7YFSy/l7tHPjn2EQUc3585Cb
- L/ulBKe7jSBNt0ynCgtGbEYed4+I/Q1xuDwn1EoQO33CoH0BrsLYJ/UhW8kvmJSbjMYB0xr
- 6OOkoPMNEb+29HjBFv477+MxCkQ5IaCfo2j/u7QqTa1U9V7xVDA7G4g81gIKm7U5d4tU8jQ
- yuU8kpMb6BSno99yIQ4ypXKzoQtrGDbW5dKXvQ3ycyR7055cyPtUczkQ44iA==
+ bh=44xdXI8SKKWzRa/eVahYHkFDmVs61VmyxUZfkAjitOE=;
+ b=mVvzFp+li0Ix6DUGAmDTH8VKkjw1nVMJTQeIADDzMzESJ/6LR55ADvKRV5QsCGJtOI2bM
+ vYhQYZ3E5KB58QBC9uQOY8X4Lg1XFkHwrkPxV6NXdt3bVz8eLuZF1iQNNob9Cp/vC9f9iXq
+ LamsVwLRJRNr/VnHqgRm+WmNg+Mv8XyVlIviE7EKhniqUKt1xzVtq0e/K5H5btTfZRWAfPZ
+ jSywOgb8MktMhL4dzGDV3Kq6kJQIAPxgyNhLUaxWwr1rVf2fuDwpJ9RAvASzMtRm5REe5Mh
+ E4wx49FmCAino+cWwxXleZbVF2zs3bQp9XE/rt5VlfizOYn4wBCp/LQolZlA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,56 +46,59 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 02235460F9
-	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 19:31:05 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1C2A0460F9
+	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 19:31:08 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4D15A10EB38
-	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 19:45:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 77A8610F68F
+	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 19:45:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1781293506;
+	s=mimecast20190719; t=1781293509;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=7b8BfvuRiy4Pcy82h5os3g4dxiw9VsvNdGsH4ELAsj4=;
-	b=gkkYCuZM9hPu6K9gBUpj5qiu23Ud3ktRC828mG1Vk9UVlWidFWb2k+Dr/8cJcIuYkPk7IY
-	51YNiyRK/PHbqn626gLesh2YnuRKCex2jzklIL4RByOUOmdJ6FqZ3zcZjSVFYdBbI9Myel
-	RTCCAs+oq5wziaHZrRk6jpWSfVDPODA=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=44xdXI8SKKWzRa/eVahYHkFDmVs61VmyxUZfkAjitOE=;
+	b=Y6RUs8AECBoY5g8xOElrPQ1ev/tgLCxHteghtYqR7eXCcl+d/S+84cS0LBgpdLJS9TAA3B
+	qwdIy9RPXCEfWzT9eFTdzfXh9ZSf1RFrV7bqNzlGvfnvUWixrEJ7xi/sR98BcNDOWCUt2u
+	A9B9HTvKD8ryROvokvVP7/x4NvHWLkk=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-644-192hq6shMfulbFCjN5AYqw-1; Fri,
- 12 Jun 2026 15:45:00 -0400
-X-MC-Unique: 192hq6shMfulbFCjN5AYqw-1
-X-Mimecast-MFC-AGG-ID: 192hq6shMfulbFCjN5AYqw_1781293496
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-194-NqhQHcMjMTiRR_MmED_QZg-1; Fri,
+ 12 Jun 2026 15:45:03 -0400
+X-MC-Unique: NqhQHcMjMTiRR_MmED_QZg-1
+X-Mimecast-MFC-AGG-ID: NqhQHcMjMTiRR_MmED_QZg_1781293500
 Received: from mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.95])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 857911805C29;
-	Fri, 12 Jun 2026 19:44:55 +0000 (UTC)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id A87351956062;
+	Fri, 12 Jun 2026 19:44:59 +0000 (UTC)
 Received: from GoldenWind.redhat.com (unknown [10.22.80.21])
 	by mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id D41B1404;
-	Fri, 12 Jun 2026 19:44:51 +0000 (UTC)
+ id E3C7F1686;
+	Fri, 12 Jun 2026 19:44:55 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org,
 	rust-for-linux@vger.kernel.org,
 	nouveau@lists.freedesktop.org
-Subject: [PATCH v21 0/4] Rust bindings for gem shmem
-Date: Fri, 12 Jun 2026 15:43:32 -0400
-Message-ID: <20260612194436.585385-1-lyude@redhat.com>
+Subject: [PATCH v21 1/4] rust: drm: gem: shmem: Add DmaResvGuard helper
+Date: Fri, 12 Jun 2026 15:43:33 -0400
+Message-ID: <20260612194436.585385-2-lyude@redhat.com>
+In-Reply-To: <20260612194436.585385-1-lyude@redhat.com>
+References: <20260612194436.585385-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.6 on 10.30.177.95
-X-Mimecast-MFC-PROC-ID: nqDX1N3z798f14QIcSlXHQoqC3XNxPfW7QOWKtZncPQ_1781293496
+X-Mimecast-MFC-PROC-ID: Hp2PtwqJSnSXXA8Mof-7O6s01Y3AIj6A_aWgTj4QhmI_1781293500
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: NLJ5HYRPVVWRFWU4VG643DJO7A64LQD6
-X-Message-ID-Hash: NLJ5HYRPVVWRFWU4VG643DJO7A64LQD6
+Message-ID-Hash: 6KKSVARLQMNIXOVSAFOBT7H6IH6AOD46
+X-Message-ID-Hash: 6KKSVARLQMNIXOVSAFOBT7H6IH6AOD46
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -117,9 +120,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NLJ5HYRPVVWRFWU4VG643DJO7A64LQD6/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6KKSVARLQMNIXOVSAFOBT7H6IH6AOD46/>
 Archived-At: 
- <https://lore.freedesktop.org/20260612194436.585385-1-lyude@redhat.com/>
+ <https://lore.freedesktop.org/20260612194436.585385-2-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -129,49 +132,87 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Most of this patch series has already been pushed upstream, this is just
-the second half of the patch series that has not been pushed yet + some
-additional changes which were required to implement changes requested by
-the mailing list. This patch series is originally from Asahi, previously
-posted by Daniel Almeida.
+Just a temporary holdover to make locking/unlocking the dma_resv lock much
+easier.
 
-The previous version of the patch series can be found here:
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Co-authored-by: Alexandre Courbot <acourbot@nvidia.com>
+Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+Acked-by: Danilo Krummrich <dakr@kernel.org>
 
-	https://patchwork.freedesktop.org/series/164580/
+---
+V17:
+* Fix format of commit message title
+V19:
+* Add NotThreadSafe to DmaResvGuard
+V20:
+* s/inline(always)/inline/
 
-Branch with patches applied available here:
+ rust/kernel/drm/gem/shmem.rs | 39 ++++++++++++++++++++++++++++++++++--
+ 1 file changed, 37 insertions(+), 2 deletions(-)
 
-	https://gitlab.freedesktop.org/lyudess/linux/-/commits/rust/gem-shmem
-
-This patch series applies on top of drm-rust-next
-
-Patch-series wide changes since V15:
-* Fix some major rebasing errors I somehow didn't notice :(
-* Drop the dependency on LazyInit, use the trick that Alice suggested
-  instead.
-* Fix dependency ordering so that Tyr can get the vmap stuff first
-  without the other bits.
-Patch-series wide changes since V16:
-* Fix ordering one more time (SetOnce::reset() doesn't need to come
-  before adding vmap functions)
-* Rebase against the latest DeviceContext changes from me that got
-  pushed.
-Patch-series wide changes since V20:
-* Lots of Sashiko fixes, excluding the comments that I couldn't prove
-  weren't just bogus.
-
-Lyude Paul (4):
-  rust: drm: gem: shmem: Add DmaResvGuard helper
-  rust: drm: gem: shmem: Add vmap functions
-  rust: faux: Allow retrieving a bound Device
-  rust: drm: gem: Introduce shmem::Object::sg_table()
-
- rust/kernel/drm/gem/shmem.rs | 547 ++++++++++++++++++++++++++++++++++-
- rust/kernel/faux.rs          |  18 +-
- 2 files changed, 549 insertions(+), 16 deletions(-)
-
-
-base-commit: 550dc7536644db2d67c6f8cf525bba682fba08d9
+diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
+index 084b798ce795b..090c5d869fdb7 100644
+--- a/rust/kernel/drm/gem/shmem.rs
++++ b/rust/kernel/drm/gem/shmem.rs
+@@ -22,7 +22,10 @@
+     error::to_result,
+     prelude::*,
+     sync::aref::ARef,
+-    types::Opaque, //
++    types::{
++        NotThreadSafe,
++        Opaque, //
++    },
+ };
+ use core::{
+     marker::PhantomData,
+@@ -30,7 +33,10 @@
+         Deref,
+         DerefMut, //
+     },
+-    ptr::NonNull, //
++    ptr::{
++        self,
++        NonNull, //
++    },
+ };
+ use gem::{
+     BaseObjectPrivate,
+@@ -244,3 +250,32 @@ impl<T: DriverObject, C: DeviceContext> driver::AllocImpl for Object<T, C> {
+         dumb_map_offset: None,
+     };
+ }
++
++/// Private helper-type for holding the `dma_resv` object for a GEM shmem object.
++///
++/// When this is dropped, the `dma_resv` lock is dropped as well.
++///
++// TODO: This should be replace with a WwMutex equivalent once we have such bindings in the kernel.
++struct DmaResvGuard<'a, T: DriverObject, C: DeviceContext = Registered>(
++    &'a Object<T, C>,
++    NotThreadSafe,
++);
++
++impl<'a, T: DriverObject, C: DeviceContext> DmaResvGuard<'a, T, C> {
++    #[inline]
++    #[expect(unused)]
++    fn new(obj: &'a Object<T, C>) -> Self {
++        // SAFETY: This lock is initialized throughout the lifetime of `object`.
++        unsafe { bindings::dma_resv_lock(obj.raw_dma_resv(), ptr::null_mut()) };
++
++        Self(obj, NotThreadSafe)
++    }
++}
++
++impl<'a, T: DriverObject, C: DeviceContext> Drop for DmaResvGuard<'a, T, C> {
++    #[inline]
++    fn drop(&mut self) {
++        // SAFETY: We are releasing the lock grabbed during the creation of this object.
++        unsafe { bindings::dma_resv_unlock(self.0.raw_dma_resv()) };
++    }
++}
 -- 
 2.54.0
 
