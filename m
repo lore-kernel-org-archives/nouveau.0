@@ -4,134 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD1F2CD98D2
-	for <nouveau@archiver.kernel.org>; Fri, 12 Jun 2026 18:39:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65541CD98CF
+	for <nouveau@archiver.kernel.org>; Fri, 12 Jun 2026 18:42:03 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B21C310F653;
-	Fri, 12 Jun 2026 18:39:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3962D10F659;
+	Fri, 12 Jun 2026 18:42:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gJqWBQgO";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="HrHXfTMR";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 1F13046AB6;
-	Fri, 12 Jun 2026 18:25:36 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1781288735;
- b=jMvKZkbTonaGPZ8aZVBWRtj51OXqXi0Do60e7xMQGfvNbSK+D6+CjRMRMoZfVJCsq9FFx
- OsYjhblGbBk2Zpip5X5dPNQ0glrNdUUhQEOct9dMTeXaVvwhPmuc73vKjCh/fpkUfqBIuBO
- vrbWBGPrHCjj5oyx/Ic0OY4fXQNQ0LXkFKrl+N1E3aKnGz+RL/zGDhWDqleLLeEU2l8YkO3
- MlY/D01Z9jX05RiCPeiYyB2vreCoaDZamomfvbBpDWQNqJ0cOp0wKJkd8+aCbbaSmi4wriK
- bPY26mqmD7/iE8P2sNnaVD5NAuFbHo4pmGcpCzHzKDbctwQUJYxWkonhrvaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1781288735; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 8AD3446AB9;
+	Fri, 12 Jun 2026 18:28:00 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1781288880;
+ b=D+IDrrwiaxe6Ov21cOQqH0ueFNk5FUF6gl4fKyIz4WqgnQPB8bhX6iXWupioOQAMaMvoj
+ 7KBNe3KFWalOt/bnJnuZrPiasFLH3OSqxjiMp5bfQ+o4LTRDIwFuk9MKitGYD3zdDMCiIXU
+ jQzUfPsY6DdD87HNy35/TdyJIHa01lCsqCSvt1ICPCC4G0RKn6hKw4rDXdW2/srgcnchCrX
+ t0kdVmkVqKoNJsWCnVoVg+TcixfB8fMUBf3Ju5lEqoA6Z1onTve+EV4NwlJb9zP6TJKo9vz
+ NHTfrsyEWXaO1qcNJo4t7Cdj2WkcPiW/L4fVS7yAoH5xoZlzN43+RThsBAeg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1781288880; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=9hjvIQdDCosfn7FQViIiZN3fmJqSK0XtflTNuA4kTRI=;
- b=JKo6sG1GjEr2iD/ORqFH6kykGfGCT1d+KnZ9luF/jiyL+rPQNy4w7fo8FkR3hG3Fw1zse
- IY6SetsoDbBM4wsU9zumOSTHYoYDuADC2/QVSN+v6GceJPogT80zUxBoEdtSOjn4UdUv8iL
- F7ha8DKU0e/rAEVtzYOUA+MVvj1gp9TPwwGEUhitvK3/I430C8WP8UydRGmw8mlLhI5QiI5
- 4HH34uIE+GFFIv4IO3RbbUvud4KD5669Z57EMqgSz+Ul0hDgFl76sqkCN5Tm7JlQI6SmKjX
- kcBEAQu8MI9idEpXYBnxssHmJJ8ztZPZ3WaHiIyO9eIDVV3dkgBv7762kERw==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+ bh=vU2Fth49zfwW8O+jvi6kKRYh+COxCP1+tEcO4OhODgY=;
+ b=wMxf+1+AuBGmmhdxViumj8iJcgI856h1JlbJbaX/BHY8dH+ZItXI13dqHMPQwqZ2tKOzv
+ yEjJJ75JLwihhGfkwPQNvzrMWDn2xx77+vSfhlBWtTfMbPt+knA7f3VODO4WIEoy7ZtfQJa
+ pPL8JAw9VE7Xu1SNKjTuPv5cNwkNNJNd+x9w1EfcXn4oOoXNE64xPF7Msa+oIbP99DK9+pq
+ Kwap/cw06Y9VO9gUc85BOZzEAjC7ecxkDjg/bjsor+hpUzyfBCItVdAn7pc0N3wr9wIuIop
+ XSl6ktgrDTP82RqLLpt7IgTK66pMKxKT8Jo7mS9f8EpRk3p9Z/7RHi/lfZIA==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=garyguo.net;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=garyguo.net
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id CCF0C460F9
-	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 18:25:32 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1A8FA10F64C
-	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 18:39:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1781289574;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9hjvIQdDCosfn7FQViIiZN3fmJqSK0XtflTNuA4kTRI=;
-	b=gJqWBQgO1fNUmJ5E/GXTE7jw1xKsYo76pvJRmcu8r0dBrVhWfyN94F2gZLnzjHI8ItueSm
-	iMLSwKXoGt8Ef9nWBOlDbuCtNVhSw852gM6koRIL0dH2xdE4w0Pq9gcxpWnZIHfq+UqEua
-	2Ot7szzdZEGCr0eTMOmUSYQjpUMwqic=
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-482-9yy0jWRJMnuiIGiLTzx1sQ-1; Fri, 12 Jun 2026 14:39:32 -0400
-X-MC-Unique: 9yy0jWRJMnuiIGiLTzx1sQ-1
-X-Mimecast-MFC-AGG-ID: 9yy0jWRJMnuiIGiLTzx1sQ_1781289572
-Received: by mail-qk1-f200.google.com with SMTP id
- af79cd13be357-915767b341eso119468685a.3
-        for <nouveau@lists.freedesktop.org>;
- Fri, 12 Jun 2026 11:39:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781289572; x=1781894372;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9hjvIQdDCosfn7FQViIiZN3fmJqSK0XtflTNuA4kTRI=;
-        b=Slimoef0sZrLFIIS7XGWOSOTS2j4p8hUWU8rWX7ZidnCUs1sT63vQyn8BsN4jXtPS7
-         7WDWyHv9NRNByhcbJN5I2CwbJ34q27eQarusSG9tKDFBSsbeAxLe37tgPhUsCgb/6JE4
-         cDqLT1V3H+Fh/UMcMW5OkCoMdYiWWXDWKpMvM9a4FTmnlrkKeKNQ8i/InqUJYv6ZX1Ig
-         GhBEMZnX5pnCskoFcc+3GfhtPCcDqmWHglOXRvB4mXQxDOTohqEvH5k4wvy/CfyYQtw9
-         D602y3PT1xtfNfEjModmE8ORrTpd4Zj69+nebW6cAZ7NFnUX5t9aN1BTNdXVbHiyGQ7K
-         C46A==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+7wGTtB7h2Z5z7QRKukTsH2sbcc6diPu+sPjOgXMYrYxDZzrhFsnxQZqxSyd56Hn8pyRUlPyDc@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzpYtnpeQMBM6vM5AlEIovgWiG6dsV7zZIMEY3SgqFpvT2XHWVQ
-	C1o/2NyZYLKYrR/EzVtTNl08UdnNAvklgQkPjo/duZqg70PsBLMV5S419T2aivtuQEmjCy2F9pS
-	+ZfyOZXA1KQThZvrzshpfWk0DckHhnTC6asxPDQuiTnuggSK02Jp2N4tp3pqUKZLKkXQ=
-X-Gm-Gg: Acq92OFK9R5rOXpA9cbnQtHKkLxViU2QHuzv/w6KiwkBHVs4ps/3Rs+kNDsSF9GcL32
-	/vivSCvT1wCbtnAVAPYri9YoGNVcLFTdFCE6yQHnB80JJCu1TeKnGPHqMhZlem48XHWfsCYGXmv
-	XpD5K4017Xfnv+NAfYQeRdIieQDiWPsfZP7gmV2P0j+7UqjZjLsr62X5fs4eDiYPwNk/XeCtWq8
-	BDRRuS7Xj9cQyBib+fPe4Jx31ir184NGAD9KDvx+g7hBxNErwAh6/acdM4aWD12eY7a25PM3wrP
-	qKsQqc1C62ucsjZjK44Izcu1lQ8n9qM/N29en0Y/tmyF3oo7Zuano+ux6U5iCHfHtjSMhhjUEmm
-	trveLP0ijE3jd9I+5Kg==
-X-Received: by 2002:a05:620a:8012:b0:914:c032:5870 with SMTP id
- af79cd13be357-9161bd604f9mr617289085a.38.1781289571989;
-        Fri, 12 Jun 2026 11:39:31 -0700 (PDT)
-X-Received: by 2002:a05:620a:8012:b0:914:c032:5870 with SMTP id
- af79cd13be357-9161bd604f9mr617282985a.38.1781289571521;
-        Fri, 12 Jun 2026 11:39:31 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93])
-        by smtp.gmail.com with ESMTPSA id
- af79cd13be357-9161a03d6fcsm272275585a.35.2026.06.12.11.39.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jun 2026 11:39:30 -0700 (PDT)
-Message-ID: <da0dd5cf287f8739d6b099646b3fb98153670f3b.camel@redhat.com>
-Subject: Re: [Linaro-mm-sig] Re: [PATCH v20 2/4] rust: drm: gem: shmem: Add
- vmap functions
-From: lyude@redhat.com
-To: Deborah Brouwer <deborah.brouwer@collabora.com>
-Date: Fri, 12 Jun 2026 14:39:29 -0400
-In-Reply-To: <airp4AHxiJKWn5tr@um790>
-References: <20260610162433.923550-1-lyude@redhat.com>
-	 <20260610162433.923550-3-lyude@redhat.com> <airp4AHxiJKWn5tr@um790>
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
-MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: sGwqWhqZw2edXVh8g5eTtPcFQt7-NFeISQbL5HtQWEk_1781289572
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6683846A7C
+	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 18:27:58 +0000 (UTC)
+Received: from CWXP265CU010.outbound.protection.outlook.com
+ (mail-ukwestazon11022081.outbound.protection.outlook.com [52.101.101.81])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB2E10F652;
+	Fri, 12 Jun 2026 18:42:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GsPP9qZAXHtdaFYVoT8Qs/2qJznO7FVlidxjzI3uIIbqxlxgrcsWftA6S6lM/Uf9dIeBH1f0gT++ivR+jjeU6V2SC6IW7MJOE6sCIlMPqHDz90h0Go/wjlEskXX7GTIOdcS76GOgZKU2ozkBV+pATs3RjRAbmlLcxZzd4QyL9SQIrnD0OzRY/6j+mQLE6riEcYS0kIhdDCJoGlJ3vo/5/9g9HIjw/fHWa37M9cRO1BWgg9e5GamGguwuvzv3U/UcAYTO7jeF4G0dn1BgOT273vQqyQOP9PP6OxA19hGf3wBGJud40XlgbyWxtcMq/oikQb9pG1Eyb7N7RstTtEdPUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vU2Fth49zfwW8O+jvi6kKRYh+COxCP1+tEcO4OhODgY=;
+ b=pEzfuQEoP1EbqFSvEtLy8I5yndjcfEi3sAoTSrvdUOAWWipi26LbE0B5dqWLVuUP6voEN00WUVbCV4bc2YcDDcJqc0fnA7sjUoOekYbqT4Mgo+6nfGJ2oNbeunJHsxmX0gy2AoSKg3G6AatiH5u6qKOdYarTJysN/ADwSyX7SJ5pneVtOq0t0HNuSZ/eqd3dNbo37kn146Axi0jSgASMLQ1OhWSWqq7tK6iljByJh52FvKqXOqlTlEcrYKOxd5lF8z1hc+zI3rwwFnhiXCdB8LZ1tU5djwmwi4G+iwyayBQT4bxOLzrT+d9PoAoVf7YCa5eFZGVMOEOgDK7COwPR+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vU2Fth49zfwW8O+jvi6kKRYh+COxCP1+tEcO4OhODgY=;
+ b=HrHXfTMRvL0hEnm3L1i6+A4c3ebRt4iynq1r5pIshkxwkQW3ywXHirAH8i4/zzyys7u6zP8Mb5vfJ4DfA0z7tFtxRyaH2gInKfAs++bCXy8TnsWSh34TuiLdKH58i+j5bzH0WgKu8p5phrXDQ0DrTO6KJCoRineXvdiVsIuvO7o=
+Received: from CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:27c::13)
+ by LO0P265MB2841.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:180::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.14; Fri, 12 Jun
+ 2026 18:41:56 +0000
+Received: from CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::6c9e:93c8:10db:e995]) by CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::6c9e:93c8:10db:e995%6]) with mapi id 15.21.0113.011; Fri, 12 Jun 2026
+ 18:41:56 +0000
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: AUCXI22H4K6BCLWHC7VW4FLY455MCEBW
-X-Message-ID-Hash: AUCXI22H4K6BCLWHC7VW4FLY455MCEBW
-X-MailFrom: lyude@redhat.com
-X-Mailman-Rule-Hits: member-moderation
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 12 Jun 2026 19:41:55 +0100
+Message-Id: <DJ7AI6E1YIF1.34AQ9WVWKR0IG@garyguo.net>
+Subject: Re: [PATCH v20 1/4] rust: drm: gem: shmem: Add DmaResvGuard helper
+From: "Gary Guo" <gary@garyguo.net>
+To: "Lyude Paul" <lyude@redhat.com>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>, <nouveau@lists.freedesktop.org>
+X-Mailer: aerc 0.21.0
+References: <20260610162433.923550-1-lyude@redhat.com>
+ <20260610162433.923550-2-lyude@redhat.com>
+In-Reply-To: <20260610162433.923550-2-lyude@redhat.com>
+X-ClientProxiedBy: LO4P123CA0528.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:2c5::10) To CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:400:27c::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CW1P265MB8877:EE_|LO0P265MB2841:EE_
+X-MS-Office365-Filtering-Correlation-Id: fe0ba968-a043-4887-b52e-08dec8b24783
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|1800799024|23010399003|10070799003|376014|7416014|366016|18002099003|22082099003|4143699003|56012099006;
+X-Microsoft-Antispam-Message-Info: 
+	dvHYgYQj1cwThgyvymKotGpqbY28k8iWSfn2UP3Kkjbx1kXddyCdjzrM6A0RtfCOzkiOtdOer1Qh2vXR5R+r60Elj+/bstQYrpjOPjnsXWlVb3KY2TJ0Mtk0RM3la+6+D4TySDA1EArvtD8Y0GWYH8ONsnOCkFF+g0Fvxx8aj8jJ3Bi3JTLZdTuDMVxWdi9ZaEAFiqkYSLTQkJ85mUwdAcrPV3nQ8XrqEzM5a5sRNziCICGL81tK4EZgwhAxUAovXnCTlB6BF1TjRxAxJ1DIPe5EoyKi+h6MA51CqfqE2dRtHkCQO7tivPRjHCPuZmKjKCyLb9EWW99YRSdzACrNEN+BgFU6LVJ/YfBdy16pPYjGlGTlNajh6e0+mb5LpLIakhYySSqKoGlXySAk+kX5BY+Gib6TQ+CIqAWO9H7N0DQL96+3BgwBcY6Bg/UmPsd8ccB1SI3lr02mS08dIE3R6m8303ojlVuKtqlj3QGA9DjvombNjTHfuMJbCKyZr6wpnewBkVeMTJsgwGY9AwwTW4hh0ecR8MV6QDTA0+4eGSuEwJM992hhUIOblh/UygViJDZkMv3hgTQFPzhHl+fc8AdjgbeEyR0m+ZAXMzEQrjcn1coHY5ETY+0C1SBSMzd3Ri5beOz4XyUtmF9D3XT97pWxZulQ326z1SsGmp4kiYKuzpjgZqa43uGjVRpVdNMB
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(23010399003)(10070799003)(376014)(7416014)(366016)(18002099003)(22082099003)(4143699003)(56012099006);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?NjdsdDJNK1dnL3poTmQ5TzRwU0hGUHljRFhHSW9WZlJ0SS9WWnA5d0ZqQ0dl?=
+ =?utf-8?B?azNoS1NQOVFZTzZndDhWUXQ5OEQzQjZKZk0vMWc3UVF6R0hEdnVkMnlvNlU0?=
+ =?utf-8?B?cUdTMHhyMlBTemw3RU45ZkhsVThENUlUWXpXNmpYZ3hRWno1dGRKa3FqU2Q1?=
+ =?utf-8?B?UzZvMzgxTmh6VEUxUlcrcXlmbkJPRW91S0Q4RUdDb2NQbWU2bjNvR0JqTjkw?=
+ =?utf-8?B?bUJJcWFtRDF1clJhbHlON0k4NEVSMlpxZkwrc2J6cFA1a1lRUzM3bnlScXlX?=
+ =?utf-8?B?T0RZYzJ1M0xEcnlsMFJjSmlvVlV1T1RRV2VOR21jZVhoRkY5S3VJenoyRkNQ?=
+ =?utf-8?B?eXVXbG1sSEpmdDB6SzVRYzJnRG5PZncxNzVEMzFTMldpUHNaZ00yS1pINDdH?=
+ =?utf-8?B?RG1BaktUcERQNkh4elU3ZlpFQTd1RW15SGxEZFdONVlSeUVCZnV0OWV2U2xh?=
+ =?utf-8?B?ZGFPSmxXaEcvbGV3d3F4Y2U3Vmh1aUtpRVo1RnkxTndkN0Z3Y1Z3N2lRZVVn?=
+ =?utf-8?B?UCtLRFZlS2VnQXNhMkxYdDA1Skk3eExmcnc3VjZXU2R3dTNYVk9uS0s3MVE4?=
+ =?utf-8?B?OEM1SnBPdFhJcVJ2ZnJocDVHYXZUSkRZZkFpMWNZTmdsL2svUlFvdkU1NFFx?=
+ =?utf-8?B?TDhWeTNHYWptVm5XTTlyR1I3ZGlSc1BvbE9mb0s3RVhNVHZzVmpKWjRYd1pF?=
+ =?utf-8?B?a1ZhOCtoeE9tSHhNTU96bFl5MklWWmIyaVlVaWljR0FERTBwbm9ueWg2dGJt?=
+ =?utf-8?B?RVFYRVp6OFNCT2pPb2QzckZtOXhLdmV6Vi8xSzN1V21qSGlWclp2bWpXK0Jj?=
+ =?utf-8?B?T2JGSG0rTUM1RU4zRWZVL21URDhXQXh2akMvWENiS0ZFZWFna2gyUW1Qd1Ny?=
+ =?utf-8?B?TUdtYkxVVGt1ZUFCUkJHZUpMTDFTcm4vN1F0YmprNDhlODJ0SkZUYS9JaG56?=
+ =?utf-8?B?c3JMVlFyNjNTcnBheVpxWVVMdEc2OVl6WE5MeXJTZ1hES2FMRzVEMVRLUTBi?=
+ =?utf-8?B?U2w0ZWhEMERtQUR5NWdZcFdCR2hGVmtwL0hheFp5dzFpZnBXUFFGZVN4cVMx?=
+ =?utf-8?B?WXVMbjVURThSakc3Y3lZTkxWVDY3OUN6cENIWE5idEQvWnlNQVV0QTdNR3pM?=
+ =?utf-8?B?cDJoOVBmbmR1WmJsWDlVbi9zdVRRcnZZbjd1alVvUlRvMjB0T09kWjFFa0lo?=
+ =?utf-8?B?MDBmeSszYmx1ckNVcG9OZ25pR2ZBOG16RkZ6TmpqbkpQRmp1NVJNYkFMVzBl?=
+ =?utf-8?B?ZEllMmFmUEpVSmtDK01kVWJDbmlWbWc2RW9sN21SbEZqOExWNFA0UWJVcEUw?=
+ =?utf-8?B?L3gyNzV2SmFZTWV5Y3U0K2NxZmF2aG1ZQ0JudW92TUhhaDFnc1NaVzVMZmZW?=
+ =?utf-8?B?SHVQbitCcTEwejB6aUdVLzhWU1VGTUVLelhZbmZrbWN1dUFsSENmM1NCS3RF?=
+ =?utf-8?B?bkt0ejYyTFdsMWdwQ2YzRzhSOUlrSmxGdmU0ZjRPWFU2d1NPZkdndkhuYTkv?=
+ =?utf-8?B?Sm52bENtYnZBL0k5QWMzeFJ1UFUyQUZmdHIwZEFPUDg4U0doc3gyUk14Z2Yx?=
+ =?utf-8?B?Z3VWaFM4TGdORURheEFNQndnWVU4aW8vazUrek93Vm5rci8vUGZQMjBKRFUx?=
+ =?utf-8?B?V2xNRG9CaDVwTnA3YWppdzVRK1VYVStlR0MxaWk1K3VPOEtrUW9UZVpEN2tx?=
+ =?utf-8?B?S0wrZHl1NTBhcHg3a3d6bWVLVG9CNGpvZXF5ZXIxMDhvZHpnbjQ0c3UwRTly?=
+ =?utf-8?B?TVZZMTFIL2h1T25DS2ExZUl4V1EyNXljQ0M1Wmt0cW80TWJFaTNWOVEzNVZw?=
+ =?utf-8?B?SUdxL2d2QUR4YStrODZ0N3crbFFUZXlia0FvRWRoR2MvRGZsQVRWVFRSbHhK?=
+ =?utf-8?B?TXlRSkJyMkxaRDJIRmx5OGVEQ2l0SDZvT2FjWm1YNGcvWWJDUnd5NzFzNC9I?=
+ =?utf-8?B?c05tQ2todmJkMitEdkVibmRGWFdFRVpRSWt6Y3lVWnZzTHRKQkMrWjBoSnVl?=
+ =?utf-8?B?VnJvVmlmT2U2RmxjOFdQQjE1dWhEbWdZaGtVMjV2YlR0TDczUjd5T25PNXZi?=
+ =?utf-8?B?WWdlWllkTzR2NDVXbkE5MzR5elJodmpCWHdOZjk1TWt0cW5GMTJUTi9tVnFy?=
+ =?utf-8?B?eWtyd3NLcFQwcUt0bDRTUHhsbTRmL0xLR0lIZWNSbHg1aWd2UDBmcktxejNS?=
+ =?utf-8?B?aUpCa2dSTVBHMnExczF5azAvcDJubFByZnBJMXJQVVV1T05VdFlEb1dNVDUx?=
+ =?utf-8?B?VlptdXBieTJBV1RIMWw0eEszVTFVekxLaUJMdWEwRTBZdExIa1dzMXNRcm5z?=
+ =?utf-8?B?ZHpCcWdBRUh0VWFqVXRIWmJyaGp0dnhaNGxIQlJ5emNvbEZySEhxdz09?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ fe0ba968-a043-4887-b52e-08dec8b24783
+X-MS-Exchange-CrossTenant-AuthSource: CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 18:41:56.3980
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ oFgo5OWH//L/jCCR6twz7aAgicNKXSZ9VhKIE5bwnQk05gkBlLKbYpfZo2bzDMxf9RArzxXyI0tdufzNN7dBpw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO0P265MB2841
+Message-ID-Hash: WEOKBDGZNUDGTB3OBJ2ZV67NMAAWAONO
+X-Message-ID-Hash: WEOKBDGZNUDGTB3OBJ2ZV67NMAAWAONO
+X-MailFrom: gary@garyguo.net
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
-CC: dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, Alexandre Courbot <acourbot@nvidia.com>,
- Gary Guo <gary@garyguo.net>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ loop; banned-address; member-moderation
+CC: Alexandre Courbot <acourbot@nvidia.com>, Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  driver-core@lists.linux.dev, Miguel Ojeda <ojeda@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
@@ -147,9 +179,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AUCXI22H4K6BCLWHC7VW4FLY455MCEBW/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WEOKBDGZNUDGTB3OBJ2ZV67NMAAWAONO/>
 Archived-At: 
- <https://lore.freedesktop.org/da0dd5cf287f8739d6b099646b3fb98153670f3b.camel@redhat.com/>
+ <https://lore.freedesktop.org/DJ7AI6E1YIF1.34AQ9WVWKR0IG@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -159,15 +191,25 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu, 2026-06-11 at 10:01 -0700, Deborah Brouwer wrote:
+On Wed Jun 10, 2026 at 5:21 PM BST, Lyude Paul wrote:
+> Just a temporary holdover to make locking/unlocking the dma_resv lock muc=
+h
+> easier.
 >=20
-> Hi Lyude, i've got a clippy error here that "into_iter()" is
-> redundant
-> because it converts a Range<usize> into a Range<usize>.
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Co-authored-by: Alexandre Courbot <acourbot@nvidia.com>
+> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
 
-Yep, that's completely correct! It looks like I was running my kunit
-tests without WERROR and CLIPPY by mistake, which would explain how I
-missed this :).
+Reviewed-by: Gary Guo <gary@garyguo.net>
 
-Will fix in the next respin in just a moment
+> ---
+> V17:
+> * Fix format of commit message title
+> V19:
+> * Add NotThreadSafe to DmaResvGuard
+> V20:
+> * s/inline(always)/inline/
+>=20
+>  rust/kernel/drm/gem/shmem.rs | 39 ++++++++++++++++++++++++++++++++++--
+>  1 file changed, 37 insertions(+), 2 deletions(-)
 
