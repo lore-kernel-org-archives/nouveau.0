@@ -4,101 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84C8DCD98CC
-	for <nouveau@archiver.kernel.org>; Fri, 12 Jun 2026 02:13:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A79C6CD98D6
+	for <nouveau@archiver.kernel.org>; Fri, 12 Jun 2026 16:54:22 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CE28A10E90E;
-	Fri, 12 Jun 2026 02:13:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4AB7510EAED;
+	Fri, 12 Jun 2026 16:54:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="FSroCaAL";
+	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B2DE346A77;
-	Fri, 12 Jun 2026 01:59:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id CEAE046AA0;
+	Fri, 12 Jun 2026 16:40:19 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1781229558;
- b=th6GJbbRCan3mFdb1WCatWwvHxWdcyOpcVTe+t+VMU9DRfo7lihBwdPO0uvPpgVUj6p9H
- cAl921XstqS266WxsPwRqjaHIpj8nYrK2yS86G1aP6DX37d8fR6rrg5sTve4LfEzMMQfEL4
- NRQs/8IjlWLb1dir2FaHG7pZu2t2BbVc3nNrLPBwju3pL8Ou7GGM3Y2md48iyLfdQgp3/Dl
- THlcHFDPPJVZNKCfFIti71LnRjUdhIZU6aVoUQ2kNVPsI3g4Fj1kQ3G03g3pZ6WMLi70ulM
- +nusT5oZNSp+xZeE1a5zZFATC6/4I6rDEGzknDA9rSp/g4SFxIzS6u+xUHfw==
+ s=20240201; t=1781282419;
+ b=dk6o4hMm508XKO48Eo2IIUK5fDCArGqSzCH9n6RYOX0M8RurAKDmznJL/5KJ95IQVp4oX
+ KpIinIgwIMsm4zbwtJVs+d0Ne2TnXQ2RP1TBJvqjOuGv4AcZv+JCvIEPfaqRQdkUqk7joKp
+ axVGoYLWQcGSw23L4xPG+53LRBOcnc8DcjKxw0aVLoIOS+Amr6fHCGdZDo0maEZgGZ1Ljdv
+ RrnxZn36y7EApImZyosEwP52tEw6kpEDPrBFSh7/D27dUH1KPz84g+ITprX/lLMydeBwx1z
+ PrCcXAWC8h2vXUniNazq/WH/Qu13evftdfWhIpvL3cKlMc1XLQlN8GGulVcw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1781229558; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1781282419; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=KkRVhKNtrjEqS2SR7t8aMkJSCBwJJBEO/NC5vx6Sf6s=;
- b=Efz5YphCb63AjhhDw6iuyGT+L9cSqtxjFMHfHmj+RStB1eb7psshytDDiZKUAXRTAkZ9W
- +BGPOZMYXl2BAs9Kfsx+lMAM0FiA8XAD1z5TRvY1wf/rrb/LC2DE8PqmKMjuXt9BVVrWiz3
- RYxgFhusrxntIQE3g15JFFbS5s5v3oYtQnkPzRYVBuS49NSL5avkHGolikbZFgir+Y+QZdA
- CcTG19R2fc0nUaQbjnDQKWKVrmGuAhbX04uYvOhOJyfpZIY+ISJbWG+h5LkWgpjDzHDsOgM
- glnTLCJQf2Ud0R33bT+pk97srpM+TRG9s2lFNZPpLo65v+G8Zfrxy3kndCeA==
-ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
+ bh=Tebs/xgqnTOnOgdsbaKqWAXW45iBX4qAzlBi8lJe+NA=;
+ b=fkE6shVn+DUJT5vhcYZc3CikEHVIbJE7d95HLBlitBbpKy3xvDk6JcgFWx3PRIqpW0OKI
+ VepMa2UjCs3mcbpmzcRbB4AGAY+ALERlC44kL7q0HMevquIG+rjWEvof2UMwcOGeA5fmXY/
+ AVNhXjzN4CfVk7cVUnSIpP+GgwyYRqlkpZfwNi9ed1U5rzxiMonnGUceuVgs1XoNyskCNOs
+ 8lFYevuMHAGlNzMHaVuQXls8KWn22CPxkFyv/RkgzsJO7oGI/stbidmH8LagYLcmjNiKoLt
+ HE3GjO5ySEfaPeheiNKCuTmFEtcUzubnZGGwNRL3L2SWiwjrrbvwA5a1c0uA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=igalia.com;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail;
+  dmarc=pass (Used From Domain Record) header.from=igalia.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=igalia.com;
  arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=igalia.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 91264460F9
-	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 01:59:16 +0000 (UTC)
-X-Greylist: delayed 369 seconds by postgrey-1.36 at gabe;
- Fri, 12 Jun 2026 02:13:17 UTC
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [205.139.111.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 35F0810E8FF
-	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 02:13:17 +0000 (UTC)
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-618-_MzuU9R0OF6NQ44H7H7Otg-1; Thu,
- 11 Jun 2026 22:07:04 -0400
-X-MC-Unique: _MzuU9R0OF6NQ44H7H7Otg-1
-X-Mimecast-MFC-AGG-ID: _MzuU9R0OF6NQ44H7H7Otg_1781230024
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id DAD5119560AD;
-	Fri, 12 Jun 2026 02:07:03 +0000 (UTC)
-Received: from dreadlord.taild9177d.ts.net (unknown [10.67.32.94])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 5983530001A7;
-	Fri, 12 Jun 2026 02:07:00 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org,
-	nouveau@lists.freedesktop.org
-Subject: [PATCH] nouveau/gem: reserve the bo in the info ioctl around the vma
- lookup
-Date: Fri, 12 Jun 2026 12:06:58 +1000
-Message-ID: <20260612020658.3176270-1-airlied@gmail.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1552A46A7C
+	for <nouveau@lists.freedesktop.org>; Fri, 12 Jun 2026 16:40:16 +0000 (UTC)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6C2C110EAD1;
+	Fri, 12 Jun 2026 16:54:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=Tebs/xgqnTOnOgdsbaKqWAXW45iBX4qAzlBi8lJe+NA=; b=FSroCaALJBuMVi6mRFKsOtBDWf
+	Ef23eWXWA75WpHFrNgHBMwQ930rQba5Hj/M1rY1RyeJwl/3CWT7Y9THKt4gD59tBjIpMXZX+4Gkrv
+	8aUgM5yNI4lPQtEOp2gmUmvNOGRFT3jbOGU46jYmO4yvRdMaKqrpaK2hiqG4mzUHS/CW94zICygCY
+	XXugD2P2sXpcj246HilbjTf43wtN3wlRM44tcSr4YHkGf2Nr4/YY8sahbP3Cup+2UGDecHRBrbCZQ
+	CNwKLtlMZ43DP9oYYGD6ftOnTldvzThPuGa7n7tjzbodiEP7kjjRS3QDO4oO+3s8amgsBCUrPza1o
+	3WbkFB/Q==;
+Received: from [90.240.106.137] (helo=localhost)
+	by fanzine2.igalia.com with esmtpsa
+	(Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+	id 1wY593-00GhBq-FW; Fri, 12 Jun 2026 18:54:13 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/nouveau: Simplify nouveau_cli_work
+Date: Fri, 12 Jun 2026 17:54:09 +0100
+Message-ID: <20260612165409.54447-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: -Wf7twUvYwjDcNtsXnUHHo9vXRaitsBZcY42ozqYAEw_1781230024
-X-Mimecast-Originator: gmail.com
-Content-Transfer-Encoding: quoted-printable
-content-type: text/plain; charset=WINDOWS-1252; x-default=true
-Message-ID-Hash: SCKL3T4BFMOCZINYPR4SKQROMJKNXM7I
-X-Message-ID-Hash: SCKL3T4BFMOCZINYPR4SKQROMJKNXM7I
-X-MailFrom: airlied@gmail.com
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: NQ6E3KMCFMKTEJ5CIOB4PIHS3IUFVVZ4
+X-Message-ID-Hash: NQ6E3KMCFMKTEJ5CIOB4PIHS3IUFVVZ4
+X-MailFrom: tvrtko.ursulin@igalia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: dakr@kernel.org
+CC: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Philipp Stanner <phasta@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SCKL3T4BFMOCZINYPR4SKQROMJKNXM7I/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NQ6E3KMCFMKTEJ5CIOB4PIHS3IUFVVZ4/>
 Archived-At: 
- <https://lore.freedesktop.org/20260612020658.3176270-1-airlied@gmail.com/>
+ <https://lore.freedesktop.org/20260612165409.54447-1-tvrtko.ursulin@igalia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -108,48 +100,60 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+I don't claim this fixes anything but the code certainly was a bit
+roundabout and this at least cleans it up.
 
-In the non-uvmm path, there could be a race between the info lookup
-finding the vma, and the gem close path closing the vma leading
-to a use-after-free.
+The only semantic difference is releasing the fence reference after
+the work callback is called. Which kind of make sense anyway.
 
-Spotted with the help of Opus 4.6.
-
-Signed-off-by: Dave Airlie <airlied@redhat.com>
-Cc: stable@vger.kernel.org
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Philipp Stanner <phasta@kernel.org>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: nouveau@lists.freedesktop.org
 ---
- drivers/gpu/drm/nouveau/nouveau_gem.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 19 ++-----------------
+ 1 file changed, 2 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouvea=
-u/nouveau_gem.c
-index 20dba02d6175b..c5a24dff4b69b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -313,11 +313,20 @@ nouveau_gem_info(struct drm_file *file_priv, struct d=
-rm_gem_object *gem,
- =09rep->offset =3D nvbo->offset;
- =09if (vmm->vmm.object.oclass >=3D NVIF_CLASS_VMM_NV50 &&
- =09    !nouveau_cli_uvmm(cli)) {
-+=09=09int ret;
-+
-+=09=09ret =3D ttm_bo_reserve(&nvbo->bo, false, false, NULL);
-+=09=09if (ret)
-+=09=09=09return ret;
-+
- =09=09vma =3D nouveau_vma_find(nvbo, vmm);
--=09=09if (!vma)
-+=09=09if (!vma) {
-+=09=09=09ttm_bo_unreserve(&nvbo->bo);
- =09=09=09return -EINVAL;
-+=09=09}
-=20
- =09=09rep->offset =3D vma->addr;
-+=09=09ttm_bo_unreserve(&nvbo->bo);
- =09} else
- =09=09rep->offset =3D 0;
-=20
---=20
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 42a81166f3a9..7de174537fc7 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -153,22 +153,6 @@ nouveau_name(struct drm_device *dev)
+ 		return nouveau_platform_name(to_platform_device(dev->dev));
+ }
+ 
+-static inline bool
+-nouveau_cli_work_ready(struct dma_fence *fence)
+-{
+-	unsigned long flags;
+-	bool ret = true;
+-
+-	dma_fence_lock_irqsave(fence, flags);
+-	if (!dma_fence_is_signaled_locked(fence))
+-		ret = false;
+-	dma_fence_unlock_irqrestore(fence, flags);
+-
+-	if (ret == true)
+-		dma_fence_put(fence);
+-	return ret;
+-}
+-
+ static void
+ nouveau_cli_work(struct work_struct *w)
+ {
+@@ -176,9 +160,10 @@ nouveau_cli_work(struct work_struct *w)
+ 	struct nouveau_cli_work *work, *wtmp;
+ 	mutex_lock(&cli->lock);
+ 	list_for_each_entry_safe(work, wtmp, &cli->worker, head) {
+-		if (!work->fence || nouveau_cli_work_ready(work->fence)) {
++		if (!work->fence || dma_fence_is_signaled(work->fence)) {
+ 			list_del(&work->head);
+ 			work->func(work);
++			dma_fence_put(work->fence);
+ 		}
+ 	}
+ 	mutex_unlock(&cli->lock);
+-- 
 2.54.0
 
