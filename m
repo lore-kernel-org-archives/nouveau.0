@@ -4,168 +4,123 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4395CD98E6
-	for <nouveau@archiver.kernel.org>; Fri, 19 Jun 2026 07:24:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83965CD98F2
+	for <nouveau@archiver.kernel.org>; Fri, 19 Jun 2026 14:38:29 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 41F3E10F495;
-	Fri, 19 Jun 2026 07:24:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 594E010F644;
+	Fri, 19 Jun 2026 14:38:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qda6f7hy";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="nJvCA8Lw";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 20A6146BAC;
-	Fri, 19 Jun 2026 07:10:27 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1781853026;
- b=FeYBgYZRr0wQ6aAhaqGwd7ai27oiKvla5tLk4B+aEuRx/G43KbT1OrnIUSLy7wZn+7qxI
- SM67pQiD8jZ8ILyHtLDnPGYh3qf3WyhD+c+CIjrxthNGdT1oDyUOufyd6c785e0zOj8M8RB
- QHEV2rRr/XCiCtmJijJoKA9kc8Sv0DaaNDurNXTyC2oMZQaGUy1SYndipCzm4hwRPUUZvN/
- S32yKfKvXLQhjrI42D/knBDbINJyp7jMx41GLApgzBzjUXhXWfvVIWXqxKQPQYzrthak9uk
- RKyqRkB7Zyq0veFsnDOU6S9fiKwUWSJMSWDmAtnzvdnMyqoo1ElJXDd4enNw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1781853026; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 8CAD146BAD;
+	Fri, 19 Jun 2026 14:24:11 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1781879051;
+ b=v5qRw1WFoH72bycd4ojLWiiGK/zr5mDTIG6s8iBg9ASD3+4hx9LFS7g9U74gAvEkssgLu
+ AKSuAk5msJPhF6gRptO6bTxz3S+Ib26s0ca+EcMoy9XpvZSCB/jrK+Bt5nIkV+KoISYzeVW
+ Kat6WTIiQ/i7WjQmdxD2FmOHIF+U75tXM1rG1Bp8/ZWmwsuWWQGgyhqKumNY4Eusi6vlv+o
+ omxc4hz0wsp3LE2+wB5uWfhnJm0+ZSmdkAkhYi65eNFgDm76g0L3bOpnZl69HzBdSteYz/g
+ 7hYIV8PDBfoA4JE/EVyWSD5dV2LYPNOZyhq2vmzTwEcBlN8oQGK9WRMKGXkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1781879051; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=xHwzP0LO7XocUzk+cZaqlEoKqlwdFI8E9rNzFM4e/hA=;
- b=XS6d4T0mv2pS+dos3veDdgVakiuuJXFedN4PsnecrOekR7DHluGAD5THehsi4mMbbw45F
- WYzJEzY7zKDtxhKgW3+A+rDvG4VZvMqKs+8KVKfxnfWOfdEryYMdFyFCdBm8wPQ9ER8R4bJ
- PY+2uGlcSYNA1kOF0zPNqQFEND4nV+WG9FMuraRufN3Ol3XRmjt6sBv2c5tI0rUFNNMlJd/
- ud6uVGi/gIdNnwieXuD/HgRKJRcuoyO2OQTFl7N3sRzNPbUUVbMgrwTf1NjwuMTl+R1BXA9
- lDtcOthRUXl/JNFdMxFLHn7FrRD/Cuul6S8Nbv+NYViuxdif4l4+xayi1Ydg==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=amd.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=amd.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=amd.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=amd.com policy.dmarc=quarantine
+ bh=hFv3GlUYs5wNN+O537Q1dHtRqP7co1Grb9v+N2l5i1U=;
+ b=Ap7vQQSsqX0MzdBm+MVk+cY2p4nW71tt0OMRzIfEpDWaOzqRPD+mBlXdqhMzhWxMWG/Q3
+ n17vz2UvI9Y/GMY6vChTUaNunX8orjpk5uOaqAzaAurYLxfHIYJKPmFKA1hS1OZikaUKdgO
+ dzzjmAYb8hPWy/B+mZB/jlLDRFNoxLkJmHtL3+SA2oYmyrciw7RpHlM/cq037BzQAh4SdAV
+ FE2Bk5zyKKueNSAUjzbjpgLZqRT++a4HS5JaPkz8ipN6tWR4XrxtDPDtqKL0JHfRZtsKfxC
+ Q2TCkkgU6gi12a4Lb55oW2sVtqqLo5kbhYWx/XMNGICiOROMNNJ7aukt2how==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=ursulin.net;
+  arc=none (Message is not ARC signed);
+  dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=ursulin.net;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 72AC746410
-	for <nouveau@lists.freedesktop.org>; Fri, 19 Jun 2026 07:10:23 +0000 (UTC)
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012037.outbound.protection.outlook.com [40.107.209.37])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0E88F10E04A;
-	Fri, 19 Jun 2026 07:24:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=m8Eo20etClL19S8Pe6otdDqax9UkuRuW9l/FjGxBhk/JHuBgzJmMPF5KwXomeUXdoeT5BGbbDEVe1raUEuJtuPGf2s1TDr1sQEVNAD44YYi0yFO6ZWPQ5VHshe19+Lp9lLpLccEWRTTsUjokRIh2Ec4ZonC/xBPBJRqycGwvrNHQBflIXGA4znqIy9u/2lCLjYyaoZ8ubGlIlXoBRY99u0WjhdQ/otG6XHho+dGjOmCh40jAIhX+ZWQPAytlekOpi3ktSCnny+CSyrLjZWbyTy8bvKFhhdtfv5NaLwAC6lOxnkvcBAnjWQbZiyDnwARsYqgdtQelUZvHmqIK0mM7CA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xHwzP0LO7XocUzk+cZaqlEoKqlwdFI8E9rNzFM4e/hA=;
- b=eafFLhgTEtqploLeoFD6ymNGylEcjEopSFNQn/WFq9v14y/1lGamhz1LNE5sQFK0naaEp9bE5TkcWZkpl4SZVvPuoAPAd+mybTsbSNeyq2NzFs7UcyHLHralip39ghHpil8h+Stgdnq3PbwomEPZNJm+PXUPDzKoza6skGD0J96bquOBNPGq3lGGXJRde9XxvHVGBVkr87Rwp2ykR1UfW25DaJ5XztbTVXDINbUr+SA4g1K0QUpnMv/HoOPsSeWeZ2xbSoX2dXNvLbPQEk7ZT4L6siFepty+BRgTuGf+VWZZ61xTuq68GU816ZktcGQCxMkmj4C47cyYaHIOFnrtjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xHwzP0LO7XocUzk+cZaqlEoKqlwdFI8E9rNzFM4e/hA=;
- b=qda6f7hyzdY4rYcC1T2qjowekNroAaz+0E+f61BQJMEpYIrds8lBxAA85lQut2A783MXVNhj7WxXojyoIpMTp/vRFS5+7LtcC7jQGYkfxdpBOWpVQ6vhW1B0DomqLunRYm1jWM/gM+CHW3zu/wCH6Lz7b8bzrHetyf87QFyLdSM=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by DM6PR12MB4252.namprd12.prod.outlook.com (2603:10b6:5:211::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Fri, 19 Jun
- 2026 07:24:36 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0113.015; Fri, 19 Jun 2026
- 07:24:35 +0000
-Message-ID: <605fa2e8-1232-447c-83cc-9ca2dedec4d9@amd.com>
-Date: Fri, 19 Jun 2026 09:24:29 +0200
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3B13346B1A
+	for <nouveau@lists.freedesktop.org>; Thu, 18 Jun 2026 18:27:16 +0000 (UTC)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EB36010F3BA
+	for <nouveau@lists.freedesktop.org>; Thu, 18 Jun 2026 18:41:31 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-491609cdd8fso7589675e9.2
+        for <nouveau@lists.freedesktop.org>;
+ Thu, 18 Jun 2026 11:41:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ursulin.net; s=google; t=1781808090; x=1782412890;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hFv3GlUYs5wNN+O537Q1dHtRqP7co1Grb9v+N2l5i1U=;
+        b=nJvCA8LwULnFCPIMSmfuQ/dcmVk60Lq4tp1Z4O1Wkd57p76BCEb+SJbeoyfTjY3zwF
+         a3YKs2IYjSqdp69f72pbnpJRpnea6LrQbuiwnxifPNu5BT9o72FuuRZUCaahkfDdojr4
+         I6bY0UDiMDs0rZtwBq49Z9KfGzbG3PvEO/sQgDrOkVVMwPMrnBCjNuH7H1gUl1lASWOz
+         OD3M5UizDBtspnlNI/3zhuewXmRa6riJiAuPq3EWS3FaJsGlVr0gqjchsKg748vMi6z4
+         c5tOiiYKPFgkCuv1UDi8ZlGA3zJ4lECfHcjETiww6Q8O9Lt/A+LETA6aEi+w3ihC28On
+         tTDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781808090; x=1782412890;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hFv3GlUYs5wNN+O537Q1dHtRqP7co1Grb9v+N2l5i1U=;
+        b=WZgFtocgazauXF0nZ1Wyji/Hk9b8H+sPVk+zMWjca4lmkA7Lmoe8Hps5yQrpTgW3wN
+         DZi/D0aG1CU0R/slv7FuIcj0O7XPDH65HggXN7BfQ9KqubrUFGnIUUsjbVr9eSVKGTvt
+         tWlRHlNczzbYF5PVoIcF0ozTUoiE5BaqXsFCPNPvxdk4dKGOO4vv0sbdwF4C4Fe5MYlA
+         +uOjFP78oKTly5RVEv7K8aG2L2YB6Ar847SaXo2Z270NZkHyvu+eYGKBNjVZZosixNm8
+         R0c8W5eMaHa2sWAbeC4Gb72r3dEDj3rfZGdIx93D2tUYEIjnj78BuoJ/O40lkp+zqnkz
+         RydQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8WpLGIayKrW43poQ+nv8/AqjiWBq5n0bDTFsssXqso4VJhjUlkA58+kUljcZZiolsWXRc4fQfE@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxv0p7hBrLxCveuXPv9GsVBVH3blEI/w3FUm+R35IS/csPyG462
+	B53Z4kZY5+2NbdxC6xTcJUM7t6o7jrhxrsJ6RDqle4bgYDFK7dQDSzWyyhaBfQbkLdo=
+X-Gm-Gg: AfdE7cmiN/aWXFJfBEJQ8djDhWrviWZgy2USH+cF7uz2/OaVMXQ25yoOQC2RwIEDC28
+	6CADS4eE1clgiAbyNORueQ5tTDp26l+uVlN2fq4w/BbGtkpSsBLZRdzzFfqA3qp+4yA2y8LlFy5
+	TAkl2ef/YcbL8jOCR+/TRTuaKbV/KreMRgfWzIAFrh/iXtYCTmb3bGER1TaHPPSgBk/+YNHnLoW
+	XC5GhH6wi94i164liuLZV04tu91PQz2Ktt40i7rXzqqGB0eMivxLWXYsvKMgn/x5fnc7rnxEPS6
+	OhjEyDoV1hEJ/R3DdXrsgOLFd1s1vLryxuCs06fjUvgf7r1xG5Z2hqhnNS6RNIFc/FG9q4WZ+5R
+	OlQuuvkbL8Ys5vdhxXWgroQjy0J3x4EL9KhQiO/hKzINdDv8sUmGsmHdmLQfrTv4v94JbFLeQIE
+	/4tpi3po7dGM2l4/LINHllXjBVla/aqv6DEQ==
+X-Received: by 2002:a05:600c:1c1c:b0:492:1e36:552b with SMTP id
+ 5b1f17b1804b1-49240e7f307mr1905325e9.36.1781808089941;
+        Thu, 18 Jun 2026 11:41:29 -0700 (PDT)
+Received: from [172.16.30.123] ([37.209.163.134])
+        by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-4650b76e7c9sm865703f8f.21.2026.06.18.11.41.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Jun 2026 11:41:29 -0700 (PDT)
+Message-ID: <1544040a-578f-41b0-9660-5a6f470f031f@ursulin.net>
+Date: Thu, 18 Jun 2026 20:41:28 +0200
+MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] drm/ttm: rename ttm_place::fpfn/lpfn to param1/param2
-To: Tvrtko Ursulin <tursulin@ursulin.net>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 References: <20260618133908.2761908-1-Arunpravin.PaneerSelvam@amd.com>
- <1544040a-578f-41b0-9660-5a6f470f031f@ursulin.net>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <1544040a-578f-41b0-9660-5a6f470f031f@ursulin.net>
-Content-Type: text/plain; charset=UTF-8
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20260618133908.2761908-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR2P281CA0132.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9e::6) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DM6PR12MB4252:EE_
-X-MS-Office365-Filtering-Correlation-Id: 162c1bc3-5271-496a-0e56-08decdd3d0a5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|7416014|366016|376014|23010399003|1800799024|4143699003|56012099006|11063799006|3023799007|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 
-	uzIksCZE8g+V7qiFO3pmKMXgdwmrZmYtOWIUlbkHMBvueDuphlooNEcFVnG2L7NKeQpzIIsgHDuZzsPpZH6xrplB19W5KrrQYyZRTPJMo7Jd/2YNuXWw9NbqOsojBsYFxsTc93k8xWMopNbPatgclz0BFzuXrPymd9FeAA6lP5oQhsOY5MxCka57v1oD7V4SN8ZCI8Ojjep0y8mTIpyxUuiArHoefpc0yzv9IsFQoRFDsfklLtfwQI1+LbFmHw4Bf7h568pzV18XXXF6gRRJa2wPuZt9dMUHA4iIY14Vi4y59K21kXFTpvtg/61n+gkfdyIKzgQ9ZrKjUk3t6+mEfD695elYIiNOUQQxz0OTldhh+buXYz7MKpBGhaSA9rQd6cB0M7W/GfSLS77+n3mwiZzvf4ivak0HQOmAg868NDMJ9Umhb38mTZw0iOEOPErkozwlgqupo0+/VPCGKM4WKifjTxj0t8ZD2gYgLX2z86Hz0xNvk+S5kM9RXYiZ3PSPDhv26XGMd3zT862+ow4h1Srmt/mKgForNHg5bRgUm0bsIiXyo3WSt2xHzeAndX80VUXubIYjzK6tva32HX1+Dn1RG/YH27SxeUAx+WgNJO+UeyUufqpygdmdBBogKEsgj2L3lorlMuG9cfAMOJ+3nFw4z7OmLbkj5iKU9TuqBko=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB5685.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(23010399003)(1800799024)(4143699003)(56012099006)(11063799006)(3023799007)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?R0RJdVJhVnlDd1JzUW1mbG1WVW0wLzgxR3FIaDh3akw4elRrdFphM1ZoMVZa?=
- =?utf-8?B?Y3NDc0RaRjU1enNvQ1MwbE1hNnFySFZRTGloSlhuSmVLa0tUTjBPTkRsb1ZK?=
- =?utf-8?B?aCtUa0hLeHFTbkQxdVpOeVhzb1F0YldBalk4bnJha3FkVW5DTkR3T0w4bjUx?=
- =?utf-8?B?YkVyT3J4MnZKWW0zdUNVd1c3N2kzTUtPUm5zMTdOSzBSR2NraWtlT3Q3RXN5?=
- =?utf-8?B?R3hlMm5ramlnc2h4S2FhQTF3aHVlbDg0UkxrR3JwcDVmMk1qL09JRXlpL0hz?=
- =?utf-8?B?cXdwNmZBeEQ5TlZDV3dXZzBoMUxIUjBNYkcvbFJMT1cxaWd5SDdqRUZFN25q?=
- =?utf-8?B?QlZ3Q3VkQVhaR0RzV1huN2ZRNG5vYWE5Z1doQjkvTlhCek0xa1l2c2FnK0x5?=
- =?utf-8?B?cE9OdDE1cklrc2Y3eURIc0ROdHAxRG1LYVdBQnZLZnJ0WnJPVGh5ZTlONTUx?=
- =?utf-8?B?eGxVWlYvODRpQkwzUlk2cWZacVNNdFdaM1RXQ3ZuM1JRcnJ2MGlCM0dWc2lX?=
- =?utf-8?B?VG1kNHNZWGtQWFJMUWNpM0lPT2l4MG0rQVJqZzZLU0lIMEpuWmR6YWZMMnpu?=
- =?utf-8?B?aFh0VWphVUFtUmdCYWZvVjAzdlVRTjBnUzlvWngrazRXL2UyZUhncmtZbkg2?=
- =?utf-8?B?a3Vua0kwRXlzQ0pWemZvdXJHNXc3bjh4cDgwUUVXd2VLN1huTS9xcjg2THBw?=
- =?utf-8?B?WllWTXpzeHJpd2J2Nlk5ZmtmVEEwR0dvUnNGN2JQcUFLNkxMZEdZRzN4Umh6?=
- =?utf-8?B?c1lCbFhVVjV2aEFHdW05Vk15NW9TWk5MMTdjc05GZCtVMEV0MUR3SVNueWk0?=
- =?utf-8?B?R3RIUVBlOHpaMURRRmJvL00rZ0lQc0c2andMUDBma2cxMXlldVc4RGovWGE3?=
- =?utf-8?B?bnVHVXBhME5FSlgvWGpHYnpMMW5jN1Rqemw4K0R3TS80aHFRTmwrUUZKZGdq?=
- =?utf-8?B?OS9VckQ2bVVUQTM0WVpvaFo0Q1pNVWIrTkNKTVZFcEZCWVgyYzhUN2l5TVdE?=
- =?utf-8?B?b3dsMWkwY2pKSk1xUnFyektuVmJFdFlvQkEyS0RYNTBEc21hWWFmUXFPTUMv?=
- =?utf-8?B?azZGT2xCS0lOUHR2K29ZUmdxOTkwRDhhQWZpN1NkU0NlYktGN0NWUk5seGJR?=
- =?utf-8?B?NWljRHozeXZqUEZsWG51RUllS1BqY3BQNy9lbm1OdjNkQXE1WmFlaU92YUc4?=
- =?utf-8?B?cHhPUU12UUtrZUZVTzFwWjU5YVlmVFhHV3VLYk1xSjQ0ek5XWDVhdUduM2py?=
- =?utf-8?B?TlJ5SmV4dStvOWZlczdIdGVHWGhNNjMrY2I4emdwS1RqRm9KTlk5T05Fc3Vu?=
- =?utf-8?B?UkI3OTk5SGdMV3RSYnJxd09udkdSdVdkRVlrRytwK0VCeFVuUHlkV2tpRjNX?=
- =?utf-8?B?QkR6aFdwMGNXZlR1SFFhSlJLZFdtK2RUYTVkbzlPekdXRGNRZldzK1hZendR?=
- =?utf-8?B?R3RzQXBTeG1nTWdRU243QTlCajV5d2JlbERZMnVLWnZqSGVHOVVUUGc4RFNs?=
- =?utf-8?B?Tng4d3k2NXBiWTV3ek9zNlAzZVZaNUlrTll5eWNlcFM1Q0pHYms3RWRoQjh5?=
- =?utf-8?B?SDBRL0I0T1VtdzJNKzJMa2V3eFc4OWI3VnlsbU9sYzVHVnZLeW5Ua3NFRjBj?=
- =?utf-8?B?UkpVNVkvbzZPV2lwVnNNd0E2NzdnWGVGWHN4b3E0UE9pUTJKTGg0TUV6T29k?=
- =?utf-8?B?TUo4bTJIM0NqWEdJSlZoYlZFc3M0R29Sb213d01Gb083U0dsUytTdVlsZ0xR?=
- =?utf-8?B?R29JSHNHUHRWcXpvMWxUVzR3LzRlSmptYVNpekhwMkM2TmZnQ1ZTM3Zvd053?=
- =?utf-8?B?eXZpYStsVTJndEhRR3cvb1ZpM3N3ZlBvWm5YV09yUTlCcmMvUTJQRWpzRWxr?=
- =?utf-8?B?U1JWZ0YramFZbWlwYzhqTXNjckpaZVFFMGZCaFU1S0FvN2NjN1pzajEyL0xr?=
- =?utf-8?B?TUZOM1VMMHhocFpUUnJQWDVKRUFzS0NtcjMxbnZ2T2ExeC9IQnhlUlZjQWlI?=
- =?utf-8?B?RHJPVHNyZlhYK1dZcFhFNERSRisxQnY0SmlVTTdPcmI3UDNpQzZjOG9vWkRI?=
- =?utf-8?B?YWxrTzZ2ZEVGcTk2NWVzdnJSejN0TGNWdlZiYWZqdnFpOTN1YU4rMXg5bmFE?=
- =?utf-8?B?U3FmRGhPRFYvSzZRcDJieUZoMEJpN0FxRG9zbUZZMFZ4dGlKVW43T2RaMVZS?=
- =?utf-8?B?NldTQ205azlBak1GSi9YSHNzVTk1cldLaml3dTByOFlEREg4OVk2bFFqa0Rr?=
- =?utf-8?B?YlB3QWtPdmg0VVIwazRta0hxUHA1TEJxKzV1OWMrdFFoQzFORmRtRytOWXYr?=
- =?utf-8?Q?WQRv4J/A6F7WxY58qd?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 162c1bc3-5271-496a-0e56-08decdd3d0a5
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 07:24:35.7642
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- 7yUYNRBm+gk1UWOK4wpROX1xZjPAWrsYUv1/ztYY448hVme+M7Gi/2hhx74u9G3s
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4252
-Message-ID-Hash: BYHIW7AKQG2DZXL5YZCY5RIZSHDT2JA7
-X-Message-ID-Hash: BYHIW7AKQG2DZXL5YZCY5RIZSHDT2JA7
-X-MailFrom: Christian.Koenig@amd.com
+X-MailFrom: tursulin@ursulin.net
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
+ loop; banned-address; member-moderation
+Message-ID-Hash: POI262ZXL22IBPYYAWD7RAJYUIBHJVFY
+X-Message-ID-Hash: POI262ZXL22IBPYYAWD7RAJYUIBHJVFY
+X-Mailman-Approved-At: Fri, 19 Jun 2026 14:24:08 +0000
 CC: alexander.deucher@amd.com,
  =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Matthew Auld <matthew.auld@intel.com>,
@@ -174,9 +129,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BYHIW7AKQG2DZXL5YZCY5RIZSHDT2JA7/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/POI262ZXL22IBPYYAWD7RAJYUIBHJVFY/>
 Archived-At: 
- <https://lore.freedesktop.org/605fa2e8-1232-447c-83cc-9ca2dedec4d9@amd.com/>
+ <https://lore.freedesktop.org/1544040a-578f-41b0-9660-5a6f470f031f@ursulin.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -186,140 +141,132 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 6/18/26 20:41, Tvrtko Ursulin wrote:
-> 
-> On 18/06/2026 15:39, Arunpravin Paneer Selvam wrote:
->> The fpfn/lpfn fields in struct ttm_place were named after page frame
->> numbers, but they are really just placement parameters passed to the
->> backend resource manager. Rename them to the generic param1/param2
->> and document that their interpretation is backend-defined. The VRAM
->> range manager continues to treat them as the first and last valid
->> page frame number, so behaviour is unchanged.
->>
->> This decouples the API from PFN/range-specific semantics so that
->> these fields can be used more flexibly in the future (e.g.,
->> mask-based or segment-aware placement constraints). No functional
->> change.
->>
->> Suggested-by: Christian König <christian.koenig@amd.com>
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Matthew Auld <matthew.auld@intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c       | 16 +++---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h       |  4 +-
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c   |  8 +--
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c    | 46 +++++++--------
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 24 ++++----
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c       |  4 +-
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c       | 16 +++---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |  6 +-
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  | 32 +++++------
->>   drivers/gpu/drm/amd/amdkfd/kfd_svm.c          |  2 +-
->>   .../gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.c  |  2 +-
->>   drivers/gpu/drm/drm_gem_vram_helper.c         |  4 +-
->>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 18 +++---
->>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 56 +++++++++----------
->>   drivers/gpu/drm/i915/intel_region_ttm.c       | 14 ++---
->>   drivers/gpu/drm/loongson/lsdc_ttm.c           |  4 +-
->>   drivers/gpu/drm/nouveau/nouveau_bo.c          | 22 ++++----
->>   drivers/gpu/drm/nouveau/nouveau_mem.c         |  8 +--
->>   drivers/gpu/drm/qxl/qxl_object.c              |  4 +-
->>   drivers/gpu/drm/qxl/qxl_ttm.c                 |  4 +-
->>   drivers/gpu/drm/radeon/radeon_object.c        | 28 +++++-----
->>   drivers/gpu/drm/radeon/radeon_ttm.c           | 18 +++---
->>   drivers/gpu/drm/radeon/radeon_uvd.c           |  8 +--
->>   drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c | 16 +++---
->>   drivers/gpu/drm/ttm/tests/ttm_mock_manager.c  |  8 +--
->>   drivers/gpu/drm/ttm/ttm_bo_util.c             |  4 +-
->>   drivers/gpu/drm/ttm/ttm_range_manager.c       | 18 +++---
->>   drivers/gpu/drm/vmwgfx/vmwgfx_bo.c            | 30 +++++-----
->>   drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c    |  8 +--
->>   drivers/gpu/drm/xe/xe_bo.c                    | 24 ++++----
->>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          | 40 ++++++-------
->>   include/drm/ttm/ttm_placement.h               | 15 +++--
->>   32 files changed, 259 insertions(+), 252 deletions(-)
-> 
-> <snip>
->>       if (unlikely(ret)) {
->> @@ -124,8 +124,8 @@ static bool ttm_range_man_intersects(struct ttm_resource_manager *man,
->>       u32 num_pages = PFN_UP(size);
->>         /* Don't evict BOs outside of the requested placement range */
->> -    if (place->fpfn >= (node->start + num_pages) ||
->> -        (place->lpfn && place->lpfn <= node->start))
->> +    if (place->param1 >= (node->start + num_pages) ||
->> +        (place->param2 && place->param2 <= node->start))
->>           return false;
->>         return true;
->> @@ -139,8 +139,8 @@ static bool ttm_range_man_compatible(struct ttm_resource_manager *man,
->>       struct drm_mm_node *node = &to_ttm_range_mgr_node(res)->mm_nodes[0];
->>       u32 num_pages = PFN_UP(size);
->>   -    if (node->start < place->fpfn ||
->> -        (place->lpfn && (node->start + num_pages) > place->lpfn))
->> +    if (node->start < place->param1 ||
->> +        (place->param2 && (node->start + num_pages) > place->param2))
->>           return false;
->>   
-> 
-> Not very readable ie. good for ease of maintenance - how about an union? Would also avoid having to touch all the drivers.
-> 
-> Something like:
-> 
-> union {
->     struct {
->         u64 fpfn;
->         u64 lpfn;
->     };
->     u64 drvparam[2];
-> };
 
-I like that idea, it also makes the patch way more smaler.
+On 18/06/2026 15:39, Arunpravin Paneer Selvam wrote:
+> The fpfn/lpfn fields in struct ttm_place were named after page frame
+> numbers, but they are really just placement parameters passed to the
+> backend resource manager. Rename them to the generic param1/param2
+> and document that their interpretation is backend-defined. The VRAM
+> range manager continues to treat them as the first and last valid
+> page frame number, so behaviour is unchanged.
+>
+> This decouples the API from PFN/range-specific semantics so that
+> these fields can be used more flexibly in the future (e.g.,
+> mask-based or segment-aware placement constraints). No functional
+> change.
+>
+> Suggested-by: Christian König <christian.koenig@amd.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c       | 16 +++---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h       |  4 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c   |  8 +--
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c    | 46 +++++++--------
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 24 ++++----
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c       |  4 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c       | 16 +++---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |  6 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  | 32 +++++------
+>   drivers/gpu/drm/amd/amdkfd/kfd_svm.c          |  2 +-
+>   .../gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.c  |  2 +-
+>   drivers/gpu/drm/drm_gem_vram_helper.c         |  4 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 18 +++---
+>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 56 +++++++++----------
+>   drivers/gpu/drm/i915/intel_region_ttm.c       | 14 ++---
+>   drivers/gpu/drm/loongson/lsdc_ttm.c           |  4 +-
+>   drivers/gpu/drm/nouveau/nouveau_bo.c          | 22 ++++----
+>   drivers/gpu/drm/nouveau/nouveau_mem.c         |  8 +--
+>   drivers/gpu/drm/qxl/qxl_object.c              |  4 +-
+>   drivers/gpu/drm/qxl/qxl_ttm.c                 |  4 +-
+>   drivers/gpu/drm/radeon/radeon_object.c        | 28 +++++-----
+>   drivers/gpu/drm/radeon/radeon_ttm.c           | 18 +++---
+>   drivers/gpu/drm/radeon/radeon_uvd.c           |  8 +--
+>   drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c | 16 +++---
+>   drivers/gpu/drm/ttm/tests/ttm_mock_manager.c  |  8 +--
+>   drivers/gpu/drm/ttm/ttm_bo_util.c             |  4 +-
+>   drivers/gpu/drm/ttm/ttm_range_manager.c       | 18 +++---
+>   drivers/gpu/drm/vmwgfx/vmwgfx_bo.c            | 30 +++++-----
+>   drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c    |  8 +--
+>   drivers/gpu/drm/xe/xe_bo.c                    | 24 ++++----
+>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          | 40 ++++++-------
+>   include/drm/ttm/ttm_placement.h               | 15 +++--
+>   32 files changed, 259 insertions(+), 252 deletions(-)
 
-A bit more background might help: The fpfn/lpfn parameters are specific to the ttm_range_manager backend, but we are planning to use them completely different (e.g. as bitmask) for driver specific backends.
+<snip>
+>   	if (unlikely(ret)) {
+> @@ -124,8 +124,8 @@ static bool ttm_range_man_intersects(struct ttm_resource_manager *man,
+>   	u32 num_pages = PFN_UP(size);
+>   
+>   	/* Don't evict BOs outside of the requested placement range */
+> -	if (place->fpfn >= (node->start + num_pages) ||
+> -	    (place->lpfn && place->lpfn <= node->start))
+> +	if (place->param1 >= (node->start + num_pages) ||
+> +	    (place->param2 && place->param2 <= node->start))
+>   		return false;
+>   
+>   	return true;
+> @@ -139,8 +139,8 @@ static bool ttm_range_man_compatible(struct ttm_resource_manager *man,
+>   	struct drm_mm_node *node = &to_ttm_range_mgr_node(res)->mm_nodes[0];
+>   	u32 num_pages = PFN_UP(size);
+>   
+> -	if (node->start < place->fpfn ||
+> -	    (place->lpfn && (node->start + num_pages) > place->lpfn))
+> +	if (node->start < place->param1 ||
+> +	    (place->param2 && (node->start + num_pages) > place->param2))
+>   		return false;
+>   
 
-@Arun could you add some comments and use that approach as well?
+Not very readable ie. good for ease of maintenance - how about an union? 
+Would also avoid having to touch all the drivers.
 
-Thanks,
-Christian.
+Something like:
 
-> 
-> Regards,
-> 
-> Tvrtko
->> diff --git a/include/drm/ttm/ttm_placement.h b/include/drm/ttm/ttm_placement.h
->> index ab2639e42c54..2c38674be102 100644
->> --- a/include/drm/ttm/ttm_placement.h
->> +++ b/include/drm/ttm/ttm_placement.h
->> @@ -73,16 +73,23 @@
->>   /**
->>    * struct ttm_place
->>    *
->> - * @fpfn:    first valid page frame number to put the object
->> - * @lpfn:    last valid page frame number to put the object
->> + * @param1:    generic placement parameter, interpretation depends on the
->> + *        backend resource manager. For range-based managers (e.g. the
->> + *        VRAM range manager, the buddy managers in amdgpu/i915/xe and
->> + *        the TTM range manager) this is the start of the allowed range,
->> + *        typically expressed as a page frame number.
->> + * @param2:    generic placement parameter, interpretation depends on the
->> + *        backend resource manager. For range-based managers this is the
->> + *        exclusive end of the allowed range (a value of 0 means
->> + *        "no upper bound").
->>    * @mem_type:    One of TTM_PL_* where the resource should be allocated from.
->>    * @flags:    memory domain and caching flags for the object
->>    *
->>    * Structure indicating a possible place to put an object.
->>    */
->>   struct ttm_place {
->> -    uint64_t    fpfn;
->> -    uint64_t    lpfn;
->> +    uint64_t    param1;
->> +    uint64_t    param2;
->>       uint32_t    mem_type;
->>       uint32_t    flags;
->>   };
->>
->>
+union {
+     struct {
+         u64 fpfn;
+         u64 lpfn;
+     };
+     u64 drvparam[2];
+};
 
+Regards,
+
+Tvrtko
+> diff --git a/include/drm/ttm/ttm_placement.h b/include/drm/ttm/ttm_placement.h
+> index ab2639e42c54..2c38674be102 100644
+> --- a/include/drm/ttm/ttm_placement.h
+> +++ b/include/drm/ttm/ttm_placement.h
+> @@ -73,16 +73,23 @@
+>   /**
+>    * struct ttm_place
+>    *
+> - * @fpfn:	first valid page frame number to put the object
+> - * @lpfn:	last valid page frame number to put the object
+> + * @param1:	generic placement parameter, interpretation depends on the
+> + *		backend resource manager. For range-based managers (e.g. the
+> + *		VRAM range manager, the buddy managers in amdgpu/i915/xe and
+> + *		the TTM range manager) this is the start of the allowed range,
+> + *		typically expressed as a page frame number.
+> + * @param2:	generic placement parameter, interpretation depends on the
+> + *		backend resource manager. For range-based managers this is the
+> + *		exclusive end of the allowed range (a value of 0 means
+> + *		"no upper bound").
+>    * @mem_type:	One of TTM_PL_* where the resource should be allocated from.
+>    * @flags:	memory domain and caching flags for the object
+>    *
+>    * Structure indicating a possible place to put an object.
+>    */
+>   struct ttm_place {
+> -	uint64_t	fpfn;
+> -	uint64_t	lpfn;
+> +	uint64_t	param1;
+> +	uint64_t	param2;
+>   	uint32_t	mem_type;
+>   	uint32_t	flags;
+>   };
+>
+>
