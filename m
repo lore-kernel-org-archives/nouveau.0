@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EED06CD98F0
-	for <nouveau@archiver.kernel.org>; Sun, 21 Jun 2026 13:13:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 166B3CD98F2
+	for <nouveau@archiver.kernel.org>; Sun, 21 Jun 2026 13:35:51 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id DF1D610E3A1;
-	Sun, 21 Jun 2026 13:13:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9EA8510E3AD;
+	Sun, 21 Jun 2026 13:35:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="I5CfqH6g";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Bu2rVS70";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CA3E846BD8;
-	Sun, 21 Jun 2026 12:59:01 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 8347146BDC;
+	Sun, 21 Jun 2026 13:21:28 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782046741;
- b=EqAWFA4ZIpOYifwS/uxANfjyNiNwYBLsmXGE4l2290nZJoBQz9jqzTbULiNpcvD72gKW4
- 4V6SwFpijsEvRcSJOUjSTwcnA5Dm2glkMlV/hpnUUBvS/eQhm5vCdnEHmrAj/zzsI7wjVqS
- OEbQZFUyX8ukmyQqnHkw0NSFCxEo/EY5dAf0KPuDrvw18El1gQ2z6a6dVYIGdjZDXzqgOVx
- IiLPnQpgUkB2Z2Q4tH7gKxbxUHIBtOmqsBVb0dp83ZSgNoC3Gpn7DjNaw0hQK0JhAGIhSI4
- mQZL7MeK7Cglqi9/i2nY1UhiwaN3sK2W9HlNgK28d0upzJdTikwvG5GT3/Vg==
+ s=20240201; t=1782048088;
+ b=X330xre/YN1RLmjCgJ7F6wIQvu+8Yt2CnNo3sZHorPNzdr78e9omwx5zdGlqw9niqQO1r
+ Mkmimkg30jy0QXS5S+6yRl2U0nr/lJzpzIku0SO6u9etQwmndhDqdFuZ3u3t1xLcHTgDoUn
+ SMhAM7HUsKJPe4ffNDDSnI9ZWgGDxg05vE86l3ugSkNoK1ujRAVjMoFAa+Ng423ZWDI5aGw
+ WIXrgdHo6w8k1QEK10Om5ZuIsxkK4A/7IgBuFTR4jlPtIV4uvGCOv7Zgf0itxRzGHgBkOSJ
+ iCRtKB5q1qC3wVrUkemRYaTQkxaHX94Z1kCgSdcjCYPdBfSGxxDcMNQCJB7A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782046741; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782048088; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=dzuTGsXHWnUFFlf4w6v0xDSvKV+lTAJBsA0LpxaiREM=;
- b=xplKprV/SJmrJogzGjBF84cn4P8P/aCOcZVMCA1GtWOPSUOTqJW77o7a35GgBSlvl9TPJ
- 4Zcgf/nYwpp/vFxkM8Y/1nLLEzKISsnnZomOrEEZa3qpIfXqGHxlUi9jZ9i6j7KPCN90rFS
- tiWwdABZ745jiRMYUHbnAmTH+/AYyuB7tCiEc2B2NhCyAROMDFJYH46Bllde/3KTay7TAx1
- OKhFaHAInkubMfBMeFOHnzcCFU5oETgyHnOopmTFBx5uWNuxc/JVKcATRe6eXmlqAYqSPkp
- 6ODwYjb+sGeFiRgFYCbf2DejnG2G9wH+DWvj7HW8QVXhe9KPHBSuN5UaTEWg==
+ bh=a4xYOjXUmeXKiNZBk3/FakjN1MIv8fVkL9//J3Rm4VQ=;
+ b=VNY5hXW7B/5kTO4VFUN/jA+tAp8U4SIBfGJAqWk0YzkmrizJKAjx+XMvkXSeHVGbrFZwx
+ qabRMOk4U/RIytcvHPzclC3P/3i0uPWGcNLL3liVuulajdO7GWTq7R6Wb+3Ta1X8nOTvtQ9
+ ZYmvl90VPdGlZY3fD5Hn16+xMBPwvPeQogcE6gu0+W1/w8xfWQfLJuubvhSFuXKazdr0y67
+ OLLotaF0WZVcp+e5raW/nobk7swGJQEBsBZYRtDej8SslsiCXBbfKU+70xk6Z4kCdCKAlvk
+ Qv8ZHqEAEz9zI/DzoDM1YQbmuyDPBtBQgC2D7yAiA3XX+qOH5aYoMspRTEHQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,56 +46,60 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B81AF46BBF
-	for <nouveau@lists.freedesktop.org>; Sun, 21 Jun 2026 12:58:59 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 995DA10E030;
-	Sun, 21 Jun 2026 13:13:21 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id EDBD746BD1
+	for <nouveau@lists.freedesktop.org>; Sun, 21 Jun 2026 13:21:24 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C549310E39B;
+	Sun, 21 Jun 2026 13:35:46 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5CC3942DCD;
-	Sun, 21 Jun 2026 13:13:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C40C91F000E9;
-	Sun, 21 Jun 2026 13:13:18 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 09F1F60051;
+	Sun, 21 Jun 2026 13:35:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1BA21F000E9;
+	Sun, 21 Jun 2026 13:35:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782047601;
-	bh=dzuTGsXHWnUFFlf4w6v0xDSvKV+lTAJBsA0LpxaiREM=;
+	s=k20260515; t=1782048945;
+	bh=a4xYOjXUmeXKiNZBk3/FakjN1MIv8fVkL9//J3Rm4VQ=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=I5CfqH6gPdXXucwP6yOGU4artKH2QLhVG0qGr/JwlXZc4DSn0XQajzUomOB9brj6m
-	 UgrCst2nHkoNdmOhbATdqCjhaIKUTJPZ/isy2ymJRAvmujj1jIeXp5y1k4A+z/ikY+
-	 ppaFj71DqvYSWPBDpUET/WOi68CjCvtSGOabTH+ivznSH4hNmZt2dM4oNsuip23zVm
-	 eSs6KJT1cv9JHcRZ3o07pJDk0sSkGA6r8r46MNZcYQBexvsUuBgio1Q5DCifTBc1e3
-	 zUJn9sSjHQnLZ/wz3tyr04dd0yjom5s+foVfZj8FZ9XFmyMw9qrBEVMsr5XW4Db6RR
-	 DV4CjQn8QyV5g==
+	b=Bu2rVS70AE7q0539unYUHl8ifOUfopApEuWITF2YFKX/a5/N4RVtP8oWqL7eYPmYw
+	 TqdGOGPfZBNulrQ1ib7GFqcsrsGUWsbG75npEstvkHMakn511zcy6TD011HDsw3vJb
+	 dDs+wdBeBv9OEjTeb467IMmtMraySDY/xJde7APVgFS/u9D9wL//WJ3vD5Pke1nI6o
+	 B6ppi5lZQZpDdKiJE2gnU/114gmX+wIgh4nzbjFKtvX3FeSAkSOvFo5V7kDPeOsStv
+	 rivSYD3yw0MfpUq0aMV3Ma7guyFGC5owFXfgsSQv1o0Wp/QhDXiEGTq0uzTB4Ufpil
+	 +8R8q8AQVt8Gg==
 From: Danilo Krummrich <dakr@kernel.org>
-To: Wentao Liang <vulab@iscas.ac.cn>
-Subject: Re: [PATCH] drm/nouveau/acr: fix missing nvkm_done() in error path of
- nvkm_acr_oneinit()
-Date: Sun, 21 Jun 2026 15:13:10 +0200
-Message-ID: <20260621131310.5004-1-dakr@kernel.org>
+To: Junrui Luo <moonafterrain@outlook.com>
+Subject: Re: [PATCH] drm/nouveau: fix reversed error cleanup order in ucopy
+ functions
+Date: Sun, 21 Jun 2026 15:35:35 +0200
+Message-ID: <20260621133535.5892-1-dakr@kernel.org>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260606155606.77593-1-vulab@iscas.ac.cn>
-References: <20260606155606.77593-1-vulab@iscas.ac.cn>
+In-Reply-To: 
+ <SYBPR01MB7881484D91A6F80271415F71AF1A2@SYBPR01MB7881.ausprd01.prod.outlook.com>
+References: 
+ <SYBPR01MB7881484D91A6F80271415F71AF1A2@SYBPR01MB7881.ausprd01.prod.outlook.com>
 X-Patch-Reply: applied
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: HGIWVN2OXJTQRI57YLWLWRDULEJCYPHO
-X-Message-ID-Hash: HGIWVN2OXJTQRI57YLWLWRDULEJCYPHO
+Message-ID-Hash: YVJTWKVIMPV4ULZQU4UMDI32JDML7U2P
+X-Message-ID-Hash: YVJTWKVIMPV4ULZQU4UMDI32JDML7U2P
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: dakr@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- simona@ffwll.ch, dri-devel@lists.freedesktop.org,
+CC: Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Dave Airlie <airlied@redhat.com>, dri-devel@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
+ Yuhao Jiang <danisjiang@gmail.com>, stable@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HGIWVN2OXJTQRI57YLWLWRDULEJCYPHO/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YVJTWKVIMPV4ULZQU4UMDI32JDML7U2P/>
 Archived-At: 
- <https://lore.freedesktop.org/20260621131310.5004-1-dakr@kernel.org/>
+ <https://lore.freedesktop.org/20260621133535.5892-1-dakr@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -105,16 +109,16 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Sat,  6 Jun 2026 15:56:06 +0000, Wentao Liang wrote:
-> [PATCH] drm/nouveau/acr: fix missing nvkm_done() in error path of nvkm_acr_oneinit()
+On Wed, 10 Jun 2026 18:01:28 +0800, Junrui Luo wrote:
+> [PATCH] drm/nouveau: fix reversed error cleanup order in ucopy functions
 
 Applied, thanks!
 
   Branch: drm-misc-fixes
   Tree:   https://gitlab.freedesktop.org/drm/misc/kernel.git
 
-[1/1] drm/nouveau/acr: fix missing nvkm_done() in error path of nvkm_acr_oneinit()
-      commit: c3027973f692
+[1/1] drm/nouveau: fix reversed error cleanup order in ucopy functions
+      commit: ab99ead646b1
 
 The patch will appear in the next linux-next integration (typically within 24
 hours on weekdays).
