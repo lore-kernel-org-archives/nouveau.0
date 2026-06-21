@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9596ECD98F2
-	for <nouveau@archiver.kernel.org>; Sun, 21 Jun 2026 13:49:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D05CCD98F0
+	for <nouveau@archiver.kernel.org>; Sun, 21 Jun 2026 14:07:16 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 295A610E3B5;
-	Sun, 21 Jun 2026 13:49:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B904410E3C0;
+	Sun, 21 Jun 2026 14:07:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EdTUaj1c";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FXEsbNYs";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0861446BE1;
-	Sun, 21 Jun 2026 13:35:17 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 92AD646BE6;
+	Sun, 21 Jun 2026 13:52:52 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782048916;
- b=SGQobz/tOZFTemfESvE18TqHaW/iGN/LDbqWXISMH6ipQXanNAnXd1RfZwlnh4iiavP3+
- IhCNMKkDYyYUeIbGMhIZDZZHKyEXI2MWuu7wvdvfBeunKUVzQ3pmfunCFWyfGpbl/0LgUaO
- H9j54mUtiwjnJKr/GRuTT92z6+DUQBR1oL7tC2S91+l7BFc9BSsqrB9JmzPyxGKu4HQRwn6
- vyR8gNcxAYVwDZZB1moPR4dHPKBw1CODDzBa7gsoukiXbhdLKieNKVPwnEccM/SJl/g636n
- pvNGrouPfFpuIVPu7494Z8McWu/Te98E2MaS3h0lrklQftE363dma5MypVMg==
+ s=20240201; t=1782049972;
+ b=f1iUZLe94GwF6TamX/8qBRaJOLjhmhVFi4F4fSCleb42WRHsP0HaqdmSXCiQ4nQJkJAhX
+ suODxMGg4ZhSIDPrDqeVaucpASQ0RuHJyq9TwtKZdVRrDNJWBgzekaPXj6SAl81H77ObrRu
+ 1x+Bi9EfBCSZFrf/rQS5emPlqGzwJSWs6hZ09qZlRe5aAgcSCk56dnV7wnbOBd5O3CjNKdJ
+ 4WYSfyQFpM04XhwTLDIwBW8i7gbgNh8SjIAPQztDutPqgBZmi/TwUCV6tnMlD9r6GoIE1Mr
+ zX7nZlsbYGzCXEFN0jiwCuxVyMtl1zrtoOtvMuSeRGP2SJGeCfe6eH1Rg8Xg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782048916; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782049972; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=jJY+uYtV9LlMGtbVVSrE/Xo4Zvi84Yvvd73ebE/AiUA=;
- b=lSK5CuurKqo8F8ga7fa6jAoIOjWp21Z0TASPoBwdT3GRJgvwscbidHx8upZUIhfd43rFy
- qgeAbUlXNkN2BfXs+CbXZhrtuD9db5Ewom3alohtmdSmi4yrImu0J1d83hDY9ysvkReDTMQ
- Q1KmheaPB4pR560EZgcZl+4M0GPntvyUHv4MXnRNhmF5TaVR6Jym+9B+E3loiP9dni6B8Nr
- AlNGbYOLax8ZVVCQB1owwwnBPfeOlfoctPkKCOEmWH9KjK3Ve/s9SN98EVQhLa5Lv9rEn0q
- uFFff7UDH9cBnVRtk3BwmoHm9YrwErUdMdEynHN/RcOQGYRZoiq/V9rEgrvQ==
+ bh=Y2cgyHfbek07AZHYJxVDvRYBpvV/pT8ewpQ26OswMew=;
+ b=IpNzp+2L8bxkEIQS81/iw/Tp2j5QuQNsHHXGDdlr1f9fVXClT6itcxKOI85qobIMJOcgD
+ 357DIg0OnGgt63C56xKI9Lb+jD0FD81trao5mvz4Vtevr38KE9yeg5ZxfWa/+fzTEXuU/Tt
+ //fJv0JdaZPiLokmUv77zxs5h6H27DtWhH7yCv/LuPPSrvu3GfAbspH2IIg9OlAqjmMnjFk
+ M1Quja8q9UakasX2YZgyD58yfjFb8OgSFldUlH2bwXjN1f6lTIkI1NTfZKaxTeZJJ/KSt8L
+ Q9y5gGKmtgQOPaJPgVcmrZsglf2PdEZ+D/plbWn1Oh+OsRlR1NO9sJj0qlDg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,41 +46,40 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 65FF546BBF
-	for <nouveau@lists.freedesktop.org>; Sun, 21 Jun 2026 13:35:14 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 497C888A72;
-	Sun, 21 Jun 2026 13:49:36 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6F7ED46BD1
+	for <nouveau@lists.freedesktop.org>; Sun, 21 Jun 2026 13:52:49 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 386B310E3B5;
+	Sun, 21 Jun 2026 14:07:11 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 81CB06008A;
-	Sun, 21 Jun 2026 13:49:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 296191F000E9;
-	Sun, 21 Jun 2026 13:49:33 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 831F044412;
+	Sun, 21 Jun 2026 14:07:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EA001F000E9;
+	Sun, 21 Jun 2026 14:07:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782049775;
-	bh=jJY+uYtV9LlMGtbVVSrE/Xo4Zvi84Yvvd73ebE/AiUA=;
+	s=k20260515; t=1782050830;
+	bh=Y2cgyHfbek07AZHYJxVDvRYBpvV/pT8ewpQ26OswMew=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=EdTUaj1cOIwUaHKPso86x6R8FqGvVS09EquQqmrsryCKXUSBW5gyD+L6ptsFmWPK0
-	 pV7AWZdjcQ3hIEZQcvXkjHAXqbOcf+KL6cFCjPRMHS+fgY/COry4xqaCI9nEavSRUN
-	 QgPv8isaziL3PvyH+GPUxG9YlKF20dd8SaX/0iOOZ5IZ2D6D1WxBr8QEf3P/yzrW4e
-	 OPrTM2u4rVnm6lwDSgu+YTNkmcQ9FdyWaU4qNFkLXn+kHkCvH7lrOcK4YZyT4vSqMl
-	 /5RLw0v5FMFyRk71w36QTNB/f8cR5fIJYcQaZR0EyZYw1ttWGX+Mu2xyAqzDgjTfGy
-	 vkMvsMEMc2xog==
+	b=FXEsbNYs9Os1uNb4cUJCsnW4UlhUPtPc/MtpUUV/w8nspm1kjXw/1/usx7poYizDT
+	 Ztp7TYOzsKiVWk2D2WWgeL8naVd2S0gCX+4usCDGqelvlVdbZU61HPuDMrBIRN6fPX
+	 lGsmOgaxWM2E5vJp8LOs2v3UKwLwuIogaWdsnv1arXQImZqLaKqDp3ZcJp0HfYuN7r
+	 LkxtFnuw/PrtTZQEEEQUzMA58SD9wIekaxGSwkliVozEdLfe0cbq6z92HwOxXD+dmz
+	 m/xJgQsyMQ1yykcGF2uBoKMUloJ1bk0qWHYH9FQFya1dWD+G1eAoytOtqgprvdFU59
+	 QL8joYg4n1Xog==
 From: Danilo Krummrich <dakr@kernel.org>
 To: Dave Airlie <airlied@gmail.com>
-Subject: Re: [PATCH] nouveau/gem: reserve the bo in the info ioctl around the
- vma lookup
-Date: Sun, 21 Jun 2026 15:49:26 +0200
-Message-ID: <20260621134926.10271-1-dakr@kernel.org>
+Subject: Re: [PATCH] nouveau/vmm: fix another SPT/LPT race
+Date: Sun, 21 Jun 2026 16:07:02 +0200
+Message-ID: <20260621140702.9656-1-dakr@kernel.org>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260612020658.3176270-1-airlied@gmail.com>
-References: <20260612020658.3176270-1-airlied@gmail.com>
+In-Reply-To: <20260615044737.3419585-1-airlied@gmail.com>
+References: <20260615044737.3419585-1-airlied@gmail.com>
 X-Patch-Reply: applied
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: UADR2GCSWOCFCQJW34OV76OFNT4EPZSQ
-X-Message-ID-Hash: UADR2GCSWOCFCQJW34OV76OFNT4EPZSQ
+Message-ID-Hash: HBLCVEBCZPMUQ7V5NVA6FYYMROOO4BC5
+X-Message-ID-Hash: HBLCVEBCZPMUQ7V5NVA6FYYMROOO4BC5
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -91,9 +90,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/UADR2GCSWOCFCQJW34OV76OFNT4EPZSQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HBLCVEBCZPMUQ7V5NVA6FYYMROOO4BC5/>
 Archived-At: 
- <https://lore.freedesktop.org/20260621134926.10271-1-dakr@kernel.org/>
+ <https://lore.freedesktop.org/20260621140702.9656-1-dakr@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -103,16 +102,18 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri, 12 Jun 2026 12:06:58 +1000, Dave Airlie wrote:
-> [PATCH] nouveau/gem: reserve the bo in the info ioctl around the vma lookup
+On Mon, 15 Jun 2026 14:47:37 +1000, Dave Airlie wrote:
+> [PATCH] nouveau/vmm: fix another SPT/LPT race
 
 Applied, thanks!
 
   Branch: drm-misc-next
   Tree:   https://gitlab.freedesktop.org/drm/misc/kernel.git
 
-[1/1] nouveau/gem: reserve the bo in the info ioctl around the vma lookup
-      commit: 5e17160d41d9
+[1/1] nouveau/vmm: fix another SPT/LPT race
+      commit: d008141ed4ce
+
+      [ Properly format commit message. - Danilo ]
 
 The patch will appear in the next linux-next integration (typically within 24
 hours on weekdays).
