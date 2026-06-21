@@ -4,134 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83965CD98F2
-	for <nouveau@archiver.kernel.org>; Fri, 19 Jun 2026 14:38:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79AB9CD98F2
+	for <nouveau@archiver.kernel.org>; Sun, 21 Jun 2026 12:58:07 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 594E010F644;
-	Fri, 19 Jun 2026 14:38:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 18E8010E38F;
+	Sun, 21 Jun 2026 12:58:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="nJvCA8Lw";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ej4GDNKp";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8CAD146BAD;
-	Fri, 19 Jun 2026 14:24:11 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id E3F5346BD0;
+	Sun, 21 Jun 2026 12:43:42 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1781879051;
- b=v5qRw1WFoH72bycd4ojLWiiGK/zr5mDTIG6s8iBg9ASD3+4hx9LFS7g9U74gAvEkssgLu
- AKSuAk5msJPhF6gRptO6bTxz3S+Ib26s0ca+EcMoy9XpvZSCB/jrK+Bt5nIkV+KoISYzeVW
- Kat6WTIiQ/i7WjQmdxD2FmOHIF+U75tXM1rG1Bp8/ZWmwsuWWQGgyhqKumNY4Eusi6vlv+o
- omxc4hz0wsp3LE2+wB5uWfhnJm0+ZSmdkAkhYi65eNFgDm76g0L3bOpnZl69HzBdSteYz/g
- 7hYIV8PDBfoA4JE/EVyWSD5dV2LYPNOZyhq2vmzTwEcBlN8oQGK9WRMKGXkA==
+ s=20240201; t=1782045822;
+ b=0TplDv2+BEPWQsJhUla2AZIIkvdbhPfCIM7jEnpO1naSplIbmeMsTrHVVXsMF6IOzjyOj
+ G0E1E1QoKP15M+cfunmpEqDtmCzKSXMii75GJB38ApKX8birw1E9OqaPSToDJNB9h3Axg5F
+ FaKgVMGzW3FdoekSDeeqwXIbj+4FMlTQ5J7QAbiUbW3LQguNY2QuZzDMjrTle2rWx2c3fIk
+ WEGEtcFY0QLZxwcR8wXnLGF4fxgKu5w0dSGKPI+rkQJGS1aHc50+e1hrZ/08OsWajKNABpS
+ CBPStMkor1ZRvrW381BBZh1StNJhB/TyzIV5m50P85brs5JJD78yRhvIEpUQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1781879051; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782045822; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=hFv3GlUYs5wNN+O537Q1dHtRqP7co1Grb9v+N2l5i1U=;
- b=Ap7vQQSsqX0MzdBm+MVk+cY2p4nW71tt0OMRzIfEpDWaOzqRPD+mBlXdqhMzhWxMWG/Q3
- n17vz2UvI9Y/GMY6vChTUaNunX8orjpk5uOaqAzaAurYLxfHIYJKPmFKA1hS1OZikaUKdgO
- dzzjmAYb8hPWy/B+mZB/jlLDRFNoxLkJmHtL3+SA2oYmyrciw7RpHlM/cq037BzQAh4SdAV
- FE2Bk5zyKKueNSAUjzbjpgLZqRT++a4HS5JaPkz8ipN6tWR4XrxtDPDtqKL0JHfRZtsKfxC
- Q2TCkkgU6gi12a4Lb55oW2sVtqqLo5kbhYWx/XMNGICiOROMNNJ7aukt2how==
+ bh=dwyyFF+yPpoJif6/OWI2GLmuQ0czkd3E3lwUANbsdlU=;
+ b=opmwW9GcTse/d9f3409tcEOagLTW1NegcspW7NuroXZmirZsa4a+CnMCiLPQn041+Cqp9
+ hOHmyVpjtKBWHN1JgeuU3DunZxwESK/WKSidZLckpWUdVr6c7Cs0lUdNL6ztsAn5PFNvude
+ MHU5sRtbMjFeHKqotl6li2i2eNJK7uEZZLCwYxIGDjlXg4RBU6zW/3xkyYuekrAZ2gIR8E1
+ kxhbGvJoF8raoudbV5tBiHd7pjOZznv0qD0bbza1DFh77YTV36YLgIbOH+3eDQxKRWEX3uJ
+ VeX255Etg795ZdIuocIdIjXIyY/RpxZH0/1Z9cp3za4UpKbBm8NQIi5HzVrw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=ursulin.net;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=ursulin.net;
- arc=none (Message is not ARC signed); dmarc=none
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3B13346B1A
-	for <nouveau@lists.freedesktop.org>; Thu, 18 Jun 2026 18:27:16 +0000 (UTC)
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EB36010F3BA
-	for <nouveau@lists.freedesktop.org>; Thu, 18 Jun 2026 18:41:31 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-491609cdd8fso7589675e9.2
-        for <nouveau@lists.freedesktop.org>;
- Thu, 18 Jun 2026 11:41:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ursulin.net; s=google; t=1781808090; x=1782412890;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hFv3GlUYs5wNN+O537Q1dHtRqP7co1Grb9v+N2l5i1U=;
-        b=nJvCA8LwULnFCPIMSmfuQ/dcmVk60Lq4tp1Z4O1Wkd57p76BCEb+SJbeoyfTjY3zwF
-         a3YKs2IYjSqdp69f72pbnpJRpnea6LrQbuiwnxifPNu5BT9o72FuuRZUCaahkfDdojr4
-         I6bY0UDiMDs0rZtwBq49Z9KfGzbG3PvEO/sQgDrOkVVMwPMrnBCjNuH7H1gUl1lASWOz
-         OD3M5UizDBtspnlNI/3zhuewXmRa6riJiAuPq3EWS3FaJsGlVr0gqjchsKg748vMi6z4
-         c5tOiiYKPFgkCuv1UDi8ZlGA3zJ4lECfHcjETiww6Q8O9Lt/A+LETA6aEi+w3ihC28On
-         tTDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781808090; x=1782412890;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hFv3GlUYs5wNN+O537Q1dHtRqP7co1Grb9v+N2l5i1U=;
-        b=WZgFtocgazauXF0nZ1Wyji/Hk9b8H+sPVk+zMWjca4lmkA7Lmoe8Hps5yQrpTgW3wN
-         DZi/D0aG1CU0R/slv7FuIcj0O7XPDH65HggXN7BfQ9KqubrUFGnIUUsjbVr9eSVKGTvt
-         tWlRHlNczzbYF5PVoIcF0ozTUoiE5BaqXsFCPNPvxdk4dKGOO4vv0sbdwF4C4Fe5MYlA
-         +uOjFP78oKTly5RVEv7K8aG2L2YB6Ar847SaXo2Z270NZkHyvu+eYGKBNjVZZosixNm8
-         R0c8W5eMaHa2sWAbeC4Gb72r3dEDj3rfZGdIx93D2tUYEIjnj78BuoJ/O40lkp+zqnkz
-         RydQ==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8WpLGIayKrW43poQ+nv8/AqjiWBq5n0bDTFsssXqso4VJhjUlkA58+kUljcZZiolsWXRc4fQfE@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxv0p7hBrLxCveuXPv9GsVBVH3blEI/w3FUm+R35IS/csPyG462
-	B53Z4kZY5+2NbdxC6xTcJUM7t6o7jrhxrsJ6RDqle4bgYDFK7dQDSzWyyhaBfQbkLdo=
-X-Gm-Gg: AfdE7cmiN/aWXFJfBEJQ8djDhWrviWZgy2USH+cF7uz2/OaVMXQ25yoOQC2RwIEDC28
-	6CADS4eE1clgiAbyNORueQ5tTDp26l+uVlN2fq4w/BbGtkpSsBLZRdzzFfqA3qp+4yA2y8LlFy5
-	TAkl2ef/YcbL8jOCR+/TRTuaKbV/KreMRgfWzIAFrh/iXtYCTmb3bGER1TaHPPSgBk/+YNHnLoW
-	XC5GhH6wi94i164liuLZV04tu91PQz2Ktt40i7rXzqqGB0eMivxLWXYsvKMgn/x5fnc7rnxEPS6
-	OhjEyDoV1hEJ/R3DdXrsgOLFd1s1vLryxuCs06fjUvgf7r1xG5Z2hqhnNS6RNIFc/FG9q4WZ+5R
-	OlQuuvkbL8Ys5vdhxXWgroQjy0J3x4EL9KhQiO/hKzINdDv8sUmGsmHdmLQfrTv4v94JbFLeQIE
-	/4tpi3po7dGM2l4/LINHllXjBVla/aqv6DEQ==
-X-Received: by 2002:a05:600c:1c1c:b0:492:1e36:552b with SMTP id
- 5b1f17b1804b1-49240e7f307mr1905325e9.36.1781808089941;
-        Thu, 18 Jun 2026 11:41:29 -0700 (PDT)
-Received: from [172.16.30.123] ([37.209.163.134])
-        by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4650b76e7c9sm865703f8f.21.2026.06.18.11.41.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Jun 2026 11:41:29 -0700 (PDT)
-Message-ID: <1544040a-578f-41b0-9660-5a6f470f031f@ursulin.net>
-Date: Thu, 18 Jun 2026 20:41:28 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/ttm: rename ttm_place::fpfn/lpfn to param1/param2
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20260618133908.2761908-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20260618133908.2761908-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-MailFrom: tursulin@ursulin.net
+	by kara.freedesktop.org (Postfix) with ESMTPS id CFBFF4674E
+	for <nouveau@lists.freedesktop.org>; Sun, 21 Jun 2026 12:43:39 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7BCCE10E389;
+	Sun, 21 Jun 2026 12:58:01 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id A93356008A;
+	Sun, 21 Jun 2026 12:58:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 201171F000E9;
+	Sun, 21 Jun 2026 12:57:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782046680;
+	bh=dwyyFF+yPpoJif6/OWI2GLmuQ0czkd3E3lwUANbsdlU=;
+	h=Date:To:From:Subject:Cc:References:In-Reply-To;
+	b=ej4GDNKp63e4A8UkddmF6kyff7rAp64pM6UmytdApC9Z2U8CNc8xpnXLbGVRgaq6O
+	 z5VxJDYF3OJ+YtwKWSZjESGuCTKgCawhuCUi63t8WvgJta4H/ouC1WoJI2Nw3cXQ0o
+	 2V6H5INF+O3H2STyL7aUVK1/0NVGv3du7lkPSRrv+hb2i7idUkEhwaScyskTQCT1+F
+	 KC7+3TjE1aLVF8G/n1bLLW8hbjeaySn4/MwuenoOo58WNYQVSwuhll7muW+aBYDUS2
+	 OiEhsWBaiYbOcAOZvJU4UM8Sfzh+zdgGaVMJgya2WANSu9cYK5Jjej2+DGVuCR2WW0
+	 ZCxodLUPOamHg==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 21 Jun 2026 14:57:56 +0200
+Message-Id: <DJEQTPJAR8DW.18CJ2FC7YZPA3@kernel.org>
+To: "Dawei Feng" <dawei.feng@seu.edu.cn>, "Timur Tabi" <ttabi@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v2] nouveau/firmware: fix memory leak on BL load failure
+References: <20260610025037.4115412-1-dawei.feng@seu.edu.cn>
+In-Reply-To: <20260610025037.4115412-1-dawei.feng@seu.edu.cn>
+Message-ID-Hash: 2SSX3GTROCJOHK5XLBQFXEK3IQ4VBJGT
+X-Message-ID-Hash: 2SSX3GTROCJOHK5XLBQFXEK3IQ4VBJGT
+X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: POI262ZXL22IBPYYAWD7RAJYUIBHJVFY
-X-Message-ID-Hash: POI262ZXL22IBPYYAWD7RAJYUIBHJVFY
-X-Mailman-Approved-At: Fri, 19 Jun 2026 14:24:08 +0000
-CC: alexander.deucher@amd.com,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
+CC: maarten.lankhorst@linux.intel.com, mripard@kernel.org, simona@ffwll.ch,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, jianhao.xu@seu.edu.cn, stable@vger.kernel.org,
+ Zilin Guan <zilin@seu.edu.cn>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/POI262ZXL22IBPYYAWD7RAJYUIBHJVFY/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2SSX3GTROCJOHK5XLBQFXEK3IQ4VBJGT/>
 Archived-At: 
- <https://lore.freedesktop.org/1544040a-578f-41b0-9660-5a6f470f031f@ursulin.net/>
+ <https://lore.freedesktop.org/DJEQTPJAR8DW.18CJ2FC7YZPA3@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -141,132 +102,41 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
+(Cc: Timur)
 
-On 18/06/2026 15:39, Arunpravin Paneer Selvam wrote:
-> The fpfn/lpfn fields in struct ttm_place were named after page frame
-> numbers, but they are really just placement parameters passed to the
-> backend resource manager. Rename them to the generic param1/param2
-> and document that their interpretation is backend-defined. The VRAM
-> range manager continues to treat them as the first and last valid
-> page frame number, so behaviour is unchanged.
+On Wed Jun 10, 2026 at 4:50 AM CEST, Dawei Feng wrote:
+> If loading the HS bootloader blob fails, nvkm_falcon_fw_ctor_hs() returns
+> immediately. This skips the common cleanup path and leaks the firmware
+> state allocated by nvkm_falcon_fw_ctor() and nvkm_falcon_fw_sign().
 >
-> This decouples the API from PFN/range-specific semantics so that
-> these fields can be used more flexibly in the future (e.g.,
-> mask-based or segment-aware placement constraints). No functional
-> change.
+> Fix this by routing the load failure to the 'done' label so
+> nvkm_falcon_fw_dtor() can properly clean up the partially initialized
+> state. Keep the original image firmware in 'blob' until the common
+> cleanup path, and use a separate 'blob_bl' pointer for the bootloader
+> firmware so it can be released immediately after the bootloader data has
+> been copied.
 >
-> Suggested-by: Christian König <christian.koenig@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> The bug was first flagged by an experimental analysis tool we are
+> developing for kernel memory-management bugs while analyzing
+> v6.13-rc1. The tool is still under development and is not yet publicly
+> available. Manual inspection confirms that the bug is still present in
+> v7.1-rc6.
+>
+> An x86_64 allyesconfig build showed no new warnings. As we do not have a
+> supported NVIDIA GPU with the required firmware to test this path, no
+> runtime testing was able to be performed.
+>
+> Fixes: 2541626cfb79 ("drm/nouveau/acr: use common falcon HS FW code for A=
+CR FWs")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Zilin Guan <zilin@seu.edu.cn>
+
+Is Zilin a co-author of the patch?
+
+> Signed-off-by: Dawei Feng <dawei.feng@seu.edu.cn>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c       | 16 +++---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h       |  4 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c   |  8 +--
->   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c    | 46 +++++++--------
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 24 ++++----
->   drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c       |  4 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c       | 16 +++---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |  6 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  | 32 +++++------
->   drivers/gpu/drm/amd/amdkfd/kfd_svm.c          |  2 +-
->   .../gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.c  |  2 +-
->   drivers/gpu/drm/drm_gem_vram_helper.c         |  4 +-
->   drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 18 +++---
->   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 56 +++++++++----------
->   drivers/gpu/drm/i915/intel_region_ttm.c       | 14 ++---
->   drivers/gpu/drm/loongson/lsdc_ttm.c           |  4 +-
->   drivers/gpu/drm/nouveau/nouveau_bo.c          | 22 ++++----
->   drivers/gpu/drm/nouveau/nouveau_mem.c         |  8 +--
->   drivers/gpu/drm/qxl/qxl_object.c              |  4 +-
->   drivers/gpu/drm/qxl/qxl_ttm.c                 |  4 +-
->   drivers/gpu/drm/radeon/radeon_object.c        | 28 +++++-----
->   drivers/gpu/drm/radeon/radeon_ttm.c           | 18 +++---
->   drivers/gpu/drm/radeon/radeon_uvd.c           |  8 +--
->   drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c | 16 +++---
->   drivers/gpu/drm/ttm/tests/ttm_mock_manager.c  |  8 +--
->   drivers/gpu/drm/ttm/ttm_bo_util.c             |  4 +-
->   drivers/gpu/drm/ttm/ttm_range_manager.c       | 18 +++---
->   drivers/gpu/drm/vmwgfx/vmwgfx_bo.c            | 30 +++++-----
->   drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c    |  8 +--
->   drivers/gpu/drm/xe/xe_bo.c                    | 24 ++++----
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          | 40 ++++++-------
->   include/drm/ttm/ttm_placement.h               | 15 +++--
->   32 files changed, 259 insertions(+), 252 deletions(-)
+> Changes in v2:
+> - Use a separate bootloader firmware pointer instead of reusing 'blob'.
+> - Keep the original image firmware release in the common cleanup path.
 
-<snip>
->   	if (unlikely(ret)) {
-> @@ -124,8 +124,8 @@ static bool ttm_range_man_intersects(struct ttm_resource_manager *man,
->   	u32 num_pages = PFN_UP(size);
->   
->   	/* Don't evict BOs outside of the requested placement range */
-> -	if (place->fpfn >= (node->start + num_pages) ||
-> -	    (place->lpfn && place->lpfn <= node->start))
-> +	if (place->param1 >= (node->start + num_pages) ||
-> +	    (place->param2 && place->param2 <= node->start))
->   		return false;
->   
->   	return true;
-> @@ -139,8 +139,8 @@ static bool ttm_range_man_compatible(struct ttm_resource_manager *man,
->   	struct drm_mm_node *node = &to_ttm_range_mgr_node(res)->mm_nodes[0];
->   	u32 num_pages = PFN_UP(size);
->   
-> -	if (node->start < place->fpfn ||
-> -	    (place->lpfn && (node->start + num_pages) > place->lpfn))
-> +	if (node->start < place->param1 ||
-> +	    (place->param2 && (node->start + num_pages) > place->param2))
->   		return false;
->   
-
-Not very readable ie. good for ease of maintenance - how about an union? 
-Would also avoid having to touch all the drivers.
-
-Something like:
-
-union {
-     struct {
-         u64 fpfn;
-         u64 lpfn;
-     };
-     u64 drvparam[2];
-};
-
-Regards,
-
-Tvrtko
-> diff --git a/include/drm/ttm/ttm_placement.h b/include/drm/ttm/ttm_placement.h
-> index ab2639e42c54..2c38674be102 100644
-> --- a/include/drm/ttm/ttm_placement.h
-> +++ b/include/drm/ttm/ttm_placement.h
-> @@ -73,16 +73,23 @@
->   /**
->    * struct ttm_place
->    *
-> - * @fpfn:	first valid page frame number to put the object
-> - * @lpfn:	last valid page frame number to put the object
-> + * @param1:	generic placement parameter, interpretation depends on the
-> + *		backend resource manager. For range-based managers (e.g. the
-> + *		VRAM range manager, the buddy managers in amdgpu/i915/xe and
-> + *		the TTM range manager) this is the start of the allowed range,
-> + *		typically expressed as a page frame number.
-> + * @param2:	generic placement parameter, interpretation depends on the
-> + *		backend resource manager. For range-based managers this is the
-> + *		exclusive end of the allowed range (a value of 0 means
-> + *		"no upper bound").
->    * @mem_type:	One of TTM_PL_* where the resource should be allocated from.
->    * @flags:	memory domain and caching flags for the object
->    *
->    * Structure indicating a possible place to put an object.
->    */
->   struct ttm_place {
-> -	uint64_t	fpfn;
-> -	uint64_t	lpfn;
-> +	uint64_t	param1;
-> +	uint64_t	param2;
->   	uint32_t	mem_type;
->   	uint32_t	flags;
->   };
->
->
+@Timur: Any further comments following up v1?
