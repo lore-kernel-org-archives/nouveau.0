@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98E32CDB46D
-	for <nouveau@archiver.kernel.org>; Sun, 21 Jun 2026 15:30:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C9D5CD98F2
+	for <nouveau@archiver.kernel.org>; Sun, 21 Jun 2026 15:30:14 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 96C9310E3C5;
-	Sun, 21 Jun 2026 15:30:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E4D3D10E3D2;
+	Sun, 21 Jun 2026 15:30:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="h9vcKzhd";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="d8KfrdEU";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 5463A46BEC;
-	Sun, 21 Jun 2026 15:15:38 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A130E46BF0;
+	Sun, 21 Jun 2026 15:15:51 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782054938;
- b=JivrLHNVbWdCm+Jk4MRoUjuO7aDcwuTZQuMjjFQWWvb1E9ilKVGc1Bc2MZN2LrWBDTQ98
- JLcQeR0dAuEHE1iovpp9lradXu4XhHDZEVaVV0Lg517q1ktiVtrU/5yvo17OUOFlN0usuuw
- x6KtOB3Ph5aXoEpSL+R+cNqFFpRJXrhNPOL7o2gsHmm34m0hvjPIzFeGtUY4f+LA9LqvnSh
- twMY1i7jAqQuPNv/j3aw1zGq71LHhaaZbN8fNY4lJim/aDreR7H71E/BZ/WvlEKQfPj5qw4
- Yvz8pXlA1zrw0ALMF2t5NL3G3O6axS417j+LU+W/JPChsHc4b/Z1VWWFOywg==
+ s=20240201; t=1782054951;
+ b=hfSa3FxKPwXAlhgy/WC2gyyGNivQvXEEZhMgwQu0hXnr/WK247befpAvq6cvVW3sobs6n
+ 9JmWmdcah2vm5wC3T6A0ETrRV8DwGhnXgHq5GVyLcQs2lk19AfyiWJYbCxKk29BwG+eLcpQ
+ zJOmyDqQk/ZZcPw97aq/Y43W7DL5oc/8FKQmFbL6Aewgcxhu0jaJlewwNLmWMtGLuAOMmSq
+ +xulD9zuKjL80ec7byuzoiT4Or39P7/3cUEX6n1KzwCDmKfJGSmPkMNs0KUF/U1ublwtxRg
+ Fskhk9agGXb1DRaAN0PNq1fyDq3hu3vnO/1vSRiHCueN4nDsNhW9Xuqsgtow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782054938; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782054951; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=0OA99dPOafjtnvEev4FM9wP6RjHQtmTJvuMsHZRF3Tc=;
- b=LssphR3aWd7vY3kLa5Nci+gHZhKXwKxhmniv/J/aKjBKEIpjvEcrkBK9tey4RA2/EHUWt
- 7XTrzPQzGkheL1VDvMJPPl5yPUa4JLB6bSsf3xDFCgC7OS3Ku+wgGq4Qc/6HYM8zj3XnYRB
- W/ZtIksi67A6qP1ox2Bhp2kL+Azy+wIJ7dGp2Ql9+tMoZUHAQ0Zz16sKerJEkSEop0lSHSb
- TZ1Ci/GK0bBI0h0yELfDJKiv8dtFS5U6vFYS1Cp4dcXO0oJJ0phoktSzgdbB39MkWVHqmFc
- IEXsEhLnCZRV7u9s9nOog0ss9uIBftYpr30TzzU+JdijXMyobXg+YFkr5ClQ==
+ bh=6pEoIOWLfQJmO2+ou/JKQf6FBbp/ciOIe6rHDPQ/PM0=;
+ b=N6E/UoJ0kMNiEczrpK2IYt5x/N7TnbPmCowgBowlruVErGftt5ImUdqlF+G2Ey7Q9CRaM
+ 30tLwak4YVy4XA8806W9f9YQpBbqFuMMm82g8d5mp9TEhYWH9rAJAS10DHUcayL0kmrnQmQ
+ adg03V3bNofSlEmZabcVzcgIEOcPPZxqrPW1zaGIyBbdGKi6b5tqSC1//b024HDqGpDLUnG
+ rUwiDFAS0FxqAdCr4ZGxwmLAUzRiv1WtsO93iXS2+siJV6ZzhbzNWIGQ73Fl7XMZvtVy4Bv
+ I0oKiTmDQFzigl5WTkY0V+CybT9RGm8jKCw9lc0dOuGIj2CwEOPpSXwz9JNQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,54 +46,56 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 0FEBC46BD1
-	for <nouveau@lists.freedesktop.org>; Sun, 21 Jun 2026 15:15:36 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 17DF210E1DD;
-	Sun, 21 Jun 2026 15:29:58 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id A80D746BD1
+	for <nouveau@lists.freedesktop.org>; Sun, 21 Jun 2026 15:15:48 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AABB110E3C4;
+	Sun, 21 Jun 2026 15:30:10 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9408F40506;
-	Sun, 21 Jun 2026 15:29:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C50691F00A3A;
-	Sun, 21 Jun 2026 15:29:55 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E73F860051;
+	Sun, 21 Jun 2026 15:30:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 937A61F000E9;
+	Sun, 21 Jun 2026 15:30:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782055797;
-	bh=0OA99dPOafjtnvEev4FM9wP6RjHQtmTJvuMsHZRF3Tc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=h9vcKzhd5h5xXKTIN+rscZ2S/TT1DLe9qqGZDIVz+LNj4GcDBWS+uB1uvuzp5EVax
-	 KbDxcE+Q/7CQx6PQDsid65nnnDwZG/v6JPAHXNV7PnCN9WNa1a2/NZMKjo4mUDlmpE
-	 dAeiCKqin8Ks/pXteOC+eHuvUVoywvLmx0QwwIdPI/4QofP3GaSKlP1ONULSeiWT+G
-	 cHjgyq4DKLrbDQj8G3uWqf3NTDme4gH+ypTot1jiCgX8ZMNkfQnKfa0SoEA1t/Qvoz
-	 X7F/ZZF/+fP7Zts0Khmys+/tRuCuE3Sgq+bGhPYRnb1jVHbrt8MHHnemCpNi4hccbW
-	 n3NAnCeV+NBAA==
-From: Danilo Krummrich <dakr@kernel.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: Re: [PATCH v3] drm/nouveau: Simplify nouveau_cli_work
-Date: Sun, 21 Jun 2026 17:29:48 +0200
-Message-ID: <20260621152948.27237-1-dakr@kernel.org>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260615092607.80917-1-tvrtko.ursulin@igalia.com>
-References: <20260615092607.80917-1-tvrtko.ursulin@igalia.com>
-X-Patch-Reply: applied
-MIME-Version: 1.0
+	s=k20260515; t=1782055809;
+	bh=6pEoIOWLfQJmO2+ou/JKQf6FBbp/ciOIe6rHDPQ/PM0=;
+	h=Date:Subject:Cc:To:From:References:In-Reply-To;
+	b=d8KfrdEUOlKX8045CSG6Zlei6Dc60D7DHRtXbEVaLJjDkpjPUX0e4ns2JPHCJKGdj
+	 7/Xedr7dvrvU/MiibqDIebJuAKSHR+wp2sweN0KiY9EQB04fsgFpvez0Da2AjMK9l+
+	 GsECbbPTebdGK6ywOO4RSnzyyErtaKY/VMlpaq7fTZjo4/0nVj+r9Kyq9eMvPMfaHN
+	 VH+vIK33atDMvR4DABOkiQM4Nnq7qD+eYZQiTQkpTKZvk9EhByaHo7sWyqVye5mfwY
+	 VvmeK9TWEuIpC+5gCxmkGgrt1WTogKtH2Dzz2X2DDU1+vC5HThoc3jl3oRB1GqsrTH
+	 /9YlesgzBkoew==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: YTRIMMBADMODS6YP3KEAZUFPAVDLMBJG
-X-Message-ID-Hash: YTRIMMBADMODS6YP3KEAZUFPAVDLMBJG
+Date: Sun, 21 Jun 2026 17:30:06 +0200
+Message-Id: <DJEU27KUZRNN.3R1F8AL6UL30S@kernel.org>
+Subject: Re: [PATCH v3] drm/nouveau: Simplify nouveau_cli_work
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260612165409.54447-1-tvrtko.ursulin@igalia.com>
+ <20260615092607.80917-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20260615092607.80917-1-tvrtko.ursulin@igalia.com>
+Message-ID-Hash: CCBGCZMHF5LL5AARFFHVYD4RBAVN32LK
+X-Message-ID-Hash: CCBGCZMHF5LL5AARFFHVYD4RBAVN32LK
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
 CC: dri-devel@lists.freedesktop.org, kernel-dev@igalia.com,
- Philipp Stanner <phasta@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- nouveau@lists.freedesktop.org
+ Philipp Stanner <phasta@kernel.org>, nouveau@lists.freedesktop.org,
+ Alice Ryhl <aliceryhl@google.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Gary Guo <gary@garyguo.net>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YTRIMMBADMODS6YP3KEAZUFPAVDLMBJG/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CCBGCZMHF5LL5AARFFHVYD4RBAVN32LK/>
 Archived-At: 
- <https://lore.freedesktop.org/20260621152948.27237-1-dakr@kernel.org/>
+ <https://lore.freedesktop.org/DJEU27KUZRNN.3R1F8AL6UL30S@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -103,19 +105,71 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon, 15 Jun 2026 10:26:07 +0100, Tvrtko Ursulin wrote:
-> [PATCH v3] drm/nouveau: Simplify nouveau_cli_work
+(Cc: Alice, Boris, Christian, Dave, Gary)
 
-Applied, thanks!
+On Mon Jun 15, 2026 at 11:26 AM CEST, Tvrtko Ursulin wrote:
+> @@ -176,9 +160,25 @@ nouveau_cli_work(struct work_struct *w)
+>  	struct nouveau_cli_work *work, *wtmp;
+>  	mutex_lock(&cli->lock);
+>  	list_for_each_entry_safe(work, wtmp, &cli->worker, head) {
+> -		if (!work->fence || nouveau_cli_work_ready(work->fence)) {
+> +		struct dma_fence *fence =3D work->fence;
+> +
+> +		if (!fence || dma_fence_is_signaled(fence)) {
+> +			if (fence) {
+> +				unsigned long flags;
+> +
+> +				/*
+> +				 * Because fence can still be in the process of
+> +				 * processing the callback list, and the
+> +				 * callback references the work we are about to
+> +				 * free, we need to sync with the callback
+> +				 * processing before freeing the work.
+> +				 */
+> +				dma_fence_lock_irqsave(fence, flags);
+> +				dma_fence_unlock_irqrestore(fence, flags);
 
-  Branch: drm-misc-next
-  Tree:   https://gitlab.freedesktop.org/drm/misc/kernel.git
+This does not ensure that there are no more dma_fence_ops callbacks into th=
+e
+driver. For instance, a concurrent dma_fence_is_signaled() might read the
+signaled flag as false before we do this lock dance and then still enter
+ops->signaled().
 
-[1/1] drm/nouveau: Simplify nouveau_cli_work
-      commit: a80d12eafad1
+Luckily, for this specific code here in nouveau it should be enough to ensu=
+re
+that all dma_fence_cb callbacks are finished, which this hack does achieve.
 
-The patch will appear in the next linux-next integration (typically within 24
-hours on weekdays).
+The reason I call it hack is that it fundamentally relies on dma_fence
+implementation details and not a specified API contract.
 
-The patch is queued up for the upcoming merge window for the next major kernel
-release.
+The closest thing to an API contract for this is the RCU protection that wa=
+s
+recently added. So, the proper approach would be to run this work with
+queue_rcu_work() and then call flush_rcu_work().
+
+In this context it is worth noting that in this case it is even more
+complicated. Since the work struct is shared per CLI the single RCU barrier=
+ in
+flush_rcu_work() is not enough, i.e. there is no per fence callback grace p=
+eriod
+guarantee.
+
+To me this still seems to be a bit of a footgun (although we could probably
+improve the nouveau code to make it a bit simpler).
+
+That said, the patch does make things a bit clearer, so I picked it up --
+thanks!
+
+Thanks,
+Danilo
+
+> +			}
+>  			list_del(&work->head);
+>  			work->func(work);
+> +			dma_fence_put(fence);
+>  		}
+>  	}
+>  	mutex_unlock(&cli->lock);
+> --=20
+> 2.54.0
+
