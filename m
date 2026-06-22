@@ -4,178 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15B0ACD98F2
-	for <nouveau@archiver.kernel.org>; Mon, 22 Jun 2026 12:17:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0AA7CDB46F
+	for <nouveau@archiver.kernel.org>; Mon, 22 Jun 2026 12:45:34 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E317810E68D;
-	Mon, 22 Jun 2026 12:17:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B731F10E6AF;
+	Mon, 22 Jun 2026 12:45:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="UgsCmNIg";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="KPl9Yn5Q";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id ABE9746C5C;
-	Mon, 22 Jun 2026 12:03:17 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782129797;
- b=GqLbyAORyaPLId7TgvSgvBn7ghhUHR3nnY4j/7c5vAmOa8nb1DCtYtgGTCvRWlVqmt/ib
- ZxtTybk6wYRwDjyUHUNTZAY4nsAAxi7/QNj5EzwruxMw4SyG0o/bWJscRbWLZiyO+SQsAYR
- lijRcDSP/qd60DRL9vsE9OISaPZNIQsWAyfSNFZRFxFHQjsyFB+b1V1tDPJ5lhjsC8XZHGO
- J2e6YZzqAgKL+yUzhRKPFEfKSeeKsI700XufeP7WTLm+mIqa7AadRcNRtOSa2acpb/YnzqO
- 7VDOmkmBXyc34hU4slN3jh+5U52ru/yxPZGb54LSJ0++4rpXsVoWAs0fEoUQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782129797; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 72AB046C6D;
+	Mon, 22 Jun 2026 12:31:10 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1782131470;
+ b=F+F5uO1P3uo3YSCLNdSGp3ijmhRTCb/D4ksYZ0srYziEZO3+BjZZ3eC0HF2OWIhXOG6Td
+ BRzVjmmIzJ1p4hYezwj4p7sCe97FeQlnY2+ciS9Ud17pfQx2bgyHOUfgfsWf20F+kM70ugY
+ qDGVMwvW6kHW9n0/9Va4NXpR26yVhGiUkvD7Z122EwA9bcC5p94yei4p71hTt7LPCBUWRpl
+ W/SrkXufK4mWbWjIC/MH64C9e5CCYF2AC3nUKP2Xnr996A5O9bPeJCl8q8nFK4rFaQC2NXW
+ C45exdN44jUx4K+7zljIWwBOGD91ntrpQnpvPk6admu3u9BZRHILggqgXG7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1782131470; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=9s63alkL3b/Z0n0Qjv8Jzo64hFJBkTGqSfZo2gtFCsw=;
- b=rDMRxnXaJm7CqpWbviMdvuzX0QrjwOLxQts3kfn+JXLA7FyikMmWuIir3s2K3No94rugx
- mRaY3M63T3vKBuOEpCyNndn8hVpevn3eMV/sp8AXGFnT/OS3kmJZJafOjaDhOc+eUCVqPe1
- GVNAQewQgVHq6Vx+aTHS7D5JokZprbYXJXMkpctiiLR2YYeSzDkFqgT1i1R7s3iGNdZ56Q+
- m0i6OaA1ooIguSbfz9h9Bbj2rc6cps1T04ZrzgQuQsYFRJCRlSNkp7Mub+9kWIaPLoK7ONW
- b3UUmfnFoF594E98zbDMzFOMtzrnVbRDvJv58M+zcMvwcw0mNJ/llTPcwn3g==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=amd.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=amd.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=amd.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=amd.com policy.dmarc=quarantine
+ bh=RkMwbTC6310DHTrZdoptKKXWD1KIfX8Jfo4LzUqTcgs=;
+ b=JkvV/0wkEIdh8+VH2+se2P7WpQfzzEYu1mrhyqCKHed/WEWngFhSqe5MI8/VWi8PBeJQI
+ M4MoE5laSIHj+EfQxoxcSS5qPr3DaveBYT/qEDjrv9XVjmPnwAiaacDbU25KKvkBIgh4tAc
+ 890GywPNEGvwqFR/ljPA/owi4Gv643Nw23vcu9yeqSpN5/hPOz1ZYsp37pEqBDtXwzN79qF
+ TBWd7ViYcfm/5MgEXjRXgyh6PtH9uySjccdc9vEKEERTRirQDD2zuVOoUIfd8UkhjLX6WCt
+ 1kTT7mmxqduIMLFojcA42xo4Vbv2MskbV0D6EDwej9n2RqdG6u+pREzCnRiA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=mailbox.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=mailbox.org
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=mailbox.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=mailbox.org
+ policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 09C8246BF5
-	for <nouveau@lists.freedesktop.org>; Mon, 22 Jun 2026 12:03:15 +0000 (UTC)
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013068.outbound.protection.outlook.com
- [40.93.196.68])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D2FEE10E67C;
-	Mon, 22 Jun 2026 12:17:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Hn38ywUSgsaReQfZhh4MMj0yNwxcK7PHjWr1TIBn6CHHmTW8w+yUIdqDjt0OguHJzwJTeDLC/U74XkC1T9g9L8SgmmCmHPWxM+RlD7sRtHgaRYJxI3EV0+oh3oUw5IrHrrBI5dFbB5X0dvKg1zu8O+Fv8Sx7le4U2CZYVpelIEJwjr4azYUddkFmGYTBS2CZH+ChnZx14Q+n5UCaynaa51hxruOV8cJkNuaXaiext/FiAtEt9H64XZ1PS9Ba2UozyAyWovqqsffxj+dc45DdfV8JEwqcBmmWwTOdQGcQcTSqic7XPWrq1jspS+M8YYPjmFVclQtZ9zg7m4U0eXWqCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9s63alkL3b/Z0n0Qjv8Jzo64hFJBkTGqSfZo2gtFCsw=;
- b=k+6PeaTN2PJHctyEYZCZTy9c6xlI10pbtGIFM+yrJksIcjTMKgYhvTchnybZLHnObJqnBjECcOtA7IRv5bG0Kz54VaJs5VD7YYtilqeZgSBVns+ntGHQCy/75FhyRms1cGpHp2mlolj0kR0+AA/zcXYRvqRXp16NsU9RS5c6MsvaJMkOTGCgtyDO627fZ4Ns2OHDrB868bl5RJNhut6biSHGvxM1IfcNPQbRq86ETS0ehXk/4Wvm0cns+HAiiWJhpp4pSD8sswV0ZiQR4hBcH2AD1udCKopsDvfm77f2PBzyTIR6GalqitaveusHCaBYcIbaIvgQo8qtep705dMbhA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9s63alkL3b/Z0n0Qjv8Jzo64hFJBkTGqSfZo2gtFCsw=;
- b=UgsCmNIg99RzcXvlQCCNUGL2fAugbuI+soy89oWzDsPPMRqQsWI+CSGuSPRErU0L0XZ7IfoO2VGLoTKoeyMvdWcBoYEfrubxPkmdgXlrjkMjWAY05jiUKU2SN773tQMUSxEdDAdKuYwFwPKEBKGo1hAyiEVBcUE8nAgUjMpmUI8=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by CH2PR12MB4086.namprd12.prod.outlook.com (2603:10b6:610:7c::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.17; Mon, 22 Jun
- 2026 12:17:35 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0113.015; Mon, 22 Jun 2026
- 12:17:35 +0000
-Message-ID: <cf9f4a62-ed02-46d6-9560-481ceda2d1a3@amd.com>
-Date: Mon, 22 Jun 2026 14:17:29 +0200
-User-Agent: Mozilla Thunderbird
+	by kara.freedesktop.org (Postfix) with ESMTPS id B35E046BC1
+	for <nouveau@lists.freedesktop.org>; Mon, 22 Jun 2026 12:31:06 +0000 (UTC)
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7D20D10E635;
+	Mon, 22 Jun 2026 12:45:30 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4gkSbV48k3z9sWm;
+	Mon, 22 Jun 2026 14:45:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812;
+	t=1782132326; h=from:from:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+	 content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=RkMwbTC6310DHTrZdoptKKXWD1KIfX8Jfo4LzUqTcgs=;
+	b=KPl9Yn5QwOD6AnheCc8UlrorIpnP+dvN9KCfUVMCk9RAOmgsewVSWfVpYrMZ2Y6u+8+JI1
+	Ox+zeoe5LNoMfmZhfGv+M+cbWksOT4kLVe9rDso6qG8eObXLqycmhckfBTjpUPIVqVGAdw
+	LJfhVXNUSEE4Cv42K2lL7/LW16yQq4wfGl/uNYPYEu/A7WnZV3hK+ktNw3G9eWP/7CB3f4
+	GPn/KiPeCKwGc+O/N39dlhpOfxVpU5ANZDLx7LJ6S5Imrq/6Jn2f7lRxsj0HbI0hnn76h8
+	9zuKYdLgty5Sp3qhtCTLrYz32RjCjRh5IoWY5sehncvfdTb+GUqJ7KF0LAIo8g==
+Message-ID: <8c5ff6db6ab8c29c3e7addd969c4642e9d82c524.camel@mailbox.org>
 Subject: Re: [PATCH v3] drm/nouveau: Simplify nouveau_cli_work
-To: phasta@kernel.org, Danilo Krummrich <dakr@kernel.org>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	phasta@kernel.org, Danilo Krummrich <dakr@kernel.org>, Tvrtko Ursulin
+	 <tvrtko.ursulin@igalia.com>
+Date: Mon, 22 Jun 2026 14:45:19 +0200
+In-Reply-To: <cf9f4a62-ed02-46d6-9560-481ceda2d1a3@amd.com>
 References: <20260612165409.54447-1-tvrtko.ursulin@igalia.com>
- <20260615092607.80917-1-tvrtko.ursulin@igalia.com>
- <DJEU27KUZRNN.3R1F8AL6UL30S@kernel.org>
- <d3e27b911dd1c0261c2c4d7d65d12d6c1aef58ff.camel@mailbox.org>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <d3e27b911dd1c0261c2c4d7d65d12d6c1aef58ff.camel@mailbox.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BL1PR13CA0259.namprd13.prod.outlook.com
- (2603:10b6:208:2ba::24) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+	 <20260615092607.80917-1-tvrtko.ursulin@igalia.com>
+	 <DJEU27KUZRNN.3R1F8AL6UL30S@kernel.org>
+	 <d3e27b911dd1c0261c2c4d7d65d12d6c1aef58ff.camel@mailbox.org>
+	 <cf9f4a62-ed02-46d6-9560-481ceda2d1a3@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH2PR12MB4086:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5495bcfe-2e99-4d0d-9bcd-08ded0583df5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|7416014|1800799024|23010399003|366016|376014|18002099003|11063799006|22082099003|56012099006|4143699003;
-X-Microsoft-Antispam-Message-Info: 
-	I+sGt8pwDmdvWA8xwd0CP6K1/wBhfCcO9KO4oE74laK/qoQV/f25euNpATpsrM2HEDkgm3c2qktml8JDoYMnTN/KpT/6lNGaUIPNyq2raGGt+ySH+uCZM8NasI5uda9wzdJBaRo6ef+8x86k8t/cAPKmwoRnp0d7RazyXwwsa6O1nSOu1hBf7qLLPoVtBG5ZKHLc2IdXWBTsEoLi0GbQONGkRiEWUNxoD0dfEOIAkvIXVWsR2ua4UMv9ee7csDhq2xTW3Yc7J3eVBUbYFP9tzq7tqO9r+uyK1Vh2WbNDKHsos2d8B2gO9j9L3Qz0L/BBZLRuYHIjhaDRaaAbfOQtsi/yOBJlMLQpoHP7SzwAwg8ek1EjfEe1wJc5XI0YsO69NWwQRmi+YjAK+qvBuLOyDAPFRHkpNvRlNLvq2Cz3PI83/3i7Xr8q/LvgQ96UglYaZSi5L2pJ8vN3/CdVyLSMAFRlFanPtum3IMHqTZ3CY3BoDA263OPp0EpNy4gGDNd2ez3aIkRrsaLGgrg+WmvQ1SzidB6FOQ9HIxCYunoJs/FpPYVAnkErXylkzv63A2TXyz9FPbrZKzzompcOeQOSKVPDuFB1z8fBwAFy41QhlGT0sZokHLs7FsMrq5KvqUS3z6mMxV2aG9exvtBpP6TIbeM/F7wDRDYgv2VisWlCTzI=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB5685.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(23010399003)(366016)(376014)(18002099003)(11063799006)(22082099003)(56012099006)(4143699003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?Slo4S0M4cDd2bXZsVXplWG1Xc045QVQ1WHJCUTFWS21CRnVpUFRmSVFIZWlz?=
- =?utf-8?B?RUdwMlVRWjZKMUxSRVhVVmlSZjkySEJIUzhYUExZdGtHa0lkUnh6WmRZQk1y?=
- =?utf-8?B?WVFsVytFRUVwU1JEWFJXQ2tYZmpCMzBwWERsVDRXYkd2VWVjWEdkVUJaNm9Z?=
- =?utf-8?B?ZjlBZWxBRXRjdys2cFAxTEN3MUd0cUNONWNwTkF2THRKa25jaDltMHJ2Nk00?=
- =?utf-8?B?V0ExZkROQko0OW00RXFsUk9OMGljczhSeGdYZ2djWEtYWWxUZGtWS29BbzF0?=
- =?utf-8?B?aHRVVzd4ejV0cWtiQVYxUWhOSitjMW1zWEFEeVVsenBYSERJeHRYL3NYYW9x?=
- =?utf-8?B?ak9neWw4cWZNcXBJTlZvMkNMUm5hdThESGEwUDhxT0VRRmIyOU5pU2dTeVUw?=
- =?utf-8?B?NkRFM3gzY0s1VTVkakxoeEhGM3l0aEd2UGxtYlZOeURsajZwTmk2SVlwL3E0?=
- =?utf-8?B?U3MrV05RMUV6ZHRwd3VFL3ZYbllRUW5HSnJRUFVUczhmdWZnbVJqUllMSnZj?=
- =?utf-8?B?Z1lhZUx4YkYxSTlKN3RiaXRLSkVxZ1lvb1owK0x1REs2elRONW56dkNIUzcv?=
- =?utf-8?B?SnpCRURVR0dpcTd1Z0lhL3R0L2NPV1EvaXQzOXNHYlZDbm9FbEpDcVBUZnlM?=
- =?utf-8?B?TWRWZDg1eVFTdGQ5eWNCY1pGZy9DV2dLaWQ4WXRXa1NieWduU1FCNml5cGx5?=
- =?utf-8?B?TUxjNTFFT2F3bFZQc2J4OUw3eDdVVVdoUkt5RE52SUE5dXZ2dW9nVVdrb0gz?=
- =?utf-8?B?YmIxUWE1Y2xsNkp3UG56cUNKMWJLbmZwZzdhRnBIL3JOSEdIWHUrV3RxMFpx?=
- =?utf-8?B?dzIzM2dlaWtsdlJsNVJxRlNmNDJxKzRuZ0V6dzd0UDd0czE1aUp5NEoxak9U?=
- =?utf-8?B?NlRrYjBsT2tQYzJPbHlkVksxbDVoL2ZhLzgwYi9jVWV0TjhXbm5Bd2EzMlN4?=
- =?utf-8?B?dFFqYVJFS000L3ZBZWkxNEF1UWNnYnVOc21mcW45b2xmN0IrQk1PdTVhUk12?=
- =?utf-8?B?MlNsU1dvM0xvSHRDdUVJUkIyU245NDF5c2QvOElvSFg1ZmpJamtYNSs3Ylph?=
- =?utf-8?B?aGF1WThOWWJrMDl5WGpZdGo0cjlMYWJQV3JJQjEyQTllQjlyRHgwVzJhcjBp?=
- =?utf-8?B?elJEK3Nsdm8zcWxCRWdhMjRjVVR5dDluWk8wSVVOMG5OeTgyT0c0Z3RHUlk2?=
- =?utf-8?B?TTdiNFFWQUpvZ0p6alpWb0hUK3RhZXk3Zk5mWUt6MWFmbzFVSURSTEpRemU0?=
- =?utf-8?B?QzFVKyswejZibVpZVXFlT3g3dDRZOHg4bjh1V0pMRHFVazEwRy9tUHZ3SnRm?=
- =?utf-8?B?STUzZWUvU1pPYjRPQ2ZaOWV0aGdxb3hlN1A1VUl5MHdxYlI3L1BSeDAzcjBX?=
- =?utf-8?B?L0lvMWtTZDM3VFRMN2EyNEJoUGlkNVJubnYva1RXZUpKRlc2L2Vra2ZwZVlU?=
- =?utf-8?B?bXBXRnByWVBGRXNWb2grcVF3TEF5OGc5MUJsbVN2SXVIWXdzZklsR1dYWEpC?=
- =?utf-8?B?VFFud0hyUVduelhkUE1OMklDT2hHZjZBUDJaOUNYZXFWN3AwL3Q2UkowSXor?=
- =?utf-8?B?OEo0OGRLWTJ3dUVKS2JmYTNUQjFFbnJlWFpTbWNVUDR0dFZmeXBldWVYU2s5?=
- =?utf-8?B?ZWduYmNCTGpybU1naDI2TExxNEQxakg1L0xNKzl1eTk2b0pGcXNDUHJYdXZQ?=
- =?utf-8?B?SGZUL3VzbGxDdEpjendPZHpyL1I3ZmFnRHZtc1FTOHNsUGFUQ0xTTi90WDRV?=
- =?utf-8?B?NmdnUVBIVUs1cWlZdGdKNTBFRkZiUnhndkNkWW9KVU1kUnRvNEJFWlZxdlZZ?=
- =?utf-8?B?RDlpUHFWQUtCaWtEWDRreEF1ZURSbzltWkRkQkFSRVJVb01yUHFsbktCajQ4?=
- =?utf-8?B?bTcyNmptMnh1NzJ3d1JJdWpvdGtvUW1Jd3plbVNPZzdzYnlzdDlxQ2QxV3Zu?=
- =?utf-8?B?cm52MG02U1gyN0NLU3dXZkhHaU02UUdza0EwbTMzZmFWSnc0VnNhbzFybjRH?=
- =?utf-8?B?U1VVR1NVNU05V2J2UVdEdjNHOWRyL1lRSjRDSGVSNXpJWWNsYzhPbEovRDRz?=
- =?utf-8?B?K3AzUThXYVJUdElJVStzRW5KVkJoU3JOL0gzOHB4Q2J1bElYVjVGeGRPQXN1?=
- =?utf-8?B?UnFFdWZGVzhLMWtUUXAvT0RzZklBSld1VTNuSkhvZHdlRXROZnkzSEZxN2g4?=
- =?utf-8?B?c3liUU5WNkdYQ0piN2ZtTTR3QmJmOHZLMHNvaVQ1SE5pVUxvbGdJRFdGK1dO?=
- =?utf-8?B?TndFeU8wZDRlMWFwU29GekZWSDFueGVMcWNpVEwzZDc2MnJ3aGdOaE52Y0dr?=
- =?utf-8?Q?lYD+Mx7iX5E79h2Up3?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 5495bcfe-2e99-4d0d-9bcd-08ded0583df5
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 12:17:35.1109
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- qUZD1O+eIJNZldOmmH8GprHVqzkCU30szYC1kJ/VWbbCnwdiAdTHPV6N26+LFatC
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4086
-Message-ID-Hash: NNCPDZQWTLGR5VOQSTCMQ7PQ5UGJQGWX
-X-Message-ID-Hash: NNCPDZQWTLGR5VOQSTCMQ7PQ5UGJQGWX
-X-MailFrom: Christian.Koenig@amd.com
+X-MBO-RS-META: zwxpr4yr7cu81hodh86wfpmdpue1g5x6
+X-MBO-RS-ID: e546aff977dc697f06d
+Message-ID-Hash: 2CRGXKMALNSPYYLIIXKUK7ZT7QLHVQVR
+X-Message-ID-Hash: 2CRGXKMALNSPYYLIIXKUK7ZT7QLHVQVR
+X-MailFrom: phasta@mailbox.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
 CC: dri-devel@lists.freedesktop.org, kernel-dev@igalia.com,
  nouveau@lists.freedesktop.org, Alice Ryhl <aliceryhl@google.com>,
- Boris Brezillon <boris.brezillon@collabora.com>, Gary Guo <gary@garyguo.net>
+ Boris Brezillon <boris.brezillon@collabora.com>, Gary Guo <gary@garyguo.net>,
+ Daniel Almeida <daniel.almeida@collabora.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: phasta@kernel.org
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NNCPDZQWTLGR5VOQSTCMQ7PQ5UGJQGWX/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2CRGXKMALNSPYYLIIXKUK7ZT7QLHVQVR/>
 Archived-At: 
- <https://lore.freedesktop.org/cf9f4a62-ed02-46d6-9560-481ceda2d1a3@amd.com/>
+ <https://lore.freedesktop.org/8c5ff6db6ab8c29c3e7addd969c4642e9d82c524.camel@mailbox.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -185,97 +118,54 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 6/22/26 10:57, Philipp Stanner wrote:
-> On Sun, 2026-06-21 at 17:30 +0200, Danilo Krummrich wrote:
->> (Cc: Alice, Boris, Christian, Dave, Gary)
->>
->> On Mon Jun 15, 2026 at 11:26 AM CEST, Tvrtko Ursulin wrote:
->>> @@ -176,9 +160,25 @@ nouveau_cli_work(struct work_struct *w)
->>>  	struct nouveau_cli_work *work, *wtmp;
->>>  	mutex_lock(&cli->lock);
->>>  	list_for_each_entry_safe(work, wtmp, &cli->worker, head) {
->>> -		if (!work->fence || nouveau_cli_work_ready(work->fence)) {
->>> +		struct dma_fence *fence = work->fence;
->>> +
->>> +		if (!fence || dma_fence_is_signaled(fence)) {
->>> +			if (fence) {
-> 
-> btw I don't think that these two lines read more beautifully than the
-> removed nouveau_cli_work_ready().
-> 
->>> +				unsigned long flags;
->>> +
->>> +				/*
->>> +				 * Because fence can still be in the process of
->>> +				 * processing the callback list, and the
->>> +				 * callback references the work we are about to
->>> +				 * free, we need to sync with the callback
->>> +				 * processing before freeing the work.
->>> +				 */
->>> +				dma_fence_lock_irqsave(fence, flags);
->>> +				dma_fence_unlock_irqrestore(fence, flags);
->>
->> This does not ensure that there are no more dma_fence_ops callbacks into the
->> driver. For instance, a concurrent dma_fence_is_signaled() might read the
->> signaled flag as false before we do this lock dance and then still enter
->> ops->signaled().
-> 
-> The issue Dave addressed was a UAF within Nouveau itself, where the
-> driver put() its own fence while its own callbacks were still
-> executing.
+(+Cc Daniel)
 
-Yeah that's exactly the reason why I have been rejecting the idea that drivers install callbacks on their own fences.
+On Mon, 2026-06-22 at 14:17 +0200, Christian K=C3=B6nig wrote:
+> On 6/22/26 10:57, Philipp Stanner wrote:
+> >=20
+> > The issue Dave addressed was a UAF within Nouveau itself, where the
+> > driver put() its own fence while its own callbacks were still
+> > executing.
+>=20
+> Yeah that's exactly the reason why I have been rejecting the idea
+> that drivers install callbacks on their own fences.
 
-Maybe an idea how to generally tackle this for all drivers: Never let the dma-fence framework call dma_fence_signal(), that should only the driver do by itself.
+I remember we had that discussion when I discovered that signaled
+fences can temporarily remain on nouveau's "unsignaled fences" list and
+wanted to do the removal automatically via callback.
 
-This way we don't run into the issue in the first place that the driver needs to install some callbacks *and* the driver also knows when the installed callbacks are finished because that is when dma_fence_signal() returns.
+>=20
+> Maybe an idea how to generally tackle this for all drivers: Never let
+> the dma-fence framework call dma_fence_signal(), that should only the
+> driver do by itself.
 
-Does that sound valid to you guys? If yes I will be sending out patches to do this.
+About the framework I'm not sure, but what we do enforce strictly in
+Rust is that only the creator of a fence can signal it. We achieve that
+by two fence types, of which only one implements a signal() method
 
-Regards,
-Christian.
+I remember seeing some parties signaling the GPU scheduler's fences, so
+such things definitely happen. And since you likely can't enforce it in
+C, you would still have to take the possibility of a third party
+signalling your fence into account.
+
+>=20
+> This way we don't run into the issue in the first place that the
+> driver needs to install some callbacks *and* the driver also knows
+> when the installed callbacks are finished because that is when
+> dma_fence_signal() returns.
+>=20
+> Does that sound valid to you guys? If yes I will be sending out
+> patches to do this.
+
+Hm. I suppose that would be an improvement?
+
+Maybe let me ask differently, too: why is it that the framework is
+signaling fences in the first place? If I understood you correctly last
+time that is partially related to the locking problem in the callbacks.
 
 
-> 
-> Tvrtko's patch does not address the RCU issues you mention, nor does it
-> address any other fence related issue except for adding the comment
-> that should have been added back then with the fix in
-> nouveau_cli_work_ready().
-> 
-> It's literally the same. Take the lock manually to work around the fact
-> that the bit is protected inconsistently, setting is locked, reading
-> just randomly races around.
-> 
->>
->> Luckily, for this specific code here in nouveau it should be enough to ensure
->> that all dma_fence_cb callbacks are finished, which this hack does achieve.
->>
->> The reason I call it hack is that it fundamentally relies on dma_fence
->> implementation details and not a specified API contract.
->>
->> The closest thing to an API contract for this is the RCU protection that was
->> recently added. So, the proper approach would be to run this work with
->> queue_rcu_work() and then call flush_rcu_work().
->>
->> In this context it is worth noting that in this case it is even more
->> complicated. Since the work struct is shared per CLI the single RCU barrier in
->> flush_rcu_work() is not enough, i.e. there is no per fence callback grace period
->> guarantee.
->>
->> To me this still seems to be a bit of a footgun (although we could probably
->> improve the nouveau code to make it a bit simpler).
->>
->> That said, the patch does make things a bit clearer, so I picked it up --
->> thanks!
-> 
-> I disagree that this is an improvement and am unhappy with you merging
-> it. It merely moves Dave's fix from one place to another and causes
-> unnecessary churn in the git log.
-> 
-> Adding the comment into Dave's fix until someone can address the
-> (literally) fundemantal problem in dma_fence would have been my
-> preferred approach.
-> 
-> 
-> P.
+P.
 
+>=20
+> Regards,
+> Christian.
