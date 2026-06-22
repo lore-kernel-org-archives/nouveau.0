@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53646CDB46D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC446CDB466
 	for <nouveau@archiver.kernel.org>; Mon, 22 Jun 2026 02:12:25 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B9F3010E42C;
-	Mon, 22 Jun 2026 02:12:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5E610E432;
+	Mon, 22 Jun 2026 02:12:22 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 743BE46BF7;
-	Mon, 22 Jun 2026 01:57:57 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id BD3EB46BF9;
+	Mon, 22 Jun 2026 01:57:58 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782093477;
- b=CPkmKz+dWNYrHGg6eGJUPsmQcj+Rev7k1eOnxMvT3ZYkWZlaisamneiF2neD8oS10kB8q
- VHjGCxo1Qxg+JIghPq7e+fxMN+F/AR+6EkAQqk5x/pL9lrDdThSd5v4Ua8jKFJlDtQ2YtBH
- k0wpSUHcBDrve2wZVtD+7Hn6CQyssi5vKmWMyL9EdOQzy+5jgC7CZ3BW1eBjMpiDUjrZj9N
- hojd+y/hQWRA9RlNWYTtPg4TKGpGag5WSwX5RGJ+yRMKWd+aRCcRA3CdDPgA6e/v6d7urNu
- P17UW4K6/j9AKKuJ38zx+0BFjAWpo8wAtnZnD+9MD/wVzs/nrUTPRuG/QKuQ==
+ s=20240201; t=1782093478;
+ b=hi4oIfqkL1QsM+7tXViucqy07RyXUJ0aWHe8Vh9uUD7zBWaDzdo8c6O9uXfnsIiNHjzUl
+ 31EXPRYANER2O4t/ZVjwlUWro98uXFp5KaV0GhmG7va31OcqQ7RRlzkM43F6anY+ldr91VY
+ bLBJoUAUAARIjPF2UO9Mn6yxMcIWmKY5EVOph+0Gb9hlkrKkbk5cv3rj5uD8RAMMwqb8Xv+
+ 4p2r3gN9tkW/PowXTc0/Q/fdjKrfGc1HG2eQUsnRj5QA6Y8xCdTu1E1EfunmQCLjBO5Lu7M
+ Lp5uxU/e4krje4bC/nsO/w9F2M2MrLlegtHARMvSxi1+XlBdKhD/+vMAvLcQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782093477; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782093478; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=cRUXyiR038T6IS4/ruOXKGBsoiT3EckCxO1UCg7sZrI=;
- b=j9cBaryN4mxUa9ZKgjXDNZ1i2UdG38i4R+y1Lsdo8j72AyMs0liwbyzJOoBzzLQ7nHKRs
- cr1PbzrU1fghx+eiWlo/cp9FyTOQZiDdhzZIizTWrvNNump5AyHjRZQuksIqHOSs9xA6U0P
- I4CRQsAFMHLlfc7Sx9KP39Hp+rFgo9qNCdwKsa8tZIGmpRORqIxkry25KpdKBOS4jwt3QEU
- ezfORGxypVLxYncDaLyNVykiK5Gn83mETR5T/5XN4boVFkOO9PusMGIp+1Zi6tCQADucnJ3
- s9s/qAK5P7XByrwYZSZgV8BJVoWj5phdwdZmBxJk2EhWpoxV7so2vjClEACQ==
+ bh=y6ZsCUvPIt0cE+S5cmWQsA2kKBq8l5mGEaOe0W8BRms=;
+ b=G11AB7KTLW/q417vAyEmMSAdHoMPA64NtPutBK6Rr/AhGCIYl8yvNNt4ao+by1xDNPO+O
+ vxyWzcQgPhQL9qjlLQXxpeE+kWr8SpdKk5FnvPca/zp3h3EIuepMK10CUpFXK0Wc9XIJXN7
+ k8cJrO68hr/HaegjMTwazD9TT4PIomEQ+iPGy9UOt1fBFuLnvsvZQcAmQ7RvQIdufwLtgO+
+ JnzXsommk9zk9A2ZkutBzrpUHvm2zSqsC0VR6X9DTWpeujOq19yQ4OVgZadjcEdUplc+dpx
+ 0DCNRJr05fHVCHNaXP5j2kkwdB/GtxSBD75QvhIwALqgYhIlyhqwKWODi5lQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
   dmarc=none
 Authentication-Results: mail.freedesktop.org; dkim=fail;
  arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 26DD4404B0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2AB14466C4
 	for <nouveau@lists.freedesktop.org>; Mon, 22 Jun 2026 01:57:55 +0000 (UTC)
 Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8574C10E41F;
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 897DE10E424;
 	Mon, 22 Jun 2026 02:12:17 +0000 (UTC)
-X-UUID: c7fac2c66ddf11f1aa26b74ffac11d73-20260622
+X-UUID: c8a74d0c6ddf11f1aa26b74ffac11d73-20260622
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.12,REQID:66b7d150-bc24-4ad1-857a-ab1a05ca40ef,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:e7bac3a,CLOUDID:f57525c270ece070f4eb3405591951ac,BulkI
-	D:nil,BulkQuantity:0,Recheck:0,SF:102|850|865|898,TC:nil,Content:0|15|50,E
-	DM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA
-	:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-O-INFO: VERSION:1.3.12,REQID:335b910d-eb80-4140-81b5-c283c2c51fba,IP:0,U
+	RL:0,TC:0,Content:0,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:e7bac3a,CLOUDID:41aba0d9daff0d0c45a5198f3a1fea60,BulkI
+	D:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|136|850|865|898,TC:nil,Content
+	:0|15|50,EDM:2,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,
+	OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
 X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: c7fac2c66ddf11f1aa26b74ffac11d73-20260622
+X-UUID: c8a74d0c6ddf11f1aa26b74ffac11d73-20260622
 X-User: zenghongling@kylinos.cn
 Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
 	(envelope-from <zenghongling@kylinos.cn>)
 	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 555526570; Mon, 22 Jun 2026 10:12:12 +0800
+	with ESMTP id 246438524; Mon, 22 Jun 2026 10:12:13 +0800
 From: Hongling Zeng <zenghongling@kylinos.cn>
 To: lyude@redhat.com,
 	dakr@kernel.org,
@@ -75,14 +75,17 @@ To: lyude@redhat.com,
 	ttabi@nvidia.com,
 	bskeggs@nvidia.com,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 0/5] nouveau/gsp: Clean up IS_ERR vs IS_ERR_OR_NULL usage
-Date: Mon, 22 Jun 2026 10:12:02 +0800
-Message-Id: <20260622021207.14764-1-zenghongling@kylinos.cn>
+Subject: [PATCH v3 1/5] nouveau/gsp/rpc: Document RPC function return value
+  contracts
+Date: Mon, 22 Jun 2026 10:12:03 +0800
+Message-Id: <20260622021207.14764-2-zenghongling@kylinos.cn>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260622021207.14764-1-zenghongling@kylinos.cn>
+References: <20260622021207.14764-1-zenghongling@kylinos.cn>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: JQKIKYQJNKP7N3CD5PNNT4AD3J554B3S
-X-Message-ID-Hash: JQKIKYQJNKP7N3CD5PNNT4AD3J554B3S
+Message-ID-Hash: MENAHSTNMAPIAFT55PPFPKWQRSX7ZSB7
+X-Message-ID-Hash: MENAHSTNMAPIAFT55PPFPKWQRSX7ZSB7
 X-MailFrom: zenghongling@kylinos.cn
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -93,9 +96,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JQKIKYQJNKP7N3CD5PNNT4AD3J554B3S/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MENAHSTNMAPIAFT55PPFPKWQRSX7ZSB7/>
 Archived-At: 
- <https://lore.freedesktop.org/20260622021207.14764-1-zenghongling@kylinos.cn/>
+ <https://lore.freedesktop.org/20260622021207.14764-2-zenghongling@kylinos.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -105,59 +108,183 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-This series addresses feedback from Danilo Krummrich and Timur Tabi
-regarding the use of IS_ERR() vs IS_ERR_OR_NULL() in the nouveau
-GSP RPC code.
+Add kernel-doc comments to document the return value semantics of
+RPC functions in r535/rpc.c. This clarifies which functions can return
+NULL, error pointers, or both, helping maintainers validate future
+changes.
 
-The key insight is that we should align error checking with the actual
-return value contracts of each function:
-- Functions that never return NULL should use IS_ERR()
-- Functions that can return NULL should use IS_ERR_OR_NULL()
+Return value analysis:
+- r535_gsp_msgq_peek(): Never returns NULL
+- r535_gsp_msgq_recv_one_elem(): Never returns NULL
+- r535_gsp_msgq_recv(): CAN return NULL (when RPC length invalid)
+- r535_gsp_msg_recv(): CAN return NULL (queue drained/no matching message)
+- r535_gsp_rpc_get(): Never returns NULL
+- r535_gsp_rpc_handle_reply(): CAN return NULL (NOWAIT/NOSEQ policies)
+- r535_gsp_rpc_send(): CAN return NULL (via handle_reply)
+- r535_gsp_rpc_push(): CAN return NULL (via handle_reply)
 
-This version adds documentation to clarify the return value contracts,
-making it easier for maintainers to validate future changes.
+Signed-off-by: Hongling Zeng <zenghongling@kylinos.cn>
 
-Return Value Analysis
+---
+ Change in v3:
+ -Fix documentation accuracy for r535_gsp_msg_recv() to clarify.
+ -Fix documentation accuracy for r535_gsp_rpc_handle_reply() to clarify.
+---
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c | 85 +++++++++++++++++++
+ 1 file changed, 85 insertions(+)
 
-After thorough code analysis, the RPC functions are categorized as:
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c
+index 3ca3de8f4340..1b125dcb279a 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c
+@@ -204,6 +204,15 @@ r535_gsp_msgq_get_entry(struct nvkm_gsp *gsp)
+  *   The user is responsible for freeing the memory allocated for the GSP
+  *   message pages after they have been processed.
+  */
++/**
++ * r535_gsp_msgq_peek - Peek at next message in GSP command queue
++ * @gsp: GSP device
++ * @gsp_rpc_len: Expected RPC length
++ * @retries: Retry counter
++ *
++ * Return: Pointer to RPC message on success, or ERR_PTR() on error.
++ *         Never returns NULL.
++ */
+ static void *
+ r535_gsp_msgq_peek(struct nvkm_gsp *gsp, u32 gsp_rpc_len, int *retries)
+ {
+@@ -229,6 +238,14 @@ struct r535_gsp_msg_info {
+ static void
+ r535_gsp_msg_dump(struct nvkm_gsp *gsp, struct nvfw_gsp_rpc *msg, int lvl);
+ 
++/**
++ * r535_gsp_msgq_recv_one_elem - Receive one message element from GSP queue
++ * @gsp: GSP device
++ * @info: Message queue information
++ *
++ * Return: Pointer to received buffer on success, or ERR_PTR() on error.
++ *         Never returns NULL.
++ */
+ static void *
+ r535_gsp_msgq_recv_one_elem(struct nvkm_gsp *gsp,
+ 			    struct r535_gsp_msg_info *info)
+@@ -283,6 +300,15 @@ r535_gsp_msgq_recv_one_elem(struct nvkm_gsp *gsp,
+ 	return buf;
+ }
+ 
++/**
++ * r535_gsp_msgq_recv - Receive RPC message(s) from GSP queue
++ * @gsp: GSP device
++ * @gsp_rpc_len: Expected RPC length
++ * @retries: Retry counter
++ *
++ * Return: Pointer to received buffer on success, ERR_PTR() on error,
++ *         or NULL if RPC length is invalid.
++ */
+ static void *
+ r535_gsp_msgq_recv(struct nvkm_gsp *gsp, u32 gsp_rpc_len, int *retries)
+ {
+@@ -450,6 +476,20 @@ r535_gsp_msg_dump(struct nvkm_gsp *gsp, struct nvfw_gsp_rpc *msg, int lvl)
+ 	}
+ }
+ 
++/**
++ * r535_gsp_msg_recv - Receive RPC message from GSP message queue
++ * @gsp: GSP device
++ * @fn: Expected RPC function number (0 to accept any)
++ * @gsp_rpc_len: Expected RPC length (0 for POLL mode)
++ *
++ * Return: Pointer to RPC message on success, ERR_PTR() on error.
++ *         When fn!=0: retries until timeout, returns ERR_PTR(-ETIMEDOUT)
++ *                    if no match found (never returns NULL for timeout).
++ *                    When fn!=0 and gsp_rpc_len==0 (POLL mode): returns
++ *                    NULL on successful message processing.
++ *         When fn==0: returns NULL if queue is drained or no matching
++ *                    message found without retrying.
++ */
+ struct nvfw_gsp_rpc *
+ r535_gsp_msg_recv(struct nvkm_gsp *gsp, int fn, u32 gsp_rpc_len)
+ {
+@@ -547,6 +587,17 @@ r535_gsp_rpc_poll(struct nvkm_gsp *gsp, u32 fn)
+ 	return 0;
+ }
+ 
++/**
++ * r535_gsp_rpc_handle_reply - Handle RPC reply based on policy
++ * @gsp: GSP device
++ * @fn: RPC function number
++ * @policy: Reply policy (NOWAIT, NOSEQ, RECV, or POLL)
++ * @gsp_rpc_len: Expected RPC length
++ *
++ * Return: NULL when policy is NOWAIT or NOSEQ (no reply expected),
++ *         pointer to reply data on success, ERR_PTR() on error.
++ *         When policy is POLL: NULL on successful message processing.
++ */
+ static void *
+ r535_gsp_rpc_handle_reply(struct nvkm_gsp *gsp, u32 fn,
+ 			  enum nvkm_gsp_rpc_reply_policy policy,
+@@ -574,6 +625,16 @@ r535_gsp_rpc_handle_reply(struct nvkm_gsp *gsp, u32 fn,
+ 	return repv;
+ }
+ 
++/**
++ * r535_gsp_rpc_send - Send RPC message and handle reply
++ * @gsp: GSP device
++ * @payload: RPC payload to send
++ * @policy: Reply policy (NOWAIT, NOSEQ, RECV, or POLL)
++ * @gsp_rpc_len: Expected RPC length for reply
++ *
++ * Return: NULL if policy is NOWAIT/NOSEQ (no reply expected),
++ *         pointer to reply data on success, or ERR_PTR() on error.
++ */
+ static void *
+ r535_gsp_rpc_send(struct nvkm_gsp *gsp, void *payload,
+ 		  enum nvkm_gsp_rpc_reply_policy policy, u32 gsp_rpc_len)
+@@ -601,6 +662,11 @@ r535_gsp_rpc_send(struct nvkm_gsp *gsp, void *payload,
+ 	return r535_gsp_rpc_handle_reply(gsp, fn, policy, gsp_rpc_len);
+ }
+ 
++/**
++ * r535_gsp_rpc_done - Free an RPC message
++ * @gsp: GSP device
++ * @repv: Pointer to RPC payload data returned by r535_gsp_rpc_get() 
++ */
+ static void
+ r535_gsp_rpc_done(struct nvkm_gsp *gsp, void *repv)
+ {
+@@ -609,6 +675,15 @@ r535_gsp_rpc_done(struct nvkm_gsp *gsp, void *repv)
+ 	r535_gsp_msg_done(gsp, rpc);
+ }
+ 
++/**
++ * r535_gsp_rpc_get - Allocate and initialize an RPC message
++ * @gsp: GSP device
++ * @fn: RPC function number
++ * @payload_size: Size of the payload
++ *
++ * Return: Pointer to RPC payload data on success, or ERR_PTR() on error.
++ *     Never returns NULL. 
++ */
+ static void *
+ r535_gsp_rpc_get(struct nvkm_gsp *gsp, u32 fn, u32 payload_size)
+ {
+@@ -628,6 +703,16 @@ r535_gsp_rpc_get(struct nvkm_gsp *gsp, u32 fn, u32 payload_size)
+ 	return rpc->data;
+ }
+ 
++/**
++ * r535_gsp_rpc_push - Push RPC message to GSP and wait for reply
++ * @gsp: GSP device
++ * @payload: RPC payload to send
++ * @policy: Reply policy (NOWAIT, NOSEQ, RECV, or POLL)
++ * @gsp_rpc_len: Expected RPC length in the reply
++ *
++ * Return: NULL when policy is NOWAIT/NOSEQ (no reply expected),
++ *         pointer to reply data on success, or ERR_PTR() on error.
++ */
+ static void *
+ r535_gsp_rpc_push(struct nvkm_gsp *gsp, void *payload,
+ 		  enum nvkm_gsp_rpc_reply_policy policy, u32 gsp_rpc_len)
+-- 
+2.25.1
 
-Never return NULL (use IS_ERR):**
-- r535_gsp_msgq_peek()
-- r535_gsp_msgq_recv_one_elem()
-- r535_gsp_rpc_get()
-
-CAN return NULL (use IS_ERR_OR_NULL):**
-- r535_gsp_msgq_recv() - returns NULL when RPC length is invalid
-- r535_gsp_msg_recv() - returns NULL when queue drained
-- r535_gsp_rpc_handle_reply() - returns NULL for NOWAIT/NOSEQ policies
-- r535_gsp_rpc_send() - can return NULL via handle_reply
-- r535_gsp_rpc_push() - can return NULL via handle_reply
-
-Changes in v2
-
-- Added kernel-doc comments documenting return value contracts for all
-  RPC functions
-- Cleaned up incorrect IS_ERR_OR_NULL() usage for functions that never
-  return NULL
-- Kept IS_ERR_OR_NULL() in places where NULL is actually possible
-- Added Fixes tags to all patches
-
-Testing
-
-This fixes the NULL pointer dereference oops that occurs during
-nouveau initialization on some systems.
-
-Patches
-
-Hongling Zeng (5):
-  nouveau/gsp/rpc: Document RPC function return value contracts
-  nouveau/gsp/rpc: Cleanup incorrect IS_ERR_OR_NULL in rpc.c
-  nouveau/gsp/rm/alloc: Cleanup IS_ERR_OR_NULL usage
-  nouveau/gsp/rm/bar: Cleanup IS_ERR_OR_NULL usage
-  nouveau/gsp: Cleanup IS_ERR_OR_NULL in nvkm_gsp_rpc_rd()
-
- drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h   | 2 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/alloc.c | 2 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/bar.c  | 2 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c  | 81 ++++++++++++++++++-
- 4 files changed, 81 insertions(+), 6 deletions(-)
