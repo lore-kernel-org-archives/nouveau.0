@@ -4,108 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 739B2CDE00B
-	for <nouveau@archiver.kernel.org>; Thu, 25 Jun 2026 21:24:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 306E1CDE00E
+	for <nouveau@archiver.kernel.org>; Thu, 25 Jun 2026 23:15:58 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFF310F3A0;
-	Thu, 25 Jun 2026 21:24:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C0FF210F3C5;
+	Thu, 25 Jun 2026 23:15:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Onrh2DRe";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="DEDgME9c";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 928FF46CE7;
-	Thu, 25 Jun 2026 21:10:05 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id DB72346CDA;
+	Thu, 25 Jun 2026 23:01:24 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782421805;
- b=IW+F3famGHM6aRAo4uPxFujP4ugJL0kvEPa3/Gm00/gyRqkyTbNIfZsYeUwUYc+MiIs3M
- shueVAEJEQtKd4AE09pTSoMZiImlqcjonojTIYR+LcBV2eelIHjtEsZK6JSLVjlylZkN4DG
- E7Wla6ovbh2FJZeyHAp/rS9flmd1ex1JOsQDeuU0AFDrATd+Z5Z+HYl6MYvhvQK/bBpbgA3
- fqQKI9Ui/aAqTGwkC556e5Cw7USAPrRtx6l1Xkz+SB56bTN1LRAo5y2lDD0TPOgHIhZeNhR
- IQBS0RT8+Eyn+5tOBX6pbFmOrRFbp9eFrUv+mShBSTgd8wjCABx798xycZlA==
+ s=20240201; t=1782428484;
+ b=Upbz9xnWf9tb7DhiiGnwvnUBBZ54xaMGW7zLSZEfcAx4tBS7XK0506uSOqVMTTdP/xIj7
+ 46DXlvkT7wjAssZQqmiuMc3anVDNunOARcDk8JIMIJrVV+ZKLVanA6gFHSFMGyM+KwG8NDa
+ /nXUQo+vV88NFsbKreeeIiMe5dT+HF3h0KxX56yWJifd7X5F3x9DtH60VN9H6QNXZZt0NNA
+ P6gWo5bnR/ZtBhCh5SL+tGih7PQmhziyMub7q8LjGr2QSA7iWRSdTky32EAy4SRBtn526Z2
+ 6GcYQYT24QW1f4K7Y6xKK33cMkSFBQAxpt13yKiS7KAhYLFobaK5po79UM6w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782421805; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782428484; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=uDposd9yzkD1FM2nIjNn4bXbkvDLt/YZv/vRKxkPZLs=;
- b=pKpbO7bed+pZpszv7fNBzo/ov8cVJzqbC4JppCnwi5isfdP/3T/z6z9eCmF8zf/aivoQH
- 0iYIsoepDwoj+9AGDqpoRPBAgCInJ1FhxxX9fOXPMsUREYZ6Eh0HYdCnB01INr7TlhP5GK7
- Y7hFbrABbBSEJlAxw5imlbsMidAZ1TZXpl+5LwQjjZEy4g2BCwgvC3/ak1IJO3EJWqr2Y2O
- oXhoXCHaxoonIrTqc1ZrrfkMzrgBX96ab8y6ajFi6zh/nNPuJguPR4SXnAIS+85ZHe5HJuH
- ILE+JhnOQ7EEGGUrT55ABxFeGgORZVWYgb7/l7ASdSaAnsPgHHjb8Igcqqtg==
+ bh=IQJuwmjCMriVgu9tnR+e4ZlOFzJ/2hWV605ZycK4pno=;
+ b=ydHB3/DszDEEz2kmRgOl6BqOkyEWnP05Ruxfsbv1uoNIh/VvY3ZWqyvgiLQoHZDWciULC
+ Qd5s6YvNqSNnyjKhlccBzEpFKSXZl7mWjwjJ8KsSrs2VeoB2ckwposh0u/RB+SEAHUFjEvD
+ JCIiLB8b5HzpusUcWSjqpPQtpJg9GxlPBU0swWAJLJNidX+V+zjEsLzKnPik1UlXhPF7PRd
+ c/3nXpsdObF63D7h2tjseidhX2hfgDIo7lLPRhhtqQFEnGZvnuwVVZXCe3aZLtkjOxdetbj
+ Kz5kirVarungBaYbZWrbYOQuY1d0CGAEDUjJmpjKWLGcTdRo7EHiH4a1wvtQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 6FD3840382
-	for <nouveau@lists.freedesktop.org>; Thu, 25 Jun 2026 21:10:02 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E331A10F397;
-	Thu, 25 Jun 2026 21:24:33 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E769560098;
-	Thu, 25 Jun 2026 21:24:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0974B1F00A3A;
-	Thu, 25 Jun 2026 21:24:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782422672;
-	bh=uDposd9yzkD1FM2nIjNn4bXbkvDLt/YZv/vRKxkPZLs=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To;
-	b=Onrh2DRe3etG8+gEtrOVtB/xO9K2Pc6B/OJAfHyrypQjzi1uaCgLLM4uBlOd7FW6g
-	 +8nmPgwFJIlj3/hINrovtvarjjqIFLBUDc0ldxhclyhwr3FDdvSwwk6A3kw98zSTQC
-	 zb6N+Qsg3G3JxkHZIYp6Uaex6pAzzAOIme2FMm4JdOWFKP6nGDs1W1yZDwHIsnGfqt
-	 KU25U8mQYcZHwblmMjMKq33uNEgpC43OlAxlei9c0DCz/OjaboMv7swe2MqQn3+TJt
-	 kMLlhvw4pzTRFQNXVLHpIdbhp36vwVMuArLhNV+9TSOGEQQJKG741dIWsVKn7Lxd7C
-	 8xdMhUH91Z//Q==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 25 Jun 2026 23:24:26 +0200
-Message-Id: <DJIG3OW4RS98.3R1C3C97X702N@kernel.org>
-Subject: Re: [PATCH v21 4/4] rust: drm: gem: Introduce
- shmem::Object::sg_table()
-To: "Lyude Paul" <lyude@redhat.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260612194436.585385-1-lyude@redhat.com>
- <20260612194436.585385-5-lyude@redhat.com>
-In-Reply-To: <20260612194436.585385-5-lyude@redhat.com>
-Message-ID-Hash: 2OYSFSOWYHT633EXAU4MUEHW24RA2WUX
-X-Message-ID-Hash: 2OYSFSOWYHT633EXAU4MUEHW24RA2WUX
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0DFFA4684D
+	for <nouveau@lists.freedesktop.org>; Thu, 25 Jun 2026 23:01:22 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 938D510E167
+	for <nouveau@lists.freedesktop.org>; Thu, 25 Jun 2026 23:15:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1782429352;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=IQJuwmjCMriVgu9tnR+e4ZlOFzJ/2hWV605ZycK4pno=;
+	b=DEDgME9ctxv6Q4X3pKXVEup09D6fIt50dT5EWk4NmPICx+TEwggvA2xbt4YAZwPdSg53Pc
+	TPtu2vsG9EQp7emhldd+qdpVdf6LYe18+mrIO8OUVkk8agVUrAJoHzheH0Rccuy12sIMgE
+	fCxvcuRlQH6OHKUjdnyhFSBnflTV3Do=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-17-YoWaABW5NdKysRV71eYB-w-1; Thu,
+ 25 Jun 2026 19:15:50 -0400
+X-MC-Unique: YoWaABW5NdKysRV71eYB-w-1
+X-Mimecast-MFC-AGG-ID: YoWaABW5NdKysRV71eYB-w_1782429348
+Received: from mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.95])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 4933D1955F44;
+	Thu, 25 Jun 2026 23:15:48 +0000 (UTC)
+Received: from GoldenWind.lan (unknown [10.22.64.18])
+	by mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 989A536918;
+	Thu, 25 Jun 2026 23:15:45 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org,
+	nouveau@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] drm/nouveau: Fix runtime suspend on R570
+Date: Thu, 25 Jun 2026 19:10:53 -0400
+Message-ID: <20260625231252.89684-1-lyude@redhat.com>
+MIME-Version: 1.0
+X-Scanned-By: MIMEDefang 3.6 on 10.30.177.95
+X-Mimecast-MFC-PROC-ID: 2xXuaublg3nEqsbQ8PaOSwk-6J3VccOlD7M-EvElQ14_1782429348
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+content-type: text/plain; charset="US-ASCII"; x-default=true
+Message-ID-Hash: SPN33OD6VTPDYK3WWQDTRBQO3GJ67MDS
+X-Message-ID-Hash: SPN33OD6VTPDYK3WWQDTRBQO3GJ67MDS
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, Alexandre Courbot <acourbot@nvidia.com>,
- Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- driver-core@lists.linux.dev, Miguel Ojeda <ojeda@kernel.org>,
+ loop; banned-address
+CC: Dave Airlie <airlied@redhat.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
- linux-kernel@vger.kernel.org, Sumit Semwal <sumit.semwal@linaro.org>,
- linux-media@vger.kernel.org, "Rafael J . Wysocki" <rafael@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Benno Lossin <lossin@kernel.org>,
- linaro-mm-sig@lists.linaro.org,
- Mukesh Kumar Chaurasiya <mkchauras@gmail.com>,
- Asahi Lina <lina+kernel@asahilina.net>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+ Ben Skeggs <bskeggs@nvidia.com>, Kees Cook <kees@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2OYSFSOWYHT633EXAU4MUEHW24RA2WUX/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SPN33OD6VTPDYK3WWQDTRBQO3GJ67MDS/>
 Archived-At: 
- <https://lore.freedesktop.org/DJIG3OW4RS98.3R1C3C97X702N@kernel.org/>
+ <https://lore.freedesktop.org/20260625231252.89684-1-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -115,19 +122,22 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri Jun 12, 2026 at 9:43 PM CEST, Lyude Paul wrote:
-> In order to do this, we need to be careful to ensure that any interface w=
-e
-> expose for scatterlists ensures that any mappings created from one are
-> destroyed on driver-unbind. To do this, we introduce a Devres resource in=
-to
-> shmem::Object that we use in order to ensure that we release any SGTable
-> mappings on driver-unbind.
+Turns out our last attempt at fixing suspend/resume was not entirely
+correct, only partially correct. This reverts the partial fix, while
+leaving the piping of suspend/runtime suspend/etc. that we did in
+preparation for this originally, since I have a strong feeling it will
+come in use again in the future.
 
-It seems that this patch was applied without also applying the prerequisite
-patch (patch 3), which broke the build for the newly added kunit test -- I'=
-ve
-picked up prerequisite patch to resolve this.
+Lyude Paul (2):
+  Revert "nouveau/gsp: fix suspend/resume regression on r570 firmware"
+  drm/nouveau/gsp/r570: Never enter Gcoff state
 
-Thanks,
-Danilo
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fbsr.c | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c  | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c | 8 ++++----
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h        | 2 +-
+ 4 files changed, 7 insertions(+), 7 deletions(-)
+
+-- 
+2.54.0
+
