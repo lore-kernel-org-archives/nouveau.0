@@ -4,97 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEA98CDB471
-	for <nouveau@archiver.kernel.org>; Tue, 23 Jun 2026 22:34:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B35ECDB479
+	for <nouveau@archiver.kernel.org>; Thu, 25 Jun 2026 11:18:22 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E42A210ECF5;
-	Tue, 23 Jun 2026 22:34:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 40F8F10F265;
+	Thu, 25 Jun 2026 11:18:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=seu.edu.cn header.i=@seu.edu.cn header.b="fSk1vHv9";
+	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 88E2146CB2;
-	Tue, 23 Jun 2026 22:20:08 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 71D2646CD9;
+	Thu, 25 Jun 2026 11:03:50 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782253208;
- b=uK33cnwCIuXXUEOFRXcNA0Tll+XMLJF065I7LBHXvHjzDnkSwG6pIyi+18jrm2p72nnEQ
- HreVn7Gy06MzHIfkpxqVserE2NjxMgE50rs3iu8WzewcXLwlBOaRMBIXcLzOwUijfkTgqWU
- X9/lvz1mzkzVXagdOPhc0VNzVPBnUIouEOQhA3uVwPP6dx+OLrAVhFqn1GLzjbVv7+xg7LP
- IXn4z9u/Sf+B9kQCtLjDzMq4pSnRAFvjqaHB56PILMMlr9QWIovqY/o9ZQXGvRq43sxKxer
- THxHcI6afiNmFuKp2D02LFjMmY22M/utZmCCyCpEc925Qf1uHpMxLJPeSbFw==
+ s=20240201; t=1782385430;
+ b=cFPpRyWkJwN296r74gQ9bsnDl+uFkf02gUS+nMwILTIeOZdA/o9RUR3xBcDK3I5pprF3z
+ 0Lq+/+uYswV1/NM16JQWYo87Jcd3aJTWGCR0ettW8vWNf8YkYNjrtvmdPQSK+4C0KaOzp5w
+ k2fYgmqVrnOF8PGt5UByCP7wvkOCvw1jBCJyAYGUvNL7sBOhzOiei6f91mJKCAPyTL+xICl
+ 3VhxoVfQThnKMmGz5niOVDOL5hftvj7lZexrfPBr3ZHhp0sYYrGdOUrjhmynig4xTXhFRXi
+ DJhQI1zeEWq1O4TrZfLMQFZqlrlYKIIOt4aHm57p6dVBm2t8tFbIs2//XTsQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782253208; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782385430; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=7S1teQfTPJYV0a4TiMbbq3hzKoE0FYU8pP1yoZ8ylw0=;
- b=pUSSpzBblN23aYbyF9R02hd49yxpeDmd48F25bth+pFVSIxxUmzM/2B0PTDTNnaIXZsYd
- eYIwh/WNnuN/t89ImWU0Z3KwKU4wgCDZPWlwe7HIe59KDNptuuqX7nw+gJgfgZxY1RVawVQ
- GB+aJ+m/cTVR7LBmpQ5DqSF344kS97ldexP2RToUtkDpzYy4+T1DJ/mZVR4oCErnJ7YdEXH
- yXH+B7ICReLrTiRiu0Go7OPHJxLOWvpYGewGw42DHPhj4ouc93DzHkabA3J/BpxBLnIHmZt
- NvsXN9EXRA1yvnqyZoD03+Ib8SytcfTwGGYEFVENzqJjXfPoZr2JVh0ViFDA==
-ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
+ bh=Bxv0WhQiYf6pkXwOGd8BAHkpkzQ7RlMAJ6ktjf5RQ60=;
+ b=wW/hP/KTeB36ULyDkzxxqGThU0X6voiFwMs8erpfPUqVWHFJKpBAXku5MjejTKc6dV8gE
+ Iv9iZtC0LsDviE5uzOrIbul+p9GHThnSXaGbx6l4BdZFu6R053z7Hok3MbZuvX0qtDE/Qu5
+ TmwJqI1HFXcCAFKr172+RGV2FcIHeN9c9kcbADjHOfg8HwLbAG+AOzUroxsNOd9oaVoVsKR
+ /++ShD5FUvKoHc2qCLQZ5jWxvyf1blEKyovqMTSmYIQaX7GKrqD4tXR+yuRhoMgPbwtzeKA
+ 71jKC8ShZv/6WFC2w2L5wanQBlqnElIB0ZhS/Fc51Oz8f7yldRM2cIOLapeA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=seu.edu.cn;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail;
+  dmarc=pass (Used From Domain Record) header.from=seu.edu.cn
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=seu.edu.cn;
  arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=seu.edu.cn policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 8819E4062B
-	for <nouveau@lists.freedesktop.org>; Tue, 23 Jun 2026 22:20:05 +0000 (UTC)
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [205.139.111.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7003810E392
-	for <nouveau@lists.freedesktop.org>; Tue, 23 Jun 2026 22:34:32 +0000 (UTC)
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-553-379aMDJnMMiuPvhC18smYQ-1; Tue,
- 23 Jun 2026 18:33:26 -0400
-X-MC-Unique: 379aMDJnMMiuPvhC18smYQ-1
-X-Mimecast-MFC-AGG-ID: 379aMDJnMMiuPvhC18smYQ_1782254005
-Received: from mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.95])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 49BC61800473;
-	Tue, 23 Jun 2026 22:33:25 +0000 (UTC)
-Received: from dreadlord.taild9177d.ts.net (unknown [10.67.32.13])
-	by mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id EC722364CC;
-	Tue, 23 Jun 2026 22:33:22 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] nouveau/instmem: use iomapping interface for instmem handling
-Date: Wed, 24 Jun 2026 08:33:20 +1000
-Message-ID: <20260623223320.3837840-1-airlied@gmail.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id C3F474046C
+	for <nouveau@lists.freedesktop.org>; Thu, 25 Jun 2026 11:03:47 +0000 (UTC)
+X-Greylist: delayed 305 seconds by postgrey-1.36 at gabe;
+ Thu, 25 Jun 2026 11:18:16 UTC
+Received: from mail-m822136196.xmail.ntesmail.com
+ (mail-m822136196.xmail.ntesmail.com [8.221.36.196])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1DE4A10F092;
+	Thu, 25 Jun 2026 11:18:15 +0000 (UTC)
+Received: from DESKTOP-SUEFNF9.taila7e912.ts.net (unknown [221.228.238.82])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 43c0dec8c;
+	Thu, 25 Jun 2026 19:13:06 +0800 (GMT+08:00)
+From: Dawei Feng <dawei.feng@seu.edu.cn>
+To: dakr@kernel.org
+Subject: Re: [PATCH v2] nouveau/firmware: fix memory leak on BL load failure
+Date: Thu, 25 Jun 2026 19:13:08 +0800
+Message-Id: <20260625111308.1407104-1-dawei.feng@seu.edu.cn>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <DJEQTPJAR8DW.18CJ2FC7YZPA3@kernel.org>
+References: <DJEQTPJAR8DW.18CJ2FC7YZPA3@kernel.org>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.6 on 10.30.177.95
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: z7U-S9wIdCjhWTgiZLGkEQn0qe9oxCNn6QJK6gnTkrg_1782254005
-X-Mimecast-Originator: gmail.com
-Content-Transfer-Encoding: quoted-printable
-content-type: text/plain; charset=WINDOWS-1252; x-default=true
-Message-ID-Hash: IX773MRHCXRZ3WNHFZN2P7YV6UBX36P6
-X-Message-ID-Hash: IX773MRHCXRZ3WNHFZN2P7YV6UBX36P6
-X-MailFrom: airlied@gmail.com
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9efe7bca7e03a2kunm68fb4ad27cf8c
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaTh8ZVkhOSkNJHh5MHx9PGlYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUpVSUlDVUlIQ1VDSVlXWRYaDxIVHRRZQVlPS0hVSktISk
+	9ITFVKS0tVSkJLS1kG
+DKIM-Signature: a=rsa-sha256;
+	b=fSk1vHv9g3pkECkmoJLMWQpP7Xj+htLFoPA1G1aP7jF4T3/oyBYsDZsd8jGPulrd3v9QhMl3Jsw4r6g4mQU+diQ/YXv0tmhKDCQSUPxZExB09QCHnvMnXGzFgzjBXzM9Ysh86D/uhko8GNwKn4JxXMp8f4uxGRkr09uNua4ko+o=;
+ c=relaxed/relaxed; s=default; d=seu.edu.cn; v=1;
+	bh=Bxv0WhQiYf6pkXwOGd8BAHkpkzQ7RlMAJ6ktjf5RQ60=;
+	h=date:mime-version:subject:message-id:from;
+Message-ID-Hash: ZLEZZXFV35KIPTLOIN7LQ2PPWGOYM7PF
+X-Message-ID-Hash: ZLEZZXFV35KIPTLOIN7LQ2PPWGOYM7PF
+X-MailFrom: dawei.feng@seu.edu.cn
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: nouveau@lists.freedesktop.org, dakr@kernel.org
+ loop; banned-address; member-moderation
+CC: dawei.feng@seu.edu.cn, dri-devel@lists.freedesktop.org,
+ jianhao.xu@seu.edu.cn, linux-kernel@vger.kernel.org,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ nouveau@lists.freedesktop.org, simona@ffwll.ch, stable@vger.kernel.org,
+ zilin@seu.edu.cn
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IX773MRHCXRZ3WNHFZN2P7YV6UBX36P6/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZLEZZXFV35KIPTLOIN7LQ2PPWGOYM7PF/>
 Archived-At: 
- <https://lore.freedesktop.org/20260623223320.3837840-1-airlied@gmail.com/>
+ <https://lore.freedesktop.org/20260625111308.1407104-1-dawei.feng@seu.edu.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -104,107 +104,21 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+Hi,Danilo,
 
-This avoids constant need to ioremap when instobjs move at least
-on 64-bit systems.
+Thanks for the review.
 
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- .../drm/nouveau/nvkm/subdev/instmem/nv50.c    | 25 ++++++++++++++-----
- 1 file changed, 19 insertions(+), 6 deletions(-)
+On Sun, 21 Jun 2026 14:57:56 +0200, Danilo Krummrich wrote:
+>> Fixes: 2541626cfb79 ("drm/nouveau/acr: use common falcon HS FW code for ACR FWs")
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Zilin Guan <zilin@seu.edu.cn>
+>
+>Is Zilin a co-author of the patch?
+ 
+Zilin is the discoverer of this bug. We are in the same research group,
+and he actively participated in reviewing this patch. 
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c b/drivers/g=
-pu/drm/nouveau/nvkm/subdev/instmem/nv50.c
-index 6fbaa1e5876d..929246bde72d 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c
-@@ -30,10 +30,14 @@
- #include <subdev/gsp.h>
- #include <subdev/mmu.h>
-=20
-+#include <linux/io-mapping.h>
-+
- struct nv50_instmem {
- =09struct nvkm_instmem base;
- =09u64 addr;
-=20
-+=09struct io_mapping iomap;
-+
- =09/* Mappings that can be evicted when BAR2 space has been exhausted. */
- =09struct list_head lru;
- };
-@@ -124,7 +128,6 @@ nv50_instobj_kmap(struct nv50_instobj *iobj, struct nvk=
-m_vmm *vmm)
- =09struct nv50_instobj *eobj;
- =09struct nvkm_memory *memory =3D &iobj->base.memory;
- =09struct nvkm_subdev *subdev =3D &imem->base.subdev;
--=09struct nvkm_device *device =3D subdev->device;
- =09struct nvkm_vma *bar =3D NULL, *ebar;
- =09u64 size =3D nvkm_memory_size(memory);
- =09void *emap;
-@@ -155,7 +158,7 @@ nv50_instobj_kmap(struct nv50_instobj *iobj, struct nvk=
-m_vmm *vmm)
- =09=09mutex_unlock(&imem->base.mutex);
- =09=09if (!eobj)
- =09=09=09break;
--=09=09iounmap(emap);
-+=09=09io_mapping_unmap(emap);
- =09=09nvkm_vmm_put(vmm, &ebar);
- =09}
-=20
-@@ -172,8 +175,7 @@ nv50_instobj_kmap(struct nv50_instobj *iobj, struct nvk=
-m_vmm *vmm)
-=20
- =09/* Make the mapping visible to the host. */
- =09iobj->bar =3D bar;
--=09iobj->map =3D ioremap_wc(device->func->resource_addr(device, NVKM_BAR2_=
-INST) +
--=09=09=09       (u32)iobj->bar->addr, size);
-+=09iobj->map =3D io_mapping_map_wc(&imem->iomap, iobj->bar->addr, size);
- =09if (!iobj->map) {
- =09=09nvkm_warn(subdev, "PRAMIN ioremap failed\n");
- =09=09nvkm_vmm_put(vmm, &iobj->bar);
-@@ -330,7 +332,7 @@ nv50_instobj_dtor(struct nvkm_memory *memory)
-=20
- =09if (map) {
- =09=09struct nvkm_vmm *vmm =3D nvkm_bar_bar2_vmm(imem->subdev.device);
--=09=09iounmap(map);
-+=09=09io_mapping_unmap(map);
- =09=09if (likely(vmm)) /* Can be NULL during BAR destructor. */
- =09=09=09nvkm_vmm_put(vmm, &bar);
- =09}
-@@ -409,7 +411,10 @@ nv50_instmem_fini(struct nvkm_instmem *base)
- static void *
- nv50_instmem_dtor(struct nvkm_instmem *base)
- {
--=09return nv50_instmem(base);
-+=09struct nv50_instmem *imem =3D nv50_instmem(base);
-+
-+=09io_mapping_fini(&imem->iomap);
-+=09return imem;
- }
-=20
- static const struct nvkm_instmem_func
-@@ -433,8 +438,16 @@ nv50_instmem_new_(const struct nvkm_instmem_func *func=
-,
-=20
- =09if (!(imem =3D kzalloc_obj(*imem)))
- =09=09return -ENOMEM;
-+
-+=09if (!io_mapping_init_wc(&imem->iomap, device->func->resource_addr(devic=
-e, NVKM_BAR2_INST),
-+=09=09=09=09device->func->resource_size(device, NVKM_BAR2_INST))) {
-+=09=09kfree(imem);
-+=09=09return -ENOMEM;
-+=09}
-+
- =09nvkm_instmem_ctor(func, device, type, inst, &imem->base);
- =09INIT_LIST_HEAD(&imem->lru);
-+
- =09*pimem =3D &imem->base;
- =09return 0;
- }
---=20
-2.54.0
+Should I set Zilin as Reported-by in the v3 patch?
 
+Best regards,
+Dawei Feng
