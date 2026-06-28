@@ -4,68 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ECBDC43602
-	for <nouveau@archiver.kernel.org>; Sun, 28 Jun 2026 03:56:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15D88C43602
+	for <nouveau@archiver.kernel.org>; Sun, 28 Jun 2026 03:56:34 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 36A6C10E563;
-	Sun, 28 Jun 2026 03:56:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 649E910E569;
+	Sun, 28 Jun 2026 03:56:33 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 75B4546D2F;
-	Sun, 28 Jun 2026 03:41:42 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id AF75946D31;
+	Sun, 28 Jun 2026 03:41:56 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782618102;
- b=r2r80nzJHjB9gtwTpJn6Vc1nypKBg4ujgrJmYEPqRuWH9YPwre9sYem/l2+FfjM2T1dEs
- jNHda/NDp/hENrQ1U4UnkKSD0xuGgak4MJmh5ceCz2bFX4bSgFtUetpVni9BOJRoZbB4LLc
- tEKLwC26LMvqw9bCviven+IZmGz/Gm4jHiQXS1Hlr0GgoO3XoldyM2q8BpVjJ+rWx6eVmoi
- lujLySbTmykfzO/if85KI2YKwg3k7UIps3JcAarkYtgZuvds2QA5rgnl94Wns7fxWuTPBSx
- Kxd+5jRfwc6t1GbW6NIJqzAg2QdFOsiQeNai3POEsu/w0WFSz98c/jowTP2Q==
+ s=20240201; t=1782618116;
+ b=ESGljcAn0C/4i7PV0ae8uK0RonUMObdwIB4RJS2Hbmf8WznSnYmamLfz0Ekuo3Ev+724L
+ FUNTmv1jlZX315f9kGovr/M6jnq4IbidYg05+4DUCBAKlmwHEvt4cp26r7xydhNXE6vUVXm
+ GFS2bn7gx+0VKMmNqNUUixkz6qCvkZDtUTD6Llx4PDMG5sHpEFYz72vsm+3B/l1oiZsolr6
+ lBLIg94W4htsroXEdoi90s6t64ac2Lqox079CsNkdoYavxG0fabgXwHhginT2yX7sIoNNWJ
+ pkd+zEK467St4TXoQRFpVSpuakj0zhwA5P3RA4L+z+eQWjFxaxocEBmd9F+w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782618102; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782618116; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=RLXag1f8ol/MNjB3LvZ7qQXqfNOTl2fK5yAXhWTA90Y=;
- b=NCFs8RlTfizTkE/fJwI2gktSQOJNRrwJ5k8bVsMo5Nol5FGRrn2EUV6edYFjfdR+xsvhf
- 6N55BvKKpN07nGWIzfzgCG57HIxgzKKr4UhAM8ivpSOQ4MD8zVhTGgA+bQGxpie7SsQZgFq
- eIK0xbl1Y5mIjbzjlui9Sa47QfCZBew3WwKeK6F6jWQcySdhmDj0KMAo2lZ1aXzIkwDv7PQ
- yRLd547hCM4JbpwNV0AWGOKolemP+0UHJx46opvDFuLA/K29wmZJhW3k4MJVMc7SREapk1G
- 4qVZbouqw/Q3tjwTemQk6MobAzI1Mdej2G5NaqqDt69zlv4Zne1edo+Ukf5A==
+ bh=NvenJfeRI0wJdcyFOR/VzHp0MJOqZKgXEx/ENHlPPaQ=;
+ b=VeQPpR6hwZHLmSg8qShdY/QwXRAT9tgzLPY3StIWhYs8qn5ADMZn/QrDloaRUV1IP6Bqu
+ rWyqCJpyoviAtQ0qJwoL9aRNZuLC8q3GROTU4j7XyCKT6m1CCeZPD5iLg62hzkYQ+ecInX0
+ wRi87hklv11Flu96Bwv1jXPChxd58wAt0F3iqTx8PZHf7+EXCxYC7Js0Bqm8yDiXIuMD69T
+ tAcWdCBxQ0i8h0MyTkr29trCOJ7frOWpNoKhULHY35YVdRlCCnMIMipZdnLaYLMvbtyEM18
+ KWP2TY0YJb5GQH/e2lIugbYe4LgOW06XcMxcEVsuIn56sQWEN/guZTFaaEUw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
   dmarc=none
 Authentication-Results: mail.freedesktop.org; dkim=fail;
  arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 94E3545E30
-	for <nouveau@lists.freedesktop.org>; Sun, 28 Jun 2026 03:41:39 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 33D7345E30
+	for <nouveau@lists.freedesktop.org>; Sun, 28 Jun 2026 03:41:54 +0000 (UTC)
 Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6F44110E55F;
-	Sun, 28 Jun 2026 03:56:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 15E4610E561;
+	Sun, 28 Jun 2026 03:56:29 +0000 (UTC)
 Received: from smtpclient.apple (unknown [117.182.74.7])
-	by APP-01 (Coremail) with SMTP id qwCowADXfdYKm0BqqCuqAw--.7249S8;
-	Sun, 28 Jun 2026 11:56:10 +0800 (CST)
+	by APP-01 (Coremail) with SMTP id qwCowADXfdYKm0BqqCuqAw--.7249S9;
+	Sun, 28 Jun 2026 11:56:25 +0800 (CST)
 Content-Type: text/plain;
 	charset=utf-8
 Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.8\))
-Subject: Re: [PATCH] fix: drm/nouveau: validate_init: break paths after
- drm_gem_object_lookup   leak GEM reference
+Subject: Re: [PATCH] fix: drm/nouveau: nvkm_chan_new_: multiple error paths
+ return without   releasing acquired references
 From: WenTao Liang <vulab@iscas.ac.cn>
-In-Reply-To: <20260626142631.48578-1-vulab@iscas.ac.cn>
-Date: Sun, 28 Jun 2026 11:55:59 +0800
+In-Reply-To: <20260626143953.48952-1-vulab@iscas.ac.cn>
+Date: Sun, 28 Jun 2026 11:56:14 +0800
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <5B889F03-AAEF-4576-AD51-8B75FBE2E985@iscas.ac.cn>
-References: <20260626142631.48578-1-vulab@iscas.ac.cn>
+Message-Id: <93B2CF9E-410D-4F0A-B95F-9DCD67402A25@iscas.ac.cn>
+References: <20260626143953.48952-1-vulab@iscas.ac.cn>
 To: Lyude Paul <lyude@redhat.com>,
  Danilo Krummrich <dakr@kernel.org>,
  dri-devel@lists.freedesktop.org
 X-Mailer: Apple Mail (2.3826.700.81.1.8)
-X-CM-TRANSID: qwCowADXfdYKm0BqqCuqAw--.7249S8
-X-Coremail-Antispam: 1UD129KBjvJXoW7Cw47tFW8XF45CF1UtFy3CFg_yoW8WFyxpr
-	ZxKF1jvrZ8tw47Kr4IyF1UA3WS9a9YgrW8GF9ay34F9r1fAFyxXry5GwnxXryftr43G3yY
-	qw1DtasaqFWYyaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+X-CM-TRANSID: qwCowADXfdYKm0BqqCuqAw--.7249S9
+X-Coremail-Antispam: 1UD129KBjvJXoWxGry5ur17XF17Jw45KFy8Xwb_yoW5Zr4xpF
+	45WFyY9rWftrs3K3WIqr48Ka4Yy3yDKw4jk34UCw1SvrnxJry8CrWrCa1IvayrGrs7Gr45
+	ZFsIvFZa9F15tr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
 	9KBjDU0xBIdaVrnRJUUUm2b7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
 	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI
 	8067AKxVWUAVCq3wA2048vs2IY020Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28C
@@ -81,9 +81,9 @@ X-Coremail-Antispam: 1UD129KBjvJXoW7Cw47tFW8XF45CF1UtFy3CFg_yoW8WFyxpr
 	AIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVF
 	xhVjvjDU0xZFpf9x07bnUDAUUUUU=
 X-Originating-IP: [117.182.74.7]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCRQMA2pAiNkecgAAsF
-Message-ID-Hash: OMMSZHWKCKUT54EI5CWOIZ7IFS3BWNIP
-X-Message-ID-Hash: OMMSZHWKCKUT54EI5CWOIZ7IFS3BWNIP
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAMMA2pAioobPgAAsP
+Message-ID-Hash: P7IWW4PBAMJPPJBPDJ3R62K2DMYJFXBO
+X-Message-ID-Hash: P7IWW4PBAMJPPJBPDJ3R62K2DMYJFXBO
 X-MailFrom: vulab@iscas.ac.cn
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -96,9 +96,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OMMSZHWKCKUT54EI5CWOIZ7IFS3BWNIP/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/P7IWW4PBAMJPPJBPDJ3R62K2DMYJFXBO/>
 Archived-At: 
- <https://lore.freedesktop.org/5B889F03-AAEF-4576-AD51-8B75FBE2E985@iscas.ac.cn/>
+ <https://lore.freedesktop.org/93B2CF9E-410D-4F0A-B95F-9DCD67402A25@iscas.ac.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -110,51 +110,113 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 
 
-> 2026=E5=B9=B46=E6=9C=8826=E6=97=A5 22:26=EF=BC=8CWenTao Liang =
+> 2026=E5=B9=B46=E6=9C=8826=E6=97=A5 22:39=EF=BC=8CWenTao Liang =
 <vulab@iscas.ac.cn> =E5=86=99=E9=81=93=EF=BC=9A
 >=20
-> drm_gem_object_lookup acquires a GEM object reference at the start of
->  each loop iteration. Two break paths (ttm_bo_reserve failure =
-non-EDEADLK
->  and "vma not found") exit the loop without adding the gem to any =
-cleanup
->  list and without calling drm_gem_object_put, causing a GEM object
->  reference leak.
+> After allocating chan and acquiring references on cgrp, vmm, memory, =
+and
+>  chid, numerous subsequent error paths return ret directly without =
+calling
+>  kfree, nvkm_cgrp_unref, nvkm_vmm_unref, nvkm_memory_unref, or
+>  nvkm_chid_put. Every error return after the initial allocations leaks =
+one
+>  or more acquired resources.
 >=20
 > Cc: stable@vger.kernel.org
-> Fixes: 9242829a87e9 ("drm/nouveau: Keep only a single list for =
-validation.")
-> Fixes: 19ca10d82e33 ("drm/nouveau/gem: lookup VMAs for buffers =
-referenced by pushbuf ioctl")
+> Fixes: 06db7fded6de ("drm/nouveau/fifo: add new channel classes")
 > Signed-off-by: WenTao Liang <vulab@iscas.ac.cn>
 > ---
-> drivers/gpu/drm/nouveau/nouveau_gem.c | 2 ++
-> 1 file changed, 2 insertions(+)
+> .../gpu/drm/nouveau/nvkm/engine/fifo/chan.c   | 25 +++++++++++++------
+> 1 file changed, 17 insertions(+), 8 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c =
-b/drivers/gpu/drm/nouveau/nouveau_gem.c
-> index 20dba02d6175..c654256f4081 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-> @@ -513,6 +513,7 @@ validate_init(struct nouveau_channel *chan, struct =
-drm_file *file_priv,
-> 			if (unlikely(ret)) {
-> 				if (ret !=3D -ERESTARTSYS)
-> 					NV_PRINTK(err, cli, "fail =
-reserve\n");
-> +				drm_gem_object_put(gem);
-> 				break;
-> 			}
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c =
+b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c
+> index 418a8918bcb8..1bf595bafa9a 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c
+> @@ -410,18 +410,18 @@ nvkm_chan_new_(const struct nvkm_chan_func =
+*func, struct nvkm_runl *runl, int ru
+> 			      &chan->inst);
+> 	if (ret) {
+> 		RUNL_DEBUG(runl, "inst %d", ret);
+> -		return ret;
+> +		goto done;
+> 	}
+>=20
+> 	/* Initialise virtual address-space. */
+> 	if (func->inst->vmm) {
+> 		if (WARN_ON(vmm->mmu !=3D device->mmu))
+> -			return -EINVAL;
+> +			goto done;
+>=20
+> 		ret =3D nvkm_vmm_join(vmm, chan->inst->memory);
+> 		if (ret) {
+> 			RUNL_DEBUG(runl, "vmm %d", ret);
+> -			return ret;
+> +			goto done;
 > 		}
-> @@ -523,6 +524,7 @@ validate_init(struct nouveau_channel *chan, struct =
-drm_file *file_priv,
-> 			if (!vma) {
-> 				NV_PRINTK(err, cli, "vma not found!\n");
-> 				ret =3D -EINVAL;
-> +				drm_gem_object_put(gem);
-> 				break;
+>=20
+> 		chan->vmm =3D nvkm_vmm_ref(vmm);
+> @@ -432,7 +432,7 @@ nvkm_chan_new_(const struct nvkm_chan_func *func, =
+struct nvkm_runl *runl, int ru
+> 		ret =3D nvkm_object_bind(&dmaobj->object, chan->inst, =
+-16, &chan->push);
+> 		if (ret) {
+> 			RUNL_DEBUG(runl, "bind %d", ret);
+> -			return ret;
+> +			goto done;
+> 		}
+> 	}
+>=20
+> @@ -443,13 +443,13 @@ nvkm_chan_new_(const struct nvkm_chan_func =
+*func, struct nvkm_runl *runl, int ru
+> 			if (ouserd + chan->func->userd->size >=3D
+> 				nvkm_memory_size(userd)) {
+> 				RUNL_DEBUG(runl, "ouserd %llx", ouserd);
+> -				return -EINVAL;
+> +				goto done;
 > 			}
 >=20
+> 			ret =3D nvkm_memory_kmap(userd, =
+&chan->userd.mem);
+> 			if (ret) {
+> 				RUNL_DEBUG(runl, "userd %d", ret);
+> -				return ret;
+> +				goto done;
+> 			}
+>=20
+> 			chan->userd.base =3D ouserd;
+> @@ -461,7 +461,7 @@ nvkm_chan_new_(const struct nvkm_chan_func *func, =
+struct nvkm_runl *runl, int ru
+>=20
+> 	if (chan->id < 0) {
+> 		RUNL_ERROR(runl, "!chids");
+> -		return -ENOSPC;
+> +		goto done;
+> 	}
+>=20
+> 	if (cgrp->id < 0)
+> @@ -475,8 +475,17 @@ nvkm_chan_new_(const struct nvkm_chan_func *func, =
+struct nvkm_runl *runl, int ru
+> 	ret =3D chan->func->ramfc->write(chan, offset, length, devm, =
+priv);
+> 	if (ret) {
+> 		RUNL_DEBUG(runl, "ramfc %d", ret);
+> -		return ret;
+> +		goto done;
+> 	}
+>=20
+> 	return 0;
+> +
+> +done:
+> +	if (chan->id >=3D 0)
+> +		nvkm_chid_put(runl->chid, chan->id, &chan->cgrp->lock);
+> +	nvkm_memory_unref(&chan->userd.mem);
+> +	nvkm_vmm_unref(&chan->vmm);
+> +	nvkm_cgrp_unref(&chan->cgrp);
+> +	*pchan =3D NULL;
+> +	return ret;
+> }
 > --=20
 > 2.39.5 (Apple Git-154)
 
