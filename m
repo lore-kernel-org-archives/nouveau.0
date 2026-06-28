@@ -4,86 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15D88C43602
-	for <nouveau@archiver.kernel.org>; Sun, 28 Jun 2026 03:56:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56F8EC43602
+	for <nouveau@archiver.kernel.org>; Sun, 28 Jun 2026 04:04:12 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 649E910E569;
-	Sun, 28 Jun 2026 03:56:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E26CB10E56D;
+	Sun, 28 Jun 2026 04:04:11 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id AF75946D31;
-	Sun, 28 Jun 2026 03:41:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 193A546D37;
+	Sun, 28 Jun 2026 03:49:35 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782618116;
- b=ESGljcAn0C/4i7PV0ae8uK0RonUMObdwIB4RJS2Hbmf8WznSnYmamLfz0Ekuo3Ev+724L
- FUNTmv1jlZX315f9kGovr/M6jnq4IbidYg05+4DUCBAKlmwHEvt4cp26r7xydhNXE6vUVXm
- GFS2bn7gx+0VKMmNqNUUixkz6qCvkZDtUTD6Llx4PDMG5sHpEFYz72vsm+3B/l1oiZsolr6
- lBLIg94W4htsroXEdoi90s6t64ac2Lqox079CsNkdoYavxG0fabgXwHhginT2yX7sIoNNWJ
- pkd+zEK467St4TXoQRFpVSpuakj0zhwA5P3RA4L+z+eQWjFxaxocEBmd9F+w==
+ s=20240201; t=1782618574;
+ b=clmY0f2pp/a8lLv86T27B32XgdxCKEcg4pKPuzAG8GfE6yNTPfQ8ZkD9/pbQP9zNwkV5T
+ sCpoTCixRgGYDJvt2Wfji3aMmfcokkt4JItDZnXJMQzTnQYMcNlBeJJ7Lq64+NOxiJf4iTk
+ oBPMlHIAcFFcwtaD/Me0g0ugbrwRAioYskcMeP/31J5l0WR9ZvVjtfRlu+V5uOeoVerEXzK
+ uroEzBva1H+J1M3e5N75cH1DuCRPLCIB7HA1MhzEf9XP8G8+XYG9MzYtWK76bzIV8Fvt/4w
+ XRDZmlQaUTQNwun1/IQgTHmt2BRmy6wHP2WuLICPNWDtDdfRcFbwsGg1/AdQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782618116; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782618574; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=NvenJfeRI0wJdcyFOR/VzHp0MJOqZKgXEx/ENHlPPaQ=;
- b=VeQPpR6hwZHLmSg8qShdY/QwXRAT9tgzLPY3StIWhYs8qn5ADMZn/QrDloaRUV1IP6Bqu
- rWyqCJpyoviAtQ0qJwoL9aRNZuLC8q3GROTU4j7XyCKT6m1CCeZPD5iLg62hzkYQ+ecInX0
- wRi87hklv11Flu96Bwv1jXPChxd58wAt0F3iqTx8PZHf7+EXCxYC7Js0Bqm8yDiXIuMD69T
- tAcWdCBxQ0i8h0MyTkr29trCOJ7frOWpNoKhULHY35YVdRlCCnMIMipZdnLaYLMvbtyEM18
- KWP2TY0YJb5GQH/e2lIugbYe4LgOW06XcMxcEVsuIn56sQWEN/guZTFaaEUw==
+ bh=vMw7OsI5RMexpU2OMQvzccS+hNgT0AjlMkJY4tjxT/U=;
+ b=Vt5TiEX7RrZweB1XlZWF57ZyMe8SSuI6aUiBS78gRhaSfnufaxRJjfmbnvgKYiyvtxs1c
+ RJFsfp+Spgq2uwAWwrB6oIHjscx+5qjjFVG522xaiBllhGeKzASF5a3vZktJ82CE55ziRLd
+ IOeb4EjiTHYB7xWtvhuARkSOWU0jkj7+qqCjQ/Iog+B48UZ2ROD6i+I69N6El5gMb7FupP/
+ 3tyFwpDyilV8TdlNm50GFtCxsWv3gh+/qCkRDXiAHGEU+lqggxRDIdiXjmWEZhBfReVZCR2
+ EBPTCiiagaCtj6QPmTQGwYcN0iqn/CIuX8uoHgeXEkF2QU8HqpA8pCfWkZsA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
   dmarc=none
 Authentication-Results: mail.freedesktop.org; dkim=fail;
  arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 33D7345E30
-	for <nouveau@lists.freedesktop.org>; Sun, 28 Jun 2026 03:41:54 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 41E6745E31
+	for <nouveau@lists.freedesktop.org>; Sun, 28 Jun 2026 03:49:32 +0000 (UTC)
 Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 15E4610E561;
-	Sun, 28 Jun 2026 03:56:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 20D9210E569;
+	Sun, 28 Jun 2026 04:04:07 +0000 (UTC)
 Received: from smtpclient.apple (unknown [117.182.74.7])
-	by APP-01 (Coremail) with SMTP id qwCowADXfdYKm0BqqCuqAw--.7249S9;
-	Sun, 28 Jun 2026 11:56:25 +0800 (CST)
+	by APP-01 (Coremail) with SMTP id qwCowAD3j8h4nEBq+V6qAw--.55335S16;
+	Sun, 28 Jun 2026 12:04:03 +0800 (CST)
 Content-Type: text/plain;
 	charset=utf-8
 Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.8\))
-Subject: Re: [PATCH] fix: drm/nouveau: nvkm_chan_new_: multiple error paths
- return without   releasing acquired references
+Subject: Re: [PATCH] fix: drm/nouveau: nvkm_ucgrp_new: nvkm_cgrp_new failure
+ leaks ucgrp   object and engine reference
 From: WenTao Liang <vulab@iscas.ac.cn>
-In-Reply-To: <20260626143953.48952-1-vulab@iscas.ac.cn>
-Date: Sun, 28 Jun 2026 11:56:14 +0800
+In-Reply-To: <20260626144717.49109-1-vulab@iscas.ac.cn>
+Date: Sun, 28 Jun 2026 12:03:52 +0800
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <93B2CF9E-410D-4F0A-B95F-9DCD67402A25@iscas.ac.cn>
-References: <20260626143953.48952-1-vulab@iscas.ac.cn>
+Message-Id: <F9C8BF2D-C97E-49FE-B652-CDE97A93F615@iscas.ac.cn>
+References: <20260626144717.49109-1-vulab@iscas.ac.cn>
 To: Lyude Paul <lyude@redhat.com>,
  Danilo Krummrich <dakr@kernel.org>,
  dri-devel@lists.freedesktop.org
 X-Mailer: Apple Mail (2.3826.700.81.1.8)
-X-CM-TRANSID: qwCowADXfdYKm0BqqCuqAw--.7249S9
-X-Coremail-Antispam: 1UD129KBjvJXoWxGry5ur17XF17Jw45KFy8Xwb_yoW5Zr4xpF
-	45WFyY9rWftrs3K3WIqr48Ka4Yy3yDKw4jk34UCw1SvrnxJry8CrWrCa1IvayrGrs7Gr45
-	ZFsIvFZa9F15tr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUm2b7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
+X-CM-TRANSID: qwCowAD3j8h4nEBq+V6qAw--.55335S16
+X-Coremail-Antispam: 1UD129KBjvJXoW7trWUXFyrWr47ury5Xr4kCrg_yoW8Xw4Dpr
+	4fJw1SyrZ8AF48Ka1xAa18uFySv3s0vFyFkas0y343Zrn8ZrWDArWFv3s0qFyrZrWfGw45
+	tr4ktFZaqw1YvFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUm2b7Iv0xC_tr1lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
 	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI
 	8067AKxVWUAVCq3wA2048vs2IY020Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28C
 	jxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI
 	8IcVCY1x0267AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2
 	z280aVCY1x0267AKxVWxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2
-	IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4U
+	IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r1j6r4U
 	McvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACI402YVCY1x02628vn2kIc2
 	xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWU
 	JVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67
-	kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVW8JVW5JwCI42IY
+	kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVW5JVW7JwCI42IY
 	6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIx
 	AIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVF
-	xhVjvjDU0xZFpf9x07bnUDAUUUUU=
+	xhVjvjDU0xZFpf9x07j0OJ5UUUUU=
 X-Originating-IP: [117.182.74.7]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAMMA2pAioobPgAAsP
-Message-ID-Hash: P7IWW4PBAMJPPJBPDJ3R62K2DMYJFXBO
-X-Message-ID-Hash: P7IWW4PBAMJPPJBPDJ3R62K2DMYJFXBO
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAIMA2pAiooeMAAAsF
+Message-ID-Hash: ETAWKNCTO5LFWIZY7MGJMK3C5Y3RBHTQ
+X-Message-ID-Hash: ETAWKNCTO5LFWIZY7MGJMK3C5Y3RBHTQ
 X-MailFrom: vulab@iscas.ac.cn
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -96,9 +96,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/P7IWW4PBAMJPPJBPDJ3R62K2DMYJFXBO/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ETAWKNCTO5LFWIZY7MGJMK3C5Y3RBHTQ/>
 Archived-At: 
- <https://lore.freedesktop.org/93B2CF9E-410D-4F0A-B95F-9DCD67402A25@iscas.ac.cn/>
+ <https://lore.freedesktop.org/F9C8BF2D-C97E-49FE-B652-CDE97A93F615@iscas.ac.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -110,113 +110,45 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 
 
-> 2026=E5=B9=B46=E6=9C=8826=E6=97=A5 22:39=EF=BC=8CWenTao Liang =
+> 2026=E5=B9=B46=E6=9C=8826=E6=97=A5 22:47=EF=BC=8CWenTao Liang =
 <vulab@iscas.ac.cn> =E5=86=99=E9=81=93=EF=BC=9A
 >=20
-> After allocating chan and acquiring references on cgrp, vmm, memory, =
-and
->  chid, numerous subsequent error paths return ret directly without =
-calling
->  kfree, nvkm_cgrp_unref, nvkm_vmm_unref, nvkm_memory_unref, or
->  nvkm_chid_put. Every error return after the initial allocations leaks =
-one
->  or more acquired resources.
+> nvkm_object_ctor initializes ucgrp with an embedded kref and =
+increments
+>  the engine's reference count. When nvkm_cgrp_new subsequently fails, =
+the
+>  function jumps to done without calling nvkm_object_del to release =
+ucgrp.
+>  The caller ignores *pobject on error, so the ucgrp object and its =
+engine
+>  reference are permanently leaked.
 >=20
 > Cc: stable@vger.kernel.org
 > Fixes: 06db7fded6de ("drm/nouveau/fifo: add new channel classes")
 > Signed-off-by: WenTao Liang <vulab@iscas.ac.cn>
 > ---
-> .../gpu/drm/nouveau/nvkm/engine/fifo/chan.c   | 25 +++++++++++++------
-> 1 file changed, 17 insertions(+), 8 deletions(-)
+> drivers/gpu/drm/nouveau/nvkm/engine/fifo/ucgrp.c | 4 +++-
+> 1 file changed, 3 insertions(+), 1 deletion(-)
 >=20
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c =
-b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c
-> index 418a8918bcb8..1bf595bafa9a 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c
-> @@ -410,18 +410,18 @@ nvkm_chan_new_(const struct nvkm_chan_func =
-*func, struct nvkm_runl *runl, int ru
-> 			      &chan->inst);
-> 	if (ret) {
-> 		RUNL_DEBUG(runl, "inst %d", ret);
-> -		return ret;
-> +		goto done;
-> 	}
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ucgrp.c =
+b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ucgrp.c
+> index dfa3c7dbdf34..7d11b92f946b 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ucgrp.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ucgrp.c
+> @@ -113,8 +113,10 @@ nvkm_ucgrp_new(struct nvkm_fifo *fifo, const =
+struct nvkm_oclass *oclass, void *a
+> 	*pobject =3D &ucgrp->object;
 >=20
-> 	/* Initialise virtual address-space. */
-> 	if (func->inst->vmm) {
-> 		if (WARN_ON(vmm->mmu !=3D device->mmu))
-> -			return -EINVAL;
-> +			goto done;
+> 	ret =3D nvkm_cgrp_new(runl, args->v0.name, vmm, true, =
+&ucgrp->cgrp);
+> -	if (ret)
+> +	if (ret) {
+> +		nvkm_object_del(pobject);
+> 		goto done;
+> +	}
 >=20
-> 		ret =3D nvkm_vmm_join(vmm, chan->inst->memory);
-> 		if (ret) {
-> 			RUNL_DEBUG(runl, "vmm %d", ret);
-> -			return ret;
-> +			goto done;
-> 		}
->=20
-> 		chan->vmm =3D nvkm_vmm_ref(vmm);
-> @@ -432,7 +432,7 @@ nvkm_chan_new_(const struct nvkm_chan_func *func, =
-struct nvkm_runl *runl, int ru
-> 		ret =3D nvkm_object_bind(&dmaobj->object, chan->inst, =
--16, &chan->push);
-> 		if (ret) {
-> 			RUNL_DEBUG(runl, "bind %d", ret);
-> -			return ret;
-> +			goto done;
-> 		}
-> 	}
->=20
-> @@ -443,13 +443,13 @@ nvkm_chan_new_(const struct nvkm_chan_func =
-*func, struct nvkm_runl *runl, int ru
-> 			if (ouserd + chan->func->userd->size >=3D
-> 				nvkm_memory_size(userd)) {
-> 				RUNL_DEBUG(runl, "ouserd %llx", ouserd);
-> -				return -EINVAL;
-> +				goto done;
-> 			}
->=20
-> 			ret =3D nvkm_memory_kmap(userd, =
-&chan->userd.mem);
-> 			if (ret) {
-> 				RUNL_DEBUG(runl, "userd %d", ret);
-> -				return ret;
-> +				goto done;
-> 			}
->=20
-> 			chan->userd.base =3D ouserd;
-> @@ -461,7 +461,7 @@ nvkm_chan_new_(const struct nvkm_chan_func *func, =
-struct nvkm_runl *runl, int ru
->=20
-> 	if (chan->id < 0) {
-> 		RUNL_ERROR(runl, "!chids");
-> -		return -ENOSPC;
-> +		goto done;
-> 	}
->=20
-> 	if (cgrp->id < 0)
-> @@ -475,8 +475,17 @@ nvkm_chan_new_(const struct nvkm_chan_func *func, =
-struct nvkm_runl *runl, int ru
-> 	ret =3D chan->func->ramfc->write(chan, offset, length, devm, =
-priv);
-> 	if (ret) {
-> 		RUNL_DEBUG(runl, "ramfc %d", ret);
-> -		return ret;
-> +		goto done;
-> 	}
->=20
-> 	return 0;
-> +
-> +done:
-> +	if (chan->id >=3D 0)
-> +		nvkm_chid_put(runl->chid, chan->id, &chan->cgrp->lock);
-> +	nvkm_memory_unref(&chan->userd.mem);
-> +	nvkm_vmm_unref(&chan->vmm);
-> +	nvkm_cgrp_unref(&chan->cgrp);
-> +	*pchan =3D NULL;
-> +	return ret;
-> }
+> 	/* Return channel group info to caller. */
+> 	args->v0.cgid =3D ucgrp->cgrp->id;
 > --=20
 > 2.39.5 (Apple Git-154)
 
@@ -226,5 +158,5 @@ learning the kernel submission process.
 Apologies for the noise.
 
 Best regards,
-WenTao Liang
+WenTao Liang=
 
