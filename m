@@ -4,101 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56F8EC43602
-	for <nouveau@archiver.kernel.org>; Sun, 28 Jun 2026 04:04:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87CF2C43602
+	for <nouveau@archiver.kernel.org>; Sun, 28 Jun 2026 14:32:56 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E26CB10E56D;
-	Sun, 28 Jun 2026 04:04:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 19C4410E618;
+	Sun, 28 Jun 2026 14:32:56 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 193A546D37;
-	Sun, 28 Jun 2026 03:49:35 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 5BAA046D3E;
+	Sun, 28 Jun 2026 14:18:18 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782618574;
- b=clmY0f2pp/a8lLv86T27B32XgdxCKEcg4pKPuzAG8GfE6yNTPfQ8ZkD9/pbQP9zNwkV5T
- sCpoTCixRgGYDJvt2Wfji3aMmfcokkt4JItDZnXJMQzTnQYMcNlBeJJ7Lq64+NOxiJf4iTk
- oBPMlHIAcFFcwtaD/Me0g0ugbrwRAioYskcMeP/31J5l0WR9ZvVjtfRlu+V5uOeoVerEXzK
- uroEzBva1H+J1M3e5N75cH1DuCRPLCIB7HA1MhzEf9XP8G8+XYG9MzYtWK76bzIV8Fvt/4w
- XRDZmlQaUTQNwun1/IQgTHmt2BRmy6wHP2WuLICPNWDtDdfRcFbwsGg1/AdQ==
+ s=20240201; t=1782656298;
+ b=Hoteon+6fee3FboDOfTmdmwXwJLBdf0xFnbNQF0ZZBt33q+iDuiJY7RmicrW/+NV2XAGb
+ +LBnjX92cZ6ycX2PN7PFSB9QfRRKfSk04DnmuhBjnRy992UNc0GfsJ6Et9ZZOWJVD96P1r3
+ DFAPaGxblLzhCEUExwCHLzkNG9AVKhb6G+LnaClGX0geOvM12oxMmjSoCos/vnTDCLKVUKU
+ 3mS1JZonInAG6NtMI2i4aeO0zJr1mTW8S47s/ck5cWrYMObwe6mV2E8LNs+9sMIpHkBBk7m
+ 5/jW2F0ERUZPgzCOa9OlmPHB4/oDgAPnHphJxsgB5BlrTTA4iioCHvgG4pmg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782618574; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782656298; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=vMw7OsI5RMexpU2OMQvzccS+hNgT0AjlMkJY4tjxT/U=;
- b=Vt5TiEX7RrZweB1XlZWF57ZyMe8SSuI6aUiBS78gRhaSfnufaxRJjfmbnvgKYiyvtxs1c
- RJFsfp+Spgq2uwAWwrB6oIHjscx+5qjjFVG522xaiBllhGeKzASF5a3vZktJ82CE55ziRLd
- IOeb4EjiTHYB7xWtvhuARkSOWU0jkj7+qqCjQ/Iog+B48UZ2ROD6i+I69N6El5gMb7FupP/
- 3tyFwpDyilV8TdlNm50GFtCxsWv3gh+/qCkRDXiAHGEU+lqggxRDIdiXjmWEZhBfReVZCR2
- EBPTCiiagaCtj6QPmTQGwYcN0iqn/CIuX8uoHgeXEkF2QU8HqpA8pCfWkZsA==
+ bh=Xf6q3DbzaEZgeOxGfhDSFdqjLiODFiOuvbV8izusmEc=;
+ b=zcwVT+fwd6RK5fcYotsDIOjqevMP40F5m6+qG3q1hEOsHxX5MQ7KhSe+59yvjwHy48aky
+ 5MLIexw4yZik7Ytyr7j92szqsmFRCi6eBjSWYJcYiAYRzUy39Sv19I5GJtCu4EKwLUKJtpC
+ Ku3oVPvJ8LVFewsmCRZrsh7Y2pGimQ/FE2oGuf8lInWjGedeq0UMgtNS1TnPyC+IjB78Bdg
+ jNT3MsFcLAZJKnt3jS/YiW/ca9ZOWx5vAfV5WAfJ2XLe+eea5NArG08ezehsihmFN5NNjNO
+ Te6jf8mLyUkPeYQHrkRyvtK4lH/H99FjJ6MAScofFGGTXWWf7GjhWNOPZg4w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
   dmarc=none
 Authentication-Results: mail.freedesktop.org; dkim=fail;
  arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 41E6745E31
-	for <nouveau@lists.freedesktop.org>; Sun, 28 Jun 2026 03:49:32 +0000 (UTC)
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 20D9210E569;
-	Sun, 28 Jun 2026 04:04:07 +0000 (UTC)
-Received: from smtpclient.apple (unknown [117.182.74.7])
-	by APP-01 (Coremail) with SMTP id qwCowAD3j8h4nEBq+V6qAw--.55335S16;
-	Sun, 28 Jun 2026 12:04:03 +0800 (CST)
-Content-Type: text/plain;
-	charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.8\))
-Subject: Re: [PATCH] fix: drm/nouveau: nvkm_ucgrp_new: nvkm_cgrp_new failure
- leaks ucgrp   object and engine reference
+	by kara.freedesktop.org (Postfix) with ESMTPS id B1B6B460FA
+	for <nouveau@lists.freedesktop.org>; Sun, 28 Jun 2026 14:18:14 +0000 (UTC)
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9036610E610;
+	Sun, 28 Jun 2026 14:32:51 +0000 (UTC)
+Received: from localhost.localdomain (unknown [117.182.74.7])
+	by APP-05 (Coremail) with SMTP id zQCowABn8QSKMEFq8JXIFQ--.34453S2;
+	Sun, 28 Jun 2026 22:32:45 +0800 (CST)
 From: WenTao Liang <vulab@iscas.ac.cn>
-In-Reply-To: <20260626144717.49109-1-vulab@iscas.ac.cn>
-Date: Sun, 28 Jun 2026 12:03:52 +0800
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <F9C8BF2D-C97E-49FE-B652-CDE97A93F615@iscas.ac.cn>
-References: <20260626144717.49109-1-vulab@iscas.ac.cn>
-To: Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- dri-devel@lists.freedesktop.org
-X-Mailer: Apple Mail (2.3826.700.81.1.8)
-X-CM-TRANSID: qwCowAD3j8h4nEBq+V6qAw--.55335S16
-X-Coremail-Antispam: 1UD129KBjvJXoW7trWUXFyrWr47ury5Xr4kCrg_yoW8Xw4Dpr
-	4fJw1SyrZ8AF48Ka1xAa18uFySv3s0vFyFkas0y343Zrn8ZrWDArWFv3s0qFyrZrWfGw45
-	tr4ktFZaqw1YvFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUm2b7Iv0xC_tr1lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI
-	8067AKxVWUAVCq3wA2048vs2IY020Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28C
-	jxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI
-	8IcVCY1x0267AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2
-	z280aVCY1x0267AKxVWxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2
-	IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r1j6r4U
-	McvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACI402YVCY1x02628vn2kIc2
-	xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWU
-	JVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67
-	kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVW5JVW7JwCI42IY
-	6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIx
-	AIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVF
-	xhVjvjDU0xZFpf9x07j0OJ5UUUUU=
+To: lyude@redhat.com,
+	dakr@kernel.org,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch
+Subject: [PATCH v2] drm/nouveau: fix GEM refcount leak in validate_init error
+ paths
+Date: Sun, 28 Jun 2026 22:28:21 +0800
+Message-Id: <20260628142821.47290-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.39.5 (Apple Git-154)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: zQCowABn8QSKMEFq8JXIFQ--.34453S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Cw43XFyUGF4kJw1UWrWfKrg_yoW8XrWrpF
+	ZxKr1jvrWUta17Krs2yF1DA3WS9a1vgFWxGFySy34Sgr1rJFy7Xry5Gw15XrWSyF4xC3yY
+	qwnrtas2qFyYy3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
+	0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+	jxv20xvE14v26r106r15McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr
+	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
+	n2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
+	AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
+	17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
+	IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
+	IxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdYxBIda
+	VFxhVjvjDU0xZFpf9x0JUQZ2fUUUUU=
 X-Originating-IP: [117.182.74.7]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAIMA2pAiooeMAAAsF
-Message-ID-Hash: ETAWKNCTO5LFWIZY7MGJMK3C5Y3RBHTQ
-X-Message-ID-Hash: ETAWKNCTO5LFWIZY7MGJMK3C5Y3RBHTQ
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBwcMA2pBLUUEtwAAs-
+Message-ID-Hash: PNLSBIIGKEITXE5JWSFCZ2RG24LM5KXI
+X-Message-ID-Hash: PNLSBIIGKEITXE5JWSFCZ2RG24LM5KXI
 X-MailFrom: vulab@iscas.ac.cn
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org,
- stable@vger.kernel.org, linux-kernel@vger.kernel.org
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, WenTao Liang <vulab@iscas.ac.cn>,
+ Greg KH <gregkh@linuxfoundation.org>, stable@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ETAWKNCTO5LFWIZY7MGJMK3C5Y3RBHTQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PNLSBIIGKEITXE5JWSFCZ2RG24LM5KXI/>
 Archived-At: 
- <https://lore.freedesktop.org/F9C8BF2D-C97E-49FE-B652-CDE97A93F615@iscas.ac.cn/>
+ <https://lore.freedesktop.org/20260628142821.47290-1-vulab@iscas.ac.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -108,55 +106,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
+drm_gem_object_lookup acquires a GEM object reference at the start of
+each loop iteration. Two break paths (ttm_bo_reserve failure non-EDEADLK
+and "vma not found") exit the loop without adding the gem to any cleanup
+list and without calling drm_gem_object_put, causing a GEM object
+reference leak.
 
+Suggested-by: Greg KH <gregkh@linuxfoundation.org>
+Fixes: 9242829a87e9 ("drm/nouveau: Keep only a single list for validation.")
+Fixes: 19ca10d82e33 ("drm/nouveau/gem: lookup VMAs for buffers referenced by pushbuf ioctl")
+Cc: stable@vger.kernel.org
+Signed-off-by: WenTao Liang <vulab@iscas.ac.cn>
+---
+Changes in v2:
+- Fix patch format based on reviewer feedback
+---
+ drivers/gpu/drm/nouveau/nouveau_gem.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> 2026=E5=B9=B46=E6=9C=8826=E6=97=A5 22:47=EF=BC=8CWenTao Liang =
-<vulab@iscas.ac.cn> =E5=86=99=E9=81=93=EF=BC=9A
->=20
-> nvkm_object_ctor initializes ucgrp with an embedded kref and =
-increments
->  the engine's reference count. When nvkm_cgrp_new subsequently fails, =
-the
->  function jumps to done without calling nvkm_object_del to release =
-ucgrp.
->  The caller ignores *pobject on error, so the ucgrp object and its =
-engine
->  reference are permanently leaked.
->=20
-> Cc: stable@vger.kernel.org
-> Fixes: 06db7fded6de ("drm/nouveau/fifo: add new channel classes")
-> Signed-off-by: WenTao Liang <vulab@iscas.ac.cn>
-> ---
-> drivers/gpu/drm/nouveau/nvkm/engine/fifo/ucgrp.c | 4 +++-
-> 1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ucgrp.c =
-b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ucgrp.c
-> index dfa3c7dbdf34..7d11b92f946b 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ucgrp.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ucgrp.c
-> @@ -113,8 +113,10 @@ nvkm_ucgrp_new(struct nvkm_fifo *fifo, const =
-struct nvkm_oclass *oclass, void *a
-> 	*pobject =3D &ucgrp->object;
->=20
-> 	ret =3D nvkm_cgrp_new(runl, args->v0.name, vmm, true, =
-&ucgrp->cgrp);
-> -	if (ret)
-> +	if (ret) {
-> +		nvkm_object_del(pobject);
-> 		goto done;
-> +	}
->=20
-> 	/* Return channel group info to caller. */
-> 	args->v0.cgid =3D ucgrp->cgrp->id;
-> --=20
-> 2.39.5 (Apple Git-154)
-
-Please ignore this patch. I will resend a proper version after
-learning the kernel submission process.
-
-Apologies for the noise.
-
-Best regards,
-WenTao Liang=
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 20dba02d6175..c654256f4081 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -513,6 +513,7 @@ validate_init(struct nouveau_channel *chan, struct drm_file *file_priv,
+ 			if (unlikely(ret)) {
+ 				if (ret != -ERESTARTSYS)
+ 					NV_PRINTK(err, cli, "fail reserve\n");
++				drm_gem_object_put(gem);
+ 				break;
+ 			}
+ 		}
+@@ -523,6 +524,7 @@ validate_init(struct nouveau_channel *chan, struct drm_file *file_priv,
+ 			if (!vma) {
+ 				NV_PRINTK(err, cli, "vma not found!\n");
+ 				ret = -EINVAL;
++				drm_gem_object_put(gem);
+ 				break;
+ 			}
+ 
+-- 
+2.39.5 (Apple Git-154)
 
