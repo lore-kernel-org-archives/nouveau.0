@@ -4,143 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61B5FC43458
-	for <nouveau@archiver.kernel.org>; Mon, 29 Jun 2026 19:26:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0187EC43458
+	for <nouveau@archiver.kernel.org>; Mon, 29 Jun 2026 22:44:32 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA4810EA5B;
-	Mon, 29 Jun 2026 19:26:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 613BB10EA78;
+	Mon, 29 Jun 2026 22:44:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hLoZuZ6G";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="JkL2oi+3";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id DEBF546D75;
-	Mon, 29 Jun 2026 19:11:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A69C446D9E;
+	Mon, 29 Jun 2026 22:29:50 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782760316;
- b=oMQOZKVxJos0BHuyQNHZwswZmIzktDNskWr36JEsj4mgkHhG8x3G6vBZh3vWh7nG5Xb5Z
- 2/MCcKGc0ilRrRe1PdzIpx3WAMKaMi7FRDUGgEeM7ivTIPbMpecBrLLqCgUXBhiAsZTBRsZ
- LlOazWuD20Lwvb2beUK3RChAeHqX5dfbkFsDJQDZetgOTOopx7tICt1kULkad/bgV4Z/iYh
- b75OdzUn6LuBZ90rHTs0QyyeCWPyafdnAPH45FJAxB3r55dqHwAwDHokzg3+IMSy9lB8SbR
- wm1f7siefIxm4/FsUuqIysazPd87bw7RydkgSIZpusiNjzy+rDPxdeJJgVNA==
+ s=20240201; t=1782772190;
+ b=fvBhUelYobdArLQjHDmMhF5MUEJ0OKLZpBE9n404jtN4E7aO42njVEdiLusvWz3S2i/kv
+ j/osQWV0XKvguy6dLZQ02T3OIfqgJZrx2yUbjXgbh7bCbqjaG9Lf/47sNiGLtrUk5KLEtxb
+ SsHiD6Ij7F+EoZu3p9ZSPbUeax2IrSDuSy1vb0v1rTnjsJu08dwMkIFYniUNdZSiEOhl0tI
+ PJzMGlNnvzfikr+QfzTAi8SGJZw/fRBJtUpvlBtW8r8diTgB6INovMkcL0wJBbqKJ/Yqh4c
+ lbMk57x07yuRdVc20bctDcRmhrAC/+8nPuBzWQUsy37d+cLDYWUykAsth4tQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782760316; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782772190; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=sN4LQUgjV69Vve2oXZfCiFNipdsItekVGoTOkdqjKS0=;
- b=W1GNpSz2+glJjQiU2rqwBs0IzVEot2nCdzVMdI1TVqKYJ6JVtcD8d3bYQm4pCXoBz5Kos
- toUzisIo0lXANHio6XRUHOAXv4ij+fJqpfL4IymFvsjip+P7GyTQrLyPpcH0RBRUFTlfCjk
- LIMCmQCtDyUZnWkIW/fxhIo4aiUR18v+B4Uik9H1+WNugc+7zGc7GufXRxv4KGZLKo6QMHx
- 0TR6RMyCpINgHu4w+DNgiqQ5yYQlCXU+hgekOKWBubyPw6cUxv5jD6rlJxI/JS8odK8Eog7
- ltFraM38RQzolFOnA4GplYZ4KJyyruK7P62QrXWx6nWhpLaW2wxrOVklJgUA==
+ bh=ev+eZIVZSyaCdYull75busCd4hGRRpJg1XtF6MPERrI=;
+ b=zHUaJwWkcQ45esLU3CtKrvj5Vsq7t+xEhmPCeyiFg4NIXPA0Q1i7+WgLetN6gNyhzHzGP
+ 1fSxKGYnm/nTlzvpz/9P1prznAb9S4+T7VXNVnUYjMMWUnLZ58Cts7ACl2pOMwJ9kY+J/h4
+ qb0heGWfmzayIHV5acnlrz6vskiRFDXjnzHI3tERo5K0Yu3r1EUJuOJI89pHkyXBE3F1zAf
+ iWqmR834lEuevOG/56MMGD6X5t9d/nwkceKhYXw6xhssQpq9RzHab6v3lFHE2kCFLQqiaCm
+ cqdkoMP6UHKG3W8/oU24nw3Z9/nQ09PAjUgrhzyrjd2EffOpMCet5W9ISqPw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4912246D5E
-	for <nouveau@lists.freedesktop.org>; Mon, 29 Jun 2026 19:11:54 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 32AF110EA5B;
-	Mon, 29 Jun 2026 19:26:34 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 17290416B4;
-	Mon, 29 Jun 2026 19:26:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FF3D1F00A3A;
-	Mon, 29 Jun 2026 19:26:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782761194;
-	bh=sN4LQUgjV69Vve2oXZfCiFNipdsItekVGoTOkdqjKS0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=hLoZuZ6GBb1R0Z8TwftPIK0sP8C4ADT292o5rS1him458JTroTTIDyZ9+Hy0is8/O
-	 XeNWVdGoC2qYu58Mzq91SKZir/PAlhdz5W7/iMSQVsmj5rX5UypKH/YB7F0APXpMjo
-	 gXJ3Cof1BcdWqfLA9vJGStqjlBFRuYOd2hD8szeCByTsbP11W1zWXgrMdNJbOmXD83
-	 8Ph8tUPYU2URQeyhQuTC5p984HgkU+vfY0J7E1B0VzjOvq6a9QDtpjiRAIvAELmghi
-	 LbEz58mWSrmhExQd0IOcLcqDCYco7OLxU40dg/5907AyshxLbOd1WyrGHUd9f/IXP7
-	 SzrM+wTul9mMg==
-From: Lorenzo Stoakes <ljs@kernel.org>
-To: Andrew Morton <akpm@linux-foundation.org>
-Subject: [PATCH 13/13] mm/mremap: convert mremap code to use vma_flags_t
-Date: Mon, 29 Jun 2026 20:25:36 +0100
-Message-ID: 
- <380f761d35a3faa4370f8b3f92e3d4af3d4c7110.1782760670.git.ljs@kernel.org>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <cover.1782760670.git.ljs@kernel.org>
-References: <cover.1782760670.git.ljs@kernel.org>
+	by kara.freedesktop.org (Postfix) with ESMTPS id EDFB346D51
+	for <nouveau@lists.freedesktop.org>; Mon, 29 Jun 2026 22:29:46 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4E0B910E13B
+	for <nouveau@lists.freedesktop.org>; Mon, 29 Jun 2026 22:44:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1782773066;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ev+eZIVZSyaCdYull75busCd4hGRRpJg1XtF6MPERrI=;
+	b=JkL2oi+3HnxE17SltniMKaKxUua/D41RxtfNptcJ/ByJegMaaKubtWc3uRw3CJAIxxd818
+	RYT5DnwY/5kN1wfIcMKo7f862h6RVghfcCbcLoYXcF+FudsTCJp3XlSiZ5pURxdJuvM5gB
+	4Fm+191OfKMxRjCfQVeLB6SiN03207c=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-591-npEv8sj_NhquFKVgPVF8VQ-1; Mon,
+ 29 Jun 2026 18:44:22 -0400
+X-MC-Unique: npEv8sj_NhquFKVgPVF8VQ-1
+X-Mimecast-MFC-AGG-ID: npEv8sj_NhquFKVgPVF8VQ_1782773060
+Received: from mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.95])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id C15B319775F9;
+	Mon, 29 Jun 2026 22:44:19 +0000 (UTC)
+Received: from GoldenWind.lan (unknown [10.22.88.59])
+	by mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 53A573691B;
+	Mon, 29 Jun 2026 22:44:17 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: nouveau@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] drm/nouveau/gsp/r570: Fix runtime PM
+Date: Mon, 29 Jun 2026 18:42:32 -0400
+Message-ID: <20260629224350.2870201-1-lyude@redhat.com>
 MIME-Version: 1.0
+X-Scanned-By: MIMEDefang 3.6 on 10.30.177.95
+X-Mimecast-MFC-PROC-ID: O9jhSOGDNAC5YKcz9JdCbY32wT47J4hLhcyIoSu80W8_1782773060
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 5N362NOLBKNNHC3YQXQXS5CXUPDYETG4
-X-Message-ID-Hash: 5N362NOLBKNNHC3YQXQXS5CXUPDYETG4
-X-MailFrom: ljs@kernel.org
+content-type: text/plain; charset="US-ASCII"; x-default=true
+Message-ID-Hash: 5LVCIC3THJ27WQLGSPCCHKPM6VJPDVIW
+X-Message-ID-Hash: 5LVCIC3THJ27WQLGSPCCHKPM6VJPDVIW
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>,
+ loop; banned-address
+CC: Dave Airlie <airlied@redhat.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Lucas Stach <l.stach@pengutronix.de>, Inki Dae <inki.dae@samsung.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Sandy Huang <hjc@rock-chips.com>,
- =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Thierry Reding <thierry.reding@kernel.org>,
- Mikko Perttunen <mperttunen@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Zack Rusin <zack.rusin@broadcom.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Helge Deller <deller@gmx.de>, Benjamin LaHaise <bcrl@kvack.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Muchun Song <muchun.song@linux.dev>,
- Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>,
- Zi Yan <ziy@nvidia.com>, Baolin Wang <baolin.wang@linux.alibaba.com>,
- "Liam R . Howlett" <liam@infradead.org>, Nico Pache <npache@redhat.com>,
- Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
- Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>,
- Hugh Dickins <hughd@google.com>, Vlastimil Babka <vbabka@kernel.org>,
- Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
- Michal Hocko <mhocko@suse.com>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>, Kees Cook <kees@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- linux-sound@vger.kernel.org
+ Ben Skeggs <bskeggs@nvidia.com>, Kees Cook <kees@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5N362NOLBKNNHC3YQXQXS5CXUPDYETG4/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5LVCIC3THJ27WQLGSPCCHKPM6VJPDVIW/>
 Archived-At: 
- <https://lore.freedesktop.org/380f761d35a3faa4370f8b3f92e3d4af3d4c7110.1782760670.git.ljs@kernel.org/>
+ <https://lore.freedesktop.org/20260629224350.2870201-1-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -150,164 +122,36 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Replace use of the legacy vm_flags_t flags with vma_flags_t values
-throughout the mremap logic.
+Runtime PM has been kind of unreliable with GSP for a while. It works
+well enough to shut the GPU off and turn it back on, but more often then
+not it ends up leaving the GPU in a broken state on resume - which makes
+it impossible to really do anything else with it.
 
-Additionally update comments to reflect the changes to be consistent.
+Recently however, I discovered that it's been failing much harder on
+some ampere systems. This lead me down a rabbit hole that lead me to
+figure out one of our previous fixes for runtime PM wasn't correct.
+After fixing that and combining it with some fixes we had tried in the
+past without success, I finally managed to get nouveau to handle runtime
+PM with the GSP perfectly. These are those fixes.
 
-No functional change intended.
+Tested on a Lenovo P16 G1 (100 runtime PM cycles!), and RTX4000.
 
-Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
----
- mm/mremap.c | 38 ++++++++++++++++++++------------------
- 1 file changed, 20 insertions(+), 18 deletions(-)
+Lyude Paul (4):
+  Revert "nouveau/gsp: fix suspend/resume regression on r570 firmware"
+  drm/nouveau/gsp/r570: Never enter Gcoff state
+  drm/nouveau/gsp/r570: Set oldLevel correctly in GSP resume arguments
+  drm/nouveau/gsp/r570: Add missing state flags to GSP resume arguments
 
-diff --git a/mm/mremap.c b/mm/mremap.c
-index 079a0ba0c4a7..0ea43302b7ed 100644
---- a/mm/mremap.c
-+++ b/mm/mremap.c
-@@ -68,7 +68,7 @@ struct vma_remap_struct {
- 	bool populate_expand;		/* mlock()'d expanded, must populate. */
- 	enum mremap_type remap_type;	/* expand, shrink, etc. */
- 	bool mmap_locked;		/* Is mm currently write-locked? */
--	unsigned long charged;		/* If VM_ACCOUNT, # pages to account. */
-+	unsigned long charged;		/* If VMA_ACCOUNT_BIT, # pgs to account */
- 	bool vmi_needs_invalidate;	/* Is the VMA iterator invalidated? */
- };
- 
-@@ -954,7 +954,7 @@ static unsigned long vrm_set_new_addr(struct vma_remap_struct *vrm)
- 
- 	if (vrm->flags & MREMAP_FIXED)
- 		map_flags |= MAP_FIXED;
--	if (vma->vm_flags & VM_MAYSHARE)
-+	if (vma_test(vma, VMA_MAYSHARE_BIT))
- 		map_flags |= MAP_SHARED;
- 
- 	res = get_unmapped_area(vma->vm_file, new_addr, vrm->new_len, pgoff,
-@@ -976,7 +976,7 @@ static bool vrm_calc_charge(struct vma_remap_struct *vrm)
- {
- 	unsigned long charged;
- 
--	if (!(vrm->vma->vm_flags & VM_ACCOUNT))
-+	if (!vma_test(vrm->vma, VMA_ACCOUNT_BIT))
- 		return true;
- 
- 	/*
-@@ -1003,7 +1003,7 @@ static bool vrm_calc_charge(struct vma_remap_struct *vrm)
-  */
- static void vrm_uncharge(struct vma_remap_struct *vrm)
- {
--	if (!(vrm->vma->vm_flags & VM_ACCOUNT))
-+	if (!vma_test(vrm->vma, VMA_ACCOUNT_BIT))
- 		return;
- 
- 	vm_unacct_memory(vrm->charged);
-@@ -1023,7 +1023,7 @@ static void vrm_stat_account(struct vma_remap_struct *vrm,
- 	struct vm_area_struct *vma = vrm->vma;
- 
- 	vm_stat_account(mm, vma->vm_flags, pages);
--	if (vma->vm_flags & VM_LOCKED)
-+	if (vma_test(vma, VMA_LOCKED_BIT))
- 		mm->locked_vm += pages;
- }
- 
-@@ -1167,7 +1167,7 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
- 	 * arose, in which case we _do_ wish to unmap the _new_ VMA, which means
- 	 * we actually _do_ want it be unaccounted.
- 	 */
--	bool accountable_move = (vma->vm_flags & VM_ACCOUNT) &&
-+	bool accountable_move = vma_test(vma, VMA_ACCOUNT_BIT) &&
- 		!(vrm->flags & MREMAP_DONTUNMAP);
- 
- 	/*
-@@ -1186,7 +1186,7 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
- 	 * portions of the original VMA that remain.
- 	 */
- 	if (accountable_move) {
--		vm_flags_clear(vma, VM_ACCOUNT);
-+		vma_clear_flags(vma, VMA_ACCOUNT_BIT);
- 		/* We are about to split vma, so store the start/end. */
- 		vm_start = vma->vm_start;
- 		vm_end = vma->vm_end;
-@@ -1211,8 +1211,8 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
- 	 * |             |
- 	 * |-------------|
- 	 *
--	 * Having cleared VM_ACCOUNT from the whole VMA, after we unmap above
--	 * we'll end up with:
-+	 * Having cleared VMA_ACCOUNT_BIT from the whole VMA, after we unmap
-+	 * above we'll end up with:
- 	 *
- 	 *    addr  end
- 	 *     |     |
-@@ -1232,13 +1232,15 @@ static void unmap_source_vma(struct vma_remap_struct *vrm)
- 		if (vm_start < addr) {
- 			struct vm_area_struct *prev = vma_prev(&vmi);
- 
--			vm_flags_set(prev, VM_ACCOUNT); /* Acquires VMA lock. */
-+			vma_start_write(prev);
-+			vma_set_flags(prev, VMA_ACCOUNT_BIT);
- 		}
- 
- 		if (vm_end > end) {
- 			struct vm_area_struct *next = vma_next(&vmi);
- 
--			vm_flags_set(next, VM_ACCOUNT); /* Acquires VMA lock. */
-+			vma_start_write(next);
-+			vma_set_flags(next, VMA_ACCOUNT_BIT);
- 		}
- 	}
- }
-@@ -1321,8 +1323,8 @@ static void dontunmap_complete(struct vma_remap_struct *vrm,
- 	unsigned long old_start = vrm->vma->vm_start;
- 	unsigned long old_end = vrm->vma->vm_end;
- 
--	/* We always clear VM_LOCKED[ONFAULT] on the old VMA. */
--	vm_flags_clear(vrm->vma, VM_LOCKED_MASK);
-+	/* We always clear VMA_LOCKED[ONFAULT]_BIT on the old VMA. */
-+	vma_clear_flags_mask(vrm->vma, VMA_LOCKED_MASK);
- 
- 	/*
- 	 * anon_vma links of the old vma is no longer needed after its page
-@@ -1758,14 +1760,14 @@ static int check_prep_vma(struct vma_remap_struct *vrm)
- 	 * based on the original.  There are no known use cases for this
- 	 * behavior.  As a result, fail such attempts.
- 	 */
--	if (!old_len && !(vma->vm_flags & (VM_SHARED | VM_MAYSHARE))) {
-+	if (!old_len && !vma_test_any(vma, VMA_SHARED_BIT, VMA_MAYSHARE_BIT)) {
- 		pr_warn_once("%s (%d): attempted to duplicate a private mapping with mremap.  This is not supported.\n",
- 			     current->comm, current->pid);
- 		return -EINVAL;
- 	}
- 
- 	if ((vrm->flags & MREMAP_DONTUNMAP) &&
--			(vma->vm_flags & (VM_DONTEXPAND | VM_PFNMAP)))
-+	    vma_test_any(vma, VMA_DONTEXPAND_BIT, VMA_PFNMAP_BIT))
- 		return -EINVAL;
- 
- 	/*
-@@ -1795,7 +1797,7 @@ static int check_prep_vma(struct vma_remap_struct *vrm)
- 		return 0;
- 
- 	/* We are expanding and the VMA is mlock()'d so we need to populate. */
--	if (vma->vm_flags & VM_LOCKED)
-+	if (vma_test(vma, VMA_LOCKED_BIT))
- 		vrm->populate_expand = true;
- 
- 	/* Need to be careful about a growing mapping */
-@@ -1803,10 +1805,10 @@ static int check_prep_vma(struct vma_remap_struct *vrm)
- 	if (pgoff + (new_len >> PAGE_SHIFT) < pgoff)
- 		return -EINVAL;
- 
--	if (vma->vm_flags & (VM_DONTEXPAND | VM_PFNMAP))
-+	if (vma_test_any(vma, VMA_DONTEXPAND_BIT, VMA_PFNMAP_BIT))
- 		return -EFAULT;
- 
--	if (!mlock_future_ok(mm, vma->vm_flags & VM_LOCKED, vrm->delta))
-+	if (!mlock_future_ok(mm, vma_test(vma, VMA_LOCKED_BIT), vrm->delta))
- 		return -EAGAIN;
- 
- 	if (!may_expand_vm(mm, &vma->flags, vrm->delta >> PAGE_SHIFT))
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fbsr.c |  2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c  |  2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c |  8 ++++----
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c  |  5 +++--
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/gsp.h | 10 +++++++++-
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h        |  2 +-
+ 6 files changed, 19 insertions(+), 10 deletions(-)
+
+
+base-commit: 8fca3d8dbebf8d960dad7b10db3cb4a61139454b
 -- 
 2.54.0
 
