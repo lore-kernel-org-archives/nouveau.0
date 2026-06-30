@@ -4,226 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37370C43458
-	for <nouveau@archiver.kernel.org>; Tue, 30 Jun 2026 16:09:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70446C43458
+	for <nouveau@archiver.kernel.org>; Tue, 30 Jun 2026 20:28:26 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 14E9E10ECD1;
-	Tue, 30 Jun 2026 16:09:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4DA1D10ED3E;
+	Tue, 30 Jun 2026 20:28:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="sYufEBUR";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="Ru4dtXvk";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C709946DCB;
-	Tue, 30 Jun 2026 15:54:25 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 9857346DEA;
+	Tue, 30 Jun 2026 20:13:43 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782834865;
- b=g81eitxXoegJJQi+b4t/jR3IVqv98e/g2p3YY7JHdshXYwA3oU4SDDEfaU+7+Om2hfJEj
- 4opAKhfce9lJSekYoUVdoDEqhA5sSLKyNXvPhOL176DBgRNtdao0v8Ik66/tt4rSX06cF2N
- otlOV/iMVrHXW46KMGxFeSCNSOKIvXdx6A1Fjan45OlmHRIalxmXay7jphtvDigeHLON0OO
- 2+0HBT79nYAt06lSLRZN7TT89CxnMv7qYpoEnVebVMTrbqiq1ZK4SKaSLb1rEty2dkq7fr1
- KeF48G6XSrrQREleSNoS++TwiEnDhRd47kVUpQHMUGxkW1OkgEmioEVtsm5Q==
+ s=20240201; t=1782850423;
+ b=Krss5flUHhF/UUq3/0/gasbqrQ6nCH5Gt7NqlDkQcWa8UH0L72cKH31ikich34AN0fHb9
+ l8x4l9ugrjZOY7pt/fViWD7vtjjcGgMsuzahpEZvkah/gETiW9Hp1TsWIkjXdSHt3yQdOWl
+ B5KoZaYPDs/8XyLwX0qLfAIp7ymC1wsj9Utlv29bs016DIWdJHwfQRE2QX3p3Aj832pmHPs
+ 0p5L6GlCJx7ewfaOdaGLT02rRljEuKg/Lfrwn9meVe85WgBBduPBO1/nmhCxZG6Am1YvMDA
+ vewvZJlDv+VDdEFUJnpYvG5kF1VEHdUdQdYn9QXo0iIvmD5brXmgCKZvgOqA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782834865; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782850423; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=eoxaXJsILjU7jh80C1WkESw+OFwhH8/Tpv2coL+xT8E=;
- b=UKTEqigVGVcI+L2q2rufIVYLQZ+rtj+OMoRMPLyeogeRB+7Z/I3YQzz4JQ+2f0shhvmp8
- eqXKeUgmG3sYXHauJVv3LKe3fza+6cEgeUwE0CROJv6w68+N7aiNnjqnc3l83r7XQQYv30Z
- CAc6KYYA7yD9ia2D6d0wT97sWv8RG7XX8zlPWTQeCe2yIXm3ieUwG3quVIYhJAL3ThucgBe
- OeBD0THYJwZqnGBs1oMlQWItgKMrG5NhjljRJ5gF+N1fXOzXwgXPkomYC8RvwPKIcVsIsv8
- dRW7jm4VyUwQclYkKVSUK9mdcrwhTV9B3HXyKU61KLXbym0SQy8tR36pHFrw==
+ bh=/xxStwIF61bn3ZqA6+M8xNVE8MJdolxYpTE31ogRu80=;
+ b=MDyjNM958MVqFCnlhodAWpDxpsS18asqjO58CvkJc6OLFHS/AWQoQGlwFSnz6dJaMWdjE
+ XX1hw8YeGzT6HTSdb9Jrs+EHmohjDkT5k5d5j5pF/9Vb5juZYf9egyGIcbbBZmk1zbq7in6
+ IKSEWb1WRtIQEJ0Zeo9lPE3zvJ+DyuSue+cFtCBzCOa7D0UR/ufQKn4IXd9v3BLIsuLmTXU
+ YRbBav4tyE1x785UUUEiVfvk/jnEuz52DHA9RClGiUzy9PcctF4PNKk7R3MW6NsxBkMnXT1
+ gccc1Aj6PRQceqbeazKRNnW9CckBmznObpln25QoWK5vDmFLBdUTh8dcrtFA==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
+ dkim=pass header.d=collabora.com header.i=mark.filion@collabora.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+  dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=collabora.com header.i=mark.filion@collabora.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=collabora.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 69B34400BB
-	for <nouveau@lists.freedesktop.org>; Tue, 30 Jun 2026 14:55:29 +0000 (UTC)
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010065.outbound.protection.outlook.com [52.101.201.65])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 40F2710E06B;
-	Tue, 30 Jun 2026 15:10:11 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iP9bh3XjRxU1vdlXRbKMD9i06YGwBrYWhLC8ZCTV/WkM3VAhnzc5VXTsgcVfa59tzuEyXufQfLBrlJKiRzgF/yOjW8QSyap1KYTsv6X/9jTpqkDcs+x1a3tOYy0ZIStDKMshqlM1vJi029XJbUiKc48uE/m5662u3UilBE7+J2RyDcy4srddMjI8noIEHc05g6nN/2ASZD39txL68ct12mvqc7+TpCwu2MDDO/yoJvjN8nMmnZowIWxSn1aoj0khN9xEn6GoTyemMyA16ZgVJPLeOFrJmH79DlbOapFbeb09g4wDan7Waxz0gM8+UBQp04G7S3uB9PIRmvzmoXXymw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eoxaXJsILjU7jh80C1WkESw+OFwhH8/Tpv2coL+xT8E=;
- b=YB/F4pZtNrmkPxw/tRPV1REk1I6y0wRs718Griep8Kyxe585eDh6kesp8bgDAgYNBGMIfGcqISmU/xE5JxZ5R5KwxDaZKCU2L0qmWvamXAtOvW0GklCY8XWsQhWlJuKUjthre+gkP0Wsmt1l5YYOB6KOtu4z6DWSi7S2X9XOjEWxmcRaOL4TZLC4yPN3sp9WhD+p4djOfBYAlYezBAnFdx1rPDEzdTGlXgAteodFOzB+qtY4XMbZfFj22I//R+N2lXr4NypSA8TnnMx8EStIjUnIepSzJLmZsjKmEqo3+D0ol6hKCPMHtKj4rDvElyDko4hKvCYKvu+MlVjhhn7Qpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eoxaXJsILjU7jh80C1WkESw+OFwhH8/Tpv2coL+xT8E=;
- b=sYufEBURKFZymRK3+8C4mnt8zdWAPa4JwHgBQzD6jaNAGXgnqmy9elZ8lxdkAc6nQUok6vtduK+y0ZVX+QIwCqS4wvRlA+u54bK9NterRLTqMgfweHu+1++dfN22QgUW+X1LwdBD/QjdfV4H0tNh2MvtDBKFVWzk7OY+zAkLheua3ZMRtG4uIlhz79dY6S92UEplqahT9ysOrmyeQUi6uporvMJo+4DiWFp8sQt1fAHXbhzC6oIA+AabSfcBIuCtFNSrNlHkLjksnu4FtXtqJAEgAwC2P0hEBB8CtYvrYsLLo4G+uPkRI8x47I2MJiO05NAT31IoiTgT4085ko4srg==
-Received: from IA0PR12MB8374.namprd12.prod.outlook.com (2603:10b6:208:40e::7)
- by SN7PR12MB7202.namprd12.prod.outlook.com (2603:10b6:806:2a9::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Tue, 30 Jun
- 2026 15:09:59 +0000
-Received: from IA0PR12MB8374.namprd12.prod.outlook.com
- ([fe80::d85f:4c87:ae84:3f16]) by IA0PR12MB8374.namprd12.prod.outlook.com
- ([fe80::d85f:4c87:ae84:3f16%5]) with mapi id 15.21.0181.008; Tue, 30 Jun 2026
- 15:09:58 +0000
+	by kara.freedesktop.org (Postfix) with ESMTPS id 11AC24017F
+	for <nouveau@lists.freedesktop.org>; Tue, 30 Jun 2026 20:13:41 +0000 (UTC)
+Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com
+ [136.143.188.16])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 902C010E268
+	for <nouveau@lists.freedesktop.org>; Tue, 30 Jun 2026 20:28:23 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1782851302; cv=none;
+	d=zohomail.com; s=zohoarc;
+	b=MZtfitQnzq/Gj1uf8H6hPWiSMCFVwR7wLyPwfzUOvBFyJJeen9sqpthkBIhkjsEjoBlxrO3EeZd14EV9RJ7NFeYlC7+eFmZGjuFEHCeneM/gMnIfnifr0pQHyTC3yTuKLkJgs7opMnVU6RbDLeXlxtxEpZwmMoCb78U/S0kDAr4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc;
+	t=1782851302;
+ h=Content-Type:Content-Transfer-Encoding:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
+	bh=/xxStwIF61bn3ZqA6+M8xNVE8MJdolxYpTE31ogRu80=;
+	b=VKeZFVpxAwZFf+ZA+7dKAvJqK0zWlagemCRcNKZt4c/HHEFgE7afJRKLvFS19RAMQ8N35TbX4X0WnL9ca6hzv0tvNu4B88Oo4Bonj+CANpOEf57fPXJFcPCbDXdcHoo9o7Hn9J/YLMBejLG9aN1zfeb7+ppXMLOnhose7R8aE80=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=mark.filion@collabora.com;
+	dmarc=pass header.from=<mark.filion@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1782851302;
+	s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
+	h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To:Cc;
+	bh=/xxStwIF61bn3ZqA6+M8xNVE8MJdolxYpTE31ogRu80=;
+	b=Ru4dtXvkPhI+bP5BtVWU7PaXwnsUpyRyIW1wEVGfUff3wwjEdx/rID3KwAteKYF2
+	DqJkLqknHK0uGgZbDaL260O7ioT0BlWOJliFQQFDshjjOKKxOF3NlNPIjMEl98E85Xv
+	LORNXUb9ByjkJU7K8nB1Kug4u6xBuDQtWw7CcuKE=
+Received: by mx.zohomail.com with SMTPS id 1782851300655115.36931291562132;
+	Tue, 30 Jun 2026 13:28:20 -0700 (PDT)
+Message-ID: <8d987b07e1d629d358b9127d90359a2088b39763.camel@collabora.com>
+Subject: Reminder: Call for Proposals closing soon for XDC 2026!
+From: Mark Filion <mark.filion@collabora.com>
+To: nouveau@lists.freedesktop.org
+Date: Tue, 30 Jun 2026 16:28:19 -0400
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 30 Jun 2026 11:09:56 -0400
-Message-Id: <DJMH9O7CWAWX.5E207D1UQL27@nvidia.com>
-Subject: Re: [PATCH 01/13] mm: introduce vma_flags_can_grow() and
- vma_can_grow()
-To: "Lorenzo Stoakes" <ljs@kernel.org>
-From: "Zi Yan" <ziy@nvidia.com>
-X-Mailer: aerc 0.21.0
-References: <cover.1782760670.git.ljs@kernel.org>
- <f2e8c32515d328db62279cc8bab8398ea278d74f.1782760670.git.ljs@kernel.org>
- <DJLTDCPWMXDL.4ICZ77A1LPZZ@nvidia.com> <akNucoP3eaDN2_Vz@lucifer>
-In-Reply-To: <akNucoP3eaDN2_Vz@lucifer>
-X-ClientProxiedBy: BL1PR13CA0239.namprd13.prod.outlook.com
- (2603:10b6:208:2bf::34) To IA0PR12MB8374.namprd12.prod.outlook.com
- (2603:10b6:208:40e::7)
+User-Agent: Evolution 3.60.2 (3.60.2-1.fc44app2) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR12MB8374:EE_|SN7PR12MB7202:EE_
-X-MS-Office365-Filtering-Correlation-Id: 25ba0c9a-ab30-4465-4f4d-08ded6b9a6a4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|366016|1800799024|376014|7416014|23010399003|6133799003|22082099003|18002099003|4143699003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: 
-	oJiFFAY1O1XOi+MaYZztPsDKyPeuL2ihjhq2EovLixzr8+9G5MQL5kZqvqPRN0HTISwWv2Cb+KyDnchA0tkycwebBRXF4SBNmXVvHZ0jXLk4OiWdJaf9/EqEmhs6gpXEIS0LAjp2GsPd3fEeUi812PL+ggQIntyQyokgEO/5TFpebHEIqHyJMyk39tanhjyagdmoPex1u6MXuTRvfNESuBPqeVRarXswd2hEnFVKPk2SiYf5NsKV1k1aBPfNPMFiyPZxnXM5D8M92yWYQph8JN+iaX6jXvbv1a52zIJpAM5qz4672oNMMSqBwWVTbND1wEALjZXUQLF1wANHnR4DsZOnhY+9VnBKtbBmFlUrMNiEjfDic8NnBYkHrurUSZd9/s12NOqF/YhxdqW/n6kwFaMcujtq66Ucdc7vVPhAOwU6v5HDNHIpq5pcL0HrFpzpr3aCjRsAg9FB7YcawGOKaPoADuEjuQjBuo1tPTNpJra02DlFZ1hIUwdufJGFb8SDisVWGl+5RWvRh+HNKjp3A3ewX7wY+NtpJWhWkZ1z+dv8T+26iwmI1XvmgtAXB1hvcxeENaiy4E5QEHtZC9z1p6IwK3kWI2OCK409mSJNVN+uhth7xocnZ5yRCNqgV/aJ25ot3ruVYXNujVj8nPPzb61lwV+1fEzmNDLto35Db+Q=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA0PR12MB8374.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(23010399003)(6133799003)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?aXM0WCtReWtGUVBJTWR6TmdrK1BDRTE0Q0UxbVQrN0YxTWJVV0JtRjJQVENl?=
- =?utf-8?B?dGZja3VaWW1OWkZmMEgwZkFDWGJ4L1BvRkQyWVl2MWtaWkI3aU5PYUIzcjZt?=
- =?utf-8?B?L2RGaGlkWW1uTVVLVVJtM0tMUGdPUHpEU3V4TWc3N2xEeUp5d3hNOHdmSng1?=
- =?utf-8?B?VGt3UEFSU2ZVY1M3ODRvS2ZvT2hxUjMwVmNiejI2SW5UZzQ3UnQraTJRalVP?=
- =?utf-8?B?OWc0NHVmOXlLdmlwUWlMTGlhUHliVkpPSFY0T3dtUElyMWgzdE5zSVhrKzNu?=
- =?utf-8?B?OEViV0FUQ2JWTmZQcG1IV0xROWpUOVg3ZU1RVnJYMVNBd2xjMG9kTTlwWWg2?=
- =?utf-8?B?M2FxcjFjU3pILytIUk05NnBhYXdtU1AyWFBvY0tGR3NHWDF5MkZGNHVRNzhz?=
- =?utf-8?B?VW5GSnlxeDF2SUxCNTVxeEdYOUxVTXNVZEdqYjd5MHlUV1ljNDlwYU91Z0gw?=
- =?utf-8?B?OHhjMFI2a2ZhYlZ5Y0IzK0RoS1BTQ0hITUVVbThwK1duaTNMSWdOdkFSVm9L?=
- =?utf-8?B?MWZSbmxQQ0FoSlZsSVhXZGsyNFBpTU9YUDhQWWk4TCtTL0s3ZDdWWXR1emN5?=
- =?utf-8?B?V2lnNml3dFdTaENOZjV6SjRxSjZobEpkVE9nNktPWEFjL0d0UURhaGpOVERM?=
- =?utf-8?B?V3hRWm9jZ2xvNDUyZlhFSUh6V2RaODhZTVdUeXBhL1gxdGJqT215UXFpZWdn?=
- =?utf-8?B?VFlGdzhkTG9Td2xsbjdBTnRPTnhXWC90TVNHZzM4L29QRitRUFhQNkZVYStN?=
- =?utf-8?B?d3hkMjQwMnU4NXZvSDkwRUZwa01ueVZsNGxrL3NwTkdWR2hhL1lXdVZmcmhC?=
- =?utf-8?B?TkUxYklISzFmRTcxNzZ3VjkwcEJWQjlpblplazdNSzdRVXE5RnZCN013OUJy?=
- =?utf-8?B?UnF1V1o2SE1mZzBmaHhyc3VYWDF1aE1NaGM5WjJjNENreXRPTUxLM1VEV01N?=
- =?utf-8?B?V3NpdVl4VTkzU05wRWdGdkRldnhqcDV4WFUyNFNPZ2NOdVV6NnpZd09sSWh5?=
- =?utf-8?B?UTdySHp1OStGQjZwNG9MVm03VklkRi9IMWVOR1NONjRTSWhySUdldm93WjFT?=
- =?utf-8?B?d1RqT2lQQWlkaDRHQmxxOS9Ob3MrUU5wL0pRdVlGYzV2RGJQK0tvV1RMQWl6?=
- =?utf-8?B?dW8rM0RjUGg2MHZablA3aklscm9kMnhudlVKK3BTSmU2QlR2NzFFL0xUd054?=
- =?utf-8?B?NXNuVmhISXdxeFM3OU8yaGhtaUtjVkVTZTd1OWtvSWV3OG83d2VQdXplL0dF?=
- =?utf-8?B?OHg1bm90UlpIWVd4WkNFN3FtNEJmRTlvbUIza3FiaEE5UU9NNTFYZjNGcE9r?=
- =?utf-8?B?bzQ3L1RUSnNocTZCNDU4NDVXdFJ5UVU0NzhPWEZpY2xQWm9HcXlFeFNyb1d0?=
- =?utf-8?B?UTYxMFQ2dms0cWtTRkp2bWVqQnZqWkIwOHdHSStlL0dNNEpRRzJWd2RVSzNn?=
- =?utf-8?B?WGg0TWVaS2FBUHp3QmtYZFlLSUtRQkVBRUl5SThoSXhtUEpaSThqNUl5ZVZz?=
- =?utf-8?B?YW5PUjNpR2dkbjZSTHFtN3JEU1FPa2pqRi9xRWRuYUVGUXBzNmpvREx6VDdJ?=
- =?utf-8?B?WDFqdU1GSUVTN0pYUU1GOG14TjhEQ2xLMXdLaHl5VG42bmZ1eEIyQk5hN0Ra?=
- =?utf-8?B?Z1BsTWRxYkVsTG96V3BXb3lTblRoZUJFOEkxV1lmQzhWVDBpZGxNeTBTM1Fi?=
- =?utf-8?B?L1J5R2k0elllRzBaU3I4T1F0UGFqQ1lrbUsrMG9naEtXNStqeHp2UnEvSEV5?=
- =?utf-8?B?Q2J3dkp1ZjJiUWhBWHdZSnloT2E5Z0RkYWg2V0c2Q0FHVzZXaENkMkIxWXZn?=
- =?utf-8?B?RTd2R1ZxaVNrRUZ1dGhNVUU0anpkM0tGbDI2ZFFaUDNScHY0WXFUOCs4L1Uz?=
- =?utf-8?B?K2NqeFdZdTc1QTBFQkNseCsvbWtGd1dtdWo3QXZBcWVMVEcxNmcyUnh5N1lB?=
- =?utf-8?B?Z2h6ampNeU1adXNsYjVNYUV2VVpHTnV0RG9OSzA2ZDJEQ0JDelJ6dWlZdmt0?=
- =?utf-8?B?WS93OERIYXdibnErL1NuRFF5MTcwVHVGRDg3bklLbitxUnVYNkxRaklkdGpi?=
- =?utf-8?B?SzdockgxNGZPYmtHMEttblVTblVzY3l1Q3lZRmYwTHFXTjhRZDVzMzl6cXl5?=
- =?utf-8?B?Ukk4RzNYZ1lXZW04VC9JV1pDTWNUT2Z5WVpCOCtDeDRHdlJWaFhaQTlDZHpH?=
- =?utf-8?B?ZWxJck5FQVJOTUZhdnJhNldMVnk3UVlkYUdnaTZteXd1Ri8vZjNodExPZkcz?=
- =?utf-8?B?VEx0T0FMNGxpWGRoVmxJRnF6N1QrY2xKRWU5Y0FuRGJ2NjVrQW5wUTJicTg1?=
- =?utf-8?Q?VXmBPftHdX8EVsIops?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 25ba0c9a-ab30-4465-4f4d-08ded6b9a6a4
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR12MB8374.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 15:09:58.7994
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- JnAYTkFnPevWfBepW6Rd8YtqtMSRQbCTBTdlMJEJeNmkdtpxg3jlpUgR9RhMt7p8
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7202
-X-MailFrom: ziy@nvidia.com
-X-Mailman-Rule-Hits: implicit-dest
+X-ZohoMailClient: External
+Message-ID-Hash: FBT6ZN2QWCCMXDHOMPY4PT3R2HJA5BFW
+X-Message-ID-Hash: FBT6ZN2QWCCMXDHOMPY4PT3R2HJA5BFW
+X-MailFrom: mark.filion@collabora.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- max-recipients; max-size; news-moderation; no-subject; digests;
- suspicious-header
-Message-ID-Hash: ANUBU5CB5X23YZKJ2ZPJV3ZUJKXEJT5F
-X-Message-ID-Hash: ANUBU5CB5X23YZKJ2ZPJV3ZUJKXEJT5F
-X-Mailman-Approved-At: Tue, 30 Jun 2026 15:54:24 +0000
-CC: Andrew Morton <akpm@linux-foundation.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Lucas Stach <l.stach@pengutronix.de>, Inki Dae <inki.dae@samsung.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Sandy Huang <hjc@rock-chips.com>,
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Thierry Reding <thierry.reding@kernel.org>,
- Mikko Perttunen <mperttunen@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Zack Rusin <zack.rusin@broadcom.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Helge Deller <deller@gmx.de>, Benjamin LaHaise <bcrl@kvack.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Muchun Song <muchun.song@linux.dev>,
- Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- "Liam R . Howlett" <liam@infradead.org>, Nico Pache <npache@redhat.com>,
- Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
- Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>,
- Hugh Dickins <hughd@google.com>, Vlastimil Babka <vbabka@kernel.org>,
- Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
- Michal Hocko <mhocko@suse.com>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>, Kees Cook <kees@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- linux-sound@vger.kernel.org
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ANUBU5CB5X23YZKJ2ZPJV3ZUJKXEJT5F/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FBT6ZN2QWCCMXDHOMPY4PT3R2HJA5BFW/>
 Archived-At: 
- <https://lore.freedesktop.org/DJMH9O7CWAWX.5E207D1UQL27@nvidia.com/>
+ <https://lore.freedesktop.org/8d987b07e1d629d358b9127d90359a2088b39763.camel@collabora.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -233,134 +107,27 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue Jun 30, 2026 at 3:38 AM EDT, Lorenzo Stoakes wrote:
-> On Mon, Jun 29, 2026 at 04:26:18PM -0400, Zi Yan wrote:
->> On Mon Jun 29, 2026 at 3:25 PM EDT, Lorenzo Stoakes wrote:
->> > These test whether the VMA has stack sematics, i.e. is able to grow up=
-wards
->> > or downwards depending on the architecture.
->> >
->> > In order to account for arches which do not support upward-growing sta=
-cks,
->> > introduce VMA_GROWSUP whose definition depends on the architecture
->> > supporting it, and use vma_flags_test_single_mask() in vma_flags_can_g=
-row()
->> > to account for this.
->> >
->> > Update the VMA userland tests to reflect the changes
->> >
->> > No functional change intended.
->> >
->> > Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
->> > ---
->> >  include/linux/mm.h              | 21 ++++++++++++++++++---
->> >  tools/testing/vma/include/dup.h |  4 ++++
->> >  2 files changed, 22 insertions(+), 3 deletions(-)
->> >
->> > diff --git a/include/linux/mm.h b/include/linux/mm.h
->> > index 868b2334bff3..cf7df1569052 100644
->> > --- a/include/linux/mm.h
->> > +++ b/include/linux/mm.h
->> > @@ -472,6 +472,7 @@ enum {
->> >  #define VM_SAO		INIT_VM_FLAG(SAO)
->> >  #elif defined(CONFIG_PARISC)
->> >  #define VM_GROWSUP	INIT_VM_FLAG(GROWSUP)
->> > +#define VMA_GROWSUP	mk_vma_flags(VMA_GROWSUP_BIT)
->> >  #elif defined(CONFIG_SPARC64)
->> >  #define VM_SPARC_ADI	INIT_VM_FLAG(SPARC_ADI)
->> >  #define VM_ARCH_CLEAR	INIT_VM_FLAG(ARCH_CLEAR)
->> > @@ -483,6 +484,7 @@ enum {
->> >  #endif
->> >  #ifndef VM_GROWSUP
->> >  #define VM_GROWSUP	VM_NONE
->> > +#define VMA_GROWSUP	EMPTY_VMA_FLAGS
->> >  #endif
->> >  #ifdef CONFIG_ARM64_MTE
->> >  #define VM_MTE		INIT_VM_FLAG(MTE)
->> > @@ -1563,11 +1565,24 @@ static inline bool vma_is_initial_stack(const =
-struct vm_area_struct *vma)
->> >  		vma->vm_end >=3D vma->vm_mm->start_stack;
->> >  }
->> >
->> > -static inline bool vma_is_temporary_stack(const struct vm_area_struct=
- *vma)
->> > +static inline bool vma_flags_can_grow(const vma_flags_t *flags)
->> >  {
->> > -	int maybe_stack =3D vma->vm_flags & (VM_GROWSDOWN | VM_GROWSUP);
->> > +	if (vma_flags_test_single_mask(flags, VMA_GROWSUP))
->> > +		return true;
->> > +	if (vma_flags_test(flags, VMA_GROWSDOWN_BIT))
->> > +		return true;
->> > +
->> > +	return false;
->> > +}
->> >
->> > -	if (!maybe_stack)
->> > +static inline bool vma_can_grow(const struct vm_area_struct *vma)
->> > +{
->> > +	return vma_flags_can_grow(&vma->flags);
->>
->> Would it save vma_flags_can_grow() if we do below?
->>
->> return vma_test(vma, VMA_GROWSDOWN_BIT) || vma_test_single_mask(vma, VMA=
-_GROWSUP);
->>
->> I find these two functions when I am reading mm.h.
->
-> Yeah but we require vma_flags_can_grow() for code in mmap.c, the majority=
- of
-> checks of this have only vma_flags_t to work with not a VMA :)
->
+Hello!
 
-Got it. I think I need to finish this series. :)
+Reminder - The deadline for submissions for XDC 2026 is this coming
+Friday, 3 July 2026.
 
->>
->> > +}
->> > +
->> > +static inline bool vma_is_temporary_stack(const struct vm_area_struct=
- *vma)
->> > +{
->> > +	if (!vma_can_grow(vma))
->> >  		return false;
->> >
->> >  	if ((vma->vm_flags & VM_STACK_INCOMPLETE_SETUP) =3D=3D
->> > diff --git a/tools/testing/vma/include/dup.h b/tools/testing/vma/inclu=
-de/dup.h
->> > index 5d7d0afd7765..6f5bcd7fbcd8 100644
->> > --- a/tools/testing/vma/include/dup.h
->> > +++ b/tools/testing/vma/include/dup.h
->> > @@ -245,8 +245,10 @@ enum {
->> >  #define VM_STACK	INIT_VM_FLAG(STACK)
->> >  #ifdef CONFIG_STACK_GROWS_UP
->> >  #define VM_STACK_EARLY	INIT_VM_FLAG(STACK_EARLY)
->> > +#define VMA_STACK_EARLY mk_vma_flags(VMA_STACK_EARLY_BIT)
->> >  #else
->> >  #define VM_STACK_EARLY	VM_NONE
->> > +#define VMA_STACK_EARLY EMPTY_VMA_FLAGS
->> >  #endif
->> >  #ifdef CONFIG_ARCH_HAS_PKEYS
->> >  #define VM_PKEY_SHIFT ((__force int)VMA_HIGH_ARCH_0_BIT)
->> > @@ -315,6 +317,8 @@ enum {
->> >
->> >  /* Bits set in the VMA until the stack is in its final location */
->> >  #define VM_STACK_INCOMPLETE_SETUP (VM_RAND_READ | VM_SEQ_READ | VM_ST=
-ACK_EARLY)
->> > +#define VMA_STACK_INCOMPLETE_SETUP append_vma_flags(		\
->> > +	VMA_STACK_EARLY, VMA_RAND_READ_BIT, VMA_SEQ_READ_BIT)
->> >
->> >  #define TASK_EXEC_BIT ((current->personality & READ_IMPLIES_EXEC) ? \
->> >  		       VM_EXEC_BIT : VM_READ_BIT)
->>
->> Why are VMA_STACK_EARLY and VMA_STACK_INCOMPLETE_SETUP added here but
->> not in mm.h?
->
-> Yeah urgh oops my bad. It doesn't really break anything but I'll fix it i=
-f a
-> respin is needed...
+    https://xdc2026.x.org
 
-Sure.
+While any serious proposal will be gratefully considered, topics of
+interest to X.Org and freedesktop.org developers are encouraged. The
+program focus is on new development, ongoing challenges and anything
+else that will spark discussions among attendees in the hallway track.
 
---=20
-Best Regards,
-Yan, Zi
+We are open to talks across all layers of the graphics stack, from the
+kernel to desktop environments / graphical applications and about how
+to make things better for the developers who build them. Head to the
+CfP page to learn more!
+ =20
+As usual, the conference is free of charge and open to the general
+public. If you plan on attending, please make sure to register as early
+as possible!
 
+Best,
+
+Mark
