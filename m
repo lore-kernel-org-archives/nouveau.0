@@ -4,83 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05B04C43458
-	for <nouveau@archiver.kernel.org>; Thu,  2 Jul 2026 14:16:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F148C43458
+	for <nouveau@archiver.kernel.org>; Thu,  2 Jul 2026 15:09:20 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8EF3D10F3CC;
-	Thu,  2 Jul 2026 14:16:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CA67010F44F;
+	Thu,  2 Jul 2026 15:09:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nBuFO4OK";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="Dkh9RWL9";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E03C946E79;
-	Thu,  2 Jul 2026 14:02:01 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 2ECC546E3B;
+	Thu,  2 Jul 2026 14:54:33 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783000921;
- b=sp1X7goI8+jA8n2gG1N6ReFYvrNN14q/o4r8lVUFxOK6vOO0pBo8Vqcs/4htLuQ8XvF9c
- p98O0BUG/t/KRMGYuvrkugrfKOxDTnEItVKC+jnxo2vPxxpEQMz7qZI0Jz0U7Go/2qmlxEq
- v9t2XOSPNrwgSASzsxtcwf2ZJR9ibUpP2H2mPBiUE7aMDMjWvcyKeEgDwzknru89Io+4Hff
- QvjaTo6TFkwpFbSu0ATjgJAUrOjnT9KBfhQyO2+hRk2ad4n/K4gO94z0bx6tPGIqHeyRx5r
- zgSVZ9tG9PNDy28WwHiMoLdDrQYy1UVSZekp5vFtBm7It0oh0tMnmjYnRfZA==
+ s=20240201; t=1783004073;
+ b=rNeBWwkmBK/broOMZDYGk2c/yiJ41Y4msuU1G6n8xUSeD/b+tJ2oK0tAhaMuYS6sPVWGw
+ CNy+w9kjOaANTGfP0zWY9ieyLFbWuyzj8mA4vJrxh5x9i3ie5UvdDG2o06Nrw14t8pFU24V
+ MEVrgfEl4uXvOZ/saoZi5HiKkgnH4Ysv2GRkxipoKQEyr+sZ5BDirjLqZKcTyAQ+EpLUhqk
+ k6iPGFlWrcm4qDVO4uZrvAvSpXRGax5GYt8hvWKMnyGhlUN9miD5GzIbiEpDCbaxygvsgfK
+ tahQzD0Ie+bFCPaIqrGfEmQHmTgrsOmgKS6ld7mXiIJZlVSjPAth/PfUpNpQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783000921; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783004073; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=vcXV/OFRF3o5nc90hy/rNYztoQp19dfE8boUb7skCPA=;
- b=xzkii2KOhnpRByffHa5BqctVnWjjaHYzGKfkF3OdlNNf7NJHOIG3R1KhLeQiOsWw0gwZy
- ixTGyrWB2ihsBC5A0CVwlMk7RxRCsBg0za+uhVAw2nWhnjNtz6aqjy+ob6Xkpzrs0AAmnts
- L/t3uIS7G7yUD4gjIjWrRrlu6omRKQwd8HjbSx+AG33SuMeYQv4wiQthoK/zVQWxQFmKOHg
- drRAoZ1biLdn1nDNcgOICjCIDcoyl5aOXslFbICz3oftcEczrJg6UemIwBn4frNgF0H+5Ml
- uJHa7m4yKDxM8WprQ212O8GKpqDVcEAuQG+hymUrZ5islQKQIdenH7+8AFwQ==
+ bh=GVgi/IDW6MB0ICHH5yTujujreeH5t5fHN661xjkq/74=;
+ b=ASCUhZ8Jac9TqIhPskpOYEl0qpXLOeYlzsUsnxR41GLV1nsy7OoaxnwY5Fnfv0Xd0w6OL
+ 1CTYW20jOtz6xfSBrUu8JK2Db/CqUg2E6/M4R+AHqj+9iipOx8zzJDvMZtglS/8ww5V0U9G
+ H5qp7eb+zvn0W6Hm9E2RqQHV8UbKT54VvGbEar9XcOEEWXnCH5wWHPixB1iasGDq8p35IYa
+ w7/by6Ot05yW2plIb7P/4Qy1ZDkfVLMvfruRMA1P0oYgArCCXAEwAI7GyYMJus2Tt+KgAu1
+ 9dAHntDv5rY+hhHY3zeaAZK2krNZ6XFVyXVWOppC7dvtoU7l8mO6rmt3o83A==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=linux.dev;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+  dmarc=pass (Used From Domain Record) header.from=linux.dev policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=linux.dev;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=linux.dev policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 75C2546E76
-	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 14:01:58 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C901410E4DC;
-	Thu,  2 Jul 2026 14:16:44 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1F28543249;
-	Thu,  2 Jul 2026 14:16:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B77881F00A3A;
-	Thu,  2 Jul 2026 14:16:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783001804;
-	bh=vcXV/OFRF3o5nc90hy/rNYztoQp19dfE8boUb7skCPA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=nBuFO4OKuZkx4g9lHIILMu0GcvZdBu9Hnc71+r10+sQ+KcL0n3xj7kUQucOnqcAk3
-	 AkoJXlYf1oNjG50cQd8gf2TOHQhPraHIQjZt480Xg/htWdV6q91LBwFijLRn3TQOuu
-	 DUzRy0MHOPnAYLdnUDmlOOE6s8dMsOCBWennldGjml9Hl6vq1cQQi9Nbr1EERzrjN/
-	 Lkc41jqy6VqEbMgqwe1omDOJT4iOl7aycvqDHrKI8KUC4jXNXsDmIx9h9ZJsJesofT
-	 OviVXSDvnQJkEiSWSZwtp7bcBRhTwnjivbJlK0EsZWjLSEUjELxUeBndnhMBbTL5bE
-	 /U9iv5KrQkB8g==
-Date: Thu, 2 Jul 2026 15:16:20 +0100
-From: Lorenzo Stoakes <ljs@kernel.org>
-To: Lance Yang <lance.yang@linux.dev>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 406DF4004C
+	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 14:54:28 +0000 (UTC)
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com
+ [95.215.58.174])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8DAB710F434
+	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 15:09:14 +0000 (UTC)
+Message-ID: <cf5a92d3-2c7e-41e6-afed-f2a4c9d1a774@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1783004941;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GVgi/IDW6MB0ICHH5yTujujreeH5t5fHN661xjkq/74=;
+	b=Dkh9RWL9rMIQE6Ur1L+lFP9fWBIPUF1EBlETBXiV1FwoU/+0F4n7u3+DtwQotZKTkFazHu
+	oHVZr/Vs+FAfYKVbUxY57cWOfPctKhbPm5r74IEfkBs57Xoqgu/OIspBSvCnXq9uEYouaN
+	h+ygMrTbcJpYGV90L9aTDp+5SWenOgM=
+Date: Thu, 2 Jul 2026 23:08:32 +0800
+MIME-Version: 1.0
 Subject: Re: [PATCH 02/13] mm/vma: update do_mmap() to use vma_flags_t
-Message-ID: <akZwsS-_cywsXSjL@lucifer>
+To: Lorenzo Stoakes <ljs@kernel.org>
 References: 
  <e0ac58ad2b88ff7e2f0024e3286b2e786f79ca32.1782760670.git.ljs@kernel.org>
- <20260702111531.64883-1-lance.yang@linux.dev>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260702111531.64883-1-lance.yang@linux.dev>
-Message-ID-Hash: KCEV6ZO3OQQVDKQB3P6WALSNUC2HBRWB
-X-Message-ID-Hash: KCEV6ZO3OQQVDKQB3P6WALSNUC2HBRWB
-X-MailFrom: ljs@kernel.org
+ <20260702111531.64883-1-lance.yang@linux.dev> <akZwsS-_cywsXSjL@lucifer>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Lance Yang <lance.yang@linux.dev>
+In-Reply-To: <akZwsS-_cywsXSjL@lucifer>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
+Message-ID-Hash: L6AED6Q2SJNGIDRLGOPD6VWAIVSCUFNY
+X-Message-ID-Hash: L6AED6Q2SJNGIDRLGOPD6VWAIVSCUFNY
+X-MailFrom: lance.yang@linux.dev
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
@@ -118,8 +116,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KCEV6ZO3OQQVDKQB3P6WALSNUC2HBRWB/>
-Archived-At: <https://lore.freedesktop.org/akZwsS-_cywsXSjL@lucifer/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/L6AED6Q2SJNGIDRLGOPD6VWAIVSCUFNY/>
+Archived-At: 
+ <https://lore.freedesktop.org/cf5a92d3-2c7e-41e6-afed-f2a4c9d1a774@linux.dev/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -129,134 +128,71 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu, Jul 02, 2026 at 07:15:31PM +0800, Lance Yang wrote:
->
-> On Mon, Jun 29, 2026 at 08:25:25PM +0100, Lorenzo Stoakes wrote:
-> >The core do_mmap() function accepts a vm_flags_t parameter which it then
-> >manipulates before passing to mmap_region() to do the heavy lifting of the
-> >memory mapping.
-> >
-> >Update do_mmap() to instead accept a vma_flags_t parameter, and adjust all
-> >the logic within do_mmap() to manipulate this instead.
-> >
-> >This is as part of the ongoing effort to convert VMA flags from a system
-> >word size to a bitmap type which allows us to unrestrict the number of VMA
-> >flags, as well as gain control over how VMA flag manipulation occurs.
-> >
-> >We do not cascade these changes to all functions which accept vm_flags_t,
-> >but rather use vma_flags_to_legacy() where necessary, specifically
-> >deferring converting calc_vm_prot_bits(), calc_vm_flag_bits() and
-> >__get_unmapped_area() to vma_flags_t.
-> >
-> >Also utilise the new vma_flags_can_grow() predicate which correctly handles
-> >the case of architectures without upward growing stacks.
-> >
-> >As part of this change, introduce VMA_SHADOW_STACK so we can correctly
-> >handle the case of the shadow stack not being defined.
-> >
-> >No functional change intended.
-> >
-> >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
-> >---
->
-> Not exactly a small one :) I stared at this patch for a while, hopefully
-> don't miss anythig ...
 
-Yeah sorry maybe I could have broken this down more!
 
->
-> Just one tiny nit below. Overall, LGTM, feel free to add:
->
-> Reviewed-by: Lance Yang <lance.yang@linux.dev>
+On 2026/7/2 22:16, Lorenzo Stoakes wrote:
+> On Thu, Jul 02, 2026 at 07:15:31PM +0800, Lance Yang wrote:
+[...]
+>>
+>> [...]
+>>> diff --git a/mm/mmap.c b/mm/mmap.c
+>>> index 46174e706bbe..547352183214 100644
+>>> --- a/mm/mmap.c
+>>> +++ b/mm/mmap.c
+>> [...]
+>>> @@ -488,23 +496,27 @@ unsigned long do_mmap(struct file *file, unsigned long addr,
+>>> 		 * Check to see if we are violating any seals and update VMA
+>>> 		 * flags if necessary to avoid future seal violations.
+>>> 		 */
+>>> -		err = memfd_check_seals_mmap(file, &vm_flags);
+>>> +		err = memfd_check_seals_mmap(file, &vma_flags);
+>>> 		if (err)
+>>> 			return (unsigned long)err;
+>>> 	} else {
+>>> 		switch (flags & MAP_TYPE) {
+>>> 		case MAP_SHARED:
+>>> -			if (vm_flags & (VM_GROWSDOWN|VM_GROWSUP))
+>>> +			if (vma_flags_can_grow(&vma_flags))
+>>> 				return -EINVAL;
+>>> 			/*
+>>> 			 * Ignore pgoff.
+>>> 			 */
+>>> 			pgoff = 0;
+>>> -			vm_flags |= VM_SHARED | VM_MAYSHARE;
+>>> +			vma_flags_set(&vma_flags, VMA_SHARED_BIT, VMA_MAYSHARE_BIT);
+>>> 			break;
+>>> -		case MAP_DROPPABLE:
+>>> -			if (VM_DROPPABLE == VM_NONE)
+>>> +		case MAP_DROPPABLE: {
+>>> +			vma_flags_t droppable = VMA_DROPPABLE;
+>>> +
+>>> +			if (vma_flags_empty(&droppable))
+>>> 				return -EOPNOTSUPP;
+>>> +			vma_flags_set_mask(&vma_flags, droppable);
+>>> +
+>>> 			/*
+>>> 			 * A locked or stack area makes no sense to be droppable.
+>>> 			 *
+>>> @@ -515,23 +527,24 @@ unsigned long do_mmap(struct file *file, unsigned long addr,
+>>> 			 */
+>>> 			if (flags & (MAP_LOCKED | MAP_HUGETLB))
+>>> 			        return -EINVAL;
+>>> -			if (vm_flags & (VM_GROWSDOWN | VM_GROWSUP))
+>>> +			if (vma_flags_can_grow(&vma_flags))
+>>> 			        return -EINVAL;
+>>>
+>>> -			vm_flags |= VM_DROPPABLE;
+>>
+>> Old code checked VM_GROWSDOWN|VM_GROWSUP before seting VM_DROPPABLE. New
+>> code flips that around. Hmm, shouldn't master, just made me look twice ;)
+>>
+>> Maybe keep old order?
+> 
+> I guess I feared that defining droppable above then referencing it below would
+> be less clear?
+> 
+> Can move if you feel strongly about it, and sorry for making the move at the
+> same time as the general vm_flags_t -> vma_flags_t refactor as it does make that
+> less clear...
 
-Thanks!
-
->
-> [...]
-> >diff --git a/mm/mmap.c b/mm/mmap.c
-> >index 46174e706bbe..547352183214 100644
-> >--- a/mm/mmap.c
-> >+++ b/mm/mmap.c
-> [...]
-> >@@ -488,23 +496,27 @@ unsigned long do_mmap(struct file *file, unsigned long addr,
-> > 		 * Check to see if we are violating any seals and update VMA
-> > 		 * flags if necessary to avoid future seal violations.
-> > 		 */
-> >-		err = memfd_check_seals_mmap(file, &vm_flags);
-> >+		err = memfd_check_seals_mmap(file, &vma_flags);
-> > 		if (err)
-> > 			return (unsigned long)err;
-> > 	} else {
-> > 		switch (flags & MAP_TYPE) {
-> > 		case MAP_SHARED:
-> >-			if (vm_flags & (VM_GROWSDOWN|VM_GROWSUP))
-> >+			if (vma_flags_can_grow(&vma_flags))
-> > 				return -EINVAL;
-> > 			/*
-> > 			 * Ignore pgoff.
-> > 			 */
-> > 			pgoff = 0;
-> >-			vm_flags |= VM_SHARED | VM_MAYSHARE;
-> >+			vma_flags_set(&vma_flags, VMA_SHARED_BIT, VMA_MAYSHARE_BIT);
-> > 			break;
-> >-		case MAP_DROPPABLE:
-> >-			if (VM_DROPPABLE == VM_NONE)
-> >+		case MAP_DROPPABLE: {
-> >+			vma_flags_t droppable = VMA_DROPPABLE;
-> >+
-> >+			if (vma_flags_empty(&droppable))
-> > 				return -EOPNOTSUPP;
-> >+			vma_flags_set_mask(&vma_flags, droppable);
-> >+
-> > 			/*
-> > 			 * A locked or stack area makes no sense to be droppable.
-> > 			 *
-> >@@ -515,23 +527,24 @@ unsigned long do_mmap(struct file *file, unsigned long addr,
-> > 			 */
-> > 			if (flags & (MAP_LOCKED | MAP_HUGETLB))
-> > 			        return -EINVAL;
-> >-			if (vm_flags & (VM_GROWSDOWN | VM_GROWSUP))
-> >+			if (vma_flags_can_grow(&vma_flags))
-> > 			        return -EINVAL;
-> >
-> >-			vm_flags |= VM_DROPPABLE;
->
-> Old code checked VM_GROWSDOWN|VM_GROWSUP before seting VM_DROPPABLE. New
-> code flips that around. Hmm, shouldn't master, just made me look twice ;)
->
-> Maybe keep old order?
-
-I guess I feared that defining droppable above then referencing it below would
-be less clear?
-
-Can move if you feel strongly about it, and sorry for making the move at the
-same time as the general vm_flags_t -> vma_flags_t refactor as it does make that
-less clear...
-
->
-> Cheers, Lance
->
-> >-
-> > 			/*
-> > 			 * If the pages can be dropped, then it doesn't make
-> > 			 * sense to reserve them.
-> > 			 */
-> >-			vm_flags |= VM_NORESERVE;
-> >+			vma_flags_set(&vma_flags, VMA_NORESERVE_BIT);
-> >
-> > 			/*
-> > 			 * Likewise, they're volatile enough that they
-> > 			 * shouldn't survive forks or coredumps.
-> > 			 */
-> >-			vm_flags |= VM_WIPEONFORK | VM_DONTDUMP;
-> >+			vma_flags_set(&vma_flags, VMA_WIPEONFORK_BIT,
-> >+				      VMA_DONTDUMP_BIT);
-> >+
-> > 			fallthrough;
-> >+		}
-> > 		case MAP_PRIVATE:
-> > 			/*
-> > 			 * Set pgoff according to addr for anon_vma.
-> [...]
-
-Thanks, Lorenzo
+No need to churn just for me. Thanks :)
