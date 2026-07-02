@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A05EC43458
-	for <nouveau@archiver.kernel.org>; Thu,  2 Jul 2026 12:11:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88D03C43458
+	for <nouveau@archiver.kernel.org>; Thu,  2 Jul 2026 12:22:10 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id DCD9710F31B;
-	Thu,  2 Jul 2026 12:11:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9BAFA10F340;
+	Thu,  2 Jul 2026 12:22:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="o2h14zEv";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="lN0+Boa2";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7E73546E4B;
-	Thu,  2 Jul 2026 11:56:25 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 3129D46E4C;
+	Thu,  2 Jul 2026 12:07:23 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782993385;
- b=Uw3frKz6d++nTumUerZwyL34mairx6s9uNJ/xn8r/zq6iPl+7eakPU3FMYFY+kP4QkYya
- S8z9IpkGYnCuiCTHmW61fkdNTyqzgb8GJvD3Qr2Rsggeruw2QSSl6/oGeakT8Z5LCrnbnFg
- KJWkLx/wr7PmU3nvvZKRqOXaGG4eDUcv/vkcM18wYEhfgLkmdwUj4AG8H54opT4oy9YRfb5
- dDtcx3LvpKt1+O2FJ8Y1SqgCMHa6r2vZqYbA0TQvnh0EgHrwj5SidtMtaxGmhVP2Wgc+4QI
- UTsnFlRpfDsYQtuZzkRy/XIu0eiJlRrwGCdrbuCZXbNhT096G0nO+6qoTAow==
+ s=20240201; t=1782994043;
+ b=AEUQUkLpiNMh2BRBWEl/YRFc8DWNpM1r5JWCRdSpP6ubVF65TpUI8JYQ8k7nckXPalwdd
+ xjiyD2kOx96UC7iA1qeScrWNy+ZlCOXiR5IeF9JxQu5mtucBhZOQy69j6flyN1bCrdDiz9l
+ EZeB3SbdO1c4Pkqyr7CXF5L5kHMA7dnlWLSxxBF2+75QXwlgvW6+TeA0/XPrpuOYsEHvlYf
+ cfqzHL2ejCcqUB8cF325PuscOzzWkmOhinNRrGC2vu7sMLRo12r1EBWfJzaDxZeGlpMBhBs
+ 7EH5T9MfHnNd3Y+1DSddr4s66w9c3B5LK0LNY6eNKqTRElV4HW9jaBzWxNug==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782993385; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782994043; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=szYxJDyUXLwpHCPYtdT5QZRTamk7ohIwjDiVPC1pzUs=;
- b=zzGulDKIpb6siFFsepSLz1ynWcLl+JD6BhCn52L8mZb5Tps1nZh+g31ke74rXLwaF6up5
- onF0hsMYCIvdWLCozogxJYE98EX7l8MBc0R0POly7IW8205+euSNTynRQnqbbEZF5EdzREM
- p1AbdospEGDb1+ODS74SIWJna4piRvqqeebHFY5TP6MM23YYZN3pVID+KGBbaawm7RAO2Z2
- nCkiWElItN1ch/C/cVqzPj8kMXNxomuCUOv2EyIkPchFX6Ttr8z1GXbiv5hG5n1fCImiiX0
- 7jh4NoHD/MZu60GkYpYRFuoM4NCNZVvJI7JUmOLcEmpTIoJZPhcej+z+xbFg==
+ bh=flDoJiJgtgGf3x2zlQX9jaS5nhFTdBgmSXvfG9PiFjA=;
+ b=izcHB3upa2Y5/nPHQVALggpqgWyQ3hsefgF4ryKF0ESngRxMua09gCDxhCv8jxTDOKtaU
+ zB3knEbxy4lwFt9sWKvD8hfq1ro4zuls0hg/J3np4+YyZ1X4bDgiL4jtukGDssF2cI0AM/O
+ l+ML0lrG5RziUQspZU+KLpT4QhJnHaLzFLvNgIoAYeLEvB7os3LO9G/koYx3U+eLJxnKgH+
+ ZmEMlO/gq+HG/kI2xsMAdJCe8F0irHjr7q2Wk40M49Vi1iXnwh4gJ1ZVIbzEW8ZeE+B3Tin
+ t9o+Fr6530wYoB1hlI9nXyQzUCPgYDTlU+AX9NaWP3EuW0LKhDnvgp1lmb6w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=linux.dev;
   arc=none (Message is not ARC signed);
@@ -44,39 +44,40 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=linux.dev;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=linux.dev policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E579D46DDC
-	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 11:56:22 +0000 (UTC)
-Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com
- [91.218.175.188])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EB4F510E4A9
-	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 12:11:08 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 4DBC846E43
+	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 12:07:18 +0000 (UTC)
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com
+ [91.218.175.179])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5DA9910E4B3
+	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 12:22:04 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1782994254;
+	t=1782994911;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=szYxJDyUXLwpHCPYtdT5QZRTamk7ohIwjDiVPC1pzUs=;
-	b=o2h14zEvKcQ49vaQ50LBNnbgHGGpFBTA0OsIFCWdpiUc7gYaraiUcJHgmdFM4mBzY7pBJH
-	3Nawgn9WkBzIHxRb3Nw1H0UdEQI7UMwMGIksMhfoUjYHvm6uqPS5csZAIdTgWkWJ0NxwiR
-	+fbu3PSBP2IvpsY/0wNqYNag0+1ZZPU=
+	bh=flDoJiJgtgGf3x2zlQX9jaS5nhFTdBgmSXvfG9PiFjA=;
+	b=lN0+Boa2ASIcCLc47EPvtXVMZuYaw78VJ/wVLmRpCeGudutYAguuVxwIGwqQDa2oDibvGW
+	bIpbbgc5ew0Ij3QtFyyGuneAdXTOrpkXqfYfNRMzfKjFKxKgZCy8wM/iRDCenl6trdMYJz
+	+LOdf87J+2yAD0n3s3yNqonkzwm6x4w=
 From: Lance Yang <lance.yang@linux.dev>
 To: ljs@kernel.org
-Subject: Re: [PATCH 05/13] mm: prefer mm->def_vma_flags in mm logic
-Date: Thu,  2 Jul 2026 20:10:22 +0800
-Message-Id: <20260702121022.49113-1-lance.yang@linux.dev>
+Subject: Re: [PATCH 06/13] mm/vma: convert vm_pgprot_modify() to use
+ vma_flags_t and rename
+Date: Thu,  2 Jul 2026 20:21:16 +0800
+Message-Id: <20260702122116.65642-1-lance.yang@linux.dev>
 In-Reply-To: 
- <3b4ccdc38819b42ddc79ee5a795831208ac7986c.1782760670.git.ljs@kernel.org>
+ <548ba81b2971734d4d2143237ad1465bd1b2f525.1782760670.git.ljs@kernel.org>
 References: 
- <3b4ccdc38819b42ddc79ee5a795831208ac7986c.1782760670.git.ljs@kernel.org>
+ <548ba81b2971734d4d2143237ad1465bd1b2f525.1782760670.git.ljs@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
-Message-ID-Hash: WISQFF6EWBYUAYT4JNEOEBIWSRJOQKYI
-X-Message-ID-Hash: WISQFF6EWBYUAYT4JNEOEBIWSRJOQKYI
+Message-ID-Hash: X53W36D6VKPJBTRDXTKUSEAWGHN6EM72
+X-Message-ID-Hash: X53W36D6VKPJBTRDXTKUSEAWGHN6EM72
 X-MailFrom: lance.yang@linux.dev
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -115,9 +116,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WISQFF6EWBYUAYT4JNEOEBIWSRJOQKYI/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/X53W36D6VKPJBTRDXTKUSEAWGHN6EM72/>
 Archived-At: 
- <https://lore.freedesktop.org/20260702121022.49113-1-lance.yang@linux.dev/>
+ <https://lore.freedesktop.org/20260702122116.65642-1-lance.yang@linux.dev/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -128,44 +129,46 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 
-On Mon, Jun 29, 2026 at 08:25:28PM +0100, Lorenzo Stoakes wrote:
->Currently mm->def_flags (of type vm_flags_t) is union'd with
->mm->def_vma_flags (of type vma_flags_t).
+On Mon, Jun 29, 2026 at 08:25:29PM +0100, Lorenzo Stoakes wrote:
+>Update vm_pgprot_modify() to use the new VMA flags type vma_flags_t, and
+>rename to vma_pgprot_modify() accordingly.
 >
->As part of the effort to convert vm_flags_t usage to vma_flags_t (in order
->to no longer be arbitrarily limited to a system word size for VMA flags),
->prefer mm->def_vma_flags to mm->def_flags throughout the mm logic.
+>This is part of the ongoing work to convert vm_flags_t to vma_flags_t, in
+>order to eliminate the arbitrary limit of the number of bits in a system
+>word on available VMA flags.
+>
+>Update VMA userland tests accordingly, updating vma_set_page_prot() to no
+>longer inline vma_pgprot_modify(), rather we can simply define
+>vma_pgprot_modify() as a static inline function and the tests will pick it
+>up from vma.h.
 >
 >No functional change intended.
 >
 >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 >---
-> mm/debug.c |  2 +-
-> mm/mlock.c | 13 +++++++------
-> mm/mmap.c  | 11 ++++++-----
-> mm/vma.c   |  4 ++--
-> 4 files changed, 16 insertions(+), 14 deletions(-)
->
->diff --git a/mm/debug.c b/mm/debug.c
->index 497654b36f1a..f0a354a9496a 100644
->--- a/mm/debug.c
->+++ b/mm/debug.c
->@@ -226,7 +226,7 @@ void dump_mm(const struct mm_struct *mm)
-> 		mm->numa_next_scan, mm->numa_scan_offset, mm->numa_scan_seq,
-> #endif
-> 		atomic_read(&mm->tlb_flush_pending),
->-		mm->def_flags, &mm->def_flags
->+		vma_flags_to_legacy(mm->def_vma_flags), &mm->def_vma_flags
-> 	);
+[...]
+>diff --git a/mm/vma.h b/mm/vma.h
+>index bcf0c2773449..6a8abb8ae937 100644
+>--- a/mm/vma.h
+>+++ b/mm/vma.h
+>@@ -522,9 +522,11 @@ static inline bool vma_wants_manual_pte_write_upgrade(struct vm_area_struct *vma
+> }
+> 
+> #ifdef CONFIG_MMU
+>-static inline pgprot_t vm_pgprot_modify(pgprot_t oldprot, vm_flags_t vm_flags)
+>+static inline pgprot_t vma_pgprot_modify(pgprot_t oldprot, vma_flags_t vma_flags)
+> {
+>-	return pgprot_modify(oldprot, vm_get_page_prot(vm_flags));
+>+	const pgprot_t prot = vma_get_page_prot(vma_flags);
+>+
+>+	return pgprot_modify(oldprot, prot);
 
-While at it, one thing for later: dump_mm() still assumes one-world VMA
-flags. That works today since vma_flags_t is one word. Maybe worth a
-BUILD_BUG_ON() here, before that stops being true?
+Nit: could this just stay as a single return? something like:
 
-Not a big deal though. Feel free to add:
+return pgprot_modify(oldprot, vma_get_page_prot(vma_flags));
+
+Otherwise, LGTM, feel free to add: 
 
 Reviewed-by: Lance Yang <lance.yang@linux.dev>
 
-> }
-> EXPORT_SYMBOL(dump_mm);
 [...]
