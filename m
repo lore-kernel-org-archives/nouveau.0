@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B170C43602
-	for <nouveau@archiver.kernel.org>; Thu,  2 Jul 2026 12:25:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1055C43458
+	for <nouveau@archiver.kernel.org>; Thu,  2 Jul 2026 12:39:52 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1646010F343;
-	Thu,  2 Jul 2026 12:25:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AF60810F34B;
+	Thu,  2 Jul 2026 12:39:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="b+ldrvkt";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="F10EZD2M";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9EF0146E4E;
-	Thu,  2 Jul 2026 12:11:04 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 42AFC46E51;
+	Thu,  2 Jul 2026 12:25:06 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782994264;
- b=KipR5LdnE7zo1j33jJwByZ1VokfTRMbeIuv1VsOsiY5QXI8/5w9aXNvbGvBSZ3rIrg5TN
- rCQE+I15vNbSoZH0O4NAiynL5lbUsKxH3CVsJPAxVCz/GGaUwSkyNoav6/ABxvt9p/Hk4h4
- UIjwcPWxc0uTPcEN3NyeRt9et06RAHlmWa8XiSz5yHeIJqhyCtAofnbT3ytvoeNLgef261d
- PXqkyfVufyu6wffFZqMs9LJ+DBt4IplpUMOZciYbTZCOz0HcsXo+C5PtNwaa1Yj1YU6UwiS
- 1/A5FQrWLolAFcIU7w1baJJvwHz5dmtvd23WzpCjwSAMuZXB8YobIhZlfUzQ==
+ s=20240201; t=1782995106;
+ b=scfRLml7eU92/wa4sBV9Kkww/QlGJzqwTmEK8rCglwL3e82c9TsXgLnI16T6loEHrbqtN
+ WFPduN43JVV44mJLMUpspiBG+N2J9BgrNY2HMxQ/68GXspkXtexitM4SaBFgfGFcMsLRLvu
+ Y2zhynXPAzOfcPFVkSGWsYqnhl/spNb/PqazMAGuVTNzl2jzQX73yk6rhKfCGSskWtLisaN
+ dsoiXHJawdeClMMX3TQdr954Mkg9c8QPH6moMT2zry3T0loVerY5dWKxWDbqhtB0fIa0NLY
+ VV/9bCHx7UF1pcfpWf0GDNTfpCHGM6qjByGpIyi7qWyzeHWULYOEOFgqacDg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782994264; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782995106; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=7Ko6g/fNv98hSurpFrjSC8unNT/smMh3pnGqTobbcqg=;
- b=LMWPWTgs1riohqzoc9rMXettVnC8s9jSDrlIEVdPSGOq+wOM4w3zwafqgUvFVwGT4DwYw
- yE+afmJxmFjRfYsnTRGNmKcU8jAwuMU01SIrefgxacrTJRzxClnBwM7SnXorOH3M7Jl1HTk
- V3XV6VJWbEHq4TZ75WL13Bos76hpYaBvqczbuHpiS893lH3E56K0KaMBaIULs4Nuhs+Wn28
- XC2EBWj91VbMmyqlslhvHYFNn5bpvHCt0DUXe50SHVsPKiyXwBwkM8xbfWHfeRoAzp5S6NJ
- rg5gJWSplKyZBncXOrKJRj57fthEYQpNBGPXsWWRDOzJZ+1Dtrin8pyRKxuw==
+ bh=MSqvG6QTDeOE5qt8LI9tLb3iySB/2eramUM4HlZdPG8=;
+ b=bYOWoYiNuvQVjB0a22R6UPvEbXIumA05wdoGqeZgXoVOKQZ/YDv2qLg00onyZFJXFst5G
+ GUZ8WeOe7fXh761fcRBW+RThZ4DtsJE3Xxq5zkiV9qzuVMuP7W9LxbQ3L9Zd9JWCzbMcHs8
+ Et1m55HnPHxeS0yZoTtoACjd74hd+IhONg7tBGc4sSeLp1rclgdEVxAC5uqYEaRY476y7bM
+ 3SGgJ+VArJJKT8XlEOntnTQHBHXBw/5qP4BNqgE0r/HpMKX0Jp+V41zz0dSSCLZ4LP10WSG
+ G1UCpgdkrYzJlihO9jM9iDu6ekPKeMlKhHnMoanvCMQe6sy53jRfoTsOvypg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=linux.dev;
   arc=none (Message is not ARC signed);
@@ -44,40 +44,39 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=linux.dev;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=linux.dev policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C84EE46DDC
-	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 12:11:01 +0000 (UTC)
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com
- [91.218.175.179])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D491F10F33E;
-	Thu,  2 Jul 2026 12:25:47 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id D438446DDC
+	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 12:25:02 +0000 (UTC)
+Received: from out-182.mta1.migadu.com (out-182.mta1.migadu.com
+ [95.215.58.182])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BFB9B10F341
+	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 12:39:48 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1782995144;
+	t=1782995985;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=7Ko6g/fNv98hSurpFrjSC8unNT/smMh3pnGqTobbcqg=;
-	b=b+ldrvkt8ZmJ+OrI3yxcQgFLnRxGCWHjhsFZZL3rVzLaxyNILjolYA01aJGr58GPqotONa
-	C0qfjyiCv0Ek1cqalMJ+/t7YCyD5CeARmY/TMOXt2of2lM3qjKi0LZINpNnLjdz9QLcCqu
-	OOzdaIK15Lm4UMi7JwMdKk4MKXYIZlw=
+	bh=MSqvG6QTDeOE5qt8LI9tLb3iySB/2eramUM4HlZdPG8=;
+	b=F10EZD2MKuMsgIZGg+Kv4CpsFBAqfutqUSZV+CnlSj4mTRO6SM+hx7IFnwTXi02n4W5ksq
+	B3eV7EruPZaVg8GiZqN77RrtZjvlyRAPzkka+Z5kYwT5shcZ0occtt6vxWz8dsjkDZRJwI
+	jZvjN/4FCRiAB3/YW0BqvRoNYnrlgRU=
 From: Lance Yang <lance.yang@linux.dev>
 To: ljs@kernel.org
-Subject: Re: [PATCH 07/13] mm/vma: rename vma_get_page_prot to
- vma_flags_to_page_prot
-Date: Thu,  2 Jul 2026 20:25:15 +0800
-Message-Id: <20260702122515.74271-1-lance.yang@linux.dev>
+Subject: Re: [PATCH 08/13] mm: introduce vma_get_page_prot() and use it
+Date: Thu,  2 Jul 2026 20:38:45 +0800
+Message-Id: <20260702123845.95316-1-lance.yang@linux.dev>
 In-Reply-To: 
- <fc8ac30d03d29d236e76542b36432bba315aca60.1782760670.git.ljs@kernel.org>
+ <3bb8bdc4788230c33102166d56cbc5abfad9d4cb.1782760670.git.ljs@kernel.org>
 References: 
- <fc8ac30d03d29d236e76542b36432bba315aca60.1782760670.git.ljs@kernel.org>
+ <3bb8bdc4788230c33102166d56cbc5abfad9d4cb.1782760670.git.ljs@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
-Message-ID-Hash: FL52FFXGF3I43TUZEQ63NAVULSX5Y3OM
-X-Message-ID-Hash: FL52FFXGF3I43TUZEQ63NAVULSX5Y3OM
+Message-ID-Hash: YR6O3NOGFSVAHY6YI5TCS35XBOVXSCHF
+X-Message-ID-Hash: YR6O3NOGFSVAHY6YI5TCS35XBOVXSCHF
 X-MailFrom: lance.yang@linux.dev
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -116,9 +115,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FL52FFXGF3I43TUZEQ63NAVULSX5Y3OM/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YR6O3NOGFSVAHY6YI5TCS35XBOVXSCHF/>
 Archived-At: 
- <https://lore.freedesktop.org/20260702122515.74271-1-lance.yang@linux.dev/>
+ <https://lore.freedesktop.org/20260702123845.95316-1-lance.yang@linux.dev/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -129,18 +128,43 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 
-On Mon, Jun 29, 2026 at 08:25:30PM +0100, Lorenzo Stoakes wrote:
->Having vma_get_page_prot() refer to VMA flags and vma_set_page_prot() refer
->to a VMA is confusing.
+On Mon, Jun 29, 2026 at 08:25:31PM +0100, Lorenzo Stoakes wrote:
+>There's a large number of vm_get_page_prot(vma->vm_flags) invocations. Make
+>life easier by introducing vma_get_page_prot() parameterised by the VMA.
 >
->Rename vma_get_page_prot() to vma_flags_to_page_prot() to resolve this
->confusion.
+>This also makes converting vm_get_page_prot() to vma_flags_t easier.
+>
+>Also update the userland VMA tests to reflect the change.
 >
 >No functional change intended.
 >
 >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 >---
+> drivers/gpu/drm/drm_gem.c                   |  2 +-
+> drivers/gpu/drm/drm_gem_dma_helper.c        |  2 +-
+> drivers/gpu/drm/drm_gem_shmem_helper.c      |  2 +-
+> drivers/gpu/drm/etnaviv/etnaviv_gem.c       |  2 +-
+> drivers/gpu/drm/exynos/exynos_drm_gem.c     |  6 +++---
+> drivers/gpu/drm/i915/gem/i915_gem_mman.c    | 12 ++++++------
+> drivers/gpu/drm/msm/msm_gem.c               |  2 +-
+> drivers/gpu/drm/nouveau/nouveau_gem.c       |  2 +-
+> drivers/gpu/drm/omapdrm/omap_fbdev.c        |  2 +-
+> drivers/gpu/drm/omapdrm/omap_gem.c          |  6 +++---
+> drivers/gpu/drm/rockchip/rockchip_drm_gem.c |  2 +-
+> drivers/gpu/drm/tegra/gem.c                 |  2 +-
+> drivers/gpu/drm/virtio/virtgpu_vram.c       |  2 +-
+> drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c  |  2 +-
+> drivers/gpu/drm/xe/xe_device.c              |  2 +-
+> drivers/gpu/drm/xe/xe_mmio_gem.c            |  2 +-
+> drivers/gpu/drm/xen/xen_drm_front_gem.c     |  2 +-
+> drivers/video/fbdev/core/fb_io_fops.c       |  2 +-
 
-straight rename, no stale callers that I can spot ;) Feel free to add:
+One missed?
 
-Reviewed-by: Lance Yang <lance.yang@linux.dev>
+drivers/gpu/drm/panthor/panthor_gem.c still has:
+
+	vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
+
+Can use vma_get_page_prot(vma) too.
+
+[...]
