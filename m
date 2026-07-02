@@ -4,101 +4,123 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9975C43458
-	for <nouveau@archiver.kernel.org>; Thu,  2 Jul 2026 00:48:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50D4BC43458
+	for <nouveau@archiver.kernel.org>; Thu,  2 Jul 2026 07:35:42 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1CFE610EFAD;
-	Thu,  2 Jul 2026 00:48:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2810F10F1B6;
+	Thu,  2 Jul 2026 07:35:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="GKuf9TPd";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="UUw36nfQ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B41E346E36;
-	Thu,  2 Jul 2026 00:33:20 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 2C71D46E39;
+	Thu,  2 Jul 2026 07:20:56 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782952400;
- b=mYE4Av8zLoDBW79G6DuThEbSjVgtc3xk7ZdKH0Nu6LBurvbQM6yM3xBPSQmLnytpzWAGI
- 3TNmSAKOS3RsneFeJlshLyQTNQd6Ci62fmqAB+/5YD0fafUaRsXd6/G9jb7lqIcbMSCa5QY
- eC/eovOa/BN2XhGwMKftynVQ2caVQ8Bj+ZzNR61klLmpuJxDHvqX1YD8owDBHT0CvoLByE0
- W5ChRdfwqWXMLL6jxBW+70ULW1wbAjiSH7Z7xyJoRZPKgKq9sbYwvaqHMg91uENXfGNnvBO
- fG78zJ7/cNvItsi63KDmix9O4yvX54LFSE6EXI3fK60OVjJ6NU8dNGIgjLDQ==
+ s=20240201; t=1782976855;
+ b=0+tiSUOfyluVfdGYH012K4HTUfZeSeBJUeGUbNoQfPt2uiqrGSxT8a+O+JeZVrcdzMQtf
+ dHSwK+yNmAzLLBHB7M/glNiiR3TVfWBmVDW26Y4jK1SEXENGkiVa8xW3ll5Fb/s7YU4kDUA
+ UJkCLZfJkww7X/MGsZ09wGqV5G5JLAosR/wDpDVvJ0zsG8tNK8dYrTmEVvLthm1ct80eyok
+ Bn/rQ7cFZNzVUZ04VHpkMH7JyNKj3Jo/s44nd7JuS7F9dQ8G5n8LueSePrXI5lggNfoHRV5
+ rc0QAcbJf2C2gTc+nNW2n1hYwHApbRCzQh2Y5lfQ8Z+QHLSInP48rT104skA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782952400; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782976855; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=BrXmYfiq8X94mS/qnS8FEVmwl0FSazp4G6SU7BCEJZ0=;
- b=FUyav7ODtOAQ4g6RFHE6LDegmZ15GXb0j8FB2ycUwKAJ5n/zphNUJaYKWCViFO5HlrHoZ
- OW6D97fAS0mgPXh+46K1rOl+qYLUCi0NlQfEV0TKl854Gy1YHyCsNXNm38nzSV5qyL/23zD
- 0CSprX+jmohsjN7u0Rx9NIYPgQqL5OXS/HiZMuZ7KiyIAy8ixbJVA4/pcBblMS0eVIOFXR3
- meQEJMuNoh/g2IgfusUta/3brc6P5vv16p3AUNjjuXh8/GweaAbN/jF4HTlBvDMzHyL6x07
- 5ftQDaBmC0n3NPKfewpDwWJeQYRE4UIA6TVLSd0l17ImU6WT5AtKAEyM3e8w==
+ bh=cdXAMvaGTLXZ4tRHqX+15mFjqPO5NJv7/lbzInUeZeM=;
+ b=maV9ZNDrULArvCp3ZXQ7l2V5z3RI6YWdxSpm5uXwiix72buOtq/G2BJ0/HvP0m28h+hT8
+ OVNfwh9Jxra+2pAFVGN0dRpfHOJDCDehMdoyo4J7v84A6pVLBWglnOdI9GslwMlWyOh9Z/a
+ URYdQPui5eC8dFTIao8lsnbhWr1xucIYjkWiMb3dpW363EVPiv/RiM6yiB7ExKNjGAT2qCC
+ cYRZ84LCGbUj7QKRqvmHI1ra4V+uEg1I7KA2mMbxeeMT5oQDZ56sZf2v2+hI+tELB612OxG
+ J1vrzNLFqkSA1Fg0FHLYcQj7iNoqre6Ea2EV6ZDWxZLWGQ5rb7KZNnP/OTsQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=linux.dev;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+  dmarc=pass (Used From Domain Record) header.from=linux.dev policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=linux.dev;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=linux.dev policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 29CA5465DC
-	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 00:33:18 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 41E5A10E248;
-	Thu,  2 Jul 2026 00:48:03 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0BA3B41FDB;
-	Thu,  2 Jul 2026 00:48:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B307C1F000E9;
-	Thu,  2 Jul 2026 00:47:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782953282;
-	bh=BrXmYfiq8X94mS/qnS8FEVmwl0FSazp4G6SU7BCEJZ0=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To;
-	b=GKuf9TPdYjBwd4WPDF0Mut7aeIb7YaoH7Ythf/mbW117DlfRaksxaXPKMUKk2diLe
-	 d+C+gqsfS4hkEW3JL+34ZF5vIJgxffCIxITeEj7i+sBeEln4iYjmpnWq1cIYHZyer7
-	 9lHzz/AXiW7frh+7o6drEztCG6SEClGBhls+sYOp65FSsHIoAtXlg1MeJBP22GA2x5
-	 8qUW/lrRxxBoDELysx3fMNevPZCd2UVb92C5hicc51PFQWvu5Ic9fL7zwrTGQVMwY/
-	 LXB/JfZQ73w9PC4t5GryFtPLhWv42B2VMRN1MIhibFpqI2mp0ozExdXRNHBfamhVOp
-	 98CmF6igche8A==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 02 Jul 2026 02:47:58 +0200
-Message-Id: <DJNO6SIE8T88.1F0ZUILIRVDJC@kernel.org>
-Subject: Re: [PATCH v3 2/3] drm/nouveau/gsp/r570: Never enter Gcoff state
-To: "David Airlie" <airlied@redhat.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260701182857.190713-1-lyude@redhat.com>
- <20260701182857.190713-3-lyude@redhat.com>
- <DJNNQVO96RR1.141CE7TKF6MZP@kernel.org>
- <CAMwc25qA6GFb1Q=VHTa8BcM85B2dr22RrgdJcHTz70P5Xjj_bA@mail.gmail.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id B069A46E0A
+	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 07:20:50 +0000 (UTC)
+X-Greylist: delayed 431 seconds by postgrey-1.36 at gabe;
+ Thu, 02 Jul 2026 07:35:36 UTC
+Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com
+ [95.215.58.178])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4B63210F1B0;
+	Thu,  2 Jul 2026 07:35:36 +0000 (UTC)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1782977290;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=cdXAMvaGTLXZ4tRHqX+15mFjqPO5NJv7/lbzInUeZeM=;
+	b=UUw36nfQUDO4ek5W5MoGxv/bQdNbTQycY1qQKAEoJymjql+ZXc8a2FUo9eNrafl6xDrEni
+	1302Z8Y+Ma+0qxdUDhBISoxry5nus7uGAN8fTkB0ZcU/zUf+14Ol9iIljWhjg5Yh/mt933
+	8BhSh84bNWygA1To4TaXOltx56F5hgs=
+From: Lance Yang <lance.yang@linux.dev>
+To: ljs@kernel.org
+Subject: Re: [PATCH 01/13] mm: introduce vma_flags_can_grow() and
+ vma_can_grow()
+Date: Thu,  2 Jul 2026 15:27:50 +0800
+Message-Id: <20260702072750.45641-1-lance.yang@linux.dev>
 In-Reply-To: 
- <CAMwc25qA6GFb1Q=VHTa8BcM85B2dr22RrgdJcHTz70P5Xjj_bA@mail.gmail.com>
-Message-ID-Hash: EA2XMJHO7PVUKXLWQGU5FEMJ3VNPAXVD
-X-Message-ID-Hash: EA2XMJHO7PVUKXLWQGU5FEMJ3VNPAXVD
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+ <f2e8c32515d328db62279cc8bab8398ea278d74f.1782760670.git.ljs@kernel.org>
+References: 
+ <f2e8c32515d328db62279cc8bab8398ea278d74f.1782760670.git.ljs@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+Message-ID-Hash: 5SHGNMML3XO43QZPJVZPKEFLSKLBD5SN
+X-Message-ID-Hash: 5SHGNMML3XO43QZPJVZPKEFLSKLBD5SN
+X-MailFrom: lance.yang@linux.dev
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Kees Cook <kees@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Maxime Ripard <mripard@kernel.org>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
+ mpe@ellerman.id.au, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ simona@ffwll.ch, l.stach@pengutronix.de, inki.dae@samsung.com,
+ sw0312.kim@samsung.com, kyungmin.park@samsung.com, krzk@kernel.org,
+ peter.griffin@linaro.org, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tursulin@ursulin.net, robin.clark@oss.qualcomm.com, lumag@kernel.org,
+ dakr@kernel.org, tomi.valkeinen@ideasonboard.com, hjc@rock-chips.com,
+ heiko@sntech.de, andy.yan@rock-chips.com, thierry.reding@kernel.org,
+ mperttunen@nvidia.com, kraxel@redhat.com, dmitry.osipenko@collabora.com,
+ zack.rusin@broadcom.com, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, oleksandr_andrushchenko@epam.com,
+ deller@gmx.de, bcrl@kvack.org, viro@zeniv.linux.org.uk, brauner@kernel.org,
+ muchun.song@linux.dev, osalvador@suse.de, david@kernel.org, ziy@nvidia.com,
+ baolin.wang@linux.alibaba.com, liam@infradead.org, npache@redhat.com,
+ ryan.roberts@arm.com, dev.jain@arm.com, baohua@kernel.org,
+ lance.yang@linux.dev, hughd@google.com, vbabka@kernel.org, rppt@kernel.org,
+ surenb@google.com, mhocko@suse.com, jannh@google.com, pfalcato@suse.de,
+ kees@kernel.org, perex@perex.cz, tiwai@suse.com, linux-mips@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ xen-devel@lists.xenproject.org, linux-fbdev@vger.kernel.org,
+ linux-aio@kvack.org, linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+ linux-sound@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EA2XMJHO7PVUKXLWQGU5FEMJ3VNPAXVD/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5SHGNMML3XO43QZPJVZPKEFLSKLBD5SN/>
 Archived-At: 
- <https://lore.freedesktop.org/DJNO6SIE8T88.1F0ZUILIRVDJC@kernel.org/>
+ <https://lore.freedesktop.org/20260702072750.45641-1-lance.yang@linux.dev/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -108,45 +130,23 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu Jul 2, 2026 at 2:30 AM CEST, David Airlie wrote:
-> On Thu, Jul 2, 2026 at 10:27=E2=80=AFAM Danilo Krummrich <dakr@kernel.org=
-> wrote:
->>
->> (Cc: John)
->>
->> On Wed Jul 1, 2026 at 8:17 PM CEST, Lyude Paul wrote:
->> > It turns out that the only reason our previous fixes looked like they
->> > worked for this was because we would occasionally set the Gcoff state =
-to 0
->> > in the normal S3 path, which fixed suspend/resume on desktops - but no=
-t on
->> > machines using runtime suspend.
->> >
->> > The proper fix is to just never set this flag. Our current guess for t=
-he
->> > reasoning behind this is that Gcoff likely coincides with GC6, and not
->> > literally power off.
->>
->> I don't think GcOff coincides with GC6, it should actually be a power of=
-f.
->>
->> From a quick glance in OpenRM, it seems that with bEnteringGcoffState =
-=3D 1 it
->> also saves off buffers flagged as MEMDESC_FLAGS_LOST_ON_SUSPEND.
->>
->> My guess would be that with bEnteringGcoffState =3D 1, GSP's resume path=
- expects
->> certain kernel-driver-allocated buffers to still be in place that nouvea=
-u didn't
->> save off, or rather never had in the first place.
->>
->> John, do you have some details about this?
->>
->
-> In nouveau we have the INST_SR_LOST target, for buffers that aren't
-> preserved, I wonder did something change between 535 and 570 around
-> what needs to be kept around.
 
-The r535 code never set bEnteringGcoffState in the first place. In r535 Ope=
-nRM
-seems to do the exact same thing.
+On Mon, Jun 29, 2026 at 08:25:24PM +0100, Lorenzo Stoakes wrote:
+>These test whether the VMA has stack sematics, i.e. is able to grow upwards
+>or downwards depending on the architecture.
+>
+>In order to account for arches which do not support upward-growing stacks,
+>introduce VMA_GROWSUP whose definition depends on the architecture
+>supporting it, and use vma_flags_test_single_mask() in vma_flags_can_grow()
+>to account for this.
+>
+>Update the VMA userland tests to reflect the changes
+>
+>No functional change intended.
+>
+>Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
+>---
+
+Nice cleanup! Feel free to add:
+
+Reviewed-by: Lance Yang <lance.yang@linux.dev>
