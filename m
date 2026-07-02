@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01D94C43458
-	for <nouveau@archiver.kernel.org>; Thu,  2 Jul 2026 12:51:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 103CEC43458
+	for <nouveau@archiver.kernel.org>; Thu,  2 Jul 2026 13:13:23 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 38ED610F360;
-	Thu,  2 Jul 2026 12:51:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B63C110F39C;
+	Thu,  2 Jul 2026 13:13:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="F4ZVf9Bv";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="jHDhEc6C";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id BD5DA46E55;
-	Thu,  2 Jul 2026 12:36:46 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 40E1046E65;
+	Thu,  2 Jul 2026 12:58:35 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1782995806;
- b=SxUOn9Uj3F8xwAO7zSAgjq5gHNcAm6W5bc3lAhh4EjKZnCyKhNzP8/hHjcTnzOpc+E189
- ya1Ycz+DeLl3D8lLy6/1eRA8EeE4NIWGKlBty6k9iuIXm/Z3BU5VAtnxHsRdUgezdZuy6Md
- lT3VicxZ17DN6w1lXcKx0yGOYV0ru3PrHBtRd9oBLPT/u6N1+JKeaqPwiUye0Uv/e+0Dbpj
- mM6mrq10A52urOdgIwD49zSm+1klPCdcdej76fKywvWGXcZ5v4ywPWaG6saeb6amP+PnbV+
- 9IOt2v2qWz4PFewxJY1N5azdOdQRVSNvw+GdItFq5VSyzP3nuAZBjiCALf+g==
+ s=20240201; t=1782997115;
+ b=oaAbgdeF7K08Dg3Nb1ObZNpzmQaAWfOBPNs73dWKl2qCo/3qFFDYI0pqcB6mFduIhYO0R
+ cc3vHFGSwezxK9uCIBd7YOsWx3U9SdocEJxDxZipqgtXdnA+6jntXbSe9/ZxsxcjJHGT29x
+ K7//weTK4gPQGWqCVN95d+WATAHV11pfVJO02LCmwBv/4gkVby8uskH9VlEfFm8mJ97sc8C
+ Fh1eFzwpQ3Wy+vC07yvkd3Xscw5m7gqb9zCsbxbErchRz5SsYzuoLs8Hq229Fsn2eRXLwVD
+ DSX5d7xFmZHkKKCcwU4xR4uNWsi75ymkotWDFQg36Rzgv1gKwWk6+1Wiqs0A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1782995806; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1782997115; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=KCmq1hZLLl7GOyWtL6cRPjjbHfWJ5jvpchLdwXolxL8=;
- b=S3/homEUKcHSwzlBhpqAVLTrtToBk/Q5wqjd/2I3dp9CfDdVUyXu2FtuOToUf7cgCLIVS
- nVhypYCuMUnfP9fL1GGcy1Nq+VHHM48bbciw1OWV0k5fGNqybcwTAX5+oDW2KHQjumpgwVz
- 61IIvzF44+ewggWj2cmfGyKJSvIBCqoo06TXG3C0EHS9Es/XHgMfBZs08ejUEW+AGYBWaO5
- tj9SDiijYAV2LVuzQHB7wVoWYydydX/VQjw0haY/4kt0cQNJWM8VnO79LB8/nmBaz7LaAYE
- Q9lSYZts+TF45pho42W+TA5UZpQL47ybB7PokzN/CEnkDDmQL3uCIJAi1lqg==
+ bh=3WkYIESER5H1pxokBfEp6m9xEZZ5ghGe4TjZZy4BO5I=;
+ b=hxH33e7PY3MrlEo3TiXiqYGPdVQBMglmLkhWbUZUgh/5qCGspj+2KVTAW+vPxdRSIDcb4
+ roAbck73G05UghXmGP6YaqymWIZKBuZx9K5Vf6W+shc89k+K1HWm1E/akwDRGfgPoRyO2Hp
+ s+idC/xLmt3Nwau5ANn311VVY5Qzt7QdhLMTgV9Q2cXiMO7Ozj+ORK5LNEUN4un6Y6XKp4e
+ Pz0Fl6v1S84UBW3M/lhS4FGdIVjfONlmg0swkC5/qetM6jj9iwxA7rggk1C89ka+hdiSN3d
+ ezJTGIzJBp1N80OlPkkQtIfJGs9AAuQxScKql/w1flDWkDy7CssPdvcZXBPQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=linux.dev;
   arc=none (Message is not ARC signed);
@@ -44,40 +44,40 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=linux.dev;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=linux.dev policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D6F6546E3B
-	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 12:36:43 +0000 (UTC)
-Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com
- [95.215.58.174])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id F03CF10F356
-	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 12:51:29 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 69B8046E3B
+	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 12:58:32 +0000 (UTC)
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com
+ [91.218.175.179])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8B63710F391
+	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 13:13:18 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1782996675;
+	t=1782997985;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=KCmq1hZLLl7GOyWtL6cRPjjbHfWJ5jvpchLdwXolxL8=;
-	b=F4ZVf9BvB+hLAf9gQChbe4sRNb4sLCrUWRBNFM0pPt8IAzUbVhXxDEH/DvD8axflIDk2vm
-	3zmwuSmbnQ/BvpRKYzyKP8V+Wt7x4/jYspjeo/Nuwy87WFjjbKm5Us6Gqkc64N1S5Bi0bl
-	Qu3WpSOCEMC/DqM+tZU+hrTjGqJDt6Q=
+	bh=3WkYIESER5H1pxokBfEp6m9xEZZ5ghGe4TjZZy4BO5I=;
+	b=jHDhEc6CTiPftGqyHzVdl3xS/wEnOHSN4PeeVFnRX9fUml//8WA53GAPbsxSbJvWuzc/sf
+	tH1rSEqcTxDFS7qyJ0iIaX/a6tA48FPP/mFE4c/byOkvPcPlvJwYSUFubJkz9Jxs6S5ya/
+	AItLuFoisprFM8kvEpkf04Kk84Cg/T0=
 From: Lance Yang <lance.yang@linux.dev>
 To: ljs@kernel.org
-Subject: Re: [PATCH 09/13] mm/vma: update create_init_stack_vma() to use
- vma_flags_t
-Date: Thu,  2 Jul 2026 20:50:52 +0800
-Message-Id: <20260702125052.19248-1-lance.yang@linux.dev>
+Subject: Re: [PATCH 10/13] mm/vma: convert miscellaneous uses of VMA flags in
+ core mm
+Date: Thu,  2 Jul 2026 21:12:33 +0800
+Message-Id: <20260702131233.59026-1-lance.yang@linux.dev>
 In-Reply-To: 
- <34689784ee6856f100c02ad4eabeaa4db643713a.1782760670.git.ljs@kernel.org>
+ <1e7d834c887b6a65627d730addcff13d458c6268.1782760670.git.ljs@kernel.org>
 References: 
- <34689784ee6856f100c02ad4eabeaa4db643713a.1782760670.git.ljs@kernel.org>
+ <1e7d834c887b6a65627d730addcff13d458c6268.1782760670.git.ljs@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
-Message-ID-Hash: FIIDFBXE5ZH4FC4RAPLDAZYZL2HRNH3H
-X-Message-ID-Hash: FIIDFBXE5ZH4FC4RAPLDAZYZL2HRNH3H
+Message-ID-Hash: 26O2BNCYQV6HIV4V7IFVRWBPQI27JNXS
+X-Message-ID-Hash: 26O2BNCYQV6HIV4V7IFVRWBPQI27JNXS
 X-MailFrom: lance.yang@linux.dev
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -116,9 +116,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FIIDFBXE5ZH4FC4RAPLDAZYZL2HRNH3H/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/26O2BNCYQV6HIV4V7IFVRWBPQI27JNXS/>
 Archived-At: 
- <https://lore.freedesktop.org/20260702125052.19248-1-lance.yang@linux.dev/>
+ <https://lore.freedesktop.org/20260702131233.59026-1-lance.yang@linux.dev/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -129,19 +129,48 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 
-On Mon, Jun 29, 2026 at 08:25:32PM +0100, Lorenzo Stoakes wrote:
->Replace use of the legacy vm_flags_t flags with vma_flags_t values in
->create_init_stack_vma().
+On Mon, Jun 29, 2026 at 08:25:33PM +0100, Lorenzo Stoakes wrote:
+>Update various uses of legacy flags in vma.c and mmap.c to the new
+>vma_flags_t type, updating comments alongside them to be consistent.
 >
->As part of this change we add VMA_STACK_EARLY and VMA_STACK_INCOMPLETE
->vma_flags_t defines, and slightly rework create_init_stack_vma() for
->clarity.
->
->No functional change intended.
+>Also update __install_special_mapping() to rearrange things slightly to
+>accommodate the changes.
 >
 >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 >---
+[...]
+>diff --git a/mm/vma.c b/mm/vma.c
+>index b81c05e67a61..ab2ef0f04420 100644
+>--- a/mm/vma.c
+>+++ b/mm/vma.c
+>@@ -3417,23 +3417,27 @@ struct vm_area_struct *__install_special_mapping(
+> 	vm_flags_t vm_flags, void *priv,
+> 	const struct vm_operations_struct *ops)
+> {
+>-	int ret;
+>+	vma_flags_t vma_flags = legacy_to_vma_flags(vm_flags);
+> 	struct vm_area_struct *vma;
+>+	int ret;
+> 
+> 	vma = vm_area_alloc(mm);
+>-	if (unlikely(vma == NULL))
+>+	if (unlikely(!vma))
+> 		return ERR_PTR(-ENOMEM);
+> 
+>-	vma_set_range(vma, addr, addr + len, 0);
+>-	vm_flags |= vma_flags_to_legacy(mm->def_vma_flags) | VM_DONTEXPAND;
+>+	vma_flags_set_mask(&vma_flags, mm->def_vma_flags);
+>+	vma_flags_set(&vma_flags, VMA_DONTEXPAND_BIT);
+> 	if (pgtable_supports_soft_dirty())
+>-		vm_flags |= VM_SOFTDIRTY;
+>-	vm_flags_init(vma, vm_flags & ~VM_LOCKED_MASK);
+>+		vma_flags_set(&vma_flags, VMA_SOFTDIRTY_BIT);
+>+	vma_flags_clear_mask(&vma_flags, VMA_LOCKED_MASK);
+>+	vma->flags = vma_flags;
 
-Nothing looks off to me ;) Feel free to add:
+Maybe worth a vma_flags_init() helper here to mirror vm_flags_init()?
+With this open-coded, we lose the soft-dirty WARN_ON_ONCE sanity check.
 
-Reviewed-by: Lance Yang <lance.yang@linux.dev>
+Might be nicer to keep that check in one place ;)
+
+[...]
