@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64C69C43458
-	for <nouveau@archiver.kernel.org>; Thu,  2 Jul 2026 15:46:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4186C43458
+	for <nouveau@archiver.kernel.org>; Thu,  2 Jul 2026 15:47:42 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 30FC510F4A1;
-	Thu,  2 Jul 2026 15:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 83EC410F4AA;
+	Thu,  2 Jul 2026 15:47:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Mynx6GD6";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TzKC7lqe";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 72A6A46E7E;
-	Thu,  2 Jul 2026 15:31:45 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id CA05446E80;
+	Thu,  2 Jul 2026 15:32:55 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783006305;
- b=MOCMgo99+qV49g6Ik3wTHCsjPOhk8mT9/5K6gDXAv3my4tDoOQwewV7uCyUftE0Bm376E
- nOvTyMqsMjCSPyeWgCcWf3gJwpHNh5a7E4gFo7yGtgJguqQxYD5w38qqV7vGivPdodPqJt9
- +Jv2mJjZHD2TnrMZylgqLfVoOnpj4Q/p9H+rEWTBdv21jtaXF805b1PStf8ayfZqYSLUPBA
- SQZYwB/m5roN2629lgC/DPGlDW2Jq8ccCKxrJJDFnqJr8OsX/mbnU9ZtZfA9iOC1FFeKV76
- b2I4/tvtzP0EdTvb7HsLbPEv6afKoEP9b9FiOJMC8fzRxFKs4Uz+qXnz0rxA==
+ s=20240201; t=1783006375;
+ b=aZrG6Grm0mt1J3gPxn1gXc55Av93nIjl08lSQAwPtI+9KYp7nXXCmyKyZnkTVaeFLpGYx
+ h78TkW+dNYnkncUtDx8zPZ5BfoirI7BjgrX4MqnTqzouvKzQ9IgjkWPhvT/3g/jmjJKNfQN
+ vMtb7BrmsBBly/fAPkAvMVHIRH3CRFV+5XDOEUZp5nVuzYrbbPk6dFy+h4rBArwCzEfa4o9
+ llBF9yRlVDQtcu2c182jDsONpE6jLPDWodHIwgiXzC2KQw5kuMXIle7oHfOU0ujueKVgdpq
+ RRj2fVB4QKSuXS7kbTvRX3AkG7oKw4kodERwromIg16VXCgSvmm9utY9BESg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783006305; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783006375; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=jvE9wSqWBUCbGMsJG9svgBUezevNvrm1MrcHHSCChso=;
- b=nv+wY79RdV3WVW4S2My++KAYjQvFKfT55cVaSq0tAVQQ7YaTwhRt3dJ+8lTg+S/FVgHS2
- LhXCFNUdCNpUuZkzdhvAFdVcI9vuALnK8iM2fWI/0R02kk3a7Bq9jDYKpx65iEJTyi6mZs6
- QVfPGpy4o+/bvofRZosrrAsXU0u0+kIREBikK6BbY/GBSbO75OX1vhg92ZqXblraiuE2a6g
- 3x6+TcVFg07RWuqF/eec+YaO04f5Q/VOc6pnOGztAr5K01xfuL/yTZM7fjJt9nvULkay7nY
- 6mhvJhXsM5NjID5skVfLsyfBL8BK5I8lAuUqix5hejDDp2Gnvn4yu1cHv3NA==
+ bh=Po4UWa+Txwx6nSBMW1aPQiZMcfNfQH1HH88CC93hgvE=;
+ b=RG8ZULF38xdw+ba7D1ScgQHmdscnCzgzZqjujp+XkLWCr/GnTOXB0Z82X+Uyrd+ESiE+c
+ WfAY2n/xMmwyKGa8nOg8yAYiYT/uBhFBeALO39OULPKC1r3XqKEk2djj2qlsHgDxRRIpvJZ
+ WTnt87Z7IJwhTlglXexqRx7suHH9pekqinN5H/NoE6xHbgWauXenyzaU26tXc4NzEgRZQjO
+ 6Qjy4dQqbAvt46CtT2DqLbC1uEaiAie1cIOn/RWPXfAyHIVZc/F/y3uJ6tyVtUNdi/5HfkF
+ MksTSO3Zv6KS2CmztSZFlVs8FIX/v6tW7/VryfcctEIX5vhYtscpdbmJVNfg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,41 +46,40 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A9CB94004C
-	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 15:31:42 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 15B3B46E38
+	for <nouveau@lists.freedesktop.org>; Thu,  2 Jul 2026 15:32:52 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1426F10F37E;
-	Thu,  2 Jul 2026 15:46:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7B63F10F48B;
+	Thu,  2 Jul 2026 15:47:38 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2EBA4601EE;
-	Thu,  2 Jul 2026 15:46:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90EC61F000E9;
-	Thu,  2 Jul 2026 15:46:11 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E29F6601F1;
+	Thu,  2 Jul 2026 15:47:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 504D91F00A3E;
+	Thu,  2 Jul 2026 15:47:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783007187;
-	bh=jvE9wSqWBUCbGMsJG9svgBUezevNvrm1MrcHHSCChso=;
+	s=k20260515; t=1783007257;
+	bh=Po4UWa+Txwx6nSBMW1aPQiZMcfNfQH1HH88CC93hgvE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Mynx6GD6LkebsGmUnF9MjOYGoc5t/kjVRBAa3y4hDMiI7/vl1tQdkpNYaMYBglDKt
-	 PpjOhV7WkyGWbA6148JfY40EHSUewPFem4EcHLSNtrDL52P+m6uRZFhhXV+p8drDP5
-	 krlXhtnXXcRAzWJ2KFYq3Hh8rhTgMNWOvfDO5ubcScHxjko5fhA5/oYXfBSBTm3FYZ
-	 q91+d//PbttUXOxvDyYYUNz2FFsT7LJ6pIAF99pcS/rpWlpmF6qsZCGqK6q0R7Cu6u
-	 A7jMMvK5AtByO3p0pYtd9gulxJxBI42o3AQ7j7VXEvArqPbpGQYUH4EuymRAwVZamK
-	 6IrFtw9w61Ysg==
-Date: Thu, 2 Jul 2026 16:46:04 +0100
+	b=TzKC7lqe9Irn8JWqPCnRnBZrIjo+wjSEuABLaM62PvcVIf4DaJMLiJvSaLOlIhJOf
+	 znTjZNuNsA3irPkrJRqgdqBSalvaquhCKCvJXbcnp48ft4f4usQWudMjc5HdiilEg8
+	 aXu2StIvmQVSGOVmy/Z45hqYBBWUQ4dmbbAuXk0zKTG9Nk6i9FrPim4oLQSVwaxjeJ
+	 SDNmxdCjFnKqxvBlFG1TSv8opFwMO6hCg3J9TODlwY2GGXnrD8Ppex9n5gZkrvDNyw
+	 HAH74jjJFvvUXueVEU77M3F6be8/OSAHgO1cGcNXrmLyLcrgWJzjocoh6IYJOxKTNs
+	 hiEtCFwm59HOw==
+Date: Thu, 2 Jul 2026 16:47:14 +0100
 From: Lorenzo Stoakes <ljs@kernel.org>
 To: Lance Yang <lance.yang@linux.dev>
-Subject: Re: [PATCH 10/13] mm/vma: convert miscellaneous uses of VMA flags in
- core mm
-Message-ID: <akaGxiTaJreEQn8T@lucifer>
+Subject: Re: [PATCH 11/13] mm/mlock: convert mlock code to use vma_flags_t
+Message-ID: <akaH31jAOuMtthKF@lucifer>
 References: 
- <1e7d834c887b6a65627d730addcff13d458c6268.1782760670.git.ljs@kernel.org>
- <20260702131233.59026-1-lance.yang@linux.dev>
+ <2db16db81538355ca65f778c246d2381c673cad4.1782760670.git.ljs@kernel.org>
+ <20260702132107.73727-1-lance.yang@linux.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260702131233.59026-1-lance.yang@linux.dev>
-Message-ID-Hash: CWEFOAGGSMCS3AUYOC6UWEVZAKMIZHAH
-X-Message-ID-Hash: CWEFOAGGSMCS3AUYOC6UWEVZAKMIZHAH
+In-Reply-To: <20260702132107.73727-1-lance.yang@linux.dev>
+Message-ID-Hash: 4OCPEHVUTXMMPQBNHZ7T4FHIJKICXOO7
+X-Message-ID-Hash: 4OCPEHVUTXMMPQBNHZ7T4FHIJKICXOO7
 X-MailFrom: ljs@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -119,8 +118,8 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CWEFOAGGSMCS3AUYOC6UWEVZAKMIZHAH/>
-Archived-At: <https://lore.freedesktop.org/akaGxiTaJreEQn8T@lucifer/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4OCPEHVUTXMMPQBNHZ7T4FHIJKICXOO7/>
+Archived-At: <https://lore.freedesktop.org/akaH31jAOuMtthKF@lucifer/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -130,71 +129,61 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu, Jul 02, 2026 at 09:12:33PM +0800, Lance Yang wrote:
+On Thu, Jul 02, 2026 at 09:21:07PM +0800, Lance Yang wrote:
 >
-> On Mon, Jun 29, 2026 at 08:25:33PM +0100, Lorenzo Stoakes wrote:
-> >Update various uses of legacy flags in vma.c and mmap.c to the new
-> >vma_flags_t type, updating comments alongside them to be consistent.
+> On Mon, Jun 29, 2026 at 08:25:34PM +0100, Lorenzo Stoakes wrote:
+> >Replace use of the legacy vm_flags_t flags with vma_flags_t values
+> >throughout the mlock logic.
 > >
-> >Also update __install_special_mapping() to rearrange things slightly to
-> >accommodate the changes.
+> >Additionally update comments to reflect the changes to be consistent.
+> >
+> >No functional change intended.
 > >
 > >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 > >---
+>
+> Nothing scary jumped out at me. Just one tiny nit below ;)
+>
 > [...]
-> >diff --git a/mm/vma.c b/mm/vma.c
-> >index b81c05e67a61..ab2ef0f04420 100644
-> >--- a/mm/vma.c
-> >+++ b/mm/vma.c
-> >@@ -3417,23 +3417,27 @@ struct vm_area_struct *__install_special_mapping(
-> > 	vm_flags_t vm_flags, void *priv,
-> > 	const struct vm_operations_struct *ops)
+> >@@ -466,24 +466,23 @@ static void mlock_vma_pages_range(struct vm_area_struct *vma,
+> >  */
+> > static int mlock_fixup(struct vma_iterator *vmi, struct vm_area_struct *vma,
+> > 	       struct vm_area_struct **prev, unsigned long start,
+> >-	       unsigned long end, vm_flags_t newflags)
+> >+	       unsigned long end, vma_flags_t *new_vma_flags)
 > > {
-> >-	int ret;
-> >+	vma_flags_t vma_flags = legacy_to_vma_flags(vm_flags);
-> > 	struct vm_area_struct *vma;
-> >+	int ret;
+> >-	vma_flags_t new_vma_flags = legacy_to_vma_flags(newflags);
+> > 	const vma_flags_t old_vma_flags = vma->flags;
+> > 	struct mm_struct *mm = vma->vm_mm;
+> > 	int nr_pages;
+> > 	int ret = 0;
 > >
-> > 	vma = vm_area_alloc(mm);
-> >-	if (unlikely(vma == NULL))
-> >+	if (unlikely(!vma))
-> > 		return ERR_PTR(-ENOMEM);
+> >-	if (vma_flags_same_pair(&old_vma_flags, &new_vma_flags) ||
+> >+	if (vma_flags_same_pair(&old_vma_flags, new_vma_flags) ||
+> > 	    vma_is_secretmem(vma) || !vma_supports_mlock(vma)) {
+> > 		/*
+> >-		 * Don't set VM_LOCKED or VM_LOCKONFAULT and don't count.
+> >+		 * Don't set VMA_LOCKED_BIT or VM_LOCKONFAULT and don't count.
+>
+> s/VM_LOCKONFAULT/VMA_LOCKONFAULT_BIT/
+
+Ah yeah oops, will fix and respin! Good spot [and claude missed it ugh] :)
+
+>
+> Otherwise LGTM. Feel free to add:
+>
+> Reviewed-by: Lance Yang <lance.yang@linux.dev>
+>
+> > 		 * For secretmem, don't allow the memory to be unlocked.
+> > 		 */
+> > 		goto out;
+> > 	}
 > >
-> >-	vma_set_range(vma, addr, addr + len, 0);
-> >-	vm_flags |= vma_flags_to_legacy(mm->def_vma_flags) | VM_DONTEXPAND;
-> >+	vma_flags_set_mask(&vma_flags, mm->def_vma_flags);
-> >+	vma_flags_set(&vma_flags, VMA_DONTEXPAND_BIT);
-> > 	if (pgtable_supports_soft_dirty())
-> >-		vm_flags |= VM_SOFTDIRTY;
-> >-	vm_flags_init(vma, vm_flags & ~VM_LOCKED_MASK);
-> >+		vma_flags_set(&vma_flags, VMA_SOFTDIRTY_BIT);
-> >+	vma_flags_clear_mask(&vma_flags, VMA_LOCKED_MASK);
-> >+	vma->flags = vma_flags;
->
-> Maybe worth a vma_flags_init() helper here to mirror vm_flags_init()?
-> With this open-coded, we lose the soft-dirty WARN_ON_ONCE sanity check.
->
-> Might be nicer to keep that check in one place ;)
-
-I really hate all the VMA flag accessors, they conflate things horribly - we
-should be explicitly taking VMA write locks when we need to (and often killable
-ones actually) not assuming that a VMA flags accessor does (they should at most
-assert).
-
-This case is even more terribly egregious - you are setting flags at an
-arbitrary time, why are we asserting something about softdirty?
-
-You may update them as part of initialisation, maybe not. It's far from a
-guarantee and feels like a lazy place to put it.
-
-BUT obviously it's an oversight not to open code that here, so I'll update the
-patch to do that!
-
-I want VMA flags to be a clean stateless thing, other than the flags
-themselves. Implicit, unrelated, asserts or lock acquisitions in general should
-be done separately IMO.
-
->
+> >-	vma = vma_modify_flags(vmi, *prev, vma, start, end, &new_vma_flags);
+> >+	vma = vma_modify_flags(vmi, *prev, vma, start, end, new_vma_flags);
+> > 	if (IS_ERR(vma)) {
+> > 		ret = PTR_ERR(vma);
+> > 		goto out;
 > [...]
 
 Thanks, Lorenzo
