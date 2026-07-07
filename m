@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8818AC44501
-	for <nouveau@archiver.kernel.org>; Wed,  8 Jul 2026 23:27:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED73DC44506
+	for <nouveau@archiver.kernel.org>; Wed,  8 Jul 2026 23:27:21 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5530710F319;
-	Wed,  8 Jul 2026 23:27:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3F7DF10F337;
+	Wed,  8 Jul 2026 23:27:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ctJ2tF4b";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hIarAfyR";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9F21546F66;
-	Wed,  8 Jul 2026 23:12:19 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 8583F46F66;
+	Wed,  8 Jul 2026 23:12:20 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783552339;
- b=GXpA7YkPY5OgAVoMv3GLqqPGcqiki6pwY7gMKptdixyUqQKACWPJ8k9KKLQwkAwDfZx2v
- 7pckwButNnRGE5uFLv4PYc/D3CzpsI2hwXwE+FfOk9+ECbwhVseDEcISyw709F+M3xPryWi
- r4wYotpoMUnvbipYMMMjyF0qj6KyygKoDHqII65yrAodSoC7isWa5lNHW+TwIrZoC+DiTNl
- 26t8GNAcUmJIAv7MFvUzC2qWF+ddcd4hGKsjbB5PWNXx7HOiYIMg6THDnYA7rMgtTw/zAjh
- ZF7eUxRvupd4V6LNluWQg7GWzQviWKzCbH6FMaT2sF6mpNC8oHqmuF0Sw2/w==
+ s=20240201; t=1783552340;
+ b=HLA6Nx5hsxpLlfcvaUqlMQsiFVIfJn5hO25jLIj+krGBc+USbCL9MZjlHd4M9tyKwD0w1
+ yXm9sZJnCh/s/aDNBzmer+5/3H+Y05oU1DiMcT7Q412vLYXOSHc+zUJKHw4J5OW6SBNImEs
+ vJjz+15Ee0Q2pPdobYWUurpBbKRb85ha3qZUII6IKVjAA7AJIRfkSVp0qB7SXt8jdk4H7jR
+ fQs2MQVLjhjtt8v0TiWCgJY+xS5WYAgiR7yX7DuSqH/JtBUC1HczUD6qjVM/xl7qO932U8s
+ xlnuB+sp26/B5jEZbrhmrGidS7S2ue/WzbXNjDvoKCtIhnv7gjFIdANxMxXg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783552339; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783552340; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=L2IYT3wu5l+zIbtBD2s88iZ7TNagS/VHstd2UWbDbN8=;
- b=GbB0wBokLJlNQDAzq19jXpeIfo5FKdRwVnmXpsGXoLkXqmC0EEzyWU37RySVJJybkvbNN
- sTcRUXs+d/Zl8d03cbSHQuR443BmLhBayARtoM0MMljQMPYCOK9tTdpE+L+b6lHcuUjY2VT
- PwF8GfIug4b1Ltefzz9C0dB7on/u3pIrwDjgQ4dQmZlrBihExu3pP4utfuelUGw1Np42JUF
- 8buwTUP9yYTcEWTXXnu8j7ZHJFYrosI/QUn+rG37SSQ4cbHCQUWT4VHhsitjLXCAoY/aDXl
- qY6VY2QivfTdXkYnE1MIv6s+SSw2+io2TsLEjCMdx6Y1ySVdYW5ogMgGkbPA==
+ bh=WqmeYeEILR9RvWotHFEqmi/tcbmYPgYQ90HTJiqdd/A=;
+ b=e0QVN5eZjyHJmTpJVgBBtk4FGG4BxrLWs6egSvRRvG01tryvIDwt1K4D6DvOUpimCW+j+
+ W0F15C1SK6p980XHQ4Hsc4JcSO4taDsTMHekQi7VSEdEK9D8MtyNdMNb2B5hhxwrdx+uj0t
+ LTwPg5srqy9XaS1jR41wOxd8R4qM/LaGNA4u6IWqcR79XsbUz2y7xyDnPQaOi+Q7fxyryqB
+ Wap9uoI/eST7fBsP2+Trj12uT1akETtyxjWQ5tMfSOf7Lu+q1lOe03XsxcAxVGf7t9tUspl
+ l4BKgrIIw06TpHK69EjHHhcDIsqmGSDmee5F6bcY8idph3e2bkKY6l4W2Ggw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,63 +46,63 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4A78D46F63
-	for <nouveau@lists.freedesktop.org>; Tue,  7 Jul 2026 19:32:13 +0000 (UTC)
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
- [209.85.216.48])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4E07910E29A
-	for <nouveau@lists.freedesktop.org>; Tue,  7 Jul 2026 19:47:11 +0000 (UTC)
-Received: by mail-pj1-f48.google.com with SMTP id
- 98e67ed59e1d1-383cb94f742so2828863a91.3
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0995246F67
+	for <nouveau@lists.freedesktop.org>; Tue,  7 Jul 2026 19:32:27 +0000 (UTC)
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
+ [209.85.214.182])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0D6C210E29A
+	for <nouveau@lists.freedesktop.org>; Tue,  7 Jul 2026 19:47:25 +0000 (UTC)
+Received: by mail-pl1-f182.google.com with SMTP id
+ d9443c01a7336-2caed617615so38588235ad.3
         for <nouveau@lists.freedesktop.org>;
- Tue, 07 Jul 2026 12:47:11 -0700 (PDT)
+ Tue, 07 Jul 2026 12:47:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783453631; x=1784058431;
+        d=gmail.com; s=20251104; t=1783453644; x=1784058444;
  darn=lists.freedesktop.org;
         h=content-transfer-encoding:mime-version:user-agent:references
          :in-reply-to:message-id:date:cc:to:from:subject:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=L2IYT3wu5l+zIbtBD2s88iZ7TNagS/VHstd2UWbDbN8=;
-        b=ctJ2tF4bhKu1gwjEXInlk2GtuTD9OOX5vCcQM4HJVP9F2lqMdhVBe9Hw4vy0/IsZSf
-         pDuQxhpxsw5pvlIy1cqySqL2XoM5w8SkcftPbyo3Ksq6JB6utlqjBIEdNs1pU2ZXpi0z
-         TSKDONsAYwqY+23DR62ScTSh473O3jdTVw3IUFoPBmBhWivyVjFBP2nJdxZjkjVUhECT
-         saCTuA0M1AWnU92YUwqRYuxJtxsDVjWb76c3/1OmaTvkbUebf/AngfZ69FlPm+Bf/ACu
-         Rs9R2zW7qraJkohi8ExFhA4/oMo9rZR+VdQM3OBMlf21nM6I9EF/sf5ma8q2nNNHQ1jE
-         5WlA==
+        bh=WqmeYeEILR9RvWotHFEqmi/tcbmYPgYQ90HTJiqdd/A=;
+        b=hIarAfyRvji8GY0YMYmTGYIiWCldkVOsO3e6YDnnl9rr3U1pp2pzmdZTL30sDGM2Rj
+         /hg+txXlcumWH1ejCM585rTAU5gkNyjcSMvRfbiCVlEPrdF86PCUsI/wlX58sS1snIiq
+         jeTgzT962mZIA0WJhc6FO6WE3Y1u8gmI16Gh14BrpYBr9dDw5sgQE5605FVMmQVsKUz0
+         DKdHLcDu1K2B3uSdXPIXXAJniS7lzDaSkTeqhf8nnWDj8ZfmRjpnEGShhqletAAklOZh
+         QTPq3KHfYOfBZjtajnviY5ZGC738nr6Hi2zbpLWJ7GfMA6ORwjJJyhheHd+i0g+tUeyS
+         NbTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783453631; x=1784058431;
+        d=1e100.net; s=20251104; t=1783453644; x=1784058444;
         h=content-transfer-encoding:mime-version:user-agent:references
          :in-reply-to:message-id:date:cc:to:from:subject:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L2IYT3wu5l+zIbtBD2s88iZ7TNagS/VHstd2UWbDbN8=;
-        b=IIIi09cvSI8/CLVhFggmWd39sV8PViG5CDJN1dahQIT8EqrtsKaxUU7RtFfKE9K8xP
-         8g3nxPU8cAFmI0m/ywrDNlghGZJyOohN8DJFbVjPwjTd/808lRPYJ2XcHHtXZzp9uTR4
-         t+5Lpvwnplc4poYORmZxdtLmm0d8YgN6A6El9w8hwn2EngbQgKTq1suSGf5yrnZBwFm8
-         YecUCBiNkSkkT0KMs0352xenfTR42v8TEuOKeBZKmnpQtOA9yxa0RrRmC7/MUuiIHw1q
-         CMW1iOlrZ3KHiY84IG9YIDZMVGDpkeBnZOvXLvcjBWK+WzveTIEbC32h8bY3rw/rILsv
-         GYhA==
+        bh=WqmeYeEILR9RvWotHFEqmi/tcbmYPgYQ90HTJiqdd/A=;
+        b=Za8lppJ+d7C8rx1H6CVkeKiYhcM7gMjAV1LE6oCyeCzdwsiqDNUAzUzCeZ90y42McS
+         VttIpSw1umP7spJ1iCPT0WGnHVCmIwv/HrCSqiGQBGCMa0+dA3JYidvifrQYeayXD+FW
+         YKsfJ215B0VO4If3xL3zVcfL1sIt21a/pA5Clt+1u1lJumjb19pszgcWgJ01FS0RD7I8
+         7gPhNAu0Fo3gK/Vknz3HYLgBU5XSRtv6oWIcoJqreqCb2ziKTB4Bf57x8Q2E476SsPH2
+         bYy7TJIDNxtdKSVzQRDI/plJiLb+P3qXJvmNNs2OgL13W1RnWNSXyBumippOg8x7BKm1
+         mbOA==
 X-Forwarded-Encrypted: i=1;
- AHgh+RpfE1vgifkEPrf6VNMp99P67FVNbhs/41TqeYMO6UO8AVcO7/4Jb290yLavR+NCAgJkazOHrCot@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyaXQUyFRNAHj3hm6oWmoFLzghiL3M+/GTetYYzpFShO1+MQYr+
-	CRnnG1UdpH3DSjZCdN3G611oXTPv27GvgUvAihONPMwzQDi2b2E6UkoiKeC/Vw==
-X-Gm-Gg: AfdE7clSeYMAN1uatFoRoc8fE7Qa2aYAnZrxEKqYYjBXPohFUWQfbMqIUXmN1pF3Xtx
-	e/b6EJEqWB3mRzJnQe7jr6rHiDz85MNE/4jWJnTP2OgNzzmSEqheU5KzfcbP6J5j3ssHoIkLjG/
-	ZAC5uL9yoR7YrF7RnWfmonkqNBBCJ+oa7ImRmknUV5Z43bUAOF6eHQLASJR670ysdOAB8n+rApm
-	uUYd5pDT0MaY01TJbr5YHT04bC5T2B/7EQpChMr+Tvb6uO32WLdVYbWQI8B7WEtbIefzti7mXoX
-	DBxE9aRdc2zKRezpknAhs/18lVEstm5TGU+xYXOhS4Z2aoo7eGeg0W7OH2QqqEXjfkhRrRNtvFU
-	1HE4vI8u+ttGAHQhoGyPVpH4gevz3nJZJGLME+aCtTNJeUPQ/lniwwCv/KEGtWOQ1udVVw+bmUG
-	p2XqjShWvdrFBoETjpnZGkWJCXvpQtnB2a+G7XhrUYwVU/g2Nwicm5Uk5V8+Y=
-X-Received: by 2002:a17:90b:5683:b0:37c:607b:2cd9 with SMTP id
- 98e67ed59e1d1-3875298135amr6064743a91.0.1783453630717;
-        Tue, 07 Jul 2026 12:47:10 -0700 (PDT)
+ AHgh+RqFUA/TGZC9SfMoyTw5ss9IHOtCv+UXV1WeTALUCJukBt7CwiW8cYA+VAzATgH09TsORx0C8wmu@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzTrVeBvnUbzQcxzqyVPeDQurlWm9fwX3vTfezOY9WLoTsT4iYZ
+	0pBGYEo66AyuUxytA1onKeYvFGdkpOl1WP+vI8GC/ORgld9gai3EXK3as+L/Fw==
+X-Gm-Gg: AfdE7cmoUiT57NPF6C26X37qzBeiHIe3qQkAbqFGpOIsNv/CsbuuHtupfvYdJ2eafw4
+	xC8KG9E+LOXnpBklT/WXI3kT5rhfPw8dYmt3fXS4pbX7c6/uj8PDwe3e6ZG8BpSFA95c+zw76Un
+	diP1clRX9s/IESm/jrPlTzum9ziipWMRxAQ34JeU6dZ0jICJvFEB4/ja327ySXuy5h+tXjRRIfP
+	4UHqmqLWexg0bPoD/sqEO3qtV7AOCOz4MkhS6cPQ4mMtiSWpSFv8dLKk2FAMUsx2NPLBdNQWhhP
+	V9EJF10kd3UzTF/dzZ2Vdn72hNlcGLQV+u5lxogSdEIGVYWpo3e6GvQ9YuxDA4V0CxZWgkZKxxx
+	cwDhJrmzKyQ37YIiGinU3d86uL2YoB2on4HROX+HDndziYmphY74KOSl+5DsnLQ0x1Pg1xpArn0
+	NO6RMN+ifuGhx1B6x8CNIv7eKH+1mPRPFncdQtx9BvzlR2lI0PIcIhwApDm7wrWJjJOhBCRw==
+X-Received: by 2002:a17:902:ea03:b0:2c9:d8c6:1dc3 with SMTP id
+ d9443c01a7336-2ccbdc41f65mr54794995ad.0.1783453644502;
+        Tue, 07 Jul 2026 12:47:24 -0700 (PDT)
 Received: from [192.168.0.160] (c-98-225-44-182.hsd1.wa.comcast.net.
  [98.225.44.182])
         by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-387d36676desm1639922a91.10.2026.07.07.12.47.09
+ d9443c01a7336-2ccc9bdb7e9sm17819615ad.10.2026.07.07.12.47.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jul 2026 12:47:10 -0700 (PDT)
-Subject: [PATCH v7 3/8] selftests/mm: add HMM tests for mmap lock-dropping
- faults
+        Tue, 07 Jul 2026 12:47:24 -0700 (PDT)
+Subject: [PATCH v7 5/8] drm/nouveau: Use hmm_range_fault_unlocked_timeout()
+ for SVM faults
 From: Stanislav Kinsburskii <skinsburskii@gmail.com>
 To: airlied@gmail.com, akhilesh@ee.iitb.ac.in, akpm@linux-foundation.org,
  corbet@lwn.net, dakr@kernel.org, david@kernel.org, decui@microsoft.com,
@@ -115,8 +115,8 @@ To: airlied@gmail.com, akhilesh@ee.iitb.ac.in, akpm@linux-foundation.org,
  skhan@linuxfoundation.org, skinsburskii@gmail.com, surenb@google.com,
  tzimmermann@suse.de, vbabka@kernel.org, wei.liu@kernel.org,
  skinsburskii@gmail.com
-Date: Tue, 07 Jul 2026 12:47:08 -0700
-Message-ID: <178345362882.660027.7469490514544148781.stgit@skinsburskii>
+Date: Tue, 07 Jul 2026 12:47:22 -0700
+Message-ID: <178345364273.660027.15274510603185163961.stgit@skinsburskii>
 In-Reply-To: <178345345668.660027.2952911919681614557.stgit@skinsburskii>
 References: <178345345668.660027.2952911919681614557.stgit@skinsburskii>
 User-Agent: StGit/0.19
@@ -127,9 +127,9 @@ X-MailFrom: skinsburskii@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: 33GVS7DUIU5GNJ5MNE2QRK2QX3KMC3U5
-X-Message-ID-Hash: 33GVS7DUIU5GNJ5MNE2QRK2QX3KMC3U5
-X-Mailman-Approved-At: Wed, 08 Jul 2026 23:12:15 +0000
+Message-ID-Hash: TVAE7IBF4FAFKMGVUNUDVAON6WQKMW37
+X-Message-ID-Hash: TVAE7IBF4FAFKMGVUNUDVAON6WQKMW37
+X-Mailman-Approved-At: Wed, 08 Jul 2026 23:12:16 +0000
 CC: dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
  linux-doc@vger.kernel.org, linux-hyperv@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
@@ -138,9 +138,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/33GVS7DUIU5GNJ5MNE2QRK2QX3KMC3U5/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TVAE7IBF4FAFKMGVUNUDVAON6WQKMW37/>
 Archived-At: 
- <https://lore.freedesktop.org/178345362882.660027.7469490514544148781.stgit@skinsburskii/>
+ <https://lore.freedesktop.org/178345364273.660027.15274510603185163961.stgit@skinsburskii/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -150,418 +150,47 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Add test_hmm coverage for the HMM lock-dropping fault path. The test module
-gets new HMM_DMIRROR_READ_UNLOCKED and HMM_DMIRROR_READ_UNLOCKED_TIMEOUT
-ioctls that both call hmm_range_fault_unlocked_timeout(). The unlocked
-ioctl passes a timeout of 0 to exercise the unbounded retry mode, while the
-timeout ioctl passes HMM_RANGE_DEFAULT_TIMEOUT converted to jiffies.
+nouveau_range_fault() takes mmap_read_lock() only to call
+hmm_range_fault(). It also keeps a single HMM_RANGE_DEFAULT_TIMEOUT
+deadline across both HMM -EBUSY retries and post-fault
+mmu_interval_read_retry() retries.
 
-Add a userfaultfd_read selftest that registers an anonymous mapping with
-UFFDIO_REGISTER_MODE_MISSING, services the faults from a handler thread
-with UFFDIO_COPY, and verifies that HMM can read back the data supplied by
-the handler. This exercises the path where handle_mm_fault() drops
-mmap_lock and hmm_range_fault_unlocked_timeout() restarts the walk
-internally.
+Use hmm_range_fault_unlocked_timeout() instead. The HMM helper now owns
+the mmap lock and refreshes range->notifier_seq for its internal retries.
+Nouveau keeps its existing absolute deadline in the outer loop and passes
+the remaining jiffies to the helper for each fault attempt, so retries
+caused by mmu_interval_read_retry() do not reset the overall retry budget.
 
-Add a userfaultfd_timeout selftest for the finite-timeout mode. It
-registers a missing-mode userfaultfd range without a data-supplying
-handler, then closes the userfaultfd after the timeout window so the
-blocked fault can unwind and hmm_range_fault_unlocked_timeout() can return
--EBUSY.
+Nouveau still validates the interval notifier sequence while holding
+svmm->mutex before programming the GPU mapping.
 
-Assisted-by: GitHub-Copilot:claude-opus-4.6
 Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
 ---
- lib/test_hmm.c                         |  111 ++++++++++++++++
- lib/test_hmm_uapi.h                    |    3 
- tools/testing/selftests/mm/hmm-tests.c |  220 ++++++++++++++++++++++++++++++++
- 3 files changed, 334 insertions(+)
+ drivers/gpu/drm/nouveau/nouveau_svm.c |   11 +++--------
+ 1 file changed, 3 insertions(+), 8 deletions(-)
 
-diff --git a/lib/test_hmm.c b/lib/test_hmm.c
-index 45c0cb992218..02a98887c290 100644
---- a/lib/test_hmm.c
-+++ b/lib/test_hmm.c
-@@ -389,6 +389,67 @@ static int dmirror_range_fault(struct dmirror *dmirror,
- 	return ret;
- }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+index dcc92131488e..ba93273341af 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -683,15 +683,10 @@ static int nouveau_range_fault(struct nouveau_svmm *svmm,
+ 			goto out;
+ 		}
  
-+static int dmirror_range_fault_unlocked(struct dmirror *dmirror,
-+					struct hmm_range *range,
-+					unsigned long timeout)
-+{
-+	int ret;
-+
-+	while (true) {
-+		ret = hmm_range_fault_unlocked_timeout(range, timeout);
+-		range.notifier_seq = mmu_interval_read_begin(range.notifier);
+-		mmap_read_lock(mm);
+-		ret = hmm_range_fault(&range);
+-		mmap_read_unlock(mm);
+-		if (ret) {
+-			if (ret == -EBUSY)
+-				continue;
++		ret = hmm_range_fault_unlocked_timeout(&range,
++				       max_t(long, timeout - jiffies, 1UL));
 +		if (ret)
-+			goto out;
-+
-+		mutex_lock(&dmirror->mutex);
-+		if (mmu_interval_read_retry(range->notifier,
-+					    range->notifier_seq)) {
-+			mutex_unlock(&dmirror->mutex);
-+			continue;
-+		}
-+		break;
-+	}
-+
-+	ret = dmirror_do_fault(dmirror, range);
-+
-+	mutex_unlock(&dmirror->mutex);
-+out:
-+	return ret;
-+}
-+
-+static int dmirror_fault_unlocked(struct dmirror *dmirror,
-+				  unsigned long start,
-+				  unsigned long end, bool write,
-+				  unsigned long timeout)
-+{
-+	struct mm_struct *mm = dmirror->notifier.mm;
-+	unsigned long addr;
-+	unsigned long pfns[32];
-+	struct hmm_range range = {
-+		.notifier = &dmirror->notifier,
-+		.hmm_pfns = pfns,
-+		.pfn_flags_mask = 0,
-+		.default_flags =
-+			HMM_PFN_REQ_FAULT | (write ? HMM_PFN_REQ_WRITE : 0),
-+		.dev_private_owner = dmirror->mdevice,
-+	};
-+	int ret = 0;
-+
-+	if (!mmget_not_zero(mm))
-+		return -EFAULT;
-+
-+	for (addr = start; addr < end; addr = range.end) {
-+		range.start = addr;
-+		range.end = min(addr + (ARRAY_SIZE(pfns) << PAGE_SHIFT), end);
-+
-+		ret = dmirror_range_fault_unlocked(dmirror, &range, timeout);
-+		if (ret)
-+			break;
-+	}
-+
-+	mmput(mm);
-+	return ret;
-+}
-+
- static int dmirror_fault(struct dmirror *dmirror, unsigned long start,
- 			 unsigned long end, bool write)
- {
-@@ -488,6 +549,48 @@ static int dmirror_read(struct dmirror *dmirror, struct hmm_dmirror_cmd *cmd)
- 	return ret;
- }
+ 			goto out;
+-		}
  
-+static int dmirror_read_unlocked(struct dmirror *dmirror,
-+				 struct hmm_dmirror_cmd *cmd,
-+				 unsigned long timeout)
-+{
-+	struct dmirror_bounce bounce;
-+	unsigned long start, end;
-+	unsigned long size = cmd->npages << PAGE_SHIFT;
-+	int ret;
-+
-+	start = cmd->addr;
-+	end = start + size;
-+	if (end < start)
-+		return -EINVAL;
-+
-+	ret = dmirror_bounce_init(&bounce, start, size);
-+	if (ret)
-+		return ret;
-+
-+	while (1) {
-+		mutex_lock(&dmirror->mutex);
-+		ret = dmirror_do_read(dmirror, start, end, &bounce);
-+		mutex_unlock(&dmirror->mutex);
-+		if (ret != -ENOENT)
-+			break;
-+
-+		start = cmd->addr + (bounce.cpages << PAGE_SHIFT);
-+		ret = dmirror_fault_unlocked(dmirror, start, end, false, timeout);
-+		if (ret)
-+			break;
-+		cmd->faults++;
-+	}
-+
-+	if (ret == 0) {
-+		if (copy_to_user(u64_to_user_ptr(cmd->ptr), bounce.ptr,
-+				 bounce.size))
-+			ret = -EFAULT;
-+	}
-+	cmd->cpages = bounce.cpages;
-+	dmirror_bounce_fini(&bounce);
-+	return ret;
-+}
-+
- static int dmirror_do_write(struct dmirror *dmirror, unsigned long start,
- 			    unsigned long end, struct dmirror_bounce *bounce)
- {
-@@ -1572,6 +1675,14 @@ static long dmirror_fops_unlocked_ioctl(struct file *filp,
- 		dmirror->flags = cmd.npages;
- 		ret = 0;
- 		break;
-+	case HMM_DMIRROR_READ_UNLOCKED:
-+		ret = dmirror_read_unlocked(dmirror, &cmd, 0);
-+		break;
-+	case HMM_DMIRROR_READ_UNLOCKED_TIMEOUT:
-+		ret = dmirror_read_unlocked(dmirror, &cmd,
-+				msecs_to_jiffies(
-+					HMM_RANGE_DEFAULT_TIMEOUT));
-+		break;
- 
- 	default:
- 		return -EINVAL;
-diff --git a/lib/test_hmm_uapi.h b/lib/test_hmm_uapi.h
-index f94c6d457338..249ab2d9e3b2 100644
---- a/lib/test_hmm_uapi.h
-+++ b/lib/test_hmm_uapi.h
-@@ -38,6 +38,9 @@ struct hmm_dmirror_cmd {
- #define HMM_DMIRROR_CHECK_EXCLUSIVE	_IOWR('H', 0x06, struct hmm_dmirror_cmd)
- #define HMM_DMIRROR_RELEASE		_IOWR('H', 0x07, struct hmm_dmirror_cmd)
- #define HMM_DMIRROR_FLAGS		_IOWR('H', 0x08, struct hmm_dmirror_cmd)
-+#define HMM_DMIRROR_READ_UNLOCKED	_IOWR('H', 0x09, struct hmm_dmirror_cmd)
-+#define HMM_DMIRROR_READ_UNLOCKED_TIMEOUT \
-+	_IOWR('H', 0x0a, struct hmm_dmirror_cmd)
- 
- #define HMM_DMIRROR_FLAG_FAIL_ALLOC	(1ULL << 0)
- 
-diff --git a/tools/testing/selftests/mm/hmm-tests.c b/tools/testing/selftests/mm/hmm-tests.c
-index 2f2b9879d100..dc031d2e2aae 100644
---- a/tools/testing/selftests/mm/hmm-tests.c
-+++ b/tools/testing/selftests/mm/hmm-tests.c
-@@ -29,6 +29,10 @@
- #include <sys/mman.h>
- #include <sys/ioctl.h>
- #include <sys/time.h>
-+#include <sys/syscall.h>
-+#include <sys/eventfd.h>
-+#include <linux/userfaultfd.h>
-+#include <poll.h>
- 
- /*
-  * This is a private UAPI to the kernel test module so it isn't exported
-@@ -2949,4 +2953,220 @@ TEST_F_TIMEOUT(hmm, benchmark_thp_migration, 120)
- 					&thp_results, &regular_results);
- 	}
- }
-+/*
-+ * Test that HMM can fault in pages backed by userfaultfd using the
-+ * hmm_range_fault_unlocked_timeout() path with no timeout. This exercises
-+ * the lock-drop retry logic in the HMM framework.
-+ */
-+struct uffd_thread_args {
-+	int uffd;
-+	int stop_fd;
-+	void *page_buffer;
-+	unsigned long page_size;
-+};
-+
-+static void *uffd_handler_thread(void *arg)
-+{
-+	struct uffd_thread_args *args = arg;
-+	struct uffd_msg msg;
-+	struct uffdio_copy copy;
-+	struct pollfd pollfd[2];
-+	int ret;
-+
-+	pollfd[0].fd = args->uffd;
-+	pollfd[0].events = POLLIN;
-+	pollfd[1].fd = args->stop_fd;
-+	pollfd[1].events = POLLIN;
-+
-+	while (1) {
-+		ret = poll(pollfd, 2, -1);
-+		if (ret <= 0)
-+			break;
-+		if (pollfd[1].revents)
-+			break;
-+		if (!(pollfd[0].revents & POLLIN))
-+			break;
-+
-+		ret = read(args->uffd, &msg, sizeof(msg));
-+		if (ret != sizeof(msg))
-+			break;
-+
-+		if (msg.event != UFFD_EVENT_PAGEFAULT)
-+			break;
-+
-+		/* Fill the page with a known pattern */
-+		memset(args->page_buffer, 0xAB, args->page_size);
-+
-+		copy.dst = msg.arg.pagefault.address & ~(args->page_size - 1);
-+		copy.src = (unsigned long)args->page_buffer;
-+		copy.len = args->page_size;
-+		copy.mode = 0;
-+		copy.copy = 0;
-+
-+		ret = ioctl(args->uffd, UFFDIO_COPY, &copy);
-+		if (ret < 0)
-+			break;
-+	}
-+
-+	return NULL;
-+}
-+
-+struct uffd_close_args {
-+	int uffd;
-+	unsigned int delay_us;
-+};
-+
-+static void *uffd_close_thread(void *arg)
-+{
-+	struct uffd_close_args *args = arg;
-+
-+	usleep(args->delay_us);
-+	close(args->uffd);
-+	return NULL;
-+}
-+
-+TEST_F(hmm, userfaultfd_read)
-+{
-+	struct hmm_buffer *buffer;
-+	struct uffd_thread_args uffd_args;
-+	unsigned long npages;
-+	unsigned long size;
-+	unsigned long i;
-+	unsigned char *ptr;
-+	pthread_t thread;
-+	int uffd;
-+	int stop_fd;
-+	int ret;
-+	struct uffdio_api api;
-+	struct uffdio_register reg;
-+	uint64_t stop = 1;
-+	ssize_t nwrite;
-+
-+	npages = 4;
-+	size = npages << self->page_shift;
-+
-+	/* Create userfaultfd */
-+	uffd = syscall(__NR_userfaultfd, O_CLOEXEC | O_NONBLOCK);
-+	if (uffd < 0)
-+		SKIP(return, "userfaultfd not available");
-+
-+	api.api = UFFD_API;
-+	api.features = 0;
-+	ret = ioctl(uffd, UFFDIO_API, &api);
-+	ASSERT_EQ(ret, 0);
-+
-+	buffer = malloc(sizeof(*buffer));
-+	ASSERT_NE(buffer, NULL);
-+
-+	buffer->fd = -1;
-+	buffer->size = size;
-+	buffer->mirror = malloc(size);
-+	ASSERT_NE(buffer->mirror, NULL);
-+
-+	/* Create anonymous mapping */
-+	buffer->ptr = mmap(NULL, size,
-+			   PROT_READ | PROT_WRITE,
-+			   MAP_PRIVATE | MAP_ANONYMOUS,
-+			   -1, 0);
-+	ASSERT_NE(buffer->ptr, MAP_FAILED);
-+
-+	/* Register the region with userfaultfd */
-+	reg.range.start = (unsigned long)buffer->ptr;
-+	reg.range.len = size;
-+	reg.mode = UFFDIO_REGISTER_MODE_MISSING;
-+	ret = ioctl(uffd, UFFDIO_REGISTER, &reg);
-+	ASSERT_EQ(ret, 0);
-+
-+	/* Set up the handler thread */
-+	uffd_args.uffd = uffd;
-+	stop_fd = eventfd(0, EFD_CLOEXEC);
-+	ASSERT_GE(stop_fd, 0);
-+	uffd_args.stop_fd = stop_fd;
-+	uffd_args.page_buffer = malloc(self->page_size);
-+	ASSERT_NE(uffd_args.page_buffer, NULL);
-+	uffd_args.page_size = self->page_size;
-+
-+	ret = pthread_create(&thread, NULL, uffd_handler_thread, &uffd_args);
-+	ASSERT_EQ(ret, 0);
-+
-+	/*
-+	 * Use the unlocked read path which allows the mmap lock to be
-+	 * dropped during the fault, enabling userfaultfd resolution.
-+	 */
-+	ret = hmm_dmirror_cmd(self->fd, HMM_DMIRROR_READ_UNLOCKED,
-+			      buffer, npages);
-+	ASSERT_EQ(ret, 0);
-+	ASSERT_EQ(buffer->cpages, npages);
-+
-+	/* Verify the device read the data filled by the uffd handler */
-+	ptr = buffer->mirror;
-+	for (i = 0; i < size; ++i)
-+		ASSERT_EQ(ptr[i], (unsigned char)0xAB);
-+
-+	nwrite = write(stop_fd, &stop, sizeof(stop));
-+	ASSERT_EQ(nwrite, sizeof(stop));
-+	pthread_join(thread, NULL);
-+	close(stop_fd);
-+	free(uffd_args.page_buffer);
-+	close(uffd);
-+	hmm_buffer_free(buffer);
-+}
-+
-+TEST_F(hmm, userfaultfd_timeout)
-+{
-+	struct uffd_close_args close_args;
-+	struct hmm_buffer *buffer;
-+	unsigned long npages;
-+	unsigned long size;
-+	pthread_t thread;
-+	int uffd;
-+	int ret;
-+	struct uffdio_api api;
-+	struct uffdio_register reg;
-+
-+	npages = 4;
-+	size = npages << self->page_shift;
-+
-+	uffd = syscall(__NR_userfaultfd, O_CLOEXEC | O_NONBLOCK);
-+	if (uffd < 0)
-+		SKIP(return, "userfaultfd not available");
-+
-+	api.api = UFFD_API;
-+	api.features = 0;
-+	ret = ioctl(uffd, UFFDIO_API, &api);
-+	ASSERT_EQ(ret, 0);
-+
-+	buffer = malloc(sizeof(*buffer));
-+	ASSERT_NE(buffer, NULL);
-+
-+	buffer->fd = -1;
-+	buffer->size = size;
-+	buffer->mirror = malloc(size);
-+	ASSERT_NE(buffer->mirror, NULL);
-+
-+	buffer->ptr = mmap(NULL, size,
-+			   PROT_READ | PROT_WRITE,
-+			   MAP_PRIVATE | MAP_ANONYMOUS,
-+			   -1, 0);
-+	ASSERT_NE(buffer->ptr, MAP_FAILED);
-+
-+	reg.range.start = (unsigned long)buffer->ptr;
-+	reg.range.len = size;
-+	reg.mode = UFFDIO_REGISTER_MODE_MISSING;
-+	ret = ioctl(uffd, UFFDIO_REGISTER, &reg);
-+	ASSERT_EQ(ret, 0);
-+
-+	close_args.uffd = uffd;
-+	close_args.delay_us = 1500 * 1000;
-+	ret = pthread_create(&thread, NULL, uffd_close_thread, &close_args);
-+	ASSERT_EQ(ret, 0);
-+
-+	ret = hmm_dmirror_cmd(self->fd, HMM_DMIRROR_READ_UNLOCKED_TIMEOUT,
-+			    buffer, npages);
-+	pthread_join(thread, NULL);
-+	ASSERT_EQ(ret, -EBUSY);
-+
-+	hmm_buffer_free(buffer);
-+}
-+
- TEST_HARNESS_MAIN
+ 		mutex_lock(&svmm->mutex);
+ 		if (mmu_interval_read_retry(range.notifier,
 
 
