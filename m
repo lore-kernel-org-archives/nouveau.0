@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07567C44503
-	for <nouveau@archiver.kernel.org>; Tue,  7 Jul 2026 13:57:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAA4AC43458
+	for <nouveau@archiver.kernel.org>; Tue,  7 Jul 2026 13:57:46 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 284C710ED5B;
-	Tue,  7 Jul 2026 13:57:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BBC3C10ED6C;
+	Tue,  7 Jul 2026 13:57:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="f/p74NQG";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="bZb6huuQ";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="f/p74NQG";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="bZb6huuQ";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="fjee/qWD";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="UkTCT6/L";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="fjee/qWD";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="UkTCT6/L";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8537246F2B;
-	Tue,  7 Jul 2026 13:42:41 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 26C8146F32;
+	Tue,  7 Jul 2026 13:42:47 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783431761;
- b=0cSdUyBa5kMXZvA3zJ/fceCOH3Al//q8w20NDnKfATCbxmCrEeYx2aSjydJiIJKvaxnEI
- gjXrNpnoPPeimP9pOCmfnkbg3TiM+6/XN4gZ5+cVgfR3uj3o6o/rbDgGcy8IOJ2G82WRU+Y
- GPWB8js96K1nDmYm3gCDC4gxEexQfFu5daECbOptEe2nuCdeH29hXHO0zYunKBgmp7DYhr0
- CQzjPjpp97LBQPUWgnSWzWt8JlJE9X9+uBRTZUJyrJuAzsMQGJ54Wl5tHSqqti5wC8f7dsy
- S5in/8aumcqxbLl4XvwOYM9ZzWFHQa13Zj6+c0DkzrtjjkQD5TRS37ds2sxg==
+ s=20240201; t=1783431767;
+ b=062xzyJmPXnBzslNi/uUBrzA0CHh8MumVVOodbc/0H9/pO3CCW3w7Y6En8GJ4hRhP4Mof
+ 2b6Y/MzpuFHuvQSfALS1HKF8pzLqXI2w5wYL2szXLpFi8tSR+ZCqBuaZzzb7y5uaeV5OUjZ
+ efHjznIkMawurwFJKaHvxn86AJG+OLzrIbWzfEXh3UAcStrhvCeXcW2DSQoQ+b/EjqHm+wX
+ iIl1mcrSacdEPLHekVAFVnjtfD6vwXwIsD1NwZx3nfkGdWEQD5ZvtSeAmaDswUkdGk/7M0s
+ cYQQLLw6YaQ3H6jsAFnNIYITLmDeTAdAYGviORboYyF+86PKw1zoDVvgihcQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783431761; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783431767; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=YifDnmK82gFn50n9gIPI//YYkdL4JukIrrg2Jw2g5D0=;
- b=wSnbXhmbdJJ7Y6gwALZO+Uoic31dULpmHAf1jIsOmA66qQQqN66lzAfzxlrkCYZeoPzzT
- g62T61Qet7qk5psXWmLhwO1ujyd/ak1Q1dsrxfldQwEetm/ss2UgqXG+ctt28emjCFy9Kn/
- Fo8Z8VahRMnji1xuJl7PrAK84Sd5E7B3Dl8/jhvhiTmRjH3iGcHc5cuvmd+Q12PfSKqMG2B
- gCvPBJrO879qdaolb+c/RwR9GS6qVJ5eITBmbYqR71YMnZeMngX/HOoSPqxmhLJ4zsmSTp4
- WQTmeDTF/2e85fynx9dFvLPthaV/1CBa9PjwWN5LEtMv3faRLoW6LJCT970w==
+ bh=zVbhDO3tD/f+sXvWZ0QDGfmfPXEwkaYwwxjIby5hPfQ=;
+ b=XE07MJjtbj74GD0V4MqZl9iSZvX6WKd4eeWuxbfcFv/rKBriMVhsIp95eGWbwdYWaRceb
+ AdvO0t1i2Rk+z1yYP2ecZYPcvpHUt4ZOJNsnYF+bS/rEpsDN7MkgV/BBVnvFqfLNBqsU5RY
+ nAEp/l4zS9C1dwnpBjjpi4Cf1PYHuy7iSBISunfca9sqHEgWwd70u0HW9M1iZEhoLVChXZs
+ jUKQMwLu04G6HanjCsRm07Zyx/oyjAkDWtCzI1w87WDwcV9o4GaP1qVF8ZjB9scKdZ4qDir
+ SUIUKdF0quCl70qUN9ZlRB7N1SdMWkQuwT1nL4AH4HgdI+7Nt1fsUKAra4GQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
@@ -47,69 +47,69 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EB9FE46F2A
-	for <nouveau@lists.freedesktop.org>; Tue,  7 Jul 2026 13:42:38 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0F08D10ED4B
-	for <nouveau@lists.freedesktop.org>; Tue,  7 Jul 2026 13:57:36 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id BD3C046F2C
+	for <nouveau@lists.freedesktop.org>; Tue,  7 Jul 2026 13:42:42 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1719010ED46
+	for <nouveau@lists.freedesktop.org>; Tue,  7 Jul 2026 13:57:40 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id CE9BD741E0;
-	Tue,  7 Jul 2026 13:57:30 +0000 (UTC)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 89242759FB;
+	Tue,  7 Jul 2026 13:57:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_rsa;
-	t=1783432650;
+	t=1783432652;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=YifDnmK82gFn50n9gIPI//YYkdL4JukIrrg2Jw2g5D0=;
-	b=f/p74NQGWjJ1JSiGxgZSaQ0XAuitEjQZF/i+mHFmh7OvZecl3T+YB5Y4kPEmp/A1cmc4EK
-	Qhk1MZ4SSp3Au7Ra4bEGcbWO3bKRutqiXkcrcWFtRG139RbkqW8p1r1rq9UdY3BMVe0DGB
-	2IKlC6svopgnTq4yGFP9I/RLF24MX9A=
+	bh=zVbhDO3tD/f+sXvWZ0QDGfmfPXEwkaYwwxjIby5hPfQ=;
+	b=fjee/qWDTE4L172t9HqVJC7oot8Y3DwZkVNBMAjVimgxthqiN4gPKFQdrENpHBE3fL339b
+	HC6xesriwqWICO3Ij5tMgVwKELd0i1vw2XNWjM/uVX7+CCzqe8u6L5qdVbG6wIYWWMKFhj
+	al01LGs+uX9DenRTzoDwq9OwQPOhzF0=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1783432650;
+	s=susede2_ed25519; t=1783432652;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=YifDnmK82gFn50n9gIPI//YYkdL4JukIrrg2Jw2g5D0=;
-	b=bZb6huuQ6ui3An99WiqPWURaeYQECZUJ7C1dkU4McVIQpyYsSugXD4k0psE5WSPsiw1TR9
-	aPPX27ePEbvi8LAg==
+	bh=zVbhDO3tD/f+sXvWZ0QDGfmfPXEwkaYwwxjIby5hPfQ=;
+	b=UkTCT6/LgHZZcg24NHMVTdYznwOKtZe8WYkn7MaYmpKuhha+2+xbjFMLBtZWqNoHsw6FIC
+	ATc80/DCwGRLCOCA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_rsa;
-	t=1783432650;
+	t=1783432652;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=YifDnmK82gFn50n9gIPI//YYkdL4JukIrrg2Jw2g5D0=;
-	b=f/p74NQGWjJ1JSiGxgZSaQ0XAuitEjQZF/i+mHFmh7OvZecl3T+YB5Y4kPEmp/A1cmc4EK
-	Qhk1MZ4SSp3Au7Ra4bEGcbWO3bKRutqiXkcrcWFtRG139RbkqW8p1r1rq9UdY3BMVe0DGB
-	2IKlC6svopgnTq4yGFP9I/RLF24MX9A=
+	bh=zVbhDO3tD/f+sXvWZ0QDGfmfPXEwkaYwwxjIby5hPfQ=;
+	b=fjee/qWDTE4L172t9HqVJC7oot8Y3DwZkVNBMAjVimgxthqiN4gPKFQdrENpHBE3fL339b
+	HC6xesriwqWICO3Ij5tMgVwKELd0i1vw2XNWjM/uVX7+CCzqe8u6L5qdVbG6wIYWWMKFhj
+	al01LGs+uX9DenRTzoDwq9OwQPOhzF0=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1783432650;
+	s=susede2_ed25519; t=1783432652;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=YifDnmK82gFn50n9gIPI//YYkdL4JukIrrg2Jw2g5D0=;
-	b=bZb6huuQ6ui3An99WiqPWURaeYQECZUJ7C1dkU4McVIQpyYsSugXD4k0psE5WSPsiw1TR9
-	aPPX27ePEbvi8LAg==
+	bh=zVbhDO3tD/f+sXvWZ0QDGfmfPXEwkaYwwxjIby5hPfQ=;
+	b=UkTCT6/LgHZZcg24NHMVTdYznwOKtZe8WYkn7MaYmpKuhha+2+xbjFMLBtZWqNoHsw6FIC
+	ATc80/DCwGRLCOCA==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 47BE6779AE;
-	Tue,  7 Jul 2026 13:57:30 +0000 (UTC)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 070E8779AF;
+	Tue,  7 Jul 2026 13:57:32 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
 	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id 6DxSEMoFTWoFSgAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Tue, 07 Jul 2026 13:57:30 +0000
+	id cNWHAMwFTWoFSgAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Tue, 07 Jul 2026 13:57:32 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: lukas@wunner.de,
 	jfalempe@redhat.com,
@@ -126,10 +126,10 @@ To: lukas@wunner.de,
 	lyude@redhat.com,
 	dakr@kernel.org,
 	deller@gmx.de
-Subject: [PATCH 02/10] drm/client: Add acquire_outputs callback;
- implement for fbdev emulation
-Date: Tue,  7 Jul 2026 15:38:09 +0200
-Message-ID: <20260707135724.247562-3-tzimmermann@suse.de>
+Subject: [PATCH 05/10] drm/amdgpu: Implement struct
+ vga_switcheroo_client_ops.pre_switch
+Date: Tue,  7 Jul 2026 15:38:12 +0200
+Message-ID: <20260707135724.247562-6-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260707135724.247562-1-tzimmermann@suse.de>
 References: <20260707135724.247562-1-tzimmermann@suse.de>
@@ -140,7 +140,7 @@ X-Spamd-Result: default: False [-2.78 / 50.00];
 	MID_CONTAINS_FROM(1.00)[];
 	NEURAL_HAM_LONG(-1.00)[-1.000];
 	R_MISSING_CHARSET(0.50)[];
-	NEURAL_HAM_SHORT(-0.18)[-0.920];
+	NEURAL_HAM_SHORT(-0.18)[-0.912];
 	MIME_GOOD(-0.10)[text/plain];
 	TO_MATCH_ENVRCPT_ALL(0.00)[];
 	FROM_HAS_DN(0.00)[];
@@ -158,8 +158,8 @@ X-Spamd-Result: default: False [-2.78 / 50.00];
 	R_RATELIMIT(0.00)[to_ip_from(RLq3cifbxyhc6qbbynzfc6amns)];
 	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de]
-Message-ID-Hash: HKTOVUKQP7N3BDTS3J6D3GPVSBQQ7Q2R
-X-Message-ID-Hash: HKTOVUKQP7N3BDTS3J6D3GPVSBQQ7Q2R
+Message-ID-Hash: AAGJ4AFG4MMKHJ3WAVA2PPRRBMAUBQGG
+X-Message-ID-Hash: AAGJ4AFG4MMKHJ3WAVA2PPRRBMAUBQGG
 X-MailFrom: tzimmermann@suse.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -172,9 +172,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HKTOVUKQP7N3BDTS3J6D3GPVSBQQ7Q2R/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AAGJ4AFG4MMKHJ3WAVA2PPRRBMAUBQGG/>
 Archived-At: 
- <https://lore.freedesktop.org/20260707135724.247562-3-tzimmermann@suse.de/>
+ <https://lore.freedesktop.org/20260707135724.247562-6-tzimmermann@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -184,143 +184,38 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Add the callback acquire_outputs to drm_client_funcs to inform an internal
-DRM client that vga-switcheroo is about to switch the physical outputs to
-the client's device. Allows the client to prepare its internal state for
-the upcoming switch.
-
-Wire up the DRM client helpers to invoke the helper for a device's
-clients.
-
-Implement acquire_outputs for fbdev emulation. Invoke fb_switch_outputs(),
-which remaps framebuffers to virtual terminals in fbcon. Currently this
-is still being done by vga-switcheroo. With more DRM clients becoming
-available, vga-switcheroo needs to become client agonostic.
+Call drm_client_dev_acquire_outputs() from vga_switcheroo's pre_switch
+callback. Pushes fbcon updates from vga_switcheroo into DRM's fbdev
+emulation.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/clients/drm_fbdev_client.c | 23 +++++++++++++++-------
- drivers/gpu/drm/drm_client_event.c         | 18 +++++++++++++++++
- include/drm/drm_client.h                   | 14 +++++++++++++
- include/drm/drm_client_event.h             |  3 +++
- 4 files changed, 51 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/clients/drm_fbdev_client.c b/drivers/gpu/drm/clients/drm_fbdev_client.c
-index 91d196a397cf..827f32668714 100644
---- a/drivers/gpu/drm/clients/drm_fbdev_client.c
-+++ b/drivers/gpu/drm/clients/drm_fbdev_client.c
-@@ -47,6 +47,14 @@ static int drm_fbdev_client_restore(struct drm_client_dev *client, bool force)
- 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 78c96c7102e4..87a59a79a019 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -1699,10 +1699,18 @@ static bool amdgpu_switcheroo_can_switch(struct pci_dev *pdev)
+ 	return atomic_read(&dev->open_count) == 0;
  }
  
-+static void drm_fbdev_client_acquire_outputs(struct drm_client_dev *client)
++static void amdgpu_switcheroo_pre_switch(struct pci_dev *pdev)
 +{
-+	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
++	struct drm_device *dev = pci_get_drvdata(pdev);
 +
-+	if (fb_helper->info)
-+		fb_switch_outputs(fb_helper->info);
++	drm_client_dev_acquire_outputs(dev);
 +}
 +
- static int drm_fbdev_client_hotplug(struct drm_client_dev *client)
- {
- 	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
-@@ -95,13 +103,14 @@ static int drm_fbdev_client_resume(struct drm_client_dev *client)
- }
- 
- static const struct drm_client_funcs drm_fbdev_client_funcs = {
--	.owner		= THIS_MODULE,
--	.free		= drm_fbdev_client_free,
--	.unregister	= drm_fbdev_client_unregister,
--	.restore	= drm_fbdev_client_restore,
--	.hotplug	= drm_fbdev_client_hotplug,
--	.suspend	= drm_fbdev_client_suspend,
--	.resume		= drm_fbdev_client_resume,
-+	.owner		 = THIS_MODULE,
-+	.free		 = drm_fbdev_client_free,
-+	.unregister	 = drm_fbdev_client_unregister,
-+	.restore	 = drm_fbdev_client_restore,
-+	.acquire_outputs = drm_fbdev_client_acquire_outputs,
-+	.hotplug	 = drm_fbdev_client_hotplug,
-+	.suspend	 = drm_fbdev_client_suspend,
-+	.resume		 = drm_fbdev_client_resume,
+ static const struct vga_switcheroo_client_ops amdgpu_switcheroo_ops = {
+ 	.set_gpu_state = amdgpu_switcheroo_set_state,
+ 	.reprobe = NULL,
+ 	.can_switch = amdgpu_switcheroo_can_switch,
++	.pre_switch = amdgpu_switcheroo_pre_switch,
  };
  
  /**
-diff --git a/drivers/gpu/drm/drm_client_event.c b/drivers/gpu/drm/drm_client_event.c
-index 7b3e362f7926..f0af584da23c 100644
---- a/drivers/gpu/drm/drm_client_event.c
-+++ b/drivers/gpu/drm/drm_client_event.c
-@@ -123,6 +123,24 @@ void drm_client_dev_restore(struct drm_device *dev, bool force)
- 	mutex_unlock(&dev->clientlist_mutex);
- }
- 
-+void drm_client_dev_acquire_outputs(struct drm_device *dev)
-+{
-+	struct drm_client_dev *client;
-+
-+	if (!drm_core_check_feature(dev, DRIVER_MODESET))
-+		return;
-+
-+	mutex_lock(&dev->clientlist_mutex);
-+	list_for_each_entry(client, &dev->clientlist, list) {
-+		if (!client->funcs || !client->funcs->acquire_outputs)
-+			continue;
-+
-+		client->funcs->acquire_outputs(client);
-+	}
-+	mutex_unlock(&dev->clientlist_mutex);
-+}
-+EXPORT_SYMBOL(drm_client_dev_acquire_outputs);
-+
- static int drm_client_suspend(struct drm_client_dev *client)
- {
- 	struct drm_device *dev = client->dev;
-diff --git a/include/drm/drm_client.h b/include/drm/drm_client.h
-index 49a21f3dcb36..10a0cae3e48f 100644
---- a/include/drm/drm_client.h
-+++ b/include/drm/drm_client.h
-@@ -66,6 +66,20 @@ struct drm_client_funcs {
- 	 */
- 	int (*restore)(struct drm_client_dev *client, bool force);
- 
-+	/**
-+	 * @acquire_outputs:
-+	 *
-+	 * Called by vga-switcheroo. Informs the client that the outputs will
-+	 * be switched to its device. When @acquire_outputs runs, the outputs
-+	 * have not been switched yet. The client should only prepare the software
-+	 * state. After the switch happened, the client might get a hotplug
-+	 * event to update the hardware state.
-+	 *
-+	 * This callback exists for remapping framebuffers to virtual terminals
-+	 * in fbcon.
-+	 */
-+	void (*acquire_outputs)(struct drm_client_dev *client);
-+
- 	/**
- 	 * @hotplug:
- 	 *
-diff --git a/include/drm/drm_client_event.h b/include/drm/drm_client_event.h
-index 79369c755bc9..c93f404bae1d 100644
---- a/include/drm/drm_client_event.h
-+++ b/include/drm/drm_client_event.h
-@@ -11,6 +11,7 @@ struct drm_device;
- void drm_client_dev_unregister(struct drm_device *dev);
- void drm_client_dev_hotplug(struct drm_device *dev);
- void drm_client_dev_restore(struct drm_device *dev, bool force);
-+void drm_client_dev_acquire_outputs(struct drm_device *dev);
- void drm_client_dev_suspend(struct drm_device *dev);
- void drm_client_dev_resume(struct drm_device *dev);
- #else
-@@ -20,6 +21,8 @@ static inline void drm_client_dev_hotplug(struct drm_device *dev)
- { }
- static inline void drm_client_dev_restore(struct drm_device *dev, bool force)
- { }
-+static inline void drm_client_dev_acquire_outputs(struct drm_device *dev)
-+{ }
- static inline void drm_client_dev_suspend(struct drm_device *dev)
- { }
- static inline void drm_client_dev_resume(struct drm_device *dev)
 -- 
 2.54.0
 
