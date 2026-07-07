@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13E6EC43458
-	for <nouveau@archiver.kernel.org>; Tue,  7 Jul 2026 10:15:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDF60C44502
+	for <nouveau@archiver.kernel.org>; Tue,  7 Jul 2026 10:17:26 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D7B8B10EC43;
-	Tue,  7 Jul 2026 10:15:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 60D4410EC57;
+	Tue,  7 Jul 2026 10:17:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HluYhwOW";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cGH+4V3q";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 806A244CA0;
-	Tue,  7 Jul 2026 10:00:33 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 05CC646F1A;
+	Tue,  7 Jul 2026 10:02:28 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783418433;
- b=e0v21wWDgDuIHuab1VadaUDC2K9d4eA/DbB9oHiDjFv5mk1gtwlIhKMNexL0QPJA6Lzn6
- SSSwYTwLW3DS7EgpeOa4yAHFZUAHeoBWehwI2eNZTSdtORJRiVhjS5SsDIep6VwLZjbOMjm
- 4AH25WcJ6Z2MbV5T+dDRlWIAJE4qdEinGfhqa6z/ZSo7tMfBf5rUqWx5r6rvji9Ho0uCXKo
- bwl8qXNCzpHMSkQsx9MCDDRE6ljamOsilJVV7T9z3AHpY1dd/yYAZjAFd6Y6lVMLFx3k7dC
- r4LOCu4l38Td16rOY5jIa6QHoMLqA170lG3sox2tH3O3e5casNh5pmjtKnCg==
+ s=20240201; t=1783418547;
+ b=NdE7QWG2YYitWNa7eYXkhAv4DEGHWFOA2Zi0Iwx/8l7gUhX4Mwswj/n7jpTzIKZN6wRvJ
+ iIafNv/UghMT8mm3zizKK4r/h9X959L7zkViOlS8xg5k+OdpDWRYWU09v39mv7K7wsYXva1
+ hXdS3pmkjEiOONxec/kfAImP5wfnGF5tAIVASWH1wEHQw9/LyIV9Gn4aj+1L08e7u9TNsac
+ ci9sIRonOLagaIuUXwVphXxoInjqiVxkmepsZmJqgzxZvCZ9BzoToHbzEdiBCPpaze3OIpG
+ 8RvKN+deKzaGZHfsqBEQEct1Y54kXG23m/tSwYaDyNOE7cP/USxB8xPb0wOg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783418433; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783418547; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=mNSla9Czr4vFeuTIzrP/cHDzh+yx/IrTUvaJ5OnP34U=;
- b=HPKWiLs3j2aH07OPfy6w3D+wJTxcLM6v6OhBTsXGzltQcewFPp1TQPoC0seQlL1zZmZBo
- dNjAqXfT1qqtyCvzJ9DvkRHIheMDfxNiXKtvZHNkblDSfP3Gqh2leEnDsiar2ZGlWj3ojIA
- yJQYdbX6iR96WJ8tM5HaW5jMdUeW+Lx3j0UKkwofIIZbhoU9XvEjIQc4v7ZqXaNsJCxeeL8
- kXxQOk84ag+xX39vcHAN+aicJ/iAIm4pFqD5gFcobP7bxaoQAGKAIN2vV0riXbgvf6K7Avc
- SIyPxgG88eTOVx4A6akhkmmmuMa842iSsi0l6OROYRmmGf1LPvgVA/LTvhEQ==
+ bh=mnyEnVNjUbkl63yjftBd6ZAUslZHuhLMLE5i1q1dbiA=;
+ b=RQpYn0vEkfHvfoj72fqfrHtduPe8Gpzk6BL0g8z67TvPxwgfQQ1zEKWMiKk9h2YtY+/NY
+ HRSOq5zKzzmrC3OP3atNXwKAyk420jdWdMp0B25Z1stjGUpHnHrvfrfFPehS2H//j4cEanK
+ OBqGfdFPWNNnxiLNRTomao3J9+pcxg/x/9lfX/xcp6GisRC5aj+KzFXtpb6WGRPEPKxH/Ip
+ uqsna6J6DT+lhw24RKjE/Y8bjkhozqWfzRXjlsRyISTbqjVO1M2JIKKPp+QJe5bGtOvaz+j
+ QpFqfqkgwExfdV8PjVc+JO+UDT7ntFfO4n4NgUah4pG2HIECBXv4JVV6u6CQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,40 +46,41 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E8A2F44CA0
-	for <nouveau@lists.freedesktop.org>; Tue,  7 Jul 2026 10:00:30 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9548F44CA0
+	for <nouveau@lists.freedesktop.org>; Tue,  7 Jul 2026 10:02:24 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 06FD810E482;
-	Tue,  7 Jul 2026 10:15:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AE7DF10E479;
+	Tue,  7 Jul 2026 10:17:21 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 64240424AD;
-	Tue,  7 Jul 2026 10:15:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDAC81F00A3D;
-	Tue,  7 Jul 2026 10:15:10 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 86145419A0;
+	Tue,  7 Jul 2026 10:17:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 122461F000E9;
+	Tue,  7 Jul 2026 10:17:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783419327;
-	bh=mNSla9Czr4vFeuTIzrP/cHDzh+yx/IrTUvaJ5OnP34U=;
+	s=k20260515; t=1783419441;
+	bh=mnyEnVNjUbkl63yjftBd6ZAUslZHuhLMLE5i1q1dbiA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=HluYhwOWRqwjbw9mnNEjPVnyh7tR+UBSnSv/otgjpUQBigWOwZUJOYkpU0LnGQPOd
-	 9JWuafQR68ncbIWqn0jW8jTfwPafpmeDnt2Wvr8VLfjDqTgkyFdLwQrzBX5aGYlPBy
-	 bdDr9uov5pNq61DLoYMBBHIrYLPaluS9cGGvVLuwrNNgpnc0PxTOy1Y4Jv6WgqJLPU
-	 g8L2HsabDqHedwwaZisYTmwsI8Liu2LIO7hoQNV8VhXPReqA934JiUn5O3mwQK8rxr
-	 zZFBy1M3lH7Q7XggDkvTulkUo1eG7DFZ7mTqdd75PKoMBF8VkjG7TCZVSFf+WpnFzU
-	 vO+QqUik5Cd9A==
-Date: Tue, 7 Jul 2026 11:15:02 +0100
+	b=cGH+4V3qnWn/h2ntR4JOMP1MeFASTJyb/ukIFIKga6vmMPs4hWnZeyozgnP8o9zcj
+	 4aOepXlE5yG0XgvATIbejO38So9984JOSQXxfemV7MrbXTQdbQqJryZ7by0rmLtk6g
+	 KbyecrBlOO6RxZhZHoEJHQvN3lfQ+IRVIfllVkFrcFe5jzAzy0lAaGw02N38CG8Xem
+	 bIuNc24pIIBeQZLitf75XKOixE/v2BoAd9XaTV+y7NflJFaBKiVOSfh8s3qL1kjbV3
+	 QtnOkHzUZcffKxdXoostqrwbOmOdDgDEYFoMQefdIk5SYi6OuZQQ8BSF6bkbad2igD
+	 ZZ2I4X8hc6i0g==
+Date: Tue, 7 Jul 2026 11:16:56 +0100
 From: Lorenzo Stoakes <ljs@kernel.org>
 To: Zi Yan <ziy@nvidia.com>
-Subject: Re: [PATCH 02/13] mm/vma: update do_mmap() to use vma_flags_t
-Message-ID: <akzRdIS8ZotxIOFR@lucifer>
+Subject: Re: [PATCH 03/13] mm: convert __get_unmapped_area() to use
+ vma_flags_t
+Message-ID: <akzR7JQuaKEQpH5Y@lucifer>
 References: <cover.1782760670.git.ljs@kernel.org>
- <e0ac58ad2b88ff7e2f0024e3286b2e786f79ca32.1782760670.git.ljs@kernel.org>
- <DJRZ2QCEIVA6.1AZF5S891NKS4@nvidia.com>
+ <b1ad7c4443f5cba622e4c48c5a9ef15427001a93.1782760670.git.ljs@kernel.org>
+ <DJRZGEZU5ESV.3IP5LEAUQJCBK@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DJRZ2QCEIVA6.1AZF5S891NKS4@nvidia.com>
-Message-ID-Hash: 6R2FBMVPAAXBIBB7FDI5WJZCQLVIZZNB
-X-Message-ID-Hash: 6R2FBMVPAAXBIBB7FDI5WJZCQLVIZZNB
+In-Reply-To: <DJRZGEZU5ESV.3IP5LEAUQJCBK@nvidia.com>
+Message-ID-Hash: I4AH3S3Q2BMENQXMCHFNW7XMYWG6LSWP
+X-Message-ID-Hash: I4AH3S3Q2BMENQXMCHFNW7XMYWG6LSWP
 X-MailFrom: ljs@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -140,8 +141,8 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6R2FBMVPAAXBIBB7FDI5WJZCQLVIZZNB/>
-Archived-At: <https://lore.freedesktop.org/akzRdIS8ZotxIOFR@lucifer/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/I4AH3S3Q2BMENQXMCHFNW7XMYWG6LSWP/>
+Archived-At: <https://lore.freedesktop.org/akzR7JQuaKEQpH5Y@lucifer/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -151,125 +152,81 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon, Jul 06, 2026 at 10:10:32PM -0400, Zi Yan wrote:
+On Mon, Jul 06, 2026 at 10:28:24PM -0400, Zi Yan wrote:
 > On Mon Jun 29, 2026 at 3:25 PM EDT, Lorenzo Stoakes wrote:
-> > The core do_mmap() function accepts a vm_flags_t parameter which it then
-> > manipulates before passing to mmap_region() to do the heavy lifting of the
-> > memory mapping.
+> > Update __get_unmapped_area() to be parameterised by vma_flags_t rather than
+> > vm_flags_t as part of the effort to move VMA flags from a system word to a
+> > bitmap.
 > >
-> > Update do_mmap() to instead accept a vma_flags_t parameter, and adjust all
-> > the logic within do_mmap() to manipulate this instead.
-> >
-> > This is as part of the ongoing effort to convert VMA flags from a system
-> > word size to a bitmap type which allows us to unrestrict the number of VMA
-> > flags, as well as gain control over how VMA flag manipulation occurs.
-> >
-> > We do not cascade these changes to all functions which accept vm_flags_t,
-> > but rather use vma_flags_to_legacy() where necessary, specifically
-> > deferring converting calc_vm_prot_bits(), calc_vm_flag_bits() and
-> > __get_unmapped_area() to vma_flags_t.
-> >
-> > Also utilise the new vma_flags_can_grow() predicate which correctly handles
-> > the case of architectures without upward growing stacks.
-> >
-> > As part of this change, introduce VMA_SHADOW_STACK so we can correctly
-> > handle the case of the shadow stack not being defined.
+> > We cascade the changes up to arch_get_unmapped_area_topdown() and
+> > arch_get_unmapped_area(), where, for now, we use vma_flags_to_legacy() in
+> > order to propagate the VMA flags.
 > >
 > > No functional change intended.
 > >
 > > Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 > > ---
-> >  arch/mips/kernel/vdso.c |  4 +--
-> >  fs/aio.c                |  2 +-
-> >  include/linux/memfd.h   |  6 ++--
-> >  include/linux/mm.h      |  6 ++--
-> >  ipc/shm.c               |  3 +-
-> >  mm/memfd.c              | 15 ++++-----
-> >  mm/mmap.c               | 67 ++++++++++++++++++++++++-----------------
-> >  mm/nommu.c              |  3 +-
-> >  mm/util.c               | 10 +++---
-> >  mm/vma.c                |  7 ++---
-> >  mm/vma.h                |  2 +-
-> >  11 files changed, 69 insertions(+), 56 deletions(-)
+> >  fs/hugetlbfs/inode.c     |  3 ++-
+> >  include/linux/huge_mm.h  | 10 +++++-----
+> >  include/linux/mm.h       |  6 ++++--
+> >  include/linux/sched/mm.h | 12 ++++++------
+> >  mm/huge_memory.c         | 21 ++++++++++++---------
+> >  mm/mmap.c                | 27 ++++++++++++++-------------
+> >  6 files changed, 43 insertions(+), 36 deletions(-)
 > >
+> <snip>
+>
+> > diff --git a/include/linux/sched/mm.h b/include/linux/sched/mm.h
+> > index 95d0040df584..b301ec90740a 100644
+> > --- a/include/linux/sched/mm.h
+> > +++ b/include/linux/sched/mm.h
+> > @@ -193,12 +193,12 @@ unsigned long mm_get_unmapped_area(struct file *filp, unsigned long addr,
+> >  				   unsigned long len, unsigned long pgoff,
+> >  				   unsigned long flags);
+> >
+> > -unsigned long mm_get_unmapped_area_vmflags(struct file *filp,
+> > -					   unsigned long addr,
+> > -					   unsigned long len,
+> > -					   unsigned long pgoff,
+> > -					   unsigned long flags,
+> > -					   vm_flags_t vm_flags);
+> > +unsigned long mm_get_unmapped_area_vmaflags(struct file *filp,
+> > +					    unsigned long addr,
+> > +					    unsigned long len,
+> > +					    unsigned long pgoff,
+> > +					    unsigned long flags,
+> > +					    vma_flags_t vma_flags);
+>
+> Want to use two-tab indentation while at it?
+
+Yeah sure will fix on respin!
+
 >
 > <snip>
 >
-> >
-> > -static int check_write_seal(vm_flags_t *vm_flags_ptr)
-> > +static int check_write_seal(vma_flags_t *vma_flags_ptr)
-> >  {
-> > -	vm_flags_t vm_flags = *vm_flags_ptr;
-> > -	vm_flags_t mask = vm_flags & (VM_SHARED | VM_WRITE);
-> > -
-> >  	/* If a private mapping then writability is irrelevant. */
-> > -	if (!(mask & VM_SHARED))
-> > +	if (!vma_flags_test(vma_flags_ptr, VMA_SHARED_BIT))
-> >  		return 0;
-> >
-> >  	/*
-> >  	 * New PROT_WRITE and MAP_SHARED mmaps are not allowed when
-> >  	 * write seals are active.
-> >  	 */
-> > -	if (mask & VM_WRITE)
-> > +	if (vma_flags_test(vma_flags_ptr, VMA_WRITE_BIT))
-> >  		return -EPERM;
-> >
-> >  	/*
-> >  	 * This is a read-only mapping, disallow mprotect() from making a
-> >  	 * write-sealed mapping writable in future.
-> >  	 */
-> > -	*vm_flags_ptr &= ~VM_MAYWRITE;
-> > +	vma_flags_clear(vma_flags_ptr, VMA_MAYWRITE_BIT);
-> >
-> >  	return 0;
+> > @@ -812,19 +811,20 @@ arch_get_unmapped_area_topdown(struct file *filp, unsigned long addr,
 > >  }
->
-> This function alone changed its original behavior, since vm_flags is a
-> snapshot of *vm_flags_ptr, but after the change this snapshot is gone.
-> But its only caller memfd_check_seals_mmap() gets vm_flags_ptr from the
-> input parameter of do_mmap(), so the overall behavior does not change.
-
-Right yeah, the snapshot was always just a convenience thing :)
-
->
-> <snip>
->
-> > +		case MAP_DROPPABLE: {
-> > +			vma_flags_t droppable = VMA_DROPPABLE;
-> > +
-> > +			if (vma_flags_empty(&droppable))
-> >  				return -EOPNOTSUPP;
-> > +			vma_flags_set_mask(&vma_flags, droppable);
-> > +
-> >  			/*
-> >  			 * A locked or stack area makes no sense to be droppable.
-> >  			 *
-> > @@ -515,23 +527,24 @@ unsigned long do_mmap(struct file *file, unsigned long addr,
-> >  			 */
-> >  			if (flags & (MAP_LOCKED | MAP_HUGETLB))
-> >  			        return -EINVAL;
-> > -			if (vm_flags & (VM_GROWSDOWN | VM_GROWSUP))
-> > +			if (vma_flags_can_grow(&vma_flags))
-> >  			        return -EINVAL;
+> >  #endif
 > >
-> > -			vm_flags |= VM_DROPPABLE;
-> > -
+> > -unsigned long mm_get_unmapped_area_vmflags(struct file *filp, unsigned long addr,
+> > -					   unsigned long len, unsigned long pgoff,
+> > -					   unsigned long flags, vm_flags_t vm_flags)
+> > +unsigned long mm_get_unmapped_area_vmaflags(struct file *filp, unsigned long addr,
+> > +					    unsigned long len, unsigned long pgoff,
+> > +					    unsigned long flags, vma_flags_t vma_flags)
 >
-> Lance pointed out the reordering of setting VMA_DROPPABLE and checking
-> of can_grow, but these flags are not overlapped and there is no parallel
-> writer to vma_flags. So it is still no functional change, just not
-> mechanical changes. :)
+> Ditto.
 
-Right yes exactly :)
+Ack will fix!
 
 >
-> Otherwise, LGTM.
+> LGTM.
 >
 > Reviewed-by: Zi Yan <ziy@nvidia.com>
 
 Thanks!
 
+>
 >
 > --
 > Best Regards,
