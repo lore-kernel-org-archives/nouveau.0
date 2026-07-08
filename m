@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3985C44501
-	for <nouveau@archiver.kernel.org>; Wed,  8 Jul 2026 21:56:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDA43C43458
+	for <nouveau@archiver.kernel.org>; Wed,  8 Jul 2026 23:18:32 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6667610F2EF;
-	Wed,  8 Jul 2026 21:56:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 40B6310E74E;
+	Wed,  8 Jul 2026 23:18:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fpvCR/f7";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="EgtLCKDs";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C5B1E46F94;
-	Wed,  8 Jul 2026 21:41:34 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 81EF246F8D;
+	Wed,  8 Jul 2026 23:03:31 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783546894;
- b=hjKVuUxIHr4N39PmdZE3Qyem65PZ4masywlZjcetsBiQGrkfEIFvz3ke8pCFTeM706CT7
- ljBPh5jUcSyyptmCa0ahU5tjZMXO1PanonezHEdOPjAUoN6qz6t0C92jNdYtTHhnx4c5Nux
- +URnepD0tbmnez++HqAhiPOCTsxcRAIh0DdJo/QyGcD8X36ZXDRI3h+AfYbzJ3akmYiuqvH
- nFuP8HlDxO5LAUsScn1G1aN9WpQorx+Ak2VF+419uD1In5KzD4xXIUXJiKeBjdUkayXwrQj
- 0H6C6eZZKSDPObDSF8LVeienSMmkoxdie+4VXEi79ued7anb/zbFx9RNjO0g==
+ s=20240201; t=1783551811;
+ b=Blx0bRVV/m7fr0b7Ei16s+DaMBOnIUIPl7rzBKK5lxZoqVykEwpSieRrASN+UlAHi0ERC
+ Iif/wmiISPKn0Jh1890VRtHlG6O5S+AM8VceWeSU1fN11Poxf0Yuz/k2wxwbfEl3P8842wa
+ +CwVrsASfAPYnsT/LkAcDvzLXfa1l5XqpF3DfAG0BG+gwf50u3DKsSHFItQKul4NbWEBgtG
+ 7hDqK6Fm6qHO3zI6hFiuGCd+zq9+csqcZKlPyll5jUfxc56LsO9+Tb3lWnRaXf17WO6JW8N
+ lCakoi2q/v74V1We0cuxhLqvFBWkHk4uPfISNJjq7eg7Y//GxSICYECxY9zA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783546894; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783551811; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=btjBlfn1gEh32xkLC16toOwaofpK3E2AbdoJxAP/F/4=;
- b=r/cXSOrOS1jjo6lkOw99CRBDMWSQSD8aSQQ86zFHfDWkzaifogjkk9B+VzRSlBih/2QUx
- 6AV5yQ8ta/hrAAT9tYeE60S6xf9uxPjup3DaYx2rXWUvsoIAFABcmzmV1aC+NCJdHqCrtuc
- WMe1MkA5DECg6sReBHyHX4lDKJ8e0N4LUyycHkf9v1k+LEIPfySL62AT2Mj/rK/i1gAPujl
- VE+oBBfvNdhldYj0tHpSWsopVpZhGTEMIQVEijBF7jUbZeBxjJbyFxucg5jXZBfkwM8VVfU
- z0h5qmmtfWVJoyj0VhUIt8kw21CKME+Ljn5XFYQVPK7tVqW4/BxAXD7zHtaw==
+ bh=m5qIRcmJXyAs4S5n6HPsnEq9NZkqNs3idRIrshW19t8=;
+ b=0e1l6Zl/DAeU8Z0XxGuzDWV4+0jURLKw2DqZazDjvuMzEp2feuJl0rQ0fK1LlGpmWV/2I
+ PcE8rDx5f3+BB7daYAh42WTfqcLI2+EeTLdOwirNDZeazSHIcCRV+tSySqPoG3iZhSlRqy4
+ 7SI58pWcJJ94DSsG8l/jcRnUrWN+2tz7X6HcyVsICgYrMwh7efjYFy6C2poDD9CPZ7lQDm4
+ RYcgD14X1Zr7AIvHE1VQh5MmwprZMqLuBJgAGzO/w36q9/n+bBI6q6vNM/5MrR1gcTkzLoT
+ CuHi9MYkSlN2UHajNu8REVS0R7+yfR7eINQ92Vb4g47nkYBKAEaRsq7kTfdw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,103 +46,104 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id DCCDD46BAA
-	for <nouveau@lists.freedesktop.org>; Wed,  8 Jul 2026 21:41:30 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3F9E646BAA
+	for <nouveau@lists.freedesktop.org>; Wed,  8 Jul 2026 23:03:29 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 26E5910F2DC
-	for <nouveau@lists.freedesktop.org>; Wed,  8 Jul 2026 21:56:31 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9C07B10E3B0
+	for <nouveau@lists.freedesktop.org>; Wed,  8 Jul 2026 23:18:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1783547790;
+	s=mimecast20190719; t=1783552708;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=btjBlfn1gEh32xkLC16toOwaofpK3E2AbdoJxAP/F/4=;
-	b=fpvCR/f7ni7Li0uZLpRIIfJOvjFGdK8OPxyxfZMOTAAeEc/H0fov4Lm1HnS6v5gJ43Gcvp
-	dvlq1MrWp5k+O7H02YT7aXQB8DIzJV+6+zCNs8GX6GvG5Zj0RFZDEELuDXkHV3TCQJtpo4
-	LY0rOgDG++KbhOPdwAvNHgkFKfUnEVs=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=m5qIRcmJXyAs4S5n6HPsnEq9NZkqNs3idRIrshW19t8=;
+	b=EgtLCKDsDu5QERE1z6vnO3fAAs5AbowiUWo8blo2z5trjiGa6/IU/Y9z+eNE8jjEWy0xuS
+	QlrdV8v8Z/58w5/7R9+/oPs3PH4rDlZubWTrQgtGk3jZMbbWnZyv5z5QxvJ+tFEjUTRn9r
+	HKtyGaokJt0bUGVXbWzq/462cB9OES4=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-335-l3GZ8fbzMw6A96w3WwVwKg-1; Wed, 08 Jul 2026 17:56:28 -0400
-X-MC-Unique: l3GZ8fbzMw6A96w3WwVwKg-1
-X-Mimecast-MFC-AGG-ID: l3GZ8fbzMw6A96w3WwVwKg_1783547788
-Received: by mail-qk1-f199.google.com with SMTP id
- af79cd13be357-92e82060977so41866385a.1
+ us-mta-618-ttXTWkeAOUWh_-iRdEUmGw-1; Wed, 08 Jul 2026 19:18:25 -0400
+X-MC-Unique: ttXTWkeAOUWh_-iRdEUmGw-1
+X-Mimecast-MFC-AGG-ID: ttXTWkeAOUWh_-iRdEUmGw_1783552705
+Received: by mail-qv1-f70.google.com with SMTP id
+ 6a1803df08f44-8e86066fc53so6734576d6.0
         for <nouveau@lists.freedesktop.org>;
- Wed, 08 Jul 2026 14:56:28 -0700 (PDT)
+ Wed, 08 Jul 2026 16:18:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783547788; x=1784152588;
+        d=1e100.net; s=20251104; t=1783552705; x=1784157505;
         h=mime-version:user-agent:content-transfer-encoding:content-type
          :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=btjBlfn1gEh32xkLC16toOwaofpK3E2AbdoJxAP/F/4=;
-        b=V7Chfl7eBeDWfoWNf0M1awl2I1w6w/Ut4GPoQNW8hpVMPHPLxqggDBy3Cn1/29FS2O
-         y3im7KqOPo+xq8sYoIvuhN/koGFQFpF0SZx8Lf2RiYPDXaxToVSCaWMEon/veRQkvKGG
-         wBX/y8bwny9xsGWE02Q2KhOmnrLGyQE+i76vAh5hu1TLnoN9QL21Ec6tlczDBGW3E8WS
-         4sdxIRktLMtXKeVJLKdqQuSOqyWLU0cWuZMA/xn6hnMASuWaPEvPeiNGVzOrNLkinUTY
-         JjEi6HSpKUPtUGHsIwJjixFVInR7cGbwIbf7PEiJqpT7hcDPRvdb5+Axz8gzKE1zTvD1
-         TjOw==
-X-Forwarded-Encrypted: i=1;
- AHgh+Rq2VqpApibPvw0HyKuBqvN1+t1ozlh3oAyTBb/cZ8Xgb+aIo1NATHtBQ9up2yewapFFz9ETmS0C@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxziXc/oKpnhHCdukTiDANEY/gMbtALH0Zt6dvhI+xSPZ3MMfHH
-	JM1uqnYaWK/CiEbbkI9MGeAlSg1l8VESRPmcq5ldOYuomFZAW2v2Cz7RKIttOtA3TPmKeSRXd+d
-	dc46FD1G2DzrEsofwV/MNS1y4KFrE/EGSDQU4i+s29tToQRY2v7k150mt9i1MVQ8I6O8=
-X-Gm-Gg: AfdE7ckjkVU6i0n1WaxKl/y8zxICEc9b0CJEUImJPnGqgsSnc5323WuTIdKjWYm9ZDU
-	q5Qs1otvmCES2OeLkN3s7LdzE8bUkl+4tuzzvfjlbrqpV1uryu9chQYajHO6wA+gJwcADcEfFI2
-	I4M8g+KhzXgyezTnVg/dZJIOubc4Q9UJJKOlH8DiTvlfmve6p2VuCQbqJqPRyW7qtpw9eRYzsTG
-	RkwiWGpRP0QrRD89RLBBij02SGtLA7mNMpU2cPYDcr7ImHuW+4SjtSj93IZS0S6TaCExsTQHAyT
-	XLMP1Cf67fOF5cQZjShBLnmBxuqdiRNYUiU7O/F/nlc7JgJ9p/gEpj+9YjybigHKFlol0QmbOBB
-	FYw324FM=
-X-Received: by 2002:a05:620a:444a:b0:911:e11e:dc0d with SMTP id
- af79cd13be357-92edac0d694mr13102485a.24.1783547788318;
-        Wed, 08 Jul 2026 14:56:28 -0700 (PDT)
-X-Received: by 2002:a05:620a:444a:b0:911:e11e:dc0d with SMTP id
- af79cd13be357-92edac0d694mr13096985a.24.1783547787628;
-        Wed, 08 Jul 2026 14:56:27 -0700 (PDT)
+        bh=m5qIRcmJXyAs4S5n6HPsnEq9NZkqNs3idRIrshW19t8=;
+        b=E+Y/icYljt0XHygX4jz5W4fyJejGUQdo9MUThYz3Yd5WMUrNcnyXpWeIMsM2BaIiNA
+         LolcWaGxr5SUEtM+f+7fB80uBYfAECkPq+JPBft8XVDTWLEloGRS9jGKp3wXF3w3I+JN
+         OGAXrgVpM3oGdXg1S6r/ttWfeGu0haSnMeyTOHtIebUlj2EyBY/G7Swjkq5Md/tMzBZw
+         hic5Bwrgj15k+b2feHQj8WlKIrGyeOgKgDAnYZiavycbcQtTzyR+vfd8dR5khtYO9cnU
+         fCxHMpWnmyfoyIKsXCk1L/Y5tw9qacrNHls2cJoJ9DFvqbSgdDyod3cQXQ8sElP6Eyx5
+         vXKA==
+X-Gm-Message-State: AOJu0Yzr8YubrKvUJ8Qau7ounyOLTcnAskkKF13iOmFIfV47A7MdDKB0
+	yz/pYysx8ZBNKD/wjzMO1q1WJrJADyc200eyf7oLmGEpDUIAv5ILfHoBwJhywx7xMLvMDGAupTF
+	+pJADOcNJ9G9IIl9xV9g95WiV9Fh05vPC4rYSoHcRU/CW+GtA0IPs4Yjts1ljJgiow8k=
+X-Gm-Gg: AfdE7clBjf4k8DCvdGNVGezGFaftcpC2Gf3E2NsAWlayLFcupMHAP9xSvuf4xw3P1Vm
+	cebHxEB6SJgQP+SncLBAzB1OIf3MsjEflLtaQ8uY7fKLzFztpIkdMgGXCUcObx5VbjfwSgS7rmW
+	wd9wxqV8Y2kUCcmWVoHQdY1W3izt5rijxsDrJBC+u8X5nWvQev5WwZEj1d2kGFQSaMTxOosi5fW
+	43ig2cxXp+lC1HT0MEnUPxDuzFqZvlILcEYY3q+/EYRPlEORt78lfcMYeLQdmsDhVF/4gWz+3Pw
+	TIeeO/WdRCCDl9eoXakPkUoECuqvgfmvxgFfuLg9HzsEEa9BdIpD9EOj2fVNGWH7xlWGHbRqi74
+	S5hmRO90=
+X-Received: by 2002:a05:6214:8087:b0:8ee:fb19:a9ac with SMTP id
+ 6a1803df08f44-8ffea44044bmr4033536d6.12.1783552704823;
+        Wed, 08 Jul 2026 16:18:24 -0700 (PDT)
+X-Received: by 2002:a05:6214:8087:b0:8ee:fb19:a9ac with SMTP id
+ 6a1803df08f44-8ffea44044bmr4033166d6.12.1783552704270;
+        Wed, 08 Jul 2026 16:18:24 -0700 (PDT)
 Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- af79cd13be357-92e90ca90a5sm1483479985a.32.2026.07.08.14.56.25
+ 6a1803df08f44-8ffd7c1d9f6sm3681606d6.23.2026.07.08.16.18.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jul 2026 14:56:26 -0700 (PDT)
-Message-ID: <b6b58477af57eb25e28eefb1a979a65aa250dc45.camel@redhat.com>
-Subject: Re: [PATCH 00/10] vga_switcheroo, drm: Push fbcon handling into DRM
- clients
+        Wed, 08 Jul 2026 16:18:23 -0700 (PDT)
+Message-ID: <971d09c47689981c1ea44c89555f71fcc0b5db41.camel@redhat.com>
+Subject: Re: [PATCH v3 2/3] drm/nouveau/gsp/r570: Never enter Gcoff state
 From: lyude@redhat.com
-To: Thomas Zimmermann <tzimmermann@suse.de>, lukas@wunner.de,
-	jfalempe@redhat.com, alexander.deucher@amd.com, christian.koenig@amd.com,
-	airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, 	rodrigo.vivi@intel.com,
- tursulin@ursulin.net, dakr@kernel.org, deller@gmx.de
-Date: Wed, 08 Jul 2026 17:56:25 -0400
-In-Reply-To: <20260707135724.247562-1-tzimmermann@suse.de>
-References: <20260707135724.247562-1-tzimmermann@suse.de>
+To: John Hubbard <jhubbard@nvidia.com>, Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@redhat.com>
+Date: Wed, 08 Jul 2026 19:18:22 -0400
+In-Reply-To: <b5d08cfe-aead-45f2-937d-6e9ef4dfea50@nvidia.com>
+References: <20260701182857.190713-1-lyude@redhat.com>
+	 <20260701182857.190713-3-lyude@redhat.com>
+	 <DJNNQVO96RR1.141CE7TKF6MZP@kernel.org>
+	 <CAMwc25qA6GFb1Q=VHTa8BcM85B2dr22RrgdJcHTz70P5Xjj_bA@mail.gmail.com>
+	 <DJNO6SIE8T88.1F0ZUILIRVDJC@kernel.org>
+	 <b5d08cfe-aead-45f2-937d-6e9ef4dfea50@nvidia.com>
 User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: xvAQbpwoUAUhJQhGtNSwaS02RuJIwMNTmGREnrHS_Kk_1783547788
+X-Mimecast-MFC-PROC-ID: AS7NQbbRC9f48Rjd4uA9kJrdJ8rN6a1u43xrnmjjSlQ_1783552705
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 3HPGTC4DPIQVSEHJOI4HKMJAPJQ5JXJA
-X-Message-ID-Hash: 3HPGTC4DPIQVSEHJOI4HKMJAPJQ5JXJA
+Message-ID-Hash: Q4V6IKPOHTC65SSJ42K4KPOV3745KG42
+X-Message-ID-Hash: Q4V6IKPOHTC65SSJ42K4KPOV3745KG42
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address
-CC: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org, sashiko-reviews@lists.linux.dev
+CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Kees Cook <kees@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Maxime Ripard <mripard@kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3HPGTC4DPIQVSEHJOI4HKMJAPJQ5JXJA/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Q4V6IKPOHTC65SSJ42K4KPOV3745KG42/>
 Archived-At: 
- <https://lore.freedesktop.org/b6b58477af57eb25e28eefb1a979a65aa250dc45.camel@redhat.com/>
+ <https://lore.freedesktop.org/971d09c47689981c1ea44c89555f71fcc0b5db41.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -152,75 +153,216 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-For both nouveau patches:
+On Thu, 2026-07-02 at 12:46 -1000, John Hubbard wrote:
+> On 7/1/26 2:47 PM, Danilo Krummrich wrote:
+> > On Thu Jul 2, 2026 at 2:30 AM CEST, David Airlie wrote:
+> > > On Thu, Jul 2, 2026 at 10:27=E2=80=AFAM Danilo Krummrich
+> > > <dakr@kernel.org> wrote:
+> > > >=20
+> > > > (Cc: John)
+>=20
+>=20
+> Also Cc: Aaron Plattner. I've provided answers below, but Aaron
+> has actual experience in debugging suspend-resume on our Linux
+> drivers.
+>=20
+> These answers are the result of my moderately long session with
+> our best AI tools, using Open RM, GSP-RM, and Nouveau sources
+> as a reference. I'm not actually experienced in this suspend-resume
+> area, much, but this makes sense from what anecdotal things I've
+> seen before.
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+Would definitely be good to get human eyes on this, see down below
 
-On Tue, 2026-07-07 at 15:38 +0200, Thomas Zimmermann wrote:
-> Vga_switcheroo currently invokes fb_switch_outputs() to inform fbcon
-> about switching of the physical outputs among framebuffer devices.
-> But
-> new DRM clients to not use fbdev/fbcon and might require their own
-> vga_switcheroo support. Let's strictly separate them from each other.
 >=20
-> Remove fbdev/fbcon from vga_switcheroo. Introduce a pre_switch
-> callback
-> for vga_switcheroo clients to do the fbcon update. Allows for
-> removing
-> all direct interactions between vga_switcheroo and fbdev/fbcon.
+> > > >=20
+> > > > On Wed Jul 1, 2026 at 8:17 PM CEST, Lyude Paul wrote:
+> > > > > It turns out that the only reason our previous fixes looked
+> > > > > like they
+> > > > > worked for this was because we would occasionally set the
+> > > > > Gcoff state to 0
+> > > > > in the normal S3 path, which fixed suspend/resume on desktops
+> > > > > - but not on
+> > > > > machines using runtime suspend.
+> > > > >=20
+> > > > > The proper fix is to just never set this flag. Our current
+> > > > > guess for the
+> > > > > reasoning behind this is that Gcoff likely coincides with
+> > > > > GC6, and not
+> > > > > literally power off.
+> > > >=20
+> > > > I don't think GcOff coincides with GC6, it should actually be a
+> > > > power off.
 >=20
-> Also replace the existing reprobe hook with post_switch for symetry.
+> You're right, it's the other way around from the commit message
+> guess.
+> In the RM sources GC6 and GCOFF are two distinct GCx targets. GC6
+> keeps
+> video memory alive in self-refresh. GCOFF is a full power-off where
+> video memory content is lost, so RM copies the used framebuffer out
+> to
+> sysmem before entering it, and it reports vidmem power as off while
+> in
+> GCOFF. GCOFF is the power-off case, GC6 is not.
 >=20
-> At the same time, push the fbcon update into DRM's client for fbdev
-> emulation. Do this with the new DRM client callback acquire_outputs,
-> so that other clients can have their own handling of vga_switcheroo.
+> > > >=20
+> > > > =C2=A0From a quick glance in OpenRM, it seems that with
+> > > > bEnteringGcoffState =3D 1 it
+> > > > also saves off buffers flagged as
+> > > > MEMDESC_FLAGS_LOST_ON_SUSPEND.
 >=20
-> There are only four drivers that support vga_switcheroo: amdgpu,
-> radeon, i915 and nouveau. Update each of them with the new callbacks.
-> When vga_switcheroo now invokes pre_switch, each DRM driver forwards
-> to aquire_outputs and lets the DRM clients handle the new outputs.
+> That matches what I see, and it's the key point. bEnteringGcoffState
+> is
+> not a GC6-versus-off selector at the FBSR layer. It becomes the
+> PDB_PROP_GPU_GCOFF_STATE_ENTERING property on the RM side, and that
+> property widens the set of allocations RM saves and restores across
+> suspend (memmgrAddMemNodes, through its bSaveAllRmAllocations
+> argument).
 >=20
-> Tested with radeon on a notebook with Radeon HD 4225 and HD 5430.
+> With it set:
+> =C2=A0=C2=A0 * RM reserved regions get saved, unless they are LOST_ON_SUS=
+PEND.
+> =C2=A0=C2=A0 * RM channel-context and kernel-client buffers get saved eve=
+n when
+> =C2=A0=C2=A0=C2=A0=C2=A0 they are LOST_ON_SUSPEND.
 >=20
-> Thomas Zimmermann (10):
-> =C2=A0 drm/edid: Include <linux/fb.h>
-> =C2=A0 drm/client: Add acquire_outputs callback; implement for fbdev
-> =C2=A0=C2=A0=C2=A0 emulation
-> =C2=A0 vga_switcheroo: Add pre_switch callback to client ops
-> =C2=A0 vga_switcheroo: Add post_switch callback to client ops
-> =C2=A0 drm/amdgpu: Implement struct vga_switcheroo_client_ops.pre_switch
-> =C2=A0 drm/i915: Implement vga_switcheroo_client_ops.pre_switch
-> =C2=A0 drm/nouveau: Implement vga_switcheroo_client_ops.pre_switch
-> =C2=A0 drm/nouveau: Implement vga_switcheroo_client_ops.post_switch
-> =C2=A0 drm/radeon: Implement struct vga_switcheroo_client_ops.pre_switch
-> =C2=A0 vga-switcheroo: Remove unused interfaces
+> With it clear, the reserved regions are skipped and the channel and
+> kernel-client buffers are saved only when they are not
+> LOST_ON_SUSPEND.
+> So =3D1 is a strict superset of =3D0, and it does include the
+> LOST_ON_SUSPEND buffers you found.
 >=20
-> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |=C2=A0 9 ++++-
-> =C2=A0drivers/gpu/drm/clients/drm_fbdev_client.c | 23 ++++++++----
-> =C2=A0drivers/gpu/drm/drm_client_event.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 18 ++++++++++
-> =C2=A0drivers/gpu/drm/drm_edid.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
-> =C2=A0drivers/gpu/drm/i915/i915_switcheroo.c=C2=A0=C2=A0=C2=A0=C2=A0 | 11=
- +++++-
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_vga.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- | 28 +++++++++------
-> =C2=A0drivers/gpu/drm/radeon/radeon_device.c=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 9 ++++-
-> =C2=A0drivers/gpu/vga/vga_switcheroo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 41 +++++---------------
-> --
-> =C2=A0drivers/video/fbdev/core/fbcon.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 8 -----
-> =C2=A0include/drm/drm_client.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 14 +++=
-+++++
-> =C2=A0include/drm/drm_client_event.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 3 ++
-> =C2=A0include/linux/vga_switcheroo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 30 +++++++++-------
-> =C2=A012 files changed, 122 insertions(+), 73 deletions(-)
+> The part that matters for nouveau: in the full driver that property
+> is
+> never just a standalone flag. RM sets it only when it has decided to
+> do
+> a GCOFF as part of its own RTD3 policy, after it has reserved
+> correctly
+> sized sysmem for the save and turned on comptag backing-store
+> preservation for the state unload and load. Setting the flag in the
+> FBSR init RPC on its own, the way nouveau does, gives GSP the wider
+> save
+> and restore set without any of that surrounding GCOFF handling.
 >=20
+> So I would adjust the guess slightly. It is not that nouveau never
+> saved those buffers or never had them. nouveau provides the sysmem
+> and
+> GSP-RM does the copy into it. The problem is the reverse: with =3D1,
+> GSP
+> saves and then restores buffers that were meant to be reinitialized
+> on
+> resume, and it does so without the comptag and state-load handling a
+> real GCOFF pairs with them. So the accurate framing is "buffers that
+> should have been reinitialized get restored instead", not "buffers
+> nouveau never saved".
 >=20
-> base-commit: cd8abe2554ec7eba16c1d48ab508732bf93534eb
+> > > >=20
+> > > > My guess would be that with bEnteringGcoffState =3D 1, GSP's
+> > > > resume path expects
+> > > > certain kernel-driver-allocated buffers to still be in place
+> > > > that nouveau didn't
+> > > > save off, or rather never had in the first place.
+> > > >=20
+> > > > John, do you have some details about this?
+> > > >=20
+> > >=20
+> > > In nouveau we have the INST_SR_LOST target, for buffers that
+> > > aren't
+> > > preserved, I wonder did something change between 535 and 570
+> > > around
+> > > what needs to be kept around.
+> >=20
+> > The r535 code never set bEnteringGcoffState in the first place. In
+> > r535 OpenRM
+> > seems to do the exact same thing.
+>=20
+> The set of buffers did not change. The FBSR client ABI did. In 535
+> nouveau enumerates the exact VRAM regions and sends them to RM one at
+> a
+> time, and it never sets the gcoff field, so the flag is a no-op on
+> 535.
+>=20
+> In 570 nouveau passes RM a single sysmem buffer for the whole heap
+> and
+> lets GSP build the region list itself, and the gcoff flag is the only
+> control nouveau has over which regions GSP picks. Forcing it to 0
+> makes
+> the 570 GSP-built set match what 535 effectively saved, which is why
+> 535
+> looks like it does the same thing. So 0 is the right value for how
+> nouveau drives suspend today. RM derives this per transition from its
+> RTD3 policy, and 570 setting it to 1 was the deviation, not 0.
+>=20
+> On patch 3 (the resume state flags), I looked at that as well, and
+> here
+> is what the firmware actually does with it. In the 570 GSP firmware
+> the
+> resume state load already runs with GPU_STATE_FLAGS_PRESERVING |
+> GPU_STATE_FLAGS_PM_TRANSITION. That is set unconditionally in the
+> resume
+> path, and it is gated on the bInPMTransition field of the SR init
+> arguments, which nouveau already sets on resume. The firmware does
+> not
+> derive those flags from srInitArguments.flags. That field is read in
+> only one place on the resume path, an unrelated display workaround
+> gated
+> on the PM_SUSPEND bit. Neither 0 nor PRESERVING | PM_TRANSITION sets
+> that bit. And the value the open driver itself puts in that field on
+> a
+> standby or RTD3 resume is GPU_STATE_FLAGS_PM_SUSPEND, which is a PM-
+> type
+> indicator, not the state-load flags.
+>=20
+> So from the 570 sources I do not see a path by which patch 3 changes
+> what the firmware does on resume. That points to patches 1 and 2, the
+> revert plus never entering the gcoff save path, as what actually
+> fixes
+> the push-buffer timeouts. Your 100-cycle RTD3 result is consistent
+> with
+> that: those two are what stop GSP from doing the wide GCOFF-style
+> save
+> and restore.
+>=20
+> I want to be clear about the limits of what I checked. I confirmed
+> the
+> resume-side firmware behavior against the 570 release (latest)
+> sources=20
+> rather
+> than the exact 570.144 build, so I am not claiming patch 3 is
+> provably
+> inert on 570.144, only that I do not see how it changes behavior. And
+> I
+> have the mechanism for the =3D1 breakage but not the single allocation
+> behind the timeout. I can see that =3D1 restores LOST_ON_SUSPEND RM
+> buffers that should have been reinitialized, without the matching
+> state-load handling, but I have not isolated the exact buffer that
+> produces the failure.
+
+Mhm - the AI must be missing something, mainly because I went back and
+double checked - and at least with runtime PM on this ampere machine
+I'm immediately able to reproduce issues if I drop patch 3 (in
+particular - job timeouts after runtime resume). The actual
+suspend/resume process succeeds, but it leaves us with a GPU that
+doesn't seem to be able to render anything:
+
+[   93.167997] nouveau 0000:01:00.0: vkcube[11028]: job timeout, channel 4 =
+killed!
+[  100.365899] nouveau 0000:01:00.0: gsp: rc engn:00000001 chid:4 gfid:0 le=
+vel:2 type:38 scope:1 part:233 fault_addr:0000000000000000 fault_type:00000=
+000
+[  100.365907] nouveau 0000:01:00.0: fifo:c00000:0004:0004:[vkcube[11028]] =
+errored - disabling channel
+
+>=20
+> My bottom line: patch 2 (=3D0) is correct and is the right value for
+> how
+> nouveau drives suspend today, and patch 1 is needed with it. Patch 3
+> is
+> harmless, and from the sources I do not expect it to change anything
+> on
+> 570.144.
+>=20
+> Assisted-by: Cursor :)
+>=20
+> thanks,
 
