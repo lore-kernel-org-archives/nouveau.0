@@ -4,144 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A276C44507
-	for <nouveau@archiver.kernel.org>; Wed,  8 Jul 2026 23:27:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF919C43458
+	for <nouveau@archiver.kernel.org>; Wed,  8 Jul 2026 23:30:12 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2989310F347;
-	Wed,  8 Jul 2026 23:27:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A630E10F091;
+	Wed,  8 Jul 2026 23:30:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="o0UJDoTl";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Ed2y06MF";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7177D46FA0;
-	Wed,  8 Jul 2026 23:12:22 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id E436446FB8;
+	Wed,  8 Jul 2026 23:15:10 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783552342;
- b=hUs5qYME52zBhM6kSmnk31/2V5l03zI7Tra6YuFaI1y/qODukz/M7TMlQSet2Z5nFL6iA
- QIFgBneX1Tlp6b7liGIpCacleCnkmex/8a1BrbJLBCV6HdR+ezaZi8oUIdUMyrjsPFxRHJX
- S1li+bITPw7/sO1e5ao6g9mzHAPajFnU5opLaQa+B3wJI4wZ5cogIgPeSRLcrDLRGC747M8
- GgJzscwI63yA4gJjsc4erRgfRJ20AB2sY7hIeijP4B2WDgBRB2lTsEQSBxxyJLBr6DtRweJ
- B4UWvm3qs9JqumkwjD4iIJHrbNnzzHjVNzRCrbDPXtWNpVp27pNgoZznvzJw==
+ s=20240201; t=1783552510;
+ b=Zqk/tgcfENsYV7W4hR3/9LKYiFdqvFGT0ST/ymB7J8rL9sHxefS85DLLeOmpGwG98xbBQ
+ J7havL1YCkj+uzpCKzA6Y3RD7swKZm+gNuKJilNtHIGnIUyCEbfSiVxHTE0614iYJRw4S3K
+ 4Ao49cTOlRxFQXSdBKx4vKqU6XUp30hqqrhJqsZxkC/7t6clAJ0ReUSNrJSbrxb0wm954FF
+ OYGszl0U5Px1GW7aWMfUGQrDhNfo0qRO/zJilF6GPxjwXa1963s9+qQqn/CHAYUiNTzk5GX
+ WmzcXaJVER32us2g/U99PMLIheuzQzFcQTlbxh4KUxnAu/uSt8rEyfe1ffHA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783552342; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783552510; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=CyXJGY0usHae+LXmamNtPRV/qmWOdkzAleKaxE3NMCI=;
- b=FicB5HgJHONqyW08ZLOLATgOQ7NQ6xsOZhR1358cQFRYjUBmieF/KsTHR1KetjfkJ+L10
- KirIWHfP3a8GNs+3KVsGF4+vZUSSAP/KPGOG7XnMM75fnf0cQjEvNbpMW34rLAc6ACGeNPE
- mpHyZ28f12klNOJUtOxUWZYwK92Lj7tWbC34u84Ly5Qkv9bPaMFCS/ojnssAsJr9mMpJkee
- NJnSR10c3N9aYEwuVIEcM7smQ9oBezJlBpD6VLavk3w9ote+Nu5CQCMyAzk/iZ7ImvKy3Ho
- ZmzhNtEajkPu4xVLd8j/wIIK9RQAo2AmLxm81jfjyXQqcoO+QBv+IXdXU22Q==
+ bh=1pvBgwYa7lCn2bz7uXEDmoBIfHlXGdkFiLetg9jZiKc=;
+ b=pNF8m6Xkccvk5LgIvl7T7Uj4nZqE5VaYe/Jvxv/nJdiFVjLc6+GCe9bp3tfEvCkdjP7m1
+ V4LW7TR4YUaDVHm6Fd1AUMZRF0oK5n0YBsYNd8N+3j6ibZJeb4xltC1bqAWTNUbIMF4Pgzj
+ 2Mby/OPt8ljXbDZNFYwUgok3H7RSAyBZW/s8ybbqGflwJn1Ns1XWXyqVN1yyKEimzdj6klN
+ 0zJmzmkfV/LWemd6uXwHNHAZmZT8xLaSnGCpU4iOWee0eZgvFVAx1gTATw4JwkJcpTMJYce
+ tQzfyo/LkJszSj7knZ+5mhwLh1xfuNrSy+O9dFMyvKOsTj54wi8f+EBw7jbg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5A81346F6D
-	for <nouveau@lists.freedesktop.org>; Tue,  7 Jul 2026 19:32:48 +0000 (UTC)
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
- [209.85.210.169])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 584DF10EF0A
-	for <nouveau@lists.freedesktop.org>; Tue,  7 Jul 2026 19:47:46 +0000 (UTC)
-Received: by mail-pf1-f169.google.com with SMTP id
- d2e1a72fcca58-845eb7b96feso4521691b3a.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id BADCA46BAA
+	for <nouveau@lists.freedesktop.org>; Wed,  8 Jul 2026 23:15:08 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2C5BD10E9C9
+	for <nouveau@lists.freedesktop.org>; Wed,  8 Jul 2026 23:30:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1783553408;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1pvBgwYa7lCn2bz7uXEDmoBIfHlXGdkFiLetg9jZiKc=;
+	b=Ed2y06MF+UZ10efArl4vqWuC937NxrVi3UTxJHg9V3aY1w7AOGNLST57ViUMyRDlD7RgS0
+	vGkGpbrffL/kou2btTHJrXIIyi1xM5aow+haMJ8yHMRXYYFTwztesF7V11PrU+yUDAriIB
+	6avHwppOVcYO4Mdwz1589lPduX+RkVA=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-373-6AfcbLzBP7SaG1AN8MTWPQ-1; Wed, 08 Jul 2026 19:30:06 -0400
+X-MC-Unique: 6AfcbLzBP7SaG1AN8MTWPQ-1
+X-Mimecast-MFC-AGG-ID: 6AfcbLzBP7SaG1AN8MTWPQ_1783553406
+Received: by mail-qv1-f72.google.com with SMTP id
+ 6a1803df08f44-8e9b9f30d65so3660666d6.0
         for <nouveau@lists.freedesktop.org>;
- Tue, 07 Jul 2026 12:47:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783453666; x=1784058466;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:content-type:mime-version:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from:subject:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=CyXJGY0usHae+LXmamNtPRV/qmWOdkzAleKaxE3NMCI=;
-        b=o0UJDoTlgZ3Bo60XDDcl+Xs78xMSm6QTQnMYvwHWwhVBXoY0dGBS6QfW/Tu6oH7My0
-         6dCWbYbesDRnndAusOPrKFYZGSQbqnRFeL2aeeo5kOS1xxuBO/cs4f52xrdMgXotBuFE
-         lHzNi7nY9eRwRRqhf45gWdjXkqGmHtnuFkcI8+/XvbvCFtegi6+wxsslW1RfugTwNSs2
-         tf6SnaEzmfFjSVbDzmzAn9GbQls7OroAYr24zn/ecvG1nc2V1HbtM+P97HxraDAHrVVk
-         J80bLpVyB+wRfO76v+Oi38RGlnQShsNmNTLbZtmANFOmwyeq1zr/8eXi2iaBJckQOD2d
-         EJzA==
+ Wed, 08 Jul 2026 16:30:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783453666; x=1784058466;
-        h=content-transfer-encoding:content-type:mime-version:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from:subject:x-gm-gg
+        d=1e100.net; s=20251104; t=1783553406; x=1784158206;
+        h=mime-version:user-agent:content-transfer-encoding:content-type
+         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=CyXJGY0usHae+LXmamNtPRV/qmWOdkzAleKaxE3NMCI=;
-        b=hLENnll1GAsLZ6J0cS5qjqQbWOLEQx8f6qVagXDvqG/IXVfu8zxq8vCS0Rx/HEkLnu
-         8O2vTSJGYy5ouGvR6WdEBO0nEmDEtHNWYaf6QmAOZ3UxwFkjiI8JztvMKOSy2c4XelPe
-         LFtPgetB2b/4a5S+wQHAk2abO1o6YfTF3eiovCI23uORN8kEwVy2ZOnzbE4XB1gegbb1
-         HhPxtajv/cYgxj0Euy5Ay2pr761vnJWFYlcSxCbOii/PZ21dCbdM/+9WS/cRaLr5qxnx
-         4T5iujN4Jc4OXTyzy2vuJrFxxVwQWYnX84auVaAa0KOpy8tMYVVKTv+7h9HXT5w2UwHV
-         dOAg==
-X-Forwarded-Encrypted: i=1;
- AHgh+RqqFy44CenGaiXWB+75lXHkOnY5LZ9HT9wsSPrZ1j0LrtX2wZk1+YycuYUqGhKx+iYPXW2u+cKH@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyNY/BLowVM8jNAO6neAuXkKrZC5uQSuS3J5JfvqxKVqSYjZibQ
-	Bc5tV6kmtrV6zWZAFc8+qPKSp4hHyvnbfH5mQU9xozzktGpGKB/FJLfjevrJGw==
-X-Gm-Gg: AfdE7cmK57k7g+SU8uZkJkXH/kLdMNkYLhJrshB/T9aAD7j1K7fsbhmAhxV5wCXw1+P
-	bZSX7AKgfJpJdLaq2Rqctm3kAR9JyewZ1HLua+qassKjs5aOmifkCUnsQlf69qvleUXBXwu5xKB
-	TJj8AH+eSXppfuT1PD1aCCjSD89saHVkk4fNPABc0u1aRO4pLOvw/cXoKGrN5iu6xrzeFAfFtt/
-	lud26kFBTAPAVl5DTDSGZB9SckfygY1Hd0hSzslJtXt6dysDZyKkUnOwNEznnJyd295prBzGmYv
-	fzPLdrxht3Baeox8hZWQpyaFeGByEkO72wTx/6yxg3ftK3kBOJuiqwJBUF45nu7C7G/d8YNUNeS
-	RWCxRt2bbz7oMiHhw+4s1lSKqEH2n87VO9cglIXQEElxxUW5oD0qNjyvHl4QzHjgEOU+lSUCeAw
-	eQHktniZd3YYAY5pZifV0gX+oZB3L3yARuQzbz7Pb2u5DAgExFlCVRyOPG6CU=
-X-Received: by 2002:a05:6a00:b89:b0:845:cf73:c1d8 with SMTP id
- d2e1a72fcca58-84826c09c93mr6251882b3a.14.1783453665761;
-        Tue, 07 Jul 2026 12:47:45 -0700 (PDT)
-Received: from [192.168.0.160] (c-98-225-44-182.hsd1.wa.comcast.net.
- [98.225.44.182])
+        bh=1pvBgwYa7lCn2bz7uXEDmoBIfHlXGdkFiLetg9jZiKc=;
+        b=K3rF7E9L5LmmTxTpvLdFqX73eSJ2QjRs2UcSCEsWz5msrB3ZCwGzHCG5jzVVCmKHGe
+         KohmSM+2h32HzhU9KdmNuHW5JzQ+A6Ff6+/fbAEXgP9QlAe36PZPOTQVe7wiMnMGSF1j
+         ene/KLFL/lt30YtFDyOTM7LWVUqNKuh0H97nDLhxXBzugbDtTGJ2DmpKDIOAW8e0GNLp
+         N1JgEeL5zMrF6MrpN4sh7tUhE4YI5r49j8+4ssTOOtcXwN9FZuvewslCGx5Dwr2rNBE5
+         LLdCAx5/2aoz3lkEBMKxL8il6yal+uAxHfYEiQV0EyeTEjPVpUbjnvKRS/L8Bn8d40XV
+         +j8Q==
+X-Gm-Message-State: AOJu0YyB5uX0yeyWc6Ck/T1D4Mm0U6S8rd1SJ46dk6cWwFbrFTtefjw6
+	/9Ry19iRLUWirpfDFbxBP3qlKU5SbuZ7IJpWPhNfPOqLupcmw8bgB9rlNFTsc22NUcLiLQlh7fe
+	WeXpJDOkmYBLw19Dm66+vMayS/vl6lNtToNigQSdh56DspDKhUZc1oy3WCNTj0sdE4Mc=
+X-Gm-Gg: AfdE7clmoMyUOg2/zX2//TDmYUSdj4Mq/EmR9Rd1jmNwfynCZ8nK2Z8ymLRWbUI8srv
+	eR2fAZ89EM+cSs0RDk4gdGaiSp3iHnV5kD8U4gAPkJ6eMy3YvQVJZewVjDnzFuPz3/+tbjIMskr
+	lt3z9j21G3Is1VwW0I9wm/mF2kOheMIrp+11UmocM2XZuZK+OETi3plrzcttWaAJZDYpnLmkux+
+	0U7YFrgAmFwxAENKUJzjylPAT/vs1uYZZBd8J/vvc/ne3qR8lRjlzapgs5NWwC00MT5EX6JRWdF
+	SzSOLKoTVSOC3WHAB9PRASHz18YxG+56hpdu1L8Tr6tsaGd+MYEYDD5vb3ZcJ7oaHpIUc8wSD9A
+	/frjWVTw=
+X-Received: by 2002:a05:6214:4517:b0:8e9:a4e2:e43b with SMTP id
+ 6a1803df08f44-8fec4bc9476mr52194246d6.1.1783553406275;
+        Wed, 08 Jul 2026 16:30:06 -0700 (PDT)
+X-Received: by 2002:a05:6214:4517:b0:8e9:a4e2:e43b with SMTP id
+ 6a1803df08f44-8fec4bc9476mr52193736d6.1.1783553405866;
+        Wed, 08 Jul 2026 16:30:05 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-8483dc66f2asm280202b3a.24.2026.07.07.12.47.44
+ 6a1803df08f44-8ffd7c1e8aesm3791076d6.28.2026.07.08.16.30.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jul 2026 12:47:45 -0700 (PDT)
-Subject: [PATCH v7 8/8] drm/gpusvm: Use hmm_range_fault_unlocked_timeout() for
- range faults
-From: Stanislav Kinsburskii <skinsburskii@gmail.com>
-To: airlied@gmail.com, akhilesh@ee.iitb.ac.in, akpm@linux-foundation.org,
- corbet@lwn.net, dakr@kernel.org, david@kernel.org, decui@microsoft.com,
- haiyangz@microsoft.com, jgg@ziepe.ca, kees@kernel.org, kys@microsoft.com,
- leon@kernel.org, liam@infradead.org, lizhi.hou@amd.com, ljs@kernel.org,
- longli@microsoft.com, lyude@redhat.com, maarten.lankhorst@linux.intel.com,
- mamin506@gmail.com, mhocko@suse.com, mripard@kernel.org,
- nouveau@lists.freedesktop.org, ogabbay@kernel.org, oleg@redhat.com,
- rppt@kernel.org, shuah@kernel.org, simona@ffwll.ch,
- skhan@linuxfoundation.org, skinsburskii@gmail.com, surenb@google.com,
- tzimmermann@suse.de, vbabka@kernel.org, wei.liu@kernel.org,
- skinsburskii@gmail.com
-Date: Tue, 07 Jul 2026 12:47:43 -0700
-Message-ID: <178345366389.660027.12986386801605494596.stgit@skinsburskii>
-In-Reply-To: <178345345668.660027.2952911919681614557.stgit@skinsburskii>
-References: <178345345668.660027.2952911919681614557.stgit@skinsburskii>
-User-Agent: StGit/0.19
+        Wed, 08 Jul 2026 16:30:05 -0700 (PDT)
+Message-ID: <51b38994ed2032a83160881e53994fb4487a7b02.camel@redhat.com>
+Subject: Re: [PATCH v3 2/3] drm/nouveau/gsp/r570: Never enter Gcoff state
+From: lyude@redhat.com
+To: John Hubbard <jhubbard@nvidia.com>, Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@redhat.com>
+Date: Wed, 08 Jul 2026 19:30:04 -0400
+In-Reply-To: <58219e62-99aa-4bb3-9c6b-5f96dae12649@nvidia.com>
+References: <20260701182857.190713-1-lyude@redhat.com>
+	 <20260701182857.190713-3-lyude@redhat.com>
+	 <DJNNQVO96RR1.141CE7TKF6MZP@kernel.org>
+	 <CAMwc25qA6GFb1Q=VHTa8BcM85B2dr22RrgdJcHTz70P5Xjj_bA@mail.gmail.com>
+	 <DJNO6SIE8T88.1F0ZUILIRVDJC@kernel.org>
+	 <b5d08cfe-aead-45f2-937d-6e9ef4dfea50@nvidia.com>
+	 <971d09c47689981c1ea44c89555f71fcc0b5db41.camel@redhat.com>
+	 <58219e62-99aa-4bb3-9c6b-5f96dae12649@nvidia.com>
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-MailFrom: skinsburskii@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: IQFDW7BQMxqNOnF1zjmp8kohd9_qqsC7fx6scJrww8c_1783553406
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: BBFJABBWFRSL4LX6YNLOJDS54FVOUVU6
+X-Message-ID-Hash: BBFJABBWFRSL4LX6YNLOJDS54FVOUVU6
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: EYDBV7LJTCXX5ASDPKDP73OWNQQVZAUP
-X-Message-ID-Hash: EYDBV7LJTCXX5ASDPKDP73OWNQQVZAUP
-X-Mailman-Approved-At: Wed, 08 Jul 2026 23:12:16 +0000
-CC: dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- linux-doc@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
- linux-rdma@vger.kernel.org
+ loop; banned-address
+CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Kees Cook <kees@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Maxime Ripard <mripard@kernel.org>, Aaron Plattner <aplattner@nvidia.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EYDBV7LJTCXX5ASDPKDP73OWNQQVZAUP/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BBFJABBWFRSL4LX6YNLOJDS54FVOUVU6/>
 Archived-At: 
- <https://lore.freedesktop.org/178345366389.660027.12986386801605494596.stgit@skinsburskii/>
+ <https://lore.freedesktop.org/51b38994ed2032a83160881e53994fb4487a7b02.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -151,105 +155,21 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Several GPU SVM paths take mmap_read_lock() only to call hmm_range_fault(),
-then retry -EBUSY until HMM_RANGE_DEFAULT_TIMEOUT expires. Those paths use
-MMU interval notifiers whose mm matches the mm that was locked for the HMM
-fault.
+On Wed, 2026-07-08 at 16:25 -0700, John Hubbard wrote:
+> > > not
+> > > derive those flags from srInitArguments.flags. That field is read
+> > > in
+> > > only one place on the resume path, an unrelated display
+> > > workaround
+> > > gated
+> > > on the PM_SUSPEND bit. Neither 0 nor PRESERVING | PM_TRANSITION
+> > > sets
+>=20
+> This "unrelated display workaround" might be related after all,
+> perhaps.
 
-Use hmm_range_fault_unlocked_timeout() for those faults and pass the
-remaining retry budget to HMM. The helper owns mmap_lock acquisition and
-refreshes range->notifier_seq internally for each retry, while GPU SVM
-keeps its existing driver-lock validation with mmu_interval_read_retry()
-after a successful fault.
-
-Leave drm_gpusvm_check_pages() on hmm_range_fault() because that path is
-called with the mmap lock already held by its caller.
-
-Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
----
- drivers/gpu/drm/drm_gpusvm.c |   52 ++++++------------------------------------
- 1 file changed, 7 insertions(+), 45 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index 958cb605aedd..2601b793428c 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -788,22 +788,8 @@ enum drm_gpusvm_scan_result drm_gpusvm_scan_mm(struct drm_gpusvm_range *range,
- 	hmm_range.hmm_pfns = pfns;
- 
- retry:
--	hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
--	mmap_read_lock(range->gpusvm->mm);
--
--	while (true) {
--		err = hmm_range_fault(&hmm_range);
--		if (err == -EBUSY) {
--			if (time_after(jiffies, timeout))
--				break;
--
--			hmm_range.notifier_seq =
--				mmu_interval_read_begin(notifier);
--			continue;
--		}
--		break;
--	}
--	mmap_read_unlock(range->gpusvm->mm);
-+	err = hmm_range_fault_unlocked_timeout(&hmm_range,
-+				max_t(long, timeout - jiffies, 1));
- 	if (err)
- 		goto err_free;
- 
-@@ -1439,21 +1425,8 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 	}
- 
- 	hmm_range.hmm_pfns = pfns;
--	while (true) {
--		mmap_read_lock(mm);
--		err = hmm_range_fault(&hmm_range);
--		mmap_read_unlock(mm);
--
--		if (err == -EBUSY) {
--			if (time_after(jiffies, timeout))
--				break;
--
--			hmm_range.notifier_seq =
--				mmu_interval_read_begin(notifier);
--			continue;
--		}
--		break;
--	}
-+	err = hmm_range_fault_unlocked_timeout(&hmm_range,
-+				max_t(long, timeout - jiffies, 1));
- 	mmput(mm);
- 	if (err)
- 		goto err_free;
-@@ -1736,24 +1709,13 @@ int drm_gpusvm_range_evict(struct drm_gpusvm *gpusvm,
- 		return -ENOMEM;
- 
- 	hmm_range.hmm_pfns = pfns;
--	while (!time_after(jiffies, timeout)) {
--		hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
--		if (time_after(jiffies, timeout)) {
--			err = -ETIME;
--			break;
--		}
--
--		mmap_read_lock(mm);
--		err = hmm_range_fault(&hmm_range);
--		mmap_read_unlock(mm);
--		if (err != -EBUSY)
--			break;
--	}
-+	err = hmm_range_fault_unlocked_timeout(&hmm_range,
-+				max_t(long, timeout - jiffies, 1));
- 
- 	kvfree(pfns);
- 	mmput(mm);
- 
--	return err;
-+	return err == -EBUSY ? -ETIME : err;
- }
- EXPORT_SYMBOL_GPL(drm_gpusvm_range_evict);
- 
-
+Would be good to note too - while it's not impossible it is actually a
+display workaround doing this (as this secondary laptop GPU does have
+display connectors routed to it), I currently don't have any displays
+hooked up to it.
 
