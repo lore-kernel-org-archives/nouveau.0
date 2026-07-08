@@ -4,223 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95DC3C43458
-	for <nouveau@archiver.kernel.org>; Wed,  8 Jul 2026 02:37:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3985C44501
+	for <nouveau@archiver.kernel.org>; Wed,  8 Jul 2026 21:56:35 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 55F5910EFBC;
-	Wed,  8 Jul 2026 02:37:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6667610F2EF;
+	Wed,  8 Jul 2026 21:56:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="MFprGJWi";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fpvCR/f7";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7FA3346F82;
-	Wed,  8 Jul 2026 02:22:11 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783477331;
- b=mT71EHCiRMt3iQfkkRatp/gcN59mK4l1AuqRAhDaMEG5RK2AnCxh9RWeMnctQX+7ILPzs
- vWoiNNWMz3+mlaHPtWTqtNo9FCYr5ytwKHiGlwuh44iOSJwx2kL5+RIgBbXWoOW6bLbCYlF
- Tn5RNZKLAQJvSrlPgdssJdz2h53CTvVHmGvpjFhy+v9jPUCjTWK5qNbl1A5Bx+TKEzP/Kqp
- ZfZOVm4ERbggP/FF+KIthdLN5Dt9tTj8RtUh6cfvBESivOX7//zzX2ffdk/FyOrLX/5Dbj7
- kwU2oGAX8gMD8pTRCytNJA8IYXW6c2KCWArj+kyi3y0QKcnA5kmsq/i/xSog==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783477331; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id C5B1E46F94;
+	Wed,  8 Jul 2026 21:41:34 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1783546894;
+ b=hjKVuUxIHr4N39PmdZE3Qyem65PZ4masywlZjcetsBiQGrkfEIFvz3ke8pCFTeM706CT7
+ ljBPh5jUcSyyptmCa0ahU5tjZMXO1PanonezHEdOPjAUoN6qz6t0C92jNdYtTHhnx4c5Nux
+ +URnepD0tbmnez++HqAhiPOCTsxcRAIh0DdJo/QyGcD8X36ZXDRI3h+AfYbzJ3akmYiuqvH
+ nFuP8HlDxO5LAUsScn1G1aN9WpQorx+Ak2VF+419uD1In5KzD4xXIUXJiKeBjdUkayXwrQj
+ 0H6C6eZZKSDPObDSF8LVeienSMmkoxdie+4VXEi79ued7anb/zbFx9RNjO0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1783546894; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Jf+DSRZPaPiqa23Z+NsIeIObG2sHTY0/CEuDSTYjg9s=;
- b=Ai0p9Fv9+vhv84QBEZjR182XB6QrbGIf6PvxsmPPNLp/btVCJW5VuGJ4GXJLaVhwxLFOn
- zmW48VZc06SJSl/fd1exfOewlUk0rwjhYWFIolIpXrX9LLdX2/oMdHCOSyfaxVFeR+weAyw
- lVN3wwfvY98s2MDU5UZOTqX9urLQjOfMSVTzT2XF1pTb/S6cLuSAPSCb9u3/GYy77qocP5m
- dczFNAX/UxaA5l1drzsGfoCN49/zpf2LOcE+5kCNZPYBJnYugV4pgg83RwTavEIilqCtVG4
- SWhs4dS9JqlDqDMpGExo8zZD62YQllSOFPTvWszjCyh66/2jMj2/fsIYJtAQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=btjBlfn1gEh32xkLC16toOwaofpK3E2AbdoJxAP/F/4=;
+ b=r/cXSOrOS1jjo6lkOw99CRBDMWSQSD8aSQQ86zFHfDWkzaifogjkk9B+VzRSlBih/2QUx
+ 6AV5yQ8ta/hrAAT9tYeE60S6xf9uxPjup3DaYx2rXWUvsoIAFABcmzmV1aC+NCJdHqCrtuc
+ WMe1MkA5DECg6sReBHyHX4lDKJ8e0N4LUyycHkf9v1k+LEIPfySL62AT2Mj/rK/i1gAPujl
+ VE+oBBfvNdhldYj0tHpSWsopVpZhGTEMIQVEijBF7jUbZeBxjJbyFxucg5jXZBfkwM8VVfU
+ z0h5qmmtfWVJoyj0VhUIt8kw21CKME+Ljn5XFYQVPK7tVqW4/BxAXD7zHtaw==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 2CFBB46B55
-	for <nouveau@lists.freedesktop.org>; Wed,  8 Jul 2026 02:22:08 +0000 (UTC)
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011033.outbound.protection.outlook.com [52.101.52.33])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A443710EFA6;
-	Wed,  8 Jul 2026 02:37:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VZZQ8cZA52MWgegKfOITVQAgcN0oUlLjyR474Ros5iq2rFKdnOuXb6pKZjs/pNJkxrBfi6ocQQapdwKi+8/reZbLST6nD8Jm/g6yDjDQA90L4Gu488H+gbkFtZctzwyW9ACwFMNctCUQz3rb6BJT5AIr91tV+/E+WocFTaXbFjDUKJVJS2kAj8+TrLEYoN//KBVVrYWBttNKHguWgWro/ws1CdBSiTZLeVJOr8G0buTR8DeSa++48RHv2468LoqnC7rU73jQ2BDV1CfXANhRCb4u4M9eXF+/BGOG0eLPaJ49T2NQuzNV2M4O10feAMyr/BGpcPgkafLvYBvQwZ7tbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jf+DSRZPaPiqa23Z+NsIeIObG2sHTY0/CEuDSTYjg9s=;
- b=nQ0P4/sdSXmiO0ZHr6pihPNjCu4cIgzODYN8EZ9QDLERGTyPhtE2VCqPaqyb1VpvWEL3Ux/zAU6jewidQKTqA+lAj6npH0mvZ+0f3VtbSE/4OmVa6qfMVJcXkXe3T9nf1giwt7gyg2yd6HRm88814Tm2nEDgPO7xNZAyaVd3pBObvJecy/3AvUeWiA1tFyoh6GYy/pjI+GDRw1/a1yOMVOuv3DDRyhcUvexi0mF9HGCEYG4xDk9X8zb74EAK70QxBDptG6fuoTw0+fw3iUHE5q3jkDJVkS8kKfegJZIjT9MoOa+dlImbJT/SfY4ZQmyMYxV+XQuAxJG0cVAu8zAX6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Jf+DSRZPaPiqa23Z+NsIeIObG2sHTY0/CEuDSTYjg9s=;
- b=MFprGJWimBSpaXlX3i+O2/ZtL/fCHs1830SG75uwTc7F2hRMC3ncWb0JVlaaHVw/5hZW6q09BGuO3WhI8/sOZeQ7AO+D9CajqiB+24XtXHRarG62ZqCgB9uAFlnXlWyBTCLqWMfQlWpvz8a090qazpfvO9gxfqfSpFL99yPS5lBI5rvU/SFJdKATvfn429MzTUUbTzsxhPfQBEJcF+NzRZ4+7GGvLEVBadjnPBCkTDSl6lHNA2V6pikinctkgMQPNu3IleNkM9/978FewuMGSj90RnXTOMmMdo/rpYiR991nr9PKuGj5R6vMtBTYaohBDdVb0G3MmQ2Ou9MvIJZ0fg==
-Received: from IA0PR12MB8374.namprd12.prod.outlook.com (2603:10b6:208:40e::7)
- by PH7PR12MB8778.namprd12.prod.outlook.com (2603:10b6:510:26b::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.11; Wed, 8 Jul
- 2026 02:36:59 +0000
-Received: from IA0PR12MB8374.namprd12.prod.outlook.com
- ([fe80::d85f:4c87:ae84:3f16]) by IA0PR12MB8374.namprd12.prod.outlook.com
- ([fe80::d85f:4c87:ae84:3f16%5]) with mapi id 15.21.0181.009; Wed, 8 Jul 2026
- 02:36:58 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 07 Jul 2026 22:36:51 -0400
-Message-Id: <DJSU9FF2QXT5.14Y23MIT6POO3@nvidia.com>
-Subject: Re: [PATCH 08/13] mm: introduce vma_get_page_prot() and use it
-To: "Lorenzo Stoakes" <ljs@kernel.org>, "Andrew Morton"
- <akpm@linux-foundation.org>
-From: "Zi Yan" <ziy@nvidia.com>
-X-Mailer: aerc 0.21.0
-References: <cover.1782760670.git.ljs@kernel.org>
- <3bb8bdc4788230c33102166d56cbc5abfad9d4cb.1782760670.git.ljs@kernel.org>
-In-Reply-To: 
- <3bb8bdc4788230c33102166d56cbc5abfad9d4cb.1782760670.git.ljs@kernel.org>
-X-ClientProxiedBy: DS7PR03CA0225.namprd03.prod.outlook.com
- (2603:10b6:5:3ba::20) To IA0PR12MB8374.namprd12.prod.outlook.com
- (2603:10b6:208:40e::7)
+	by kara.freedesktop.org (Postfix) with ESMTPS id DCCDD46BAA
+	for <nouveau@lists.freedesktop.org>; Wed,  8 Jul 2026 21:41:30 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 26E5910F2DC
+	for <nouveau@lists.freedesktop.org>; Wed,  8 Jul 2026 21:56:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1783547790;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=btjBlfn1gEh32xkLC16toOwaofpK3E2AbdoJxAP/F/4=;
+	b=fpvCR/f7ni7Li0uZLpRIIfJOvjFGdK8OPxyxfZMOTAAeEc/H0fov4Lm1HnS6v5gJ43Gcvp
+	dvlq1MrWp5k+O7H02YT7aXQB8DIzJV+6+zCNs8GX6GvG5Zj0RFZDEELuDXkHV3TCQJtpo4
+	LY0rOgDG++KbhOPdwAvNHgkFKfUnEVs=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-335-l3GZ8fbzMw6A96w3WwVwKg-1; Wed, 08 Jul 2026 17:56:28 -0400
+X-MC-Unique: l3GZ8fbzMw6A96w3WwVwKg-1
+X-Mimecast-MFC-AGG-ID: l3GZ8fbzMw6A96w3WwVwKg_1783547788
+Received: by mail-qk1-f199.google.com with SMTP id
+ af79cd13be357-92e82060977so41866385a.1
+        for <nouveau@lists.freedesktop.org>;
+ Wed, 08 Jul 2026 14:56:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783547788; x=1784152588;
+        h=mime-version:user-agent:content-transfer-encoding:content-type
+         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=btjBlfn1gEh32xkLC16toOwaofpK3E2AbdoJxAP/F/4=;
+        b=V7Chfl7eBeDWfoWNf0M1awl2I1w6w/Ut4GPoQNW8hpVMPHPLxqggDBy3Cn1/29FS2O
+         y3im7KqOPo+xq8sYoIvuhN/koGFQFpF0SZx8Lf2RiYPDXaxToVSCaWMEon/veRQkvKGG
+         wBX/y8bwny9xsGWE02Q2KhOmnrLGyQE+i76vAh5hu1TLnoN9QL21Ec6tlczDBGW3E8WS
+         4sdxIRktLMtXKeVJLKdqQuSOqyWLU0cWuZMA/xn6hnMASuWaPEvPeiNGVzOrNLkinUTY
+         JjEi6HSpKUPtUGHsIwJjixFVInR7cGbwIbf7PEiJqpT7hcDPRvdb5+Axz8gzKE1zTvD1
+         TjOw==
+X-Forwarded-Encrypted: i=1;
+ AHgh+Rq2VqpApibPvw0HyKuBqvN1+t1ozlh3oAyTBb/cZ8Xgb+aIo1NATHtBQ9up2yewapFFz9ETmS0C@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxziXc/oKpnhHCdukTiDANEY/gMbtALH0Zt6dvhI+xSPZ3MMfHH
+	JM1uqnYaWK/CiEbbkI9MGeAlSg1l8VESRPmcq5ldOYuomFZAW2v2Cz7RKIttOtA3TPmKeSRXd+d
+	dc46FD1G2DzrEsofwV/MNS1y4KFrE/EGSDQU4i+s29tToQRY2v7k150mt9i1MVQ8I6O8=
+X-Gm-Gg: AfdE7ckjkVU6i0n1WaxKl/y8zxICEc9b0CJEUImJPnGqgsSnc5323WuTIdKjWYm9ZDU
+	q5Qs1otvmCES2OeLkN3s7LdzE8bUkl+4tuzzvfjlbrqpV1uryu9chQYajHO6wA+gJwcADcEfFI2
+	I4M8g+KhzXgyezTnVg/dZJIOubc4Q9UJJKOlH8DiTvlfmve6p2VuCQbqJqPRyW7qtpw9eRYzsTG
+	RkwiWGpRP0QrRD89RLBBij02SGtLA7mNMpU2cPYDcr7ImHuW+4SjtSj93IZS0S6TaCExsTQHAyT
+	XLMP1Cf67fOF5cQZjShBLnmBxuqdiRNYUiU7O/F/nlc7JgJ9p/gEpj+9YjybigHKFlol0QmbOBB
+	FYw324FM=
+X-Received: by 2002:a05:620a:444a:b0:911:e11e:dc0d with SMTP id
+ af79cd13be357-92edac0d694mr13102485a.24.1783547788318;
+        Wed, 08 Jul 2026 14:56:28 -0700 (PDT)
+X-Received: by 2002:a05:620a:444a:b0:911:e11e:dc0d with SMTP id
+ af79cd13be357-92edac0d694mr13096985a.24.1783547787628;
+        Wed, 08 Jul 2026 14:56:27 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93])
+        by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-92e90ca90a5sm1483479985a.32.2026.07.08.14.56.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jul 2026 14:56:26 -0700 (PDT)
+Message-ID: <b6b58477af57eb25e28eefb1a979a65aa250dc45.camel@redhat.com>
+Subject: Re: [PATCH 00/10] vga_switcheroo, drm: Push fbcon handling into DRM
+ clients
+From: lyude@redhat.com
+To: Thomas Zimmermann <tzimmermann@suse.de>, lukas@wunner.de,
+	jfalempe@redhat.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+	airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, 	rodrigo.vivi@intel.com,
+ tursulin@ursulin.net, dakr@kernel.org, deller@gmx.de
+Date: Wed, 08 Jul 2026 17:56:25 -0400
+In-Reply-To: <20260707135724.247562-1-tzimmermann@suse.de>
+References: <20260707135724.247562-1-tzimmermann@suse.de>
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR12MB8374:EE_|PH7PR12MB8778:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8d82f526-25a1-487f-f722-08dedc99c8a7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|23010399003|10070799003|11063799006|4143699003|56012099006|6133799003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 
-	IJg6EdRPZd9WVhujhgKnpJbCHuanEdRyEYJF1H/xR2IHNf4l16FKVIz74HfuoPctZTTfQSnfqG6NPQ++2PeSpebhCKhQRv+JRvBHJk5mdG0k9mYrctd0PPrQksvnJL75lKRzA7lc5xX5fuvCHXP0BN42CFzdSzbq1sgz8k7zet65CVVALweguWZP1V1pHN7JOEaY95FaGbkUD42nFTISX3PKBMyu9R+EdMImtjqn/nF50ILLPajW+5NxPVUdHxVdVtQoz0twBmrQXO0y30cmwh1RR0ls3/ojVSnrh1dgaoa8X+TtrWmwFQ5jYR5L702/JkC5lvexOIHam8V1zjUVZdRpL+dUNuJbEEjz88KTAF6bVIU5RNqCYfIW46t4BvWyPopNp0MtIYE4WYGymFz69uG/bwuSNcABIyUrOSEx+H9QM03TN86PpEVh5N0sseX9Hx9Tlu+ZI8RySDwyqLCPHP6TVCjx7wF/m2acj+8sMKDafToLdnE7bq17YmQKwf83DJlYp5N9SqQ8QsR6Tpb0TUNhLsjPESr1mLSqyrPNCzyrYBTMpv+nD1XO4HWnoUrznAlFcflPdhKTWK3hWVSA6ykBoS/HMAAC//awczhM706YzLgU27Ep9YUxhatBS60GijbURnHgECNTDXPsKIIrRRldoQdyz0vWOeSy63vByYk=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA0PR12MB8374.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(23010399003)(10070799003)(11063799006)(4143699003)(56012099006)(6133799003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?ek5CR0JZK0h1R2ZwMjFselVxakFaTUxTVUFmb09RbTYyeVFqdnpBRFQzam84?=
- =?utf-8?B?TEk3N3krL0R1dUlqUWFZSlcwbC9aWDVwb21EVW1vdmJlNDRiREVjN1J3WHlQ?=
- =?utf-8?B?QnFHcFE5aVBxZkU3QkRmaGs4YnhSVDN1VkpiYlA4WTVFM05Zc2FuRW9WcTJh?=
- =?utf-8?B?QzFVRUlqVEhWUDByeTNtd2FNQzFReGtTcW5FdGg3bGY1ZnhUMmhqQ2hMMmJp?=
- =?utf-8?B?c1prZFRJR0FORlNhV3pJNWhQaVF5K044dWFCdFYveWdaWW5tYUFNYXR4WTNu?=
- =?utf-8?B?UlFMdHYvc28zajh5ZTc0Um1qR29MNlZrTXpteW1JWHVkMWFoMUxuay9keG4z?=
- =?utf-8?B?dEZSS1Z4ZFh2bVFFM0M0Zk5WbGZsc1JJamZ6c2ZILzF1bndLOVd0bkQ2WXNu?=
- =?utf-8?B?eFdEbXJ6N0hiTnNXbVdBRlJVeUYwK0lSL0VuSU1GamU3Z3NoQWZZNkFyNUFr?=
- =?utf-8?B?Tm5XQzA3WlVIeWkvRmdtUlduTG16QWpFRTkxOXl1Q3RsWWdpTVp5bGlrRXZD?=
- =?utf-8?B?VDlRVkowNUxkdytMUzc1aVlLeFphUVN4ZkwzNTJQNUJrQkJqbktiZDIwYVRS?=
- =?utf-8?B?dWx2NnIwNzhTcG94OXdsRjRFZXRiK3BFVVlQTnRSYjVzUndtN09Ca1VJY1lU?=
- =?utf-8?B?dXpyWlBpUkVxWVZ2c2hwQUxBTTFMMmtqZFlhRWdWZ1RsYytTVWFNdUxDbWtX?=
- =?utf-8?B?emhLRFgrZEF4enovSTVMVzgxZVk4Vm5YRjI2TmtQM003M1c2aUk2YThhVEYz?=
- =?utf-8?B?N0hrbDJEeFQ0dDVKWkJRTTlCTTlsa1RwSmxHTTFieHRnVkpGTFhGMDVFYXRi?=
- =?utf-8?B?ZUs4RDZZaysyRUlnaEt1NUxGVGtEdWdLZjl6ZVRZU2NDQWV6RFZXRUhoaWV3?=
- =?utf-8?B?T2JGRjY1ZGsweDhvVjF3cmIrYzl6SXhHdWFhZllJTmNScE1tRldVNi9lMkV3?=
- =?utf-8?B?Y3JDMkhMTVU3azNSdEo3N2hjNHB6K1NIRS9iR2U4Yy9RcXlXaTMwQTRQN3oy?=
- =?utf-8?B?OE5ESW8vQ29HUnZINWNBUnVZMytqUWx3VzJ3Uk5LeUNhYXNJZWV6SGlBNVov?=
- =?utf-8?B?Y1VVNXhBNlVRTFBzUWU0OG5DTlBSNS94MTdVMmRSUVdhWG9OQjIrYVgzQ1ZY?=
- =?utf-8?B?eDZhTzNNTmhBc251NVlXTDdCMjZQbEJUNUJCQlJmb0NJMnRSNi9ndVk0aHoy?=
- =?utf-8?B?YTYweEdlL2lYZkpWYmxESk1sd3pzeUZDOXNyMDlUT3ByUTBpY1hYM2VZb3Rk?=
- =?utf-8?B?aUVyNnlSeHFKWHhMYm5nQThwU3VnMUE5emNoN01uUG1kM2gyS0M4WTltN3Bk?=
- =?utf-8?B?dWhUVE56RWpzenM4ZXh0c2kyVGNiQ3JJZStOWTVPOGhjTW9MYXpBTnEydjZK?=
- =?utf-8?B?WTlWcGphS3NLOG5oNFo4Z3lDalNxNk43R2R4d2VVWlJVd1pOTVpLRWk4TUpM?=
- =?utf-8?B?dGpWR29CUjBrYzNNK01VdGNiSkZaKzhoVi9tb3JPWmptY1k2bU9tNUZ6U0s2?=
- =?utf-8?B?dGM1SVRzb28vTzFoanhzTndLRnVFQWhLWVh5SWhhY1djS1Z0THRSaHh4VU1C?=
- =?utf-8?B?MC9xeWVzRktiZklCd0dHSERod21hZmZzNmtsMUo0WklZTVM3blhVN09MUnZG?=
- =?utf-8?B?ZFJJaS84RVdYeS9BV200dTdGWGlrS2JyZWh2WUYzR090QTBLc0FzczFJN3lO?=
- =?utf-8?B?THpseE5BczFIYkZrRWdiQUZYb0pmQkZwTHRXVUlodXlicEE5T1ZZRVpHUXZv?=
- =?utf-8?B?RVJXTW9tTFBmYlZZdEVqN3dxcHppY1Z2YzNOaWVmYWk4RmQvVjBFY2tObE9L?=
- =?utf-8?B?SzZNeE1hWitXWEFyQzF1QktWVmJ3RW5oYWdEWlNuUzRrNmlJVFF4MXE4cmNW?=
- =?utf-8?B?UU5icGxkeEd5QlhteGFwNHNibGdjakxxN3VWZHdTaDdZc1pOa3JMYWRCTmdo?=
- =?utf-8?B?aGhLRTd5VW5McWZNYlk0SmFPMDgxVTEvZmpvNTBnQUY2UkJYMXJndWMzdjl3?=
- =?utf-8?B?RzZRTE0yNmxwWEU4d2FQSmtKdzhPU2JnUlBOS0FlVWxJMnlCaVFXbHhRN0J0?=
- =?utf-8?B?TzBlNWlyeHdZN2NLeTRWQ2Z5VmxuSGdqOWl5b3pKam82WFNEZFM3aXRUeVNV?=
- =?utf-8?B?OUxPc0phYW45OFRNeDM5RFU0bVIzVFBLOE1EektZWFNqdTNIL1haVnVOQU16?=
- =?utf-8?B?QkFyRnFnTms0USs5aHVlUXE5SnhzNWVrNndNcFV2RGhFN2pFdzk0WXR6NzFk?=
- =?utf-8?B?M2g5QXIvTVdrbTgwTWR3OHp4MTBSMTI2QU5tMzRmNGQ0bVI2RUFIbmsyR2sz?=
- =?utf-8?B?Sm4xaUFwbE1ES3VyaXpiYlNCWnRYTlB4aytRU0owd0o1TCtTQWk2WGVka2FS?=
- =?utf-8?Q?LvwN1dCgX2BEQ5HTa+droSbfjCAPGhBcCpwLn?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 8d82f526-25a1-487f-f722-08dedc99c8a7
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR12MB8374.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 02:36:58.9074
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- WjtQ2+h3pQ1C67hYZ/v+qccBEc8nzPfsA30B/zApM/vuVLU11R9L28Lb6VkAqY3Y
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8778
-Message-ID-Hash: DXHXHK542E5GKUY6FMBE7HRM5CTAPWRL
-X-Message-ID-Hash: DXHXHK542E5GKUY6FMBE7HRM5CTAPWRL
-X-MailFrom: ziy@nvidia.com
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: xvAQbpwoUAUhJQhGtNSwaS02RuJIwMNTmGREnrHS_Kk_1783547788
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: 3HPGTC4DPIQVSEHJOI4HKMJAPJQ5JXJA
+X-Message-ID-Hash: 3HPGTC4DPIQVSEHJOI4HKMJAPJQ5JXJA
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Lucas Stach <l.stach@pengutronix.de>, Inki Dae <inki.dae@samsung.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Sandy Huang <hjc@rock-chips.com>,
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Thierry Reding <thierry.reding@kernel.org>,
- Mikko Perttunen <mperttunen@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Zack Rusin <zack.rusin@broadcom.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Helge Deller <deller@gmx.de>, Benjamin LaHaise <bcrl@kvack.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Muchun Song <muchun.song@linux.dev>,
- Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- "Liam R . Howlett" <liam@infradead.org>, Nico Pache <npache@redhat.com>,
- Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
- Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>,
- Hugh Dickins <hughd@google.com>, Vlastimil Babka <vbabka@kernel.org>,
- Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
- Michal Hocko <mhocko@suse.com>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>, Kees Cook <kees@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- linux-sound@vger.kernel.org
+ loop; banned-address
+CC: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org, sashiko-reviews@lists.linux.dev
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DXHXHK542E5GKUY6FMBE7HRM5CTAPWRL/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3HPGTC4DPIQVSEHJOI4HKMJAPJQ5JXJA/>
 Archived-At: 
- <https://lore.freedesktop.org/DJSU9FF2QXT5.14Y23MIT6POO3@nvidia.com/>
+ <https://lore.freedesktop.org/b6b58477af57eb25e28eefb1a979a65aa250dc45.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -230,48 +152,75 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon Jun 29, 2026 at 3:25 PM EDT, Lorenzo Stoakes wrote:
-> There's a large number of vm_get_page_prot(vma->vm_flags) invocations. Ma=
-ke
-> life easier by introducing vma_get_page_prot() parameterised by the VMA.
->
-> This also makes converting vm_get_page_prot() to vma_flags_t easier.
->
-> Also update the userland VMA tests to reflect the change.
->
-> No functional change intended.
->
-> Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
-> ---
->  drivers/gpu/drm/drm_gem.c                   |  2 +-
->  drivers/gpu/drm/drm_gem_dma_helper.c        |  2 +-
->  drivers/gpu/drm/drm_gem_shmem_helper.c      |  2 +-
->  drivers/gpu/drm/etnaviv/etnaviv_gem.c       |  2 +-
->  drivers/gpu/drm/exynos/exynos_drm_gem.c     |  6 +++---
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c    | 12 ++++++------
->  drivers/gpu/drm/msm/msm_gem.c               |  2 +-
->  drivers/gpu/drm/nouveau/nouveau_gem.c       |  2 +-
->  drivers/gpu/drm/omapdrm/omap_fbdev.c        |  2 +-
->  drivers/gpu/drm/omapdrm/omap_gem.c          |  6 +++---
->  drivers/gpu/drm/rockchip/rockchip_drm_gem.c |  2 +-
->  drivers/gpu/drm/tegra/gem.c                 |  2 +-
->  drivers/gpu/drm/virtio/virtgpu_vram.c       |  2 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c  |  2 +-
->  drivers/gpu/drm/xe/xe_device.c              |  2 +-
->  drivers/gpu/drm/xe/xe_mmio_gem.c            |  2 +-
->  drivers/gpu/drm/xen/xen_drm_front_gem.c     |  2 +-
->  drivers/video/fbdev/core/fb_io_fops.c       |  2 +-
->  include/linux/mm.h                          | 10 +++++++++-
->  mm/vma.c                                    |  2 +-
->  mm/vma_exec.c                               |  2 +-
->  sound/core/memalloc.c                       |  2 +-
->  tools/testing/vma/include/dup.h             |  4 ++++
->  23 files changed, 43 insertions(+), 31 deletions(-)
->
+For both nouveau patches:
 
-Acked-by: Zi Yan <ziy@nvidia.com>
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
---=20
-Best Regards,
-Yan, Zi
+On Tue, 2026-07-07 at 15:38 +0200, Thomas Zimmermann wrote:
+> Vga_switcheroo currently invokes fb_switch_outputs() to inform fbcon
+> about switching of the physical outputs among framebuffer devices.
+> But
+> new DRM clients to not use fbdev/fbcon and might require their own
+> vga_switcheroo support. Let's strictly separate them from each other.
+>=20
+> Remove fbdev/fbcon from vga_switcheroo. Introduce a pre_switch
+> callback
+> for vga_switcheroo clients to do the fbcon update. Allows for
+> removing
+> all direct interactions between vga_switcheroo and fbdev/fbcon.
+>=20
+> Also replace the existing reprobe hook with post_switch for symetry.
+>=20
+> At the same time, push the fbcon update into DRM's client for fbdev
+> emulation. Do this with the new DRM client callback acquire_outputs,
+> so that other clients can have their own handling of vga_switcheroo.
+>=20
+> There are only four drivers that support vga_switcheroo: amdgpu,
+> radeon, i915 and nouveau. Update each of them with the new callbacks.
+> When vga_switcheroo now invokes pre_switch, each DRM driver forwards
+> to aquire_outputs and lets the DRM clients handle the new outputs.
+>=20
+> Tested with radeon on a notebook with Radeon HD 4225 and HD 5430.
+>=20
+> Thomas Zimmermann (10):
+> =C2=A0 drm/edid: Include <linux/fb.h>
+> =C2=A0 drm/client: Add acquire_outputs callback; implement for fbdev
+> =C2=A0=C2=A0=C2=A0 emulation
+> =C2=A0 vga_switcheroo: Add pre_switch callback to client ops
+> =C2=A0 vga_switcheroo: Add post_switch callback to client ops
+> =C2=A0 drm/amdgpu: Implement struct vga_switcheroo_client_ops.pre_switch
+> =C2=A0 drm/i915: Implement vga_switcheroo_client_ops.pre_switch
+> =C2=A0 drm/nouveau: Implement vga_switcheroo_client_ops.pre_switch
+> =C2=A0 drm/nouveau: Implement vga_switcheroo_client_ops.post_switch
+> =C2=A0 drm/radeon: Implement struct vga_switcheroo_client_ops.pre_switch
+> =C2=A0 vga-switcheroo: Remove unused interfaces
+>=20
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |=C2=A0 9 ++++-
+> =C2=A0drivers/gpu/drm/clients/drm_fbdev_client.c | 23 ++++++++----
+> =C2=A0drivers/gpu/drm/drm_client_event.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 18 ++++++++++
+> =C2=A0drivers/gpu/drm/drm_edid.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
+> =C2=A0drivers/gpu/drm/i915/i915_switcheroo.c=C2=A0=C2=A0=C2=A0=C2=A0 | 11=
+ +++++-
+> =C2=A0drivers/gpu/drm/nouveau/nouveau_vga.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ | 28 +++++++++------
+> =C2=A0drivers/gpu/drm/radeon/radeon_device.c=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 9 ++++-
+> =C2=A0drivers/gpu/vga/vga_switcheroo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 41 +++++---------------
+> --
+> =C2=A0drivers/video/fbdev/core/fbcon.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 8 -----
+> =C2=A0include/drm/drm_client.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 14 +++=
++++++
+> =C2=A0include/drm/drm_client_event.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 3 ++
+> =C2=A0include/linux/vga_switcheroo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 30 +++++++++-------
+> =C2=A012 files changed, 122 insertions(+), 73 deletions(-)
+>=20
+>=20
+> base-commit: cd8abe2554ec7eba16c1d48ab508732bf93534eb
 
