@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 533D9C43458
-	for <nouveau@archiver.kernel.org>; Thu,  9 Jul 2026 09:22:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B1B7C44501
+	for <nouveau@archiver.kernel.org>; Thu,  9 Jul 2026 09:22:50 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC0110F4A6;
-	Thu,  9 Jul 2026 09:22:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6D70C10F4AB;
+	Thu,  9 Jul 2026 09:22:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="xctLxFHE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="YQRQpOQx";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="xctLxFHE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="YQRQpOQx";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="vMdq6UX5";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="gYK/tQ6n";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="vMdq6UX5";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="gYK/tQ6n";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 81E5D46FD6;
-	Thu,  9 Jul 2026 09:07:43 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id CC8A446FE0;
+	Thu,  9 Jul 2026 09:07:48 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783588063;
- b=rceuMpP1ZsNdI/RR3MlCDpUgwML4Kc0GA26GwKVKoB3hiwkOSESKkbZkRqM7JT3y44mFk
- uvjfQ30cXE+V224WwGEyAIdrUI5muw1WLrrqDOMZBPQDXDR2kuQawGjjbtF0m6N9F4w4+BF
- ngg8x/dSQzEGupAmHHsWe4BB2GjwmNeLZHs/3gCvtMYk00w59+2anCtqQOBWa+V5mRWIpxR
- hfJltt67KHQQlf+z1OnCOQnzfMZDnhRlcz/eAj7NG9UrVpmkwJDSLTGkWFlVd82S/oe8TEM
- 0qwjoz5RTnSszno2Afpq91XCuf1877SM8O0Z5kZuHspMPWkKDD400WWVZ6Mg==
+ s=20240201; t=1783588068;
+ b=TkXV+XEdJLT3ZoGQpcmYJrsx6uc/8dDo0yjc2pqlzc7meJ5RsYena77PgJMb7RN/x9GVB
+ L0V5QAEhlHm1fvzbRKKDp1U19kbJXBufvxnXDBxNhBFVdhXYbWWkedhKPBlDkfW32cdSOrm
+ Y0NSyVT5WXAr/fcXOguEw2j2pK0Bhkto7XgEkD+7M3fPoGotvYhMSPTH2N0S8CKKk2MlSHu
+ gisd5se1uvYXUoerVSt0iY8dpoWgPR8Qm9M3iyR4xdKx5OS9fHP2S5a3/ID3u93ZxsshHHM
+ omRfggIePkxQsA2ZaxT1U2zHleIxE3sC2SUb10TB+gkH4DN+1EbtcHugrqGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783588063; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783588068; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=MjZOLNTa/QCQzDdlDbCVM8vYETPmODla9FesFjm4Hec=;
- b=UfICHmknjDp/tXExisrmLZPqI2hDHb/52mt8SMn++P5YelkB3QD8wAKgfqUi8iVfVspmq
- JxYfTBVhmvY3dfH162SMyeSbvP7BZxmkb094k+D2cr7RGjamzbr1wQBwqm6VWtU4tiPRE6r
- GoIOZTzrCbsiCFsWAx6s6wMjo6Z2j2ZYZ/bFNyp7a5wb0J1obYUVKUOjVeuWQHkge6kmrK2
- xl2kPFwAtmrbkQhBFaJcxYpvnmXqefgfXGK1VEa+BhQpm5M4igiLt9lHTNQAeE4uqB7V4Dw
- Uu4GdUQg/1jXgwxacxCcCtC2ipB/PP+pbLI0nXt/NoqNWr4eiDwbZUmPazgw==
+ bh=61tqgj47tXno87n5CLTjPvjoV/e/gW/vZ/ttrviqTMc=;
+ b=y4ssMZA6QJW0Ss4GxldDy7UjUCIoZ8AwpRHwIjb7okE1bCt5t/mkoHZFuXaXBVyJfResy
+ CD+yzPJejpMghJcwsqvxwQAvqT+pg55/vnLz0FxCZ676sxNb7omSSv3nK92Kcd6TsOEGRqV
+ Dv4nqdd13At6zywEwe/i+HfDH/RKNqjPGud42vZmSzlJ3PIRXJOqjyrvFzxbP99bWt+4Lv0
+ BUbR7zyCtrL0btY7sk1F7uGjmutOh9vpwbhuDcHjbc332xJTsM7Fc8PpGakzpC1owk4bfgy
+ hjFLn+BJUwunMsjev/UtVESna0fgqDiHUiNtCduGbWTgdFL6P5Mj7xAHPVOg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
@@ -47,17 +47,18 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EBFBB46B55
-	for <nouveau@lists.freedesktop.org>; Thu,  9 Jul 2026 09:07:40 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0B3CD46B55
+	for <nouveau@lists.freedesktop.org>; Thu,  9 Jul 2026 09:07:46 +0000 (UTC)
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3814D10F49F
-	for <nouveau@lists.freedesktop.org>; Thu,  9 Jul 2026 09:22:42 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4A5A510F498
+	for <nouveau@lists.freedesktop.org>; Thu,  9 Jul 2026 09:22:47 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 2DB7075DD9;
+	by smtp-out2.suse.de (Postfix) with ESMTPS id BC3F275DDE;
 	Thu,  9 Jul 2026 09:22:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_rsa;
@@ -66,19 +67,19 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=MjZOLNTa/QCQzDdlDbCVM8vYETPmODla9FesFjm4Hec=;
-	b=xctLxFHEDquA16fp8mIX+NuUe6glM7pQo4gIP8EftzhzXRUOKL+pXTULWGUYFLzkgCwTKN
-	xtiknw3d9ItaQURC1MxLKUOdUHWTFVAirhCqmuUf+dlhw/rOUGlwh3XQjPx2oYEysZXqxL
-	+BGpCezXyZtwqSdPruwMUxIwFp4SH1c=
+	bh=61tqgj47tXno87n5CLTjPvjoV/e/gW/vZ/ttrviqTMc=;
+	b=vMdq6UX51wZMrbUXKc3lP9eGNPL+dWXc4tg4oO+X8BPR14h8e6lAXKBvtSLlgBvKxcChLr
+	gTy1JbRQHy7pHHBbfY7I4tChOjhOzqIUvy9aZsuhxvFeX04KckXOmTHN38+3107fJVYOdb
+	X/yB1nDXF1GxzDvRlfDAx9ayGKG173M=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
 	s=susede2_ed25519; t=1783588943;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=MjZOLNTa/QCQzDdlDbCVM8vYETPmODla9FesFjm4Hec=;
-	b=YQRQpOQx/S1MfSXpAantbWYmo+W4B+OgTjv1izF6o8qmm/EfxrtLOMh7C/NlduKi8RE46Y
-	J+JRhTiYvmcVuXDA==
+	bh=61tqgj47tXno87n5CLTjPvjoV/e/gW/vZ/ttrviqTMc=;
+	b=gYK/tQ6nEWhgYsoJwN2wawEg4/VsMDL63ux0FFkcOd9+aqq6Jsy37LGn4tsuOZl2UEOXA0
+	aq+r8N6HFi0XBiDw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_rsa;
 	t=1783588943;
@@ -86,30 +87,30 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=MjZOLNTa/QCQzDdlDbCVM8vYETPmODla9FesFjm4Hec=;
-	b=xctLxFHEDquA16fp8mIX+NuUe6glM7pQo4gIP8EftzhzXRUOKL+pXTULWGUYFLzkgCwTKN
-	xtiknw3d9ItaQURC1MxLKUOdUHWTFVAirhCqmuUf+dlhw/rOUGlwh3XQjPx2oYEysZXqxL
-	+BGpCezXyZtwqSdPruwMUxIwFp4SH1c=
+	bh=61tqgj47tXno87n5CLTjPvjoV/e/gW/vZ/ttrviqTMc=;
+	b=vMdq6UX51wZMrbUXKc3lP9eGNPL+dWXc4tg4oO+X8BPR14h8e6lAXKBvtSLlgBvKxcChLr
+	gTy1JbRQHy7pHHBbfY7I4tChOjhOzqIUvy9aZsuhxvFeX04KckXOmTHN38+3107fJVYOdb
+	X/yB1nDXF1GxzDvRlfDAx9ayGKG173M=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
 	s=susede2_ed25519; t=1783588943;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=MjZOLNTa/QCQzDdlDbCVM8vYETPmODla9FesFjm4Hec=;
-	b=YQRQpOQx/S1MfSXpAantbWYmo+W4B+OgTjv1izF6o8qmm/EfxrtLOMh7C/NlduKi8RE46Y
-	J+JRhTiYvmcVuXDA==
+	bh=61tqgj47tXno87n5CLTjPvjoV/e/gW/vZ/ttrviqTMc=;
+	b=gYK/tQ6nEWhgYsoJwN2wawEg4/VsMDL63ux0FFkcOd9+aqq6Jsy37LGn4tsuOZl2UEOXA0
+	aq+r8N6HFi0XBiDw==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 98A51779B4;
-	Thu,  9 Jul 2026 09:22:22 +0000 (UTC)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 334AC779AA;
+	Thu,  9 Jul 2026 09:22:23 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
 	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id QIz7I05oT2q6OQAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Thu, 09 Jul 2026 09:22:22 +0000
+	id ILk+C09oT2q6OQAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Thu, 09 Jul 2026 09:22:23 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: lukas@wunner.de,
 	jfalempe@redhat.com,
@@ -126,39 +127,48 @@ To: lukas@wunner.de,
 	lyude@redhat.com,
 	dakr@kernel.org,
 	deller@gmx.de
-Subject: [PATCH v2 3/7] vga_switcheroo: Add pre_switch callback to client ops
-Date: Thu,  9 Jul 2026 11:15:59 +0200
-Message-ID: <20260709092215.168172-4-tzimmermann@suse.de>
+Subject: [PATCH v2 4/7] vga_switcheroo: Add post_switch callback to client ops
+Date: Thu,  9 Jul 2026 11:16:00 +0200
+Message-ID: <20260709092215.168172-5-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260709092215.168172-1-tzimmermann@suse.de>
 References: <20260709092215.168172-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.80 / 50.00];
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-3.01 / 50.00];
 	BAYES_HAM(-3.00)[100.00%];
 	MID_CONTAINS_FROM(1.00)[];
 	NEURAL_HAM_LONG(-1.00)[-1.000];
 	R_MISSING_CHARSET(0.50)[];
-	NEURAL_HAM_SHORT(-0.20)[-0.998];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
 	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	FREEMAIL_TO(0.00)[wunner.de,redhat.com,amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,intel.com,ursulin.net,gmx.de];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	RCVD_COUNT_TWO(0.00)[2];
 	TO_MATCH_ENVRCPT_ALL(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:email,suse.de:mid];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:dkim,suse.de:mid,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns];
 	FROM_EQ_ENVFROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FREEMAIL_TO(0.00)[wunner.de,redhat.com,amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,intel.com,ursulin.net,gmx.de];
+	R_RATELIMIT(0.00)[to_ip_from(RLgosu6qu4h11rje89ht7rjgg5)];
 	RCVD_TLS_ALL(0.00)[];
-	R_RATELIMIT(0.00)[to_ip_from(RLq3cifbxyhc6qbbynzfc6amns)];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	DKIM_TRACE(0.00)[suse.de:+];
+	TO_DN_SOME(0.00)[];
 	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de]
-Message-ID-Hash: 77P2PTJQNUKSDD5VS2755J2VIRLYPKFK
-X-Message-ID-Hash: 77P2PTJQNUKSDD5VS2755J2VIRLYPKFK
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: BC3F275DDE
+Message-ID-Hash: XLXQISXG3INBUBJI6KLZKHYFT3JKNA7R
+X-Message-ID-Hash: XLXQISXG3INBUBJI6KLZKHYFT3JKNA7R
 X-MailFrom: tzimmermann@suse.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -171,9 +181,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/77P2PTJQNUKSDD5VS2755J2VIRLYPKFK/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XLXQISXG3INBUBJI6KLZKHYFT3JKNA7R/>
 Archived-At: 
- <https://lore.freedesktop.org/20260709092215.168172-4-tzimmermann@suse.de/>
+ <https://lore.freedesktop.org/20260709092215.168172-5-tzimmermann@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -183,65 +193,70 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Add pre_switch to struct vga_switcheroo_client_ops to inform the
-switcheroo client about upcoming switches of the outputs.
+Add post_switch to struct vga_switcheroo_client_ops to inform the
+switcheroo client about a completed switch of the output.
 
-This callback is intended to replace the hard-coded call to fbdev's
-fb_switch_outputs(). With DRM supporting more clients than just fbdev
-emulation, something more flexible is required.
-
-v2:
-- remove non-sensical gpu_bound documentation (Sashiko)
+This callback is intended to replace the reprobe client op. It is a
+rename of reprobe for consistency with pre_switch.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
  drivers/gpu/vga/vga_switcheroo.c |  4 +++-
- include/linux/vga_switcheroo.h   | 11 ++++++++---
- 2 files changed, 11 insertions(+), 4 deletions(-)
+ include/linux/vga_switcheroo.h   | 12 +++++++-----
+ 2 files changed, 10 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/vga/vga_switcheroo.c b/drivers/gpu/vga/vga_switcheroo.c
-index 22cf52b78b75..bdf1e56ae891 100644
+index bdf1e56ae891..7b0af4a8aa7d 100644
 --- a/drivers/gpu/vga/vga_switcheroo.c
 +++ b/drivers/gpu/vga/vga_switcheroo.c
-@@ -733,8 +733,10 @@ static int vga_switchto_stage2(struct vga_switcheroo_client *new_client)
- 	if (!active->driver_power_control)
- 		set_audio_state(active->id, VGA_SWITCHEROO_OFF);
+@@ -746,7 +746,9 @@ static int vga_switchto_stage2(struct vga_switcheroo_client *new_client)
+ 	if (ret)
+ 		return ret;
  
-+	if (new_client->ops->pre_switch)
-+		new_client->ops->pre_switch(new_client->pdev);
- #if defined(CONFIG_FB)
--	if (new_client->fb_info)
-+	else if (new_client->fb_info)
- 		fb_switch_outputs(new_client->fb_info);
- #endif
+-	if (new_client->ops->reprobe)
++	if (new_client->ops->post_switch)
++		new_client->ops->post_switch(new_client->pdev);
++	else if (new_client->ops->reprobe)
+ 		new_client->ops->reprobe(new_client->pdev);
  
+ 	if (vga_switcheroo_pwr_state(active) == VGA_SWITCHEROO_ON)
 diff --git a/include/linux/vga_switcheroo.h b/include/linux/vga_switcheroo.h
-index 7e6ac0114d55..4422daca9ceb 100644
+index 4422daca9ceb..51851831d4c1 100644
 --- a/include/linux/vga_switcheroo.h
 +++ b/include/linux/vga_switcheroo.h
-@@ -133,17 +133,22 @@ struct vga_switcheroo_handler {
+@@ -127,21 +127,22 @@ struct vga_switcheroo_handler {
+  * @set_gpu_state: do the equivalent of suspend/resume for the card.
+  * 	Mandatory. This should not cut power to the discrete GPU,
+  * 	which is the job of the handler
+- * @reprobe: poll outputs.
+- * 	Optional. This gets called after waking the GPU and switching
+- * 	the outputs to it
++ * @reprobe: deprecated
   * @can_switch: check if the device is in a position to switch now.
   * 	Mandatory. The client should return false if a user space process
   * 	has one of its device files open
-+ * @pre_switch: prepare switch
-+ *	Optional. This gets called before switching the outputs to the
-+ *	GPU. Allows drivers to prepare for the switch.
+  * @pre_switch: prepare switch
+  *	Optional. This gets called before switching the outputs to the
+  *	GPU. Allows drivers to prepare for the switch.
++ * @post_switch: completes switch
++ *	Optional. This gets called after waking the GPU and switching
++ *	the outputs to it. Allows drivers to poll the switched outputs.
   * @gpu_bound: notify the client id to audio client when the GPU is bound.
   *
   * Client callbacks. A client can be either a GPU or an audio device on a GPU.
-- * The @set_gpu_state and @can_switch methods are mandatory, @reprobe may be
-- * set to NULL. For audio clients, the @reprobe member is bogus.
-- * OTOH, @gpu_bound is only for audio clients, and not used for GPU clients.
-+ * The @set_gpu_state and @can_switch methods are mandatory, @pre_switch and
-+ * @reprobe may be set to NULL. For audio clients, the @pre_switch and
-+ * @reprobe members are bogus. OTOH, @gpu_bound is only for audio clients,
-+ * and not used for GPU clients.
+  * The @set_gpu_state and @can_switch methods are mandatory, @pre_switch and
+- * @reprobe may be set to NULL. For audio clients, the @pre_switch and
+- * @reprobe members are bogus. OTOH, @gpu_bound is only for audio clients,
++ * @post_switch may be set to NULL. For audio clients, the @pre_switch and
++ * @post_switch members are bogus. OTOH, @gpu_bound is only for audio clients,
+  * and not used for GPU clients.
   */
  struct vga_switcheroo_client_ops {
- 	void (*set_gpu_state)(struct pci_dev *dev, enum vga_switcheroo_state);
+@@ -149,6 +150,7 @@ struct vga_switcheroo_client_ops {
  	void (*reprobe)(struct pci_dev *dev);
  	bool (*can_switch)(struct pci_dev *dev);
-+	void (*pre_switch)(struct pci_dev *dev);
+ 	void (*pre_switch)(struct pci_dev *dev);
++	void (*post_switch)(struct pci_dev *dev);
  	void (*gpu_bound)(struct pci_dev *dev, enum vga_switcheroo_client_id);
  };
  
