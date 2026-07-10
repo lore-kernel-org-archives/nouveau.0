@@ -4,109 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B2A8C44506
-	for <nouveau@archiver.kernel.org>; Fri, 10 Jul 2026 16:47:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12B57C43458
+	for <nouveau@archiver.kernel.org>; Fri, 10 Jul 2026 16:48:51 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8C27110F154;
-	Fri, 10 Jul 2026 16:47:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E226C10F154;
+	Fri, 10 Jul 2026 16:48:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="PqMi8Yx5";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fjj8Z7j7";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 02AB54700F;
-	Fri, 10 Jul 2026 16:32:45 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 66FDB47033;
+	Fri, 10 Jul 2026 16:33:46 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783701164;
- b=CmpwtrpROV8AuFuR3BhkdhysrMMn0GxNwMSfuHLJsMKt/i7afRFSziaJjhISN2eAyXmfo
- /COZB6kR+zNKzjlXviTZQ+vR8pBRir9WTyKpLdGay8vWo4sy8WZMtCWPkx5OteDs597X1c4
- Mg5VgX0Lmt6bDyMkYX97SGsQl5pmP/ROIFVUNl/HBrZdeCbLCDGOeb5NtN4mtqg4ZNemJaa
- 7Rr+2LEHeK92OCpzg/EzEmthn/zncc7mHYbdBZamxLmiyRFc32VNS7GXcbwlOiHYA1EHOjN
- 2QOINw4n5j4KG6Uyrh0wcWuhYDr3tq3GIFa5oLP5DQfA+cc9GzL2z9O8K7fA==
+ s=20240201; t=1783701226;
+ b=BivvU+FF+SphlNx6aun5tALs8PhyPFgBVaKTjd3TwQbX5nA+NPZeyCECJdfWL5RCAidJS
+ JVdefwvdS/CnOWN1t6T7BVrPrklnQ+TRGHnb1VOvHBv5Wmd7J5Y5FJYaneAoM9S+3DCsOTQ
+ X5xpeH1AF6mj5/dBY2mGKZUfvl0tgLXku2Id+ho0BCqKQ4qRUOkaMORB6+1fcFh0IvHvSme
+ bgwUzUEL/EB4GkN2xjc6UwNCsaUiPfVs/BgXjQOocGZWGajYgsKTpjxMqFxD9/yKmlwIvZl
+ sFuxwfUvrjLZMAkZlTjFTpAi1fJXJLIMbzaDm4S4CrzQa8I8qJqI+KJ5Cacg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783701164; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783701226; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ldYpDeT5zs3T98XMfsT8ni9uE73SXe2oYxwTATvCf1s=;
- b=zdyebJnLwn29I7I72R1ccxyQt5tDcAy2RSBGsmgvsOkKdA0tdYMzaJNYdlMd1RYNuyKh5
- 9j3t7ChoMWL3AIUQYAj2A86fPmdize2qCTANw8Q92UZFS28kexTOtrkdQgBVpBsK9BD/x2D
- u17dTNNaZxOzEdgGvIRidYE6I8J4ncClEOzH1NO+nHFW+r6Nm8ZrCsOSJlMYB3KFdkryBUr
- VSAOpLYLtrUlW15N2KMH6o0XqDXaqKGiA396EzSo19vhQXAc0GXfz/anyrP+989gRYW/lvi
- WxyUumqKOSb8SKt9wnLvhrzRzSlVp64Q2Jz26OYFASq1SrMKv4AJ9bgG7rXw==
+ bh=h/T7cJaVh+vpdnCnVWowF/GJXIiYthZ82xWXxPXNVVI=;
+ b=u4RL7GOIOaMumdY0BuxKkZWrjT13dE5k5YNoqX7TbHBElojSWLHGsfvsueWvMqfYHgDT7
+ PP6FmLa9AWcWTdOTX2BLJmPX2lGXOrXHN3zYa9BNfgfrOFYVhoDn/eGHQQuBf4+9ybCGcB+
+ QPYE6E4bKQDw1JTIwso38ssFbjWzK7rAQ7zdtocCbS1IJ2nMyRBrnrXBqxfIPM8Mwcfi5k3
+ bIb3nGNd4fTFV1HFo/QHn1tjRz995U9cYINMAnbzq4L0B2VGu4LKXAOlumN+TwNUh0bckda
+ 1i+tz0Rp54LRN+4j2S8Mt6QBdOSci38NHH1OWd6MHe1cjtkchBnKKWrm54wA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=ziepe.ca;
+ dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
-  dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=ziepe.ca;
- arc=none (Message is not ARC signed); dmarc=none
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D239946FDF
-	for <nouveau@lists.freedesktop.org>; Fri, 10 Jul 2026 16:32:41 +0000 (UTC)
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
- [209.85.222.180])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3AEA210EB08
-	for <nouveau@lists.freedesktop.org>; Fri, 10 Jul 2026 16:47:46 +0000 (UTC)
-Received: by mail-qk1-f180.google.com with SMTP id
- af79cd13be357-92e5c9211d2so86058285a.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6E3E046FDF
+	for <nouveau@lists.freedesktop.org>; Fri, 10 Jul 2026 16:33:43 +0000 (UTC)
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
+ [209.85.210.178])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CC24710EF62
+	for <nouveau@lists.freedesktop.org>; Fri, 10 Jul 2026 16:48:47 +0000 (UTC)
+Received: by mail-pf1-f178.google.com with SMTP id
+ d2e1a72fcca58-8453427d3f4so1029031b3a.3
         for <nouveau@lists.freedesktop.org>;
- Fri, 10 Jul 2026 09:47:46 -0700 (PDT)
+ Fri, 10 Jul 2026 09:48:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1783702065; x=1784306865;
+        d=gmail.com; s=20251104; t=1783702127; x=1784306927;
  darn=lists.freedesktop.org;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:from:date:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=ldYpDeT5zs3T98XMfsT8ni9uE73SXe2oYxwTATvCf1s=;
-        b=PqMi8Yx5YWe6HeOiDa2LLyY8lAd3khqR+MZgLO4P38qIN2ymRKKHEK7QZcmoAjrhAj
-         2qR2jZFyJp4NPm3TOexw8N7iJaECOXRS8eoOL6qpHMo+adpbUFhwFRPDlp9pFolF8Z24
-         QoCbjSrdT525sUoyor/Bq1bRRb+P044aBDPbkF+Yqlk8/0z1fwgdLb9oNKbUEHLq170P
-         6JAqplJx7qzNFzk7HvyUUlX2v5J8in63ACULFXhSHIVlatOur2WxdP7iOoNAjYP/tPtK
-         LV/iJsjU789K2cnnX8p5jP8PlPenRi9JlVOaXfyLt2wJ75USWsXMQRBUAYYUpFhRgnO0
-         7r/A==
+        bh=h/T7cJaVh+vpdnCnVWowF/GJXIiYthZ82xWXxPXNVVI=;
+        b=Fjj8Z7j7RTjr/BMUJIKXxTu7gJa4aRmlP6+mdUFqNSP7Dx45qNsFSIxG2Sh0DlFRV4
+         c0+pvdvpXAH9d9/qcs0LYkoKt8YMRzKSBHLKA2VB7L99rbO7QKvenUsK60nl566batfi
+         9Pa1S3DK9IYa5RYk54JCf8FVzuumjmHSpq70C4LkMNduT/auZBxadRht9tncXQ76eNdB
+         4alWyTCaSBjARvKpP/gs6G+mZUX8fm9xvblRXimeMmj1fKTY0kkzy4vk9XMLaXUA/OvJ
+         2SXwHcnxNd84tAR4o8jxiVHIbdncgJiQnUBlA+pMRY4bWEU6WwS6I7l39q62sXVGCSPk
+         iJuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783702065; x=1784306865;
+        d=1e100.net; s=20251104; t=1783702127; x=1784306927;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ldYpDeT5zs3T98XMfsT8ni9uE73SXe2oYxwTATvCf1s=;
-        b=aaHzXXU2JujK1Dew3r+7zxpViboso86UP3bpheDb+a4H6t7flFgUXUQUgykvQOQTN0
-         dUQjI28rTEy6lBDZpsKqQs5dbi+W4fss1Nc6Obb66XEkwDuZDykG5TD7oYQCpwQWoDtT
-         lf8ApdxXA32YVhJYfktIoLzi25PgeHY/fpRLMKyzfyK+esJIU2uybLfsf0w14GSOY1UR
-         lUBPlvobM+dJKm1gDgWbX9ZVwPX6uUs3eVvbDu0SCGmLd0Jy5jRbnqJAAzDWK+4Isun1
-         JqOsATGyC5xoQm60ZxYLk6VZreEwwl/VNKopCcbXkGPNuiUY8Rb4GT39IA1uEHvAOEqU
-         MVDw==
+        bh=h/T7cJaVh+vpdnCnVWowF/GJXIiYthZ82xWXxPXNVVI=;
+        b=Xr1CRcAOZwDXanfDtLip3i4EP4ziSq69JkbhjMeDF7/He4MEjXoS+UbCiB4b7fpnQ4
+         itaKcP9CrTjlGKF9ebTVfL6sjro0dVEiis26okjusH6hGQKgHnQLHG/jqB6vwwlq3v/X
+         DGB3kE5SAnPblH6EjGVpU2AOgiroC/u9iiHNtNetJb9owZaZXYNxqZi6oPmStVGGEyum
+         Jf/N0GZI+TMpaZ1N4/fdrdL/8L6MZrBa6qxNUxQmd/ZHvTrlFISxYthWC3xazNipCp85
+         XxiS4UmPSahs9WtPi7FmRikUFGna6ngTcDcE3Jntj0U8K3doSz6rxFGiYAmrFE8zuair
+         kVaQ==
 X-Forwarded-Encrypted: i=1;
- AHgh+Rres+ksIiKrf1umh+TxoUjHhlhx+exwdzZNxB0stwtoYuDUAlx9zgr2jfP9RTvUUZFFWYFMxPjn@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzQSQ6JYGmjm3VUqgCo92bfMiN1aFvOkLYRlsjb6qM6S/mv0ns+
-	YmicXSHeQY27UAcN/p54WFoyj7eF+NlZUmhOpQXfW8NF7n0xiLZtZfeK8KeJN8OkuEg=
-X-Gm-Gg: AfdE7cm0MFzF8WaPZTvAHaDfdHyzDl21BWWsXrAxkCl3p7a2EXoQyNWKsr7CaOYW0DO
-	Vew4Ndx+1k6LXz52UulPDly2Z/cdv7MkEh9C4TB2HCQguDoFlVejk1ErFifJ76I3Q6qLe6ObSge
-	89iACEkbdiMqQapvbzwP2MPMbsr/8zggo+q9KZ5tAWt8giKJCSLpAC5wwKv80oJMLyPuIMxNciY
-	45hcyw0IBcloQTJq3cTPJg5w6bHtnBasWHiA4Mofq4Csy9BHtj9x+rbIgJ+iuIkBTdWUOJZRpxg
-	Z5wjfgohJtSzcNAc4a60XPGvH4WG96LP0yYyzrEsIfgovMTGABuN1VzV7kMeDhCGtUNl3++xn7p
-	mkbFq4ui5wlZjP3+HdJxo9IbVTFEOh9zFmMf0RF8paVaqhF/Yqmz1lZaRnXmn
-X-Received: by 2002:a05:620a:4044:b0:92a:3ceb:9cf1 with SMTP id
- af79cd13be357-92ecf68b839mr1385461685a.37.1783702065110;
-        Fri, 10 Jul 2026 09:47:45 -0700 (PDT)
-Received: from ziepe.ca ([159.2.72.92])
+ AHgh+RoMOUPgctWvdWmm4ekV7ZEWTy9ASF1KT+gSHHe6gdB+oGzc1CWqWh5ipRFe93s+g/+zCeXn/PBU@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxtcjT16PhILFG61ksUr5DUAumkpIM7W2CJYq4tma5hkOH+ov1K
+	JC3nMpRNwruJHjc6Kau5EteKUT0wGC/uYmzDLzB3rszZhG5cWr6i3J01
+X-Gm-Gg: AfdE7cl9tZ/M1G1gE+CWEBykiitXCCSV5ltwKIEspVok4gXrUaUyc6rYn76zEKyW55X
+	DNluqXBZsCCYCcRKd/3Y16AC6t5xHCkt83BI4wExP6RO0QMXm8Wv/C9qV5kcd8w1q4BS3EZqjrJ
+	YMu5YHEWfdigKwDYmKyzHbCVkfTWuvCbQqHGaXtG3F2mWUNLKW728lxnkBAcFYItbEhHEIjjj2Q
+	cNeuOgvCQCiVg6SkMtBjO5YZxtrOc/LrfFh0QxNJc4FWHfhHUuYVASLAyr7Lp6/VMVQjWvU7grz
+	gPdyCZWvGKyjw5ck1zRCk3jvpjnpav0gzhnTjenY++Z87G8LCSVSRG7vkNTtXp+35IBIE/ybDAv
+	ClzxzaFPrIIE2EAxNqtnQ8+jzSES+LlAjOtQblhYJ7GLgUX1hnLk/otII5uPJiX/EJEbXFNl5K2
+	tyB3NXxTqgi09GNRDkRfRGdDfOYvdLZJz7b/0oksmLIR4bhWKc0io3Q0c=
+X-Received: by 2002:a05:6a00:6c9a:b0:848:2f7a:2e57 with SMTP id
+ d2e1a72fcca58-848438a63damr12313317b3a.70.1783702127271;
+        Fri, 10 Jul 2026 09:48:47 -0700 (PDT)
+Received: from skinsburskii (c-98-225-44-182.hsd1.wa.comcast.net.
+ [98.225.44.182])
         by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-8ffd5bbac2asm45778726d6.21.2026.07.10.09.47.44
+ d2e1a72fcca58-847f6b609acsm10408336b3a.1.2026.07.10.09.48.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jul 2026 09:47:44 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1wiEO7-00000007ZDn-3hnt;
-	Fri, 10 Jul 2026 13:47:43 -0300
-Date: Fri, 10 Jul 2026 13:47:43 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Stanislav Kinsburskii <skinsburskii@gmail.com>
+        Fri, 10 Jul 2026 09:48:46 -0700 (PDT)
+Date: Fri, 10 Jul 2026 09:48:44 -0700
+From: Stanislav Kinsburskii <skinsburskii@gmail.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
 Subject: Re: [PATCH v7 2/8] mm/hmm: add hmm_range_fault_unlocked_timeout()
  for mmap lock-drop support
-Message-ID: <20260710164743.GX118978@ziepe.ca>
+Message-ID: <alEibBRYmWQvf1z1@skinsburskii>
 References: <178345345668.660027.2952911919681614557.stgit@skinsburskii>
  <178345362182.660027.12809852179204464964.stgit@skinsburskii>
  <20260710162749.GP118978@ziepe.ca>
@@ -114,13 +115,12 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 In-Reply-To: <20260710162749.GP118978@ziepe.ca>
-Message-ID-Hash: UZUC2WDHJQNLBXMKHHCNY6JOAYNQROMO
-X-Message-ID-Hash: UZUC2WDHJQNLBXMKHHCNY6JOAYNQROMO
-X-MailFrom: jgg@ziepe.ca
+Message-ID-Hash: C2CPGVVZQYG3KD4Q3LSSWTYVHGUYFMLK
+X-Message-ID-Hash: C2CPGVVZQYG3KD4Q3LSSWTYVHGUYFMLK
+X-MailFrom: skinsburskii@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
+ loop; banned-address; member-moderation
 CC: akhilesh@ee.iitb.ac.in, akpm@linux-foundation.org, corbet@lwn.net,
  dakr@kernel.org, david@kernel.org, decui@microsoft.com,
  haiyangz@microsoft.com, kees@kernel.org, kys@microsoft.com, leon@kernel.org,
@@ -137,8 +137,8 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/UZUC2WDHJQNLBXMKHHCNY6JOAYNQROMO/>
-Archived-At: <https://lore.freedesktop.org/20260710164743.GX118978@ziepe.ca/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/C2CPGVVZQYG3KD4Q3LSSWTYVHGUYFMLK/>
+Archived-At: <https://lore.freedesktop.org/alEibBRYmWQvf1z1@skinsburskii/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -170,20 +170,27 @@ On Fri, Jul 10, 2026 at 01:27:49PM -0300, Jason Gunthorpe wrote:
 > 
 > I really dislike there is a timeout here, HMM is supposed to be more
 > deterministic. GUP doesn't have a timeout, what is this about?
+> 
 
-It looks like you've moved the timeout processing related to the mmnu
-notifier sequence from the callers into this helper. I'm fine with
-that, but maybe add some comments that this timeout is helping
-implement the mmu notifiers, and we do expect that the HMM part will
-not timeout.
+The timeout was added because this version makes the unlocked helper own
+the internal retry loop, including -EBUSY retries.
 
-Though it is a little hard to see how your stated purpose of enabling
-userfaultfd is going to work, aren't you pretty much guarenteed to hit
-a timeout if the userfaultfd process is adversly scheduled? That's
-going to end up broken.
+Several existing HMM users already bound those retries with
+HMM_RANGE_DEFAULT_TIMEOUT, so the timeout argument was meant to avoid
+silently turning those call sites into unbounded waits.
 
-So, maybe the deadline should be resetting after every handled fault?
-ie the timeout really is only about the mmu notifier and we don't
-count the time spent handling faults or walking?
+That said, I agree this mixes driver retry policy into HMM. A cleaner
+split may be to make the new helper timeout-free and have it retry
+internally only when mmap_lock was dropped by the fault path, since that
+is the part HMM must hide for userfaultfd-style faults.
 
-Jason
+If the walk fails with the normal HMM invalidation -EBUSY, the helper
+would return -EBUSY to the caller, preserving the existing driver
+timeout loops and keeping HMM deterministic, closer to GUP.
+
+Is it better from your POV?
+
+THanks,
+Stanislav
+
+> Jason
