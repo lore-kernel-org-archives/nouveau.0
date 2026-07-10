@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34852C44506
-	for <nouveau@archiver.kernel.org>; Fri, 10 Jul 2026 16:31:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66532C44506
+	for <nouveau@archiver.kernel.org>; Fri, 10 Jul 2026 16:38:42 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B3FDF10F32B;
-	Fri, 10 Jul 2026 16:31:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3D36C10E931;
+	Fri, 10 Jul 2026 16:38:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="CSj7DX0h";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="drtE5KJZ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2D00547017;
-	Fri, 10 Jul 2026 16:16:38 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A4F304701B;
+	Fri, 10 Jul 2026 16:23:37 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783700198;
- b=OVt0O0KIJtiQmQZavBfVm09uD31p9epdnTttVShse5YuD0OJpaDHwmfMWwkAc472Dy3l1
- c8L84Xost2hqObOuXYhe5ZUYeTd0rr4TiyYHdTgvsP8K4LiZIZmpmARYelBlNZtPE/PFCcX
- br8N9OPgkGZGOsjccei4FC3sUE2NOF+QHk7cATrdSivI66/EoIuLM75heq++KO57l6A12Md
- latXUIipqT2HPt3B1vYds5o7gT5Kr48y4xOe7LseHe/wK7jmTRpuy25nVbO9c90YEDznYSw
- sx1+ZYokaTtgU2uihdBT2BH0Qozm9YrwRdRNXKQ42kuDRRAKq6rMVMnXJs5w==
+ s=20240201; t=1783700617;
+ b=R3fVwC4jvbGiJ7udRY/buGbG9fXalohycY/xaAE5/4em/BQFpxaWH0BEWx4VcU9UiEtXs
+ FQNIwI081+nGBcOUv+8fKksqJisbUP8ueL9HgS/go0Qm7nhhO6vJBfGBUn7I80nXQkl4TFf
+ +kviG+AvN3u3H9u+l4ds+dfzaG099/6ZsEk+G2381XfAuKcx/jHQ+/yBDRNJFSYp9NuoQz+
+ P/MQkqNlwYUxtqc+MTqthWfVRBmfFhJY4y6dNlNnWX4Uso5MYoou6MWEbOB7l3P8WHepmIP
+ ZLDM2lLX8BVvt3W21kUk1RIE3paK09B+uaoqV+szrYuVnaRW6xo9x46B4GAg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783700198; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783700617; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ihr9TBqVvOWsgDH+NpkUYsK2K2fCkLkiaNuX2IHUYwY=;
- b=cLQ+JAg8OjaiArJvgSIpjRxKWaqdb5q9tAFbuIcbMxtpkMeLVRcvnl/+AcT3CRYjp54ku
- oZZjtWUlCmjcPSEhSnE+/UBtaKHROM0Jo3CErTy1kjpg9vCiE42UAc+DvMo60fRudRRX95c
- 2sb5ogDnwdfVuyIvntxrLg9bSG9D5FftS5hqrsU0EcjgCaaFCHMPHPc6oj+jgxiFFmpLc3v
- C6m7EbWEYzwvYGi/AP7M1eK8N3wHQoOooOJPShdDXs+OkR7HfgITnGHg7trqC/IhvQ7xJ2M
- HD1Zr/9hGF9nCUxWd068I2LfWwzbuiQpj3OjEdIHZcYAsFUntH++aZHjJO1g==
+ bh=fjPC+dGtl7NWTD2gQsmUUpevrDX1aRJ0R6Q1EEoKDOI=;
+ b=DCt/EDEXz0pAeMy1u1m2iNlEXgwZHei4MJv91hAZ+ct3YYap4sBS69SO/dJHn3hXgOqMV
+ yiMIaLE6C4ODqEkS/i7UzWCk2cqmFs5N5tR+xNCOawUV+cTRkYKt/GUZLEC9//xpNDhguar
+ lec/fSVtiJZ4xQA4JOSnSl4ifmbHU0eZftGomF/1BHeaLxxNM9liHSkvkNqHczJLB3GZjpY
+ o78AAWvj9Hxyy0DNr00qwyhCRclOw6KEflwuEwez1XwySOnzMgRRzKcJjqBFYJ5zgFc7R7x
+ yde7rlX3b9uWWxjzoXjtj2JYO4TCboSNI78HS4zsYG7ouihA/fA07dZOvcLQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=ziepe.ca;
   arc=none (Message is not ARC signed);
@@ -43,78 +43,78 @@ ARC-Authentication-Results: i=1; mail.freedesktop.org;
 Authentication-Results: mail.freedesktop.org; dkim=pass header.d=ziepe.ca;
  arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E303A4022C
-	for <nouveau@lists.freedesktop.org>; Fri, 10 Jul 2026 16:16:35 +0000 (UTC)
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com
- [209.85.219.45])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4438910E20D
-	for <nouveau@lists.freedesktop.org>; Fri, 10 Jul 2026 16:31:40 +0000 (UTC)
-Received: by mail-qv1-f45.google.com with SMTP id
- 6a1803df08f44-8ee88fce476so11973726d6.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 7C8E746F4F
+	for <nouveau@lists.freedesktop.org>; Fri, 10 Jul 2026 16:23:33 +0000 (UTC)
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com
+ [209.85.219.43])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D446A10E20C
+	for <nouveau@lists.freedesktop.org>; Fri, 10 Jul 2026 16:38:37 +0000 (UTC)
+Received: by mail-qv1-f43.google.com with SMTP id
+ 6a1803df08f44-8eefd0c5f59so8501486d6.3
         for <nouveau@lists.freedesktop.org>;
- Fri, 10 Jul 2026 09:31:40 -0700 (PDT)
+ Fri, 10 Jul 2026 09:38:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1783701099; x=1784305899;
+        d=ziepe.ca; s=google; t=1783701517; x=1784306317;
  darn=lists.freedesktop.org;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:from:date:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=ihr9TBqVvOWsgDH+NpkUYsK2K2fCkLkiaNuX2IHUYwY=;
-        b=CSj7DX0hWeyE/eTX5n7PkKRobWSRqtVerqD6Y5bwmFmB/QbegtCboewFL/+nvRwShE
-         2gxTBp8FRuvzK++bDdZhiD6+kJqtkGcdex9/kP0mKJvG7Z0TTjbGJYUZH8eyRzFIQOMK
-         ydtV/pG5tuKA3kZSa1mljp+A4NjWT8XRCzOkrkKsZZ6ANDnIiB87ZtUskFohVY9BCF+i
-         BXA7Gq6JQTMFjbgsLQTBAn1eiNPqEPPgxFY/xDN2Pen3VT6zH6+uHUA2wqR/KvXz2CA4
-         kQKGRC4m3hBZce6+TpesSx3seJvvzALCLeS0UjHj24L44ZYRUpr8TUH+YqNa8CwysqFh
-         33kw==
+        bh=fjPC+dGtl7NWTD2gQsmUUpevrDX1aRJ0R6Q1EEoKDOI=;
+        b=drtE5KJZAKoPAgnLEPFLCTh/1OyiBq6wmdtLmEQNp3Phc34VlQrLTV+M4bqhG4y1M7
+         Q2hgcnBxTX7pd75hc3AAd+VwLUgTLHm7lcZSliA9bs9H0KfxqSgH0m6TP29mOeHSXhrb
+         bkOxWHzOujDJlIm/ea/hmVVpgX5jO3YOA7Pt33UD/C0tFEjzZIvnf64olwvcgMaC28DM
+         E0A0FMGek//+Ogr0s5Tel5nV3nDcFfnMasqWIj4Owq6VnzUGrzevR7GDCUDUlzMxaaiT
+         5V7B1yMB2eymeg7aPqKGYNkNd8/gQ+bQo9GRMniIPQjk8NBiC6CaElgLMrOx/tv3D8fs
+         vumg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783701099; x=1784305899;
+        d=1e100.net; s=20251104; t=1783701517; x=1784306317;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ihr9TBqVvOWsgDH+NpkUYsK2K2fCkLkiaNuX2IHUYwY=;
-        b=RNxig2X/Y9y/nVO7LhX/txN0BcyJ5Lzigz2H7Nj8Q21KMkX+A4CWaNJk77Wna9U783
-         rnA9uv4qWfScHOyJ3WFH4d4m03cF2GVt8zjxE+IL/Z4BjZicymBkzn5F9b5AbC4x/Pmy
-         DqTWs0xBhsmuRwCx5frx6RZqDrpWBR+RtE3ZdK0V7he+BgjooJsNDXIPrwz+ZuQ1Brqw
-         9THyDyz654hzQHn+oM1vSVlGhKJWyQJt/zIv+MHBU+YgOMsn6R2FspnF+Rl4/0k7OEMQ
-         6/e7gi1fjtpHlUgZC5FAVPoMgdvujNucP5cWhWGyqSnttG7H55HpYWw0hXXlY0rLA3Dz
-         t/4w==
+        bh=fjPC+dGtl7NWTD2gQsmUUpevrDX1aRJ0R6Q1EEoKDOI=;
+        b=c99cpLLNTSD0DmZiqplykr5UJsROvThRaDp9+IPNYhAVg7I3EIUOWQSNh+Ue6YHuzd
+         HdFjdj1ZKUa6bqx9POwCfxo1vZuMyMl9tMRhhd3dHI42xnnsWJ9zSGzKrf9OT6rm+dpD
+         yJx7nd6m90CIIgKXqdEhSCeLVAE7tJwuEJTn5c324S2esSCxNcMaMQVyYvb+DVsgp7Ne
+         XPnQy5CoyGo2y/7eOorc33wlQx/gX/bWiep6NSWbNe4bqx3Rjb4GWCkbZbTfTjjD/+aI
+         3OJ2kjPvJCgWX/S/H4GVWgm1LwDObPwmQ0X05wWEOmg/BZvdaGbKL3ThvFyGNXSIt68M
+         DDqA==
 X-Forwarded-Encrypted: i=1;
- AHgh+RqXPush6SkUuOhieXFil9/MtQpyEuVKJ2ZU3Wn1ItuJsc/6tlptUQz8izjigN9JlgmpDyCES0XY@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyvi0h2D8h3UiI3MMXVDG15tra62jgGrQlZS5O46P63RuALcN4W
-	omcl2wnvhL976vIU09ShnlKVSYBBMTIQd5vHoMFc3CXAoM8MCXlURvGTWfGCn7B1l84=
-X-Gm-Gg: AfdE7cn7vaJVmaRPXt0tDnrjfsyRjh1cFcAfVLAoqFb7qYNTGdjPpXo3NLNMNA7/iBF
-	Jl2KRkX9i12m75z8dAnUQZfXqPB0GorvVFrLutuHbBko+gyqB0j/sXBcCCDb/Z5cexH//S6lG9i
-	h/j+EE8kX+hg1XX1p0EU7lrSoD87F4Y+XZYhggCFM8bsD4+VF5xeAqRq0svS4t3HdHUxhqjfmWc
-	AsALxF+OCrWYcG0PV4e3VukenzlxiOZkpNNhyoj7EiK3TXaheeu125SsQG0RNVPVgmQppG5enoq
-	b5WzwVyqJbWH6+rhLRUQKiZ1u6Gue0U3imNlWkPLHowHTOIpwX1A9t5PlgfRBj9rI8hBwm86nKI
-	sUZD3Gn16WLUrqXHSGxTzIzYZIVu3EnKLQ7TlULC8wWJ2sBgikzSQA7jeKPCniRxG6ZEEP0U=
-X-Received: by 2002:a05:6214:4710:b0:903:12c9:cba6 with SMTP id
- 6a1803df08f44-90312c9dcb8mr32500716d6.47.1783701099176;
-        Fri, 10 Jul 2026 09:31:39 -0700 (PDT)
+ AHgh+Ro6lx47tXxITJGQrM6jShFtZXFDZU4lbp3y83H5dPTo1XtuvMOoQVl7ErzKEDBfMaWGr5lfV1rA@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzB1/AmYxaPZ+pw7o5ttBH+42I8rpTM12PXIVZX8kmc6d7b8P3e
+	gxd8oZ56VW8WBgJ+1c/fJzWkR53EOiIbouOqByxohEgr49yItHoeXgZv30RJNVABl84=
+X-Gm-Gg: AfdE7cnLWhfdZHnOv2S0aF07CC9KrcClRFxeSm45s7qL+W+q2rjPa29rSnpm7Bzq2kf
+	ElE2W+7RlcOZFOA6Pdac4ZVxn74ecgcW34T6O8AnWjv+aUPEa2OORmvH3HViTI+8+UeUhrzfQKg
+	X0Qe6Agd5kUqie8eBxy1CPuCOYrqkzNq3tx0+uXWipYbrO9FCqXYi1SyzBDct2DodOYmm9aSlOA
+	XYHpHVuQDe5MYKZ/qt+4B8oZ0C6mU/X1kuqqqE/KmxBCyLOPGsuAvz9cYsy/avUBjtx/XFCpEk0
+	8fCxNGA0WWg4GeJfjTo5Uyx0GwACTfwSb8yZDLjklBt4tKMvRN6LfEpv0n34nrdHNbUwT+yaFvj
+	UQKvStmE9wz0pRocJXmyafHMbDlSn9hnk+SlAphaKoCtuUIAVWD0bQQZwLAg9
+X-Received: by 2002:a05:6214:19e7:b0:8f1:36c7:497c with SMTP id
+ 6a1803df08f44-8fec217aa9emr148367176d6.33.1783701516760;
+        Fri, 10 Jul 2026 09:38:36 -0700 (PDT)
 Received: from ziepe.ca ([159.2.72.92])
         by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-8ffd56c4cd1sm44753226d6.16.2026.07.10.09.31.38
+ 6a1803df08f44-8ffd7c1d8fcsm45350946d6.25.2026.07.10.09.38.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jul 2026 09:31:38 -0700 (PDT)
+        Fri, 10 Jul 2026 09:38:36 -0700 (PDT)
 Received: from jgg by wakko with local (Exim 4.97)
 	(envelope-from <jgg@ziepe.ca>)
-	id 1wiE8X-00000007Xks-3Vyo;
-	Fri, 10 Jul 2026 13:31:37 -0300
-Date: Fri, 10 Jul 2026 13:31:37 -0300
+	id 1wiEFH-00000007YQp-17rB;
+	Fri, 10 Jul 2026 13:38:35 -0300
+Date: Fri, 10 Jul 2026 13:38:35 -0300
 From: Jason Gunthorpe <jgg@ziepe.ca>
 To: Stanislav Kinsburskii <skinsburskii@gmail.com>
-Subject: Re: [PATCH v7 1/8] mm/hmm: move page fault handling out of walk
- callbacks
-Message-ID: <20260710163137.GQ118978@ziepe.ca>
+Subject: Re: [PATCH v7 2/8] mm/hmm: add hmm_range_fault_unlocked_timeout()
+ for mmap lock-drop support
+Message-ID: <20260710163835.GR118978@ziepe.ca>
 References: <178345345668.660027.2952911919681614557.stgit@skinsburskii>
- <178345361483.660027.16455119612963295072.stgit@skinsburskii>
+ <178345362182.660027.12809852179204464964.stgit@skinsburskii>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <178345361483.660027.16455119612963295072.stgit@skinsburskii>
-Message-ID-Hash: MPN4JY6A6OFDEVG5BNS3R7SJHRZCYAOW
-X-Message-ID-Hash: MPN4JY6A6OFDEVG5BNS3R7SJHRZCYAOW
+In-Reply-To: <178345362182.660027.12809852179204464964.stgit@skinsburskii>
+Message-ID-Hash: M4AEKBODOOWCOGERH6J6BYXCJ6M4JZSB
+X-Message-ID-Hash: M4AEKBODOOWCOGERH6J6BYXCJ6M4JZSB
 X-MailFrom: jgg@ziepe.ca
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -136,8 +136,8 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MPN4JY6A6OFDEVG5BNS3R7SJHRZCYAOW/>
-Archived-At: <https://lore.freedesktop.org/20260710163137.GQ118978@ziepe.ca/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/M4AEKBODOOWCOGERH6J6BYXCJ6M4JZSB/>
+Archived-At: <https://lore.freedesktop.org/20260710163835.GR118978@ziepe.ca/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -147,41 +147,107 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue, Jul 07, 2026 at 12:46:54PM -0700, Stanislav Kinsburskii wrote:
-> hmm_range_fault() currently triggers page faults from inside the page-table
-> walk callbacks: hmm_vma_walk_pmd(), hmm_vma_walk_pud(),
-> hmm_vma_walk_hugetlb_entry() and the pte-level helper all call
-> hmm_vma_fault(), which in turn calls handle_mm_fault() while the walker
-> still holds nested locks.  The pte spinlock is dropped explicitly by each
-> caller, and the hugetlb path manually drops and retakes
-> hugetlb_vma_lock_read around the fault to dodge a deadlock against the walk
-> framework's unconditional unlock.
-> 
-> This layering does not extend cleanly to fault handlers that may release
-> mmap_lock (VM_FAULT_RETRY, VM_FAULT_COMPLETED). If the lock is dropped
-> while walk_page_range() is mid-traversal, the VMA can be freed before the
-> walk framework's matching hugetlb_vma_unlock_read(), turning that unlock
-> into a use-after-free.
-> 
-> Split the responsibilities the way get_user_pages() does. Walk callbacks
-> become inspect-only: when they detect a range that needs to be faulted in,
-> they record it in struct hmm_vma_walk and return a private sentinel
-> (HMM_FAULT_PENDING). The outer loop in hmm_range_fault() then drops out of
-> walk_page_range(), invokes a new helper hmm_do_fault() that calls
-> handle_mm_fault() with only mmap_lock held, and restarts the walk so the
-> now-present entries are collected into hmm_pfns.
-> 
-> No functional change for existing callers. As a side effect the hugetlb
-> callback no longer needs the hugetlb_vma_{un}lock_read dance, and every
-> fault-path exit from the callbacks now releases the pte spinlock on a
-> single, common path. This refactor is also a precursor for adding an
-> unlockable variant of hmm_range_fault() in a follow-up patch.
-> 
-> Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
-> ---
->  mm/hmm.c |  118 +++++++++++++++++++++++++++++++++++++++-----------------------
->  1 file changed, 75 insertions(+), 43 deletions(-)
+On Tue, Jul 07, 2026 at 12:47:01PM -0700, Stanislav Kinsburskii wrote:
+> hmm_range_fault() requires the caller to hold the mmap read lock for the
+> duration of the call. This is incompatible with mappings whose fault
+> handler may release the mmap lock, notably userfaultfd-managed regions,
+> where handle_mm_fault() can return VM_FAULT_RETRY or VM_FAULT_COMPLETED
+> after dropping the lock. Drivers that need to populate device page tables
+> for such mappings have no way to do so today.
 
-Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+sashiko could not apply v7 for some reason but the remarks on v6
+seemed meaningful, did you see them were they delt with?
+
+https://sashiko.dev/#/patchset/178336023903.504354.7500950448226027718.stgit%40skinsburskii
+
+> diff --git a/Documentation/mm/hmm.rst b/Documentation/mm/hmm.rst
+> index 7d61b7a8b65b..70885f153d03 100644
+> --- a/Documentation/mm/hmm.rst
+> +++ b/Documentation/mm/hmm.rst
+> @@ -208,6 +208,69 @@ invalidate() callback. That lock must be held before calling
+>  mmu_interval_read_retry() to avoid any race with a concurrent CPU page table
+>  update.
+>  
+> +Dropping the mmap lock during page faults
+> +=========================================
+> +
+> +Some VMAs have fault handlers that need to release the mmap lock while
+> +servicing a fault (for example, regions managed by ``userfaultfd``).
+> +``hmm_range_fault()`` cannot be used on such mappings because it must hold the
+> +mmap lock for the duration of the call. Drivers that need to support them
+> +should call::
+
+Given the majority of callers use this API it should probably be the
+focus of the documentation and example, regulate the existing API to a
+'BTW if you really need the mmap lock, and you really shouldn't, this
+exists too'
+
+> @@ -32,6 +32,7 @@
+>  
+>  struct hmm_vma_walk {
+>  	struct hmm_range	*range;
+> +	int			*locked;
+
+Let's use bool if you have to respin this
+
+> @@ -651,37 +663,33 @@ static int hmm_do_fault(struct mm_struct *mm,
+>  		fault_flags |= FAULT_FLAG_WRITE;
+>  	}
+>  
+> -	for (; addr < end; addr += PAGE_SIZE)
+> -		if (handle_mm_fault(vma, addr, fault_flags, NULL) &
+> -		    VM_FAULT_ERROR)
+> -			return -EFAULT;
+> +	for (; addr < end; addr += PAGE_SIZE) {
+> +		vm_fault_t ret;
+> +
+> +		ret = handle_mm_fault(vma, addr, fault_flags, NULL);
+> +
+> +		if (ret & (VM_FAULT_COMPLETED | VM_FAULT_RETRY)) {
+> +			*hmm_vma_walk->locked = 0;
+> +			return HMM_FAULT_UNLOCKED;
+> +		}
+> +
+> +		if (ret & VM_FAULT_ERROR) {
+> +			int err = vm_fault_to_errno(ret, 0);
+> +
+> +			if (err)
+> +				return err;
+> +			BUG();
+
+Linux will be upset if he sees this.  
+
+if (WARN_ON(!err))
+   err = -EINVAL
+
+> +/**
+> + * hmm_range_fault - try to fault some address in a virtual address range
+> + * @range:	argument structure
+> + *
+> + * Returns 0 on success or one of the following error codes:
+> + *
+> + * -EINVAL:	Invalid arguments or mm or virtual address is in an invalid vma
+> + *		(e.g., device file vma).
+> + * -ENOMEM:	Out of memory.
+> + * -EPERM:	Invalid permission (e.g., asking for write and range is read
+> + *		only).
+> + * -EBUSY:	The range has been invalidated and the caller needs to wait for
+> + *		the invalidation to finish.
+> + * -EFAULT:     A page was requested to be valid and could not be made valid
+> + *              ie it has no backing VMA or it is illegal to access
+> + *
+> + * This is similar to get_user_pages(), except that it can read the page tables
+> + * without mutating them (ie causing faults).
+> + *
+> + * The mmap lock must be held by the caller and will remain held on return.
+> + * For a variant that allows the mmap lock to be dropped during faults (e.g.,
+> + * for userfaultfd support), see hmm_range_fault_unlocked_timeout().
+> + */
+
+Add a comment discourging anyone from using this function and prefer
+hmm_range_fault_unlocked_timeout()
+
+Other than the concern about the timeout and minor nits this looks
+fine
 
 Jason
