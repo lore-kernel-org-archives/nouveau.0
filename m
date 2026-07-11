@@ -4,122 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86877C43458
-	for <nouveau@archiver.kernel.org>; Sat, 11 Jul 2026 03:22:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D84A0C43458
+	for <nouveau@archiver.kernel.org>; Sat, 11 Jul 2026 05:46:14 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5F5DE10F974;
-	Sat, 11 Jul 2026 03:22:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7C87610E2F9;
+	Sat, 11 Jul 2026 05:46:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="e5bR6NYS";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="QgCET+Tx";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CAB66470A3;
-	Sat, 11 Jul 2026 03:07:34 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id B3222470A9;
+	Sat, 11 Jul 2026 05:31:07 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783739254;
- b=OKM6LXYqebm8vwDnhqChlH+XGpMu3bMkYQ56nJh0xF3jSjQABIi2rDWnaVNrMfDlcRVCP
- eQhlFDaLQ1aSnGT7Eqx5aC3RG0UxNmA3upvzmr5gAxpqzGEP7pU+yaIJExpMC3HEqXYbviC
- /4JcDkgFByEuBpvTb6la/k4sQyB+K75Z9PosPpLvgNdcaIAFAUz2/C03Gmpx5+ePqjwamsv
- dDa9D18csMLqobfzFbzLShBOib9lK2fQ2JgsgOZd26wQhS5K3pwgJ9+cXK4Lvqpqjx8d3q9
- oXTABq5VawPxI8ZSOfm7ilhUyrJdflfGEpNNZUxF5ADezbS6/MENouVGRZxg==
+ s=20240201; t=1783747867;
+ b=PjCpGP24iw5Axh195oCOml01IKVerabhpgDi1yVEZFoYq+xBcYnZS8chWTUwruYG5wmg7
+ zFGmb/puEJzCUNCTPBgq3pF7zny4txf9ZlPcHtSvYf8AEWk/USwz57R6cvQcty8R/L090zp
+ utSQ2xCSnAGkKA1+m9oaZ9I9K0J0TFhcNU9YpU4KjVoH5KPQ+euutS7BP4UEf6fmur7oZDh
+ 0K1/Fd1t0GGkrQX47h1MlL3rQxrP043vHh5i48UZUlxmsyjE0yEK6c9c1S9sT4Qk2sU9rfS
+ emSywE6HqdwPLhkahtJE6KhbB4hCT/edDvW1jGGzFeiAIyNqbcuoKJBZ6eoQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783739254; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783747867; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ZoRTmK7mqG76n1GL0uhVSS5eZwslPyOiLYDvdkV1GQU=;
- b=rUOHGieT1+Mc+f7ffBwzsZrSy/Dj23v+Qs59mg+v8K1jWkrGuI6UZsaV5ihJb/hlg7RFV
- Nl2hNa6JXvk38I7q3yGEjOJyCF98c4ryp4vbj5Xu3mqrtL3qhP90sZESr2vHhL/9otWI8jX
- /pp2F4aFC3J7RJdYa6Oiw8VmE/jNhMhkJ+B8efq+mh8yv2GRrAqk8xkFqThtBQDMI2l6Xi6
- XY89aoc7mcMnCNBmUedj0TAL0HxjvmKP4IshXMD6kzy9p9FpmGP1sHoto5NlejJ7kNOPZPx
- J+xsqfNM94xay3c/Zcq3VaCrxG2MgVWPSfyZ/pqvaM1zb9/eeJtdIyiMvCHA==
+ bh=EaiPorL9ahIoJjJNitVwjgM9ztVnjvN7foqXLiq04lM=;
+ b=YA5BhpKdJH1f3NA9JtJpbPVuoXQwXFoK4zaCUvUvOw8qAA/l3ERy8UNKwBMF2DfaMLNol
+ L+PcJLoezDod3sE4W/5r2HsjmmQQBMGUerdMcwewUGSXf3eeb2dN/p7om2u+8OcdIuJqliW
+ i87bYkcrOR9n0kJsa/no/SffidVOXgXzMvbB5i6+umgRlv/DIArPEeL4gB4/9yVP5u9AQH/
+ 8XBPxN4MYvuWhZq4Bn5WoBPhKLD5yAokF6gNMhXVh8T5pcht2GCst4t03jfXm/h2PCZKQpB
+ 4+hm39v/MJvo86fly4vbEvQ+4fUe8FnugfHFzzSSZpo8Eg51uyyCIYxe3gPA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=linux-foundation.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+  dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=linux-foundation.org;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E015B46BA9
-	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 03:07:32 +0000 (UTC)
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com
- [209.85.210.181])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 443FA10E719
-	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 03:22:38 +0000 (UTC)
-Received: by mail-pf1-f181.google.com with SMTP id
- d2e1a72fcca58-84862b0d5f8so1278256b3a.3
-        for <nouveau@lists.freedesktop.org>;
- Fri, 10 Jul 2026 20:22:38 -0700 (PDT)
+	by kara.freedesktop.org (Postfix) with ESMTPS id CCA0146FE8
+	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 05:31:04 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C07DB10E2B3;
+	Sat, 11 Jul 2026 05:46:09 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 6D02D60051;
+	Sat, 11 Jul 2026 05:46:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBB7E1F000E9;
+	Sat, 11 Jul 2026 05:46:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783740158; x=1784344958;
- darn=lists.freedesktop.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=ZoRTmK7mqG76n1GL0uhVSS5eZwslPyOiLYDvdkV1GQU=;
-        b=e5bR6NYSKzNvj/sq0whBg27T68e39DqxEQVyD/pUEVJ+h3Sw93VvWD24tc7BvA8JPg
-         2QOEoBl5wsn97Oimi2lt+OGUQLwCKtdRdhFSBx8nSkOz6qp4d6SzJl+yNm62GKWxo41i
-         dzpBNR8AAg19LUxiUU4EicM/G3Dh4wBRyFOMoeXBtpPeS2jla14fzc5VkqrMsYEnqaac
-         Db+3XYJVQa76Tc0grUsD+0/f2/A4CMkwxGQ8mU3U1v5Nc6NWbj3vANmBzHWVw9t8Bl5z
-         ZB1wTYRBtDrQwNR5P08moZkP3lPKl+fKsjXOCfVSmUUIedrIVeUf+dey/HKZedjHxpMf
-         xWrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783740158; x=1784344958;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=ZoRTmK7mqG76n1GL0uhVSS5eZwslPyOiLYDvdkV1GQU=;
-        b=Dsxnnl9lLHddk8z2OSEf1PX8zQM36SlLOiFdY82o/rltpaDktcbRxTJMPI6mgumC+B
-         V3DB9LTu8IqLv1JVWwOZPq/KMV9+Ycx50S1IuAQLQW2we6bBIvJqL++yu2zrGbIjEKSX
-         xm6CETOIl6bXCvjhDZIV/3p8Vm1oHGEm5ANOgFsk5ZhDcqSe/ynjGLf3sTIeSYsPs/X5
-         sAhY6SgaHXu3vgb0bfR8OJvs2l11S/nNfhM8hEYzO8Ji9VvlcilUiX7YkVadZYJ11i0S
-         RxqgIJUehTn1toQ+do7hqkZSPlfz6+jQvnvhzhvii5KlleTzC2D9SsZHWmXa2q22yuBB
-         7kng==
-X-Forwarded-Encrypted: i=1;
- AHgh+RoySYe7aOAFWC8bl01RDpspEKnWi7IXTUiR53qvD4F0/lwe39Adj8KRZAtJHzk5AGaZsXjmN36s@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yweh/u2yZsw/5+tfg9a6XSQsC4W7CS4nfpHs9tXhgM4dC3+DjIa
-	u+SwEVIZJIpsdHa0FTDtbFckyg15+kko15sAQkIt9ImLJErkow4QNdHf
-X-Gm-Gg: AfdE7ck5msGqcBtzJc6FGpR9cZChIRyANc4WeNdGF10LGQHqxO5OKR7CpT8fPUHNjkV
-	ywXFn+k6KLchWaHpOJiSosiuCNiyKR1WFx8OxWLuSxAN4DmRtr1XefEIzVZbxzcj88AeWg37+ft
-	BK8m2e3CFIZRQoCADSLT4/KXV791MX8oAFBHXooeWfeowXLNFQ+yT1pmSd0clu5LxOHb96IabBU
-	p9zQUNgplOsWjkT9W61faC+a7SwjGBByT/zKIme3CSs865bunDt0NQUjt8dNKhJ27Du9mOcCLd8
-	2onZKgCeJ37zm2cZEsNuR5GtrbYXIPnWP1tEkSERtZJACbt99YsOogH0lTuXQ8fWVM8Q/qyp6Ez
-	hydRtLmMehTWws4HkXAvpZUsI6tprPfeUURNUSB3fI6PIaI1aRgrzEFmFSwIktegXm6ZeL3C3mH
-	VMVD9SBGP/s2dEbpcoAUbguyocZXqeE6PgXhkwEYJfcq9ih8aguiNNrJY=
-X-Received: by 2002:a05:6a00:2303:b0:848:2f74:1d68 with SMTP id
- d2e1a72fcca58-84889750a60mr1542258b3a.78.1783740157808;
-        Fri, 10 Jul 2026 20:22:37 -0700 (PDT)
-Received: from skinsburskii (c-98-225-44-182.hsd1.wa.comcast.net.
- [98.225.44.182])
-        by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-84856e7c8edsm3652647b3a.36.2026.07.10.20.22.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jul 2026 20:22:37 -0700 (PDT)
-Date: Fri, 10 Jul 2026 20:22:33 -0700
-From: Stanislav Kinsburskii <skinsburskii@gmail.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH v8 0/8] mm/hmm: Add mmap lock-drop support for
- userfaultfd-backed mappings
-Message-ID: <alG2-RSitzPWClAX@skinsburskii>
+	d=linux-foundation.org; s=korg; t=1783748768;
+	bh=EaiPorL9ahIoJjJNitVwjgM9ztVnjvN7foqXLiq04lM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=QgCET+Tx8Bz0jrdks+rAbU8mUQHeVPcVhmNjnY9QEy3j0IQt8dtIhIBSKEh+5N9As
+	 WQNaEldSNdp9DDaqnyfla/F2QwjYqb48w5VbRYV51VDzIlmiP+A0SWtLpP3PLpBuAV
+	 qLAHT72ptNutim6kRtqCLNoKDrjqrESrQiMjB/7M=
+Date: Fri, 10 Jul 2026 22:46:06 -0700
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Stanislav Kinsburskii <skinsburskii@gmail.com>
+Subject: Re: [PATCH v8 4/8] mshv: Use hmm_range_fault_unlocked_timeout() for
+ region faults
+Message-Id: <20260710224606.69235ab5c49b5987fd33e924@linux-foundation.org>
+In-Reply-To: <alG1JwgUK44dCiN4@skinsburskii>
 References: <178371866223.900500.12312667138651735591.stgit@skinsburskii>
- <20260710151151.1e193eedd0cf2591ae392f76@linux-foundation.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260710151151.1e193eedd0cf2591ae392f76@linux-foundation.org>
-Message-ID-Hash: QMOC43RBVWBH76LN4C3L6J2Y3EG5NYOH
-X-Message-ID-Hash: QMOC43RBVWBH76LN4C3L6J2Y3EG5NYOH
-X-MailFrom: skinsburskii@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+	<178371881034.900500.5214601525971121683.stgit@skinsburskii>
+	<20260710151216.0397a6f9ac5c7b4ccd274cc1@linux-foundation.org>
+	<alG1JwgUK44dCiN4@skinsburskii>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: Q5HIHCJ7VVEF56U3QLNLEXJIKWCTK2RR
+X-Message-ID-Hash: Q5HIHCJ7VVEF56U3QLNLEXJIKWCTK2RR
+X-MailFrom: akpm@linux-foundation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
 CC: akhilesh@ee.iitb.ac.in, corbet@lwn.net, dakr@kernel.org, david@kernel.org,
  decui@microsoft.com, haiyangz@microsoft.com, jgg@ziepe.ca, kees@kernel.org,
  kys@microsoft.com, leon@kernel.org, liam@infradead.org, lizhi.hou@amd.com,
@@ -136,8 +99,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QMOC43RBVWBH76LN4C3L6J2Y3EG5NYOH/>
-Archived-At: <https://lore.freedesktop.org/alG2-RSitzPWClAX@skinsburskii/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Q5HIHCJ7VVEF56U3QLNLEXJIKWCTK2RR/>
+Archived-At: 
+ <https://lore.freedesktop.org/20260710224606.69235ab5c49b5987fd33e924@linux-foundation.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -147,24 +111,27 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri, Jul 10, 2026 at 03:11:51PM -0700, Andrew Morton wrote:
-> On Fri, 10 Jul 2026 14:26:20 -0700 Stanislav Kinsburskii <skinsburskii@gmail.com> wrote:
-> 
-> > This series extends the HMM framework to support userfaultfd-backed memory
-> > by allowing the mmap read lock to be dropped during hmm_range_fault().
-> 
-> Thanks.  This seems fairly mature and mostly-reviewed so I'll give it a
-> spin in mm.git's mm-new branch.
-> 
-> Unfortunately Sashiko wasn't able to apply this or v7.  I'm not sure
-> what base you were using.  Hopefully there's a reason for a v9 so we
-> can retry this.
-> 
+On Fri, 10 Jul 2026 20:14:47 -0700 Stanislav Kinsburskii <skinsburskii@gmail.com> wrote:
 
-I rebased this series on top of mm-new right before sending it out.
-Should I have used a different branch?
+> > > +	mutex_lock(&region->mreg_mutex);
+> > > +
+> > > +	if (mmu_interval_read_retry(range.notifier, range.notifier_seq)) {
+> > > +		mutex_unlock(&region->mreg_mutex);
+> > > +		cond_resched();
+> > > +		goto again;
+> > > +	}
+> > > +
+> > 
+> > If the calling process has realtime scheduling policy and either a)
+> > we're uniprocessor or b) this process and the holder of
+> > interval_sub->invalidate_seq are both pinned to the same CPU then
+> > cond_resched() won't do anything, and this might be an infinite loop?
+> 
+> Yes, looks like it might.
+> What can be done to prevent this?
 
-Thanks,
-Stanislav
+Well the best way is remove the polling loop and use a proper sleep/wakeup
+mechanism - mutex_lock()/prepare_to_wait()/etc.
 
-> I have a few niggles, nothing major...
+If the polling loop is to be retained then maybe msleep(1) or
+usleep_range()?
