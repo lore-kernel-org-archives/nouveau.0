@@ -4,129 +4,174 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50AB7C43458
-	for <nouveau@archiver.kernel.org>; Sun, 12 Jul 2026 12:37:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EC07C43458
+	for <nouveau@archiver.kernel.org>; Sun, 12 Jul 2026 13:56:57 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 19B7C10E45E;
-	Sun, 12 Jul 2026 12:37:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB8C10E484;
+	Sun, 12 Jul 2026 13:56:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CYwxQdeA";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HwBiHjyd";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 81A4D40EF3;
-	Sun, 12 Jul 2026 12:22:37 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 61143413AD;
+	Sun, 12 Jul 2026 13:41:48 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783858957;
- b=xl03LZ4N4e+Sfng1VbyGVOUzlxl71YGCK/GDdguZ7mKAasLnZgpC/h3Hlbs2SaDpXTX40
- 1rSzBa48wKreQ922eTFzJx0AwbhlxTVhWW3mNMakupkJx+dpTM6rBbtEUQodw9KDtGsuF9U
- L7QPeNIHmK7bDjeNdt+6s1W00QqmG1xHtRa3HEIJJv5IZ+HxI0WD+6tPkavV1muadsXMvbm
- r0tMxhY0FKMbYedoX60MNS6WloJtrCfe7BhqJ7NZVOq6/uPKRGSA4HAVYZIji72xVpDlqXG
- TmFWP56YrvVOG2a/Vhn4VoukYbMPAwUGxnrAnkIjgID5MYN7v89rO9xdQpCg==
+ s=20240201; t=1783863708;
+ b=uTH+P0VZqkafOxC36yH6rxk2aN+zlSV4XnFZUR5JfCKaRfB6sCWHtzx7hukAdXUotuzPL
+ JU2DTJqPGNmixYkjkW5Mxw50/+1s7zyg7oZY512AJ1P65A8XD3+fI22k7Y/X0YQYJzitt+s
+ IovPDFpJQ0wJgdOAVgbn5ZFrHCoojongBuLc4r0MwYBluEmnd7E2j4+l7wAUTwTBBiZCvuv
+ i1HuKoIfU99pUoYiDbH5iXjmcupx+6hYIQJdSJ+A0XrmJAqnU2xIFpdB1Ei1bH0/zv/xU/f
+ E2p1tKsq8799TTTqGvQgW7TczXx5Xh3uPw5tRthOEmzVAnshZvfE8W+aupxg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783858957; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783863708; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=hNARwloA3rbnFq4jTz32GunvMhdlXc/eq0tF3XfoMbU=;
- b=p85w3JcmhcvGPmJTjA1X2CmGXtfl5Y1xrOsJPYpVmPeHzSmV/cDKX8EC27TGNttfE5RNH
- JeogGmq8d99zR0j6wkp4Po9rOaBUGLwPYOvhd2nlMDpLNlCFWY6P44BkSuG0sIvB7DvbFk5
- JifG6RMM/qJE9xWFGLFE2L4tKVpd8EAUlxdSY4ublL+0H2OUwjkoC1li3ci9ss3Ma5vrbLG
- 53oZIx+E6V5EV1eXIaXuCWoY6H097uucMaCLta26IRxK4OPV2NY9zxl4W/4wL+Cbp2mKTfi
- SFT6Ie3OarapALaGjXGw3eWMKziu80KGVlXtyK6Vs8hhP2HWp5ImyjghyGrA==
+ bh=6Gq4ADgsF216KVXDCQvsNulS1k0GIw7kWSrVwfWrShU=;
+ b=dHC12Mwh3+0C8NwZSvji9qJlVoTX/lJ5OSDIno8ykRPUQyc5AMmehVA9RJ5iCdD7c4Pbq
+ x24DrA8aBooqnPeUU0qfQQSq5E1CZ93W/MN9mmfiMgJKG/tr+mGM9n8ZXsUOt7dbbZ7H7Vx
+ Q6EMANdWpRfV/JokIjwTuINCRVfOMBqepHr9KqS/KWHZcTCUFcK9dTf0j6SxLljngzkMJBT
+ zqznh8RD7hKC2whI9X+UidEI9N6gHMtfNeJ1FyCf9yQDtjZ6AVln0oGlr4vbBB5tpF82fXz
+ OtrJnGVVvKkK43sAGUP5XA4TvrwwwPicl4bS56r3grbkkE8AZBatMSFUTPhg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C418740720
-	for <nouveau@lists.freedesktop.org>; Sun, 12 Jul 2026 12:22:34 +0000 (UTC)
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 37A3C10E473
-	for <nouveau@lists.freedesktop.org>; Sun, 12 Jul 2026 12:37:43 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-493e8d4f4dcso18020105e9.0
-        for <nouveau@lists.freedesktop.org>;
- Sun, 12 Jul 2026 05:37:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783859862; x=1784464662;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=hNARwloA3rbnFq4jTz32GunvMhdlXc/eq0tF3XfoMbU=;
-        b=CYwxQdeAggOpWcxPa2TRVDSn8pzqQPd0hZJPOUqaM7MAMWe5aNqH9Qn75pkzYjB7O2
-         U6W/JLVQRcPomdIIU5p+H3jYVdvDDGE893bYRU+3Au/fcjY1E9nfeB2abXBBNsPS6r+G
-         Ks7J9KwKq+1VaB3GVdPu4ZcW/e1vIGQ+PAVljbez1/bmTCqq+UmyKW0H9JWb8B2vwNAH
-         BClj/i+aE5QGrG3UdouyE/LmaF6CKkZtpJXFkCwJ3N/DBZroc2MBnwkVg7HIbzBLw4gx
-         n7Asc66NpncDPzyQ4DsM04VfvbdBuheI/3VJilqjYtwAkJuJ7z8tjL8dvYx9HoOX9VCG
-         hUHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783859862; x=1784464662;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=hNARwloA3rbnFq4jTz32GunvMhdlXc/eq0tF3XfoMbU=;
-        b=E0Z4kQe7xo9IGNKXsDkZskVj3nAsh3O/gof/QJyCI5fpEHAsiVmFho6SukVR+XnmOl
-         yTraDYdGIvHx5ecyB/PJKe0BorUKQQGYQrGJhJE/Y3H1+6C0pJknC6C4a41CgSDPedsa
-         lDZAptcNky+68svyEY99jrJVzU0e+fyn8yWOZ8PjBrpuDutJoQ0xxu9edwHXkVVdgrGc
-         VCPRIokBGwQOV5cY20E0OKqCeEE9w/Y3NQ804+oGGWMgTTOHsIEdpmLPrvJiiUiTmbcd
-         jbuxSQM/RPzWiVH47Mw2MlvKyfNGcdY12JDSPVZpFr/oq9WpIY1hI+vzQ3YKoNLZtjE7
-         wNow==
-X-Forwarded-Encrypted: i=1;
- AHgh+RqU4Y7ICvcGAY7crwmNFbBFCd0/aqrfuKLeXWWL1mj0UM5xjPpEZFgkNDwaBYJUa8t6ectZCAuQ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzv8i9aztb2TJy2KCZXShRaqQMkV69JTOxQ7Fmw4p7cHfjWefzB
-	uagBtdls17xz3cW0BkCn2D+h37K6c5r6zGwBNsLRCYhHjeemAUKO3/ZQ
-X-Gm-Gg: AfdE7ck+s/vQiQ+RUA5qGjVLC9Y3IRzKTyR+5VFVcXVGhkPwNpLGGf7ywUZqjd/UsW8
-	OM2WdJYHPFbICGfiO1uo8CN4rjw2U5FUhteoReKmfX0pWJ3nx0UGyS6r+0OUmDSljM39323LH3b
-	blhm9w1A396slViegm9mhaEZbsut6eI5OLndkqq4c+5yiXAMj1Zt3npEJ6bERQ75G5/9kR76io8
-	j6VkdKMNnFGPJ8IIg6BZKlDRy2PxYDU5g+HWAYKC6IMMWAvPLRwNxAsyvVLQni4eYU5shZx8DbW
-	yIMSxdMqqA5Krb0dy5GENH2KleQEawGn1H7PE+WISO8HNdP6SguAwvJ3rLDaQaI6vdc0FD7oRPt
-	B2K6NeR4ceFLAYzPZiGsu1h7pDlAFl7tbkhC8kAGxCzwShemHW8zzCSIgepEUprLltNyumqL44A
-	p2EabKUIrQY9k70+HU44jeMt4aXw==
-X-Received: by 2002:a05:600c:45d4:b0:493:a966:d5b5 with SMTP id
- 5b1f17b1804b1-493f87dc5d3mr55586175e9.2.1783859861600;
-        Sun, 12 Jul 2026 05:37:41 -0700 (PDT)
-Received: from fra-x8664 ([2a01:e11:8000:43b0:96d6:566b:35c:7b8c])
-        by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-493eb6f3c42sm280280485e9.1.2026.07.12.05.37.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jul 2026 05:37:41 -0700 (PDT)
-From: Francesco Magazzu <postadelmaga@gmail.com>
-To: Lyude Paul <lyude@redhat.com>,
-	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH v2 4/4] drm/nouveau/clk: don't clobber reclock status when
- restoring volt/fan
-Date: Sun, 12 Jul 2026 14:36:16 +0200
-Message-ID: <20260712123616.1180830-5-postadelmaga@gmail.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260712123616.1180830-1-postadelmaga@gmail.com>
-References: <20260712123616.1180830-1-postadelmaga@gmail.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 5472A47095
+	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 18:30:37 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 093BA89A1F;
+	Sat, 11 Jul 2026 18:45:44 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id BE3B1436AC;
+	Sat, 11 Jul 2026 18:45:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF9E11F000E9;
+	Sat, 11 Jul 2026 18:45:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783795542;
+	bh=6Gq4ADgsF216KVXDCQvsNulS1k0GIw7kWSrVwfWrShU=;
+	h=From:Subject:Date:To:Cc;
+	b=HwBiHjydO82LFji0UszYF+rut4yPEXSI9+yS+Eeji5ZCbyrT7X+W6u1SUhVQrniFh
+	 k7zXkJTLpkdkF17TCk/BE+KcBy5UxuqcCjXmdN5PS9ECGxuOXb2w3UmsQyrZZxq7/t
+	 c+KqnJP4WL+6PC8X11/5T9fjXKiXHAd7Xpt/IXxNiG+CVT7P4gTg2l4JBZQF5qRc7Q
+	 jPA9ta75uC74wIyT42vdmuOfCbRm4RxExyPtvpLAMrtRGgX9U5roby63Qt1Y3NlQfu
+	 ZTdoDsuPZHxU6x5M8BAHXT6+GUlCHjJtm0CqjR6W2GWRZYz7riaLxSYOABQQKBAl2z
+	 Lovf7UvBmWVMw==
+From: Lorenzo Stoakes <ljs@kernel.org>
+Subject: [PATCH v2 00/13] mm: convert more vm_flags_t users to vma_flags_t
+Date: Sat, 11 Jul 2026 19:44:57 +0100
+Message-Id: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: IOWBD5CNZ5J7ZTNEZOSAU24GAUEDDPEL
-X-Message-ID-Hash: IOWBD5CNZ5J7ZTNEZOSAU24GAUEDDPEL
-X-MailFrom: postadelmaga@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+X-B4-Tracking: v=1; b=H4sIACmPUmoC/yWNwQ6CMBAFf4Xs2TZtFYqe/A/DAcq2FIGaLTYaw
+ r8LeJxk3rwFIpLHCLdsAcLkow/TBuqUgenqySHz7caghCqElpI1F5bGmtmhdpGNI2takZ/LvLV
+ Xa2BbvQit/xzFR/Xn+G56NPOe2Y3OxznQ97hMcvfAhITEpS6VLkShBXd+5kMf70+kCQceyEG1r
+ usP7sodQ68AAAA=
+X-Change-ID: 20260711-b4-vma-flags-mm-bd05385df9fc
+To: Andrew Morton <akpm@linux-foundation.org>,
+ David Hildenbrand <david@kernel.org>,
+ "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>,
+ Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
+ Michal Hocko <mhocko@suse.com>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Benjamin LaHaise <bcrl@kvack.org>, Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
+ Hugh Dickins <hughd@google.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, Muchun Song <muchun.song@linux.dev>,
+ Oscar Salvador <osalvador@suse.de>, Zi Yan <ziy@nvidia.com>,
+ Nico Pache <npache@redhat.com>, Ryan Roberts <ryan.roberts@arm.com>,
+ Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>,
+ Lance Yang <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Thierry Reding <thierry.reding@kernel.org>,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Helge Deller <deller@gmx.de>, Kees Cook <kees@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9041; i=ljs@kernel.org;
+ h=from:subject:message-id; bh=LqsBGIOBz5PhtEm4kn0sretpylkcze+o2dhAS4zKBkg=;
+ b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLKC+i02/1R97n5LZdUBvaNhKqyiTOKbuqcr+39vmCDrN
+ C/ldFJnRykLgxgXg6yYIsvzL+L7g0TC5nVe8HeDmcPKBDKEgYtTACYy7TDDP8WyBX46r8L/TZLs
+ cZaTWbaR54Fcv03k49BlKk/5xW3LKhkZ3pq+mhJ2N67ur3lDuMiZzJwFGnk8BsunfPLc6v+h6dI
+ LDgA=
+X-Developer-Key: i=ljs@kernel.org; a=openpgp;
+ fpr=E7F417BF5214569E89D04F46CF9DCD8A81E27F14
+X-MailFrom: ljs@kernel.org
+X-Mailman-Rule-Hits: max-recipients
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Dan Carpenter <dan.carpenter@linaro.org>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-size; news-moderation; no-subject; digests;
+ suspicious-header
+Message-ID-Hash: T74KSMV5MUX53IS6OTMKD2UCAEXLI6PL
+X-Message-ID-Hash: T74KSMV5MUX53IS6OTMKD2UCAEXLI6PL
+X-Mailman-Approved-At: Sun, 12 Jul 2026 13:41:46 +0000
+CC: Lorenzo Stoakes <ljs@kernel.org>, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+ linux-aio@kvack.org, linux-fsdevel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ linux-fbdev@vger.kernel.org, linux-sound@vger.kernel.org,
+ Jani Nikula <jani.nikula@intel.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IOWBD5CNZ5J7ZTNEZOSAU24GAUEDDPEL/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/T74KSMV5MUX53IS6OTMKD2UCAEXLI6PL/>
 Archived-At: 
- <https://lore.freedesktop.org/20260712123616.1180830-5-postadelmaga@gmail.com/>
+ <https://lore.freedesktop.org/20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,58 +181,210 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-nvkm_cstate_prog() reuses 'ret' for the voltage and fan-speed restore
-calls it makes after reprogramming the clocks.  Those calls almost always
-succeed, so the status of the reclock itself is overwritten and the
-function reports success even when clk->func->calc() or clk->func->prog()
-failed.  The converse is also true: a successful reclock is reported as an
-error if the final restore call fails, even though that failure is only
-logged and otherwise ignored.
+This series makes further progress in converting usage of the deprecated
+vm_flags_t type to its replacement, vma_flags_t.
 
-The only consumer of the return value is the error message in
-nvkm_pstate_work(), so in practice a failing reclock is simply never
-reported.  Nothing else changes, but a function that returns success on
-failure is a trap for the next caller.
+It focuses on mm, though updates some users of mm APIs also.
 
-Keep the calc/prog status in 'ret' and use a separate local for the
-restore calls.
+It updates:
 
-Fixes: 3eca809b3c05 ("drm/nouveau/clk: cosmetic changes")
-Signed-off-by: Francesco Magazzu <postadelmaga@gmail.com>
+* The core do_mmap() code path for VMA mapping.
+* Unmapped area logic.
+* The usage of mm->def_vma_flags.
+* VMA page protection bit logic.
+* General usage of VMA flags in core mm code, mlock, mprotect, mremap.
+
+REVIEWER/MERGER NOTE: This is dependent on [0], which must be merged before
+this.
+
+[0]:https://lore.kernel.org/linux-mm/20260710-b4-pre-scalable-cow-v2-0-2a5aa403d977@kernel.org/
+
+Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+Changes in v2:
+* Rebased on to mm-new that has the 33 patch rework dependency in it.
+* Distributed tags, thanks everybody!
+* Moved VMA_STACK_INCOMPLETE_SETUP and VMA_STACK_EARLY VMA userland test defines
+  from 1/13 to 9/13 as per Zi.
+* Fixed whitespace in 3/13 as per Zi.
+* Updated 5/13 to use %*pb formatter for VMA flags (to match mm flags formatter)
+  in dump_mm(), as per Lance.
+* Updated 8/13 to update panthor_gem.c to vma_get_page_prot() as per Lance.
+* Fixed up comment type in 11/13 as per Lance.
+* Fixed bug of using VMA_GROWSUP_BIT rather than VMA_GROWSUP as per Lance
+  in 12/13.
+* Added detail about when we are and are not required to open code
+  vma_write_lock() for VMA flag mutators in the commit message for 13/13 as
+  per Lance and Zi.
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-index 4d546b07f..05336fc7d 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-@@ -199,16 +199,18 @@ nvkm_cstate_prog(struct nvkm_clk *clk, struct nvkm_pstate *pstate, int cstatei)
- 	}
- 
- 	if (volt) {
--		ret = nvkm_volt_set_id(volt, cstate->voltage,
--				       pstate->base.voltage, clk->temp, -1);
--		if (ret && ret != -ENODEV)
--			nvkm_error(subdev, "failed to lower voltage: %d\n", ret);
-+		int err = nvkm_volt_set_id(volt, cstate->voltage,
-+					   pstate->base.voltage, clk->temp, -1);
-+
-+		if (err && err != -ENODEV)
-+			nvkm_error(subdev, "failed to lower voltage: %d\n", err);
- 	}
- 
- 	if (therm) {
--		ret = nvkm_therm_cstate(therm, pstate->fanspeed, -1);
--		if (ret && ret != -ENODEV)
--			nvkm_error(subdev, "failed to lower fan speed: %d\n", ret);
-+		int err = nvkm_therm_cstate(therm, pstate->fanspeed, -1);
-+
-+		if (err && err != -ENODEV)
-+			nvkm_error(subdev, "failed to lower fan speed: %d\n", err);
- 	}
- 
- 	return ret;
+v1:
+https://patch.msgid.link/cover.1782760670.git.ljs@kernel.org
+
+To: Andrew Morton <akpm@linux-foundation.org>
+To: David Hildenbrand <david@kernel.org>
+To: "Liam R. Howlett" <liam@infradead.org>
+To: Vlastimil Babka <vbabka@kernel.org>
+To: Mike Rapoport <rppt@kernel.org>
+To: Suren Baghdasaryan <surenb@google.com>
+To: Michal Hocko <mhocko@suse.com>
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Benjamin LaHaise <bcrl@kvack.org>
+To: Alexander Viro <viro@zeniv.linux.org.uk>
+To: Christian Brauner <brauner@kernel.org>
+To: Jan Kara <jack@suse.cz>
+To: Hugh Dickins <hughd@google.com>
+To: Baolin Wang <baolin.wang@linux.alibaba.com>
+To: Jann Horn <jannh@google.com>
+To: Pedro Falcato <pfalcato@suse.de>
+To: Muchun Song <muchun.song@linux.dev>
+To: Oscar Salvador <osalvador@suse.de>
+To: Zi Yan <ziy@nvidia.com>
+To: Nico Pache <npache@redhat.com>
+To: Ryan Roberts <ryan.roberts@arm.com>
+To: Dev Jain <dev.jain@arm.com>
+To: Barry Song <baohua@kernel.org>
+To: Lance Yang <lance.yang@linux.dev>
+To: Usama Arif <usama.arif@linux.dev>
+To: Madhavan Srinivasan <maddy@linux.ibm.com>
+To: Michael Ellerman <mpe@ellerman.id.au>
+To: Nicholas Piggin <npiggin@gmail.com>
+To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Lucas Stach <l.stach@pengutronix.de>
+To: Russell King <linux+etnaviv@armlinux.org.uk>
+To: Christian Gmeiner <christian.gmeiner@gmail.com>
+To: Inki Dae <inki.dae@samsung.com>
+To: Seung-Woo Kim <sw0312.kim@samsung.com>
+To: Kyungmin Park <kyungmin.park@samsung.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+To: Peter Griffin <peter.griffin@linaro.org>
+To: Alim Akhtar <alim.akhtar@samsung.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Tvrtko Ursulin <tursulin@ursulin.net>
+To: Rob Clark <robin.clark@oss.qualcomm.com>
+To: Dmitry Baryshkov <lumag@kernel.org>
+To: Abhinav Kumar <abhinav.kumar@linux.dev>
+To: Jessica Zhang <jesszhan0024@gmail.com>
+To: Sean Paul <sean@poorly.run>
+To: Marijn Suijten <marijn.suijten@somainline.org>
+To: Lyude Paul <lyude@redhat.com>
+To: Danilo Krummrich <dakr@kernel.org>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+To: Sandy Huang <hjc@rock-chips.com>
+To: Heiko Stübner <heiko@sntech.de>
+To: Andy Yan <andy.yan@rock-chips.com>
+To: Thierry Reding <thierry.reding@kernel.org>
+To: Mikko Perttunen <mperttunen@nvidia.com>
+To: Jonathan Hunter <jonathanh@nvidia.com>
+To: Gerd Hoffmann <kraxel@redhat.com>
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: Gurchetan Singh <gurchetansingh@chromium.org>
+To: Chia-I Wu <olvaffe@gmail.com>
+To: Zack Rusin <zack.rusin@broadcom.com>
+To: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+To: Matthew Brost <matthew.brost@intel.com>
+To: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+To: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+To: Helge Deller <deller@gmx.de>
+To: Kees Cook <kees@kernel.org>
+To: Jaroslav Kysela <perex@perex.cz>
+To: Takashi Iwai <tiwai@suse.com>
+To: Boris Brezillon <boris.brezillon@collabora.com>
+To: Steven Price <steven.price@arm.com>
+To: Liviu Dudau <liviu.dudau@arm.com>
+Cc: ljs@kernel.org
+Cc: linux-mm@kvack.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-mips@vger.kernel.org
+Cc: linux-aio@kvack.org
+Cc: linux-fsdevel@vger.kernel.org
+Cc: linuxppc-dev@lists.ozlabs.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: etnaviv@lists.freedesktop.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-samsung-soc@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: freedreno@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Cc: linux-rockchip@lists.infradead.org
+Cc: linux-tegra@vger.kernel.org
+Cc: virtualization@lists.linux.dev
+Cc: intel-xe@lists.freedesktop.org
+Cc: xen-devel@lists.xenproject.org
+Cc: linux-fbdev@vger.kernel.org
+Cc: linux-sound@vger.kernel.org
+
+---
+Lorenzo Stoakes (13):
+      mm: introduce vma_flags_can_grow() and vma_can_grow()
+      mm/vma: update do_mmap() to use vma_flags_t
+      mm: convert __get_unmapped_area() to use vma_flags_t
+      mm: update generic_get_unmapped_area[_topdown]() to use vma_flags_t
+      mm: prefer mm->def_vma_flags in mm logic
+      mm/vma: convert vm_pgprot_modify() to use vma_flags_t and rename
+      mm/vma: rename vma_get_page_prot to vma_flags_to_page_prot
+      mm: introduce vma_get_page_prot() and use it
+      mm/vma: update create_init_stack_vma() to use vma_flags_t
+      mm/vma: convert miscellaneous uses of VMA flags in core mm
+      mm/mlock: convert mlock code to use vma_flags_t
+      mm/mprotect: convert mprotect code to use vma_flags_t
+      mm/mremap: convert mremap code to use vma_flags_t
+
+ arch/mips/kernel/vdso.c                     |   4 +-
+ arch/powerpc/mm/book3s64/slice.c            |   6 +-
+ drivers/gpu/drm/drm_gem.c                   |   2 +-
+ drivers/gpu/drm/drm_gem_dma_helper.c        |   2 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c      |   2 +-
+ drivers/gpu/drm/etnaviv/etnaviv_gem.c       |   2 +-
+ drivers/gpu/drm/exynos/exynos_drm_gem.c     |   6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c    |  12 +-
+ drivers/gpu/drm/msm/msm_gem.c               |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.c       |   2 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c        |   2 +-
+ drivers/gpu/drm/omapdrm/omap_gem.c          |   6 +-
+ drivers/gpu/drm/panthor/panthor_gem.c       |   2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c |   2 +-
+ drivers/gpu/drm/tegra/gem.c                 |   2 +-
+ drivers/gpu/drm/virtio/virtgpu_vram.c       |   2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c  |   2 +-
+ drivers/gpu/drm/xe/xe_device.c              |   2 +-
+ drivers/gpu/drm/xe/xe_mmio_gem.c            |   2 +-
+ drivers/gpu/drm/xen/xen_drm_front_gem.c     |   2 +-
+ drivers/video/fbdev/core/fb_io_fops.c       |   2 +-
+ fs/aio.c                                    |   2 +-
+ fs/hugetlbfs/inode.c                        |   3 +-
+ include/linux/huge_mm.h                     |  10 +-
+ include/linux/memfd.h                       |   6 +-
+ include/linux/mm.h                          |  52 +++++++--
+ include/linux/sched/mm.h                    |  13 +--
+ ipc/shm.c                                   |   3 +-
+ mm/debug.c                                  |   5 +-
+ mm/huge_memory.c                            |  21 ++--
+ mm/memfd.c                                  |  15 +--
+ mm/mlock.c                                  |  99 +++++++++--------
+ mm/mmap.c                                   | 164 +++++++++++++++-------------
+ mm/mprotect.c                               |  16 +--
+ mm/mremap.c                                 |  38 ++++---
+ mm/nommu.c                                  |   3 +-
+ mm/util.c                                   |  10 +-
+ mm/vma.c                                    |  26 +++--
+ mm/vma.h                                    |   8 +-
+ mm/vma_exec.c                               |  20 ++--
+ sound/core/memalloc.c                       |   2 +-
+ tools/testing/vma/include/dup.h             |  23 ++--
+ 42 files changed, 341 insertions(+), 264 deletions(-)
+---
+base-commit: 61cccb8363fcc282d4ae0555b8739dd227f5ad0b
+change-id: 20260711-b4-vma-flags-mm-bd05385df9fc
+
+Cheers,
 -- 
-2.55.0
+Lorenzo Stoakes <ljs@kernel.org>
 
