@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E90DC44507
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4A34C44501
 	for <nouveau@archiver.kernel.org>; Sun, 12 Jul 2026 13:57:10 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id DD17810E484;
-	Sun, 12 Jul 2026 13:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B869D10E4C3;
+	Sun, 12 Jul 2026 13:57:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="A3lQ/qzw";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KCh2Wp49";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 325CF45E2F;
-	Sun, 12 Jul 2026 13:42:01 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 1141D45E45;
+	Sun, 12 Jul 2026 13:42:02 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
  s=20240201; t=1783863721;
- b=fhaXuh/kNyTebcEb/3HLXHkBZEW8fdcW60rNM5o29XOCiZyDR6UThubGnfpiJtsVhqV10
- QbR0v3FQ0lKHScz6gKoFUzPIizPuRA0JJpZdU9xyqStAzncR/XdQFYs9eoFSA28TXjoI4+2
- ldOJoOCdEz0fKsRQDy1XCCGsFRwguSs9Td1fHZ6aU0EetdlJhoDHnJ3wsQ4TDNv5eBN6m+M
- YGnzrMsTa/snHD7SS7/1ECTh5b1cj7mPkSACSyXXpXuKwB47/7LCSMGNA+w5C3oT6h88+NG
- MN4eVuss5akY3dF/OpMnQ3XMAADDuK/f5TKxSUJX/v/Uqvx8c3O12uY8y1FQ==
+ b=bwMyS/hPsTzD8sHZT/BHDquLDgD6C4cDs5D5VpG1t8/Iv9F44Mrssb2/KvbVSJG0jdOc/
+ 2/q5gu6iK/e1FVOlTbF80R5UBeZPRFtk2OQiYDpB2qTzl+e5yQWSJQovtXuADJSMkrElgD6
+ YaKPpJSTwqa3ez6VPFB9c8LdElQLmkwFcwWQzMZ7DKlzMOTcjr2xfUZcdmuiJ4jALzepEgc
+ HvCtS+um5r3wLHGLrdhcDj3MvR/i3ezxFOpDhSWOp10SDY3I8KXEfEvjQH8oEOjnHQckIis
+ 01LustWmJhFr4MjZ92DuQNwcqyYonB0swJgQaz+GVFS83dPiJCPetrSjStSw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  d=lists.freedesktop.org; s=20240201; t=1783863721; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
@@ -30,12 +30,12 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=PQeVSJrFNGuAKYRqlJkf6JopIzp3qlHM9CyXIq3KHK4=;
- b=dTx9Xus4M0JkzDgp7gsen3cxFNySNfEKThIvS9oUOs3jVLryafesr7Q0uRS1qO9scBubC
- lmxQax17dOgu6O2ScFykqjZ49lCBv3b97rlMESqGglhKo2xTURledFDAxUX75D2iZ5aMoP4
- 0JrSuJ9um9Gh3QcO13Fe5ggYD7xaqrZD/V/t1y8B8jhlfRbvGWlREvItYO2FkRsKl35QKVz
- Dgohs22XiRDWo5z5q7NxaABG370p/9LPZZ5hk2HvxK83Hq0sttG9eVKxBRkhNDISksjNv+L
- nuak1M2qhwlgiT42bpAef3bkvDAs4DlywUglmD7RX3lKi2KJTm6vHR5uvdFQ==
+ bh=Fr9+W5ioGfovNH8dryM/kzP+up/ElY+Oy2uwfNl+UZQ=;
+ b=ThVxemUI6vmC4wE8DqBC5pj/1fa+s5OQFZVV23NWqg8/y06OpiZ0JwlCHXlealDQImlq4
+ WDSuQZjos4pcIhouiTTrRXMzix9L3yLhkuw/hMGrnhIURj8VS/jZs+KpCAX8F+szZOs9H2o
+ sdc7SHAKLR6D63hpPX8VHyGZbU5rR6r/PNE7YhFppZ9GiK3vit6Qex5Y8w8m9nKpVbnTVn6
+ mpYiSoUub/hUa2Kvy1oeDVsDHfbBv57Na6QsCAXL52c9zBu0P4lifIzHnNlTkFzzPVKZsHX
+ 3thkhzVyIJ7aK8WAEXdybL3I/bZCN2GPZ+y/DaiTQkA3rbPrfc7Bi7k9LwKg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,34 +46,34 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5D203470DE
-	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 18:34:05 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2443710E181;
-	Sat, 11 Jul 2026 18:49:12 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id E45B3470E2
+	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 18:34:47 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 914BF10E1CB;
+	Sat, 11 Jul 2026 18:49:54 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id F3F59418D3;
-	Sat, 11 Jul 2026 18:49:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7572D1F000E9;
-	Sat, 11 Jul 2026 18:48:51 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id EB32D60052;
+	Sat, 11 Jul 2026 18:49:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EE8B1F000E9;
+	Sat, 11 Jul 2026 18:49:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783795751;
-	bh=PQeVSJrFNGuAKYRqlJkf6JopIzp3qlHM9CyXIq3KHK4=;
+	s=k20260515; t=1783795793;
+	bh=Fr9+W5ioGfovNH8dryM/kzP+up/ElY+Oy2uwfNl+UZQ=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=A3lQ/qzw9J0Mef36BzMgXFxCB7dkGxinxIIAW9JQmfMzrEgdVXCZbMvez44EZPEeX
-	 gzXNhanDpKBvr0GU1vbuTRlAVgICQASw38QvYjbrawwYLjk41zoY+o6bs5EJQXWA4B
-	 N8ZheKvFfC7ObvlfJNb/UgFOGLScihFKvVLmqfFpAtRomluF+G9vwP3+ja7py9qw8f
-	 K4SpVyb7Rs9cJFxpYgZkzgj3ThMgqYWZtLE4yV783JlpDDz2j3hz/q139ORq9vViT5
-	 +PH6eC4zBsvX0nSUubBGLLM+1N8LdIbC9v3OR05k+HOezHB2d7wpLQkmt7rZqu2Bfi
-	 X2DIl7kAZDv+A==
+	b=KCh2Wp49fergCiFPuJT2qu+NLRDa7tcNsKE68tr0X57/gxQeoxFEQALVKzPPGCBCs
+	 1S2aNlk++tT/2vIRKjYUsq8gWVO5hc3Pv8Wj7ehGz3ecvbnsQJtpGf+Z3pEmCQ5Zpb
+	 0G4kl6AsVgK7NukwvKxLJBKVBgW4cGFGkyDpvnIWMOL+cqs+XQ3maPfs9w3a7IE778
+	 VHeldKO9fd0SwC8Wj8f7RSPZ4Jk+y+nxR+cKOZdHbk7BShTL6YF9RcqJ6dbx/Ra7Fm
+	 TE7Z2bwnikCj/QtjUnOZ8uMRw3s/GTnG9x5fnIpGmsCUudhHKyJXYAWkomP4MG/RhR
+	 DQejuUUlKg3zw==
 From: Lorenzo Stoakes <ljs@kernel.org>
-Date: Sat, 11 Jul 2026 19:45:07 +0100
-Subject: [PATCH v2 10/13] mm/vma: convert miscellaneous uses of VMA flags
- in core mm
+Date: Sat, 11 Jul 2026 19:45:09 +0100
+Subject: [PATCH v2 12/13] mm/mprotect: convert mprotect code to use
+ vma_flags_t
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260711-b4-vma-flags-mm-v2-10-0fa2357d5431@kernel.org>
+Message-Id: <20260711-b4-vma-flags-mm-v2-12-0fa2357d5431@kernel.org>
 References: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
 In-Reply-To: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
 To: Andrew Morton <akpm@linux-foundation.org>,
@@ -134,12 +134,12 @@ To: Andrew Morton <akpm@linux-foundation.org>,
  Boris Brezillon <boris.brezillon@collabora.com>,
  Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6231; i=ljs@kernel.org;
- h=from:subject:message-id; bh=2Eukk7/bboJXcRN4Serqm42H9hjt4k2BF/S8ckNM3q8=;
- b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLKC+q1YA9XOTHweaCw7b1K84KM/l+4VzJwymz/yypnOw
- EgXoUUrO0pZGMS4GGTFFFmefxHfHyQSNq/zgr8bzBxWJpAhDFycAjARtxOMDJfd9Z1WrGFzkSqR
- k3zENmPW9uv9Jq2mlyfbPCqdYyDftZfhD/8EKYZXMltEpvpf7zFQMVFoW/Ccy10ubMFc/7tFUrK
- OTAA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2996; i=ljs@kernel.org;
+ h=from:subject:message-id; bh=srWqnQOI/gzNhpzulQ661PMe2/Xdt3Viy9gVjyuNxVs=;
+ b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLKC+q08lh17/Pn9DO6GppTAjP7Fs7Y758nqdTXNm/9By
+ 2P20jvmHaUsDGJcDLJiiizPv4jvDxIJm9d5wd8NZg4rE8gQBi5OAZjIo6cM/6OUTKz3VR0/Kd/z
+ 9N+FX84lasa5MY7rRCqXPVqaO+Hv4qeMDLfOLP6RuO0wS2eR6YK62aGFcS/ctwjs0Qu2mW4r7s7
+ Dww8A
 X-Developer-Key: i=ljs@kernel.org; a=openpgp;
  fpr=E7F417BF5214569E89D04F46CF9DCD8A81E27F14
 X-MailFrom: ljs@kernel.org
@@ -148,9 +148,9 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-size; news-moderation; no-subject; digests;
  suspicious-header
-Message-ID-Hash: M6Q3DD2PK2R56QQYXZSHIZTUMT4UQOU3
-X-Message-ID-Hash: M6Q3DD2PK2R56QQYXZSHIZTUMT4UQOU3
-X-Mailman-Approved-At: Sun, 12 Jul 2026 13:41:51 +0000
+Message-ID-Hash: W44WTMZAEZSZRT54HBCRIV22RC7OZ2AI
+X-Message-ID-Hash: W44WTMZAEZSZRT54HBCRIV22RC7OZ2AI
+X-Mailman-Approved-At: Sun, 12 Jul 2026 13:41:55 +0000
 CC: Lorenzo Stoakes <ljs@kernel.org>, linux-mm@kvack.org,
  linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
  linux-aio@kvack.org, linux-fsdevel@vger.kernel.org,
@@ -166,9 +166,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/M6Q3DD2PK2R56QQYXZSHIZTUMT4UQOU3/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/W44WTMZAEZSZRT54HBCRIV22RC7OZ2AI/>
 Archived-At: 
- <https://lore.freedesktop.org/20260711-b4-vma-flags-mm-v2-10-0fa2357d5431@kernel.org/>
+ <https://lore.freedesktop.org/20260711-b4-vma-flags-mm-v2-12-0fa2357d5431@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -178,182 +178,91 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Update various uses of legacy flags in vma.c and mmap.c to the new
-vma_flags_t type, updating comments alongside them to be consistent.
+Replace use of the legacy vm_flags_t flags with vma_flags_t values
+throughout the mprotect logic.
+
+Note that we retain the legacy vm_flags_t bit shifting code in
+do_mprotect_pkey(), deferring a vma_flags_t approach to this for the time
+being.
+
+Additionally update comments to reflect the changes to be consistent.
 
 No functional change intended.
 
-Reviewed-by: Zi Yan <ziy@nvidia.com>
 Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 ---
- mm/mmap.c | 39 +++++++++++++++++++++------------------
- mm/vma.c  | 13 ++++++++-----
- 2 files changed, 29 insertions(+), 23 deletions(-)
+ mm/mprotect.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/mm/mmap.c b/mm/mmap.c
-index 2076c70e7700..4bf26b0f1e6e 100644
---- a/mm/mmap.c
-+++ b/mm/mmap.c
-@@ -557,8 +557,8 @@ unsigned long do_mmap(struct file *file, unsigned long addr,
- 	}
+diff --git a/mm/mprotect.c b/mm/mprotect.c
+index dc27bbc1712f..2888ee638d87 100644
+--- a/mm/mprotect.c
++++ b/mm/mprotect.c
+@@ -40,7 +40,7 @@
  
- 	/*
--	 * Set 'VM_NORESERVE' if we should not account for the
--	 * memory use of this mapping.
-+	 * Set VMA_NORESERVE_BIT if we should not account for the memory use
-+	 * of this mapping.
- 	 */
- 	if (flags & MAP_NORESERVE) {
- 		/* We honor MAP_NORESERVE if allowed to overcommit */
-@@ -985,7 +985,7 @@ struct vm_area_struct *find_extend_vma_locked(struct mm_struct *mm, unsigned lon
- 		return NULL;
- 	if (expand_stack_locked(prev, addr))
- 		return NULL;
--	if (prev->vm_flags & VM_LOCKED)
-+	if (vma_test(prev, VMA_LOCKED_BIT))
- 		populate_vma_page_range(prev, addr, prev->vm_end, NULL);
- 	return prev;
- }
-@@ -1009,7 +1009,7 @@ struct vm_area_struct *find_extend_vma_locked(struct mm_struct *mm, unsigned lon
- 	start = vma->vm_start;
- 	if (expand_stack_locked(vma, addr))
- 		return NULL;
--	if (vma->vm_flags & VM_LOCKED)
-+	if (vma_test(vma, VMA_LOCKED_BIT))
- 		populate_vma_page_range(vma, addr, start, NULL);
- 	return vma;
- }
-@@ -1134,18 +1134,18 @@ SYSCALL_DEFINE5(remap_file_pages, unsigned long, start, unsigned long, size,
- 	 */
- 	vma = vma_lookup(mm, start);
- 
--	if (!vma || !(vma->vm_flags & VM_SHARED)) {
-+	if (!vma || !vma_test(vma, VMA_SHARED_BIT)) {
- 		mmap_read_unlock(mm);
- 		return -EINVAL;
- 	}
- 
--	prot |= vma->vm_flags & VM_READ ? PROT_READ : 0;
--	prot |= vma->vm_flags & VM_WRITE ? PROT_WRITE : 0;
--	prot |= vma->vm_flags & VM_EXEC ? PROT_EXEC : 0;
-+	prot |= vma_test(vma, VMA_READ_BIT) ? PROT_READ : 0;
-+	prot |= vma_test(vma, VMA_WRITE_BIT) ? PROT_WRITE : 0;
-+	prot |= vma_test(vma, VMA_EXEC_BIT) ? PROT_EXEC : 0;
- 
- 	flags &= MAP_NONBLOCK;
- 	flags |= MAP_SHARED | MAP_FIXED | MAP_POPULATE;
--	if (vma->vm_flags & VM_LOCKED)
-+	if (vma_test(vma, VMA_LOCKED_BIT))
- 		flags |= MAP_LOCKED;
- 
- 	/* Save vm_flags used to calculate prot and flags, and recheck later. */
-@@ -1271,7 +1271,7 @@ unsigned long tear_down_vmas(struct mm_struct *mm, struct vma_iterator *vmi,
- 	mmap_assert_write_locked(mm);
- 	vma_iter_set(vmi, vma->vm_end);
- 	do {
--		if (vma->vm_flags & VM_ACCOUNT)
-+		if (vma_test(vma, VMA_ACCOUNT_BIT))
- 			nr_accounted += vma_pages(vma);
- 		vma_mark_detached(vma);
- 		remove_vma(vma);
-@@ -1420,7 +1420,7 @@ static int special_mapping_split(struct vm_area_struct *vma, unsigned long addr)
+ static bool maybe_change_pte_writable(struct vm_area_struct *vma, pte_t pte)
  {
- 	/*
- 	 * Forbid splitting special mappings - kernel has expectations over
--	 * the number of pages in mapping. Together with VM_DONTEXPAND
-+	 * the number of pages in mapping. Together with VMA_DONTEXPAND_BIT
- 	 * the size of vma should stay the same over the special mapping's
- 	 * lifetime.
- 	 */
-@@ -1692,7 +1692,7 @@ bool mmap_read_lock_maybe_expand(struct mm_struct *mm,
- 		return true;
- 	}
- 
--	if (!(new_vma->vm_flags & VM_GROWSDOWN))
-+	if (!vma_test(new_vma, VMA_GROWSDOWN_BIT))
+-	if (WARN_ON_ONCE(!(vma->vm_flags & VM_WRITE)))
++	if (WARN_ON_ONCE(!vma_test(vma, VMA_WRITE_BIT)))
  		return false;
  
- 	mmap_write_lock(mm);
-@@ -1742,7 +1742,7 @@ __latent_entropy int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
- 		retval = vma_start_write_killable(mpnt);
- 		if (retval < 0)
- 			goto loop_out;
--		if (mpnt->vm_flags & VM_DONTCOPY) {
-+		if (vma_test(mpnt, VMA_DONTCOPY_BIT)) {
- 			retval = vma_iter_clear_gfp(&vmi, mpnt->vm_start,
- 						    mpnt->vm_end, GFP_KERNEL);
- 			if (retval)
-@@ -1752,7 +1752,7 @@ __latent_entropy int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
- 			continue;
- 		}
- 		charge = 0;
--		if (mpnt->vm_flags & VM_ACCOUNT) {
-+		if (vma_test(mpnt, VMA_ACCOUNT_BIT)) {
- 			unsigned long len = vma_pages(mpnt);
- 
- 			if (security_vm_enough_memory_mm(oldmm, len)) /* sic */
-@@ -1770,16 +1770,19 @@ __latent_entropy int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
- 		retval = dup_userfaultfd(tmp, &uf);
- 		if (retval)
- 			goto fail_nomem_anon_vma_fork;
--		if (tmp->vm_flags & VM_WIPEONFORK) {
-+
-+		if (vma_test(tmp, VMA_WIPEONFORK_BIT)) {
- 			/*
--			 * VM_WIPEONFORK gets a clean slate in the child.
-+			 * VMA_WIPEONFORK_BIT gets a clean slate in the child.
- 			 * Don't prepare anon_vma until fault since we don't
- 			 * copy page for current vma.
- 			 */
- 			tmp->anon_vma = NULL;
- 		} else if (anon_vma_fork(tmp, mpnt))
- 			goto fail_nomem_anon_vma_fork;
--		vm_flags_clear(tmp, VM_LOCKED_MASK);
-+
-+		vma_start_write(tmp);
-+		vma_clear_flags_mask(tmp, VMA_LOCKED_MASK);
- 		/*
- 		 * Copy/update hugetlb private vma information.
- 		 */
-@@ -1812,7 +1815,7 @@ __latent_entropy int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
- 			i_mmap_unlock_write(mapping);
- 		}
- 
--		if (!(tmp->vm_flags & VM_WIPEONFORK))
-+		if (!vma_test(tmp, VMA_WIPEONFORK_BIT))
- 			retval = copy_page_range(tmp, mpnt);
- 
- 		if (retval) {
-diff --git a/mm/vma.c b/mm/vma.c
-index e0ad895098a9..b5bc3eec961c 100644
---- a/mm/vma.c
-+++ b/mm/vma.c
-@@ -3419,17 +3419,20 @@ struct vm_area_struct *__install_special_mapping(
- 	vm_flags_t vm_flags, void *priv,
- 	const struct vm_operations_struct *ops)
+ 	/* Don't touch entries that are not even readable. */
+@@ -97,7 +97,7 @@ static bool can_change_shared_pte_writable(struct vm_area_struct *vma,
+ bool can_change_pte_writable(struct vm_area_struct *vma, unsigned long addr,
+ 			     pte_t pte)
  {
--	int ret;
-+	vma_flags_t vma_flags = legacy_to_vma_flags(vm_flags);
- 	struct vm_area_struct *vma;
-+	int ret;
+-	if (!(vma->vm_flags & VM_SHARED))
++	if (!vma_test(vma, VMA_SHARED_BIT))
+ 		return can_change_private_pte_writable(vma, addr, pte);
  
- 	vma = vm_area_alloc(mm);
--	if (unlikely(vma == NULL))
-+	if (unlikely(!vma))
- 		return ERR_PTR(-ENOMEM);
+ 	return can_change_shared_pte_writable(vma, pte);
+@@ -194,7 +194,7 @@ static __always_inline void set_write_prot_commit_flush_ptes(struct vm_area_stru
+ {
+ 	bool set_write;
  
--	vm_flags |= vma_flags_to_legacy(mm->def_vma_flags) | VM_DONTEXPAND;
-+	vma_flags_set_mask(&vma_flags, mm->def_vma_flags);
-+	vma_flags_set(&vma_flags, VMA_DONTEXPAND_BIT);
- 	if (pgtable_supports_soft_dirty())
--		vm_flags |= VM_SOFTDIRTY;
--	vm_flags_init(vma, vm_flags & ~VM_LOCKED_MASK);
-+		vma_flags_set(&vma_flags, VMA_SOFTDIRTY_BIT);
-+	vma_flags_clear_mask(&vma_flags, VMA_LOCKED_MASK);
-+	vma->flags = vma_flags;
- 	vma->vm_page_prot = vma_get_page_prot(vma);
+-	if (vma->vm_flags & VM_SHARED) {
++	if (vma_test(vma, VMA_SHARED_BIT)) {
+ 		set_write = can_change_shared_pte_writable(vma, ptent);
+ 		prot_commit_flush_ptes(vma, addr, ptep, oldpte, ptent, nr_ptes,
+ 				       /* idx = */ 0, set_write, tlb);
+@@ -846,8 +846,8 @@ mprotect_fixup(struct vma_iterator *vmi, struct mmu_gather *tlb,
+ 		vm_unacct_memory(nrpages);
  
- 	vma->vm_ops = ops;
+ 	/*
+-	 * Private VM_LOCKED VMA becoming writable: trigger COW to avoid major
+-	 * fault on access.
++	 * Private VMA_LOCKED_BIT VMA becoming writable: trigger COW to avoid
++	 * major fault on access.
+ 	 */
+ 	if (vma_flags_test(&new_vma_flags, VMA_WRITE_BIT) &&
+ 	    vma_flags_test(&old_vma_flags, VMA_LOCKED_BIT) &&
+@@ -921,7 +921,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
+ 			goto out;
+ 		start = vma->vm_start;
+ 		error = -EINVAL;
+-		if (!(vma->vm_flags & VM_GROWSDOWN))
++		if (!vma_test(vma, VMA_GROWSDOWN_BIT))
+ 			goto out;
+ 	} else {
+ 		if (vma->vm_start > start)
+@@ -929,7 +929,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
+ 		if (unlikely(grows & PROT_GROWSUP)) {
+ 			end = vma->vm_end;
+ 			error = -EINVAL;
+-			if (!(vma->vm_flags & VM_GROWSUP))
++			if (!vma_test_single_mask(vma, VMA_GROWSUP))
+ 				goto out;
+ 		}
+ 	}
+@@ -953,7 +953,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
+ 		}
+ 
+ 		/* Does the application expect PROT_READ to imply PROT_EXEC */
+-		if (rier && (vma->vm_flags & VM_MAYEXEC))
++		if (rier && vma_test(vma, VMA_MAYEXEC_BIT))
+ 			prot |= PROT_EXEC;
+ 
+ 		/*
 
 -- 
 2.55.0
