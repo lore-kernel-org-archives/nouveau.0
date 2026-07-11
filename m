@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D4A7C43458
-	for <nouveau@archiver.kernel.org>; Sat, 11 Jul 2026 18:15:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 668EBC43458
+	for <nouveau@archiver.kernel.org>; Sat, 11 Jul 2026 18:16:07 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 101C110E3B6;
-	Sat, 11 Jul 2026 18:15:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 43AE310E3BE;
+	Sat, 11 Jul 2026 18:16:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cPCGy2s1";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZHA31VqS";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2B878470C9;
-	Sat, 11 Jul 2026 18:00:52 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 685B5470CB;
+	Sat, 11 Jul 2026 18:01:00 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783792852;
- b=CN6X+3+lvySmwhpcHvF2kXBC1yC/i59ytm10JE0m5WaDwYxylxxLV4qWFEukuZStthvKo
- K5Px6/V2bhKK3MVqkZpqw6KMYguNx6slrNxtDPtZe+EtFisRZHM296a1nKF8MMm046RBKsp
- y830dRV1S+K0pv5q51ww8ORnOLLo20PmZ4VS/Il7JCd7YFe3IbalPlhgoqrZ6W/DLO+TMym
- yYWOfckTkhu5UzdOh3fE8KkpgM4sgzGEu9fUI4MakC8qJk2YkrsjV9FWtT+Emey+Nq1K9gA
- YOKU7TPOMB819jtJ1v7ZPMIdlGoTcknWWls1cdyHrCkiq06WThOG6nVlBtQw==
+ s=20240201; t=1783792860;
+ b=hZQKaOjzKjmLjAjX6ZFU9m9TTl+dVaQHZkJpbcdK+DaZFPRdasxghmhtdDhq5tOl95HkY
+ Vfp7s6EhdRUdbmF+H63NLA8KYCBVK3wsRI/QrpxWYmMAYx760BDarISQl/UO69w+XbDfAq5
+ LVf9G4DYiN9lVXUIpptGMjban0s+s0A/vSSHgbht41XDmRqkQNl8ZRnZRDudr/O2d/i0Mug
+ g/af8Q3B2x2EPwkngCnA4gD2uT9Mm4wPZaM99GiP9+beZfGthOBv3jyaSZOuHZ3zYglirt3
+ 7H4wiBAx8Mqy1HuO+mgDVo6jmt90bQWSiLPe/BKCJqpsKP6Yz0PetvZfYNpw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783792852; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783792860; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=dOtkU4x9PdYj+8HW6RC7BqjcU55iCa0C1SdNdtAVTLU=;
- b=hMAQ04Zib9FEPyT8ou+QzJme768PIR0F84aTcX1fuXrGzcG0lxzzfG8NskDFjcpzhROsH
- unK2UMkHRhU4so//4sGVfGDqTWdGWu1HsiNHQgmCpA8VefB69Yhb9TgCuDZkSr9LfKVnGNv
- se/diRGsh/0yMd605uTdJ9MYbyTgCQFyyJoebg4YmpLLCjlo+Xk9iF3r5ZX+lnjRMbVb5SQ
- VILQLT/GKBcapzNx2fUhEdbz59w6K4jEQ8czuAA7MlQXuqMzArDfBnbf6tMDY1P4+0HtSuh
- 5d4wtVEN1YjTh7cch324PBsHN88jN+/y/AIzz/vErUyMQkb216kWIbbhxR2g==
+ bh=d5f6B0smxVafC/d5W+ptxFghTcXMGQ4dtdszLH5dcD0=;
+ b=MZenDYnK5WOWyBfjx8jkF8RO8LjDZCvKgTz3plxv1ZEZf9f8a8HCcORAOWHOMChy/OQA8
+ Edw29fNAke9iOjGg9Etw6u/P1LB1V8B/Yh4GQv6kGIR+YF1M7ByZbECtIuvyqt44ZWpS4Hi
+ PhVtGmulIisNeQkOY1+6VN6D5Fzw0vKWhEfftQkjIxJgbcP1OuykTsluxzuQehqVUPPdRDR
+ 8huPC5ZPub8MAGhgA4YdzX8V9xhfewPuBX0CVoy11Jg1SIi2fBvipc5hBlXcC1JEeE8TLJz
+ zfdqz4yqNr7vR3veRtWRpa2BnKeZVPwb41rRTAVLKF8dG+e3mR2vSwLUkvJA==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=pass;
@@ -45,99 +45,99 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 21B1446FE8
-	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 08:29:59 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 60E50470A6
+	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 08:30:10 +0000 (UTC)
 Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
  [209.85.210.177])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E5FA510E317
-	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 08:45:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3E61010E317
+	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 08:45:16 +0000 (UTC)
 Received: by mail-pf1-f177.google.com with SMTP id
- d2e1a72fcca58-8484f229529so1147387b3a.2
+ d2e1a72fcca58-8484a0b998fso2508298b3a.2
         for <nouveau@lists.freedesktop.org>;
- Sat, 11 Jul 2026 01:45:04 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783759504; cv=none;
+ Sat, 11 Jul 2026 01:45:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783759516; cv=none;
         d=google.com; s=arc-20260327;
-        b=XTe25xk72oIKLQKVhlk8UKNeKDVcVmfZ44k+8yGO+945UiHBSN5pOyg7DV9CimZ9/0
-         NKzN07rQvZG2qpchhlDjaX+gPKEafUUwHX6Z0SmDepgOmPJ200tIFaOtG+ANtJE+euHc
-         lb9pRdzuvfBRjOJt+CdSSluC2bmcKCXJCBrYkf8SpO0ROjh/y9jLMZMOs/YxhrtlW53A
-         gHWviXyuWaSDwfCrMrLZpwQb022K4JJ0+5h483IIJ1C0Uf3ftf/AMiuErwEPg7lOX3uK
-         wdHH/iClJO+81jsmi6KibCuKN/tP1Q9q0n2SxZxPqbXEFTnFEVS++0Cjlc5zsmU/Y8IF
-         L4jw==
+        b=ZVA0aG3BazPeTNNdwt7GU7jKSUjhAQ/cISHUJ4Bkq9Df9H4LjeLWsUWo0HDPsfyGJH
+         RJqmXrAVZICmx7Nnc3OiBOIIMM6MUO9vRH80tEzICkpHom1U/w13CssZ8QQrIg2ptz5w
+         WIk16Ow7VqsGluRjqPHcbpxGD4clnwLsJU2Y1GqiX78WUdES9d6v0uqNvZYBhJCqSkKw
+         X8V/+VbzGnhC17ioK1bCdQZgw4bnKK0JZRUAkCMU67yLSY91NwkRZue8TPfUWXad6yfy
+         HZL+kdwqYZLHhrfJ5D0RUswF+259y2VSHXah9mssNLJol5jsVg7tBvbtV2xp1XJLd4nR
+         O3wQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20260327;
         h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=dOtkU4x9PdYj+8HW6RC7BqjcU55iCa0C1SdNdtAVTLU=;
-        fh=TOFmEjSnmnd+LFrTgfUxcNqjG37jxsdReiiLMMsE7+A=;
-        b=Y86glFq54D2nMh8xngpb1H/K0JCRfvorFl2OZ+YpEuaJ8JA7yQnnIfVK6rXiqKT7b8
-         S5aZnbH7teFjoCduMuVIj9dAJP/5eE+03owxVgEXYkkNzjqlhYvT7O+PeQvLbfVemPAU
-         phQ2Z/SNThqj7cReAoR+6Z8+weJNuH7zsDveXOFa5pSpobOsOg0lswDS3Jwj+TrIuyXw
-         jatMMQwinDSbwx5ekgCqs+dWVOVS66XsmMMu9PfYJyIVrD+N3g3A2r9UxLhl2q9w+mBo
-         wu4YywSz2qAdNLDn+m1kCMcLdv8WDYT+7/brEZHyXvXDSaqjXsRDFoWEgGlsWYQVIFgl
-         7m/Q==;
+        bh=d5f6B0smxVafC/d5W+ptxFghTcXMGQ4dtdszLH5dcD0=;
+        fh=Uy6LYaV5gOEJVvmztiHfz4eAvRzGDx1isDghySKRCx8=;
+        b=KRpiZx3aaCumuix/+2C9bwbjOVsv7tH8hRsycg98lTRk2ENiAcu7gzX8U3RGMzhyNM
+         W9cNkaUhFrjr73v28Vvq55Ox9eUYgU1UBVe0gmckartk1PvbpdZH8QNEqHYltgMfFuXE
+         TpWDVoNfdj8QeuIV9E+HBD/xccSDXWbM9fWgO2tHFEvBm1wgi/aYFFvciuJmNgNzAUwo
+         GJkUC4zgsI/KZghOs1XNo8jXVsnn3LUluowOL05mDtSY0D1evA3G4cQoPuya0qqwJ8EW
+         KDgTXStEjaFACSrnjUOzncIMQRJB1F0KLXYrOTDyMztiJugltIcjvBBhWFV3NG5nKVpN
+         km/w==;
         darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783759504; x=1784364304;
+        d=gmail.com; s=20251104; t=1783759516; x=1784364316;
  darn=lists.freedesktop.org;
         h=content-type:cc:to:subject:message-id:date:from:mime-version:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=dOtkU4x9PdYj+8HW6RC7BqjcU55iCa0C1SdNdtAVTLU=;
-        b=cPCGy2s1lCFs7rFHsGyV6GYaCvHy941i3VryL3C1pq7So334UTyBLHcFc6ChfDIU8M
-         kwc45O+OVPH+o/KorJ1UNi67MkYboz9TkO8f9rJtGu74oZYo+na9lqZqVzMZVimpAYZe
-         FyMs9LV8dNarH7zhRjPeOOfjn1BJGT/xZOYgCcd0eRlAuNPNkdir/QbbPMGjr7b3E5SA
-         9jgAciugPRvc/D1nnPqJTYytjAVj35uFNU256eldctfL6T+Gs7a5J50f8kkn2FErDdXT
-         9Ck3j6dkv7Dr6U+WKWCXBJIHpuEvYagZZw3gJwxIjb8BFbl5JD9jIXTjFk7QA3urmIl5
-         ukEA==
+        bh=d5f6B0smxVafC/d5W+ptxFghTcXMGQ4dtdszLH5dcD0=;
+        b=ZHA31VqSbSLFs+j9nGb/vyVT8ZXBIMKnyMIv+S7h/OhQsg4gpjdkmWfQnnoUZf4sMl
+         C3cC+cb77ZpyMznObMGh5Vbf5eA6jQkX940yH5K/cOS05MFMNO/ZKbk6uqeTI6GVYIfR
+         D8P1Ha8GRrtkFGUcd8PoRBMIU8/9AqFEx/a5rkwjun2I3tgiIYyMRashuFIg+eSTvXG7
+         9FLEKL6+1s+jlWhXrBqJl/QgPP4cpLMUTpxH0jZ3pwx0dSoLWpkPtDMtK6DOaRilDEEg
+         x0QhVYaSXFDCwJBETRrCVjNPvmS2ad6Rc/tuTpVHrFjHBe/ux/B0baraXqjcF3MQn+dR
+         VvGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783759504; x=1784364304;
+        d=1e100.net; s=20251104; t=1783759516; x=1784364316;
         h=content-type:cc:to:subject:message-id:date:from:mime-version
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to:content-type;
-        bh=dOtkU4x9PdYj+8HW6RC7BqjcU55iCa0C1SdNdtAVTLU=;
-        b=oOPvd7yCB2vZEW4OQOaiABCUL96wE9Q1sCwoeiJQo0+73WmTOWc4Hc4imFe2fe+ABM
-         TIZTOdNCviyYzvqWiw1l3DxnxCf6fMTIk2V31piWEQi0JbLSiYKylP2ptgL8CfKOtKbU
-         JutgSicA9ZFf5n432cBcQ0bE1iHD7wZwGCh6vTZZaryn9HLKuoq44QX1kP3TYMQC3cjy
-         ymMHjCS1v9Dc0J8XodhNxoAdjM10O5t1xHm3oaSP1n+QdD3IrcyU7VudqA+/mpDzNaOZ
-         klhKuYXrej9G+KyKgF83SEG0GJUPMPk6tEUySGQtRKjCK4aIbetH6pWiY9F3OUhp5kNl
-         vrmw==
+        bh=d5f6B0smxVafC/d5W+ptxFghTcXMGQ4dtdszLH5dcD0=;
+        b=TVljBHi7vMQG5f8QXCsHzQQwvFediNvHPUCTrjS1K9ipJUkZdPa+EJJIC4bu/0MjRH
+         EgSDKnqzgx3rTvEDGB2QGmR65rGL1J7Y1Lf3ZcipB9EKDzIavtdLNT7VypTapPXINb7W
+         lHUmzgCtp03Plk12QkibQwBK9eiovMFbnp6fVzR2qMXA3vuJktLDYBoyVItRj61bGB2X
+         7TaWOnrET32sHwOUAiKluzazQmhs7fOdJ89e9VAPiXRNhn7iK3zFLEOY3ROt0rkt2Gzm
+         Xt/sZLCKxosC1CM8FtxAx5txghYlhJ2zOon/TecoLLl297IewTTzRujb2Fkf1ceR/O6A
+         Vl8w==
 X-Forwarded-Encrypted: i=1;
- AHgh+RoHMnyebnEwXEQE6M63mqAfWV703ik8htm7Fd2HPRSPCdGphZiOk/NMXuwv3hRneU9JAgtjMn1Y@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyut0Yf/p6h6lUt2Jeq9rxa2fp4hkh6pQ7XAT2DOdOfcuG7BnMY
-	9eLc7MXHJLcI0Y/tbYuoHBrhtI6WWl1nuEZ9veNra6JeZgYcuFOzR1zsV0NwvyA3V7S3ZRQfA42
-	FDDT0NSckpoLcT2vffUgZsPJbD4ldCVhQEZ2k
-X-Gm-Gg: AfdE7ckF4HqylbjCvGHaJteMaoW9DVlTn4kvxWRR/7h5tVC1qps42ECgJ/jNLghCXLX
-	7yqxy8/yj7qYKRZ1JwOT8//X9KLUF0PYkbxqwmIFe+a4nnNpk+EXAzGuTXSisWvzCxeTxZ7aU8R
-	mf89+98XgHD8kL4LbFWvTWuqGQv7GIpryl+VM/HH6qx87vwoiLGJaJne0Ni7WwKSUz8pLHKw1cq
-	hGfjOnWxAUwUgAW8mNnVvF3Mj22CfIp1BMV9qFj5daMuZFXAGoivIpEtAHKbnKAZ60DhcC1RT5B
-	l1IoimwlyCSpHIOP09CeYQ56RJcS
-X-Received: by 2002:a05:6a00:3d4b:b0:845:e3af:dde9 with SMTP id
- d2e1a72fcca58-848897d301emr2123925b3a.38.1783759504399; Sat, 11 Jul 2026
- 01:45:04 -0700 (PDT)
+ AHgh+RoMghRECZL9bAk7qqFlHvM1hzs+9B3a9Zmt4JLHaWbDXV7RyVHOueQpQewjNfYZQIzqXMHpq9QF@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YybcUaTtQcU4fSLiCo814xFWtFmSa7U/m3wEltYNBsgzM3ATRhv
+	eQU98jz3aVZmrYabC46S+d/kzvRiShHF0O9VVe/33+VVZ2SC6HG7c7Jge1RjuJAtj0LgO1kuqvt
+	CuoQAYtTscsngHRO1Y/xNFwF/keY5q6vjUJAN
+X-Gm-Gg: AfdE7clbFypDcb55DYX7z7LmCTpWSOE7+SIiyS6e5tUyevub9SqG65hCJjMHZSRmbrV
+	v7EXnhTc0eflyQ5tfP50j0uRZvAM/nvXOQKuJZBfz4nUOR/GvCvVT9CHFA4xSHTS/LtbesgYlBQ
+	eDG8XT6tDtxWJJoeXFwWDrMYxcplcRGuRbjJcdPGT8u/+7dJ77hmJRf3PiXuHLjdYjhl7KhKgxk
+	sdWFJAOENgNTvCY9V4y8KCK5hsWlPFSwx1gKgA1XhKeeR+CVuv+3Pow31G/YLyCtHBxaOF0B86z
+	799dXkaGsuiyLX46aPFtc22g0lzR
+X-Received: by 2002:aa7:8891:0:b0:845:44c7:5e28 with SMTP id
+ d2e1a72fcca58-84889649d8cmr2012798b3a.31.1783759515638; Sat, 11 Jul 2026
+ 01:45:15 -0700 (PDT)
 MIME-Version: 1.0
 From: Francesco <postadelmaga@gmail.com>
-Date: Sat, 11 Jul 2026 10:44:52 +0200
-X-Gm-Features: AUfX_mxh-8mbQqBqE9heeoRHEh4TRnjFx2WiI2YPMUUIOodX-uUwuItU51FO51A
+Date: Sat, 11 Jul 2026 10:45:02 +0200
+X-Gm-Features: AUfX_mzSuKPUAnaWauxVFZ8dn-PVTnVgi02lCEG6OlYh7Rf8UL0yhrQEFIw3mPY
 Message-ID: 
- <CAHwn+vnP4eGFW3Z0g_YHT6PW7beOvrOD833Gyy6LwL05mj6Whg@mail.gmail.com>
-Subject: [PATCH 1/2] drm/nouveau/clk: fix list cursor use after loop in
- nvkm_clk_ustate_update
+ <CAHwn+vnw=DD=j7umFVdcr8-F6yUz=iM+3yfA+HcHKXJwpNrHRA@mail.gmail.com>
+Subject: [PATCH 2/2] drm/nouveau/clk: don't clobber reclock status when
+ restoring volt/fan
 To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="0000000000009fe9d8065651df81"
+Content-Type: multipart/alternative; boundary="0000000000004b61c7065651e01f"
 X-MailFrom: postadelmaga@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: C2V666MCJCXE3RGSDGB2NIMZBZ3JTTKZ
-X-Message-ID-Hash: C2V666MCJCXE3RGSDGB2NIMZBZ3JTTKZ
-X-Mailman-Approved-At: Sat, 11 Jul 2026 18:00:50 +0000
+Message-ID-Hash: Z7TZO6O4L2V72MWZMRGRHE3WERAS3UIC
+X-Message-ID-Hash: Z7TZO6O4L2V72MWZMRGRHE3WERAS3UIC
+X-Mailman-Approved-At: Sat, 11 Jul 2026 18:00:58 +0000
 CC: dakr@kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/C2V666MCJCXE3RGSDGB2NIMZBZ3JTTKZ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Z7TZO6O4L2V72MWZMRGRHE3WERAS3UIC/>
 Archived-At: 
- <https://lore.freedesktop.org/CAHwn+vnP4eGFW3Z0g_YHT6PW7beOvrOD833Gyy6LwL05mj6Whg@mail.gmail.com/>
+ <https://lore.freedesktop.org/CAHwn+vnw=DD=j7umFVdcr8-F6yUz=iM+3yfA+HcHKXJwpNrHRA@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -147,81 +147,91 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
---0000000000009fe9d8065651df81
+--0000000000004b61c7065651e01f
 Content-Type: text/plain; charset="UTF-8"
 
-If the requested pstate id is not present in the state list (or the
-list is empty, e.g. broken/missing perf tables), the list_for_each_entry
-cursor runs off the end of the list and the subsequent
-pstate->pstate != req check dereferences the list head cast to a
-struct nvkm_pstate, which is an out-of-bounds read.
+nvkm_cstate_prog() reuses 'ret' for the voltage and fan-speed restore
+calls made after clock programming. As a result a clock programming
+failure is silently discarded if the restore calls succeed, and
+conversely a successful reclock can return an error if the final
+therm/volt call fails (which is already only logged, not acted upon).
 
-Track whether the entry was actually found instead of inspecting the
-cursor after the loop.
+Keep the calc/prog status in 'ret' and use a local for the restore
+calls, so the function reports what actually matters.
 
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
 Signed-off-by: Francesco Magazzu <postadelmaga@gmail.com>
 ---
-drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 8 ++++++--
-1 file changed, 6 insertions(+), 2 deletions(-)
+drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 14 +++++++-------
+1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
 b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-index 572e63846..42f3709e0 100644
+index 42f3709e0..4f08326f2 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-@@ -479,13 +479,17 @@ nvkm_clk_ustate_update(struct nvkm_clk *clk, int req)
-return -ENOSYS;
-
-if (req != -1 && req != -2) {
-+ bool found = false;
-+
-list_for_each_entry(pstate, &clk->states, head) {
-- if (pstate->pstate == req)
-+ if (pstate->pstate == req) {
-+ found = true;
-break;
-+ }
-i++;
+@@ -199,16 +199,16 @@ nvkm_cstate_prog(struct nvkm_clk *clk, struct
+nvkm_pstate *pstate, int cstatei)
 }
 
-- if (pstate->pstate != req)
-+ if (!found)
-return -EINVAL;
-req = i;
+if (volt) {
+- ret = nvkm_volt_set_id(volt, cstate->voltage,
+- pstate->base.voltage, clk->temp, -1);
+- if (ret && ret != -ENODEV)
+- nvkm_error(subdev, "failed to lower voltage: %d\n", ret);
++ int tmp = nvkm_volt_set_id(volt, cstate->voltage,
++ pstate->base.voltage, clk->temp, -1);
++ if (tmp && tmp != -ENODEV)
++ nvkm_error(subdev, "failed to lower voltage: %d\n", tmp);
 }
 
-base-commit: a284476db2653ae893f46cbea408eb412db54eb0
+if (therm) {
+- ret = nvkm_therm_cstate(therm, pstate->fanspeed, -1);
+- if (ret && ret != -ENODEV)
+- nvkm_error(subdev, "failed to lower fan speed: %d\n", ret);
++ int tmp = nvkm_therm_cstate(therm, pstate->fanspeed, -1);
++ if (tmp && tmp != -ENODEV)
++ nvkm_error(subdev, "failed to lower fan speed: %d\n", tmp);
+}
+
+return ret;
 -- 
 2.55.0
 
---0000000000009fe9d8065651df81
+--0000000000004b61c7065651e01f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div dir=3D"auto">If the requested pstate id is not p=
-resent in the state list (or the<br>list is empty, e.g. broken/missing perf=
- tables), the list_for_each_entry<br>cursor runs off the end of the list an=
-d the subsequent<br>pstate-&gt;pstate !=3D req check dereferences the list =
-head cast to a<br>struct nvkm_pstate, which is an out-of-bounds read.<br><b=
-r>Track whether the entry was actually found instead of inspecting the<br>c=
-ursor after the loop.<br><br>Co-Authored-By: Claude Fable 5 &lt;<a href=3D"=
-mailto:noreply@anthropic.com" target=3D"_blank">noreply@anthropic.com</a>&g=
-t;<br>Signed-off-by: Francesco Magazzu &lt;<a href=3D"mailto:postadelmaga@g=
-mail.com" target=3D"_blank">postadelmaga@gmail.com</a>&gt;<br>---<br> drive=
-rs/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 8 ++++++--<br> 1 file changed, =
-6 insertions(+), 2 deletions(-)<br><br>diff --git a/drivers/gpu/drm/nouveau=
-/nvkm/subdev/clk/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c<br=
->index 572e63846..42f3709e0 100644<br>--- a/drivers/gpu/drm/nouveau/nvkm/su=
-bdev/clk/base.c<br>+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c<br>=
-@@ -479,13 +479,17 @@ nvkm_clk_ustate_update(struct nvkm_clk *clk, int req)=
-<br> 		return -ENOSYS;<br> <br> 	if (req !=3D -1 &amp;&amp; req !=3D -2) {<=
-br>+		bool found =3D false;<br>+<br> 		list_for_each_entry(pstate, &amp;clk=
--&gt;states, head) {<br>-			if (pstate-&gt;pstate =3D=3D req)<br>+			if (ps=
-tate-&gt;pstate =3D=3D req) {<br>+				found =3D true;<br> 				break;<br>+		=
-	}<br> 			i++;<br> 		}<br> <br>-		if (pstate-&gt;pstate !=3D req)<br>+		if =
-(!found)<br> 			return -EINVAL;<br> 		req =3D i;<br> 	}<br><br>base-commit:=
- a284476db2653ae893f46cbea408eb412db54eb0<br>-- <br>2.55.0<br></div></div><=
-/div>
+<div dir=3D"ltr"><div><div dir=3D"auto">nvkm_cstate_prog() reuses &#39;ret&=
+#39; for the voltage and fan-speed restore<br>calls made after clock progra=
+mming.  As a result a clock programming<br>failure is silently discarded if=
+ the restore calls succeed, and<br>conversely a successful reclock can retu=
+rn an error if the final<br>therm/volt call fails (which is already only lo=
+gged, not acted upon).<br><br>Keep the calc/prog status in &#39;ret&#39; an=
+d use a local for the restore<br>calls, so the function reports what actual=
+ly matters.<br><br>Co-Authored-By: Claude Fable 5 &lt;<a href=3D"mailto:nor=
+eply@anthropic.com" target=3D"_blank">noreply@anthropic.com</a>&gt;<br>Sign=
+ed-off-by: Francesco Magazzu &lt;<a href=3D"mailto:postadelmaga@gmail.com" =
+target=3D"_blank">postadelmaga@gmail.com</a>&gt;<br>---<br> drivers/gpu/drm=
+/nouveau/nvkm/subdev/clk/base.c | 14 +++++++-------<br> 1 file changed, 7 i=
+nsertions(+), 7 deletions(-)<br><br>diff --git a/drivers/gpu/drm/nouveau/nv=
+km/subdev/clk/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c<br>in=
+dex 42f3709e0..4f08326f2 100644<br>--- a/drivers/gpu/drm/nouveau/nvkm/subde=
+v/clk/base.c<br>+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c<br>@@ =
+-199,16 +199,16 @@ nvkm_cstate_prog(struct nvkm_clk *clk, struct nvkm_pstat=
+e *pstate, int cstatei)<br> 	}<br> <br> 	if (volt) {<br>-		ret =3D nvkm_vol=
+t_set_id(volt, cstate-&gt;voltage,<br>-				       pstate-&gt;base.voltage, =
+clk-&gt;temp, -1);<br>-		if (ret &amp;&amp; ret !=3D -ENODEV)<br>-			nvkm_e=
+rror(subdev, &quot;failed to lower voltage: %d\n&quot;, ret);<br>+		int tmp=
+ =3D nvkm_volt_set_id(volt, cstate-&gt;voltage,<br>+					   pstate-&gt;base=
+.voltage, clk-&gt;temp, -1);<br>+		if (tmp &amp;&amp; tmp !=3D -ENODEV)<br>=
++			nvkm_error(subdev, &quot;failed to lower voltage: %d\n&quot;, tmp);<br>=
+ 	}<br> <br> 	if (therm) {<br>-		ret =3D nvkm_therm_cstate(therm, pstate-&g=
+t;fanspeed, -1);<br>-		if (ret &amp;&amp; ret !=3D -ENODEV)<br>-			nvkm_err=
+or(subdev, &quot;failed to lower fan speed: %d\n&quot;, ret);<br>+		int tmp=
+ =3D nvkm_therm_cstate(therm, pstate-&gt;fanspeed, -1);<br>+		if (tmp &amp;=
+&amp; tmp !=3D -ENODEV)<br>+			nvkm_error(subdev, &quot;failed to lower fan=
+ speed: %d\n&quot;, tmp);<br> 	}<br> <br> 	return ret;<br>-- <br>2.55.0<br>=
+</div></div></div>
 
---0000000000009fe9d8065651df81--
+--0000000000004b61c7065651e01f--
