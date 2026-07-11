@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A1C3C43458
-	for <nouveau@archiver.kernel.org>; Sat, 11 Jul 2026 03:09:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B2A3C43458
+	for <nouveau@archiver.kernel.org>; Sat, 11 Jul 2026 03:15:01 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E20CC10E6F8;
-	Sat, 11 Jul 2026 03:09:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4235810E70E;
+	Sat, 11 Jul 2026 03:15:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="o/GZOk3a";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OstrPz6A";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 607F04704A;
-	Sat, 11 Jul 2026 02:54:20 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id B431447092;
+	Sat, 11 Jul 2026 02:59:55 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783738460;
- b=hTS4HhSQLukMlj6yQkiou9moMLY8/Mth6vDApQkgcsnKlIRnD506CAAFDj20toHHBRl/2
- nUvYJ1B4eN3JdfM1WUO0CmTd1mmIxcpXFcdboR7YgBIdhiXzC+otBYPzgOuDNWIM4vAaNl3
- szJrKHNUmE6PXeYnaro81lkWY6NPvyeHB2fNL3ENmauh304VPCqWFBFB512Q3fnJTK3zE9h
- CRTqVVoF4NoOavF6W2WczfRbJqEVbf7/jYJJFrQ3vI+5FPk6OkXsuO+SC4uLXNvS+RN6rqs
- fm58kmra3X7rLt5Zr4vQqvonQs6CzuzDjAVJlA4GdTku1qSDrMWaQ3urCjwA==
+ s=20240201; t=1783738795;
+ b=n9U938t42vyrG05E710JYK1PdORo+oYJlDB7pMlLdekWASG6wNjM1s5NdkZaTqrIEXf/H
+ +nf318kJJH8oqpuLj5BALUzfVsMDYfT06zeCdt9+1BVkLnqVizcxJrnIUAUWchzjVMpYng/
+ 4HQqgmwQxgl6zD8s8CsLzPJZ+uYfuCa3edvBq1+FQS6jgaZgqtCjfSSIuzWnUy2+cndgOjO
+ vjQg22gJ4Uf3yK91bkCt0RgpBPgnjKTzEB6GOCaPKc/CpDC/+yYWAd4KdPU+cIP0Wn9SF4b
+ bFJt3iO5rfZfdF8UmC5QyroUal5COyUuruAo0SuTlgRzsOenlX5K8UfDvX5Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783738460; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783738795; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=KBT/pxhbpviyB1eK4ppjTwsrTkYiVk3Lhi/aEEh6q5s=;
- b=znni45Lj4WEp20BvILfGw9S3IotsiuhIrMxWzWayx1mSLqyr8OuxxNax2pgyL8XEesiLw
- zIQcWwp4RuFEGxx6154B9NgNBAhIG80D5waN+6tE7OOXaDWDKacNBr3OjUijrh6qASYzj1V
- hJIDBcYCZeGe7HWj0jd5CVd6FY3eJdd7sZrE2q3gmDbclT1POdjKzkqV9UdNZ7EYw4m2aa2
- ZEiCPSZb2yxVZJHj7+X0AxNJqE/d1lzA3gBV9Tcfz7dcoyGQzPg7Slx6vyRRyqQoEi1TJjj
- S2Gbk9dFQIa8+AKBXTTBo6O5wlk1/KIzPE/VzWCOyTqUBAWO2xz5u6dv/YjA==
+ bh=xrd/oJTRX2Uc0zxJ+R9Qjxy6xmTV66E4ZoYglWTlGgs=;
+ b=GRc0HE4C+I0atAr+u3o0EmJYj3fzNprb4pV3wl+Y3y9PGpMAN2VdY1IOlc5BdJLjjQkxS
+ pcZ/tL9uNGmJkk/IVaqNEyTn4mogONV2khLHgZPYQUzR92tPQz0ik+C7xo6+zOQVn8OsrfN
+ LgQdNbZg42rKO+Vub2eXcVslSaFJl4diwS0anjo21GkzqofcuvKdxxCb4Tlx0DgE5qU0dhE
+ MON9pQeqvwL1sj9FpAa3UX6RDkGVzuQ+CDRldj6fFK/WyXarBl1kFZvG/TkplmF2I8ozKq8
+ ac/v87dMkkBN/bn665YxhaqMdMz0wn9uRMKHC1Jci1vvNpolHyd/QcYXt9AQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,78 +46,77 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D62A246BC7
-	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 02:54:17 +0000 (UTC)
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com
- [209.85.210.179])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 21CB910E54B
-	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 03:09:23 +0000 (UTC)
-Received: by mail-pf1-f179.google.com with SMTP id
- d2e1a72fcca58-848595b338cso1740598b3a.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 94C8B46BA9
+	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 02:59:52 +0000 (UTC)
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
+ [209.85.216.49])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E7B1610E707
+	for <nouveau@lists.freedesktop.org>; Sat, 11 Jul 2026 03:14:57 +0000 (UTC)
+Received: by mail-pj1-f49.google.com with SMTP id
+ 98e67ed59e1d1-38125cebfdaso2159750a91.1
         for <nouveau@lists.freedesktop.org>;
- Fri, 10 Jul 2026 20:09:23 -0700 (PDT)
+ Fri, 10 Jul 2026 20:14:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783739362; x=1784344162;
+        d=gmail.com; s=20251104; t=1783739697; x=1784344497;
  darn=lists.freedesktop.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=KBT/pxhbpviyB1eK4ppjTwsrTkYiVk3Lhi/aEEh6q5s=;
-        b=o/GZOk3aY4ZbdXQMhDJ5o8GibBVP5/Y4qU0MuTHOBmVbvm+lFEVfqReWbdMRdofKbp
-         PXXeAPk9Af/Io6nrzhbtzf/Qp0aTDtq/fxiWeHTIpNXTr/01BM4Sl7ncER9v+k1zzice
-         bRnzO7MiYeg+YVcQZsV5AtGSsObZ74yY3wi0gziL87zentOEOod26svFWXCpUHGctOIE
-         h4bmI7oKJAzVcYoQOvft3/s6y1Q+PE2z3ugi/2yCnvhR5aBkrbSeXXXjwz8rmd9c3dLc
-         81eJf6Ip/lGQPJ+gNIjNubQj7IJYg7iVFs1yS2p1DnhCBaEw3X9eIKnGcjRcwWgMd3Jv
-         xThQ==
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=xrd/oJTRX2Uc0zxJ+R9Qjxy6xmTV66E4ZoYglWTlGgs=;
+        b=OstrPz6AeKvRyr2DhgvuNlfKE2EUzV7MwKQH0Q7iVKOd8dqmwEL8hjVrixOM+CVWyd
+         ND9ZqesyhtAWyuONW0zThqM0Iu6O5q1cTy+MP7j/8gNy8WtAXk7juzUxflw+fdAqpCkb
+         Y0ZAexnCAi7LVxEwiX8xGA8WDuoh8n95r+v0D8DnAWlaw9Sl5wZN7gWEil1qJs/SXluN
+         hZgWlAQLssTiVj51V8FmxETiz4HzGszcelcDYG4kIMeOJXoA7pc5K/oTlqlHl5P1z/iV
+         DwW2jtVrLYBVyv6tZQ3FXfnmUR/XxnaiDy5qS+qmRMtoCaXuzDggHwopMSe1UG0KZxDU
+         rzXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783739362; x=1784344162;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=KBT/pxhbpviyB1eK4ppjTwsrTkYiVk3Lhi/aEEh6q5s=;
-        b=gSiMM+sVIdnlw1CQkG2Q9FaG3vwwTfgHyPWApIt30NQadgXuh0WsycsegkXOvoN356
-         RZR5cxZKXitL5RxlzbXg0EgJC0BmD8v6E2bW2dKUNBZrcGDu8cS8gdjXvBtWkAizh+Ij
-         vGywfBVIeoKmXFk0+ljrf6KE/9EofYiJBKJ4eNYh9+OFbSu4IJS0mjR7MlUpdRPn6dtm
-         ZIAOopwSOnUK57NLdUsmWJcZpXBN/gkatzFqEXu+90Laj3bsvI+6lFMBmwkeOKrqHOro
-         Dn40Vcq7P4NQi6eFH2skE0yMfOR8Ki9pe0n7f+cVMhuhGhnNVWtEgeUiddp6mDTjgw7i
-         xBiQ==
+        d=1e100.net; s=20251104; t=1783739697; x=1784344497;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=xrd/oJTRX2Uc0zxJ+R9Qjxy6xmTV66E4ZoYglWTlGgs=;
+        b=Sk44hFsM8tFuNiPP9cYJieSTkZh/D+p6cUnQFgAr0Gg5fHq95TCRYnecMrZyrnB9v9
+         aA4/c+vpOjx0QSoyq+pqKyEQa5UzqzrulZasxH4ElFa8btpXhIuXjpLQegDAkM9c2eIb
+         5l+grWbmGckbD5HhpgBGpLb5VVObz5xFPtgip+lbAPse+DYMlpdXwKP5JxiZFJX8GwPd
+         4gdsBqDY6yAa9sXd1pzuzuZRWzGa7ZJ560uwgyu4bQJFpxL5eEy0tifzcTaLb8HYQDK0
+         41gYX09PkrkVoN9ohZylaHYqeiQTCtI/2RUGd8O2gVjsoOs3VvXbOQfFAbPV/L7HGngV
+         F47Q==
 X-Forwarded-Encrypted: i=1;
- AHgh+Rrru3MbH+kh5ET5vPhMy144vcsbq9nLVd9vvUiR6/Bs49A0PBbCA6aFwckduOzVItaDFmWFEahz@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxJ2ebGsN2JGtgPwF3ZWUlwtQvfNN2vIGJt/j4PKJ7D5Xg4ag0Y
-	K0orRZxFeTIKMp3ACHHcksPysf/n3D+w9jnIQBZYCXel4oFBOnmnorFu
-X-Gm-Gg: AfdE7cn3sHPqwWVH3PBjxO1DJVLop8vFLqYqdRtMA1tGjpThIy6kvVHweqjSWPNRlg/
-	57A8Xm/lkCy0CXKwzKHxXwYOjVzvEO98AvFcKBSS8mngg0IFc4NTMyK0ygHRLTw8+a0ZaMflyxz
-	/W0FQiV2828+fm4KgE2BrUhXAEyiYxx6pqTU/zUCueQABpXXX1UjDc3yRmGpZeNiJ/GPU0VU34F
-	Ao0pcoLo60DHY+QejmmsOGZpch8jOxrrz8/kUL274U2KS1BmQhvqksGd2VoxyOcs+iS88YM8QUA
-	9d/gdAstpJxqgi1MfWX7G/6VZ1y/pnAIjfCg7o4I+rZX8Ad91jiW3fHHb0gUw1ArUpAInXwo4e6
-	xEIfZWh1CtLV4MOE0/XKhI0UZqFn5guCTeYw4JXVq2OvXNWXqbIv11PYpW8JFeZuHSBv/k4cB+p
-	8KfAxf3sD2wMSPMe/217hvEZu6kPDJBSnnANpbDn78p4kFT0D9tgrOlBQ=
-X-Received: by 2002:a05:6a00:3404:b0:847:9151:3409 with SMTP id
- d2e1a72fcca58-84889797ad5mr1318139b3a.55.1783739362452;
-        Fri, 10 Jul 2026 20:09:22 -0700 (PDT)
+ AHgh+RogAVnDCwekmhGTSAPmSG0/2aQdBALapVx3kk8VwiybPF0b5NZQwJouwJAQ0+pgrSuRdnGwKlKe@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxFn6lEgOv7qSXvW4QxYz0W0YlKGTULrK4PVMjHMKnhnohekYMh
+	XvqjZ7SH7/zuImA+DSH3r/RRica8x2rSpSK+wpRz1tGgFc9Eoazx6gOp
+X-Gm-Gg: AfdE7clEbIcHXHsoVKxkg8GhuhZmxaZaPmMyAMOeuPofZd8kH5+4fIESPamUWVgZQpr
+	8iQQrSc5i2FkavPmTByUxIeizawVixOgif5IfvhuPFIHzgfPamz7Mm5uAA52I0CHfgbG3rDiGac
+	B79SuRmmFLA2yW2Dy/uORHsWNPU3++3JmTNjo6W61pe6nSU2NvpbvRzDEGnUW7Sg4RcMZSdMY6z
+	d4s7m3ctRpID3lvTBB50G44kw4pNY6xve3uL13YErssq5/EKSfPvNqdnhzeNDiSt1msMwr5FTM2
+	5iS3+pJcP2mFLOvLLytP6As5F8uGTQGkV1PMpDYRbQx3q4qBKMWRbdYgnYF6WeSZpzYOnev2lAP
+	F/9Qh01lkvRoDc6OO3okpzj2BoT6stDMTb3n3AlnrIjKnNFkWLRptP6XUcE740vO2k02h9AelHW
+	wrOt0cvyocOvntUCEyEDoAeqguh+VWzDcqlDC1n/lO+ddIafBay837+LI=
+X-Received: by 2002:a17:90b:5688:b0:381:29f2:481b with SMTP id
+ 98e67ed59e1d1-38dc74cbe73mr1405854a91.11.1783739697430;
+        Fri, 10 Jul 2026 20:14:57 -0700 (PDT)
 Received: from skinsburskii (c-98-225-44-182.hsd1.wa.comcast.net.
  [98.225.44.182])
         by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-847f6db29d1sm11140358b3a.53.2026.07.10.20.09.20
+ 98e67ed59e1d1-38a55a47286sm3463061a91.10.2026.07.10.20.14.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jul 2026 20:09:21 -0700 (PDT)
-Date: Fri, 10 Jul 2026 20:09:18 -0700
+        Fri, 10 Jul 2026 20:14:56 -0700 (PDT)
+Date: Fri, 10 Jul 2026 20:14:47 -0700
 From: Stanislav Kinsburskii <skinsburskii@gmail.com>
 To: Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH v8 2/8] mm/hmm: add hmm_range_fault_unlocked_timeout()
- for mmap lock-drop support
-Message-ID: <alGz3vywc6W5hvso@skinsburskii>
+Subject: Re: [PATCH v8 4/8] mshv: Use hmm_range_fault_unlocked_timeout() for
+ region faults
+Message-ID: <alG1JwgUK44dCiN4@skinsburskii>
 References: <178371866223.900500.12312667138651735591.stgit@skinsburskii>
- <178371879503.900500.7148019929226548795.stgit@skinsburskii>
- <20260710151209.157d7c80b03dc56d73b5884a@linux-foundation.org>
+ <178371881034.900500.5214601525971121683.stgit@skinsburskii>
+ <20260710151216.0397a6f9ac5c7b4ccd274cc1@linux-foundation.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260710151209.157d7c80b03dc56d73b5884a@linux-foundation.org>
-Message-ID-Hash: Q3FVBSO3TPKYSLCP2STXATSWF4UI2LAO
-X-Message-ID-Hash: Q3FVBSO3TPKYSLCP2STXATSWF4UI2LAO
+In-Reply-To: <20260710151216.0397a6f9ac5c7b4ccd274cc1@linux-foundation.org>
+Message-ID-Hash: MAXINPXLCVQLW5YMANDHFZUIISR6PONH
+X-Message-ID-Hash: MAXINPXLCVQLW5YMANDHFZUIISR6PONH
 X-MailFrom: skinsburskii@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -138,8 +137,8 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Q3FVBSO3TPKYSLCP2STXATSWF4UI2LAO/>
-Archived-At: <https://lore.freedesktop.org/alGz3vywc6W5hvso@skinsburskii/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MAXINPXLCVQLW5YMANDHFZUIISR6PONH/>
+Archived-At: <https://lore.freedesktop.org/alG1JwgUK44dCiN4@skinsburskii/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -149,109 +148,57 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri, Jul 10, 2026 at 03:12:09PM -0700, Andrew Morton wrote:
-> On Fri, 10 Jul 2026 14:26:35 -0700 Stanislav Kinsburskii <skinsburskii@gmail.com> wrote:
+On Fri, Jul 10, 2026 at 03:12:16PM -0700, Andrew Morton wrote:
+> On Fri, 10 Jul 2026 14:26:50 -0700 Stanislav Kinsburskii <skinsburskii@gmail.com> wrote:
 > 
-> > hmm_range_fault() requires the caller to hold the mmap read lock for the
-> > duration of the call. This is incompatible with mappings whose fault
-> > handler may release the mmap lock, notably userfaultfd-managed regions,
-> > where handle_mm_fault() can return VM_FAULT_RETRY or VM_FAULT_COMPLETED
-> > after dropping the lock. Drivers that need to populate device page tables
-> > for such mappings have no way to do so today.
+> > MSHV currently faults movable memory regions by taking mmap_read_lock()
+> > around hmm_range_fault(). That prevents the fault path from handling VMAs
+> > whose fault handlers need to drop mmap_lock, such as userfaultfd-backed
+> > mappings.
 > > 
-> > Add hmm_range_fault_unlocked_timeout() for callers that do not need to hold
-> > mmap_lock across any work outside the HMM fault itself. The helper takes
-> > mmap_read_lock_killable() internally, calls the common HMM fault
-> > implementation, and releases the lock before returning if it is still held.
-> > The timeout is specified in jiffies; passing 0 retries indefinitely, while
-> > a non-zero timeout makes the helper return -EBUSY when the retry budget
-> > expires.
+> > Use hmm_range_fault_unlocked_timeout() instead. Passing a timeout of 0
+> > preserves MSHV's existing unbounded retry behavior while letting the HMM
+> > helper own mmap_lock acquisition and refresh range->notifier_seq internally
+> > before walking the range. After the fault succeeds, MSHV still takes
+> > mreg_mutex and checks mmu_interval_read_retry() before installing the pages
+> > into the region, so the existing invalidation synchronization is preserved.
 > > 
-> > When handle_mm_fault() drops mmap_lock, or when the range is invalidated,
-> > hmm_range_fault_unlocked_timeout() refreshes range->notifier_seq and
-> > retries the walk internally. If the lock was dropped, the retry deadline is
-> > also restarted because a lock-dropping fault handler made progress.
-> > Ordinary -EBUSY retries keep the existing deadline, preserving the caller's
-> > timeout policy for repeated mmu-notifier invalidations.
-> > 
-> > The caller only needs to perform the usual post-success
-> > mmu_interval_read_retry() check while holding its update lock before
-> > consuming the pfns. If mmap_lock acquisition is interrupted or a fatal
-> > signal is pending during retry handling, -EINTR is returned instead.
-> > 
-> > The common implementation conditionally sets FAULT_FLAG_ALLOW_RETRY and
-> > FAULT_FLAG_KILLABLE only for hmm_range_fault_unlocked_timeout(). The
-> > existing hmm_range_fault() path still passes no locked state, does not
-> > allow handle_mm_fault() to drop mmap_lock, and remains a thin wrapper
-> > preserving the existing API contract for current callers.
-> > 
-> > The previous refactor that moved page fault handling out of the page-table
-> > walk callbacks is what makes this change small. Faults now run after
-> > walk_page_range() has unwound, with only mmap_lock held, so dropping it
-> > does not interact with the walker's pte spinlock or hugetlb_vma_lock.
-> > Hugetlb regions therefore participate in the unlocked path uniformly with
-> > PTE- and PMD-level mappings; no special case is required.
-> > 
-> > Documentation/mm/hmm.rst is updated with a description of the new API and
-> > the recommended caller pattern.
+> > Fold the small fault-and-lock helper into mshv_region_range_fault(), since
+> > the remaining retry path is just the standard "fault, take the driver lock,
+> > check the interval notifier sequence" pattern.
 > > 
 > > ...
 > >
+> > @@ -452,13 +412,19 @@ static int mshv_region_range_fault(struct mshv_mem_region *region,
+> >  	range.start = region->start_uaddr + page_offset * HV_HYP_PAGE_SIZE;
+> >  	range.end = range.start + page_count * HV_HYP_PAGE_SIZE;
+> >  
+> > -	do {
+> > -		ret = mshv_region_hmm_fault_and_lock(region, &range);
+> > -	} while (ret == -EBUSY);
+> > -
+> > +again:
+> > +	ret = hmm_range_fault_unlocked_timeout(&range, 0);
+> >  	if (ret)
+> >  		goto out;
+> >  
+> > +	mutex_lock(&region->mreg_mutex);
+> > +
+> > +	if (mmu_interval_read_retry(range.notifier, range.notifier_seq)) {
+> > +		mutex_unlock(&region->mreg_mutex);
+> > +		cond_resched();
+> > +		goto again;
+> > +	}
+> > +
 > 
-> A trivial thing:
-> 
-> > +int hmm_range_fault_unlocked_timeout(struct hmm_range *range,
-> > +				     unsigned long timeout)
-> > +{
-> > +	struct mm_struct *mm = range->notifier->mm;
-> > +	unsigned long deadline = 0;
-> > +	bool locked = false;
-> 
-> This could be local to the do loop and it needn't be initialized.
-> 
+> If the calling process has realtime scheduling policy and either a)
+> we're uniprocessor or b) this process and the holder of
+> interval_sub->invalidate_seq are both pinned to the same CPU then
+> cond_resched() won't do anything, and this might be an infinite loop?
 
-Unfortunately, it can’t, because its state is mutated in
-hmm_range_fault_locked() and the resulting state needs to be preserved
-across iterations of the loop as deadline reset depends on it.
+Yes, looks like it might.
+What can be done to prevent this?
 
 Thanks,
 Stanislav
 
-> > +	int ret;
-> > +
-> > +	do {
-> > +		if (fatal_signal_pending(current))
-> > +			return -EINTR;
-> > +
-> > +		if (timeout) {
-> > +			/*
-> > +			 * If the previous fault dropped mmap_lock, then the fault
-> > +			 * handler made progress. Restart the retry timeout in that
-> > +			 * case, but keep the existing deadline for ordinary -EBUSY
-> > +			 * retries.
-> > +			 */
-> > +			if (!locked)
-> > +				deadline = jiffies + timeout;
-> > +
-> > +			if (time_after(jiffies, deadline))
-> > +				return -EBUSY;
-> > +		}
-> > +
-> > +		range->notifier_seq =
-> > +			mmu_interval_read_begin(range->notifier);
-> > +
-> > +		ret = mmap_read_lock_killable(mm);
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		locked = true;
-> > +		ret = hmm_range_fault_locked(range, &locked);
-> > +		if (locked)
-> > +			mmap_read_unlock(mm);
-> > +	} while (ret == -EBUSY);
-> > +
-> > +	return ret;
-> > +}
-> > +EXPORT_SYMBOL(hmm_range_fault_unlocked_timeout);
-> > +
-> 
