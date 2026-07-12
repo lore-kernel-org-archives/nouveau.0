@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE87EC43458
-	for <nouveau@archiver.kernel.org>; Sun, 12 Jul 2026 12:37:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50AB7C43458
+	for <nouveau@archiver.kernel.org>; Sun, 12 Jul 2026 12:37:46 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C7A1710E46E;
-	Sun, 12 Jul 2026 12:37:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 19B7C10E45E;
+	Sun, 12 Jul 2026 12:37:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gd6Jxw3k";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CYwxQdeA";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 41B3640B25;
-	Sun, 12 Jul 2026 12:22:34 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 81A4D40EF3;
+	Sun, 12 Jul 2026 12:22:37 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783858954;
- b=Jd4pJdZqnayqFqhctAIAfu5wlZZczPbSDR3+0R4vuPAZKhheeppOWpfR3Pnfa7iqThJ4B
- NWbTvlhH1NDviz23nmeNkGSE/Xv6xtlsW6V7N47RYu2OwUbu8gVUNATHvRtBDXe+1JdCojy
- 7vsUmRhToXqB1Ol5d1XOTZu+C/OnhW2OkC5XLGTzOgHI9yl6NZAFSoNSNxsVN4iuPcmcJfc
- GUqsotJsIhDSzEgae6W37sdiA2ahmB46cWD++N8ctOv7GRvGRAfKLfT3hSOpq/ne/VBo+75
- 6qmhcovNC3amM1Ky/XU1YPj+a9FSyRNTEpsjZO2MaqtwAo4xvN5Jb/misI2g==
+ s=20240201; t=1783858957;
+ b=xl03LZ4N4e+Sfng1VbyGVOUzlxl71YGCK/GDdguZ7mKAasLnZgpC/h3Hlbs2SaDpXTX40
+ 1rSzBa48wKreQ922eTFzJx0AwbhlxTVhWW3mNMakupkJx+dpTM6rBbtEUQodw9KDtGsuF9U
+ L7QPeNIHmK7bDjeNdt+6s1W00QqmG1xHtRa3HEIJJv5IZ+HxI0WD+6tPkavV1muadsXMvbm
+ r0tMxhY0FKMbYedoX60MNS6WloJtrCfe7BhqJ7NZVOq6/uPKRGSA4HAVYZIji72xVpDlqXG
+ TmFWP56YrvVOG2a/Vhn4VoukYbMPAwUGxnrAnkIjgID5MYN7v89rO9xdQpCg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783858954; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783858957; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=CJi+7sCg+GNZFhEJVD2Hmu/wR2anVVL7EeD+/Q0E5aU=;
- b=VgQwhr7c9W3rl5tDc18071L6pEtQpe71yCnEG80PVXINkIohH4PSi8xyi7bfIqtHSr+jx
- o8HyvLGxn+aeNFnvRlkUmpde4CseaPG5muZQv4w1+QcbUM+sE/F5qy3mjh/MjWVHc48ElvH
- 2RUjkwCdCSbPonOgkt/0xJC7fFqJCog+WbLpSnrBrzpPd6N9thOJoMYXPaPD2+Pz6PO+U2I
- rNH60mZYf7dij4/ZZN5dznwt704+a1RzWUVQdgNpi6XqKKzT4jSIV582rV2gy1mEb0ltk0S
- cXputdAk27VXNL9q/op31LYBw5AWZEE/19rC4N7F+PBrxhg2iQG2j4ldsRpw==
+ bh=hNARwloA3rbnFq4jTz32GunvMhdlXc/eq0tF3XfoMbU=;
+ b=p85w3JcmhcvGPmJTjA1X2CmGXtfl5Y1xrOsJPYpVmPeHzSmV/cDKX8EC27TGNttfE5RNH
+ JeogGmq8d99zR0j6wkp4Po9rOaBUGLwPYOvhd2nlMDpLNlCFWY6P44BkSuG0sIvB7DvbFk5
+ JifG6RMM/qJE9xWFGLFE2L4tKVpd8EAUlxdSY4ublL+0H2OUwjkoC1li3ci9ss3Ma5vrbLG
+ 53oZIx+E6V5EV1eXIaXuCWoY6H097uucMaCLta26IRxK4OPV2NY9zxl4W/4wL+Cbp2mKTfi
+ SFT6Ie3OarapALaGjXGw3eWMKziu80KGVlXtyK6Vs8hhP2HWp5ImyjghyGrA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,74 +46,74 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B0A43400A8
-	for <nouveau@lists.freedesktop.org>; Sun, 12 Jul 2026 12:22:31 +0000 (UTC)
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 26B5210E45E
-	for <nouveau@lists.freedesktop.org>; Sun, 12 Jul 2026 12:37:40 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-493c733f15aso22799315e9.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id C418740720
+	for <nouveau@lists.freedesktop.org>; Sun, 12 Jul 2026 12:22:34 +0000 (UTC)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 37A3C10E473
+	for <nouveau@lists.freedesktop.org>; Sun, 12 Jul 2026 12:37:43 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-493e8d4f4dcso18020105e9.0
         for <nouveau@lists.freedesktop.org>;
- Sun, 12 Jul 2026 05:37:40 -0700 (PDT)
+ Sun, 12 Jul 2026 05:37:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783859858; x=1784464658;
+        d=gmail.com; s=20251104; t=1783859862; x=1784464662;
  darn=lists.freedesktop.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=CJi+7sCg+GNZFhEJVD2Hmu/wR2anVVL7EeD+/Q0E5aU=;
-        b=gd6Jxw3kS/XKxl0DgsthweK4b0xU3FQigz2ENF3SsZBQGKVTxJymByyWIae7If+gOE
-         hZNo6o1hugpmNnbRrDZmkc2ozGEJImtMJuELKfr/x/wNu8vmpILazFj7Y2Tr8ktLjUJK
-         a2Gi0gLbpXrsKT8WtH1eK62xyeu17/1RqKOdP6knzoOaV49mGkF8gGp9guQJYQgAorw8
-         pcW+QsWwa+Hg8GbYagQJna8LYE88YaDCfRMF9G4DLxd+zYAmKr7+H8LHtiug4DoV14Pp
-         39LYBdVDrPSD6Pj62Oo+ONikZPtxIP3ADUCxd8RCc/Gejz0n7n/DmQxU3xTIc3HvHIq1
-         LS0w==
+        bh=hNARwloA3rbnFq4jTz32GunvMhdlXc/eq0tF3XfoMbU=;
+        b=CYwxQdeAggOpWcxPa2TRVDSn8pzqQPd0hZJPOUqaM7MAMWe5aNqH9Qn75pkzYjB7O2
+         U6W/JLVQRcPomdIIU5p+H3jYVdvDDGE893bYRU+3Au/fcjY1E9nfeB2abXBBNsPS6r+G
+         Ks7J9KwKq+1VaB3GVdPu4ZcW/e1vIGQ+PAVljbez1/bmTCqq+UmyKW0H9JWb8B2vwNAH
+         BClj/i+aE5QGrG3UdouyE/LmaF6CKkZtpJXFkCwJ3N/DBZroc2MBnwkVg7HIbzBLw4gx
+         n7Asc66NpncDPzyQ4DsM04VfvbdBuheI/3VJilqjYtwAkJuJ7z8tjL8dvYx9HoOX9VCG
+         hUHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783859858; x=1784464658;
+        d=1e100.net; s=20251104; t=1783859862; x=1784464662;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=CJi+7sCg+GNZFhEJVD2Hmu/wR2anVVL7EeD+/Q0E5aU=;
-        b=JKmkqxGeVlToS+BK4ehQMZ6Xsj3qKbJd0ot4A9GbRyYLG/9TLu5/aorDsTVn3TmCTT
-         V9Klaq0ZChvLl7HocNYtAd02tm1YGOo0DreU/tDc9d9QVlmtwMnuUYechd6VLnSfw44a
-         yWy807bhOuOmsIi76j7/cEkObTf73j/wyKuVzAEJXsyZQDv2VmFesY+1TjjMr+21FXUS
-         htdjl4oJ/wDLN4YvyvppwED3ONthrzRkBXXyXmFNCzcRf/OH3xdp+uBZudOgNm7I4InI
-         be6JPNdWmlRGRogHEiEHm/7L40aKo6wH81hRuTiv8k+ZOkbtTEeeEu5ha7MA5y9k2EP1
-         m+aA==
+        bh=hNARwloA3rbnFq4jTz32GunvMhdlXc/eq0tF3XfoMbU=;
+        b=E0Z4kQe7xo9IGNKXsDkZskVj3nAsh3O/gof/QJyCI5fpEHAsiVmFho6SukVR+XnmOl
+         yTraDYdGIvHx5ecyB/PJKe0BorUKQQGYQrGJhJE/Y3H1+6C0pJknC6C4a41CgSDPedsa
+         lDZAptcNky+68svyEY99jrJVzU0e+fyn8yWOZ8PjBrpuDutJoQ0xxu9edwHXkVVdgrGc
+         VCPRIokBGwQOV5cY20E0OKqCeEE9w/Y3NQ804+oGGWMgTTOHsIEdpmLPrvJiiUiTmbcd
+         jbuxSQM/RPzWiVH47Mw2MlvKyfNGcdY12JDSPVZpFr/oq9WpIY1hI+vzQ3YKoNLZtjE7
+         wNow==
 X-Forwarded-Encrypted: i=1;
- AHgh+RokmoqCJnfbD4wQmGmiDQfbsdWrSpJcFs4B20I1y8kkuiAeWjrw62MMrTd/aCI8RIPuMO4fu4JA@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzxPuBlktpeT83McmPr5YM4PudgFfQbfOwrWUfgr5WUUBVXU3HA
-	ibWV6yabWnHRhOHBFsBpLNgMO0JPdp7SBxTqXYMbGPfUnEo2tcLfn5hf
-X-Gm-Gg: AfdE7cmQHhci3HRNzxeQymc/owFl7z1k+UAD7PFUQgtIXufxwRcEK84JPTJhOoRSkRx
-	4QUVuwa8TeCZpJbUc1wRPlLv/mk5A/s79cCfF3jx4aTFHsitRblK7oR1gRv6qoyNovLztvVPUWb
-	pE5/Qbg/Q7nEQu0qTCRwNBl8YUXil3IlOGHRBV0LWoDX2aiJEPC3Mqy0E7LLTMSmohuH4NplOd8
-	BMu3TbhKCX/SHopVdc2WYSvjHdrmsMfNTvsnxye6MJxDQ3MoFeNERKEa2KOQitYLISramSamcqq
-	TBtH0+oeyBCz4b0pBwxRzbXaupfje0vw2Uf6hcX9ZQjQUrxRnILtJC/b38+ddl6uOGwUsBB8s6V
-	RaI4F1qdQxRLIQheJUQZwrJfkf2TUwY+xtJlL/CQumVwea8S85QUT22z0eYkph0osNRy9jGdVD5
-	D1Wu1WH4V6SibJCPg=
-X-Received: by 2002:a05:600c:6d48:b0:490:9588:bdb6 with SMTP id
- 5b1f17b1804b1-493f88389c0mr40261455e9.33.1783859858299;
-        Sun, 12 Jul 2026 05:37:38 -0700 (PDT)
+ AHgh+RqU4Y7ICvcGAY7crwmNFbBFCd0/aqrfuKLeXWWL1mj0UM5xjPpEZFgkNDwaBYJUa8t6ectZCAuQ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzv8i9aztb2TJy2KCZXShRaqQMkV69JTOxQ7Fmw4p7cHfjWefzB
+	uagBtdls17xz3cW0BkCn2D+h37K6c5r6zGwBNsLRCYhHjeemAUKO3/ZQ
+X-Gm-Gg: AfdE7ck+s/vQiQ+RUA5qGjVLC9Y3IRzKTyR+5VFVcXVGhkPwNpLGGf7ywUZqjd/UsW8
+	OM2WdJYHPFbICGfiO1uo8CN4rjw2U5FUhteoReKmfX0pWJ3nx0UGyS6r+0OUmDSljM39323LH3b
+	blhm9w1A396slViegm9mhaEZbsut6eI5OLndkqq4c+5yiXAMj1Zt3npEJ6bERQ75G5/9kR76io8
+	j6VkdKMNnFGPJ8IIg6BZKlDRy2PxYDU5g+HWAYKC6IMMWAvPLRwNxAsyvVLQni4eYU5shZx8DbW
+	yIMSxdMqqA5Krb0dy5GENH2KleQEawGn1H7PE+WISO8HNdP6SguAwvJ3rLDaQaI6vdc0FD7oRPt
+	B2K6NeR4ceFLAYzPZiGsu1h7pDlAFl7tbkhC8kAGxCzwShemHW8zzCSIgepEUprLltNyumqL44A
+	p2EabKUIrQY9k70+HU44jeMt4aXw==
+X-Received: by 2002:a05:600c:45d4:b0:493:a966:d5b5 with SMTP id
+ 5b1f17b1804b1-493f87dc5d3mr55586175e9.2.1783859861600;
+        Sun, 12 Jul 2026 05:37:41 -0700 (PDT)
 Received: from fra-x8664 ([2a01:e11:8000:43b0:96d6:566b:35c:7b8c])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-493eb6f3c42sm280280485e9.1.2026.07.12.05.37.37
+ 5b1f17b1804b1-493eb6f3c42sm280280485e9.1.2026.07.12.05.37.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jul 2026 05:37:37 -0700 (PDT)
+        Sun, 12 Jul 2026 05:37:41 -0700 (PDT)
 From: Francesco Magazzu <postadelmaga@gmail.com>
 To: Lyude Paul <lyude@redhat.com>,
 	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH v2 3/4] drm/nouveau/device: don't use the pstate cursor after
- the loop
-Date: Sun, 12 Jul 2026 14:36:15 +0200
-Message-ID: <20260712123616.1180830-4-postadelmaga@gmail.com>
+Subject: [PATCH v2 4/4] drm/nouveau/clk: don't clobber reclock status when
+ restoring volt/fan
+Date: Sun, 12 Jul 2026 14:36:16 +0200
+Message-ID: <20260712123616.1180830-5-postadelmaga@gmail.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260712123616.1180830-1-postadelmaga@gmail.com>
 References: <20260712123616.1180830-1-postadelmaga@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: MVPDE6GUSXWDO7GPASUJNNXY4TEOV35C
-X-Message-ID-Hash: MVPDE6GUSXWDO7GPASUJNNXY4TEOV35C
+Message-ID-Hash: IOWBD5CNZ5J7ZTNEZOSAU24GAUEDDPEL
+X-Message-ID-Hash: IOWBD5CNZ5J7ZTNEZOSAU24GAUEDDPEL
 X-MailFrom: postadelmaga@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -124,9 +124,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MVPDE6GUSXWDO7GPASUJNNXY4TEOV35C/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IOWBD5CNZ5J7ZTNEZOSAU24GAUEDDPEL/>
 Archived-At: 
- <https://lore.freedesktop.org/20260712123616.1180830-4-postadelmaga@gmail.com/>
+ <https://lore.freedesktop.org/20260712123616.1180830-5-postadelmaga@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,55 +136,58 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-nvkm_control_mthd_pstate_attr() looks up the pstate at the index supplied
-by userspace by walking clk->states, and then keeps using the
-list_for_each_entry cursor after the loop.  This is not triggerable today:
-the function already rejects args->v0.state >= clk->state_nr before the
-loop, and clk->state_nr is kept in sync with the number of entries on
-clk->states, so the lookup always breaks on a real entry.
+nvkm_cstate_prog() reuses 'ret' for the voltage and fan-speed restore
+calls it makes after reprogramming the clocks.  Those calls almost always
+succeed, so the status of the reclock itself is overwritten and the
+function reports success even when clk->func->calc() or clk->func->prog()
+failed.  The converse is also true: a successful reclock is reported as an
+error if the final restore call fails, even though that failure is only
+logged and otherwise ignored.
 
-Should the loop ever run to completion, the cursor would point at the list
-head rather than at a pstate, and the pstate->base.domain[] read and the
-walk of pstate->list that follow would read past it.  Rather than leave
-that trap in place, track whether the entry was found and return -EINVAL if
-it was not, like the other lookup failures in this function.
+The only consumer of the return value is the error message in
+nvkm_pstate_work(), so in practice a failing reclock is simply never
+reported.  Nothing else changes, but a function that returns success on
+failure is a trap for the next caller.
 
-No functional change.
+Keep the calc/prog status in 'ret' and use a separate local for the
+restore calls.
 
+Fixes: 3eca809b3c05 ("drm/nouveau/clk: cosmetic changes")
 Signed-off-by: Francesco Magazzu <postadelmaga@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c
-index f2e9a0626..28702741a 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c
-@@ -74,6 +74,7 @@ nvkm_control_mthd_pstate_attr(struct nvkm_control *ctrl, void *data, u32 size)
- 	const struct nvkm_domain *domain;
- 	struct nvkm_pstate *pstate;
- 	struct nvkm_cstate *cstate;
-+	bool found = false;
- 	int i = 0, j = -1;
- 	u32 lo, hi;
- 	int ret = -ENOSYS;
-@@ -104,10 +105,15 @@ nvkm_control_mthd_pstate_attr(struct nvkm_control *ctrl, void *data, u32 size)
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+index 4d546b07f..05336fc7d 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+@@ -199,16 +199,18 @@ nvkm_cstate_prog(struct nvkm_clk *clk, struct nvkm_pstate *pstate, int cstatei)
+ 	}
  
- 	if (args->v0.state != NVIF_CONTROL_PSTATE_ATTR_V0_STATE_CURRENT) {
- 		list_for_each_entry(pstate, &clk->states, head) {
--			if (i++ == args->v0.state)
-+			if (i++ == args->v0.state) {
-+				found = true;
- 				break;
-+			}
- 		}
- 
-+		if (!found)
-+			return -EINVAL;
+ 	if (volt) {
+-		ret = nvkm_volt_set_id(volt, cstate->voltage,
+-				       pstate->base.voltage, clk->temp, -1);
+-		if (ret && ret != -ENODEV)
+-			nvkm_error(subdev, "failed to lower voltage: %d\n", ret);
++		int err = nvkm_volt_set_id(volt, cstate->voltage,
++					   pstate->base.voltage, clk->temp, -1);
 +
- 		lo = pstate->base.domain[domain->name];
- 		hi = lo;
- 		list_for_each_entry(cstate, &pstate->list, head) {
++		if (err && err != -ENODEV)
++			nvkm_error(subdev, "failed to lower voltage: %d\n", err);
+ 	}
+ 
+ 	if (therm) {
+-		ret = nvkm_therm_cstate(therm, pstate->fanspeed, -1);
+-		if (ret && ret != -ENODEV)
+-			nvkm_error(subdev, "failed to lower fan speed: %d\n", ret);
++		int err = nvkm_therm_cstate(therm, pstate->fanspeed, -1);
++
++		if (err && err != -ENODEV)
++			nvkm_error(subdev, "failed to lower fan speed: %d\n", err);
+ 	}
+ 
+ 	return ret;
 -- 
 2.55.0
 
