@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 820CEC43458
-	for <nouveau@archiver.kernel.org>; Sun, 12 Jul 2026 12:37:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE2F4C43458
+	for <nouveau@archiver.kernel.org>; Sun, 12 Jul 2026 12:37:40 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4A8CC10E45C;
-	Sun, 12 Jul 2026 12:37:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8E05010E464;
+	Sun, 12 Jul 2026 12:37:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Its3AQtB";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lNWkNWM1";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B31FC40800;
-	Sun, 12 Jul 2026 12:22:27 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 01EF140A48;
+	Sun, 12 Jul 2026 12:22:32 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783858947;
- b=rmGANQosx2iSqRFvhtEPQ29fid7F7sC3LRFxoYuEoyNMfAojJ/haV6fSxD+e+ySNx2gEu
- hz4+A8oanFvfl5dNi2GtdUSXYGISbFm99JjeNYLJO7rghIMMbA/4MQMGhZT66j/Ml/M5hKl
- YNa4GOoJtkX48agbvPNmmwHqcjM4vL4ofnlH4LGKOv5bi0+aegyLdHngTui4zshkZS6yqfC
- HTqVdKYrQBbt+o7I498wu0V7upvq84AC8Lhyw91PfM9P/srCSQOcYOrKyhld8g+mvtrRBUJ
- 6n4T5jgXc6NCZTirMV/hwzaf8Zb9HOWi8IMBqOqNjCfSEwnSfGKShV9VJuLQ==
+ s=20240201; t=1783858951;
+ b=Wq0+RRK4jxoyvZ+dVMOtzRrjnLvwcaBuybVbBO2UO+/oAJFbNRn94tFfcePDqAzbAz5R3
+ 1tq1MoDFszG58csBUyDUpUxqlOrEVXM7N5pukwZ6iDQuoVabpCWXs0fgngWIP89tPU3Tq4E
+ deoOSW1d/ZyPnkEJjaDoXGz51RG7rbi9vWgQg4NjR+HUt8Lhni4FzIsIj1KQ2j8ewmbTa6V
+ gWfQulye8Ge63LAap7yzL4D7Gvauaf6akAG8YMpOVZPYTCLMhNt2ST/jJ0W033HAkcJyee4
+ ADGuKl19+TdlYwmmkfdDz0LMQjYmPQHwVvyVM4GgTFxZXltY88PBcMC5ySkg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783858947; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783858951; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=x7IitsXdpTEQRJSq8p+rIrB3s36tgZetIRvXFPP7irs=;
- b=uKLTloFcUq2qjt7uFBR8EY/+J/2S/atq19ZDXDZJzRayEj1DADzWSYbADApuYQBrqBC8P
- lcQvIoPQfRVJtkfT/8fajRr3O6Wv1JZTks7ZKhMCwMBJkqV+Y8tX1T1sEffdH5uIn2h1eun
- TpZkpif7EPccEzoh+JDsH6XiQlo2c1HLkgFByE4O/33Cc/JEgNi4AYyYjyatpHX+s4oQudy
- mV/XqojpAWO675agv14m/Wz7H04jZA8w+uC5ww0SLuJfoxGyq2647QLGoaEGcViqsd2KA1I
- 4aYf0y/Tk9kU5xbxKc2B4vnQX93Sa7dn3DoqVQBSBKPlTATyn9ocOdZB6LPA==
+ bh=yZa2enwSIIgLldRkiC8kJq5D8PtsumlenYqYmwQU3wk=;
+ b=qFksMox97rB8SM/ofrFDuoiapiB72wHyiKwzXMHK/Jpqg0rYIyZhLTjsLcit7JlyDbDkh
+ uMFLZSfJ7RAp6bZysfpnPZvcYyuWPjwd+Clc/dc4rSWoOIcyv+WCTNex0rNIxJCa8T2BqB/
+ frDMqEl4+cX8W7XgY8IlayoUnscG2Py675Hv4Nff28xemp9mLQvP41HNZ8c+MxZfGv6w4km
+ YEAUB39IBzuiBqEqL+/+VmT4iRbWIPzYdkknAr6WQJOo2rm6BcRfrssgWlrbg+RQ5XL8BQu
+ waVTe6C2TSRpNiAJGKtGntKHge3GBYC0zYKAGC1zQaoHfaidBpPSvDeJHQlA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,74 +46,74 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C8D28400A8
-	for <nouveau@lists.freedesktop.org>; Sun, 12 Jul 2026 12:22:24 +0000 (UTC)
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3F58210E45A
-	for <nouveau@lists.freedesktop.org>; Sun, 12 Jul 2026 12:37:33 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-493bf73ec2aso15896145e9.2
+	by kara.freedesktop.org (Postfix) with ESMTPS id 205E8400A8
+	for <nouveau@lists.freedesktop.org>; Sun, 12 Jul 2026 12:22:29 +0000 (UTC)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 89BB110E462
+	for <nouveau@lists.freedesktop.org>; Sun, 12 Jul 2026 12:37:37 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-493ba701891so21296545e9.3
         for <nouveau@lists.freedesktop.org>;
- Sun, 12 Jul 2026 05:37:33 -0700 (PDT)
+ Sun, 12 Jul 2026 05:37:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783859852; x=1784464652;
+        d=gmail.com; s=20251104; t=1783859856; x=1784464656;
  darn=lists.freedesktop.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=x7IitsXdpTEQRJSq8p+rIrB3s36tgZetIRvXFPP7irs=;
-        b=Its3AQtB3W6/LOfqU/6dMlR2Qo0WNqgsbCQkeCqB6CMrGAX52SQquMNc9soht98K1l
-         fzalEmiAlT2YhYvn1Ty0srjzqAojTXtLV1ypE5ClPiji8625bfUonP4RrEoet2hD8u/H
-         Q9rgKQ8P56140FDG70s1rhOhVqGEKLVTp7iHtfUrfXpeflGepXENFv83lIPQVll1okN6
-         4HDvbEGAmfEdg8tkR7c/3h7SjeSrIWSrW68SHdCpgTsy6Qg8HdoIw4R7em0x0Xt6zXIA
-         WoMIr4z2WvzhkeWFt8zL50QgMku01QhFyacX3mtbuRViUCjPF5Uk4sXWWo5jsAoVBwbp
-         Trgw==
+        bh=yZa2enwSIIgLldRkiC8kJq5D8PtsumlenYqYmwQU3wk=;
+        b=lNWkNWM11UkiHsmRhKcwZnFFxfTZg2w1QAFe0E6nVyXKEp/j/NbWBoiYz+lhG2UvZP
+         /zWV4H1qD5jnePosKdEAW2s1IHGbgZgAKfSjTbQB1df9J/R1zIrq3GTpZKXMrIYGvaBC
+         zk5LxUwn+5iGA4ILPtHBeJWuUUa17Yu4YSur9Lc26k04Sk8BEuvY5zIfDQ22WACsh0V3
+         /YsHio2WX4K1VjV/GVBCfkzyVK4U81VAzpXXdYow+7RMyPTQNqrMQ3BfrmbrLapt54YS
+         QFkztzaDTgHB4iNa0AFN0QcLlyO0VazcK/d0h2MyNY+6GS4knMXOXHvk5ebuqdJ2P2Lq
+         1aLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783859852; x=1784464652;
+        d=1e100.net; s=20251104; t=1783859856; x=1784464656;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=x7IitsXdpTEQRJSq8p+rIrB3s36tgZetIRvXFPP7irs=;
-        b=iJT7XmYLNtAUsDOcP2yvcdFcjvvtWAecGBNQaqyJQ370+AXzcwWczNT93J7RSSlkzV
-         +3ZYup7qn931QuRGQFEe0iGycfV2wf1I+y2P5y6Uyup7dLWXr8yYiNaGt7KdSDr/Zj5p
-         xLA3G78xvfXxK27w5Qx1rZlChV3yoa3O+XIVZFsXf7KX6Yf/7f13ypYFvGVZKHm7iCZ4
-         3KambK7679qvZnlCd2/kjAyBnTlfaAOZjBpYvRqTptP0+lzCcVKPm/PSNajxX6agzGez
-         +Cv8k9n4WSCK6boJjHM+AAflNAJvtOc8kCWvJK2osDiTyqY/FowA1A2eE4fuuO1OWc5n
-         gV9w==
+        bh=yZa2enwSIIgLldRkiC8kJq5D8PtsumlenYqYmwQU3wk=;
+        b=l0yGvXtI88/PM6EwInYzuCO5JE98+2sU21tL8jFhIT2Y574L3aUUPr07ctUdGaHaY0
+         e/1/6kOSrQx68KUIOry14SnJDSMdBtEvfyU+I91o8l9i95/VKnsh8FNoNHc6PQi+yewp
+         W9tOodSeggFWVqx1wo1FIzb8k+cT8PzCdooSDt341fmPufPXOfK+iVwi3u+Jqc2WkdgN
+         0PuBLoTT5L+WibKjNlD8Jsa9zIyefYVQeXX4Za7+UOoBGU5sK8t8enj4iOZojmGCJW91
+         35qWa4ENvvclG8M35Hw80ggJ/hAsEMXJIEjKEo65Xdn3BdfIOZDYZwkSnVVjnb91rOVy
+         1Srg==
 X-Forwarded-Encrypted: i=1;
- AHgh+RpWlroQCBo0x56EtFfmhawbyotL3c/BB7qb0ONLlIzsdW/uuqyvdgotMwhHvvVA3iROW81dcVx6@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzayJrt+22BuD8J0P8dIS0uPF877x/sf6w6z2waBlFRFSXCtBoJ
-	UKbl5Wfk/Y40qpJjV4gm1TzQrYlRILZyBkms2EQ1gcSJHDo/MfaBA+VS
-X-Gm-Gg: AfdE7clMQGRUbg33JK8C0yXNeb4hnIHs5KzL0VDQT5xdZqRoiQhBh7z1wv/OoAjimIH
-	pUHkcoTY8EPoiIVqUGlgLKLECJ5MVeamYJyilZiwNy+ZMNzIN5BQFBBVkBHtVC+XMyw6XooNyeB
-	KXoW8iTKoUaBUFB35tZLg8yFKyqJlA+KYiqediiuy5HVDwxwVH9UTYuwNC+33OWh9aaZbyFxJqF
-	a8FFipP3xas295cP2c9YYC/qLQiNnollsQnnfLKPWKVqruZ3fn4PynD7fJJZVTaUd/XJn0/pBKA
-	lbKnHj8OPra6JqUOAdYkSpAWS/objhKYuw6fDkJ100TTiI1/plKBRuLkA/kSw4/WfrhgCuZkO5v
-	zu9GZ08J5652Zbjjfq5sROcudk5xzSHLEY8/tVI964syPypAv8RpiEX9O9UYwKGQTZPC9AS7kgg
-	sqwN3N/QqyxCCwObU=
-X-Received: by 2002:a05:600c:1386:b0:490:5057:f5f7 with SMTP id
- 5b1f17b1804b1-493f87e5164mr54882405e9.11.1783859851424;
-        Sun, 12 Jul 2026 05:37:31 -0700 (PDT)
+ AHgh+Ro3nzHC45f7gq/l1EzqlJvB1qDx1znE2qRD7qitr+JxuqJIDibB77FWO/U1MaNbgHZ3zLFkv6JH@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyfzmYhqosd8XpVafgNXQIFfGXTdguBmN1Dn2wWlI8vzNxfUF2W
+	9xNiM5q5skH+K3WTyacMqHwfgfjgcHzb2l1MrVrmlOs69lgzuCkD+TIJ
+X-Gm-Gg: AfdE7ckJmQo1aj5KBDZpewQapRFyrjulVAGn+JU9CfLcUCEsmqeM/nIuXzz4yMGnxuH
+	edGraDf2P/Jcr+F8CE9mpskR3ivKMkENiXGwBnI8CMmpCawkod1n91ojJTLaCByXuScNjkkpxaU
+	2siQQP1bxzZ72doS1/IyIIICfFmk7PUyikAJRm5VVOS+EOIvzk7m377dr5enTqtLmA6C1KyEyW8
+	ZldTf5DdOxuODOMSuXqHEPvspFxUYcakjbABujk7x0MAuBZjW6HLSQVy8Hs8vMUIkvOmNOl/Fdb
+	KBIVu/Krqw1Y1IoHfF0DwR5UEl/kyh5UeMQ+MHh01FRXUjj3lZwJEXp1ioiG47UUR7ipR5G8QMh
+	ee5gOzJ1s/loN7/PSntc+5O1ky45rur8S/xWTZrtTscThB83Rz3y5RXc6A7yrdZ/m+vLHMSK9Vg
+	iOPUJq/JHAvndi8CQ=
+X-Received: by 2002:a05:600c:80c5:b0:493:a570:df7d with SMTP id
+ 5b1f17b1804b1-493f881d20fmr37660025e9.20.1783859855726;
+        Sun, 12 Jul 2026 05:37:35 -0700 (PDT)
 Received: from fra-x8664 ([2a01:e11:8000:43b0:96d6:566b:35c:7b8c])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-493eb6f3c42sm280280485e9.1.2026.07.12.05.37.30
+ 5b1f17b1804b1-493eb6f3c42sm280280485e9.1.2026.07.12.05.37.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jul 2026 05:37:30 -0700 (PDT)
+        Sun, 12 Jul 2026 05:37:35 -0700 (PDT)
 From: Francesco Magazzu <postadelmaga@gmail.com>
 To: Lyude Paul <lyude@redhat.com>,
 	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH v2 1/4] drm/nouveau/clk: fix list cursor use after loop in
- nvkm_clk_ustate_update
-Date: Sun, 12 Jul 2026 14:36:13 +0200
-Message-ID: <20260712123616.1180830-2-postadelmaga@gmail.com>
+Subject: [PATCH v2 2/4] drm/nouveau/clk: don't use the pstate cursor after the
+ loop
+Date: Sun, 12 Jul 2026 14:36:14 +0200
+Message-ID: <20260712123616.1180830-3-postadelmaga@gmail.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260712123616.1180830-1-postadelmaga@gmail.com>
 References: <20260712123616.1180830-1-postadelmaga@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: C7VF4HZE73DEISCBVBXO4DVAPUYIFI7L
-X-Message-ID-Hash: C7VF4HZE73DEISCBVBXO4DVAPUYIFI7L
+Message-ID-Hash: FRCK6QGFFA76IVQS2BNK7EGVLPCESUS6
+X-Message-ID-Hash: FRCK6QGFFA76IVQS2BNK7EGVLPCESUS6
 X-MailFrom: postadelmaga@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -124,9 +124,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/C7VF4HZE73DEISCBVBXO4DVAPUYIFI7L/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FRCK6QGFFA76IVQS2BNK7EGVLPCESUS6/>
 Archived-At: 
- <https://lore.freedesktop.org/20260712123616.1180830-2-postadelmaga@gmail.com/>
+ <https://lore.freedesktop.org/20260712123616.1180830-3-postadelmaga@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,50 +136,51 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-If the requested pstate id is not present in the state list (or the
-list is empty, e.g. broken/missing perf tables), the list_for_each_entry
-cursor runs off the end of the list and the subsequent
-pstate->pstate != req check dereferences the list head cast to a
-struct nvkm_pstate, which is an out-of-bounds read.
+nvkm_pstate_prog() walks clk->states looking for the entry at index
+'pstatei' and then keeps using the list_for_each_entry cursor after the
+loop.  This is not triggerable today: every caller clamps the index
+against clk->state_nr before calling, so the loop always breaks on a real
+entry.  It is safe by virtue of what the callers happen to do, not by
+anything the function itself checks.
 
-Track whether the entry was actually found instead of inspecting the
-cursor after the loop.
+Should a caller ever pass an index that is not on the list, the cursor
+would point at the list head rather than at a pstate, and the
+pstate->base.domain[] and pstate->fanspeed accesses that follow would read
+past it.  Rather than leave that trap in place for the next caller, track
+whether the entry was found and return -EINVAL if it was not.
 
-Fixes: 7c8565220697 ("drm/nouveau/clk: implement power state and engine clock control in core")
+No functional change.
+
 Signed-off-by: Francesco Magazzu <postadelmaga@gmail.com>
 ---
-Note: essentially the same fix was posted by Dan Carpenter in 2022 and
-never picked up; the bug is still present in drm-misc-next.  Credit for
-spotting it goes to him.
-Link: https://lore.kernel.org/dri-devel/YvSkKAdk8Pe0g2K9@kili/
-
- drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-index 572e63846..42f3709e0 100644
+index 42f3709e0..4d546b07f 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-@@ -479,13 +479,17 @@ nvkm_clk_ustate_update(struct nvkm_clk *clk, int req)
- 		return -ENOSYS;
+@@ -270,13 +270,19 @@ nvkm_pstate_prog(struct nvkm_clk *clk, int pstatei)
+ 	struct nvkm_fb *fb = subdev->device->fb;
+ 	struct nvkm_pci *pci = subdev->device->pci;
+ 	struct nvkm_pstate *pstate;
++	bool found = false;
+ 	int ret, idx = 0;
  
- 	if (req != -1 && req != -2) {
-+		bool found = false;
-+
- 		list_for_each_entry(pstate, &clk->states, head) {
--			if (pstate->pstate == req)
-+			if (pstate->pstate == req) {
-+				found = true;
- 				break;
-+			}
- 			i++;
- 		}
- 
--		if (pstate->pstate != req)
-+		if (!found)
- 			return -EINVAL;
- 		req = i;
+ 	list_for_each_entry(pstate, &clk->states, head) {
+-		if (idx++ == pstatei)
++		if (idx++ == pstatei) {
++			found = true;
+ 			break;
++		}
  	}
+ 
++	if (!found)
++		return -EINVAL;
++
+ 	nvkm_debug(subdev, "setting performance state %d\n", pstatei);
+ 	clk->pstate = pstatei;
+ 
 -- 
 2.55.0
 
