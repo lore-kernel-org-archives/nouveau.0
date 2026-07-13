@@ -4,96 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A43C5C43458
-	for <nouveau@archiver.kernel.org>; Sun, 12 Jul 2026 16:14:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE12EC44501
+	for <nouveau@archiver.kernel.org>; Mon, 13 Jul 2026 14:55:10 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 878C910E283;
-	Sun, 12 Jul 2026 16:14:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E8E0310EA26;
+	Mon, 13 Jul 2026 14:55:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W8mwYIfb";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="AvSbfpD6";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4643A4606F;
-	Sun, 12 Jul 2026 15:59:32 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id DD1D046DC3;
+	Mon, 13 Jul 2026 14:39:58 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1783871972;
- b=NhGII9XuDAz0XxapYOTJmXu4dUwne0Uj7/rPApconutd5Em9jxSNjUCdMZ3Dqh9D1T9to
- HU1Ll6lJzKGih0IoxHxNwePQlRWJ6sA5XH24ATgwgIZORa8+aDjN5lkzMQ0i/t7YN/5x2gU
- U7IT+Ji5zOgY/UDgVgNVO/Obdm+grCjDCmtJ/xQ0Gy36U/C75mDCVWnYrEWoRDlD+J0H6Xo
- tLa8KqY8JJYQ+PDf+6DZ3G5/dJbasCKawckyaVJkdbYv0dBLI/CWSVMu7HgBR/OLIUiU5Fc
- Ld4UeCQJn5EdA8jEgjAbXzYqmE2TApYeUfUg95Zm3ZISnh3HzLWQ/4EWNiTg==
+ s=20240201; t=1783953598;
+ b=lm3PYidG02QEv48xoHxHXiNueba4YqpHWUHrXvGNlVGmEtE53JNlCW0l/OC9Xtc4EANjn
+ g30OdqgUzCsAiWflUv4oXKwczveudHCIOSLPzXivotlRj5MAq2mX8Sb0UY7iLDh3UWSpOTV
+ rxwmmKRlLr4e/QmmKQazQAo4kmu/qG2Hx8wFh92KCV/jJdfng+YfZFx8ejiSSnKxwNuBuTJ
+ WrqsHE9DmGVDHKCUpFrTBxRodsNeopO/mO2n0IWP4QZDcMyYU0j5WCi3bo84jSHX/P6/R7c
+ p+837C0i6LrXGehWZ69RB9M5uWvIXw49xnrF3PuX3f7oN+/4oFr53MWt5mSA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1783871972; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1783953598; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=LVt/07JkeRUrRXhGR7j99ZsCFUAQhYPRKJkbnlsLIrs=;
- b=BUSlj6lWQhB+YEuz0hwngBPFId6QUO+rBTmJk2QoHKqp6uPBz4qxSRecdkWkgMN/RYDLE
- Df6IMAT+V2KAl11wN6sdYiYWEqjagRC35NZScRKVwftQ39i9jH4R2SuOwjsjYwdYf3DSNCv
- hC3Sr1wXaO5Xjg4S/m3/KQmVqOtUvTa95K4rfpIOleK2MkIj6RsDR2PVwFp8g2h7FJI9az0
- 7xjsmwYrmYp8g/m8NdtuD0N/FLWxaI+etg5StBKegU+jzvuD8swEtLeLmowbGqGkDyYR0Au
- PTr8lUO9w+j3LydbXS1wrH05JD1xrIFZPipsXLgd9GX4dHZK4oOEaQnWhaMQ==
+ bh=IZhqR4JgKFkSLvdz8vThCe3gL1K7igiBUDMCwA8QSjs=;
+ b=Pd2idfCIKOrJ5qY8uoVxyQy5Nlsk4YBU9BMEd7e8//nP386umfn52beQ6lZK5nsHjqxEt
+ fz8XYbcDBHWP5LOi2FY3ga8jekGTR3RXUtAND9BlNdV3uATIddnBQYcngRYO3o5P7ibfmsv
+ f9nVzT9S4YP74GsXPQDqNK5Z8c8u3SscelTC0B/K6UVHTCDPtLayuQJxzUkD/HZ/Wqnulxq
+ RnZQktRgrIf6urQSJjismghwh6NhDxbtsqEm0IPK2NAw+Bi0ZsJQWGHtKYH3pWMdC+Hhc7w
+ NbKLqHO/aJ/3Xi7LHDtbakdwet7rqjJ42hIUdw5Na7OCtukYLDvTxjbQbV9A==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=ziepe.ca;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+  dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=ziepe.ca;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B37DD40019
-	for <nouveau@lists.freedesktop.org>; Sun, 12 Jul 2026 15:59:29 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4BD9C10E093;
-	Sun, 12 Jul 2026 16:14:38 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2D67A600AE;
-	Sun, 12 Jul 2026 16:14:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5E911F000E9;
-	Sun, 12 Jul 2026 16:14:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783872876;
-	bh=LVt/07JkeRUrRXhGR7j99ZsCFUAQhYPRKJkbnlsLIrs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=W8mwYIfbjtGapNHEG8qUgFHP5kTfriyYRZS4922cMWclWw639zwyMtbHigRl/JRO5
-	 0yJB0WgYukQXCoMI5E2P4e0NNIorrkKG7WYM+VQtVDmVPI2Rp/1/dF+1C1rLdfIaqq
-	 JNkXeZxHoHhB+dvWpOQ4LGUpUAxy4SlPCc8wVLpaOPtEBns6Y1mzvMGFU2Qq5FOzN7
-	 GVgL5yOy+sJlVb+aVln3j7pwmLrhJrMy6Y3KH5estk9MaU3kAMaz47R9HQZvtdFDxi
-	 ZeQE6x2kEtdmZ4u/kZ+bEsXe3jtBNsY/6s1Qb3FIRSOYn5sWJq2oBeBdoDfOiFXiy7
-	 2HLzTvM7vBWPw==
-From: Danilo Krummrich <dakr@kernel.org>
-To: Dave Airlie <airlied@gmail.com>
-Subject: Re: [PATCH] nouveau/instmem: use iomapping interface for instmem
- handling (v3)
-Date: Sun, 12 Jul 2026 18:14:26 +0200
-Message-ID: <20260712161426.6461-1-dakr@kernel.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260706030520.857104-1-airlied@gmail.com>
-References: <20260706030520.857104-1-airlied@gmail.com>
-X-Patch-Reply: applied
+	by kara.freedesktop.org (Postfix) with ESMTPS id B521344C61
+	for <nouveau@lists.freedesktop.org>; Mon, 13 Jul 2026 14:39:55 +0000 (UTC)
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com
+ [209.85.160.172])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 362B710E5EA
+	for <nouveau@lists.freedesktop.org>; Mon, 13 Jul 2026 14:55:06 +0000 (UTC)
+Received: by mail-qt1-f172.google.com with SMTP id
+ d75a77b69052e-51c21495722so18739591cf.3
+        for <nouveau@lists.freedesktop.org>;
+ Mon, 13 Jul 2026 07:55:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1783954505; x=1784559305;
+ darn=lists.freedesktop.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=IZhqR4JgKFkSLvdz8vThCe3gL1K7igiBUDMCwA8QSjs=;
+        b=AvSbfpD6jIRj+KUZKP81+8XL2fltvzoIzPPoHWTNPRnx3RTDeKqLpGVHHvQSgl59z7
+         gF4s4Hc6dyP6J0kaBMABJC1CkhNuoojiukKhS0TQiTotnQGDWUPXu+8tp6Sxo5/3M6h0
+         Wptj8uTAR9VauxnIqBYvoEvfze4V/7AAJ/Wa7A0sXpne1ebIMaiTFJRL75J4dx2EJjzK
+         ojBxeT/vRF9YhC7eEU9EWfOlw7ELhiyQwx0kihZO52BxyU1W8OaVRmKB2Qu9rBEAmYz/
+         VjikekBolZhtJ9VB/FE0ZSGoduSto0qn9blOGX8/1aPKIcBO9TmTWzOv0HmHWCcnUVir
+         gk9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783954505; x=1784559305;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=IZhqR4JgKFkSLvdz8vThCe3gL1K7igiBUDMCwA8QSjs=;
+        b=ETgO7tTQ1Ww6dIoZnOx8OdX5Rxw0A1rSMxQTDDnkMNjXt1OivGApFA7E+CMuki4sdv
+         O3ucIXCr89oJM9dk6s5+uUt3aKKyrKWUt7kHBfikyuhklFTk0prY4Lg3KceX0ADB1Z+f
+         AdYEnhZyxPVzmOH667A/VG0ZgQLlZM/nsNx3f2JmQuX1tcRcjuXYaGKKdfXaTzuIylX4
+         D+Bc1VSbHQ4sRBV4T6REB92B6DL22eo7XmCeSlm2QPxW7cP3Cx9Mq4mPkS/DgECeH3y1
+         Zi1ZgtAIu+IPE+NeXf5yLoRaQGddxwXAB0mEHWzEcDq/PalfKgw4N7xGg5zCNQlPnhco
+         ++HQ==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RoPQgkxTVOmTmabUp//kXcyWZ7paGWbN6mxcK2P60uJgJYJIu5NvOdNx+kDnVpztHqnGbZqijQ5@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YytL1RfdvQs5/0u5vFOxvLFr2qMSWV1jXY34Ri7riM7ddkUZ3zh
+	5p/s7teiU4chAL3Qs4Sse88n3chgOsNbZuhqo3zIx6b2o3Stl85BBxoA83JdWa22yjk=
+X-Gm-Gg: AfdE7cmiB9mFCYnJc628S7GyXwZ81x1EJhMN3dX+MBuNR9IWPJyeSqFp3H/3oOYPYrr
+	taE4KI2hFQiUA2VD7YJmnzhBVRiv90RfIs8VXFBqzSgek/oCg5kHU9wD+5QuWC7GYHnaCK/xdrY
+	vPRpQjHE1QMfLGkg0xPxnkn8/E/AYijZB10m6KPGFu+qSupCTvB37exePnr7k67XxyfYWkkPmh6
+	Jz6SswBzH8mZqwTCdvxPvPclROwCGmG1hEQLSC3HAV8LQzixX1Tg8C/XjuVDo09I3VNG+ptQJwm
+	oNalgZX/FG/yQu5c3L+t2BEe9R4eC42B+i0ePJaaKwyehLJj8WqPaG9XOzTbIC84GLbnh7WFFrB
+	kMU/B9yVOClPmwKpTqTRqD9jRJkWdY6ISKgJdygVwrYdxWWpclTalgdCi/MFmQ84subu8eKM=
+X-Received: by 2002:a05:622a:1911:b0:51c:504:2ef7 with SMTP id
+ d75a77b69052e-51cbf305510mr90471451cf.67.1783954504822;
+        Mon, 13 Jul 2026 07:55:04 -0700 (PDT)
+Received: from ziepe.ca ([159.2.72.92])
+        by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-51caab6d574sm84876451cf.3.2026.07.13.07.55.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jul 2026 07:55:04 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1wjI3j-0000000DQQj-2xH1;
+	Mon, 13 Jul 2026 11:55:03 -0300
+Date: Mon, 13 Jul 2026 11:55:03 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Andrew Morton <akpm@linux-foundation.org>
+Subject: Re: [PATCH v8 4/8] mshv: Use hmm_range_fault_unlocked_timeout() for
+ region faults
+Message-ID: <20260713145503.GC3133966@ziepe.ca>
+References: <178371866223.900500.12312667138651735591.stgit@skinsburskii>
+ <178371881034.900500.5214601525971121683.stgit@skinsburskii>
+ <20260710151216.0397a6f9ac5c7b4ccd274cc1@linux-foundation.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: UNJX3X2E3QCYAO345RALGFM7YVITGWDB
-X-Message-ID-Hash: UNJX3X2E3QCYAO345RALGFM7YVITGWDB
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260710151216.0397a6f9ac5c7b4ccd274cc1@linux-foundation.org>
+Message-ID-Hash: JSJNJ6UPEJMGWIWM747OEWMZTRZJXP66
+X-Message-ID-Hash: JSJNJ6UPEJMGWIWM747OEWMZTRZJXP66
+X-MailFrom: jgg@ziepe.ca
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- dakr@kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Stanislav Kinsburskii <skinsburskii@gmail.com>, akhilesh@ee.iitb.ac.in,
+ corbet@lwn.net, dakr@kernel.org, david@kernel.org, decui@microsoft.com,
+ haiyangz@microsoft.com, kees@kernel.org, kys@microsoft.com, leon@kernel.org,
+ liam@infradead.org, lizhi.hou@amd.com, ljs@kernel.org, longli@microsoft.com,
+ maarten.lankhorst@linux.intel.com, mamin506@gmail.com, mhocko@suse.com,
+ mripard@kernel.org, nouveau@lists.freedesktop.org, ogabbay@kernel.org,
+ oleg@redhat.com, rppt@kernel.org, shuah@kernel.org, simona@ffwll.ch,
+ skhan@linuxfoundation.org, surenb@google.com, vbabka@kernel.org,
+ wei.liu@kernel.org, dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-rdma@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/UNJX3X2E3QCYAO345RALGFM7YVITGWDB/>
-Archived-At: 
- <https://lore.freedesktop.org/20260712161426.6461-1-dakr@kernel.org/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JSJNJ6UPEJMGWIWM747OEWMZTRZJXP66/>
+Archived-At: <https://lore.freedesktop.org/20260713145503.GC3133966@ziepe.ca/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -103,19 +148,25 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon,  6 Jul 2026 13:05:20 +1000, Dave Airlie wrote:
-> [PATCH] nouveau/instmem: use iomapping interface for instmem handling (v3)
+On Fri, Jul 10, 2026 at 03:12:16PM -0700, Andrew Morton wrote:
+> > +	mutex_lock(&region->mreg_mutex);
+> > +
+> > +	if (mmu_interval_read_retry(range.notifier, range.notifier_seq)) {
+> > +		mutex_unlock(&region->mreg_mutex);
+> > +		cond_resched();
+> > +		goto again;
+> > +	}
+> > +
+> 
+> If the calling process has realtime scheduling policy and either a)
+> we're uniprocessor or b) this process and the holder of
+> interval_sub->invalidate_seq are both pinned to the same CPU then
+> cond_resched() won't do anything, and this might be an infinite loop?
 
-Applied, thanks!
+I think hmm and kvm have had this issue for a long time? I don't see
+anything in the mmu notifier locking scheme that would alleviate it at
+least
 
-  Branch: drm-misc-next
-  Tree:   https://gitlab.freedesktop.org/drm/misc/kernel.git
+So.. In terms of this series I'd leave it, it is no worse than before?
 
-[1/1] nouveau/instmem: use iomapping interface for instmem handling
-      commit: 34e27b90552a
-
-The patch will appear in the next linux-next integration (typically within 24
-hours on weekdays).
-
-The patch is queued up for the upcoming merge window for the next major kernel
-release.
+Jason
