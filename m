@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21AA7C43458
-	for <nouveau@archiver.kernel.org>; Tue, 14 Jul 2026 21:15:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C814EC44501
+	for <nouveau@archiver.kernel.org>; Tue, 14 Jul 2026 21:15:54 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0F27110EE53;
-	Tue, 14 Jul 2026 21:15:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 422CB10EE60;
+	Tue, 14 Jul 2026 21:15:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MS/tHf+o";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TUgWtS2X";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 349634719E;
-	Tue, 14 Jul 2026 21:00:31 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 6FF94471A2;
+	Tue, 14 Jul 2026 21:00:40 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784062831;
- b=aoM+upMbBwzpHH5Sg+KkSl3Q0h5c8lGFuJJ415ko7kjkQ/6T7YZQv3SAN9t/GhUphLThP
- wEfshlKXYv+2pYxW46M8vo6RdjlPtDH6GGwvvgVHRJZcBJfqFRnSA73yA0Nv6TBRyqnhU3n
- qYyOYlFjLXhinRztKFD8bkMNhykbP8vTRqMjX7v7xvwZs0LhGVN6gJxUVJVouruMFts4wsb
- b6nq7jV2tVybgBJGU7kdYgM1v7bGI1s4paPve/BQVlLt6lQVDNsz/6TUU/xTAgolW3irH3v
- AQnKioE+QHmQOw3TLaJ+E9A8rkSV+qvOhc41p85rxrA62BZ7ubf1/kVtHNCg==
+ s=20240201; t=1784062840;
+ b=EbhHz+90Pej7MkVog+wzVXBxeNhhcuDxgvJzy2ZmnvrSpRZNjBD0AJZIyJo4fVL04lar5
+ 3Lpl3qUIm81sFZCVQ1PnNfD2qWsmwJZ+r0pr/3q8/4KqHNoF5S7LhnKeqgcoNMljcabmd17
+ IMs0AOG2toFbIwWNGX7HoQN2dI/s4w0ojJCK+DorPdgwruzjkmCdoZGdb1JfCMQgzIUcRGl
+ v0cEt1EjL4NOTtxDkkoszoZLfQswvkVTvzqWSaK/WEkiYJIy0wXSYjdoavSm8SudnJB/R67
+ dkOoFfNxptp1G4EgJ+Pn0o4LqdQNDIbWVY53uEZ9Gtda5CPG+pHyXxpQn+6Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784062831; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784062840; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=RCq7Nx8/0JTWLcWo9D6VA1wUiUAA6aMWpwH1k5hkv5c=;
- b=zGGqRQYGZpPbVdR3gSvCDhC2eZ2nwD4WW0Rpg3sMGHHkFJRNENWhyJ4ikHJC92QMXM/kk
- Raevs5X8OUABJYxbV5hO3GIdS2i4IbK5RN+/VdmTfahRIlLY4l/Ok3/uu27Hu5wntvIO9aF
- 0ijmMIVQkp201K2pzfvH2p0lm6PhlLVD2JVOc6q1A5cE4mIzz3YfRv+8K/OLStLl6w0ahUF
- W02xGQBbQOvQJfWcY1RCu1VBRu4fGqk0fxCWAPOMqnMo7OjUai4Afs8ePZZcNUqOqoh3ha1
- hAtIjk65J+IGH25qpDNke5A3mKi3vQcTf/R75EWbEOaEUun0Jb9T4fV5ivkw==
+ bh=ErW2XZrL9ajZEHhy26UY4YmMhMbEwdTPLY3anMh4sIY=;
+ b=jiXuzgBd2UfCXvLe51dNdbWYRXVUkBjN/GjpCGSMq4ccMyA+g6DDqzjqqZ8JdhuTu6moG
+ XNyzQfRjMkdRM2wHDyn1fH9XwulsH78TZUOP+lmk0zuvaHBsrduGHZ/TgK1xooF02MjENrH
+ c1YE09sk1llVF0RFQUXhuRnShv5Wydgq328n68+se3eX3Q0yroTbqT1Jhp91AH0eo/3phQf
+ /xf8YgcnaQ23MbrEH4OvcypCVpE4lDdbu25n4fymbY9elK16vEvnbV8aTPK1kPp1oGlZzEz
+ b87B27KE/rWHqKlaK38islvWzWXtXowK+SuHs9VwBAxaYOZmI8FMxwlcJgFg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,70 +46,72 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5EE2447123
-	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 21:00:28 +0000 (UTC)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id F3FCE10EE29
-	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 21:15:41 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-4953bc61ce2so1031255e9.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6863447123
+	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 21:00:37 +0000 (UTC)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 01ADB10EE60
+	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 21:15:50 +0000 (UTC)
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-493ae59eca6so8076795e9.1
         for <nouveau@lists.freedesktop.org>;
- Tue, 14 Jul 2026 14:15:41 -0700 (PDT)
+ Tue, 14 Jul 2026 14:15:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784063740; x=1784668540;
+        d=gmail.com; s=20251104; t=1784063749; x=1784668549;
  darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=RCq7Nx8/0JTWLcWo9D6VA1wUiUAA6aMWpwH1k5hkv5c=;
-        b=MS/tHf+oZlSwzDDENqfEjNvLETL6eRLHYknVTPATeAJMh9PpBktRasYRLZxLbA/HNN
-         xFxz7a06vbHNhvRj+Lzn/jAVY3KwR4wffW17WmV61xbH327C2xCmoBqtl66HJ1VW3aI+
-         sq7GJvcmroTiEBl5If1FKQ8xdVSvCjHRIY/q6BapeHZSVrDK7GnwtMNaTaA1v0lrhQpA
-         XIah8kvzyIfEJZCMoMES12SMESxL66vuGty7/vGpmdU3YeTc+e+XM0R8pv9m/eFyojNn
-         OmUGMopdW7+o92tcHDBc/SHtjiS0ED0/hNV22v4jQVspPPhi4dCcuJwZenf3Olt47Siz
-         YPbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784063740; x=1784668540;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=RCq7Nx8/0JTWLcWo9D6VA1wUiUAA6aMWpwH1k5hkv5c=;
-        b=hldkICztdtJbQWVjtqDpSfdas8IO1I6jhQt2gliiQhcrn0ol86ZVdqthyZhEPtIHIr
-         j1SQRWjzwI/QrHO6rVxAHrz2BgB9LNcF7pnsOhFN2Y9w5V806oFrf8zTyIWMp1/UDjul
-         xdIM2IaGZFC1preeI/HkRVqSqXLZ2B30VPwk9/hwmXJlAnfvsJuWTsloiAz3Bggt1DSW
-         peHEWMbqFZRD93Gs5NEHXWmdLCyoUwiB5AQhr0HivNhKiBqPlpT4UZFS7mxOGB8fXu7S
-         iBxw3jSJcP5OZMsssupXhRr79BLGrUHwa0wGS8EQP3D2HfsZFcm/6hOMol37Fv0+d8yA
-         GGFA==
+        bh=ErW2XZrL9ajZEHhy26UY4YmMhMbEwdTPLY3anMh4sIY=;
+        b=TUgWtS2XeHjEh3YgF4FU9B06rya3b4Mq1Fy5ynY6JJGNe0J5JHJZOhCTORt3Qwsc07
+         q5j7gLCO0fWixTdUcS9rvzxUdT2hwS8z3td4TcCzidVomj9y0jjnogh8og9yf1JRqzLM
+         fBltjXsdMjVbXdRt5lIs6pHPjKUN179XsTG18U3jiBT8u35NQKUpKq693iN/R1JnFW3o
+         89cXDiFKJFLRlJWcG3s214/PSsFficv0sMJ2DoWiEEEMj8SFVpgXZ+tYepl3kUgYM2gN
+         SwYFwlP2rVv1w2gFZI+qU7yAavr3F+b2adnGmQrXjjvGn3Yc1B9JlyC724w4Fo6Pic0b
+         hoXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784063749; x=1784668549;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=ErW2XZrL9ajZEHhy26UY4YmMhMbEwdTPLY3anMh4sIY=;
+        b=OZOnHt9HGLCwbEISpphCJOcgbbE+TAT3s4RVDVIFFAoq3jjJcW+1Smxk71kCS5/GmE
+         Bb1BQXcJqgKEm0Q0JYhb1IamXPOmYCdHCdUUJZnVHPUhYqBdVUGvlSTFYTxZtmrnmmS0
+         C5wMQnc3Q/UNNomRk2j7HAatD2KPCnx15+9+awIv1QFDaqqdu2W/EEhf4+oKdHHYB2zM
+         1FGM4t+Yk7eM3n+yEHPG0UVW1Hs9Qy2zJjjRubI8eKAbv1HJajCR3IjixbNvwo5CPIf8
+         pFZeCxurmK58ygPo+jBbUMiruXlcBpSnadYvEvK8pR692+mWnwBIcdBghUzqo70GlHsG
+         Bnvg==
 X-Forwarded-Encrypted: i=1;
- AHgh+RphMhOCdq0ThCnxTydBDipxlyQxOss0YO+A4eQQIPGGptOJMvAv4CwiNZiJOWPsEWAh57QgetvM@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw6iHuOVSfdtlPiGrBlq3c3gPFn8xfdwASxsKeJ8I03cXqgdj5t
-	NY0Hs6Gi2nHT9OYI4oZ7jFW+Ojge12p91wbpqZjy9i2w5KOdQKSv/zJm
-X-Gm-Gg: AfdE7cmjkm35Bmwa4Xei8Zk8cMpC+rodSgY4vODDoMF3CkUWv9uM8/QWTcdTPMenDyy
-	BB7SiZOHeoR9WejMPVKcqwDQhS6FZPVDnCVsrreYRZO1f2Z0UzM7ATwY71fe6zOfjzJJEeFHLKe
-	T9bEtnAIOE9bDl+4ouM1ZxXkp0DF6IHsAB5SXcD1LOR3Xvs91rMBMzf2HWEHpL6GzY8pFJP4qIw
-	T/N4xCxmjxTLWzRuArQpC3+6ZznLjA6cT9F0/3vX8T47DLvivHN2DH7/I6aUAUbzwhceiPdJZ3y
-	8w2tWcPt48tWs401s/rkxy0PnVdkut6bdgMSJRtTWS6QDVkWExCW52UA6tkdtgOOvHkSE8QWMbv
-	O4p48dKe/4qpp+HNu9WFoBIdnaWLBE3nDh+H/UnnwCXdw1NYaTP94b8kGiVgrSrGCZSOW/on3co
-	N/kfoYwifpDUQCMsM0E0Gu
-X-Received: by 2002:a05:600c:6387:b0:492:7142:f46e with SMTP id
- 5b1f17b1804b1-493f87d8583mr168232975e9.2.1784063740186;
-        Tue, 14 Jul 2026 14:15:40 -0700 (PDT)
+ AHgh+RqfgFPoSmIFmim2BsXbqrEcsJD9+A9/HlZtOCLwpWz/a1O5/AcaCcxa8d0VyfsdlthE5rwZYRJ2@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy3ERsXMp5g64z7LsYIggO5o3o0X3G4ni2luCMoV7KUNMADKcFf
+	RPc2SBAb0F8YhLgE6Lgv557Xamgdo+bELWtesFhxajOWvqnAOvAc1PBPtyQ/d/33
+X-Gm-Gg: AfdE7ckbM46YwLpO1JFMhWvfFcW4KGJMOhdoDc5616/voYKIMbM/Co26gLlw8c+qtq4
+	Q6ePeWruQF+wAv/yNsO5JlRcsW2BT3U5wW0cGeHM5AsAUtZ0zd8Zdd/kb8V07vM1fw+C02GQwBh
+	cJ8IThXFQ+ba2auJ0er+bjAk8auZPJ9rjvk9GxHEO1632f4aiZ3xC+Zb8OYQlFAvEtaJQuQvQux
+	Sr4/Qd0aCdaaSQx83zUrrjEqs6a+r9NUrR4X2ss999ejpg9Qi6XsfabJTKM8qOjVJ6kMvoObi1R
+	GM6WW6IlR7KBGvXeyk1GqGqona2obbqUcqi/UMSvEUfz/SkqDFju8K/A4FG5zVMXe2EhgTitw/k
+	YavZm/KiLJSnrFeKEs1VeGKDjja3fdWJrAoxIB/yOyCeZUf85wFEAyO+etjohXGgRwYz+roZugY
+	C+396inkA8Psbp3gce0huK
+X-Received: by 2002:a05:600c:5395:b0:493:df5d:6ca6 with SMTP id
+ 5b1f17b1804b1-493f881de70mr140472175e9.25.1784063748930;
+        Tue, 14 Jul 2026 14:15:48 -0700 (PDT)
 Received: from fedora ([94.205.182.68])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4950a32a2casm149843875e9.12.2026.07.14.14.15.29
+ 5b1f17b1804b1-4950a32a2casm149843875e9.12.2026.07.14.14.15.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 14:15:38 -0700 (PDT)
+        Tue, 14 Jul 2026 14:15:48 -0700 (PDT)
 From: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH 0/6] drm/nouveau: GSP telemetry via RUSD,
- and fdinfo telemetry exposure
-Date: Wed, 15 Jul 2026 01:14:23 +0400
-Message-ID: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
+Subject: [PATCH 1/6] drm/nouveau/gsp: vendor the RUSD header
+Date: Wed, 15 Jul 2026 01:14:24 +0400
+Message-ID: <20260714211429.238355-2-mohamedahmedegypt2001@gmail.com>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
+References: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: HWYT7NVDVVIRHPTWUP3NOHM7SU44NKKD
-X-Message-ID-Hash: HWYT7NVDVVIRHPTWUP3NOHM7SU44NKKD
+Message-ID-Hash: 4WQZ7PG3BM54EBZ6MATJ75GFRNF7MJ2A
+X-Message-ID-Hash: 4WQZ7PG3BM54EBZ6MATJ75GFRNF7MJ2A
 X-MailFrom: mohamedahmedegypt2001@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -124,9 +126,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HWYT7NVDVVIRHPTWUP3NOHM7SU44NKKD/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4WQZ7PG3BM54EBZ6MATJ75GFRNF7MJ2A/>
 Archived-At: 
- <https://lore.freedesktop.org/20260714211429.238355-1-mohamedahmedegypt2001@gmail.com/>
+ <https://lore.freedesktop.org/20260714211429.238355-2-mohamedahmedegypt2001@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,128 +138,369 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On the GSP firmware, nouveau reports nothing about the GPU. The GSP owns
-the sensors, so the legacy nvkm therm/clk/volt hwmon paths never run, and
-monitoring tools have no data to read.
+RM User Shared Data (RUSD) is GSP-RM's telemetry channel: the kernel
+hands the firmware a buffer and the firmware fills it with telemetry
+data (temperatures, power draw, power limits, clocks, utilizations,
+etc) on its own timer, with a per-section timestamp/seqlock protocol
+for lock-free reads.
 
-GSP on later firmware does publish all of it through a stable interface.
-It maintains a shared-memory region called "RM User Shared Data" (RUSD),
-which the firmware fills with all the relevant sensor readings like power,
-temperatures, clocks, and many others. Consuming it needs only two
-internal subdevice controls: INIT_USER_SHARED_DATA to register the buffer,
-and SET_DATA_POLL to tell the GSP which data groups to poll and how often.
+Vendor the ABI needed to use it from the 570.144 tag of NVIDIA's
+open-gpu-kernel-modules, matching the r570 firmware nouveau ships:
 
-This series makes nouveau a RUSD client and exposes the data through two
-main surfaces:
+ - NV00DE_SHARED_DATA and its section structs, the RUSD_TIMESTAMP_*
+   read-protocol values and the NV00DE_RUSD_POLL_* group mask bits
+   (src/common/sdk/nvidia/inc/class/cl00de.h),
+ - the two internal subdevice controls that drive it,
+   NV2080_CTRL_CMD_INTERNAL_INIT_USER_SHARED_DATA (0x20800afe) and
+   NV2080_CTRL_CMD_INTERNAL_USER_SHARED_DATA_SET_DATA_POLL (0x20800aff)
+   (src/common/sdk/nvidia/inc/ctrl/ctrl2080/ctrl2080internal.h),
+ - the NvTemp signed 24.8 fixed-point temperature typedef chain
+   (src/common/sdk/nvidia/inc/nvfixedtypes.h), with NvS32 added to
+   nvtypes.h to support it.
 
-  - hwmon, for the values that map onto standard channels: GPU and memory
-    temperature, GPU/board/VRAM power, power cap. 
+There is no version, magic or size field anywhere in the buffer or the
+INIT params and the layout is pinned solely by the cl00de.h the firmware
+binary was built with, which does change (more items get added) between
+firmware branches. So this header must be re-derived from the exact tag
+of any future firmware bump.
 
-  - sysfs, under /sys/class/drm/cardN/device/rusd/, for everything hwmon
-    has no channel type for: clocks, utilisation, pstate, throttle reason,
-    ECC counters, PCIe error counters, and everything exposed to hwmon as
-    well. One value per file according to sysfs convention.
-
-Polling is demand-driven. GSP polls a group only while a client is reading
-it, and a group idles off after 10s after the last read. Polling costs
-power, so nothing is polled unless someone is looking. A section that has
-not been polled yet, or that the board does not support, reads -ENODATA.
-
-The sysfs interface is documented in
-Documentation/ABI/testing/sysfs-driver-nouveau.
-
-While the original scope was RUSD support only, monitoring tools needed
-two extra additions to complete the picture:
-
-  - VRAM size and usage on sysfs (patch 5): since this series adds a sysfs
-    interface for nouveau, it's better to expose VRAM metrics there rather
-    than force monitoring apps to pull in libdrm for the GETPARAM memory
-    ioctls.
-
-  - fdinfo (patch 6): nouveau implemented none at all, and monitoring apps
-    could not show per-process GPU and memory usage. It now reports
-    per-client memory and per-engine busy time, accounted from the DRM
-    scheduler that the EXEC/VM_BIND path already uses.
-
-Limitations, caveats, and additional considerations or questions:
-
-  - RUSD needs r570 or newer GSP firmware; r535 does not have the needed
-    controls. Pre-GSP and r535 behavior is identical to what it was: the
-    rusd/ group is not created, and hwmon keeps its current behavior.
-
-  - This is all read-only telemetry. Clock, voltage, or power control is
-    through other interfaces out of scope of this series.
-
-  - The sysfs interface exposed here should be stable and valid for nova
-    as well. RUSD is stable and only grows more fields with newer GSP
-    firmware (e.g., fan telemetry gets added in r580), so it is possible
-    to keep the same interface as we use newer firmware or as we move to
-    nova and any potential considerations should be ironed out before this
-    gets merged and the interface gets frozen.
-
-  - amdgpu offers a single binary blob with all the telemetry embedded in
-    addition to the sysfs sensor files. This series currently only exposes
-    sensor files, but it is possible to add a similar binary for a v2.
-    This mainly offers a more efficient way to read the telemetry as
-    clients would read only a few files instead of reading all of them.
-
-  - The last two patches don't depend on RUSD and work on every GPU. But
-    they are here because they complete the sensor telemetry story. I am
-    happy to split them into their own series if that is preferred.
-
-Userspace WIP work built on this sysfs surface exists in form of nouveau
-backends for nvtop, LACT, and a NVK HUD:
-
-  - nvtop: https://github.com/mohamexiety/nvtop/tree/nvtop-nouvtop
-
-  - LACT: https://github.com/mohamexiety/LACT/tree/lnouvct
-
-  - NVK HUD:
-    https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/39898
-
-None of these are merged yet and exist for testing only. Upstreaming will
-begin when this series gets merged and the interface is stable.
-
-Mohamed Ahmed (6):
-  drm/nouveau/gsp: vendor the RUSD header
-  drm/nouveau/gsp: add RUSD telemetry support
-  drm/nouveau: add GSP hwmon support
-  drm/nouveau: expose RUSD telemetry via sysfs
-  drm/nouveau: expose global VRAM size and usage via sysfs
-  drm/nouveau: expose per-client GPU usage via fdinfo
-
- .../ABI/testing/sysfs-driver-nouveau          | 167 ++++++
- MAINTAINERS                                   |   1 +
- drivers/gpu/drm/nouveau/Kbuild                |   1 +
- .../gpu/drm/nouveau/include/nvkm/subdev/gsp.h |  33 ++
- .../drm/nouveau/include/nvkm/subdev/rusd.h    | 114 ++++
+Signed-off-by: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
+---
  .../gpu/drm/nouveau/include/nvrm/nvtypes.h    |   3 +
- drivers/gpu/drm/nouveau/nouveau_abi16.c       |  16 +
- drivers/gpu/drm/nouveau/nouveau_chan.h        |   2 +
- drivers/gpu/drm/nouveau/nouveau_drm.c         |  22 +
- drivers/gpu/drm/nouveau/nouveau_drv.h         |  29 +
- drivers/gpu/drm/nouveau/nouveau_exec.c        |   3 +
- drivers/gpu/drm/nouveau/nouveau_gem.c         |  16 +
- drivers/gpu/drm/nouveau/nouveau_hwmon.c       | 375 ++++++++++---
- drivers/gpu/drm/nouveau/nouveau_sched.c       |  87 +++
- drivers/gpu/drm/nouveau/nouveau_sched.h       |  11 +
- drivers/gpu/drm/nouveau/nouveau_sysfs.c       | 311 ++++++++++
- drivers/gpu/drm/nouveau/nouveau_sysfs.h       |  10 +
- .../drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c |  26 +
- .../drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c  |   1 +
- .../nouveau/nvkm/subdev/gsp/rm/r570/Kbuild    |   1 +
- .../nvkm/subdev/gsp/rm/r570/nvrm/rusd.h       | 303 ++++++++++
- .../drm/nouveau/nvkm/subdev/gsp/rm/r570/rm.c  |   1 +
- .../nouveau/nvkm/subdev/gsp/rm/r570/rusd.c    | 531 ++++++++++++++++++
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h   |   7 +
- 24 files changed, 1990 insertions(+), 81 deletions(-)
- create mode 100644 Documentation/ABI/testing/sysfs-driver-nouveau
- create mode 100644 drivers/gpu/drm/nouveau/include/nvkm/subdev/rusd.h
- create mode 100644 drivers/gpu/drm/nouveau/nouveau_sysfs.c
- create mode 100644 drivers/gpu/drm/nouveau/nouveau_sysfs.h
+ .../nvkm/subdev/gsp/rm/r570/nvrm/rusd.h       | 303 ++++++++++++++++++
+ 2 files changed, 306 insertions(+)
  create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/rusd.h
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/rusd.c
 
+diff --git a/drivers/gpu/drm/nouveau/include/nvrm/nvtypes.h b/drivers/gpu/drm/nouveau/include/nvrm/nvtypes.h
+index af11648ad9c8..ea232b765b7e 100644
+--- a/drivers/gpu/drm/nouveau/include/nvrm/nvtypes.h
++++ b/drivers/gpu/drm/nouveau/include/nvrm/nvtypes.h
+@@ -4,6 +4,7 @@
+ 
+ #define NV_ALIGN_BYTES(a) __attribute__ ((__aligned__(a)))
+ #define NV_DECLARE_ALIGNED(f,a) f __attribute__ ((__aligned__(a)))
++#define NVBIT(b) (1U << (b))
+ 
+ typedef u32 NvV32;
+ 
+@@ -12,6 +13,8 @@ typedef u16 NvU16;
+ typedef u32 NvU32;
+ typedef u64 NvU64;
+ 
++typedef s32 NvS32;
++
+ typedef void* NvP64;
+ 
+ typedef NvU8 NvBool;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/rusd.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/rusd.h
+new file mode 100644
+index 000000000000..9f1099a06430
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/rusd.h
+@@ -0,0 +1,303 @@
++/* SPDX-License-Identifier: MIT */
++/* Copyright (c) 2026, NVIDIA CORPORATION. All rights reserved. */
++
++#ifndef __NVRM_RUSD_H__
++#define __NVRM_RUSD_H__
++
++#include <nvif/os.h>
++#include <nvrm/nvtypes.h>
++
++/* Excerpt of RM headers from https://github.com/NVIDIA/open-gpu-kernel-modules/tree/570.144.
++ * Note that in case of GSP upgrades, we will need a different rusd.h as the struct changes.
++ */
++
++typedef NvS32 NvSFXP32;
++typedef NvSFXP32 NvSFXP24_8;
++typedef NvSFXP24_8 NvTemp;
++
++#define RM_USER_SHARED_DATA (0x000000de)
++
++#define RUSD_TIMESTAMP_WRITE_IN_PROGRESS (0xFFFFFFFFFFFFFFFFULL)
++#define RUSD_TIMESTAMP_INVALID 0
++
++#define RUSD_SEQ_START (0xFF00000000000000LLU)
++
++enum {
++   RUSD_CLK_PUBLIC_DOMAIN_GRAPHICS = 0,
++   RUSD_CLK_PUBLIC_DOMAIN_MEMORY,
++   RUSD_CLK_PUBLIC_DOMAIN_VIDEO,
++
++   // Put at the end. See bug 1000230 NVML doesn't report SM frequency on Kepler
++   RUSD_CLK_PUBLIC_DOMAIN_SM,
++   RUSD_CLK_PUBLIC_DOMAIN_MAX_TYPE,
++};
++
++enum {
++   RUSD_CLK_THROTTLE_REASON_GPU_IDLE                         = NVBIT(0),
++   RUSD_CLK_THROTTLE_REASON_APPLICATION_CLOCK_SETTING        = NVBIT(1),
++   RUSD_CLK_THROTTLE_REASON_SW_POWER_CAP                     = NVBIT(2),
++   RUSD_CLK_THROTTLE_REASON_HW_SLOWDOWN                      = NVBIT(3),
++   RUSD_CLK_THROTTLE_REASON_SYNC_BOOST                       = NVBIT(4),
++   RUSD_CLK_THROTTLE_REASON_SW_THERMAL_SLOWDOWN              = NVBIT(5),
++   RUSD_CLK_THROTTLE_REASON_HW_THERMAL_SLOWDOWN              = NVBIT(6),
++   RUSD_CLK_THROTTLE_REASON_HW_POWER_BRAKES_SLOWDOWN         = NVBIT(7),
++   RUSD_CLK_THROTTLE_REASON_DISPLAY_CLOCK_SETTING            = NVBIT(8),
++};
++
++typedef struct RUSD_BAR1_MEMORY_INFO {
++   volatile NvU64 lastModifiedTimestamp;
++   //
++   // Non-polled data, not tied to any specific RM API
++   // Total size and available memory in Bar1
++   //
++   NvU32 bar1Size;
++   NvU32 bar1AvailSize;
++} RUSD_BAR1_MEMORY_INFO;
++
++typedef struct RUSD_PMA_MEMORY_INFO {
++   volatile NvU64 lastModifiedTimestamp;
++   //
++   // Non-polled data, not tied to any specific RM API
++   // Total size and available memory in PMA
++   //
++   NvU64 totalPmaMemory;
++   NvU64 freePmaMemory;
++} RUSD_PMA_MEMORY_INFO;
++
++typedef struct RUSD_CLK_PUBLIC_DOMAIN_INFO {
++   NvU32 targetClkMHz;
++} RUSD_CLK_PUBLIC_DOMAIN_INFO;
++
++typedef struct RUSD_CLK_PUBLIC_DOMAIN_INFOS {
++   volatile NvU64 lastModifiedTimestamp;
++   RUSD_CLK_PUBLIC_DOMAIN_INFO info[RUSD_CLK_PUBLIC_DOMAIN_MAX_TYPE];
++} RUSD_CLK_PUBLIC_DOMAIN_INFOS;
++
++typedef struct RUSD_ENG_UTILIZATION {
++   NvU32 clkPercentBusy;
++   NvU32 samplingPeriodUs;
++} RUSD_ENG_UTILIZATION;
++
++#define RUSD_ENG_UTILIZATION_VID_ENG_NVENC 0
++#define RUSD_ENG_UTILIZATION_VID_ENG_NVDEC 1
++#define RUSD_ENG_UTILIZATION_VID_ENG_NVJPG 2
++#define RUSD_ENG_UTILIZATION_VID_ENG_NVOFA 3
++#define RUSD_ENG_UTILIZATION_COUNT 4
++
++typedef struct RUSD_PERF_DEVICE_UTILIZATION_INFO {
++   NvU32 gpuPercentBusy;
++   NvU32 memoryPercentBusy;
++   RUSD_ENG_UTILIZATION engUtil[RUSD_ENG_UTILIZATION_COUNT];
++} RUSD_PERF_DEVICE_UTILIZATION_INFO;
++
++typedef struct RUSD_PERF_DEVICE_UTILIZATION {
++   volatile NvU64 lastModifiedTimestamp;
++   RUSD_PERF_DEVICE_UTILIZATION_INFO info;
++} RUSD_PERF_DEVICE_UTILIZATION;
++
++typedef struct RUSD_PERF_CURRENT_PSTATE {
++   volatile NvU64 lastModifiedTimestamp;
++   // Provided from NV2080_CTRL_CMD_PERF_GET_CURRENT_PSTATE
++   NvU32 currentPstate;
++} RUSD_PERF_CURRENT_PSTATE;
++
++typedef struct RUSD_CLK_THROTTLE_REASON {
++   volatile NvU64 lastModifiedTimestamp;
++   NvU32 reasonMask; // Bitmask of RUSD_CLK_THROTTLE_REASON_*
++} RUSD_CLK_THROTTLE_REASON;
++
++typedef struct RUSD_MEM_ERROR_COUNTS {
++   NvU64 correctedVolatile;
++   NvU64 correctedAggregate;
++   NvU64 uncorrectedVolatile;
++   NvU64 uncorrectedAggregate;
++} RUSD_MEM_ERROR_COUNTS;
++
++#define RUSD_MEMORY_ERROR_TYPE_TOTAL 0
++#define RUSD_MEMORY_ERROR_TYPE_DRAM  1
++#define RUSD_MEMORY_ERROR_TYPE_SRAM  2
++#define RUSD_MEMORY_ERROR_TYPE_COUNT 3
++
++typedef struct RUSD_MEM_ECC {
++   volatile NvU64 lastModifiedTimestamp;
++   // Provided from NV2080_CTRL_CMD_GPU_QUERY_ECC_STATUS
++   RUSD_MEM_ERROR_COUNTS count[RUSD_MEMORY_ERROR_TYPE_COUNT];
++} RUSD_MEM_ECC;
++
++typedef struct RUSD_POWER_LIMIT_INFO {
++   NvU32 requestedmW;
++   NvU32 enforcedmW;
++} RUSD_POWER_LIMIT_INFO;
++
++typedef struct RUSD_POWER_LIMITS {
++   volatile NvU64 lastModifiedTimestamp;
++   RUSD_POWER_LIMIT_INFO info;
++} RUSD_POWER_LIMITS;
++
++typedef enum RUSD_TEMPERATURE_TYPE {
++   RUSD_TEMPERATURE_TYPE_GPU,
++   RUSD_TEMPERATURE_TYPE_HBM,
++   RUSD_TEMPERATURE_TYPE_MAX
++} RUSD_TEMPERATURE_TYPE;
++
++typedef struct RUSD_TEMPERATURE {
++   volatile NvU64 lastModifiedTimestamp;
++   NvTemp temperature;
++} RUSD_TEMPERATURE;
++
++typedef struct RUSD_MEM_ROW_REMAP_INFO {
++   // Provided from NV2080_CTRL_CMD_FB_GET_ROW_REMAPPER_HISTOGRAM
++   NvU32 histogramMax;     // No remapped row is used.
++   NvU32 histogramHigh;    // One remapped row is used.
++   NvU32 histogramPartial; // More than one remapped rows are used.
++   NvU32 histogramLow;     // One remapped row is available.
++   NvU32 histogramNone;    // All remapped rows are used.
++
++   NvU32 correctableRows;
++   NvU32 uncorrectableRows;
++   NvBool isPending;
++   NvBool hasFailureOccurred;
++} RUSD_MEM_ROW_REMAP_INFO;
++
++typedef struct RUSD_MEM_ROW_REMAP {
++   volatile NvU64 lastModifiedTimestamp;
++   RUSD_MEM_ROW_REMAP_INFO info;
++} RUSD_MEM_ROW_REMAP;
++
++typedef struct RUSD_AVG_POWER_INFO {
++   NvU32 averageGpuPower;      // mW
++   NvU32 averageModulePower;   // mW
++   NvU32 averageMemoryPower;   // mW
++} RUSD_AVG_POWER_INFO;
++
++typedef struct RUSD_AVG_POWER_USAGE {
++   volatile NvU64 lastModifiedTimestamp;
++   RUSD_AVG_POWER_INFO info;
++} RUSD_AVG_POWER_USAGE;
++
++typedef struct RUSD_INST_POWER_INFO {
++   NvU32 instGpuPower;         // mW
++   NvU32 instModulePower;      // mW
++   NvU32 instCpuPower;         // mW
++} RUSD_INST_POWER_INFO;
++
++typedef struct RUSD_INST_POWER_USAGE {
++   volatile NvU64 lastModifiedTimestamp;
++   RUSD_INST_POWER_INFO info;
++} RUSD_INST_POWER_USAGE;
++
++typedef struct RUSD_SHADOW_ERR_CONT {
++   volatile NvU64 lastModifiedTimestamp;
++   //
++   // Non-polled data, not tied to any specific RM API
++   // Shadowed ERR_CONT register value
++   //
++   NvU32 shadowErrContVal;
++} RUSD_SHADOW_ERR_CONT;
++
++// Each RUSD_BUS_DATA_* define corresponds to the equivalent NV2080_CTRL_BUS_INFO_INDEX_*
++#define RUSD_BUS_DATA_PCIE_GEN_INFO                              0
++#define RUSD_BUS_DATA_PCIE_GPU_LINK_LINECODE_ERRORS              1
++#define RUSD_BUS_DATA_PCIE_GPU_LINK_CRC_ERRORS                   2
++#define RUSD_BUS_DATA_PCIE_GPU_LINK_NAKS_RECEIVED                3
++#define RUSD_BUS_DATA_PCIE_GPU_LINK_FAILED_L0S_EXITS             4
++#define RUSD_BUS_DATA_PCIE_GPU_LINK_CORRECTABLE_ERRORS           5
++#define RUSD_BUS_DATA_PCIE_GPU_LINK_NONFATAL_ERRORS              6
++#define RUSD_BUS_DATA_PCIE_GPU_LINK_FATAL_ERRORS                 7
++#define RUSD_BUS_DATA_PCIE_GPU_LINK_UNSUPPORTED_REQUESTS         8
++#define RUSD_BUS_DATA_COUNT                                      9
++
++typedef struct RUSD_PCIE_DATA_INFO {
++   // Provided from NV2080_CTRL_CMD_BUS_GET_INFO_V2
++   NvU32 data[RUSD_BUS_DATA_COUNT];
++} RUSD_PCIE_DATA_INFO;
++
++typedef struct RUSD_PCIE_DATA {
++   volatile NvU64 lastModifiedTimestamp;
++   RUSD_PCIE_DATA_INFO info;
++} RUSD_PCIE_DATA;
++
++typedef struct RUSD_GR_INFO
++{
++   volatile NvU64 lastModifiedTimestamp;
++   NvBool bCtxswLoggingEnabled;
++} RUSD_GR_INFO;
++
++typedef struct NV00DE_SHARED_DATA {
++   NV_DECLARE_ALIGNED(RUSD_BAR1_MEMORY_INFO bar1MemoryInfo, 8);
++
++   NV_DECLARE_ALIGNED(RUSD_PMA_MEMORY_INFO pmaMemoryInfo, 8);
++
++   NV_DECLARE_ALIGNED(RUSD_SHADOW_ERR_CONT shadowErrCont, 8);
++
++   NV_DECLARE_ALIGNED(RUSD_GR_INFO grInfo, 8);
++
++   // gpuUpdateUserSharedData is sensitive to these two sections being contiguous
++
++   //
++   // Polled data section
++   // All data structs are a volatile NvU64 timestamp followed by data contents.
++   // Access by reading timestamp, then copying the struct contents, then reading the timestamp again.
++   // If time0 matches time1, data has not changed during the read, and contents are valid.
++   // If timestamp is RUSD_TIMESTAMP_WRITE_IN_PROGRESS, data was edited during the read, retry.
++   // If timestamp is RUSD_TIMESTAMP_INVALID, data is not available or not supported on this platform.
++   //
++
++   // POLL_CLOCK
++   NV_DECLARE_ALIGNED(RUSD_CLK_PUBLIC_DOMAIN_INFOS clkPublicDomainInfos, 8);
++
++   // POLL_PERF
++   NV_DECLARE_ALIGNED(RUSD_CLK_THROTTLE_REASON clkThrottleReason, 8);
++
++   // POLL_PERF
++   NV_DECLARE_ALIGNED(RUSD_PERF_DEVICE_UTILIZATION perfDevUtil, 8);
++
++   // POLL_MEMORY
++   NV_DECLARE_ALIGNED(RUSD_MEM_ECC memEcc, 8);
++
++   // POLL_PERF
++   NV_DECLARE_ALIGNED(RUSD_PERF_CURRENT_PSTATE perfCurrentPstate, 8);
++
++   // POLL_POWER
++   // Module Limit is not supported on Ampere/Hopper
++   NV_DECLARE_ALIGNED(RUSD_POWER_LIMITS powerLimitGpu, 8);
++
++   // POLL_THERMAL
++   NV_DECLARE_ALIGNED(RUSD_TEMPERATURE temperatures[RUSD_TEMPERATURE_TYPE_MAX], 8);
++
++   // POLL_MEMORY
++   NV_DECLARE_ALIGNED(RUSD_MEM_ROW_REMAP memRowRemap, 8);
++
++   // POLL_POWER
++   NV_DECLARE_ALIGNED(RUSD_AVG_POWER_USAGE avgPowerUsage, 8);
++
++   // POLL_POWER
++   NV_DECLARE_ALIGNED(RUSD_INST_POWER_USAGE instPowerUsage, 8);
++
++   // POLL_PCI
++   NV_DECLARE_ALIGNED(RUSD_PCIE_DATA pciBusData, 8);
++} NV00DE_SHARED_DATA;
++
++//
++// Polling mask bits, pass into ALLOC_PARAMETERS or NV00DE_CTRL_REQEUSET_DATA_POLL
++// to request above polled data to be provided
++//
++#define NV00DE_RUSD_POLL_CLOCK     0x1
++#define NV00DE_RUSD_POLL_PERF      0x2
++#define NV00DE_RUSD_POLL_MEMORY    0x4
++#define NV00DE_RUSD_POLL_POWER     0x8
++#define NV00DE_RUSD_POLL_THERMAL   0x10
++#define NV00DE_RUSD_POLL_PCI       0x20
++
++typedef struct NV2080_CTRL_INTERNAL_INIT_USER_SHARED_DATA_PARAMS {
++   NV_DECLARE_ALIGNED(NvU64 physAddr, 8);
++} NV2080_CTRL_INTERNAL_INIT_USER_SHARED_DATA_PARAMS;
++#define NV2080_CTRL_CMD_INTERNAL_INIT_USER_SHARED_DATA (0x20800afe) /* finn: Evaluated from "(FINN_NV20_SUBDEVICE_0_INTERNAL_INTERFACE_ID << 8) | NV2080_CTRL_INTERNAL_INIT_USER_SHARED_DATA_PARAMS_MESSAGE_ID" */
++
++typedef struct NV2080_CTRL_INTERNAL_USER_SHARED_DATA_SET_DATA_POLL_PARAMS {
++   NV_DECLARE_ALIGNED(NvU64 polledDataMask, 8);
++   NvU32 pollFrequencyMs;
++} NV2080_CTRL_INTERNAL_USER_SHARED_DATA_SET_DATA_POLL_PARAMS;
++#define NV2080_CTRL_CMD_INTERNAL_USER_SHARED_DATA_SET_DATA_POLL (0x20800aff) /* finn: Evaluated from "(FINN_NV20_SUBDEVICE_0_INTERNAL_INTERFACE_ID << 8) | NV2080_CTRL_INTERNAL_USER_SHARED_DATA_SET_DATA_POLL_PARAMS_MESSAGE_ID" */
++
++#endif
 -- 
 2.55.0
 
