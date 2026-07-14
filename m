@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 700ACC43458
-	for <nouveau@archiver.kernel.org>; Tue, 14 Jul 2026 22:21:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD090C43458
+	for <nouveau@archiver.kernel.org>; Tue, 14 Jul 2026 22:21:48 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4B66510EE6E;
-	Tue, 14 Jul 2026 22:21:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AB56C10EE77;
+	Tue, 14 Jul 2026 22:21:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q/DK8wL2";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qovwK4d+";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 64928471CE;
-	Tue, 14 Jul 2026 22:06:26 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C7AC0471D1;
+	Tue, 14 Jul 2026 22:06:34 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784066786;
- b=Mf5DiJ+fEsIgjwR7ILdEDMi/XTyb6zTy/gNc+tqclM1rLoU2l3dx1fNiMnVl0aerRmfY2
- 7V0M4ii3OHlWiz3WcRGtJMnFdpeDp6iEmvmMwk8tVLn5MrkJoxaPfJmJ/boNS1+7dngdJrP
- 5dmmC5ULhQy6e3NmduUhKEmwUB7ruKPlf7RxkipY20M+lbRJRwYDT5Bb8RbDdCwa0YZWTW1
- cpXWy95xosmKv1J+Us8Y8fT+XEPxQHSAGRNUvmZs0TOaGHZGrl6GFoE15L38J3ySWHoZh7L
- jHQJPCcGCgvmnADmnvxBtYGLJKUooA47nwFxEZDMxUrIiIiFsqISsoCV3k0g==
+ s=20240201; t=1784066794;
+ b=MmhLtkIMj1v2BH/5vMmG+JlK2BXfpW0eQZIuXg0IfIhh8a4kz3iMDvg4z+EhDgQBqQVd1
+ GD78cJkuxKsZbUchI0Zu3PzmERzCTI5R9PlfU+42GKp1lS/7fINV0N9djg0Db34BpTz7mAo
+ nPkUw/zS9a279h96wRgQKh3rSUcHrab+jY+Gr5Qo31dVtcUR1ifWwurPuD3M3Ir6LvaTx2n
+ +azgZvKVEnkq8HNJodgcCwFtyO9a1Jq7lC3Os+JIGksEKt9lm0bO8aKkVRB7yu47nk1/GsW
+ 7CnErCGBCfJ/y7AQdYMGJUCG3EOGYXb8X0DqfX/rYO1Hy9Qk39+BMXFa8JGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784066786; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784066794; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=s/XP8nJGTiSx4jpNVu3XVkKeZD1kh7QswKhz9rXqGp8=;
- b=J72AM/BD6ghicEhIOt8BhZKIXX/OoQInxxrdsNUgiiTPGkwMxAhfeqZeOgfUG/mP8Qv+P
- hqZOC69uOaNAHJKHVn/pTpNQOT5ME5+0vmKpOVx0fjFLgh5D5C16Y63qqUFI5kXkAm4z2mU
- KYgvMD/CnR7F51oYUNv1tBqg6yYfcMjNTAio/GheFEGfmmlryBf4v9jppycVUbESke4vvFj
- 8e872PApDjjVhkD+Wo9OvRJ0gr6KSgS+R8YJKSs6tpRCAZ1k2lOd9aiO6r6CcKTkJYan4pq
- wK35XwQfiJ0ejg4sENat9Xi6s0Klgy2GdqXR1/7VnaEv01r4SqGBIYnaBpcw==
+ bh=O6UyZtJMGWyTXwkf9Ut71gXKM+acqkuQS9WqdrHTITA=;
+ b=ivFYcg1nGh/TgTxwl1rwN/fS7V/wZ9Z6iow3OvOJeoYAfLG0Uj5m8bfqsDMuMiy3fEA3O
+ 4jIxaA0Xg/mGhfVlatZIOmkBiEWtPwpJQ4f7MdZSn4ygPNXthqcps6lvFveGO7ArhfSMOwl
+ Lvyoc88buFI+s4hP0Xrs3BQUNZ1H2XoQJvBrZwMOn20zlGsJLnIcH8WXPj3Ti9ctKkNzbi6
+ IpDEjrahOFmmUhkTKZVpl7ccxwJZxvXrsYLt3P/I0mD5a+EFUsFAo8vc3ivjqZHM7exYQIY
+ k7zUkYp1ymecj/dHgQ0B2/0g04f/mUbMDJdH0H291P5bHFqnibn2Rw/dB2nQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,64 +46,64 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 497D747123
-	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 22:06:24 +0000 (UTC)
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
- [209.85.210.177])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1093610E0F9
-	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 22:21:38 +0000 (UTC)
-Received: by mail-pf1-f177.google.com with SMTP id
- d2e1a72fcca58-8487b7b4066so4753651b3a.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2668847123
+	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 22:06:31 +0000 (UTC)
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
+ [209.85.210.173])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DD93310EE6E
+	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 22:21:44 +0000 (UTC)
+Received: by mail-pf1-f173.google.com with SMTP id
+ d2e1a72fcca58-8485bd28dd0so5395639b3a.2
         for <nouveau@lists.freedesktop.org>;
- Tue, 14 Jul 2026 15:21:38 -0700 (PDT)
+ Tue, 14 Jul 2026 15:21:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784067697; x=1784672497;
+        d=gmail.com; s=20251104; t=1784067704; x=1784672504;
  darn=lists.freedesktop.org;
         h=content-transfer-encoding:content-type:mime-version:user-agent
          :references:in-reply-to:message-id:date:cc:to:from:subject:from:to
          :cc:subject:date:message-id:reply-to:content-type;
-        bh=s/XP8nJGTiSx4jpNVu3XVkKeZD1kh7QswKhz9rXqGp8=;
-        b=Q/DK8wL2mr7Tsbp8UGSA/7t4vh1g9Sm6kw2UE6/AAPVQ+RkPPpTFA5YlDPxOPVL6EW
-         2YJbqVHpLWuD7XVBNc+89GkI3Zkay7E0fICHcKa43onulGNv4B1wV08WB/n8x0lACRYI
-         wEaJ9Zl45/IDlNsH9Lm6oEbiVi5QU0C6hhMiI/Mj/3Xe9qE9BTZ/a4H08xI17A2pSLzy
-         jXgNjUNSiUMc55lXNsCC1eFnkM30ODEJeKTvHzK0sVY+hpxe3mWzL5OmB/G0EI+Lg86I
-         v9MBdSkhJg8BkvfkF5TckqfJiGAN3Sg3jPNBh19nlTk89xaTtu76jZ4nMxBJ86J5GUQl
-         3V+Q==
+        bh=O6UyZtJMGWyTXwkf9Ut71gXKM+acqkuQS9WqdrHTITA=;
+        b=qovwK4d+u27hpvbvCUVjMBJdX25FzMq8uZeMXgsjDHSIn4u1DJK1j1TFqI6w6R/7aM
+         E7iOLA3pmFJZGh1BeWErl8lfaPFVrhWPX1CKv9AbxsFhTgyYqSAh78QLO8JKIsdoeDPx
+         DFr/Ksw1M1QSr7sSESTsJFOR1MEnSruLDpNgFTK2atzVWhZaRC62NVKyju6Wi5UJpx19
+         BfFl8GwkbvNemjZXiyoiGaIiOA0iUYzR+4IMyG64+Cm090NxZ1s4iXTkMeNB1ELJWQab
+         sBd+oYGPJ2UC3DhHqsp+VaaawJbvusOVU2HPj7BPzCbP60S1UjmFNdAuFAh71C5kcmql
+         zSzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784067697; x=1784672497;
+        d=1e100.net; s=20251104; t=1784067704; x=1784672504;
         h=content-transfer-encoding:content-type:mime-version:user-agent
          :references:in-reply-to:message-id:date:cc:to:from:subject:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=s/XP8nJGTiSx4jpNVu3XVkKeZD1kh7QswKhz9rXqGp8=;
-        b=KOoA/xmOkTfwfzg66r5FTPReSVURGU6PY4d//gs63Qr1eFRs9CmTlzqkUmJrM/LcnB
-         mKzoPhg3SeAcroazJLBF3bTPhmXvF7AqJNVDRVeJxH5iXrVtoUwV2nVUO+rt705/Ik6Q
-         hb+2vVWmcNt0b3C2MiIHhmwXhbYgvKFXd6qq6rJ3H1eDN3eQEd8hZSGp3V/hOnlXW3wB
-         c9nWI/hTVjDqk7qWzQ2w6BUL5hTEFtQCRx29baVoZ08PimNAa6Fq1K0s3QJzat5WvYFq
-         j0mmknZB65xqholAFxagzBJNKQneiQMlWHpn+3IvmzuRnFEjefODkadRYD5bHfl3vbFE
-         vlgg==
+        bh=O6UyZtJMGWyTXwkf9Ut71gXKM+acqkuQS9WqdrHTITA=;
+        b=miE5k5snPeD5ORD+AztQ9/tq2YrD1YOVUqmQWcpgaUdYHsPvFgYbgJVzrUZOkmYi08
+         VPHOXPlPkSI85sPtOMA5Cy/35wjiVDBVtABfplKVeEeMsYaOxkBrCZ1WbEc97XaBADAf
+         Ld4ZWksNqyNI+Se0170KNUjnf02qAvNBaENEfcvz/rIkpVy1pHF/i2K2Vmogl/Fi59aF
+         SDANEjZ8eshtKrOYEyScLs7gfADP/s+pxxw77q8E9D2s893tX1yORQ9bIuu4l+Du/Vo1
+         pzFeVZwY4YcxEpADO2h64M3+XmyXa7gTvtnQwrS62sC9bAlXrsRb4cjPdD5jnnQlGStJ
+         fuKg==
 X-Forwarded-Encrypted: i=1;
- AHgh+RoUN5W4GUPvQAqpaw6V5VT0lTGPK+aJelsmPD33zQ+dBjYPdVqqKtnbogDji8j3MF6/MLR+uclv@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyWLgkf6r7qkow1iDaRirii5MCH6YIMSWke510yWOWA7U7H/jUv
-	MylqRNPe9WJgjXcRAvhX1ujWqBZNprb6/bA/UYN8UwoYUtvqAa/vTuNc
-X-Gm-Gg: AfdE7cnoltoDRbAlF/XGTDkRend9+88pQQPHYPw206JPSX0COEYLPhchYk1tBF/rqC+
-	u/yddaMT8QOzYYfaMO9QWeJm19dqOfomYdjUrVuuWpgOgKqcXWHltYm7mQ7Wm0TsQe+p6b9jHZf
-	wE32plV1vL7nVLmyUjfleNmngQX5FefGLeiujv3pnBwwmJNw2YqBT58Eu1AWpoABHP4NnEoMJ4T
-	+pXPF5hQ7GZTDv1rAcZBAbvH0uA00s3zquCKx0nkGo6cNojfCUUJOpJL8nu57CPly1HVOaUbWUs
-	+ZfjJnONZ9SQM9Ww3Ohne+rah2ehDAnBiXwzm/VhUjYwpRX86lJ7grFLAQjq84gPmbe0YRY/cYy
-	S21ktPbYPkz0yjjModrxZrIpd7pQ4kfcIICjejOBMNLUoEi1baEIqRNYgSPUG/q5K6rKfa+V8C5
-	YAzXG4NwqL/XrhiJJOUqQJ7JpF54vE8XgIi5X7axSSZ+/mJBCkqXH6XD5z3l/19elB+itU5A==
-X-Received: by 2002:a05:6a00:4b13:b0:847:8dec:141f with SMTP id
- d2e1a72fcca58-84a672ea3bfmr293017b3a.51.1784067697563;
-        Tue, 14 Jul 2026 15:21:37 -0700 (PDT)
+ AHgh+RqmZaUX/vipMkuFZAGAw+q0dbP0Gqug0l1xUI87IFtfytC3n4BZgTAQcLKRAUVTFV0nMnCGYoiw@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwDOirxq4KH9JWDgU08cPyRMZxhZWzNhSuhRVnR+aaUEl142YIw
+	xOdGYXbc2eUtcvRGzYzyR4AmYrjxc0DK452E1IopZJcQmVR26PvEQZjD
+X-Gm-Gg: AfdE7clFP7o8fvsV/UWLhOiP1jFrBroVW+dOr8B3hZ6wae+3Htgy88eybawJb/aGJNb
+	1M/F/wu4y2T4SZyeJIwUHbfAwlRXujO6NYSBC3xu0qYH2VoUuP9ryclFZbraf0KVUBVdbieclPi
+	dEFQvfAMz9LjwapyI8o8akod4wLl8j8mFqJo/vabRJz1l92gMDabJmXjG2rvNPRMhfTesUfQ9YZ
+	Q7Ko4znrsOPhxZCgINIcilgdrMCeDHrU/UDZ6AvV2pJAq2RlQj/YVz6LoifvLE44e4t5Sq7niG6
+	0zrh51DgJqQTL9a7cnpM4P71NaS2T+0E9f8htURjIf28B054NQRnMfoH96XGh2OgsIwDDsGs/GV
+	KUmJTP8dR8K6zjLfxUOnl1i/BauAkxZdow0z0JDtkU9Ex/Mo/K/EdVDqLfZON7x1eRVRvYVZRbc
+	sRyV7M6S5etBZB1vt8A6pr1hvZJUE+OWIll1Vclqi4ysh6tkX3xHnPPV9FzRw=
+X-Received: by 2002:a05:6a00:1819:b0:848:4742:90a6 with SMTP id
+ d2e1a72fcca58-84a5140d4b5mr4845081b3a.15.1784067704431;
+        Tue, 14 Jul 2026 15:21:44 -0700 (PDT)
 Received: from [192.168.0.160] (c-98-225-44-182.hsd1.wa.comcast.net.
  [98.225.44.182])
         by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-84a4f238f75sm2119769b3a.9.2026.07.14.15.21.36
+ d2e1a72fcca58-84a4ff2ea4csm2010807b3a.23.2026.07.14.15.21.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 15:21:37 -0700 (PDT)
-Subject: [PATCH v2 2/4] fixup! drm/nouveau: use
- hmm_range_fault_unlocked_timeout() for SVM faults
+        Tue, 14 Jul 2026 15:21:44 -0700 (PDT)
+Subject: [PATCH v2 3/4] fixup! accel/amdxdna: use
+ hmm_range_fault_unlocked_timeout() for range population
 From: Stanislav Kinsburskii <skinsburskii@gmail.com>
 To: airlied@gmail.com, akhilesh@ee.iitb.ac.in, akpm@linux-foundation.org,
  corbet@lwn.net, dakr@kernel.org, david@kernel.org, jgg@ziepe.ca,
@@ -114,16 +114,16 @@ To: airlied@gmail.com, akhilesh@ee.iitb.ac.in, akpm@linux-foundation.org,
  rppt@kernel.org, shuah@kernel.org, simona@ffwll.ch,
  skhan@linuxfoundation.org, skinsburskii@gmail.com, surenb@google.com,
  tzimmermann@suse.de, vbabka@kernel.org
-Date: Tue, 14 Jul 2026 15:21:35 -0700
-Message-ID: <178406769581.1106335.2090301352195900623.stgit@skinsburskii>
+Date: Tue, 14 Jul 2026 15:21:42 -0700
+Message-ID: <178406770278.1106335.17232929459598625570.stgit@skinsburskii>
 In-Reply-To: <178406760622.1106335.2379450382728057793.stgit@skinsburskii>
 References: <178406760622.1106335.2379450382728057793.stgit@skinsburskii>
 User-Agent: StGit/0.19
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID-Hash: KB6B423HPXYQCCTBDABFCKXJGP5NQU35
-X-Message-ID-Hash: KB6B423HPXYQCCTBDABFCKXJGP5NQU35
+Message-ID-Hash: EYXJFI5YUKIEKVDCFJUFFD354OA63EOY
+X-Message-ID-Hash: EYXJFI5YUKIEKVDCFJUFFD354OA63EOY
 X-MailFrom: skinsburskii@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -135,9 +135,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KB6B423HPXYQCCTBDABFCKXJGP5NQU35/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EYXJFI5YUKIEKVDCFJUFFD354OA63EOY/>
 Archived-At: 
- <https://lore.freedesktop.org/178406769581.1106335.2090301352195900623.stgit@skinsburskii/>
+ <https://lore.freedesktop.org/178406770278.1106335.17232929459598625570.stgit@skinsburskii/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -147,57 +147,62 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-nouveau_range_fault() now uses hmm_range_fault_unlocked_timeout() for
-the HMM fault path. Pass the remaining SVM fault timeout into HMM as a
-positive relative timeout instead of open-coding the HMM retry loop in
-nouveau.
+aie2_populate_range() now uses hmm_range_fault_unlocked_timeout() to let
+HMM own mmap_lock acquisition and retry handling while populating an
+invalid user mapping. The timeout passed to that helper is a relative
+HMM retry budget, not an absolute deadline.
 
-Keep the outer absolute timeout around nouveau's
-mmu_interval_read_retry() loop. HMM's timeout only bounds retries while
-HMM is walking and faulting the range. Once HMM returns successfully, a
-continuous stream of mmu-notifier invalidations can still make
-mmu_interval_read_retry() restart the operation. This path runs from the
-GPU fault worker, so fatal signals for the faulting userspace task cannot
-be relied on to break that outer loop.
+Pass HMM_RANGE_DEFAULT_TIMEOUT directly to the HMM helper instead of
+computing the remaining time from a local absolute deadline. The broader
+command submission path still keeps its existing timeout around repeated
+range population attempts, while each HMM fault attempt receives a fresh
+retry budget for HMM's internal mmu-notifier retries.
 
-Use time_after_eq() before the HMM call so the remaining timeout passed
-to HMM is always positive. This preserves the old timeout behavior at the
-expiry boundary and avoids passing 0, which means retry indefinitely, to
-hmm_range_fault_unlocked_timeout().
+Keep the existing driver-visible timeout errno by translating -EBUSY
+from hmm_range_fault_unlocked_timeout() to -ETIME on return.
 
 Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_svm.c |   14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+ drivers/accel/amdxdna/aie2_ctx.c |   12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-index 4cfb6eb7c771..58735446d783 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -678,14 +678,20 @@ static int nouveau_range_fault(struct nouveau_svmm *svmm,
- 	range.end = notifier->notifier.interval_tree.last + 1;
+diff --git a/drivers/accel/amdxdna/aie2_ctx.c b/drivers/accel/amdxdna/aie2_ctx.c
+index 548ba4315554..21f2817751f9 100644
+--- a/drivers/accel/amdxdna/aie2_ctx.c
++++ b/drivers/accel/amdxdna/aie2_ctx.c
+@@ -1037,7 +1037,7 @@ static int aie2_populate_range(struct amdxdna_gem_obj *abo)
+ 	bool found;
+ 	int ret;
  
- 	while (true) {
--		if (time_after(jiffies, timeout)) {
-+		long remaining = timeout - jiffies;
-+
-+		/*
-+		 * The HMM timeout only bounds retries while HMM is walking and
-+		 * faulting the range. This fault is handled by a kernel worker,
-+		 * so fatal signals from the faulting process cannot stop an
-+		 * endless stream of invalidations here.
-+		 */
-+		if (time_after_eq(jiffies, timeout)) {
- 			ret = -EBUSY;
- 			goto out;
- 		}
+-	timeout = jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
++	timeout = msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+ again:
+ 	found = false;
+ 	down_write(&xdna->notifier_lock);
+@@ -1062,13 +1062,9 @@ static int aie2_populate_range(struct amdxdna_gem_obj *abo)
+ 		return -EFAULT;
+ 	}
  
--		ret = hmm_range_fault_unlocked_timeout(&range,
--						       max(timeout - jiffies,
--							   1L));
-+		ret = hmm_range_fault_unlocked_timeout(&range, remaining);
- 		if (ret)
- 			goto out;
+-	ret = hmm_range_fault_unlocked_timeout(&mapp->range,
+-			max_t(long, timeout - jiffies, 1));
+-	if (ret) {
+-		if (ret == -EBUSY)
+-			ret = -ETIME;
++	ret = hmm_range_fault_unlocked_timeout(&mapp->range, timeout);
++	if (ret)
+ 		goto put_mm;
+-	}
  
+ 	down_write(&xdna->notifier_lock);
+ 	if (mmu_interval_read_retry(&mapp->notifier, mapp->range.notifier_seq)) {
+@@ -1086,7 +1082,7 @@ static int aie2_populate_range(struct amdxdna_gem_obj *abo)
+ put_mm:
+ 	amdxdna_umap_put(mapp);
+ 	mmput(mm);
+-	return ret;
++	return ret == -EBUSY ? -ETIME : ret;
+ }
+ 
+ int aie2_cmd_submit(struct amdxdna_hwctx *hwctx, struct amdxdna_sched_job *job, u64 *seq)
 
 
