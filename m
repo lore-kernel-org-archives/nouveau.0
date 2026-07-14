@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 342FDC44507
-	for <nouveau@archiver.kernel.org>; Tue, 14 Jul 2026 21:16:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 708A0C44501
+	for <nouveau@archiver.kernel.org>; Tue, 14 Jul 2026 21:16:27 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 081A010EE69;
-	Tue, 14 Jul 2026 21:16:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 48B9210EE69;
+	Tue, 14 Jul 2026 21:16:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="pwW33CHP";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fQbMoVyK";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 387DA471A8;
-	Tue, 14 Jul 2026 21:00:58 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 75300471AF;
+	Tue, 14 Jul 2026 21:01:13 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784062858;
- b=P58prgRm4R2qTV12EzuXvpxMVEmBGRYgxO+/lgRR0vFL0TCSH9Ju7FsqloJRmcqagderO
- kkUdK+IG6xnK5X3GzBdf9GtgvQk/Mj2jdZeiDqK2/4/FS0hf1+M1Z5majm7C53R7btz329q
- k+rYn3fVBSuIfp8aSXemK9W/IjWwRc4s8w1f1qPBkJ+WQoWTx3VvkWkx/SHe5ZIvhye1LVB
- hl1k76HfaR4FDcErAiQKUqIywvnJ18U7uEybFxX3GKrFkrtCommyY+uBeVrSIEFGVayy6N1
- n5zzXlPzp66Pkn6hkltbRBvxgkySwrdkZS0vZs+MmUi86XLZVEoXRLOGtu+w==
+ s=20240201; t=1784062873;
+ b=hAwBXR1FkUQBLt7aSsVi3/+siCWkeu6oUZTYgl1FVD2oOwGo509laXlvJiOF2aLFVC+M9
+ 9oHbTVIXYDG2qy/kq/AoG+Z6TZv7UI6nujgkgk2ov8pQ0bwZNq3OJuanB/hF7vDC7a98oFp
+ qGTqC6PNB736AwusGAlzXhiFiS4mLdxpkLa39bYFSw4q+VsNw8T1dwn7prZ/Xs+ev/Y0T5H
+ 4v3zYQRbuM/vU0YV9o6C1C04dBCsJKqWX1nZMgGZjJ3ex++KUtp19n8oG0H0kc6q8+saXHk
+ QRdLI0xFAd/vTVyJVtST1XaS0/mvhQYY9q6IgzelIfFFeIxEOM+uJ0mrHuXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784062858; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784062873; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=bz9kHIGdnWOPLJJAKqHaqyiFFf2vvIYbS2hXbNMvzaM=;
- b=mHqK+lv6a2AL70my806XLG4/bYptqZZh1RilK3d/ZrlcZolrjf8xvEE01qZy++p/ruFJG
- D3bccWT0nGKu0JEZJ1ONIv5Beub+h8feQB0Bol5jwyqnH31qEs4eVjL502W0grGbSXzZMaR
- 85ZX18IhvCVCZ5XC2cXsHrDanQDPILFsJALKRCvMRuhom+EQB0lC/zulW5W7jBxUuqpCiJ+
- U+qgV+phFQwuEuJ0vUsDzhVMD5Db0cajZe2G5ClJDRUC8v9O7xw50F+m1B2/Pa7VkCe/o78
- 3wVlFSbAN2C5X/dZOnBZ615ULwd6io4thGeZbfVILqWT8jLBsz9ttnW5YvZA==
+ bh=X/JfNZMwe7UcSWwn7yW5ZC5TyJgrCXJvF4n/jhuqx5Y=;
+ b=pC4paLwXf3rpJn0dxW3/+jFHSn+/uJ4HGzTdjTXesRo7LD+oBkOtiInlW3dHT5CAqVfk4
+ z7abqfpVfTVczh6o9DecU0hDRHrlvVAEKKu1LTzqGW5hxAeGOcoVOYR9yifBPqNZm+JGvwF
+ F28Hsd+qMg9I57Ipp6eJzYBlnFBvrsGZjSdXUBjGfX8VMKGUaQ9bZuz9/n1qgvd1GvycJQD
+ kVHZw8cO0eeU34qDS1WNw9IHLkL8iclIA6KYVXKfPAi8ESeC3ACsnZgD/NrK+kledlKw2wk
+ ZOTWiT1avsLT9Agxru/Nh+c9X2iUNc+teMTjl7SV7V40qyxKgXa9X8C0qL7A==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,72 +46,72 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id DECCE47123
-	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 21:00:54 +0000 (UTC)
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
- [209.85.128.49])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6FE1110EE4C
-	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 21:16:08 +0000 (UTC)
-Received: by mail-wm1-f49.google.com with SMTP id
- 5b1f17b1804b1-493e4ccccc2so30291135e9.2
+	by kara.freedesktop.org (Postfix) with ESMTPS id 8CE1B47123
+	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 21:01:10 +0000 (UTC)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF6510EE5A
+	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 21:16:24 +0000 (UTC)
+Received: by mail-wm1-f48.google.com with SMTP id
+ 5b1f17b1804b1-493d92b7db3so11296615e9.2
         for <nouveau@lists.freedesktop.org>;
- Tue, 14 Jul 2026 14:16:08 -0700 (PDT)
+ Tue, 14 Jul 2026 14:16:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784063767; x=1784668567;
+        d=gmail.com; s=20251104; t=1784063782; x=1784668582;
  darn=lists.freedesktop.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=bz9kHIGdnWOPLJJAKqHaqyiFFf2vvIYbS2hXbNMvzaM=;
-        b=pwW33CHPJE1+Vg+MvchuEpxsZbgdNwn7UP+AJutBB+EgqljZFB/46l30o/+tymWbv6
-         jWNf0mfQpEvl6czjw+hXlBYc2Kvmcu0xa+Tce2NtmVtajQaYcWH9G+KqbRIWnqBQn6uT
-         uS8XyYsRDqjSfuRIwY+JQKmPtbtabrDT/gpHrdxLrSMukS8hnkXXTBMGFJcf55fcBBQn
-         qVexHrdtTe6kSxT/ThSPGU6RrIGUVDxXv9hT1b2NOUDqK3j6dtiAVsFp1NCjF1c+bNo5
-         g42DXEM7LXqdR7pl5aRdJtKJvEPtFxEvT9GYBuj/VBzC18/RaWY0+2/dnc6JtWgrM73Y
-         I2LQ==
+        bh=X/JfNZMwe7UcSWwn7yW5ZC5TyJgrCXJvF4n/jhuqx5Y=;
+        b=fQbMoVyKT2JB0yMGebhkj7GE1buFTIQ0XUGTS+HaD7yArW8St/RVl5QEIXMKUrLbC5
+         +dZbwz4xq9yL9KS+4wLGuuK2KlDbG7lUny8yhHkhcla/F6rxxfwdb0S/3u5lNu9qTmMT
+         bzz1AuAvPByDhI+dQzPIPBwombZWEc8l4571SxNXPBsOBopeB1xYnY4zsbmUUq1udey0
+         sqDaukL8Ye3pmEyGE+4GE3lLMqeuEr+TOpjoFHrcj8cyAdDMZ9aRHrJ/rSgrztxIvBfG
+         yOQD3gXDl5CeNSar65owp0aC94PaLmA1nBl5cipSiyVvQAS8mMGikonmpJvW4R6zuVqd
+         t9EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784063767; x=1784668567;
+        d=1e100.net; s=20251104; t=1784063782; x=1784668582;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=bz9kHIGdnWOPLJJAKqHaqyiFFf2vvIYbS2hXbNMvzaM=;
-        b=otiMlzhuxeVWnLK6Jeo0n0lGvK/8E2kRwoAxEoY1E+vlZy4trfi7cURdkhDupAKt2w
-         kaVHEcfmjYXFSwXRI039ItBi8wEQrG3zzbofs5VL5Yo23EjjjX9g5ciP7PM0EXQWvtD8
-         UMvRv8DSqC+Oeh17q40SbCZQRvltaPYMn8SdvKgTeUK9yxUymhdYkllQG5OXtczDsynl
-         u7P8OROLeZ/TeF+cna2Qd1U0KTI1rU2AsakaOmGD9uIwrZtfxfd2+cKoGGvNznqcxL0J
-         a/pqU5nmtxx4W/X66JLNclfxuYj8jss5WQLZwCWTRA034KIqBjxRK3HZDIe+u2T9vs+B
-         5Dxg==
+        bh=X/JfNZMwe7UcSWwn7yW5ZC5TyJgrCXJvF4n/jhuqx5Y=;
+        b=JvildN/IlMpliy1hpPl5KfHJoQ5i7HmTyn+HbRd+VETUyhYVgui/v00038B/sIMVaL
+         5mn1/O+/CSy0U/jRKiHhwuY9eoYw+dxn/6sQw6nFMgHZd28Lx4hBiTQ2gxayW3/iyWPf
+         zpD7NjwZF9FIRn/nLryznd3scwizSAKZRpC6iqsIcqCtm0xzEgWI3wzFvVpNXBS3fjH5
+         nwIMMX6X+7BxojASS0r8cEF+Hn0WzWJ9T7GBfISt5zlYeY6QSv/3ZLhDWPhP3rxM2lUq
+         m9dEU13R4qUn/wxx7Rv/kazKjoDbHqBDE3tYA+TpOg4ny/nn/sQCMD/WELIjcuLwcKZc
+         QVRw==
 X-Forwarded-Encrypted: i=1;
- AHgh+RpPdbzhJjNE26+EiQASXX8kn7AOWVCUC9gDw3jLWZP/NkTrWf4J2CvUu7xnUoMB/CO/tngoqqUY@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzoF2JZkWo4zbf3pM5ySWG2qOPBDkMnwVvAW3D3qG69WNoDtJvf
-	2ULJa06jiLe/jn/mx9j4ST8xpAIC9WaBzxeBVZbGV24VzOuImgdkQ9CT
-X-Gm-Gg: AfdE7cn4UTMWOUInVRgtw0McdJ0g70cM03gbVs/vuTNPul9jwTYHpD8DjPbiy+rWEX1
-	DpfbtWcA4+sKgtMJCVWb7vTh7OIo8hFuTBdDKZ87n3/bfhP03arDDd8WZ0RxboyFZy66QAjDuLi
-	r1GHT/mV+Y7WhUVRBRHrWiUaZiyCAGC9y/9k5ttzhmtacBpzwWIvkhWsLv0zRiIU9VtxATlgP5f
-	l4OZiyjxkV81rIMd4TEqXU78L2yDId1bkCUfvxV4ufmanlUQ+ZIm/tlfhHNO3RCJI7LvWrkdAyO
-	Hulwc6/M60hyZEDc866VQ+pQfjA0aQu7zgWygU3Jsg9Y7gOzT7dOULc/KxuSDv7cpWSbsSVnf6R
-	1x9lTtht0kPybdfJNMiM2Wps9D/P8U55cn1ZBtUXo/WtdOa9B5fsJi0nKjIJIs1MGv/+3DotzW5
-	m0r+CqCztC/bD8aOFuEkJ3
-X-Received: by 2002:a05:600d:6454:10b0:493:f764:1f69 with SMTP id
- 5b1f17b1804b1-49538992d06mr33976505e9.8.1784063766675;
-        Tue, 14 Jul 2026 14:16:06 -0700 (PDT)
+ AHgh+RpvI1ghUeN9AHMKYTz+lNBaZVtTHKtR6Rs6mFw4FSRYzGdxRsXnqQ82oeTuKdnf2lx7AhLlR0RI@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyznoC0pGl6mhoioyH9KAvSB7WOoaOc5kQsOvEUHrjYTAWBTJW9
+	RGXZcnz6Y8MEXJx4HN1aXKx6ijEIrK4rpKuJvJ8dl65rGQiIn2rNugOy
+X-Gm-Gg: AfdE7clgdQSjyZtyHpyUv0489QWyMhYAdbvahztb0onyFOPl9GqIMHZrxYRLCBT19Pk
+	u+yhA7S3pfPN3+JFSrl66IlrkiqA4McliiVR+EinEHJbSftWXWPOKwHFXtoK0eljkBNpugbWiBa
+	xz9gCb5lc1qj1ftAnw3icbDRN7xQ0Cik5k4nRDYdmFQWIq21hO2Yih+/KQV9wIMtm296RX89bNi
+	JUe4caujF9fEs/WoSDquWW/XMnq1ixsQ16FvCnVlz69TUDUvZFHAAVdIHGhXKSmm6bULJ7Od15Z
+	c2OMdmcTkCwBMbBtVORnLZBMzCPrYbPNAzdbG1YWyC9L6I5D4apEC8qlZJwmC2e0fNlmstOQyAU
+	jmLjdb9KggeQ3JJTNZyQPOl+Ju8e35P1R/X5hhsO1wBFjYckFqEsv19Fzr4HDW0oF+3l65iVE2y
+	SGPlu0Z4/ngRY+N4vpq2f+
+X-Received: by 2002:a05:600c:528d:b0:493:b4cf:d37f with SMTP id
+ 5b1f17b1804b1-493f87e5e0dmr167320825e9.16.1784063781883;
+        Tue, 14 Jul 2026 14:16:21 -0700 (PDT)
 Received: from fedora ([94.205.182.68])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4950a32a2casm149843875e9.12.2026.07.14.14.16.00
+ 5b1f17b1804b1-4950a32a2casm149843875e9.12.2026.07.14.14.16.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 14:16:05 -0700 (PDT)
+        Tue, 14 Jul 2026 14:16:21 -0700 (PDT)
 From: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH 3/6] drm/nouveau: add GSP hwmon support
-Date: Wed, 15 Jul 2026 01:14:26 +0400
-Message-ID: <20260714211429.238355-4-mohamedahmedegypt2001@gmail.com>
+Subject: [PATCH 4/6] drm/nouveau: expose RUSD telemetry via sysfs
+Date: Wed, 15 Jul 2026 01:14:27 +0400
+Message-ID: <20260714211429.238355-5-mohamedahmedegypt2001@gmail.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
 References: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 3TZ3QZNQFM23HZ5CBBENYXRW7TU6IB4S
-X-Message-ID-Hash: 3TZ3QZNQFM23HZ5CBBENYXRW7TU6IB4S
+Message-ID-Hash: ZT32HRCNUACLETGU6ZEVCE5YVPTDB6KU
+X-Message-ID-Hash: ZT32HRCNUACLETGU6ZEVCE5YVPTDB6KU
 X-MailFrom: mohamedahmedegypt2001@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -126,9 +126,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3TZ3QZNQFM23HZ5CBBENYXRW7TU6IB4S/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZT32HRCNUACLETGU6ZEVCE5YVPTDB6KU/>
 Archived-At: 
- <https://lore.freedesktop.org/20260714211429.238355-4-mohamedahmedegypt2001@gmail.com/>
+ <https://lore.freedesktop.org/20260714211429.238355-5-mohamedahmedegypt2001@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -138,537 +138,537 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-GSP boards currently register no hwmon device at all, so every Turing
-through Blackwell user has been running without any temperature or power
-readout. Wire the RUSD telemetry up as the first one:
+Add a "rusd" attribute group under the DRM device
+(/sys/class/drm/cardN/device/rusd/) exposing every GSP-polled RUSD
+telemetry value as its own world-readable file: temperatures, the full
+set of power readings, clocks, GPU/memory/engine utilization, current
+pstate, clock throttle reasons, ECC error counts, memory row-remap
+state and PCIe link counters.
 
-  temp1_input/_label   "gpu"    temperatures[GPU]
-  temp2_input/_label   "vram"   temperatures[HBM], HBM boards only
-  power1_input/average "gpu"    inst/avg GPU power
-  power1_cap                    enforced power limit (read-only)
-  power2_input/average "board"  module power, where supported
-  power3_average       "vram"   memory rail average, where supported
-  update_interval               the programmed RUSD poll interval
+The data that fits hwmon (temperature, power) is already published
+there, this interface is for the rest, which has no hwmon channel type,
+and for tools that want a complete, self-contained view. Each file reads
+one decoded value through nvkm_gsp_rusd_read(). nvkm owns the units and
+conversions, so the show() is a thin wrapper.
 
-All channels are standard hwmon ABI, per-channel visibility is decided
-at registration time from live section validity, since support varies
-per SKU at runtime. If nothing becomes valid, no hwmon device is
-registered, matching today's behaviour on GSP boards.
+The group is created only on GSP-RM boards whose firmware provides RUSD
+(r570+); all files appear when RUSD is active, and a section that is
+unsupported on the board (e.g. ECC on a consumer part) or has not been
+polled yet reads -ENODATA rather than being raced out of existence at
+probe time. Because reads are demand-driven, GSP only polls a value's
+group while its files are being read.
 
-The legacy therm/volt/iccsense paths are untouched and the new
-channels and attributes are gated on RUSD, so pre-GSP boards see no
-change.
+Files are documented in Documentation/ABI/testing/sysfs-driver-nouveau.
 
 Signed-off-by: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_hwmon.c | 375 +++++++++++++++++++-----
- 1 file changed, 294 insertions(+), 81 deletions(-)
+ .../ABI/testing/sysfs-driver-nouveau          | 152 +++++++++++
+ MAINTAINERS                                   |   1 +
+ drivers/gpu/drm/nouveau/Kbuild                |   1 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |   3 +
+ drivers/gpu/drm/nouveau/nouveau_drv.h         |   1 +
+ drivers/gpu/drm/nouveau/nouveau_sysfs.c       | 250 ++++++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_sysfs.h       |  10 +
+ 7 files changed, 418 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-nouveau
+ create mode 100644 drivers/gpu/drm/nouveau/nouveau_sysfs.c
+ create mode 100644 drivers/gpu/drm/nouveau/nouveau_sysfs.h
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-index 726397ab035d..d449431d4a40 100644
---- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-@@ -25,6 +25,8 @@
- #ifdef CONFIG_ACPI
- #include <linux/acpi.h>
- #endif
-+#include <linux/delay.h>
-+#include <linux/jiffies.h>
- #include <linux/power_supply.h>
- #include <linux/hwmon.h>
- #include <linux/hwmon-sysfs.h>
-@@ -32,6 +34,7 @@
- #include "nouveau_drv.h"
+diff --git a/Documentation/ABI/testing/sysfs-driver-nouveau b/Documentation/ABI/testing/sysfs-driver-nouveau
+new file mode 100644
+index 000000000000..947474b9955d
+--- /dev/null
++++ b/Documentation/ABI/testing/sysfs-driver-nouveau
+@@ -0,0 +1,152 @@
++What:		/sys/class/drm/card<n>/device/rusd/
++Date:		June 2026
++Contact:	nouveau <nouveau@lists.freedesktop.org>
++Description:
++		GPU telemetry read from NVIDIA GSP-RM's "RM User Shared Data"
++		(RUSD) buffer. Present only on GSP-RM boards whose firmware
++		supports RUSD (r570 and later); absent otherwise. Each file is
++		a single value, world-readable. GSP polls a value's data group
++		only while files in that group are being read, so the first read
++		after an idle period, and reads of a section not supported on the
++		board, return -ENODATA; a subsequent read returns data once the
++		group has been polled. All files are read-only.
++
++What:		/sys/class/drm/card<n>/device/rusd/temp_gpu
++What:		/sys/class/drm/card<n>/device/rusd/temp_hbm
++Date:		June 2026
++Contact:	nouveau <nouveau@lists.freedesktop.org>
++Description:
++		GPU core and HBM/VRAM temperatures, in millidegrees Celsius.
++		temp_hbm is meaningful only on boards with on-package memory
++		temperature sensing.
++
++What:		/sys/class/drm/card<n>/device/rusd/power_gpu
++What:		/sys/class/drm/card<n>/device/rusd/power_gpu_average
++What:		/sys/class/drm/card<n>/device/rusd/power_board
++What:		/sys/class/drm/card<n>/device/rusd/power_board_average
++What:		/sys/class/drm/card<n>/device/rusd/power_vram_average
++What:		/sys/class/drm/card<n>/device/rusd/power_cpu
++What:		/sys/class/drm/card<n>/device/rusd/power_cap
++What:		/sys/class/drm/card<n>/device/rusd/power_limit_requested
++Date:		June 2026
++Contact:	nouveau <nouveau@lists.freedesktop.org>
++Description:
++		Power readings, in microwatts. power_gpu / power_board /
++		power_cpu are instantaneous GPU, board (module) and CPU power;
++		the *_average variants are time-averaged. power_cap is the
++		enforced power limit and power_limit_requested the requested one
++		(read-only; RUSD does not set limits). Board/module and CPU
++		values are absent on form factors that do not report them (e.g.
++		module power on Ampere/Hopper add-in boards).
++
++What:		/sys/class/drm/card<n>/device/rusd/clock_graphics
++What:		/sys/class/drm/card<n>/device/rusd/clock_memory
++What:		/sys/class/drm/card<n>/device/rusd/clock_video
++What:		/sys/class/drm/card<n>/device/rusd/clock_sm
++Date:		June 2026
++Contact:	nouveau <nouveau@lists.freedesktop.org>
++Description:
++		Target clock frequencies of the graphics, memory, video and SM
++		domains, in MHz. A domain a board does not implement reads 0.
++
++What:		/sys/class/drm/card<n>/device/rusd/util_gpu
++What:		/sys/class/drm/card<n>/device/rusd/util_memory
++What:		/sys/class/drm/card<n>/device/rusd/util_nvenc
++What:		/sys/class/drm/card<n>/device/rusd/util_nvdec
++What:		/sys/class/drm/card<n>/device/rusd/util_nvjpg
++What:		/sys/class/drm/card<n>/device/rusd/util_nvofa
++Date:		June 2026
++Contact:	nouveau <nouveau@lists.freedesktop.org>
++Description:
++		Utilization of the GPU, the memory controller and the NVENC,
++		NVDEC, NVJPG and NVOFA engines, as a percentage (0-100). These
++		are device-global, not per-process.
++
++What:		/sys/class/drm/card<n>/device/rusd/util_nvenc_period
++What:		/sys/class/drm/card<n>/device/rusd/util_nvdec_period
++What:		/sys/class/drm/card<n>/device/rusd/util_nvjpg_period
++What:		/sys/class/drm/card<n>/device/rusd/util_nvofa_period
++Date:		June 2026
++Contact:	nouveau <nouveau@lists.freedesktop.org>
++Description:
++		Sampling period, in microseconds, over which the matching
++		engine utilization above was measured.
++
++What:		/sys/class/drm/card<n>/device/rusd/pstate
++Date:		June 2026
++Contact:	nouveau <nouveau@lists.freedesktop.org>
++Description:
++		Current performance state (P-state) index; lower is higher
++		performance (P0 is maximum).
++
++What:		/sys/class/drm/card<n>/device/rusd/throttle_status
++What:		/sys/class/drm/card<n>/device/rusd/throttle_gpu_idle
++What:		/sys/class/drm/card<n>/device/rusd/throttle_app_clock
++What:		/sys/class/drm/card<n>/device/rusd/throttle_sw_power_cap
++What:		/sys/class/drm/card<n>/device/rusd/throttle_hw_slowdown
++What:		/sys/class/drm/card<n>/device/rusd/throttle_sync_boost
++What:		/sys/class/drm/card<n>/device/rusd/throttle_sw_thermal
++What:		/sys/class/drm/card<n>/device/rusd/throttle_hw_thermal
++What:		/sys/class/drm/card<n>/device/rusd/throttle_hw_power_brake
++What:		/sys/class/drm/card<n>/device/rusd/throttle_display_clock
++Date:		June 2026
++Contact:	nouveau <nouveau@lists.freedesktop.org>
++Description:
++		Clock throttling reasons. throttle_status is the raw bitmask of
++		all active reasons; the remaining files each read 0 or 1 for one
++		reason (GPU idle, application clock setting, software power cap,
++		hardware slowdown, sync boost, software/hardware thermal
++		slowdown, hardware power brake, and display clock setting).
++
++What:		/sys/class/drm/card<n>/device/rusd/ecc_total_ce_volatile
++What:		/sys/class/drm/card<n>/device/rusd/ecc_total_ce_aggregate
++What:		/sys/class/drm/card<n>/device/rusd/ecc_total_ue_volatile
++What:		/sys/class/drm/card<n>/device/rusd/ecc_total_ue_aggregate
++What:		/sys/class/drm/card<n>/device/rusd/ecc_dram_ce_volatile
++What:		/sys/class/drm/card<n>/device/rusd/ecc_dram_ce_aggregate
++What:		/sys/class/drm/card<n>/device/rusd/ecc_dram_ue_volatile
++What:		/sys/class/drm/card<n>/device/rusd/ecc_dram_ue_aggregate
++What:		/sys/class/drm/card<n>/device/rusd/ecc_sram_ce_volatile
++What:		/sys/class/drm/card<n>/device/rusd/ecc_sram_ce_aggregate
++What:		/sys/class/drm/card<n>/device/rusd/ecc_sram_ue_volatile
++What:		/sys/class/drm/card<n>/device/rusd/ecc_sram_ue_aggregate
++Date:		June 2026
++Contact:	nouveau <nouveau@lists.freedesktop.org>
++Description:
++		ECC error counts for total, DRAM and SRAM, split into
++		correctable (ce) and uncorrectable (ue) errors, each as a
++		volatile (since boot) and an aggregate (lifetime) count.
++		Present only on boards with ECC.
++
++What:		/sys/class/drm/card<n>/device/rusd/rowremap_histogram_max
++What:		/sys/class/drm/card<n>/device/rusd/rowremap_histogram_high
++What:		/sys/class/drm/card<n>/device/rusd/rowremap_histogram_partial
++What:		/sys/class/drm/card<n>/device/rusd/rowremap_histogram_low
++What:		/sys/class/drm/card<n>/device/rusd/rowremap_histogram_none
++What:		/sys/class/drm/card<n>/device/rusd/rowremap_correctable
++What:		/sys/class/drm/card<n>/device/rusd/rowremap_uncorrectable
++What:		/sys/class/drm/card<n>/device/rusd/rowremap_pending
++What:		/sys/class/drm/card<n>/device/rusd/rowremap_failure
++Date:		June 2026
++Contact:	nouveau <nouveau@lists.freedesktop.org>
++Description:
++		Memory row-remapping state. The histogram_* files count memory
++		banks by remap-resource availability (max/high/partial/low/none);
++		rowremap_correctable and rowremap_uncorrectable count remapped
++		rows; rowremap_pending and rowremap_failure read 0 or 1. Present
++		only on boards with row remapping (datacenter parts).
++
++What:		/sys/class/drm/card<n>/device/rusd/pcie_gen
++What:		/sys/class/drm/card<n>/device/rusd/pcie_linecode_errors
++What:		/sys/class/drm/card<n>/device/rusd/pcie_crc_errors
++What:		/sys/class/drm/card<n>/device/rusd/pcie_naks_received
++What:		/sys/class/drm/card<n>/device/rusd/pcie_failed_l0s_exits
++What:		/sys/class/drm/card<n>/device/rusd/pcie_correctable_errors
++What:		/sys/class/drm/card<n>/device/rusd/pcie_nonfatal_errors
++What:		/sys/class/drm/card<n>/device/rusd/pcie_fatal_errors
++What:		/sys/class/drm/card<n>/device/rusd/pcie_unsupported_requests
++Date:		June 2026
++Contact:	nouveau <nouveau@lists.freedesktop.org>
++Description:
++		PCIe link telemetry. pcie_gen is a packed gen/width bitfield;
++		the remaining files are link error and event counters.
+\ No newline at end of file
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 806bd2d80d15..8ae43f0e83c4 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -8289,6 +8289,7 @@ Q:	https://gitlab.freedesktop.org/drm/nouveau/-/merge_requests
+ B:	https://gitlab.freedesktop.org/drm/nouveau/-/issues
+ C:	irc://irc.oftc.net/nouveau
+ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
++F:	Documentation/ABI/testing/sysfs-driver-nouveau
+ F:	drivers/gpu/drm/nouveau/
+ F:	include/uapi/drm/nouveau_drm.h
+ 
+diff --git a/drivers/gpu/drm/nouveau/Kbuild b/drivers/gpu/drm/nouveau/Kbuild
+index 385d24530d1e..00d81133533d 100644
+--- a/drivers/gpu/drm/nouveau/Kbuild
++++ b/drivers/gpu/drm/nouveau/Kbuild
+@@ -26,6 +26,7 @@ nouveau-$(CONFIG_COMPAT) += nouveau_ioc32.o
+ nouveau-$(CONFIG_LEDS_CLASS) += nouveau_led.o
+ nouveau-y += nouveau_nvif.o
+ nouveau-$(CONFIG_NOUVEAU_PLATFORM_DRIVER) += nouveau_platform.o
++nouveau-y += nouveau_sysfs.o
+ nouveau-y += nouveau_vga.o
+ 
+ # DRM - memory management
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index e16f59b00f6f..49f73f295664 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -60,6 +60,7 @@
+ #include "nouveau_vga.h"
+ #include "nouveau_led.h"
  #include "nouveau_hwmon.h"
++#include "nouveau_sysfs.h"
+ #include "nouveau_acpi.h"
+ #include "nouveau_bios.h"
+ #include "nouveau_ioctl.h"
+@@ -591,6 +592,7 @@ nouveau_drm_device_fini(struct nouveau_drm *drm)
+ 	nouveau_dmem_fini(drm);
+ 	nouveau_svm_fini(drm);
+ 	nouveau_hwmon_fini(dev);
++	nouveau_sysfs_fini(drm);
+ 	nouveau_debugfs_fini(drm);
  
-+#include <nvkm/subdev/gsp.h>
- #include <nvkm/subdev/iccsense.h>
- #include <nvkm/subdev/volt.h>
- 
-@@ -215,10 +218,11 @@ static const struct hwmon_channel_info * const nouveau_info[] = {
- 	HWMON_CHANNEL_INFO(chip,
- 			   HWMON_C_UPDATE_INTERVAL),
- 	HWMON_CHANNEL_INFO(temp,
--			   HWMON_T_INPUT |
-+			   HWMON_T_INPUT | HWMON_T_LABEL |
- 			   HWMON_T_MAX | HWMON_T_MAX_HYST |
- 			   HWMON_T_CRIT | HWMON_T_CRIT_HYST |
--			   HWMON_T_EMERGENCY | HWMON_T_EMERGENCY_HYST),
-+			   HWMON_T_EMERGENCY | HWMON_T_EMERGENCY_HYST,
-+			   HWMON_T_INPUT | HWMON_T_LABEL),
- 	HWMON_CHANNEL_INFO(fan,
- 			   HWMON_F_INPUT),
- 	HWMON_CHANNEL_INFO(in,
-@@ -228,7 +232,10 @@ static const struct hwmon_channel_info * const nouveau_info[] = {
- 	HWMON_CHANNEL_INFO(pwm,
- 			   HWMON_PWM_INPUT | HWMON_PWM_ENABLE),
- 	HWMON_CHANNEL_INFO(power,
--			   HWMON_P_INPUT | HWMON_P_CAP_MAX | HWMON_P_CRIT),
-+			   HWMON_P_INPUT | HWMON_P_MAX | HWMON_P_CRIT |
-+			   HWMON_P_AVERAGE | HWMON_P_CAP | HWMON_P_LABEL,
-+			   HWMON_P_INPUT | HWMON_P_AVERAGE | HWMON_P_LABEL,
-+			   HWMON_P_AVERAGE | HWMON_P_LABEL),
- 	NULL
- };
- 
-@@ -243,52 +250,144 @@ nouveau_chip_is_visible(const void *data, u32 attr, int channel)
+ 	if (dev->mode_config.num_crtc)
+@@ -675,6 +677,7 @@ nouveau_drm_device_init(struct nouveau_drm *drm)
  	}
- }
  
--static umode_t
--nouveau_power_is_visible(const void *data, u32 attr, int channel)
-+static bool
-+nouveau_rusd_ok(struct nvkm_gsp *gsp, enum nvkm_gsp_rusd_item item)
- {
--	struct nouveau_drm *drm = nouveau_drm((struct drm_device *)data);
--	struct nvkm_iccsense *iccsense = nvxx_iccsense(drm);
-+	int retries = 3;
+ 	nouveau_debugfs_init(drm);
++	nouveau_sysfs_init(drm);
+ 	nouveau_hwmon_init(dev);
+ 	nouveau_svm_init(drm);
+ 	nouveau_dmem_init(drm);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+index 1c2523e2f92e..a3e343085cc1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+@@ -296,6 +296,7 @@ struct nouveau_drm {
+ 	/* power management */
+ 	struct nouveau_hwmon *hwmon;
+ 	struct nouveau_debugfs *debugfs;
++	bool rusd_sysfs;
+ 
+ 	/* led management */
+ 	struct nouveau_led *led;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_sysfs.c b/drivers/gpu/drm/nouveau/nouveau_sysfs.c
+new file mode 100644
+index 000000000000..f3d9462deaba
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/nouveau_sysfs.c
+@@ -0,0 +1,250 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright (c) 2026 Valve Corp.
++ *
++ * Expose the GPU's RM User Shared Data (RUSD) telemetry, polled by GSP-RM,
++ * as world-readable sysfs files under the DRM device's "rusd" group. Each
++ * file is one decoded value; nvkm owns the units and conversions. A section
++ * that is not supported on this board, or has not been polled yet, reads
++ * -ENODATA. See Documentation/ABI/testing/sysfs-driver-nouveau for units.
++ */
++#include <linux/device.h>
++#include <linux/hwmon-sysfs.h>
++#include <linux/sysfs.h>
++
++#include "nouveau_drv.h"
++#include "nouveau_sysfs.h"
++
++#include <nvkm/subdev/gsp.h>
++
++static ssize_t
++rusd_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct nouveau_drm *drm = dev_get_drvdata(dev);
++	int item = to_sensor_dev_attr(attr)->index;
 +	s64 val;
 +	int ret;
- 
--	if (!iccsense || !iccsense->data_valid || list_empty(&iccsense->rails))
--		return 0;
-+	/* Visibility decisions are made only once at registration. So retry
-+	 * to avoid letting racing a GSP write window (-EAGAIN) hide a channel
-+	 * for good.
-+	 */
-+	do {
-+		ret = nvkm_gsp_rusd_read(gsp, item, &val);
-+		if (ret != -EAGAIN)
-+			break;
-+		usleep_range(100, 200);
-+	} while (--retries);
 +
-+	return ret == 0;
-+}
- 
-+static umode_t
-+nouveau_rusd_power_is_visible(struct nvkm_gsp *gsp, u32 attr, int channel)
-+{
- 	switch (attr) {
- 	case hwmon_power_input:
--		return 0444;
--	case hwmon_power_max:
--		if (iccsense->power_w_max)
-+		if (channel == 0 && nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_GPU))
-+			return 0444;
-+		if (channel == 1 && nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_BOARD))
-+			return 0444;
-+		return 0;
-+	case hwmon_power_average:
-+		if (channel == 0 && nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_GPU_AVG))
-+			return 0444;
-+		if (channel == 1 && nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_BOARD_AVG))
-+			return 0444;
-+		if (channel == 2 && nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_VRAM_AVG))
- 			return 0444;
- 		return 0;
--	case hwmon_power_crit:
--		if (iccsense->power_w_crit)
-+	case hwmon_power_cap:
-+		/* The enforced limit is only telemetry here. Setting it needs ctrls nouveau
-+		 * doesn't implement.
-+		 */
-+		if (channel == 0 && nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_CAP))
- 			return 0444;
- 		return 0;
-+	case hwmon_power_label:
-+		switch (channel) {
-+		case 0:
-+			if (nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_GPU) ||
-+			    nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_GPU_AVG) ||
-+			    nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_CAP))
-+				return 0444;
-+			break;
-+		case 1:
-+			if (nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_BOARD) ||
-+			    nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_BOARD_AVG))
-+				return 0444;
-+			break;
-+		case 2:
-+			if (nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_VRAM_AVG))
-+				return 0444;
-+			break;
-+		}
-+		return 0;
- 	default:
- 		return 0;
- 	}
- }
- 
- static umode_t
--nouveau_temp_is_visible(const void *data, u32 attr, int channel)
-+nouveau_power_is_visible(const void *data, u32 attr, int channel)
- {
- 	struct nouveau_drm *drm = nouveau_drm((struct drm_device *)data);
--	struct nvkm_therm *therm = nvxx_therm(drm);
-+	struct nvkm_iccsense *iccsense = nvxx_iccsense(drm);
-+	struct nvkm_device *device = drm->nvkm;
-+	struct nvkm_gsp *gsp = device->gsp;
- 
--	if (!therm || !therm->attr_get || nvkm_therm_temp_get(therm) < 0)
--		return 0;
-+	if (nvkm_gsp_rusd(gsp))
-+		return nouveau_rusd_power_is_visible(gsp, attr, channel);
-+	else {
-+		if (!iccsense || !iccsense->data_valid || list_empty(&iccsense->rails))
-+			return 0;
- 
--	switch (attr) {
--	case hwmon_temp_input:
--		return 0444;
--	case hwmon_temp_max:
--	case hwmon_temp_max_hyst:
--	case hwmon_temp_crit:
--	case hwmon_temp_crit_hyst:
--	case hwmon_temp_emergency:
--	case hwmon_temp_emergency_hyst:
--		return 0644;
--	default:
--		return 0;
-+		switch (attr) {
-+		case hwmon_power_input:
-+			return 0444;
-+		case hwmon_power_max:
-+			if (iccsense->power_w_max)
-+				return 0444;
-+			return 0;
-+		case hwmon_power_crit:
-+			if (iccsense->power_w_crit)
-+				return 0444;
-+			return 0;
-+		default:
-+			return 0;
-+		}
-+	}
-+}
-+
-+static umode_t
-+nouveau_temp_is_visible(const void *data, u32 attr, int channel)
-+{
-+	struct nouveau_drm *drm = nouveau_drm((struct drm_device *)data);
-+	struct nvkm_therm *therm = nvxx_therm(drm);
-+	struct nvkm_device *device = drm->nvkm;
-+	struct nvkm_gsp *gsp = device->gsp;
-+
-+	if (nvkm_gsp_rusd(gsp)) {
-+		switch (attr) {
-+		case hwmon_temp_input:
-+		case hwmon_temp_label:
-+			if (nouveau_rusd_ok(gsp, channel ? NVKM_GSP_RUSD_TEMP_HBM :
-+							   NVKM_GSP_RUSD_TEMP_GPU))
-+				return 0444;
-+			return 0;
-+		default:
-+			/* No threshold data in the RUSD buffer. */
-+			return 0;
-+		}
-+	} else {
-+		if (!therm || !therm->attr_get || nvkm_therm_temp_get(therm) < 0)
-+			return 0;
-+
-+		switch (attr) {
-+		case hwmon_temp_input:
-+			return 0444;
-+		case hwmon_temp_max:
-+		case hwmon_temp_max_hyst:
-+		case hwmon_temp_crit:
-+		case hwmon_temp_crit_hyst:
-+		case hwmon_temp_emergency:
-+		case hwmon_temp_emergency_hyst:
-+			return 0644;
-+		default:
-+			return 0;
-+		}
- 	}
- }
- 
-@@ -351,9 +450,13 @@ nouveau_fan_is_visible(const void *data, u32 attr, int channel)
- static int
- nouveau_chip_read(struct device *dev, u32 attr, int channel, long *val)
- {
-+	struct nouveau_drm *drm = nouveau_drm(dev_get_drvdata(dev));
-+	struct nvkm_device *device = drm->nvkm;
-+	struct nvkm_gsp *gsp = device->gsp;
-+
- 	switch (attr) {
- 	case hwmon_chip_update_interval:
--		*val = 1000;
-+		*val = nvkm_gsp_rusd(gsp) ? gsp->rusd.poll_ms : 1000;
- 		break;
- 	default:
- 		return -EOPNOTSUPP;
-@@ -368,47 +471,67 @@ nouveau_temp_read(struct device *dev, u32 attr, int channel, long *val)
- 	struct drm_device *drm_dev = dev_get_drvdata(dev);
- 	struct nouveau_drm *drm = nouveau_drm(drm_dev);
- 	struct nvkm_therm *therm = nvxx_therm(drm);
-+	struct nvkm_device *device = drm->nvkm;
-+	struct nvkm_gsp *gsp = device->gsp;
- 	int ret;
- 
--	if (!therm || !therm->attr_get)
--		return -EOPNOTSUPP;
-+	if (nvkm_gsp_rusd(gsp)) {
-+		s64 value;
-+
-+		if (attr != hwmon_temp_input)
-+			return -EOPNOTSUPP;
- 
--	switch (attr) {
--	case hwmon_temp_input:
- 		if (drm_dev->switch_power_state != DRM_SWITCH_POWER_ON)
- 			return -EINVAL;
--		ret = nvkm_therm_temp_get(therm);
--		*val = ret < 0 ? ret : (ret * 1000);
--		break;
--	case hwmon_temp_max:
--		*val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_DOWN_CLK)
--					* 1000;
--		break;
--	case hwmon_temp_max_hyst:
--		*val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_DOWN_CLK_HYST)
--					* 1000;
--		break;
--	case hwmon_temp_crit:
--		*val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_CRITICAL)
--					* 1000;
--		break;
--	case hwmon_temp_crit_hyst:
--		*val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_CRITICAL_HYST)
--					* 1000;
--		break;
--	case hwmon_temp_emergency:
--		*val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_SHUTDOWN)
--					* 1000;
--		break;
--	case hwmon_temp_emergency_hyst:
--		*val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_SHUTDOWN_HYST)
--					* 1000;
--		break;
--	default:
--		return -EOPNOTSUPP;
--	}
- 
--	return 0;
-+		ret = nvkm_gsp_rusd_read(gsp, channel ? NVKM_GSP_RUSD_TEMP_HBM :
-+							NVKM_GSP_RUSD_TEMP_GPU, &value);
-+		if (ret)
-+			return ret;
-+
-+		*val = value;
-+		return 0;
-+	} else {
-+		if (!therm || !therm->attr_get)
-+			return -EOPNOTSUPP;
-+
-+		switch (attr) {
-+		case hwmon_temp_input:
-+			if (drm_dev->switch_power_state != DRM_SWITCH_POWER_ON)
-+				return -EINVAL;
-+			ret = nvkm_therm_temp_get(therm);
-+			*val = ret < 0 ? ret : (ret * 1000);
-+			break;
-+		case hwmon_temp_max:
-+			*val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_DOWN_CLK)
-+						* 1000;
-+			break;
-+		case hwmon_temp_max_hyst:
-+			*val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_DOWN_CLK_HYST)
-+						* 1000;
-+			break;
-+		case hwmon_temp_crit:
-+			*val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_CRITICAL)
-+						* 1000;
-+			break;
-+		case hwmon_temp_crit_hyst:
-+			*val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_CRITICAL_HYST)
-+						* 1000;
-+			break;
-+		case hwmon_temp_emergency:
-+			*val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_SHUTDOWN)
-+						* 1000;
-+			break;
-+		case hwmon_temp_emergency_hyst:
-+			*val = therm->attr_get(therm, NVKM_THERM_ATTR_THRS_SHUTDOWN_HYST)
-+						* 1000;
-+			break;
-+		default:
-+			return -EOPNOTSUPP;
-+		}
-+
-+		return 0;
-+	}
- }
- 
- static int
-@@ -492,34 +615,84 @@ nouveau_pwm_read(struct device *dev, u32 attr, int channel, long *val)
- }
- 
- static int
--nouveau_power_read(struct device *dev, u32 attr, int channel, long *val)
-+nouveau_rusd_power_read(struct drm_device *drm_dev, struct nvkm_gsp *gsp,
-+			u32 attr, int channel, long *val)
- {
--	struct drm_device *drm_dev = dev_get_drvdata(dev);
--	struct nouveau_drm *drm = nouveau_drm(drm_dev);
--	struct nvkm_iccsense *iccsense = nvxx_iccsense(drm);
--
--	if (!iccsense)
--		return -EOPNOTSUPP;
-+	enum nvkm_gsp_rusd_item item;
-+	s64 value;
-+	int ret;
- 
- 	switch (attr) {
- 	case hwmon_power_input:
--		if (drm_dev->switch_power_state != DRM_SWITCH_POWER_ON)
--			return -EINVAL;
--		*val = nvkm_iccsense_read_all(iccsense);
-+		if (channel == 2)
-+			return -EOPNOTSUPP;
-+		item = channel ? NVKM_GSP_RUSD_POWER_BOARD :
-+				 NVKM_GSP_RUSD_POWER_GPU;
- 		break;
--	case hwmon_power_max:
--		*val = iccsense->power_w_max;
-+	case hwmon_power_average:
-+		if (channel == 0)
-+			item = NVKM_GSP_RUSD_POWER_GPU_AVG;
-+		else if (channel == 1)
-+			item = NVKM_GSP_RUSD_POWER_BOARD_AVG;
-+		else
-+			item = NVKM_GSP_RUSD_POWER_VRAM_AVG;
- 		break;
--	case hwmon_power_crit:
--		*val = iccsense->power_w_crit;
-+	case hwmon_power_cap:
-+		if (channel)
-+			return -EOPNOTSUPP;
-+		item = NVKM_GSP_RUSD_POWER_CAP;
- 		break;
- 	default:
- 		return -EOPNOTSUPP;
- 	}
- 
-+	if (drm_dev->switch_power_state != DRM_SWITCH_POWER_ON)
-+		return -EINVAL;
-+
-+	ret = nvkm_gsp_rusd_read(gsp, item, &value);
++	ret = nvkm_gsp_rusd_read(drm->nvkm->gsp, item, &val);
 +	if (ret)
 +		return ret;
 +
-+	*val = value;
-+
- 	return 0;
- }
- 
-+static int
-+nouveau_power_read(struct device *dev, u32 attr, int channel, long *val)
-+{
-+	struct drm_device *drm_dev = dev_get_drvdata(dev);
-+	struct nouveau_drm *drm = nouveau_drm(drm_dev);
-+	struct nvkm_iccsense *iccsense = nvxx_iccsense(drm);
-+	struct nvkm_device *device = drm->nvkm;
-+	struct nvkm_gsp *gsp = device->gsp;
-+
-+	if (nvkm_gsp_rusd(gsp))
-+		return nouveau_rusd_power_read(drm_dev, gsp, attr, channel, val);
-+	else {
-+		if (!iccsense)
-+			return -EOPNOTSUPP;
-+
-+		switch (attr) {
-+		case hwmon_power_input:
-+			if (drm_dev->switch_power_state != DRM_SWITCH_POWER_ON)
-+				return -EINVAL;
-+			*val = nvkm_iccsense_read_all(iccsense);
-+			break;
-+		case hwmon_power_max:
-+			*val = iccsense->power_w_max;
-+			break;
-+		case hwmon_power_crit:
-+			*val = iccsense->power_w_crit;
-+			break;
-+		default:
-+			return -EOPNOTSUPP;
-+		}
-+
-+		return 0;
-+	}
++	return sysfs_emit(buf, "%lld\n", val);
 +}
 +
- static int
- nouveau_temp_write(struct device *dev, u32 attr, int channel, long val)
- {
-@@ -597,6 +770,8 @@ nouveau_is_visible(const void *data, enum hwmon_sensor_types type, u32 attr,
- }
- 
- static const char input_label[] = "GPU core";
-+static const char * const nouveau_temp_labels[] = { "gpu", "vram" };
-+static const char * const nouveau_power_labels[] = { "gpu", "board", "vram" };
- 
- static int
- nouveau_read_string(struct device *dev, enum hwmon_sensor_types type, u32 attr,
-@@ -607,6 +782,18 @@ nouveau_read_string(struct device *dev, enum hwmon_sensor_types type, u32 attr,
- 		return 0;
- 	}
- 
-+	if (type == hwmon_temp && attr == hwmon_temp_label &&
-+	    channel < ARRAY_SIZE(nouveau_temp_labels)) {
-+		*buf = nouveau_temp_labels[channel];
++/* One read-only file per RUSD item; nvkm owns units and conversions. */
++static SENSOR_DEVICE_ATTR(temp_gpu, 0444, rusd_show, NULL, NVKM_GSP_RUSD_TEMP_GPU);
++static SENSOR_DEVICE_ATTR(temp_hbm, 0444, rusd_show, NULL, NVKM_GSP_RUSD_TEMP_HBM);
++static SENSOR_DEVICE_ATTR(power_gpu, 0444, rusd_show, NULL, NVKM_GSP_RUSD_POWER_GPU);
++static SENSOR_DEVICE_ATTR(power_gpu_average, 0444, rusd_show, NULL, NVKM_GSP_RUSD_POWER_GPU_AVG);
++static SENSOR_DEVICE_ATTR(power_board, 0444, rusd_show, NULL, NVKM_GSP_RUSD_POWER_BOARD);
++static SENSOR_DEVICE_ATTR(power_board_average, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_POWER_BOARD_AVG);
++static SENSOR_DEVICE_ATTR(power_vram_average, 0444, rusd_show, NULL, NVKM_GSP_RUSD_POWER_VRAM_AVG);
++static SENSOR_DEVICE_ATTR(power_cap, 0444, rusd_show, NULL, NVKM_GSP_RUSD_POWER_CAP);
++static SENSOR_DEVICE_ATTR(power_cpu, 0444, rusd_show, NULL, NVKM_GSP_RUSD_POWER_CPU);
++static SENSOR_DEVICE_ATTR(power_limit_requested, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_POWER_LIMIT_REQUESTED);
++static SENSOR_DEVICE_ATTR(clock_graphics, 0444, rusd_show, NULL, NVKM_GSP_RUSD_CLOCK_GRAPHICS);
++static SENSOR_DEVICE_ATTR(clock_memory, 0444, rusd_show, NULL, NVKM_GSP_RUSD_CLOCK_MEMORY);
++static SENSOR_DEVICE_ATTR(clock_video, 0444, rusd_show, NULL, NVKM_GSP_RUSD_CLOCK_VIDEO);
++static SENSOR_DEVICE_ATTR(clock_sm, 0444, rusd_show, NULL, NVKM_GSP_RUSD_CLOCK_SM);
++static SENSOR_DEVICE_ATTR(util_gpu, 0444, rusd_show, NULL, NVKM_GSP_RUSD_UTIL_GPU);
++static SENSOR_DEVICE_ATTR(util_memory, 0444, rusd_show, NULL, NVKM_GSP_RUSD_UTIL_MEMORY);
++static SENSOR_DEVICE_ATTR(util_nvenc, 0444, rusd_show, NULL, NVKM_GSP_RUSD_UTIL_NVENC);
++static SENSOR_DEVICE_ATTR(util_nvdec, 0444, rusd_show, NULL, NVKM_GSP_RUSD_UTIL_NVDEC);
++static SENSOR_DEVICE_ATTR(util_nvjpg, 0444, rusd_show, NULL, NVKM_GSP_RUSD_UTIL_NVJPG);
++static SENSOR_DEVICE_ATTR(util_nvofa, 0444, rusd_show, NULL, NVKM_GSP_RUSD_UTIL_NVOFA);
++static SENSOR_DEVICE_ATTR(util_nvenc_period, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_UTIL_NVENC_PERIOD);
++static SENSOR_DEVICE_ATTR(util_nvdec_period, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_UTIL_NVDEC_PERIOD);
++static SENSOR_DEVICE_ATTR(util_nvjpg_period, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_UTIL_NVJPG_PERIOD);
++static SENSOR_DEVICE_ATTR(util_nvofa_period, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_UTIL_NVOFA_PERIOD);
++static SENSOR_DEVICE_ATTR(pstate, 0444, rusd_show, NULL, NVKM_GSP_RUSD_PSTATE);
++static SENSOR_DEVICE_ATTR(throttle_status, 0444, rusd_show, NULL, NVKM_GSP_RUSD_THROTTLE_MASK);
++static SENSOR_DEVICE_ATTR(throttle_gpu_idle, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_THROTTLE_GPU_IDLE);
++static SENSOR_DEVICE_ATTR(throttle_app_clock, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_THROTTLE_APP_CLOCK);
++static SENSOR_DEVICE_ATTR(throttle_sw_power_cap, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_THROTTLE_SW_POWER_CAP);
++static SENSOR_DEVICE_ATTR(throttle_hw_slowdown, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_THROTTLE_HW_SLOWDOWN);
++static SENSOR_DEVICE_ATTR(throttle_sync_boost, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_THROTTLE_SYNC_BOOST);
++static SENSOR_DEVICE_ATTR(throttle_sw_thermal, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_THROTTLE_SW_THERMAL);
++static SENSOR_DEVICE_ATTR(throttle_hw_thermal, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_THROTTLE_HW_THERMAL);
++static SENSOR_DEVICE_ATTR(throttle_hw_power_brake, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_THROTTLE_HW_POWER_BRAKE);
++static SENSOR_DEVICE_ATTR(throttle_display_clock, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_THROTTLE_DISPLAY_CLOCK);
++static SENSOR_DEVICE_ATTR(ecc_total_ce_volatile, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ECC_TOTAL_CE_VOL);
++static SENSOR_DEVICE_ATTR(ecc_total_ce_aggregate, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ECC_TOTAL_CE_AGG);
++static SENSOR_DEVICE_ATTR(ecc_total_ue_volatile, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ECC_TOTAL_UE_VOL);
++static SENSOR_DEVICE_ATTR(ecc_total_ue_aggregate, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ECC_TOTAL_UE_AGG);
++static SENSOR_DEVICE_ATTR(ecc_dram_ce_volatile, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ECC_DRAM_CE_VOL);
++static SENSOR_DEVICE_ATTR(ecc_dram_ce_aggregate, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ECC_DRAM_CE_AGG);
++static SENSOR_DEVICE_ATTR(ecc_dram_ue_volatile, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ECC_DRAM_UE_VOL);
++static SENSOR_DEVICE_ATTR(ecc_dram_ue_aggregate, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ECC_DRAM_UE_AGG);
++static SENSOR_DEVICE_ATTR(ecc_sram_ce_volatile, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ECC_SRAM_CE_VOL);
++static SENSOR_DEVICE_ATTR(ecc_sram_ce_aggregate, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ECC_SRAM_CE_AGG);
++static SENSOR_DEVICE_ATTR(ecc_sram_ue_volatile, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ECC_SRAM_UE_VOL);
++static SENSOR_DEVICE_ATTR(ecc_sram_ue_aggregate, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ECC_SRAM_UE_AGG);
++static SENSOR_DEVICE_ATTR(rowremap_histogram_max, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ROWREMAP_HIST_MAX);
++static SENSOR_DEVICE_ATTR(rowremap_histogram_high, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ROWREMAP_HIST_HIGH);
++static SENSOR_DEVICE_ATTR(rowremap_histogram_partial, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ROWREMAP_HIST_PARTIAL);
++static SENSOR_DEVICE_ATTR(rowremap_histogram_low, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ROWREMAP_HIST_LOW);
++static SENSOR_DEVICE_ATTR(rowremap_histogram_none, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ROWREMAP_HIST_NONE);
++static SENSOR_DEVICE_ATTR(rowremap_correctable, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ROWREMAP_CORRECTABLE);
++static SENSOR_DEVICE_ATTR(rowremap_uncorrectable, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_ROWREMAP_UNCORRECTABLE);
++static SENSOR_DEVICE_ATTR(rowremap_pending, 0444, rusd_show, NULL, NVKM_GSP_RUSD_ROWREMAP_PENDING);
++static SENSOR_DEVICE_ATTR(rowremap_failure, 0444, rusd_show, NULL, NVKM_GSP_RUSD_ROWREMAP_FAILURE);
++static SENSOR_DEVICE_ATTR(pcie_gen, 0444, rusd_show, NULL, NVKM_GSP_RUSD_PCIE_GEN);
++static SENSOR_DEVICE_ATTR(pcie_linecode_errors, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_PCIE_LINECODE_ERRORS);
++static SENSOR_DEVICE_ATTR(pcie_crc_errors, 0444, rusd_show, NULL, NVKM_GSP_RUSD_PCIE_CRC_ERRORS);
++static SENSOR_DEVICE_ATTR(pcie_naks_received, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_PCIE_NAKS_RECEIVED);
++static SENSOR_DEVICE_ATTR(pcie_failed_l0s_exits, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_PCIE_FAILED_L0S_EXITS);
++static SENSOR_DEVICE_ATTR(pcie_correctable_errors, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_PCIE_CORRECTABLE_ERRORS);
++static SENSOR_DEVICE_ATTR(pcie_nonfatal_errors, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_PCIE_NONFATAL_ERRORS);
++static SENSOR_DEVICE_ATTR(pcie_fatal_errors, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_PCIE_FATAL_ERRORS);
++static SENSOR_DEVICE_ATTR(pcie_unsupported_requests, 0444, rusd_show, NULL,
++			  NVKM_GSP_RUSD_PCIE_UNSUPPORTED_REQUESTS);
++
++static struct attribute *rusd_attrs[] = {
++	&sensor_dev_attr_temp_gpu.dev_attr.attr,
++	&sensor_dev_attr_temp_hbm.dev_attr.attr,
++	&sensor_dev_attr_power_gpu.dev_attr.attr,
++	&sensor_dev_attr_power_gpu_average.dev_attr.attr,
++	&sensor_dev_attr_power_board.dev_attr.attr,
++	&sensor_dev_attr_power_board_average.dev_attr.attr,
++	&sensor_dev_attr_power_vram_average.dev_attr.attr,
++	&sensor_dev_attr_power_cap.dev_attr.attr,
++	&sensor_dev_attr_power_cpu.dev_attr.attr,
++	&sensor_dev_attr_power_limit_requested.dev_attr.attr,
++	&sensor_dev_attr_clock_graphics.dev_attr.attr,
++	&sensor_dev_attr_clock_memory.dev_attr.attr,
++	&sensor_dev_attr_clock_video.dev_attr.attr,
++	&sensor_dev_attr_clock_sm.dev_attr.attr,
++	&sensor_dev_attr_util_gpu.dev_attr.attr,
++	&sensor_dev_attr_util_memory.dev_attr.attr,
++	&sensor_dev_attr_util_nvenc.dev_attr.attr,
++	&sensor_dev_attr_util_nvdec.dev_attr.attr,
++	&sensor_dev_attr_util_nvjpg.dev_attr.attr,
++	&sensor_dev_attr_util_nvofa.dev_attr.attr,
++	&sensor_dev_attr_util_nvenc_period.dev_attr.attr,
++	&sensor_dev_attr_util_nvdec_period.dev_attr.attr,
++	&sensor_dev_attr_util_nvjpg_period.dev_attr.attr,
++	&sensor_dev_attr_util_nvofa_period.dev_attr.attr,
++	&sensor_dev_attr_pstate.dev_attr.attr,
++	&sensor_dev_attr_throttle_status.dev_attr.attr,
++	&sensor_dev_attr_throttle_gpu_idle.dev_attr.attr,
++	&sensor_dev_attr_throttle_app_clock.dev_attr.attr,
++	&sensor_dev_attr_throttle_sw_power_cap.dev_attr.attr,
++	&sensor_dev_attr_throttle_hw_slowdown.dev_attr.attr,
++	&sensor_dev_attr_throttle_sync_boost.dev_attr.attr,
++	&sensor_dev_attr_throttle_sw_thermal.dev_attr.attr,
++	&sensor_dev_attr_throttle_hw_thermal.dev_attr.attr,
++	&sensor_dev_attr_throttle_hw_power_brake.dev_attr.attr,
++	&sensor_dev_attr_throttle_display_clock.dev_attr.attr,
++	&sensor_dev_attr_ecc_total_ce_volatile.dev_attr.attr,
++	&sensor_dev_attr_ecc_total_ce_aggregate.dev_attr.attr,
++	&sensor_dev_attr_ecc_total_ue_volatile.dev_attr.attr,
++	&sensor_dev_attr_ecc_total_ue_aggregate.dev_attr.attr,
++	&sensor_dev_attr_ecc_dram_ce_volatile.dev_attr.attr,
++	&sensor_dev_attr_ecc_dram_ce_aggregate.dev_attr.attr,
++	&sensor_dev_attr_ecc_dram_ue_volatile.dev_attr.attr,
++	&sensor_dev_attr_ecc_dram_ue_aggregate.dev_attr.attr,
++	&sensor_dev_attr_ecc_sram_ce_volatile.dev_attr.attr,
++	&sensor_dev_attr_ecc_sram_ce_aggregate.dev_attr.attr,
++	&sensor_dev_attr_ecc_sram_ue_volatile.dev_attr.attr,
++	&sensor_dev_attr_ecc_sram_ue_aggregate.dev_attr.attr,
++	&sensor_dev_attr_rowremap_histogram_max.dev_attr.attr,
++	&sensor_dev_attr_rowremap_histogram_high.dev_attr.attr,
++	&sensor_dev_attr_rowremap_histogram_partial.dev_attr.attr,
++	&sensor_dev_attr_rowremap_histogram_low.dev_attr.attr,
++	&sensor_dev_attr_rowremap_histogram_none.dev_attr.attr,
++	&sensor_dev_attr_rowremap_correctable.dev_attr.attr,
++	&sensor_dev_attr_rowremap_uncorrectable.dev_attr.attr,
++	&sensor_dev_attr_rowremap_pending.dev_attr.attr,
++	&sensor_dev_attr_rowremap_failure.dev_attr.attr,
++	&sensor_dev_attr_pcie_gen.dev_attr.attr,
++	&sensor_dev_attr_pcie_linecode_errors.dev_attr.attr,
++	&sensor_dev_attr_pcie_crc_errors.dev_attr.attr,
++	&sensor_dev_attr_pcie_naks_received.dev_attr.attr,
++	&sensor_dev_attr_pcie_failed_l0s_exits.dev_attr.attr,
++	&sensor_dev_attr_pcie_correctable_errors.dev_attr.attr,
++	&sensor_dev_attr_pcie_nonfatal_errors.dev_attr.attr,
++	&sensor_dev_attr_pcie_fatal_errors.dev_attr.attr,
++	&sensor_dev_attr_pcie_unsupported_requests.dev_attr.attr,
++	NULL,
++};
++
++static const struct attribute_group rusd_group = {
++	.name = "rusd",
++	.attrs = rusd_attrs,
++};
++
++int
++nouveau_sysfs_init(struct nouveau_drm *drm)
++{
++	int ret;
++
++	/*
++	 * Only GPUs running GSP with RUSD registered (r570+) get the group. On
++	 * everything else there is nothing to expose. All files appear when RUSD
++	 * is active. Sections unsupported on a given GPU read -ENODATA.
++	 *
++	 * The group is NOT devm-managed on drm->dev->dev: that device's devres
++	 * outlives nouveau's remove path (which frees the drm and nvkm/gsp
++	 * objects the files read), so it is torn down explicitly in
++	 * nouveau_sysfs_fini() before those objects go away.
++	 */
++	if (!nvkm_gsp_rusd(drm->nvkm->gsp))
 +		return 0;
++
++	ret = device_add_group(drm->dev->dev, &rusd_group);
++	if (ret)
++		return ret;
++
++	drm->rusd_sysfs = true;
++	return 0;
++}
++
++void
++nouveau_sysfs_fini(struct nouveau_drm *drm)
++{
++	if (drm->rusd_sysfs) {
++		device_remove_group(drm->dev->dev, &rusd_group);
++		drm->rusd_sysfs = false;
 +	}
++}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_sysfs.h b/drivers/gpu/drm/nouveau/nouveau_sysfs.h
+new file mode 100644
+index 000000000000..4acd1ea7d3f4
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/nouveau_sysfs.h
+@@ -0,0 +1,10 @@
++/* SPDX-License-Identifier: MIT */
++#ifndef __NOUVEAU_SYSFS_H__
++#define __NOUVEAU_SYSFS_H__
 +
-+	if (type == hwmon_power && attr == hwmon_power_label &&
-+	    channel < ARRAY_SIZE(nouveau_power_labels)) {
-+		*buf = nouveau_power_labels[channel];
-+		return 0;
-+	}
++struct nouveau_drm;
 +
- 	return -EOPNOTSUPP;
- }
- 
-@@ -667,13 +854,39 @@ nouveau_hwmon_init(struct drm_device *dev)
- 	struct nvkm_iccsense *iccsense = nvxx_iccsense(drm);
- 	struct nvkm_therm *therm = nvxx_therm(drm);
- 	struct nvkm_volt *volt = nvxx_volt(drm);
-+	struct nvkm_device *device = drm->nvkm;
-+	struct nvkm_gsp *gsp = device->gsp;
- 	const struct attribute_group *special_groups[N_ATTR_GROUPS];
- 	struct nouveau_hwmon *hwmon;
- 	struct device *hwmon_dev;
-+	bool rusd_active = false;
- 	int ret = 0;
- 	int i = 0;
- 
--	if (!iccsense && !therm && !volt) {
-+	if (nvkm_gsp_rusd(gsp)) {
-+		/* Per-channel visibility is latched below from live RUSD
-+		 * section validity, so wait for GSP-RM's first poll of both
-+		 * requested groups (thermal, power). It is normally completed
-+		 * long before we get here and this is a last resort.
-+		 */
-+		unsigned long timeout = jiffies +
-+			msecs_to_jiffies(2 * gsp->rusd.poll_ms);
-+		bool thermal, power;
++int nouveau_sysfs_init(struct nouveau_drm *drm);
++void nouveau_sysfs_fini(struct nouveau_drm *drm);
 +
-+		for (;;) {
-+			thermal = nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_TEMP_GPU);
-+			power = nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_GPU) ||
-+				nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_GPU_AVG) ||
-+				nouveau_rusd_ok(gsp, NVKM_GSP_RUSD_POWER_CAP);
-+			if ((thermal && power) || !time_before(jiffies, timeout))
-+				break;
-+			msleep(20);
-+		}
-+
-+		rusd_active = thermal || power;
-+	}
-+
-+	if (!iccsense && !therm && !volt && !rusd_active) {
- 		NV_DEBUG(drm, "Skipping hwmon registration\n");
- 		return 0;
- 	}
++#endif
 -- 
 2.55.0
 
