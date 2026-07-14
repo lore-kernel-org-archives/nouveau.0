@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A64CC44501
-	for <nouveau@archiver.kernel.org>; Tue, 14 Jul 2026 21:16:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84B49C43458
+	for <nouveau@archiver.kernel.org>; Tue, 14 Jul 2026 21:34:01 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CD8F110EE6B;
-	Tue, 14 Jul 2026 21:16:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8DF8B10EE6B;
+	Tue, 14 Jul 2026 21:34:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EBoSN8Tn";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JmhMH5bR";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0EC46471B8;
-	Tue, 14 Jul 2026 21:01:30 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id ABCF6471C1;
+	Tue, 14 Jul 2026 21:18:46 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784062889;
- b=OkzLUJDn6fW3XMjRsa/mp+UvgqxcLuBfJxAxW/JVy/LFa3EjF2Tk4D6AR74MNc1AhDAFl
- 8cECZpkZjqi9DEtagIBnwdd3wmcB8/i9bLHYnVv2U3TwdGNA8JRXXBuHD35XrNg1hQMvLEX
- mvJ8Gs8rUj9S7/78693QWOjepyFDdT00q2PTobeCenScuHJSNGA+sxxnqN7itQ1z9fgZxM/
- i9w9YXSeM36auS3WF92n+tm4N5Gq9bJ1/h/xzCbOVWJhL5eDZWl9+Uw1RckCsQZGzIa5E5/
- zcqRMvpIfEV3CNUak2VTD88udcpvrESTw/inIiBnkxxIrChYFazZ6xYhFSww==
+ s=20240201; t=1784063926;
+ b=Z0AEZ+F1MkYC0a2mE7qsohn6WgzhAUTFtCRw27FH4+UyZI6rQeCdlfDOUNIo1BiQuk/7f
+ YyCH+wYmQTF7Bzl7oAR1B/90l1I0XFfqC4uY4wWvS43+OC4P86qUfwfsJRZCjV1tZjuhPzW
+ T33KbKM2KFNea6yGZk0Gtn1o3++xyVAb6cgR6Nbswu0n/bf2WXVVXhL4nVfJcAFKN9I6QAP
+ julcCKGuxeswhdZqyhROv0bprhqUz8qp5xGUxGFgz87gS73EHGGQmyfJfQyEGSCrbHfJsEj
+ R5RZgdHg6zYxDkuMMgeHaUkgIAxDr4cWhLeSHf33ClX05AsXL7lTjo0MYCEg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784062889; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784063926; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=wrK+Sd17cLzydvVRL/tfKym7HELklqSlzTyYKNyJadE=;
- b=OOEwPBCup4mk2TyCTsF+ZWZra+Yeu0WOiqI6VMrnZ3ptR6a77wJzkj7y3L+egCGNXITqo
- +LHfqTc1jQiQN7VKu+4Ydz34HqhTWphK5XrJcGogNqRwz8P0OQ7v1FD7+I4ADMstfnOw7pi
- hoTQLjsQp3MKDaJxO5aCIH8yGKnVNbk99Jzn/MoAmhXAbtcTBzPFzRQXRpxy2W0IfaMW4d8
- U/g5jd2l1jGxRE+PYjbH4Pk5SbBkF7cZ7PcDZmktOzHjGrNK/HyFpILL4jcTXjKvqLtiaEx
- JJd/SThSSPImaWamNIVL6hhjSEBnE6n1DWeB4snAvyCz/i8fRos+g5NTTPYQ==
+ bh=zebbIro5mkXbuDBJ5TKnPBr9hFGew4CMfA/H27lS0KU=;
+ b=VdGdVuMA3XN9jzQr59Fdshp49ecOrDsOx2brI5+SvQrKDvl9D367WxpzqtOgTSDuLvkcB
+ AGGzqKG26Jmzly+LXY9oyDKetYm4+n+ut7oTh7epSeF4Ggk7qdwhr+ix+P+Av7iBs1Z5Eat
+ qsDI/TQpNb4WEL80n+qCQ30YS4nnQ+GjZd7czy6psZ8BmgHl0yybM0G1vdFY2gdAcvjfmmj
+ bo1TcCFyBb6LXTohdvuOgdH/Z/58P3FV7XrFnRuSJhC4SWmAfhY7iUjIm1b6l6asoJWqdAZ
+ 6YroOdhcf7AHGzsLwqE6++8zQiG+9+l1ZTKWQncEV304nwo642fuu9z6fBmA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,89 +46,97 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4A61F47123
-	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 21:01:27 +0000 (UTC)
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CA73310EE5A
-	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 21:16:40 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-493f60208a5so40472255e9.3
+	by kara.freedesktop.org (Postfix) with ESMTPS id CCCCE47123
+	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 21:18:43 +0000 (UTC)
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+ [209.85.214.171])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7B28010EE6C
+	for <nouveau@lists.freedesktop.org>; Tue, 14 Jul 2026 21:33:57 +0000 (UTC)
+Received: by mail-pl1-f171.google.com with SMTP id
+ d9443c01a7336-2ced3386430so13090455ad.1
         for <nouveau@lists.freedesktop.org>;
- Tue, 14 Jul 2026 14:16:40 -0700 (PDT)
+ Tue, 14 Jul 2026 14:33:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784063799; x=1784668599;
+        d=gmail.com; s=20251104; t=1784064837; x=1784669637;
  darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=wrK+Sd17cLzydvVRL/tfKym7HELklqSlzTyYKNyJadE=;
-        b=EBoSN8TnB1S8OBgM27K/PmwVw+i5Cqvc0L6/js/TbXsby/lpxn6e/3VRyH4DvQfI+s
-         MtgX7eG4CalYzwhp93uwgL4adzBugWXmNsVMH+cbUj7f5U4Y9OwMNs1Yx/bUJFq/3aOG
-         MnhMg4KE4xWZ/gQ7wdBrGjk+0+XPIBnE2BTCFyFIXmKsif5fkxZfRpk8/edUgX3vYSj/
-         DpVFED95ZwvDX9GRE8tWUJcZ4VoEYcF/ltxfhoWQHdxWsLR1KNHSnvJG/Linab6UaWTq
-         oO67PvNCOcO/tzMkdOzwuf/rm0sc2UA5gt/T6EJjRSocigX1FL/QHXdDJlddMVwXp4TX
-         JgMA==
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=zebbIro5mkXbuDBJ5TKnPBr9hFGew4CMfA/H27lS0KU=;
+        b=JmhMH5bRnq/SXDzgstDegeBbdbJWwWFVQoQVG3EQVY/MKzmKZomRmZzBKRSZmcWZp7
+         e0eU7wyhV1tHy+KNrSQE6+8oeZQu1mE4aiPXLIxIXcH0k78c1Qi6LUgsliGfyYZWS0TW
+         3BHMp5Yo+Qj1iuV0fNyZpsd3k7cBHfVFdl+xvmma9r2su9I17IxkNTl73HBte5k7o2gX
+         U/npZw5mr5OuA9orcIwltQbgJpTJH1nG2fz76K450qWRxkK8fDs0SZ2ECdj4hDNnJOc7
+         G1rfgBJK7dcyuqWWl6r5tUSwBHrUwKi5iSgm8HKZ5EUpkBiw0hOL7NsGiU5E5iBKwa6L
+         ziYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784063799; x=1784668599;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=wrK+Sd17cLzydvVRL/tfKym7HELklqSlzTyYKNyJadE=;
-        b=YitmbVimXC1+SWNX2k40aU3bQ65cQfI27zzJh5XFp+Qywe5zPdhcVImXHjNZ8O6UgW
-         IrybMBUzPyRjBhCVxFXeJppUlGHLPIo6gZxZUK1TIV0zqHq2Pf1sDiO97pHJos5mfqUr
-         LrAJCSkWxjjI0TXbMkWYFE3+d/8Ha7nJCjwnNEyWluCwcb7zcMjggOFlDcpDejYwxtsI
-         Mhj55i32EI56pv/zmJhJHWIzuEsAdTcIG4y1eVlUn4XkrHrVemA9qisoI7crxILKrIlI
-         7Zyi2cUE49h5vASo6ciFUEiBafe5kayv+8sQlH0aZnMP3UgrJcUNx5ITVp/JIh39SizR
-         sT2w==
+        d=1e100.net; s=20251104; t=1784064837; x=1784669637;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=zebbIro5mkXbuDBJ5TKnPBr9hFGew4CMfA/H27lS0KU=;
+        b=pA1+vf0MEPqBjGGHYfn8reBL+FVerZkwMjzLJ9jswNCzNwlhGnAVQ0dLHVVK4Mqv5x
+         6IJ713nkQiJMLvTWMEA+riTa9eIBuo2L7iQAAB4mTPbCosIqRoiAYnHagrH/x9ugweyz
+         pdnJR/IJF7RIuMRsX3UcgO2ezbcv1tbuJmImSMqut1Z2di2pp94ZykTL1DoR36F92bUo
+         WB3f/JFmL/0bSCzew4juOs1zPGaKlFfLW5tyA3tY3NojsyT1hwKPbgZAXPpXwyzbTM5i
+         /QpDSZEe5fDA2Og+lBF8FHkdMGcXdAHp+t5NnW/NNQgMPjV+6e6hwFQS+BrCPIARqDsw
+         YZdA==
 X-Forwarded-Encrypted: i=1;
- AHgh+Rpfic5Qv+MGsEgjKgzKHP3LiGwVyDWNxKar/HPuoqLJdC5uM89Q57YIs0VRlQ8v0QCChJojwKOy@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwTheX3SKg0AbHXQZY9iw3OXwclhlkh40E6jjnDw+Vvq3vRGS7V
-	tL2QN49N78QGCYuIr5zCEvJxNORtCmnypIEsNPDx5rwX7Zxx2rOVc2Vn
-X-Gm-Gg: AfdE7clYDcIdQMbT8qWai1YDM2qjCVpXf+jju8nlKlrZuObl5C2cS+m2itwayNVqsf2
-	8kj43DClaKVCKk+QSpWoJVS6HY0VNTMPIR9BWykCYBzjYPMNuQeP1rjkEmqAXdroJD33dcPVEpX
-	mL/cpT3vOca113n/VoXsRX1Ho7S4KcjIVQCZ5oMTwWtub7/EQ4OVpc2xi8ETp6pC6HGkv//rj4E
-	4YBpiT8oj3NL+uMH6q742qDLlgKaOa3Me4nhph5jSyCnsAGHpB7DQJ9CJBANEf1d8MrtD9MCXsB
-	FrcF5WT2S+3mGXrOynGONdD+u/VioxIwYJxrrScwObLfihOkSOYhZG0QUT5yfEkyM9L3RW3YDFT
-	Pw6zDxchKUGy1Y/qs15oGg2x4+as/5m7aVQWkfyntTwEZQqJr9MIVwpO1wYa8z0TMG7M8KWpGKA
-	E8RgVdoBLB8PEuUyKkGbVO
-X-Received: by 2002:a05:600c:3e0d:b0:493:b499:3ef2 with SMTP id
- 5b1f17b1804b1-4953c299474mr4035745e9.37.1784063798959;
-        Tue, 14 Jul 2026 14:16:38 -0700 (PDT)
-Received: from fedora ([94.205.182.68])
+ AHgh+RoT8nz3awJhhqFyMusTH7RWSpuSNstBUBxxucZTMc7JRLZInHZMJ/JBUBQMKI4YRT53AKU8ox6I@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz7Ftx9yQyW0LDR5MlKEbii2qcyKu7rMDmLQ2w14Qqc3Ax1lcIP
+	4KTRC9t1Wa1RWYbrVjrd/ajiJ9eNm8AAgyrUxNjU/9i/0fdGVUAzYDy3
+X-Gm-Gg: AfdE7ckwqowqNHvBLNKfSJyyWZsR+3LYZwA4D5CNOI74E02R08s23WMx6gao1k6lyz8
+	WXwZX+bzi7l4MC6ATBLJ4XlwNspOM3X5irsIw94xI3nFngCugvia/Ugg9FL8z56qsvHQskphXjx
+	tFRylkgUJj+M7rlz0034FnjQYL8+wj+EFtMwCnLRnKhqKl+1VQmEtMGqIGZTbkm3dTg12H7xfP6
+	rQT7ysVW6meXvKNMeNOBAAmqQa2FPzPIqjPkbrO/V0cXi7+f6RYmbdP+4RNkgrswP3o5zQdkCHY
+	OZSWQCSRlZnMLdSo/G6Io77zehcT0l1q52vPEf+vu5nXORNhjszvYpxg8FbokdvLTqXOYgktQCF
+	vX3MnCD+vJIhiN2hFWVBKunQa3Bvw07BWT/ECcomXyC2tudpw4ltl0g//U7y4vjswCOF6jQWhAM
+	xGJFl9sJ1akNCMjZD28Y8rbnE1Ta3LxTHjfFDVLBcwPG2R101rTfKsb/BvSln09CidIA==
+X-Received: by 2002:a17:903:240c:b0:2c8:1c05:16bb with SMTP id
+ d9443c01a7336-2ce9ec0f108mr142192545ad.24.1784064836947;
+        Tue, 14 Jul 2026 14:33:56 -0700 (PDT)
+Received: from skinsburskii (c-98-225-44-182.hsd1.wa.comcast.net.
+ [98.225.44.182])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4950a32a2casm149843875e9.12.2026.07.14.14.16.35
+ d9443c01a7336-2cea6507b5csm55058005ad.72.2026.07.14.14.33.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jul 2026 14:16:38 -0700 (PDT)
-From: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
-To: linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] drm/nouveau: expose per-client GPU usage via fdinfo
-Date: Wed, 15 Jul 2026 01:14:29 +0400
-Message-ID: <20260714211429.238355-7-mohamedahmedegypt2001@gmail.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
-References: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
+        Tue, 14 Jul 2026 14:33:56 -0700 (PDT)
+Date: Tue, 14 Jul 2026 14:33:53 -0700
+From: Stanislav Kinsburskii <skinsburskii@gmail.com>
+To: airlied@gmail.com, akhilesh@ee.iitb.ac.in, akpm@linux-foundation.org,
+	corbet@lwn.net, dakr@kernel.org, david@kernel.org, jgg@ziepe.ca,
+	kees@kernel.org, leon@kernel.org, liam@infradead.org,
+	lizhi.hou@amd.com, ljs@kernel.org, lyude@redhat.com,
+	maarten.lankhorst@linux.intel.com, mamin506@gmail.com,
+	mhocko@suse.com, mripard@kernel.org, nouveau@lists.freedesktop.org,
+	ogabbay@kernel.org, oleg@redhat.com, rppt@kernel.org,
+	shuah@kernel.org, simona@ffwll.ch, skhan@linuxfoundation.org,
+	surenb@google.com, tzimmermann@suse.de, vbabka@kernel.org
+Subject: Re: [PATCH 2/4] fixup! drm/nouveau: use
+ hmm_range_fault_unlocked_timeout() for SVM faults
+Message-ID: <alarQbmnjwtgdBUB@skinsburskii>
+References: <178405975214.1082778.5193079941156341151.stgit@skinsburskii>
+ <178406001808.1082778.17299764648397654220.stgit@skinsburskii>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: JQLT5X3SNAVKR5XP2MWFUWNX4ZZFAI32
-X-Message-ID-Hash: JQLT5X3SNAVKR5XP2MWFUWNX4ZZFAI32
-X-MailFrom: mohamedahmedegypt2001@gmail.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <178406001808.1082778.17299764648397654220.stgit@skinsburskii>
+Message-ID-Hash: XD7SGREMUJZS6OCGJFHXO5XDXX6CUOZS
+X-Message-ID-Hash: XD7SGREMUJZS6OCGJFHXO5XDXX6CUOZS
+X-MailFrom: skinsburskii@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Mary Guillemard <mary@mary.zone>, nouveau@lists.freedesktop.org,
- Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
+ loop; banned-address; member-moderation
+CC: dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, linux-rdma@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JQLT5X3SNAVKR5XP2MWFUWNX4ZZFAI32/>
-Archived-At: 
- <https://lore.freedesktop.org/20260714211429.238355-7-mohamedahmedegypt2001@gmail.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XD7SGREMUJZS6OCGJFHXO5XDXX6CUOZS/>
+Archived-At: <https://lore.freedesktop.org/alarQbmnjwtgdBUB@skinsburskii/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -138,389 +146,83 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-nouveau implemented no DRM fdinfo. Wire it up and report per-client memory
-and per-engine busy time, which monitoring tools consume generically.
+On Tue, Jul 14, 2026 at 01:13:38PM -0700, Stanislav Kinsburskii wrote:
+> nouveau_range_fault() now uses hmm_range_fault_unlocked_timeout() for
+> the HMM fault path. The timeout passed to that helper is meant to bound
+> HMM's internal mmu-notifier retry loop, not the whole nouveau retry loop
+> around mmu_interval_read_retry().
+> 
+> Pass the full relative HMM_RANGE_DEFAULT_TIMEOUT value to
+> hmm_range_fault_unlocked_timeout() on each attempt, and retry from the
+> nouveau-side mmu_interval_read_retry() check with a fresh HMM retry
+> budget. This lets HMM continue when it has made progress, while still
+> preserving a timeout for repeated notifier invalidation retries inside
+> one HMM fault attempt.
+> 
+> This also removes the open-coded absolute deadline and remaining-time
+> calculation from nouveau_range_fault().
+> 
 
-Memory: add a GEM .status callback reporting residency and emit the
-standard stats via drm_show_memory_stats(). This works for every client
-regardless of submission path.
+Sashiko is right. I'll need to do it differently.
+There will be a v2 of this series.
 
-Engine busy time: account it from the DRM scheduler the EXEC/VM_BIND path
-already uses, similar to amdgpu. Each job's drm_sched fence carries
-scheduled/finished timestamps; (finished - scheduled) is folded into a
-per-client per-engine counter when the job retires (nouveau_sched_free_
-job, the per-job hook the scheduler always calls). In-flight jobs are
-tracked on a per-client list and walked at fdinfo read time, adding
-(now - scheduled) so a currently-running client is accounted without
-waiting for its jobs to retire; the resulting non-monotonic correction
-on retire is permitted by drm-usage-stats. The drm_sched core back-fills
-the scheduled timestamp of in-order retiring jobs, so summing these
-intervals approximates the channel's busy wall-clock.
+Thanks,
+Stanislav
 
-The engine a job is accounted against is recorded on its channel at
-allocation time. Only clients using the newer EXEC uAPI produce
-drm-engine-* values, legacy GEM_PUSHBUF submissions bypass the scheduler
-and are not accounted (memory still is). Of the engine classes the current
-uAPI can select, gfx/ce/dec are reachable. enc/jpg/ofa are defined for
-when per-engine channels become selectable.
 
-Signed-off-by: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_abi16.c | 16 +++++
- drivers/gpu/drm/nouveau/nouveau_chan.h  |  2 +
- drivers/gpu/drm/nouveau/nouveau_drm.c   | 19 ++++++
- drivers/gpu/drm/nouveau/nouveau_drv.h   | 27 ++++++++
- drivers/gpu/drm/nouveau/nouveau_exec.c  |  3 +
- drivers/gpu/drm/nouveau/nouveau_gem.c   | 16 +++++
- drivers/gpu/drm/nouveau/nouveau_sched.c | 87 +++++++++++++++++++++++++
- drivers/gpu/drm/nouveau/nouveau_sched.h | 11 ++++
- 8 files changed, 181 insertions(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-index 291203121f0c..63966444d45e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-@@ -439,6 +439,22 @@ nouveau_abi16_ioctl_channel_alloc(ABI16_IOCTL_ARGS)
- 	if (ret)
- 		goto done;
- 
-+	/* Record the channel's engine class for DRM fdinfo accounting. */
-+	switch (engine) {
-+	case NV_DEVICE_HOST_RUNLIST_ENGINES_CE:
-+		chan->chan->fdinfo_engine = NOUVEAU_FDINFO_ENGINE_CE;
-+		break;
-+	case NV_DEVICE_HOST_RUNLIST_ENGINES_MSPDEC:
-+	case NV_DEVICE_HOST_RUNLIST_ENGINES_MSVLD:
-+	case NV_DEVICE_HOST_RUNLIST_ENGINES_MSPPP:
-+		chan->chan->fdinfo_engine = NOUVEAU_FDINFO_ENGINE_DEC;
-+		break;
-+	case NV_DEVICE_HOST_RUNLIST_ENGINES_GR:
-+	default:
-+		chan->chan->fdinfo_engine = NOUVEAU_FDINFO_ENGINE_GFX;
-+		break;
-+	}
-+
- 	/* If we're not using the VM_BIND uAPI, we don't need a scheduler.
- 	 *
- 	 * The client lock is already acquired by nouveau_abi16_get().
-diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.h b/drivers/gpu/drm/nouveau/nouveau_chan.h
-index bb34b0a6082d..22c484dd0bbe 100644
---- a/drivers/gpu/drm/nouveau/nouveau_chan.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_chan.h
-@@ -20,6 +20,8 @@ struct nouveau_channel {
- 	u64 inst;
- 	u32 token;
- 
-+	u8 fdinfo_engine;
-+
- 	struct nvif_object vram;
- 	struct nvif_object gart;
- 	struct nvif_object nvsw;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 49f73f295664..a0264496a7d6 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -35,8 +35,10 @@
- #include <drm/clients/drm_client_setup.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_fbdev_ttm.h>
-+#include <drm/drm_file.h>
- #include <drm/drm_gem_ttm_helper.h>
- #include <drm/drm_ioctl.h>
-+#include <drm/drm_print.h>
- #include <drm/drm_vblank.h>
- 
- #include <core/gpuobj.h>
-@@ -262,6 +264,9 @@ nouveau_cli_init(struct nouveau_drm *drm, const char *sname,
- 	INIT_LIST_HEAD(&cli->worker);
- 	mutex_init(&cli->lock);
- 
-+	spin_lock_init(&cli->fdinfo.lock);
-+	INIT_LIST_HEAD(&cli->fdinfo.jobs);
-+
- 	mutex_lock(&drm->client_mutex);
- 	ret = nvif_client_ctor(&drm->_client, cli->name, &cli->base);
- 	mutex_unlock(&drm->client_mutex);
-@@ -1347,6 +1352,18 @@ nouveau_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
- 	return ret;
- }
- 
-+static void
-+nouveau_show_fdinfo(struct drm_printer *p, struct drm_file *file)
-+{
-+	struct nouveau_cli *cli = nouveau_cli(file);
-+
-+	/* Per-engine busy time of this client's EXEC jobs, then the standard
-+	 * per-region memory stats
-+	 */
-+	nouveau_sched_show_fdinfo(cli, p);
-+	drm_show_memory_stats(p, file);
-+}
-+
- static const struct file_operations
- nouveau_driver_fops = {
- 	.owner = THIS_MODULE,
-@@ -1360,6 +1377,7 @@ nouveau_driver_fops = {
- 	.compat_ioctl = nouveau_compat_ioctl,
- #endif
- 	.llseek = noop_llseek,
-+	.show_fdinfo = drm_show_fdinfo,
- 	.fop_flags = FOP_UNSIGNED_OFFSET,
- };
- 
-@@ -1372,6 +1390,7 @@ driver_stub = {
- 			   DRIVER_RENDER,
- 	.open = nouveau_drm_open,
- 	.postclose = nouveau_drm_postclose,
-+	.show_fdinfo = PTR_IF(IS_ENABLED(CONFIG_PROC_FS), nouveau_show_fdinfo),
- 
- #if defined(CONFIG_DEBUG_FS)
- 	.debugfs_init = nouveau_drm_debugfs_init,
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index a8ca86556e2f..ced15ee1aa65 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -65,6 +65,19 @@
- struct nouveau_channel;
- struct platform_device;
- 
-+/* Engine classes tracked for DRM fdinfo per-client utilisation. The value
-+ * NOUVEAU_FDINFO_ENGINE_COUNT doubles as "not accounted"
-+ */
-+enum nouveau_fdinfo_engine {
-+	NOUVEAU_FDINFO_ENGINE_GFX,	/* graphics/compute (GR) */
-+	NOUVEAU_FDINFO_ENGINE_CE,	/* copy */
-+	NOUVEAU_FDINFO_ENGINE_DEC,	/* video decode */
-+	NOUVEAU_FDINFO_ENGINE_ENC,	/* video encode */
-+	NOUVEAU_FDINFO_ENGINE_JPG,	/* jpeg */
-+	NOUVEAU_FDINFO_ENGINE_OFA,	/* optical flow */
-+	NOUVEAU_FDINFO_ENGINE_COUNT,
-+};
-+
- #include "nouveau_fence.h"
- #include "nouveau_bios.h"
- #include "nouveau_sched.h"
-@@ -114,6 +127,20 @@ struct nouveau_cli {
- 	struct work_struct work;
- 	struct list_head worker;
- 	struct mutex lock;
-+
-+	/* Per-client engine busy-time accounting for DRM fdinfo.
-+	 *
-+	 * @engine_ns holds the accumulated busy time of retired jobs per
-+	 * engine; @jobs is the list of in-flight jobs, walked at fdinfo read
-+	 * time to additionally account currently-running work. Both are
-+	 * protected by @lock (a leaf spinlock taken from the job free path and
-+	 * from the fdinfo show callback)
-+	 */
-+	struct {
-+		spinlock_t lock;
-+		struct list_head jobs;
-+		u64 engine_ns[NOUVEAU_FDINFO_ENGINE_COUNT];
-+	} fdinfo;
- };
- 
- struct nouveau_cli_work {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_exec.c b/drivers/gpu/drm/nouveau/nouveau_exec.c
-index a08ab1cfea9b..1215f0669d0d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_exec.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_exec.c
-@@ -255,6 +255,9 @@ nouveau_exec_job_init(struct nouveau_exec_job **pjob,
- 	if (ret)
- 		goto err_free_pushs;
- 
-+	/* Account this job's busy time against the channel's engine in fdinfo */
-+	job->base.engine = job->chan->fdinfo_engine;
-+
- 	return 0;
- 
- err_free_pushs:
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index 20dba02d6175..76fbde516722 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -214,10 +214,26 @@ nouveau_gem_object_close(struct drm_gem_object *gem, struct drm_file *file_priv)
- 	ttm_bo_unreserve(&nvbo->bo);
- }
- 
-+static enum drm_gem_object_status
-+nouveau_gem_object_status(struct drm_gem_object *gem)
-+{
-+	struct nouveau_bo *nvbo = nouveau_gem_object(gem);
-+	enum drm_gem_object_status status = 0;
-+
-+	/* nouveau has no userspace madvise/purgeable concept, so only
-+	 * residency is reported
-+	 */
-+	if (nvbo->bo.resource)
-+		status |= DRM_GEM_OBJECT_RESIDENT;
-+
-+	return status;
-+}
-+
- const struct drm_gem_object_funcs nouveau_gem_object_funcs = {
- 	.free = nouveau_gem_object_del,
- 	.open = nouveau_gem_object_open,
- 	.close = nouveau_gem_object_close,
-+	.status = nouveau_gem_object_status,
- 	.export = nouveau_gem_prime_export,
- 	.pin = nouveau_gem_prime_pin,
- 	.unpin = nouveau_gem_prime_unpin,
-diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
-index 2cbae003d6de..219cc8f621ce 100644
---- a/drivers/gpu/drm/nouveau/nouveau_sched.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
-@@ -1,6 +1,8 @@
- // SPDX-License-Identifier: MIT
- 
-+#include <linux/ktime.h>
- #include <linux/slab.h>
-+#include <drm/drm_print.h>
- #include <drm/gpu_scheduler.h>
- #include <drm/drm_syncobj.h>
- 
-@@ -22,6 +24,64 @@ enum nouveau_sched_priority {
- 	NOUVEAU_SCHED_PRIORITY_COUNT,
- };
- 
-+/* Busy time of a single job for fdinfo accounting: (finished - scheduled)
-+ * once the job has retired, or (now - scheduled) while it is still running
-+ *
-+ * The drm_sched core back-fills the scheduled timestamp of an in-order
-+ * retiring job with the previous job's finished timestamp, so summing these
-+ * intervals over a channel's jobs approximates its busy wall-clock without
-+ * double counting work that overlapped in the pipe
-+ */
-+static u64
-+nouveau_job_busy_ns(struct nouveau_job *job)
-+{
-+	struct drm_sched_fence *s_fence = job->base.s_fence;
-+
-+	if (!s_fence ||
-+	    !test_bit(DMA_FENCE_FLAG_TIMESTAMP_BIT, &s_fence->scheduled.flags))
-+		return 0;
-+
-+	if (!test_bit(DMA_FENCE_FLAG_TIMESTAMP_BIT, &s_fence->finished.flags))
-+		return ktime_to_ns(ktime_sub(ktime_get(),
-+					     s_fence->scheduled.timestamp));
-+
-+	return ktime_to_ns(ktime_sub(s_fence->finished.timestamp,
-+				     s_fence->scheduled.timestamp));
-+}
-+
-+static const char * const
-+nouveau_fdinfo_engine_name[NOUVEAU_FDINFO_ENGINE_COUNT] = {
-+	[NOUVEAU_FDINFO_ENGINE_GFX] = "gfx",
-+	[NOUVEAU_FDINFO_ENGINE_CE]  = "ce",
-+	[NOUVEAU_FDINFO_ENGINE_DEC] = "dec",
-+	[NOUVEAU_FDINFO_ENGINE_ENC] = "enc",
-+	[NOUVEAU_FDINFO_ENGINE_JPG] = "jpg",
-+	[NOUVEAU_FDINFO_ENGINE_OFA] = "ofa",
-+};
-+
-+void
-+nouveau_sched_show_fdinfo(struct nouveau_cli *cli, struct drm_printer *p)
-+{
-+	u64 engine_ns[NOUVEAU_FDINFO_ENGINE_COUNT];
-+	struct nouveau_job *job;
-+	unsigned int i;
-+
-+	spin_lock(&cli->fdinfo.lock);
-+	for (i = 0; i < NOUVEAU_FDINFO_ENGINE_COUNT; i++)
-+		engine_ns[i] = cli->fdinfo.engine_ns[i];
-+
-+	/* Add the busy time of currently in-flight jobs so a running client is
-+	 * accounted without waiting for its jobs to retire
-+	 */
-+	list_for_each_entry(job, &cli->fdinfo.jobs, fdinfo_entry)
-+		engine_ns[job->engine] += nouveau_job_busy_ns(job);
-+	spin_unlock(&cli->fdinfo.lock);
-+
-+	for (i = 0; i < NOUVEAU_FDINFO_ENGINE_COUNT; i++)
-+		drm_printf(p, "drm-engine-%s:\t%llu ns\n",
-+			   nouveau_fdinfo_engine_name[i], engine_ns[i]);
-+}
-+
- int
- nouveau_job_init(struct nouveau_job *job,
- 		 struct nouveau_job_args *args)
-@@ -30,6 +90,8 @@ nouveau_job_init(struct nouveau_job *job,
- 	int ret;
- 
- 	INIT_LIST_HEAD(&job->entry);
-+	INIT_LIST_HEAD(&job->fdinfo_entry);
-+	job->engine = NOUVEAU_FDINFO_ENGINE_COUNT;
- 
- 	job->file_priv = args->file_priv;
- 	job->cli = nouveau_cli(args->file_priv);
-@@ -308,6 +370,16 @@ nouveau_job_submit(struct nouveau_job *job)
- 	list_add(&job->entry, &sched->job.list.head);
- 	spin_unlock(&sched->job.list.lock);
- 
-+	/* Track in-flight jobs for fdinfo per-engine accounting. The job is
-+	 * removed (and its busy time folded in) from nouveau_sched_free_job(),
-+	 * which the scheduler guarantees to call once for every pushed job.
-+	 */
-+	if (job->engine < NOUVEAU_FDINFO_ENGINE_COUNT) {
-+		spin_lock(&job->cli->fdinfo.lock);
-+		list_add_tail(&job->fdinfo_entry, &job->cli->fdinfo.jobs);
-+		spin_unlock(&job->cli->fdinfo.lock);
-+	}
-+
- 	drm_sched_job_arm(&job->base);
- 	job->done_fence = dma_fence_get(&job->base.s_fence->finished);
- 	if (job->sync)
-@@ -388,6 +460,21 @@ nouveau_sched_free_job(struct drm_sched_job *sched_job)
- {
- 	struct nouveau_job *job = to_nouveau_job(sched_job);
- 
-+	/* Fold the retired job's busy time into the per-client per-engine
-+	 * counter and stop tracking it as in-flight. Done before
-+	 * nouveau_job_fini() since that releases the scheduler fences this
-+	 * reads. The job's finished fence has signalled by now, so
-+	 * nouveau_job_busy_ns() returns (finished - scheduled)
-+	 */
-+	if (job->engine < NOUVEAU_FDINFO_ENGINE_COUNT) {
-+		struct nouveau_cli *cli = job->cli;
-+
-+		spin_lock(&cli->fdinfo.lock);
-+		cli->fdinfo.engine_ns[job->engine] += nouveau_job_busy_ns(job);
-+		list_del(&job->fdinfo_entry);
-+		spin_unlock(&cli->fdinfo.lock);
-+	}
-+
- 	nouveau_job_fini(job);
- }
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.h b/drivers/gpu/drm/nouveau/nouveau_sched.h
-index 20cd1da8db73..fa80f9b996b1 100644
---- a/drivers/gpu/drm/nouveau/nouveau_sched.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_sched.h
-@@ -56,6 +56,14 @@ struct nouveau_job {
- 	struct drm_file *file_priv;
- 	struct nouveau_cli *cli;
- 
-+	/* fdinfo per-engine busy-time accounting: @engine is the engine class
-+	 * this job runs on (NOUVEAU_FDINFO_ENGINE_COUNT == not accounted)
-+	 * @fdinfo_entry links the job into cli->fdinfo.jobs while it is in
-+	 * flight.
-+	 */
-+	enum nouveau_fdinfo_engine engine;
-+	struct list_head fdinfo_entry;
-+
- 	enum dma_resv_usage resv_usage;
- 	struct dma_fence *done_fence;
- 
-@@ -96,6 +104,9 @@ int nouveau_job_submit(struct nouveau_job *job);
- void nouveau_job_done(struct nouveau_job *job);
- void nouveau_job_free(struct nouveau_job *job);
- 
-+struct drm_printer;
-+void nouveau_sched_show_fdinfo(struct nouveau_cli *cli, struct drm_printer *p);
-+
- struct nouveau_sched {
- 	struct drm_gpu_scheduler base;
- 	struct drm_sched_entity entity;
--- 
-2.55.0
-
+> Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_svm.c |   30 ++++++++++--------------------
+>  1 file changed, 10 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> index 4cfb6eb7c771..b1415c2e49fc 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> @@ -655,8 +655,7 @@ static int nouveau_range_fault(struct nouveau_svmm *svmm,
+>  			       unsigned long hmm_flags,
+>  			       struct svm_notifier *notifier)
+>  {
+> -	unsigned long timeout =
+> -		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+> +	unsigned long timeout = msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+>  	/* Have HMM fault pages within the fault window to the GPU. */
+>  	unsigned long hmm_pfns[1];
+>  	struct hmm_range range = {
+> @@ -677,25 +676,16 @@ static int nouveau_range_fault(struct nouveau_svmm *svmm,
+>  	range.start = notifier->notifier.interval_tree.start;
+>  	range.end = notifier->notifier.interval_tree.last + 1;
+>  
+> -	while (true) {
+> -		if (time_after(jiffies, timeout)) {
+> -			ret = -EBUSY;
+> -			goto out;
+> -		}
+> -
+> -		ret = hmm_range_fault_unlocked_timeout(&range,
+> -						       max(timeout - jiffies,
+> -							   1L));
+> -		if (ret)
+> -			goto out;
+> +again:
+> +	ret = hmm_range_fault_unlocked_timeout(&range, timeout);
+> +	if (ret)
+> +		goto out;
+>  
+> -		mutex_lock(&svmm->mutex);
+> -		if (mmu_interval_read_retry(range.notifier,
+> -					    range.notifier_seq)) {
+> -			mutex_unlock(&svmm->mutex);
+> -			continue;
+> -		}
+> -		break;
+> +	mutex_lock(&svmm->mutex);
+> +	if (mmu_interval_read_retry(range.notifier,
+> +				    range.notifier_seq)) {
+> +		mutex_unlock(&svmm->mutex);
+> +		goto again;
+>  	}
+>  
+>  	nouveau_hmm_convert_pfn(drm, &range, args);
+> 
+> 
