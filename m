@@ -4,131 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67D19C44501
-	for <nouveau@archiver.kernel.org>; Thu, 16 Jul 2026 02:27:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E714EC44501
+	for <nouveau@archiver.kernel.org>; Thu, 16 Jul 2026 09:00:07 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EE9DC10E29D;
-	Thu, 16 Jul 2026 02:27:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D8E8F10E760;
+	Thu, 16 Jul 2026 09:00:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R9fSQpZ4";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BR0mxTtD";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 615A5471FB;
-	Thu, 16 Jul 2026 02:12:02 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id B6A18471F6;
+	Thu, 16 Jul 2026 08:44:48 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784167922;
- b=TWGCFdDhhDh2SSP6a9158NJvODetRL/6L8d1pGUI7IwKRfb0oIeHNLVHaoLteRL+MCk/S
- dP95RsJ8ePyVHLDOj8dNRPN5ySMGJgvP0lg8tEfqb9tFzJEGiE3HXnfOX7bRlVm7EgWwN2y
- KkZwabGO+PVCb+A0O+dGoPK57NlC6Q8M+Cz+DOtY4qOSGto1gRmfCVQiYlX5Cqqqm6Ob/6H
- Ln7NhzCBDx3AN6QMgvvm4YHwhJKbTi1ZIX96NlGkDbLLplWepg5PIpchatK90ohd5bOheGY
- 6brSi2zrG7mgPsoS7uFp9gY3vD/+kyuhxuiDuWlonJzvwcNtx7vbHAgMgdEA==
+ s=20240201; t=1784191488;
+ b=L7bm3u/SmjSI7CebTvimI7pX4grlX4njKr55tkMUOh5Xe7RyzIqlhX9LaSpurk/Ppr94t
+ S8kZdmNofbMA12W4E3WsKvQI7VlBx2hGozvzRkMPSpa8govHkNuOB9J9D9HfOMxoKBU6CeI
+ 02yUFuYvj4X62pR5Bf1IsXhE1ZKI7UEJqBucSg8LinbbCk0AZwh0gdZx1HBIgh6juSPwk+A
+ Di9L46oa90CiG0kRRYFZv/cxUpHas5tgy0dFTaiPJ5+xbd2HvhS/fUdiNfT9E9tzllZ0bKh
+ o7R8B7Q7OkSDGa2VkTx39g9OeDbA14YRYEme8dOQ8sm+aKfsF0YI5Mt+hhgw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784167922; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784191488; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=MnEys3wW0UkOJWjz3Ha+uANv3CwPWTTT3M2E+EM5pUI=;
- b=zJ7GWZoanjR+Rcd+iTiI/SJvgc+JcQqRyhv7WzQhuhGMjltttStt2yZOI/2t10LUAwiGA
- vhAfw3xKt75v5bzJmZqkRh+5dBphOPVvD7KkLwkdaJa+WMWvRyUk433hGN0zzTBRHAu/GIi
- 9ZzRM8fPYLGYltpqfvgulUKIISCvf1LofgyC5XZjFtGkgsExljKJ1AaZeP/9bbGmloX0/mP
- QeUwuEpGEzu4Lji8Cu8BjXY4kUuDt2RyiVWNj/LXvfK1lrxeNSuQ6XTFsBEo5gmB6r5PAbx
- iktdzEhPgku8hMQ77+SlPBsGyMuMNOiYQVK9A4Avpx8zwImnh0e3WfAAI2sg==
+ bh=UsgiVynJofsGDlgChmil9QB3MnfHOcPC6h+vljGQO5M=;
+ b=eQduInfjTX+0qU+yykqHkHoR/0afNeBzJuTQhMqhpVaB1qnigEnhWxWlOpx6A6ry/UbJ7
+ ny6F/lJQDHCni5l5MWPX2ol+Y72G59KzO3hVZ3dak1AWJvFts+ru2tR9OfQk9rlS1zX+55f
+ kW59DQSmo+B3q4KaGUyk3ODzhPZ3MTD95aKr4bG9xhHbTAfJwXXpjWcIL40csKHWGqbJGiL
+ 45DMyC+Z/YRoaA9xywbGhuCP6K0vPvas+fWLOxGa6lRrvVtCpkPru1mVVUQIVx3gz1daBqj
+ TBlTZ8nz98pGHm18U7hfkiWQHVnycPfasvyRKL43Iat0BShQgUCDVwSLwtSQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C1DAB46038
-	for <nouveau@lists.freedesktop.org>; Wed, 15 Jul 2026 14:20:57 +0000 (UTC)
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
- [209.85.216.52])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0840310E3C9
-	for <nouveau@lists.freedesktop.org>; Wed, 15 Jul 2026 14:36:13 +0000 (UTC)
-Received: by mail-pj1-f52.google.com with SMTP id
- 98e67ed59e1d1-38e041ea211so2862481a91.0
-        for <nouveau@lists.freedesktop.org>;
- Wed, 15 Jul 2026 07:36:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784126172; x=1784730972;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:sender:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=MnEys3wW0UkOJWjz3Ha+uANv3CwPWTTT3M2E+EM5pUI=;
-        b=R9fSQpZ4QN8fYRI6Rm39VWTVEImb1UEvZZciAohFcVWpODG7FtOIEvKfpZ5L3zT0b5
-         /SqRSVOuK1VH3ZT8wj4Wmdf1sD42rocEzGKDfGd8xGlPkCFKY+KuP9gdAek9svKP6ARS
-         Jk+ixx0x1F2DRugzLm9BcGG+9psKnuyhidD9mBCTdn9pySOHipYwGWr5ys5IQLf81MMC
-         dQr2FlwBsrlx+BGrTSkBfiNXTeIDyAIDrbLls3bK52MraiNOKaNyGh7hU5nHm8lq/vBq
-         9KPGAQboayaAfQRqGJMVqTIIjO03KsXT/kHD3i2ns1GfV3LyUzFSHxV2B7gBEr+9i1gQ
-         lHMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784126172; x=1784730972;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=MnEys3wW0UkOJWjz3Ha+uANv3CwPWTTT3M2E+EM5pUI=;
-        b=YRPvyvjKdnOk6FVRTs/1AVbfiw0HvMprrL9npdU0y8P8Q245SblNw1Wln8FZKdzMFD
-         kECdl+m4oMOmV/AfT17WlAF+lBLZU0EcS+5ZVrVz1ivSxcoJ9mcN3t7MKuFl3AcuBNWY
-         o3Rz/TQKplxQYYeh+2BTdc891qHItJxDIbLkHZivOvOS7HDTCDUzwKt2FtZsx8tD7W8D
-         2NH16cleDnhx+J/YAGg5iBKWlbFKhS0sD4k5gAPHWcfeZC8ayGdNRY05bVep/2ttIik8
-         F9tW9QAqfUuYqrVhDseybrYIH0Au7YAjbRguBIiFPpBnvmfXbur6FPhtgATzrUYUvjpW
-         YvXQ==
-X-Forwarded-Encrypted: i=1;
- AHgh+Roh0nhEa5qtVhENT/CUrpR6wLXW8VntIbn8aGgwEcpXtR9RYEFLZuCwJUCwrG2tcvnvLiHujZ5M@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzBp2o0cppruhIlN+lCtwvVI77FlsRN1li2Zu2sX+DQ3P+vgFqJ
-	mherfyoEGl1PAZeEC2jYCH9L7tf9e4b03j4EKUMbI+LtosojdASAPeP5
-X-Gm-Gg: AfdE7cmGxau8WZIjt8Pd7NqyadtMRs7drAeGpP4K+RQUxtZvKYPVMUKuJRwjunTCWxQ
-	2Ysc3u4NAn2iyqTPdXzAxr58SoMWhhUigIYzno9y5F2KoHIlT6eelopTALGCRb+kf0CR+1BaZ+u
-	E6xxfVYtOLh8fSNuA3yH21pAkSW5InSmNzrDrnqNQaGFYST3Q+qQQP9SBhe8PDW8zGGSEuFIz73
-	bCe28xciRpTReDDv8KUIkzRVLQI10Q6acXkwXnE42EDk4TYsOhlS2EthzWGUNYn0r549e3WeULf
-	nV9IJWzoo92eW2d6DRHbXIqn9lWATLuplNANa2kdOePqxEQQZVzdPnwIX6eYnAxUULNLaDK6TQp
-	Dfhsmg5E4dqXM/93UwinEx+QCYn/5ArX4xRB5sUH3Kxoat9r5xMriGO6u6wPz40E/hut/8Lt9HW
-	btxTW1ib75HED+QMKwFhnb5otBoTUC6/VoGuMhJ0DnU/pAB5/ggUI=
-X-Received: by 2002:a17:90b:3b8b:b0:380:a568:cc4e with SMTP id
- 98e67ed59e1d1-38e1add8e69mr6031307a91.9.1784126172417;
-        Wed, 15 Jul 2026 07:36:12 -0700 (PDT)
-Received: from localhost.localdomain ([2406:7400:90:2db1:3066:c473:74d2:497d])
-        by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-3140e6c08eesm2510724eec.21.2026.07.15.07.36.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jul 2026 07:36:11 -0700 (PDT)
-Sender: Deepak Rao Gaikwad <deepaksraog@gmail.com>
-From: deepakraog <gaikwad.dcg@gmail.com>
-To: Steven Rostedt <rostedt@goodmis.org>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Pekka Paalanen <ppaalanen@gmail.com>,
-	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
-	linux-kernel@vger.kernel.org,
-	nouveau@lists.freedesktop.org,
-	linux-trace-kernel@vger.kernel.org
-Subject: [PATCH] tracing/mmiotrace: fix resource leak on trace_pipe close
-Date: Wed, 15 Jul 2026 20:06:04 +0530
-Message-ID: <20260715143604.14481-1-gaikwad.dcg@gmail.com>
-X-Mailer: git-send-email 2.53.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 11F3F4551C
+	for <nouveau@lists.freedesktop.org>; Thu, 16 Jul 2026 08:44:47 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E766910E30D;
+	Thu, 16 Jul 2026 09:00:03 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 92690419E7;
+	Thu, 16 Jul 2026 09:00:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A5911F000E9;
+	Thu, 16 Jul 2026 08:59:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784192403;
+	bh=UsgiVynJofsGDlgChmil9QB3MnfHOcPC6h+vljGQO5M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=BR0mxTtD79NyM+E7to+Sg+kX0qOHpx7E2BfnMcUEgZ2EyoSZ4EGL5B5ukIsVymHoR
+	 pCzKYCbbOrGCNBCjegopfL1jWmB+lo+DQ6BQv712JV9GZQMb721rP6QTcsT1/IWmDF
+	 R8n8SNFOTBWltXWgup1cNXAS3qDeIvsr5jdqX7YgpPjuXTKnd/YAzHNWTCl/cl8E9u
+	 xRF0jYlSTEiXiU1SIet3tnEi4zUjw9TGA0o96WU8Ujw5BmO7r0sgKfwFP3xcChq06P
+	 VIDMLW3oQJeL6Vj0BL/n6sJkDDH6tziqu2psR+Dxcc7ft0jX7OlZbED/yEUw1qXzMw
+	 BIS4+0y3fbPgA==
+Message-ID: <e9d0ade4-cf87-4e8d-90ec-50ddb5249b24@kernel.org>
+Date: Thu, 16 Jul 2026 10:59:56 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MailFrom: gaikwad.dcg@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] mm/hmm: Clarify notifier retry state and scope HMM
+ timeouts
+To: Andrew Morton <akpm@linux-foundation.org>,
+ Stanislav Kinsburskii <skinsburskii@gmail.com>
+References: <178406760622.1106335.2379450382728057793.stgit@skinsburskii>
+ <4300f09b-8f93-4605-b072-7c09a82cb16e@kernel.org>
+ <alecaJ1FUso39D9k@skinsburskii> <alet21wLwM6P_Km2@lucifer>
+ <ale3ydkx1xt6ruuP@skinsburskii>
+ <20260715101432.99957d2d33203fafe4af2e1c@linux-foundation.org>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <20260715101432.99957d2d33203fafe4af2e1c@linux-foundation.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: TTHSO7M3ZYDXXXQ5ZYTXHVZ6BSCWKB6V
+X-Message-ID-Hash: TTHSO7M3ZYDXXXQ5ZYTXHVZ6BSCWKB6V
+X-MailFrom: david@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: A62254VM6WSS4WZ245F5GXZZLQ5WHG6L
-X-Message-ID-Hash: A62254VM6WSS4WZ245F5GXZZLQ5WHG6L
-X-Mailman-Approved-At: Thu, 16 Jul 2026 02:12:00 +0000
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>, akhilesh@ee.iitb.ac.in,
+ corbet@lwn.net, dakr@kernel.org, jgg@ziepe.ca, kees@kernel.org,
+ leon@kernel.org, liam@infradead.org, lizhi.hou@amd.com,
+ maarten.lankhorst@linux.intel.com, mamin506@gmail.com, mhocko@suse.com,
+ mripard@kernel.org, nouveau@lists.freedesktop.org, ogabbay@kernel.org,
+ oleg@redhat.com, rppt@kernel.org, shuah@kernel.org, simona@ffwll.ch,
+ skhan@linuxfoundation.org, surenb@google.com, vbabka@kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, linux-rdma@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/A62254VM6WSS4WZ245F5GXZZLQ5WHG6L/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TTHSO7M3ZYDXXXQ5ZYTXHVZ6BSCWKB6V/>
 Archived-At: 
- <https://lore.freedesktop.org/20260715143604.14481-1-gaikwad.dcg@gmail.com/>
+ <https://lore.freedesktop.org/e9d0ade4-cf87-4e8d-90ec-50ddb5249b24@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -138,43 +161,35 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-mmio_pipe_open() allocates a header_iter and takes a pci_dev reference
-when trace_pipe is opened. mmio_close() frees them, but it was only
-wired to the tracer's .close callback.
+On 7/15/26 19:14, Andrew Morton wrote:
+> On Wed, 15 Jul 2026 09:39:37 -0700 Stanislav Kinsburskii <skinsburskii@gmail.com> wrote:
+> 
+>>>
+>>> Please don't do this, this is completely impossible to track for review :)
+>>>
+>>> mm review is currently very difficult based on volumes, it'll become impossible
+>>> to manage if people sound fragments of series.
+>>>
+>>> Please just resend the whole thing at this point.
+>>>
+>>
+>> Well, I followed the guidance provided by Andrew, and I believe he
+>> applied all of the changes, including these, to the `mm` tree.
+>>
+>> Do you still want me to send v9 under these circumstances?
+> 
+> Sure, if that's what reviewers prefer.
+> 
+> This is a bit unfriendly to people who have already reviewed the code. 
+> Which is one of the reasons why I respond to a new version with a
+> single diff showing reviewers (and the author, and myself) what changed
+> since the previous version.
 
-tracing_release_pipe() invokes .pipe_close, not .close, when the
-trace_pipe file is released. As a result, closing trace_pipe with the
-mmiotrace tracer active leaked the header_iter allocation and left a
-stale pci_dev reference.
+As much as I dislike fixup patches, I tolerate them in reply to the existing series.
 
-Set .pipe_close to mmio_close, matching how function_graph wires both
-callbacks to the same handler.
+But having some random fixup series is just crazy, really.
 
-Signed-off-by: deepakraog <gaikwad.dcg@gmail.com>
----
- kernel/trace/trace_mmiotrace.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/kernel/trace/trace_mmiotrace.c b/kernel/trace/trace_mmiotrace.c
-index 226cf66e0..20812e7f9 100644
---- a/kernel/trace/trace_mmiotrace.c
-+++ b/kernel/trace/trace_mmiotrace.c
-@@ -109,7 +109,6 @@ static void mmio_pipe_open(struct trace_iterator *iter)
- 	iter->private = hiter;
- }
- 
--/* XXX: This is not called when the pipe is closed! */
- static void mmio_close(struct trace_iterator *iter)
- {
- 	struct header_iter *hiter = iter->private;
-@@ -279,6 +278,7 @@ static struct tracer mmio_tracer __read_mostly =
- 	.start		= mmio_trace_start,
- 	.pipe_open	= mmio_pipe_open,
- 	.close		= mmio_close,
-+	.pipe_close	= mmio_close,
- 	.read		= mmio_read,
- 	.print_line	= mmio_print_line,
- 	.noboot		= true,
 -- 
-Deepak Rao Gaikwad
+Cheers,
 
+David
