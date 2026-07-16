@@ -4,96 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BAB2C44501
-	for <nouveau@archiver.kernel.org>; Thu, 16 Jul 2026 10:45:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72E60C44512
+	for <nouveau@archiver.kernel.org>; Thu, 16 Jul 2026 16:38:05 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 72F9010F2B7;
-	Thu, 16 Jul 2026 10:45:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D122D10E73F;
+	Thu, 16 Jul 2026 16:38:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=u-bordeaux.fr header.i=@u-bordeaux.fr header.b="lS90qLwf";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Vy/VHk/3";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2BA6F47205;
-	Thu, 16 Jul 2026 10:29:50 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 0489A47218;
+	Thu, 16 Jul 2026 16:22:46 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784197790;
- b=vcQDgAbY/itBkU5fZA/R6ZkytnL32Lcb67brBkJwEAu10SuvZRV+PFReUcc4ZDW3B7kYm
- nzjtQOarjSdvynKllmqcBNZ4AvlhMybxjqdWZcrAc4boYkg4Q1THJvysKdHRSDIOnnrALE9
- WoSYfBo0B/+wgkelFMYY5Ij5RLDYL28UdRp49/Hnigy7mdima8AWZE0muIoW6u2EOPGzmno
- cLs9hHVCcSgEPh2HTUmG9KDsXcR3lWrni37XeF4itfhY596UoWwYQFG4RtKtsaSszY3fg5O
- mx4pHYzJG2hhYUojJgQf0mUcHohxIiCwzD8OjslQIc2o7u1fzMtcJMvcPtGA==
+ s=20240201; t=1784218965;
+ b=sJy7mOsDLnMo8gjcOT0r9DVPYgZgUscfbcptdUQs+h4+wxbhM3rOwTpeGxxNVbHkWeTq3
+ UxQNzjYgF+wNtAQpRg6cu8RUHD9T+oh36lnVsqR9o1SAxyW6vi5M9JydfaJetFZ/AIIJh6f
+ NBlpvDu3B+xNEI2fSl8YqQmmmO5k+Wtbn6m0Nn3hZK7cJ7USyZ61lEPvGhhoFVPNhm/OWfq
+ gmkycV1tAAWEFQKLYUm1JUxWCY+VOekzcNPj7gAN6xn5bVYVRVTZNNdc9spAnqbHtljQY7J
+ nJ8Onyvvkg0t9JlIYj0iXZNGUiUjD8aTWLdEFJV+QTvyxtajEZV0zF+UQ5gw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784197790; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784218965; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=3ckwsu3zJrnlaYqW7zlX1B79c4g4wvFTMuG7bXE0K0Q=;
- b=WjxdNZroFpQsNtK7XItXTAhxZBWLc9ba3tttFKrLHU3Nv28UF4u8IIBrkezmUGR8VeN0n
- mSqvrGd+AbGOHRbqaqIBcAVhvatsmRU1mhWZYPBjxi1qX4RND1SnGUm/ut+edoMYy0xPM+Z
- Yz3Q0tpsPsYuWk33pUdmb84/KG6CZTSDFOjezMtDNZLTeNDY/90WLKBIfpg7OfhnOrw0ORO
- 7CxpYx6d+JetDdQVXrTk6Cr3mAMPuPGLntOMS9EHrLbdy17nOFcXZlgtJiKNs7+ArKFqqM5
- HWDfj1CQPUZumbjNFBttoJuZIgHB+zK0zrfSQBH1sTihGRX+pwvDsOZDLt9Q==
+ bh=rgThJIHDvKsal8KFo6FMAaZQfGc1Wy8tJlIMPT0McxA=;
+ b=hxw+YnURfyuWGApiZFipbBMe/4nWkWvbSn5REVM+Q3+moznBqblM46/nIlHpip1L7phIS
+ oa8FP/w2QO6HYHg3Df9GLDnQLvLG1zsPOhUyqwPt90YmvsPFW4HE5bUxjen9PozP0oHMNe6
+ PVvWYptdO4nIlS0pY5sXCgdm5fTQ49DElNgNdV7E5eWHUZZblZUeZNk7bpzI//CvL11UseH
+ 6Sb3J5Gk3KSvSCARiDAbUcUJzUH/yDtfVOMYcES9aQbP537uhZrCgc5Vd4/X4qR7ZgdhWuR
+ 5bnH7vFRdCscinwfa2UujvHH53C+PViMSJubDp5iMcaB/Ax4Ls9McxIKWLQA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=u-bordeaux.fr;
+ dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
-  dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=u-bordeaux.fr; arc=none (Message is not ARC signed);
- dmarc=none
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 03E794551C
-	for <nouveau@lists.freedesktop.org>; Thu, 16 Jul 2026 10:29:47 +0000 (UTC)
-X-Greylist: delayed 347 seconds by postgrey-1.36 at gabe;
- Thu, 16 Jul 2026 10:45:03 UTC
-Received: from v-zimmta03.u-bordeaux.fr (smtp.u-bordeaux.fr [147.210.215.83])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3D63310F28B
-	for <nouveau@lists.freedesktop.org>; Thu, 16 Jul 2026 10:45:03 +0000 (UTC)
-Received: from v-zimmta03.u-bordeaux.fr (localhost [127.0.0.1])
-	by v-zimmta03.u-bordeaux.fr (Postfix) with ESMTP id EE82518000BC
-	for <nouveau@lists.freedesktop.org>; Thu, 16 Jul 2026 12:39:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=u-bordeaux.fr;
-	s=2025032601; t=1784198355;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=3ckwsu3zJrnlaYqW7zlX1B79c4g4wvFTMuG7bXE0K0Q=;
-	b=lS90qLwfD/CnRvOTsgvpe3b4QEfian/ADMgub2wnfFxpGa+00zvodlJiU7aUBuOkvNEEzD
-	Z9K/YB48mBXtt2kaFdeaNT2wzdXAlNvZMrox5UbuQmdYd0JsUtI6ZFq3ni3h6ci9uGKE76
-	/ULQCa+OW9p4e3lBH3c/r+JIQFOypyerKXGLWoFnK4YHFOFJt+JduPaQ4ipHeXHx6JhgOx
-	DYJRxHb4Lm8pJL88UG6vVVG8BydrPrdSBN3V9Qm1mvwj30HFY2vMytOlcYwAtCTNom4TPL
-	F5eo0mGfxn7Y5oFbOLZ+drAEJt0di1LwEgNTC3xy12qPkdsO/zmLzUa4kui2Ag==
-Received: from [147.210.8.222] (callisto.labri.fr [147.210.8.222])
-	by v-zimmta03.u-bordeaux.fr (Postfix) with ESMTPSA id B6F39180009C
-	for <nouveau@lists.freedesktop.org>; Thu, 16 Jul 2026 12:39:14 +0200 (CEST)
-Message-ID: <258ace38-80ee-4202-9aa7-ccc01debe4da@u-bordeaux.fr>
-Date: Thu, 16 Jul 2026 12:39:14 +0200
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6A39F47205
+	for <nouveau@lists.freedesktop.org>; Thu, 16 Jul 2026 16:22:42 +0000 (UTC)
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
+ [209.85.215.170])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 111F610E383
+	for <nouveau@lists.freedesktop.org>; Thu, 16 Jul 2026 16:38:00 +0000 (UTC)
+Received: by mail-pg1-f170.google.com with SMTP id
+ 41be03b00d2f7-c9aea40d799so1643841a12.0
+        for <nouveau@lists.freedesktop.org>;
+ Thu, 16 Jul 2026 09:38:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784219879; x=1784824679;
+ darn=lists.freedesktop.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=rgThJIHDvKsal8KFo6FMAaZQfGc1Wy8tJlIMPT0McxA=;
+        b=Vy/VHk/32K7pr1U8dkogSC9iuItucBDN5JfnNkRVECJEy3FlLjNOPOWnUKz9u2sBv3
+         DXRdlBOtxmF4ga0VB9jm4a3ediYrbi3bc5VtiKWJlWULkE8v4hh92BPlNW/Gol11/vRW
+         vkg000hWQ+5MlT274arlnw+UfczCwFPXzp0moRfeZXn6dQWYElINCFpk7qglegGc98Ng
+         ktP8j/+7O73xSJiZluRSQESsbORm0vaRgly6K4TeDZfnDpZTnVyv0Bkn8m3sWsfXJiOq
+         BUKGmI2N9svqaMH6wCtY+bT2J+bKzjZ5oGO4/BeAFfImWaHtw//hhCUhR2uOf1DNa/Mb
+         550Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784219879; x=1784824679;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=rgThJIHDvKsal8KFo6FMAaZQfGc1Wy8tJlIMPT0McxA=;
+        b=EaOgtTTvZvQobsqxFgsKb7Em4AxRRxmX/2pNJN7bixCAcsyptcPS8gFQg9wSil6ssJ
+         ZweKyiq2XpFqdVoLrY8ubi0yoZwO7ATJKdNlS+n0a/fR9BcQxttTPB/Zu8tqYObn3jz1
+         dGs/c7qd7bMxy5QlA/Pu7I3yd6HGYlTTOlM0p1n/LgGypuD5CBA39xZPECTTqvG5pOUA
+         8m3t0/a1a2HYnPAXog3T5zwe6C1LNdb6e6ZFzEAxhVbGCmp0pscczP1hDfQtjc5qaxNF
+         Nz6KR7uhoIUiP9oly7Y90ziqIKbUN2AB9MnuBI5UgR9Q89r9jqc8z52yKljXABJZbSow
+         Fepw==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RqtGLcba6A2E68mawgBTJyZdXPnM2V0WmL4nFC31PTR/qMmUXE0JqfgzKKPfjBKUaG0WMlVo5Ht@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy5quGChuFlJ/qGF4voCX+BcW12CKLE9XRLgnJoTOA0+/c3WMdd
+	h2cTieomMkz9YYNXp5Cq/4jb0ecJ5A3m8PhM+9zLke8FiG5/j3bSNyCT
+X-Gm-Gg: AfdE7cmXAtTSZXskvSxspJjfN1sUi1XpTB8J7SAAevfYPJMAjghjeFv5ct3imKCAlY+
+	hGN4aF1c8bjoxcGYL+RjVzp9Hp/eTftifl8PdzgDuJwzBi42ClRywf4UBiTdoRtdG7rDnyRmlps
+	vvVc9zQ/PKbiQZeggGVlzb17MrVzwN4+5vQklqaOf5tUg+yanIIRNaBOW7t+J9XazddNipoLEyy
+	w9+5HwbiSE+YRweekhsLY+lBF45rbTX59/e3qjI8NUzE+TmuTAuw1kdjI22LVjGb8NnkwV4fy2B
+	LgS6/oD82itpwgaqsO9+pxzVFRfeWL4k158idqxc4LiZQFv/2Q8xVHO3yW3ZH8Qz8KFNSRRHJbR
+	zdnQQTz8bOqRaaAAc3BllWOdMAsH1Qp6Djsy03yvpC7So+IOlR/VJrzg9yeRVx67Fr2YFJb5Nv8
+	kmK5p/53PZi2ZrzZhyUuUsSTiZrIL5mYOkxrd4ucGqCDK8
+X-Received: by 2002:a05:6a21:e081:b0:3c3:7f8f:88cc with SMTP id
+ adf61e73a8af0-3c37f8f9302mr5411998637.46.1784219879218;
+        Thu, 16 Jul 2026 09:37:59 -0700 (PDT)
+Received: from skinsburskii (c-98-225-44-182.hsd1.wa.comcast.net.
+ [98.225.44.182])
+        by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-cb258ff4402sm2078703a12.25.2026.07.16.09.37.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jul 2026 09:37:58 -0700 (PDT)
+Date: Thu, 16 Jul 2026 09:37:56 -0700
+From: Stanislav Kinsburskii <skinsburskii@gmail.com>
+To: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+Subject: Re: [PATCH v2 0/4] mm/hmm: Clarify notifier retry state and scope
+ HMM timeouts
+Message-ID: <alkI5JLYPW211Ep7@skinsburskii>
+References: <178406760622.1106335.2379450382728057793.stgit@skinsburskii>
+ <4300f09b-8f93-4605-b072-7c09a82cb16e@kernel.org>
+ <alecaJ1FUso39D9k@skinsburskii>
+ <alet21wLwM6P_Km2@lucifer>
+ <ale3ydkx1xt6ruuP@skinsburskii>
+ <20260715101432.99957d2d33203fafe4af2e1c@linux-foundation.org>
+ <e9d0ade4-cf87-4e8d-90ec-50ddb5249b24@kernel.org>
+ <aligdOKNwoOtD4io@lucifer>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US, fr
-To: Nouveau Driver ML <nouveau@lists.freedesktop.org>
-From: Emmanuel Fleury <emmanuel.fleury@u-bordeaux.fr>
-Subject: Reproducible NULL pointer dereference in nouveau_fence_sync() when
- closing a GPU-composited client window
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-AV-Checked: ClamAV using ClamSMTP
-Message-ID-Hash: FQJOSXHRU5HGMJEYBSLH4LVHFJWPDVM4
-X-Message-ID-Hash: FQJOSXHRU5HGMJEYBSLH4LVHFJWPDVM4
-X-MailFrom: emmanuel.fleury@u-bordeaux.fr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aligdOKNwoOtD4io@lucifer>
+Message-ID-Hash: NYOCQDL6W36CBZUR5YUUQJENWSVSE65E
+X-Message-ID-Hash: NYOCQDL6W36CBZUR5YUUQJENWSVSE65E
+X-MailFrom: skinsburskii@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
+ loop; banned-address; member-moderation
+CC: "David Hildenbrand (Arm)" <david@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>, akhilesh@ee.iitb.ac.in,
+ corbet@lwn.net, dakr@kernel.org, jgg@ziepe.ca, kees@kernel.org,
+ leon@kernel.org, liam@infradead.org, lizhi.hou@amd.com,
+ maarten.lankhorst@linux.intel.com, mamin506@gmail.com, mhocko@suse.com,
+ mripard@kernel.org, nouveau@lists.freedesktop.org, ogabbay@kernel.org,
+ oleg@redhat.com, rppt@kernel.org, shuah@kernel.org, simona@ffwll.ch,
+ skhan@linuxfoundation.org, surenb@google.com, vbabka@kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, linux-rdma@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FQJOSXHRU5HGMJEYBSLH4LVHFJWPDVM4/>
-Archived-At: 
- <https://lore.freedesktop.org/258ace38-80ee-4202-9aa7-ccc01debe4da@u-bordeaux.fr/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NYOCQDL6W36CBZUR5YUUQJENWSVSE65E/>
+Archived-At: <https://lore.freedesktop.org/alkI5JLYPW211Ep7@skinsburskii/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -103,347 +152,51 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Dear Nouveau Maintainers,
+On Thu, Jul 16, 2026 at 10:12:56AM +0100, Lorenzo Stoakes (ARM) wrote:
+> On Thu, Jul 16, 2026 at 10:59:56AM +0200, David Hildenbrand (Arm) wrote:
+> > On 7/15/26 19:14, Andrew Morton wrote:
+> > > On Wed, 15 Jul 2026 09:39:37 -0700 Stanislav Kinsburskii <skinsburskii@gmail.com> wrote:
+> > >
+> > >>>
+> > >>> Please don't do this, this is completely impossible to track for review :)
+> > >>>
+> > >>> mm review is currently very difficult based on volumes, it'll become impossible
+> > >>> to manage if people sound fragments of series.
+> > >>>
+> > >>> Please just resend the whole thing at this point.
+> > >>>
+> > >>
+> > >> Well, I followed the guidance provided by Andrew, and I believe he
+> > >> applied all of the changes, including these, to the `mm` tree.
+> > >>
+> > >> Do you still want me to send v9 under these circumstances?
+> > >
+> > > Sure, if that's what reviewers prefer.
+> > >
+> > > This is a bit unfriendly to people who have already reviewed the code.
+> > > Which is one of the reasons why I respond to a new version with a
+> > > single diff showing reviewers (and the author, and myself) what changed
+> > > since the previous version.
+> >
+> > As much as I dislike fixup patches, I tolerate them in reply to the existing series.
+> >
+> > But having some random fixup series is just crazy, really.
+> >
+> > --
+> > Cheers,
+> >
+> > David
+> 
+> Yes.
+> 
+> Stanislav - also see Jason's suggestion - if you give a base commit then sashiko
+> seems to work better. Maybe look at using b4 which does all of this for you
+> automatically?
+> 
 
-Since the last few months I occasionally, but persistantly, stumble on a NULL
-pointer dereference bug in my Nouveau driver.
+Sure. Thank you all for the suggestions. I'll use b4 next time.
 
-I am running a Debian unstable with Wayland on a Dell machine with a
-dual-screen. More precisely:
+Thanks,
+Stanislav
 
--- Hardware --
-Dell Inc. Precision Tower 3420, BIOS 2.33.0 (11/05/2024)
-GPU: NVIDIA GM107 (nouveau driver), 2048 MiB VRAM, vbios 82.07.b3.00.01, PCI 
-0000:01:00.0
-
--- Session --
-GNOME on Wayland (mutter/gnome-shell talking to /dev/dri/card0 directly).
-GNOME Shell 50.2 (mutter)
-Mesa 26.1.4-1
-
-Strangely, the crash occurs always when I am trying to close Evince (Gnome PDF
-reader) and it results in a freeze of the gnome-session process.
-
-The rest of the system is still running, so I usually need to connect to my
-machine through ssh and kill the freezed gnome-session process and restart it
-through gdm3. Then, the system is working properly again (apparently).
-
-Here is the kernel Oops I got several of these on different kernels (its more or
-less the same each time):
-
-```text
-===============================[ Kernel Oops #1 ]===============================
-
-2026-06-29T16:47:40.847819+02:00 callisto kernel: BUG: kernel NULL pointer 
-dereference, address: 0000000000000040
-2026-06-29T16:47:40.847839+02:00 callisto kernel: #PF: supervisor read access in 
-kernel mode
-2026-06-29T16:47:40.847839+02:00 callisto kernel: #PF: error_code(0x0000) - 
-not-present page
-2026-06-29T16:47:40.847840+02:00 callisto kernel: PGD 0 P4D 0
-2026-06-29T16:47:40.847840+02:00 callisto kernel: Oops: Oops: 0000 [#1] SMP PTI
-2026-06-29T16:47:40.847841+02:00 callisto kernel: CPU: 5 UID: 1000 PID: 3928 
-Comm: gnome-shell Not tainted 7.0.13+deb14-amd64 #1 PREEMPT(lazy)  Debian 7.0.13-1
-2026-06-29T16:47:40.847842+02:00 callisto kernel: Hardware name: Dell Inc. 
-Precision Tower 3420/02K9CR, BIOS 2.33.0 11/05/2024
-2026-06-29T16:47:40.847873+02:00 callisto kernel: RIP: 
-0010:nouveau_fence_sync+0x12c/0x1b0 [nouveau]
-2026-06-29T16:47:40.847875+02:00 callisto kernel: Code: 74 08 48 3d 20 dd f2 c0 
-75 aa e8 bf 94 d1 df 49 8b 76 50 48 85 f6 74 97 48 8b 85 f0 00 00 00 48 8b 96 f0 
-00 00 00 48 8b 40 40 <48> 39 42 40 0f 85 7b ff ff ff 48 39 f5 74 17 49 8b 47 30 
-48 89 ea16:47:40.847876+02:00 callisto kernel: RSP: 0018:ffffd1e710f6ba78 
-EFLAGS: 00010286
-2026-06-29T16:47:40.847878+02:00 callisto kernel: RDX: 0000000000000000 RSI: 
-ffff89c7e22d2000 RDI: ffffd1e710f6ba90
-2026-06-29T16:47:40.847878+02:00 callisto kernel: RBP: ffff89c86495b400 R08: 
-ffff89c925b3b400 R09: 0000000000000000
-2026-06-29T16:47:40.847882+02:00 callisto kernel: R10: 0000000000000193 R11: 
-ffff89c86d286e50 R12: 0000000000000001
-2026-06-29T16:47:40.847883+02:00 callisto kernel: R13: 0000000000000000 R14: 
-ffff89c8b1108b40 R15: ffff89c853dc5100
-2026-06-29T16:47:40.847883+02:00 callisto kernel: FS:  00007f3b083e7000(0000) 
-GS:ffff89cb412bd000(0000) knlGS:0000000000000000
-2026-06-29T16:47:40.847884+02:00 callisto kernel: CS:  0010 DS: 0000 ES: 0000 
-CR0: 0000000080050033
-2026-06-29T16:47:40.847884+02:00 callisto kernel: CR2: 0000000000000040 CR3: 
-0000000164046002 CR4: 00000000003726f0
-2026-06-29T16:47:40.847885+02:00 callisto kernel: Call Trace:
-2026-06-29T16:47:40.847885+02:00 callisto kernel:  <TASK>
-2026-06-29T16:47:40.847888+02:00 callisto kernel: 
-nouveau_gem_ioctl_pushbuf+0x678/0x1390 [nouveau]
-2026-06-29T16:47:40.847889+02:00 callisto kernel:  ? 
-__pfx_nouveau_gem_ioctl_pushbuf+0x10/0x10 [nouveau]
-2026-06-29T16:47:40.847889+02:00 callisto kernel:  drm_ioctl_kernel+0xae/0x100 [drm]
-2026-06-29T16:47:40.847889+02:00 callisto kernel:  drm_ioctl+0x2a8/0x550 [drm]
-2026-06-29T16:47:40.847890+02:00 callisto kernel:  ? 
-__pfx_nouveau_gem_ioctl_pushbuf+0x10/0x10 [nouveau]
-2026-06-29T16:47:40.847890+02:00 callisto kernel:  nouveau_drm_ioctl+0x58/0xc0 
-[nouveau]
-2026-06-29T16:47:40.847893+02:00 callisto kernel:  __x64_sys_ioctl+0x97/0xe0
-2026-06-29T16:47:40.847894+02:00 callisto kernel:  do_syscall_64+0xcd/0x15f0
-2026-06-29T16:47:40.847894+02:00 callisto kernel:  ? 
-ktime_get_mono_fast_ns+0x35/0xe0
-2026-06-29T16:47:40.847895+02:00 callisto kernel:  ? nouveau_drm_ioctl+0x89/0xc0 
-[nouveau]
-2026-06-29T16:47:40.847895+02:00 callisto kernel:  ? __x64_sys_ioctl+0xb1/0xe0
-2026-06-29T16:47:40.847896+02:00 callisto kernel:  ? do_syscall_64+0x10a/0x15f0
-2026-06-29T16:47:40.847896+02:00 callisto kernel:  ? hrtimer_interrupt+0x12c/0x230
-2026-06-29T16:47:40.847898+02:00 callisto kernel:  ? irqentry_exit+0x78/0x680
-2026-06-29T16:47:40.847899+02:00 callisto kernel:  ? 
-__sysvec_apic_timer_interrupt+0x58/0x140
-2026-06-29T16:47:40.847899+02:00 callisto kernel:  ? __irq_exit_rcu+0x3d/0xe0
-2026-06-29T16:47:40.847900+02:00 callisto kernel: 
-entry_SYSCALL_64_after_hwframe+0x76/0x7e
-2026-06-29T16:47:40.847900+02:00 callisto kernel: RIP: 0033:0x7f3b0d519c3b
-2026-06-29T16:47:40.847901+02:00 callisto kernel: Code: 00 48 89 44 24 18 31 c0 
-48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 
-b8 10 00 00 00 0f 05 <89> c2 3d 00 f0 ff ff 77 1c 48 8b 44 24 18 64 48 2b 04 25 
-28 00 002eae00 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-2026-06-29T16:47:40.847904+02:00 callisto kernel: RAX: ffffffffffffffda RBX: 
-000055f76a802140 RCX: 00007f3b0d519c3b
-2026-06-29T16:47:40.847905+02:00 callisto kernel: RDX: 00007ffd7c2eaec0 RSI: 
-00000000c0406481 RDI: 000000000000000e
-2026-06-29T16:47:40.847905+02:00 callisto kernel: RBP: 00007ffd7c2eaec0 R08: 
-000055f76a80a020 R09: 0000000000000000
-2026-06-29T16:47:40.847906+02:00 callisto kernel: R10: 0000000000000000 R11: 
-0000000000000246 R12: 00000000c0406481
-2026-06-29T16:47:40.847906+02:00 callisto kernel: R13: 000000000000000e R14: 
-000055f76a449620 R15: 000055f76a80a028
-2026-06-29T16:47:40.847909+02:00 callisto kernel:  </TASK>
-2026-06-29T16:47:40.847910+02:00 callisto kernel: Modules linked in: 
-cpufreq_conservative snd_seq_dummy snd_hrtimer snd_seq snd_seq_device 
-xt_CHECKSUM xt_MASQUERADE xt_conntrack ipt_REJECT nf_reject_ipv4 xt_tcpudp 
-nft_compat x_tables nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 
-nf_defrag_ipv4 nf_tables nfnetlink bridge stp llc overlay qrtr sunrpc cfg80211 
-rfkill nls_ascii nls_cp437 vfat fat intel_rapl_msr intel_rapl_common 
-intel_uncore_frequency intel_uncore_frequency_common snd_ctl_led 
-x86_pkg_temp_thermal intel_powerclamp coretemp platform_profile 
-snd_hda_codec_alc269 kvm_intel snd_hda_codec_realtek_lib 
-snd_hda_scodec_component mei_wdt mei_pxp mei_hdcp dell_smm_hwmon 
-snd_hda_codec_generic dell_wmi dell_smbios kvm snd_hda_codec_nvhdmi dcdbas 
-snd_soc_avs snd_hda_codec_hdmi irqbypass snd_soc_hda_codec dell_wmi_descriptor 
-rapl wmi_bmof snd_hda_ext_core intel_wmi_thunderbolt sparse_keymap intel_cstate 
-snd_soc_core intel_uncore pcspkr snd_hda_intel mei_me snd_compress snd_hda_codec 
-ee1004 mei snd_pcm_dmaengine intel_pch_thermal snd_hda_coreommon usb_common 
-efivarfs [last unloaded: cpufreq_conservative]4 17 49 8b 47 30 48 89 eaf6ba78 
-EFLAGS: 00010286
-2026-06-29T16:47:40.847927+02:00 callisto kernel: RAX: ffff89c7c0e28000 RBX: 
-ffffd1e710f6ba90 RCX: ffff89c7c89f3180
-2026-06-29T16:47:40.847927+02:00 callisto kernel: RDX: 0000000000000000 RSI: 
-ffff89c7e22d2000 RDI: ffffd1e710f6ba90
-2026-06-29T16:47:40.847928+02:00 callisto kernel: RBP: ffff89c86495b400 R08: 
-ffff89c925b3b400 R09: 0000000000000000
-2026-06-29T16:47:40.847928+02:00 callisto kernel: R10: 0000000000000193 R11: 
-ffff89c86d286e50 R12: 0000000000000001
-2026-06-29T16:47:40.847929+02:00 callisto kernel: R13: 0000000000000000 R14: 
-ffff89c8b1108b40 R15: ffff89c853dc5100
-2026-06-29T16:47:40.847929+02:00 callisto kernel: FS:  00007f3b083e7000(0000) 
-GS:ffff89cb412bd000(0000) knlGS:0000000000000000
-2026-06-29T16:47:40.847930+02:00 callisto kernel: CS:  0010 DS: 0000 ES: 0000 
-CR0: 0000000080050033
-2026-06-29T16:47:40.847931+02:00 callisto kernel: CR2: 0000000000000040 CR3: 
-0000000164046002 CR4: 00000000003726f0
-2026-06-29T16:47:40.847933+02:00 callisto kernel: note: gnome-shell[3928] exited 
-with irqs disabled
-```
-
-I reported the bug to the Debian BTS as #1141813 (see:
-ttps://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1141813) but I think this is
-more relevant to come here and track it down directly with the maintainers.
-
-Feel free to tell me if this is not relevant!
-
-So, looking at the kernel Oops lead me to the function `nouveau_fence_sync()`:
-
-```text
-RIP: 0010:nouveau_fence_sync+0x12c/0x1b0 [nouveau]
-```
-
-The top of the stack trace being:
-
-```text
-nouveau_fence_sync+0x12c/0x1b0 [nouveau]
-nouveau_gem_ioctl_pushbuf+0x678/0x1390 [nouveau]
-? __pfx_nouveau_gem_ioctl_pushbuf+0x10/0x10 [nouveau]
-drm_ioctl_kernel+0xae/0x100 [drm]
-drm_ioctl+0x2a8/0x550 [drm]
-... and so on
-```
-
-`nouveau_fence_sync()` is implemented in
-`drivers/gpu/drm/nouveau/nouveau_fence.c` as follow:
-
-```c
-int
-nouveau_fence_sync(struct nouveau_bo *nvbo, struct nouveau_channel *chan,
-		   bool exclusive, bool intr)
-{
-	struct nouveau_fence_chan *fctx = chan->fence;
-	struct dma_resv *resv = nvbo->bo.base.resv;
-	int i, ret;
-
-	ret = dma_resv_reserve_fences(resv, 1);
-	if (ret)
-		return ret;
-
-	/* Waiting for the writes first causes performance regressions
-	 * under some circumstances. So manually wait for the reads first.
-	 */
-	for (i = 0; i < 2; ++i) {
-		struct dma_resv_iter cursor;
-		struct dma_fence *fence;
-
-		dma_resv_for_each_fence(&cursor, resv,
-					dma_resv_usage_rw(exclusive),
-					fence) {
-			enum dma_resv_usage usage;
-			struct nouveau_fence *f;
-
-			usage = dma_resv_iter_usage(&cursor);
-			if (i == 0 && usage == DMA_RESV_USAGE_WRITE)
-				continue;
-
-			f = nouveau_local_fence(fence, chan->cli->drm);
-			if (f) {
-				struct nouveau_channel *prev;
-				bool must_wait = true;
-				bool local;
-
-				rcu_read_lock();
-				prev = rcu_dereference(f->channel);
-				local = prev && prev->cli->drm == chan->cli->drm;
-				if (local && (prev == chan ||
-					      fctx->sync(f, prev, chan) == 0))
-					must_wait = false;
-				rcu_read_unlock();
-				if (!must_wait)
-					continue;
-			}
-
-			ret = dma_fence_wait(fence, intr);
-			if (ret)
-				return ret;
-		}
-	}
-
-	return 0;
-}
-```
-
-Looking at the current executed code, we have:
-
-```text
-RIP: 0010:nouveau_fence_sync+0x12c/0x1b0 [nouveau]
-Code: 74 08 48 3d 20 dd f2 c0 75 aa e8 bf 94 d1 df 49 8b 76 50 48 85 f6 74 97
-       48 8b 85 f0 00 00 00 48 8b 96 f0 00 00 00 48 8b 40 40 <48> 39 42 40 0f
-       85 7b ff ff ff 48 39 f5 74 17 49 8b 47 30 48 89 ea
-```
-
-Which can be decompiled (using `rasm2 -d "740848..."`) as:
-
-```asm
-je 0xa
-cmp rax, 0xffffffffc0f2dd20
-jne 0xffffffffffffffb4
-call 0xffffffffdfd194ce
-mov rsi, qword [r14 + 0x50]
-test rsi, rsi
-je 0xffffffffffffffaf
-mov rax, qword [rbp + 0xf0]
-mov rdx, qword [rsi + 0xf0]
-mov rax, qword [rax + 0x40]
-cmp qword [rdx + 0x40], rax
-jne 0xffffffffffffffaf
-cmp rbp, rsi
-je 0x50
-mov rax, qword [r15 + 0x30]
-mov rdx, rbp
-```
-
-More precisely, if we try to locate the exact position in the code at crash
-time:
-
-```asm
-mov  rsi, [r14+0x50]     ; rsi = rcu_dereference(f->channel)   → prev
-test rsi, rsi
-je   ...                 ; if (prev == NULL) skip
-mov  rax, [rbp+0xf0]     ; rax = chan->cli        (rbp holds chan)
-mov  rdx, [rsi+0xf0]     ; rdx = prev->cli
-mov  rax, [rax+0x40]     ; rax = chan->cli->drm
-cmp  [rdx+0x40], rax     ; <-- faults here: dereferences rdx+0x40
-```
-
-Which leads to the following lines of code:
-
-```c
-   rcu_read_lock();
-   prev = rcu_dereference(f->channel);
-   local = prev && prev->cli->drm == chan->cli->drm;
-   if (local && (prev == chan ||
-   	      fctx->sync(f, prev, chan) == 0))
-     must_wait = false;
-   rcu_read_unlock();
-```
-
-So, the problem occurs on:
-
-```c
-   local = prev && prev->cli->drm == chan->cli->drm;
-```
-
-`prev` is checked to be not NULL, but when the comparison occurs, we try to 
-dereference `rdx+0x40` and `rdx` is obviously set to NULL:
-
-```text
-RSP: 0018:ffffd1e710f6ba78 EFLAGS: 00010286
-RAX: ffff89c7c0e28000 RBX: ffffd1e710f6ba90 RCX: ffff89c7c89f3180
-RDX: 0000000000000000 RSI: ffff89c7e22d2000 RDI: ffffd1e710f6ba90
-RBP: ffff89c86495b400 R08: ffff89c925b3b400 R09: 0000000000000000
-R10: 0000000000000193 R11: ffff89c86d286e50 R12: 0000000000000001
-R13: 0000000000000000 R14: ffff89c8b1108b40 R15: ffff89c853dc5100
-```
-
-Which means that `prev->cli` is NULL (and shouldn't be).
-
-If I understood it correctly, the `nouveau_fence_sync()` is here to synchronize
-fences that are running on multiple GPU instances and to prevent synchronization
-loss. This patch seems to have been introduced by Dave Airlie around December
-2025 (see:
-https://lists.freedesktop.org/archives/nouveau/2025-January/046268.html,
-https://lists.freedesktop.org/archives/nouveau/2025-January/046291.html and
-https://lists.freedesktop.org/archives/nouveau/2025-January/046293.html).
-
-In my case, it seems that `prev` is still a valid address but `prev->cli` is
-NULL despite the RCU read lock around this part of the code.
-
-As far as I understand, this might mean that either the `prev` channel has been
-partially cleared and then interrupted before complete destruction (which would
-lead to an UAF). Or, this occurs at the creation of a new channel which is not
-yet totally setup before being placed into the RCU read lock.
-
-This lead us to try to patch the code, I first believe it would be simple to
-just check if `prev->cli` is NULL and drop the channel if this is the case as
-follow:
-
-```c
--  local = prev && prev->cli->drm == chan->cli->drm;
-+  local = prev && prev->cli && prev->cli->drm == chan->cli->drm;
-```
-
-But, if the problem occurs at channel creation, this might mean that we will
-drop an unsynchronized fence (as far as I understand the code).
-
-So, this bug might require more deeper thinking to be fixed and I do not have
-the knowledge for that. I would be delighted to have your advice on this
-problem.
-
-Thanks in advance!
-
-Regards
--- 
-Emmanuel Fleury
-
-Univ. de Bordeaux, LaBRI,   | Associate Professor,
-351, Cours de la Libération | Email: emmanuel.fleury@u-bordeaux.fr
-33405 Talence Cedex, France | Web: http://www.labri.fr/~fleury
-
+> Thanks, Lorenzo
