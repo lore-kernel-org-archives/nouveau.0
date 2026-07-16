@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E714EC44501
-	for <nouveau@archiver.kernel.org>; Thu, 16 Jul 2026 09:00:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A67FC4450A
+	for <nouveau@archiver.kernel.org>; Thu, 16 Jul 2026 09:13:19 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D8E8F10E760;
-	Thu, 16 Jul 2026 09:00:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5E48F10F246;
+	Thu, 16 Jul 2026 09:13:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BR0mxTtD";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ay9RStfR";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B6A18471F6;
-	Thu, 16 Jul 2026 08:44:48 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 38CAD471FE;
+	Thu, 16 Jul 2026 08:58:01 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784191488;
- b=L7bm3u/SmjSI7CebTvimI7pX4grlX4njKr55tkMUOh5Xe7RyzIqlhX9LaSpurk/Ppr94t
- S8kZdmNofbMA12W4E3WsKvQI7VlBx2hGozvzRkMPSpa8govHkNuOB9J9D9HfOMxoKBU6CeI
- 02yUFuYvj4X62pR5Bf1IsXhE1ZKI7UEJqBucSg8LinbbCk0AZwh0gdZx1HBIgh6juSPwk+A
- Di9L46oa90CiG0kRRYFZv/cxUpHas5tgy0dFTaiPJ5+xbd2HvhS/fUdiNfT9E9tzllZ0bKh
- o7R8B7Q7OkSDGa2VkTx39g9OeDbA14YRYEme8dOQ8sm+aKfsF0YI5Mt+hhgw==
+ s=20240201; t=1784192281;
+ b=swlTN20MgzLVygNN4kST21dYe+PimAgPILWDaZjcBFOqe5GVbmrhwOHklw/CVG/eLVkKw
+ m3Xaso8E3avjtESn0E1dExqkRIg4jxzNo3A/7nVBqXotTtRWoaNuCd9VtY3h/uNgOyBbJAb
+ jFUnxatDhrlhv7eJaN95uWb9VsDuQi6Mz5vXYlvS0gp2fARw3xj3pdhn371FFcHlC73h+IZ
+ 3RaFqA/rdq9mHETLgjn1XVJikaGZvkMXIf0JSJa5a+vFIidkhhq6gZRKJd12eHb06PafMQW
+ HJ0AfTbOQRnTcTr4QaE8tJiKgprFOsVO20Mo/VykP6MpIWoaZ3Uazv1EI/YA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784191488; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784192281; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=UsgiVynJofsGDlgChmil9QB3MnfHOcPC6h+vljGQO5M=;
- b=eQduInfjTX+0qU+yykqHkHoR/0afNeBzJuTQhMqhpVaB1qnigEnhWxWlOpx6A6ry/UbJ7
- ny6F/lJQDHCni5l5MWPX2ol+Y72G59KzO3hVZ3dak1AWJvFts+ru2tR9OfQk9rlS1zX+55f
- kW59DQSmo+B3q4KaGUyk3ODzhPZ3MTD95aKr4bG9xhHbTAfJwXXpjWcIL40csKHWGqbJGiL
- 45DMyC+Z/YRoaA9xywbGhuCP6K0vPvas+fWLOxGa6lRrvVtCpkPru1mVVUQIVx3gz1daBqj
- TBlTZ8nz98pGHm18U7hfkiWQHVnycPfasvyRKL43Iat0BShQgUCDVwSLwtSQ==
+ bh=iTgmRt/mOhfeVVtmxm9TcACq90Tyo5vsbd/jxsIv5Z8=;
+ b=YCCWoyvxpE+CzhW8ROnr+3njrRHHRSYZ4ECGKkB0sUxnfT/T/yBltFDsTpsJ5k1ODAieQ
+ B9PFuBL1Rha7iHNsJRxMVqdAPtblYhbCjSuDctKYxt1/CTRt6P9JJKoiGSSTd6AIDpF/iyF
+ neptHCKIHJ9EWRlp4U4D7DrgUWuJSiHLNFwjofgJ36rzWm7EEZ6g7FsVAnAUqDKbAfbL8MD
+ tJRN2KlpmgghqCG404ZT9FL2E9VxNonP1ujd3iptQstBe/sqUQzfay5UoPIMBf7FPY6sYfd
+ wYgSz/4yMJkVO7RamvbuqfyyZ16jPVPcJbf0Zhq3jWzmhRypFsSTkwA3hmmA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,96 +46,51 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 11F3F4551C
-	for <nouveau@lists.freedesktop.org>; Thu, 16 Jul 2026 08:44:47 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6EBFA4551C
+	for <nouveau@lists.freedesktop.org>; Thu, 16 Jul 2026 08:57:58 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E766910E30D;
-	Thu, 16 Jul 2026 09:00:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 630AB10E317;
+	Thu, 16 Jul 2026 09:13:15 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 92690419E7;
-	Thu, 16 Jul 2026 09:00:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A5911F000E9;
-	Thu, 16 Jul 2026 08:59:57 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id C609741404;
+	Thu, 16 Jul 2026 09:13:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F28231F000E9;
+	Thu, 16 Jul 2026 09:13:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784192403;
-	bh=UsgiVynJofsGDlgChmil9QB3MnfHOcPC6h+vljGQO5M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=BR0mxTtD79NyM+E7to+Sg+kX0qOHpx7E2BfnMcUEgZ2EyoSZ4EGL5B5ukIsVymHoR
-	 pCzKYCbbOrGCNBCjegopfL1jWmB+lo+DQ6BQv712JV9GZQMb721rP6QTcsT1/IWmDF
-	 R8n8SNFOTBWltXWgup1cNXAS3qDeIvsr5jdqX7YgpPjuXTKnd/YAzHNWTCl/cl8E9u
-	 xRF0jYlSTEiXiU1SIet3tnEi4zUjw9TGA0o96WU8Ujw5BmO7r0sgKfwFP3xcChq06P
-	 VIDMLW3oQJeL6Vj0BL/n6sJkDDH6tziqu2psR+Dxcc7ft0jX7OlZbED/yEUw1qXzMw
-	 BIS4+0y3fbPgA==
-Message-ID: <e9d0ade4-cf87-4e8d-90ec-50ddb5249b24@kernel.org>
-Date: Thu, 16 Jul 2026 10:59:56 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/4] mm/hmm: Clarify notifier retry state and scope HMM
- timeouts
-To: Andrew Morton <akpm@linux-foundation.org>,
- Stanislav Kinsburskii <skinsburskii@gmail.com>
+	s=k20260515; t=1784193194;
+	bh=iTgmRt/mOhfeVVtmxm9TcACq90Tyo5vsbd/jxsIv5Z8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=ay9RStfRqzjIAkK9qMkR2z+5qf0qqqVKp9e3TmHYXeStbB17RWYaMTy3uBEQg9KdB
+	 u6SzyAyck8jHQYnZRcDZF2nv4JSlVK4s+Z9AU6vm4Z8hdBsYN/pLtEuoZ1uePJ0ei+
+	 CgwmpsarAdZLu5fqmEDEh1cyx1Hkj2MzKeUhBMvb3bdhVqCABV+8VgCEe6FDEOjjO5
+	 qL6/bzX0PVJJW9W9nJfTJrTOKM+osmvCPL9h6+QY3ZBSJrc6TfQFtxhuA1XgcYUKNj
+	 nNSh+4LtoZwZxaqnJtf/7k1p7/OJu8+sERq6XAOZ6syFQj2Cdz8ihwQ2xEfBx+fsWk
+	 BBTOOeQ6E91Fw==
+Date: Thu, 16 Jul 2026 10:12:56 +0100
+From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+To: "David Hildenbrand (Arm)" <david@kernel.org>
+Subject: Re: [PATCH v2 0/4] mm/hmm: Clarify notifier retry state and scope
+ HMM timeouts
+Message-ID: <aligdOKNwoOtD4io@lucifer>
 References: <178406760622.1106335.2379450382728057793.stgit@skinsburskii>
  <4300f09b-8f93-4605-b072-7c09a82cb16e@kernel.org>
- <alecaJ1FUso39D9k@skinsburskii> <alet21wLwM6P_Km2@lucifer>
+ <alecaJ1FUso39D9k@skinsburskii>
+ <alet21wLwM6P_Km2@lucifer>
  <ale3ydkx1xt6ruuP@skinsburskii>
  <20260715101432.99957d2d33203fafe4af2e1c@linux-foundation.org>
-From: "David Hildenbrand (Arm)" <david@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=david@kernel.org; keydata=
- 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
- qIws/H2t
-In-Reply-To: <20260715101432.99957d2d33203fafe4af2e1c@linux-foundation.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: TTHSO7M3ZYDXXXQ5ZYTXHVZ6BSCWKB6V
-X-Message-ID-Hash: TTHSO7M3ZYDXXXQ5ZYTXHVZ6BSCWKB6V
-X-MailFrom: david@kernel.org
+ <e9d0ade4-cf87-4e8d-90ec-50ddb5249b24@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e9d0ade4-cf87-4e8d-90ec-50ddb5249b24@kernel.org>
+Message-ID-Hash: X2D6GW5TRTP5CN6PU5EZMZSAKDQU2HBK
+X-Message-ID-Hash: X2D6GW5TRTP5CN6PU5EZMZSAKDQU2HBK
+X-MailFrom: ljs@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>, akhilesh@ee.iitb.ac.in,
+ loop; banned-address; member-moderation
+CC: Andrew Morton <akpm@linux-foundation.org>,
+ Stanislav Kinsburskii <skinsburskii@gmail.com>, akhilesh@ee.iitb.ac.in,
  corbet@lwn.net, dakr@kernel.org, jgg@ziepe.ca, kees@kernel.org,
  leon@kernel.org, liam@infradead.org, lizhi.hou@amd.com,
  maarten.lankhorst@linux.intel.com, mamin506@gmail.com, mhocko@suse.com,
@@ -149,9 +104,8 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TTHSO7M3ZYDXXXQ5ZYTXHVZ6BSCWKB6V/>
-Archived-At: 
- <https://lore.freedesktop.org/e9d0ade4-cf87-4e8d-90ec-50ddb5249b24@kernel.org/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/X2D6GW5TRTP5CN6PU5EZMZSAKDQU2HBK/>
+Archived-At: <https://lore.freedesktop.org/aligdOKNwoOtD4io@lucifer/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -161,35 +115,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 7/15/26 19:14, Andrew Morton wrote:
-> On Wed, 15 Jul 2026 09:39:37 -0700 Stanislav Kinsburskii <skinsburskii@gmail.com> wrote:
-> 
->>>
->>> Please don't do this, this is completely impossible to track for review :)
->>>
->>> mm review is currently very difficult based on volumes, it'll become impossible
->>> to manage if people sound fragments of series.
->>>
->>> Please just resend the whole thing at this point.
->>>
->>
->> Well, I followed the guidance provided by Andrew, and I believe he
->> applied all of the changes, including these, to the `mm` tree.
->>
->> Do you still want me to send v9 under these circumstances?
-> 
-> Sure, if that's what reviewers prefer.
-> 
-> This is a bit unfriendly to people who have already reviewed the code. 
-> Which is one of the reasons why I respond to a new version with a
-> single diff showing reviewers (and the author, and myself) what changed
-> since the previous version.
+On Thu, Jul 16, 2026 at 10:59:56AM +0200, David Hildenbrand (Arm) wrote:
+> On 7/15/26 19:14, Andrew Morton wrote:
+> > On Wed, 15 Jul 2026 09:39:37 -0700 Stanislav Kinsburskii <skinsburskii@gmail.com> wrote:
+> >
+> >>>
+> >>> Please don't do this, this is completely impossible to track for review :)
+> >>>
+> >>> mm review is currently very difficult based on volumes, it'll become impossible
+> >>> to manage if people sound fragments of series.
+> >>>
+> >>> Please just resend the whole thing at this point.
+> >>>
+> >>
+> >> Well, I followed the guidance provided by Andrew, and I believe he
+> >> applied all of the changes, including these, to the `mm` tree.
+> >>
+> >> Do you still want me to send v9 under these circumstances?
+> >
+> > Sure, if that's what reviewers prefer.
+> >
+> > This is a bit unfriendly to people who have already reviewed the code.
+> > Which is one of the reasons why I respond to a new version with a
+> > single diff showing reviewers (and the author, and myself) what changed
+> > since the previous version.
+>
+> As much as I dislike fixup patches, I tolerate them in reply to the existing series.
+>
+> But having some random fixup series is just crazy, really.
+>
+> --
+> Cheers,
+>
+> David
 
-As much as I dislike fixup patches, I tolerate them in reply to the existing series.
+Yes.
 
-But having some random fixup series is just crazy, really.
+Stanislav - also see Jason's suggestion - if you give a base commit then sashiko
+seems to work better. Maybe look at using b4 which does all of this for you
+automatically?
 
--- 
-Cheers,
-
-David
+Thanks, Lorenzo
