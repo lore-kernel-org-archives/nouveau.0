@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D5C4C4450A
-	for <nouveau@archiver.kernel.org>; Thu, 16 Jul 2026 21:45:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8528C4451B
+	for <nouveau@archiver.kernel.org>; Fri, 17 Jul 2026 15:20:42 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 30DC510F3F8;
-	Thu, 16 Jul 2026 21:45:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0F54A10F5A3;
+	Fri, 17 Jul 2026 15:20:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=xs4all.nl header.i=@xs4all.nl header.b="Bwqbjtjq";
+	dkim=pass (2048-bit key; secure) header.d=xs4all.nl header.i=@xs4all.nl header.b="Mdsh7jL3";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CE4624721F;
-	Thu, 16 Jul 2026 21:30:12 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 209D947221;
+	Fri, 17 Jul 2026 15:05:22 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784237412;
- b=tuu5YvF2Qlhk0xTn0PyvJOCSmjSZrQWFocxvH3Z7jhMWYEuCwa+3whVIKD0jkzYIdNCci
- b+nu4pTuwkLm4JkcQK1+AZ1JVPxU6mgKftwMhNjWQh62eHjpbQ2JQpPE5A30KLK1lvq3j15
- LHbqwX1hqG1uHWZhk7sFZ9q6c4fIr+M+uuKK/tbp25sMol/nso37wVTTTkXsolIgsPY5VuR
- 96DEziSIHrfo/SRkn7/7Rdg0ZsmBJ/W1PhlqMVH+De+Zut+fcjEIri5qAZl4lqiykntRAfE
- HhXZJjnwbLgB4WInWgIxOqdDeyNIsMyO8FVZqtIQVDVqGDKwPmlOBoIzKE4g==
+ s=20240201; t=1784300721;
+ b=Xin2+QlF8bf7hrJDYjPM9ngpKLZOKJ/1pRiQ9cU5DXtvg88fHqLlHBwj10Zg/5iAkVtMp
+ sF4r4ZlxbXX68TujXN7cSA7IIv6BU6Pxvfsw3/WGhP2DjGRelb4ZWkCUU7vEvOH3isQzyey
+ 2UJVxryPsiGk6rhet1KnKjnN+mK2n4z3VE7iju3q5bkYXwIr2D2dKLlv+FsRFeehRZdd4gN
+ DHYW004b6hHyYFD4hoUJNOFi7yuh+8pWdfs+Q0w3ATpA4Gaq/i2SXr8xQ5FXApM6IFE2GOU
+ nbzSfwq7paIZW/U1g8fWEhJmGw+GYcN61RwinAZa0Jcxl+599vKBABe8Yw9g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784237412; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784300721; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=b48V2mjHWtO3DRxcg0I7El8TeH9sLhSUkfEF2Fih+nA=;
- b=KvTBVwWQWyxS0XtCMs7/9TxIY7DECTD02VHRnbj8QhlwcpG8f4rC7Zs92c/QpzPa3i1+t
- 0kg6pNrBnfSgchYAmgfLJohn5FcpxHq+cbhZevJU+BJcvQQr91wioi9vo8qBrGLX1o47Vqk
- OlX4VRg3nyzAx6Jw7gZWE8cfrh8XVXcDu2xUZwFXQlVo5wZ3lNR3mgbO48tXfB3/B50XgfR
- j7FZrmvnSZrchTAaBYgGFATejJuPhXLmrOfIU/4aswFVz1ZIgBdj0gzL/F/qmk+DoyU+m9b
- HFm7sOdn4V3AJP8APj/zScLSed5TDWgRKAxrNXRqy2Oh5l8TcARemzTxMxSg==
+ bh=UpJIZizX98khuMkS+abb9UPzC4RW9RMi5Gev4m1cMAg=;
+ b=V4yiHoUCDVFqZRX3skIwQV/Ah8EwVF8joe/no76IHw4uhCsVfTruFvl1dAZ+Co8MwH+ZP
+ 4caD8i6JH5VVeQXaxdG77QvST/sMcrxv6/VHYyg0e+LcooJ/wlLhwqmJbLhpyqPnxNaIIUl
+ 4DlV1NPblnptAP3DKteOYAaay0phU51keqCJf8zoC7hF8s0RfGmTQmkilNeGBcSVz0Fe91e
+ 7EtFIa96xuU3occ8EaV3qLQ3pqCY85hMznkrOrrf25BeVXprcsT6P9TrmJBJR3i+A+I/ULw
+ HLiepGjKtLqC3qRFNE5QnR+6DbL7hVfxmPSux+t4ULukDouNMwJ7VSL52sZQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=xs4all.nl;
   arc=none (Message is not ARC signed);
@@ -46,66 +46,66 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=xs4all.nl;
  dmarc=pass (Used From Domain Record) header.from=xs4all.nl
  policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 39FD7448C4
-	for <nouveau@lists.freedesktop.org>; Thu, 16 Jul 2026 14:51:12 +0000 (UTC)
-X-Greylist: delayed 664 seconds by postgrey-1.36 at gabe;
- Thu, 16 Jul 2026 15:06:29 UTC
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2E8EF46D09
+	for <nouveau@lists.freedesktop.org>; Fri, 17 Jul 2026 08:00:02 +0000 (UTC)
 Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl
- [195.121.94.170])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0B7DF10E37D
-	for <nouveau@lists.freedesktop.org>; Thu, 16 Jul 2026 15:06:28 +0000 (UTC)
-X-KPN-MessageId: 5f222859-8126-11f1-83b1-005056ab378f
+ [195.121.94.169])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 74D7310F49C
+	for <nouveau@lists.freedesktop.org>; Fri, 17 Jul 2026 08:15:20 +0000 (UTC)
+X-KPN-MessageId: a4f84db2-81b7-11f1-a055-005056abad63
 Received: from smtp.kpnmail.nl (unknown [10.31.155.40])
 	by ewsoutbound.so.kpn.org (Halon) with ESMTPS
-	id 5f222859-8126-11f1-83b1-005056ab378f;
-	Thu, 16 Jul 2026 16:55:23 +0200 (CEST)
+	id a4f84db2-81b7-11f1-a055-005056abad63;
+	Fri, 17 Jul 2026 10:15:17 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=xs4all.nl; s=xs4all01;
-	h=to:date:message-id:subject:mime-version:content-type:from;
-	bh=b48V2mjHWtO3DRxcg0I7El8TeH9sLhSUkfEF2Fih+nA=;
-	b=BwqbjtjqEyBz0gxGSu6vGGH+++GN8cgttZEmiHIPMBaMbWrcDDhzQTRL6cKpfUx3aROj/iz+ZXSvk
-	 dckN2oOdxgTSsicdXvOuP7V1QLU9QO6ryNii8CqBmyBEDMVUf+1ksdAM9O1peLbp5fbQvyJmXtnrZf
-	 y11fNMu8iXwgrpkSGzsd8ZHOpZ/8UAn9nvWApSrMAWi5/haD7CLuaQHY5tagjyV0GzTPPYlkSUG/XY
-	 4TxmbZcIj9hriwhpNZ1IBoHC6Idla/jdguZPhfn03tUb/8WWuZkpicJSMXux7hoE3rbFsdHcHKKe/L
-	 bUf9LpyGqbWJlT/q+WuQbPfVC5k21yw==
-X-KPN-MID: 33|vTbzhwvOSD9S7gcWt1KykwtGfEO35dmAd1JvMErXoRE7cph1uocz8/1RW0YvnUM
- ffOfpZWk/72n5EUSvZvefarOw6jAepHmdDZ3DGOXVSXM=
+	h=to:message-id:date:from:subject:mime-version:content-type;
+	bh=UpJIZizX98khuMkS+abb9UPzC4RW9RMi5Gev4m1cMAg=;
+	b=Mdsh7jL3N1scC2EZEaUJG49+p/cEhd2GjqvsX0wxCAT3PGILP1RnnHvKZzS/ZlHE6itQnIeGqzdHF
+	 Wb3QmjVnRnvMzs5kJD3nmTvikHYKI8coQBORJza3C+EdeENGHf3jAj9MTk41DdXsYyZAE4eMg1Eiti
+	 Fa8GwWDpYcik4b+ysogHNrxzodlcqOMHLvjk/MIbtyJEX+u+aMhU7KkNjU4T2/RRgUK7wXdF1Bube0
+	 MRC3Gxji/LeUCZDJruyyUfUWCnN9vgNsjw0umn04x+FdBpJ1VT3OgLmTTtghggoPQ+GK1+HDs9rYfB
+	 uBVwhlADEsiwiWeb9IQiqCMBWgp6Pdw==
+X-KPN-MID: 33|E7BNZZuytpKoD+gtSzqskNjWEWVAU+8v8/OKSzhk20m7pltalSCfBA5w8e7HF47
+ f9d4LDCZbl5ny1y+Yyqgh5N1VnACA0VJYLz3glzbpodY=
 X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|XMBJ2ekhgyqFVkwC43UGX6ffaHluPDwmwQ41akygCRQ+hDBgO2LQqn/GLUGy7SU
- gHFK6pWNZHEgOlfXikkPzCg==
+X-CMASSUN: 33|7fj3Xilr2ozx8819yR03JGIE7vbDVvGa9LNNaRg1J1VglbODRE+s+ctrCEvEX4m
+ RhxmXbpJJUOmpFMCDgSgnUQ==
 X-Originating-IP: 80.60.70.196
 Received: from smtpclient.apple (80-60-70-196.fixed.kpn.net [80.60.70.196])
 	by smtp.xs4all.nl (Halon) with ESMTPSA
-	id 5ec8a675-8126-11f1-86b1-005056ab7584;
-	Thu, 16 Jul 2026 16:55:22 +0200 (CEST)
-From: Arjan Filius <iafilius@xs4all.nl>
+	id a474e3a5-81b7-11f1-86b1-005056ab7584;
+	Fri, 17 Jul 2026 10:15:17 +0200 (CEST)
 Content-Type: text/plain;
 	charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
 Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.600.51.1.1\))
-Subject: [PATCH] drm/nouveau/disp: Prevent division-by-zero during DisplayPort
- link training transitions
-Message-Id: <69D67A9F-1A56-4814-AE68-50559DED42AF@xs4all.nl>
-Date: Thu, 16 Jul 2026 16:55:10 +0200
-To: Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>
+Subject: Re: [PATCH] drm/nouveau/disp: Prevent division-by-zero during
+ DisplayPort link training transitions
+From: Arjan Filius <iafilius@xs4all.nl>
+In-Reply-To: <d51b99262dd7feb96d245926fcec65890f35c59d.camel@redhat.com>
+Date: Fri, 17 Jul 2026 10:15:01 +0200
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <6BF6102D-CBBC-4C98-8E74-F2AD208A7169@xs4all.nl>
+References: <69D67A9F-1A56-4814-AE68-50559DED42AF@xs4all.nl>
+ <d51b99262dd7feb96d245926fcec65890f35c59d.camel@redhat.com>
+To: lyude@redhat.com
 X-Mailer: Apple Mail (2.3864.600.51.1.1)
 X-MailFrom: iafilius@xs4all.nl
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: 3YZWCGN56NEJRRTXTYX5GNGD3TJX7NE7
-X-Message-ID-Hash: 3YZWCGN56NEJRRTXTYX5GNGD3TJX7NE7
-X-Mailman-Approved-At: Thu, 16 Jul 2026 21:30:11 +0000
-CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Message-ID-Hash: SPTQZX3XYHODCLX6DNZLZUA4F43XTA5T
+X-Message-ID-Hash: SPTQZX3XYHODCLX6DNZLZUA4F43XTA5T
+X-Mailman-Approved-At: Fri, 17 Jul 2026 15:05:19 +0000
+CC: Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3YZWCGN56NEJRRTXTYX5GNGD3TJX7NE7/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SPTQZX3XYHODCLX6DNZLZUA4F43XTA5T/>
 Archived-At: 
- <https://lore.freedesktop.org/69D67A9F-1A56-4814-AE68-50559DED42AF@xs4all.nl/>
+ <https://lore.freedesktop.org/6BF6102D-CBBC-4C98-8E74-F2AD208A7169@xs4all.nl/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -115,125 +115,48 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Dear Nouveau Maintainers,
-=20
-Please find below a proposed patch to prevent a division-by-zero kernel =
-oops and subsequent lockup in the Nouveau display supervisor engine when =
-DisplayPort links transition to 0 active lanes. This bug was observed =
-and patched/tested against the mainline kernel version **7.1.3**, but is =
-present in all current upstream code.
-=20
----
-=20
-### BRIEF EXPLANATION
-=20
-During screen sleep transitions or multi-input display switches (KVM =
-switching), the active lane count of a DisplayPort link can temporarily =
-drop to 0 (`ior->dp.nr =3D=3D 0`).=20
-=20
-When this occurs, the DisplayPort supervisor function =
-`nv50_disp_super_2_2_dp` is invoked via modeset interrupts. Without an =
-early-exit guard, the function attempts to perform symbols/hblank and =
-link rate calculations that divide by `ior->dp.nr`, resulting in a =
-kernel division-by-zero math exception, lockup, and system freeze.
-=20
-This patch adds an early-exit check at the beginning of =
-`nv50_disp_super_2_2_dp` to abort display configuration when the link =
-training lanes count is zero.
+Hello Lyude,
 
-*   **Tested Kernel Version:** `7.1.3` (mainline stable branch)
+Yes, I did use generative AI to help refine and structure this (old) =
+patch.
+It is completely based on work/debug/fixing I had done manually few =
+years back.=20
+Generative AI helped me to send the message, but re-used my old patched =
+code, brushed up a bit.
+And tested it this week on kernel 7.1.3, but previous tested on 6.8.0.x =
+and 6.9.9 kernels.
 
----
+In 2024 i submitted a bug report/fix/workaround (to prevent a full =
+lockup every day) on the Freedesktop GitLab under Issue 377:
+https://gitlab.freedesktop.org/drm/nouveau/-/issues/377
 
-### EXTREMELY DETAILED TECHNICAL BREAKDOWN
+Back then, my local workaround was a bit less elegant, and had a few =
+extra checks/debug statements.
+I had almost forgotten about the issue since my workaround was running =
+fine.
+When I recently booted up a clean mainline 7.1.3 kernel and saw the =
+system freeze again within a day and every day,=20
+and had to fsck my disks due to it, I remembered the fix I once debugged =
+and posted in 2024.=20
+I wanted to see if I could find a cleaner, more elegant solution and =
+used AI for it, to see if the patch could be in a nicer place,=20
+but ended up to basically reproduce the fix i had written in 2024 =
+(without AI).
 
-#### 1. Hardware Context
-This bug has been consistently reproduced on a Lenovo ThinkPad T430 =
-(Intel HD 4000 + discrete NVIDIA NVS 5400M / GF108 chipset) connected to =
-a Lenovo ThinkPad Mini Dock Plus Series 3 (Model 4338) with dual =
-external monitors on dock DisplayPorts (`DP-2` and `DP-3`).=20
 
-#### 2. Root Cause Analysis (Code Level)
-Inside `drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c`, when =
-`ior->dp.nr =3D=3D 0`, the driver executes the following lines in =
-`nv50_disp_super_2_2_dp()`:
+Regarding the two patches (A and B):=20
+* **Patch B** was the version I compiled and tested locally with the =
+`nvkm_warn()` statement
+  so I could verify in `dmesg` that the standby transitions were =
+actually triggering the block and being safely bypassed.
+* **Patch A** is the exact same check but silent (without the warning =
+logs).
 
-*   **Line 1179:** Calculations for horizontal blank symbols:
-    ```c
-    h =3D h - (3 * ior->dp.ef) - (12 / ior->dp.nr);
-    ```
-*   **Line 1185:** Calculations for vertical blank symbols:
-    ```c
-    v =3D v - ((36 / ior->dp.nr) + 3) - 1;
-    ```
-*   **Line 1190:** Calculations for active link data rate:
-    ```c
-    link_data_rate =3D (khz * head->asy.or.depth / 8) / ior->dp.nr;
-    ```
+To avoid any confusion i repeat my patch, which does not produce any =
+logging every time,=20
+but just avoids the lockup referencing null pointers when external =
+displays goes to sleep.
 
-In all three instances, the denominator `ior->dp.nr` is `0`, causing an =
-immediate kernel math exception in the display workqueue =
-(`nouveau_display_hpd_work` or `nv50_disp_super`), locking up the =
-graphics pipeline, freezing the screen, and hanging any reboot attempts =
-(requiring a physical hard reset).
-
-#### 3. Daily Workday Trigger Scenario
-1.  The T430 (via dock) and a secondary workstation are both connected =
-to different inputs on the same external monitors.
-2.  The monitors' input sources are switched to the secondary =
-workstation.
-3.  At the end of the day, the secondary workstation goes to sleep or is =
-shut down.
-4.  With no active inputs, the external monitors enter power-saving =
-standby mode.
-5.  When the user subsequently wakes up or interacts with the T430, the =
-driver attempts a modeset refresh. Since the monitors are asleep and =
-inputs are switched away, the lanes count is read as `0`, triggering the =
-division-by-zero oops.
-
-#### 4. Stack Trace (Oops Log)
-```text
-[di jul 23 10:28:25 2024] nouveau 0000:01:00.0: DRM: DDC responded, but =
-no EDID for DP-2
-[di jul 23 10:28:25 2024] nouveau 0000:01:00.0: DRM: DDC responded, but =
-no EDID for DP-3
-[di jul 23 10:28:26 2024] Workqueue: nvkm-disp nv50_disp_super [nouveau]
-[di jul 23 10:28:26 2024] RIP: 0010:nv50_disp_super_2_2_dp+0xa7/0x320 =
-[nouveau]
-[di jul 23 10:28:26 2024]  ? nv50_disp_super_2_2_dp+0xa7/0x320 [nouveau]
-[di jul 23 10:28:26 2024]  nv50_disp_super_2_2+0xf2/0x160 [nouveau]
-[di jul 23 10:28:26 2024]  nv50_disp_super+0x139/0x280 [nouveau]
-```
-
-#### 5. Verification Proof (Bypass Log)
-With the patch applied and running on kernel `7.1.3-custom #2`, the =
-screen standby transition was bypassed cleanly. The driver caught the =
-lane count of 0, bypassed display configuration, and proceeded to put =
-the graphics chip into its low-power runtime suspend state (`suspended`) =
-without locking up the OS:
-```text
-[45162.232371] nouveau 0000:01:00.0: disp: DP link is inactive (lanes =3D =
-0), skipping display configuration.
-[45162.232402] nouveau 0000:01:00.0: disp: DP link is inactive (lanes =3D =
-0), skipping display configuration.
-[45178.605627] nouveau 0000:01:00.0: timeout
-[45178.605629] WARNING: nv50_disp_dmac_fini+0x168/0x1c0 [nouveau]
-[45180.608524] nouveau 0000:01:00.0: disp: ch 1 fini timeout, 8e061008
-[45182.608521] nouveau 0000:01:00.0: timeout
-[45182.608523] WARNING: nv50_disp_core_fini+0x143/0x190 [nouveau]
-```
-
----
-
-Signed-off-by: Arjan Filius <iafilius@xs4all.nl>
----
-
-### CHOOSE ONE OF THE PATCH OPTIONS BELOW TO APPEND:
-
-#### OPTION A: The Silent Production Patch (RECOMMENDED FOR UPSTREAM)
-*Note: Kernel maintainers generally reject warnings or print spam for =
-expected hardware sleep/disconnect transitions. A silent return is the =
-preferred upstream pattern.*
 
 ```diff
 diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c =
@@ -256,31 +179,197 @@ configuration */
  	const u32 symbol =3D 100000;
 ```
 
-#### OPTION B: The Warning/Verbose Patch (What was tested locally)
-*Note: Prints warning logs to the kernel buffer for validation and =
-troubleshooting.*
+This completely fixes my lenovo T430(NVIDIA NVS 5400M) + 4338 Dock and 2 =
+external (multi-input) monitors freeze, proven over some years.
+At the time the nvidia kernel driver on my T430 became an issue wih =
+newer kernels, and notice nouveau driver did pretty well too.
 
-```diff
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c =
-b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
-index 51c045bdfcbb..ab1bc0898def 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
-@@ -1157,6 +1157,12 @@ nv50_disp_super_2_2_dp(struct nvkm_head *head, =
-struct nvkm_ior *ior)
- {
- 	struct nvkm_subdev *subdev =3D &head->disp->engine.subdev;
-=20
-+	/* If the DisplayPort link is inactive (0 lanes), skip =
-configuration */
-+	if (ior->dp.nr =3D=3D 0) {
-+		nvkm_warn(subdev, "DP link is inactive (lanes =3D 0), =
-skipping display configuration.\n");
-+		return;
-+	}
-+
- 	const u32 khz =3D head->asy.hz / 1000;
- 	const u32 linkKBps =3D ior->dp.bw * 27000;
- 	const u32 symbol =3D 100000;
-```
+Hope this claries it.
+
+Best regards,
+Arjan Filius
+
+
+> On 16 Jul 2026, at 22:40, lyude@redhat.com wrote:
+>=20
+> Hi, can you please clarify whether or not you used generative AI for
+> this patch series? If so, this needs to be noted as part of the commit
+> message. Additionally, both of these patches look to be identical
+> except that one prints a message and the other doesn't. You can just
+> send a single version, we will figure out how to handle that part
+> after.
+>=20
+> On Thu, 2026-07-16 at 16:55 +0200, Arjan Filius wrote:
+>> Dear Nouveau Maintainers,
+>> =20
+>> Please find below a proposed patch to prevent a division-by-zero
+>> kernel oops and subsequent lockup in the Nouveau display supervisor
+>> engine when DisplayPort links transition to 0 active lanes. This bug
+>> was observed and patched/tested against the mainline kernel version
+>> **7.1.3**, but is present in all current upstream code.
+>> =20
+>> ---
+>> =20
+>> ### BRIEF EXPLANATION
+>> =20
+>> During screen sleep transitions or multi-input display switches (KVM
+>> switching), the active lane count of a DisplayPort link can
+>> temporarily drop to 0 (`ior->dp.nr =3D=3D 0`).=20
+>> =20
+>> When this occurs, the DisplayPort supervisor function
+>> `nv50_disp_super_2_2_dp` is invoked via modeset interrupts. Without
+>> an early-exit guard, the function attempts to perform symbols/hblank
+>> and link rate calculations that divide by `ior->dp.nr`, resulting in
+>> a kernel division-by-zero math exception, lockup, and system freeze.
+>> =20
+>> This patch adds an early-exit check at the beginning of
+>> `nv50_disp_super_2_2_dp` to abort display configuration when the link
+>> training lanes count is zero.
+>>=20
+>> *   **Tested Kernel Version:** `7.1.3` (mainline stable branch)
+>>=20
+>> ---
+>>=20
+>> ### EXTREMELY DETAILED TECHNICAL BREAKDOWN
+>>=20
+>> #### 1. Hardware Context
+>> This bug has been consistently reproduced on a Lenovo ThinkPad T430
+>> (Intel HD 4000 + discrete NVIDIA NVS 5400M / GF108 chipset) connected
+>> to a Lenovo ThinkPad Mini Dock Plus Series 3 (Model 4338) with dual
+>> external monitors on dock DisplayPorts (`DP-2` and `DP-3`).=20
+>>=20
+>> #### 2. Root Cause Analysis (Code Level)
+>> Inside `drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c`, when `ior-
+>>> dp.nr =3D=3D 0`, the driver executes the following lines in
+>> `nv50_disp_super_2_2_dp()`:
+>>=20
+>> *   **Line 1179:** Calculations for horizontal blank symbols:
+>>     ```c
+>>     h =3D h - (3 * ior->dp.ef) - (12 / ior->dp.nr);
+>>     ```
+>> *   **Line 1185:** Calculations for vertical blank symbols:
+>>     ```c
+>>     v =3D v - ((36 / ior->dp.nr) + 3) - 1;
+>>     ```
+>> *   **Line 1190:** Calculations for active link data rate:
+>>     ```c
+>>     link_data_rate =3D (khz * head->asy.or.depth / 8) / ior->dp.nr;
+>>     ```
+>>=20
+>> In all three instances, the denominator `ior->dp.nr` is `0`, causing
+>> an immediate kernel math exception in the display workqueue
+>> (`nouveau_display_hpd_work` or `nv50_disp_super`), locking up the
+>> graphics pipeline, freezing the screen, and hanging any reboot
+>> attempts (requiring a physical hard reset).
+>>=20
+>> #### 3. Daily Workday Trigger Scenario
+>> 1.  The T430 (via dock) and a secondary workstation are both
+>> connected to different inputs on the same external monitors.
+>> 2.  The monitors' input sources are switched to the secondary
+>> workstation.
+>> 3.  At the end of the day, the secondary workstation goes to sleep or
+>> is shut down.
+>> 4.  With no active inputs, the external monitors enter power-saving
+>> standby mode.
+>> 5.  When the user subsequently wakes up or interacts with the T430,
+>> the driver attempts a modeset refresh. Since the monitors are asleep
+>> and inputs are switched away, the lanes count is read as `0`,
+>> triggering the division-by-zero oops.
+>>=20
+>> #### 4. Stack Trace (Oops Log)
+>> ```text
+>> [di jul 23 10:28:25 2024] nouveau 0000:01:00.0: DRM: DDC responded,
+>> but no EDID for DP-2
+>> [di jul 23 10:28:25 2024] nouveau 0000:01:00.0: DRM: DDC responded,
+>> but no EDID for DP-3
+>> [di jul 23 10:28:26 2024] Workqueue: nvkm-disp nv50_disp_super
+>> [nouveau]
+>> [di jul 23 10:28:26 2024] RIP: 0010:nv50_disp_super_2_2_dp+0xa7/0x320
+>> [nouveau]
+>> [di jul 23 10:28:26 2024]  ? nv50_disp_super_2_2_dp+0xa7/0x320
+>> [nouveau]
+>> [di jul 23 10:28:26 2024]  nv50_disp_super_2_2+0xf2/0x160 [nouveau]
+>> [di jul 23 10:28:26 2024]  nv50_disp_super+0x139/0x280 [nouveau]
+>> ```
+>>=20
+>> #### 5. Verification Proof (Bypass Log)
+>> With the patch applied and running on kernel `7.1.3-custom #2`, the
+>> screen standby transition was bypassed cleanly. The driver caught the
+>> lane count of 0, bypassed display configuration, and proceeded to put
+>> the graphics chip into its low-power runtime suspend state
+>> (`suspended`) without locking up the OS:
+>> ```text
+>> [45162.232371] nouveau 0000:01:00.0: disp: DP link is inactive (lanes
+>> =3D 0), skipping display configuration.
+>> [45162.232402] nouveau 0000:01:00.0: disp: DP link is inactive (lanes
+>> =3D 0), skipping display configuration.
+>> [45178.605627] nouveau 0000:01:00.0: timeout
+>> [45178.605629] WARNING: nv50_disp_dmac_fini+0x168/0x1c0 [nouveau]
+>> [45180.608524] nouveau 0000:01:00.0: disp: ch 1 fini timeout,
+>> 8e061008
+>> [45182.608521] nouveau 0000:01:00.0: timeout
+>> [45182.608523] WARNING: nv50_disp_core_fini+0x143/0x190 [nouveau]
+>> ```
+>>=20
+>> ---
+>>=20
+>> Signed-off-by: Arjan Filius <iafilius@xs4all.nl>
+>> ---
+>>=20
+>> ### CHOOSE ONE OF THE PATCH OPTIONS BELOW TO APPEND:
+>>=20
+>> #### OPTION A: The Silent Production Patch (RECOMMENDED FOR UPSTREAM)
+>> *Note: Kernel maintainers generally reject warnings or print spam for
+>> expected hardware sleep/disconnect transitions. A silent return is
+>> the preferred upstream pattern.*
+>>=20
+>> ```diff
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+>> b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+>> index 51c045bdfcbb..ab1bc0898def 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+>> @@ -1157,6 +1157,10 @@ nv50_disp_super_2_2_dp(struct nvkm_head *head,
+>> struct nvkm_ior *ior)
+>>  {
+>>  	struct nvkm_subdev *subdev =3D &head->disp->engine.subdev;
+>> =20
+>> +	/* If the DisplayPort link is inactive (0 lanes), skip
+>> configuration */
+>> +	if (ior->dp.nr =3D=3D 0)
+>> +		return;
+>> +
+>>  	const u32 khz =3D head->asy.hz / 1000;
+>>  	const u32 linkKBps =3D ior->dp.bw * 27000;
+>>  	const u32 symbol =3D 100000;
+>> ```
+>>=20
+>> #### OPTION B: The Warning/Verbose Patch (What was tested locally)
+>> *Note: Prints warning logs to the kernel buffer for validation and
+>> troubleshooting.*
+>>=20
+>> ```diff
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+>> b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+>> index 51c045bdfcbb..ab1bc0898def 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+>> @@ -1157,6 +1157,12 @@ nv50_disp_super_2_2_dp(struct nvkm_head *head,
+>> struct nvkm_ior *ior)
+>>  {
+>>  	struct nvkm_subdev *subdev =3D &head->disp->engine.subdev;
+>> =20
+>> +	/* If the DisplayPort link is inactive (0 lanes), skip
+>> configuration */
+>> +	if (ior->dp.nr =3D=3D 0) {
+>> +		nvkm_warn(subdev, "DP link is inactive (lanes =3D 0),
+>> skipping display configuration.\n");
+>> +		return;
+>> +	}
+>> +
+>>  	const u32 khz =3D head->asy.hz / 1000;
+>>  	const u32 linkKBps =3D ior->dp.bw * 27000;
+>>  	const u32 symbol =3D 100000;
+>> ```
+>=20
 
