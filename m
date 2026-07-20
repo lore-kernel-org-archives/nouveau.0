@@ -4,117 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF83BC4451B
-	for <nouveau@archiver.kernel.org>; Fri, 17 Jul 2026 22:48:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 693B5C4452B
+	for <nouveau@archiver.kernel.org>; Mon, 20 Jul 2026 11:26:08 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 73AEE10E4E8;
-	Fri, 17 Jul 2026 22:48:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A00CE10E8B2;
+	Mon, 20 Jul 2026 11:26:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="WOXHBjxA";
+	dkim=pass (2048-bit key; secure) header.d=baylibre.com header.i=@baylibre.com header.b="ofzioy2+";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D355947225;
-	Fri, 17 Jul 2026 22:32:41 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 67CB64723F;
+	Mon, 20 Jul 2026 11:10:41 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784327561;
- b=VRG2vJM1oSVaDm6pa8qM/9vUgTLHxPwN0EpHwh2mXI+y8F6JVlX5mRTKTuTdz0oJ5PyJ2
- 0CHGLf3zweMuX7we9rm5ZACEPIot5sZJHnn0oeChiO1f4qYOFFPKpHhXPlXeImPho8OFD5a
- 2tzUWiyeXKLtm73EDIWUgTxXcSIz6r1wdfAg99+eEhIJys+/wruGeuFpbiRvdWC+wYlRm2l
- phf85p8ox2mHP/ME1tZyUq3YBE2ba4c9YFyWG70grD5yNqYqb/XodF8uwCaWOtW8WsNqqIF
- Gtl4mPXSyitZUAAoy6Q52qo+4aieIEutP0mr/ritEMtfPsLvFnb7UGj3azxg==
+ s=20240201; t=1784545841;
+ b=L/9As7/ENC4zjbq4SiTAs53t2BVlfr2VMNAvwGn3ATIYnCkDbRG1kSAdJgakgdJhEV5L4
+ KYo2X/vf7/gEX1txJAbAX8+W4c+IdnFUVfrJhDnV1M8IPqSSV9wnZMpirfd+rIKj5ZLbQhR
+ szFyOmBGJX+jqg1CtARDQparh1yGUKalKXD3/RNra/SHsBIpP2GrhmfuM+Q1pkN3hVMOUAd
+ NPDhY2gHQY9dtorqPkFbJihORG2grWPdNLDyySqTIXXEnWRujyHLBimWoJvOk6zuYltYD27
+ jLRb5t7gbhv8dvU4lguEcxMWqJLlHLabillq2gr1IshNphdlMO8Xpti++8uQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784327561; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784545841; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=XmJbqbUaBVsyslPUSl/k+dj7P+djQDfVR3EqMuQkGVM=;
- b=Auh68GCL7LkPHgnHZhsbjNWbYHZtv/BG0b7d9l1VPH42KxMdQFM/LV0Nmwy2msv+DNXNr
- 3uywWDPPXrzZazqq44XQvj1BnNyNIh6xtMcdVJNgNzjN2xI9ebI+r4XvZBRzP0YXJgLVEY4
- dl1Ru5JKZNIEU45tfZZD3nYFkIpP/q3vAS+CotSVEbQzCpFt09MzPT5dcDZRkymYZIjEI0P
- j8gugNGIRCbzVIGmRYNhC7i3Faole1GfOLuG6+dt4bs+zML9NL9P2Q9YWLxDSuJI32d7vqW
- H62G7ZCbzk9eSL/MlBCvXqaf1UUq4Cp1Ln59SK3opLqbipC6yfFpSRRTq0lQ==
+ bh=0kZaE29KZfxfDEOFCh44C3Vpuraa0Raea1WRcoaoqWA=;
+ b=oDsGGt5VhfXA38PbFe5EFiHB+/mKcW1O9QGXtmsAOkmplChnD8e4ff3HPcfDr/6v5E8Or
+ 3I5ddhMvQcoOAu01yEabAWiJ/MsSbAYA9RigsAppxNOvf6FNGEzhUeRPZZNa7FZnKQe1f7q
+ bZgTEuSttlNzrls5+Jz2Ol2eRIX7+BubxGidkZn/icmrMpGdHwAA2qUX9xxU9iOLj2GbgPv
+ wOFUI5FRmUrVGSDMqUaxQwWmB28EEt6B4Nj3G4isDMgrTp9NecvQLvaM+aIE6vC7OOdkXdq
+ i3oleugHLQW2x/t23FHGzbZIj8Pe5vgYb/DkI6AGqW+n43lrpucCmlLvCKkA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ dkim=pass header.d=baylibre.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+  dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=baylibre.com;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C789F46D04
-	for <nouveau@lists.freedesktop.org>; Fri, 17 Jul 2026 22:32:38 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1C3D510E307
-	for <nouveau@lists.freedesktop.org>; Fri, 17 Jul 2026 22:47:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1784328478;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=XmJbqbUaBVsyslPUSl/k+dj7P+djQDfVR3EqMuQkGVM=;
-	b=WOXHBjxAzZ8q11244ksRJD1x3BuYBMgoHleN/A7cDgSAgRNbn+C8e0KLbTZcgNfINsbMXX
-	jEXhUfj+Bfvx0NV9h1WWNhrvJtrlx1awN3SFom7VhiBhKyKcuqLMgNajYeljsbNgatMzQ1
-	/4cPLXq09JxQ79H4nEjdHp7Wg5miEXE=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-151-0SsXqMp2NQGwwDW5-1r0vQ-1; Fri,
- 17 Jul 2026 18:47:54 -0400
-X-MC-Unique: 0SsXqMp2NQGwwDW5-1r0vQ-1
-X-Mimecast-MFC-AGG-ID: 0SsXqMp2NQGwwDW5-1r0vQ_1784328472
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 46E05180074B;
-	Fri, 17 Jul 2026 22:47:51 +0000 (UTC)
-Received: from GoldenWind.lan (unknown [10.22.80.43])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id A7E903004186;
-	Fri, 17 Jul 2026 22:47:48 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: nouveau@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/nouveau/kms/nv50-: Unconditionally create blend_mode prop
- for wndws
-Date: Fri, 17 Jul 2026 18:47:42 -0400
-Message-ID: <20260717224743.1335833-1-lyude@redhat.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 100B140408
+	for <nouveau@lists.freedesktop.org>; Mon, 20 Jul 2026 11:10:38 +0000 (UTC)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
+ [209.85.221.43])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 148A410E893
+	for <nouveau@lists.freedesktop.org>; Mon, 20 Jul 2026 11:26:03 +0000 (UTC)
+Received: by mail-wr1-f43.google.com with SMTP id
+ ffacd0b85a97d-47362928f65so9058103f8f.2
+        for <nouveau@lists.freedesktop.org>;
+ Mon, 20 Jul 2026 04:26:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1784546762; x=1785151562;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=0kZaE29KZfxfDEOFCh44C3Vpuraa0Raea1WRcoaoqWA=;
+        b=ofzioy2+tClJXdJQVp6Tz9bNz757M3Q4gLH6H5hPN0kNYQ92GYxvZE2FzkectraBGQ
+         9yytZkuo8ADeCwCD81Sciai5bI/+zkI1IsS+hGuY6YdtnDEMDkmY+KLf1ZPtYbO/5FWe
+         5PgAxXv9Jy0h0l0h14NyatQ4WcBJpXkK/ltcttLXlc6xugSp2/Pf/PJHNp4atnuJedaH
+         IOOSN4MgQfckPaSio32dKpzQuV9Cdln2UbZu9cOwjwkAzZlv8QoqyHpxeL/H5S3ycAmq
+         n5/7EEILFC2m6Zw5zbxXyYJKnWz/hHSEF2GELwt1uFvJuTLPER8XELALFt3KqmQ97Xsx
+         KnEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784546762; x=1785151562;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=0kZaE29KZfxfDEOFCh44C3Vpuraa0Raea1WRcoaoqWA=;
+        b=nIvumq9pr+dQHrZqv3L3IxhdQ85NGhyUeMaUdwXaeY/silXPo0oiDolbV0QyL0C5W9
+         AGJTCVxFv5sXmqN+LG1Ire8bMbGMhH5zY7DHVCZO/Ru8k0XhlKyvMsTgWdUr70aTg90R
+         ZRzJMiBf3XqLqIRsocPFadNJXj1x6O3e1p408zxq4zbS3usxlT0FAWsMzLuJnLPIlM2S
+         tC2xdtsyhzcz/JBZDHHsUD7qGZMxyKYyhq25oHucknPmIsnIuZcS0p/2A3EaLdzWU9SK
+         XSMaxIYfH47+tNcKLNdmKGAJSUdRoKgh+w4tfqfxUNcFEY97MnQdorVTW2vYXCNHnq56
+         snsg==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RpHdpxvKyTzFhARyryYMP9hTBZWvyklSZpOMTrrzsw9+LhDi64SXOEwzIqBM3V/rgcGLpWGStdb@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzwJoCMJlfjUkJVLZ8qLUrZTSfEBEU7UajWeid7rTTfn2tM3jdR
+	x7qDjOfkeh+lgzeXB3Avze2+kpF27jTBeVlQ/JfcoESeDT1Oh/XXsrO9M1VMcrl8Ipw=
+X-Gm-Gg: AR+sD11yLIb65tpe0nCOR5e+lf/51t9LpV+WQIqqv/GpHRpd8WrNqDOdywlq0I1XeDD
+	XFcfKo2Zd83/mNyfa+8lrfip+6NXpcZdnMyUiat1fbmeSiF2eC0c2pkVWBQiAlbjgj5YNdhmbJF
+	THwSKWIeEy8BdkpJtxj5JKAjEUN7gfgp9zQuZ4eOEXT51VV7DOCzEg2TkLSX0BxXbgVxs5TPgTx
+	wrZl2L4IIe3sWo1XxqOF67zwtvpyG4reMqDIudI8f0t+MfBFllSycwGmtsHQ06fjIV6WnvZObx9
+	IgtyLug10FL6EwNDkSEbHUzDta1R1p4nTXG6xFzditsHk11pTYmM4DJYMDGTKRDEfk6og3KnLrx
+	VpaWFFB3Jc1eAaZXW9SatbxriYvwoSw8QDEHIDQ7mx3+Jq2bybdvPCdBmoAo/PrJo1/d9TvsAqi
+	4f2JdI6OpLbM+Koo7+WSXBS41Q3QFHn2l9iRnjP0hifBafeLRQ+0lW9bwyl4Tf8QuwBQ==
+X-Received: by 2002:a05:6000:2084:b0:47e:4379:a4fd with SMTP id
+ ffacd0b85a97d-47f6230e6e8mr16385810f8f.19.1784546761738;
+        Mon, 20 Jul 2026 04:26:01 -0700 (PDT)
+Received: from localhost
+ (p200300f65f47db048587886ecb5b26b2.dip0.t-ipconnect.de.
+ [2003:f6:5f47:db04:8587:886e:cb5b:26b2])
+        by smtp.gmail.com with UTF8SMTPSA id
+ ffacd0b85a97d-47f6980582csm21915987f8f.13.2026.07.20.04.26.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jul 2026 04:26:00 -0700 (PDT)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?=
+ <u.kleine-koenig@baylibre.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Francesco Dolcini <francesco@dolcini.it>,
+	Peter Senna Tschudin <peter.senna@gmail.com>,
+	Ian Ray <ian.ray@gehealthcare.com>,
+	Martyn Welch <martyn.welch@collabora.co.uk>,
+	Russell King <linux@armlinux.org.uk>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Jani Nikula <jani.nikula@intel.com>,
+	Loic Poulain <loic.poulain@oss.qualcomm.com>,
+	Xin Ji <xji@analogixsemi.com>,
+	Marco Crivellari <marco.crivellari@suse.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Marcus Folkesson <marcus.folkesson@gmail.com>,
+	Lyude Paul <lyude@redhat.com>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Kees Cook <kees@kernel.org>
+Subject: [PATCH v2 0/3] drm: Use named initializers for arrays of
+ i2c_device_data
+Date: Mon, 20 Jul 2026 13:25:46 +0200
+Message-ID: <cover.1784545092.git.u.kleine-koenig@baylibre.com>
+X-Mailer: git-send-email 2.55.0.11.g153666a7d9bb
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-MFC-PROC-ID: fAYC875er4s95r4BHQyb_HxfF6UN6bYMm0b17uBb-Kc_1784328472
-X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3145;
+ i=u.kleine-koenig@baylibre.com; h=from:subject:message-id;
+ bh=DXHsMDsmw7OPrQMasfuuVj90fwlpF7W2mtp2LHUpCd0=;
+ b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBqXgW7gpMZ25NHhb69GDKSEdwCHXzn3kK+CL6GQ
+ YEYOEYraPyJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCal4FuwAKCRCPgPtYfRL+
+ TsRrB/9HH4ICrBdcptv8zk9/ja89r2p4MVgyQqpVESitnWboEdmXu76hkkMrDIezARlH0zh27bM
+ KHi2NKla4E4G+m0Id7jCnnqCJpJ+IpM7B7Om8rRZOx+Ma7oL9qGFS7Y7nnNz4pJgnMreSiqtnTk
+ 201oXhn/mZSy8BELrZk3b0WQ9jjX5BBqxRp4VSo61PWOCNBX/+Qmhd0FQOclDr5fjGJ1tE1wBYo
+ NBlvms2YI562rbIyXQR1AWJ6dLfEbAtm5djiVuaJxqCOrzuOyznOyQL/96kV0qkNOouaJpnF3r+
+ cQKziezR+2biFbt1cn8e8BF52gllfIQzS8I70AumtH/2E53H
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp;
+ fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: 4S3TRSDWJV6QVO6OLDTXPZOXTDTE4YCS
-X-Message-ID-Hash: 4S3TRSDWJV6QVO6OLDTXPZOXTDTE4YCS
-X-MailFrom: lyude@redhat.com
-X-Mailman-Rule-Hits: member-moderation
+Message-ID-Hash: NGOKPCSQYOUECPE32CIR4YSF5QQECJZQ
+X-Message-ID-Hash: NGOKPCSQYOUECPE32CIR4YSF5QQECJZQ
+X-MailFrom: ukleinek@baylibre.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
-CC: Dave Airlie <airlied@redhat.com>,
- Leandro Ribeiro <leandro.ribeiro@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Kees Cook <kees@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Maxime Ripard <mripard@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Daniel Stone <daniels@collabora.com>
+ loop; banned-address; member-moderation
+CC: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Douglas Anderson <dianders@chromium.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4S3TRSDWJV6QVO6OLDTXPZOXTDTE4YCS/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NGOKPCSQYOUECPE32CIR4YSF5QQECJZQ/>
 Archived-At: 
- <https://lore.freedesktop.org/20260717224743.1335833-1-lyude@redhat.com/>
+ <https://lore.freedesktop.org/cover.1784545092.git.u.kleine-koenig@baylibre.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -124,143 +173,68 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Since the commit mentioned down below, it looks like we've been triggering
-this WARN_ON():
+Hello,
 
-  [   31.477009] ------------[ cut here ]------------
-  [   31.477012] [PLANE:66:curs-0] pixel format with alpha exposed but
-  blend mode not setup
-  [   31.477014] WARNING: drivers/gpu/drm/drm_mode_config.c:872 at
-  drm_mode_config_validate+0x38c/0x4c0, CPU#1: modprobe/1264
-  [   31.477125] CPU: 1 UID: 0 PID: 1264 Comm: modprobe Not tainted
-  7.2.0-rc2Lyude-Test+ #1 PREEMPT(lazy)
-  [   31.477129] Hardware name: Micro-Star International Co., Ltd.
-  MS-7A39/A320M GAMING PRO (MS-7A39), BIOS 1.M4 05/10/2023
-  [   31.477132] RIP: 0010:drm_mode_config_validate+0x394/0x4c0
-  [   31.477136] Code: 41 3b 9e 80 00 00 00 73 bd 49 8b 46 78 8b 3c 98 e8
-  c1 3d ff ff 80 78 14 00 74 e1 48 8d 3d 64 e6 e7 01 49 8b 56 18 41 8b 76
-  50 <67> 48 0f b9 3a 49 8b 46 08 4c 8d 70 f8 49 39 c5 75 97 8b 95 b8 02
-  [   31.477139] RSP: 0018:ffffd48e053bb7f8 EFLAGS: 00010202
-  [   31.477143] RAX: ffffffffaf1da9c0 RBX: 0000000000000000 RCX: 0000000000000034
-  [   31.477145] RDX: ffff8cd883c1feb0 RSI: 0000000000000042 RDI: ffffffffb069f840
-  [   31.477148] RBP: ffff8cd88ea3d800 R08: 0000000034325241 R09: ffff8cd88ea3dac0
-  [   31.477150] R10: fffffaf5c4043600 R11: ffff8cd88004f600 R12: 0000000000000001
-  [   31.477152] R13: ffff8cd88ea3da90 R14: ffff8cd88b9ec038 R15: ffff8cd88ea3dab0
-  [   31.477154] FS:  00007fb934898780(0000) GS:ffff8cd9f3a6a000(0000) knlGS:0000000000000000
-  [   31.477157] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-  [   31.477160] CR2: 0000555efff79520 CR3: 0000000122cd5000 CR4: 00000000003506f0
-  [   31.477162] Call Trace:
-  [   31.477165]  <TASK>
-  [   31.477168]  ? nouveau_hwmon_init+0x2d6/0x330 [nouveau]
-  [   31.477346]  drm_dev_register+0x19d/0x270
-  [   31.477352]  nouveau_drm_device_init+0x17a/0x230 [nouveau]
-  [   31.477523]  nouveau_drm_probe+0x13d/0x1e0 [nouveau]
-  [   31.477690]  local_pci_probe+0x3e/0x90
-  [   31.477697]  pci_call_probe+0x59/0x190
-  [   31.477702]  ? srso_return_thunk+0x5/0x5f
-  [   31.477706]  ? pci_match_device+0x15a/0x180
-  [   31.477710]  ? pci_assign_irq+0x2d/0x160
-  [   31.477714]  pci_device_probe+0x95/0x160
-  [   31.477719]  call_driver_probe+0x26/0x100
-  [   31.477724]  ? driver_sysfs_add+0x59/0xd0
-  [   31.477738]  really_probe+0xcc/0x2c0
-  [   31.477743]  ? srso_return_thunk+0x5/0x5f
-  [   31.477749]  __driver_probe_device+0x85/0x170
-  [   31.477754]  driver_probe_device+0x1f/0x90
-  [   31.477760]  ? __pfx___driver_attach+0x10/0x10
-  [   31.477766]  __driver_attach+0xcb/0x210
-  [   31.477772]  bus_for_each_dev+0x85/0xd0
-  [   31.477779]  bus_add_driver+0x13e/0x220
-  [   31.477786]  ? __pfx_init_module+0x10/0x10 [nouveau]
-  [   31.477979]  driver_register+0x75/0xe0
-  [   31.477984]  ? srso_return_thunk+0x5/0x5f
-  [   31.477990]  nouveau_drm_init+0x8b/0xff0 [nouveau]
-  [   31.478192]  do_one_initcall+0x5d/0x300
-  [   31.478204]  do_init_module+0x86/0x290
-  [   31.478212]  init_module_from_file+0xd8/0x140
-  [   31.478223]  idempotent_init_module+0x114/0x310
-  [   31.478233]  __x64_sys_finit_module+0x71/0xe0
-  [   31.478238]  do_syscall_64+0xe2/0x630
-  [   31.478252]  ? srso_return_thunk+0x5/0x5f
-  [   31.478257]  ? vfs_read+0x165/0x390
-  [   31.478267]  ? srso_return_thunk+0x5/0x5f
-  [   31.478271]  ? srso_return_thunk+0x5/0x5f
-  [   31.478276]  ? switch_fpu_return+0x52/0xe0
-  [   31.478282]  ? srso_return_thunk+0x5/0x5f
-  [   31.478286]  ? arch_exit_to_user_mode_prepare.isra.0+0x7e/0x90
-  [   31.478292]  ? srso_return_thunk+0x5/0x5f
-  [   31.478296]  ? do_syscall_64+0x11f/0x630
-  [   31.478301]  ? srso_return_thunk+0x5/0x5f
-  [   31.478305]  ? arch_exit_to_user_mode_prepare.isra.0+0x7e/0x90
-  [   31.478310]  ? srso_return_thunk+0x5/0x5f
-  [   31.478314]  ? do_syscall_64+0x11f/0x630
-  [   31.478320]  ? srso_return_thunk+0x5/0x5f
-  [   31.478324]  ? arch_exit_to_user_mode_prepare.isra.0+0x7e/0x90
-  [   31.478329]  ? srso_return_thunk+0x5/0x5f
-  [   31.478334]  ? srso_return_thunk+0x5/0x5f
-  [   31.478338]  ? do_syscall_64+0x99/0x630
-  [   31.478343]  ? exc_page_fault+0x82/0x1c0
-  [   31.478350]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-  [   31.478355] RIP: 0033:0x7fb93410030d
-  [   31.478372] Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa
-  48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f
-  05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d c3 5a 0f 00 f7 d8 64 89 01 48
-  [   31.478375] RSP: 002b:00007ffc587ce738 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
-  [   31.478381] RAX: ffffffffffffffda RBX: 0000562f5fb3da60 RCX: 00007fb93410030d
-  [   31.478385] RDX: 0000000000000000 RSI: 0000562f5fb40590 RDI: 000000000000000d
-  [   31.478388] RBP: 00007ffc587ce7d0 R08: 0000000000000000 R09: 0000000000000000
-  [   31.478391] R10: 0000000000000000 R11: 0000000000000246 R12: 0000562f5fb40590
-  [   31.478394] R13: 0000000000040000 R14: 0000562f5fb3db80 R15: 0000000000000009
-  [   31.478404]  </TASK>
-  [   31.478407] ---[ end trace 0000000000000000 ]---
+the objective of this patch set is to prepare drm for a change to
+i2c_device_id. See
+https://lore.kernel.org/all/cover.1780048925.git.u.kleine-koenig@baylibre.com/
+for the details.
 
-Fix it by making sure we unconditionally call
-drm_plane_create_blend_mode_property for all types of wndws, including
-those (such as cursors) without a blend_set function.
+(Implicit) v1 is available at
+https://lore.kernel.org/dri-devel/20260518100401.631351-2-u.kleine-koenig@baylibre.com
 
-Fixes: 860e748bddcc ("drm: ensure blend mode supported if pixel format with alpha exposed")
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/dispnv50/wndw.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+I was asked to split the patch, so that is what is done here.
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-index 2635458d52acc..9ec06dceceef5 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-@@ -860,6 +860,7 @@ nv50_wndw_new_(const struct nv50_wndw_func *func, struct drm_device *dev,
- 	struct nv50_disp *disp = nv50_disp(dev);
- 	struct nv50_wndw *wndw;
- 	const u64 *format_modifiers;
-+	unsigned int blend_modes = BIT(DRM_MODE_BLEND_PIXEL_NONE);
- 	int nformat;
- 	int ret;
- 
-@@ -909,12 +910,7 @@ nv50_wndw_new_(const struct nv50_wndw_func *func, struct drm_device *dev,
- 		if (ret)
- 			return ret;
- 
--		ret = drm_plane_create_blend_mode_property(&wndw->plane,
--				BIT(DRM_MODE_BLEND_PIXEL_NONE) |
--				BIT(DRM_MODE_BLEND_PREMULTI) |
--				BIT(DRM_MODE_BLEND_COVERAGE));
--		if (ret)
--			return ret;
-+		blend_modes |= BIT(DRM_MODE_BLEND_PREMULTI) | BIT(DRM_MODE_BLEND_COVERAGE);
- 	} else {
- 		ret = drm_plane_create_zpos_immutable_property(&wndw->plane,
- 				nv50_wndw_zpos_default(&wndw->plane));
-@@ -922,6 +918,10 @@ nv50_wndw_new_(const struct nv50_wndw_func *func, struct drm_device *dev,
- 			return ret;
- 	}
- 
-+	ret = drm_plane_create_blend_mode_property(&wndw->plane, blend_modes);
-+	if (ret)
-+		return ret;
-+
- 	return 0;
- }
- 
+The first submission received a few review tags (by Liu Ying, Danilo
+Krummrich, Laurent Pinchart and Luca Ceresoli). I only added Luca
+Ceresoli's tag here as he explicitly noted that I can when splitting.
+
+The patches are pairwise independant and thus can be applied by whoever
+feels responsible for it. They are only grouped here because they used
+to be one patch and are about the same objective.
+
+Best regards
+Uwe
+
+Uwe Kleine-König (The Capable Hub) (3):
+  drm/bridge: Use named initializers for arrays of i2c_device_data
+  drm/sitronix/st7571-i2c: Drop unused assignment of i2c_device_id
+    driver data
+  drm/nouveau: Use named initializers for i2c_device_id arrays
+
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c           | 10 +++++-----
+ drivers/gpu/drm/bridge/analogix/analogix-anx6345.c     |  2 +-
+ drivers/gpu/drm/bridge/analogix/anx7625.c              |  4 ++--
+ drivers/gpu/drm/bridge/chipone-icn6211.c               |  4 ++--
+ drivers/gpu/drm/bridge/chrontel-ch7033.c               |  2 +-
+ drivers/gpu/drm/bridge/ite-it6263.c                    |  2 +-
+ drivers/gpu/drm/bridge/ite-it6505.c                    |  2 +-
+ drivers/gpu/drm/bridge/lontium-lt8713sx.c              |  2 +-
+ drivers/gpu/drm/bridge/lontium-lt8912b.c               |  4 ++--
+ drivers/gpu/drm/bridge/lontium-lt9211.c                |  4 ++--
+ drivers/gpu/drm/bridge/lontium-lt9611.c                |  4 ++--
+ drivers/gpu/drm/bridge/lontium-lt9611uxc.c             |  2 +-
+ .../gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c   |  8 ++++----
+ drivers/gpu/drm/bridge/nxp-ptn3460.c                   |  4 ++--
+ drivers/gpu/drm/bridge/parade-ps8622.c                 |  8 ++++----
+ drivers/gpu/drm/bridge/sii902x.c                       |  2 +-
+ drivers/gpu/drm/bridge/sii9234.c                       |  2 +-
+ drivers/gpu/drm/bridge/sil-sii8620.c                   |  2 +-
+ drivers/gpu/drm/bridge/tc358767.c                      |  2 +-
+ drivers/gpu/drm/bridge/tc358768.c                      |  4 ++--
+ drivers/gpu/drm/bridge/tc358775.c                      |  4 ++--
+ drivers/gpu/drm/bridge/tda998x_drv.c                   |  2 +-
+ drivers/gpu/drm/bridge/ti-dlpc3433.c                   |  2 +-
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c                  |  6 +++---
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c                  |  4 ++--
+ drivers/gpu/drm/bridge/ti-tfp410.c                     |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/i2c/ch7006_drv.c      |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/i2c/sil164_drv.c      |  2 +-
+ drivers/gpu/drm/sitronix/st7571-i2c.c                  |  4 ++--
+ 29 files changed, 51 insertions(+), 51 deletions(-)
+
+
+base-commit: 0718283ab28bc3907e10b61a6b4be6fefa1cbb2f
 -- 
-2.55.0
+2.55.0.11.g153666a7d9bb
 
