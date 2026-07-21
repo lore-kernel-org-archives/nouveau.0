@@ -4,74 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E426AC44537
-	for <nouveau@archiver.kernel.org>; Tue, 21 Jul 2026 15:19:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD264C4451C
+	for <nouveau@archiver.kernel.org>; Tue, 21 Jul 2026 15:43:08 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AE37A10EA8D;
-	Tue, 21 Jul 2026 15:19:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8265910EA87;
+	Tue, 21 Jul 2026 15:43:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cxXu/Jgl";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="i46hQ7WB";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id DE109466F6;
-	Tue, 21 Jul 2026 15:03:52 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A4EC347293;
+	Tue, 21 Jul 2026 15:27:39 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784646232;
- b=R3K9kCMerHBi2KMClTGqVYaemzt70z2uINGZqG4DzSTuPfuqCC78U4tpr2xj6ns5PcC66
- 0A6/lnmo4ONwMsckGU1srzTtI7BMFcHNYSclmvAWNKsEgW6kZlF6pd2gR6IayrvIE7FD73h
- ewWkmJEsoCn0IkHoFhmf7oMa4LMTRYEH2eS6AE9CONLJG/Ue6BZaIrVxReooaR7Nh2EJSx0
- sMp+QOTXXRXBr3bKabbG+8S0uxDe+5aOfPUqG33H9l4cQwAVoMKCK5lkP5j/Xc10VzW6Uo6
- MzaTIqfHTrMomcfKJGPLjdZY4EQoDgwxg+ncOVaZp6d+mxS6KfApXLQaosrQ==
+ s=20240201; t=1784647659;
+ b=iwZu1Vy0w1D++dCmA9yzl+34PTEVkBvYVcNQ1BT6t3hVtZDSZmL2uzbOSucnuMwEGqCSz
+ kDJf9UcCLnKC3+IonfCoueFZO9QZi0ZB2vEcumyl0h0dce6HWgSZSHdqw4CwWo0LAmCaudj
+ WO0KQKzzt6U3oBcGGo5iC7LzsQpCGVY95GPZk7H2fHIgBKQjgZs5iR+MS/ZI5bR22/zwIZr
+ giMdpIKHnIaOsd17vZg9WQmT04wfteo1QuZ1QC9bnZ/75jD06GziPS5ISTV3EPVju0O769A
+ Hc9K2y+6gitrAfaCr8DG+I+qARjYisHiuvSDdAoBeiuZNjcQn0KaWWwhFGGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784646232; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784647659; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=NcQHotnRc1YltaL0d91NNFzXPnSIvU2fa84uq1Kqf80=;
- b=ZM5EFOf7ecGECOO2Us0ZiMkqEeKlAnHI1KKHir1627aRrFRt++4d1bYPIdEMT5bBuC9S7
- 8udbkgRxE1TU2+0gf0mMBiqGEDlgaBgYxhSv/prnPJIthe9aFdpBhzbWQ+lIJCIqN7sYM6y
- cN2EGWrS65VOSArm9qmY08/K/UGUw+uVf9DHzF13hPr2y5B5yPQaPNQEKOVO1NSf+HUTm5w
- 2le2t3GnhuuYIBfwFo+1cZx12pAtcHSuuZo+qbisVxy24EVAsoumyeHD9BjjmZoJVqqvB5l
- uhT+CUrT1L0iSHSmftuj8t8H+kwSO1LXfvlw/8xKRmmwofvrKldMBbbFctfg==
+ bh=K8km+ZQgkLUVNh5jQNamAtWyAYxH8WzuI6GZYyhCw5A=;
+ b=DOhAZgKJtwrnDygwo4wDdUIEL0rkvLxEpKCDci5Uq/UXZ5sINwY06T3rnsioL/gwc38Zc
+ nZrCKlvNiJ6xBnNGjzvspeemZqFOYklwqcsRj1/MZg2BivXYpIGSWs8mNK+tai5ZjaCzBqr
+ LnZmfLtiveS9eSLKV/b3dBHyYpRBTcWR89k0/lqB388wukak6D/x4Qnc1dACQ+abTsBL1XR
+ Mg27asAO0eDn2J1w47YACpT9ict6sE+ehI/t2AtPfOh1lUYf1s0bWhXwXPm6nXxkmsy01Hj
+ 9S27MUadpg98r8spQohQTUKoE0BunyljjluEAmysHRN2CdSw94j7T/Z9JDwQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=fail header.d=kernel.org;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=kernel.org
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail header.d=kernel.org;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=kernel.org
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A992E40368
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 15:03:49 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2915D10EA87;
-	Tue, 21 Jul 2026 15:19:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1A40740368
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 15:27:38 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B1A2010E387;
+	Tue, 21 Jul 2026 15:43:06 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 91A77600D8;
-	Tue, 21 Jul 2026 15:19:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2559E1F000E9;
-	Tue, 21 Jul 2026 15:19:07 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 75B014361B;
+	Tue, 21 Jul 2026 15:43:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C47751F000E9;
+	Tue, 21 Jul 2026 15:42:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784647157;
-	bh=NcQHotnRc1YltaL0d91NNFzXPnSIvU2fa84uq1Kqf80=;
+	s=k20260515; t=1784648586;
+	bh=K8km+ZQgkLUVNh5jQNamAtWyAYxH8WzuI6GZYyhCw5A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=cxXu/JglamTfxZku20/hvwti8kyhkeyVDle5r6Gs3gp+SkJnbyhtcGv/c18jtV/cw
-	 7gSgQmx19CA7r6u805JO5I8cZ3xBRPmkyR/TaKUjbH5t+Gm9nKMDsP+xj1jwAvi8dW
-	 owS3DMGZ59TLPI3kIqnJaRSYe1gjvqDyjXDBUA50bTQChhd5HKjqPm/P51z59oZg6/
-	 DbaXmu+vpmoqXHG96HzQT4+JM+fRaZglAuD4Kv4OKXvbdx+2jLMN67pqWyuu0y85qm
-	 dUyOAjy7uV0NxLmjNVxyy+EME6N/YRuWZvdtvW6P4ZjgS0iJJkfPgii0UTXWZb8cqx
-	 way087G+3sExg==
-Message-ID: <0b9be5b3-93aa-407f-b83d-409bec4b55e1@kernel.org>
-Date: Tue, 21 Jul 2026 17:19:06 +0200
+	b=i46hQ7WBWTSjsJoo0+aveeWDcCrbR28cpcdsOhYe47u8VnVADMzUCzgKDgO1zrrFL
+	 RvX8M8IyZbwW6+2/ZFYKqtdyCdD7Bu7yegasMnOCMW6PitAN9yJ5HbJKOCXUKS/Jo8
+	 L6csKx3I2nudveiiZxOEhTUX4Y72B+kVDuKRxQiwFJVlPNIgxTlo2pnnik+08H/vAB
+	 wOZJ3QkGLxPrbYexz4Z2lPFM52xsYgt5WeZbuKkkIur+qqoEMW+gxo5TgYo20cxjeF
+	 8dDfaslPMlAeyIafDK2s4i66yRQGvgmYRh1ZHlvhjlF4y8buBZXjFVNi7m2f+SrPSV
+	 Ve0R4XiL7aGhw==
+Message-ID: <3ed2043b-88e7-4a86-9efb-fe788191e8e8@kernel.org>
+Date: Tue, 21 Jul 2026 17:42:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/8] mm/hmm: move page fault handling out of walk
- callbacks
+Subject: Re: [PATCH v9 2/8] mm/hmm: add hmm_range_fault_unlocked_timeout() for
+ mmap lock-drop support
 To: Stanislav Kinsburskii <skinsburskii@gmail.com>, airlied@gmail.com,
  akhilesh@ee.iitb.ac.in, akpm@linux-foundation.org, corbet@lwn.net,
  dakr@kernel.org, decui@microsoft.com, haiyangz@microsoft.com, jgg@ziepe.ca,
@@ -83,7 +83,7 @@ To: Stanislav Kinsburskii <skinsburskii@gmail.com>, airlied@gmail.com,
  skhan@linuxfoundation.org, surenb@google.com, tzimmermann@suse.de,
  vbabka@kernel.org, wei.liu@kernel.org
 References: <178413903133.1155966.3904063656020521607.stgit@skinsburskii>
- <178413935809.1155966.6398279131483632373.stgit@skinsburskii>
+ <178413936536.1155966.8918127042760531802.stgit@skinsburskii>
 From: "David Hildenbrand (Arm)" <david@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=david@kernel.org; keydata=
@@ -130,11 +130,11 @@ Autocrypt: addr=david@kernel.org; keydata=
  3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
  CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
  qIws/H2t
-In-Reply-To: <178413935809.1155966.6398279131483632373.stgit@skinsburskii>
+In-Reply-To: <178413936536.1155966.8918127042760531802.stgit@skinsburskii>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID-Hash: U4VXVBTTYEVDCQ5ZPJKCJR7CQHDP44MM
-X-Message-ID-Hash: U4VXVBTTYEVDCQ5ZPJKCJR7CQHDP44MM
+Message-ID-Hash: DW2XZQRAAVDNOIZ7KXUWUFBB3QIS6HQN
+X-Message-ID-Hash: DW2XZQRAAVDNOIZ7KXUWUFBB3QIS6HQN
 X-MailFrom: david@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -148,9 +148,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/U4VXVBTTYEVDCQ5ZPJKCJR7CQHDP44MM/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DW2XZQRAAVDNOIZ7KXUWUFBB3QIS6HQN/>
 Archived-At: 
- <https://lore.freedesktop.org/0b9be5b3-93aa-407f-b83d-409bec4b55e1@kernel.org/>
+ <https://lore.freedesktop.org/3ed2043b-88e7-4a86-9efb-fe788191e8e8@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -160,100 +160,32 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 7/15/26 20:15, Stanislav Kinsburskii wrote:
-> hmm_range_fault() currently triggers page faults from inside the page-table
-> walk callbacks: hmm_vma_walk_pmd(), hmm_vma_walk_pud(),
-> hmm_vma_walk_hugetlb_entry() and the pte-level helper all call
-> hmm_vma_fault(), which in turn calls handle_mm_fault() while the walker
-> still holds nested locks.  The pte spinlock is dropped explicitly by each
-> caller, and the hugetlb path manually drops and retakes
-> hugetlb_vma_lock_read around the fault to dodge a deadlock against the walk
-> framework's unconditional unlock.
+On 7/15/26 20:16, Stanislav Kinsburskii wrote:
+> hmm_range_fault() requires the caller to hold the mmap read lock for the
+> duration of the call. This is incompatible with mappings whose fault
+> handler may release the mmap lock, notably userfaultfd-managed regions,
+> where handle_mm_fault() can return VM_FAULT_RETRY or VM_FAULT_COMPLETED
+> after dropping the lock. Drivers that need to populate device page tables
+> for such mappings have no way to do so today.
 > 
-> This layering does not extend cleanly to fault handlers that may release
-> mmap_lock (VM_FAULT_RETRY, VM_FAULT_COMPLETED). If the lock is dropped
-> while walk_page_range() is mid-traversal, the VMA can be freed before the
-> walk framework's matching hugetlb_vma_unlock_read(), turning that unlock
-> into a use-after-free.
-> 
-> Split the responsibilities the way get_user_pages() does. Walk callbacks
-> become inspect-only: when they detect a range that needs to be faulted in,
-> they record it in struct hmm_vma_walk and return a private sentinel
-> (HMM_FAULT_PENDING). The outer loop in hmm_range_fault() then drops out of
-> walk_page_range(), invokes a new helper hmm_do_fault() that calls
-> handle_mm_fault() with only mmap_lock held, and restarts the walk so the
-> now-present entries are collected into hmm_pfns.
-> 
-> No functional change for existing callers. As a side effect the hugetlb
-> callback no longer needs the hugetlb_vma_{un}lock_read dance, and every
-> fault-path exit from the callbacks now releases the pte spinlock on a
-> single, common path. This refactor is also a precursor for adding an
-> unlockable variant of hmm_range_fault() in a follow-up patch.
-> 
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
-> ---
+> Add hmm_range_fault_unlocked_timeout() for callers that do not need to hold
+> mmap_lock across any work outside the HMM fault itself. The helper takes
+> mmap_read_lock_killable() internally, calls the common HMM fault
+> implementation, and releases the lock before returning if it is still held.
+> The timeout is specified in jiffies; passing 0 retries indefinitely, while
+> a non-zero timeout makes the helper return -EBUSY when the retry budget
+> expires.
 
+The timeout does not / cannot affect how long we might be stuck without the mmap
+lock in e.g., the userfaultfd handler. And also not how long it would take to
+actually grab the mmap lock.
+
+That's expected with the timeout, right?
 
 [...]
 
 
->  
->  		pfn = pud_pfn(pud) + ((addr & ~PUD_MASK) >> PAGE_SHIFT);
-> @@ -564,21 +561,8 @@ static int hmm_vma_walk_hugetlb_entry(pte_t *pte, unsigned long hmask,
->  	required_fault =
->  		hmm_pte_need_fault(hmm_vma_walk, pfn_req_flags, cpu_flags);
->  	if (required_fault) {
-> -		int ret;
-> -
->  		spin_unlock(ptl);
-> -		hugetlb_vma_unlock_read(vma);
-> -		/*
-> -		 * Avoid deadlock: drop the vma lock before calling
-> -		 * hmm_vma_fault(), which will itself potentially take and
-> -		 * drop the vma lock. This is also correct from a
-> -		 * protection point of view, because there is no further
-> -		 * use here of either pte or ptl after dropping the vma
-> -		 * lock.
-> -		 */
-> -		ret = hmm_vma_fault(addr, end, required_fault, walk);
-> -		hugetlb_vma_lock_read(vma);
-> -		return ret;
-> +		return hmm_record_fault(addr, end, required_fault, walk);
-
-Yes, that looks much better, as discussed. The downside is another vma_lookup()
-in hmm_do_fault().
-
->  	}
->  
->  	pfn = pte_pfn(entry) + ((start & ~hmask) >> PAGE_SHIFT);
-> @@ -637,6 +621,44 @@ static const struct mm_walk_ops hmm_walk_ops = {
->  	.walk_lock	= PGWALK_RDLOCK,
->  };
->  
-> +/*
-> + * hmm_do_fault - fault in a range recorded by a walk callback
-> + *
-> + * Called from the outer loop in hmm_range_fault() after a callback
-> + * returned HMM_FAULT_PENDING.  At this point we hold only mmap_lock;
-> + * the page-table spinlock and any hugetlb_vma_lock acquired by the walk
-> + * framework have already been released by the unwind.
-> + *
-> + * Returns -EBUSY on success (all pages faulted, caller should re-walk).
-> + * Returns a negative errno on failure.
-> + */
-> +static int hmm_do_fault(struct mm_struct *mm,
-> +			struct hmm_vma_walk *hmm_vma_walk)
-> +{
-> +	unsigned long addr = hmm_vma_walk->last;
-> +	unsigned long end = hmm_vma_walk->end;
-> +	unsigned int required_fault = hmm_vma_walk->required_fault;
-
-end and required_fault could be const.
-
-
-Reviewed-by: David Hildenbrand (Arm) <david@kernel.org>
-
+Nothing else jumped at me.
 
 -- 
 Cheers,
