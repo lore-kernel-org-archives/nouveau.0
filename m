@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53505C4451C
-	for <nouveau@archiver.kernel.org>; Tue, 21 Jul 2026 18:23:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A83CC4452D
+	for <nouveau@archiver.kernel.org>; Tue, 21 Jul 2026 18:36:20 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2EC6E10EB0F;
-	Tue, 21 Jul 2026 18:23:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B124B10EB1A;
+	Tue, 21 Jul 2026 18:36:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="aK6AGZre";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="GvtmS48f";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 1A60C4729C;
-	Tue, 21 Jul 2026 18:08:14 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 971CD4729F;
+	Tue, 21 Jul 2026 18:20:48 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784657293;
- b=dOjJFSjaYqNxORozuH0pVmtyEPrS9DQFLNdRuXg3NqEn7mh6JtINtnpGvoyw7P3rVvZyZ
- RUqVut4RNGrHPU3k2VhTFR8pph5BXPHIrgce1nYjShxQHreoTvtqQusrBapopJLAecSlVIL
- K4D0TQWG7HA7JV2PCEh351mVpGTJJdFRWw8a0xz1voAHQ2fFEx+8Rfmk22+E/2hQEnjbnQH
- 25n6Yg7a7IpMpWaZmrz6AiR3cEyE5A8jjbXp2Zc2TNgtJb+lnFLNQjjQ8q5zNGEe0ZLXq0O
- e0ktDmTuLyB/qo+3MPL3OwzOWEsBqYqAFwn/feIsByufPMI/E/FQ+47b4apw==
+ s=20240201; t=1784658048;
+ b=cOHy8QH2QwNOgfniRryryBiB783gcKqZVqPsTK4MYwQS8fppv2CJfgJYS1K7IpNKwK5Vb
+ jgOrvikVwptvQKemtcFxhSZCh1Cxw1j3IEOviz1pbgsndGWJiCIWIQzFJCXVqxdUeiri1vY
+ fJrnRhY7sP94H3tzCA4Fy9I2yGoCS3HMrgAyAJJPKibIIWl0ExHPb6vOunU52GMJEn0Nhjd
+ Qrgx/IrtitUpiiBjtT207jev1N33awjs41NIPRC9tVVCXaWaw0Pfa/5Z5o7hBXrJZC6sGbt
+ 2AMZh4YHiTqkNo82VWNkwm8nRQoMWV6yn1LgjwssZpoHKACViwGzT37LVMtg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784657293; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784658048; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=EDSz62jCk0OzsKXSSKAgLcWpgh9OgrJcskErIfIIIWw=;
- b=KqpqTuyS4qK0cCbgAl8J6vo6pGthhUMcV3iV57uuwyPxzUzbk+BLn657GdC7w3MM1K7QL
- ck2Y6E6MUifggkN0mLUk63BfEUya8jgC6T9SUnxdPk5r4C9Akubdb/GRepjrWj3v0KsEE6X
- 2aQAHWt9DZeBlwhXW/YetXiU1ahJXe4Oi3ikGhBJWuaHIrVWv310/c0WclpQ/ytl7jFUrqm
- 32P89ypQycqma38wN1+xKrMzJMF7/QqrvUzREU9Y9hlwpOBZfqtnBEay9PlU8/a3XGrmN7O
- olOC+XmTA8bwNXUtARMah0lfwz4d9EjdUZg2pPLYS7Ms7F+Cbufe6AJkbZ8A==
+ bh=P9P5vu0pXSNnYy1ZhJcG4vlkpcsOS3Vq5kYWiQ9nQWQ=;
+ b=R0AJqxU6ssS13G5CV/zZJEPZ3HKw/cjm9Ja2e7TriH0IDHtjRdkdO7feftrV8B6STxYQY
+ /RAjXZ8/pgoX2sjCppbCBTcz350jUkns9+16+RJ1+MYcdC4bPB/6XYJuYabPZmOY/4v4X+g
+ HXlHi5fLJg4RgKYfOvfsgbmuEI9rxNz1esWBsrUB+dB0ejTNRKP6phZU5XfPkrcjtjpU0qR
+ 12p4bMNkzAt2ztPAqPHiSwvwExQiw0n9gbVJyJVmH3odkMjcRWwwzurHQqgb8EUljqCTevI
+ 2M2W9F3C6lDRLcWz6NDJGcmdBUldvJEwYf1w4YNxLsKbB59kELXOt5aRArPg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,84 +46,84 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 0E9A647289
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 18:08:11 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id EE5F8466F6
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 18:20:46 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C0F7910EB03
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 18:23:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B118710EB19
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 18:36:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1784658219;
+	s=mimecast20190719; t=1784658974;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=EDSz62jCk0OzsKXSSKAgLcWpgh9OgrJcskErIfIIIWw=;
-	b=aK6AGZredzWNVGTF/77lpjm8w/qV5XuSvQVQAyqe+sJO87bq8U4R+aDUjudmfJwOSeayxN
-	ne9Iwv9Kid22Zjv6lYSYQ0oC4mcFPEjQmmXyuzN114Gd7vBxFCMX6xdBnZxHf09wI55Ij/
-	ph2Ay6ylyJmH42LvXZyXQivZMsVeQog=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=P9P5vu0pXSNnYy1ZhJcG4vlkpcsOS3Vq5kYWiQ9nQWQ=;
+	b=GvtmS48fLm6oQDm23xQQzRuiaiz72u1jb8yWHSpIdCK0vn625zNqxiZDMFtZlPbZpSYVSP
+	zW321wx3ez/KOnc1Ny6Bs2MwyWU+RUsS+5vRNUkkQdS+djonhXXnk9SiKz3laVpAUuIC0Z
+	BUDcMnRR+HhYpC9TBw9Eap5hUKAEZbw=
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-70-3S35zIVEMLaVpZIbUq5u9g-1; Tue, 21 Jul 2026 14:23:37 -0400
-X-MC-Unique: 3S35zIVEMLaVpZIbUq5u9g-1
-X-Mimecast-MFC-AGG-ID: 3S35zIVEMLaVpZIbUq5u9g_1784658217
-Received: by mail-qk1-f197.google.com with SMTP id
- af79cd13be357-930a098ea19so786900285a.1
+ us-mta-436-jJ5diK9ON-KrkTLPOlpZrw-1; Tue, 21 Jul 2026 14:36:13 -0400
+X-MC-Unique: jJ5diK9ON-KrkTLPOlpZrw-1
+X-Mimecast-MFC-AGG-ID: jJ5diK9ON-KrkTLPOlpZrw_1784658973
+Received: by mail-qk1-f198.google.com with SMTP id
+ af79cd13be357-92e5e38fbc5so165522085a.2
         for <nouveau@lists.freedesktop.org>;
- Tue, 21 Jul 2026 11:23:37 -0700 (PDT)
+ Tue, 21 Jul 2026 11:36:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784658217; x=1785263017;
+        d=1e100.net; s=20251104; t=1784658973; x=1785263773;
         h=mime-version:user-agent:content-transfer-encoding:content-type
          :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Nf89HWE5FEb29AybdiEPsxsfpgf+Ik6TKAe6jF03lFU=;
-        b=ZGyFmeVD0zNGek79ICqu3eaEtUMvch4+0KO3IovvKzevGonEFNcCVFvEB0reJWX6Dh
-         dvMKB2t8XoK1iRE04O5qqpEXRuwT6ikKD3j8coudoBORQyiaecEpLs6ClYVztIPUv2/O
-         52Ej6A5HBA7X+mLmb033f/HCIrrO59kQK6YYcJW4f6yLjGCBKgMMHrmo4vDJfnOeLKnJ
-         d1zj+orWzUvNnTp9XsVBUAcxJC06DBQf1Q9JaGDgqwKIorre5F5+zAjXtWLueM9hPVpP
-         SCuk3yF8JXssfgjOEQ719tkIifxhhjqQk5e96uZ3f+is5B37HlFJUf7vUS4VBQDsj8BY
-         7d6A==
+        bh=Go1C81ar5fv4t+FHR7Abtxew7sOcjBDPFGnY7kzk9t0=;
+        b=RgKjrhqWgcKXYyCxKgmZ+mFWtGz8M4cm9dQfMKGuE0JhAOIXwih/xJJnkHc5gUwN/L
+         iTGqj3Tl8syYyhBxR5kLYanlcllxPgMzlWs9dwmQiHOl/uqcJU2CX3UNEHB5zCb/j9Ku
+         MG5rcJ1KER4cPXBE8FCU8ZWtgf8y8yKCt1/PQmzNihOSOyhyoePChV6GhKfKaoK9Yk1S
+         HdMV6xIeUF6ElEoFCBMaRJh1ifdhxaze7Vm9Wy+KfRQ5sTZrhcF2edhkjyeXKAsgBa9A
+         eob5zWGcuREFwlE54n/CqWxtlW3CLQgb2OQEuEVebgcJz3p89JBni+CqXBZ/GU9hGTF5
+         sFGg==
 X-Forwarded-Encrypted: i=1;
- AHgh+RqSkdnp81priXwr3Xtk6efmj7EHAKiztTCsFwi9/03n31TAUtnIbKs6TH/8v7xuGI/+770EVHUa@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YycB/brAiDuHSqcU9+rfBExaJRVBRFh15SGCnZtKmDfyMyRPaWW
-	WpL0eRvVDwpjVgAJ+b3DVWi1eFQMM22N0wnTGa7b1IWHHY6Fr9u4yJjsaQzNiV/9a23Pk5EZ+zX
-	8/0NG2385tit18r8zB80QbAW8xBAJWUCEFUnPsRjhHfbegmNg7k5giA8zSsWYQy361Lo=
-X-Gm-Gg: AR+sD10GaRY2l50Dmug4KDTjuwu8p3K5T5403ILgVgSzkFxUEGuIdKhd5FU/hscc3WZ
-	85Fc+8XeXXY96OPeMfWyD9/IJ+MehEF1iKK2j7wa42p2Lxy6+buL4ATZHS6FKvswGDhpuhb5OGe
-	S5bL/HnNMsqu4/zlcMBCvqLKT+eWM0Vvh0IfeGB7OgXSgXiZMHOVj++O3iImpmSL4YZmbcuoGZC
-	0LZ6jyyxItGFFLaOefetjoWoH6wcG79uDDoubZbLTguim15L3JrFbGTjQZ1RTdTgpyapIie1SQV
-	iUGFpU7gH1WCBRos63DiVki8PisH1NyJVXd56XqQHaSR2+vXudkO8OtDHk+Fzmpops1IGM3F
-X-Received: by 2002:a05:6214:61cc:20b0:907:b32f:9b79 with SMTP id
- 6a1803df08f44-907b32f9c56mr27883066d6.6.1784658217230;
-        Tue, 21 Jul 2026 11:23:37 -0700 (PDT)
-X-Received: by 2002:a05:6214:61cc:20b0:907:b32f:9b79 with SMTP id
- 6a1803df08f44-907b32f9c56mr27881156d6.6.1784658214438;
-        Tue, 21 Jul 2026 11:23:34 -0700 (PDT)
+ AHgh+RqDZRnmrAXLKhNn9fNXh3y+KtWcOSiFSlk3mIeJQzWPOwyn4YcknT6rF+Q5FDJE+RMed+hw5p0v@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwV/SJFHGSoXVohOEjzDvfUDk/54vp/Uyoz4esAu6Wm8XF+di+d
+	9uU0vV+OsFoXfOo/Qvda1aeb8n6eYiPQWgGRjb+UzjUc+nmFPy/Bxe2bPxZrGpqgB6T0xQh1nqZ
+	LXPvKD1yCAqhGn0weLGtbpEG0QAgdRfbUnJePsAPs3acKwpyjjuz8X0ImdYYZediOKAU=
+X-Gm-Gg: AfdE7ck7kFIKyz/MCAUuQVmGHlsB0qP2EqqhuSk4smV+IGw/fToTcVmf/uWMA5XSPhp
+	F//Xjm7gp6L1AFC+TV7HjvUKJloFQKMZDW0y5KxtbgDVmT5wqMKEYcwgZ4f4Fnaueuao0Bh+Bre
+	qCcN8bZUeBPGXkXJzWoykxOe/C5MFMEWoNgfrWWJhmm8JqujbDshiy8mEy/dzy4xCBEmKQPeH+1
+	XGt4ETjWDcjetArzyoM6o0MfPnMSZIljrqGAUCo9KmrB78tohvuSTidXi0qP/Jbw3M8FYGriKHD
+	qGDIfAn4EWFvwQp4097fTWhxc0GU46+iaVnjo4AdwqDxhUK9c1oHA8H59WXqy2/tTOYBnrbz
+X-Received: by 2002:a05:620a:2905:b0:92e:8734:b833 with SMTP id
+ af79cd13be357-930b416d543mr1930903785a.59.1784658972833;
+        Tue, 21 Jul 2026 11:36:12 -0700 (PDT)
+X-Received: by 2002:a05:620a:2905:b0:92e:8734:b833 with SMTP id
+ af79cd13be357-930b416d543mr1930899885a.59.1784658972324;
+        Tue, 21 Jul 2026 11:36:12 -0700 (PDT)
 Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-907ba8df5d0sm2230206d6.18.2026.07.21.11.23.33
+ af79cd13be357-930b52faa8fsm1188355885a.12.2026.07.21.11.36.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jul 2026 11:23:33 -0700 (PDT)
-Message-ID: <174e6951bd8216b76c2bc5fb42f1be8138b345ac.camel@redhat.com>
-Subject: Re: [PATCH 2/6] drm/nouveau/gsp: add RUSD telemetry support
+        Tue, 21 Jul 2026 11:36:11 -0700 (PDT)
+Message-ID: <78ca5c308ce81465956e839c82e1bba46a9f0686.camel@redhat.com>
+Subject: Re: [PATCH 3/6] drm/nouveau: add GSP hwmon support
 From: lyude@redhat.com
 To: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
 	linux-kernel@vger.kernel.org
-Date: Tue, 21 Jul 2026 14:23:33 -0400
-In-Reply-To: <20260714211429.238355-3-mohamedahmedegypt2001@gmail.com>
+Date: Tue, 21 Jul 2026 14:36:11 -0400
+In-Reply-To: <20260714211429.238355-4-mohamedahmedegypt2001@gmail.com>
 References: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
-	 <20260714211429.238355-3-mohamedahmedegypt2001@gmail.com>
+	 <20260714211429.238355-4-mohamedahmedegypt2001@gmail.com>
 User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: bpocb6o52xtNknTKvIZbUnN851YvZ3kyGAnSqThULsM_1784658217
+X-Mimecast-MFC-PROC-ID: mFQRHys3qMxB9olGPgcuQkY10uXzznrw_7kNR4Ef6OE_1784658973
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: HBFWZ7AU6DXSR2I7RIBVZT2FCPQTAUHQ
-X-Message-ID-Hash: HBFWZ7AU6DXSR2I7RIBVZT2FCPQTAUHQ
+Message-ID-Hash: MSZXXUE52G4PGAKFQMI7PBCWPYGGABHQ
+X-Message-ID-Hash: MSZXXUE52G4PGAKFQMI7PBCWPYGGABHQ
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -136,9 +136,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HBFWZ7AU6DXSR2I7RIBVZT2FCPQTAUHQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MSZXXUE52G4PGAKFQMI7PBCWPYGGABHQ/>
 Archived-At: 
- <https://lore.freedesktop.org/174e6951bd8216b76c2bc5fb42f1be8138b345ac.camel@redhat.com/>
+ <https://lore.freedesktop.org/78ca5c308ce81465956e839c82e1bba46a9f0686.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -148,113 +148,106 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Some lil nitpicks
-
 On Wed, 2026-07-15 at 01:14 +0400, Mohamed Ahmed wrote:
-> +=09case NVKM_GSP_RUSD_ROWREMAP_HIST_MAX ... NVKM_GSP_RUSD_ROWREMAP_FAILU=
-RE: {
-> +=09=09RUSD_MEM_ROW_REMAP remap;
+> +static int
+> +nouveau_power_read(struct device *dev, u32 attr, int channel, long
+> *val)
+> +{
+> +=09struct drm_device *drm_dev =3D dev_get_drvdata(dev);
+> +=09struct nouveau_drm *drm =3D nouveau_drm(drm_dev);
+> +=09struct nvkm_iccsense *iccsense =3D nvxx_iccsense(drm);
+> +=09struct nvkm_device *device =3D drm->nvkm;
+> +=09struct nvkm_gsp *gsp =3D device->gsp;
 > +
-> +=09=09ret =3D r570_rusd_read_section(gsp,
-> +=09=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0 offsetof(NV00DE_SHARED_DATA, mem=
-RowRemap),
-> +=09=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0 sizeof(remap), &remap);
-> +=09=09if (ret)
-> +=09=09=09return ret;
+> +=09if (nvkm_gsp_rusd(gsp))
+> +=09=09return nouveau_rusd_power_read(drm_dev, gsp, attr,
+> channel, val);
+
+IMO - let's add braces to this conditional
+
+> +=09else {
+> +=09=09if (!iccsense)
+> +=09=09=09return -EOPNOTSUPP;
 > +
-> +=09=09switch (item) {
-> +=09=09case NVKM_GSP_RUSD_ROWREMAP_HIST_MAX:
-> +=09=09=09*val =3D remap.info.histogramMax;
+> +=09=09switch (attr) {
+> +=09=09case hwmon_power_input:
+> +=09=09=09if (drm_dev->switch_power_state !=3D
+> DRM_SWITCH_POWER_ON)
+> +=09=09=09=09return -EINVAL;
+> +=09=09=09*val =3D nvkm_iccsense_read_all(iccsense);
 > +=09=09=09break;
-> +=09=09case NVKM_GSP_RUSD_ROWREMAP_HIST_HIGH:
-> +=09=09=09*val =3D remap.info.histogramHigh;
+> +=09=09case hwmon_power_max:
+> +=09=09=09*val =3D iccsense->power_w_max;
 > +=09=09=09break;
-> +=09=09case NVKM_GSP_RUSD_ROWREMAP_HIST_PARTIAL:
-> +=09=09=09*val =3D remap.info.histogramPartial;
+> +=09=09case hwmon_power_crit:
+> +=09=09=09*val =3D iccsense->power_w_crit;
 > +=09=09=09break;
-> +=09=09case NVKM_GSP_RUSD_ROWREMAP_HIST_LOW:
-> +=09=09=09*val =3D remap.info.histogramLow;
-> +=09=09=09break;
-> +=09=09case NVKM_GSP_RUSD_ROWREMAP_HIST_NONE:
-> +=09=09=09*val =3D remap.info.histogramNone;
-> +=09=09=09break;
-> +=09=09case NVKM_GSP_RUSD_ROWREMAP_CORRECTABLE:
-> +=09=09=09*val =3D remap.info.correctableRows;
-> +=09=09=09break;
-> +=09=09case NVKM_GSP_RUSD_ROWREMAP_UNCORRECTABLE:
-> +=09=09=09*val =3D remap.info.uncorrectableRows;
-> +=09=09=09break;
-> +=09=09case NVKM_GSP_RUSD_ROWREMAP_PENDING:
-> +=09=09=09*val =3D remap.info.isPending;
-> +=09=09=09break;
-> +=09=09default: /* NVKM_GSP_RUSD_ROWREMAP_FAILURE */
-> +=09=09=09*val =3D remap.info.hasFailureOccurred;
-> +=09=09=09break;
-
-Maybe this should be an explicit case instead of default, so we can
-drm_WARN_ON_ONCE unknown values?
-
+> +=09=09default:
+> +=09=09=09return -EOPNOTSUPP;
 > +=09=09}
+> +
 > +=09=09return 0;
 > +=09}
-> +=09case NVKM_GSP_RUSD_PCIE_GEN ... NVKM_GSP_RUSD_PCIE_UNSUPPORTED_REQUES=
-TS: {
-> +=09=09RUSD_PCIE_DATA pcie;
-> +
-> +=09=09int idx =3D item - NVKM_GSP_RUSD_PCIE_GEN;
-> +
-> +=09=09ret =3D r570_rusd_read_section(gsp,
-> +=09=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0 offsetof(NV00DE_SHARED_DATA, pci=
-BusData),
-> +=09=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0 sizeof(pcie), &pcie);
-> +=09=09if (ret)
-> +=09=09=09return ret;
-> +
-> +=09=09*val =3D pcie.info.data[idx];
-> +=09=09return 0;
-> +=09}
-> +=09default:
-> +=09=09return -EINVAL;
-> +=09}
-> +
-> +=09/* A reading of 0 mW is indistinguishable from "not supported on this
-> +=09 * board" (e.g. module power on Ampere/Hopper).
-> +=09 */
-> +=09if (!mw)
-> +=09=09return -ENODATA;
-> +
-> +=09*val =3D (s64)mw * 1000;
-> +=09return 0;
 > +}
 > +
-> +const struct nvkm_rm_api_rusd
-> +r570_rusd =3D {
-> +=09.init =3D r570_rusd_init,
-> +=09.resume =3D r570_rusd_resume,
-> +=09.read =3D r570_rusd_read,
-> +};
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h b/drivers/gp=
-u/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-> index a9af94adf9ef..1338b4a88f95 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-> @@ -130,6 +130,12 @@ struct nvkm_rm_api {
-> =C2=A0=09=09=09void (*fini)(struct r535_gr *);
-> =C2=A0=09=09} scrubber;
-> =C2=A0=09} *gr;
-> +
-> +=09const struct nvkm_rm_api_rusd {
-> +=09=09int (*init)(struct nvkm_gsp *);
-> +=09=09void (*resume)(struct nvkm_gsp *);
-> +=09=09int (*read)(struct nvkm_gsp *, enum nvkm_gsp_rusd_item, s64 *);
-> +=09} *rusd;
-> =C2=A0};
+
+...
+
+> =C2=A0static int
+> =C2=A0nouveau_temp_write(struct device *dev, u32 attr, int channel, long
+> val)
+> =C2=A0{
+> @@ -667,13 +854,39 @@ nouveau_hwmon_init(struct drm_device *dev)
+> =C2=A0=09struct nvkm_iccsense *iccsense =3D nvxx_iccsense(drm);
+> =C2=A0=09struct nvkm_therm *therm =3D nvxx_therm(drm);
+> =C2=A0=09struct nvkm_volt *volt =3D nvxx_volt(drm);
+> +=09struct nvkm_device *device =3D drm->nvkm;
+> +=09struct nvkm_gsp *gsp =3D device->gsp;
+> =C2=A0=09const struct attribute_group *special_groups[N_ATTR_GROUPS];
+> =C2=A0=09struct nouveau_hwmon *hwmon;
+> =C2=A0=09struct device *hwmon_dev;
+> +=09bool rusd_active =3D false;
+> =C2=A0=09int ret =3D 0;
+> =C2=A0=09int i =3D 0;
 > =C2=A0
-> =C2=A0extern const struct nvkm_rm_impl r535_rm_tu102;
-> @@ -188,4 +194,5 @@ extern const struct nvkm_rm_api_gr r570_gr;
-> =C2=A0int r570_gr_gpc_mask(struct nvkm_gsp *, u32 *mask);
-> =C2=A0int r570_gr_tpc_mask(struct nvkm_gsp *, int gpc, u32 *mask);
-> =C2=A0extern const struct nvkm_rm_api_engine r570_ofa;
-> +extern const struct nvkm_rm_api_rusd r570_rusd;
-> =C2=A0#endif
+> -=09if (!iccsense && !therm && !volt) {
+> +=09if (nvkm_gsp_rusd(gsp)) {
+> +=09=09/* Per-channel visibility is latched below from live
+> RUSD
+> +=09=09 * section validity, so wait for GSP-RM's first poll
+> of both
+> +=09=09 * requested groups (thermal, power). It is normally
+> completed
+> +=09=09 * long before we get here and this is a last
+> resort.
+> +=09=09 */
+> +=09=09unsigned long timeout =3D jiffies +
+> +=09=09=09msecs_to_jiffies(2 * gsp->rusd.poll_ms);
+> +=09=09bool thermal, power;
+> +
+> +=09=09for (;;) {
+> +=09=09=09thermal =3D nouveau_rusd_ok(gsp,
+> NVKM_GSP_RUSD_TEMP_GPU);
+> +=09=09=09power =3D nouveau_rusd_ok(gsp,
+> NVKM_GSP_RUSD_POWER_GPU) ||
+> +=09=09=09=09nouveau_rusd_ok(gsp,
+> NVKM_GSP_RUSD_POWER_GPU_AVG) ||
+> +=09=09=09=09nouveau_rusd_ok(gsp,
+> NVKM_GSP_RUSD_POWER_CAP);
+> +=09=09=09if ((thermal && power) ||
+> !time_before(jiffies, timeout))
+> +=09=09=09=09break;
+> +=09=09=09msleep(20);
+> +=09=09}
+
+Is it possible to use nvif_msec() here?
+
+> +
+> +=09=09rusd_active =3D thermal || power;
+> +=09}
+> +
+> +=09if (!iccsense && !therm && !volt && !rusd_active) {
+> =C2=A0=09=09NV_DEBUG(drm, "Skipping hwmon registration\n");
+> =C2=A0=09=09return 0;
+> =C2=A0=09}
 
