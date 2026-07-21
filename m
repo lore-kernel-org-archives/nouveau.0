@@ -4,131 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4014C4452B
-	for <nouveau@archiver.kernel.org>; Tue, 21 Jul 2026 20:40:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9218AC4452D
+	for <nouveau@archiver.kernel.org>; Tue, 21 Jul 2026 20:47:06 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7B9E910EB36;
-	Tue, 21 Jul 2026 20:40:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DC29A10EB44;
+	Tue, 21 Jul 2026 20:47:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="ek5ms4oV";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hCEGACkh";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 312ED472AF;
-	Tue, 21 Jul 2026 20:25:22 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784665522;
- b=b6eSPi8JdNvvy3gpTCVflWZLTACg6YXV0D+36N23wppCjxt2fH5fYlfGV3umi61D9k+bx
- r0u4zq1pLN4I0jnlZMUKYiV0iiHPkLnovfOGYBklYC2zWV91FhO2MSggOkVftfl/16lrB6o
- HRBbQQVi/MxedOgng29lDa8QbrJXLvcsvmjNzbUVktD0Madx3VKDo0/8qyw9WoYm8EV6nTx
- XFw91YKNgtMdOcBbGKGbidyWrgb8NPHtIYMEzjG74NSFR8/phEh0gCBGCC9pidSytQJLE06
- +G4HPeWx8F0HFwQXx4UGNkCp6IPXTuCOgW9bVjnrFw5JxAUNAP2MMYxVDu8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784665522; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 91BB9472B5;
+	Tue, 21 Jul 2026 20:31:35 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1784665895;
+ b=efzho3MYncGXfZIqN/T5Q3qBnWpmKHmHIGbsKwrmJxAv874oQifoljNwU0FCrpMBeyvES
+ yG2gW+yLAsznPZRBGO4o/FV68tlgZEp4uaR73GZYW6uuCMDc8mlGmQ3nHfUFOpvlYNExncF
+ EFHa9RyJOLqjEQHCT35xTG6bwngeiR3o0Y3X0rqpEKnw5ZFAOZEuaz5bhi6VgBLuvLvDccb
+ jJHkZ0wSgLV2OGomBJtUfejs49r83bKcHxkCNwghxOXMFF2MHryBHhwrovSPtVxZEvCrEoM
+ GN9gFcGvEaAJH1fwpq1rqRsyvwBPcY+mCZe7aZZ4gbeBaZDsXfhW9yywNFtQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1784665895; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=gXgX0uNO+WJdsVZ7unE8kmr92+eVG9rapgaFoCHjavU=;
- b=mKJH6CoRS3fhLoPloOPpm1ZcTCNL1HeL7UkSolmcYCz4xRYQz2BZ0FDPmYP4XjHKxcpMD
- tKre0Q0CEBOZtedqJotGdHWliS4f8xd2zrwtla01YJkr6tOhJxKTci/2uujIszfLCkzvgw9
- yT79XXghxg0u3pXvye2h7Gt4JgAVA+04nsx9p8S0J4+aRxCqczaw60FY7Hs6MWj+NgJ46l6
- /GpTDCiTaP3valRrj0o4MHAPMDeetCaAhHmHIFeuVWz+t0bFmFiL3sbhlyF68egwM+ywVZZ
- HtoCpf2HRiKe0Sx9Zxng582nf7iZRNr9wMWxOdNGbSXA1DNySD5sHVZ9UOuQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ bh=GJbUbySs84LNWjl5SycArBud2hG3wkiE9tEYI1yGGjI=;
+ b=Eeq0njAj+au1sQvEuAMtWjyUc7ZcC/q61Ppl7zsiO9MNEIN6yGDddDNCnhdmoOF0xnPrV
+ L749xKzUeh+FWiLs8xzFzGGrObkA3Jg/EPvncugBOTJZb16O4UVeJpAeV2ZGHwAk0h35pag
+ lf+d7b7/SuvgVph33hiYjdJlMMNAcC4QkkMclt/1xSt+9596IMuuKQgMEMkFtBXSDKPC/vn
+ WWkoGI+6v4IkPwBAyZJBP93EVx6w7DGk/7+27P7fQJqL8H66Dc8INp32EWlqa9HSElym04x
+ +skscQeu2LhE/7hrX890ZCQu1wBzbfXDl5KfgY5I/kifAA9IepyvFOfWwryg==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=gmail.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 1F234466F6
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 20:25:20 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0EACD10E3CA
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 20:40:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1784666448;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=gXgX0uNO+WJdsVZ7unE8kmr92+eVG9rapgaFoCHjavU=;
-	b=ek5ms4oVgM62CNjfLnJ4M071BL6D+T4EtiraXo4KNsFvz3KMNMeSivrd81LtjjcqF80scR
-	edmVH6bhmLjWZjSXhkEB2EMGYJN7zLc+I2JEWI3XTL3gaj7uveyjEIHVwLH1s2aSwD4Y1d
-	/rpfogPfd+86Oq177200XdNHNrD8fhA=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-522-OZJ7AmJCO4qfHkmRLqF1zg-1; Tue, 21 Jul 2026 16:40:46 -0400
-X-MC-Unique: OZJ7AmJCO4qfHkmRLqF1zg-1
-X-Mimecast-MFC-AGG-ID: OZJ7AmJCO4qfHkmRLqF1zg_1784666446
-Received: by mail-qt1-f198.google.com with SMTP id
- d75a77b69052e-51a8db414c7so203586581cf.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 10F9847287
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 20:31:32 +0000 (UTC)
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
+ [209.85.216.54])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2CC6710E3C6
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 20:47:01 +0000 (UTC)
+Received: by mail-pj1-f54.google.com with SMTP id
+ 98e67ed59e1d1-38101f85591so4515420a91.1
         for <nouveau@lists.freedesktop.org>;
- Tue, 21 Jul 2026 13:40:46 -0700 (PDT)
+ Tue, 21 Jul 2026 13:47:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784666820; cv=none;
+        d=google.com; s=arc-20260327;
+        b=cO5ogoaRDn7v81eVq2zthpV58V4o8s/ONQJtSsCIEUjwcjD70HdfNVizJYs8L4whVj
+         /ky7pICNyhkRH2bouDg1SLqJS6Dwh5GbJWVza1P3iPuGsgBHXIgqRzoZcHaVIwKN/9xn
+         /x5+Xsjpdr02geCfIQvz0EfVsp25HKvi3X1RtfBSN16ddqzcv1Ry0r4v3kuqgFcoKyL9
+         NN+8q0vQ50YHnJ9EgOha0bHcTFeHWodQOsLPawfkBq5eOO6ubfygeVHx1VM1fVp69Gp5
+         8Xnu0nL/nQmdwd1a0arNGasWSM7VXqGXkyAKfZBxS7I+9mM+bK+b7EkmWvGv3nAfQx6B
+         xbHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=GJbUbySs84LNWjl5SycArBud2hG3wkiE9tEYI1yGGjI=;
+        fh=5AtK34nHL7d54r5vfPrunC/lWWg9PNyZLfIw3AAg8Pc=;
+        b=Znmd7mGkGh75hh9jPUTK7g5Pv6M4WeZh4aY/hKL9/umeVaAcj5aVA971tqYD4z9a63
+         CWZpu/M6bdPXjnt7De/eHd56KDvocbqYlEdDANBdPfZgow7EkPTyTz3Y1R8f5u3yoNP8
+         /TiboMvwWnxOZ1YI/VL6Lp2CaRxONt87LAu532Gq2iFNa4Ej+dL0Y+klmVvT5/TuWueQ
+         v+1xgek5V2m0CYsmS1mwHInF7Tpxa2U4mB5Znj4X67ynY6Pp2ARw5EUVKb9ExBWtBE0A
+         6PZkm6YfbPu7LMSCFDMyHbucBvqPXwqmaRMHpC7O+os/XshMrtje+Eo+L9AFuZSU0YYS
+         lKfQ==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784666820; x=1785271620;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=GJbUbySs84LNWjl5SycArBud2hG3wkiE9tEYI1yGGjI=;
+        b=hCEGACkh//oq7YDM1B7Px0QQLalluJ58VGC+OBjPvkqlWkGuN2JZ89MQtk5WXWn1nC
+         2JO1DLcXN0OtRubo4XzTVKG2ZqpA0nnOMWq37QYraB9hMJjU1C4+RJhxQwSqkFOW7O4k
+         M58nn/bJvGUGAMoXZtINWYDlH7WAV1KzKxuub22rIkIDv5bdj0sQGtyGO05JAm9apSLF
+         fXjwYo/ZmnqrK5Yt1HOrCv1oTJSU7EYHHg/ESTozOjCe+VExjVAmSfMlrLcV4PqNlVG3
+         txD/stf6S39xUZs3HXJFTMK4lqlf6teLyzmtIAHVlF+EdQm/1gAqIMZpelpDaJbyOxe8
+         XMHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784666446; x=1785271246;
-        h=mime-version:user-agent:content-transfer-encoding:content-type
-         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+        d=1e100.net; s=20251104; t=1784666820; x=1785271620;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=gXgX0uNO+WJdsVZ7unE8kmr92+eVG9rapgaFoCHjavU=;
-        b=AV22EePVJoEy5sp5UYjuAK2GqnWePDMsiEY6zvmSA+rlu8HFga1nxg1kPq/r8bswSY
-         3KjhT5t2+FDKopg1MrrQs4bY9bft6fEz+Eoz/jHFby3xLz/hWG3GPWC+FTb1Z5wGcj14
-         DWMFfZzkJH2WKnT1kQRNvm0Pxd9JUqa4npnbfDTv/HaFaywGi0AHVYXHJYYMbQgEkU33
-         swtMG9iwQMAjhDId8D/mdGFoLzBaJq01Xsq/lEdjQe08FcflN20E0PWVJCNNUu3qqOkN
-         owYqKeSZbq+hURgq0w7+Uk6Dt9fdfdz42/mxvVxdTx9mt9UgvT/dUXDqawJuoVJs3sI6
-         1tBA==
+        bh=GJbUbySs84LNWjl5SycArBud2hG3wkiE9tEYI1yGGjI=;
+        b=rXf98+9oJf4gg5ycN6kyfL+9UwDUQPROmXtl2uQm2WagiqzWvHSy8r5n8ABfpoXeBY
+         hg3RvAYKL44AK2k47ZUODFkzK9pSuBPHp77+/CgA2S2lzHsLve+DPbOe9vLZvPLcSoUI
+         eNKY1+LYXDOLQ2wNSQJ0UhlGtOv+V0oMBItqIRzq069ZG+2DLJ4lbWGFZHqXyJLrS4oR
+         3nQfhU+bzF4u5+4qLzGxrh9MIMyEkJJ1D2QgbKcRLyf6X9tTRzyVKIh7i3C9G95N+Yzn
+         LCfrLfKx4mAZAji5cRh2qGE40aXKiHGYdGKnCKf4/POjgt4CvWBQbmDtRwJflGlFhrhn
+         jnKw==
 X-Forwarded-Encrypted: i=1;
- AHgh+RoiwLDvJ2KQEM1rSTI/V0Ljn4ohFUZRHncY/OVxU1tbTL8l2ttttVEh/iPwzlnj1j8G7HdXn+S2@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx7T3EHGUJ8dwAwZtVwKfHypOVyWdhGyDguqeiNrkWi1Mg+gD7Z
-	q8imeVg3maupbh2Q5+ApCnFe/2GB77z8EelptiK1CHtQ9rl02JWVVthba62BMDwCiRISnRUAq00
-	2dX+9RVm1Ijga9SODctJR9x37UardWufcNEo0Rb2DSfjVn0zTGCZnnZT+CeX2bco56TY=
-X-Gm-Gg: AfdE7ckkqd++fQp3q3aygokh80ClTgKU2aK0v88USHxpfbmnMtAGfE9H1a9EAe6ZQcA
-	BkrEVSF3rsGftO+daTnUG807pXjl7wY73kpMPDQkX35FtKD/yvIYLSZgYfv587TE62AF3Ps5AYb
-	PHWw4pftYcu/lNag6WnKYih1y7wGSgrGCasDtskx3bC7Vb/fq4+UqqQJDxAae5gwgAf+/x2K+J7
-	jJ4jDQeWZNB5szJ9lk7FA258uomig5IUVusRBXZ/ur0x2QTDks7564qIYP0haj2JANSPA4XJvbT
-	/FxdW0j3ZhqtYQe4nWIm9zopPz3mUFsDdXzhQXPsrtjFJRU9jVcFrKG4aoB+naIyTSeoDL6K
-X-Received: by 2002:a05:622a:1e11:b0:51c:88b:d7e3 with SMTP id
- d75a77b69052e-5213c8e3864mr187389451cf.3.1784666446150;
-        Tue, 21 Jul 2026 13:40:46 -0700 (PDT)
-X-Received: by 2002:a05:622a:1e11:b0:51c:88b:d7e3 with SMTP id
- d75a77b69052e-5213c8e3864mr187388891cf.3.1784666445181;
-        Tue, 21 Jul 2026 13:40:45 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93])
-        by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-907ba9e19f6sm4502016d6.27.2026.07.21.13.40.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jul 2026 13:40:44 -0700 (PDT)
-Message-ID: <d17afcac57059fc5effc786321ac43cc6d0b2c30.camel@redhat.com>
+ AHgh+RrdgH5bEzxUi0k4z3SHotVE2bf9plyF1PuXJrl0ysHOWEKiGR/Z41B5sUeoFjGyrxdGJUdvevQv@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy6ZWSvHwV0mP8YNVbm1QuggyLeRZ4xugUpjbX9Ce/V6G4L3ipG
+	9B+5Dvz16D3bTp+1qQBWTHi5HDlITBYw3H/j4tchgS7yX381FefWNWhk1Vaz3HfQtEOPZ14FSof
+	yk/grka9S60g2/eH2HhADuMyhkodk1Hk=
+X-Gm-Gg: AR+sD126EFyyDYBBA1isBnX5feYkjhJegdceOxwG3vvbNmi7c79DdqCvYqNOGT63u5R
+	LxovTdMdrLkMWTOaWIPxj6vBpI4w4xORPQpxH6NGmyMqczY99ear+ZbnakhAbVL+nDset5yV2jD
+	SBzE8MSIGh1gNS74vWTgS4aIkp1qkti7pOskXXunhovHRxkXy3nb+QTH6GhGaNJcu/erj/ns6Cq
+	uT9oe2A7YIYy15RlLEO8PWiSjqta8oss6nYoC8kdhQBu9lldIgk8s0rCiPb+neyvxI5LA==
+X-Received: by 2002:a17:90b:4b04:b0:37e:1620:dabc with SMTP id
+ 98e67ed59e1d1-38ea3203c92mr1107979a91.0.1784666820492; Tue, 21 Jul 2026
+ 13:47:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
+ <d17afcac57059fc5effc786321ac43cc6d0b2c30.camel@redhat.com>
+In-Reply-To: <d17afcac57059fc5effc786321ac43cc6d0b2c30.camel@redhat.com>
+From: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
+Date: Wed, 22 Jul 2026 00:46:49 +0400
+X-Gm-Features: AUfX_mzU0gvZD_QQT3Qph1MI2ZWe3n4-T0xRbt8Sz7wnfNAh6FJ04Xhdy4VnbSA
+Message-ID: 
+ <CAA+WOBstz=K3MgfLSMG2Nh=gsrLyTi98qato0QtJicYoyG5LJQ@mail.gmail.com>
 Subject: Re: [PATCH 0/6] drm/nouveau: GSP telemetry via RUSD, and fdinfo
  telemetry exposure
-From: lyude@redhat.com
-To: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
-	linux-kernel@vger.kernel.org
-Date: Tue, 21 Jul 2026 16:40:43 -0400
-In-Reply-To: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
-References: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
-MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: FMZkL-Few5-NiNnuvpqNmOb4Wv7yDwDktENMsJgdWy8_1784666446
-X-Mimecast-Originator: redhat.com
+To: lyude@redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: RAFHPFKIMSPTC3TT73WTNSIUSZ3QPBMQ
-X-Message-ID-Hash: RAFHPFKIMSPTC3TT73WTNSIUSZ3QPBMQ
-X-MailFrom: lyude@redhat.com
-X-Mailman-Rule-Hits: member-moderation
+Message-ID-Hash: DOLKSSH6KAD4YS34ALZYCXUDDOA3QBID
+X-Message-ID-Hash: DOLKSSH6KAD4YS34ALZYCXUDDOA3QBID
+X-MailFrom: mohamedahmedegypt2001@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
-CC: dri-devel@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
  Mary Guillemard <mary@mary.zone>, nouveau@lists.freedesktop.org
@@ -136,9 +145,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RAFHPFKIMSPTC3TT73WTNSIUSZ3QPBMQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DOLKSSH6KAD4YS34ALZYCXUDDOA3QBID/>
 Archived-At: 
- <https://lore.freedesktop.org/d17afcac57059fc5effc786321ac43cc6d0b2c30.camel@redhat.com/>
+ <https://lore.freedesktop.org/CAA+WOBstz=K3MgfLSMG2Nh=gsrLyTi98qato0QtJicYoyG5LJQ@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -148,219 +157,181 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-With the various nits addressed or responded to, for the whole series:
+On Wed, Jul 22, 2026 at 12:40=E2=80=AFAM <lyude@redhat.com> wrote:
+>
+> With the various nits addressed or responded to, for the whole series:
+>
+> Reviewed-by: Lyude Paul <lyude@redhat.com>
+>
+> (I assume with you moving stuff into nvkm I might need to re-review
+> later, but that's fine with me)
+>
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+Thanks a lot! All your suggestions are fine by me so I'll incorporate
+them, do the shifting around to prevent the errors on unsupported
+metrics/cold reads from reaching userspace, and push a V2.
 
-(I assume with you moving stuff into nvkm I might need to re-review
-later, but that's fine with me)
-
-On Wed, 2026-07-15 at 01:14 +0400, Mohamed Ahmed wrote:
-> On the GSP firmware, nouveau reports nothing about the GPU. The GSP
-> owns
-> the sensors, so the legacy nvkm therm/clk/volt hwmon paths never run,
-> and
-> monitoring tools have no data to read.
->=20
-> GSP on later firmware does publish all of it through a stable
-> interface.
-> It maintains a shared-memory region called "RM User Shared Data"
-> (RUSD),
-> which the firmware fills with all the relevant sensor readings like
-> power,
-> temperatures, clocks, and many others. Consuming it needs only two
-> internal subdevice controls: INIT_USER_SHARED_DATA to register the
-> buffer,
-> and SET_DATA_POLL to tell the GSP which data groups to poll and how
-> often.
->=20
-> This series makes nouveau a RUSD client and exposes the data through
-> two
-> main surfaces:
->=20
-> =C2=A0 - hwmon, for the values that map onto standard channels: GPU and
-> memory
-> =C2=A0=C2=A0=C2=A0 temperature, GPU/board/VRAM power, power cap.=20
->=20
-> =C2=A0 - sysfs, under /sys/class/drm/cardN/device/rusd/, for everything
-> hwmon
-> =C2=A0=C2=A0=C2=A0 has no channel type for: clocks, utilisation, pstate, =
-throttle
-> reason,
-> =C2=A0=C2=A0=C2=A0 ECC counters, PCIe error counters, and everything expo=
-sed to
-> hwmon as
-> =C2=A0=C2=A0=C2=A0 well. One value per file according to sysfs convention=
-.
->=20
-> Polling is demand-driven. GSP polls a group only while a client is
-> reading
-> it, and a group idles off after 10s after the last read. Polling
-> costs
-> power, so nothing is polled unless someone is looking. A section that
-> has
-> not been polled yet, or that the board does not support, reads -
-> ENODATA.
->=20
-> The sysfs interface is documented in
-> Documentation/ABI/testing/sysfs-driver-nouveau.
->=20
-> While the original scope was RUSD support only, monitoring tools
-> needed
-> two extra additions to complete the picture:
->=20
-> =C2=A0 - VRAM size and usage on sysfs (patch 5): since this series adds a
-> sysfs
-> =C2=A0=C2=A0=C2=A0 interface for nouveau, it's better to expose VRAM metr=
-ics there
-> rather
-> =C2=A0=C2=A0=C2=A0 than force monitoring apps to pull in libdrm for the G=
-ETPARAM
-> memory
-> =C2=A0=C2=A0=C2=A0 ioctls.
->=20
-> =C2=A0 - fdinfo (patch 6): nouveau implemented none at all, and monitorin=
-g
-> apps
-> =C2=A0=C2=A0=C2=A0 could not show per-process GPU and memory usage. It no=
-w reports
-> =C2=A0=C2=A0=C2=A0 per-client memory and per-engine busy time, accounted =
-from the
-> DRM
-> =C2=A0=C2=A0=C2=A0 scheduler that the EXEC/VM_BIND path already uses.
->=20
-> Limitations, caveats, and additional considerations or questions:
->=20
-> =C2=A0 - RUSD needs r570 or newer GSP firmware; r535 does not have the
-> needed
-> =C2=A0=C2=A0=C2=A0 controls. Pre-GSP and r535 behavior is identical to wh=
-at it was:
-> the
-> =C2=A0=C2=A0=C2=A0 rusd/ group is not created, and hwmon keeps its curren=
-t behavior.
->=20
-> =C2=A0 - This is all read-only telemetry. Clock, voltage, or power contro=
-l
-> is
-> =C2=A0=C2=A0=C2=A0 through other interfaces out of scope of this series.
->=20
-> =C2=A0 - The sysfs interface exposed here should be stable and valid for
-> nova
-> =C2=A0=C2=A0=C2=A0 as well. RUSD is stable and only grows more fields wit=
-h newer GSP
-> =C2=A0=C2=A0=C2=A0 firmware (e.g., fan telemetry gets added in r580), so =
-it is
-> possible
-> =C2=A0=C2=A0=C2=A0 to keep the same interface as we use newer firmware or=
- as we move
-> to
-> =C2=A0=C2=A0=C2=A0 nova and any potential considerations should be ironed=
- out before
-> this
-> =C2=A0=C2=A0=C2=A0 gets merged and the interface gets frozen.
->=20
-> =C2=A0 - amdgpu offers a single binary blob with all the telemetry
-> embedded in
-> =C2=A0=C2=A0=C2=A0 addition to the sysfs sensor files. This series curren=
-tly only
-> exposes
-> =C2=A0=C2=A0=C2=A0 sensor files, but it is possible to add a similar bina=
-ry for a
-> v2.
-> =C2=A0=C2=A0=C2=A0 This mainly offers a more efficient way to read the te=
-lemetry as
-> =C2=A0=C2=A0=C2=A0 clients would read only a few files instead of reading=
- all of
-> them.
->=20
-> =C2=A0 - The last two patches don't depend on RUSD and work on every GPU.
-> But
-> =C2=A0=C2=A0=C2=A0 they are here because they complete the sensor telemet=
-ry story. I
-> am
-> =C2=A0=C2=A0=C2=A0 happy to split them into their own series if that is p=
-referred.
->=20
-> Userspace WIP work built on this sysfs surface exists in form of
-> nouveau
-> backends for nvtop, LACT, and a NVK HUD:
->=20
-> =C2=A0 - nvtop: https://github.com/mohamexiety/nvtop/tree/nvtop-nouvtop
->=20
-> =C2=A0 - LACT: https://github.com/mohamexiety/LACT/tree/lnouvct
->=20
-> =C2=A0 - NVK HUD:
-> =C2=A0=C2=A0=C2=A0 https://gitlab.freedesktop.org/mesa/mesa/-/merge_reque=
-sts/39898
->=20
-> None of these are merged yet and exist for testing only. Upstreaming
-> will
-> begin when this series gets merged and the interface is stable.
->=20
-> Mohamed Ahmed (6):
-> =C2=A0 drm/nouveau/gsp: vendor the RUSD header
-> =C2=A0 drm/nouveau/gsp: add RUSD telemetry support
-> =C2=A0 drm/nouveau: add GSP hwmon support
-> =C2=A0 drm/nouveau: expose RUSD telemetry via sysfs
-> =C2=A0 drm/nouveau: expose global VRAM size and usage via sysfs
-> =C2=A0 drm/nouveau: expose per-client GPU usage via fdinfo
->=20
-> =C2=A0.../ABI/testing/sysfs-driver-nouveau=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 167 ++++++
-> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0=C2=A0 1 +
-> =C2=A0drivers/gpu/drm/nouveau/Kbuild=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> =C2=A0.../gpu/drm/nouveau/include/nvkm/subdev/gsp.h |=C2=A0 33 ++
-> =C2=A0.../drm/nouveau/include/nvkm/subdev/rusd.h=C2=A0=C2=A0=C2=A0 | 114 =
-++++
-> =C2=A0.../gpu/drm/nouveau/include/nvrm/nvtypes.h=C2=A0=C2=A0=C2=A0 |=C2=
-=A0=C2=A0 3 +
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_abi16.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 16 +
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_chan.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_drm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 22 +
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_drv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 29 +
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_exec.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_gem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 16 +
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_hwmon.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 375 ++++++++++---
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 87 +++
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 11 +
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_sysfs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 311 ++++++++++
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_sysfs.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 10 +
-> =C2=A0.../drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c |=C2=A0 26 +
-> =C2=A0.../drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c=C2=A0 |=C2=A0=C2=A0 1 =
-+
-> =C2=A0.../nouveau/nvkm/subdev/gsp/rm/r570/Kbuild=C2=A0=C2=A0=C2=A0 |=C2=
-=A0=C2=A0 1 +
-> =C2=A0.../nvkm/subdev/gsp/rm/r570/nvrm/rusd.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 303 ++++++++++
-> =C2=A0.../drm/nouveau/nvkm/subdev/gsp/rm/r570/rm.c=C2=A0 |=C2=A0=C2=A0 1 =
-+
-> =C2=A0.../nouveau/nvkm/subdev/gsp/rm/r570/rusd.c=C2=A0=C2=A0=C2=A0 | 531
-> ++++++++++++++++++
-> =C2=A0.../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 7 +
-> =C2=A024 files changed, 1990 insertions(+), 81 deletions(-)
-> =C2=A0create mode 100644 Documentation/ABI/testing/sysfs-driver-nouveau
-> =C2=A0create mode 100644
-> drivers/gpu/drm/nouveau/include/nvkm/subdev/rusd.h
-> =C2=A0create mode 100644 drivers/gpu/drm/nouveau/nouveau_sysfs.c
-> =C2=A0create mode 100644 drivers/gpu/drm/nouveau/nouveau_sysfs.h
-> =C2=A0create mode 100644
-> drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/rusd.h
-> =C2=A0create mode 100644
-> drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/rusd.c
-
+> On Wed, 2026-07-15 at 01:14 +0400, Mohamed Ahmed wrote:
+> > On the GSP firmware, nouveau reports nothing about the GPU. The GSP
+> > owns
+> > the sensors, so the legacy nvkm therm/clk/volt hwmon paths never run,
+> > and
+> > monitoring tools have no data to read.
+> >
+> > GSP on later firmware does publish all of it through a stable
+> > interface.
+> > It maintains a shared-memory region called "RM User Shared Data"
+> > (RUSD),
+> > which the firmware fills with all the relevant sensor readings like
+> > power,
+> > temperatures, clocks, and many others. Consuming it needs only two
+> > internal subdevice controls: INIT_USER_SHARED_DATA to register the
+> > buffer,
+> > and SET_DATA_POLL to tell the GSP which data groups to poll and how
+> > often.
+> >
+> > This series makes nouveau a RUSD client and exposes the data through
+> > two
+> > main surfaces:
+> >
+> >   - hwmon, for the values that map onto standard channels: GPU and
+> > memory
+> >     temperature, GPU/board/VRAM power, power cap.
+> >
+> >   - sysfs, under /sys/class/drm/cardN/device/rusd/, for everything
+> > hwmon
+> >     has no channel type for: clocks, utilisation, pstate, throttle
+> > reason,
+> >     ECC counters, PCIe error counters, and everything exposed to
+> > hwmon as
+> >     well. One value per file according to sysfs convention.
+> >
+> > Polling is demand-driven. GSP polls a group only while a client is
+> > reading
+> > it, and a group idles off after 10s after the last read. Polling
+> > costs
+> > power, so nothing is polled unless someone is looking. A section that
+> > has
+> > not been polled yet, or that the board does not support, reads -
+> > ENODATA.
+> >
+> > The sysfs interface is documented in
+> > Documentation/ABI/testing/sysfs-driver-nouveau.
+> >
+> > While the original scope was RUSD support only, monitoring tools
+> > needed
+> > two extra additions to complete the picture:
+> >
+> >   - VRAM size and usage on sysfs (patch 5): since this series adds a
+> > sysfs
+> >     interface for nouveau, it's better to expose VRAM metrics there
+> > rather
+> >     than force monitoring apps to pull in libdrm for the GETPARAM
+> > memory
+> >     ioctls.
+> >
+> >   - fdinfo (patch 6): nouveau implemented none at all, and monitoring
+> > apps
+> >     could not show per-process GPU and memory usage. It now reports
+> >     per-client memory and per-engine busy time, accounted from the
+> > DRM
+> >     scheduler that the EXEC/VM_BIND path already uses.
+> >
+> > Limitations, caveats, and additional considerations or questions:
+> >
+> >   - RUSD needs r570 or newer GSP firmware; r535 does not have the
+> > needed
+> >     controls. Pre-GSP and r535 behavior is identical to what it was:
+> > the
+> >     rusd/ group is not created, and hwmon keeps its current behavior.
+> >
+> >   - This is all read-only telemetry. Clock, voltage, or power control
+> > is
+> >     through other interfaces out of scope of this series.
+> >
+> >   - The sysfs interface exposed here should be stable and valid for
+> > nova
+> >     as well. RUSD is stable and only grows more fields with newer GSP
+> >     firmware (e.g., fan telemetry gets added in r580), so it is
+> > possible
+> >     to keep the same interface as we use newer firmware or as we move
+> > to
+> >     nova and any potential considerations should be ironed out before
+> > this
+> >     gets merged and the interface gets frozen.
+> >
+> >   - amdgpu offers a single binary blob with all the telemetry
+> > embedded in
+> >     addition to the sysfs sensor files. This series currently only
+> > exposes
+> >     sensor files, but it is possible to add a similar binary for a
+> > v2.
+> >     This mainly offers a more efficient way to read the telemetry as
+> >     clients would read only a few files instead of reading all of
+> > them.
+> >
+> >   - The last two patches don't depend on RUSD and work on every GPU.
+> > But
+> >     they are here because they complete the sensor telemetry story. I
+> > am
+> >     happy to split them into their own series if that is preferred.
+> >
+> > Userspace WIP work built on this sysfs surface exists in form of
+> > nouveau
+> > backends for nvtop, LACT, and a NVK HUD:
+> >
+> >   - nvtop: https://github.com/mohamexiety/nvtop/tree/nvtop-nouvtop
+> >
+> >   - LACT: https://github.com/mohamexiety/LACT/tree/lnouvct
+> >
+> >   - NVK HUD:
+> >     https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/39898
+> >
+> > None of these are merged yet and exist for testing only. Upstreaming
+> > will
+> > begin when this series gets merged and the interface is stable.
+> >
+> > Mohamed Ahmed (6):
+> >   drm/nouveau/gsp: vendor the RUSD header
+> >   drm/nouveau/gsp: add RUSD telemetry support
+> >   drm/nouveau: add GSP hwmon support
+> >   drm/nouveau: expose RUSD telemetry via sysfs
+> >   drm/nouveau: expose global VRAM size and usage via sysfs
+> >   drm/nouveau: expose per-client GPU usage via fdinfo
+> >
+> >  .../ABI/testing/sysfs-driver-nouveau          | 167 ++++++
+> >  MAINTAINERS                                   |   1 +
+> >  drivers/gpu/drm/nouveau/Kbuild                |   1 +
+> >  .../gpu/drm/nouveau/include/nvkm/subdev/gsp.h |  33 ++
+> >  .../drm/nouveau/include/nvkm/subdev/rusd.h    | 114 ++++
+> >  .../gpu/drm/nouveau/include/nvrm/nvtypes.h    |   3 +
+> >  drivers/gpu/drm/nouveau/nouveau_abi16.c       |  16 +
+> >  drivers/gpu/drm/nouveau/nouveau_chan.h        |   2 +
+> >  drivers/gpu/drm/nouveau/nouveau_drm.c         |  22 +
+> >  drivers/gpu/drm/nouveau/nouveau_drv.h         |  29 +
+> >  drivers/gpu/drm/nouveau/nouveau_exec.c        |   3 +
+> >  drivers/gpu/drm/nouveau/nouveau_gem.c         |  16 +
+> >  drivers/gpu/drm/nouveau/nouveau_hwmon.c       | 375 ++++++++++---
+> >  drivers/gpu/drm/nouveau/nouveau_sched.c       |  87 +++
+> >  drivers/gpu/drm/nouveau/nouveau_sched.h       |  11 +
+> >  drivers/gpu/drm/nouveau/nouveau_sysfs.c       | 311 ++++++++++
+> >  drivers/gpu/drm/nouveau/nouveau_sysfs.h       |  10 +
+> >  .../drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c |  26 +
+> >  .../drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c  |   1 +
+> >  .../nouveau/nvkm/subdev/gsp/rm/r570/Kbuild    |   1 +
+> >  .../nvkm/subdev/gsp/rm/r570/nvrm/rusd.h       | 303 ++++++++++
+> >  .../drm/nouveau/nvkm/subdev/gsp/rm/r570/rm.c  |   1 +
+> >  .../nouveau/nvkm/subdev/gsp/rm/r570/rusd.c    | 531
+> > ++++++++++++++++++
+> >  .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h   |   7 +
+> >  24 files changed, 1990 insertions(+), 81 deletions(-)
+> >  create mode 100644 Documentation/ABI/testing/sysfs-driver-nouveau
+> >  create mode 100644
+> > drivers/gpu/drm/nouveau/include/nvkm/subdev/rusd.h
+> >  create mode 100644 drivers/gpu/drm/nouveau/nouveau_sysfs.c
+> >  create mode 100644 drivers/gpu/drm/nouveau/nouveau_sysfs.h
+> >  create mode 100644
+> > drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/rusd.h
+> >  create mode 100644
+> > drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/rusd.c
+>
