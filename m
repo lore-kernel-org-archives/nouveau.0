@@ -4,131 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A83CC4452D
-	for <nouveau@archiver.kernel.org>; Tue, 21 Jul 2026 18:36:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 774D3C4452B
+	for <nouveau@archiver.kernel.org>; Tue, 21 Jul 2026 19:37:13 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B124B10EB1A;
-	Tue, 21 Jul 2026 18:36:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2AAB710EB22;
+	Tue, 21 Jul 2026 19:37:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="GvtmS48f";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="D2IyRNnm";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 971CD4729F;
-	Tue, 21 Jul 2026 18:20:48 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784658048;
- b=cOHy8QH2QwNOgfniRryryBiB783gcKqZVqPsTK4MYwQS8fppv2CJfgJYS1K7IpNKwK5Vb
- jgOrvikVwptvQKemtcFxhSZCh1Cxw1j3IEOviz1pbgsndGWJiCIWIQzFJCXVqxdUeiri1vY
- fJrnRhY7sP94H3tzCA4Fy9I2yGoCS3HMrgAyAJJPKibIIWl0ExHPb6vOunU52GMJEn0Nhjd
- Qrgx/IrtitUpiiBjtT207jev1N33awjs41NIPRC9tVVCXaWaw0Pfa/5Z5o7hBXrJZC6sGbt
- 2AMZh4YHiTqkNo82VWNkwm8nRQoMWV6yn1LgjwssZpoHKACViwGzT37LVMtg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784658048; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id F1F1D47287;
+	Tue, 21 Jul 2026 19:21:43 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1784661703;
+ b=BJILLP+jv8Gqxk8ZfDynQ4hcKCoBpR76oc6lSRAs7Ofk5r0WoXbjVMEJ7Y7x9iXQnEgWR
+ gEczd6PPYi4zSKV8NAxsURXWQrTeyCWaoRh4MBvYqBPNxcEDN+BxDR2aL+rC7/S6/ia9WeZ
+ Ah0lj0WMijp7fR5/AVNITIGARsASGEhWxYumPtqJH3jPMNIH07qhQo21HlLQ9Mc4kdZYVtJ
+ zVmfp4xAUmtqvJ6OPVjt71bl3WKx9vXiivR/bsUnz8NeMT83sf4BAOQP8zatzqBuVW4M9eu
+ UWCRnvQ2doqowG+7SAIwn3J3fYyZX4+g3XZ6jSG2C8UQV/OE76NrWs+0IVfw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1784661703; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=P9P5vu0pXSNnYy1ZhJcG4vlkpcsOS3Vq5kYWiQ9nQWQ=;
- b=R0AJqxU6ssS13G5CV/zZJEPZ3HKw/cjm9Ja2e7TriH0IDHtjRdkdO7feftrV8B6STxYQY
- /RAjXZ8/pgoX2sjCppbCBTcz350jUkns9+16+RJ1+MYcdC4bPB/6XYJuYabPZmOY/4v4X+g
- HXlHi5fLJg4RgKYfOvfsgbmuEI9rxNz1esWBsrUB+dB0ejTNRKP6phZU5XfPkrcjtjpU0qR
- 12p4bMNkzAt2ztPAqPHiSwvwExQiw0n9gbVJyJVmH3odkMjcRWwwzurHQqgb8EUljqCTevI
- 2M2W9F3C6lDRLcWz6NDJGcmdBUldvJEwYf1w4YNxLsKbB59kELXOt5aRArPg==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ bh=sOY7eReV4Z5bcCLysipftskzwGQCZFqDBhkocCq/BoY=;
+ b=juNXfxfgsQnBsmMrGLoz1zb7ns6znJ5+M5wSPeZFgKHngoIB+naZBN8pXTWKa6wk6waF4
+ tcG6ygFJHlB1wIIw6urHeFGzqPOi4I81CvCBrNWs6FZ8mX8LIwIjzHqYa6vZPGUHji7HobB
+ wJ4doCpk2rGK6EJO/fTDMBEx+//fo5v9sMVmhCIEqb5wu7zAoR3So01i2EVM31OIC0JsEu4
+ qqYU34EjDJ5msPjHE4BTy08eUOGANP26ikaYM6+4wem+x8sjzHzO7W3Idqbc5H/FyjLyEhh
+ yiC5urN49b5QqMPpFN9YMTTrcJhWlKlWI9BLioIVZ6IwotCbC+y9MqWJ3Kiw==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=gmail.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EE5F8466F6
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 18:20:46 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B118710EB19
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 18:36:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1784658974;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=P9P5vu0pXSNnYy1ZhJcG4vlkpcsOS3Vq5kYWiQ9nQWQ=;
-	b=GvtmS48fLm6oQDm23xQQzRuiaiz72u1jb8yWHSpIdCK0vn625zNqxiZDMFtZlPbZpSYVSP
-	zW321wx3ez/KOnc1Ny6Bs2MwyWU+RUsS+5vRNUkkQdS+djonhXXnk9SiKz3laVpAUuIC0Z
-	BUDcMnRR+HhYpC9TBw9Eap5hUKAEZbw=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-436-jJ5diK9ON-KrkTLPOlpZrw-1; Tue, 21 Jul 2026 14:36:13 -0400
-X-MC-Unique: jJ5diK9ON-KrkTLPOlpZrw-1
-X-Mimecast-MFC-AGG-ID: jJ5diK9ON-KrkTLPOlpZrw_1784658973
-Received: by mail-qk1-f198.google.com with SMTP id
- af79cd13be357-92e5e38fbc5so165522085a.2
+	by kara.freedesktop.org (Postfix) with ESMTPS id 40F6347287
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 19:21:41 +0000 (UTC)
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
+ [209.85.215.177])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3F61610E3BA
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Jul 2026 19:37:10 +0000 (UTC)
+Received: by mail-pg1-f177.google.com with SMTP id
+ 41be03b00d2f7-c9ef3e1337fso7953497a12.2
         for <nouveau@lists.freedesktop.org>;
- Tue, 21 Jul 2026 11:36:13 -0700 (PDT)
+ Tue, 21 Jul 2026 12:37:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784662630; cv=none;
+        d=google.com; s=arc-20260327;
+        b=cs9TucljWedIFNxnUKALyrrvjNAQ6c2G+cHbrNvsjKHw6N54gkk8lUaX9VmwemYqQG
+         W5rHj/6NHLgPTMLk4cMT5KblSbn4Xs9AGmowZJt1O0AzZhgPVhTTyvwgySehjFYCTEqw
+         EkB70E7Jh+ZP3bGl71RxlE45EWiOEHNtAcBol6RBuV/M6Lv/DRoovp1Qf+eZwehyaG8E
+         womiIoRUxsnIMSNr2OW/BubBCmemeA4URPmeaajn+ioiLcq5HS17vuBSR5W/eK4/QYKe
+         GriBMw++X/5T1zsJ6G4JMHAKXrZAFyWLmMGMIJ9y+9bnuanwReo1wWUMA8M02+5/nafR
+         hgNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=sOY7eReV4Z5bcCLysipftskzwGQCZFqDBhkocCq/BoY=;
+        fh=hc9G6u7hbwAn7Br3oc2JcM5IDrTsNZ8rqaSPK99aBQ8=;
+        b=Q843zkMBp6YmZEpXo0WRi5rcw5r0lRiZMk7Qsqd6ly/H939BvBhcA3ONWiKovMfkwq
+         vEsbE+UbfWBGE7Im+bESPU1aw/eNI+f4iZI8LBpdOPqmL1ItWLP3Nc2fbXEfiK2BUef8
+         yLNLYrhuvRdMckMgQhnDc4Nn6g+2uBK5G0Tkv146J+N+j4BaiuMJaxLZmVRdbeyj0eO6
+         X2u5y+c7Tmzz1mk3jSDV2y8dUGwMF68KE+EEadpqW9ftFErLnyFrF5X/4ieOFu07VriV
+         yiTAkjRD7thwS146MrAP/c0RjdeDy7D+oc3yUQSDO5LTUldbjgsghgT5yhF6VeigSTJt
+         MsQw==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784662630; x=1785267430;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=sOY7eReV4Z5bcCLysipftskzwGQCZFqDBhkocCq/BoY=;
+        b=D2IyRNnmFKcc7Q2EVeB0Rmt/KyPrcfZRi3V+G4na9g3nZhwKCvpcP1JKDRz2lnqh/E
+         YSmWDcpKFN/OqlKxLmmrMm26AxwByMl5K041ezJ3y39yqJrrysRRAgcJP+1w/vmZ3kPz
+         yK9lyIcILA2pDIfmvVR6lsZH9YkhonC/Tzglm2nhSt9A5LHc69GOOJyBU0607Vf0iSN/
+         ACBHMLk/i3VvjIfegzsvPyYPIW4MB9bjeoxSJ7pl5rGyaF2/qjMaGg6bJYntVtS/2qUT
+         5oMeLzYl9A0/Wrmv4HDNUVHEKKRnBFxe+ykDG6hlwoqfjdvYILnyFLQ27EXf8nS0DIb/
+         zbMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784658973; x=1785263773;
-        h=mime-version:user-agent:content-transfer-encoding:content-type
-         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+        d=1e100.net; s=20251104; t=1784662630; x=1785267430;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Go1C81ar5fv4t+FHR7Abtxew7sOcjBDPFGnY7kzk9t0=;
-        b=RgKjrhqWgcKXYyCxKgmZ+mFWtGz8M4cm9dQfMKGuE0JhAOIXwih/xJJnkHc5gUwN/L
-         iTGqj3Tl8syYyhBxR5kLYanlcllxPgMzlWs9dwmQiHOl/uqcJU2CX3UNEHB5zCb/j9Ku
-         MG5rcJ1KER4cPXBE8FCU8ZWtgf8y8yKCt1/PQmzNihOSOyhyoePChV6GhKfKaoK9Yk1S
-         HdMV6xIeUF6ElEoFCBMaRJh1ifdhxaze7Vm9Wy+KfRQ5sTZrhcF2edhkjyeXKAsgBa9A
-         eob5zWGcuREFwlE54n/CqWxtlW3CLQgb2OQEuEVebgcJz3p89JBni+CqXBZ/GU9hGTF5
-         sFGg==
+        bh=sOY7eReV4Z5bcCLysipftskzwGQCZFqDBhkocCq/BoY=;
+        b=NNa2e0E+o8spGXbDugRotMTSdMMejgmwYGhtQ/JT91UPjzs4UtiY8Jcye4k+kufox3
+         EoXPpb8VQ30Qyz868RkRibXxBuOXwXC1O1zhA8pZS0Z7MKokxr80LjT6NUm+RKSzGoLy
+         vtLScnoVCiS+3MW706agj16L+/qDrmCUt1WS0H6VfE+03adHy7CNxK/DYUjL4BqyaoAc
+         uYl0V/SMuo8Udtrxq0T8nkJNiK2YKWO7MdpcdLSDrevcWFh//ujvFgr9THEFt5ZQGYSH
+         +x0/M9viWP9v2GAM4ABIfeumtAcIxTb4nP39wjj9Ta4sbddnO+TGcNRmJfgY7O0qhErK
+         lTfw==
 X-Forwarded-Encrypted: i=1;
- AHgh+RqDZRnmrAXLKhNn9fNXh3y+KtWcOSiFSlk3mIeJQzWPOwyn4YcknT6rF+Q5FDJE+RMed+hw5p0v@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwV/SJFHGSoXVohOEjzDvfUDk/54vp/Uyoz4esAu6Wm8XF+di+d
-	9uU0vV+OsFoXfOo/Qvda1aeb8n6eYiPQWgGRjb+UzjUc+nmFPy/Bxe2bPxZrGpqgB6T0xQh1nqZ
-	LXPvKD1yCAqhGn0weLGtbpEG0QAgdRfbUnJePsAPs3acKwpyjjuz8X0ImdYYZediOKAU=
-X-Gm-Gg: AfdE7ck7kFIKyz/MCAUuQVmGHlsB0qP2EqqhuSk4smV+IGw/fToTcVmf/uWMA5XSPhp
-	F//Xjm7gp6L1AFC+TV7HjvUKJloFQKMZDW0y5KxtbgDVmT5wqMKEYcwgZ4f4Fnaueuao0Bh+Bre
-	qCcN8bZUeBPGXkXJzWoykxOe/C5MFMEWoNgfrWWJhmm8JqujbDshiy8mEy/dzy4xCBEmKQPeH+1
-	XGt4ETjWDcjetArzyoM6o0MfPnMSZIljrqGAUCo9KmrB78tohvuSTidXi0qP/Jbw3M8FYGriKHD
-	qGDIfAn4EWFvwQp4097fTWhxc0GU46+iaVnjo4AdwqDxhUK9c1oHA8H59WXqy2/tTOYBnrbz
-X-Received: by 2002:a05:620a:2905:b0:92e:8734:b833 with SMTP id
- af79cd13be357-930b416d543mr1930903785a.59.1784658972833;
-        Tue, 21 Jul 2026 11:36:12 -0700 (PDT)
-X-Received: by 2002:a05:620a:2905:b0:92e:8734:b833 with SMTP id
- af79cd13be357-930b416d543mr1930899885a.59.1784658972324;
-        Tue, 21 Jul 2026 11:36:12 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93])
-        by smtp.gmail.com with ESMTPSA id
- af79cd13be357-930b52faa8fsm1188355885a.12.2026.07.21.11.36.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jul 2026 11:36:11 -0700 (PDT)
-Message-ID: <78ca5c308ce81465956e839c82e1bba46a9f0686.camel@redhat.com>
-Subject: Re: [PATCH 3/6] drm/nouveau: add GSP hwmon support
-From: lyude@redhat.com
-To: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
-	linux-kernel@vger.kernel.org
-Date: Tue, 21 Jul 2026 14:36:11 -0400
-In-Reply-To: <20260714211429.238355-4-mohamedahmedegypt2001@gmail.com>
-References: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
-	 <20260714211429.238355-4-mohamedahmedegypt2001@gmail.com>
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
+ AHgh+RoQ4peF9xA/kv7BMHz/CpHd3B//Tf7QbTGSPw/hNUjS5K7irrO0INjFBmgDs1LfycRx4L5m5QoS@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywhg8KJzYuaYLlCqx7fR/32A+bHWKEQXH/JYbGgPAlUjte/pSDk
+	b+Xm+bShurwemtMq5tz9WKWhde17VBkOnTXWTX9vsi57hpPtTCDsuWCH/h9/brzv5Mo1+FrFakh
+	gfymUC6gPyKKj/TeFqAIIzgcnSNDLfLc=
+X-Gm-Gg: AR+sD12akWI1n087BGH1x04+yHdh/MEu1bMU5mpNRaJr9ErrO/3eKbabCMWyoQH9gvx
+	eubcXMNIN+VT/jrnyTMe4Of07dro0F4JrlOPpgZWh319TemyG9OjqWHWM1azhX+QAXuTtXNKQH4
+	5Y1H/tPPbRjAZdtJLf9B3CAGHgg3GXFvskZVF59prZ0ZokFN7jfcCtzYLS18Xa11AYxJaBjPlWZ
+	NqGBTVlVNoa+qPSRp6stLacOQFJIM84UC0olA2t430EWt678Th/x12PM5EvzyeKNSf0KGmhpA77
+	vkch
+X-Received: by 2002:a05:6a20:7487:b0:3bf:6c05:ab with SMTP id
+ adf61e73a8af0-3c3ad9d632bmr21640259637.58.1784662629564; Tue, 21 Jul 2026
+ 12:37:09 -0700 (PDT)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: mFQRHys3qMxB9olGPgcuQkY10uXzznrw_7kNR4Ef6OE_1784658973
-X-Mimecast-Originator: redhat.com
+References: <20260714211429.238355-1-mohamedahmedegypt2001@gmail.com>
+ <20260714211429.238355-4-mohamedahmedegypt2001@gmail.com>
+ <78ca5c308ce81465956e839c82e1bba46a9f0686.camel@redhat.com>
+In-Reply-To: <78ca5c308ce81465956e839c82e1bba46a9f0686.camel@redhat.com>
+From: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
+Date: Tue, 21 Jul 2026 23:36:58 +0400
+X-Gm-Features: AUfX_mzGwUNpX520bsNPEhX1qvh744PJolN7Udftq3CicklwG3Y8nVM_WZ-pl_4
+Message-ID: 
+ <CAA+WOBuLgkKy_BAgEWgN7jgxDrJYchO1D+B44u6VVMPsGJ-AEA@mail.gmail.com>
+Subject: Re: [PATCH 3/6] drm/nouveau: add GSP hwmon support
+To: lyude@redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: MSZXXUE52G4PGAKFQMI7PBCWPYGGABHQ
-X-Message-ID-Hash: MSZXXUE52G4PGAKFQMI7PBCWPYGGABHQ
-X-MailFrom: lyude@redhat.com
-X-Mailman-Rule-Hits: member-moderation
+Message-ID-Hash: 244NK7TBOA775LJZREOQBF42ECMIQ5CZ
+X-Message-ID-Hash: 244NK7TBOA775LJZREOQBF42ECMIQ5CZ
+X-MailFrom: mohamedahmedegypt2001@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
-CC: dri-devel@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
  Mary Guillemard <mary@mary.zone>, nouveau@lists.freedesktop.org
@@ -136,9 +146,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MSZXXUE52G4PGAKFQMI7PBCWPYGGABHQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/244NK7TBOA775LJZREOQBF42ECMIQ5CZ/>
 Archived-At: 
- <https://lore.freedesktop.org/78ca5c308ce81465956e839c82e1bba46a9f0686.camel@redhat.com/>
+ <https://lore.freedesktop.org/CAA+WOBuLgkKy_BAgEWgN7jgxDrJYchO1D+B44u6VVMPsGJ-AEA@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -148,106 +158,124 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, 2026-07-15 at 01:14 +0400, Mohamed Ahmed wrote:
-> +static int
-> +nouveau_power_read(struct device *dev, u32 attr, int channel, long
-> *val)
-> +{
-> +=09struct drm_device *drm_dev =3D dev_get_drvdata(dev);
-> +=09struct nouveau_drm *drm =3D nouveau_drm(drm_dev);
-> +=09struct nvkm_iccsense *iccsense =3D nvxx_iccsense(drm);
-> +=09struct nvkm_device *device =3D drm->nvkm;
-> +=09struct nvkm_gsp *gsp =3D device->gsp;
-> +
-> +=09if (nvkm_gsp_rusd(gsp))
-> +=09=09return nouveau_rusd_power_read(drm_dev, gsp, attr,
-> channel, val);
+On Tue, Jul 21, 2026 at 10:36=E2=80=AFPM <lyude@redhat.com> wrote:
+>
+> On Wed, 2026-07-15 at 01:14 +0400, Mohamed Ahmed wrote:
+> > +static int
+> > +nouveau_power_read(struct device *dev, u32 attr, int channel, long
+> > *val)
+> > +{
+> > +     struct drm_device *drm_dev =3D dev_get_drvdata(dev);
+> > +     struct nouveau_drm *drm =3D nouveau_drm(drm_dev);
+> > +     struct nvkm_iccsense *iccsense =3D nvxx_iccsense(drm);
+> > +     struct nvkm_device *device =3D drm->nvkm;
+> > +     struct nvkm_gsp *gsp =3D device->gsp;
+> > +
+> > +     if (nvkm_gsp_rusd(gsp))
+> > +             return nouveau_rusd_power_read(drm_dev, gsp, attr,
+> > channel, val);
+>
+> IMO - let's add braces to this conditional
+>
+> > +     else {
+> > +             if (!iccsense)
+> > +                     return -EOPNOTSUPP;
+> > +
+> > +             switch (attr) {
+> > +             case hwmon_power_input:
+> > +                     if (drm_dev->switch_power_state !=3D
+> > DRM_SWITCH_POWER_ON)
+> > +                             return -EINVAL;
+> > +                     *val =3D nvkm_iccsense_read_all(iccsense);
+> > +                     break;
+> > +             case hwmon_power_max:
+> > +                     *val =3D iccsense->power_w_max;
+> > +                     break;
+> > +             case hwmon_power_crit:
+> > +                     *val =3D iccsense->power_w_crit;
+> > +                     break;
+> > +             default:
+> > +                     return -EOPNOTSUPP;
+> > +             }
+> > +
+> > +             return 0;
+> > +     }
+> > +}
+> > +
+>
+> ...
+>
+> >  static int
+> >  nouveau_temp_write(struct device *dev, u32 attr, int channel, long
+> > val)
+> >  {
+> > @@ -667,13 +854,39 @@ nouveau_hwmon_init(struct drm_device *dev)
+> >       struct nvkm_iccsense *iccsense =3D nvxx_iccsense(drm);
+> >       struct nvkm_therm *therm =3D nvxx_therm(drm);
+> >       struct nvkm_volt *volt =3D nvxx_volt(drm);
+> > +     struct nvkm_device *device =3D drm->nvkm;
+> > +     struct nvkm_gsp *gsp =3D device->gsp;
+> >       const struct attribute_group *special_groups[N_ATTR_GROUPS];
+> >       struct nouveau_hwmon *hwmon;
+> >       struct device *hwmon_dev;
+> > +     bool rusd_active =3D false;
+> >       int ret =3D 0;
+> >       int i =3D 0;
+> >
+> > -     if (!iccsense && !therm && !volt) {
+> > +     if (nvkm_gsp_rusd(gsp)) {
+> > +             /* Per-channel visibility is latched below from live
+> > RUSD
+> > +              * section validity, so wait for GSP-RM's first poll
+> > of both
+> > +              * requested groups (thermal, power). It is normally
+> > completed
+> > +              * long before we get here and this is a last
+> > resort.
+> > +              */
+> > +             unsigned long timeout =3D jiffies +
+> > +                     msecs_to_jiffies(2 * gsp->rusd.poll_ms);
+> > +             bool thermal, power;
+> > +
+> > +             for (;;) {
+> > +                     thermal =3D nouveau_rusd_ok(gsp,
+> > NVKM_GSP_RUSD_TEMP_GPU);
+> > +                     power =3D nouveau_rusd_ok(gsp,
+> > NVKM_GSP_RUSD_POWER_GPU) ||
+> > +                             nouveau_rusd_ok(gsp,
+> > NVKM_GSP_RUSD_POWER_GPU_AVG) ||
+> > +                             nouveau_rusd_ok(gsp,
+> > NVKM_GSP_RUSD_POWER_CAP);
+> > +                     if ((thermal && power) ||
+> > !time_before(jiffies, timeout))
+> > +                             break;
+> > +                     msleep(20);
+> > +             }
+>
+> Is it possible to use nvif_msec() here?
+>
 
-IMO - let's add braces to this conditional
+It can work but it's strictly worse than this. nvif_msec() does busy
+looping, which would be overkill for this as it would be doing a lot
+more reading for something that changes at most once per 500ms poll
+cycle, and it keeps the CPU fully occupied with every read. It also
+couples us to GPU timing while the main thing we are waiting here on
+is whether the GSP's buffer writes are now visible in RAM so GPU side
+time doesn't offer us anything. I actually wasn't sure at first how to
+properly wait and did go over all the possible timing alternatives and
+jiffies looked to be the best here.
 
-> +=09else {
-> +=09=09if (!iccsense)
-> +=09=09=09return -EOPNOTSUPP;
-> +
-> +=09=09switch (attr) {
-> +=09=09case hwmon_power_input:
-> +=09=09=09if (drm_dev->switch_power_state !=3D
-> DRM_SWITCH_POWER_ON)
-> +=09=09=09=09return -EINVAL;
-> +=09=09=09*val =3D nvkm_iccsense_read_all(iccsense);
-> +=09=09=09break;
-> +=09=09case hwmon_power_max:
-> +=09=09=09*val =3D iccsense->power_w_max;
-> +=09=09=09break;
-> +=09=09case hwmon_power_crit:
-> +=09=09=09*val =3D iccsense->power_w_crit;
-> +=09=09=09break;
-> +=09=09default:
-> +=09=09=09return -EOPNOTSUPP;
-> +=09=09}
-> +
-> +=09=09return 0;
-> +=09}
-> +}
-> +
+That said, to address what Milos mentioned (the weirdness of files
+being -ENODATA), I am going to have to move this into nvkm/rusd,
+inside r570_rusd_supported()/r570_rusd_read() which doesn't have any
+other alternative available to do a similar style waiting loop.
 
-...
-
-> =C2=A0static int
-> =C2=A0nouveau_temp_write(struct device *dev, u32 attr, int channel, long
-> val)
-> =C2=A0{
-> @@ -667,13 +854,39 @@ nouveau_hwmon_init(struct drm_device *dev)
-> =C2=A0=09struct nvkm_iccsense *iccsense =3D nvxx_iccsense(drm);
-> =C2=A0=09struct nvkm_therm *therm =3D nvxx_therm(drm);
-> =C2=A0=09struct nvkm_volt *volt =3D nvxx_volt(drm);
-> +=09struct nvkm_device *device =3D drm->nvkm;
-> +=09struct nvkm_gsp *gsp =3D device->gsp;
-> =C2=A0=09const struct attribute_group *special_groups[N_ATTR_GROUPS];
-> =C2=A0=09struct nouveau_hwmon *hwmon;
-> =C2=A0=09struct device *hwmon_dev;
-> +=09bool rusd_active =3D false;
-> =C2=A0=09int ret =3D 0;
-> =C2=A0=09int i =3D 0;
-> =C2=A0
-> -=09if (!iccsense && !therm && !volt) {
-> +=09if (nvkm_gsp_rusd(gsp)) {
-> +=09=09/* Per-channel visibility is latched below from live
-> RUSD
-> +=09=09 * section validity, so wait for GSP-RM's first poll
-> of both
-> +=09=09 * requested groups (thermal, power). It is normally
-> completed
-> +=09=09 * long before we get here and this is a last
-> resort.
-> +=09=09 */
-> +=09=09unsigned long timeout =3D jiffies +
-> +=09=09=09msecs_to_jiffies(2 * gsp->rusd.poll_ms);
-> +=09=09bool thermal, power;
-> +
-> +=09=09for (;;) {
-> +=09=09=09thermal =3D nouveau_rusd_ok(gsp,
-> NVKM_GSP_RUSD_TEMP_GPU);
-> +=09=09=09power =3D nouveau_rusd_ok(gsp,
-> NVKM_GSP_RUSD_POWER_GPU) ||
-> +=09=09=09=09nouveau_rusd_ok(gsp,
-> NVKM_GSP_RUSD_POWER_GPU_AVG) ||
-> +=09=09=09=09nouveau_rusd_ok(gsp,
-> NVKM_GSP_RUSD_POWER_CAP);
-> +=09=09=09if ((thermal && power) ||
-> !time_before(jiffies, timeout))
-> +=09=09=09=09break;
-> +=09=09=09msleep(20);
-> +=09=09}
-
-Is it possible to use nvif_msec() here?
-
-> +
-> +=09=09rusd_active =3D thermal || power;
-> +=09}
-> +
-> +=09if (!iccsense && !therm && !volt && !rusd_active) {
-> =C2=A0=09=09NV_DEBUG(drm, "Skipping hwmon registration\n");
-> =C2=A0=09=09return 0;
-> =C2=A0=09}
-
+> > +
+> > +             rusd_active =3D thermal || power;
+> > +     }
+> > +
+> > +     if (!iccsense && !therm && !volt && !rusd_active) {
+> >               NV_DEBUG(drm, "Skipping hwmon registration\n");
+> >               return 0;
+> >       }
+>
