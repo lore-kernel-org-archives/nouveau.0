@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33932C4453C
-	for <nouveau@archiver.kernel.org>; Wed, 22 Jul 2026 15:43:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85095C44532
+	for <nouveau@archiver.kernel.org>; Wed, 22 Jul 2026 15:53:02 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E5CA510EE32;
-	Wed, 22 Jul 2026 15:43:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE5010EE49;
+	Wed, 22 Jul 2026 15:52:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CLM0aR9e";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lzeLJ+Mk";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E07FB472EF;
-	Wed, 22 Jul 2026 15:27:45 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 849B3472F2;
+	Wed, 22 Jul 2026 15:37:28 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784734065;
- b=OP7xwHKdg/U6fyCPtbx69xF8uUMI6JkC69je+NlYEnV/PHj5xUH9oLdJsbNFzsAxi1/RL
- Mzg026q2lyvjypVU2VVhLqkFKZzaEjG8/g8T5yHYoqzwLPofF3Se6hlmjOiRayxNv8DzdtL
- cdAqKPRIKTVimw3ZLV7oJduYuKnL1fZNa4UmJepNiKC9l1qkRSXobWzCS0CUULqke+nWUvt
- Qyr9NHElbMfROuJ6WaAkLxZ9CwqZJ41aANP5fRZm8WgU7nZBFDnjXZu8FTvrJTTic4xNRJk
- QkZrsYi3DkVvVSIbkhHsw535DIcdj/H3IynMvGGb034MmjM8L24sQ9Byuqsg==
+ s=20240201; t=1784734648;
+ b=zuVMl0cGGMnkGTDP0vbRY9KBIRyF62td6rSWu5df4bYRsM3DU9EtfWImzel1iSI9ELRlJ
+ CBVFeVW7uHM53xO9CQPtlW6I9IczsicAflsnrGA11pUuj/+wmANwD1q/4/StRfg5lfwN2nn
+ nUiuRYnEcioAUamGHIyIOMoqyi8H/cDoJ3lLQuj4RYunR7ZDDM0137IO4+GfDGXdXSO9gP5
+ 7kIaPGENM6uAoFYrE1viuwocZBY0DkEICxK6NSROhik4pEL+B/8QGdcl5SyxjsIgYyXmbbn
+ 2qRX1LrMBLfVADAY8+vDiSbHVqRaxIrexgEZ4Pc4odQBQJGV5kIp4yqA3D4w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784734065; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784734648; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=z8WqCRRmqZNU6m++x/hJd+wI7SHuI+FdIhlbamrdG1A=;
- b=tUx8c4sUQpmIUp8+7i3KH+QljjpJ04PkxvI/uUEiDozUk562PaBByU0RCb5xVwcFzFn7T
- w4lXIjR3/FmKP1MnfCChFBDjYaN3jbiStAqw3KYPtSs2g+O8S5w7mpyIp2XTWDN7UNHrC0R
- 2Vgx0zV7ww9ZT/IsLVbBfmErnkWYLVQAfme4FNevJGaKdRoEioh7OiVypDIoKTXjEx2K++c
- xRrdQW5AxO/+SL7NjK1AS6QcPywRRtFKQT7K5DPEDLac8NV1cOMRw15BXIn6GNWBo5M7ojE
- 2BOBfUXDQbQfgk+eYrou1h1Xxa37pHFvXakk5T37eizmOW/x/FiNBhboA6CA==
+ bh=ufiVbs4gFZoTgyjZH/ZnFnJ99kcRuL/B6RsmsdF3mq8=;
+ b=jRV+fwRAdu9W2CnlwsWR3Wkhuz1Z0doAQFPdF67sOWA3j8t4W75Aw8MY8R45rDlLkC3Uw
+ 7UNshUi2AgnjmijnbAdC/SdvakTSZBzyBAqe/D/XDe9O6bK5HIuVNOZKfXoEiLMWcO4Cl7E
+ VHsjFJKvldNJDZldy85KGk8O9D6qypRNJEMSi/CcL+TD69OQlZIbpMS0AwlsQYuGT0fAA+A
+ ymYVZTFzlo16YZstj291kkgzO3p0GVnUSgRi9gtjqxmwXJ8+wKV7Ek8D/ZV3sG4CoddkDLv
+ sRPOLtdO/EJn13v4RxubNTvZKnPuhP17a4sUHhMbAhAfS45UqC8ThzZ1V8Qg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,31 +46,32 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EE01B472CC
-	for <nouveau@lists.freedesktop.org>; Wed, 22 Jul 2026 15:27:42 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BFBD310E48C;
-	Wed, 22 Jul 2026 15:43:13 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 95983472DA
+	for <nouveau@lists.freedesktop.org>; Wed, 22 Jul 2026 15:37:25 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5594910E20B;
+	Wed, 22 Jul 2026 15:52:56 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id EA1E540977;
-	Wed, 22 Jul 2026 15:43:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 604121F000E9;
-	Wed, 22 Jul 2026 15:42:51 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 8E5D8600AF;
+	Wed, 22 Jul 2026 15:52:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D900D1F000E9;
+	Wed, 22 Jul 2026 15:52:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784734992;
-	bh=z8WqCRRmqZNU6m++x/hJd+wI7SHuI+FdIhlbamrdG1A=;
+	s=k20260515; t=1784735575;
+	bh=ufiVbs4gFZoTgyjZH/ZnFnJ99kcRuL/B6RsmsdF3mq8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=CLM0aR9eFhPZ9spOJaHdGqkYPBvjwdadVJYlKZTl2YKiFfjcVhRSxPh1PIcdSZLqF
-	 2uDQVrjKOL7KmFktl7pClbl7cKII+MRZc9/6UaOyQfALqfqRWzhAtz2P2hISt6DjII
-	 CWqB/cDSvIql3IGoYwtilPu5JaZMRbvxlUgx/GqldGAVbyRwWh0ci6cxI6Nrz0fqLU
-	 /E1KAynocQ7mEgmRpP4IShX5p2k0UIxlo2mteluahBk9DcIHRIpb9ZDQ/ba/6DRjn5
-	 oYakHop6ZZ+DFl5M5Rcin/qKgqClJMkqtRONWZt8Qxm6ThTbv5R0wMwmL93ssw6GKd
-	 eiwmeo4mk1lEw==
-Message-ID: <2eb7b45e-0bf6-4b09-9b8a-ecc0f57f2c39@kernel.org>
-Date: Wed, 22 Jul 2026 17:42:49 +0200
+	b=lzeLJ+MkKsdPmOuFrEroytGywJNyjc5go9z+BRGANnrrerkTLT/cUGS0MryhpCrCz
+	 JdnKkJXBXQDM1y9cnTXkAr+L8PkN74T9bfVYvVLVxwI2l26MDbErHm0dHSRnCdonnL
+	 RS8BbhjVo2GZtG/uKLPlYNjbwXf0EqigSTo9sTrTgwAXfegti5hbCb82Ksax3+7W+n
+	 QT+A4kOxO47PX305QOEXl/P2XsuHb7+PKLUJ9j688+bgVNRQrqfPt/YGk7hqqkhk7v
+	 RW33FQF/uI3VdGs/EfFg+aU8yARX/BME5FRohcAXZwHejlJ9HpNhFnfFCSrg51Y2pZ
+	 5PZGfjggIWn2Q==
+Message-ID: <f241a140-cb65-4a77-8dc9-dfa450b2e0fa@kernel.org>
+Date: Wed, 22 Jul 2026 17:52:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 08/13] mm: introduce vma_get_page_prot() and use it
+Subject: Re: [PATCH v2 09/13] mm/vma: update create_init_stack_vma() to use
+ vma_flags_t
 Content-Language: en-US
 To: Lorenzo Stoakes <ljs@kernel.org>,
  Andrew Morton <akpm@linux-foundation.org>,
@@ -128,7 +129,7 @@ To: Lorenzo Stoakes <ljs@kernel.org>,
  Boris Brezillon <boris.brezillon@collabora.com>,
  Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>
 References: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
- <20260711-b4-vma-flags-mm-v2-8-0fa2357d5431@kernel.org>
+ <20260711-b4-vma-flags-mm-v2-9-0fa2357d5431@kernel.org>
 From: "Vlastimil Babka (SUSE)" <vbabka@kernel.org>
 Autocrypt: addr=vbabka@kernel.org; keydata=
  xsFNBFZdmxYBEADsw/SiUSjB0dM+vSh95UkgcHjzEVBlby/Fg+g42O7LAEkCYXi/vvq31JTB
@@ -169,11 +170,11 @@ Autocrypt: addr=vbabka@kernel.org; keydata=
  NcaZ+c6J4H+nEJGi2SkHAUJz5oBzuThvPudLvPA/SK8sKoM01IRxSihev/S/5WLazXB1PGem
  OCbvzC1IjWJJraxiDJ5IygokapUa2RP7+WBR22skQ3SSl6G107QgWKSyTOGWEaRmV53vxQLV
  jXuCmzSSasTL60zq5yGrT4/DYQVSNEUiUbG4pYekxJujNeEDkUlky0Y=
-In-Reply-To: <20260711-b4-vma-flags-mm-v2-8-0fa2357d5431@kernel.org>
+In-Reply-To: <20260711-b4-vma-flags-mm-v2-9-0fa2357d5431@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID-Hash: TBSIMXFL7XIP6EW4NI7RKUFZPTD3HMLZ
-X-Message-ID-Hash: TBSIMXFL7XIP6EW4NI7RKUFZPTD3HMLZ
+Message-ID-Hash: SMF7ALX7MWIEUVKJPVDIJCWWMQYH2BHU
+X-Message-ID-Hash: SMF7ALX7MWIEUVKJPVDIJCWWMQYH2BHU
 X-MailFrom: vbabka@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -188,14 +189,14 @@ CC: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
  nouveau@lists.freedesktop.org, linux-tegra@vger.kernel.org,
  virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
  xen-devel@lists.xenproject.org, linux-fbdev@vger.kernel.org,
- linux-sound@vger.kernel.org, Jani Nikula <jani.nikula@intel.com>
+ linux-sound@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TBSIMXFL7XIP6EW4NI7RKUFZPTD3HMLZ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SMF7ALX7MWIEUVKJPVDIJCWWMQYH2BHU/>
 Archived-At: 
- <https://lore.freedesktop.org/2eb7b45e-0bf6-4b09-9b8a-ecc0f57f2c39@kernel.org/>
+ <https://lore.freedesktop.org/f241a140-cb65-4a77-8dc9-dfa450b2e0fa@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -206,18 +207,17 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 On 7/11/26 20:45, Lorenzo Stoakes wrote:
-> There's a large number of vm_get_page_prot(vma->vm_flags) invocations. Make
-> life easier by introducing vma_get_page_prot() parameterised by the VMA.
+> Replace use of the legacy vm_flags_t flags with vma_flags_t values in
+> create_init_stack_vma().
 > 
-> This also makes converting vm_get_page_prot() to vma_flags_t easier.
-> 
-> Also update the userland VMA tests to reflect the change.
+> As part of this change we add VMA_STACK_EARLY and VMA_STACK_INCOMPLETE
+> vma_flags_t defines, and slightly rework create_init_stack_vma() for
+> clarity.
 > 
 > No functional change intended.
 > 
-> Acked-by: Zi Yan <ziy@nvidia.com>
-> Acked-by: Jani Nikula <jani.nikula@intel.com> # for i915
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de> # for DRM
+> Reviewed-by: Zi Yan <ziy@nvidia.com>
+> Reviewed-by: Lance Yang <lance.yang@linux.dev>
 > Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 
 Reviewed-by: Vlastimil Babka (SUSE) <vbabka@kernel.org>
