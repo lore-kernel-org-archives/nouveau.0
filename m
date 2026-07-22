@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AFF9C531BC
-	for <nouveau@archiver.kernel.org>; Wed, 22 Jul 2026 16:08:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1550AC531BC
+	for <nouveau@archiver.kernel.org>; Wed, 22 Jul 2026 16:09:41 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 96D1110EE45;
-	Wed, 22 Jul 2026 16:08:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DA05D10EE46;
+	Wed, 22 Jul 2026 16:09:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lnL+GDOW";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ust3bdj7";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7BAF2472FA;
-	Wed, 22 Jul 2026 15:52:52 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id CCD3B472FF;
+	Wed, 22 Jul 2026 15:54:09 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784735572;
- b=wx+TZSm4iNZEcjVeI0EkmjZ5pD47FTwkxdRJL7OFHKmYfdGrXSagQLxnD4AAZFjLtWiG7
- TpBKW/zInjKawjOIOY7o4EeIuFhi6IvE7F9tLzTlzFlwBb/3iv2CxZyC1fkzSjmJmkF4Rnp
- nw/5F5ULOTUZzL/vQEteXmzEV8G4/pdb7uaZ0QTtmclt+h40tqIj9wtoO1pMhXBBuXt4ui7
- QY0BRf1p1AODM3/0haRAUCTtR1d7/APXmd0uqJu4u/eIsD9yxIOluCeWjm3kTqOG8ZIoqzo
- BQlxtZRAUgSpspa9qLTUyMtEQzKpcNimWsKRQPZ/yyM8kFkArKJUbBZU4vLw==
+ s=20240201; t=1784735649;
+ b=vPuCoNGPsf/dM27TDf0h4mYX8JDL5S5KBwYPe63Am47CQUhUQO64pP7VU7EyrFU7m4vkJ
+ f0q5gfAlITxo7hJmjnq6n8xFWP7KqoaLSg/gg/6T+61ze7WxwStqi3+O6amvV5x2LYfD41y
+ n2asigcbBmL9Uhj3CwqCyAiVGKHXI6r0tjzZLugCDAVSarSBGZ7QGIOXIXwZapI6Xpa5cj8
+ odq9pp1JrzUlxA5lfrfACg/7xxLShPTn6FiI3bP79vs7XJfb9rmhSvyOmDDHS21dwoF1Z5I
+ xUp4KRUryT3pSxKc2Thc4rW4dVHEhM2XF2q96GQXTtekUxPfMYt40HuHV+2A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784735572; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784735649; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=70Ep7Q7Q+hOHdHGDd1WlBsRT3Q12DveziwsIcTZZXqU=;
- b=fdBZZKxK9OEPSBR+YrwMVwBv14kASkFoJud1oQlEuj8D85eP/U3CmPYxY4+qENN4l4n9T
- 2gO73oLYdnaQZP0gKe3Cl/I4laEhE+Q1hufAMgLEP9VtCK7x7qV1WvQqlIE1dZiggxn9bMm
- GV8lx0JCSOuKyotFgKGwaVujECaIoJnXusr2x2UwIYDApV4ZsjOYDmkf0vNcBEFPpTWBnWu
- 2esJMr7gbK9ZvjatDW4MyftwfiVs000eVqefBqQa34A4vNX4IQrRJB8AdCgqK0YwjVJfTP2
- J0sATJ+A2Os9oDp+oBU37xyAAOoSpEwntNZ4xTCHIsDp2sm1PAaW9h10ZiCA==
+ bh=hm/5iL9EveGYA3vJkgF8R7lbasRuEO1iSSKVyzrOX0w=;
+ b=I/kvbKulP0Q1em9KdESLldVjtcwAchS1fZIQLByuMGpOfoLsbZuThk3x0Zlifl6QeXlmP
+ pbsrAV/lYE1aMrK7S9IYJQjMLjGgzfpzC/SekxeHuDhPJDD77uer0iPA1JL7G5YkRQcIMzN
+ SMjqEJdKVN/oo94kTdhzraORit4BGXMMQQS3nHTdXErplMRhwlP8N3dpri0kfWbr3KcbtIX
+ 9NNqcZool2hp4GODZIcy72lheg3Q2lxNS7KVk1Qdw2vWkrkL+5Lv5KYYCZj7L5ik8wesvoF
+ YYjG4KXOrVYjxYQ3bNRTD9cqsTZ37La172D+hCYDmaHFgASrSjLbH/HTASqw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,31 +46,32 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A0360472F7
-	for <nouveau@lists.freedesktop.org>; Wed, 22 Jul 2026 15:52:49 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7D0AA10E485;
-	Wed, 22 Jul 2026 16:08:20 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 52CA4472DA
+	for <nouveau@lists.freedesktop.org>; Wed, 22 Jul 2026 15:54:06 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1356A10E485;
+	Wed, 22 Jul 2026 16:09:37 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8D58B4071F;
-	Wed, 22 Jul 2026 16:08:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 482441F00A3F;
-	Wed, 22 Jul 2026 16:08:00 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 04F24600AB;
+	Wed, 22 Jul 2026 16:09:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B26D1F000E9;
+	Wed, 22 Jul 2026 16:09:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784736499;
-	bh=70Ep7Q7Q+hOHdHGDd1WlBsRT3Q12DveziwsIcTZZXqU=;
+	s=k20260515; t=1784736575;
+	bh=hm/5iL9EveGYA3vJkgF8R7lbasRuEO1iSSKVyzrOX0w=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=lnL+GDOW1RNyK8faVj+xog2qSVNXd5RW5OZ1TweaueH4vffC3geYYJCYWnNruwaiS
-	 SQlqDRNKNPkeFV8pd50akmXs+sysIAJx0dl4qQI1kgjZ6kfYnGNgnNyvZO2RHeen8x
-	 X1qP6AX16FvbgJG94v217TFQnJ+LPOkihf1JEqv8cWcYINv3KHgBTg196eAiyyVzED
-	 ODqqwmPRIhhkkPjChZPamQYcsNbf0LXo6MAgOs9eBCf+KjRIMLkkN7puHDnEuCp48e
-	 gcPqy9EHh5p23lLq8nqHqbWffgpAuBPw/rHyQ4KXf/Fx6ZkfX9yv/WIyidH3EEOx9c
-	 uKXxeAZUsAjDg==
-Message-ID: <c363ab95-8d8d-46e0-b9ec-d827664b21a8@kernel.org>
-Date: Wed, 22 Jul 2026 18:07:58 +0200
+	b=Ust3bdj7ZEAIy4n4wtOYmRrwIQMPYailb9NKjIw+PKcSHQ8vdpkni8H9CvqYAd7ol
+	 sYRVz/kVItg+dwjuYK2krwBem8+veFMitxTLh/YTkHWhVNjP51455v1a9nrqh6Ik0y
+	 viIYvdj57qXS44HtDjKV8s67omerf7XX+Dc7blWdQgjVJBj1PsD9HIXLgWzqmt11EB
+	 SfbWgbCZAj446RLfe1lnmBgaAIG3mecQ4G6Pux5a/pXFPkXy2VrYG9pruPTPvsgQc4
+	 DKAHr6nz3y5prdMIJ1evrpm4+rGT63RjYoIMfAKzeOw1IfR0c0eJfd7IjnNEuR5DmG
+	 V8ez2dOJEIeUw==
+Message-ID: <1bab7f72-9de0-4237-971e-6b8e1aff1d6d@kernel.org>
+Date: Wed, 22 Jul 2026 18:09:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 11/13] mm/mlock: convert mlock code to use vma_flags_t
+Subject: Re: [PATCH v2 12/13] mm/mprotect: convert mprotect code to use
+ vma_flags_t
 Content-Language: en-US
 To: Lorenzo Stoakes <ljs@kernel.org>,
  Andrew Morton <akpm@linux-foundation.org>,
@@ -128,7 +129,7 @@ To: Lorenzo Stoakes <ljs@kernel.org>,
  Boris Brezillon <boris.brezillon@collabora.com>,
  Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>
 References: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
- <20260711-b4-vma-flags-mm-v2-11-0fa2357d5431@kernel.org>
+ <20260711-b4-vma-flags-mm-v2-12-0fa2357d5431@kernel.org>
 From: "Vlastimil Babka (SUSE)" <vbabka@kernel.org>
 Autocrypt: addr=vbabka@kernel.org; keydata=
  xsFNBFZdmxYBEADsw/SiUSjB0dM+vSh95UkgcHjzEVBlby/Fg+g42O7LAEkCYXi/vvq31JTB
@@ -169,11 +170,11 @@ Autocrypt: addr=vbabka@kernel.org; keydata=
  NcaZ+c6J4H+nEJGi2SkHAUJz5oBzuThvPudLvPA/SK8sKoM01IRxSihev/S/5WLazXB1PGem
  OCbvzC1IjWJJraxiDJ5IygokapUa2RP7+WBR22skQ3SSl6G107QgWKSyTOGWEaRmV53vxQLV
  jXuCmzSSasTL60zq5yGrT4/DYQVSNEUiUbG4pYekxJujNeEDkUlky0Y=
-In-Reply-To: <20260711-b4-vma-flags-mm-v2-11-0fa2357d5431@kernel.org>
+In-Reply-To: <20260711-b4-vma-flags-mm-v2-12-0fa2357d5431@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID-Hash: BHOROV7ZVG362PIYS5OER5UE33F2JDNU
-X-Message-ID-Hash: BHOROV7ZVG362PIYS5OER5UE33F2JDNU
+Message-ID-Hash: Y6UE2B6QXKHUVLSVOWGIS5VB3OUXABYP
+X-Message-ID-Hash: Y6UE2B6QXKHUVLSVOWGIS5VB3OUXABYP
 X-MailFrom: vbabka@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -193,9 +194,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BHOROV7ZVG362PIYS5OER5UE33F2JDNU/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Y6UE2B6QXKHUVLSVOWGIS5VB3OUXABYP/>
 Archived-At: 
- <https://lore.freedesktop.org/c363ab95-8d8d-46e0-b9ec-d827664b21a8@kernel.org/>
+ <https://lore.freedesktop.org/1bab7f72-9de0-4237-971e-6b8e1aff1d6d@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -207,14 +208,16 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 On 7/11/26 20:45, Lorenzo Stoakes wrote:
 > Replace use of the legacy vm_flags_t flags with vma_flags_t values
-> throughout the mlock logic.
+> throughout the mprotect logic.
+> 
+> Note that we retain the legacy vm_flags_t bit shifting code in
+> do_mprotect_pkey(), deferring a vma_flags_t approach to this for the time
+> being.
 > 
 > Additionally update comments to reflect the changes to be consistent.
 > 
 > No functional change intended.
 > 
-> Reviewed-by: Zi Yan <ziy@nvidia.com>
-> Reviewed-by: Lance Yang <lance.yang@linux.dev>
 > Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 
 Reviewed-by: Vlastimil Babka (SUSE) <vbabka@kernel.org>
