@@ -4,97 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28BE1C4452B
-	for <nouveau@archiver.kernel.org>; Wed, 22 Jul 2026 00:44:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C94A4C4452D
+	for <nouveau@archiver.kernel.org>; Wed, 22 Jul 2026 04:21:32 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D2F2010E3BE;
-	Wed, 22 Jul 2026 00:44:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0A26E10E4C4;
+	Wed, 22 Jul 2026 04:21:32 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 15B39472BA;
-	Wed, 22 Jul 2026 00:29:09 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 09289472AF;
+	Wed, 22 Jul 2026 04:06:02 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784680148;
- b=sBbvSHGOph7RGyEgR9+J+poo9/1R8oBfB1odtCRT0XHme/NKdFYvjvoTFljwUWfCqUTCP
- Yt+YGOK4ctsV/OPU6wZGqUvU2WKzMX75NkpqCSK6Fpc3K9rqSBU5P+WK13Lv4dDhwjF7MzA
- DU6JEftGprr2iK5TpuxZ3PLa5iML3d9YWmfxF9RJs9o1Lg3fj5+JNI/VOeoOsx2jbWiPJ+Q
- DgwX8nOZlWDx2Lowowez0WwHafDbsfG8ebmExfPXRKvQgag7tcUliMUe+jaqF8g/yeVP1Ik
- NKrw61I0yNzI5Ci3U6/KD1oTC0T5pNDZ88fa0Nk7e9TGaSm+rs1XMk6kVeGg==
+ s=20240201; t=1784693161;
+ b=BJ56/21gyyJfzBWCn2bfx+mUN+f6dDz3v5j3j3nP0fE6MVnewJVI2q076aWv/oQR6bfjD
+ M++v1JhApYH8OPaXsdZGcYkCzvkorqmLoDQrEN6B+sDB5KAr66xZFq0FAoEazAY+Ly3hUjf
+ y3x9GMpbFY7V/YSCKRTGIPd4vJV9bBYvO23Yr1asziaYMU969JwR6JdA+hlnB6i0a5rcW8V
+ 5UAkoW6sXi6qwtjRQ1F/Vtb6pJOGzdctA5OcM4/Bcy4cTvXjAd8+zrmgmvGHo33CcRrLeoN
+ 9GTMZDA5HdB3RfXIPHRERi5Ng/974RTqpHqSMgVSc6dBxOhZPEb9D0mO3/zg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784680148; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784693161; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=yLb8BEepOSk4HQLZRdlMGN/K3U/yIcALJ4BHiPUDv1M=;
- b=bgJW/gydaICsy5CtJcLHRbidgMQ09kJuDmvU9ZxnXXCjOIjrBpJvHDBe5gbVqZUNTw/G1
- mhaTTt5Hm7IBEeFOOXGPugttaLq7kvmA0tiXKXCB67+luW0wvT/zu5iszW59hGPv8DoAFhX
- laPn+W6Cr9qyDKEZAol8XbbTxSxpGystJJvlbJtos4WXzMvhWYaJz//5TyS+6UzP8+sX/+P
- WkDj84mKqaPV1pr3rRP0BQg0D0G0qUFUdon1j9KLZ0vIOkzD7m4VnRsPIN9wvnSTSArDEQX
- /mPpeLtTmtX1Qrj8bfOLdGAbJY4pI47GmelXCM3SmPInafts9JC2jdPLk3IQ==
+ bh=KVUn1dyQuBzwEUr63WnDx/sQNBiVVfIZpfUb99XHt4A=;
+ b=dTJ1Jzdf5ntaMguz9+frO7gW9YZogB49XcIUw7gS1F2mkCDNoPMMyFdzF553O9U9e+l73
+ Dn7piYTTGYcUv3CPucrrnajyuomqj5AJdjiGqYhJ5ZGlchLihNK9r9FcfVuWwfthNhWzmBc
+ lnAH9XzEYJxVv7vClhc/z6xrX7NXrrFKO0VUXuMkW37EOdtBdw9J1AV/YdnmToE3AAgprrC
+ kaBUdJ/aMbgBeNp9T5wGOfGRP5J2768IPFqFoRVhM3klsKAlykL0pIwcsaP6I75lzyxatiV
+ 9LSPFAzac4tqZSao+Bd2Ixju0OpKMUrdlTd3az3hdsbBJaprvdXxcDI9Up2g==
 ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=goodmis.org
- policy.dmarc=none
+  dmarc=none
 Authentication-Results: mail.freedesktop.org; dkim=fail;
- arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=goodmis.org
- policy.dmarc=none
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 22B5846EB2
-	for <nouveau@lists.freedesktop.org>; Wed, 22 Jul 2026 00:29:06 +0000 (UTC)
-X-Greylist: delayed 367 seconds by postgrey-1.36 at gabe;
- Wed, 22 Jul 2026 00:44:35 UTC
-Received: from relay.hostedemail.com (smtprelay0016.hostedemail.com
- [216.40.44.16])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 88EE210E385
-	for <nouveau@lists.freedesktop.org>; Wed, 22 Jul 2026 00:44:35 +0000 (UTC)
-Received: from omf16.hostedemail.com (lb01a-stub [10.200.18.249])
-	by unirelay10.hostedemail.com (Postfix) with ESMTP id AE4E2C0210;
-	Wed, 22 Jul 2026 00:38:26 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by
- omf16.hostedemail.com (Postfix) with ESMTPA id CF0432000F;
-	Wed, 22 Jul 2026 00:38:24 +0000 (UTC)
-Date: Tue, 21 Jul 2026 20:38:43 -0400
-From: Steven Rostedt <rostedt@goodmis.org>
-To: deepakraog <gaikwad.dcg@gmail.com>
-Subject: Re: [PATCH] tracing/mmiotrace: fix resource leak on trace_pipe
- close
-Message-ID: <20260721203843.65d06a69@gandalf.local.home>
-In-Reply-To: <20260715143604.14481-1-gaikwad.dcg@gmail.com>
-References: <20260715143604.14481-1-gaikwad.dcg@gmail.com>
-X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 4BF9546DB1
+	for <nouveau@lists.freedesktop.org>; Wed, 22 Jul 2026 04:05:59 +0000 (UTC)
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6298510E29E;
+	Wed, 22 Jul 2026 04:21:28 +0000 (UTC)
+Received: from localhost.localdomain (unknown [111.196.245.140])
+	by APP-05 (Coremail) with SMTP id zQCowAAHdT9DRWBqREu7AA--.23709S2;
+	Wed, 22 Jul 2026 12:21:23 +0800 (CST)
+From: Pengpeng Hou <pengpeng@iscas.ac.cn>
+To: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH] drm/nouveau/gsp: validate sequencer command span
+Date: Wed, 22 Jul 2026 12:21:23 +0800
+Message-ID: <20260722042123.39900-1-pengpeng@iscas.ac.cn>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: CF0432000F
-X-Stat-Signature: tzgaoodpiywcy7suk3oj5zh1pomkugd6
-X-Rspamd-Server: rspamout03
-X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
-X-Session-ID: U2FsdGVkX18LevLbhgbI1GVSjSGxOxREKAy8FfMl4jc=
-X-HE-Tag: 1784680704-557893
-X-HE-Meta: 
- U2FsdGVkX18qsG8OY0Cam/g13cNxjAGZ/TUK9+JgEp4sXRiL2RRe2CfSwsA+jXxVHGQ/y/+jh1LwhW7PeRQySgY2Xjjc933ToFli1SCA5bHuBgUzU4iZdcRxMG6iOtMNCwt+NNQ1ibMG8rJFkb/yu9WK5ty2OFsJN38Op8tCNJd1niqqonUGoEAMchOcoR5Csv/8E2lsq8IrdlcbGt7HH3kWykvzUV4MGWYWNaHfa0OhnzTtOAVpAtlioDdcM4ZQ+E/vSRtfNWnpjvS/MU+mlU58mRcwn3SCcK5BE0gB2L92KKs4ZGAFjl2wf1+/INvwjekBqnUu1/GW5enrpnHL6QaBXQpHDKGs
-Message-ID-Hash: 5F6L3P6IUHSI2EC7PIULL2NJ5NT6VSSF
-X-Message-ID-Hash: 5F6L3P6IUHSI2EC7PIULL2NJ5NT6VSSF
-X-MailFrom: rostedt@goodmis.org
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: zQCowAAHdT9DRWBqREu7AA--.23709S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxJryfXFW5KrW3Xw4rWF4UArb_yoW5JF1Upr
+	s5G3WFyFWDWa1xJFyxAF15Xa4Yy34vya43Cr9rZryDAFs7JrW0yr1Utr4Yv34Sgr4fC34F
+	yF95GayxuryUG3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9S14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26F
+	4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv
+	7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r
+	1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02
+	628vn2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4
+	IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1r
+	MI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVW8JV
+	W5JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJwCI42IY6xAIw20EY4v20xvaj40_
+	Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr
+	1UYxBIdaVFxhVjvjDU0xZFpf9x0JUDOz3UUUUU=
+X-Originating-IP: [111.196.245.140]
+X-CM-SenderInfo: pshqw1xhqjqxpvfd2hldfou0/
+Message-ID-Hash: CM6QKD6KC574U6ETEBHX2WKHOOPY37P3
+X-Message-ID-Hash: CM6QKD6KC574U6ETEBHX2WKHOOPY37P3
+X-MailFrom: pengpeng@iscas.ac.cn
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Masami Hiramatsu <mhiramat@kernel.org>,
- Pekka Paalanen <ppaalanen@gmail.com>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- linux-trace-kernel@vger.kernel.org
+ loop; banned-address; member-moderation
+CC: Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Pengpeng Hou <pengpeng@iscas.ac.cn>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5F6L3P6IUHSI2EC7PIULL2NJ5NT6VSSF/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CM6QKD6KC574U6ETEBHX2WKHOOPY37P3/>
 Archived-At: 
- <https://lore.freedesktop.org/20260721203843.65d06a69@gandalf.local.home/>
+ <https://lore.freedesktop.org/20260722042123.39900-1-pengpeng@iscas.ac.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -104,39 +101,67 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, 15 Jul 2026 20:06:04 +0530
-deepakraog <gaikwad.dcg@gmail.com> wrote:
+The GSP sequencer RPC contains a variable command stream. The handler
+currently walks commands using the stream header length without first
+proving that the stream, each command payload, or a register-save slot
+fits in the received RPC and its fixed save area.
 
-> mmio_pipe_open() allocates a header_iter and takes a pci_dev reference
-> when trace_pipe is opened. mmio_close() frees them, but it was only
-> wired to the tracer's .close callback.
+Validate the stream and each command against the RPC payload before
+walking it, and reject register-save indexes beyond the fixed save
+array.
 
-Were you able to trigger a kmemleak?
+Signed-off-by: Pengpeng Hou <pengpeng@iscas.ac.cn>
+---
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c | 22 +++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
 
-> 
-> tracing_release_pipe() invokes .pipe_close, not .close, when the
-> trace_pipe file is released. As a result, closing trace_pipe with the
-> mmiotrace tracer active leaked the header_iter allocation and left a
-> stale pci_dev reference.
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
+index f544afa12b6b..00417bbccc12 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
+@@ -1010,15 +1010,30 @@ r535_gsp_msg_run_cpu_sequencer(void *priv, u32 fn, void *repv, u32 repc)
+ 	struct nvkm_subdev *subdev = &gsp->subdev;
+ 	struct nvkm_device *device = subdev->device;
+ 	rpc_run_cpu_sequencer_v17_00 *seq = repv;
+-	int ptr = 0, ret;
++	u32 ptr = 0, payload;
++	int ret;
++
++	if (repc < offsetof(rpc_run_cpu_sequencer_v17_00, commandBuffer) ||
++	    seq->cmdIndex >
++	    (repc - offsetof(rpc_run_cpu_sequencer_v17_00, commandBuffer)) /
++	    sizeof(seq->commandBuffer[0])) {
++		nvkm_error(subdev, "invalid sequencer command buffer size\n");
++		return -EINVAL;
++	}
+ 
+ 	nvkm_debug(subdev, "seq: %08x %08x\n", seq->bufferSizeDWord, seq->cmdIndex);
+ 
+ 	while (ptr < seq->cmdIndex) {
+ 		GSP_SEQUENCER_BUFFER_CMD *cmd = (void *)&seq->commandBuffer[ptr];
+ 
++		payload = GSP_SEQUENCER_PAYLOAD_SIZE_DWORDS(cmd->opCode);
++		if (seq->cmdIndex - ptr < payload + 1) {
++			nvkm_error(subdev, "truncated sequencer command\n");
++			return -EINVAL;
++		}
++
+ 		ptr += 1;
+-		ptr += GSP_SEQUENCER_PAYLOAD_SIZE_DWORDS(cmd->opCode);
++		ptr += payload;
+ 
+ 		switch (cmd->opCode) {
+ 		case GSP_SEQ_BUF_OPCODE_REG_WRITE: {
+@@ -1064,6 +1079,9 @@ r535_gsp_msg_run_cpu_sequencer(void *priv, u32 fn, void *repv, u32 repc)
+ 			u32 addr = cmd->payload.regStore.addr;
+ 			u32 slot = cmd->payload.regStore.index;
+ 
++			if (slot >= ARRAY_SIZE(seq->regSaveArea))
++				return -EINVAL;
++
+ 			seq->regSaveArea[slot] = nvkm_rd32(device, addr);
+ 			nvkm_trace(subdev, "seq save %08x -> %d: %08x\n", addr, slot,
+ 				   seq->regSaveArea[slot]);
+-- 
+2.43.0
 
-It would be good if you showed how a leak can happen, as the mmio_read()
-does clean up the descriptor, making the above statement incorrect.
-
-> 
-> Set .pipe_close to mmio_close, matching how function_graph wires both
-> callbacks to the same handler.
-> 
-
-
-The mmio_read() will free up the descriptor if you read the trace_pipe file
-until it blocks. But reading part of it may trigger the leak. Such as:
-
-  # head -n 1 /sys/kernel/tracing/trace_pipe 
- head: /sys/kernel/tracing/trace_pipe: cannot seek to relative offset 0: Illegal seek
- VERSION 20070824
-
-and running that over and over again will produce a leak caught by kmemleak.
-
-I'll update the change log.
-
--- Steve
