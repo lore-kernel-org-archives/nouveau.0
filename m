@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90BCFC4453E
-	for <nouveau@archiver.kernel.org>; Wed, 22 Jul 2026 14:31:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8BABC4453C
+	for <nouveau@archiver.kernel.org>; Wed, 22 Jul 2026 14:35:16 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5A21210EE1D;
-	Wed, 22 Jul 2026 14:31:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E57DB10EE1F;
+	Wed, 22 Jul 2026 14:35:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Z312ICh0";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BoNSrvzJ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 615A7472E0;
-	Wed, 22 Jul 2026 14:16:14 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id E9EFC472E3;
+	Wed, 22 Jul 2026 14:19:44 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784729774;
- b=FGi8O8QVZBxeIA+oUoI8oyCb7UW88pJ0fLjtdeE6A+8/hjkxAt/wHANfGC1u3QExF1KEt
- 7Q1TruoQahg2lNp0LxNohmoSUC8uErS5KBSG2pZckUmyLe57dtgtF5ZmUbTutpX6ObO/GDr
- A8DQG9PoU2O+OS/PS6ROVkcahFgL8FNrqsnkje1DihhEFUJh1V4w+61IUjVboWeAx+jdVgY
- QrBq/t6cOwSEh8pUqfx8Wrp6qFNgm4H/ZozeALFGCH8VEOC/MgG7zCf1U8qGU1DEyk9rYvW
- a7ARlmStu7+8MDsgjOw+YouLkWDswvO5NkomCKfGJMmINrnWSusAArB7CGBA==
+ s=20240201; t=1784729984;
+ b=P9WBD3KR5le3fe38Bq8hn9cYxhVYg63OAADcxgvC3wFhAsOx+2z/L01D59cojJ+zOZfX8
+ mUwJBrafU/iKApOyy0H4knx+Dpu4AC/jyyPMCGdZMJ3ElAwla5MXOshseqsshKaky76JqtF
+ 7xbb6sE/mNZzYyLrtdGU/GgL9NNj+snxOZyGMKwC0NjBB/iEM6eLDyTr4clPIVJjPCA5jBm
+ KDFUmCeqxppIs5sP4yWggFqYh0qmEd1cuXrWNGOZMTfvRopU+bLMMz94TrFlnoltryIGdIu
+ HOCsK/uRK19w72Amn+KSu6MOiEkoj7UYoWLzfwOTL8Ljmu0CscLggc4vd5Og==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784729774; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784729984; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=OvPrDFwM1EEVYtQ4pZxzQ4Crg7V635gU058Fwjy4pjg=;
- b=PEsjQCKDqm3224GItWwDgxv1PrSUOI01Q9uj48/IyPkD2JUq3LleZy5Ke4EWRH74dEaOr
- WdumtSH36R5yM3kOHhZV6aD1oiv0r7gTMbL3sY9faWpF3zfkUjOKkW2omaLv2+4vufmtWcA
- Prbj5e9+1M3lYsOFz9HBrMf3je2BZy97q3wNlDn/rzR/EVdMb+cFdeWzR4yNwcdFMhVzDbf
- g61VxbepOoc2DaYmwIO4FwU18DqQbhwLQK1VsT9P0DfRCnDKukuNjP9TWvPt/Edux6FIPH3
- rop9/osA0sQilABhfewLOT8DqJAVdlgXRCgtA3D3XsDtni9vkzjrpCVQIvkg==
+ bh=v3Dka0Kxl0RaJGtuTH0yTzaDEXoIUNO9u9IFv8oVYKs=;
+ b=IrgUvTXD/n8f4eRVQ1P+jCuVmppZD0EAlN/fV1MUPIa2eCWzU7obYkbr5/1b2aaLlkQ4O
+ 7gvmPyyL0BFgRt3oAqjDEprgswsjmyQ3NTOM7ohuiFJ0oVetwx4Z7m1aNwi+lQkaB+TLH9l
+ I6rgbqoI5Z7xdomMrd1ztre2K1leCUsRpx9+Uk3fpSlfvw1rDNvDar+4oiWWl3Gz0NUi5Eb
+ +on0Z5MA6IV4IR6Okx2bttb+SUtfT2gdG9cicwsFPMiNhMte8BG7p93P1CjLzBjUKD8rz7y
+ yHXGY71YSaoVcTucqv6Q4bxia/akQYlJx8yoz+kR2rt+Rz7iK5m3xgNnSQ9g==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,31 +46,32 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id DAC9C472D5
-	for <nouveau@lists.freedesktop.org>; Wed, 22 Jul 2026 14:16:12 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 93D39472DA
+	for <nouveau@lists.freedesktop.org>; Wed, 22 Jul 2026 14:19:41 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 77CC510E477;
-	Wed, 22 Jul 2026 14:31:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 33EA610E477;
+	Wed, 22 Jul 2026 14:35:12 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 664DE600AF;
-	Wed, 22 Jul 2026 14:31:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 735B01F00A3A;
-	Wed, 22 Jul 2026 14:31:24 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 4AEBF600AB;
+	Wed, 22 Jul 2026 14:35:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 526301F000E9;
+	Wed, 22 Jul 2026 14:34:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784730702;
-	bh=OvPrDFwM1EEVYtQ4pZxzQ4Crg7V635gU058Fwjy4pjg=;
+	s=k20260515; t=1784730911;
+	bh=v3Dka0Kxl0RaJGtuTH0yTzaDEXoIUNO9u9IFv8oVYKs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=Z312ICh01hwf5PNipjdUbCmTEpxOFlzpFrFpEbvVg2M62vqBeTEwf2myPaFZw7tPE
-	 VB8S2/xH3Cb64UA1VtTgUUNTgWkDHNnMSRIScWWwylFYdqQUJf29ZSBT+8tvuVKFT+
-	 qpgOuQvv4nbvr4jbtsA43T6qNk4ivRr13hGczyw/g2FSRI/UCbh4ijU+6nZylJLPk5
-	 +vUMLKp/zTcjlaGh9h6kCxmkwMXMYDyA4hWh4uxOZC5o0Hhq3C4INZyEa9oR4qk8id
-	 AL8BavBz/vrgJflUQPB3q0Ym1iVOZACXNzbgj3bOumnwJsWuqmyNhwK6KU112+LaeT
-	 oiB3ruF4FVC7g==
-Message-ID: <0c9b4dbb-95c2-4d19-935e-18a45d8aefd2@kernel.org>
-Date: Wed, 22 Jul 2026 16:31:22 +0200
+	b=BoNSrvzJYQLAEfX3sCIxyc7ZkwirgsWknsff/Mra8/IlU74HXActL9HeMA579jh44
+	 T9qmfb4rlcf+ZSuQDXLSpBUeDY2tak0s32nJdFgrBrk09Qk7VXEx5T5+B2A9t2i4lb
+	 T7KREF6hvGI4oAnK+1xITP1UHiLneP8l7RBubqbljEBi0slULes/fvkmxRdOX71MpV
+	 bMSLulS5NDO9ufYBlKQbRqcLa2jMXn1Kw4jzPErEyJEwl6CA4ywx5ldWZSfTgLsHwM
+	 sBj+KtFeUnsVFLsqvy7yitX1QTr82nsrUT3PDi6UDnxpJzhWaBjScQs6EGuKMa4pWl
+	 ZBBB1SQ2Xhywg==
+Message-ID: <eea9c6bf-5ff9-45de-ac92-784a174ff61b@kernel.org>
+Date: Wed, 22 Jul 2026 16:34:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 05/13] mm: prefer mm->def_vma_flags in mm logic
+Subject: Re: [PATCH v2 06/13] mm/vma: convert vm_pgprot_modify() to use
+ vma_flags_t and rename
 Content-Language: en-US
 To: Lorenzo Stoakes <ljs@kernel.org>,
  Andrew Morton <akpm@linux-foundation.org>,
@@ -128,7 +129,7 @@ To: Lorenzo Stoakes <ljs@kernel.org>,
  Boris Brezillon <boris.brezillon@collabora.com>,
  Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>
 References: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
- <20260711-b4-vma-flags-mm-v2-5-0fa2357d5431@kernel.org>
+ <20260711-b4-vma-flags-mm-v2-6-0fa2357d5431@kernel.org>
 From: "Vlastimil Babka (SUSE)" <vbabka@kernel.org>
 Autocrypt: addr=vbabka@kernel.org; keydata=
  xsFNBFZdmxYBEADsw/SiUSjB0dM+vSh95UkgcHjzEVBlby/Fg+g42O7LAEkCYXi/vvq31JTB
@@ -169,11 +170,11 @@ Autocrypt: addr=vbabka@kernel.org; keydata=
  NcaZ+c6J4H+nEJGi2SkHAUJz5oBzuThvPudLvPA/SK8sKoM01IRxSihev/S/5WLazXB1PGem
  OCbvzC1IjWJJraxiDJ5IygokapUa2RP7+WBR22skQ3SSl6G107QgWKSyTOGWEaRmV53vxQLV
  jXuCmzSSasTL60zq5yGrT4/DYQVSNEUiUbG4pYekxJujNeEDkUlky0Y=
-In-Reply-To: <20260711-b4-vma-flags-mm-v2-5-0fa2357d5431@kernel.org>
+In-Reply-To: <20260711-b4-vma-flags-mm-v2-6-0fa2357d5431@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID-Hash: XKVESHZOFKCYYV2E3OZNBLNJXQGHAPSP
-X-Message-ID-Hash: XKVESHZOFKCYYV2E3OZNBLNJXQGHAPSP
+Message-ID-Hash: 2CHBD2CSZ5NMXPJ7ADVOT7KODCPIU7AZ
+X-Message-ID-Hash: 2CHBD2CSZ5NMXPJ7ADVOT7KODCPIU7AZ
 X-MailFrom: vbabka@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -193,9 +194,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XKVESHZOFKCYYV2E3OZNBLNJXQGHAPSP/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2CHBD2CSZ5NMXPJ7ADVOT7KODCPIU7AZ/>
 Archived-At: 
- <https://lore.freedesktop.org/0c9b4dbb-95c2-4d19-935e-18a45d8aefd2@kernel.org/>
+ <https://lore.freedesktop.org/eea9c6bf-5ff9-45de-ac92-784a174ff61b@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -206,28 +207,23 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 On 7/11/26 20:45, Lorenzo Stoakes wrote:
-> Currently mm->def_flags (of type vm_flags_t) is union'd with
-> mm->def_vma_flags (of type vma_flags_t).
+> Update vm_pgprot_modify() to use the new VMA flags type vma_flags_t, and
+> rename to vma_pgprot_modify() accordingly.
 > 
-> As part of the effort to convert vm_flags_t usage to vma_flags_t (in order
-> to no longer be arbitrarily limited to a system word size for VMA flags),
-> prefer mm->def_vma_flags to mm->def_flags throughout the mm logic.
+> This is part of the ongoing work to convert vm_flags_t to vma_flags_t, in
+> order to eliminate the arbitrary limit of the number of bits in a system
+> word on available VMA flags.
 > 
-> We update dump_mm() to use the %*pb format which means we make no
-> assumption about the number of VMA flag bits on output when outputting
-> default VMA flags.
+> Update VMA userland tests accordingly, updating vma_set_page_prot() to no
+> longer inline vma_pgprot_modify(), rather we can simply define
+> vma_pgprot_modify() as a static inline function and the tests will pick it
+> up from vma.h.
 > 
 > No functional change intended.
 > 
 > Reviewed-by: Lance Yang <lance.yang@linux.dev>
 > Reviewed-by: Zi Yan <ziy@nvidia.com>
 > Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
-> ---
->  mm/debug.c |  5 +++--
->  mm/mlock.c | 13 +++++++------
->  mm/mmap.c  | 11 ++++++-----
->  mm/vma.c   |  2 +-
->  4 files changed, 17 insertions(+), 14 deletions(-)
 
 Reviewed-by: Vlastimil Babka (SUSE) <vbabka@kernel.org>
 
