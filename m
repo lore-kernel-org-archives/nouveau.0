@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81926C531BC
-	for <nouveau@archiver.kernel.org>; Wed, 22 Jul 2026 14:18:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47581C4453C
+	for <nouveau@archiver.kernel.org>; Wed, 22 Jul 2026 14:19:58 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5A69510EE0C;
-	Wed, 22 Jul 2026 14:18:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C5DC410EE1D;
+	Wed, 22 Jul 2026 14:19:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="a4vdnNdZ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BqxaWu0Y";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 704CB472D6;
-	Wed, 22 Jul 2026 14:02:36 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id CDCAF472DB;
+	Wed, 22 Jul 2026 14:04:26 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784728956;
- b=FqNrfY0rqAuxZSgLg3s2NTyxjt33QSzk4AP+DTsn5AA/jHLykP2t9kOPYG7SkUtMMugc9
- hj4D9rCUa5Dc3rmOqiTuJCbzbfm01hGh3/8mE/XxECcQFFo8eNGggfNaIpJKCq/yC4BAGaA
- b+reyseoo9L0ODmqUvotshr221HOhX5kJYsVwq/98JlgfEZnp8M9SgZF1cIJXpGLXYP9qtO
- +CxiJt3SAEnOJLM2p/Ts1a4C3/zMZxvJcu50ud36tVmKAZNANZnYwCblivL0v0Sszgs4oNi
- rPS8bghSt1XSA20jtjOqlcDN6V4OlJTiGsTFODmPPq22oCcjgEiBi8Pj9cHQ==
+ s=20240201; t=1784729066;
+ b=hi44oAVrtKO+/WSQpA4WFdW9GHTAYYN92KMIXIihk4O3X0+zykXq6Q1h9kzvyFjGjrTKs
+ jGBtQUZAuYylq1DNyqfLZ19fJm3pQPS7GWj4HWi39CkmsRD0frX5IN0+j7QzsOPBQAXvGms
+ 4riMfSlGwsNvwWhTU3hYmvhypmBpTSlm9z8W1vS2GE8uGX5fuJliWlZLo/H697q1f37n6h5
+ bjAGaLYelDyUZtSYosKLESEh40Y1n16Qll4gXbxDF6F/moosKRCyneEXt2ZNCdqnlC3J4O6
+ i0B8mTIeIaRSrikLKIw/bkGElctDczAhhAfz7oBCYm+2sqoWPilZW6GXPE7g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784728956; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784729066; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=nr20QdluTC6Xb2QJCx/L2OqHD3wYjRZzxUHD+ltN0io=;
- b=TGb/30bLgVFcFguu+7qLNoXbUaat6srKkLSx4oNm7JMAGpIaFgJUtOyCiLq2s8T+W4Zga
- vP89ZOBWts4o70z5lcvD1yoa6s9sZAWrZBBJVUzcU40GxSew1IyRiRT0KrVbd7i6XUuCUG1
- m/eCb32/Wb5cwsDUUyB2Il5Oss2sZGw9GsZHhMyZrnIE+AJWVceSpdEFJ0C1o7JvSaHhQO5
- 6MjqUL+U3Fw1uGBBEs+nPuy/+TSqJrny7glpo4Kqik7OwgxuT+nd2tyT0ZPnYct9bF8BeoF
- uovKuXO9FjxEvUO8fIIbnIp0Ekn7oVRv71DzvCwNieVmcncuqRHJIedam+Zg==
+ bh=E1fZtyJMG9BfhlBz0sxJsvbizOy4XPOaAolVzZbKG2U=;
+ b=dejK0pf7nF114LuLOM4OrwKkATLjPnPI89fuZGKCau13stWKVJFBudmi0icSYZtv8LT5D
+ 6qaPi5YphkyqeQHY6umXxBH6nVdiVfsCy+wrqcwpTpIMPHG7CQ2FqAZ8Rt+y8G0KjE36RDC
+ 0Vi2/R4AurtqwHuSL3WQOKbQZLM/PTy9P4zD72UhrQqs6TusjrfD2PrRIZtSjs9JRlr0Mmg
+ pQLokzOCHIZoARjWJliTD30ZGTn5XL8tP1edH3Mwim7vz8emqwNvGPhtvdEKyGXwUP7OM9a
+ 44xDYi7onHyXJegrFfxltrDPvD+ToYjDmmRL1/UHE8nvvWpL277sPqpCFECQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,32 +46,32 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5D84946ADF
-	for <nouveau@lists.freedesktop.org>; Wed, 22 Jul 2026 14:02:33 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 87A4646EB2
+	for <nouveau@lists.freedesktop.org>; Wed, 22 Jul 2026 14:04:23 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 11C4410E44C;
-	Wed, 22 Jul 2026 14:18:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 40DD810E45A;
+	Wed, 22 Jul 2026 14:19:54 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BC1C4432E9;
-	Wed, 22 Jul 2026 14:18:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 998571F000E9;
-	Wed, 22 Jul 2026 14:17:45 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 02F2244A98;
+	Wed, 22 Jul 2026 14:19:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E6961F000E9;
+	Wed, 22 Jul 2026 14:19:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784729883;
-	bh=nr20QdluTC6Xb2QJCx/L2OqHD3wYjRZzxUHD+ltN0io=;
+	s=k20260515; t=1784729993;
+	bh=E1fZtyJMG9BfhlBz0sxJsvbizOy4XPOaAolVzZbKG2U=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=a4vdnNdZSy07RDuS+C9gat8xlWANgEMGre2Gt8w50+S/RARkD/NxqriSXn9wrozPj
-	 E5W9CBr1d7eepeguATkGjOrPXaqKaMp0+xcdJH6JVLGWRdkxSRqsBQirTItAu9VNRf
-	 xKAJOUg/URAYNGPYd8y4vGKj+ONw/nWOpgBtlfPsR8ltFxfx8IoinmWT2jtQMA7WpP
-	 nozoGRCEMkB8851Fg9u/prJ/JOJKbaLEpz8L+8Zr68k62Ilb0p88pE+y3ZC8cSKbhK
-	 kBpgQZfX/d3Rxy5rU6yBQqCx1AN3uW+o51yyGmm2In6YviRmTxHVmf6qDl7Zlbt9Ib
-	 DwnPnhWrhgAMw==
-Message-ID: <ac18f5bc-62a9-41b0-8980-a4c465a4229a@kernel.org>
-Date: Wed, 22 Jul 2026 16:17:43 +0200
+	b=BqxaWu0YTlU0ACbArZmL1FzVAFZZB99uC8ks1vtMhYpCgqApT2szyxYcg1xfNPabV
+	 vGSiTNffzTx44l3VWUJEAhlKvwfBY3Xra1IVdmogCBtFsk9nzjk+BGE1KLD5RpS7yY
+	 xng/3auPQfLkXlvbFds3mkE+ZTq8CD+HG6nXSTfbPPYRYcfhkE8M7wT9pQKJoGIC6I
+	 AbYfEKSjq3JxuczuH2nnoB2mE1hfB2CFJxBsxovd00Kl34r3hXvL97tmTc4k/sHWSy
+	 TmquS1Z60ecsbwmO27nqyZ5HdEjOPRSPo1EtEzsS8vtOCqC7V2r8idg0kkU4mns8HT
+	 nM+l659nsR41A==
+Message-ID: <141b2b88-477c-4f54-a378-fbd3bb596cfd@kernel.org>
+Date: Wed, 22 Jul 2026 16:19:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/13] mm: convert __get_unmapped_area() to use
- vma_flags_t
+Subject: Re: [PATCH v2 04/13] mm: update generic_get_unmapped_area[_topdown]()
+ to use vma_flags_t
 Content-Language: en-US
 To: Lorenzo Stoakes <ljs@kernel.org>,
  Andrew Morton <akpm@linux-foundation.org>,
@@ -129,7 +129,7 @@ To: Lorenzo Stoakes <ljs@kernel.org>,
  Boris Brezillon <boris.brezillon@collabora.com>,
  Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>
 References: <20260711-b4-vma-flags-mm-v2-0-0fa2357d5431@kernel.org>
- <20260711-b4-vma-flags-mm-v2-3-0fa2357d5431@kernel.org>
+ <20260711-b4-vma-flags-mm-v2-4-0fa2357d5431@kernel.org>
 From: "Vlastimil Babka (SUSE)" <vbabka@kernel.org>
 Autocrypt: addr=vbabka@kernel.org; keydata=
  xsFNBFZdmxYBEADsw/SiUSjB0dM+vSh95UkgcHjzEVBlby/Fg+g42O7LAEkCYXi/vvq31JTB
@@ -170,11 +170,11 @@ Autocrypt: addr=vbabka@kernel.org; keydata=
  NcaZ+c6J4H+nEJGi2SkHAUJz5oBzuThvPudLvPA/SK8sKoM01IRxSihev/S/5WLazXB1PGem
  OCbvzC1IjWJJraxiDJ5IygokapUa2RP7+WBR22skQ3SSl6G107QgWKSyTOGWEaRmV53vxQLV
  jXuCmzSSasTL60zq5yGrT4/DYQVSNEUiUbG4pYekxJujNeEDkUlky0Y=
-In-Reply-To: <20260711-b4-vma-flags-mm-v2-3-0fa2357d5431@kernel.org>
+In-Reply-To: <20260711-b4-vma-flags-mm-v2-4-0fa2357d5431@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID-Hash: 6EKLIVE77BKQAVPCUA2EDDQL2JKGACVR
-X-Message-ID-Hash: 6EKLIVE77BKQAVPCUA2EDDQL2JKGACVR
+Message-ID-Hash: 4DBLK6WN2ZL75YFHWNO3B4KXKHGNNWOR
+X-Message-ID-Hash: 4DBLK6WN2ZL75YFHWNO3B4KXKHGNNWOR
 X-MailFrom: vbabka@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -194,9 +194,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6EKLIVE77BKQAVPCUA2EDDQL2JKGACVR/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4DBLK6WN2ZL75YFHWNO3B4KXKHGNNWOR/>
 Archived-At: 
- <https://lore.freedesktop.org/ac18f5bc-62a9-41b0-8980-a4c465a4229a@kernel.org/>
+ <https://lore.freedesktop.org/141b2b88-477c-4f54-a378-fbd3bb596cfd@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -207,18 +207,18 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 On 7/11/26 20:45, Lorenzo Stoakes wrote:
-> Update __get_unmapped_area() to be parameterised by vma_flags_t rather than
-> vm_flags_t as part of the effort to move VMA flags from a system word to a
-> bitmap.
+> As part of the changes converting VMA flags from a system word size to a
+> bitmap, extend this change to generic_get_unmapped_area() and
+> generic_get_unmapped_area_topdown(), which also allows us to convert
+> stack_guard_placement() as well.
 > 
-> We cascade the changes up to arch_get_unmapped_area_topdown() and
-> arch_get_unmapped_area(), where, for now, we use vma_flags_to_legacy() in
-> order to propagate the VMA flags.
+> We retain arch_get_unmapped_area() and arch_get_unmapped_area_topdown()
+> as-is for now, using legacy_to_vma_flags() as necessary to do so.
 > 
 > No functional change intended.
 > 
-> Reviewed-by: Lance Yang <lance.yang@linux.dev>
 > Reviewed-by: Zi Yan <ziy@nvidia.com>
+> Reviewed-by: Lance Yang <lance.yang@linux.dev>
 > Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 
 Reviewed-by: Vlastimil Babka (SUSE) <vbabka@kernel.org>
