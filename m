@@ -4,147 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16340C531FC
-	for <nouveau@archiver.kernel.org>; Fri, 24 Jul 2026 19:48:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F39BC531FC
+	for <nouveau@archiver.kernel.org>; Fri, 24 Jul 2026 23:35:17 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B832010E0B8;
-	Fri, 24 Jul 2026 19:48:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MvOC8ODP";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4ABFF10F4B0;
+	Fri, 24 Jul 2026 23:35:16 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D1E01473AD;
-	Fri, 24 Jul 2026 19:32:53 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 16805473B8;
+	Fri, 24 Jul 2026 23:19:40 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784921573;
- b=eTBNCDJkoOaoHxM86iEv+TzLM8hC/wL7UcIO5N0CZ1zdSwsYmyP+9loHEfFmhmjCMMeTK
- RKq4duZMkgcEyLjBKqI3L1bp3J2itu3AIu/Hg+WXO5H45Eyj5USCIvrqVBV9aIQ5wtEVOuD
- QdLEhXvjMWSS+UEN++iRnZ0MLUjnK7nW0LifiqoAV63+xf5xtzHZS6AkYmDS0IpFnmB51+L
- zQyZMmLbWv26VuTwgx60nj+Hn608r6EtvBSEZfXJRrkW+Nx+MhWD+Y6ZB/h5xVQAxn3uxxK
- +nFqogu32aVnsqF+Is7+qVaPoW5T3GnRFRPCdh6RO1mtLjVmhW+4M0kdJUmQ==
+ s=20240201; t=1784935179;
+ b=lgoO5jEL6APuapwtJL2K0MH+GLNH+ST501GQIGLvqQ3oXtmY7zxr+GUgRaGtmMan/hbhB
+ XmIkrJQxTBZPdSCB9m8h0WnA0VA+Hab8p+xTcdMnI3p6kET4D+gOWz4pndhRyBtiYe2iJD9
+ 15lajeZWe4M5pgOmU578Is3qlBrXy7tO9kAlkkRiIDzwIjmjGHwWkxmxD5BPRwb2ODNYncv
+ KDo+SjpKeDVftQRjJXKdwZPRcsHh8RJUFItJzyluzEi6gtPSWFjr6D2GvlKflt7YYgqX8ZL
+ NKSTTMwZCuxGv2cy/njutksku187XINMgvYfrJ6NyWwAvBZaxySWMxmosjyw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784921573; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784935179; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Ioc+vYD1TGm3PkR61xqfpxrMbvRpPmr2378lUazgynQ=;
- b=rI4Qm6UbIYisxGcw2ZaNBoLj4IMd/VFuqbyPJEllaH72Ppul6vHOfgZRSqBTYGqm6MclP
- ORGLU3/Y+1UvXvGj2Oe0XYTUIHLGIapz+gtoVu10vyu+L783iFxb2F29/Hg7UpOlaFlkr/W
- 9DByrXIkzgstyTXvLuR/ytbsMsy/jgxJhulj3NOh5B+keJLlcYS4wMtv8+sRGn/L9U7ej/0
- 0pAqKDQB5Lj3PKZzDrPO2eA21y8MjE9IUQuuV8GDaQQsDZbxv3dk8kSqrZAiAmyKt0LoKsg
- wOD9kNLY9tX4PuqslnIclMkkx5tu9qu8uDYLS6rS0mFy1EsAPvnEDxTNwYnw==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ bh=4ZsZf8mlcRgO4a30pXSf1rO5CYE8B1uYHjFerDlxN7c=;
+ b=PYJYzHUEW+cc0Qq+5O9qKnEtt7k/dzmI2neHTfL29A6sAPEBLbYb+RNAD+HVSmTbcKYIH
+ ILW3M7ujuwHMANYdj7ifzmPiWTt8IcI1y1W/wQ23iX+C/h2eW/2WLbxS8l+I6PFL8L5dSqy
+ IGEIa7aEBveqXSoj8Hh5a2MXmpFCs4gXH09osg9PRjCBjTaURA77dEkAJrBkffXm589DF4W
+ 50VMT75izk1v80vki3v337D0LnApBF0kDJtFc+YEDIp6oE2vHYecHwE1hgEh00HSUYu1MtH
+ 2mgD7YDI21w+rg32yOPAjOCW9L1dxWTx/PgW4ttJh6OGu9J6rz2Iy6G3L0iw==
+ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+  dmarc=fail (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=fail;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+ dmarc=fail (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 2419F4732F
-	for <nouveau@lists.freedesktop.org>; Fri, 24 Jul 2026 19:32:51 +0000 (UTC)
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com
- [209.85.216.50])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B07AF10E0A2
-	for <nouveau@lists.freedesktop.org>; Fri, 24 Jul 2026 19:48:26 +0000 (UTC)
-Received: by mail-pj1-f50.google.com with SMTP id
- 98e67ed59e1d1-38759bcd877so614558a91.2
-        for <nouveau@lists.freedesktop.org>;
- Fri, 24 Jul 2026 12:48:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784922506; x=1785527306;
- darn=lists.freedesktop.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=Ioc+vYD1TGm3PkR61xqfpxrMbvRpPmr2378lUazgynQ=;
-        b=MvOC8ODPdv3lughusDWqx10uwUd9yvCZYS60D8fQyhiWI4KHoNa+AFT2hFqXx1X9FZ
-         P5/MGFff30HB2vdxaCGiOdTLY4EA9ifxC+v541mwed0XGfJo+g4GXlwUfHMsrxsRfxuE
-         WsaODQ3L2SmgQHGEFSj+7GS6HywoEyqQWfhSu8uNvOdhj3P4BjDnMQ9NqHzSuUd92J0X
-         2qJEBkhZ9nhpr0kTz29GIcVpUDnSQ8UTFiumWnrmH7ftZvYSe4ul1GGXwRSObrtDNOeA
-         neDqZTsiu7nXJsWGN8svOhGHmkP+47NkzOyvKFjjSHdxc7RIacPw5knpYPmmxKSbfHgV
-         QjWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784922506; x=1785527306;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Ioc+vYD1TGm3PkR61xqfpxrMbvRpPmr2378lUazgynQ=;
-        b=gn20iOVaES4lyVRuvUePetDiOK+Y7K83oZfr2iPyKUSEB4Ar2dp+ltLHhPi/XI9gNg
-         PL/fdHsd1nmAiMp1EHyDb7R3V8QKDXJkAT6gqIolgf2gSRIm9dpLboXZ9SlnwGxEkJVo
-         ub9ElI3X90G2Xi+maFINf39G3A4gLi8RMUr9DogUo7Aa/3Bbd/25fwdIlFDHbopuNTPt
-         DTYjE9G64mAczFBnbvo1WWy/qfmDSjCNeGa3kvOcgBI6gA15nxz29I5FtavyYZ/F3Kih
-         sdZQ+5sBy1/HHhbR4Kuzbc0V3FhbgPeS3Y0Vl0+8zUY8cg0y59mIhK6kRnhUpaLiRV5/
-         TdyQ==
-X-Forwarded-Encrypted: i=1;
- AHgh+Robw0G3nsvEZ2EInlrM/+l3TeZGFDXOQmBl0e8IdQJDGom3/ywZUlv9YwcA+sBmnYrvfzlqD47v@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YymUw0q1iIGTp5ikvoAPBZSu/XgC6DNHoshJROQFzSIDZ/P1la8
-	0RR/RPuFNfxa5DhOB+x5eCBKLM73CypAiYa6AyAJGfRIowlUhlcOvy1w
-X-Gm-Gg: AR+sD13KIm2BFAlzPa7QN+AwjVmU5oGHCdwhD9KyUoqTARwdjlUvM33/JwCmkG+n7ce
-	C9pggGDuUKN4fMIrekefw0W4lXTIfnAmfImc//SPb0mL3gFYKPy6FQ3F6MohHysB8H0L4t6eqjE
-	btnjX+wnZH7vE1mJ65rOIUOV9SdLi43aGy7DLaDg9SZf7L05TBr1mCR86oRO9uJM5N5ISNV1rlO
-	c5fonB3fXPSHmdZG3Bic+YyO7ODoOjxru8SEs/e0pjkYdtGloiG//aB1G1hfthjj3xFQE2kw9e0
-	VE/evfbUi6SO/VZxBdiCrhSs0jqhcYw8PrwLQz8JC1xvdntM8ub+6T0vwoNAu0PwNcgz0lNX67C
-	LrGWdbkpi08LS3kgASmV2vl32McHJs2+XiPLDcjWCuet8pccXgk2UWF+KoZGR/3mvM9E8/ImTye
-	bxpXHaYR8WQUFUxddDmFoiSXceWjPKkzjKFyNpE4QLdMae
-X-Received: by 2002:a17:90b:3904:b0:38e:584f:2515 with SMTP id
- 98e67ed59e1d1-38ec6aae88emr8486005a91.37.1784922506003;
-        Fri, 24 Jul 2026 12:48:26 -0700 (PDT)
-Received: from skinsburskii (c-98-225-44-182.hsd1.wa.comcast.net.
- [98.225.44.182])
-        by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-38f0417599csm2037544a91.9.2026.07.24.12.48.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Jul 2026 12:48:25 -0700 (PDT)
-Date: Fri, 24 Jul 2026 12:48:22 -0700
-From: Stanislav Kinsburskii <skinsburskii@gmail.com>
-To: "David Hildenbrand (Arm)" <david@kernel.org>
-Subject: Re: [PATCH v11 1/8] mm/hmm: move page fault handling out of walk
- callbacks
-Message-ID: <amPBhhqIbdUQdlPf@skinsburskii>
-References: <20260723-hmm-v10-v11-0-c55b003a4b61@gmail.com>
- <20260723-hmm-v10-v11-1-c55b003a4b61@gmail.com>
- <7655eaad-dcbf-4275-93f6-1f92ffedfa76@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7655eaad-dcbf-4275-93f6-1f92ffedfa76@kernel.org>
-Message-ID-Hash: TJRFC5RQOM3LUVSBTAHI5PPGNEHZSJFZ
-X-Message-ID-Hash: TJRFC5RQOM3LUVSBTAHI5PPGNEHZSJFZ
-X-MailFrom: skinsburskii@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, Lorenzo Stoakes <ljs@kernel.org>,
- "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>,
- Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
- Michal Hocko <mhocko@suse.com>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, Shuah Khan <shuah@kernel.org>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>,
- Dexuan Cui <decui@microsoft.com>, Long Li <longli@microsoft.com>,
- Danilo Krummrich <dakr@kernel.org>,
+	by kara.freedesktop.org (Postfix) with ESMTPS id 7FCF44732F
+	for <nouveau@lists.freedesktop.org>; Fri, 24 Jul 2026 23:19:36 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 78C3910E0C0;
+	Fri, 24 Jul 2026 23:35:12 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id B1CC14513F;
+	Fri, 24 Jul 2026 23:35:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79E171F00A3A;
+	Fri, 24 Jul 2026 23:35:11 +0000 (UTC)
+Received: by venus (Postfix, from userid 1000)
+	id 93CE9181F1C; Sat, 25 Jul 2026 01:35:08 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Julia.Lawall@inria.fr, Alex Deucher <alexander.deucher@amd.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Andrew Lunn <andrew@lunn.ch>, Andrew Morton <akpm@linux-foundation.org>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Borislav Petkov <bp@alien8.de>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>,
+ David Airlie <airlied@gmail.com>, "David S. Miller" <davem@davemloft.net>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Eric Dumazet <edumazet@google.com>, Florian Westphal <fw@strlen.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Hans de Goede <hansg@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Jakub Kicinski <kuba@kernel.org>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Jaroslav Kysela <perex@perex.cz>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Jiri Pirko <jiri@resnulli.us>,
+ "Joerg Roedel (AMD)" <joro@8bytes.org>, Johan Hovold <johan@kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Julian Anastasov <ja@ssi.bg>, Leon Romanovsky <leon@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Linus Walleij <linusw@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Min Ma <mamin506@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>,
- Oded Gabbay <ogabbay@kernel.org>, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kselftest@vger.kernel.org, linux-hyperv@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-rdma@vger.kernel.org
+ Mark Brown <broonie@kernel.org>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Matthew Sakai <msakai@redhat.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Mike Rapoport <rppt@kernel.org>,
+ Miri Korenblit <miriam.rachel.korenblit@intel.com>,
+ Nicolas Palix <nicolas.palix@imag.fr>,
+ Pablo Neira Ayuso <pablo@netfilter.org>, Paolo Abeni <pabeni@redhat.com>,
+ Ping-Ke Shih <pkshih@realtek.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sebastian Reichel <sre@kernel.org>,
+ Shuah Khan <shuah@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Simon Horman <horms@verge.net.au>, Stephen Boyd <sboyd@kernel.org>,
+ Steve French <sfrench@samba.org>, Takashi Iwai <tiwai@suse.com>,
+ Thomas Renninger <trenn@suse.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Tony Luck <tony.luck@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>, Vinod Koul <vkoul@kernel.org>,
+ Will Deacon <will@kernel.org>, Yazen Ghannam <Yazen.Ghannam@amd.com>,
+ Sang-Heon Jeon <ekffu200098@gmail.com>
+In-Reply-To: <20260723184538.3888637-1-ekffu200098@gmail.com>
+References: <20260723184538.3888637-1-ekffu200098@gmail.com>
+Subject: Re: (subset) [PATCH 00/36] treewide: remove conditional returns
+ with no effect
+Message-Id: <178493610858.699463.6794401814873674138.b4-ty@collabora.com>
+Date: Sat, 25 Jul 2026 01:35:08 +0200
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
+Message-ID-Hash: WVX2KPJGF4AMO5EZRBFB2YIR6CTP3O6K
+X-Message-ID-Hash: WVX2KPJGF4AMO5EZRBFB2YIR6CTP3O6K
+X-MailFrom: sre@kernel.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: cocci@inria.fr, amd-gfx@lists.freedesktop.org, dmaengine@vger.kernel.org,
+ dm-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-wired-lan@lists.osuosl.org,
+ iommu@lists.linux.dev, linux-cifs@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-edac@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-mm@kvack.org, linux-pm@vger.kernel.org,
+ linux-rdma@vger.kernel.org, linux-rtc@vger.kernel.org,
+ linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, lvs-devel@vger.kernel.org,
+ netdev@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ nouveau@lists.freedesktop.org, platform-driver-x86@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TJRFC5RQOM3LUVSBTAHI5PPGNEHZSJFZ/>
-Archived-At: <https://lore.freedesktop.org/amPBhhqIbdUQdlPf@skinsburskii/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WVX2KPJGF4AMO5EZRBFB2YIR6CTP3O6K/>
+Archived-At: 
+ <https://lore.freedesktop.org/178493610858.699463.6794401814873674138.b4-ty@collabora.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -154,54 +148,24 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri, Jul 24, 2026 at 09:00:24PM +0200, David Hildenbrand (Arm) wrote:
-> On 7/23/26 19:36, Stanislav Kinsburskii wrote:
-> > hmm_range_fault() currently triggers page faults from inside the page-table
-> > walk callbacks: hmm_vma_walk_pmd(), hmm_vma_walk_pud(),
-> > hmm_vma_walk_hugetlb_entry() and the pte-level helper all call
-> > hmm_vma_fault(), which in turn calls handle_mm_fault() while the walker
-> > still holds nested locks.  The pte spinlock is dropped explicitly by each
-> > caller, and the hugetlb path manually drops and retakes
-> > hugetlb_vma_lock_read around the fault to dodge a deadlock against the walk
-> > framework's unconditional unlock.
-> > 
-> > This layering does not extend cleanly to fault handlers that may release
-> > mmap_lock (VM_FAULT_RETRY, VM_FAULT_COMPLETED). If the lock is dropped
-> > while walk_page_range() is mid-traversal, the VMA can be freed before the
-> > walk framework's matching hugetlb_vma_unlock_read(), turning that unlock
-> > into a use-after-free.
-> > 
-> > Split the responsibilities the way get_user_pages() does. Walk callbacks
-> > become inspect-only: when they detect a range that needs to be faulted in,
-> > they record it in struct hmm_vma_walk and return a private sentinel
-> > (HMM_FAULT_PENDING). The outer loop in hmm_range_fault() then drops out of
-> > walk_page_range(), invokes a new helper hmm_do_fault() that calls
-> > handle_mm_fault() with only mmap_lock held, and restarts the walk so the
-> > now-present entries are collected into hmm_pfns.
-> > 
-> > No functional change for existing callers. As a side effect the hugetlb
-> > callback no longer needs the hugetlb_vma_{un}lock_read dance, and every
-> > fault-path exit from the callbacks now releases the pte spinlock on a
-> > single, common path. This refactor is also a precursor for adding an
-> > unlockable variant of hmm_range_fault() in a follow-up patch.
-> > 
-> > Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> > Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
-> > ---
-> 
-> Any reason my RB got dropped?
-> 
-> https://lore.kernel.org/all/0b9be5b3-93aa-407f-b83d-409bec4b55e1@kernel.org/
-> 
 
-No reason, just an omission on my side.
-
-Andrew, could you add David's RB to this patch, please?
-
-Thanks,
-Stanislav
-
-> -- 
-> Cheers,
+On Fri, 24 Jul 2026 03:45:02 +0900, Sang-Heon Jeon wrote:
+> While reading mm/memblock, I found a conditional return where both
+> branches return the same value:
 > 
-> David
+> 	err = do_something();
+> 	if (err)
+> 		return err;
+> 	return err;
+> 
+> [...]
+
+Applied, thanks!
+
+[26/36] power: supply: pm8916_lbc: remove conditional return with no effect
+        commit: b7c8d46411317f135e7791c0eddc56691de63f07
+
+Best regards,
+-- 
+Sebastian Reichel <sebastian.reichel@collabora.com>
+
