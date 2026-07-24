@@ -4,76 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39A61C531C9
-	for <nouveau@archiver.kernel.org>; Fri, 24 Jul 2026 19:00:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16340C531FC
+	for <nouveau@archiver.kernel.org>; Fri, 24 Jul 2026 19:48:31 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7873A10E099;
-	Fri, 24 Jul 2026 19:00:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B832010E0B8;
+	Fri, 24 Jul 2026 19:48:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BySPDMLU";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MvOC8ODP";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9AE64473AA;
-	Fri, 24 Jul 2026 18:45:03 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id D1E01473AD;
+	Fri, 24 Jul 2026 19:32:53 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1784918703;
- b=qlapGK9puhhWgYUypaT57oiLckV+yKcdSAjantqwDZz0K8qAIwTLHu0vZArolF3zv9D1X
- iX5fyUiXyY9B03PWMlDtElsHxjeMAER+EP40z0jmEfdqxf0SzzNxrkw6j2LtF8PHgGQGToV
- V1/1H3ApT361yRTC7ZS6f1Y7W+PHrW1u4pkWBgfgfqpCbyEDIRpwK0hccfSUiJsYnrbV/D5
- fp9klCgvBZUBH28MastcGIyoYhb42wQulkFRmPuhm41Tshqex825Xj6maNm3vy6ECVxuFjV
- Ll//d868dOkLzcfT9DCu6C56UfZyMw+YaXiGUjswOFt0yZmEmS670m/BZUVw==
+ s=20240201; t=1784921573;
+ b=eTBNCDJkoOaoHxM86iEv+TzLM8hC/wL7UcIO5N0CZ1zdSwsYmyP+9loHEfFmhmjCMMeTK
+ RKq4duZMkgcEyLjBKqI3L1bp3J2itu3AIu/Hg+WXO5H45Eyj5USCIvrqVBV9aIQ5wtEVOuD
+ QdLEhXvjMWSS+UEN++iRnZ0MLUjnK7nW0LifiqoAV63+xf5xtzHZS6AkYmDS0IpFnmB51+L
+ zQyZMmLbWv26VuTwgx60nj+Hn608r6EtvBSEZfXJRrkW+Nx+MhWD+Y6ZB/h5xVQAxn3uxxK
+ +nFqogu32aVnsqF+Is7+qVaPoW5T3GnRFRPCdh6RO1mtLjVmhW+4M0kdJUmQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1784918703; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1784921573; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=t/DUzw2XQL2VWs73JF/hBihkxhoiKQkVH9v4AAAkPbI=;
- b=MSXlJN3DAxBRU/Y1wjs4bjafaNYuoiwrizI+MAdkSSlfdMSoAu36rl2CN94IDF/1g/yO/
- Dzsp9kJ+nKwwbpVQvIekNu7nw+hcaF+KUxPZyk7xxf19d7sy+k82XVtiVm7Z+Jcu8mq8gXx
- RvPWvrw+ui21XJPLMAcfZ25w6PsfErltdYRfoVeZ9hdyLwkybBPINe2Kqe/lOnlHlVXCbzK
- NvtqSLU/wo48+BDTjZK4oEZh2SRUksWbAErncXskFVBLr0zIISiIDJTfT1O8VdEfSMluLk6
- cwGsBtpoP2qUev+3nfnKXeOxs2NZPpZAftHQwjfywsWcGBMPS0Wxlfnl0qYw==
+ bh=Ioc+vYD1TGm3PkR61xqfpxrMbvRpPmr2378lUazgynQ=;
+ b=rI4Qm6UbIYisxGcw2ZaNBoLj4IMd/VFuqbyPJEllaH72Ppul6vHOfgZRSqBTYGqm6MclP
+ ORGLU3/Y+1UvXvGj2Oe0XYTUIHLGIapz+gtoVu10vyu+L783iFxb2F29/Hg7UpOlaFlkr/W
+ 9DByrXIkzgstyTXvLuR/ytbsMsy/jgxJhulj3NOh5B+keJLlcYS4wMtv8+sRGn/L9U7ej/0
+ 0pAqKDQB5Lj3PKZzDrPO2eA21y8MjE9IUQuuV8GDaQQsDZbxv3dk8kSqrZAiAmyKt0LoKsg
+ wOD9kNLY9tX4PuqslnIclMkkx5tu9qu8uDYLS6rS0mFy1EsAPvnEDxTNwYnw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5A14C434E9
-	for <nouveau@lists.freedesktop.org>; Fri, 24 Jul 2026 18:45:01 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E085010E073;
-	Fri, 24 Jul 2026 19:00:36 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 441A74382B;
-	Fri, 24 Jul 2026 19:00:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 978A21F000E9;
-	Fri, 24 Jul 2026 19:00:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784919636;
-	bh=t/DUzw2XQL2VWs73JF/hBihkxhoiKQkVH9v4AAAkPbI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=BySPDMLUedTvFGRdY+q6sY5P40LHYi/KfYHWFxuW9N0D9mj4H/mlNHZJVOWlR1/p+
-	 rk1X1AM0CdVOtPPO9W2THyVVLk3WKJZiPTzi60gZfswKiJbaMq+vD3Z8YSnURusXIG
-	 sKuyYxi/svOx7URz5YRNX+w+wtcAQ7hfJIM0hAybzvpoQDYPzhW0di3qOHASv22by7
-	 e93dJyd8YnhDYPvay5xBlWlD/x4+P2ulvqVLT/WmLaFHzBN8fnN5i1PXzJHe5gBraB
-	 381Kn7NmIcSEIjSO0hdvZ3rmECO6r3S1PPeJKItdYdqommPu39Z7AXgQyvkJ2lrm6+
-	 DftE3CxOyiI/A==
-Message-ID: <7655eaad-dcbf-4275-93f6-1f92ffedfa76@kernel.org>
-Date: Fri, 24 Jul 2026 21:00:24 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2419F4732F
+	for <nouveau@lists.freedesktop.org>; Fri, 24 Jul 2026 19:32:51 +0000 (UTC)
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com
+ [209.85.216.50])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B07AF10E0A2
+	for <nouveau@lists.freedesktop.org>; Fri, 24 Jul 2026 19:48:26 +0000 (UTC)
+Received: by mail-pj1-f50.google.com with SMTP id
+ 98e67ed59e1d1-38759bcd877so614558a91.2
+        for <nouveau@lists.freedesktop.org>;
+ Fri, 24 Jul 2026 12:48:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784922506; x=1785527306;
+ darn=lists.freedesktop.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Ioc+vYD1TGm3PkR61xqfpxrMbvRpPmr2378lUazgynQ=;
+        b=MvOC8ODPdv3lughusDWqx10uwUd9yvCZYS60D8fQyhiWI4KHoNa+AFT2hFqXx1X9FZ
+         P5/MGFff30HB2vdxaCGiOdTLY4EA9ifxC+v541mwed0XGfJo+g4GXlwUfHMsrxsRfxuE
+         WsaODQ3L2SmgQHGEFSj+7GS6HywoEyqQWfhSu8uNvOdhj3P4BjDnMQ9NqHzSuUd92J0X
+         2qJEBkhZ9nhpr0kTz29GIcVpUDnSQ8UTFiumWnrmH7ftZvYSe4ul1GGXwRSObrtDNOeA
+         neDqZTsiu7nXJsWGN8svOhGHmkP+47NkzOyvKFjjSHdxc7RIacPw5knpYPmmxKSbfHgV
+         QjWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784922506; x=1785527306;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Ioc+vYD1TGm3PkR61xqfpxrMbvRpPmr2378lUazgynQ=;
+        b=gn20iOVaES4lyVRuvUePetDiOK+Y7K83oZfr2iPyKUSEB4Ar2dp+ltLHhPi/XI9gNg
+         PL/fdHsd1nmAiMp1EHyDb7R3V8QKDXJkAT6gqIolgf2gSRIm9dpLboXZ9SlnwGxEkJVo
+         ub9ElI3X90G2Xi+maFINf39G3A4gLi8RMUr9DogUo7Aa/3Bbd/25fwdIlFDHbopuNTPt
+         DTYjE9G64mAczFBnbvo1WWy/qfmDSjCNeGa3kvOcgBI6gA15nxz29I5FtavyYZ/F3Kih
+         sdZQ+5sBy1/HHhbR4Kuzbc0V3FhbgPeS3Y0Vl0+8zUY8cg0y59mIhK6kRnhUpaLiRV5/
+         TdyQ==
+X-Forwarded-Encrypted: i=1;
+ AHgh+Robw0G3nsvEZ2EInlrM/+l3TeZGFDXOQmBl0e8IdQJDGom3/ywZUlv9YwcA+sBmnYrvfzlqD47v@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YymUw0q1iIGTp5ikvoAPBZSu/XgC6DNHoshJROQFzSIDZ/P1la8
+	0RR/RPuFNfxa5DhOB+x5eCBKLM73CypAiYa6AyAJGfRIowlUhlcOvy1w
+X-Gm-Gg: AR+sD13KIm2BFAlzPa7QN+AwjVmU5oGHCdwhD9KyUoqTARwdjlUvM33/JwCmkG+n7ce
+	C9pggGDuUKN4fMIrekefw0W4lXTIfnAmfImc//SPb0mL3gFYKPy6FQ3F6MohHysB8H0L4t6eqjE
+	btnjX+wnZH7vE1mJ65rOIUOV9SdLi43aGy7DLaDg9SZf7L05TBr1mCR86oRO9uJM5N5ISNV1rlO
+	c5fonB3fXPSHmdZG3Bic+YyO7ODoOjxru8SEs/e0pjkYdtGloiG//aB1G1hfthjj3xFQE2kw9e0
+	VE/evfbUi6SO/VZxBdiCrhSs0jqhcYw8PrwLQz8JC1xvdntM8ub+6T0vwoNAu0PwNcgz0lNX67C
+	LrGWdbkpi08LS3kgASmV2vl32McHJs2+XiPLDcjWCuet8pccXgk2UWF+KoZGR/3mvM9E8/ImTye
+	bxpXHaYR8WQUFUxddDmFoiSXceWjPKkzjKFyNpE4QLdMae
+X-Received: by 2002:a17:90b:3904:b0:38e:584f:2515 with SMTP id
+ 98e67ed59e1d1-38ec6aae88emr8486005a91.37.1784922506003;
+        Fri, 24 Jul 2026 12:48:26 -0700 (PDT)
+Received: from skinsburskii (c-98-225-44-182.hsd1.wa.comcast.net.
+ [98.225.44.182])
+        by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-38f0417599csm2037544a91.9.2026.07.24.12.48.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Jul 2026 12:48:25 -0700 (PDT)
+Date: Fri, 24 Jul 2026 12:48:22 -0700
+From: Stanislav Kinsburskii <skinsburskii@gmail.com>
+To: "David Hildenbrand (Arm)" <david@kernel.org>
 Subject: Re: [PATCH v11 1/8] mm/hmm: move page fault handling out of walk
  callbacks
-To: Stanislav Kinsburskii <skinsburskii@gmail.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
+Message-ID: <amPBhhqIbdUQdlPf@skinsburskii>
+References: <20260723-hmm-v10-v11-0-c55b003a4b61@gmail.com>
+ <20260723-hmm-v10-v11-1-c55b003a4b61@gmail.com>
+ <7655eaad-dcbf-4275-93f6-1f92ffedfa76@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7655eaad-dcbf-4275-93f6-1f92ffedfa76@kernel.org>
+Message-ID-Hash: TJRFC5RQOM3LUVSBTAHI5PPGNEHZSJFZ
+X-Message-ID-Hash: TJRFC5RQOM3LUVSBTAHI5PPGNEHZSJFZ
+X-MailFrom: skinsburskii@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
+ loop; banned-address; member-moderation
+CC: Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
  Andrew Morton <akpm@linux-foundation.org>, Lorenzo Stoakes <ljs@kernel.org>,
  "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>,
  Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
@@ -82,81 +130,21 @@ To: Stanislav Kinsburskii <skinsburskii@gmail.com>,
  "K. Y. Srinivasan" <kys@microsoft.com>,
  Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>,
  Dexuan Cui <decui@microsoft.com>, Long Li <longli@microsoft.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
  Min Ma <mamin506@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>,
- Oded Gabbay <ogabbay@kernel.org>
-References: <20260723-hmm-v10-v11-0-c55b003a4b61@gmail.com>
- <20260723-hmm-v10-v11-1-c55b003a4b61@gmail.com>
-From: "David Hildenbrand (Arm)" <david@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=david@kernel.org; keydata=
- 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
- qIws/H2t
-In-Reply-To: <20260723-hmm-v10-v11-1-c55b003a4b61@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: APBCYNJRRYANITJE4M4JKKX2MREEMHIE
-X-Message-ID-Hash: APBCYNJRRYANITJE4M4JKKX2MREEMHIE
-X-MailFrom: david@kernel.org
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
- linux-hyperv@vger.kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-rdma@vger.kernel.org
+ Oded Gabbay <ogabbay@kernel.org>, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-rdma@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/APBCYNJRRYANITJE4M4JKKX2MREEMHIE/>
-Archived-At: 
- <https://lore.freedesktop.org/7655eaad-dcbf-4275-93f6-1f92ffedfa76@kernel.org/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TJRFC5RQOM3LUVSBTAHI5PPGNEHZSJFZ/>
+Archived-At: <https://lore.freedesktop.org/amPBhhqIbdUQdlPf@skinsburskii/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -166,45 +154,54 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 7/23/26 19:36, Stanislav Kinsburskii wrote:
-> hmm_range_fault() currently triggers page faults from inside the page-table
-> walk callbacks: hmm_vma_walk_pmd(), hmm_vma_walk_pud(),
-> hmm_vma_walk_hugetlb_entry() and the pte-level helper all call
-> hmm_vma_fault(), which in turn calls handle_mm_fault() while the walker
-> still holds nested locks.  The pte spinlock is dropped explicitly by each
-> caller, and the hugetlb path manually drops and retakes
-> hugetlb_vma_lock_read around the fault to dodge a deadlock against the walk
-> framework's unconditional unlock.
+On Fri, Jul 24, 2026 at 09:00:24PM +0200, David Hildenbrand (Arm) wrote:
+> On 7/23/26 19:36, Stanislav Kinsburskii wrote:
+> > hmm_range_fault() currently triggers page faults from inside the page-table
+> > walk callbacks: hmm_vma_walk_pmd(), hmm_vma_walk_pud(),
+> > hmm_vma_walk_hugetlb_entry() and the pte-level helper all call
+> > hmm_vma_fault(), which in turn calls handle_mm_fault() while the walker
+> > still holds nested locks.  The pte spinlock is dropped explicitly by each
+> > caller, and the hugetlb path manually drops and retakes
+> > hugetlb_vma_lock_read around the fault to dodge a deadlock against the walk
+> > framework's unconditional unlock.
+> > 
+> > This layering does not extend cleanly to fault handlers that may release
+> > mmap_lock (VM_FAULT_RETRY, VM_FAULT_COMPLETED). If the lock is dropped
+> > while walk_page_range() is mid-traversal, the VMA can be freed before the
+> > walk framework's matching hugetlb_vma_unlock_read(), turning that unlock
+> > into a use-after-free.
+> > 
+> > Split the responsibilities the way get_user_pages() does. Walk callbacks
+> > become inspect-only: when they detect a range that needs to be faulted in,
+> > they record it in struct hmm_vma_walk and return a private sentinel
+> > (HMM_FAULT_PENDING). The outer loop in hmm_range_fault() then drops out of
+> > walk_page_range(), invokes a new helper hmm_do_fault() that calls
+> > handle_mm_fault() with only mmap_lock held, and restarts the walk so the
+> > now-present entries are collected into hmm_pfns.
+> > 
+> > No functional change for existing callers. As a side effect the hugetlb
+> > callback no longer needs the hugetlb_vma_{un}lock_read dance, and every
+> > fault-path exit from the callbacks now releases the pte spinlock on a
+> > single, common path. This refactor is also a precursor for adding an
+> > unlockable variant of hmm_range_fault() in a follow-up patch.
+> > 
+> > Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> > Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
+> > ---
 > 
-> This layering does not extend cleanly to fault handlers that may release
-> mmap_lock (VM_FAULT_RETRY, VM_FAULT_COMPLETED). If the lock is dropped
-> while walk_page_range() is mid-traversal, the VMA can be freed before the
-> walk framework's matching hugetlb_vma_unlock_read(), turning that unlock
-> into a use-after-free.
+> Any reason my RB got dropped?
 > 
-> Split the responsibilities the way get_user_pages() does. Walk callbacks
-> become inspect-only: when they detect a range that needs to be faulted in,
-> they record it in struct hmm_vma_walk and return a private sentinel
-> (HMM_FAULT_PENDING). The outer loop in hmm_range_fault() then drops out of
-> walk_page_range(), invokes a new helper hmm_do_fault() that calls
-> handle_mm_fault() with only mmap_lock held, and restarts the walk so the
-> now-present entries are collected into hmm_pfns.
+> https://lore.kernel.org/all/0b9be5b3-93aa-407f-b83d-409bec4b55e1@kernel.org/
 > 
-> No functional change for existing callers. As a side effect the hugetlb
-> callback no longer needs the hugetlb_vma_{un}lock_read dance, and every
-> fault-path exit from the callbacks now releases the pte spinlock on a
-> single, common path. This refactor is also a precursor for adding an
-> unlockable variant of hmm_range_fault() in a follow-up patch.
+
+No reason, just an omission on my side.
+
+Andrew, could you add David's RB to this patch, please?
+
+Thanks,
+Stanislav
+
+> -- 
+> Cheers,
 > 
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> Signed-off-by: Stanislav Kinsburskii <skinsburskii@gmail.com>
-> ---
-
-Any reason my RB got dropped?
-
-https://lore.kernel.org/all/0b9be5b3-93aa-407f-b83d-409bec4b55e1@kernel.org/
-
--- 
-Cheers,
-
-David
+> David
