@@ -4,127 +4,117 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9068C531D0
-	for <nouveau@archiver.kernel.org>; Sat, 25 Jul 2026 18:59:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70EEAC531F9
+	for <nouveau@archiver.kernel.org>; Sat, 25 Jul 2026 23:28:39 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3940810E031;
-	Sat, 25 Jul 2026 18:59:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9A7D910E12A;
+	Sat, 25 Jul 2026 23:28:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="b6qzDmLD";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SsryXRgX";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4153B473C7;
-	Sat, 25 Jul 2026 18:44:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 00838473BC;
+	Sat, 25 Jul 2026 23:13:00 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1785005058;
- b=0kkCQueNt5DaB0IGW+L2l3w7m8tZBFmkGmpYriD6N+zSsitawf9lTWU7OuovCYsCQAXMx
- +CK3TkW9vI0ACzDGV3zYDQ9CHcddGTZIa/UxadUHEmnXoRa0zvNA0rpy5S1XvoMNjhCm1DH
- HUmnztP6IAo1/+zpEZvsAYV3EK1mK61d0Uwj3NoF7pBIGGfhdCL8VYzYtoUUgXL/Ze1nKA7
- Uiv9hyXz+Ia29b+ZBgdQpu2Y9ckz8Qi817XeVOrV4YLYGrfHuiS1/N1wsPW0fgFvkeTU3T3
- jIUV8aw96EX/GLSrItF0AtPb2LHz86vlEpPPEtaltDjJ0yCM99qJ4V00IPcQ==
+ s=20240201; t=1785021179;
+ b=isUIklhqqy/ya/afHJQskjBUhfT8/5PHSEtbBxlC50iUad01FjAFgc1wv/qnQgTRDvtyd
+ AFKJcIRFWEsSaYXrt5E126b51SiPJtUIEmA9JWQt6tmeDqnT27RbGUUBCvAWgTEvei41C2m
+ FRfp9Hzw7Kq398bIT1y+ZOGQzIbpGCkTLF1aARDHzWIgE+g+WtL9u5alFqEfMz8r+g9aIkZ
+ vUZH/pJK+FZTWslByaOsHvcLkErtwceObz1tw6MzmJxNlBU3AFNMDNq9fvSC0qn3CkxczpU
+ lnIENXelci5X3VbZJmNMLZUGK+WltYiTQPMiSejLIvDY1rKv2nwbgHohxpqA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1785005058; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1785021179; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=tM1JtjrYfwKl1JR6ayB3jShTzcrA3cap4jFHq8xO7i8=;
- b=LHRjr6QdNFa5EHwui8d8GmNqwW8s4HuUaRiQgfn//vzusQ2kCYuarfSrzobbAnmC9Y8QG
- 5FevXTnH6Qy0U8RyVFsd5XgvjaHcFafpD5Kn0wg1Y3EW5gwOsM2Uwyv/VmqYKIg+DVJfs7y
- JHmXKyBZNI6nV7H5AhaXHt/PiV0vJS2bXfj++H8hkLJNwG23WpGihFYbn+4R2bgSwrRpIeq
- 0CfPZb85JIOJye24d3y6Fe4MZ1Wg/XWhmYnvcMkWactgt9lQNyzv52dkzg+Kwlbe+EBfOjm
- 1RUinX0tqINGpmlpHDxQJmpfLvVAUfLGhPN/JmsncrDhSOD4sl6rQgly+xBQ==
+ bh=q3iylkBOAqbNzwa0ASyZyYXRtf8qeaj9DRYLgTr14g0=;
+ b=AkYDUEHoBT4zw60F+XGOB+X0mnX80jeKD54BgAvCD+ZjsXDDFgUThhn2WtRVaQvGCtflO
+ jbZxCKrvBdrVqYnxPbt3UY5ycKvjmSGDX1VDLlsJnZRB2Q9f59Uuu7SvmTPNYxHpWKVznVj
+ 3Xev2hkoFAz0OeY65fwQanrMFpTNXWSnVzFoUTCJHr+1cVV1CX6yk9upLmzy8XlpmHeaBzw
+ neESuxOf/vrHH+GyY4FddGr3mfBTF+s6oD5vdDBNbjbNv+OQVc6iqsk+VwJ/GapHD7loRpE
+ c03hC+qpZrbluums0O69Nw//KwZJkzPsfebbx71lqnxtDO63rU04YgjSElFA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4079E46EFD
-	for <nouveau@lists.freedesktop.org>; Sat, 25 Jul 2026 18:44:15 +0000 (UTC)
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
- [209.85.128.48])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 07F2210E031
-	for <nouveau@lists.freedesktop.org>; Sat, 25 Jul 2026 18:59:52 +0000 (UTC)
-Received: by mail-wm1-f48.google.com with SMTP id
- 5b1f17b1804b1-4954c08a7c8so2142115e9.3
-        for <nouveau@lists.freedesktop.org>;
- Sat, 25 Jul 2026 11:59:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1785005991; x=1785610791;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=tM1JtjrYfwKl1JR6ayB3jShTzcrA3cap4jFHq8xO7i8=;
-        b=b6qzDmLDqs7goSBmO53L5SJncC/6/3a1GMAbqKkY89Rmesx+lEXJh73tmSFtVcQGya
-         5mGqEMLUFwb+SW7dvlH17KZdnRwZTydh5y0lq8uXVJzePbtuspQRbduiilO8fDtTAGCV
-         O+yvBRQABdkbw4qcQ19RffiCeLwc6saWMorAhmgJW25q5f6uGsVUJyq/bZeYO6kEPir0
-         +O6MfAx41Lg/m2QI+9aGKYgcwQqcDFpadJ037uasA6HP6/GC2Jhd8w+36xTwxbBM3L/c
-         HNLWU7Dg9FVbyKXEKdBgK0iiPdXGJqTRjkq+RJUULaY+hvVZtPuSN9DRjx0W06/PY9UG
-         BTFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785005991; x=1785610791;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=tM1JtjrYfwKl1JR6ayB3jShTzcrA3cap4jFHq8xO7i8=;
-        b=k9QgD5Frpn07i1Gieid9FTy3QDTymUnDnaNxChvoSD8EZtYrbO0XNGoo998wYrMBFr
-         j2TN0ko5LxHrVOek/SOLBU6EVGXuPt/GAmL5fmxe8AIP0NGrSHDK6iPigyW7w2LpEfA1
-         jgG5G9gs9HqT4UpjyWIwv5JFU7hxq8RR/4c8/kgw9pTZuMM3zkHxqoMOIOcGx2X94b1L
-         y5QskA/J200iPSJF9723Df6C3sqIDN2PTakmSRDRXSxYE2tCR3EO17hz96ype1KnvDSP
-         ljQu4p5iLMCUcZpbsMJ24VvuNLLhCBACLz936y/9nENW8jE7oJCh7Vptwz8z0RVAFzte
-         P6ig==
-X-Gm-Message-State: AOJu0YxJtIlrSVreKpqNFYXYI0GMq8LZS/FGwrZhU9ir5IpSVJibWknq
-	Ip5PAHoC5LphrE1PZRy52sXfM8kZQTsB5HwShOJsNpQ/g5r+18k6jMnM34ppijULbSc=
-X-Gm-Gg: AR+sD12frN6VNeeExg+Bm+c00CWY4rk0GSbP1AOVj3mYcpyI3z6XjdxmxcpkirZFMeC
-	GR3o2DAIPXOfU6jQRvDxwd0gg/cdglxHpOKJ9QhPeX/mrwTrEwe6xolrSSXxEI38TDiYCyQbL2A
-	AYPmr6Eik5p57RpjjHi1J/UsTm6Dkcb5cib5FeopcE0fttqiIvywKLLbuzgVO3zeR4MFMNvAnvm
-	jIx/K8R9UgxZhl1HvF/pkEWxR9WEjgXqspbcf7Qusy2XI5HnrnAsOkWzikR4d2I/CC2FOIy572O
-	O5SrA879DFwbgt2IGMBto0m/7EfnYzGWIajaLkXcD2VNiE5sMFDkdXX6H572zGHd/ylcNiC2zXo
-	ZBhTrPwFfRBvYkmnj96Xp48e+aOJnvHcy8HUadE35gQ5nrIORkxPH65EgQzP1BTNjQylKXBrub7
-	qM/QoR39OOJOGdpfGYpdrf1Rqp6HaXWfOFHUiTmzSGev8diVvsHLw+9fFJgCSDfca2DA==
-X-Received: by 2002:a05:600c:3b0e:b0:495:4044:11fc with SMTP id
- 5b1f17b1804b1-496b5754493mr21338865e9.7.1785005990958;
-        Sat, 25 Jul 2026 11:59:50 -0700 (PDT)
-Received: from Neo.taile6b6ba.ts.net
- (ip-109-193-028-127.um39.pools.vodafone-ip.de. [109.193.28.127])
-        by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4957f9928fdsm120474785e9.1.2026.07.25.11.59.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Jul 2026 11:59:50 -0700 (PDT)
-From: Marek Czernohous <mczernohous@gmail.com>
-X-Google-Original-From: Marek Czernohous <marek@czernohous.de>
-To: nouveau@lists.freedesktop.org
-Subject: Re: [PATCH 0/2] drm/nouveau: nv04 FIFO cleanup + recovery for Tesla
-Date: Sat, 25 Jul 2026 20:59:48 +0200
-Message-ID: <20260725185948.219510-1-marek@czernohous.de>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260513175014.96599-1-marek@czernohous.de>
-References: <20260513175014.96599-1-marek@czernohous.de>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 39FB446F74
+	for <nouveau@lists.freedesktop.org>; Sat, 25 Jul 2026 23:12:57 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2D6CD10E11C;
+	Sat, 25 Jul 2026 23:28:35 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 8EA98403A3;
+	Sat, 25 Jul 2026 23:28:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 51C30C2BCB8;
+	Sat, 25 Jul 2026 23:28:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1785022114;
+	bh=hsb0sG3xQrzIWfbMpLDW2y2O5saBGuPW7KlD/qWLdy0=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=SsryXRgX4UQ+dWepb1sFPKMiu/UTlfG6m9lvRauTsnh6AA5b4GCUwXsVWxqHeRvWA
+	 k8usURVqIUOY0d/0opV7fbsNK6/9rGLIqTlzHUY8WVnINeUaskTWC81Ferhx8ZLrfu
+	 pIi4EOIjaBCycm2SgSoKORLSAbXJecbr6trDhuK9epOCeQOfWgMHx4bswJBIdVCCs1
+	 3SdfVEwAhZk0b6gVLC+aWIX9cYAXTRd9HViNYDVa5dqLFvncgtQGo820RN/8r/aGET
+	 /8U38lIqEGR8haH7upNEsu5WZ+dv1EVW9OzykDoYbnE2QLlY8R1CEjIv8BVr4DlJoz
+	 UjYYlMiYIp39Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2850CC531F9;
+	Sat, 25 Jul 2026 23:28:34 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Date: Sat, 25 Jul 2026 18:28:32 -0500
+Subject: [PATCH RFC] drm/nouveau: Use write-combined maps for coherent on
+ Tegra
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: RWK54DMOPA7NNAPZHVQ4DJDX4PXVYDRV
-X-Message-ID-Hash: RWK54DMOPA7NNAPZHVQ4DJDX4PXVYDRV
-X-MailFrom: mczernohous@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260725-tegra-coherent-wc-v1-1-dfdcc929c21b@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDcyNT3ZLU9KJE3eT8jNSi1LwS3fJkXUNLSxPDFMNE00QzAyWgvoKi1LT
+ MCrCZ0UpBbs5KsbW1AA2ZuwFoAAAA
+X-Change-ID: 20260725-tegra-coherent-wc-19941d1a5a60
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1785022113; l=1746;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=xGh6pnkZaocwOU8pE4vCOlQMWxF+mRIdr+h8cac+BR8=;
+ b=sZmYcD/8oqKCgPrreK+uUgwVNQC8Jhvg4Efd/oYQ2kQl27ZNYV1yAG5oJGt6ob13Hf9ei1CYJ
+ FamnB0RS4/7Bo+AHo4Uv/Koyj/a4UZPu1n3Z6O1Iyb6aXJKPXnmi/sJ
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Message-ID-Hash: LVCHFLZIQE7RXJ4N5P2AVSVK2EWVBQCW
+X-Message-ID-Hash: LVCHFLZIQE7RXJ4N5P2AVSVK2EWVBQCW
+X-MailFrom: devnull+webgeek1234.gmail.com@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Danilo Krummrich <dakr@kernel.org>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Faith Ekstrand <faith.ekstrand@collabora.com>,
+ Aaron Kling <webgeek1234@gmail.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: webgeek1234@gmail.com
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RWK54DMOPA7NNAPZHVQ4DJDX4PXVYDRV/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LVCHFLZIQE7RXJ4N5P2AVSVK2EWVBQCW/>
 Archived-At: 
- <https://lore.freedesktop.org/20260725185948.219510-1-marek@czernohous.de/>
+ <https://lore.freedesktop.org/20260725-tegra-coherent-wc-v1-1-dfdcc929c21b@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -134,47 +124,52 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Please do not apply this series. Since sending it I have been running it on
-the reference machine and found three defects in it, one of which is a
-guaranteed crash on exactly the hardware it targets.
+From: Faith Ekstrand <faith.ekstrand@collabora.com>
 
-1) Patch 2/2 calls nvkm_chan_error(chan, true). nv50 and g84 channels have
-   no .preempt callback and the call site in nvkm_chan_error() is not
-   guarded, so this dereferences a NULL function pointer under chan->lock
-   in interrupt context. It fired here on 2026-06-02 on the first CACHE_ERROR
-   after a VRAM stress test:
+On Tegra devices, uncached maps traslate to device memory, causing
+unaligned accesses by userspace resulting in a SIGBUS. Instead, use
+write-combined maps to ensure proper access.
 
-     fifo: CACHE_ERROR - ch 2 [labwc[3950]] subc 3 mthd 0f00 data 0000007b
-     nv04_fifo_intr_cache_error+0x111 -> nv04_fifo_recover+0x80
-      -> nvkm_chan_error+0x99
-     RIP: 0010:0x0
+Signed-off-by: Faith Ekstrand <faith.ekstrand@collabora.com>
+Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+This patch is marked RFC because there is not complete confidence that
+the change is correct. Without this change, nouveau can easily hit
+sigbus errors in Android UI rendering via nvk or running vulkan deqp
+tests on Tegra. Changing coherent maps to use write-combined stops the
+crashing, but it is unknown what the performance impact is, if any.
+---
+ drivers/gpu/drm/nouveau/nouveau_sgdma.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-   The oops escalated to a panic and the watchdog reset the machine.
+diff --git a/drivers/gpu/drm/nouveau/nouveau_sgdma.c b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+index fa3b4ebf38a83..10f6ef1c541bd 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_sgdma.c
++++ b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
+@@ -72,9 +72,12 @@ nouveau_sgdma_create_ttm(struct ttm_buffer_object *bo, uint32_t page_flags)
+ 	struct nouveau_sgdma_be *nvbe;
+ 	enum ttm_caching caching;
+ 
+-	if (nvbo->force_coherent)
+-		caching = ttm_uncached;
+-	else if (drm->agp.bridge)
++	if (nvbo->force_coherent) {
++		if (drm->client.device.info.platform == NV_DEVICE_INFO_V0_SOC)
++			caching = ttm_write_combined;
++		else
++			caching = ttm_uncached;
++	} else if (drm->agp.bridge)
+ 		caching = ttm_write_combined;
+ 	else
+ 		caching = ttm_cached;
 
-2) Killing the channel on the first fault is wrong. There is a single PFIFO
-   cache puller and on a fault it names the channel that is resident, not
-   necessarily the one that caused it, as nv04_fifo_pause() already
-   documents. Here this killed the Wayland compositor twice for faults it
-   did not cause.
+---
+base-commit: 1a1757b76427f6201bfe0bf1bea9f7574f332a93
+change-id: 20260725-tegra-coherent-wc-19941d1a5a60
 
-3) On Tesla a killed channel is not survivable at all. The channel-killed
-   event is only subscribed for FERMI_CHANNEL_GPFIFO and newer, so
-   nouveau_fence_context_kill() never runs and the pending fences of the
-   killed channel are never signalled. The display commit tail and the TTM
-   delayed-delete workers then wait forever, uninterruptibly. The series as
-   posted therefore trades a recoverable fault for an unrecoverable hang.
+Best regards,
+-- 
+Aaron Kling <webgeek1234@gmail.com>
 
-v2 fixes all three and adds a prerequisite patch for the event
-subscription. It is written and rebased, but I am not sending it yet: the
-new escalation logic has only hours of runtime here and no fault has hit it
-so far. I would rather restore the debugfs fault injector I used for the
-original validation and demonstrate the corrected paths with injected
-faults than post a second series that is short on evidence. That is what I
-am doing next.
 
-Lyude: v2 will carry the Assisted-by trailers, as offered in my reply to
-your question in May.
-
-Sorry for the noise, and thanks for not having applied it yet.
-
-Marek
