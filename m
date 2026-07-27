@@ -4,120 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26720C531D0
-	for <nouveau@archiver.kernel.org>; Mon, 27 Jul 2026 13:52:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E03E6C531D0
+	for <nouveau@archiver.kernel.org>; Mon, 27 Jul 2026 15:06:01 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7F84610E3F9;
-	Mon, 27 Jul 2026 13:52:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4359410E460;
+	Mon, 27 Jul 2026 15:06:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="xEcD7EIL";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="sF4tPvLB";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 875B1473FE;
-	Mon, 27 Jul 2026 13:36:26 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 2C39D47402;
+	Mon, 27 Jul 2026 14:50:19 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1785159386;
- b=tC+iT2r0SAjyuzct4AgvAQ8dMujMhrR15J8MgCLS/8jv9vvHTL3CIV87QrUwWHw+NGUut
- 3PKzzH1XwmMxY7PcdbooHbcPIvXxBn9AgfyUf+oF0vkp7E+5FlL/3Vgr234PX/VXVys8Ceo
- 4e/0cM+Qxe5+IF5CYLkQvUIv/Y1SGuGALADJG2LW+TGvvSg+64KSMMGIs9B/6/Dw+moSddW
- 7sN6fZhtSObHkoWiRsOw7TMLzw3NAjuj6bMCgckurA/eJBLRCCMceHA3WrQAVN3M2ohZyWj
- gASzJ//pOU0T4ZzvVVp/Yw6lNGNZhzIuJx/0UEr/ZmS6/4sgG3KMyKRK9BrA==
+ s=20240201; t=1785163819;
+ b=oTp7jwglTyHAVAPdVtkF4jdJuIIgqiV4Z8hxarSwDqgoD0PNHJqo6ilPjkQUMf3liugcq
+ CAlM15/3s3157oxdJ/4cb2BzJD77K+xvnm46v5rtTQOD0MO2JbOJRMSPiVpozcmJfZ5xHvN
+ c1c0BSzHnqDoy7k7MGHezzqqjZcPUN8bE+TVwZ7d4baQJL4ZUVgmkgA9cVKtRinmp076uEJ
+ tW3kPDKLcU6Ce/BKncbc0mT+Enou8/9w+iqJtBhLTHxgH0avR8UuxBLn7lFeBNq7RZQRX0u
+ 3tJKOpqiKC/rpncAgYI4hio624BxVEsHrfLul2E6HrC7jVoNviguB0EQe4Sg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1785159386; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1785163819; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=7JBXk2jXtQsOJF65QCitE7vlw/YO5M+3O4WO4XdbtAs=;
- b=tYlV5bDICIkwAD5EgcIqDW1ZIo/B+M9kwLenjrBaJH1Iv7g5L5vEI1SLC51zQeJDckOuk
- pJ5c3OWtZiOa8xskNDDjY9P5IWc+8IHoxbrCub6PLGjhdBK8C/IXdHT2gfMD7H8sIWtrJ5l
- XJP+ulmNO8ObASe9PfGp/ES6Ma4jpVw1O3dfcS68eRQaFpF929vcYwxosz5pa+cJynB5ltL
- Dw/ttiXS344D0PSZx+9ppMKJbZO/8YhN3qUldP0nhmqBAhU477nPOyTHUdBaVUIfPX8hEIU
- DPCAqJF30C0HgV4jVQVlGyEkj6wBQzYugBfLoqK0I2pD03UBwCfRqU66jE3w==
+ bh=xR8fBXhyULcS9rw8dxfF/pU3nQ4nEDbAUP33X1bCS3I=;
+ b=WZajMO6dI44pW3+aYUfKp+su2+wseF4J2CDka4poYcijIfZv6ucCTRPbVSLWhPtoAtMV3
+ iI8x4xU2bxfZifpEczXVO1gHDZ+lDn0ohhnwim/oB7ChjQ0GZg7PRrm3/LHlkyUEmpjP9yP
+ cVF/+n339OE5GZBO9bSApU67MDnBCeJ70FciMP7tpNBh6wzEjgHSdUgIV7KWKyi30RC9i9c
+ CjWOzJNLl7iNmWBaeuswdc8/pr6FkuqKRUIaNx91pFsKa+DhMKj8ZM5mHz/KGdObBZYl1PY
+ hZ4wGWpZxHUOsURWfkaeTKuS801HTuEHW4E+IzgBsY1soI+Xuas+M+ROGYqw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=bootlin.com;
+ dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=bootlin.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=bootlin.com;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=bootlin.com
- policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id CE6F746BC9
-	for <nouveau@lists.freedesktop.org>; Mon, 27 Jul 2026 13:36:23 +0000 (UTC)
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7632E10E407
-	for <nouveau@lists.freedesktop.org>; Mon, 27 Jul 2026 13:52:05 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id CA35C4E40F75;
-	Mon, 27 Jul 2026 13:52:03 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 992BF601BE;
-	Mon, 27 Jul 2026 13:52:03 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 33ED511C13452;
-	Mon, 27 Jul 2026 15:51:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1785160317; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=7JBXk2jXtQsOJF65QCitE7vlw/YO5M+3O4WO4XdbtAs=;
-	b=xEcD7EILK4mpt5O6ZSHTjHiqPPMIIRZxC/FgQm65soRs6gzWBfNlO8wHkmhWBY+YKn/B9l
-	AE+3w1ds0octEPRy7A8Ic3YMx7VL49qutGwvZNxcPMII1eImu9Q0em+hKnojUqwyf2zWCF
-	ptQsw5eGRruB8MBHRz2r9bMyiPSBylwRZ6sk8x+g+sl9cHAykb+dcO+TbWqdlWNF97BlLK
-	tTTSSk3Cj6Zb4NVIEmSe9uxFnT2lsUfwulDoraD1znG1sRvamPvXnG3GDT1edHwPAjmAcL
-	e5z6kyufS28sIhhLT3wIN8D6Wc7QXuzUuv0Z9tcFPuZILISCbT6HJEwxb1Z43Q==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jagan Teki <jagan@amarulasolutions.com>, Liu Ying <victor.liu@nxp.com>,
- Francesco Dolcini <francesco@dolcini.it>,
- Peter Senna Tschudin <peter.senna@gmail.com>,
- Ian Ray <ian.ray@gehealthcare.com>,
- Martyn Welch <martyn.welch@collabora.co.uk>,
- Russell King <linux@armlinux.org.uk>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>, Xin Ji <xji@analogixsemi.com>,
- Marco Crivellari <marco.crivellari@suse.com>, Arnd Bergmann <arnd@arndb.de>,
- Marcus Folkesson <marcus.folkesson@gmail.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Kees Cook <kees@kernel.org>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig_=28The_Capable_Hub=29?=
- <u.kleine-koenig@baylibre.com>
-In-Reply-To: <cover.1784545092.git.u.kleine-koenig@baylibre.com>
-References: <cover.1784545092.git.u.kleine-koenig@baylibre.com>
-Subject: Re: (subset) [PATCH v2 0/3] drm: Use named initializers for arrays
- of i2c_device_data
-Message-Id: <178516030634.1134541.480483848560598607.b4-ty@b4>
-Date: Mon, 27 Jul 2026 15:51:46 +0200
+	by kara.freedesktop.org (Postfix) with ESMTPS id 12314473DF
+	for <nouveau@lists.freedesktop.org>; Mon, 27 Jul 2026 14:50:16 +0000 (UTC)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+ [209.85.221.49])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EBEC810E45C
+	for <nouveau@lists.freedesktop.org>; Mon, 27 Jul 2026 15:05:57 +0000 (UTC)
+Received: by mail-wr1-f49.google.com with SMTP id
+ ffacd0b85a97d-47f7854678bso954874f8f.3
+        for <nouveau@lists.freedesktop.org>;
+ Mon, 27 Jul 2026 08:05:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1785164756; x=1785769556;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=xR8fBXhyULcS9rw8dxfF/pU3nQ4nEDbAUP33X1bCS3I=;
+        b=sF4tPvLBPXPfTAf3vowz7uoAWly/kZIDmJxIDjTlPy8ZmG7Q80lDLnqrJr5FEbSkyQ
+         UsJmTsThI8AXdZjIGcU8JmIbL/Zv/5VJZDZrEKhxYXT/YEwhpRZf0lXkfVqDzKcySyYU
+         dhlmQSOLGdOxMXNnx2UUP1WTL3/+wefYaa4hT28fG/G37u16SwxEe/CMODI+wHCTF8aF
+         usAKQpHtTb+vvsAwsRbY2yyDGeFg9Ehcg6MhqKfbQsDpN2r6CUA5RNtb2SYTdX1wD9RP
+         nl9Hak4EZMWJal14Bb5eX2dFQc4CVaJVauHsZf6HgH7bNLKVkfvEA9JXVi9ekiyjZKKA
+         NBRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1785164756; x=1785769556;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=xR8fBXhyULcS9rw8dxfF/pU3nQ4nEDbAUP33X1bCS3I=;
+        b=UYk2qQKMQeS+Uh0dxc/PytzeDCJDFIId8vMwzv67DIz9RdppIXycFn59sAfLm5KFmT
+         py7GOIrt6cl7MJmJmchqG9Qr6oZUQnXXKJVdBEqY5zKPFXXFyqHLC7avTAVrpVjj6hv6
+         XWYUeTvpFkk8Equ0QnrP6SlQKuJSzApf0z3PMO2HBCi0OAZrkaPIZmSGFe3BqHc1eSyU
+         Dx20QpvzzFTktc979Ar/NUHU9YUudKnnj3aVVQnkCyBJnBkPFkyoetxCI7q1ztTBh5cf
+         /LD9VMA0vJBmMeQN+fkFE9oOUP5SzWSdF4rUppKdLuVfYMWCKsqA8/7Dtskaf03VT2j4
+         aOwQ==
+X-Gm-Message-State: AOJu0YwHgUaEO4Z82Yi6EIL+YJb64JR6HBxWfg0SXHuEs7fdVCkY3VDe
+	qX/n/s3caj6qQZ6v7ZM5TkBYNc+R41Wh64thTLkQccOqUDH6Llt1k8KIELjBvZAv
+X-Gm-Gg: AR+sD11KC9aWT/HH+E5vuhugFTmqYx9arXO84lpPBAkUEYfVr3ApmTRQuRyfXapaRan
+	AaCAaBqK/S+JPEXImL3EBxHxfGXXzmQY1N/3S8SOA0Pw9IQY0kUSb29MwuYA87ZrrMg9IUlR40z
+	vFrEExOQrc73bK+GdIAcuQl1PZmA3qIQSpps8RG4uc0ReUnXKHmVTPAqZaY2qNXrK0/SPRgr9aD
+	QqGrgA8rWIrsvj34RW/gabY0FRCR3V5Gu6PP7fHaRbvz8kK4uY3nLWEfcIZaheSZKQLTv4nFr6S
+	p8A1vYYnYQZLzeZ8++gfF5WsBih+5qIHSLxA/b5ZUgBgr3kyHn5tV8NO/tYGqFWL5R+9OBE12NR
+	2Ugr7+LdMCF/g+ZXPWvePGwxJ50KN8iDo62kQy2kPpe8+zd8RxQZc1nUGR/t3krapFmkIYX/FhL
+	XvhGrKFZk=
+X-Received: by 2002:a5d:5e87:0:b0:47d:ea8a:d224 with SMTP id
+ ffacd0b85a97d-47f9fe96330mr11316857f8f.23.1785164754717;
+        Mon, 27 Jul 2026 08:05:54 -0700 (PDT)
+Received: from fra-x8664.lan ([151.16.232.22])
+        by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-47f85b9a5a2sm54242960f8f.7.2026.07.27.08.05.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jul 2026 08:05:52 -0700 (PDT)
+From: Francesco Magazzu <postadelmaga@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Subject: [PATCH 0/2] drm/nouveau/clk: fix RAM error handling and pstate desync
+ in nvkm_pstate_prog
+Date: Mon, 27 Jul 2026 17:05:44 +0200
+Message-ID: <20260727150546.121357-1-postadelmaga@gmail.com>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15.2
-X-Last-TLS-Session-Version: TLSv1.3
-Message-ID-Hash: 4GAVW4634N5I4P4PODGL6CNPCWLWL7PQ
-X-Message-ID-Hash: 4GAVW4634N5I4P4PODGL6CNPCWLWL7PQ
-X-MailFrom: luca.ceresoli@bootlin.com
+Message-ID-Hash: RIK5ZBEC5RZ3K7LSN7XBCX2BRO2PMFVJ
+X-Message-ID-Hash: RIK5ZBEC5RZ3K7LSN7XBCX2BRO2PMFVJ
+X-MailFrom: postadelmaga@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Douglas Anderson <dianders@chromium.org>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
+CC: nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4GAVW4634N5I4P4PODGL6CNPCWLWL7PQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RIK5ZBEC5RZ3K7LSN7XBCX2BRO2PMFVJ/>
 Archived-At: 
- <https://lore.freedesktop.org/178516030634.1134541.480483848560598607.b4-ty@b4/>
+ <https://lore.freedesktop.org/20260727150546.121357-1-postadelmaga@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -127,27 +129,27 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
+Follow-up to "[PATCH v2 0/4] drm/nouveau: fix list cursor use after loop
+in the clk pstate paths" (20260712123616.1180830-1-postadelmaga@gmail.com).
+Sashiko AI review flagged three pre-existing issues while reviewing patch
+2/4 of that series; the third (clk->func->prog()'s error being clobbered
+by nvkm_volt_set_id() in nvkm_cstate_prog()) is already fixed by patch 4/4
+of that series. These two patches address the other two:
 
-On Mon, 20 Jul 2026 13:25:46 +0200, Uwe Kleine-König (The Capable Hub) wrote:
-> the objective of this patch set is to prepare drm for a change to
-> i2c_device_id. See
-> https://lore.kernel.org/all/cover.1780048925.git.u.kleine-koenig@baylibre.com/
-> for the details.
-> 
-> (Implicit) v1 is available at
-> https://lore.kernel.org/dri-devel/20260518100401.631351-2-u.kleine-koenig@baylibre.com
-> 
-> [...]
+  1. nvkm_pstate_prog() drops the RAM reclock error and falls through to
+     core clock programming anyway.
+  2. nvkm_pstate_prog() commits clk->pstate to the new state before the
+     hardware transition has actually succeeded.
 
-Applied, thanks!
+Francesco Magazzu (2):
+  drm/nouveau/clk: don't ignore RAM clock programming errors in
+    nvkm_pstate_prog
+  drm/nouveau/clk: only update clk->pstate after hardware programming
+    succeeds
 
-[1/3] drm/bridge: Use named initializers for arrays of i2c_device_data
-      commit: a2a334802883908ee86e0571faf5e9ea6a008c3a
+ nvkm/subdev/clk/base.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-Best regards,
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+2.55.0
 
