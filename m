@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E42BC53219
-	for <nouveau@archiver.kernel.org>; Tue, 28 Jul 2026 05:14:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F98DC53219
+	for <nouveau@archiver.kernel.org>; Tue, 28 Jul 2026 05:14:43 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AE3A910E51F;
-	Tue, 28 Jul 2026 05:14:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E3F6410E7B5;
+	Tue, 28 Jul 2026 05:14:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G8mXo8Vi";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JJvitefY";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4F3214741E;
-	Tue, 28 Jul 2026 04:58:27 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 915B447436;
+	Tue, 28 Jul 2026 04:58:59 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1785214707;
- b=MoQOjBf9Koq0MamVBcmG8VgLxWgH6/ko1cbwOqQuFcstaRHIHwW4HKvlHBOvKtNXuvlLY
- wxcE9wn1uSNUwvCLQQd6Pk55hO6eTg/UZbU5TcsN7p+mOZig5vTcnx2CCzzJ4TkYpXsCAwZ
- hX5z8+7Ilb/1JMoz0PMUq4LdHFHXEwLv8CR8KBY7vkx7WRxdRYaMI2opJr5R4fUNzL56AsT
- YO4TOow6SnX4zOsR3LCQDeh+HUL/mVxOGdNU/0UytbLwN3lsqGsAzc+tue3dXz7oSRvhGb9
- +Z7kpS0CJcGRDCpk9/bCxWuT0nTjmqXoJ1k2fmj42BW1Nh1ybIDE0qAxfQtQ==
+ s=20240201; t=1785214739;
+ b=LuwnuZhzLfwLcF2t/kjMNfdb4yluCBJu2WFdVGWAEp66U2MFATkMEw3vxMyQJmiWsgq1I
+ cdPd8o9WUf+bcJJzCNpCcA+AorvHyYoDUwdKjVQcPQcYANM1Yknp8mdPspxJ6iyuKHx180m
+ 8v6UaPMkhthOqHrFlW+wqleAJk39a7Emx+3/Jpbl7WiM6CBp7pVPVj47rzzG3Vl0nxGvdmz
+ N6pSRo3R3KYhHe09jeFr3SRjvwWB3Yf4jUNSZv7dJR5WOijUJEpuHRwoxv43FvJ0nVEdxpy
+ RDrBLNmNPzwcetZPY2mBpesAAoZVcgA9+54Sh0IaJOuwemslTehCFrkdTXgQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1785214707; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1785214739; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=/6ix+2ekyEjmxtNQWG+EytAOJTxYlBnpiXnHByYObJw=;
- b=Pi67ZYH6chSy5+WSsugzyrocMatr6Y5EeoPUkwX+Oj9Y8/n0o1dfOJEPPDfyu+mpPqva/
- azd4dIgnXocMhY7rPcG1FfqxxKlLppFEm97oMXkFyIEiSQWx+Yn233Q2yAzq/1z9UPeu8SK
- NuoYujTKw1f+smkg3UCMrSprLnrf0QSc+/jY7zsHFoB5cBV86WTtlaEXRgLqvYtOLDvEuY8
- 7jn/iUHGnNIU71sYbzyriLFnCGuxUBrlJR5mLRRsIL6M2I0KWMZfMSd9mMVg/Ssxt0VejH8
- A+KK1N30ghuP1CjNnuYgBKEKNvkBYa/XBfcS94JwbLTotQOXQhA3/RtYPRdg==
+ bh=Wun0I1dkmxfa8qNfn0OQhv2DA5hF2iEgMMGgkdL9fIM=;
+ b=rsmZ8WjPzc28pG35KIcLgT+ab+kuUwADwJK3szxiw4AwN5bo0nVsascoGuP2V+vLDcO2w
+ 9z1oZkyXSWLi2aA/Ll7Agw9Nd6xMQHul5JuAaqaWEi8QfRAHUiznOFBPPNd1m9rmeGCp62D
+ w1POBRDw6xAIZXQlp5Gl+QydusSf74N5f5Z1NHCWHhoBznyrNOt3dXQdwCBW5eR3azwMdNi
+ 6LKtd+50ETr3FLWR7jUnu1vP8Mv/gMY4frvlpHI5RZ5hnRiavBIybfKpGUQwbYZCHONQLmg
+ AXBxHklr9DeqY2Jg0U0SPcyZ3Oe1khgDwWp2VRG6kbLo2bj36Rebn/vB4wcA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=intel.com header.i=@intel.com;
   arc=none (Message is not ARC signed);
@@ -47,68 +47,63 @@ Authentication-Results: mail.freedesktop.org;
  dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
  policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id BFA83473EA
-	for <nouveau@lists.freedesktop.org>; Mon, 27 Jul 2026 11:21:47 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8E66B10E0A5;
-	Mon, 27 Jul 2026 11:37:28 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id E1A8F44C3E
+	for <nouveau@lists.freedesktop.org>; Mon, 27 Jul 2026 08:14:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0723F10E2B8;
+	Mon, 27 Jul 2026 08:30:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1785152249; x=1816688249;
+  t=1785141038; x=1816677038;
   h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version:content-transfer-encoding;
-  bh=/6ix+2ekyEjmxtNQWG+EytAOJTxYlBnpiXnHByYObJw=;
-  b=G8mXo8Viqf78xazk9zqbaR8AWKxx3t4VL7oDFw8rAxZ9fV31PanygXol
-   GYyxOcnS5F2KOuKBNxorVeH2MINx+MYePQnoH9fxc9PiSWr8QSuLttjKr
-   kLW/v8fOVnB4+baLVXDnzBLLGhoO8FMdTKv+rSQtEK8qXX4b5+P2pn29+
-   S3bjjeywJrbVeKzapB0yAndUCmJWqOannRsMDFgBgD8QOQAyXHny7F/GV
-   +QrqO7gjFmlTJbFT/0mLoOZmxeV/KSvGIl4QJLLKSnr4cC6O0AoXqfTSv
-   gWy8eEN7OdOn0swD6VSJjgjsaTmugDFCUwuPsuX4IXK4Jz6UoJQ1cCPB/
+   message-id:mime-version;
+  bh=qWnqu6VCUiwZWG189ixa/W9uGeC6PMG4tY9t7kvdnXI=;
+  b=JJvitefYLe07AMSyEpc7DGn/YG7kFCXhaQfVbbJwfTOYn6h27UZtCetQ
+   2V4D8O/xI8P5Bf14SztgwaxdyU96ZuwNhG+epzZ6fjagj8hSR30fmfFUs
+   xgnob9d5ZicLJa0BxT9MHmd3yl5YVfD7tw0X4nCY9U3xGV+9vqjt2ulOv
+   DfdWmhKKbIetZJHGX6RJQaEMg08h7iZtBp07fzN7KE9jaBq2+XebY1ClZ
+   brzHV5pVqGjHzXhGJY0j4TIiN6/PJ+3bW/7Fz0gL/ynYa8cL7sAK2GBcw
+   hwPAJpvdutYUTe2SSMATAnwMjQt+OPo7F4kjL2TSqhVuGHpS8eHsdFUQ4
    Q==;
-X-CSE-ConnectionGUID: FJTeiapPQ+GR3gD77pNrGg==
-X-CSE-MsgGUID: FTpwXrnyS2CxdM4F8/Qpsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11857"; a="103128660"
+X-CSE-ConnectionGUID: ybtQcTcSShOLSPOz0cpFzw==
+X-CSE-MsgGUID: le4HquZ4RmiXjaL4zp+Tjg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11857"; a="85573906"
 X-IronPort-AV: E=Sophos;i="6.25,188,1779174000";
-   d="scan'208";a="103128660"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2026 04:37:27 -0700
-X-CSE-ConnectionGUID: jc740gvBSCmfJ/AOeJRN5Q==
-X-CSE-MsgGUID: 4x0a30kMTGOmwHJgJde0/Q==
+   d="scan'208";a="85573906"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2026 01:30:34 -0700
+X-CSE-ConnectionGUID: zuBRshsISau4U4oJl9pq1g==
+X-CSE-MsgGUID: S6JnVra9Qs26laDkF7yO1A==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.25,188,1779174000";
-   d="scan'208";a="297617694"
+   d="scan'208";a="259417611"
 Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.245.197])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2026 04:37:02 -0700
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2026 01:30:04 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Sang-Heon Jeon <ekffu200098@gmail.com>
+To: Jakub Kicinski <kuba@kernel.org>, Sang-Heon Jeon <ekffu200098@gmail.com>
 Subject: Re: [PATCH 00/36] treewide: remove conditional returns with no effect
-In-Reply-To: 
- <CABFDxMFMOAZ_3kYxEGCutnGt1OSSmgvmwx-=M1RxGc3VGKORYQ@mail.gmail.com>
+In-Reply-To: <20260724144822.6af8213f@kernel.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260723184538.3888637-1-ekffu200098@gmail.com>
  <20260724144822.6af8213f@kernel.org>
- <0ee1ef4aa7daa908bf28397ccc639c89b6aabd9c@intel.com>
- <CABFDxMFMOAZ_3kYxEGCutnGt1OSSmgvmwx-=M1RxGc3VGKORYQ@mail.gmail.com>
-Date: Mon, 27 Jul 2026 14:36:57 +0300
-Message-ID: <a4703624643e1d2fd1a9dedc1d36ce5d34d3133f@intel.com>
+Date: Mon, 27 Jul 2026 11:30:01 +0300
+Message-ID: <0ee1ef4aa7daa908bf28397ccc639c89b6aabd9c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-MailFrom: jani.nikula@intel.com
 X-Mailman-Rule-Hits: implicit-dest
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  max-recipients; max-size; news-moderation; no-subject; digests;
  suspicious-header
-Message-ID-Hash: BWQ3RTVCOWQSUSUD6ERCQUTSUW75DF6P
-X-Message-ID-Hash: BWQ3RTVCOWQSUSUD6ERCQUTSUW75DF6P
-X-Mailman-Approved-At: Tue, 28 Jul 2026 04:58:24 +0000
-CC: Jakub Kicinski <kuba@kernel.org>, Julia.Lawall@inria.fr,
- Alex Deucher <alexander.deucher@amd.com>,
+Message-ID-Hash: KUGG4TAPQX2DXPXUQ3YP4MYN2PLOH6MV
+X-Message-ID-Hash: KUGG4TAPQX2DXPXUQ3YP4MYN2PLOH6MV
+X-Mailman-Approved-At: Tue, 28 Jul 2026 04:58:57 +0000
+CC: Julia.Lawall@inria.fr, Alex Deucher <alexander.deucher@amd.com>,
  Alexander Shishkin <alexander.shishkin@linux.intel.com>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Andrew Lunn <andrew@lunn.ch>, Andrew Morton <akpm@linux-foundation.org>,
@@ -124,7 +119,7 @@ CC: Jakub Kicinski <kuba@kernel.org>, Julia.Lawall@inria.fr,
  Heikki Krogerus <heikki.krogerus@linux.intel.com>,
  Herbert Xu <herbert@gondor.apana.org.au>,
  Ilpo =?utf-8?Q?J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
  Jaroslav Kysela <perex@perex.cz>, Jason Gunthorpe <jgg@ziepe.ca>,
  Jiri Pirko <jiri@resnulli.us>, "Joerg Roedel (AMD)" <joro@8bytes.org>,
  Johan Hovold <johan@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
@@ -168,9 +163,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BWQ3RTVCOWQSUSUD6ERCQUTSUW75DF6P/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KUGG4TAPQX2DXPXUQ3YP4MYN2PLOH6MV/>
 Archived-At: 
- <https://lore.freedesktop.org/a4703624643e1d2fd1a9dedc1d36ce5d34d3133f@intel.com/>
+ <https://lore.freedesktop.org/0ee1ef4aa7daa908bf28397ccc639c89b6aabd9c@intel.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -180,59 +175,27 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon, 27 Jul 2026, Sang-Heon Jeon <ekffu200098@gmail.com> wrote:
-> Hello,
+On Fri, 24 Jul 2026, Jakub Kicinski <kuba@kernel.org> wrote:
+> On Fri, 24 Jul 2026 03:45:02 +0900 Sang-Heon Jeon wrote:
+>> Patch 1 adds a Coccinelle script that matches the pattern, including
+>> negation and constant-comparison variants. Where a local variable is
+>> assigned right before the check, the assignment and the two returns
+>> turn into a single return of the assigned expression.
 >
-> On Mon, Jul 27, 2026 at 5:30=E2=80=AFPM Jani Nikula <jani.nikula@linux.in=
-tel.com> wrote:
->>
->> On Fri, 24 Jul 2026, Jakub Kicinski <kuba@kernel.org> wrote:
->> > On Fri, 24 Jul 2026 03:45:02 +0900 Sang-Heon Jeon wrote:
->> >> Patch 1 adds a Coccinelle script that matches the pattern, including
->> >> negation and constant-comparison variants. Where a local variable is
->> >> assigned right before the check, the assignment and the two returns
->> >> turn into a single return of the assigned expression.
->> >
->> > Huh, I thought we already had such script. Various script children have
->> > been sending such "cleanups" in the past.
->>
->> We did, and it was removed, I believe in 1a617a8475e8 ("coccinelle:
->> misc: remove "complex return code" warnings"), because people just don't
->> want this constant churn.
->>
->> It's perfectly fine to have the error case and happy day scenario
->> separated.
->
-> Thanks for sharing the history.
->
-> I checked the mailing list. The removed script looks similar to the
-> new one, but it is different. The removed script reported a
-> conditional return followed by an explicit return 0, where the error
-> case and happy day scenario are separated as you mentioned, and Johan
-> also complained about this 10 years ago.
->
-> But the new script only reports when both branches return the same
-> variable, not the explicit 0. So, I think the new script is close to
-> the restricted version that Julia mentioned 10 years ago, and it
-> should be acceptable.
+> Huh, I thought we already had such script. Various script children have
+> been sending such "cleanups" in the past.
 
-ret =3D=3D=3D 0 after an if (ret) return.
+We did, and it was removed, I believe in 1a617a8475e8 ("coccinelle:
+misc: remove "complex return code" warnings"), because people just don't
+want this constant churn.
+
+It's perfectly fine to have the error case and happy day scenario
+separated.
+
 
 BR,
 Jani.
 
 
->
->>
->> BR,
->> Jani.
->>
->>
->> --
->> Jani Nikula, Intel
->
-> Best Regards,
-> Sang-Heon Jeon
-
---=20
+-- 
 Jani Nikula, Intel
