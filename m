@@ -4,103 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37678C54F4C
-	for <nouveau@archiver.kernel.org>; Tue, 28 Jul 2026 08:45:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B90E7C53219
+	for <nouveau@archiver.kernel.org>; Tue, 28 Jul 2026 12:49:59 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CDB8E10E824;
-	Tue, 28 Jul 2026 08:45:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DF4AB10E8C9;
+	Tue, 28 Jul 2026 12:49:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lynxeye.de header.i=@lynxeye.de header.b="rUtIv+OL";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Bx+4D4MM";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 1698247443;
-	Tue, 28 Jul 2026 08:29:49 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C75DF47444;
+	Tue, 28 Jul 2026 12:34:14 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1785227388;
- b=BmEFFRmconQuctMIhf5jrV6sKY3mhnSfeqrnOezIkbHtB66b8zKuMubJwz+VHzGPbOml1
- ZGhtFlILqOfyyqlaaktqwYL2rJfOcOiVsdH0TNXK8VDGKh2RmLjvHyj/wqehYC0TusjMW6q
- +rBOBoLUWbAdBL856jY8N/5w23F9E4UDRSMSpJHfijbvrPCRdzYCaoxShqB0pMwczqQQocd
- 9pe0ky/1pI4lHd1UMfSJd2lh+mVHIfo+EGNLa7J8S8jT+CzEMj2grlZv59HcR+b2MYOCquh
- oz98+VUaSOyz3kFyaiefuqF3vjNs9ZDcaf7+Oo63yCFvm0c5hM94IaEProWA==
+ s=20240201; t=1785242054;
+ b=dusyLMXGUjEaIMKx4UgGThcEWZVEkyQYcH9EylbpJgsQM6OnSTuILvefrF3FRe3JfqajC
+ Qpw9hEkYbsjYgA2df742dCilyPh8IAQdcsc2vpw2p9GXUw4xV2BIxsHkyqyv19l22kMQDTR
+ jnhZdY13ivjKyTow8OukiahR8TGED0fJarQfxVsy19xjg3kjSX1NuSbbQUuErFQLymtyz6y
+ GIp/EqRQU8sNNePJ40Qj86GBVsYGyhWRjTUmmpDOIUGTnBRKM4CwpG5WnZhAvhS31LH3Go6
+ 8ZyVq/+asBs7iDaPEHobuts7o+DkjLNPlVFHzPXGfUMZYlfANga1c/B9WcaA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1785227388; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1785242054; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=81HvKd6cQcQNld413wIgebh1EDGetMtXAHNc862H7QU=;
- b=QwBkw0m7azT7Kne1D5/IRiWe+lsMdFWa8y/1oCQjSA+i2rzypiW+buldtztzXwUhOrGtH
- RZ7AkH6pcxriBVxre/pfWnWMC4Pve3hqnxyTFG3McBTXIXXtRxjFFBBGMUWLQvpOE8kaDTd
- Ur8/CU1+7xSyqc8+K1YYCtejMgvGsJl/iaoq/fCGA+qrYqVUaCfeprkl38vapAw9oowF/Tr
- BvPA7eR9kd9t3cqaljCQigwCUEOxL02KpAwsDno148oO57DRznbXgssmashBA4O/FGYcSTv
- 3115lS95w3Gur5oGklpf/1DUGBSN/SWo7EduFZVj3abiiTp9Te19oOToso+g==
+ bh=mOlGHbnoCnDTPlyrEYMlscDbqYIlu3Es6RPIXVT+hSk=;
+ b=qqnd+leYbVHDNfEC/p65WQHU1iSeNPQFqMRyOipuybE/yyGN/wQHgJ8LvqWjlNmzWJY9h
+ ppU4Lr6fcCyoqH8mvuaJU+t7p+kQrIZ4HcRS6grq4Klt49T05ACTgAYAfAbOPacbGg1vZdy
+ 9GvbHjRR1LSlQVcqwXMHweYD/Ja0Xji3Pz8ZSolKYNiydkg72G6an/cTNLVfuqD15pKsij6
+ AX5sOvqIPpKzvpOXUUH47ysCrbKuo16bxvdvyI+WPZzPvgeYIhwU9C4h9XwKU+3RE7JZs38
+ hu1DQ9SzjzMHLBN+6so9bFHgDgs+EWbMJbgh2fMPgFx6wDO3lHSzPPeM+7hA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=fail header.d=lynxeye.de;
+ dkim=fail header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=fail header.d=lynxeye.de;
- arc=none (Message is not ARC signed); dmarc=none
+  dmarc=fail (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=fail header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=fail (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 027524743B
-	for <nouveau@lists.freedesktop.org>; Tue, 28 Jul 2026 08:29:46 +0000 (UTC)
-X-Greylist: delayed 436 seconds by postgrey-1.36 at gabe;
- Tue, 28 Jul 2026 08:45:28 UTC
-Received: from webhost05.keymachine.de (webhost05.keymachine.de
- [62.141.54.10])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4D46510E55A;
-	Tue, 28 Jul 2026 08:45:28 +0000 (UTC)
-Received: from webhost05.keymachine.de (localhost.localdomain [127.0.0.1])
-	by webhost05.keymachine.de (Postfix) with ESMTP id AE73370E048D;
-	Tue, 28 Jul 2026 10:38:10 +0200 (CEST)
-Received: from [192.168.178.25] (a89-182-118-83.net-htp.de [89.182.118.83])
-	by webhost05.keymachine.de (Postfix) with ESMTPSA id 2EBA070E0196;
-	Tue, 28 Jul 2026 10:38:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lynxeye.de; s=default;
-	t=1785227889;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=81HvKd6cQcQNld413wIgebh1EDGetMtXAHNc862H7QU=;
-	b=rUtIv+OLmFd9VD1Gl1CX3kDw9Bc8GNUtY3wh3R4cQ2AXlp9bKx2efqMreAj4npiXtV7QeH
-	VqITBVYDRziOegYg1twl+J/yH/naN3CxU2voQtV9kD4rW+Ap8viytdvQdlRtYP5wqrKzHC
-	3YGcNcMsF+i4OQqAB6UZ08F8uy3Ifut1PaVCQZrr9IftJy6stNYH5BIbh2k5d7U1R6ZW3v
-	5iWkWMNLvOIPxgzXp1Hwq6DBKKSZoTd9prsRHmK3jhw/+NqvgC8/TNYXVK2B7fVZd26zKh
-	hdUem3kXYg4NWruieP6DkRS/IwDt3R/l/GTs6N60C8Vf0tNjRnYJVT6sDzLtUQ==
-Message-ID: <67fe34eebafe657b3221ac39838440b294c60444.camel@lynxeye.de>
-Subject: Re: [PATCH RFC] drm/nouveau: Use write-combined maps for coherent
- on Tegra
-From: Lucas Stach <dev@lynxeye.de>
-To: webgeek1234@gmail.com, Lyude Paul <lyude@redhat.com>, Danilo Krummrich	
- <dakr@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
- <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,  Simona Vetter
- <simona@ffwll.ch>
-Date: Tue, 28 Jul 2026 10:38:08 +0200
-In-Reply-To: <20260725-tegra-coherent-wc-v1-1-dfdcc929c21b@gmail.com>
-References: <20260725-tegra-coherent-wc-v1-1-dfdcc929c21b@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.60.2 (3.60.2-1.fc44) 
+	by kara.freedesktop.org (Postfix) with ESMTPS id AE81B46EFC
+	for <nouveau@lists.freedesktop.org>; Tue, 28 Jul 2026 12:34:12 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 052A110E591
+	for <nouveau@lists.freedesktop.org>; Tue, 28 Jul 2026 12:49:47 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 3A53360AA5;
+	Tue, 28 Jul 2026 12:49:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55BBA1F000E9;
+	Tue, 28 Jul 2026 12:49:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1785242985;
+	bh=mOlGHbnoCnDTPlyrEYMlscDbqYIlu3Es6RPIXVT+hSk=;
+	h=From:To:Cc:Subject:Date;
+	b=Bx+4D4MMYIwGUqCIaQG3AI/aJ65ae3igimJCL0rg3uXHKDSEg9D568X4bsIdC9VIq
+	 7QOhxkax7F9qzCEVjY7OlqILS2aDVkTj6yVesG1Yw+LlHj1Scr6zVRiwsjhMDDD+p6
+	 bGZxLhL62sWfLYYrMWRF1gZZJYzgkxVr4pcVwkAvTDgDW5QmpiqSNg3rHWvcSxRdX8
+	 q16SHuVev3+CdBHtoUByi0Xf48oIeJp0+pW23kgC+dPUDUnBwh4icgq3fdJkTkAXsg
+	 ckEkKcF4AOdAUBFGe2S5R65H9muL8tzUJEFNM7RjVVAziwEJ2GTd/R6zBV5Qo4U7Pi
+	 wwgsA6OE2rhLQ==
+From: "Masami Hiramatsu (Google)" <mhiramat@kernel.org>
+To: Steven Rostedt <rostedt@goodmis.org>,
+	Masami Hiramatsu <mhiramat@kernel.org>
+Subject: [PATCH 0/4] tracing/mmiotrace: Fix some bugs in mmiotrace
+Date: Tue, 28 Jul 2026 21:49:41 +0900
+Message-ID: <178524298182.56416.7520852015178187644.stgit@devnote2>
+X-Mailer: git-send-email 2.43.0
+User-Agent: StGit/0.19
 MIME-Version: 1.0
-Message-ID-Hash: LYY2SJM2VVNVTIBEVQYOBX2LS7PB2QUR
-X-Message-ID-Hash: LYY2SJM2VVNVTIBEVQYOBX2LS7PB2QUR
-X-MailFrom: dev@lynxeye.de
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: 33JDOQTYC6YKLHXSEFEONPC2WBZTFAMO
+X-Message-ID-Hash: 33JDOQTYC6YKLHXSEFEONPC2WBZTFAMO
+X-MailFrom: mhiramat@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Faith Ekstrand <faith.ekstrand@collabora.com>
+CC: Pekka Paalanen <ppaalanen@gmail.com>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ linux-trace-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LYY2SJM2VVNVTIBEVQYOBX2LS7PB2QUR/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/33JDOQTYC6YKLHXSEFEONPC2WBZTFAMO/>
 Archived-At: 
- <https://lore.freedesktop.org/67fe34eebafe657b3221ac39838440b294c60444.camel@lynxeye.de/>
+ <https://lore.freedesktop.org/178524298182.56416.7520852015178187644.stgit@devnote2/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -110,69 +104,27 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Am Samstag, dem 25.07.2026 um 18:28 -0500 schrieb Aaron Kling via B4
-Relay:
-> From: Faith Ekstrand <faith.ekstrand@collabora.com>
->=20
-> On Tegra devices, uncached maps traslate to device memory, causing
-> unaligned accesses by userspace resulting in a SIGBUS. Instead, use
-> write-combined maps to ensure proper access.
->=20
-This is not only an issue on Tegra. All ARM64 platforms translate
-uncached to device memory, which does not support unaligned access. So
-the issue could happen in the same way when connecting a discrete GPU
-to a ARM64 platform with PCIe support.
+Hi,
 
-I would argue that there is no downside to always using write combined
-memory for coherent buffers. You gain potentially faster writes while
-the only issue is that writes may get delayed visibility at the device
-side. However, I don't think anyone uses coherent buffers to modify the
-content from the CPU side while the device is operating on the buffer.
-For all regular use-case the memory barrier in FIRE_RING() will make
-sure that the buffered writes are visible to the device before the
-commands using the buffer are made visible to the device.
+Here are some patches to fix bugs in mmiotrace. I used Antigravity
+to scan the code and found some issues.
+The first 2 patches are fixing some kind of timing issues. Other
+patches are a kind of cleanups.
 
-Regards,
-Lucas
+Thank you,
 
-> Signed-off-by: Faith Ekstrand <faith.ekstrand@collabora.com>
-> Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
-> This patch is marked RFC because there is not complete confidence that
-> the change is correct. Without this change, nouveau can easily hit
-> sigbus errors in Android UI rendering via nvk or running vulkan deqp
-> tests on Tegra. Changing coherent maps to use write-combined stops the
-> crashing, but it is unknown what the performance impact is, if any.
-> ---
->  drivers/gpu/drm/nouveau/nouveau_sgdma.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_sgdma.c b/drivers/gpu/drm/no=
-uveau/nouveau_sgdma.c
-> index fa3b4ebf38a83..10f6ef1c541bd 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_sgdma.c
-> @@ -72,9 +72,12 @@ nouveau_sgdma_create_ttm(struct ttm_buffer_object *bo,=
- uint32_t page_flags)
->  	struct nouveau_sgdma_be *nvbe;
->  	enum ttm_caching caching;
-> =20
-> -	if (nvbo->force_coherent)
-> -		caching =3D ttm_uncached;
-> -	else if (drm->agp.bridge)
-> +	if (nvbo->force_coherent) {
-> +		if (drm->client.device.info.platform =3D=3D NV_DEVICE_INFO_V0_SOC)
-> +			caching =3D ttm_write_combined;
-> +		else
-> +			caching =3D ttm_uncached;
-> +	} else if (drm->agp.bridge)
->  		caching =3D ttm_write_combined;
->  	else
->  		caching =3D ttm_cached;
->=20
-> ---
-> base-commit: 1a1757b76427f6201bfe0bf1bea9f7574f332a93
-> change-id: 20260725-tegra-coherent-wc-19941d1a5a60
->=20
-> Best regards,
+---
+base-commit: 62cc90241548d5570ee68e01aaba6506964e9811
+
+Masami Hiramatsu (Google) (4):
+      tracing/mmiotrace: Reset dropped_count in mmio_reset_data()
+      tracing/mmiotrace: Add NULL check for mmio_trace_array in logging functions
+      tracing/mmiotrace: Use trace_assign_type() in mmio_print_mark()
+      tracing/mmiotrace: Clean up coding style and redundant debug logs
+
+
+ kernel/trace/trace_mmiotrace.c |   36 +++++++++++++++++++++++-------------
+ 1 file changed, 23 insertions(+), 13 deletions(-)
+
+--
+Masami Hiramatsu (Google) <mhiramat@kernel.org>
