@@ -4,210 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 564B8C5AC82
-	for <nouveau@archiver.kernel.org>; Fri,  7 Aug 2026 16:42:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04AB7C5AD05
+	for <nouveau@archiver.kernel.org>; Sat,  8 Aug 2026 00:50:57 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B93C810F570;
-	Fri,  7 Aug 2026 16:42:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="nA1aUYEN";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 993FA10E491;
+	Sat,  8 Aug 2026 00:50:57 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 03CA24761D;
-	Fri,  7 Aug 2026 16:26:05 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 2705947626;
+	Sat,  8 Aug 2026 00:34:50 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786119964;
- b=jyFdsGDQutorhsG52nrZemXRACXrfNrzum9MVxRRaAOorTzTRRfFgObGtlJwefKPogCZQ
- lvjGNsPTRIlHDGuoNYZoa9lI2XLZD8hRuzbYQZeUnt26TLn2DMNPuudiM7Hopvf1qbd8BKA
- wYCsorcGrgBf6vZypmnycxJnyrr+Z9o28ukCUcV2stXGMyzAlXquqbevgznrhVSK3d28pur
- jYztZJ9YEC8uaJjLQ5nJsOaIGuF2FKgRkhf49+cpCkQ44EzyhcVw9J3U41Vu27vZd0GBpg+
- tF6cvgqHS3Lsue7NVhCAsz8M97vEnzKm8bq7zTfvzxhGL5zyW3y7XKINR9uA==
+ s=20240201; t=1786149290;
+ b=bc3/3egstnFn6oDWPn7la1vA299crUJ1Kgnea90r+XxaNeFNwTxBX1oQSIKd+t8OdpIBc
+ v3y0ZCX9K9btBOKWj+tKhPpkf9LuYiyvn6l+RI4q2TfYkz+it2jte3j0niBEgZGWK7rUaKs
+ q3f2cOGM8Lbu5CPIX+oF6nxI06uIdVx1AGl66wTNB8rnXWCHo3q3n0AFKXlZS1bkCGNKVMO
+ 0atOgK/4R8P4UGt5fMH3f96cSdNoV4zQ0j9Pu7mbygDCjX0fst55X9QwClxapAhyViWKkqb
+ mNmDmSXehW5NW0fPcgqcU8SakvZOq7QWnc5xQhkoH8pckpzQioeYVJ+AUlqA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786119964; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786149290; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=85JNUC8SyfLYyGobZYpdZmxyQGF0qjVqbjDUd/Wkets=;
- b=cWznaFzaM8NcKGm9ngJUbi4Go8EMz+WKaBOCvnDUbnyzz13Wx6pbr2wanHn8jgL+hWFbb
- apw1cLiA/wgFZPTb1+biWSKt4vLPxSqD52DM8/HifoIO1VKtDzyCJz+qHfZJHvrk2Vdt6v4
- ajpSPRjXqNio64DVTTRGfKjpb+DTX5WvHl4IRYH8B0BQ2e8FAUiooDOQU8Aow2Ch5xe2Cof
- QycwS1mytK7yGhtjYShTNOrAIUe9astmfyepRfnqSATAQemTorksw/MYBSV8O0QhkGem6U7
- 2xIAAu6FZD/mLvvXaJ2BQ9EPJ5BH2FTtNoGIC3D8au/MjIhFzvcwimrCIbzA==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=oracle.com;
+ bh=R7ehihLLiZmHB2B3ciyg5Xqa9/zPCscVuwpxeE3XFeY=;
+ b=pYDpicwG3GTWL2E8gp4jMaj53TYwvDfS4BAt6JhE6IYHEdxr2XP5VGGG3P80/2cbtRKv/
+ +W7Srh3YlRSD9w89FkrYhkt71Je54/v64W4e28GnszM7Og3KuWyPNTXnF90aBMQGZ2kK5xO
+ z5V14K/77A1o34yY0YTdLEJYeDbF/VoWDGGyv1M2jjBXz7xaMQDVPXHF9fISu00507xTL2I
+ EnE2w1/DnIHaIlU6tIS8OMZd5V/03ZiusbFRQNCKXhdoXwC0jUj2yvNZX//8Bh/x1mMJIey
+ TTC6rWELqXkiAozpGPnO4h+qnztO7w/yPl6txHZ8ov7ddvenlUxI8GmiTm7w==
+ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=oracle.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=oracle.com;
+  dmarc=fail (Used From Domain Record) header.from=goodmis.org
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=fail;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=oracle.com
- policy.dmarc=reject
+ dmarc=fail (Used From Domain Record) header.from=goodmis.org
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9BB934709A
-	for <nouveau@lists.freedesktop.org>; Thu,  6 Aug 2026 18:50:36 +0000 (UTC)
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
- [205.220.177.32])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E5A9510E37D;
-	Thu,  6 Aug 2026 19:06:39 +0000 (UTC)
-Received: from pps.filterd (m0333520.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 676Ftr4v4168306;
-	Thu, 6 Aug 2026 19:06:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	corp-2025-04-25; bh=85JNUC8SyfLYyGobZYpdZmxyQGF0qjVqbjDUd/Wkets=; b=
-	nA1aUYENomsR9p7hfDkQr6KalTZrWQW8NET0IkudX6kxW006ofYrtz87Qku7QfJU
-	1lbtfpVmJ42Q3AQE1tcbOw0dHj5dJSylYxq+m2+YcyLW9melEp/Zo40HFGHB54iG
-	OcTwtR+niQLcarL+4OWP5kUShgYJOMrLwxEqqSkY7Lj2zjgD/sgtw+C5rg7PDGAH
-	Gv3g1ppfRFvZh8DYeUX2gV+upEZO5qZ40tc03kMw1uUKshv2LOqjagJ3HbvFdCxa
-	5hBpF9vOLZ/60dXew31tSvX4uLcqli6uolj+khGTMmHGGzK/4pK/rJL+YY5xBUHb
-	pPRuZrwRVaPtUZ7W/V2+uA==
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4fs8ugpqtf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 06 Aug 2026 19:06:26 +0000 (GMT)
-Received: from pps.filterd
- (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.7/8.18.1.7)
- with ESMTP id 676J0b6k024663;
-	Thu, 6 Aug 2026 19:06:25 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
- 4fs78w56e3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 06 Aug 2026 19:06:25 +0000 (GMT)
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 676J6LgY011247;
-	Thu, 6 Aug 2026 19:06:24 GMT
-Received: from ca-mkp2.ca.oracle.com.com
- (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com
- [100.100.251.135])
-	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id
- 4fs78w56b9-3;
-	Thu, 06 Aug 2026 19:06:24 +0000 (GMT)
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-To: Julia.Lawall@inria.fr, Alex Deucher <alexander.deucher@amd.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-        Borislav Petkov <bp@alien8.de>,
-        =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
-        Daniel Lezcano <daniel.lezcano@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Eric Dumazet <edumazet@google.com>, Florian Westphal <fw@strlen.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hans de Goede <hansg@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Jaroslav Kysela <perex@perex.cz>, Jason Gunthorpe <jgg@ziepe.ca>,
-        Jiri Pirko <jiri@resnulli.us>, "Joerg Roedel (AMD)" <joro@8bytes.org>,
-        Johan Hovold <johan@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Julian Anastasov <ja@ssi.bg>, Leon Romanovsky <leon@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
- Linus Walleij <linusw@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Mark Brown <broonie@kernel.org>, Matthew Sakai <msakai@redhat.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Mike Rapoport <rppt@kernel.org>,
-        Miri Korenblit <miriam.rachel.korenblit@intel.com>,
-        Nicolas Palix <nicolas.palix@imag.fr>,
-        Pablo Neira Ayuso <pablo@netfilter.org>,
-        Paolo Abeni <pabeni@redhat.com>, Ping-Ke Shih <pkshih@realtek.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Sebastian Reichel <sre@kernel.org>, Shuah Khan <shuah@kernel.org>,
-        Simona Vetter <simona@ffwll.ch>, Simon Horman <horms@verge.net.au>,
-        Stephen Boyd <sboyd@kernel.org>, Steve French <sfrench@samba.org>,
-        Takashi Iwai <tiwai@suse.com>, Thomas Renninger <trenn@suse.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Tony Luck <tony.luck@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
-        Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-        Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>,
-        Yazen Ghannam <Yazen.Ghannam@amd.com>,
-        Sang-Heon Jeon <ekffu200098@gmail.com>
-Subject: Re: (subset) [PATCH 00/36] treewide: remove conditional returns with
- no effect
-Date: Thu,  6 Aug 2026 15:06:08 -0400
-Message-ID: <178589207129.336697.9870225893827541543.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260723184538.3888637-1-ekffu200098@gmail.com>
-References: <20260723184538.3888637-1-ekffu200098@gmail.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id CE9184723A
+	for <nouveau@lists.freedesktop.org>; Sat,  8 Aug 2026 00:34:46 +0000 (UTC)
+Received: from relay.hostedemail.com (smtprelay0013.hostedemail.com
+ [216.40.44.13])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EB63310E483
+	for <nouveau@lists.freedesktop.org>; Sat,  8 Aug 2026 00:50:53 +0000 (UTC)
+Received: from omf05.hostedemail.com (lb01a-stub [10.200.18.249])
+	by unirelay09.hostedemail.com (Postfix) with ESMTP id 1B4358020C;
+	Sat,  8 Aug 2026 00:50:52 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by
+ omf05.hostedemail.com (Postfix) with ESMTPA id 522E12000E;
+	Sat,  8 Aug 2026 00:50:50 +0000 (UTC)
+Date: Fri, 7 Aug 2026 20:50:53 -0400
+From: Steven Rostedt <rostedt@goodmis.org>
+To: "Masami Hiramatsu (Google)" <mhiramat@kernel.org>
+Subject: Re: [PATCH 4/4] tracing/mmiotrace: Clean up coding style and
+ redundant debug logs
+Message-ID: <20260807205053.7000eef0@gandalf.local.home>
+In-Reply-To: <178524301945.56416.2087305624947649637.stgit@devnote2>
+References: <178524298182.56416.7520852015178187644.stgit@devnote2>
+	<178524301945.56416.2087305624947649637.stgit@devnote2>
+X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-08-06_02,2026-08-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
- spamscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0 mlxscore=0
- phishscore=0 mlxlogscore=672 suspectscore=0 classifier=spam adjust=0
- reason=mlx scancount=1 engine=8.19.0-2606160000 definitions=main-2608060149
-X-Proofpoint-ORIG-GUID: XGMDaQGIFMb57T6Q2yvPQTQQt2debxfq
-X-Authority-Analysis: v=2.4 cv=XqnK/1F9 c=1 sm=1 tr=0 ts=6a74db32 b=1 cx=c_pps
- a=e1sVV491RgrpLwSTMOnk8w==:117 a=e1sVV491RgrpLwSTMOnk8w==:17
- a=IkcTkHD0fZMA:10 a=Sv0fKeRqtYgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=jiCTI4zE5U7BLdzWsZGv:22 a=BqU2WV_vvsyTyxaotp0D:22 a=VwQbUJbxAAAA:8
- a=Br-j9HdbvUlrMjNZj6IA:9 a=QEXdDO2ut3YA:10 a=5yU3S35YU4bGjq-dph-N:22
- a=Bho9c0fBagfJEIQBS7DQ:22 cc=ntf awl=host:13510
-X-Proofpoint-Spam-Info: AW1haW4tMjYwODA2MDE0OSBTYWx0ZWRfX6uIK9jT+2Jev
- rYS5Xc6Wjv9hMYRtyD0NY9wioUhY1o9ts8S44XrOIykROIC2fMM+q3H5rjkub44bNgkLDQ3tnSe
- fkx9LiuU0Ioed9eVzRB8PP2qYuZIVaHGDH9Vr333gSb2ZgsHD92v
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwODA2MDE0OSBTYWx0ZWRfX43FUiflrVixJ
- FNgAKsr+fsfl0ktZltC3fvW6MVFcRQRy/oySHj8nQQDMOHwfS94QLWHrXArK3j62D1c6aNzQrnl
- 2DtOuGbPQocnjuSCI1ny1WWYx/7jkkjlcfyl+lp7TEesEfkx307+KuCZo0OgIxbIwfa72MWD4em
- tn6/hMd/QXx6zH3wP5OlhrMzlp2qKgIxJlelAMfUWIkruyj4hnvKzGUkqPoF4QRZ71As9I8pV2j
- DMm/cMIaHufC6lXcsuKfUk0yiqWTx1Zr8LtQAR498eW34hEj3pAMHucta0+1CKmEnv9EN7lkU/M
- FG7jgW8yHOjl2TgueMJFzovO4heKYSqjW47oC3CHVujyZPMUqifsWdUKFoxdhd+EKhXdCEJL9b0
- LGCES5HP/CdGIqj2UaaWymZGJVFVJ4RBD/aEk7/710HO5x59Z+gVx3LZGgty2YUYCbgJE7oGTWH
- QPXliDM2eYx5QgvaSSBlrfWn/1V9lBD33lbCDCaI=
-X-Proofpoint-GUID: XGMDaQGIFMb57T6Q2yvPQTQQt2debxfq
-X-MailFrom: martin.petersen@oracle.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Stat-Signature: but57si57nhqcgc6yng1suher1mosm3u
+X-Rspamd-Server: rspamout04
+X-Rspamd-Queue-Id: 522E12000E
+X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
+X-Session-ID: U2FsdGVkX19gRu8bUZ9VZnlDoRBGEO+tZKahHYXFwsU=
+X-HE-Tag: 1786150250-943132
+X-HE-Meta: 
+ U2FsdGVkX1+WHC481oLJWAA19yCFqIbY1AD5kD10b9zjYdqPGVuqTyJDTlsfGr0ZRtGwSyRfHk9WjqEkwfRCFNQopbZL89yvsCebadSWHixmFQWA8YzADAlUaIpxpYr/hzDTrW/GjndiCmSN+9f2ENi4M3ak1dQsOsluTWqRpFNhx35RjGcFajI9bYZ45Ke7abt+pFHko9dEpgMyN9g5Lcq22AOAdJFnrA6euvPhbDjyU69JrobJyGPVN/22GoZRcKJCQf4pf8xGGz9P521ZhIL1ZnqS3pYUsqfCQlaGnNhNtO/onqmhmXU1gbyVgDAy/J2fdPkePP7pgWLNfMdIV/10LA0mos2p
+Message-ID-Hash: XTQZE6UCI7ZATLD5TB3XB7WWSTNCQJCP
+X-Message-ID-Hash: XTQZE6UCI7ZATLD5TB3XB7WWSTNCQJCP
+X-MailFrom: rostedt@goodmis.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: 4F5AUX5WNVUYUA4DXA4VQFFCXMIAN2RD
-X-Message-ID-Hash: 4F5AUX5WNVUYUA4DXA4VQFFCXMIAN2RD
-X-Mailman-Approved-At: Fri, 07 Aug 2026 16:26:02 +0000
-CC: "Martin K . Petersen" <martin.petersen@oracle.com>, cocci@inria.fr,
- amd-gfx@lists.freedesktop.org, dmaengine@vger.kernel.org,
- dm-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-wired-lan@lists.osuosl.org,
- iommu@lists.linux.dev, linux-cifs@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-crypto@vger.kernel.org, linux-edac@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-mm@kvack.org, linux-pm@vger.kernel.org,
- linux-rdma@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-s390@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, lvs-devel@vger.kernel.org,
- netdev@vger.kernel.org, netfilter-devel@vger.kernel.org,
- nouveau@lists.freedesktop.org, platform-driver-x86@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Pekka Paalanen <ppaalanen@gmail.com>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ linux-trace-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4F5AUX5WNVUYUA4DXA4VQFFCXMIAN2RD/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XTQZE6UCI7ZATLD5TB3XB7WWSTNCQJCP/>
 Archived-At: 
- <https://lore.freedesktop.org/178589207129.336697.9870225893827541543.b4-ty@oracle.com/>
+ <https://lore.freedesktop.org/20260807205053.7000eef0@gandalf.local.home/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -217,22 +102,128 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri, 24 Jul 2026 03:45:02 +0900, Sang-Heon Jeon wrote:
+On Tue, 28 Jul 2026 21:50:19 +0900
+"Masami Hiramatsu (Google)" <mhiramat@kernel.org> wrote:
 
-> While reading mm/memblock, I found a conditional return where both
-> branches return the same value:
+> From: Masami Hiramatsu (Google) <mhiramat@kernel.org>
 > 
-> 	err = do_something();
-> 	if (err)
-> 		return err;
-> 	return err;
+> Clean up coding style issues in trace_mmiotrace.c:
+> - Remove redundant pr_debug() entries in tracer callbacks.
+> - Fix opening brace placement for mmio_tracer.
+> - Prefer 'unsigned int' to bare 'unsigned'.
+> - Add missing blank lines after local variable declarations.
 > 
-> [...]
+> Assisted-by: Antigravity:gemini-3.6-flash
+> Signed-off-by: Masami Hiramatsu (Google) <mhiramat@kernel.org>
+> ---
+>  kernel/trace/trace_mmiotrace.c |   16 +++++++---------
+>  1 file changed, 7 insertions(+), 9 deletions(-)
+> 
+> diff --git a/kernel/trace/trace_mmiotrace.c b/kernel/trace/trace_mmiotrace.c
+> index 77120d467e11..ce16e1c53d12 100644
+> --- a/kernel/trace/trace_mmiotrace.c
+> +++ b/kernel/trace/trace_mmiotrace.c
+> @@ -36,7 +36,6 @@ static void mmio_reset_data(struct trace_array *tr)
+>  
+>  static int mmio_trace_init(struct trace_array *tr)
+>  {
+> -	pr_debug("in %s\n", __func__);
 
-Applied to 7.3/scsi-queue, thanks!
+So how are these redundant?
 
-[30/36] scsi: mpt3sas: remove conditional return with no effect
-        https://git.kernel.org/mkp/scsi/c/c79f9bf2d87f
+Are there pr_debug() prints elsewhere?
 
--- 
-Martin K. Petersen
+>  	mmio_trace_array = tr;
+>  
+>  	mmio_reset_data(tr);
+> @@ -46,8 +45,6 @@ static int mmio_trace_init(struct trace_array *tr)
+>  
+>  static void mmio_trace_reset(struct trace_array *tr)
+>  {
+> -	pr_debug("in %s\n", __func__);
+> -
+>  	disable_mmiotrace();
+>  	mmio_reset_data(tr);
+>  	mmio_trace_array = NULL;
+> @@ -55,7 +52,6 @@ static void mmio_trace_reset(struct trace_array *tr)
+>  
+>  static void mmio_trace_start(struct trace_array *tr)
+>  {
+> -	pr_debug("in %s\n", __func__);
+>  	mmio_reset_data(tr);
+>  }
+>  
+> @@ -113,6 +109,7 @@ static void mmio_pipe_open(struct trace_iterator *iter)
+>  static void mmio_close(struct trace_iterator *iter)
+>  {
+>  	struct header_iter *hiter = iter->private;
+> +
+>  	destroy_header_iter(hiter);
+>  	iter->private = NULL;
+>  }
+
+This is fine.
+
+> @@ -170,7 +167,7 @@ static enum print_line_t mmio_print_rw(struct trace_iterator *iter)
+>  	struct trace_seq *s	= &iter->seq;
+>  	unsigned long long t	= ns2usecs(iter->ts);
+>  	unsigned long usec_rem	= do_div(t, USEC_PER_SEC);
+> -	unsigned secs		= (unsigned long)t;
+> +	unsigned int secs	= (unsigned long)t;
+>  
+
+OK.
+
+>  	trace_assign_type(field, entry);
+>  	rw = &field->rw;
+> @@ -215,7 +212,7 @@ static enum print_line_t mmio_print_map(struct trace_iterator *iter)
+>  	struct trace_seq *s	= &iter->seq;
+>  	unsigned long long t	= ns2usecs(iter->ts);
+>  	unsigned long usec_rem	= do_div(t, USEC_PER_SEC);
+> -	unsigned secs		= (unsigned long)t;
+> +	unsigned int secs	= (unsigned long)t;
+>  
+>  	trace_assign_type(field, entry);
+>  	m = &field->map;
+> @@ -249,7 +246,7 @@ static enum print_line_t mmio_print_mark(struct trace_iterator *iter)
+>  	struct trace_seq *s	= &iter->seq;
+>  	unsigned long long t	= ns2usecs(iter->ts);
+>  	unsigned long usec_rem	= do_div(t, USEC_PER_SEC);
+> -	unsigned secs		= (unsigned long)t;
+> +	unsigned int secs	= (unsigned long)t;
+>  
+>  	trace_assign_type(print, entry);
+>  	msg = print->buf;
+> @@ -274,8 +271,7 @@ static enum print_line_t mmio_print_line(struct trace_iterator *iter)
+>  	}
+>  }
+>  
+> -static struct tracer mmio_tracer __read_mostly =
+> -{
+> +static struct tracer mmio_tracer __read_mostly = {
+
+OK.
+
+>  	.name		= "mmiotrace",
+>  	.init		= mmio_trace_init,
+>  	.reset		= mmio_trace_reset,
+> @@ -322,6 +318,7 @@ static void __trace_mmiotrace_rw(struct trace_array *tr,
+>  void mmio_trace_rw(struct mmiotrace_rw *rw)
+>  {
+>  	struct trace_array *tr = mmio_trace_array;
+> +
+>  	__trace_mmiotrace_rw(tr, rw);
+>  }
+>  
+> @@ -353,6 +350,7 @@ static void __trace_mmiotrace_map(struct trace_array *tr,
+>  void mmio_trace_mapping(struct mmiotrace_map *map)
+>  {
+>  	struct trace_array *tr = mmio_trace_array;
+> +
+>  	__trace_mmiotrace_map(tr, map);
+>  }
+
+Honestly, for one line functions like the above, I think it looks better
+without that blank line.
+
+-- Steve
