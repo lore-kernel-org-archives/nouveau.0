@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89257C5AC67
-	for <nouveau@archiver.kernel.org>; Sat,  8 Aug 2026 04:16:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2301C55174
+	for <nouveau@archiver.kernel.org>; Sat,  8 Aug 2026 11:17:24 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E7F9D10E4F8;
-	Sat,  8 Aug 2026 04:16:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3E39D10E392;
+	Sat,  8 Aug 2026 11:17:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="He9pQrBp";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EBOyfSkE";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2FCE947621;
-	Sat,  8 Aug 2026 04:00:34 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C43A947638;
+	Sat,  8 Aug 2026 11:01:13 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786161634;
- b=jOuA8wu241btJ6l/KX7q6pDilf0qPmfyQlKS9Vt1PaiUZbbGN0MZpwHHsWCNOQTa9lObJ
- RggjcqVy7PYy0hHN4ZCR3TXbghShhedpTWFz0Q99GCywHXBLQbG4gY50//k/uqzwO0VMpjA
- eTwLcxZ4omddzXh+nJGgcC1nJRa3XE6hACti+QIljssNcKF+nrfqyVEWPa2a5AvZneVX+Ha
- WKSG5fVY9ezITQ34UCYf5+siNkhVcn1QI3A/0B+/z9GYvB02QiILD9E8LT65YhKIhl2Jlyy
- k0aV8jPjHt5LCOZOUC5QMn5vGq70KxVuwXGPCOuyPbrf+EOnk99q3UmCr7sw==
+ s=20240201; t=1786186873;
+ b=WFtKHJsZ2Uf81WcYb8i7Jjr4yWMWXX3cqSjBrxwsu2xPpITE2GzBFX6RvW7ywDHNT50N7
+ HM01EWgWJ/Jm7x0ZSeLaYDyKS6G9NWD1UTcGv8hcWGbTL0TTmFC1pVd6gmj16foUWjhiIi4
+ DgeBnuucNyCuFbTv9gEexS4OyB4jRIH+D88HvB5G1yuDOJfPvifsfFGPgtcmF8d37OVS6PX
+ sUnxFgM0TmQOgp1uwsBHg58RoW2S8eXmVA3L4N+ALT2B8u0O3FQJbmorTPNAVlaEgLKvHxS
+ Hnm15xp3VHk9DJc3Hx60ekD48/6sgxO/Kc2JYCC64IoIh61P8KedSA72RLVg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786161634; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786186873; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Fz3hQs7dGPKGj3P4TL+iHFB8vT287v23iLsb4YLkVNc=;
- b=yk0GdTdOMk7InMG36S20rzzVvqA8iZ9gLvuIDi2WZ1lmhKH52maXlgEJl2bA9w9kSJ7f1
- A61rvwFmJ+aQfMxOBCxsuV0saV2Z+BDLtsGD/HoOCO+ZtOxj+BQJWxMoH8bwfo42GSRzkQN
- FOl/PP1u9bUD8IK/HB77xiiZp06TROufhSaNDLeVVZcBhvfUj+QB2bkadPep1Lswcl5rsc/
- mosZgGPSHmHAkN3c0EExY3DANdDCSlRqBJqltqXgVFeaXjyAu/HdpRNreBMI9/saxyGtiyD
- qxftAAZmtp7DgyDMQug2u6FTlpFTF8t7hqzVzHau8We2oXWvfqJHsggTX1DA==
+ bh=QfIWwaj0HJbgln68sZGytrcxyA8nZeansFJS+kMV5Uo=;
+ b=gPKdIz/Ql/mY6BuvYZVMXX/PYmHjSmNZ4ry6xrzAjrEHBPl1MYA3kAgOVtZdskbJ9FJxQ
+ YzxOQ/fxgu/PS37N48V8H0GRbtZu8Z6cikE20Ou8a0gu4iCBIv2jdsznGs38EI7fG7kidA9
+ naNIARH/mkfw5eEXjWTsa05IT6FxLnsvVtWthAnPRiIRKCfIp0mHJiIdFpSWFQsoDkWAIBq
+ zyhFNDnRXsMWdAlRtuPnbfpD84fYYJ9xsk8KXTrFdRPIlGrQC8tf8xppnVfQZ5QlcbPyWi+
+ AB49UhM002+uGzgurkYpBdCf2bTltVTNXwCwxD1carKg28njCOJjJ7W6yFFw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,58 +46,75 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 0DA5F4721F
-	for <nouveau@lists.freedesktop.org>; Sat,  8 Aug 2026 04:00:31 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 676F7471F3
+	for <nouveau@lists.freedesktop.org>; Sat,  8 Aug 2026 11:01:10 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 87CCF10E4DF
-	for <nouveau@lists.freedesktop.org>; Sat,  8 Aug 2026 04:16:38 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5874A4164F;
-	Sat,  8 Aug 2026 04:16:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A97341F000E9;
-	Sat,  8 Aug 2026 04:16:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1786162598;
-	bh=Fz3hQs7dGPKGj3P4TL+iHFB8vT287v23iLsb4YLkVNc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=He9pQrBpOGOgxzd/42LlA1uIsWsDzMalZQ+kiNf3xPzzsN8JJSj3YAClfVUkyKA8a
-	 QfjY39OtPfHktEjC1bdJXMzsaUWSQkZhiDfI5YP+YI1fuK/FeffvSxoT7COmpTQkaD
-	 silKovzkc6NURV3co9Ue9uwuqxVIxZlpbxzq0zH/WPKxEdHjqboAKGsWb4Dah47uZK
-	 IFeba/8ASG7uJoOauEYFfEh8NusCx/x6te8eILh/g6IOiYItTZUXBb1XTxYaFvENkR
-	 FmtHt3aZBPUcM2Pt3dSC1TaS4xRX/10fqrPRDQroEm/3DL/Ymh+1hGtx4Bj4zYxOFh
-	 18DeahCMApwbg==
-Date: Sat, 8 Aug 2026 13:16:34 +0900
-From: Masami Hiramatsu (Google) <mhiramat@kernel.org>
-To: Steven Rostedt <rostedt@goodmis.org>
-Subject: Re: [PATCH 4/4] tracing/mmiotrace: Clean up coding style and
- redundant debug logs
-Message-Id: <20260808131634.4dafadc203a58e9f5b0e7613@kernel.org>
-In-Reply-To: <20260807205053.7000eef0@gandalf.local.home>
-References: <178524298182.56416.7520852015178187644.stgit@devnote2>
-	<178524301945.56416.2087305624947649637.stgit@devnote2>
-	<20260807205053.7000eef0@gandalf.local.home>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 926A510E010;
+	Sat,  8 Aug 2026 11:17:18 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 2564243EFE;
+	Sat,  8 Aug 2026 11:17:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DB406C2BCF7;
+	Sat,  8 Aug 2026 11:17:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1786187837;
+	bh=gc3o85B8Q3mCZJagtpIH3U1Y4HQoRkjaGBK0pr5KdIs=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=EBOyfSkERwgjILu38H61CMHh0uIDlWjHqqn7w3hAkZde+C21+I4xcPRkrU735Tm3P
+	 L3VkFUYF6kwr70vXH3RBFljrbCg8DS4ZO23B/9k3ltVv+9OEp4rrWXp3QW3RAonBpB
+	 Z4su0AHToEZU0RNfi9mD/lExwbBsPToIWfvbjChlFFwFw0FnLupNllh+6ihJEAXIOP
+	 PZqCWvy435fsEkLVAWjm+xHh94kLTC/lg1NQsEAhUZyNnz/Kh4DtQEoFAEnVa4lWzu
+	 jvqj/2df/y/Ay//7NPj6Sa/3F4t7UzwVeoI9AmCkpUg0GUQ2rF0hh9/6LLOB3IHFT5
+	 k1YDRHnv6xbhg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BBCC4C5AD4E;
+	Sat,  8 Aug 2026 11:17:17 +0000 (UTC)
+From: Junrui Luo via B4 Relay <devnull+moonafterrain.outlook.com@kernel.org>
+Date: Sat, 08 Aug 2026 19:14:18 +0800
+Subject: [PATCH 2/2] drm/nouveau/uvmm: reject a second VM_INIT
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID-Hash: WZDDBWODGTMACMRI4FZP6CDC4YGQ4RS7
-X-Message-ID-Hash: WZDDBWODGTMACMRI4FZP6CDC4YGQ4RS7
-X-MailFrom: mhiramat@kernel.org
+Message-Id: <20260808-nouveau-fixes-v1-2-c3ebdc17a89c@outlook.com>
+References: <20260808-nouveau-fixes-v1-0-c3ebdc17a89c@outlook.com>
+In-Reply-To: <20260808-nouveau-fixes-v1-0-c3ebdc17a89c@outlook.com>
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Dave Airlie <airlied@redhat.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1979;
+ i=moonafterrain@outlook.com; h=from:subject:message-id;
+ bh=kir+5s3fujjv8rmqeaXun1k1yrvbyiCBLh8cPyNLZQ8=;
+ b=owJ4nJvAy8zAJVb4wiKgu++DA+NptSSGrHIBi6WxtVx5p//fuOjpXSW9d1dYj9jfeyFGP+1fF
+ za9v/MmxaejlIVBjItBVkyR5XjBpW8Wvlt0t/hsSYaZw8oEMoSBi1MAJjJvOyPDI4PGSzyi0SHz
+ JSX9i6Xecy3hY9pmn3p22apLf5x7G9RuMjLsrWCZf+hniKnml7y4aLWggInflvz8tULjb3kLn2t
+ RgxIDAK7KSdM=
+X-Developer-Key: i=moonafterrain@outlook.com; a=openpgp;
+ fpr=C770D2F6384DB42DB44CB46371E838508B8EF040
+X-Endpoint-Received: by B4 Relay for moonafterrain@outlook.com/default with
+ auth_id=909
+X-Original-From: Junrui Luo <moonafterrain@outlook.com>
+Message-ID-Hash: X6JSDCGI55GKWLKEH4AOOWEZR2MSIY5H
+X-Message-ID-Hash: X6JSDCGI55GKWLKEH4AOOWEZR2MSIY5H
+X-MailFrom: devnull+moonafterrain.outlook.com@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Pekka Paalanen <ppaalanen@gmail.com>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- linux-trace-kernel@vger.kernel.org
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Junrui Luo <moonafterrain@outlook.com>,
+ Yuhao Jiang <danisjiang@gmail.com>, stable@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: moonafterrain@outlook.com
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WZDDBWODGTMACMRI4FZP6CDC4YGQ4RS7/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/X6JSDCGI55GKWLKEH4AOOWEZR2MSIY5H/>
 Archived-At: 
- <https://lore.freedesktop.org/20260808131634.4dafadc203a58e9f5b0e7613@kernel.org/>
+ <https://lore.freedesktop.org/20260808-nouveau-fixes-v1-2-c3ebdc17a89c@outlook.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -107,69 +124,56 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri, 7 Aug 2026 20:50:53 -0400
-Steven Rostedt <rostedt@goodmis.org> wrote:
+From: Junrui Luo <moonafterrain@outlook.com>
 
-> On Tue, 28 Jul 2026 21:50:19 +0900
-> "Masami Hiramatsu (Google)" <mhiramat@kernel.org> wrote:
-> 
-> > From: Masami Hiramatsu (Google) <mhiramat@kernel.org>
-> > 
-> > Clean up coding style issues in trace_mmiotrace.c:
-> > - Remove redundant pr_debug() entries in tracer callbacks.
-> > - Fix opening brace placement for mmio_tracer.
-> > - Prefer 'unsigned int' to bare 'unsigned'.
-> > - Add missing blank lines after local variable declarations.
-> > 
-> > Assisted-by: Antigravity:gemini-3.6-flash
-> > Signed-off-by: Masami Hiramatsu (Google) <mhiramat@kernel.org>
-> > ---
-> >  kernel/trace/trace_mmiotrace.c |   16 +++++++---------
-> >  1 file changed, 7 insertions(+), 9 deletions(-)
-> > 
-> > diff --git a/kernel/trace/trace_mmiotrace.c b/kernel/trace/trace_mmiotrace.c
-> > index 77120d467e11..ce16e1c53d12 100644
-> > --- a/kernel/trace/trace_mmiotrace.c
-> > +++ b/kernel/trace/trace_mmiotrace.c
-> > @@ -36,7 +36,6 @@ static void mmio_reset_data(struct trace_array *tr)
-> >  
-> >  static int mmio_trace_init(struct trace_array *tr)
-> >  {
-> > -	pr_debug("in %s\n", __func__);
-> 
-> So how are these redundant?
-> 
-> Are there pr_debug() prints elsewhere?
+nouveau_uvmm_ioctl_vm_init() sets up the GPU VA space for a drm_file and
+is reachable from an unprivileged render node client (DRM_RENDER_ALLOW).
+After the cli->uvmm.disabled check it unconditionally allocates a
+nouveau_uvmm, initialises its drm_gpuvm and region maple tree, creates
+the backing nvif vmm and overwrites cli->uvmm.ptr, without testing
+whether one already exists.
 
-No, that is not redundant, but just like only for debugging mmiotrace.
-Maybe we can leave it.
+Calling DRM_IOCTL_NOUVEAU_VM_INIT twice therefore drops the previous
+nouveau_uvmm with no remaining reference to it: drm_gpuvm_put() is
+reached only from nouveau_uvmm_fini(), which nouveau_cli_fini() calls
+once on whatever cli->uvmm.ptr holds at close time. The orphaned
+nouveau_uvmm, its drm_gpuvm, that gpuvm's reservation GEM object and its
+region maple tree are never freed, buffer objects mapped in it stay
+pinned by the orphaned uvmas, and its nvif vmm keeps the GPU page
+directories allocated until the file is closed, so repeating the ioctl
+leaks kernel memory without bound.
 
-[...]
-> > @@ -322,6 +318,7 @@ static void __trace_mmiotrace_rw(struct trace_array *tr,
-> >  void mmio_trace_rw(struct mmiotrace_rw *rw)
-> >  {
-> >  	struct trace_array *tr = mmio_trace_array;
-> > +
-> >  	__trace_mmiotrace_rw(tr, rw);
-> >  }
-> >  
-> > @@ -353,6 +350,7 @@ static void __trace_mmiotrace_map(struct trace_array *tr,
-> >  void mmio_trace_mapping(struct mmiotrace_map *map)
-> >  {
-> >  	struct trace_array *tr = mmio_trace_array;
-> > +
-> >  	__trace_mmiotrace_map(tr, map);
-> >  }
-> 
-> Honestly, for one line functions like the above, I think it looks better
-> without that blank line.
-> 
-> -- Steve
+Test cli->uvmm.ptr under cli->mutex before anything is allocated and
+return -EBUSY, mirroring nouveau_svmm_init().
 
-Yeah, this is somewhat machinary fix against the checkpatch.pl.
-Or, maybe it is better to just pass mmio_trace_array directly?
+Fixes: b88baab82871 ("drm/nouveau: implement new VM_BIND uAPI")
+Reported-by: Yuhao Jiang <danisjiang@gmail.com>
+Assisted-by: Claude:claude-opus-5
+Cc: stable@vger.kernel.org
+Signed-off-by: Junrui Luo <moonafterrain@outlook.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Thanks,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index bced1481674e..26d2a57b5aac 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -1929,6 +1929,12 @@ nouveau_uvmm_ioctl_vm_init(struct drm_device *dev,
+ 		goto out_unlock;
+ 	}
+ 
++	/* Check that a GPU VA space isn't already set up for the client. */
++	if (cli->uvmm.ptr) {
++		ret = -EBUSY;
++		goto out_unlock;
++	}
++
+ 	uvmm = kzalloc_obj(*uvmm);
+ 	if (!uvmm) {
+ 		ret = -ENOMEM;
 
 -- 
-Masami Hiramatsu (Google) <mhiramat@kernel.org>
+2.51.2
+
+
