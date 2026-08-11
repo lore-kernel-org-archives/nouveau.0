@@ -4,115 +4,120 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0903C5B567
-	for <nouveau@archiver.kernel.org>; Mon, 10 Aug 2026 18:57:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68F57C5AD7B
+	for <nouveau@archiver.kernel.org>; Tue, 11 Aug 2026 01:16:45 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9834210E987;
-	Mon, 10 Aug 2026 18:57:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 33F9110EA31;
+	Tue, 11 Aug 2026 01:16:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dGjCopdH";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=collabora.com header.i=faith.ekstrand@collabora.com header.b="W6imkZE4";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 1033947678;
-	Mon, 10 Aug 2026 18:40:54 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786387253;
- b=Icyx2q9mMsQ5wWGHudvu+sCrp41oAu1ZurHU64bunSZ2JsPN7u0G2sdsNTPt0bkyNdB7H
- TioBztvvVe3MapOkeQSebZhIadT+aAxObUm5N13mCcrdPkJWgLuziuqsTu5kjDJn3a0Fok+
- 7tH2uyRhFNyf0srN9ODVkyz25804CvEbgv8y/J2Bx3dzekMClH76tHX8csiFCrZkT5wUM8h
- 0JDtJn3bI4pgC43j1mdXhoFoZmFqcnh9coDK+kEerZq08Y+iLm/Itj02hcfJr5q7J9yP/15
- G7uLDXUSzx1odXBu4BBdgQEj0TYX5lft26813DNFi1UZ0R24HoOVQHogajbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786387253; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 082D947684;
+	Tue, 11 Aug 2026 01:00:31 +0000 (UTC)
+ARC-Seal: i=2; cv=fail; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1786410030;
+ b=ppg5I6yUPeK2FfwKq/wTymfFeCiDAjiIgomtbq2X+aV5QaMqizQ615hT3FcFNgbS1rIIJ
+ YI7KTwXKLcffNngrbP2Puss/zl9NhdtuMeho7w+Mb6GwbQejTn2ObDQvig15MR7JRHKB7X9
+ KWXL99pnd1W+cAQxQS52WXWlf+U39MYqZgRuJpVM7j0PoZNsXmlXZmi+5byKIN4OURctBTR
+ NQVdp+lNiVOlL564DQEX158lxljpMMqkRIS6pnKprNZ4calK0eA6VMxbgxgW53fPtytpj7Y
+ HUy43UCf3AAIXis2f+0ZH9ZwUJrQ4ig+i0477Vccs6t7AGFkTO+egTRJS0hQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1786410030; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=DgHH11rbBugxycgVfllDqGnSiJw+pTYpQUpXBdKD4ec=;
- b=gnW+JLsuCUI/Ckx/P5utTbqCHZ5hispQD54N26FxKuITMXkE66q6pVRiTcS1g6xDtZnyl
- EhOafEPx5VFYtWuTCu9Es36xovYI+y9VA07yc2SpkJhLANqdENMya/Pz+ZPdWbzG1t6PO/Z
- lrhHxVvm/KhHkT9SeWBDGF5UDApw6ZE2EEyRA1MkMQNlKhMFJtJgY4JqTFSeg5l7s9mkZ9Y
- prlaeLUg1UTqjfhnZxBLvkQFwhTsSV9NP1T2acg1XkLwTfYdrJSTnH+vYrKdTLddNBGvRd4
- TUdKKOsaU1WyX6KI3OS/agLkM6LKMJVxGI1OLU0w72YmUmAWEyPrMRaA6DvA==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ bh=JGKBQYYb1upxXdsc1VDTCgRhH60CNH1HNvdXsZhZhkA=;
+ b=gPW8Srkbp97bI9gUM8bPiu3f2P1nPo2WpBkgA2wxILF/ZtUyQhPk/RcBlvFmonrsDPdDz
+ s4dLAmXvX1NjPDhpI4wUl/slbPYeXm/b0Q4qEsB6581dlQ8bHHIA7JpEf5EEaUQU1TSA2cM
+ /RjXnxF0kGhxPZDuCsZHCF0dz8hWlJAr2p7FVgmBHkpem5pZph4aqb2zpXmCG1hPXAf6b/n
+ arcA90GUdEvsKwDiuYnyfJ9Lp2gV7I7mbk2nzH0ExIzQMVfQdF936i/yBzrA3R3JZeThOeo
+ CCtw2yroYVDrDQnH/Z7cMe+QjziXtgkqiT6gaqgTK5A4TPqOvplNdOepw5rg==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=collabora.com header.i=faith.ekstrand@collabora.com;
+  arc=fail (Most recent ARC-Message-Signature did not validate);
+  dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=collabora.com header.i=faith.ekstrand@collabora.com;
+ arc=fail (Most recent ARC-Message-Signature did not validate);
+ dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 6F9F045559
-	for <nouveau@lists.freedesktop.org>; Mon, 10 Aug 2026 18:40:50 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AB22410E982;
-	Mon, 10 Aug 2026 18:57:03 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6C2F6600AD;
-	Mon, 10 Aug 2026 18:57:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 937911F000E9;
-	Mon, 10 Aug 2026 18:57:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1786388222;
-	bh=DgHH11rbBugxycgVfllDqGnSiJw+pTYpQUpXBdKD4ec=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=dGjCopdH5Dh+u5udlFJdn6uvtThWYmJaM5Eb2jrmqTmlPXe5UlQ0CRphwRoBIJAm6
-	 F0kU/FDdk2naDL4p3srV/lxFnEfrV9izlK0/eVoMoRzHM6zEAlb9GpeWNPiLSHMibY
-	 7/DPwPPVatxqKpZv+TfYsfmRCGlQLyQIHN6gqgSCuosDQKnkX7zFjgBI0zLwi3MUEy
-	 whMrR+qxXWlWfsydnEdMuQYTG3VOiaRpdN8MxbYzSZLGHi/ErGFwHRXNVMMZH+h3LY
-	 9bzRCWjMFzLk9BevIJ+7lY7vmKa9eVcOTLJ3LnT1A3hINcRRz11t4KUr+PC1fbqo0Y
-	 U7y9rB8HQKU5A==
-Date: Mon, 10 Aug 2026 11:57:00 -0700
-From: Wei Liu <wei.liu@kernel.org>
-To: Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH v11 0/8] mm/hmm: Add mmap lock-drop support for
- userfaultfd-backed mappings
-Message-ID: <20260810185700.GD2496954@liuwe-devbox-debian-v2.local>
-References: <20260723-hmm-v10-v11-0-c55b003a4b61@gmail.com>
- <20260723142242.5d3f87208d47819d873ae458@linux-foundation.org>
- <20260731211728.GA3243658@liuwe-devbox-debian-v2.local>
- <20260731143733.6f74ec9b9023f898c3c260e1@linux-foundation.org>
+	by kara.freedesktop.org (Postfix) with ESMTPS id A6971473BA
+	for <nouveau@lists.freedesktop.org>; Tue, 11 Aug 2026 01:00:26 +0000 (UTC)
+X-Greylist: delayed 904 seconds by postgrey-1.36 at gabe;
+ Tue, 11 Aug 2026 01:16:40 UTC
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com
+ [136.143.188.10])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6775710E241;
+	Tue, 11 Aug 2026 01:16:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1786410080; cv=none;
+	d=zohomail.com; s=zohoarc;
+	b=naHig9FKg+UwziJFBLMOKCamqd1aWyc403juo0pkOIf13in5mptCkrxB/gQmGe3unp+OXRdFl348Lrnhxp+ivnoXvIZ6YWCLBmnIGJyM/aeXv7wIB5vpOUsKtbwTv+wD+OTMJRbMVB/eCPoAlqzFCMhXrsVcvr426kiCVOLOwZo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc;
+	t=1786410080;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
+	bh=JGKBQYYb1upxXdsc1VDTCgRhH60CNH1HNvdXsZhZhkA=;
+	b=Guqucqu2vdFaz2YUbEF0whFCwbiPOdMRB4rEvGqEMcberzBNv6CzWRXgjopQBwnUH6nImOczCl6199CcMAhlRpA3+DswXAQx14BZtEDGiJX2fyoER6StxoLU6ScYd4bZgic80umH/oH6bflhWU/JcRjvANU85OId9ufAui3eSdc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=faith.ekstrand@collabora.com;
+	dmarc=pass header.from=<faith.ekstrand@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1786410080;
+	s=zohomail; d=collabora.com; i=faith.ekstrand@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=JGKBQYYb1upxXdsc1VDTCgRhH60CNH1HNvdXsZhZhkA=;
+	b=W6imkZE43LfuKP5ONqCe6NZbvuomHMrWJRSZbg/nT68fKKpHdYYnPYOnaLUf+8zu
+	dUitS2cXsqUH+044nz3uRr7X2MwARDHdU+CyBnP8K8LmJ3XWK3us9eTYJYDaCEcdyJB
+	SwEP0K5F4/Tzo2HItTsHJCdpdbDnna/loX/yGmh0=
+Received: from mail.zoho.com by mx.zohomail.com
+	with SMTP id 1786410080037397.08614927222334;
+ Mon, 10 Aug 2026 18:01:20 -0700 (PDT)
+Received: from mail.zoho.com by mx.zohomail.com
+	with SMTP id 1786410078818973.1558608767025;
+ Mon, 10 Aug 2026 18:01:18 -0700 (PDT)
+Date: Mon, 10 Aug 2026 21:01:18 -0400
+From: Faith Ekstrand <faith.ekstrand@collabora.com>
+To: "Aaron Kling" <webgeek1234@gmail.com>
+Message-ID: <19fee56924f.82459cc61103651.6241601648149454872@collabora.com>
+In-Reply-To: 
+ <CALHNRZ9Jg=NQ-i5G8q4vdOgwgUUKDAdi0+VXUnHU2Ctpo74YAw@mail.gmail.com>
+References: <20260725-tegra-coherent-wc-v1-1-dfdcc929c21b@gmail.com>
+ <67fe34eebafe657b3221ac39838440b294c60444.camel@lynxeye.de>
+ <CALHNRZ9Jg=NQ-i5G8q4vdOgwgUUKDAdi0+VXUnHU2Ctpo74YAw@mail.gmail.com>
+Subject: Re: [PATCH RFC] drm/nouveau: Use write-combined maps for coherent
+ on Tegra
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260731143733.6f74ec9b9023f898c3c260e1@linux-foundation.org>
-Message-ID-Hash: 3TC4TY26E3PTO7HSAGXMUDJWUWZDK3Y6
-X-Message-ID-Hash: 3TC4TY26E3PTO7HSAGXMUDJWUWZDK3Y6
-X-MailFrom: wei.liu@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
+Message-ID-Hash: HLK5GODLJUEHWNO3YRENDSEMZO7OEEYA
+X-Message-ID-Hash: HLK5GODLJUEHWNO3YRENDSEMZO7OEEYA
+X-MailFrom: faith.ekstrand@collabora.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Wei Liu <wei.liu@kernel.org>,
- Stanislav Kinsburskii <skinsburskii@gmail.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
- "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@kernel.org>,
- Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
- Michal Hocko <mhocko@suse.com>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, Shuah Khan <shuah@kernel.org>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Haiyang Zhang <haiyangz@microsoft.com>, Dexuan Cui <decui@microsoft.com>,
- Long Li <longli@microsoft.com>, Danilo Krummrich <dakr@kernel.org>,
+CC: Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Min Ma <mamin506@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>,
- Oded Gabbay <ogabbay@kernel.org>, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kselftest@vger.kernel.org, linux-hyperv@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-rdma@vger.kernel.org
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ nouveau <nouveau@lists.freedesktop.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3TC4TY26E3PTO7HSAGXMUDJWUWZDK3Y6/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HLK5GODLJUEHWNO3YRENDSEMZO7OEEYA/>
 Archived-At: 
- <https://lore.freedesktop.org/20260810185700.GD2496954@liuwe-devbox-debian-v2.local/>
+ <https://lore.freedesktop.org/19fee56924f.82459cc61103651.6241601648149454872@collabora.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -122,33 +127,128 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri, Jul 31, 2026 at 02:37:33PM -0700, Andrew Morton wrote:
-> On Fri, 31 Jul 2026 14:17:28 -0700 Wei Liu <wei.liu@kernel.org> wrote:
-> 
-> > On Thu, Jul 23, 2026 at 02:22:42PM -0700, Andrew Morton wrote:
-> > > On Thu, 23 Jul 2026 10:36:32 -0700 Stanislav Kinsburskii <skinsburskii@gmail.com> wrote:
-> > > 
-> > > > This series extends the HMM framework to support userfaultfd-backed memory
-> > > > by allowing the mmap read lock to be dropped during hmm_range_fault().
-> > > > 
-> > > 
-> > > Thanks, I've updated mm.git to this version.
-> > 
-> > Hi Andrew,
-> > 
-> > I see this series in linux-next now.
-> > 
-> > I'm curious to know if these patches are going to make 7.3.
-> 
-> Probably.  The series is incompletely reviewed at this time.  Perhaps
-> you can assist with this?
 
-Fair point. I'm not an MM expert but I will try.
 
-Wei
+~Faith Ekstrand
 
-> 
-> > We have some work that's dependent on this so would like to plan
-> > accordingly.
-> > 
-> > Thank you Stanislav for continue pushing this.
+
+
+From: Aaron Kling <webgeek1234@gmail.com>
+To: <dev@lynxeye.de>
+Cc: "Lyude Paul"<lyude@redhat.com>, "Danilo Krummrich"<dakr@kernel.org>, "M=
+aarten Lankhorst"<maarten.lankhorst@linux.intel.com>, "Maxime Ripard"<mripa=
+rd@kernel.org>, "Thomas Zimmermann"<tzimmermann@suse.de>, "David Airlie"<ai=
+rlied@gmail.com>, "Simona Vetter"<simona@ffwll.ch>, <dri-devel@lists.freede=
+sktop.org>, <nouveau@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>=
+, "Faith Ekstrand"<faith.ekstrand@collabora.com>
+Date: Sun, 09 Aug 2026 02:06:51 -0400
+Subject: Re: [PATCH RFC] drm/nouveau: Use write-combined maps for coherent =
+on Tegra
+
+ > On Tue, Jul 28, 2026 at 3:38=E2=80=AFAM Lucas Stach <dev@lynxeye.de> wro=
+te:=20
+ > >=20
+ > > Am Samstag, dem 25.07.2026 um 18:28 -0500 schrieb Aaron Kling via B4=
+=20
+ > > Relay:=20
+ > > > From: Faith Ekstrand <faith.ekstrand@collabora.com>=20
+ > > >=20
+ > > > On Tegra devices, uncached maps traslate to device memory, causing=
+=20
+ > > > unaligned accesses by userspace resulting in a SIGBUS. Instead, use=
+=20
+ > > > write-combined maps to ensure proper access.=20
+ > > >=20
+ > > This is not only an issue on Tegra. All ARM64 platforms translate=20
+ > > uncached to device memory, which does not support unaligned access. So=
+=20
+ > > the issue could happen in the same way when connecting a discrete GPU=
+=20
+ > > to a ARM64 platform with PCIe support.=20
+ > >=20
+ > > I would argue that there is no downside to always using write combined=
+=20
+ > > memory for coherent buffers. You gain potentially faster writes while=
+=20
+ > > the only issue is that writes may get delayed visibility at the device=
+=20
+ > > side. However, I don't think anyone uses coherent buffers to modify th=
+e=20
+ > > content from the CPU side while the device is operating on the buffer.=
+=20
+ > > For all regular use-case the memory barrier in FIRE_RING() will make=
+=20
+ > > sure that the buffered writes are visible to the device before the=20
+ > > commands using the buffer are made visible to the device.=20
+ > =20
+ > Should I send a new revision that sets write combined for all coherent=
+=20
+ > then? I only have Tegra devices to verify this on, so I can't attest=20
+ > to how this affects discrete cards.=20
+
+Yeah, generally we should be using WC on discrete cards, too.  The big ques=
+tion is if nouveau is doing some shenanigans behind the scnenes with cache =
+types.  I'm pretty sure I've had this discussion with nouveau people and we=
+ came to the conclusion that uncached mapped to WC on discrete for some rea=
+son.  If we're getting actual uncached maps instead of WC on discrete GPUs,=
+ that's a serious performance problem but I don't think we are.  I've CC'd =
+Karol in case he remembers what's going on here.
+
+~Faith
+
+
+ > Aaron=20
+ > =20
+ > > Regards,=20
+ > > Lucas=20
+ > >=20
+ > > > Signed-off-by: Faith Ekstrand <faith.ekstrand@collabora.com>=20
+ > > > Co-developed-by: Aaron Kling <webgeek1234@gmail.com>=20
+ > > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>=20
+ > > > ---=20
+ > > > This patch is marked RFC because there is not complete confidence th=
+at=20
+ > > > the change is correct. Without this change, nouveau can easily hit=
+=20
+ > > > sigbus errors in Android UI rendering via nvk or running vulkan deqp=
+=20
+ > > > tests on Tegra. Changing coherent maps to use write-combined stops t=
+he=20
+ > > > crashing, but it is unknown what the performance impact is, if any.=
+=20
+ > > > ---=20
+ > > >  drivers/gpu/drm/nouveau/nouveau_sgdma.c | 9 ++++++---=20
+ > > >  1 file changed, 6 insertions(+), 3 deletions(-)=20
+ > > >=20
+ > > > diff --git a/drivers/gpu/drm/nouveau/nouveau_sgdma.c b/drivers/gpu/d=
+rm/nouveau/nouveau_sgdma.c=20
+ > > > index fa3b4ebf38a83..10f6ef1c541bd 100644=20
+ > > > --- a/drivers/gpu/drm/nouveau/nouveau_sgdma.c=20
+ > > > +++ b/drivers/gpu/drm/nouveau/nouveau_sgdma.c=20
+ > > > @@ -72,9 +72,12 @@ nouveau_sgdma_create_ttm(struct ttm_buffer_object=
+ *bo, uint32_t page_flags)=20
+ > > >       struct nouveau_sgdma_be *nvbe;=20
+ > > >       enum ttm_caching caching;=20
+ > > >=20
+ > > > -     if (nvbo->force_coherent)=20
+ > > > -             caching =3D ttm_uncached;=20
+ > > > -     else if (drm->agp.bridge)=20
+ > > > +     if (nvbo->force_coherent) {=20
+ > > > +             if (drm->client.device.info.platform =3D=3D NV_DEVICE_=
+INFO_V0_SOC)=20
+ > > > +                     caching =3D ttm_write_combined;=20
+ > > > +             else=20
+ > > > +                     caching =3D ttm_uncached;=20
+ > > > +     } else if (drm->agp.bridge)=20
+ > > >               caching =3D ttm_write_combined;=20
+ > > >       else=20
+ > > >               caching =3D ttm_cached;=20
+ > > >=20
+ > > > ---=20
+ > > > base-commit: 1a1757b76427f6201bfe0bf1bea9f7574f332a93=20
+ > > > change-id: 20260725-tegra-coherent-wc-19941d1a5a60=20
+ > > >=20
+ > > > Best regards,=20
+ >=20
+
+
