@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26E41C5CFC1
-	for <nouveau@archiver.kernel.org>; Tue, 11 Aug 2026 21:27:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74DFFC5CFC1
+	for <nouveau@archiver.kernel.org>; Tue, 11 Aug 2026 21:56:34 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 606D010E398;
-	Tue, 11 Aug 2026 21:27:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 332E410EDC2;
+	Tue, 11 Aug 2026 21:56:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="c2F2SqeJ";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="SxMSZEMQ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 57F55476E6;
-	Tue, 11 Aug 2026 21:10:50 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 2D43F476EB;
+	Tue, 11 Aug 2026 21:40:18 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786482650;
- b=Fm/nIehjks6X6PGNe2eFJfKs54Xw2by2FO1Mo04Hd/oKW+GlKGdlTqNIC7jqT6LWT9ijR
- 85tUXqPgGbY/XLYvTH/+zm7oY0oc4YrszQHTABxbvYEXYiSkcB9LI2uMY5ht1F7hKY0RPcB
- 4JPBUueCfJclgZZHLtbNMrGFepLyxcbVriy8o7YErm+V2nQO2V/plNZtQS3JpylSB4G36ea
- TLPnoWBu1gOfzbP9pldr9LGDy2chfIWlgXL66gK3ATEcu1fiPrzqGUomHLlDyWL2clS2dM0
- aRYlOgDJGo0t+myYhiWPBFRPdnw1QlDaZMCJjuX2VqMErEc5SWL2+Ezh7DLQ==
+ s=20240201; t=1786484418;
+ b=JMCkIY/y2zOJ90i4JiytNbZXaqxXElAwkCItkhhWYjqmQYS4vqPcX+3cXJTRcwE/XjSKv
+ kq4dpbvEMeZFZ7wHt1BVfSZ1XWYAi71JyqRqY/utE6aRD9pzB0Cch5u5HdFmjXl/ak9HgGH
+ el94dX8AvXpf/cWuFhOzbMJ0mFlnP6mA6HoAEJV8M/2UegvYcbR03+Y13rYvOospme4EstG
+ imL/8JxjRHy6AXG6QtS4ry9rfipCM2KhBjxalplrK4n4TZ8v78qsuEU9JOh1QLLT8WF/3OY
+ S/tkQUuk64lfI+8bt/be+XBx4mV60N8Nu6iW43MKAGZrIL5PTT9Mnu51glLw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786482650; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786484418; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=VyjTfJ6M6WhikLFiddpAGC6DAl6KdSUSHU1hQ6sGp+U=;
- b=jqpahDmsL4YwdDUGzK3guIRtTHkwuFDc0Aa6XOIc8BGOJAACDA5sc4OkmNiyav8mjoQtW
- 8EK0AYrbZrxnsl/GSBMKupIbfJ/5bvzHLiOmSjUThkEZs1rSNemgezV7qoTtvhVSthasEKJ
- 85JtQ28xR3jsNuBu0zVz5+AwYmlN9Wu3igZRubfiJqRYZj6r/rvsm8n+OM5BWvByFl6unfI
- vf2YIA0q9BngRgLljvEz0+/yQam0Np0PSB/eu3LTpcc8+mbPeMJy7YrkiNU3yOXQi7Fjqpi
- si1F6yqZjISjPQjE4S1ZmgP6WNGqKejJrvFZENSayOWwkZUpMPJSHdms2blA==
+ bh=UfO5GTjXHvoFpUxirelLBunZxdJGiurIwuNIlIkF25U=;
+ b=fFEexz/lqeRCmkrSmReNHhdOM3wih9nDYrQ+I1IulNFkvnAvFP0JqYtHi9aqrCgpll+/R
+ JmuLU9UUd3s2Au6bs091KZeYa4LTVlmAQUUwDN1w9EJrXEc2WPIASPQZZKHJiOCKfYS3uj/
+ GHIydVo8SUPLly4hpmYGZywGKzBzytOUHbupOOwWBdcfKwT2/mtcpU8+FE/Lr7jYzmHwK+T
+ JvHhz4R4a6GSiDA7/SKYyaaQ23lLr0jlM8WmYgznHWOr6LYA2censmr/cDL5trhb6K/HZ1g
+ RvLSYphHmR3eynGyzW2Wx3rIXmJdE5oyZuhbAm05uTj+dV4fnZxNscL+FtuA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,88 +46,87 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 80FF04767F
-	for <nouveau@lists.freedesktop.org>; Tue, 11 Aug 2026 21:10:47 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 06ACB476A0
+	for <nouveau@lists.freedesktop.org>; Tue, 11 Aug 2026 21:40:15 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 29AC710E263
-	for <nouveau@lists.freedesktop.org>; Tue, 11 Aug 2026 21:27:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B14D110EDBB
+	for <nouveau@lists.freedesktop.org>; Tue, 11 Aug 2026 21:56:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1786483622;
+	s=mimecast20190719; t=1786485390;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=VyjTfJ6M6WhikLFiddpAGC6DAl6KdSUSHU1hQ6sGp+U=;
-	b=c2F2SqeJBjBuTqgCP8FHmHO73V0kc1cuRjJY+568JAEgIFnwkAG+ENxSPmHsIK+RRdZBWv
-	y89+MRtnwr0yUsTT2H7C55XuUKGUb745Jb2FuIabiw4zWAsqT/pU97e9LuVJb07Qc6epfo
-	EtH1sTleuTP7ARFdNWTc+xVRKk3OQVk=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=UfO5GTjXHvoFpUxirelLBunZxdJGiurIwuNIlIkF25U=;
+	b=SxMSZEMQAaeEHAiU58GdJ2VMYi7v+PzvBQQ6CPfh5Uid+oSX1wOZYMfpzaHYQk81KG+37+
+	GMUuEXPTHL5b1pnIev7/q39yplfgJcIQdPwXK4w0J7YK69GcbdeEG9nStLr/gpMxzLHDas
+	ug5M3f9GW+58eobUiTrXofDQNh1lV70=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-693-3-iiZ07COnOS2DHxpnd5dw-1; Tue, 11 Aug 2026 17:27:01 -0400
-X-MC-Unique: 3-iiZ07COnOS2DHxpnd5dw-1
-X-Mimecast-MFC-AGG-ID: 3-iiZ07COnOS2DHxpnd5dw_1786483621
-Received: by mail-qt1-f200.google.com with SMTP id
- d75a77b69052e-51c20762d21so5626611cf.0
+ us-mta-677-Nom0pB9XPcaEoGK3bkI9JA-1; Tue, 11 Aug 2026 17:56:28 -0400
+X-MC-Unique: Nom0pB9XPcaEoGK3bkI9JA-1
+X-Mimecast-MFC-AGG-ID: Nom0pB9XPcaEoGK3bkI9JA_1786485388
+Received: by mail-qv1-f71.google.com with SMTP id
+ 6a1803df08f44-90a60102d6eso2191076d6.3
         for <nouveau@lists.freedesktop.org>;
- Tue, 11 Aug 2026 14:27:01 -0700 (PDT)
+ Tue, 11 Aug 2026 14:56:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1786483621; x=1787088421;
+        d=1e100.net; s=20251104; t=1786485388; x=1787090188;
         h=mime-version:user-agent:content-transfer-encoding:content-type
          :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=rTYFSNNmHE5Ej6nfI5EPC0KoXgMH1Yho7tZYF93ZSko=;
-        b=pcUyb5ila4mMGVtT7o8mw0+hbEf7aNH+ip3xqTpy++yptQI2pLaaTIayaOBX0fq+eJ
-         ARPYVRjjfa8m2lessE/Q6Ez1UT5LmNRNVaPpS6fYQTwRFZtIYBha5VQZkebDRDF6kuCv
-         q6HHQlkIKRkXR4Y834liSjn+tsjQ4Dm7KZkom5mjwEbGfkhVpSY6PeSOxhtXVLsHkXOK
-         85EYmqeXAqHDPkUD3lpR1jTOoydOa6pI0Uo5IpQaVCiDWkn7wVKOlnYLbyWEbtUyGmoE
-         8U2KEFdN1AjTDGCN/PqBfp+GoLBoiEA8Zuz1/M0+ijlwHGrZHPYLf7gyHditg1KNWCCi
-         4WOg==
+        bh=UfO5GTjXHvoFpUxirelLBunZxdJGiurIwuNIlIkF25U=;
+        b=gDtfPv+d1S+W3qZHGrlPMb8lMqwvh1hoZ3t6XaqGpkSlx61DUdjzIf4k0TrB/iskE7
+         zn8XNxpuN/2vKB0cZ790R5EzGhJQol6nR2dHbZNwIgcgqHkd6fqn0kSa5DnMnKby7b8/
+         Mh3t8aWCQLa3ysI/9RHcid9vMPiHoOdDRWfq+SP4eDy1h2bSZdpY8o1Z4HrTu4GklF3o
+         rOPbB83+t8+Z37RKjzke/ht+wUknZH03wCX5gMjrGtlYSovUXOqaFCPgIIa6QHwiybDd
+         NcYBYfK7soMsJjVa8y7LoxZrpHdensTGnG/5MsNb4UYVaeckReEEyeJ2aMLwjpIQeU5u
+         bPzg==
 X-Forwarded-Encrypted: i=1;
- AHgh+Rqm2qYRCdhisdOmEMKBivKaYsKDJ9v6IeidUvRJupkzrmWMAw942oezc2NJNwdcvDuXFnKTUYqj@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyJO/i91YtEPRo/67ClD6ItHs75P1Hf0nhj34QKjkT/wskw+sWm
-	Ivl/G1A4BDcBSMUKU+9E6ZfyMBMZj7e3EQFTOSpqT3JUVyh9SkGrUbeIRuuAUoAyimSs4tzMt6P
-	LkYZXDU4CHHAOlvK/+x7tqQU69E+NuVYyv5VOqXJYIxtEQv47PNPnEW/6QbMvCmS1R04=
-X-Gm-Gg: AR+sD13jinK4R2dSgoLQIWPrcD0DXP806ZDPkQuzjPLIwyesnLHTMBQ10/VEv60c9kA
-	Rn+9rcn+O9fG2j77J+6scn9j1kHjNfFVWEIriN55+F0TpHBRwClTO8aYIvR3VU49jbxDquhADBn
-	axoLXemvvqjag8mh+tpSBA84uzsgMPmPTBtgY3R5b9QvjC/f+HyIfXluMbN1nLB8klD7p9kw4XC
-	1aam02zoi63cjxEpfbiTUPBwYQB7NDcP21rieTmE4ejBRgVFgP/omwvGMkUu4ADOEV4lPHLafIk
-	+OYixOfpVHRjKRMF6alp0gGcEr3GQACE+KLAbPt8WgbMrdPusFTrXYw3UqxGuR1SUwgmJqHk
-X-Received: by 2002:a05:622a:1cc7:b0:521:934c:bcf with SMTP id
- d75a77b69052e-52d64838801mr2843911cf.41.1786483620647;
-        Tue, 11 Aug 2026 14:27:00 -0700 (PDT)
-X-Received: by 2002:a05:622a:1cc7:b0:521:934c:bcf with SMTP id
- d75a77b69052e-52d64838801mr2843391cf.41.1786483620229;
-        Tue, 11 Aug 2026 14:27:00 -0700 (PDT)
+ AHgh+RqDsOGcC3eDC1Xyf6QD9Ku6S5x7GkgKQQmKCNbabT+lqylGl8Epb/TTrs0Z6I7qwglJkesjEbKu@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy1E5Xkfwz8jqCcV1FOWZaz4uiKuQ/EIdZPQm8SYCM+GdhGfjwg
+	ZNHc29JBHoxxwU+n4jsyS03X/W/hUQH5hOt/EsY9HXdokDPowqqYh1b7t0qvUuJAyY4MdBYf1CD
+	3QPwPMmdkIygsX0sWg8xxuih4R/gRCBVlJMxNlmQDIO1gHvFX5VFxsS/NGwjZFHOrob0=
+X-Gm-Gg: AR+sD12LfcTFpoBJai7oX5InfFKQJgGbQzZHcW0e9yIUtw5E74jTMa1P32LLerys2yX
+	nxZkd6rpmauITiSlOsgI+MG9tUnwCK6fVQLnSkck3Gr/NbbBdZCHUobQDwtXwUmLzaOrvkbWPaR
+	SfAxIS7mAzO89ViH2GVppC+20hdeBrardIM30BZMwAl5TS1kHTX78maLPwpF5GZku8YqPnx28U+
+	zTD9WjcHvSrj0aZUsoHN7xvV/qSv0dT5ltr+AQNqQ4qgS1C1jhrZt2PFVXFFLvCeYmDRx8qaHz2
+	f/wpv99AB920ghm3ZB46hI0zVnQGA/HRN307VzJ12Tmk6zWFQ1sXcA4VCmFiB+zPm2Pdp3Pl
+X-Received: by 2002:a05:6214:44a1:b0:907:5150:a2dd with SMTP id
+ 6a1803df08f44-90a6ff95966mr2475436d6.14.1786485388244;
+        Tue, 11 Aug 2026 14:56:28 -0700 (PDT)
+X-Received: by 2002:a05:6214:44a1:b0:907:5150:a2dd with SMTP id
+ 6a1803df08f44-90a6ff95966mr2475246d6.14.1786485387868;
+        Tue, 11 Aug 2026 14:56:27 -0700 (PDT)
 Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-52d61d91199sm4729021cf.14.2026.08.11.14.26.58
+ 6a1803df08f44-90a6c26d83fsm8495466d6.4.2026.08.11.14.56.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Aug 2026 14:26:59 -0700 (PDT)
-Message-ID: <3449a374543614d15655576d13d87c3822e29896.camel@redhat.com>
-Subject: Re: [PATCH v2 1/3] drm/nouveau/uvmm: fix NULL deref unwinding an
- OP_MAP_SPARSE op
+        Tue, 11 Aug 2026 14:56:27 -0700 (PDT)
+Message-ID: <1fb27dc24b3d01c9a6318b0dabc0e7571adb7cda.camel@redhat.com>
+Subject: Re: [PATCH v2 0/3] drm/nouveau/uvmm: fix VM_BIND submit/unwind
+ error-path bugs
 From: lyude@redhat.com
 To: Zhenhao Wan <whi4ed0g@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
  <mripard@kernel.org>, Thomas Zimmermann	 <tzimmermann@suse.de>, David
  Airlie <airlied@gmail.com>, Simona Vetter	 <simona@ffwll.ch>, Dave Airlie
  <airlied@redhat.com>
-Date: Tue, 11 Aug 2026 17:26:58 -0400
-In-Reply-To: <20260811-nouveau-uvmm-vmbind-fixes-v2-1-aaee4b395d04@gmail.com>
+Date: Tue, 11 Aug 2026 17:56:26 -0400
+In-Reply-To: <20260811-nouveau-uvmm-vmbind-fixes-v2-0-aaee4b395d04@gmail.com>
 References: <20260811-nouveau-uvmm-vmbind-fixes-v2-0-aaee4b395d04@gmail.com>
-	 <20260811-nouveau-uvmm-vmbind-fixes-v2-1-aaee4b395d04@gmail.com>
 User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: rJSxtfdKjFOq-aL9CTtMePwxaSDWB-xXUf8MGzZ6EMM_1786483621
+X-Mimecast-MFC-PROC-ID: jhsoHhB_ktC9WBffYwk7iACQcCFb0uwdegEFHkp5DUc_1786485388
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 6FVRKAHXVRWBW24YNCLMLTL4JX65FAX2
-X-Message-ID-Hash: 6FVRKAHXVRWBW24YNCLMLTL4JX65FAX2
+Message-ID-Hash: QJ2CBYZ2Y4Q5KID5RDBFOFCYDS7BHCSI
+X-Message-ID-Hash: QJ2CBYZ2Y4Q5KID5RDBFOFCYDS7BHCSI
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -139,9 +138,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6FVRKAHXVRWBW24YNCLMLTL4JX65FAX2/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QJ2CBYZ2Y4Q5KID5RDBFOFCYDS7BHCSI/>
 Archived-At: 
- <https://lore.freedesktop.org/3449a374543614d15655576d13d87c3822e29896.camel@redhat.com/>
+ <https://lore.freedesktop.org/1fb27dc24b3d01c9a6318b0dabc0e7571adb7cda.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -151,54 +150,52 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
+This patch series is:
+
 Reviewed-by: Lyude Paul <lyude@redhat.com>
 
 On Tue, 2026-08-11 at 16:46 +0800, Zhenhao Wan wrote:
-> Each bind_job_op is zeroed by kzalloc_obj() in
-> bind_job_op_from_uop(),
-> and the OP_MAP_SPARSE case in nouveau_uvmm_bind_job_submit() only
-> creates
-> a region, so op->ops stays NULL for a successfully processed sparse
-> map.
+> Three bugs on the nouveau VM_BIND submit/unwind/cleanup error path,
+> all
+> introduced by the original VM_BIND uAPI (Fixes: b88baab82871) and all
+> reachable by an unprivileged render-node client:
 >=20
-> If a later op in the same job fails, the reverse unwind loop revisits
-> that
-> op and calls drm_gpuva_ops_free(&uvmm->base, op->ops)
-> unconditionally.
-> drm_gpuva_ops_free() dereferences its argument right away
-> (list_for_each_entry_safe on &ops->list), so a NULL op->ops oopses.
-> The
-> path is reachable by any render-node fd holder, since NOUVEAU_VM_BIND
-> is
-> DRM_RENDER_ALLOW.
+> =C2=A0 1/3 NULL deref when the unwind loop frees a never-populated
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 OP_MAP_SPARSE op's ops list.
+> =C2=A0 2/3 premature free of a region on a failed OP_UNMAP_SPARSE, becaus=
+e
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 op->reg is left set on the failure paths.
+> =C2=A0 3/3 a sparse region left permanently marked dirty after unwind,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 wedging later binds over that range.
 >=20
-> Guard the free with IS_ERR_OR_NULL(), as
-> nouveau_uvmm_bind_job_cleanup()
-> already does for the identical free.
+> Each fix is minimal and self-contained; all are Cc: stable.
 >=20
-> Fixes: b88baab82871 ("drm/nouveau: implement new VM_BIND uAPI")
-> Reported-by: Yuhao Jiang <danisjiang@gmail.com>
-> Assisted-by: Claude:claude-opus-5
-> Cc: stable@vger.kernel.org
 > Signed-off-by: Zhenhao Wan <whi4ed0g@gmail.com>
 > ---
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_uvmm.c | 3 ++-
-> =C2=A01 file changed, 2 insertions(+), 1 deletion(-)
+> Changes in v2:
+> - Add an Assisted-by: trailer to each patch; no code changes.
+> - Link to v1:
+> https://patch.msgid.link/20260811-nouveau-uvmm-vmbind-fixes-v1-0-40df1c04=
+6b49@gmail.com
 >=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> index 36445915aa58..849bf42c124e 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> @@ -1489,7 +1489,8 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job
-> *job,
-> =C2=A0=09=09=09break;
-> =C2=A0=09=09}
-> =C2=A0
-> -=09=09drm_gpuva_ops_free(&uvmm->base, op->ops);
-> +=09=09if (!IS_ERR_OR_NULL(op->ops))
-> +=09=09=09drm_gpuva_ops_free(&uvmm->base, op->ops);
-> =C2=A0=09=09op->ops =3D NULL;
-> =C2=A0=09=09op->reg =3D NULL;
-> =C2=A0=09}
+> ---
+> Zhenhao Wan (3):
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/nouveau/uvmm: fix NULL deref unwinding=
+ an OP_MAP_SPARSE op
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/nouveau/uvmm: fix premature region fre=
+e on failed
+> OP_UNMAP_SPARSE
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/nouveau/uvmm: clear the dirty flag whe=
+n unwinding an
+> OP_UNMAP_SPARSE
+>=20
+> =C2=A0drivers/gpu/drm/nouveau/nouveau_uvmm.c | 6 +++++-
+> =C2=A01 file changed, 5 insertions(+), 1 deletion(-)
+> ---
+> base-commit: ba3e43a9e601636f5edb54e259a74f96ca3b8fd8
+> change-id: 20260811-nouveau-uvmm-vmbind-fixes-c2dfab359df2
+>=20
+> Best regards,
+> --=C2=A0=20
+> Zhenhao Wan <whi4ed0g@gmail.com>
 
