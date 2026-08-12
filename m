@@ -4,143 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74DFFC5CFC1
-	for <nouveau@archiver.kernel.org>; Tue, 11 Aug 2026 21:56:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3FB2C5B56A
+	for <nouveau@archiver.kernel.org>; Wed, 12 Aug 2026 14:57:06 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 332E410EDC2;
-	Tue, 11 Aug 2026 21:56:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9655510F054;
+	Wed, 12 Aug 2026 14:57:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="SxMSZEMQ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DBMQEz3x";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2D43F476EB;
-	Tue, 11 Aug 2026 21:40:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id F0ED2476F4;
+	Wed, 12 Aug 2026 14:40:48 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786484418;
- b=JMCkIY/y2zOJ90i4JiytNbZXaqxXElAwkCItkhhWYjqmQYS4vqPcX+3cXJTRcwE/XjSKv
- kq4dpbvEMeZFZ7wHt1BVfSZ1XWYAi71JyqRqY/utE6aRD9pzB0Cch5u5HdFmjXl/ak9HgGH
- el94dX8AvXpf/cWuFhOzbMJ0mFlnP6mA6HoAEJV8M/2UegvYcbR03+Y13rYvOospme4EstG
- imL/8JxjRHy6AXG6QtS4ry9rfipCM2KhBjxalplrK4n4TZ8v78qsuEU9JOh1QLLT8WF/3OY
- S/tkQUuk64lfI+8bt/be+XBx4mV60N8Nu6iW43MKAGZrIL5PTT9Mnu51glLw==
+ s=20240201; t=1786545648;
+ b=OG7y8ro3RfkoBWeHnb10wqnLX5WdU36kwb+mAZBtYSlWGYHlV/oWAUmaW2Ew5WzZIaZWF
+ dUGWrz2cqVDtA+96dtbOSL9RyqZtpM4wrPNRbKtwez8SspDebjF3Zj40ZRKg7HFuEpl+KuA
+ hgJaYkFpAxzDTy5zLQ5AC91k4+WS9CQyeR3hL+gDuJoPQPUDdWjywI8/etYFVpBm5FLERV3
+ jIaxJJ1+L5YCbInzqOsJjeglpx6b+VLMrvIAy5Twb/OvgAdCQpg9jStM+pUijn5GZIsGib9
+ UEj0XdyvXuLy8yHBTg4Pp9G2jPpSSvK5On5mh28O0U7RQhWQORP0XnWB2iLA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786484418; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786545648; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=UfO5GTjXHvoFpUxirelLBunZxdJGiurIwuNIlIkF25U=;
- b=fFEexz/lqeRCmkrSmReNHhdOM3wih9nDYrQ+I1IulNFkvnAvFP0JqYtHi9aqrCgpll+/R
- JmuLU9UUd3s2Au6bs091KZeYa4LTVlmAQUUwDN1w9EJrXEc2WPIASPQZZKHJiOCKfYS3uj/
- GHIydVo8SUPLly4hpmYGZywGKzBzytOUHbupOOwWBdcfKwT2/mtcpU8+FE/Lr7jYzmHwK+T
- JvHhz4R4a6GSiDA7/SKYyaaQ23lLr0jlM8WmYgznHWOr6LYA2censmr/cDL5trhb6K/HZ1g
- RvLSYphHmR3eynGyzW2Wx3rIXmJdE5oyZuhbAm05uTj+dV4fnZxNscL+FtuA==
+ bh=YJqzV4FfWSH2549UJL4Hdtad7cbUf0wdUKVbd4knoqE=;
+ b=yfs1vVxTovfNGDeVFMA0GYwz5aW0seLeEzhbvzZYjsvP7lDDPorLA7rnCKizEpRACu4vZ
+ dnAHO22UNp2oxuotlbGvcakj0LgArPUf7Nil/fqStkxG/P4Bx0ea2T02/AEM1jJq9uLj7P+
+ ftEqaFE67LRCf4lZNZrJZ7X5sDaqy5b2TvVAFt3DPLCba0dRxYvCZCzuKsZn3oznw5m78vL
+ MPApzWTnjh87vv4DlIeRaagxSSeFM4hoXgs3jh22KWY3LFPJiwsQgEF8ICfk/51IxVYj9ek
+ +yjfOpTH7HfKWCGb9j0Yy2mg4nSPo22yMw6LaorUo5Xv3CpQ33Y3WuvmpO8g==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 06ACB476A0
-	for <nouveau@lists.freedesktop.org>; Tue, 11 Aug 2026 21:40:15 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B14D110EDBB
-	for <nouveau@lists.freedesktop.org>; Tue, 11 Aug 2026 21:56:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1786485390;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=UfO5GTjXHvoFpUxirelLBunZxdJGiurIwuNIlIkF25U=;
-	b=SxMSZEMQAaeEHAiU58GdJ2VMYi7v+PzvBQQ6CPfh5Uid+oSX1wOZYMfpzaHYQk81KG+37+
-	GMUuEXPTHL5b1pnIev7/q39yplfgJcIQdPwXK4w0J7YK69GcbdeEG9nStLr/gpMxzLHDas
-	ug5M3f9GW+58eobUiTrXofDQNh1lV70=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-677-Nom0pB9XPcaEoGK3bkI9JA-1; Tue, 11 Aug 2026 17:56:28 -0400
-X-MC-Unique: Nom0pB9XPcaEoGK3bkI9JA-1
-X-Mimecast-MFC-AGG-ID: Nom0pB9XPcaEoGK3bkI9JA_1786485388
-Received: by mail-qv1-f71.google.com with SMTP id
- 6a1803df08f44-90a60102d6eso2191076d6.3
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0B04E476D7
+	for <nouveau@lists.freedesktop.org>; Wed, 12 Aug 2026 14:40:46 +0000 (UTC)
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
+ [209.85.214.181])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6D8A910F04F
+	for <nouveau@lists.freedesktop.org>; Wed, 12 Aug 2026 14:57:03 +0000 (UTC)
+Received: by mail-pl1-f181.google.com with SMTP id
+ d9443c01a7336-2ce7d2adef4so13435205ad.3
         for <nouveau@lists.freedesktop.org>;
- Tue, 11 Aug 2026 14:56:28 -0700 (PDT)
+ Wed, 12 Aug 2026 07:57:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1786546623; x=1787151423;
+ darn=lists.freedesktop.org;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=YJqzV4FfWSH2549UJL4Hdtad7cbUf0wdUKVbd4knoqE=;
+        b=DBMQEz3xyWkSdPrL+k49xiENJfMQBHaYKpYRfQ07qzBbSeMksM/R3arub6XvgBuTKY
+         Jy+MfFZuwgoehB4KHZ0DkCeXPVmMttSZRcmyA1DPxU3FqaOxJVWXedcqTsfbMZ7xwDy/
+         6/9OFTZ2tHLsbcbUBgmif/46bB4ULTooFFR42iP3sUN6Ee+5Us5YDkaFB+lnl19SOhtR
+         AkBixg3Cg45Nf72JEIBHTllxBPO+PeeFVjoc/7sOkAsyDtPdhDwk/nGEHH0lNpxe+VcW
+         QHjjR5t4aagZlpHaakAA/QsUOqpvgzf+du9w2YnjyVL5sd4ahKM/NZkxkJTbZc0b2VW2
+         M08Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1786485388; x=1787090188;
-        h=mime-version:user-agent:content-transfer-encoding:content-type
-         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=UfO5GTjXHvoFpUxirelLBunZxdJGiurIwuNIlIkF25U=;
-        b=gDtfPv+d1S+W3qZHGrlPMb8lMqwvh1hoZ3t6XaqGpkSlx61DUdjzIf4k0TrB/iskE7
-         zn8XNxpuN/2vKB0cZ790R5EzGhJQol6nR2dHbZNwIgcgqHkd6fqn0kSa5DnMnKby7b8/
-         Mh3t8aWCQLa3ysI/9RHcid9vMPiHoOdDRWfq+SP4eDy1h2bSZdpY8o1Z4HrTu4GklF3o
-         rOPbB83+t8+Z37RKjzke/ht+wUknZH03wCX5gMjrGtlYSovUXOqaFCPgIIa6QHwiybDd
-         NcYBYfK7soMsJjVa8y7LoxZrpHdensTGnG/5MsNb4UYVaeckReEEyeJ2aMLwjpIQeU5u
-         bPzg==
+        d=1e100.net; s=20251104; t=1786546623; x=1787151423;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=YJqzV4FfWSH2549UJL4Hdtad7cbUf0wdUKVbd4knoqE=;
+        b=gmaOPHsVDwVtAy455r4EMvMmxa4Ek60p8wc6KSt+Fozjc4HWk3fKZRsMilWAw6ufX+
+         C7sv3hVwrUVMjuOMI40aYL/+tm6y3QGvz6iB6zTQRsm3hArHcIVD40R+Wonq9g65bV9K
+         ptzkVReAbIFlRwkSo+mw8B/QILQnYMf06obHzqL3wSD5totQXDR1c/U5LXve6MKNMKLc
+         /NQoowUA67rJMannwVEmdnCjyjNo1cMVU6hiu6vOe6vvA2pMhtDiOIy4EIew9m5dWIfF
+         /YTc0I91UN7LJWP0Felzv3XeFSwOIymCSqqo8YJYmakTxjmcurRfBQY4Mc82+PQMFvJO
+         LCUA==
 X-Forwarded-Encrypted: i=1;
- AHgh+RqDsOGcC3eDC1Xyf6QD9Ku6S5x7GkgKQQmKCNbabT+lqylGl8Epb/TTrs0Z6I7qwglJkesjEbKu@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy1E5Xkfwz8jqCcV1FOWZaz4uiKuQ/EIdZPQm8SYCM+GdhGfjwg
-	ZNHc29JBHoxxwU+n4jsyS03X/W/hUQH5hOt/EsY9HXdokDPowqqYh1b7t0qvUuJAyY4MdBYf1CD
-	3QPwPMmdkIygsX0sWg8xxuih4R/gRCBVlJMxNlmQDIO1gHvFX5VFxsS/NGwjZFHOrob0=
-X-Gm-Gg: AR+sD12LfcTFpoBJai7oX5InfFKQJgGbQzZHcW0e9yIUtw5E74jTMa1P32LLerys2yX
-	nxZkd6rpmauITiSlOsgI+MG9tUnwCK6fVQLnSkck3Gr/NbbBdZCHUobQDwtXwUmLzaOrvkbWPaR
-	SfAxIS7mAzO89ViH2GVppC+20hdeBrardIM30BZMwAl5TS1kHTX78maLPwpF5GZku8YqPnx28U+
-	zTD9WjcHvSrj0aZUsoHN7xvV/qSv0dT5ltr+AQNqQ4qgS1C1jhrZt2PFVXFFLvCeYmDRx8qaHz2
-	f/wpv99AB920ghm3ZB46hI0zVnQGA/HRN307VzJ12Tmk6zWFQ1sXcA4VCmFiB+zPm2Pdp3Pl
-X-Received: by 2002:a05:6214:44a1:b0:907:5150:a2dd with SMTP id
- 6a1803df08f44-90a6ff95966mr2475436d6.14.1786485388244;
-        Tue, 11 Aug 2026 14:56:28 -0700 (PDT)
-X-Received: by 2002:a05:6214:44a1:b0:907:5150:a2dd with SMTP id
- 6a1803df08f44-90a6ff95966mr2475246d6.14.1786485387868;
-        Tue, 11 Aug 2026 14:56:27 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93])
+ AHgh+Rrc+OEASjM+WZPlobRDVWNepzPR0TPQSlQWXPn9zrsPbNetW4HF68hW8u3nJPe603666hf+aOzi@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyz+2kakOFCIgloJZaji+Xe7CZEjbzw0re45kFCqyvSf4X+iXWO
+	hYbHdE4VBp1d69S8NwK+jInqWMnShVEBEsL6I8cSobei7jwbJ6fWyFfQ
+X-Gm-Gg: AR+sD11puqD+l6P9xZn3WgNvH8BGXiBuf1pRTZxzhJPFct2S9C1aKsdMz6dmuC9Tg3/
+	SoMBzL/o7NdpiaSwiJVeYpM418a2w8NWLA49y3u17INoXa3Zn/B2sjc+eL7r3kn1irQ/LujvslA
+	kKfaBTx4Mj2E8IAE4loSsGZWdfNENBPD+2suv54AV1Cvch4J7dbEdZFN3HWyCu7iB9JLPe181Kx
+	hEo5memGcbOElec/In2iggpk39F4YAeBiAnjG2O6fUs+lToJGk6DjAu3InWbcgvCRC1Y3U6I9Hf
+	UPtz34z8jtM3l2SUjfG0R7lZUNZKnm2QtFWxi1ZEYVelm9cueRIZP5M/Ge/PcEG2QVzSL4OyuEf
+	8JjntZOtXnj7i9cpeja/meEwJMBdkSWqvIsa4zYVKkCKuTzAu3Tphw3qtQ+4gRlsfQ8lMhzAdbl
+	4/Uw75eacWVHyk/+zm2lv48bUKhcoAouVllhlWlu5fB21wd9G0YYLpuVobvnw=
+X-Received: by 2002:a17:903:324d:b0:2ca:4f33:e86f with SMTP id
+ d9443c01a7336-2d3455870eamr75737575ad.12.1786546622846;
+        Wed, 12 Aug 2026 07:57:02 -0700 (PDT)
+Received: from LAPTOP-N3B6U5LC.localdomain ([117.147.100.52])
         by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-90a6c26d83fsm8495466d6.4.2026.08.11.14.56.26
+ d9443c01a7336-2d352208543sm8003165ad.60.2026.08.12.07.56.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Aug 2026 14:56:27 -0700 (PDT)
-Message-ID: <1fb27dc24b3d01c9a6318b0dabc0e7571adb7cda.camel@redhat.com>
-Subject: Re: [PATCH v2 0/3] drm/nouveau/uvmm: fix VM_BIND submit/unwind
- error-path bugs
-From: lyude@redhat.com
-To: Zhenhao Wan <whi4ed0g@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann	 <tzimmermann@suse.de>, David
- Airlie <airlied@gmail.com>, Simona Vetter	 <simona@ffwll.ch>, Dave Airlie
- <airlied@redhat.com>
-Date: Tue, 11 Aug 2026 17:56:26 -0400
-In-Reply-To: <20260811-nouveau-uvmm-vmbind-fixes-v2-0-aaee4b395d04@gmail.com>
-References: <20260811-nouveau-uvmm-vmbind-fixes-v2-0-aaee4b395d04@gmail.com>
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
+        Wed, 12 Aug 2026 07:57:02 -0700 (PDT)
+From: Zhenhao Wan <whi4ed0g@gmail.com>
+Date: Wed, 12 Aug 2026 22:56:46 +0800
+Subject: [PATCH] drm/nouveau/uvmm: reject zero-length range in
+ validate_range
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: jhsoHhB_ktC9WBffYwk7iACQcCFb0uwdegEFHkp5DUc_1786485388
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: QJ2CBYZ2Y4Q5KID5RDBFOFCYDS7BHCSI
-X-Message-ID-Hash: QJ2CBYZ2Y4Q5KID5RDBFOFCYDS7BHCSI
-X-MailFrom: lyude@redhat.com
-X-Mailman-Rule-Hits: member-moderation
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260812-nouveau-uvmm-pt-fixes-v1-1-ab3a823f946e@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAK2JfGoC/yXMQQqDMBCF4avIrB1IImjrVcRFjGM7BaNkTBDEu
+ 5vq8uPxvwOEApNAWxwQKLHw4jN0WYD7Wv8h5DEbjDK1emmDfomJbMSY5hnXDSfeSfDdqHq02qr
+ KTZDbNdA95LTrH0scfuS2/xmc5wUrhSUxeQAAAA==
+X-Change-ID: 20260812-nouveau-uvmm-pt-fixes-9706da1a03cf
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Dave Airlie <airlied@redhat.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1786546618; l=1968;
+ i=whi4ed0g@gmail.com; h=from:subject:message-id;
+ bh=FdyxRhhBKZiYZz3arqKV848UtUVhcBBrpdMBwG2g/dM=;
+ b=ar5RYS5eT7jVtxn2WyhdU/5ZUt+UbSy5eflTkgD7wLRWZEeSTi2xLVN1+tdVDVmKDg8elm2v3
+ 1ZlEgthYLiQCWaVIbnBvP5OHkT64+EpC1XNJ887M4atJGbdz4l+31Wx
+X-Developer-Key: i=whi4ed0g@gmail.com; a=ed25519;
+ pk=zRTKlstE0LmilshGwJsFYEVjiT6RiXMBXK8Og6VmuVQ=
+Message-ID-Hash: LZTC2PWFJZMWDVTX3OR63NHWO32CHDVV
+X-Message-ID-Hash: LZTC2PWFJZMWDVTX3OR63NHWO32CHDVV
+X-MailFrom: whi4ed0g@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
+ loop; banned-address; member-moderation
 CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, Yuhao Jiang <danisjiang@gmail.com>,
- stable@vger.kernel.org
+ stable@vger.kernel.org, Zhenhao Wan <whi4ed0g@gmail.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QJ2CBYZ2Y4Q5KID5RDBFOFCYDS7BHCSI/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LZTC2PWFJZMWDVTX3OR63NHWO32CHDVV/>
 Archived-At: 
- <https://lore.freedesktop.org/1fb27dc24b3d01c9a6318b0dabc0e7571adb7cda.camel@redhat.com/>
+ <https://lore.freedesktop.org/20260812-nouveau-uvmm-pt-fixes-v1-1-ab3a823f946e@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -150,52 +150,50 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-This patch series is:
+nouveau_uvmm_validate_range() rejects misaligned addresses and ranges and
+defers the remaining bounds check to drm_gpuvm_range_valid(), but neither
+rejects a zero range: 0 is page-aligned and addr + 0 does not overflow, so
+a zero-length VM_BIND request from userspace passes validation. It then
+reaches the generic GPUVA interval-tree insertion, where the node last key
+is computed as addr + range - 1. With range == 0 this underflows to
+addr - 1, producing an interval whose end lies below its start. The
+resulting malformed node corrupts the augmented interval tree and misleads
+the overlap checks of later map/unmap operations on the same VM.
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+drm_gpuvm_range_valid() intentionally leaves the zero-range rejection to
+its callers; drm/imagination does exactly this with an explicit "size != 0"
+test next to its drm_gpuvm_range_valid() call. nouveau simply omitted it.
 
-On Tue, 2026-08-11 at 16:46 +0800, Zhenhao Wan wrote:
-> Three bugs on the nouveau VM_BIND submit/unwind/cleanup error path,
-> all
-> introduced by the original VM_BIND uAPI (Fixes: b88baab82871) and all
-> reachable by an unprivileged render-node client:
->=20
-> =C2=A0 1/3 NULL deref when the unwind loop frees a never-populated
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 OP_MAP_SPARSE op's ops list.
-> =C2=A0 2/3 premature free of a region on a failed OP_UNMAP_SPARSE, becaus=
-e
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 op->reg is left set on the failure paths.
-> =C2=A0 3/3 a sparse region left permanently marked dirty after unwind,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 wedging later binds over that range.
->=20
-> Each fix is minimal and self-contained; all are Cc: stable.
->=20
-> Signed-off-by: Zhenhao Wan <whi4ed0g@gmail.com>
-> ---
-> Changes in v2:
-> - Add an Assisted-by: trailer to each patch; no code changes.
-> - Link to v1:
-> https://patch.msgid.link/20260811-nouveau-uvmm-vmbind-fixes-v1-0-40df1c04=
-6b49@gmail.com
->=20
-> ---
-> Zhenhao Wan (3):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/nouveau/uvmm: fix NULL deref unwinding=
- an OP_MAP_SPARSE op
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/nouveau/uvmm: fix premature region fre=
-e on failed
-> OP_UNMAP_SPARSE
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/nouveau/uvmm: clear the dirty flag whe=
-n unwinding an
-> OP_UNMAP_SPARSE
->=20
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_uvmm.c | 6 +++++-
-> =C2=A01 file changed, 5 insertions(+), 1 deletion(-)
-> ---
-> base-commit: ba3e43a9e601636f5edb54e259a74f96ca3b8fd8
-> change-id: 20260811-nouveau-uvmm-vmbind-fixes-c2dfab359df2
->=20
-> Best regards,
-> --=C2=A0=20
-> Zhenhao Wan <whi4ed0g@gmail.com>
+Reject range == 0 alongside the existing alignment test.
+
+Fixes: b88baab82871 ("drm/nouveau: implement new VM_BIND uAPI")
+Reported-by: Yuhao Jiang <danisjiang@gmail.com>
+Assisted-by: Claude:claude-opus-5
+Cc: stable@vger.kernel.org
+Signed-off-by: Zhenhao Wan <whi4ed0g@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index f5e4756b4de4..0efedd9ecc75 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -1008,7 +1008,7 @@ nouveau_uvmm_validate_range(struct nouveau_uvmm *uvmm, u64 addr, u64 range)
+ 	if (addr & ~PAGE_MASK)
+ 		return -EINVAL;
+ 
+-	if (range & ~PAGE_MASK)
++	if (!range || range & ~PAGE_MASK)
+ 		return -EINVAL;
+ 
+ 	if (!drm_gpuvm_range_valid(&uvmm->base, addr, range))
+
+---
+base-commit: db2ddb87143519e20a95aa36c60b36107b736a58
+change-id: 20260812-nouveau-uvmm-pt-fixes-9706da1a03cf
+
+Best regards,
+--  
+Zhenhao Wan <whi4ed0g@gmail.com>
 
