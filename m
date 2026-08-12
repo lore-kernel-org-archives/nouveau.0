@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD9E5C5B56A
-	for <nouveau@archiver.kernel.org>; Wed, 12 Aug 2026 15:00:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 304DFC5CFDB
+	for <nouveau@archiver.kernel.org>; Wed, 12 Aug 2026 23:13:38 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8726210F05D;
-	Wed, 12 Aug 2026 15:00:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 057BC10F151;
+	Wed, 12 Aug 2026 23:13:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mI0FnOKb";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="q8jyJrYg";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id EFFD5476FE;
-	Wed, 12 Aug 2026 14:44:26 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 943B547710;
+	Wed, 12 Aug 2026 22:57:19 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786545866;
- b=zE/vdh8RbDCkQ1tZLTsfNwsMLL2StsueOfN64/yR7pLTyVembXoIy+xWGxm5DfZ2TBx+A
- tsvo4LRCLR+6454X/S0MClrCwGpDo4oevny1lk+slIIGx0WcWA1iZ22s2NgBwctUzGJ3vBi
- AkHLqaNLSfqgfiVDHU3+HDw9QXROnXuDqWTO4vXkJsuGsPw43VIEEV1N6rPT1ZhG6ioRsV0
- s4ilKoD6Mh5Ll5Uzs1hbDkzaPi7ZkUiq09CLDp7s4vAIdoOEH5lc4m8xQp3fqhWPlfhEyEn
- BAqrjyZ6QC7kwx0kJ+MPqDGqGNXSNG/ejwimWSW9jh02iZsmYga3Q6ASl7Nw==
+ s=20240201; t=1786575439;
+ b=t0gLuS1068egfpsC3wsCx7fNyvbju1Kl1A1QU1X9iYhCFXmOTe5uzty6PvPdJqyCmW7Y3
+ ztxEaNtK+BLpNkDyIMds2QY+Qcw3B6m0M4SHbcjh95BAb909lCUmqITM8IegJwjWyShBK9i
+ pv2nHZD9hv9PcTcORHwq6FqcFqo+BJOFelhPQdqEJHR/xDBWPna+Xv6siFhLWtfZjJE+5la
+ 9SXFCTFYxflcTIHyEPm+Mj+AQPr9vWpfve5FODTXLQIsj4tspgDwSkrOfJ15cXhE7G/5001
+ jADf6yoS58EQZxAezK31cP5cw6ap/lmNr8XThUe19M14QtXOZ4qpJDfK1cUw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786545866; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786575439; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=gMOizgIP9BJQteM6A8h6tNJgWMELd3MPmjUznwQtZHY=;
- b=aHLJFHqxcC7S+wa0fIzExCMuxpFwz9dhSxDuTRBAwIM9btFy4W5ZfJ8eBVIStlX6xR8ab
- h4wRnvO3klNG976HfmQWRzR6Lp1D6loe1s2aRrZVcFHXOGO3sw2JqUn1mOA724XIoKyaHGw
- mQvfQIB/h6njNHOwKgm7vnXY4OQ4Zxy6kErq4dkh/joDTRUuoFnKjeZ2AFi/LJ3fEmGsyBD
- S7+tflyHaRIEtxzCg52Ep3QokUO7coMEQjRBmGr5kWRj5GtMIfHLm1NzxQrAV2S9JLu9WAj
- IZWSBxusCnWrGLIXlzN83Jac73pjERtOmFa7K5j4M99mnws7DMjfqc1zw2nw==
+ bh=knmiZOkayyU4iEwEuKGRREO2aACklWxmCXd6sObM8f4=;
+ b=wHH8+dkcc8JREJvz9zM9JAKRiTp5FSpriEJJ5AhIAzlx/3zsqGyNPsfzRR7zv1k6OynSg
+ 6ghruQIy99DBXyXzj76bK47SZHevU7eZShxtK5+Gk8RNQYpk8Gp5ZMIysSVXHZTOKKVmynq
+ fU+DjD3oEtLzDOfdDMGu5xentJ+e9jvRtvnMDnz3tlRS6iBftRD4vKL72cPJHM5WI++GypI
+ 9F21qd2z0tNAcfD5wgRWWeYRUGgbueRqcj8vCq95ZuRrv4iCeo1MhkwsZvA19TaimMnTsPh
+ zNqEBxr93X/jc588r3JF9/SAYtofPwoMFbjAMst5UsRL7FGI16tlZc6YWU8Q==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,102 +46,84 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id CE60245261
-	for <nouveau@lists.freedesktop.org>; Wed, 12 Aug 2026 14:44:24 +0000 (UTC)
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com
- [209.85.216.46])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4542210F05D
-	for <nouveau@lists.freedesktop.org>; Wed, 12 Aug 2026 15:00:42 +0000 (UTC)
-Received: by mail-pj1-f46.google.com with SMTP id
- 98e67ed59e1d1-38f620399a0so1065289a91.2
+	by kara.freedesktop.org (Postfix) with ESMTPS id 554ED47704
+	for <nouveau@lists.freedesktop.org>; Wed, 12 Aug 2026 22:57:16 +0000 (UTC)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7631E10E0FA
+	for <nouveau@lists.freedesktop.org>; Wed, 12 Aug 2026 23:13:34 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-4954c08a7c8so1337575e9.3
         for <nouveau@lists.freedesktop.org>;
- Wed, 12 Aug 2026 08:00:42 -0700 (PDT)
+ Wed, 12 Aug 2026 16:13:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1786546842; x=1787151642;
+        d=gmail.com; s=20251104; t=1786576413; x=1787181213;
  darn=lists.freedesktop.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=gMOizgIP9BJQteM6A8h6tNJgWMELd3MPmjUznwQtZHY=;
-        b=mI0FnOKbbxsW1oFWXBiz1MtSijmXwyf7IHgrNO1nP4Wgl9uG+fARnlA9+NNGqszwfs
-         IiTo40/ne9q3Dwg6+5UosqF2QwJlY7v3DbRRALtYUYtObRPrr48sDu+B3TFJ8u0vk8VV
-         +KEbqn+mrpTSR/LoLtT6nlPxvL9VRMKyelB7c9KgfUkLuMWueM2AX6jTf3rHdB14y2LP
-         SyFRgfWlQiJMqz0H4HN/eL8gt66c2rlyLBCoFQySM0OUMDAd5UrDoJso24eGJ/ib11jY
-         V2mXx/r+O4Ya5dJu2JJjg1Ac1mQP6gbZwapo5YdVLU5IWJegknYvdFx/m+mcZ3QFOE6P
-         i+Wg==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=knmiZOkayyU4iEwEuKGRREO2aACklWxmCXd6sObM8f4=;
+        b=q8jyJrYgqWKfNEydwETbj/j3n56OjmaJaDG3tsnHk0Jt9SLEKDv1FSAcnQW/lgko6O
+         OdT1LkW+5KqEnNDSYpAY4ROwcKx9mdYBPff4gIyfcq3XVpii8lfZ6yERcJzll/Za66vw
+         ZVGYT0WUVZNZf3Na/h36RzjXjAho1cpifVTCx/5Fpw5k+IBLEyDbE58aGgzVZeAWxFGy
+         bOq8vBlXbpCGUjf7raDM2QBiLG1BQ7V7VB+Ax08C0o89XOM2+/+ITjcVQxp17cE5aUwQ
+         S4PzwD6eVh0+nB/WOUtZRMvRVN0jnfQJmT321SFZn/Mj5QMJ+G5Rz+jPhjwSY19P0fXn
+         t63A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1786546842; x=1787151642;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=gMOizgIP9BJQteM6A8h6tNJgWMELd3MPmjUznwQtZHY=;
-        b=RvaZkiBG+fDBXaocskrwKDO/6yJmKkbUe6cficZjdotsRfBZwUeT7G1TXYLNfoCZcT
-         JbEzdel4GGhaRUAf50/anZR9lyukhDlDkrTdwJcrzylDiKXGASkz3bk7poGqhmRyh701
-         IMcsS4VtTsg4XVVNcIWj3oAZNcnbEMV4zGjewSF0l7gt0Cf63zQy+D4isRJVgnPrf4nO
-         gURY4JeXE5t7DiCyXyPJ7xYfFIO07wIz2zGG1NZb0JiD2ebjaXEmMofAsR68ID54ydP8
-         XiY2wKoLnXtTbr+0Zfwh7Og6Oh/3BSC9vTykOcRML/aP2fwU7BjRRnx2P7LfDmgg4Bfs
-         EVow==
-X-Forwarded-Encrypted: i=1;
- AHgh+RqLmWsvLpEhsUrYcr9QwY5n1Q78r22xHgMv0wlEHWySatUNBPQILHQYiDplDGOZ7szChdy9SJHU@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyewdNe2FQ7GhK3q7FuTZXF2eSu5ZFgEIzUEZstnrBs9m+sAfij
-	73diHBVHt7C6LcnTDlaF3LqdXdirZWbzcxUIklAPQSqoG5Cw/d7uY2fi
-X-Gm-Gg: AR+sD105wdapoAfK3Dc2qIq0bOA5OxYX4bH9l8UMWKY2TXWVkw5TDBrgIQyGOVrD/7E
-	DYlHqffImTXo3i7Tj58+MqX9TBFDkdQZmOFYtwvCUOkL6ZIgy3AjwOnWO3+zO2I0vCUWXLxubLe
-	+BVmh8NC3xYRA2qnecIAJG8ysYfFKxWpvLSoJwA2TGCZhIN0wVGuxNtys5/6PmIsP/wXv3z8ASh
-	rKo+tY4PxVoTTzdOp9lGTwucHgOadyp1R0TKieqWe5BFVkx5i08sus2vjssZE/NCTv2i1pYc811
-	7595vi03edp2sr7AeAuQdzP4sQB5TFIqkK2N8aoMVEBdX/tRvcq21uA0tCE5dSnZ43Fvxy1KqC5
-	7zfbkU26WwGmTv5L7HDftAYaJ6oAQr13LOPI5m8kKV4PANc2baZIzHBjvW/tu3GQXdv6ZLC8Qsa
-	EyvIhSMsLSOlipKPesMM5amnVzLqZZJb7Rg9cNnj7QYC1pTSyNnQmxsZ3BW6o=
-X-Received: by 2002:a17:90a:dfce:b0:38e:c7b0:84ad with SMTP id
- 98e67ed59e1d1-39300fe8cb7mr6781997a91.0.1786546841182;
-        Wed, 12 Aug 2026 08:00:41 -0700 (PDT)
-Received: from LAPTOP-N3B6U5LC.localdomain ([117.147.100.52])
+        d=1e100.net; s=20251104; t=1786576413; x=1787181213;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=knmiZOkayyU4iEwEuKGRREO2aACklWxmCXd6sObM8f4=;
+        b=CzUuBquFHDDmig1xAc7G/zlSxtEuwwWPezvTDVuTlv3Tc7/tUF6O/deoX0trzZhmuI
+         KYiu15y5VaSpxdBWfgrzVthoN8uY6rZgNdhGuQrXiTxvqu8PASiNYiRLUsnHLW/ni0ME
+         A8dUZvh8ysXe2hg3KOWwiTU6lNj+8Ww58lmN9lmmIkUAV8hOj7yh9B8yZTDEkZIFjqGH
+         i0XBKy+4f1sQwF5j8fKFq2eV4pcDHhzKgbnkZVl2+p/Q7MF/dSthARWo0E2g9/ACLSeD
+         gGJp/5ha7p1U0+Ww1xlO707aGU/Nuja0GqE4opy05kKTkjD8tJ53zDS9kxKpjSUBM9bp
+         aMCw==
+X-Gm-Message-State: AOJu0Yx1UwZ4mb18B/D2OXh638GzP3rTXhRKF8UubYbC7AVBuw71lxo/
+	tI+o9n9qg8nLnUfUlxagDCZuUVkkJPU3Rs76yiFwDIWJ1+nLCrARfxiti/BU574J
+X-Gm-Gg: AR+sD108O/JGXw+NfmQCmi3m4z+rJ4ni253KTfDhxaVuYtMgaM3lH3h+4koy9h/poB8
+	PRqldLMFExtTM0FWwSdor0VD2VCTIhKdp4LfQIVK2pIHCS8wD8VJVch2VsyDk2T6QE/dGkfaGef
+	ThU8HcSBlK2CBSGohzqd6ubfjAtLYFIOI5exjhFaOHGVcQdeEx0l3YJPIOnOfeEoSXrMUTV4eHp
+	5JWLGuMEzZ74CsZJJmTo8xVMQ8qCFgEhRhHHJdMv+MPfLWmucptjmCoYi4socve6YaI93hWhCNM
+	zIJGl3pjCnxPu8S/Vke/VytFbvFMQV11vnGkzOruMd0gA+eHJJMxJiVkM9XDiDAFFUqXjzeZXsM
+	CVtT3I+nZfODbz16Is3BYvSQPrhxWkU83TDUTcNX4ZwsldVeKPIyUuZDptKLFE/1NzFiam7ndDO
+	z2njOw7780WJYUNlNJjXQiXWOogih3M8MEBGEw8uXlWq/sxKruD8d6/laOHtlfq4g6ISxLZS2Mn
+	48QU2X0f/pQRr+i9YcTCK7Ys5TAiBTom5G732+DWga4tBLyyaSR3Zy6
+X-Received: by 2002:a05:600c:19d4:b0:490:ec79:3046 with SMTP id
+ 5b1f17b1804b1-499821647efmr6305275e9.0.1786576412642;
+        Wed, 12 Aug 2026 16:13:32 -0700 (PDT)
+Received: from Neo.taile6b6ba.ts.net
+ (ip-109-193-028-127.um39.pools.vodafone-ip.de. [109.193.28.127])
         by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-392f935f73csm3896491a91.6.2026.08.12.08.00.37
+ 5b1f17b1804b1-49981b631c1sm44532245e9.14.2026.08.12.16.13.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Aug 2026 08:00:40 -0700 (PDT)
-From: Zhenhao Wan <whi4ed0g@gmail.com>
-Date: Wed, 12 Aug 2026 23:00:05 +0800
-Subject: [PATCH 2/2] drm/nouveau: prevent NULL deref of gr in
- GETPARAM_GRAPH_UNITS
+        Wed, 12 Aug 2026 16:13:32 -0700 (PDT)
+From: Marek Czernohous <mczernohous@gmail.com>
+To: nouveau@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v3 0/4] drm/nouveau: channel-kill event ordering fixes,
+ and lower the gate to NV50
+Date: Thu, 13 Aug 2026 01:13:26 +0200
+Message-ID: <20260812231330.705425-1-mczernohous@gmail.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: 
- <20260812-nouveau-nvkm-absent-subdev-null-deref-v1-2-7e057f6aeba0@gmail.com>
-References: 
- <20260812-nouveau-nvkm-absent-subdev-null-deref-v1-0-7e057f6aeba0@gmail.com>
-In-Reply-To: 
- <20260812-nouveau-nvkm-absent-subdev-null-deref-v1-0-7e057f6aeba0@gmail.com>
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1786546828; l=1659;
- i=whi4ed0g@gmail.com; h=from:subject:message-id;
- bh=DHIfdikRkZ3mKShlh/+V7tgkqvRSlEckIAj2mwx7osQ=;
- b=HXxJzWcsyd2sKVHR1T+erLcdLCL/gkjA+9ra5ROLCdEp3ElbPtmAtHX0Jsk42Eej69Bbe3s1z
- JWrY3tlQYitDwdc3sM1wMfPD79z2pvggbmWqZhaxh2KZjHZR0tFAaXe
-X-Developer-Key: i=whi4ed0g@gmail.com; a=ed25519;
- pk=zRTKlstE0LmilshGwJsFYEVjiT6RiXMBXK8Og6VmuVQ=
-Message-ID-Hash: D5YQWWQFDMLL2RHCVKHOFASS3TTK3YK2
-X-Message-ID-Hash: D5YQWWQFDMLL2RHCVKHOFASS3TTK3YK2
-X-MailFrom: whi4ed0g@gmail.com
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: GFFDFPSOGMTGY6K2D2O6CJ3XQMEL4HYC
+X-Message-ID-Hash: GFFDFPSOGMTGY6K2D2O6CJ3XQMEL4HYC
+X-MailFrom: mczernohous@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Yuhao Jiang <danisjiang@gmail.com>,
- stable@vger.kernel.org, Zhenhao Wan <whi4ed0g@gmail.com>
+CC: linux-kernel@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Ben Skeggs <bskeggs@nvidia.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/D5YQWWQFDMLL2RHCVKHOFASS3TTK3YK2/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GFFDFPSOGMTGY6K2D2O6CJ3XQMEL4HYC/>
 Archived-At: 
- <https://lore.freedesktop.org/20260812-nouveau-nvkm-absent-subdev-null-deref-v1-2-7e057f6aeba0@gmail.com/>
+ <https://lore.freedesktop.org/20260812231330.705425-1-mczernohous@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -151,43 +133,169 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-nouveau_abi16_ioctl_getparam() fetches the graphics engine with
-gr = nvxx_gr(drm) (i.e. drm->nvkm->gr) and, for the
-NOUVEAU_GETPARAM_GRAPH_UNITS parameter, passes it straight to
-nvkm_gr_units(), which dereferences gr->func with no NULL check.
+From: Marek Czernohous <marek@czernohous.de>
 
-When graphics-engine construction returns -ENODEV, NVKM treats it as an
-optional absent engine: the NVKM_LAYOUT_ONCE device constructor deletes
-the subdevice, leaves device->gr == NULL and continues probing, and
-Nouveau still registers a render node. An unprivileged client holding a
-/dev/dri/renderD* fd can then issue DRM_IOCTL_NOUVEAU_GETPARAM with
-NOUVEAU_GETPARAM_GRAPH_UNITS and oops the kernel on the NULL gr.
+This is v3 of the nv04 FIFO series, cut down to the four patches that are
+ready. v2 is here:
 
-Report 0 units when gr is absent. This matches nvkm_gr_units() itself,
-which already returns 0 when the engine exposes no units callback.
+  https://lore.kernel.org/nouveau/20260806085228.1848994-1-mczernohous@gmail.com/
 
-Reported-by: Yuhao Jiang <danisjiang@gmail.com>
-Assisted-by: Claude:claude-opus-5
-Cc: stable@vger.kernel.org
-Signed-off-by: Zhenhao Wan <whi4ed0g@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_abi16.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The Sashiko review bot flagged three issues on that posting. It was right on
+all three. Two are fixed by the new patches at the head of this series; the
+third was in the Tesla recovery patch, which I have dropped from this posting.
+More on that below, because the reason is not the bot's finding.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-index 291203121f0c..dd3f8d386377 100644
---- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-@@ -306,7 +306,7 @@ nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS)
- 		getparam->value = 1;
- 		break;
- 	case NOUVEAU_GETPARAM_GRAPH_UNITS:
--		getparam->value = nvkm_gr_units(gr);
-+		getparam->value = gr ? nvkm_gr_units(gr) : 0;
- 		break;
- 	case NOUVEAU_GETPARAM_EXEC_PUSH_MAX: {
- 		int ib_max = getparam_dma_ib_max(device);
+1/4 The channel-kill subscription outlives the fence context in
+    nouveau_channel_del(): the context is freed first and the event is only
+    dropped later, among the nvif object teardown. A kill delivered in that
+    window walks a freed fence context.
 
+2/4 The subscription is armed before the fence context exists.
+    nouveau_channel_init() subscribes right after mapping userd and creates
+    the context at the end of the same function, and the backends publish
+    chan->fence from kzalloc() before nouveau_fence_context_new() initialises
+    its lock and pending list. The NULL check in nouveau_channel_kill() does
+    not cover that: the pointer is non-NULL and unusable.
+
+Both are pre-existing. Both are unreachable below Fermi today, and on Fermi
+and newer the windows are narrow, but they are real, so 1/4 and 2/4 carry
+Fixes: and Cc: stable and stand on their own. I should have carried them from
+the start. The v2 cover letter even described the teardown ordering and
+dismissed it as "most of that window is harmless". That judgement was wrong,
+and I appreciate the catch.
+
+3/4 and 4/4 are unchanged in code apart from the rebase and one joined format
+string. Both commit messages have been corrected: 3/4 no longer implies a chip
+gate it does not have and no longer claims a before and after I cannot show,
+and 4/4 no longer says the fences time out, because they cannot.
+
+3/4 downgrades one specific CACHE_ERROR to debug level. Mesa's NV50 bind
+probe writes a known method and data pattern that the hardware rejects,
+repeatedly over the life of a session, and nouveau has been reporting it at
+error level ever since. It changes no behaviour beyond the log level and is
+unrelated to the two fixes above; it has simply travelled with them since
+v2.
+
+4/4 lowers the channel-kill subscription from FERMI_CHANNEL_GPFIFO to
+NV50_CHANNEL_GPFIFO. On its own it changes no observable behaviour, because
+nothing kills a channel on Tesla today: the only nvkm_chan_error() callers are
+the Fermi and newer recovery paths. It is worth having anyway. Leaving the
+ERRORED event delivered into an empty notifier list is a latent dma-fence
+contract violation, and it is exactly the trap the recovery work would fall
+into. Removing it before anything can fall in is the right order.
+
+What is not in this posting, and why
+
+  v2 carried a third patch, the recovery path for Tesla cache_error and
+  dma_pusher faults, and the five-patch v3 I had prepared carried it as 5/5.
+  It is not in this posting, and the bot's third finding is not the reason:
+  that one was a real bug of mine and is fixed.
+
+  I ran an adversarial review over the whole series before sending, and it
+  found two defects in that patch that the bot had not flagged:
+
+  - nv04_fifo_recover() has no chip-family guard, but nv04_fifo_intr is .intr
+    for nv04, nv10, nv17, nv40, nv50, g84 and g98. On NV04 to NV40 the
+    escalation would therefore fire while 4/4 deliberately installs no
+    subscriber, producing exactly the dead-letter hang that 4/4 exists to
+    prevent. The series would have contradicted its own reasoning, in the same
+    diff.
+
+  - The recovery path pulls the drm_device out of drvdata on every fault,
+    while nouveau never clears drvdata and the only cancel_work_sync() for the
+    wedge work runs in nvkm_fifo_dtor(), that is after nouveau_drm_device_del()
+    has already kfree()d the nouveau_drm. A queued work reads freed memory.
+
+  The first is a one-line guard. The second wants the wedge policy moved into
+  the DRM layer rather than patched where it is, which also removes an nvkm to
+  DRM layering violation I should not have introduced. That is a rework, not a
+  fixup, so it goes into its own posting once it has been rebuilt and soaked.
+  Sending it now would only waste reviewer time.
+
+Testing
+
+  Reference hardware: Apple Mac mini Late 2009, MCP79 / GeForce 9400M (NVAC),
+  Core 2 Duo, Wayland (labwc).
+
+  Build. Unlike v2, this series is built against the stated base commit: the
+  nouveau module compiles and links with zero warnings and zero errors, with
+  the new format strings and the lowered class gate in place. checkpatch.pl
+  --strict is clean on all four patches.
+
+  Soak. Code equivalent to 1/4, 3/4 and 4/4 has been running on that machine
+  since 2026-07-25, and equivalent to 2/4 since 2026-08-06. The first spans
+  the kernel bumps 7.1.5, 7.1.6, 7.1.7 and 7.1.8, the second only 7.1.7 and
+  7.1.8. Since every channel now subscribes to the kill event, the interesting
+  long-run question is channel churn, so the soak is ordinary daily driving
+  with a browser and GL applications rather than a synthetic loop. No
+  regression has shown up in that time.
+
+  What the soak does not show, stated plainly: that tree carries local patches
+  this series does not, including a cap on the plane-fence wait in the
+  nonblocking commit tail. So the soak says these changes do not misbehave in
+  daily use. It is not an independent demonstration of the failure modes
+  described above.
+
+  1/4 and 2/4 are ordering fixes for windows I have not managed to hit
+  deliberately on this hardware; the reasoning is from the source, and the
+  bot's reading of it agrees. I would rather say that plainly than claim a
+  reproduction I do not have.
+
+  3/4 filters a benign CACHE_ERROR that Mesa's NV50 bind probe triggers. The
+  logs behind it are from a second, independent MCP79/MCP7A machine, not
+  mine: 99 occurrences across three logs and two kernel versions, under Xorg
+  and Wayland, with kwin and plasmashell named as the faulting clients. They
+  were shared with me by the tester who reported the original NVAC issue. I
+  have not named them and have added no Reported-by or Tested-by: we have
+  not been in touch since then, so I have nobody's consent to point at. On
+  my own machine the filter went in before the persistent logging did, so I
+  cannot show a clean before and after from here.
+
+AI assistance
+
+  Lyude asked on the v1 thread whether these patches were written by a human
+  and pointed at Documentation/process/coding-assistants.rst. The answer,
+  repeated here for the archive: this work is AI assisted. I use Claude
+  (claude-opus-4-7 for v1, claude-opus-5 since) as a coding and analysis
+  assistant. Every patch carries an Assisted-by trailer accordingly, and no
+  Signed-off-by is added by the tool.
+
+  Nature of the assistance, so you can calibrate your review: the assistant did
+  most of the code archaeology and drafting. I described symptoms, asked for
+  the mechanism to be traced in the source rather than guessed, and asked for
+  each claim to be backed by a file and line. The measurements quoted in
+  earlier postings are from the machine, not model output. The assistant also
+  reviewed its own earlier work adversarially, which is how the two defects in
+  the dropped patch were found, and how several unsupported claims in the v2
+  cover letter were caught before this posting. I reviewed the result, I
+  understand the code, and I take responsibility for it.
+
+Changes since v2
+
+  - new 1/4: unsubscribe the channel-kill event before the fence context
+  - new 2/4: subscribe to the channel-kill event after the fence context
+  - both found by the Sashiko review bot on the v2 posting, confirmed against
+    the source before acting on them, and now carrying Fixes: and Cc: stable
+  - dropped the Tesla recovery patch, see above
+  - 3/4 and 4/4 unchanged in code apart from the rebase and one joined format
+    string, both commit messages corrected for accuracy
+  - the series is now built against the base commit
+
+Marek Czernohous (4):
+  drm/nouveau: unsubscribe the channel-kill event before the fence
+    context
+  drm/nouveau: subscribe to the channel-kill event after the fence
+    context
+  drm/nouveau/fifo/nv04: filter benign CACHE_ERROR from Mesa NV50 bind
+    probe
+  drm/nouveau: subscribe to channel-kill events on NV50 and newer
+
+ drivers/gpu/drm/nouveau/nouveau_chan.c        | 64 ++++++++++++-------
+ .../gpu/drm/nouveau/nvkm/engine/fifo/nv04.c   | 26 ++++++--
+ 2 files changed, 61 insertions(+), 29 deletions(-)
+
+
+base-commit: c21bb4193868a8de71fc4693fa741e195fdf5d86
 -- 
-2.34.1
+2.54.0
 
