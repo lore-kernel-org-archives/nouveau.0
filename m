@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0992C5B572
-	for <nouveau@archiver.kernel.org>; Thu, 13 Aug 2026 20:48:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D90ECC5B572
+	for <nouveau@archiver.kernel.org>; Thu, 13 Aug 2026 20:48:24 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0777510F538;
-	Thu, 13 Aug 2026 20:48:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9AA9110F53A;
+	Thu, 13 Aug 2026 20:48:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="GUU5p0Ez";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="O00O0CTp";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8F6A04777C;
-	Thu, 13 Aug 2026 20:31:57 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 43F2C4777F;
+	Thu, 13 Aug 2026 20:32:00 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786653117;
- b=I9zASVt6nU7HyZ/tqxWtb5vn7y99jdsxoVpLYaKjvtuoT0OMk0qQNw71iVjyMFOn21xf8
- j3rafRuh1bTc53jgDi8uykD0WXVHa2yQhjxCJBZJPH9G5ljvdfHFfC9LJ12WGLR4OOIUVRN
- OffdPum/PK+s1CLy9W4ehaPYBb1pH56ChC9tRctyPuE0Kpc2MtUjE+MKqBYdRB65gibHMvo
- pldf8RfONRqqgBFzUhDapC99CetFm1U8WNEYRsf0xza7W4liwuGZOgzDV9+r+fbVJLwaXv1
- xazLuq3gCzgg+WEzvH7FXLOFX4yErMxdB/1tz/Udm4D4T8Auq0KAMExfFd3A==
+ s=20240201; t=1786653120;
+ b=aBs7XNEuYOuOi8zMFGgYTF22WPEraRbK3pFbB+aFB84v93wrAanqjjVOD7IDnEh2KExtY
+ UTRwLYtaXOus2NKbAS4GDndvVIVfUVlOSvSSjBBvVobB5A4Mz8sdk6O74fLveUSJzYm9fC+
+ KBnQspxnMSC3Id074zPfx0CRpaZ7C0QFcGRGlVnM1E8fZUYvwI2B0wchGEBtva8G9VPI13t
+ GcYgbTaNAuj4H7S5up9F15yhBzCv4oexbCE+Hd00i1/6nYwC85Ck8Mbqrv+ddWaFyTgJCAp
+ k4DoZPDMOxo2RZfo/nRiVgx76oYGtSiiMgBDQ8X4/mqVNe0e+FOL+RXAr93g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786653117; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786653120; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=kDuuOkCH2fbUW8QPsk+U/L/tBxogc365sCLb1ANoKiQ=;
- b=dyKhFSNP0B1VQKLN4OzBMLuelWsUS0xkxEf2z1E/kCJzumzqMJU2wV1NBdXCtzoSH/K7C
- RFVKJjphqqizB+FkyD0J41jBFtQB+dOunnksoGfVJYrtcs4YBVxMjnqUy/ANaaKgoBBiFMn
- shIUImdnbwxPgZH++0l4Dj0koR4bwITNJog41Pf43zV3c+n8EtJttPQk2G92+OBA7llWOKd
- uGzrrow0v2kJBp2gkDKlj7FaYMF46nyTy+2STv4C0ljUyLmeUTZR+SnZpOGj5Beqzt1GP/i
- pZJcZI7DhMMUzKrQux9ta0DriMBstW/6aZ+oV/+VnlyyuqY1OCrLGDl/o9bg==
+ bh=HM8zvcL/8EecJPDVQT6aSutYylxT/HBspErHsI6olAE=;
+ b=Af1IdI1YrU7tMSoIllqzP5MlrhIVogbNbLxTf6v5wNPXCxZ8xCo3/BNHchsstO72lkMZt
+ Frgo+02mezIdSCU+cVRZ85xbSwrsBxp3MVuKT5HnaIK45KNCsrnAPhVd903NY4z19lwhYHH
+ aS/bjWJOxvXk5DSXuINSgTG1oQ/lLsLcfP4lXSvmpVzpO++43kx9vrk2ZLq18ypM+TzYYuV
+ YkrlornQg+wcf9kw3urMd5t34RvNG6fhdNIy/ZucOIqAzdLifuh4J/6oi437sygUtMaACy/
+ rkZmKhaE7iDFUcY7tH3gzFpn9eVv7w+GuDd/6jDhAfSOdb46bPPU2D2YFjaQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,57 +46,60 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 94299476ED
-	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 20:31:54 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 15BE04777E
+	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 20:31:57 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9557A10F52F
-	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 20:48:14 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2622A10E084
+	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 20:48:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1786654093;
+	s=mimecast20190719; t=1786654096;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=kDuuOkCH2fbUW8QPsk+U/L/tBxogc365sCLb1ANoKiQ=;
-	b=GUU5p0EzX8Bck+D2ExkuehuTb1s41/IDLszc+04Hkmr+uyDyC3JPpxz8AttZSkIwIWTeBG
-	g0ec2UWxLTExXVwWjRxmHx9GSCtSOe76zoEUXIsRc+ae2ClHJdcDg7iYRcsHPQwkd+ud16
-	S9vVkdGssVBBSmfCMnPpXZpG1HRTusY=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HM8zvcL/8EecJPDVQT6aSutYylxT/HBspErHsI6olAE=;
+	b=O00O0CTpcOQR7n47i/clMeI4rTGiM4aEtR4DeS54j5XfRdv8YoFV/G8uA4jWf7OeBFyR4a
+	i37vMCQUeB2sIxbOc1Aj42oPCYA8tJreIQi5nrvvumuHKP8rLdfGmusItLpJ0g310Z1wej
+	tS1XUqau2nUFYs0p6GZccs68uMIXa9w=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-158-YeC5sBgxPx64q1wyXftKoA-1; Thu,
- 13 Aug 2026 16:48:10 -0400
-X-MC-Unique: YeC5sBgxPx64q1wyXftKoA-1
-X-Mimecast-MFC-AGG-ID: YeC5sBgxPx64q1wyXftKoA_1786654088
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-59-9pI8yLRPO7ymTwB7_EzK4g-1; Thu,
+ 13 Aug 2026 16:48:12 -0400
+X-MC-Unique: 9pI8yLRPO7ymTwB7_EzK4g-1
+X-Mimecast-MFC-AGG-ID: 9pI8yLRPO7ymTwB7_EzK4g_1786654091
 Received: from mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.95])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 397D3180028A;
-	Thu, 13 Aug 2026 20:48:08 +0000 (UTC)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id D62F8195609F;
+	Thu, 13 Aug 2026 20:48:10 +0000 (UTC)
 Received: from GoldenWind.redhat.com (unknown [10.22.80.207])
 	by mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id B04EF422;
-	Thu, 13 Aug 2026 20:48:06 +0000 (UTC)
+ id 02446427;
+	Thu, 13 Aug 2026 20:48:08 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org,
 	linux-kernel@vger.kernel.org,
 	nouveau@lists.freedesktop.org
-Subject: [PATCH RESEND v7 0/5] drm/nouveau: Enable atomic modesetting by
- default
-Date: Thu, 13 Aug 2026 16:46:46 -0400
-Message-ID: <20260813204803.2097176-1-lyude@redhat.com>
+Subject: [PATCH RESEND v7 1/5] drm/nouveau: Fix cleanup bug in
+ nouveau_drm_device_new()
+Date: Thu, 13 Aug 2026 16:46:47 -0400
+Message-ID: <20260813204803.2097176-2-lyude@redhat.com>
+In-Reply-To: <20260813204803.2097176-1-lyude@redhat.com>
+References: <20260813204803.2097176-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.6 on 10.30.177.95
-X-Mimecast-MFC-PROC-ID: bgfyVjQwExNBdJUhYk88gIqoQ6d11yDScuC-XYp0xOc_1786654088
+X-Mimecast-MFC-PROC-ID: n16xGlG61jp2_Ipqu4hbcvkvpcxNePxFL6sEJ8-jLq4_1786654091
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: QJCDQ3UR447PUGPPZ6B7SZIOPFASNEVC
-X-Message-ID-Hash: QJCDQ3UR447PUGPPZ6B7SZIOPFASNEVC
+Message-ID-Hash: 4TEIJJOMPSX7HM4GHENPKH5IS3324DSJ
+X-Message-ID-Hash: 4TEIJJOMPSX7HM4GHENPKH5IS3324DSJ
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -108,9 +111,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QJCDQ3UR447PUGPPZ6B7SZIOPFASNEVC/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4TEIJJOMPSX7HM4GHENPKH5IS3324DSJ/>
 Archived-At: 
- <https://lore.freedesktop.org/20260813204803.2097176-1-lyude@redhat.com/>
+ <https://lore.freedesktop.org/20260813204803.2097176-2-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -120,44 +123,38 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Nouveau is one of the very few modern hardware drivers in the kernel that
-doesn't have atomic modesetting enabled by default, in part because when it
-was originally written by Ben there wasn't much in the way of good atomic
-modesetting clients to actually test things out with.
+Sashiko caught this while reviewing the patches for enabling atomic by
+default - if we fail to allocate the DRM device pointer, we'll attempt to
+free the error pointer that it returns rather than the actual struct.
+Let's fix this while we're at it.
 
-Nowadays however, atomic modesetting is very much the norm - and support in
-userspace for non-atomic drivers is starting to bitrot a bit - leading to
-its own set of issues. At the same time, many of those issues are fixed by
-just turning on atomic in nouveau. Plus, I've been running nouveau with
-atomic modesetting on by default for most of the machines I work on, and
-I've already fixed quite a number of issues to the point where things seem
-quite stable (excluding a single screen flashing bug on my desktop, which I
-am not particularly convinced has anything to do with atomic modesetting).
+Signed-off-by: Lyude Paul <lyude@redhat.com>
 
-This patch series enables atomic modesetting by default, at least for
-NV50 and newer. NV04 is left unchanged, as atomic modesetting was never
-implemented for it. This series also enforces leaving atomic modesetting
-disabled on <NV50, and adds the value of nouveau.atomic to our kernel
-debug output.
+---
+V3:
+* Don't use devm, that will just break during unbind (Sashiko).
+V5:
+* Fix silly rebasing error
+* Go back to the old style of error handling since we're not using a second
+  allocation for drm_driver anymore.
 
-Previous version of this patch series:
-	https://patchwork.freedesktop.org/series/171310/
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-(Resent, because of a formatting error on one of the patches)
-
-Lyude Paul (5):
-  drm/nouveau: Fix cleanup bug in nouveau_drm_device_new()
-  drm/nouveau: Print the nouveau.atomic parameter in
-    nouveau_display_options()
-  drm/nouveau: Fix drm_driver struct/nouveau.atomic parameter handling
-  drm/nouveau/kms: Only allow enabling atomic modesetting on nv50+
-  drm/nouveau/kms/nv50-: Enable atomic modesetting by default
-
- drivers/gpu/drm/nouveau/nouveau_drm.c | 116 ++++++++++++++++----------
- 1 file changed, 71 insertions(+), 45 deletions(-)
-
-
-base-commit: 9b388fc3d0e63a4f5b022d326151e176e8d82e25
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 4d1ad718e09b7..a348115518ec4 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -749,7 +749,8 @@ nouveau_drm_device_new(const struct drm_driver *drm_driver, struct device *paren
+ 	drm->dev = drm_dev_alloc(drm_driver, parent);
+ 	if (IS_ERR(drm->dev)) {
+ 		ret = PTR_ERR(drm->dev);
+-		goto done;
++		kfree(drm);
++		return ERR_PTR(ret);
+ 	}
+ 
+ 	drm->dev->dev_private = drm;
 -- 
 2.55.0
 
