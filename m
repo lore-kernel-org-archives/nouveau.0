@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46E9DC5B572
-	for <nouveau@archiver.kernel.org>; Thu, 13 Aug 2026 20:37:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34C4FC5DF6D
+	for <nouveau@archiver.kernel.org>; Thu, 13 Aug 2026 20:37:53 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0C6DA10F52F;
-	Thu, 13 Aug 2026 20:37:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D0B6210F541;
+	Thu, 13 Aug 2026 20:37:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UsW8eDng";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="MYZF7S6H";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id AFBDA47763;
-	Thu, 13 Aug 2026 20:21:29 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 5FD7547768;
+	Thu, 13 Aug 2026 20:21:32 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786652489;
- b=UskyeN5yHDQeeq6vcgo2gF98UWKjboQ0f7Of3jUujbNa2kqKtlT5s2jD6FrynPuHloyYa
- HxIanJXJj2YKP1kI8UI5OzvaWQI9/i2Bh+lv7tpF0HV0Poczjff2Bkd/c+pN6AIl7rwFS4i
- 13Z4RNUJpIVVAMvntp+ye9KIhjHjtKwmjbjJiPIN/tN3kLWGBB4ETI2KbxHV5p6cldX11rA
- kDUQWChxLA1C/65bGLBAkiDK4pRfh+cnBOX59+uQuLbyu7j+VDrqD/cjllLAXCYItkpqbCd
- KQiHspDybvafM4D3e7VahUecnU7XJztx6THmo5PnDWVsLB01XiBLlsNo329A==
+ s=20240201; t=1786652492;
+ b=J4zh267GAa/P7HI4qOtZDrFKlP0VpozFdP29gAiSXRGc8/5nwCAb+12sXjcRe33jlxelw
+ Uqn5n97EZHoeuiaNvsMcmBJl1iBRgn0hl21nb3GzqHAOX8TqD7tBEQkO/ZB+enlkga5btuy
+ iysGyd6P0LmuOjI4APdqQsPXNqsIgZ8/xvXMPRP5rAA3qlB3tdxIaZzrVwksKtpBT9CdHDG
+ f3apBExAjrN+hZ0p05BWz30fnbQIJFCsTmpaNclb8S45Ssa5LZwHOql4fGrtG4ldQATNf0g
+ od9pRn2Cz/eZHreKcK+VX+BQEYuBaw6x2jASZ+XsQXu/xo17wySkdX3TdIug==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786652489; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786652492; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=a17nsuStiS7IsQuNSpzGOKtORn1O8u7fu4ZIRonx//w=;
- b=iZLwtGAm57Ag3esPavf6o8ocZxL56vok3vDUBsZ6t3RKqle97Tay9igna3dqpfDySOwuI
- yL/MzjwITNB7961RcE93RWiZ51N0RZnD+r5+EK0puh6mUPVNKk/gu6GEFAElQsltwfRhlfi
- k9e7LWAuCt/iN9h/8BHCvO4CkT+jLeunIE4ixh8vkWMwPpRGghzu4VO1sWlNvbgJN+tq8HE
- xLoEAxcmWumUJUgkVkz4BzxAM35VuvFid0jvi/p958E5O8SZN5tJF+jmTRav2wdQwvCuz9U
- gEo+sLhqdaAfwFpWLAMK4Sx7zIsIUGJxyHF/g2V0UgSpPNfjTsyuvE+4nbVw==
+ bh=Hh27rO9R8DtQJsuiE9nKE16dIfxBWJQ1z/2NAuDC/us=;
+ b=IOcnIbymqeATiI6T0tSuhcyMQiVBP16CqiLcaV9talinjwAEx0LdYihduwxABKg0g03BS
+ wxR/CKhrVZWJw1Gu1rkdtV5dU8cxOBvsmwsmWFJeUKUvsMCJWM/tOPa56xVnyzpJXJul3X4
+ 0wjEFpNqIfgoGGjDp6qWRKx0iGdy8MzDToxnPVTW6J4VKqNrURbTgeS8+BiSVVSHsveHOC2
+ Wvjk9NZdxaP3FiRKUpIGe1GwKEnsXzIrAD5YmTXq9JWUtXt+WM3Fi7uKXP5I17scSkjvJts
+ 9NYOuS6vuSPyNmFDHTB/Ign+KucXtrnwcgantDk+WCdfDSMBVmCccppN3rxQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,60 +46,60 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 8C79C476F0
-	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 20:21:26 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id E5CD64772B
+	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 20:21:28 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7BAD610F541
-	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 20:37:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id ECABF10F52F
+	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 20:37:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1786653465;
+	s=mimecast20190719; t=1786653468;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=a17nsuStiS7IsQuNSpzGOKtORn1O8u7fu4ZIRonx//w=;
-	b=UsW8eDngyHABjSLzJ5rXxkSGjCcRT+biCEpvGYP7rdB6wv3Fhc5b6s+NyGXsFeo6ewNRNx
-	ULMm534D3X6lydHIiOzta0BEBNc5AOXzCuEJ/6HKrsdVxyZa5Bby0uyMNadnhl9mRbVO5T
-	JWNaTtgBwzzvpWUxowO34SdWmmyOu8Q=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+	bh=Hh27rO9R8DtQJsuiE9nKE16dIfxBWJQ1z/2NAuDC/us=;
+	b=MYZF7S6HoJtkqWtB0lZ3jmPToeqZYxC8G6rbwG0H01ejOBGxKyZQ0ufYsVOxP7krEyyf8Y
+	O7/8F4zewAY+OnN7T1jOvmW6LwU6lzRVyUUMpFQ8YHRs4RQixDoyNwPcgXNggZ5vgxa9VG
+	/kVJ5KvSK3XADOhwnCPeO5Oi9JzX+nQ=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-633-cq8hJroVPgSFZFM2-UumdQ-1; Thu,
- 13 Aug 2026 16:37:42 -0400
-X-MC-Unique: cq8hJroVPgSFZFM2-UumdQ-1
-X-Mimecast-MFC-AGG-ID: cq8hJroVPgSFZFM2-UumdQ_1786653460
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-619--5Lyhn0CMQCjIdm7ZvXxxw-1; Thu,
+ 13 Aug 2026 16:37:40 -0400
+X-MC-Unique: -5Lyhn0CMQCjIdm7ZvXxxw-1
+X-Mimecast-MFC-AGG-ID: -5Lyhn0CMQCjIdm7ZvXxxw_1786653458
 Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 6C8B5195608B;
-	Thu, 13 Aug 2026 20:37:40 +0000 (UTC)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 53D18180034A;
+	Thu, 13 Aug 2026 20:37:38 +0000 (UTC)
 Received: from GoldenWind.redhat.com (unknown [10.22.80.207])
 	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 09071195DF9A;
-	Thu, 13 Aug 2026 20:37:38 +0000 (UTC)
+ id 7FC82195DF9A;
+	Thu, 13 Aug 2026 20:37:36 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org,
 	linux-kernel@vger.kernel.org,
 	nouveau@lists.freedesktop.org
-Subject: [PATCH v7 4/5] drm/nouveau/kms: Only allow enabling atomic
- modesetting on nv50+
-Date: Thu, 13 Aug 2026 16:27:08 -0400
-Message-ID: <20260813202833.2051778-5-lyude@redhat.com>
+Subject: [PATCH v7 3/5] drm/nouveau: Fix drm_driver struct/nouveau.atomic
+ parameter handling
+Date: Thu, 13 Aug 2026 16:27:07 -0400
+Message-ID: <20260813202833.2051778-4-lyude@redhat.com>
 In-Reply-To: <20260813202833.2051778-1-lyude@redhat.com>
 References: <20260813202833.2051778-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
-X-Mimecast-MFC-PROC-ID: aHN2t4KMjfOK9k8ykMTemFwpec7sE0XZHQCAFpXxAQE_1786653460
+X-Mimecast-MFC-PROC-ID: EMDKsrPpIbi5Gta0TzUSOFfNj6d2PS0ba-kjlBmICCI_1786653458
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: 24VZ2RX62TCPYO2I6FALPGMMBNYWP7ZQ
-X-Message-ID-Hash: 24VZ2RX62TCPYO2I6FALPGMMBNYWP7ZQ
+Message-ID-Hash: WAKNAHGHGPEEMI4N5LMD2OA2CN6HET32
+X-Message-ID-Hash: WAKNAHGHGPEEMI4N5LMD2OA2CN6HET32
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -111,9 +111,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/24VZ2RX62TCPYO2I6FALPGMMBNYWP7ZQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WAKNAHGHGPEEMI4N5LMD2OA2CN6HET32/>
 Archived-At: 
- <https://lore.freedesktop.org/20260813202833.2051778-5-lyude@redhat.com/>
+ <https://lore.freedesktop.org/20260813202833.2051778-4-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -123,47 +123,220 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Atomic modesetting support was never added for pre-nv50 chipsets, so make
-sure we don't allow it to be forced on. Additionally, print a small warning
-when it's not supported.
+The way we handled the nouveau.atomic module parameter before was fairly
+broken, and had a number of issues:
+
+- It was only ever actually parsed in the case of PCI devices.
+- When nouveau.atomic was enabled, it would add the cap for atomic
+  modesetting to the global driver_pci structure. This meant that if one
+  GPU on a system supported atomic and another didn't, it would still get
+  enabled for both.
+
+Looking into this exposed further silliness in the way that we actually
+handle the drm_driver struct. We have one global structure for platform
+devices, and another for PCI devices - both of which are literally
+identical.
+
+So before we start preparing to enable atomic modesetting by default, let's
+fix this. Instead of sharing driver_pci and driver_platform, we instead
+create driver_legacy_kms and driver_atomic_kms, each of which is identical
+except for the DRIVER_ATOMIC capabilities flag, and then assign either
+depending on the nouveau_atomic module parameter.
+
+Doing this is also preferable, as the next step for enabling atomic
+modesetting by default will be ensuring that we don't enable it for legacy
+devices that still don't support it. This requires only checking the atomic
+modesetting module parameter after the NVKM device is ready, as this allows
+us to check the GPU family that nouveau is running on.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 
 ---
 V2:
-* Check against info.family, not info.chipset
+* s/driver_pci/drm_driver/
+* Dynamically allocate drm_driver struct, get rid of duplicate global
+  driver structs to fix another Sashiko issue.
+V3:
+* Don't use devm (sashiko)
+V4:
+* Don't return 0 by mistake (thanks C)
 V6:
-* Check against device->card_type so we can perform the check before
-  setting up nvif
+* Don't embed drm_driver into drm_device, just create two separate
+  hardcoded structs
+* Move the check earlier
 
- drivers/gpu/drm/nouveau/nouveau_drm.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 100 +++++++++++++++-----------
+ 1 file changed, 58 insertions(+), 42 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index d021a3049be1a..82a8061e6d3e2 100644
+index 451009adee0de..d021a3049be1a 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -739,10 +739,17 @@ nouveau_drm_device_new(struct device *parent, struct nvkm_device *device)
+@@ -111,9 +111,8 @@ MODULE_PARM_DESC(runpm, "disable (0), force enable (1), optimus only default (-1
+ static int nouveau_runtime_pm = -1;
+ module_param_named(runpm, nouveau_runtime_pm, int, 0400);
+ 
+-static struct drm_driver driver_stub;
+-static struct drm_driver driver_pci;
+-static struct drm_driver driver_platform;
++static const struct drm_driver driver_legacy_kms;
++static const struct drm_driver driver_atomic_kms;
+ 
+ #ifdef CONFIG_DEBUG_FS
+ struct dentry *nouveau_debugfs_root;
+@@ -727,8 +726,7 @@ nouveau_drm_device_del(struct nouveau_drm *drm)
+ }
+ 
+ static struct nouveau_drm *
+-nouveau_drm_device_new(const struct drm_driver *drm_driver, struct device *parent,
+-		       struct nvkm_device *device)
++nouveau_drm_device_new(struct device *parent, struct nvkm_device *device)
+ {
+ 	static const struct nvif_mclass
+ 	mmus[] = {
+@@ -737,16 +735,21 @@ nouveau_drm_device_new(const struct drm_driver *drm_driver, struct device *paren
+ 		{ NVIF_CLASS_MMU_NV04 , -1 },
+ 		{}
+ 	};
++	const struct drm_driver *driver;
  	struct nouveau_drm *drm;
  	int ret;
  
--	if (nouveau_atomic)
--		driver = &driver_atomic_kms;
--	else
-+	if (device->card_type >= NV_50) {
-+		if (nouveau_atomic)
-+			driver = &driver_atomic_kms;
-+		else
-+			driver = &driver_legacy_kms;
-+	} else {
-+		if (nouveau_atomic)
-+			dev_warn(parent, "Atomic modesetting not supported (needs nv50+)\n");
++	if (nouveau_atomic)
++		driver = &driver_atomic_kms;
++	else
++		driver = &driver_legacy_kms;
 +
- 		driver = &driver_legacy_kms;
-+	}
- 
  	drm = kzalloc_obj(*drm);
  	if (!drm)
+ 		return ERR_PTR(-ENOMEM);
+ 
+ 	drm->nvkm = device;
+-
+-	drm->dev = drm_dev_alloc(drm_driver, parent);
++	drm->dev = drm_dev_alloc(driver, parent);
+ 	if (IS_ERR(drm->dev)) {
+ 		ret = PTR_ERR(drm->dev);
+ 		kfree(drm);
+@@ -874,16 +877,13 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+ 		return ret;
+ 
+ 	/* Remove conflicting drivers (vesafb, efifb etc). */
+-	ret = aperture_remove_conflicting_pci_devices(pdev, driver_pci.name);
++	ret = aperture_remove_conflicting_pci_devices(pdev, DRIVER_NAME);
+ 	if (ret)
+ 		goto fail_nvkm;
+ 
+ 	pci_set_master(pdev);
+ 
+-	if (nouveau_atomic)
+-		driver_pci.driver_features |= DRIVER_ATOMIC;
+-
+-	drm = nouveau_drm_device_new(&driver_pci, &pdev->dev, device);
++	drm = nouveau_drm_device_new(&pdev->dev, device);
+ 	if (IS_ERR(drm)) {
+ 		ret = PTR_ERR(drm);
+ 		goto fail_nvkm;
+@@ -1360,35 +1360,54 @@ nouveau_driver_fops = {
+ 	.fop_flags = FOP_UNSIGNED_OFFSET,
+ };
+ 
+-static struct drm_driver
+-driver_stub = {
+-	.driver_features = DRIVER_GEM |
+-			   DRIVER_SYNCOBJ | DRIVER_SYNCOBJ_TIMELINE |
+-			   DRIVER_MODESET |
+-			   DRIVER_RENDER,
+-	.open = nouveau_drm_open,
+-	.postclose = nouveau_drm_postclose,
+-
+-#if defined(CONFIG_DEBUG_FS)
+-	.debugfs_init = nouveau_drm_debugfs_init,
++#ifdef CONFIG_DEBUG_FS
++#define NOUVEAU_DEBUGFS_OPS .debugfs_init = nouveau_drm_debugfs_init,
++#else
++#define NOUVEAU_DEBUGFS_OPS
+ #endif
+ 
+-	.ioctls = nouveau_ioctls,
+-	.num_ioctls = ARRAY_SIZE(nouveau_ioctls),
+-	.fops = &nouveau_driver_fops,
+-
+-	.gem_prime_import_sg_table = nouveau_gem_prime_import_sg_table,
+-
+-	.dumb_create = nouveau_display_dumb_create,
+-	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
+-
+-	DRM_FBDEV_TTM_DRIVER_OPS,
++#define NOUVEAU_DRIVER_OPS                                              \
++	.open = nouveau_drm_open,                                       \
++	.postclose = nouveau_drm_postclose,                             \
++                                                                        \
++	NOUVEAU_DEBUGFS_OPS						\
++                                                                        \
++	.ioctls = nouveau_ioctls,                                       \
++	.num_ioctls = ARRAY_SIZE(nouveau_ioctls),                       \
++	.fops = &nouveau_driver_fops,                                   \
++                                                                        \
++	.gem_prime_import_sg_table = nouveau_gem_prime_import_sg_table, \
++                                                                        \
++	.dumb_create = nouveau_display_dumb_create,                     \
++	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,                 \
++                                                                        \
++	DRM_FBDEV_TTM_DRIVER_OPS,                                       \
++                                                                        \
++	.name = DRIVER_NAME,                                            \
++	.desc = DRIVER_DESC,                                            \
++	.major = DRIVER_MAJOR,                                          \
++	.minor = DRIVER_MINOR,                                          \
++	.patchlevel = DRIVER_PATCHLEVEL
++
++static const struct drm_driver
++driver_legacy_kms = {
++	.driver_features = DRIVER_GEM
++			 | DRIVER_SYNCOBJ
++			 | DRIVER_SYNCOBJ_TIMELINE
++			 | DRIVER_MODESET
++			 | DRIVER_RENDER,
++	NOUVEAU_DRIVER_OPS,
++};
+ 
+-	.name = DRIVER_NAME,
+-	.desc = DRIVER_DESC,
+-	.major = DRIVER_MAJOR,
+-	.minor = DRIVER_MINOR,
+-	.patchlevel = DRIVER_PATCHLEVEL,
++static const struct drm_driver
++driver_atomic_kms = {
++	.driver_features = DRIVER_GEM
++			 | DRIVER_SYNCOBJ
++			 | DRIVER_SYNCOBJ_TIMELINE
++			 | DRIVER_MODESET
++			 | DRIVER_RENDER
++			 | DRIVER_ATOMIC,
++	NOUVEAU_DRIVER_OPS,
+ };
+ 
+ static struct pci_device_id
+@@ -1457,7 +1476,7 @@ nouveau_platform_device_create(const struct nvkm_device_tegra_func *func,
+ 	if (err)
+ 		goto err_free;
+ 
+-	drm = nouveau_drm_device_new(&driver_platform, &pdev->dev, *pdevice);
++	drm = nouveau_drm_device_new(&pdev->dev, *pdevice);
+ 	if (IS_ERR(drm)) {
+ 		err = PTR_ERR(drm);
+ 		goto err_free;
+@@ -1482,9 +1501,6 @@ nouveau_drm_init(void)
+ {
+ 	int ret;
+ 
+-	driver_pci = driver_stub;
+-	driver_platform = driver_stub;
+-
+ 	nouveau_display_options();
+ 
+ 	if (nouveau_modeset == -1) {
 -- 
 2.55.0
 
