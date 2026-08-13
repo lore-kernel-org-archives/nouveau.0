@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98151C5CFEB
-	for <nouveau@archiver.kernel.org>; Thu, 13 Aug 2026 10:36:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7BFDC5B572
+	for <nouveau@archiver.kernel.org>; Thu, 13 Aug 2026 13:14:24 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1F16F10E4B2;
-	Thu, 13 Aug 2026 10:36:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 828D210F32D;
+	Thu, 13 Aug 2026 13:14:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="D9AKsJlH";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ElE7xhMM";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id A6F0547729;
-	Thu, 13 Aug 2026 10:19:47 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id D246F4772F;
+	Thu, 13 Aug 2026 12:58:04 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786616387;
- b=xYx5sQDv6LnB3Xxw03rZi/rS3OCF6Z0cCabqk7t/uIajiM7xc6/Esoc7H9qYc24GU32v9
- 3EZP4GRtdF98zNE/fR2dA5Akq2m2tTKLZpq564zxOd7J3f3PwSoND3xyC4TQb68MOB9aRZC
- yjZvTUc9DJdOMAFpAeSIiD7UQ8IIIm5o4TA6W97zEQ0sUw+ny9/l7U5UthfD7SWAN9ZbWWR
- zD3yTupAKvibjA5d5UZUhHvlevpsY8dcYTa2bK13z+J+mV54lT+NwF9ingIQArNnKjBrY4q
- wAdg1mwv5NW81LPt+6SinlYFwhsYWEsYmzAyJhLh2PoNpsK0Ve8SEbC9UI9A==
+ s=20240201; t=1786625884;
+ b=AgQ1P8Cw+f2Ft4q19D383MrYbY+iGac4N2bKa+oS9/JYWPBxtbZlkENIf8KNzbK8kTLC3
+ JgwO89DpkOUn56BLgkIKZrPQf9GvKNLg/0Aekjf0SOVaUUzqaCAzc6HbI9H6pqDFZ0UBEkT
+ xK0xx1CJIKjbFTpV6EHCS/gooUrgabeYvgxJnnJqK8QvWHd/7rXSrirduFgKPP/qGfcTDtv
+ R842T7a7CsDy1Ws4F53AmLFt4arYIHwoqeiLJJxsdN7W07VMJw/2cljqCqSDBSPssnj9Rvp
+ cfXl94BcWkmrWb3UR8pU5/J+IfdJTGD1JeGNqJinnVcPb/kxcELZhT4JgoGQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786616387; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786625884; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Z3AY/Bs9FDrd8H3tGAAndoQ/dkrF/oypF8YiYah5nNY=;
- b=O+RF82cqtcSWjBSkwkyaXhPvrrdcoBeE6EFa413PkjGqUpR6apob3S2vQ49TpduyIOs2+
- VzaqfhHIZLssdJ+UFdMPQlASxEP1Ssn5ipy80LL5xjhJFJKXwbEOtdfrSQUSILQHcq0Ry0C
- /8OkNPQnSaxBsbiPJYTTadVOCZAtjTRSY8vCxBKexQo8zrNzoFoEON+JqsEYCmr2lehwIhp
- 0jxHSsiEF2g+Sf4vlKLoqREFrkFlo+JBYwIUohshnL0gGV+4097OYM8QlN+lCyX3KmM3mep
- A9poUvGbyW51ageD3QsxXnTXR8uk41XyK3SC5rxE88wlediJJG1ExcxpHebA==
+ bh=lMjx6F1TSzytJZWqY2HUhhf0vDBC3SrSTqRCJ5oQEAA=;
+ b=Ydqp53v9KJmBADbyivE7VQOIw1+RudpTDzvNv3pIv6qKhrF0q1BN7D9d3Zecg19gjWd7J
+ xvLSXZHRBMcuAQqUWIcdFUKIyUutzgNUymYt21jeX7ByBeiz9SbGW2VKDk7Ibv20bBOqiZw
+ HKjmcJreGW2AMMzFQzSm07zmMtultbhOtLnY07vI1DNml6BG9QoFMChyNEZVMWZzZnKpJyO
+ zFeYoCw7VPKCyx8LWsHxB/OIVJa6eHFoa76QW1E6zdE6Lyn4mnwxBc+YwVhW7xi/zILn/Za
+ K6O3Z/Afj9cPFXvJLpFetXAotA/YnV9Nc07NmxMKcYrOpJT55/U29RQZdf2w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,87 +46,87 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C5520476ED
-	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 10:19:44 +0000 (UTC)
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
- [209.85.216.47])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EB70710E028
-	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 10:36:03 +0000 (UTC)
-Received: by mail-pj1-f47.google.com with SMTP id
- 98e67ed59e1d1-38ea87caafeso1856354a91.3
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0A2CB476ED
+	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 12:58:02 +0000 (UTC)
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com
+ [209.85.210.174])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7FBBD10F327
+	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 13:14:21 +0000 (UTC)
+Received: by mail-pf1-f174.google.com with SMTP id
+ d2e1a72fcca58-848761b5897so987239b3a.3
         for <nouveau@lists.freedesktop.org>;
- Thu, 13 Aug 2026 03:36:03 -0700 (PDT)
+ Thu, 13 Aug 2026 06:14:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1786617363; x=1787222163;
+        d=gmail.com; s=20251104; t=1786626861; x=1787231661;
  darn=lists.freedesktop.org;
         h=cc:to:message-id:content-transfer-encoding:content-type
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to:content-type;
-        bh=Z3AY/Bs9FDrd8H3tGAAndoQ/dkrF/oypF8YiYah5nNY=;
-        b=D9AKsJlHQ5dz8KkNku+b6H/PijCsD8Jrb7UT8j6iRAn4NCW4PU/DAno2i3+TAWkK+d
-         tpCrqHbINYABElVSeQVUTosGyoyEld3ENrF/BGMXNfJwSOk4wR3gAxlMr0gOd0xjUPVB
-         OLqmLQFi+is7K2TAKr7k7ZbV/TtfSxhrazjS36P875JmvYyWQ0xoeC5RW5Wk/R8DAGr3
-         QeT0W9Cv8BZMPlumQowejfr3FFsh5yKBLOCFFZvBUM/R2n8F24+sCnSW9icx/MrE2hHM
-         TlLlV9eKqYFd9cMZOU52j074IKaOl5bTK+4dnfUoSTZ/rpIZEwYc1fnqURK7s7G9Euaf
-         FiCQ==
+        bh=lMjx6F1TSzytJZWqY2HUhhf0vDBC3SrSTqRCJ5oQEAA=;
+        b=ElE7xhMM6sz1kUM8nPg6CLW3PG4/HS7Be1TbJajZIw6xdBiY8hT8+4IyMCkDfx54lb
+         rRml3MjW5f0BAVLs7k5tZR+Xgo4I24ExQzkOQf7UVdNny3VYeHUZwOZbIBDLg2mgw4hE
+         FcOqvRfUU2LrPw4ZWNbx9iW81dSdMNrZPss+GEcDGMl0V9KlKUD+1no+gevK82B0ncRf
+         Ur2ZU7B6ic9iNXkklr13mspkWibkGNfCWe1GF0Z3qME1c57updmRteozgI/Nq/3/SCRo
+         +V/d+oOXhlwQsmG7Q6iQffpzAAsSXe+b5NS9hw/3tgj5YtNd1i8M8ytkMeGTxVKNRwdz
+         ZkxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1786617363; x=1787222163;
+        d=1e100.net; s=20251104; t=1786626861; x=1787231661;
         h=cc:to:message-id:content-transfer-encoding:content-type
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to:content-type;
-        bh=Z3AY/Bs9FDrd8H3tGAAndoQ/dkrF/oypF8YiYah5nNY=;
-        b=TA6/nVh4JYv6i071VTNoCQS0cA/F1rJi01/Q7abss12uxlRKwhQQfVUE51hiktMkJD
-         tCNHpf9ZJSpED6BWL8MiSUCtwciOmAF8x7XOf7eEViZBf+U7As6pJpe0AlsHy3rkCD+h
-         pEql7rG9DKQHivl6Oxw96U8l45bSIYFI0GIpO9J7gVslAfHZbYPKi9VHLcxAVUXP12I0
-         3VTvJm345X1lUOS1oH5M5Hd0jv/BiJJlgCAl3X9T0XbSNNp28jrAzzzw/NCRSgM0Jae2
-         Cta3Hc3JVemexQ7mSRBGa8YaLZvQwVmT29HEwfaWnS9Ub9zeHmClyE3vkbMIY5HbJgwy
-         qBOA==
+        bh=lMjx6F1TSzytJZWqY2HUhhf0vDBC3SrSTqRCJ5oQEAA=;
+        b=Q+jLFp+3tXI7RI0f9q5fjZqtRdAEuNXNBV2fA32WcmDPkBHxfKch1m9lIgO42qQCBx
+         dwijbmAa7MabkpuwfgEdesITzzuXGMMQ7+M6lA4hS6c5BsBPOKBJOG69Y8Ji/nAirYz1
+         sOm1iQm3tsYMKrB9fxfmtoDxM19ZuWCgUba0D34mRGQgRKsuNSYlJGCQPmctuCj/DPCS
+         Nu7jTDzJ14ReUzmwg9OmWfMJL7l00b35Ro2WQHLhW05goIEE5JpeP5iYg/kZNWJwjwMl
+         VK1qAExZKufBwGAwOqx4itcFZcSwfB58ooPj69p10uj7XhuMqwneyLcwt22kMM2/ZNzN
+         MC+w==
 X-Forwarded-Encrypted: i=1;
- AHgh+Rqf9bv28kiy7N47jR/50UROO7Rw9R3OfhHz45/K2MY5asdV+FbW3WfVsfHZzBnSZVzMPW2cvAyH@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzE8uA37qUm6vRMQpzHrZ/fYVtM9CERdMbjVL2zPfH+WkCJIztN
-	CYKYBvtxc4i+w5yRc615eXISo9Rw1syyeJe92IyJUBOr7x+K3K7Vp4ZhAM7a14z+QDE=
-X-Gm-Gg: AR+sD11fSq/hcVv70x0OxkTgbSYyfKMgDdckc3GM3OlyEmGke/zWeHz64Ysq/hSBQvY
-	JYz9M+QXlLmRPSzfLRyDLYIrlHxl/uz76UlgXgLbEp2gn/7GCXZbnOCHDs3Ut10c4YR5scn8FJm
-	RrfdQ7o8sEPOUt3N3BlqKDiRQhO6RfeXvme/dB1Ho8JFp0oP4fbF2FuvipaZ1bLKIw1o8BQXZaV
-	8VIiHX3vhmzcZ7kRsOVEI2JNyMHOH39PXMsiPvvS8heF0AUQgmlqRoIeeZpoRnD590OwVibqgOv
-	U4QzWyu19K8SejCcUijZrGcMuaeNy6jZ/Jg4QFQC30Z8WA+6PxQg7WtWnOxAId3mBlt475TCkT1
-	aV02wxhFCDTV1jAGzDBA5m6M1lS5xwQ0jYxmfN6xHHs1QIrmNZmiHwKnrOHJUdequOfALzZWp1B
-	5d5dBw7hVFqGE4BhARD85N3wPMVcR94AvYc7oRafovuhnM23MZ13jmrHz5kVE=
-X-Received: by 2002:a17:90b:278e:b0:381:25ce:bcc2 with SMTP id
- 98e67ed59e1d1-3931e0242f8mr6100351a91.6.1786617363370;
-        Thu, 13 Aug 2026 03:36:03 -0700 (PDT)
+ AHgh+RrffL7IO7m3M1GwxlVm8bzCX3FydOozIIhir7FVLe8UE/nXuCxfPq3wXECsCY6+0+SP/wzR1ir+@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzN0pREFX77FgZ4tZBPqz7W9FZpB8eGAoQWnVPz+ozA+9Sq+x3n
+	qg2GqSziHGQVVruqRd1BsbQg0jnq57669TfWICaMUTt5wHZQFlKtyQhD
+X-Gm-Gg: AR+sD10GnAK0V/aNDanWbCa2DJjho3S9tATQbKjN+A4RHNH3T1YhIswY/V5mfl2WNLS
+	IX7g/lmULI03NoPgpiMI0VxcalszJgcOJnjTwB0B6bmnJYYF/tWIyiz3AQeKxu18L7Xh6tQ3w4w
+	fqeCitV3ZFEmbLvA0vquZURxrOsRNkuQ8OoPFayWpK2mpHbxgSvRzlBhZGKRJTDxgJA2G3XmwtH
+	ThYfZ4RRrya4xuyK15oS2cAkhFs6X9FaP8WV68I5Uc+4pMe6jO7I4QzWd5bh+LyPpjZIUom5j9S
+	RBK5DpZsgrzaBDEtxGYRXHOMdVgJq9I0MoAZFKctJVIMbShHF0mFW71kUcKpu2WLQDsR1MIRFLa
+	87NYbFxFs24pLI/X9v9sfjEb7S/MlAvmzXgpNtnbUNyB+8+qF27x+ohny8nE+n5E0GWZbcgMmT/
+	NRT2gQFpMabHCFpDDqCgF9DFJQjAf0JQFuMLyIcvXd7rfEfPhRFbhS0E2IsQ4=
+X-Received: by 2002:a05:6a00:124e:b0:84a:2fff:ced2 with SMTP id
+ d2e1a72fcca58-84fc7694568mr5608723b3a.35.1786626860773;
+        Thu, 13 Aug 2026 06:14:20 -0700 (PDT)
 Received: from LAPTOP-N3B6U5LC.localdomain ([117.147.100.52])
         by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-3931f41ce3fsm2381426a91.10.2026.08.13.03.35.59
+ 41be03b00d2f7-cbef6a4a4f5sm1084669a12.9.2026.08.13.06.14.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Aug 2026 03:36:02 -0700 (PDT)
+        Thu, 13 Aug 2026 06:14:20 -0700 (PDT)
 From: Zhenhao Wan <whi4ed0g@gmail.com>
-Date: Thu, 13 Aug 2026 18:35:47 +0800
-Subject: [PATCH] drm/nouveau/nv04: check cursor buffer object size before
- upload
+Date: Thu, 13 Aug 2026 21:14:08 +0800
+Subject: [PATCH] drm/nouveau: reject zero-size notifier object allocation
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260813-nouveau-nv04-cursor-oob-v1-1-3f3eb37d213d@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAKefWoC/yXMTQoCMQxA4asMWRtIOzKIVxEX/YkaF400tgwMc
- 3erLr/FexsYV2GD87RB5S4mWgbcYYL0COXOKHkYPPmFTm7Goq1zaFg6HTG1alpRNWLIPi5ELvO
- cYdSvyjdZf+fL9W9r8cnp/d3Bvn8AMrGehnsAAAA=
-X-Change-ID: 20260813-nouveau-nv04-cursor-oob-ad2b6001de3d
+Message-Id: 
+ <20260813-nouveau-abi16-notifierobj-zero-size-v1-1-20dee38077cb@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAB/DfWoC/yXNQQ6DIBCF4auYWXcSkUhJr9J0ATLacQENiDEa7
+ 95pXb18m/8dUCgzFXg0B2RauXCKAnVrYHi7OBFyEEPXdqa1SmNMdSVX0XlWRrTwyJSTn3GXwcI
+ 7YR+0tTZo4/s7SOmTaeTt//J8XS7VzzQsvzSc5xcN0nxlhwAAAA==
+X-Change-ID: 20260813-nouveau-abi16-notifierobj-zero-size-5d3888d36b57
 To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Dave Airlie <airlied@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
+ Ben Skeggs <bskeggs@redhat.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1786617357; l=1859;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1786626855; l=1998;
  i=whi4ed0g@gmail.com; h=from:subject:message-id;
- bh=meyb6Y2dzI5h7FZCiO0Odzp0AHqH1igJ4/zqrayN1Nc=;
- b=RNFf4wcl5LftIPZXfs3V3e6M/RvnsKRYFDr2Klg/361+meLcH5wFsHmX27P4vcahMHwYigsCm
- x9MU0ukgwrABPcno3tUpRryRAvmlcH+Rkiw0czCAWwMQsBzK44PWa6V
+ bh=f/7hmALYx1pUavsqR9dX4xDKx4SJ9Gehp6aIWoZk6lE=;
+ b=JzBvG33pFgsgUZm3gcV+sluPbY85ddmYsDyvCdNM9M42adhFWTnHbKTyJhu8MgcNPFlyRhplW
+ /1cni1BqMUkAfpVfdotWiTvDnbpRubL+xOM++Kx3OqwfdikGFXjDL70
 X-Developer-Key: i=whi4ed0g@gmail.com; a=ed25519;
  pk=zRTKlstE0LmilshGwJsFYEVjiT6RiXMBXK8Og6VmuVQ=
-Message-ID-Hash: JGUWMDA3T27ELKFZOJ2LOPDVF2U6JSZK
-X-Message-ID-Hash: JGUWMDA3T27ELKFZOJ2LOPDVF2U6JSZK
+Message-ID-Hash: ALW3SAJBHLC4NZ7Y3HTW7ZIJQYH2LFRA
+X-Message-ID-Hash: ALW3SAJBHLC4NZ7Y3HTW7ZIJQYH2LFRA
 X-MailFrom: whi4ed0g@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -138,9 +138,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JGUWMDA3T27ELKFZOJ2LOPDVF2U6JSZK/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ALW3SAJBHLC4NZ7Y3HTW7ZIJQYH2LFRA/>
 Archived-At: 
- <https://lore.freedesktop.org/20260813-nouveau-nv04-cursor-oob-v1-1-3f3eb37d213d@gmail.com/>
+ <https://lore.freedesktop.org/20260813-nouveau-abi16-notifierobj-zero-size-v1-1-20dee38077cb@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -150,52 +150,50 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-nv04_crtc_cursor_set() validates only the 64x64 cursor geometry, not the
-size of the backing GEM object, before nv11_cursor_upload() /
-nv04_cursor_upload() read up to 64 * 64 * 4 = 16384 bytes from it via
-nouveau_bo_rd32() at hardware-fixed offsets.
+nouveau_abi16_ioctl_notifierobj_alloc() passes the userspace-controlled
+info->size to nvkm_mm_head() as both size_max and size_min without a lower
+bound.  A zero size satisfies the allocator's "e - s < size_min" gate
+(size_min == 0 makes the unsigned comparison inert) and yields a
+zero-length node, after which
 
-nv04 uses a legacy cursor_set callback with a NULL cursor plane, so
-drm_mode_cursor_common() passes the raw handle to the driver without
-building a drm_framebuffer; the framebuffer path's size check never runs.
+	args.limit = ntfy->node->offset + ntfy->node->length - 1;
 
-A client with DRM master can thus supply an undersized GEM object and
-trigger an out-of-bounds read, as nouveau_bo_map() only kmaps
-PFN_UP(size) pages.
+underflows (offset 0, length 0 -> 0xffffffff) into an oversized ~4 GiB DMA
+window.  The dma object constructor only rejects start > limit, so the
+validly ordered [base, base + 0xffffffff] range passes and is programmed
+into the GPU DMA context.  The ioctl is DRM_RENDER_ALLOW, so any render
+node client can trigger this on pre-Fermi hardware.
 
-Reject undersized buffers before mapping, as gma500's
-gma_crtc_cursor_set() does. The check precedes nouveau_bo_map(), so the
-error path only drops the GEM reference via the existing 'out:' label.
+Reject a zero-size request before allocating anything.
 
-Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
+Fixes: ebb945a94bba ("drm/nouveau: port all engines to new engine module format")
 Reported-by: Yuhao Jiang <danisjiang@gmail.com>
 Assisted-by: Claude:claude-opus-5
 Cc: stable@vger.kernel.org
 Signed-off-by: Zhenhao Wan <whi4ed0g@gmail.com>
 ---
- drivers/gpu/drm/nouveau/dispnv04/crtc.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/nouveau/nouveau_abi16.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-index 500fd77b87d1..0393025baa64 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-@@ -1000,6 +1000,11 @@ nv04_crtc_cursor_set(struct drm_crtc *crtc, struct drm_file *file_priv,
- 		return -ENOENT;
- 	cursor = nouveau_gem_object(gem);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+index 291203121f0c..8d139bbb2934 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+@@ -660,6 +660,10 @@ nouveau_abi16_ioctl_notifierobj_alloc(ABI16_IOCTL_ARGS)
+ 	if (unlikely(device->info.family >= NV_DEVICE_INFO_V0_FERMI))
+ 		return nouveau_abi16_put(abi16, -EINVAL);
  
-+	if (gem->size < width * height * 4) {
-+		ret = -EINVAL;
-+		goto out;
-+	}
++	/* zero size yields a zero-length node, underflowing args.limit */
++	if (unlikely(!info->size))
++		return nouveau_abi16_put(abi16, -EINVAL);
 +
- 	ret = nouveau_bo_map(cursor);
- 	if (ret)
- 		goto out;
+ 	chan = nouveau_abi16_chan(abi16, info->channel);
+ 	if (!chan)
+ 		return nouveau_abi16_put(abi16, -ENOENT);
 
 ---
 base-commit: db2ddb87143519e20a95aa36c60b36107b736a58
-change-id: 20260813-nouveau-nv04-cursor-oob-ad2b6001de3d
+change-id: 20260813-nouveau-abi16-notifierobj-zero-size-5d3888d36b57
 
 Best regards,
 --  
