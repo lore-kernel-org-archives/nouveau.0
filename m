@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A553FC5CFC1
-	for <nouveau@archiver.kernel.org>; Fri, 14 Aug 2026 19:46:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 064AAC5CFCF
+	for <nouveau@archiver.kernel.org>; Fri, 14 Aug 2026 19:46:23 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 883DC10F6B5;
-	Fri, 14 Aug 2026 19:46:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D112510F6AF;
+	Fri, 14 Aug 2026 19:46:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="M5HZ9YUj";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="HM6TsQKr";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 1C77B477C2;
-	Fri, 14 Aug 2026 19:29:45 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 5D467477CF;
+	Fri, 14 Aug 2026 19:30:00 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786735785;
- b=dsqBG+EvLPuW+DZBsKCG22/BNtaxSvBsPZ6RFxgZ9TEsqCqelQ2dDnePllaR5fy7s0t6w
- HGax+VRwx60OZrnqaanu3442/LYBaHFaQA+2oIeHJcZL1XqP8bHuFFMVnGlDVb5E0UbPDb+
- rhHu1963rD/It8ANbYHruuDX+IiTYfUdnmcnFp+uP0mzgyxPKUHRMx5z7syOyGUCKREsbKs
- bMAMM9WEYCbmGd/wOnBmCsoc6cyKGca1KA9gauPn7ix/8uan4FocnZGcd18A57nSqhJIPmx
- eWj4UDTb3fopUizDKD8tukdG1bjnB+w6G/X8mefU/iORaF4AaqOSkAqyx0Nw==
+ s=20240201; t=1786735800;
+ b=hraS4tz7jyCpzDnb6BIozfAuLkzZVKc18fxxjdSYKr9/YpbQvwn8UBpbok0W3L+OEzMQB
+ mdDqQsfGxW4pedWtRSjIVxFjLzRnk57klT4SR4B+i8mZ65u0CAzbzP83n864+ZXfyWpS+Ls
+ iCVhx8niAAuypxYtSFXLw65RxkXYgrRQwzfJiG/sKd5hIqNvEvqEsEGTqfZhIULy5fTJsMZ
+ wzOWwRECd9qxjSpzTylo+zWXYMj/C9sbO7JSI0veDPv/lYeMJp+rkdQPoQ2uX6lV+TXBWJY
+ LBNTIGJ0Gq1fiaL1a4whnkDZiZFE8abV4XmCtgdwEQrZkis9FeJ7fijH2Bsw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786735785; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786735800; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=2CZ60NVHpqwN9DuqhR09Jg1IdibJV1yJ+DJMquDywq4=;
- b=JlMPNOmtOdjVdIP3xUHYF6J7kGsxrAqXF0dUvU+/gAFKNLe77AWqVw73FAwwolCl6T1FG
- 2+tP/xcngKQJmzmGFhUNuaduUev48a/Lw5OW6P4HcMBYxhdCHze3+RVWqmptOdLftJ4Cp5f
- c4IRt4rd3fzkd3cG6bMTHsT1VNfdqqtnOrIepmbp4450Zu3m+5ETNRnVxvgIjH1NVHMu4ik
- Y37iMochwGDhy75S23wZuWeQM59KIaDCZzV0CS1R0/3q2nCT+smJ79i04Xb88JjeHdqbLS2
- ZMcGfAoD2fXMPdge2tfSYgiRgCMX20jDBT2G6LrNkE0hA7PVapkl4Jvns0Wg==
+ bh=kUl4OiIK4x+8eiq0MCPzDAWyD8Ge8fli2WbAll1g3Fc=;
+ b=otin7+Ja0lRPQoXNiBqQKXHAaRcMr8DwXTzZHdwxhjyTEZFx4MwqhIOW7UMwtlasQb8Ui
+ Gvrqb/I5qj4WoLQVR1+RpSR9y44Rxj5QEfTsfnWlARZYwKy0+xxhjElrsekYyZDJVAAnv/o
+ RCfuk//wKottOFS0Atj4Imfgot/Uv1P5OA8qW27tzWIkd2FwupLM8Lh83Q6fUYtdylf2du/
+ POcLje6emPQO4Z/oG+oAabsbnf9uq47ssB5VUhzwVtxrDlNJUw2McWqfB7ahWV8nea/84cN
+ aYHTS3uva0mkdfCaTQ9iQpdraFZtMwE3iOICBq5usVmYnPF/NgD7WY6cECog==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,29 +46,29 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E9A0F477C0
-	for <nouveau@lists.freedesktop.org>; Fri, 14 Aug 2026 19:29:42 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id ED7E3476EE
+	for <nouveau@lists.freedesktop.org>; Fri, 14 Aug 2026 19:29:56 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0ECBE10E1BB
-	for <nouveau@lists.freedesktop.org>; Fri, 14 Aug 2026 19:46:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 285F810E1BB
+	for <nouveau@lists.freedesktop.org>; Fri, 14 Aug 2026 19:46:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1786736764;
+	s=mimecast20190719; t=1786736778;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=2CZ60NVHpqwN9DuqhR09Jg1IdibJV1yJ+DJMquDywq4=;
-	b=M5HZ9YUjJA3dCUJAkvFHOF07RXU5Zwzh2vtj2SgR1/BUVwzDJS1ibBmBCsmrr5tWzQykdh
-	X+PcJYTawpSqEf+HjwGOrYPlFcWS9DKicXlvG5HIlYw092XmRnQWQxBCqVfB927JovYotD
-	BBXdZHy3ATrNG6OQUlado7YhkReNSqE=
+	bh=kUl4OiIK4x+8eiq0MCPzDAWyD8Ge8fli2WbAll1g3Fc=;
+	b=HM6TsQKr4Xttuev7DfDdoXMdI9EAGP3LG8j3mD4PHRlO03pEecpZNbVdVbYuSq9K+KuKZm
+	ez4TN2BQFTV+b8Y6Ayte9roZfax4qkaeDA8o+/lX1cV3Axwl7W04SnblXkmPjsp2QVlf0x
+	r3ayWFCsydQE3JAynLjqxjDQysBp9P4=
 Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-679-_VTmw3ItOaqWLCJVtUgoqQ-1; Fri,
- 14 Aug 2026 15:45:59 -0400
-X-MC-Unique: _VTmw3ItOaqWLCJVtUgoqQ-1
-X-Mimecast-MFC-AGG-ID: _VTmw3ItOaqWLCJVtUgoqQ_1786736757
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-25-X4ulqH2_Oc-JPGz7V3G1sA-1; Fri,
+ 14 Aug 2026 15:46:06 -0400
+X-MC-Unique: X4ulqH2_Oc-JPGz7V3G1sA-1
+X-Mimecast-MFC-AGG-ID: X4ulqH2_Oc-JPGz7V3G1sA_1786736764
 Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
@@ -76,30 +76,29 @@ Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
  SHA256)
 	(No client certificate requested)
 	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id EF6CC1956095;
-	Fri, 14 Aug 2026 19:45:56 +0000 (UTC)
+ id 20A721956089;
+	Fri, 14 Aug 2026 19:46:04 +0000 (UTC)
 Received: from GoldenWind.lan (unknown [10.22.64.233])
 	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 733D53000239;
-	Fri, 14 Aug 2026 19:45:54 +0000 (UTC)
+ id 9981030001A2;
+	Fri, 14 Aug 2026 19:46:01 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org,
 	nouveau@lists.freedesktop.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 1/4] Revert "nouveau/gsp: fix suspend/resume regression on
- r570 firmware"
-Date: Fri, 14 Aug 2026 15:43:48 -0400
-Message-ID: <20260814194542.781955-2-lyude@redhat.com>
+Subject: [PATCH v5 2/4] drm/nouveau/gsp/r570: Set GcOff = 0 in fbsr
+Date: Fri, 14 Aug 2026 15:43:49 -0400
+Message-ID: <20260814194542.781955-3-lyude@redhat.com>
 In-Reply-To: <20260814194542.781955-1-lyude@redhat.com>
 References: <20260814194542.781955-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-MFC-PROC-ID: SedVuY2qnlJWSVMJtrGrQkqg00QSEUV1Sl_6iqVxOU0_1786736757
+X-Mimecast-MFC-PROC-ID: PjQv_w9LZr5TMwwsc6BUqUQsmvjFPnBcBDa4BVdSRtM_1786736764
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: HA7IGPDESLXIEXOZEBTJEPWLVVZHXC7T
-X-Message-ID-Hash: HA7IGPDESLXIEXOZEBTJEPWLVVZHXC7T
+Message-ID-Hash: NU7HA6JUACWWD6IHQGV52WW6IDC5YO6C
+X-Message-ID-Hash: NU7HA6JUACWWD6IHQGV52WW6IDC5YO6C
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -114,9 +113,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HA7IGPDESLXIEXOZEBTJEPWLVVZHXC7T/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NU7HA6JUACWWD6IHQGV52WW6IDC5YO6C/>
 Archived-At: 
- <https://lore.freedesktop.org/20260814194542.781955-2-lyude@redhat.com/>
+ <https://lore.freedesktop.org/20260814194542.781955-3-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -126,100 +125,47 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-This reverts commit 8302d0afeaec0bc57d951dd085e0cffe997d4d18.
+Previously, it looked as if we were able to fix suspend/resume on some
+desktops by setting Gcoff based on whether or not we were entering runtime
+PM. This was a mistake though - the only time suspend/resume would end up
+actually working was if Gcoff = 0.
 
-It turns out this looked like the right fix on some systems, but it's not -
-as this causes runtime PM to actually fail on many a laptop.
+It seems like it's likely the main reason for this is the FBSR GcOff
+argument actually controls GSP's behavior with regards to which buffers it
+decides to save across suspend/resume. When GcOff = 1, RM reserved regions
+are saved unless they are marked as LOST_ON_SUSPEND, and RM channel-context
+and kernel-client buffers are also saved -including- when they are
+LOST_ON_SUSPEND. This means with GcOff = 1, we end up having GSP save and
+restore buffers that actually need to be reinitialized on resume - causing
+the failures we're setting.
 
-Fixes: 8302d0afeaec ("nouveau/gsp: fix suspend/resume regression on r570 firmware")
-Cc: <stable@vger.kernel.org> # v6.19+
+Thanks to John Hubbard from Nvidia for providing some background on what
+these options do in the GSP firmware do!
+
 Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fbsr.c | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c  | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c | 8 ++++----
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h        | 2 +-
- 4 files changed, 7 insertions(+), 7 deletions(-)
+Fixes: 53dac0623853 ("drm/nouveau/gsp: add support for 570.144")
+Cc: <stable@vger.kernel.org> # v6.16+
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fbsr.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fbsr.c
-index f128330f30d7b..40bf83ea33ac0 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fbsr.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fbsr.c
-@@ -208,7 +208,7 @@ r535_fbsr_resume(struct nvkm_gsp *gsp)
- }
- 
- static int
--r535_fbsr_suspend(struct nvkm_gsp *gsp, bool runtime)
-+r535_fbsr_suspend(struct nvkm_gsp *gsp)
- {
- 	struct nvkm_subdev *subdev = &gsp->subdev;
- 	struct nvkm_device *device = subdev->device;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
-index f544afa12b6bb..4a3b771ded255 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
-@@ -1749,7 +1749,7 @@ r535_gsp_fini(struct nvkm_gsp *gsp, enum nvkm_suspend_state suspend)
- 		sr->sysmemAddrOfSuspendResumeData = gsp->sr.radix3.lvl0.addr;
- 		sr->sizeOfSuspendResumeData = len;
- 
--		ret = rm->api->fbsr->suspend(gsp, suspend == NVKM_RUNTIME_SUSPEND);
-+		ret = rm->api->fbsr->suspend(gsp);
- 		if (ret) {
- 			nvkm_gsp_mem_dtor(&gsp->sr.meta);
- 			nvkm_gsp_radix3_dtor(gsp, &gsp->sr.radix3);
+---
+V5:
+* Fix commit title, GcOff should be 0 not 1
+
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c
-index 8ef8b4f655883..2945d5b4e5707 100644
+index 2945d5b4e5707..af5aa5065c3dd 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c
-@@ -62,7 +62,7 @@ r570_fbsr_resume(struct nvkm_gsp *gsp)
- }
- 
- static int
--r570_fbsr_init(struct nvkm_gsp *gsp, struct sg_table *sgt, u64 size, bool runtime)
-+r570_fbsr_init(struct nvkm_gsp *gsp, struct sg_table *sgt, u64 size)
- {
- 	NV2080_CTRL_INTERNAL_FBSR_INIT_PARAMS *ctrl;
- 	struct nvkm_gsp_object memlist;
-@@ -81,7 +81,7 @@ r570_fbsr_init(struct nvkm_gsp *gsp, struct sg_table *sgt, u64 size, bool runtim
+@@ -81,7 +81,7 @@ r570_fbsr_init(struct nvkm_gsp *gsp, struct sg_table *sgt, u64 size)
  	ctrl->hClient = gsp->internal.client.object.handle;
  	ctrl->hSysMem = memlist.handle;
  	ctrl->sysmemAddrOfSuspendResumeData = gsp->sr.meta.addr;
--	ctrl->bEnteringGcoffState = runtime ? 1 : 0;
-+	ctrl->bEnteringGcoffState = 1;
+-	ctrl->bEnteringGcoffState = 1;
++	ctrl->bEnteringGcoffState = 0;
  
  	ret = nvkm_gsp_rm_ctrl_wr(&gsp->internal.device.subdevice, ctrl);
  	if (ret)
-@@ -92,7 +92,7 @@ r570_fbsr_init(struct nvkm_gsp *gsp, struct sg_table *sgt, u64 size, bool runtim
- }
- 
- static int
--r570_fbsr_suspend(struct nvkm_gsp *gsp, bool runtime)
-+r570_fbsr_suspend(struct nvkm_gsp *gsp)
- {
- 	struct nvkm_subdev *subdev = &gsp->subdev;
- 	struct nvkm_device *device = subdev->device;
-@@ -133,7 +133,7 @@ r570_fbsr_suspend(struct nvkm_gsp *gsp, bool runtime)
- 		return ret;
- 
- 	/* Initialise FBSR on RM. */
--	ret = r570_fbsr_init(gsp, &gsp->sr.fbsr, size, runtime);
-+	ret = r570_fbsr_init(gsp, &gsp->sr.fbsr, size);
- 	if (ret) {
- 		nvkm_gsp_sg_free(device, &gsp->sr.fbsr);
- 		return ret;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-index a9af94adf9efc..0fb0e67406c67 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-@@ -78,7 +78,7 @@ struct nvkm_rm_api {
- 	} *device;
- 
- 	const struct nvkm_rm_api_fbsr {
--		int (*suspend)(struct nvkm_gsp *, bool runtime);
-+		int (*suspend)(struct nvkm_gsp *);
- 		void (*resume)(struct nvkm_gsp *);
- 	} *fbsr;
- 
 -- 
 2.55.0
 
