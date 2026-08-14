@@ -4,116 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DBA0C5CFDB
-	for <nouveau@archiver.kernel.org>; Thu, 13 Aug 2026 20:48:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5326FC5B572
+	for <nouveau@archiver.kernel.org>; Fri, 14 Aug 2026 08:09:49 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CB69110F550;
-	Thu, 13 Aug 2026 20:48:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="CJ4at56c";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2F57610F444;
+	Fri, 14 Aug 2026 08:09:49 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6A04147787;
-	Thu, 13 Aug 2026 20:32:09 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id B64D1477A6;
+	Fri, 14 Aug 2026 07:53:27 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786653129;
- b=SO7z56k8DkGma1bd9/yJLlFN8xKcVpvIWhalglVeb+q7RctoHvSPF01ymhFdTDG5FPglO
- SisSFOeuqOArr4IY42CgqyL8zfSd0wdLbeszFakHEOWb4yC+3Mk8D5Wdf8UqIz63DCEySFI
- 4DJIHse3IidllDPwn+rleBf0FdnLxUNPyxi6ruzuMPohnfEI0jp1XC8K0A2+O/sY25PoMYc
- /7vi+qVCU8E4Cz/fKbJCsEdLZBcrJ7Djm9clJGsxw0K2tR+E00hyx2F0Tugm6I795TIkonZ
- BFZOEHEvVijklTbTx9vVwhgbjGkqwQPvL5j+6Ou10Vw3esVvHReh11k/w7WA==
+ s=20240201; t=1786694007;
+ b=HDUiJtT46RqSoGyfT5Tpnqc+35c8zpBy7rdx2cr/B5ULpjY2OD865pZNnP30WXxsONReo
+ 8A49UzSe4Th3r83atFiAuBSel5Ii1A3rFj8oTYLO2tLoohm+9z44ROJ3dmKl0puakZW4d69
+ aKaHnHCC3jKxipUqTtZOVGxv+CdwpL0WpJCINf1FNTf6cHTLm44Ywcd88O4XDs3loB5ufZi
+ d9ZCBMMo3jdM5h2nw85mQpbAkgu0gjXGhhuWltVB1Y2maqDLmnsK8jBMXOwl8Vr6DTTAT4M
+ XnL0CPpls1J9kpaDDQuEnU2IGsIf91dlmuCKGl0JQAC14md3CMAeO5HpTlKQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786653129; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786694007; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=5Vrk3PlFsrHnHDBdU/h3yMx32mf+J1iZRQWJGUt9qu0=;
- b=X0Se1UAUO1nXhml/lhyFFGGQTbQO5K6kUbVWGsP+Ua0d0JqyalK7V3qFqVigU2ae8/5zW
- +vaqJ/wm53qj3wPEzBf9Zz38YbtYAKe5RkLXlzGutF4gkD88r+bv558qXFgzu8uidLZO9SD
- 5mUNO0JaheCmLu+M/3bOv0LbkMUduP2ks6ine4L0gGuBOAuHfUayuZql7LekmAnMnmLLZAL
- dt+bPlqzqpp8NWQ+ZxFHFLa4/1ilvg53PB6zdLjOGSrGFjsQ9ZFXP/c1Z46mwcFeDdnNg9m
- 4vGkKdf0OTytBOg/NPPNPbcgSLcV9m9vAYtbYGAh6RkCU/70/2OzMBHzDwzw==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ bh=ep/a1wv0LBLZy1Y7LMiR7JfpkziyuiRX8G96RUPYHcI=;
+ b=FZYIZ1pa6vPF/y0FzWofqvrkXnMhy1HgC5oMKZoe/jbp7GQwk9gn9emJww2Xu6smZRLUC
+ ZRZCBohjtJ6h59AGd6DLyGFnERKM3Ss08aaWIdBPQvTxcLz0SXEFQ4lhASWBCwFgf7bg6Vh
+ fEI1HoX++KVzNYjxw00fCabyhv/ph0k6ubkGcDU9ynZyV+YOzM2wlWSYSQHImL6BMuHt/pE
+ LXeTHN/LmrV5OpovRk1+OZppkr6EHZKz9yeF3Wk002qriaFa2ceAA2phN2nBVO/iU3f4+UP
+ zgu4RI+c3cgWrl+pToTx9t6dC7N32LaJ0ICS++eLdxsvSvMx0dkeI/sq91+Q==
+ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+  dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=fail;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E1E5247783
-	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 20:32:05 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EECF210E074
-	for <nouveau@lists.freedesktop.org>; Thu, 13 Aug 2026 20:48:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1786654105;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5Vrk3PlFsrHnHDBdU/h3yMx32mf+J1iZRQWJGUt9qu0=;
-	b=CJ4at56cjKpNzotPoE1ti1PBvt7yvfPXVld0VHxt/OxoNVQl7AgWPtElaepvv8zCz9qLnW
-	KA4QhsrzBgfbUcvYeq0KIMiROyzoFf4yLaEL0OcZX1NJH5CCH51L6dKKsLOaCPmwrqc2BM
-	J/iaYTusmXixZKOXpc2E1B7YCW+xbm0=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-125-YMIbWggxNi64jYhrMW-U9A-1; Thu,
- 13 Aug 2026 16:48:21 -0400
-X-MC-Unique: YMIbWggxNi64jYhrMW-U9A-1
-X-Mimecast-MFC-AGG-ID: YMIbWggxNi64jYhrMW-U9A_1786654099
-Received: from mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.95])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id D19AF18002C4;
-	Thu, 13 Aug 2026 20:48:19 +0000 (UTC)
-Received: from GoldenWind.redhat.com (unknown [10.22.80.207])
-	by mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 8065D427;
-	Thu, 13 Aug 2026 20:48:18 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	nouveau@lists.freedesktop.org
-Subject: [PATCH RESEND v7 5/5] drm/nouveau/kms/nv50-: Enable atomic
- modesetting by default
-Date: Thu, 13 Aug 2026 16:46:51 -0400
-Message-ID: <20260813204803.2097176-6-lyude@redhat.com>
-In-Reply-To: <20260813204803.2097176-1-lyude@redhat.com>
-References: <20260813204803.2097176-1-lyude@redhat.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 98AA64733B
+	for <nouveau@lists.freedesktop.org>; Fri, 14 Aug 2026 07:53:23 +0000 (UTC)
+X-Greylist: delayed 363 seconds by postgrey-1.36 at gabe;
+ Fri, 14 Aug 2026 08:09:44 UTC
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5555010F42C
+	for <nouveau@lists.freedesktop.org>; Fri, 14 Aug 2026 08:09:44 +0000 (UTC)
+Received: from localhost.localdomain (unknown [111.196.241.250])
+	by APP-01 (Coremail) with SMTP id qwCowACnffHXy35q_MOeBQ--.48866S2;
+	Fri, 14 Aug 2026 16:03:36 +0800 (CST)
+From: Pengpeng Hou <pengpeng@iscas.ac.cn>
+To: Lyude Paul <lyude@redhat.com>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH v2] drm/nouveau: validate legacy BIT table bounds
+Date: Fri, 14 Aug 2026 16:03:35 +0800
+Message-ID: <20260814080335.22263-1-pengpeng@iscas.ac.cn>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.6 on 10.30.177.95
-X-Mimecast-MFC-PROC-ID: ba_G1Uiy_hWbuWrndd_s5_c1x1FG759pv11IRQCxI5s_1786654099
-X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: KSI43FHBDXIF76UDIJEJCXTGS3NT35S6
-X-Message-ID-Hash: KSI43FHBDXIF76UDIJEJCXTGS3NT35S6
-X-MailFrom: lyude@redhat.com
-X-Mailman-Rule-Hits: member-moderation
+X-CM-TRANSID: qwCowACnffHXy35q_MOeBQ--.48866S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Ww45Zw18ZrW5ur13WryfJFb_yoW5JryUpF
+	W7WasrAr4rtr4agr4Iyr45Aa4fZws3Wr9rGFy3KryY9ryftF10k3W8Ar1Yg345JryDuryY
+	yF4DKa4Uur45t3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9I14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26r
+	xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
+	6xIIjxv20xvE14v26r1q6rW5McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr
+	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
+	8cxan2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFV
+	Cjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWl
+	x4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r4j6r
+	yUMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r1j
+	6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJb
+	IYCTnIWIevJa73UjIFyTuYvjfU5byZUUUUU
+X-Originating-IP: [111.196.241.250]
+X-CM-SenderInfo: pshqw1xhqjqxpvfd2hldfou0/
+Message-ID-Hash: PQ4YGVLHDWOTGH62VBMDIGWGWIBKMPPC
+X-Message-ID-Hash: PQ4YGVLHDWOTGH62VBMDIGWGWIBKMPPC
+X-MailFrom: pengpeng@iscas.ac.cn
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
+ loop; banned-address; member-moderation
 CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Pengpeng Hou <pengpeng@iscas.ac.cn>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KSI43FHBDXIF76UDIJEJCXTGS3NT35S6/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PQ4YGVLHDWOTGH62VBMDIGWGWIBKMPPC/>
 Archived-At: 
- <https://lore.freedesktop.org/20260813204803.2097176-6-lyude@redhat.com/>
+ <https://lore.freedesktop.org/20260814080335.22263-1-pengpeng@iscas.ac.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -123,63 +104,77 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Nouveau is one of the very few modern hardware drivers in the kernel that
-doesn't have atomic modesetting enabled by default, in part because when it
-was originally written by Ben there wasn't much in the way of good atomic
-modesetting clients to actually test things out with.
+The legacy BIT parser finds the BIT signature and then reads the
+entry shape and entry array directly from the VBIOS image. The signature
+does not prove that the complete header, entry array or referenced table
+payload fits in the image.
 
-Nowadays however, atomic modesetting is very much the norm - and support in
-userspace for non-atomic drivers is starting to bitrot a bit - leading to
-its own set of issues. At the same time, many of those issues are fixed by
-just turning on atomic in nouveau. Plus, I've been running nouveau with
-atomic modesetting on by default for most of the machines I work on, and
-I've already fixed quite a number of issues to the point where things seem
-quite stable (excluding a single screen flashing bug on my desktop, which I
-am not particularly convinced has anything to do with atomic modesetting).
+Validate each extent before use. Preserve the legacy zero-offset meaning
+for zero-length entries, but reject non-empty entries with a null or
+out-of-range offset.
 
-Now that we've protected against breaking things for chipsets where atomic
-isn't supported (<nv50) - let's enable it by default on generations of
-hardware that support it. We'll leave the module parameter around for the
-time being, as turning it off may be helpful in the possibility that we hit
-regressions.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-
+Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
+Assisted-by: Codex:gpt-5
+Signed-off-by: Pengpeng Hou <pengpeng@iscas.ac.cn>
 ---
-V7:
-* Re-add patch hunk that changes the default value of nouveau_atomic, it
-  got dropped somehow?
-* Correct nouveau_atomic check so we don't spit out errors on old hardware
-  by default.
+Changes since v1: https://lore.kernel.org/all/20260706093856.81984-1-pengpeng@iscas.ac.cn/
+- validate the complete BIT header and entry array
+- validate each referenced payload extent
+- preserve zero-offset semantics for zero-length entries only
 
- drivers/gpu/drm/nouveau/nouveau_drm.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+The legacy BIT and ROMPTR contracts were reviewed statically; no malformed
+VBIOS image was exercised.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 82a8061e6d3e2..b0f9fb10a74dd 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -103,8 +103,9 @@ MODULE_PARM_DESC(modeset, "enable driver (default: auto, "
- int nouveau_modeset = -1;
- module_param_named(modeset, nouveau_modeset, int, 0400);
+ drivers/gpu/drm/nouveau/nouveau_bios.c | 21 ++++++++++++++++++---
+ 1 file changed, 18 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
+index 38032bb95826..a4ef62928ba3 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bios.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
+@@ -972,24 +972,39 @@ bit_table(struct drm_device *dev, u8 id, struct bit_entry *bit)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nvbios *bios = &drm->vbios;
+-	u8 entries, *entry;
++	u32 entry_size, entries, offset;
++	u8 *entry;
  
--MODULE_PARM_DESC(atomic, "Expose atomic ioctl (default: disabled)");
--static int nouveau_atomic = 0;
-+MODULE_PARM_DESC(atomic, "Expose atomic ioctl (default: auto, "
-+			 "0 = disabled, 1 = enabled)");
-+static int nouveau_atomic = -1;
- module_param_named(atomic, nouveau_atomic, int, 0400);
+ 	if (bios->type != NVBIOS_BIT)
+ 		return -ENODEV;
  
- MODULE_PARM_DESC(runpm, "disable (0), force enable (1), optimus only default (-1)");
-@@ -745,7 +746,7 @@ nouveau_drm_device_new(struct device *parent, struct nvkm_device *device)
- 		else
- 			driver = &driver_legacy_kms;
- 	} else {
--		if (nouveau_atomic)
-+		if (nouveau_atomic == 1)
- 			dev_warn(parent, "Atomic modesetting not supported (needs nv50+)\n");
++	if (bios->offset > bios->length || bios->length - bios->offset < 12)
++		return -EINVAL;
++
++	entry_size = bios->data[bios->offset + 9];
+ 	entries = bios->data[bios->offset + 10];
+-	entry   = &bios->data[bios->offset + 12];
++	if (entry_size < 6 ||
++	    entries > (bios->length - bios->offset - 12) / entry_size)
++		return -EINVAL;
++
++	entry = &bios->data[bios->offset + 12];
+ 	while (entries--) {
+ 		if (entry[0] == id) {
+ 			bit->id = entry[0];
+ 			bit->version = entry[1];
+ 			bit->length = ROM16(entry[2]);
+ 			bit->offset = ROM16(entry[4]);
++
++			offset = bit->offset;
++			if ((bit->length && !offset) || offset > bios->length ||
++			    bit->length > bios->length - offset)
++				return -EINVAL;
++
+ 			bit->data = ROMPTR(dev, entry[4]);
+ 			return 0;
+ 		}
  
- 		driver = &driver_legacy_kms;
+-		entry += bios->data[bios->offset + 9];
++		entry += entry_size;
+ 	}
+ 
+ 	return -ENOENT;
 -- 
-2.55.0
+2.50.1 (Apple Git-155)
 
