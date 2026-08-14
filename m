@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39440C5CFCF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8603C5DF6A
 	for <nouveau@archiver.kernel.org>; Fri, 14 Aug 2026 20:36:15 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C53EF10F4EC;
-	Fri, 14 Aug 2026 20:36:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3953510F6BB;
+	Fri, 14 Aug 2026 20:36:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="TWIL7uLY";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="R6+3hRUC";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 3849C477E2;
+	by kara.freedesktop.org (Postfix) with ESMTP id A51E7477E2;
 	Fri, 14 Aug 2026 20:19:45 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786738784;
- b=H2YM9AgJbqkw5a1fkou0OUmlaZWiwoowCFuvJ8PUxI1Q7OjutYWw8XZdmGf46IPnJz8FS
- eQGRDqlimBlNMt8jGcAZhCdMcZdXMYLrVypIqU/HzSxa3CupVcNeUqf7Ho+WZSpuykzO0/g
- UvKHhKkh7kIpoRjl682EQVKBSd3kc/CVDwjzF3d5JHRdM/kE6obJcO2nVJuXcfqP1pYKbyn
- cvYjxKzyOq/9uHqaBQ3zPxdZh1mCe1BIR/XkLAWPcPfG7hghjZOM3ktW/pykNe4ynIT2Ewk
- 4v6d57pEzl9QSlpvevHpb3Bvako7vtrY0h8PGW+vxnqlQSQF6jyfraNoVELg==
+ s=20240201; t=1786738785;
+ b=JV1dstAjCmpl5Benm+ST2naQlFQCnWg4142p+NBBv97qeJFuL72A3tvbJ4j5s6Tegk1YR
+ pa90VO5ti/QqWVzolSV8Tjrfcw5hcfYNHI3W6VjC7a5/CUqu9DjzN9quYuUAgwK7dF2zgOx
+ 8Q2edD9Q89q0LWciGmpJ7ybEVVoruqCRDjFhswfJotwZ04XdsEGx8gXH/QtEl7fM+dpchkh
+ WvLvj1AtgBl9FY2LiTaMA2zdgYWndrMlYtLYX2v53PQOfDkTPnCl6StziZ9BVcnqUcpa7nb
+ BJFlHqETi7RTO1AGZzwgbSkXk6HuR5lio+h2CbWgC3UUgfASZ4tnC0MgOvog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786738784; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786738785; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=XmXy8TGZMtUdUflzhbcwpO5PBzlQNsR1Xi5VVFI9N3E=;
- b=JXD8ebcI4jH1KRO5p4aDkSObnRdJrCozFu8WKuv24k5frzT9jqAQmkQtsxUUma3NOiXK5
- y+gDQq1sYtwoBOEkD1pcsDQhFRCuxUtC6OvHv+4g/NUvTijpMXwIhLJZOdpXaMlNURLUOA3
- dcV/Z6cxxtSCip+PfwAfpIy8NTnWzF5WTsVmgKfidDgP725WUwFBs8IWK14CsD1cJHrJ2eK
- rnkeUkXkTWPjEloBuVn04krGBk5qvItZdazV33RNUteJgapvjNzNSF1YQV/zgzusG/MhYjI
- AT3PPbbeXQKtn75ZBJaCibXUuiOgkKQ2rvIRvYRZnTfx1kEJM8MwAVCwIoiQ==
+ bh=HkwKjhSBsyXHCMEk0wHtGPYai7M4BNZChhD9iC4BYz8=;
+ b=Twvp7xYuxRCKoV7RAPygBWlv1JicrXKxLKMdIORkkEhnlCE3+9RC8sdcY1LaRqQyxeECl
+ 6v5uLUCkEeVk+qD61k+OV9abchWnKYJR4uNJ4RNWYSx63HUXWFSlad6uhxxb3/sDqiB4btl
+ 0a+zkutdgSkHyuC8H4TxuiHfg0lp2Tfb+9hb8Psx7ZIvr6FWTBDchM7maFVi8yX1yuH7feW
+ 96A8kNrqMzQvQd+p1SQmPdsErH6cdN6mWitpQEwpS5L3bleQxpnh6DsvT6/l8xQFg5eF6gl
+ rl92eEKZvYpASHShyEVYHz4hkJ4zw21L+oPrxtkeTkZXpCuO44X7lxK+pwEQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,41 +46,42 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A55B5400C5
-	for <nouveau@lists.freedesktop.org>; Fri, 14 Aug 2026 20:19:40 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id BDB31477E2
+	for <nouveau@lists.freedesktop.org>; Fri, 14 Aug 2026 20:19:42 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E0D5910E5A7
-	for <nouveau@lists.freedesktop.org>; Fri, 14 Aug 2026 20:36:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 00E4A10E5BA
+	for <nouveau@lists.freedesktop.org>; Fri, 14 Aug 2026 20:36:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1786739762;
+	s=mimecast20190719; t=1786739764;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=XmXy8TGZMtUdUflzhbcwpO5PBzlQNsR1Xi5VVFI9N3E=;
-	b=TWIL7uLYoy7YvCD8dgTsuQSzkL9Ob3VrEjz2aQB9ICJXssTwslakwB5v+2uYWJcV6m50OG
-	wfZZOR5jRNdliVmL1H3A0I2H1pWR/frDdDfmgReunQ6t8K7ADDezVQGNNxEYI1nAQOUKfJ
-	S+4wFh5IBc/AJmXhNRVBdThhr9Ut5Sk=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HkwKjhSBsyXHCMEk0wHtGPYai7M4BNZChhD9iC4BYz8=;
+	b=R6+3hRUCzXHO5Npn3KJJb68L7B2SWBhEWI8x7yxA0yCrGfg+Jr8qSgvRKwIDn1JIELEHL9
+	FXyHXLlkniHoOpPDJsbaLK63qdrJKCgp/SqSiUhfUnozvXk7VM6RmnkM6/pGP3DuavcGRy
+	1/BsOaeqJy1y6r4XJwk91I5km0wfjV0=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-500-zePa_GbsMtmTsuH5SevbYw-1; Fri,
- 14 Aug 2026 16:35:54 -0400
-X-MC-Unique: zePa_GbsMtmTsuH5SevbYw-1
-X-Mimecast-MFC-AGG-ID: zePa_GbsMtmTsuH5SevbYw_1786739751
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-678-ryFPgAHQPDmJvJtUq0HEYQ-1; Fri,
+ 14 Aug 2026 16:35:59 -0400
+X-MC-Unique: ryFPgAHQPDmJvJtUq0HEYQ-1
+X-Mimecast-MFC-AGG-ID: ryFPgAHQPDmJvJtUq0HEYQ_1786739756
 Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id D6B6219560AE;
-	Fri, 14 Aug 2026 20:35:49 +0000 (UTC)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id C000E18004BB;
+	Fri, 14 Aug 2026 20:35:56 +0000 (UTC)
 Received: from GoldenWind.lan (unknown [10.22.64.233])
 	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 02CAB197750F;
-	Fri, 14 Aug 2026 20:35:44 +0000 (UTC)
+ id DBB83197751E;
+	Fri, 14 Aug 2026 20:35:53 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org,
 	linux-kernel@vger.kernel.org,
@@ -105,17 +106,19 @@ To: dri-devel@lists.freedesktop.org,
 	spice-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org,
 	imx@lists.linux.dev
-Subject: [PATCH 0/5] drm/vblank: Enforce all-or-nothing vblank support
-Date: Fri, 14 Aug 2026 16:35:28 -0400
-Message-ID: <20260814203542.1405135-1-lyude@redhat.com>
+Subject: [PATCH 2/5] drm/vblank: Remove drm->num_crtcs
+Date: Fri, 14 Aug 2026 16:35:30 -0400
+Message-ID: <20260814203542.1405135-3-lyude@redhat.com>
+In-Reply-To: <20260814203542.1405135-1-lyude@redhat.com>
+References: <20260814203542.1405135-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
-X-Mimecast-MFC-PROC-ID: DKjcxoHagZhdzl-vBR86OXmB_vHmWlBoENfEE5aG7RU_1786739751
+X-Mimecast-MFC-PROC-ID: PvqVL-h0MMBT1CJxQhdUi4Xgc4ZxXtM1HXu7TGtsKP0_1786739756
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: JKEERU5IZHLFL3H5ANLWFGGSQ2N54HHS
-X-Message-ID-Hash: JKEERU5IZHLFL3H5ANLWFGGSQ2N54HHS
+Message-ID-Hash: JRKJX5KHTD3FSYOMTU2WOSAZXVDULX7F
+X-Message-ID-Hash: JRKJX5KHTD3FSYOMTU2WOSAZXVDULX7F
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -124,9 +127,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JKEERU5IZHLFL3H5ANLWFGGSQ2N54HHS/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JRKJX5KHTD3FSYOMTU2WOSAZXVDULX7F/>
 Archived-At: 
- <https://lore.freedesktop.org/20260814203542.1405135-1-lyude@redhat.com/>
+ <https://lore.freedesktop.org/20260814203542.1405135-3-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,103 +139,255 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-One of the oddities with DRM that is leftover from the old days is how
-vblank support is implemented by drivers. This has caused some minor
-issues for the rust bindings for KMS which could be worked around.
-However, it seems like a much better idea to fix this on the C side.
-Those oddities are mainly:
+While working on the Rust bindings for KMS, I asked myself "why does
+drm_vblank_init() need the number of CRTCs with vblank support passed to
+it?".
 
-* There's nothing in the vblank core that actually ensures that all
-  CRTCs implement vblank support if one of them do. On Rust's side, we
-  can't have this and have to ensure either the whole device has vblank
-  support or not - otherwise it would be quite painful ensuring we don't
-  expose vblank methods to drivers that can't use them.
-  This additionally means such a situation would lead to UB.
-* There is a second variable for keeping track of the number of CRTCs
-  and it's kind of broken and confusing. Even worse, we currently allow
-  the vblank API to allow a driver to specify a different number of
-  CRTCs then it actually has.
+After some digging, I noticed the reason and it's silly and likely a
+holdover from the pre-KMS days. We actually have ended up with two
+different variables that claim to track the number of CRTCs a KMS device
+has:
 
-So, let's just go ahead and fix this across the whole tree, and enforce
-that a driver must either implement hardware vblank support for all
-CRTCs or no CRTCs.
+- dev->num_crtcs: Setup -from- drm_vblank_init(), meaning it's 0 if the
+  driver has no vblank support.
+- dev->mode_config.num_crtc: The correct one
 
-Lyude Paul (5):
-  drm/vblank: Add drm_device.has_hw_vblank
-  drm/vblank: Remove drm->num_crtcs
-  drm/vblank: Remove num_crtcs argument from drm_vblank_init()
-  drm/vblank: Use drm_for_each_crtc() in drm_vblank_init()
-  drm/vblank: Require all CRTCs implement vblank support in
-    drm_vblank_init()
+There's no real need for this and it's probably confusing, and it's quite
+easy to just drop this variable and convert everything over to
+mode_config.num_crtc. So, let's do that with the following coccinelle
+patch:
 
- drivers/gpu/drm/adp/adp_drv.c                 |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c      |  2 +-
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |  2 +-
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |  2 +-
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |  2 +-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  2 +-
- .../gpu/drm/arm/display/komeda/komeda_kms.c   |  2 +-
- drivers/gpu/drm/arm/hdlcd_drv.c               |  2 +-
- drivers/gpu/drm/arm/malidp_drv.c              |  2 +-
- drivers/gpu/drm/armada/armada_drv.c           |  2 +-
- drivers/gpu/drm/aspeed/aspeed_gfx_drv.c       |  2 +-
- drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c  |  2 +-
- drivers/gpu/drm/drm_vblank.c                  | 60 ++++++++++++-------
- drivers/gpu/drm/exynos/exynos_drm_drv.c       |  2 +-
- drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c     |  2 +-
- drivers/gpu/drm/gma500/psb_drv.c              |  2 +-
- drivers/gpu/drm/gma500/psb_irq.c              |  4 +-
- .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c   |  2 +-
- .../gpu/drm/hisilicon/kirin/kirin_drm_drv.c   |  2 +-
- drivers/gpu/drm/hyperv/hyperv_drm_modeset.c   |  2 +-
- .../drm/i915/display/intel_display_driver.c   |  3 +-
- drivers/gpu/drm/imx/dc/dc-kms.c               |  2 +-
- drivers/gpu/drm/imx/dcss/dcss-kms.c           |  2 +-
- drivers/gpu/drm/imx/ipuv3/imx-drm-core.c      |  2 +-
- drivers/gpu/drm/imx/lcdc/imx-lcdc.c           |  2 +-
- drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |  2 +-
- drivers/gpu/drm/kmb/kmb_drv.c                 |  2 +-
- drivers/gpu/drm/logicvc/logicvc_mode.c        |  2 +-
- drivers/gpu/drm/loongson/lsdc_drv.c           |  2 +-
- drivers/gpu/drm/mcde/mcde_drv.c               |  2 +-
- drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  2 +-
- drivers/gpu/drm/meson/meson_drv.c             |  2 +-
- drivers/gpu/drm/msm/msm_kms.c                 |  2 +-
- drivers/gpu/drm/mxsfb/lcdif_drv.c             |  2 +-
- drivers/gpu/drm/mxsfb/mxsfb_drv.c             |  2 +-
- drivers/gpu/drm/nouveau/nouveau_display.c     |  2 +-
- drivers/gpu/drm/omapdrm/omap_drv.c            |  2 +-
- drivers/gpu/drm/pl111/pl111_drv.c             |  2 +-
- drivers/gpu/drm/qxl/qxl_display.c             |  2 +-
- drivers/gpu/drm/radeon/atombios_crtc.c        |  4 +-
- drivers/gpu/drm/radeon/radeon_irq_kms.c       |  2 +-
- drivers/gpu/drm/radeon/radeon_legacy_crtc.c   |  4 +-
- drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c |  2 +-
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c  |  2 +-
- .../gpu/drm/renesas/shmobile/shmob_drm_drv.c  |  2 +-
- drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |  2 +-
- drivers/gpu/drm/sprd/sprd_drm.c               |  2 +-
- drivers/gpu/drm/sti/sti_compositor.c          |  2 +-
- drivers/gpu/drm/stm/ltdc.c                    |  2 +-
- drivers/gpu/drm/sun4i/sun4i_drv.c             |  2 +-
- drivers/gpu/drm/tegra/drm.c                   |  2 +-
- drivers/gpu/drm/tidss/tidss_kms.c             |  2 +-
- drivers/gpu/drm/tilcdc/tilcdc_drv.c           |  2 +-
- drivers/gpu/drm/tiny/bochs.c                  |  2 +-
- drivers/gpu/drm/tiny/cirrus-qemu.c            |  2 +-
- drivers/gpu/drm/tve200/tve200_drv.c           |  2 +-
- drivers/gpu/drm/vc4/vc4_kms.c                 |  6 +-
- drivers/gpu/drm/verisilicon/vs_drm.c          |  2 +-
- drivers/gpu/drm/virtio/virtgpu_display.c      |  2 +-
- drivers/gpu/drm/vkms/vkms_drv.c               |  3 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c          |  2 +-
- drivers/gpu/drm/xlnx/zynqmp_kms.c             |  2 +-
- include/drm/drm_device.h                      | 10 +++-
- include/drm/drm_vblank.h                      |  2 +-
- 64 files changed, 114 insertions(+), 92 deletions(-)
+  virtual patch
 
+  @depends on patch@
+  struct drm_device *dev;
+  @@
 
-base-commit: 568d4cb5dcc5ec4e22975699b6ea67a30806884c
+  - dev->num_crtcs
+  + dev->mode_config.num_crtc
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Assisted-by: Coccinelle
+---
+ drivers/gpu/drm/drm_vblank.c                | 23 ++++++++++-----------
+ drivers/gpu/drm/gma500/psb_irq.c            |  4 ++--
+ drivers/gpu/drm/radeon/atombios_crtc.c      |  4 ++--
+ drivers/gpu/drm/radeon/radeon_legacy_crtc.c |  4 ++--
+ drivers/gpu/drm/vc4/vc4_kms.c               |  4 ++--
+ include/drm/drm_device.h                    |  3 ---
+ 6 files changed, 19 insertions(+), 23 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index d317148af8cb3..c6f61a39b5d16 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -398,7 +398,7 @@ u64 drm_vblank_count(struct drm_device *dev, unsigned int pipe)
+ 	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 	u64 count;
+ 
+-	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
++	if (drm_WARN_ON(dev, pipe >= dev->mode_config.num_crtc))
+ 		return 0;
+ 
+ 	count = atomic64_read(&vblank->count);
+@@ -558,7 +558,6 @@ int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs)
+ 		return -ENOMEM;
+ 
+ 	dev->has_hw_vblank = true;
+-	dev->num_crtcs = num_crtcs;
+ 
+ 	for (i = 0; i < num_crtcs; i++) {
+ 		struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, i);
+@@ -645,7 +644,7 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
+ 	if (!drm_dev_has_vblank(dev))
+ 		return;
+ 
+-	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
++	if (drm_WARN_ON(dev, pipe >= dev->mode_config.num_crtc))
+ 		return;
+ 
+ 	/* Valid dotclock? */
+@@ -729,7 +728,7 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+ 	int vpos, hpos, i;
+ 	int delta_ns, duration_ns;
+ 
+-	if (pipe >= dev->num_crtcs) {
++	if (pipe >= dev->mode_config.num_crtc) {
+ 		drm_err(dev, "Invalid crtc %u\n", pipe);
+ 		return false;
+ 	}
+@@ -970,7 +969,7 @@ static u64 drm_vblank_count_and_time(struct drm_device *dev, unsigned int pipe,
+ 	u64 vblank_count;
+ 	unsigned int seq;
+ 
+-	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs)) {
++	if (drm_WARN_ON(dev, pipe >= dev->mode_config.num_crtc)) {
+ 		*vblanktime = 0;
+ 		return 0;
+ 	}
+@@ -1227,7 +1226,7 @@ int drm_vblank_get(struct drm_device *dev, unsigned int pipe)
+ 	if (!drm_dev_has_vblank(dev))
+ 		return -EINVAL;
+ 
+-	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
++	if (drm_WARN_ON(dev, pipe >= dev->mode_config.num_crtc))
+ 		return -EINVAL;
+ 
+ 	spin_lock_irqsave(&dev->vbl_lock, irqflags);
+@@ -1266,7 +1265,7 @@ void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
+ 	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 	int vblank_offdelay = vblank->config.offdelay_ms;
+ 
+-	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
++	if (drm_WARN_ON(dev, pipe >= dev->mode_config.num_crtc))
+ 		return;
+ 
+ 	if (drm_WARN_ON(dev, atomic_read(&vblank->refcount) == 0))
+@@ -1355,7 +1354,7 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
+ 	ktime_t now;
+ 	u64 seq;
+ 
+-	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
++	if (drm_WARN_ON(dev, pipe >= dev->mode_config.num_crtc))
+ 		return;
+ 
+ 	/*
+@@ -1496,7 +1495,7 @@ void drm_crtc_vblank_on_config(struct drm_crtc *crtc,
+ 	unsigned int pipe = drm_crtc_index(crtc);
+ 	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
+ 
+-	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
++	if (drm_WARN_ON(dev, pipe >= dev->mode_config.num_crtc))
+ 		return;
+ 
+ 	spin_lock_irq(&dev->vbl_lock);
+@@ -1555,7 +1554,7 @@ static void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
+ 	u32 cur_vblank, diff = 1;
+ 	u32 max_vblank_count = drm_max_vblank_count(dev, pipe);
+ 
+-	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
++	if (drm_WARN_ON(dev, pipe >= dev->mode_config.num_crtc))
+ 		return;
+ 
+ 	assert_spin_locked(&dev->vbl_lock);
+@@ -1788,7 +1787,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
+ 		pipe = pipe_index;
+ 	}
+ 
+-	if (pipe >= dev->num_crtcs)
++	if (pipe >= dev->mode_config.num_crtc)
+ 		return -EINVAL;
+ 
+ 	vblank = drm_vblank_crtc(dev, pipe);
+@@ -1931,7 +1930,7 @@ bool drm_handle_vblank(struct drm_device *dev, unsigned int pipe)
+ 	if (drm_WARN_ON_ONCE(dev, !drm_dev_has_vblank(dev)))
+ 		return false;
+ 
+-	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
++	if (drm_WARN_ON(dev, pipe >= dev->mode_config.num_crtc))
+ 		return false;
+ 
+ 	spin_lock_irqsave(&dev->event_lock, irqflags);
+diff --git a/drivers/gpu/drm/gma500/psb_irq.c b/drivers/gpu/drm/gma500/psb_irq.c
+index c224c7ff353ce..f0b234a84bd55 100644
+--- a/drivers/gpu/drm/gma500/psb_irq.c
++++ b/drivers/gpu/drm/gma500/psb_irq.c
+@@ -292,7 +292,7 @@ void gma_irq_postinstall(struct drm_device *dev)
+ 	PSB_WVDC32(dev_priv->vdc_irq_mask, PSB_INT_ENABLE_R);
+ 	PSB_WVDC32(0xFFFFFFFF, PSB_HWSTAM);
+ 
+-	for (i = 0; i < dev->num_crtcs; ++i) {
++	for (i = 0; i < dev->mode_config.num_crtc; ++i) {
+ 		if (dev->vblank[i].enabled)
+ 			gma_enable_pipestat(dev_priv, i, PIPE_VBLANK_INTERRUPT_ENABLE);
+ 		else
+@@ -350,7 +350,7 @@ void gma_irq_uninstall(struct drm_device *dev)
+ 
+ 	PSB_WVDC32(0xFFFFFFFF, PSB_HWSTAM);
+ 
+-	for (i = 0; i < dev->num_crtcs; ++i) {
++	for (i = 0; i < dev->mode_config.num_crtc; ++i) {
+ 		if (dev->vblank[i].enabled)
+ 			gma_disable_pipestat(dev_priv, i, PIPE_VBLANK_INTERRUPT_ENABLE);
+ 	}
+diff --git a/drivers/gpu/drm/radeon/atombios_crtc.c b/drivers/gpu/drm/radeon/atombios_crtc.c
+index 2fc0334e0d6c5..054a24376aee0 100644
+--- a/drivers/gpu/drm/radeon/atombios_crtc.c
++++ b/drivers/gpu/drm/radeon/atombios_crtc.c
+@@ -277,14 +277,14 @@ void atombios_crtc_dpms(struct drm_crtc *crtc, int mode)
+ 		if (ASIC_IS_DCE3(rdev) && !ASIC_IS_DCE6(rdev))
+ 			atombios_enable_crtc_memreq(crtc, ATOM_ENABLE);
+ 		atombios_blank_crtc(crtc, ATOM_DISABLE);
+-		if (dev->num_crtcs > radeon_crtc->crtc_id)
++		if (dev->mode_config.num_crtc > radeon_crtc->crtc_id)
+ 			drm_crtc_vblank_on(crtc);
+ 		radeon_crtc_load_lut(crtc);
+ 		break;
+ 	case DRM_MODE_DPMS_STANDBY:
+ 	case DRM_MODE_DPMS_SUSPEND:
+ 	case DRM_MODE_DPMS_OFF:
+-		if (dev->num_crtcs > radeon_crtc->crtc_id)
++		if (dev->mode_config.num_crtc > radeon_crtc->crtc_id)
+ 			drm_crtc_vblank_off(crtc);
+ 		if (radeon_crtc->enabled)
+ 			atombios_blank_crtc(crtc, ATOM_ENABLE);
+diff --git a/drivers/gpu/drm/radeon/radeon_legacy_crtc.c b/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
+index a1054c8094d46..954a877b1fad2 100644
+--- a/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
++++ b/drivers/gpu/drm/radeon/radeon_legacy_crtc.c
+@@ -334,14 +334,14 @@ static void radeon_crtc_dpms(struct drm_crtc *crtc, int mode)
+ 									 RADEON_CRTC_DISP_REQ_EN_B));
+ 			WREG32_P(RADEON_CRTC_EXT_CNTL, crtc_ext_cntl, ~(mask | crtc_ext_cntl));
+ 		}
+-		if (dev->num_crtcs > radeon_crtc->crtc_id)
++		if (dev->mode_config.num_crtc > radeon_crtc->crtc_id)
+ 			drm_crtc_vblank_on(crtc);
+ 		radeon_crtc_load_lut(crtc);
+ 		break;
+ 	case DRM_MODE_DPMS_STANDBY:
+ 	case DRM_MODE_DPMS_SUSPEND:
+ 	case DRM_MODE_DPMS_OFF:
+-		if (dev->num_crtcs > radeon_crtc->crtc_id)
++		if (dev->mode_config.num_crtc > radeon_crtc->crtc_id)
+ 			drm_crtc_vblank_off(crtc);
+ 		if (radeon_crtc->crtc_id)
+ 			WREG32_P(RADEON_CRTC2_GEN_CNTL, mask, ~(RADEON_CRTC2_EN | mask));
+diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
+index b17e73bce3841..8f08567d28fc6 100644
+--- a/drivers/gpu/drm/vc4/vc4_kms.c
++++ b/drivers/gpu/drm/vc4/vc4_kms.c
+@@ -936,7 +936,7 @@ static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
+ 	 * If the layout changes and doesn't give us that in the future,
+ 	 * we will need to have something smarter, but it works so far.
+ 	 */
+-	sorted_crtcs = kmalloc_objs(*sorted_crtcs, dev->num_crtcs);
++	sorted_crtcs = kmalloc_objs(*sorted_crtcs, dev->mode_config.num_crtc);
+ 	if (!sorted_crtcs)
+ 		return -ENOMEM;
+ 
+@@ -946,7 +946,7 @@ static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
+ 
+ 	sort(sorted_crtcs, i, sizeof(*sorted_crtcs), cmp_vc4_crtc_hvs_output, NULL);
+ 
+-	for (i = 0; i < dev->num_crtcs; i++) {
++	for (i = 0; i < dev->mode_config.num_crtc; i++) {
+ 		struct vc4_crtc_state *old_vc4_crtc_state, *new_vc4_crtc_state;
+ 		struct drm_crtc_state *old_crtc_state, *new_crtc_state;
+ 		struct vc4_crtc *vc4_crtc;
+diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+index 2df08c756afd3..2a9115da90ae7 100644
+--- a/include/drm/drm_device.h
++++ b/include/drm/drm_device.h
+@@ -340,9 +340,6 @@ struct drm_device {
+ 	 */
+ 	spinlock_t event_lock;
+ 
+-	/** @num_crtcs: Number of CRTCs on this device */
+-	unsigned int num_crtcs;
+-
+ 	/** @mode_config: Current mode config */
+ 	struct drm_mode_config mode_config;
+ 
 -- 
 2.55.0
 
