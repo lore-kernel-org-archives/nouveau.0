@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ABD9C5DF6A
-	for <nouveau@archiver.kernel.org>; Sat, 15 Aug 2026 17:31:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95ED6C5AD5A
+	for <nouveau@archiver.kernel.org>; Sat, 15 Aug 2026 17:31:11 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 75FCB10E231;
-	Sat, 15 Aug 2026 17:31:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D1F4610E5FE;
+	Sat, 15 Aug 2026 17:31:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SOMxxLTe";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DQPDg5/2";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0724C47843;
-	Sat, 15 Aug 2026 17:14:42 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 61A0C47841;
+	Sat, 15 Aug 2026 17:14:44 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786814081;
- b=wzSRR8eCMcwYDqu4++/PUXvYS1ZYhftF4jg7th0d/xzmBoXXHvnQ1aN684hgwaGlzkAgB
- 8uI0dvYQoBFvQm/7ygsrLwnrPqZHD6PKDCEnaKrSC99yTmVbdtdyZphcdrloZDwkxzI4ogL
- BMA5K/1T01tJu93kIqxyaWHk96Lj7/w7jhGkLElYi5WUo4ibHkzedVJJU6SGXlunsNBkhj9
- aj6WSUYUosmKmvVrcHQkld9zRMjuKANhRVTlEoNzysPKqkicpDmpbHSZaW2SQ1+bp99eKxV
- 5rcgdrENWdv3ndNhUj8eoXmKBMXeXIyMB8cxddIW503gpk+EoQokhHkvu09g==
+ s=20240201; t=1786814084;
+ b=quiXwAryOVZGG+x8yhPwDqPbS2gVfG26kSVxFD/0jxC5NT/X9fkQaV1mBhGJst0G39oqn
+ ujpVjWliwJAEEwAP09lNCkMx9XoE+Q1AvoF5nuGxIAAxbtV5WV6hkm3p72IO5u0+D6ncM1u
+ TVac9hWmcMuG3mC+xLm16Kz+6lArqCVki9G4JcZEmbAtQ0uz1WP7IA6ijlBipQaUwj+X56S
+ 6OiTZZmCMXu9crB5gLog/8Jlz1mAW7JHtrY5+0bTAPA7LPmbVX4H51CJb07H0p5N0XtnW+R
+ MNmZhekhf3Hkh0zoVkAyBLCCVGqwf+niKRa8rZcR1GsO5lgkcz0DWoMo9B9w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786814081; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786814084; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=9eBdlB/mya9lLTAlc5ou5OAcHoUR69Q2TaK5PmrsA1I=;
- b=1AWs1yKxHprV9kuGK2gafiPtyXE+i4JTlHoGkx5xscKDZlw6yWxtIvZ7f7epFPLv3UTLJ
- NjJrfcUe36g8mbd3jGQ90xgVjeBBD9ZrwKyieRhhAfJ+6dvzXIbRcW1fS/az9TuK88Quum2
- cOs2aa1bbD+3htO2dCIFVhx0aFcYs5GCNxtPNg06JRR3NgA/LCPJMsbCCH2o3JPuYIvNY/U
- j8YFDAAiCkMbAJ2lOu/PCxESHzqESdEXH18nE04jEluj7lcgkLlzzVlX2lx+hwCtjbm1p5e
- S0eoEBmj3h1Ep2wYwWcyq45Mr97B8Yb1c9RRhEA1tEAV6AURPAlDwU6iQ8XA==
+ bh=caUxSmF4mOwDWDjpizi0YmdYhbjdvZBNYyy5yHj52EM=;
+ b=eCQtTeiMJ3NT61m8Z4zg5qmVh+tx3A16kk+5OWjDidgw9tRAowIZMprHdmCYBChcgsReZ
+ rOvmTAdWus/walxZUA9a3C27U2ZxBlKVTSJjmKGNKWRJ0ldh+4vaFpUTpHVsjFcOfn4xyDY
+ ZEwmb2hIieG9uPVJiaQZooxGhhNG71FuzNwte0EXbeL4m+OyIBD4ntMBty4jhClxgELg/tH
+ xVzI2m5Y4RnIS/XCU6sKbtgWhBynLh58ssBcefNJ9VaRgGcoSltMmvJuwm8lH4bgB1oHhl3
+ RuB20R22Ya9cYLp+YuBfr4Hw0fALZTDIchMoHeoxw/4VOuUs+2mf7weLSORg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,72 +46,72 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E984447837
-	for <nouveau@lists.freedesktop.org>; Sat, 15 Aug 2026 17:14:39 +0000 (UTC)
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com
- [209.85.161.41])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 466B310E1EE
-	for <nouveau@lists.freedesktop.org>; Sat, 15 Aug 2026 17:31:04 +0000 (UTC)
-Received: by mail-oo1-f41.google.com with SMTP id
- 006d021491bc7-6ae9b721927so1388026eaf.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 04FDE47818
+	for <nouveau@lists.freedesktop.org>; Sat, 15 Aug 2026 17:14:41 +0000 (UTC)
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com
+ [209.85.210.42])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5265E10E1EE
+	for <nouveau@lists.freedesktop.org>; Sat, 15 Aug 2026 17:31:05 +0000 (UTC)
+Received: by mail-ot1-f42.google.com with SMTP id
+ 46e09a7af769-7e9ef94c0e2so1267795a34.3
         for <nouveau@lists.freedesktop.org>;
- Sat, 15 Aug 2026 10:31:04 -0700 (PDT)
+ Sat, 15 Aug 2026 10:31:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1786815063; x=1787419863;
+        d=gmail.com; s=20251104; t=1786815064; x=1787419864;
  darn=lists.freedesktop.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=9eBdlB/mya9lLTAlc5ou5OAcHoUR69Q2TaK5PmrsA1I=;
-        b=SOMxxLTeAMzIo81JaFV+EJVHEnRL5u5dKQ0z+aACqFp54k5kmQMvZk/rL3fit1v9K+
-         zsyzgNaoxZzT8qkqfPUgI569MAHKKr2LuYungVW2Ogh//7+OPqiJznaryoJCimhTQnqC
-         iBGqqvs6vLPEvKlAL7uVI31Y5XCsenc5tqXJW2z8rYt4ziPD6lLMp0RMHWZTiiPHNZLS
-         irhTx4PyR00cnq1E/0SVSEW9bwF3WCq3S78P1uR503sRa1D1Vxm7iJyCRevOAluSbsFA
-         +If24aaSxIdjVp6ryq9AXGGqWCHc5GnTPabyQ/cpP/8g2LZDaj4UqTlCphOQqOw24lKX
-         4SZg==
+        bh=caUxSmF4mOwDWDjpizi0YmdYhbjdvZBNYyy5yHj52EM=;
+        b=DQPDg5/2Qfe7uYcjzOCsiyUY7BV4I6uEl+0eu+b5FCicFeyWGq7MSvTNXLMXlYVonG
+         VIwv1oi1hKx6Pg5bFXkiRGsiF5UB7pYL1alAFFAoy85Wkw28Dx2S9PrDUI6Jj7QdOG+5
+         aAKJNof16sUD8JPr1IHK+af+PWDih+c8o0vXLimGc0p8HBFF7zriP/g04h4ZwuAJdJ/s
+         hxn6m9E0Q/lIfefJsJRh8ywJk5cF2t6I8xWAod0Jhhs0zm9Pg93o+4CDgf1Ha4p6A226
+         1sXu1683ceytDaWjUyNUSy95dMdmRYKFXb5eyBFcj4iRP4ybUIATI2XDTx6ASxkBY1pM
+         MxJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1786815063; x=1787419863;
+        d=1e100.net; s=20251104; t=1786815064; x=1787419864;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=9eBdlB/mya9lLTAlc5ou5OAcHoUR69Q2TaK5PmrsA1I=;
-        b=km/hBum+0A5bakVKp/+A2ce0guwtG/x00mVaIvxYEbx3z1+97HAM6JkU53JTSBoWTZ
-         F/firUA0mCE0dsYonq4CV3ZXmh4Z48MEBm26CyqVeguS5G27Tn7A5WEuwD6nxSQ+dA6V
-         93HMIMFndOZI9jp204f7HMZyEHU4ZWbz4JVszZQ+ofpYWmEa6iI0UTICU2E6K51gtAfh
-         6TJbZGxFdGjhdJlmBOL+c6DnMWSb4y+0FgVrRMksizcIE+jj4PPY+bQXH3q00SGmR77S
-         WuoXEITWzbKIP8R+J1Sw+JbZvpKaXDF/wppaE3OuNh0HPHGVHCJUbmBpAKfhFzExdr3w
-         KrdQ==
+        bh=caUxSmF4mOwDWDjpizi0YmdYhbjdvZBNYyy5yHj52EM=;
+        b=oxZerEEkEz0sZzGfUZXX8KmrKaOWW8mh3IcqOaC3x0/BLtwItQcd8gh6/pNoRopVLQ
+         ZErXEHwXuYeHvUnBiDaHxMQBGxCSdPgIOAYyi03/e9R1brRS/V31UZ9KW8LRQ2iHtcec
+         taNtxq0UN2T3Ms7R2d8ShF5WcxZyD91nNZ1CXYtzhKwyL6R6ajdr0NaJf+a57DhBhTdb
+         eqAATJMSdu4+migaq9QxUgNrCA7cTxElOvkvrdMsVkEFBcsFHRXZ/zvFOA7hwa59r+Yi
+         2ruGCnwfop+RTiJa3yQe/USvSgW0bVCiHbnNiMzC2UqtwvRpXy4GLRLBZ8D+2yLCdtNd
+         9jdg==
 X-Forwarded-Encrypted: i=1;
- AHgh+Ro8X2YREYH52JkgXIuuI5yVcLi6HJ+g6mkezLih3gpDjjPcHHWeBzAA5UrynsQbHDRqPv3BRNlQ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxbVCI7nFJSaqi9/ewUDnYgmE10hNjXlQmN4URV7WJEyVK5BXa/
-	EaAhaXUEa4hHMjGDH5i9gdpO6PEyLEGzHb92/O4nPeK2tHnTzO4cHdrs
-X-Gm-Gg: AR+sD13nKo/1f7W4v+ah+qMCAXNJuS1iXktDpN+uPMyqRtDLtWSG9ScoK8lVppSjMuf
-	FqkQ4mp9uv2I4CuOFs3mrYg/vnMQosObx+BpqUVkCbUTlKi0YnSRWKvKIvlP81FlaugMbgzaMCn
-	NhqA6b435SGBCfopKA+fRtd8iGnC6fm++ryB4EOnnb1fat40yn0dFqg4qzvjsfxOH9X4sPB1u/j
-	mixdG10G8U57hYhDPWRv5ZkO4krj/Gxh/57vrUFG103pbMQozpJqGU0w7qgi5WOdV41OuMW1NQQ
-	qhZ+U2MMdfT11jEKuXLsoUKtI0BM0dSB27jOUxJghLUo6WehVEtsMpBOM1RieUWy36YukzYoQUV
-	BTJP0CFqVWTpiD9Z0KSkqf+0K6V5Q+5HKndg6mwk5CmQf1gnR8SUX6rSzb+WNziYKvjcLMeZtDC
-	zYKGBGvY22GEJ0PPfTEg4FjSXqUIbLa1pqkc04dGX5vUqZyTxB8dD8mrA832Pq75dHsF7GfLDPc
-	iA2Y1ecQswQAkPRlSrrqX9BHGDZZSVa5fbKkV0puou5ry6Cq5iOqCTIFFtiSFsfO4+sQHZNZa8U
-	b5KCPxSf5z4ORx0NytU=
-X-Received: by 2002:a05:6820:198c:b0:6ac:a45e:ff84 with SMTP id
- 006d021491bc7-6b0d6178f68mr12492143eaf.13.1786815063400;
-        Sat, 15 Aug 2026 10:31:03 -0700 (PDT)
+ AHgh+RrBX+7RkIY3AmiFnVYpPg9LeMj0dYJC78d8vsZhcwyVzxk5OxjIxBGFtd8ZseZ74v8wKAJnBSRS@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwWsrdN8k40j+B4iq05QeU3I7Nd3T7aR+Or5LognP5vTIiTv9Ei
+	dCclZCO40ioApcUaupsT/LJPQVfzbirOMy5UWvZak3zzYi8nzhKH1EfJ
+X-Gm-Gg: AR+sD126kyNdWLkUXsawDQkypwELg+itoodHyIV1QCfqmpP/jA+z5FRi4QPPswcLqib
+	bsTh8SgOvIJUx+2S+NxKTLX+tQQMa/qVzJOyHcDI3Y6LWcVD4oKC+194xud0WTiPe/WftoEtIWD
+	YnR/8F1MpqbJP30EOh32YSnoRdXfY39Y6Dqi4h6+YQucp2BaNJdKcqJ9/doj2td3ryUBKA7R12k
+	AwnWUXLmLQZ1Q1qLsE7WL8gaW/ZSyvqGohzA1f31rhf0JjQvOeWpdSl9jR2M2cRBqYsIUzaEfDm
+	8arYiQayenHbt0xLudfY7d1cZk8cYjqCn6guozOgzcYKF74IeXAxmv0gGVwhA9DcZjv5xhLgNSs
+	1pWYKiWKnn+jcyOW1go51HKbVatQM1lGRz7+0VILEkWonExFR5wKQmP1+oSGoG0C+ggxAJoNibf
+	C9S5g8Ws7mN9mmtlE/5rsK1dks3uNuQPx4j+FLhIFXxfI0DpBZO9Hek3VbXS9E83l0EhULxqd6Z
+	tEDrpD7/rMfSgKw0RuAUnDGSleep+eK8mmlO0RAYw9wSC4TqT+O8g3v9jRGU3USCmR22NmtXRoE
+	NDU+0V2oO2XdH5ussic=
+X-Received: by 2002:a05:6830:4488:b0:7e9:e709:44f6 with SMTP id
+ 46e09a7af769-7f3de679c0dmr12685842a34.12.1786815064517;
+        Sat, 15 Aug 2026 10:31:04 -0700 (PDT)
 Received: from [192.168.0.245] (c-98-38-17-99.hsd1.co.comcast.net.
  [98.38.17.99])
         by smtp.googlemail.com with ESMTPSA id
- 46e09a7af769-7f3e86686c4sm4029328a34.23.2026.08.15.10.31.02
+ 46e09a7af769-7f3e86686c4sm4029328a34.23.2026.08.15.10.31.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Aug 2026 10:31:02 -0700 (PDT)
+        Sat, 15 Aug 2026 10:31:04 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
-Date: Sat, 15 Aug 2026 11:30:52 -0600
-Subject: [PATCH 1/2] drm/nouveau: Fix NULL pointer dereferences in GETPARAM
- ioctl
+Date: Sat, 15 Aug 2026 11:30:53 -0600
+Subject: [PATCH 2/2] drm/nouveau: Fix NULL pointer dereference in
+ GET_ZCULL_INFO ioctl
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260815-null-fixes-v1-1-0df9dda951fb@gmail.com>
+Message-Id: <20260815-null-fixes-v1-2-0df9dda951fb@gmail.com>
 References: <20260815-null-fixes-v1-0-0df9dda951fb@gmail.com>
 In-Reply-To: <20260815-null-fixes-v1-0-0df9dda951fb@gmail.com>
 To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
@@ -119,15 +119,15 @@ To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1786815060; l=2757;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1786815060; l=2253;
  i=jim.cromie@gmail.com; s=20260203; h=from:subject:message-id;
- bh=MVZDrr9AdB0Vo7KRedm1n4U4GInx5SVFnRzNS1+N+Zo=;
- b=7UtxmLGZFzvMkY6BMZrEvXFUjeGPkc4RBlhqbpixxTBpEjYL4ZS4ob1Nv7UkTpsJorw7B6qKD
- 7bNy0uHZI5LBKqx/0worjGBZzN0LRsOe6yk1r3TwhKZosmYiYY6NdZF
+ bh=AYZ9MDfYP+/3hzlU1wrveigPwRkF/U6OUgZWgjhl2yY=;
+ b=kzw5BbvnfnMPlkNH1/kbY9HreJCu8O+yyr+c0l0w1aWyb5VnBnAVDh3CzuzCH/TM8DT1w3wLy
+ 7MHLUYfUez3CfHaoo5Zh8B8H8aU8XTsCV6QG5iNm++64EqxGhbst2cF
 X-Developer-Key: i=jim.cromie@gmail.com; a=ed25519;
  pk=C6E5ODlPQo7ZBynATXH9wg7K6HxP0pIXyf4s38Qw0XE=
-Message-ID-Hash: ADLNKKCUCWZOTRJQO5GVLVCTKDR7LU36
-X-Message-ID-Hash: ADLNKKCUCWZOTRJQO5GVLVCTKDR7LU36
+Message-ID-Hash: QPIYLGQD5IQDKGY5JGD2PQCN77XDKAE6
+X-Message-ID-Hash: QPIYLGQD5IQDKGY5JGD2PQCN77XDKAE6
 X-MailFrom: jim.cromie@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -139,9 +139,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ADLNKKCUCWZOTRJQO5GVLVCTKDR7LU36/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QPIYLGQD5IQDKGY5JGD2PQCN77XDKAE6/>
 Archived-At: 
- <https://lore.freedesktop.org/20260815-null-fixes-v1-1-0df9dda951fb@gmail.com/>
+ <https://lore.freedesktop.org/20260815-null-fixes-v1-2-0df9dda951fb@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -151,74 +151,47 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-When hardware or firmware initialization fails, the graphics engine
-(gr) or device functions may remain NULL. Attempting to access these
-during the GETPARAM ioctl (e.g., NOUVEAU_GETPARAM_GRAPH_UNITS) results
-in a kernel NULL pointer dereference, causing a crash when userspace
-(GNOME/Mesa) attempts to probe the device.
+When graphics engine firmware fails to load or initialization aborts
+early, nvxx_gr(drm) returns NULL. Calling DRM_IOCTL_NOUVEAU_GET_ZCULL_INFO
+causes nouveau_abi16_ioctl_get_zcull_info() to dereference gr at offset
+0xf0 without checking for NULL, triggering a kernel page fault.
 
-Add safety checks for 'gr', 'gr->func', and 'nvkm_device->func' in the
-ioctl handler. Return -ENODEV to signal the missing hardware state to
-userspace, and use NV_ERROR_ONCE to provide diagnostic proof in the
-kernel log without risking a console flood.
-
-RFC:
-
-These crashes may not be repeatable, they happened while I was trying
-to build nouveau as a builtin module, with binary blobs in the kernel
-image, on a laptop with an encrypted disk.  Gemini tells me this won't
-work, so I punted.
+Validate that gr is non-NULL before inspecting gr->has_zcull_info.
 
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_abi16.c | 25 +++++++++++++++++++++----
- 1 file changed, 21 insertions(+), 4 deletions(-)
+Aug 14 09:21:52 frodo kernel: BUG: kernel NULL pointer dereference, address: 00000000000000f0
+Aug 14 09:21:52 frodo kernel: #PF: error_code(0x0000) - not-present page
+Aug 14 09:21:52 frodo kernel: Oops: Oops: 0000 [#1] SMP NOPTI
+Aug 14 09:21:52 frodo kernel: RIP: 0010:nouveau_abi16_ioctl_get_zcull_info+0x17/0xa0 [nouveau]
+Aug 14 09:21:52 frodo kernel: Code: 00 00 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 48 8b 47 40 48 8b 00 48 8b 80 70 02 00 00 <80> b8 f0 00 00 00 00 74 72 8b 90 c0 00 00 00 89 16 8b 90 c4 00 00
+Aug 14 09:21:52 frodo kernel: Call Trace:
+Aug 14 09:21:52 frodo kernel:  <TASK>
+Aug 14 09:21:52 frodo kernel:  drm_ioctl_kernel+0xae/0x100
+Aug 14 09:21:52 frodo kernel:  drm_ioctl+0x2e0/0x560
+Aug 14 09:21:52 frodo kernel:  ? __pfx_nouveau_abi16_ioctl_get_zcull_info+0x10/0x10 [nouveau]
+Aug 14 09:21:52 frodo kernel:  nouveau_drm_ioctl+0x58/0xc0 [nouveau]
+Aug 14 09:21:52 frodo kernel:  __x64_sys_ioctl+0xb9/0x100
+Aug 14 09:21:52 frodo kernel:  do_syscall_64+0xe2/0x560
+Aug 14 09:21:52 frodo kernel:  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+Aug 14 09:21:52 frodo kernel:  </TASK>
+---
+ drivers/gpu/drm/nouveau/nouveau_abi16.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-index 291203121f0c..c9270c5b0fac 100644
+index c9270c5b0fac..f1026a716ff7 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-@@ -306,7 +306,12 @@ nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS)
- 		getparam->value = 1;
- 		break;
- 	case NOUVEAU_GETPARAM_GRAPH_UNITS:
--		getparam->value = nvkm_gr_units(gr);
-+		if (gr && gr->func) {
-+			getparam->value = nvkm_gr_units(gr);
-+		} else {
-+			NV_ERROR_ONCE(drm, "GETPARAM_GRAPH_UNITS: no gr engine or func\n");
-+			return -ENODEV;
-+		}
- 		break;
- 	case NOUVEAU_GETPARAM_EXEC_PUSH_MAX: {
- 		int ib_max = getparam_dma_ib_max(device);
-@@ -315,11 +320,23 @@ nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS)
- 		break;
- 	}
- 	case NOUVEAU_GETPARAM_VRAM_BAR_SIZE:
--		getparam->value = nvkm_device->func->resource_size(nvkm_device, NVKM_BAR1_FB);
-+		if (nvkm_device && nvkm_device->func && nvkm_device->func->resource_size) {
-+			getparam->value =
-+				nvkm_device->func->resource_size(nvkm_device, NVKM_BAR1_FB);
-+		} else {
-+			NV_ERROR_ONCE(drm, "GETPARAM_VRAM_BAR_SIZE: no device func\n");
-+			return -ENODEV;
-+		}
- 		break;
- 	case NOUVEAU_GETPARAM_VRAM_USED: {
--		struct ttm_resource_manager *vram_mgr = ttm_manager_type(&drm->ttm.bdev, TTM_PL_VRAM);
--		getparam->value = (u64)ttm_resource_manager_usage(vram_mgr);
-+		struct ttm_resource_manager *vram_mgr =
-+			ttm_manager_type(&drm->ttm.bdev, TTM_PL_VRAM);
-+		if (vram_mgr) {
-+			getparam->value = (u64)ttm_resource_manager_usage(vram_mgr);
-+		} else {
-+			NV_ERROR_ONCE(drm, "GETPARAM_VRAM_USED: no vram mgr\n");
-+			return -ENODEV;
-+		}
- 		break;
- 	}
- 	case NOUVEAU_GETPARAM_HAS_VMA_TILEMODE:
+@@ -357,7 +357,7 @@ nouveau_abi16_ioctl_get_zcull_info(ABI16_IOCTL_ARGS)
+ 	struct nvkm_gr *gr = nvxx_gr(drm);
+ 	struct drm_nouveau_get_zcull_info *out = data;
+ 
+-	if (gr->has_zcull_info) {
++	if (gr && gr->has_zcull_info) {
+ 		const struct nvkm_gr_zcull_info *i = &gr->zcull_info;
+ 
+ 		out->width_align_pixels = i->width_align_pixels;
 
 -- 
 2.55.0
