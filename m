@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBDBFC5DF70
-	for <nouveau@archiver.kernel.org>; Sat, 15 Aug 2026 19:54:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25093C5AD5A
+	for <nouveau@archiver.kernel.org>; Sat, 15 Aug 2026 19:54:34 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 19DE810E60D;
-	Sat, 15 Aug 2026 19:54:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 73DCB10E617;
+	Sat, 15 Aug 2026 19:54:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="moa2rCJo";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BgV51mD8";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 650CD47845;
-	Sat, 15 Aug 2026 19:38:05 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C0B5C4783F;
+	Sat, 15 Aug 2026 19:38:08 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786822685;
- b=Dr6tsBg59GPof09Kh9QGc32jjQPBhOECvjL1JeH9aeLz3M0UpOMNwAeNzUSmAhce7X2oC
- rUYvWAPW0UH+Aq0qcXyosJrV5q05x/Yf6NLvCaTKtuht646gBJEUx55j1Yj61W/dmD/vigK
- +NnpLVY6hs0INGzHgzG3WCmqVStTHDYA2IYJa18q2aumEYXheKCEwJmYsDIdXsQQSGzXrTX
- O7hNPHJY1Wks654HE4i6eECSsEy3vZORQ9t57sus2XG6YUfuSMRxWoS46/JL5Wr8vtLyeEy
- vTccthX+QDLppOdU5m+Qb8pBU29EgOMEEHe3cfJBazsvVFp4ISO8Q9EcOerg==
+ s=20240201; t=1786822688;
+ b=xr3xHNk0DtWecTtLnDiIUMYaksGI4+7pciYULR4ijba8o1rmIs19rX2/6xiUeYnpBGsuN
+ dRheu7XU3OFlT1+6v+Ael23LpUR9pZ8rN62DMogyObZ3VoOQuGVy3L0yMU1nb31bKq0OQEj
+ Rz7NcQpbQYPiYZHF9fc0DzapKgcViuHTzQ/r+qinqtJ3dMz4OI5Ym2fBURV7AWhcRuZmu9i
+ aRbVgNoQ6EOAumHIB5KLfeg8hUfWe9XmeG3+a+vqBhR1wSdeOYP3pHf88NXUO4HRgIySuY/
+ oRdlQK59iFJNdLEboEDHBqNVGzBgC7QhOX+y6Y5TXxRZ8qDXwvX4CFKXZqKw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786822685; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1786822688; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=FxobjEeJRawVMzSAB2ltdXyzVXZZsToR6chxQbXYXeo=;
- b=gkSbNO1hWwakFP5MKik4H77bVRNwTyhQNfcdRa7/a9/182/i0hJ4fUjxRZp9svRWRClvP
- IfmP2VLngYZITBu/42GPF50SQ+6AgEUmUNHJeHC+Tif9uGtMMXnyg0qGRUDOcX7OaguBFTt
- KPWXz4Q60NIu8wCtHZXwRkxT3PWnr1gb44qGm1Mbr8ZZTpjVwWfVGaQtGxvQiddVmHz35zC
- /QZpfuWHNpOJmGIBRSWFLb7RKJhuXU0lCP+lO5hDAp2DllJR+6mc0VvURIpJf0CTQIlUytR
- 6xqzBguA6zHOOjOFgMSJYngsAGQBEDWFAix0sNevsh39B8grFAbUJW4iIyHQ==
+ bh=XxZBcoNm0rPU1Ur89x0ojWr5QvTqSdgFT80aSFgKz/A=;
+ b=D3u0IhubE7FfAC+9ra8zglNN4PRWddu0l8G9nPOgdakazWYW6tmT3LP9OuVp3Z6R547EI
+ ngD0+Ftlarxuex5YGyJlJJf/b24/EmEby3ot2jH36nFzruy16XSoVYUCX98uqHoBnoBtuFq
+ dHHK2w8Vp+lV2pYi0NShc7TBYNtnKySOI8m3TssFpuTVN0FJhoZUT469oIPEUVbUdmOzXBq
+ LJzybR/aMldUJhSVb53hs+AnE+eE3G4MMHGJybnFn1GL5bdwdZhZGZnBhe3W3+jGSO2IBWh
+ s5F+AtgRH1Jnikn/IBNS4346mU9uOgqH0Jg4rbOwlZJm2bLgEIz5aAmogu6w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,75 +46,75 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 40F5A477BA
-	for <nouveau@lists.freedesktop.org>; Sat, 15 Aug 2026 19:38:02 +0000 (UTC)
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C15AD10E485
-	for <nouveau@lists.freedesktop.org>; Sat, 15 Aug 2026 19:54:26 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-4956d1d9fb2so2950565e9.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 23015477BA
+	for <nouveau@lists.freedesktop.org>; Sat, 15 Aug 2026 19:38:05 +0000 (UTC)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+ [209.85.221.47])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A4B9810E606
+	for <nouveau@lists.freedesktop.org>; Sat, 15 Aug 2026 19:54:29 +0000 (UTC)
+Received: by mail-wr1-f47.google.com with SMTP id
+ ffacd0b85a97d-47f502ff678so247191f8f.0
         for <nouveau@lists.freedesktop.org>;
- Sat, 15 Aug 2026 12:54:26 -0700 (PDT)
+ Sat, 15 Aug 2026 12:54:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1786823665; x=1787428465;
+        d=gmail.com; s=20251104; t=1786823668; x=1787428468;
  darn=lists.freedesktop.org;
         h=mime-version:content-transfer-encoding:content-type:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=FxobjEeJRawVMzSAB2ltdXyzVXZZsToR6chxQbXYXeo=;
-        b=moa2rCJo+WIptiTWUHkZHQ9A0olY8ROLj7OEch7IAUYFwvenbu6a+qUcopNGZpNMDO
-         PE6L8Micmv3kuLDTU0pqjlYRJ3/uUwDojz3PMsRXJ6cqYliVoN2LuLTiAMb9AVw7powe
-         wcFHGpPHTtGdj1Ed6KOiyHELrQbJhKsS5rsJ4vQxTdu6pfbdNI3rdWQHK9TgH6FJCwYm
-         YyE2x6O/yijTbZl/IHpFTgZEIXFveiNCfzOy5PEkxZ8wclx9tG2wH8v4cZ0zgYGb1GhC
-         qaju6OTyYHR2IOKM3UFyK3j+VbVhcGsiV+pbzMdy93K1ySYeugCwvGPaqbQwb7agJpYz
-         Gjkg==
+        bh=XxZBcoNm0rPU1Ur89x0ojWr5QvTqSdgFT80aSFgKz/A=;
+        b=BgV51mD8/ce9yzqQno+LijQc8t9FUttI6NtvfYbBFVYF3UaohlHjxgb8KExnPdzvx2
+         65wjXG0DFjODkCzj0FjROzHXS7jC5SNtmx8ZDaLI6Cn16DZ6KYvWD8KLclXr3Ty26U+I
+         4mvkO169LA8gMfI3N7I6CVw7hvs3izIdByVLyJ2+D2qiXCQSoqi5G87fCqXN32IJZ0Jl
+         sQ4g0SjEBI+jn5TY4MWvElVsObMyaBx0ji1U7s6W9KTibaOcgtPxwnUnuojFa119b0ig
+         soAPA3L253Z0URofSknCLABGeVu7L15wDJW9QFKuoRj131SpseoeUa/KsyMd8gKSkhWq
+         DUQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1786823665; x=1787428465;
+        d=1e100.net; s=20251104; t=1786823668; x=1787428468;
         h=mime-version:content-transfer-encoding:content-type:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=FxobjEeJRawVMzSAB2ltdXyzVXZZsToR6chxQbXYXeo=;
-        b=dzMhGHgDhTix+lTpXeKaTIFweQeBRL1EMQZY4Wt3RU5VcqpvrSoTrsXkXWRuIx5WS0
-         f+ol+DeVYRDpPhjkNsh0t68UJSSmm2vL31lRoiIt2BZcPyMP2agT1J7Zhn3W9NE8rU7M
-         EbVU89QX6/6Ysua65AVmD8kYd4b8CBBfPWRl/bmBUmMNvvl77pVnjEa2RLJMba+rS3mn
-         YLRubCHnbNc7JcI7xRQAvwTczG72rtX+HuVEp9M2vC22ylw1mlp+Fp/4cgikSUrCqNty
-         g83rINFZw4bX0pcCgCFZjxW+vY2YoKHGbKMH3MdivxTicGs10dvFb5VsRDXF4T55VheS
-         kKZg==
-X-Gm-Message-State: AOJu0Yz5Gfq6is0rxKKQsqhfbz8HGoiuWiZjuQ7s84+zNqFABOdewv+Y
-	aGTQIg5/m3RBu4u1SvfWXGoNQtMRNgX6y6Xtb+LdOEQ3V73SaODEnrnHPDAYkcil
-X-Gm-Gg: AR+sD12mUaP64cWJbkHIIGT+55TatQFGysvl76tcXYRIZwd7y4zmcmFNxmCUBWyF71f
-	xUpwhVYtQ0eOvNYSHgHc3GShgqi/gPC9s8pNy3IBM9loIj0ZUTJ1CgtVDKlbGjoGwmasCdr7qhJ
-	SqexCEzWEqJXXlG36e0IM48Vn2sbwxvlYcWwGws4zcNIzDTaVXl1S8Dg2HUCHP/FEGKgVkFj9Ph
-	7s7UkLkMGChRTJw/4TjwkKI/eg/xQsdFUicm8wvXPLpdejoVLXpNIaBY53WtzLg91pAyiQZmyDP
-	jVWT6QAe0UfNcKPebPJX7yYkGu2kFZ6hLDpYnF3iowFMr4+a5nn5W+PqXFreCVQUPVKZXKfzDRg
-	UckSJjM3TYfSwmOxjbsxVHeI0CIBvWzx9uDr3+28c/hEYbFtXaTUbnb31Mva50ouBtzNYsfvjkI
-	krbq0+SkOFCuk4I7cOFW6iJRJBW5quTGX2gtFOvgPWoWgs/TfOBjshue40ahe1xaO7SKLgDPgKN
-	rLsWPjgRNUM6w1AyTUpaNBcIYVkswplyIFl+iuTeg==
-X-Received: by 2002:a05:600c:a47:b0:496:bbce:ef with SMTP id
- 5b1f17b1804b1-4998796ca48mr110524505e9.3.1786823665137;
-        Sat, 15 Aug 2026 12:54:25 -0700 (PDT)
+        bh=XxZBcoNm0rPU1Ur89x0ojWr5QvTqSdgFT80aSFgKz/A=;
+        b=l7JKsyjH7yIvC7Dp5kw8RRy/mh7gtIGAeY5+L6otQ5brLseoLUYjluxZSWmncCoD5O
+         mSJwpgzzjrcEHbMqA/VU7BvE4dPnpuXJC6K1wKoOiQvKiRyZYWr5WqRY+0Am44Bn0lqL
+         HvWL891JApR3gLe5XRZtLisxcfA/Ttfqo51ewgY2oUIJVD65ZXOLZtt63y/WLsij5dx2
+         zlK1MBtouTdr2hYWViVthH5QmQxa5VFm6ZvPUkdsqoIqk/5V4pdk5ds/W7eO6bbTc2m2
+         2BoXJ6qowKDcFjdHNI1Us720pnq9LoEhdtVdz/HjFwBmGEdWwvs49QoErB60Lm08cXMA
+         3VpA==
+X-Gm-Message-State: AOJu0Ywfg0UCA0txYqPPfhBy37vopRtylu0g7kTtsgOFi9gwgv+SMWxG
+	iWkGOVwJAyM9JlGf7IgqE8LibZiCUdWGOFKsj634QscQ6DxsaNSfaSfGWjDJ4xBu
+X-Gm-Gg: AR+sD10P/ZpxYZqIDy+E9e04+p9NpMqwLkh/S5QSkKanbmjtTlMexAsXT2zgLj3wmMm
+	WEUjiQf0aDr1LW75hoLbu7pZgGEQjhLeLCFrFXdDFhh90/wB0xLPnwwyjWLry0mUmdDaEZqSrWC
+	kFqGFc+Qsirx+e+/ffxkkTp/PbhbJSv2XyfnOCsQ4L0eLDd8p8gyrghmlX0PIHehyhNYHiOFg49
+	PeD4h8KjWLWKVlJaVfVlnnIPrXP+iTzUN6OGdvkgZ+z9TTEHK2IouT+y8QuPBi3jSVCpXxThpHT
+	5dHHgurcZ5M4RrG9gyv/B8QwIph4uUoWh9BnDCSJ+4smJkLftpEzCVWh0k8pY+6my4e3W65zEcY
+	BmzfSaiTIqA30XtM6VC+3hZV4FlWcT3Vc4zNKZu0HqzkcWLrMULVMA7vZUBUwkN1Ijstlxt1w8e
+	2qvGmHQuE0blCawB0WV+1qEqZ30fniMxRA58RtdJomt3CTa5Ee7c1+L0ydGwYCtj/lU73Q8b7tD
+	8rxo/o/9rpeKLaL6jjqfDc+Fj8UAbpNnChr6Skxaw==
+X-Received: by 2002:a05:600c:1385:b0:496:c249:ddb1 with SMTP id
+ 5b1f17b1804b1-499879759bbmr105883175e9.4.1786823667999;
+        Sat, 15 Aug 2026 12:54:27 -0700 (PDT)
 Received: from [127.0.0.1] (ip-109-193-028-127.um39.pools.vodafone-ip.de.
  [109.193.28.127])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-499899bff2csm133743775e9.7.2026.08.15.12.54.24
+ 5b1f17b1804b1-499899bff2csm133743775e9.7.2026.08.15.12.54.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Aug 2026 12:54:24 -0700 (PDT)
+        Sat, 15 Aug 2026 12:54:27 -0700 (PDT)
 From: Marek Czernohous <mczernohous@gmail.com>
 To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Subject: 
- [PATCH 1/3] drm/nouveau: destroy the fence event before cancelling its work
+ [PATCH 2/3] drm/nouveau: cancel the DP IRQ work before freeing the connector
 Date: Sat, 15 Aug 2026 21:54:20 +0200
-Message-ID: <178682366002.3748010.12779628082366287968@gmail.com>
+Message-ID: <178682366002.3748010.4096452389040554615@gmail.com>
 X-Mailer: python-smtplib
 In-Reply-To: <178682366001.3748010.7798811159846779765@gmail.com>
 References: <178682366001.3748010.7798811159846779765@gmail.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Message-ID-Hash: IP56BUL4CLAJ4CWGK4PQU365WWQXIKJQ
-X-Message-ID-Hash: IP56BUL4CLAJ4CWGK4PQU365WWQXIKJQ
+Message-ID-Hash: 54K7K7SJC4GEHFRR2OXGX5WNWVQARB4N
+X-Message-ID-Hash: 54K7K7SJC4GEHFRR2OXGX5WNWVQARB4N
 X-MailFrom: mczernohous@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -125,9 +125,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IP56BUL4CLAJ4CWGK4PQU365WWQXIKJQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/54K7K7SJC4GEHFRR2OXGX5WNWVQARB4N/>
 Archived-At: 
- <https://lore.freedesktop.org/178682366002.3748010.12779628082366287968@gmail.com/>
+ <https://lore.freedesktop.org/178682366002.3748010.4096452389040554615@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -139,82 +139,55 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 From: Marek Czernohous <marek@czernohous.de>
 
-nouveau_fence_context_del() cancels the uevent work first and only tears
-the event down afterwards:
+nouveau_connector_destroy() tears the two nvif events down and then
+frees the connector, but never cancels the work the IRQ event queues:
 
-	cancel_work_sync(&fctx->uevent_work);
-	nouveau_fence_context_kill(fctx, 0);
-	nvif_event_dtor(&fctx->event);
+	nvif_event_dtor(&nv_connector->irq);
+	nvif_event_dtor(&nv_connector->hpd);
+	kfree(nv_connector->edid);
+	...
+	kfree(connector);
 
-Between the cancel and the dtor the event is still armed, and
-nouveau_fence_wait_uevent_handler() queues the work unconditionally:
+nouveau_connector_irq() queues that work unconditionally:
 
-	schedule_work(&fctx->uevent_work);
+	schedule_work(&nv_connector->irq_work);
 	return NVIF_EVENT_KEEP;
 
-So a non-stall interrupt arriving in that window re-arms the work that
-was just cancelled. The callers free the context immediately afterwards,
-for example nv84_fence_context_del():
+A DP IRQ arriving just before nvif_event_dtor() therefore leaves
+nv_connector->irq_work on the system queue past the kfree(). When it
+runs, nouveau_dp_irq() derives both nv_connector and connector from the
+work_struct and dereferences them, and goes on to take
+outp->dp.hpd_irq_lock.
 
-	nouveau_fence_context_del(&fctx->base);
-	chan->fence = NULL;
-	nouveau_fence_context_free(&fctx->base);
+There is no cancel_work_sync() for irq_work anywhere in the driver, so
+nothing else covers this. Add it after the event teardown, where no
+further work can be queued, and before anything is freed.
 
-nouveau_fence_uevent_work() then runs against freed memory, taking
-fctx->lock and walking fctx->pending.
-
-Only chips from G84 on can reach this at all: nouveau_fence_context_new()
-returns before nvif_event_ctor() when priv->uevent is clear, and
-nv84_fence_create() is the only place that sets it.
-nv84_fence_context_del() is the context_del for all of those, because
-nvc0_fence_create() and gv100_fence_create() build on nv84_fence_create()
-and override only context_new.
-
-Drop the event first, so no further work can be queued, and only then
-drain what is already queued.
-
-nouveau_fence_context_kill() keeps its place after the drain. It can
-still touch the event: nouveau_fence_signal() returns true when a fence
-that had enable_signaling() called on it is signalled and
-fctx->notify_ref drops to zero, and the loop then calls
-nvif_event_block() once. That call runs in the same thread just after
-the dtor, where nvif_event_constructed() is false and it is a no-op.
-Blocking an event that no longer exists would be pointless anyway.
-
-The reordering does open one window, so it is worth saying what closes
-it. A fence holder that reaches nouveau_fence_enable_signaling()
-between the dtor and the kill gets a silent no-op from
-nvif_event_allow(), so that fence will not be woken by a non-stall
-interrupt any more. It does not have to be: the kill runs immediately
-afterwards, signals every fence on fctx->pending under fctx->lock and
-sets fctx->killed, after which nouveau_fence_emit() refuses further
-work with -ENODEV.
+Reported by the Sashiko review bot as a pre-existing issue, in its review
+of an earlier nv04 FIFO series of mine, and confirmed against the source.
 
 Reported-by: sashiko-bot <sashiko-bot@kernel.org>
 Link: https://sashiko.dev/#/patchset/20260812231330.705425-1-mczernohous@gmail.com?part=1
-Fixes: 39126abc5e20 ("nouveau: offload fence uevents work to workqueue")
+Fixes: 773eb04d14a1 ("drm/nouveau/disp: expose conn event class")
 Cc: stable@vger.kernel.org
 Assisted-by: Claude:claude-opus-5
 Signed-off-by: Marek Czernohous <marek@czernohous.de>
 ---
- drivers/gpu/drm/nouveau/nouveau_fence.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-index edbe9e08ba0f..4a3698dc2cd1 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-@@ -96,9 +96,9 @@ nouveau_fence_context_kill(struct nouveau_fence_chan *fctx, int error)
- void
- nouveau_fence_context_del(struct nouveau_fence_chan *fctx)
- {
-+	nvif_event_dtor(&fctx->event);
- 	cancel_work_sync(&fctx->uevent_work);
- 	nouveau_fence_context_kill(fctx, 0);
--	nvif_event_dtor(&fctx->event);
- 	fctx->dead = 1;
- 
- 	/*
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index b0b0ad9a0c24..e49dcaa6d210 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -397,6 +397,7 @@ nouveau_connector_destroy(struct drm_connector *connector)
+ 	struct nouveau_connector *nv_connector = nouveau_connector(connector);
+ 	nvif_event_dtor(&nv_connector->irq);
+ 	nvif_event_dtor(&nv_connector->hpd);
++	cancel_work_sync(&nv_connector->irq_work);
+ 	kfree(nv_connector->edid);
+ 	drm_connector_unregister(connector);
+ 	drm_connector_cleanup(connector);
 -- 
 2.54.0
 
