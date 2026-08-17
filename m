@@ -4,120 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DC90C5DF7A
-	for <nouveau@archiver.kernel.org>; Mon, 17 Aug 2026 12:41:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17DD5C5DF74
+	for <nouveau@archiver.kernel.org>; Mon, 17 Aug 2026 21:49:16 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 80AEC10E7AD;
-	Mon, 17 Aug 2026 12:41:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4B9C810E962;
+	Mon, 17 Aug 2026 21:49:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aoCANBg2";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="CU3M5wG1";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0571E4789C;
-	Mon, 17 Aug 2026 12:24:46 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id EF372478A0;
+	Mon, 17 Aug 2026 21:32:44 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1786969485;
- b=O1HXd+qKlIJpzTtCE5OOTWN6RtGVimEsJHTfHcIr21v1Cj+vcVqKytrYVgPM/y7HRw8Sf
- L5F0NK25+kgq2/cd1E17+UryvbO/N1H38pgI93Ac9Uh6iRXWlbnjbqDgvzETAy9IyFgkVWf
- 9kbhW2oYLP2HIopTOWORyQMil19ylRGQeVuWo4bf8MfIzXzTYu9GS+khvj/ygpSTiZ5Dhg5
- 0JP4vPyaqyFPam5XSb1txogMYCcfYsI4jsl+sVmEolw1y4fEUt1TPT6foZjO/AyRs3FbuYJ
- oXMYe8LGkBOXp0u7KVa1yNzgY/ljyQgD/LVm42Ec+38vN+rRSmQwiu24Xf0w==
+ s=20240201; t=1787002364;
+ b=MgMHumgxJghmrwV9UkOXp8yE5psJ7aG+qR+rDCenY6rlDINZrSGXqFY++1KxziTuegyZ7
+ Mbl3Z5YpIYBk+ZZ118L6n2Z0CVS8YngpOODCNOyXlxeIsUCCx2qPOeDqpDMWJXJYZmUX13K
+ 4oFAmgLCnC7Mto25pGn1L1EfeWQnOh976yzTfmyz9xKO8PZOgtDfqAkXMtdF7WuG/wvd/az
+ gHFBjeXndsIc6OTWeYPy4pNMoPrHoxA2PTXqZnB2OhWVTopWndYY04tGoyYO+piVUuZHvyQ
+ 6pYLUDTJfq3fYc+i3biYm1wYjH0DtlHPoMv3tBDcPMB7tv+8fglVLbBRJxmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1786969485; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787002364; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=GmMwzgYICEZgaUQS0J4MmV5SSQYrGmVvWfDuKpV65fM=;
- b=RKj8UuVQRJ0B9O0CrWGYzYfJR6FEhKmIZeuxlHC+bmS/trAa8JsYj05b62rdNALPjvxB8
- Z8qVOX3oTCauFj+EAMnnWw2BbwtB8MrNw0GqpD06QUQ2XxN5xGFwLzrgdTWkh9ZsCpfcDOE
- 39QUWh7Xwx8M/2UFPompU5934kvZJqFmBvV5gI6JW3e9ZaGmGmftV6DSQ8Fk91YAFCVoQ39
- E2l05hoqHmV/SokZADcQgW4OpSDj/zvsj7+Cd7rSoPtH3Jh7Ng9Ms3LwAsHr497ZpjOEZuk
- NaNX4Jpa8cuvzrPcsPnw92uA2a56IRKsQtZFwMRWckLFE9qpxmbdEFgAdDGw==
+ bh=WHPjAdant6tOQFGJyuVUkwr23uGSJGxYlerIeOqc1ls=;
+ b=sdwzmljhcFnHAaQNK7thZEn2GiO+ABaBsqfuCwP1otLHTf5wZtFEfifwpKZ1m3X5zbA/k
+ 7ldXi9zShFpueVq/AMWTHAPqmqWwL01YpstsDprNO7Bv2klOVuVdgGDYV1ul9q5gx5awotO
+ CMkUMNeIhCINN0sZn1M4kF9Yfq3Q35bQLdqDXpdqQT7Q91jh8weNKSe1gxyG+QF/ROoMxcR
+ AFdkp3GDKyq5o+buLbQoVWsz29ETnkcED9A9ZJE3f+UKcmFNT561m6M+HcQtpH6+DHbXPOq
+ OoQP5lKU1sHFOSLktSobvK+hI6enw6XtD4N7jE68AZm+3GMEPyjdskoNVKuw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
+ dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
- policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3091C47475
-	for <nouveau@lists.freedesktop.org>; Mon, 17 Aug 2026 12:24:43 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0A1FB89950;
-	Mon, 17 Aug 2026 12:41:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1786970471; x=1818506471;
-  h=from:to:subject:in-reply-to:references:date:message-id:
-   mime-version;
-  bh=7X4st2dfy1l8lT+fjQAQC0tAfIF/QQdIXAwtTks4e/k=;
-  b=aoCANBg23f6hM++EUWX5525byy5v5c6zWGrwg/KiAVFSp/WghxX3Ar3m
-   /6zwcHjA/VxbxfPx6xfEoGl3eis8ImmuA7sz7utu+t6IpCOXy8InG0CSM
-   T0yqDPiqXnCnC9nLrr0cBEA/RTaiVY3IaPbr+FUpghBU+ZYyUvP+RgkQV
-   4f/ei+2e4YH7ftlpbzZyPf5UyU7PYOiwv8OmQB8sWtKxDOw8auU2eWZi5
-   6k9ow65XPdSkFxNrWZWEGerJkJjZC1VxXb2x3V2wRpN9VzK6hqYS+uzoz
-   UpG0wwIKwRWP9tDRzfv1i+flskA5/w0Pm/gjeLH8rxGStuKtc/dZnLe9f
-   Q==;
-X-CSE-ConnectionGUID: zVExrwOfTteSR+ES02wJsw==
-X-CSE-MsgGUID: ULosGrymTAeUFWWaJfYo1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11877"; a="98598085"
-X-IronPort-AV: E=Sophos;i="6.25,228,1779174000";
-   d="scan'208";a="98598085"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2026 05:41:10 -0700
-X-CSE-ConnectionGUID: kO9/n7EERguTo2l7wfOCtw==
-X-CSE-MsgGUID: 7ox5dl61Tw6To4e/rrOiGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,228,1779174000";
-   d="scan'208";a="266887598"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.110])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2026 05:41:05 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-sunxi@lists.linux.dev, asahi@lists.linux.dev,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-samsung-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-mediatek@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- linux-aspeed@lists.ozlabs.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-mips@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- imx@lists.linux.dev
-Subject: Re: [PATCH 0/5] drm/vblank: Enforce all-or-nothing vblank support
-In-Reply-To: <20260814203542.1405135-1-lyude@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260814203542.1405135-1-lyude@redhat.com>
-Date: Mon, 17 Aug 2026 15:41:02 +0300
-Message-ID: <5f06e91a5ff0e5bb887b72e4ff9077c45cd9216e@intel.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id B7F5E470D3
+	for <nouveau@lists.freedesktop.org>; Mon, 17 Aug 2026 21:32:41 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B130810E952
+	for <nouveau@lists.freedesktop.org>; Mon, 17 Aug 2026 21:49:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1787003349;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=WHPjAdant6tOQFGJyuVUkwr23uGSJGxYlerIeOqc1ls=;
+	b=CU3M5wG13HytjWldEEAEkyQBSl7f6Xnqr5ahZi7Zn8rjNbsaUCEzJcefUKKoBcn126GyoA
+	7JITSnZT2jAs2gHmiPfJ6XFbJS/a5jZpBGbSTXOs5zM02RuYCq3kVtBmlSFYc+170QOaDO
+	MjKV+CJUdMjX58oEmGE/f3NuUZcqK24=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-664-aYvFuiz8NTOU2cGXFF-DJQ-1; Mon, 17 Aug 2026 17:49:08 -0400
+X-MC-Unique: aYvFuiz8NTOU2cGXFF-DJQ-1
+X-Mimecast-MFC-AGG-ID: aYvFuiz8NTOU2cGXFF-DJQ_1787003348
+Received: by mail-qt1-f197.google.com with SMTP id
+ d75a77b69052e-51c1d30035dso30055171cf.2
+        for <nouveau@lists.freedesktop.org>;
+ Mon, 17 Aug 2026 14:49:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1787003348; x=1787608148;
+        h=mime-version:user-agent:content-transfer-encoding:content-type
+         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=+NpT6IBbEDn6Pvgvg7L8CX+UbCOJ8acjU28kPL1GyDs=;
+        b=bX1fUCbtZccXhD7U2miORRNT5EASQg2m0D/pxvBHawWGzq1LjfTzDeg95LU1oixYe4
+         HbxXq1Vax7xZXIrpQTS42eGM8hYhkwwjgEXZH9fZMUWBlYCu+EaYTnWJf/JlSCpTud4w
+         qqegI2HxdNqi/dHftTN3mH4+uPw5SS7nTLJQZknng8bc/MszbdYzY4ayBrQ+l6OxlZWQ
+         6a089/Gi5OYkapQkp2m0F1/6FDowD64HYbkBgBTRX/gIdTeH43tZdUNkP+f8v9OZ+Pjl
+         4jmxQppb+dMqIXpvcvPHDmoo0cy/L8Qj/c29q1ppW29HSnz1xly7X7zMQWBAJwezt4rR
+         ui9A==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RogNdktJq3HvtJS7RyxRabC2b0a93owOKoZiVp/BYDbLBVF3uuQrZowRVjpz6zdYgIYGcC4CauJ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwxW/QPnRWLnybhy5Q8ph0TSQs4He2in0jJNTu0G+mKaStslWQv
+	NHwkj8Wj0b2f17jL643/z8++O9Nv9j786b7T1FfnLx+z5ZxkLZypoVrxh1bTv37sVo/fcrOQqbs
+	umbPfTlc31wqCadyfM6B2sTGKBlp0JEm8dHLtFiwfmJYPuZJyEutybT8FECTCRVbwIFE=
+X-Gm-Gg: AR+sD13z0vroJJXNJTPsWKcUd+2omiYraf7xHpxx53QCqSTEpy4SwF0VXbvBmuQ85LW
+	vYQbe7GQmMJ9TadYs11CPc5RBIlO8l7aB/iO8zO5dcpalEK9lg9jjVaL8fFokA2wF6E2E3S3wDC
+	V2KCc0y7Zg18+TgDr2DhC/4VqbSccZPvMv4nVKJK1ouNXDreq/+dJ0wNIfyWelEdV3yFR5ig8il
+	h2T7PY3c15QPEFRgx1w3mgF3MAb07a+o0V86w75m51/t8ypiWS6gQaCZMc/Si6w3e6X5jj7SYee
+	BG0cD4iQw2zdBs0xARYTXA/W/TRx70YdkfhJhKSmNnDem//2kPTCyUf3hn1oej93CZ2XsgJO
+X-Received: by 2002:ac8:5ccf:0:b0:528:22:8c61 with SMTP id
+ d75a77b69052e-52d854f3ce2mr312378091cf.38.1787003347729;
+        Mon, 17 Aug 2026 14:49:07 -0700 (PDT)
+X-Received: by 2002:ac8:5ccf:0:b0:528:22:8c61 with SMTP id
+ d75a77b69052e-52d854f3ce2mr312377741cf.38.1787003347331;
+        Mon, 17 Aug 2026 14:49:07 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93])
+        by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-52db625c90csm24270971cf.27.2026.08.17.14.49.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Aug 2026 14:49:06 -0700 (PDT)
+Message-ID: <2e606cab65a7c7134ade630b17c52aaa4017dca8.camel@redhat.com>
+Subject: Re: [PATCH 2/7] nouveau/gsp: fix HDMI vendor infoframes on GB20x
+From: lyude@redhat.com
+To: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
+	linux-kernel@vger.kernel.org
+Date: Mon, 17 Aug 2026 17:49:05 -0400
+In-Reply-To: <20260814235705.59132-3-mohamedahmedegypt2001@gmail.com>
+References: <20260814235705.59132-1-mohamedahmedegypt2001@gmail.com>
+	 <20260814235705.59132-3-mohamedahmedegypt2001@gmail.com>
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-Content-Type: text/plain
-Message-ID-Hash: D6NQSJKVMHWALMZ7K3WXO6IVDEGXXVIG
-X-Message-ID-Hash: D6NQSJKVMHWALMZ7K3WXO6IVDEGXXVIG
-X-MailFrom: jani.nikula@intel.com
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: BvR6vjDmrjwi2F29ZVINDcGd57Mgxtatc0erWKQuKVQ_1787003348
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: KCYF7YMTJB26HMALF7SYAH2TH6IYI7H3
+X-Message-ID-Hash: KCYF7YMTJB26HMALF7SYAH2TH6IYI7H3
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
+ loop; banned-address
+CC: dri-devel@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Mary Guillemard <mary@mary.zone>, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/D6NQSJKVMHWALMZ7K3WXO6IVDEGXXVIG/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KCYF7YMTJB26HMALF7SYAH2TH6IYI7H3/>
 Archived-At: 
- <https://lore.freedesktop.org/5f06e91a5ff0e5bb887b72e4ff9077c45cd9216e@intel.com/>
+ <https://lore.freedesktop.org/2e606cab65a7c7134ade630b17c52aaa4017dca8.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -127,121 +148,93 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri, 14 Aug 2026, Lyude Paul <lyude@redhat.com> wrote:
-> One of the oddities with DRM that is leftover from the old days is how
-> vblank support is implemented by drivers. This has caused some minor
-> issues for the rust bindings for KMS which could be worked around.
-> However, it seems like a much better idea to fix this on the C side.
-> Those oddities are mainly:
->
-> * There's nothing in the vblank core that actually ensures that all
->   CRTCs implement vblank support if one of them do. On Rust's side, we
->   can't have this and have to ensure either the whole device has vblank
->   support or not - otherwise it would be quite painful ensuring we don't
->   expose vblank methods to drivers that can't use them.
->   This additionally means such a situation would lead to UB.
-> * There is a second variable for keeping track of the number of CRTCs
->   and it's kind of broken and confusing. Even worse, we currently allow
->   the vblank API to allow a driver to specify a different number of
->   CRTCs then it actually has.
->
-> So, let's just go ahead and fix this across the whole tree, and enforce
-> that a driver must either implement hardware vblank support for all
-> CRTCs or no CRTCs.
+On Sat, 2026-08-15 at 03:57 +0400, Mohamed Ahmed wrote:
+> The GSP path reuses the GV100 direct-MMIO infoframe writers on every
+> chip. On GB20x that is only half right as while the legacy SF AVI
+> unit is
+> unchanged, the legacy VSI unit at 0x6f0100 was removed, so
+> gv100_sor_hdmi_infoframe_vsi() writes into a reserved area and no
+> vendor
+> infoframe ever reaches the wire. This affects HDMI-VIC signalling
+> which
+> can impact some 4K modes for legacy HDMI 1.4 sinks.
+>=20
+> Select the SOR functions per GPU family in r535_sor_new(), keyed on
+> the display root class from the RM GPU table and use the new
+> generic-infoframe VSI writer on GB20x. Everything else stays on the
+> r535 table.
+>=20
+> Signed-off-by: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
+> ---
+> =C2=A0.../nouveau/nvkm/subdev/gsp/rm/r535/disp.c=C2=A0=C2=A0=C2=A0 | 29
+> ++++++++++++++++++-
+> =C2=A01 file changed, 28 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> index 1155f079b0c3..96febd01da78 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> @@ -36,6 +36,8 @@
+> =C2=A0
+> =C2=A0#include <rm/gpu.h>
+> =C2=A0
+> +#include <nvif/class.h>
+> +
+> =C2=A0#include <nvhw/drf.h>
+> =C2=A0
+> =C2=A0#include "nvrm/disp.h"
+> @@ -587,6 +589,16 @@ r535_sor_hdmi =3D {
+> =C2=A0=09.audio =3D r535_sor_hdmi_audio,
+> =C2=A0};
+> =C2=A0
+> +static const struct nvkm_ior_func_hdmi
+> +gb202_sor_hdmi =3D {
+> +=09.ctrl =3D r535_sor_hdmi_ctrl,
+> +=09/* The legacy AVI unit is unchanged on GB20x. */
+> +=09.infoframe_avi =3D gv100_sor_hdmi_infoframe_avi,
+> +=09.infoframe_vsi =3D gb202_sor_hdmi_infoframe_vsi,
+> +=09.audio =3D r535_sor_hdmi_audio,
+> +=09.frl_train =3D r535_sor_frl_train,
+> +};
+> +
 
-For i915, the relevant init order is currently:
+This is the right approach, but I think this might make more sense to
+move into drivers/gpu/drm/nouveau/nvkm/subdev/gsp/gb202.c and then
+reference it back here.
 
-- drm_vblank_init()
-- drm_mode_config_init()
-- drm_crtc_init_with_planes() for each CRTC
+> =C2=A0static const struct nvkm_ior_func
+> =C2=A0r535_sor =3D {
+> =C2=A0=09.hdmi =3D &r535_sor_hdmi,
+> @@ -595,10 +607,25 @@ r535_sor =3D {
+> =C2=A0=09.bl =3D &r535_sor_bl,
+> =C2=A0};
+> =C2=A0
+> +static const struct nvkm_ior_func
+> +gb202_sor =3D {
+> +=09.hdmi =3D &gb202_sor_hdmi,
+> +=09.dp =3D &r535_sor_dp,
+> +=09.hda =3D &r535_sor_hda,
+> +=09.bl =3D &r535_sor_bl,
+> +};
+> +
+> =C2=A0static int
+> =C2=A0r535_sor_new(struct nvkm_disp *disp, int id)
+> =C2=A0{
+> -=09return nvkm_ior_new_(&r535_sor, disp, SOR, id, true/*XXX:
+> hda cap*/);
+> +=09const struct nvkm_rm_gpu *gpu =3D disp->engine.subdev.device-
+> >gsp->rm->gpu;
+> +=09const struct nvkm_ior_func *func =3D &r535_sor;
+> +
+> +=09/* NVD5.0 (GB20x and later) reorganised the SF HDMI packet
+> units. */
+> +=09if (gpu->disp.class.root >=3D GB202_DISP)
+> +=09=09func =3D &gb202_sor;
+> +
+> +=09return nvkm_ior_new_(func, disp, SOR, id, true/*XXX: hda
+> cap*/);
+> =C2=A0}
+> =C2=A0
+> =C2=A0static int
 
-For the patch series to work, drm_vblank_init() would have to happen
-after mode config and CRTC init. Off-hand, I couldn't say if there are
-dependencies that make this change difficult.
-
-I'd be surprised if i915 were the only driver like this.
-
-
-BR,
-Jani.
-
->
-> Lyude Paul (5):
->   drm/vblank: Add drm_device.has_hw_vblank
->   drm/vblank: Remove drm->num_crtcs
->   drm/vblank: Remove num_crtcs argument from drm_vblank_init()
->   drm/vblank: Use drm_for_each_crtc() in drm_vblank_init()
->   drm/vblank: Require all CRTCs implement vblank support in
->     drm_vblank_init()
->
->  drivers/gpu/drm/adp/adp_drv.c                 |  2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c      |  2 +-
->  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |  2 +-
->  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |  2 +-
->  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |  2 +-
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  2 +-
->  .../gpu/drm/arm/display/komeda/komeda_kms.c   |  2 +-
->  drivers/gpu/drm/arm/hdlcd_drv.c               |  2 +-
->  drivers/gpu/drm/arm/malidp_drv.c              |  2 +-
->  drivers/gpu/drm/armada/armada_drv.c           |  2 +-
->  drivers/gpu/drm/aspeed/aspeed_gfx_drv.c       |  2 +-
->  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c  |  2 +-
->  drivers/gpu/drm/drm_vblank.c                  | 60 ++++++++++++-------
->  drivers/gpu/drm/exynos/exynos_drm_drv.c       |  2 +-
->  drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c     |  2 +-
->  drivers/gpu/drm/gma500/psb_drv.c              |  2 +-
->  drivers/gpu/drm/gma500/psb_irq.c              |  4 +-
->  .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c   |  2 +-
->  .../gpu/drm/hisilicon/kirin/kirin_drm_drv.c   |  2 +-
->  drivers/gpu/drm/hyperv/hyperv_drm_modeset.c   |  2 +-
->  .../drm/i915/display/intel_display_driver.c   |  3 +-
->  drivers/gpu/drm/imx/dc/dc-kms.c               |  2 +-
->  drivers/gpu/drm/imx/dcss/dcss-kms.c           |  2 +-
->  drivers/gpu/drm/imx/ipuv3/imx-drm-core.c      |  2 +-
->  drivers/gpu/drm/imx/lcdc/imx-lcdc.c           |  2 +-
->  drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |  2 +-
->  drivers/gpu/drm/kmb/kmb_drv.c                 |  2 +-
->  drivers/gpu/drm/logicvc/logicvc_mode.c        |  2 +-
->  drivers/gpu/drm/loongson/lsdc_drv.c           |  2 +-
->  drivers/gpu/drm/mcde/mcde_drv.c               |  2 +-
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  2 +-
->  drivers/gpu/drm/meson/meson_drv.c             |  2 +-
->  drivers/gpu/drm/msm/msm_kms.c                 |  2 +-
->  drivers/gpu/drm/mxsfb/lcdif_drv.c             |  2 +-
->  drivers/gpu/drm/mxsfb/mxsfb_drv.c             |  2 +-
->  drivers/gpu/drm/nouveau/nouveau_display.c     |  2 +-
->  drivers/gpu/drm/omapdrm/omap_drv.c            |  2 +-
->  drivers/gpu/drm/pl111/pl111_drv.c             |  2 +-
->  drivers/gpu/drm/qxl/qxl_display.c             |  2 +-
->  drivers/gpu/drm/radeon/atombios_crtc.c        |  4 +-
->  drivers/gpu/drm/radeon/radeon_irq_kms.c       |  2 +-
->  drivers/gpu/drm/radeon/radeon_legacy_crtc.c   |  4 +-
->  drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c |  2 +-
->  drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c  |  2 +-
->  .../gpu/drm/renesas/shmobile/shmob_drm_drv.c  |  2 +-
->  drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |  2 +-
->  drivers/gpu/drm/sprd/sprd_drm.c               |  2 +-
->  drivers/gpu/drm/sti/sti_compositor.c          |  2 +-
->  drivers/gpu/drm/stm/ltdc.c                    |  2 +-
->  drivers/gpu/drm/sun4i/sun4i_drv.c             |  2 +-
->  drivers/gpu/drm/tegra/drm.c                   |  2 +-
->  drivers/gpu/drm/tidss/tidss_kms.c             |  2 +-
->  drivers/gpu/drm/tilcdc/tilcdc_drv.c           |  2 +-
->  drivers/gpu/drm/tiny/bochs.c                  |  2 +-
->  drivers/gpu/drm/tiny/cirrus-qemu.c            |  2 +-
->  drivers/gpu/drm/tve200/tve200_drv.c           |  2 +-
->  drivers/gpu/drm/vc4/vc4_kms.c                 |  6 +-
->  drivers/gpu/drm/verisilicon/vs_drm.c          |  2 +-
->  drivers/gpu/drm/virtio/virtgpu_display.c      |  2 +-
->  drivers/gpu/drm/vkms/vkms_drv.c               |  3 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c          |  2 +-
->  drivers/gpu/drm/xlnx/zynqmp_kms.c             |  2 +-
->  include/drm/drm_device.h                      | 10 +++-
->  include/drm/drm_vblank.h                      |  2 +-
->  64 files changed, 114 insertions(+), 92 deletions(-)
->
->
-> base-commit: 568d4cb5dcc5ec4e22975699b6ea67a30806884c
-
--- 
-Jani Nikula, Intel
