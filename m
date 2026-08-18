@@ -4,153 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32AE0C5DF81
-	for <nouveau@archiver.kernel.org>; Tue, 18 Aug 2026 20:09:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EA0CC5DF81
+	for <nouveau@archiver.kernel.org>; Tue, 18 Aug 2026 20:18:52 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1ACDC10EC66;
-	Tue, 18 Aug 2026 20:09:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8D06210EC71;
+	Tue, 18 Aug 2026 20:18:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TiFRc4Xo";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="bvZimBUW";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B096C47908;
-	Tue, 18 Aug 2026 19:53:13 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787082793;
- b=j9OtxlGPkH8/VB3SEVna0I161ALH0se8Urjsmc5VFEaRCl+stoiV1ayXGbabbwoS8XXxR
- +Iv4BRj/iwFfoEX4ku5CjXcZmkJInx+ql1TdLnOzbbE5LF43RzfR9dGl7H3m+ylIBnnRFA8
- TGMI1ozbNyg/GxI3trcpVTApi9PJqt8w1V3xD0EPHBIO2Fbu+yXjCTZVgf1hmEPQiP6TI2x
- 1Zpf3zzuKUxls3972dYloyu3n6vHYeVDKJVmHkPTGnnGh+2k1+EL0fRTKmk+b66rs1tYBDG
- yESaVdo0drJsCGkGH1gSvgN69oV5QBBKRUvBeZ0h7BugddaziihWd8NJtzJA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787082793; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 29C1A4790D;
+	Tue, 18 Aug 2026 20:02:18 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1787083338;
+ b=xzZh57R+fR99PsiT9L3nBvZA+B2M32BNkQTQqxM1u4imMDz+HPf+YFxREjrR4Xn10ls9e
+ 1jN33tPA5NYRj99mULTrYwlwlvpmbRZWqLE8FO9Iwpq3McxuZjltvJguWmI9rltCisEQxE7
+ oycxnjo5HO29z1vmpwXM5XZvBimUI5ZP2umjUxt6ZFP/T6Pz2byIYPB/e0A4xyHSY15c/NK
+ zgGAg6JhJhnCQp1+R4Ewz5lMZM5Gx0MHGWL7a4JzSFHdVgLFaGtblvVBYzc4c2bVtPTS9vz
+ ydihb4kNdYxznD4DdrEor7XH5TRl5gdyctIEQAZU7oiR1xlEgdokPokptwOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1787083338; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=jZYskyW08zgMImgX0YFcFXsxVtNqFp2DmI9fJNn8/bM=;
- b=WIkyQOISdx/5adfTADOMdDhWYm5xLPIfDd1HqDUk0f6Ykl+Uii8g6tlE9rDzHBuksPOa2
- 7haFfNwuLfJVXmHqMn6yT3r9BHIM+Y2degioyS7+4L8GrC6NLJzWCjhsV16w49RLl8P6rz2
- WpAabNbsq5AFjo0WlAHiG53l0eVLnR8pYPklYmmjryD+eaDCzXvOXxvhdFoOPnjSO20GNuX
- MZGIzsdh03ysYy+N/eGGpIXk+1qfYG5X/FBeO+P6/m4izB7PBsONTdEuHD1hT7wqfyYIs+l
- disZJlYfr+Y5CfzlxOM1XQNVUAd02vyPl/9U+3Qt3zZPmjsb76tMMOp5TACw==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ bh=6DxuAQI4Zuu+TQLQ99XoqbV0v3/Ns0/E+RTsN2ch1AI=;
+ b=ag9U3UqoSs7+8Us8B3oeAq3X1LED007PVUjy2V6OxfyGIRFrgC3ICAbgf5ZOfbujQycUS
+ Xl6WXvpNWLG4jtDqj/wy7hxhgf+2JH7BgOpQqNFpfb5sQiFlV7YoE0dUvqlDv9XeUrHzVXj
+ pmyrKbmHzH+TOitjpQmERwO7LdMvlXj4z/zCam128t0BnFBacjySAw7sYslzZ5zNw4MM2+p
+ ef8BuYF1041Y3OY3e/8uvYMoRz+VDTBEfvaJfVHMMlf0a8ig7r1HW7Yf7gXbjM7FrSkxVSI
+ 2oNAbVjD03u39SD8dCuDFGSU5g0ESr34rXCw7hpf5XQ8auo861Z3oJzMOSCw==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 03817478F2
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 19:53:11 +0000 (UTC)
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
- [209.85.214.179])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 36F7010E4E0
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 20:09:42 +0000 (UTC)
-Received: by mail-pl1-f179.google.com with SMTP id
- d9443c01a7336-2cee9b74ee1so1706685ad.3
+	by kara.freedesktop.org (Postfix) with ESMTPS id E3D86478F2
+	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 20:02:15 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EDAEA10EC66
+	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 20:18:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1787084326;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6DxuAQI4Zuu+TQLQ99XoqbV0v3/Ns0/E+RTsN2ch1AI=;
+	b=bvZimBUWgPN+ZlKwN/5V/zhE4vnJ5QF9UhalcRdxpKFalVIiquifRMr0kqmtp9jHGAK9I5
+	VWxy3kd7Hr2ybwbVXR2iI4kQBgud/vtb70mUf651XGPttR66/7ah2gk8fMro3A4F8et7nn
+	Ae1hcJJUnWXZYQ33sKRUCVKVgQB2hnM=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-66-WSH2wvKHPYu3miG0z-1Pxg-1; Tue, 18 Aug 2026 16:18:44 -0400
+X-MC-Unique: WSH2wvKHPYu3miG0z-1Pxg-1
+X-Mimecast-MFC-AGG-ID: WSH2wvKHPYu3miG0z-1Pxg_1787084324
+Received: by mail-qv1-f71.google.com with SMTP id
+ 6a1803df08f44-8ef8249f871so4215066d6.0
         for <nouveau@lists.freedesktop.org>;
- Tue, 18 Aug 2026 13:09:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1787083782; cv=none;
-        d=google.com; s=arc-20260327;
-        b=EZbohVd6WeKguSwnqacT6eARMe3HoCZT7B+JMO/LqtwqUicIxDLYhSNKmXM+bplWEZ
-         BWNUFu5TohXA3e8e7PCoV/u7mCbd+WOX2F/2ZPGzIwXYcCsooANA1weQEMZKCGwG7TCf
-         kfxVRmNyAhWHi+M9M6DjhmfVUX6xZxxfp1LFqvjEQGvixYbrxg5/q1mdpzZM83SD4RtZ
-         mGrGIQUUBsFNBbEUJREOs5+HPnhhkc3xvIPGG25hYNmWiLzkToeXajG+TaFjWV0LBWtn
-         pHKu4m+VMyAHzrGbadrE/aO06jb5JFFD0cqjV6CDkCr0uHnSj3GF5Tgu1kkliH4Kfd9C
-         fcjA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=jZYskyW08zgMImgX0YFcFXsxVtNqFp2DmI9fJNn8/bM=;
-        fh=xoO6+oTC5OZLvTooHY4IA3zDhA8YZP30G6b+n610WjE=;
-        b=LOZqXG60O5xAzTk5SCDKZTssTrQgiBaEj5so3psEVGJB1odwwH/nL+8XNROHCciVt+
-         BVLBs0iXl1flKw1VixjvdplnNxT0l0+3LactrD/gHbLxpu2sFJ/wvDGyNqFCAFTUNLWN
-         GOBs2+7JDajGnZf0BEXRFvmwV5WVbXJ/taOrW/jEq/EHkuVTna+h1xjAWiJJ86uoK4H6
-         hmzKUZRVDmCMvCDCnO6+vqOdlryEH+R5OvOheUqbPkziVpiyxpSnXNv5xEZGZBTWJO7Q
-         a9iKBReM0Yl1QtArNbP4VmOcTByGWIiSjaOuYqAoCo6ljy4hJTAjhCNDIjPXeIY0tfL8
-         rwIg==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787083782; x=1787688582;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=jZYskyW08zgMImgX0YFcFXsxVtNqFp2DmI9fJNn8/bM=;
-        b=TiFRc4XobPJsuHx+Dx/yoR0QCN53Tv9jXqvQ3x1jalZW4edRoycvyDfEbvdP/bwcIu
-         wA6TOl/OuVOLRuxOtWpmTnYL3EIhlAscH301ResNNwUE/LHteP963E1AINUyZrCDwb3j
-         A+QMm6rYhtB3aN5qamxYJL6XiJPmQicWKBaRlmDdzDk+W1zhjV6ziYF3oEEdLCwf6/7+
-         VS/kFlQX6Qn6EowECS+gp2zlG34jOQmfyROul7GPzDHOCTBmXib7YtjFQeRoatTlu05p
-         RLmjgHG7VAEn08Hju6SktTa5yS4z1sOMNz2qUnwcP/8jR+G2P+6ZmChpu2i86joXrsGi
-         DQ/A==
+ Tue, 18 Aug 2026 13:18:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787083782; x=1787688582;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
+        d=1e100.net; s=20251104; t=1787084324; x=1787689124;
+        h=mime-version:user-agent:content-transfer-encoding:content-type
+         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=jZYskyW08zgMImgX0YFcFXsxVtNqFp2DmI9fJNn8/bM=;
-        b=GhJ6pIkCP0q6JEA+lCD+Sw7Y5/MhMGwf11U69sq0e76kFcg7vUZb5P16mYl5XuGcbR
-         DFdU/PvvvwmsMNePUJKomvlZ1Lbyxrne2t1wRUP5bjS5DAeWA21d7JPQAPrq0POKokvF
-         74qn9Fg5C1OVgXm7h141B7KGf3sOOUGsDQ4Z0fCIoUTkYRHLUUOvQPfOYPuRODTFYGL8
-         yw0jSgV/vhZLJqmMYHyWFkNAraFWSJInPiGguwNptw3rwFtqYL/8aZ8lpwOZf3cFfggd
-         ZIDdy5Ni/3rrl5NVhRloiN7Nb5YNFJjKTguPEVofhiK/cL1nIdWIKrYqYrfvSluvw6/K
-         TcNw==
+        bh=g9OWuHNZhe61OBLjXm8D+LZBFST1XmHdZMCDCW5KK8E=;
+        b=Yws8aHgjXhzcpIPLT0BbYsk988DDPsIiCor8tx2eLo4YPfEupqd+03R8oGo33J6ki5
+         eUHoRlNpcIJ2UHR50OB6SO1EVIHm9xoAGwBV/oSoj9SHcJ6mz2TOiz7u48Os4E9ivizH
+         RADEhatpRZcuGv0uliqDQxomGm+9GTnhOpAEN/35OwKkNJdSUIoHK/5GiKiDa775S3Y9
+         fR8dU6JenelsLZuuxOFt6Ck4tJ8s/NMNgrelHXe6Bh9gQoOEXayszrZYtaom8kqb7c/z
+         G58UQPTRPM0MmImQ3/NuzjVvs/982HvFZPQ5dpbPSN9OYab0CUfbsnXfrs3FKxnNAByR
+         K0IA==
 X-Forwarded-Encrypted: i=1;
- AHgh+Rq1q7oxe/P3K6nL8T1AtlR6DN7eHHtoogCFc0EGNF1BxU0AcHfFVag/Wdo4PrbM4iK7XzO3lhIQ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwEwzaFse/YGfEHNyVuKQzBKksOwQbkO+MZRs2DUejE2GIdYmvx
-	+4i/I+QFMyJw+gHM7UqUfJY0y3gvZQFvTIc20JilGXYWKnF9ua7+SptexWuZMSUyfDDqj9RDgh2
-	MpjKEhq2mtAL64qayyHU3/qEfuI1taLU=
-X-Gm-Gg: AR+sD11/H94NKxDa51HkELJevRSt3K2BgGXJRGF4hYkekOHWLLEJ0sraEiH1VU5sAxf
-	VZ6QNRGmU0D9BAALL40lE7B93orpbD5/firjQV0bgV7rUr/Ewu6VQjBhUGGMp7xFKNTLmmexCWZ
-	1hwsYm3Cm9kMyXYj3cQZYYxJGLZQdNb9ZPLQNPnmbkRfYHqZcIda0BU658TsTsOwk1gJS51ylLF
-	bQVYLNnosfM5s0QZ9lR1q6ViOGYDAUcuhTC7Btz/tQRY1T9qj/cNPs6rzQbkvIRQKHg3DEttVCI
-	3buapesN3koaATTAKUy0AmCDpbDNDlGTDGRmDSr9T4y4ELjoYfiP6g==
-X-Received: by 2002:a17:90b:4490:b0:393:288:29e3 with SMTP id
- 98e67ed59e1d1-3957b2527c3mr403834a91.10.1787083781624; Tue, 18 Aug 2026
- 13:09:41 -0700 (PDT)
+ AHgh+RqQ5+TsslKRiutCH/VwRaaebowZ6ug5oNApvGno1tMnobxFs0PLjxJsI97vefUoCdZ7LeN1BeKI@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyGdQ5c0iu++FPJqc7QhKJm/58bq420/+C+wvTeTMwvJxfUlN1Y
+	zW5heAE+eJpvRmFI9MrJ6su8FEstmR+7sOgjvm/7RwiV8mIx/e97YW9I5juujeqnDKmjZODz7fx
+	TFbdYwGE0By2erjmSGFSbMXOf6ZQk4jrSrFPmazUXZgrkwYDu9Rfkb/Yc0CGsaCy1R5s=
+X-Gm-Gg: AR+sD11DhTZJhR2hnFiNeWZc3Y9VUSlcU8vI3FI2GtZQBzzb4A4bW7hr07FBT+L94Ua
+	rrY6t2CLncENAGPDS9sFk2L1T3LgR1a2gkwE+Iogcv2YcxgzPlCeKx532nyRxjcv6jqNjobbxmS
+	vvDntK5u/5P4vfbX6iF3jmHyU62ATFobXJ5nyLxxaeYtPwZyp/ODcTl/G7PJsdYi9R6dDggiueZ
+	qk7TsRGs3nAiGXQEB5HN9gNOhUJEe+VD5EiZdRZXIkYbFR3PQNDYlUcVZ7WhxmKinLno+L3oSGd
+	67Pfw+d+zTKchRLLad1SihB2MAcyrrLPNk5sGCA2fPSes9Yw6iTm2wrJ7MSfZf9RraXiSV75
+X-Received: by 2002:a05:6214:4518:b0:8be:7779:d1b1 with SMTP id
+ 6a1803df08f44-90c5c14e795mr13754686d6.30.1787084323994;
+        Tue, 18 Aug 2026 13:18:43 -0700 (PDT)
+X-Received: by 2002:a05:6214:4518:b0:8be:7779:d1b1 with SMTP id
+ 6a1803df08f44-90c5c14e795mr13753966d6.30.1787084323495;
+        Tue, 18 Aug 2026 13:18:43 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93])
+        by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-90c4597793esm39672716d6.41.2026.08.18.13.18.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Aug 2026 13:18:42 -0700 (PDT)
+Message-ID: <d7adac6cd62cdf816e0caf96f524d3ff30811186.camel@redhat.com>
+Subject: Re: [PATCH v2] drm/nouveau/svm: drain fault handler before freeing
+ svmm
+From: lyude@redhat.com
+To: Zhenhao Wan <whi4ed0g@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann	 <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>, Simona Vetter	 <simona@ffwll.ch>, Ben Skeggs
+ <bskeggs@redhat.com>
+Date: Tue, 18 Aug 2026 16:18:42 -0400
+In-Reply-To: <20260814-nouveau-svm-svmm-uaf-v2-1-8e6590519f07@gmail.com>
+References: <20260814-nouveau-svm-svmm-uaf-v2-1-8e6590519f07@gmail.com>
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-References: <20260814235705.59132-1-mohamedahmedegypt2001@gmail.com>
- <20260814235705.59132-6-mohamedahmedegypt2001@gmail.com>
- <996d2033b1522090867e50f181e9b4daaab19861.camel@redhat.com>
- <CAA+WOBvj2Q3-P9F5JgA4S+C0E46Zkyt6bLcVzWhfvaWWmTH7Vg@mail.gmail.com>
- <6a9619f71c1f033044ba01c6ff6ba78af4a0aff1.camel@redhat.com>
-In-Reply-To: <6a9619f71c1f033044ba01c6ff6ba78af4a0aff1.camel@redhat.com>
-From: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
-Date: Wed, 19 Aug 2026 00:09:29 +0400
-X-Gm-Features: AcwNN1W_auS0i7vhE5u1Af6pg4eCo3cKJPP2Rl5vF5JZ1RJWuxPIS13GyvwK7hI
-Message-ID: 
- <CAA+WOBtbC176yVMZ1OZHQANNdNhHuGVtNMdiDLeSvHKmsD3L-A@mail.gmail.com>
-Subject: Re: [PATCH 5/7] nouveau/gsp: fix vblank interrupts on GB20x
-To: lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: Rqt2J-u569HywgpzMweX9LX6X4ODan2J8SgKgm5KOzk_1787084324
+X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: RXAMEHVXRUBI263FXCJKE2XUM6U7Y55O
-X-Message-ID-Hash: RXAMEHVXRUBI263FXCJKE2XUM6U7Y55O
-X-MailFrom: mohamedahmedegypt2001@gmail.com
+Message-ID-Hash: 2WRIQNFANYKNQ7NO7M6DFHBIVX6WVNLX
+X-Message-ID-Hash: 2WRIQNFANYKNQ7NO7M6DFHBIVX6WVNLX
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Mary Guillemard <mary@mary.zone>, nouveau@lists.freedesktop.org
+ loop; banned-address
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Yuhao Jiang <danisjiang@gmail.com>,
+ stable@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RXAMEHVXRUBI263FXCJKE2XUM6U7Y55O/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2WRIQNFANYKNQ7NO7M6DFHBIVX6WVNLX/>
 Archived-At: 
- <https://lore.freedesktop.org/CAA+WOBtbC176yVMZ1OZHQANNdNhHuGVtNMdiDLeSvHKmsD3L-A@mail.gmail.com/>
+ <https://lore.freedesktop.org/d7adac6cd62cdf816e0caf96f524d3ff30811186.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -160,169 +150,114 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, Aug 19, 2026 at 12:06=E2=80=AFAM <lyude@redhat.com> wrote:
->
-> On Wed, 2026-08-19 at 00:02 +0400, Mohamed Ahmed wrote:
-> > On Tue, Aug 18, 2026 at 2:59=E2=80=AFAM <lyude@redhat.com> wrote:
-> > >
-> > > On Sat, 2026-08-15 at 03:57 +0400, Mohamed Ahmed wrote:
-> > > >
-> > > > +
-> > > > +static const struct nvkm_head_func
-> > > > +gb202_head =3D {
-> > > > +     .state =3D r535_head_state,
-> > > > +     .vblank_get =3D gb202_head_vblank_get,
-> > > > +     .vblank_put =3D gb202_head_vblank_put,
-> > > > +};
-> > > > +
-> > >
-> > > You should probably add these two as well:
-> > >
-> > >         .state =3D gv100_head_state,
-> > >         .rgpos =3D gv100_head_rgpos,
-> > >
-> > > I don't think they've actually changed in blackwell, but it's
-> > > possible
-> > > maybe they do change in GB200x so you probably want to double check
-> > > so
-> > > we don't lose precise vblank timestamps again.
-> > >
-> > The head state changed actually (but RG position didn't), so adding
-> > this in would be a regression. I have some work to wire it up
-> > properly
-> > (part of VRR bringup) but I wasn't sure whether to include it in this
-> > series or not. We don't have precise vblank timestamps for anything
-> > GSP atm and everything falls back to the interrupt path, so it would
-> > technically be a new feature rather than fix ups.
->
-> Actually we definitely do now! We didn't used to for ages, but I wrote
-> a patch that got upstreamed for it a few weeks ago, you can see it
-> here:
->
-> static const struct nvkm_head_func
-> r535_head =3D {
->         .state =3D gv100_head_state,
->         .rgpos =3D gv100_head_rgpos,
->         .vblank_get =3D r535_head_vblank_get,
->         .vblank_put =3D r535_head_vblank_put,
-> };
->
-> If the patch for adding this to blackwell is already ready I wouldn't
-> mind taking it as part of this series, but that's up to you
->
-Ohh woops, sorry. I missed that. Yes, I'll rebase on top of the latest
-then and re-test.
-> > > >  static struct nvkm_conn *
-> > > >  r535_conn_new(struct nvkm_disp *disp, u32 id)
-> > > >  {
-> > > > @@ -1496,6 +1523,20 @@ r535_disp_intr(struct nvkm_inth *inth)
-> > > >       return IRQ_HANDLED;
-> > > >  }
-> > > >
-> > > > +static irqreturn_t
-> > > > +gb202_disp_intr(struct nvkm_inth *inth)
-> > > > +{
-> > > > +     struct nvkm_disp *disp =3D container_of(inth, typeof(*disp),
-> > > > engine.subdev.inth);
-> > > > +     irqreturn_t ret =3D r535_disp_intr(inth);
-> > > > +
-> > > > +     /* The FE interrupt vectors are message-based on NVD5.0.
-> > > > Re-
-> > > > arm the
-> > > > +      * low-latency vector so it fires again for any event that
-> > > > latched
-> > > > +      * while we were servicing.
-> > > > +      */
-> > > > +     nvkm_wr32(disp->engine.subdev.device, 0x611f34,
-> > > > 0x00000001);
-> > > > +     return ret;
-> > > > +}
-> > > > +
-> > > >  static void
-> > > >  r535_disp_fini(struct nvkm_disp *disp, bool suspend)
-> > > >  {
-> > > > @@ -1568,7 +1609,9 @@ r535_disp_oneinit(struct nvkm_disp *disp)
-> > > >       struct nvkm_device *device =3D disp->engine.subdev.device;
-> > > >       struct nvkm_gsp *gsp =3D device->gsp;
-> > > >       const struct nvkm_rm_api *rmapi =3D gsp->rm->api;
-> > > > +     const struct nvkm_rm_gpu *gpu =3D gsp->rm->gpu;
-> > > >       NV2080_CTRL_INTERNAL_DISPLAY_WRITE_INST_MEM_PARAMS *ctrl;
-> > > > +     nvkm_inth_func intr_func;
-> > > >       unsigned long mask;
-> > > >       int ret, i;
-> > > >
-> > > > @@ -1722,7 +1765,12 @@ r535_disp_oneinit(struct nvkm_disp *disp)
-> > > >               nvkm_gsp_rm_ctrl_done(&disp->rm.objcom, ctrl);
-> > > >
-> > > >               for_each_set_bit(i, &disp->head.mask, disp-
-> > > > >head.nr)
-> > > > {
-> > > > -                     ret =3D nvkm_head_new_(&r535_head, disp, i);
-> > > > +                     const struct nvkm_head_func *func =3D
-> > > > &r535_head;
-> > > > +
-> > > > +                     if (gpu->disp.class.root >=3D GB202_DISP)
-> > > > +                             func =3D &gb202_head;
-> > > > +
-> > > > +                     ret =3D nvkm_head_new_(func, disp, i);
-> > > >                       if (ret)
-> > > >                               return ret;
-> > > >               }
-> > > > @@ -1766,12 +1814,21 @@ r535_disp_oneinit(struct nvkm_disp *disp)
-> > > >       if (ret)
-> > > >               return ret;
-> > > >
-> > > > -     ret =3D nvkm_gsp_intr_stall(gsp, disp->engine.subdev.type,
-> > > > disp->engine.subdev.inst);
-> > > > +     if (gpu->disp.class.root >=3D GB202_DISP) {
-> > > > +             /* GB20x deliver head-timing interrupts on the
-> > > > display's
-> > > > +              * separate low-latency vector (interrupt table
-> > > > instance 1).
-> > > > +              */
-> > > > +             ret =3D nvkm_gsp_intr_stall(gsp, disp-
-> > > > > engine.subdev.type, 1);
-> > > > +             intr_func =3D gb202_disp_intr;
-> > > > +     } else {
-> > > > +             ret =3D nvkm_gsp_intr_stall(gsp, disp-
-> > > > > engine.subdev.type, disp->engine.subdev.inst);
-> > > > +             intr_func =3D r535_disp_intr;
-> > > > +     }
-> > > >       if (ret < 0)
-> > > >               return ret;
-> > > >
-> > > >       ret =3D nvkm_inth_add(&device->vfn->intr, ret,
-> > > > NVKM_INTR_PRIO_NORMAL, &disp->engine.subdev,
-> > > > -                         r535_disp_intr, &disp-
-> > > > > engine.subdev.inth);
-> > > > +                         intr_func, &disp->engine.subdev.inth);
-> > > >       if (ret)
-> > > >               return ret;
-> > > >
-> > > > diff --git
-> > > > a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c
-> > > > b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c
-> > > > index 996941c668ba..2590b22663cb 100644
-> > > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c
-> > > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c
-> > > > @@ -44,6 +44,14 @@ r570_gsp_xlat_mc_engine_idx(u32 mc_engine_idx,
-> > > > enum nvkm_subdev_type *ptype, int
-> > > >               *ptype =3D NVKM_ENGINE_DISP;
-> > > >               *pinst =3D 0;
-> > > >               return true;
-> > > > +     case MC_ENGINE_IDX_DISP_LOW:
-> > > > +             /* GB20x+ report a separate low-latency display
-> > > > vector, used
-> > > > +              * for head-timing interrupts. Expose it as a
-> > > > second
-> > > > DISP
-> > > > +              * interrupt instance.
-> > > > +              */
-> > > > +             *ptype =3D NVKM_ENGINE_DISP;
-> > > > +             *pinst =3D 1;
-> > > > +             return true;
-> > > >       case MC_ENGINE_IDX_CE0 ... MC_ENGINE_IDX_CE19:
-> > > >               *ptype =3D NVKM_ENGINE_CE;
-> > > >               *pinst =3D mc_engine_idx - MC_ENGINE_IDX_CE0;
-> > >
->
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+
+Will push to drm-misc-next in just a moment
+
+On Fri, 2026-08-14 at 18:00 +0800, Zhenhao Wan wrote:
+> The SVM fault handler nouveau_svm_fault() looks up each fault's
+> nouveau_svmm under svm->mutex, caches it in the fault array, then
+> drops
+> svm->mutex and dereferences the svmm across blocking faults
+> (mmu_interval_notifier_insert(), hmm_range_fault()).
+>=20
+> nouveau_svmm is not refcounted. On DRM file close nouveau_svmm_fini()
+> ->
+> mmu_notifier_put() frees it asynchronously via call_srcu() without
+> waiting for the handler, and mmget_not_zero() pins the mm, not the
+> svmm.
+> flush_work() on the fault buffer otherwise runs only at device
+> removal
+> and suspend, never on close, so a fault handled concurrently with a
+> close
+> can dereference a freed svmm.
+>=20
+> The instance is already unlinked by nouveau_svmm_part() earlier in
+> the
+> same close, so no new fault can resolve to it. Drain the handler in
+> nouveau_svmm_fini() before the free, guarding the flush with a NULL
+> check
+> on drm->svm: on device teardown nouveau_svm_fini() runs first and
+> frees
+> drm->svm (NULL) after blocking the notify and flushing the buffer, so
+> the
+> handler is already drained; on per-client close drm->svm is alive and
+> the
+> flush runs.
+>=20
+> Fixes: eeaf06ac1a55 ("drm/nouveau/svm: initial support for shared
+> virtual memory")
+> Reported-by: Yuhao Jiang <danisjiang@gmail.com>
+> Assisted-by: Claude:claude-opus-5
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Zhenhao Wan <whi4ed0g@gmail.com>
+> ---
+> Changes in v2:
+> - Fix a NULL deref introduced in v1: guard flush_work() with a NULL
+> =C2=A0 check on drm->svm.=C2=A0 On device teardown nouveau_svm_fini() fre=
+es
+> =C2=A0 drm->svm before the per-client svmm teardown, so
+> nouveau_svmm_fini()
+> =C2=A0 would deref NULL (reported by Sashiko AI review); the handler is
+> =C2=A0 already drained there, so there is nothing left to flush.
+> - Tighten the commit message and the code comment; no functional
+> change.
+> - Link to v1:
+> https://patch.msgid.link/20260813-nouveau-svm-svmm-uaf-v1-1-2d3112dea734@=
+gmail.com
+>=20
+> To: Lyude Paul <lyude@redhat.com>
+> To: Danilo Krummrich <dakr@kernel.org>
+> To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> To: Maxime Ripard <mripard@kernel.org>
+> To: Thomas Zimmermann <tzimmermann@suse.de>
+> To: David Airlie <airlied@gmail.com>
+> To: Simona Vetter <simona@ffwll.ch>
+> To: Ben Skeggs <bskeggs@redhat.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: nouveau@lists.freedesktop.org
+> Cc: linux-kernel@vger.kernel.org
+> ---
+> =C2=A0drivers/gpu/drm/nouveau/nouveau_svm.c | 13 +++++++++++++
+> =C2=A01 file changed, 13 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c
+> b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> index dcc92131488e..a87406d3da30 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> @@ -304,6 +304,19 @@ nouveau_svmm_fini(struct nouveau_svmm **psvmm)
+> =C2=A0{
+> =C2=A0=09struct nouveau_svmm *svmm =3D *psvmm;
+> =C2=A0=09if (svmm) {
+> +=09=09struct nouveau_svm *svm =3D svmm->vmm->cli->drm->svm;
+> +
+> +=09=09/* The fault handler caches svmm pointers under svm-
+> >mutex and
+> +=09=09 * dereferences them after dropping it, across
+> blocking faults.
+> +=09=09 * The instance is already unlinked
+> (nouveau_svmm_part), so drain
+> +=09=09 * the handler before the free to release any in-
+> flight reference.
+> +=09=09 *
+> +=09=09 * On device teardown nouveau_svm_fini() ran first
+> and freed
+> +=09=09 * drm->svm (NULL) after draining the buffer;
+> nothing to flush.
+> +=09=09 */
+> +=09=09if (svm)
+> +=09=09=09flush_work(&svm->buffer[0].work);
+> +
+> =C2=A0=09=09mutex_lock(&svmm->mutex);
+> =C2=A0=09=09svmm->vmm =3D NULL;
+> =C2=A0=09=09mutex_unlock(&svmm->mutex);
+>=20
+> ---
+> base-commit: db2ddb87143519e20a95aa36c60b36107b736a58
+> change-id: 20260813-nouveau-svm-svmm-uaf-bbcf36265aaa
+>=20
+> Best regards,
+> --=C2=A0=20
+> Zhenhao Wan <whi4ed0g@gmail.com>
+
