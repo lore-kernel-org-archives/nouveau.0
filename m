@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EA0CC5DF81
-	for <nouveau@archiver.kernel.org>; Tue, 18 Aug 2026 20:18:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B198C5DF81
+	for <nouveau@archiver.kernel.org>; Tue, 18 Aug 2026 20:28:29 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8D06210EC71;
-	Tue, 18 Aug 2026 20:18:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3A1B110ECDA;
+	Tue, 18 Aug 2026 20:28:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="bvZimBUW";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="bMUAMwpp";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 29C1A4790D;
-	Tue, 18 Aug 2026 20:02:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id B762347913;
+	Tue, 18 Aug 2026 20:11:55 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787083338;
- b=xzZh57R+fR99PsiT9L3nBvZA+B2M32BNkQTQqxM1u4imMDz+HPf+YFxREjrR4Xn10ls9e
- 1jN33tPA5NYRj99mULTrYwlwlvpmbRZWqLE8FO9Iwpq3McxuZjltvJguWmI9rltCisEQxE7
- oycxnjo5HO29z1vmpwXM5XZvBimUI5ZP2umjUxt6ZFP/T6Pz2byIYPB/e0A4xyHSY15c/NK
- zgGAg6JhJhnCQp1+R4Ewz5lMZM5Gx0MHGWL7a4JzSFHdVgLFaGtblvVBYzc4c2bVtPTS9vz
- ydihb4kNdYxznD4DdrEor7XH5TRl5gdyctIEQAZU7oiR1xlEgdokPokptwOg==
+ s=20240201; t=1787083915;
+ b=B7u8jonLfYi020C6n2CwreG6ZI/5zW8TExcOSsL0HS/vfGphvYDPa4J6Es+xtJOBLy6ue
+ Uslb2WsFSth27fAJqk0D0jFs/QBa0IlvsLaLtJ5IXM45hnd+yG2HgM6xlf+oCfZUVvGghud
+ mK6umQz7psJcS1/1RXcR2qYsAjzFJ5GgAxI3nNBQleIZluH51zDe82D9mrLoc/b1YAyx+/H
+ nnJdMEAR95DjP8yKnt3pUDkguw21a9YcZ8OtHY2dvyOPMVDHrSMtmOuKo0EEiA64+ouDpo5
+ 4Q7KNjA5ZJdlcyj3qAxZK+ViCT/+V2pPp0k+ZIfSTuGCDF6JFe+zzLKvMkdQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787083338; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787083915; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=6DxuAQI4Zuu+TQLQ99XoqbV0v3/Ns0/E+RTsN2ch1AI=;
- b=ag9U3UqoSs7+8Us8B3oeAq3X1LED007PVUjy2V6OxfyGIRFrgC3ICAbgf5ZOfbujQycUS
- Xl6WXvpNWLG4jtDqj/wy7hxhgf+2JH7BgOpQqNFpfb5sQiFlV7YoE0dUvqlDv9XeUrHzVXj
- pmyrKbmHzH+TOitjpQmERwO7LdMvlXj4z/zCam128t0BnFBacjySAw7sYslzZ5zNw4MM2+p
- ef8BuYF1041Y3OY3e/8uvYMoRz+VDTBEfvaJfVHMMlf0a8ig7r1HW7Yf7gXbjM7FrSkxVSI
- 2oNAbVjD03u39SD8dCuDFGSU5g0ESr34rXCw7hpf5XQ8auo861Z3oJzMOSCw==
+ bh=U0ffqp7Xz/ZYVnnLDx+BG01wtPPh+Wbb40o+e3kNBjk=;
+ b=jykP4ebda06G0UPRGZkaX/t95fxg52ecqD4fwAEvvvFQ8WBxvt1/VdwiTcROb4Ecg6BW0
+ bFWamaadc7qcMz0RmF+h1Mm6/swVcwJEUIFJdQvgzMXHsTj2YiL1usDQYfAGaUJlznSjLDo
+ GOvOuiGh3HeL/tWHlFvX708mrNWr78Rahs7KxaKr6Od6rq6fohfXQ8++tcu4zo0e39jOdOU
+ 6YaIoAdSOwdC2LKw1/sqqqL0Zkz9LRD641o3D143BgIeNJ9PLpA2jG7SI4POEPQdIH0q9yn
+ 5NkFxtTgXbJ8pAivzAxt3xxjT1JyQLNWlVCYzCIJsPG+Y/DsYBEhqWXIN2pQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,101 +46,98 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E3D86478F2
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 20:02:15 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2FFE943E5F
+	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 20:11:52 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EDAEA10EC66
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 20:18:46 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 42D4D10EC93
+	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 20:28:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1787084326;
+	s=mimecast20190719; t=1787084902;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=6DxuAQI4Zuu+TQLQ99XoqbV0v3/Ns0/E+RTsN2ch1AI=;
-	b=bvZimBUWgPN+ZlKwN/5V/zhE4vnJ5QF9UhalcRdxpKFalVIiquifRMr0kqmtp9jHGAK9I5
-	VWxy3kd7Hr2ybwbVXR2iI4kQBgud/vtb70mUf651XGPttR66/7ah2gk8fMro3A4F8et7nn
-	Ae1hcJJUnWXZYQ33sKRUCVKVgQB2hnM=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=U0ffqp7Xz/ZYVnnLDx+BG01wtPPh+Wbb40o+e3kNBjk=;
+	b=bMUAMwppiC7dOU5aFWdxPHPRvv9bQHJFFJUgZtHhext4ug4Bc+c5VDyDyY3fTW0/xnOJOZ
+	Pl+36PIjuD70G++5RZJh3W2QRrGfHj5oKW8VgVs89S1utd2Sxxf8mIn1Ebnb1CuB7yDSji
+	0sDD+zyDS8li/C3Jc/cRu/nWGi9Tn9k=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-66-WSH2wvKHPYu3miG0z-1Pxg-1; Tue, 18 Aug 2026 16:18:44 -0400
-X-MC-Unique: WSH2wvKHPYu3miG0z-1Pxg-1
-X-Mimecast-MFC-AGG-ID: WSH2wvKHPYu3miG0z-1Pxg_1787084324
-Received: by mail-qv1-f71.google.com with SMTP id
- 6a1803df08f44-8ef8249f871so4215066d6.0
+ us-mta-689-R5ydQSwdM7qGJtp4mcXCKQ-1; Tue, 18 Aug 2026 16:28:21 -0400
+X-MC-Unique: R5ydQSwdM7qGJtp4mcXCKQ-1
+X-Mimecast-MFC-AGG-ID: R5ydQSwdM7qGJtp4mcXCKQ_1787084901
+Received: by mail-qt1-f199.google.com with SMTP id
+ d75a77b69052e-51bfe3fa93bso2521881cf.2
         for <nouveau@lists.freedesktop.org>;
- Tue, 18 Aug 2026 13:18:44 -0700 (PDT)
+ Tue, 18 Aug 2026 13:28:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787084324; x=1787689124;
+        d=1e100.net; s=20251104; t=1787084901; x=1787689701;
         h=mime-version:user-agent:content-transfer-encoding:content-type
          :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=g9OWuHNZhe61OBLjXm8D+LZBFST1XmHdZMCDCW5KK8E=;
-        b=Yws8aHgjXhzcpIPLT0BbYsk988DDPsIiCor8tx2eLo4YPfEupqd+03R8oGo33J6ki5
-         eUHoRlNpcIJ2UHR50OB6SO1EVIHm9xoAGwBV/oSoj9SHcJ6mz2TOiz7u48Os4E9ivizH
-         RADEhatpRZcuGv0uliqDQxomGm+9GTnhOpAEN/35OwKkNJdSUIoHK/5GiKiDa775S3Y9
-         fR8dU6JenelsLZuuxOFt6Ck4tJ8s/NMNgrelHXe6Bh9gQoOEXayszrZYtaom8kqb7c/z
-         G58UQPTRPM0MmImQ3/NuzjVvs/982HvFZPQ5dpbPSN9OYab0CUfbsnXfrs3FKxnNAByR
-         K0IA==
+        bh=g7sv2BOM2TPac5OT6sZnf4rDXBLeaI6F0QDOj1pWNlY=;
+        b=Mwq5lyM4gemsdblSnUjwgKghyXwSTBcQPdVEV4KpXGrxifSWm0wPPNMTBUlQt0Ufd9
+         HYhCXSFbmi7Brs3vpStJjHcaXZ3JjAxT+mqmplYvoRjg7clx4ne6dKI9Uhi15wIYo9MY
+         XI4yqCzWuFT4Ook3N92Ptr9ZreXqZjIl1SknqO5oY0r6KklpKSn7ZvOsAnPKXx5E3s3a
+         5opUr3X18KA2tIXXI1jFHW0XiSONCRJNf/7UpzGyXUVRAzQ1a/tzzf+suxzE7FUG6L7g
+         WqQ3RbhTH6Jrl6QR2XAt7sPdWFKTPouX6L/EgxgRu7yJNjzykRpOO3P2AM3sFGemHUIU
+         eSYg==
 X-Forwarded-Encrypted: i=1;
- AHgh+RqQ5+TsslKRiutCH/VwRaaebowZ6ug5oNApvGno1tMnobxFs0PLjxJsI97vefUoCdZ7LeN1BeKI@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyGdQ5c0iu++FPJqc7QhKJm/58bq420/+C+wvTeTMwvJxfUlN1Y
-	zW5heAE+eJpvRmFI9MrJ6su8FEstmR+7sOgjvm/7RwiV8mIx/e97YW9I5juujeqnDKmjZODz7fx
-	TFbdYwGE0By2erjmSGFSbMXOf6ZQk4jrSrFPmazUXZgrkwYDu9Rfkb/Yc0CGsaCy1R5s=
-X-Gm-Gg: AR+sD11DhTZJhR2hnFiNeWZc3Y9VUSlcU8vI3FI2GtZQBzzb4A4bW7hr07FBT+L94Ua
-	rrY6t2CLncENAGPDS9sFk2L1T3LgR1a2gkwE+Iogcv2YcxgzPlCeKx532nyRxjcv6jqNjobbxmS
-	vvDntK5u/5P4vfbX6iF3jmHyU62ATFobXJ5nyLxxaeYtPwZyp/ODcTl/G7PJsdYi9R6dDggiueZ
-	qk7TsRGs3nAiGXQEB5HN9gNOhUJEe+VD5EiZdRZXIkYbFR3PQNDYlUcVZ7WhxmKinLno+L3oSGd
-	67Pfw+d+zTKchRLLad1SihB2MAcyrrLPNk5sGCA2fPSes9Yw6iTm2wrJ7MSfZf9RraXiSV75
-X-Received: by 2002:a05:6214:4518:b0:8be:7779:d1b1 with SMTP id
- 6a1803df08f44-90c5c14e795mr13754686d6.30.1787084323994;
-        Tue, 18 Aug 2026 13:18:43 -0700 (PDT)
-X-Received: by 2002:a05:6214:4518:b0:8be:7779:d1b1 with SMTP id
- 6a1803df08f44-90c5c14e795mr13753966d6.30.1787084323495;
-        Tue, 18 Aug 2026 13:18:43 -0700 (PDT)
+ AHgh+RoGFsSnRfc6+SMocXcynUOybKdLbZJH2+WCHq6tgjGRe8UgLOTFviVoP6qp5alEWhsVPGFlVhzY@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyRLDM8ATmkLdxiDWovIZVOV5u5wxn7i7ZOBolhRck8usrPobvU
+	Ao2uyl35h4AF6qf1xYzb4dGnRC2XTLSUpVy/Fiblp3ndxX3M1G8it6E32Bmbs7WHVv8pV2+s4Zi
+	iIFtNvl6qd6Q7l6nz8PX7X7uPC0Kblese7CJxe7cKxeH0skVlAKuwBQF1VxVn8Dq3kNk=
+X-Gm-Gg: AR+sD10GxJ1xt89i+f1yzReSB4wkCtFxjJyDiBkNX8vlYBSbxKHl+07bvFY0fFsrN1l
+	VycLytfg491FXqAiP38YdKlIAq1RDTUFasVEn8m3wUvtRoWE6DHYsKCcdmkRmEE3MhSmQjQphbj
+	BcNBVp9s92sTH/vi/mpMDLTHoBf6aVQTzmAbz/0mRu0RM9wFbaOhKy1i4p21WAix/xN2iY09REE
+	14WpDrSv9eTMv2QYk5RPpyW4E5kG1QPUPg7xGct7+qHk+stmb6fRxcZtoDs8/R8TXb8AurOPttG
+	slf2Jobl7HLygv5WC/qCIoN2EYz4gqEEfwO+Bl9jIuhuhV/w2GQu3cK2+smlawItuG5svINK
+X-Received: by 2002:a05:622a:1a99:b0:51b:fe30:b8da with SMTP id
+ d75a77b69052e-52dd32cc365mr7489561cf.33.1787084900589;
+        Tue, 18 Aug 2026 13:28:20 -0700 (PDT)
+X-Received: by 2002:a05:622a:1a99:b0:51b:fe30:b8da with SMTP id
+ d75a77b69052e-52dd32cc365mr7488991cf.33.1787084900104;
+        Tue, 18 Aug 2026 13:28:20 -0700 (PDT)
 Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-90c4597793esm39672716d6.41.2026.08.18.13.18.42
+ d75a77b69052e-52db60eb025sm47437921cf.5.2026.08.18.13.28.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Aug 2026 13:18:42 -0700 (PDT)
-Message-ID: <d7adac6cd62cdf816e0caf96f524d3ff30811186.camel@redhat.com>
-Subject: Re: [PATCH v2] drm/nouveau/svm: drain fault handler before freeing
- svmm
+        Tue, 18 Aug 2026 13:28:19 -0700 (PDT)
+Message-ID: <70ff3bb7914899d845e884eea00b47621d295e3a.camel@redhat.com>
+Subject: Re: [PATCH v4 1/2] drm/nouveau/pci: use config-space MSI rearm on
+ MCP79/MCP7A (NVAC)
 From: lyude@redhat.com
-To: Zhenhao Wan <whi4ed0g@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann	 <tzimmermann@suse.de>, David
- Airlie <airlied@gmail.com>, Simona Vetter	 <simona@ffwll.ch>, Ben Skeggs
- <bskeggs@redhat.com>
-Date: Tue, 18 Aug 2026 16:18:42 -0400
-In-Reply-To: <20260814-nouveau-svm-svmm-uaf-v2-1-8e6590519f07@gmail.com>
-References: <20260814-nouveau-svm-svmm-uaf-v2-1-8e6590519f07@gmail.com>
+To: Marek Czernohous <mczernohous@gmail.com>, nouveau@lists.freedesktop.org,
+ 	dri-devel@lists.freedesktop.org
+Date: Tue, 18 Aug 2026 16:28:19 -0400
+In-Reply-To: <178688574401.522643.12812428444459119913@gmail.com>
+References: <178688574400.522643.6695278742335367229@gmail.com>
+	 <178688574401.522643.12812428444459119913@gmail.com>
 User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: Rqt2J-u569HywgpzMweX9LX6X4ODan2J8SgKgm5KOzk_1787084324
+X-Mimecast-MFC-PROC-ID: ZdUWHJLAIvYG0hSq75mZVx4qmm5NiGBPPPQZrqfe66o_1787084901
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 2WRIQNFANYKNQ7NO7M6DFHBIVX6WVNLX
-X-Message-ID-Hash: 2WRIQNFANYKNQ7NO7M6DFHBIVX6WVNLX
+Message-ID-Hash: XESWKWCJJPJA3RKLSJZG5CFIUZANWNZS
+X-Message-ID-Hash: XESWKWCJJPJA3RKLSJZG5CFIUZANWNZS
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Yuhao Jiang <danisjiang@gmail.com>,
- stable@vger.kernel.org
+CC: linux-kernel@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2WRIQNFANYKNQ7NO7M6DFHBIVX6WVNLX/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XESWKWCJJPJA3RKLSJZG5CFIUZANWNZS/>
 Archived-At: 
- <https://lore.freedesktop.org/d7adac6cd62cdf816e0caf96f524d3ff30811186.camel@redhat.com/>
+ <https://lore.freedesktop.org/70ff3bb7914899d845e884eea00b47621d295e3a.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -152,112 +149,155 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-Will push to drm-misc-next in just a moment
-
-On Fri, 2026-08-14 at 18:00 +0800, Zhenhao Wan wrote:
-> The SVM fault handler nouveau_svm_fault() looks up each fault's
-> nouveau_svmm under svm->mutex, caches it in the fault array, then
-> drops
-> svm->mutex and dereferences the svmm across blocking faults
-> (mmu_interval_notifier_insert(), hmm_range_fault()).
+On Sun, 2026-08-16 at 15:09 +0200, Marek Czernohous wrote:
+> From: Marek Czernohous <marek@czernohous.de>
 >=20
-> nouveau_svmm is not refcounted. On DRM file close nouveau_svmm_fini()
-> ->
-> mmu_notifier_put() frees it asynchronously via call_srcu() without
-> waiting for the handler, and mmget_not_zero() pins the mm, not the
-> svmm.
-> flush_work() on the fault buffer otherwise runs only at device
-> removal
-> and suspend, never on close, so a fault handled concurrently with a
-> close
-> can dereference a freed svmm.
+> NVAC (MCP79/MCP7A) uses g94_pci_func, whose .msi_rearm is
+> nv40_pci_msi_rearm(): a re-arm write through the MMIO mirror of PCI
+> config space.=C2=A0 On this IGP that path is unreliable; when a re-arm is
+> missed the interrupt line stays dead, command submission times out
+> and
+> the GPU appears hung until reboot.=C2=A0 On an Apple Mac mini (early 2009=
+,
+> MCP79, boot0 0x0ac080b1) this showed as sporadic fifo timeouts and
+> GPU
+> hangs under load unless MSI was disabled via config=3DNvMSI=3D0.
 >=20
-> The instance is already unlinked by nouveau_svmm_part() earlier in
-> the
-> same close, so no new fault can resolve to it. Drain the handler in
-> nouveau_svmm_fini() before the free, guarding the flush with a NULL
-> check
-> on drm->svm: on device teardown nouveau_svm_fini() runs first and
-> frees
-> drm->svm (NULL) after blocking the notify and flushing the buffer, so
-> the
-> handler is already drained; on per-client close drm->svm is alive and
-> the
-> flush runs.
+> Give NVAC its own pci func that re-arms through real PCI config space
+> (nv46_pci_msi_rearm) instead.=C2=A0 This follows existing precedent:
+> nv46.c
+> documents the MMIO-mirror re-arm as broken on several related parts,
+> and commit 5112abc6a433 ("drm/nouveau/pci/g92: Fix rearm") fixed g92
+> the same way while moving the remaining chipsets, NVAC included, into
+> the newly added shared g94 table, where NVAC stayed on the MMIO path.
+> This change completes that fix for NVAC.=C2=A0 The sibling IGP NVAA
+> (MCP77/MCP78) has MSI disabled entirely as "reported broken" in
+> nvkm_pci_new_(); NVAC works correctly once the re-arm goes through
+> config space, so disabling MSI is not necessary.
 >=20
-> Fixes: eeaf06ac1a55 ("drm/nouveau/svm: initial support for shared
-> virtual memory")
-> Reported-by: Yuhao Jiang <danisjiang@gmail.com>
-> Assisted-by: Claude:claude-opus-5
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Zhenhao Wan <whi4ed0g@gmail.com>
+> Only NVAC is switched: that is the hardware this has been validated
+> on.=C2=A0 The other users of g94_pci_func (G94/G96/G98/GT2xx and the
+> MCP77/MCP89 IGPs) keep their current behavior; MCP77 and MCP89
+> plausibly want the same treatment but were not tested.
+>=20
+> Tested on the Mac mini as a daily driver for two months with MSI
+> enabled and zero fifo timeouts.=C2=A0 Independently confirmed stable on a=
+n
+> iMac9,1 (MCP79) running 6.12.90 with the v1 form of this change (the
+> same one-line functional switch, applied to that kernel's g94
+> implementation).
+>=20
+> Fixes: 5112abc6a433 ("drm/nouveau/pci/g92: Fix rearm")
+> Cc: <stable@vger.kernel.org> # v6.16+
+> Tested-by: Fab Stz <fabstz-it@yahoo.fr>
+> Assisted-by: Claude:claude-opus-4-7
+> Assisted-by: Claude:claude-opus-4-8
+> Signed-off-by: Marek Czernohous <marek@czernohous.de>
 > ---
-> Changes in v2:
-> - Fix a NULL deref introduced in v1: guard flush_work() with a NULL
-> =C2=A0 check on drm->svm.=C2=A0 On device teardown nouveau_svm_fini() fre=
-es
-> =C2=A0 drm->svm before the per-client svmm teardown, so
-> nouveau_svmm_fini()
-> =C2=A0 would deref NULL (reported by Sashiko AI review); the handler is
-> =C2=A0 already drained there, so there is nothing left to flush.
-> - Tighten the commit message and the code comment; no functional
-> change.
-> - Link to v1:
-> https://patch.msgid.link/20260813-nouveau-svm-svmm-uaf-v1-1-2d3112dea734@=
-gmail.com
+> =C2=A0.../gpu/drm/nouveau/include/nvkm/subdev/pci.h |=C2=A0 1 +
+> =C2=A0.../gpu/drm/nouveau/nvkm/engine/device/base.c |=C2=A0 2 +-
+> =C2=A0.../gpu/drm/nouveau/nvkm/subdev/pci/Kbuild=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 1 +
+> =C2=A0.../gpu/drm/nouveau/nvkm/subdev/pci/mcp79.c=C2=A0=C2=A0 | 35
+> +++++++++++++++++++
+> =C2=A04 files changed, 38 insertions(+), 1 deletion(-)
+> =C2=A0create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/pci/mcp79.c
 >=20
-> To: Lyude Paul <lyude@redhat.com>
-> To: Danilo Krummrich <dakr@kernel.org>
-> To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> To: Maxime Ripard <mripard@kernel.org>
-> To: Thomas Zimmermann <tzimmermann@suse.de>
-> To: David Airlie <airlied@gmail.com>
-> To: Simona Vetter <simona@ffwll.ch>
-> To: Ben Skeggs <bskeggs@redhat.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Cc: linux-kernel@vger.kernel.org
-> ---
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_svm.c | 13 +++++++++++++
-> =C2=A01 file changed, 13 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c
-> b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> index dcc92131488e..a87406d3da30 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> @@ -304,6 +304,19 @@ nouveau_svmm_fini(struct nouveau_svmm **psvmm)
-> =C2=A0{
-> =C2=A0=09struct nouveau_svmm *svmm =3D *psvmm;
-> =C2=A0=09if (svmm) {
-> +=09=09struct nouveau_svm *svm =3D svmm->vmm->cli->drm->svm;
+> diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/pci.h
+> b/drivers/gpu/drm/nouveau/include/nvkm/subdev/pci.h
+> index 112b674ed9c8..0172e0d200f8 100644
+> --- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/pci.h
+> +++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/pci.h
+> @@ -46,6 +46,7 @@ int nv4c_pci_new(struct nvkm_device *, enum
+> nvkm_subdev_type, int inst, struct n
+> =C2=A0int g84_pci_new(struct nvkm_device *, enum nvkm_subdev_type, int
+> inst, struct nvkm_pci **);
+> =C2=A0int g92_pci_new(struct nvkm_device *, enum nvkm_subdev_type, int
+> inst, struct nvkm_pci **);
+> =C2=A0int g94_pci_new(struct nvkm_device *, enum nvkm_subdev_type, int
+> inst, struct nvkm_pci **);
+> +int mcp79_pci_new(struct nvkm_device *, enum nvkm_subdev_type, int
+> inst, struct nvkm_pci **);
+> =C2=A0int gf100_pci_new(struct nvkm_device *, enum nvkm_subdev_type, int
+> inst, struct nvkm_pci **);
+> =C2=A0int gf106_pci_new(struct nvkm_device *, enum nvkm_subdev_type, int
+> inst, struct nvkm_pci **);
+> =C2=A0int gk104_pci_new(struct nvkm_device *, enum nvkm_subdev_type, int
+> inst, struct nvkm_pci **);
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+> b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+> index ea62dc97f118..f7e02a16e5bc 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+> @@ -1237,7 +1237,7 @@ nvac_chipset =3D {
+> =C2=A0=09.mc=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, g98_mc=
+_new },
+> =C2=A0=09.mmu=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, mcp77_mmu_n=
+ew },
+> =C2=A0=09.mxm=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, nv50_mxm_ne=
+w },
+> -=09.pci=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, g94_pci_new },
+> +=09.pci=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, mcp79_pci_new },
+> =C2=A0=09.therm=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, g84_therm_new },
+> =C2=A0=09.timer=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, nv41_timer_new },
+> =C2=A0=09.volt=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, nv40_volt_new },
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pci/Kbuild
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/pci/Kbuild
+> index a14ea0f7b1c8..90f03baeb22a 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/pci/Kbuild
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pci/Kbuild
+> @@ -9,6 +9,7 @@ nvkm-y +=3D nvkm/subdev/pci/nv4c.o
+> =C2=A0nvkm-y +=3D nvkm/subdev/pci/g84.o
+> =C2=A0nvkm-y +=3D nvkm/subdev/pci/g92.o
+> =C2=A0nvkm-y +=3D nvkm/subdev/pci/g94.o
+> +nvkm-y +=3D nvkm/subdev/pci/mcp79.o
+> =C2=A0nvkm-y +=3D nvkm/subdev/pci/gf100.o
+> =C2=A0nvkm-y +=3D nvkm/subdev/pci/gf106.o
+> =C2=A0nvkm-y +=3D nvkm/subdev/pci/gk104.o
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pci/mcp79.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/pci/mcp79.c
+> new file mode 100644
+> index 000000000000..e2ae242f1aa7
+> --- /dev/null
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pci/mcp79.c
+> @@ -0,0 +1,35 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright 2026 Marek Czernohous
+> + *
+> + * MCP79/MCP7A (NVAC): like g94, but MSI re-arm goes through real
+> PCI
+> + * config space.=C2=A0 The MMIO-mirror re-arm is unreliable on this IGP
+> and a
+> + * missed re-arm kills the interrupt line (see the nv46 comment; g92
+> + * already re-arms through config space for the same reason).
+> + */
+> +#include "priv.h"
 > +
-> +=09=09/* The fault handler caches svmm pointers under svm-
-> >mutex and
-> +=09=09 * dereferences them after dropping it, across
-> blocking faults.
-> +=09=09 * The instance is already unlinked
-> (nouveau_svmm_part), so drain
-> +=09=09 * the handler before the free to release any in-
-> flight reference.
-> +=09=09 *
-> +=09=09 * On device teardown nouveau_svm_fini() ran first
-> and freed
-> +=09=09 * drm->svm (NULL) after draining the buffer;
-> nothing to flush.
-> +=09=09 */
-> +=09=09if (svm)
-> +=09=09=09flush_work(&svm->buffer[0].work);
+> +static const struct nvkm_pci_func
+> +mcp79_pci_func =3D {
+> +=09.cfg =3D { .addr =3D 0x088000, .size =3D 0x1000 },
 > +
-> =C2=A0=09=09mutex_lock(&svmm->mutex);
-> =C2=A0=09=09svmm->vmm =3D NULL;
-> =C2=A0=09=09mutex_unlock(&svmm->mutex);
->=20
-> ---
-> base-commit: db2ddb87143519e20a95aa36c60b36107b736a58
-> change-id: 20260813-nouveau-svm-svmm-uaf-bbcf36265aaa
->=20
-> Best regards,
-> --=C2=A0=20
-> Zhenhao Wan <whi4ed0g@gmail.com>
+> +=09.init =3D g84_pci_init,
+> +=09.msi_rearm =3D nv46_pci_msi_rearm,
+> +
+> +=09.pcie.init =3D g84_pcie_init,
+> +=09.pcie.set_link =3D g84_pcie_set_link,
+> +
+> +=09.pcie.max_speed =3D g84_pcie_max_speed,
+> +=09.pcie.cur_speed =3D g84_pcie_cur_speed,
+> +
+> +=09.pcie.set_version =3D g84_pcie_set_version,
+> +=09.pcie.version =3D g84_pcie_version,
+> +=09.pcie.version_supported =3D g92_pcie_version_supported,
+> +};
+> +
+> +int
+> +mcp79_pci_new(struct nvkm_device *device, enum nvkm_subdev_type
+> type, int inst,
+> +=09=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct nvkm_pci **ppci)
+> +{
+> +=09return nvkm_pci_new_(&mcp79_pci_func, device, type, inst,
+> ppci);
+> +}
 
