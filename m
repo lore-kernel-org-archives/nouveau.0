@@ -4,132 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A4E2C5DF7D
-	for <nouveau@archiver.kernel.org>; Tue, 18 Aug 2026 20:06:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32AE0C5DF81
+	for <nouveau@archiver.kernel.org>; Tue, 18 Aug 2026 20:09:46 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9DE8510EC5F;
-	Tue, 18 Aug 2026 20:06:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1ACDC10EC66;
+	Tue, 18 Aug 2026 20:09:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="W2s3kQNp";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TiFRc4Xo";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 3B6E647902;
-	Tue, 18 Aug 2026 19:50:08 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787082608;
- b=LSG9+kg+9YFdR2u8leUksmwq4irZJvme17LaUwvb1bsJcdkNu2WSxhedrw2SroDvDHggh
- hm8P7dmdtAR5uMH6Yk2PTZ6quEfyTAidU8zH0+4JqFKyc/7ia18c7Gt4y14YOlAnrHZ2hel
- DBIAyBSr9fglj86t7J3l1etowg3QbrrIf+sxiTpQ0BeunMueSKIRt/WpAY6d2WlQJDM9bsB
- ty4vnT6w637Rmqkww/PBY7jLqFu9FGAaAX7peKFQuB3oorDJGaV2tLcWPm2xVyb+jUBwZnM
- ndh0OtFBKhnMeE3Y5Vqur1UltxamHLw4L2olCIMqNyhYjeeQ6rSmkUfXFtcw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787082608; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id B096C47908;
+	Tue, 18 Aug 2026 19:53:13 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1787082793;
+ b=j9OtxlGPkH8/VB3SEVna0I161ALH0se8Urjsmc5VFEaRCl+stoiV1ayXGbabbwoS8XXxR
+ +Iv4BRj/iwFfoEX4ku5CjXcZmkJInx+ql1TdLnOzbbE5LF43RzfR9dGl7H3m+ylIBnnRFA8
+ TGMI1ozbNyg/GxI3trcpVTApi9PJqt8w1V3xD0EPHBIO2Fbu+yXjCTZVgf1hmEPQiP6TI2x
+ 1Zpf3zzuKUxls3972dYloyu3n6vHYeVDKJVmHkPTGnnGh+2k1+EL0fRTKmk+b66rs1tYBDG
+ yESaVdo0drJsCGkGH1gSvgN69oV5QBBKRUvBeZ0h7BugddaziihWd8NJtzJA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1787082793; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=kC/dDzPkhBKmqZfRJaxYKTQVcVVSzYp8W1GJeiC+MzU=;
- b=RlrYLTANhOJgxGAJePz/FLjaEWSwm2ex9UA7WIic9E5lUoaLuE4Bk6JAN1fDLlJwrDkh+
- tfCWug07ThOwon/+7OqFTHUURU9i6EzE/iyUEUNiCjXq7R2qEkba9aVbMs/hBximRpOBdR2
- ncQiyPjVOui62aRa+E3Qm3frPwWWYHh23c2+Z0pDd7AdlFi9JtB6N0qw54Y47wiiIO61NmS
- d5z2NuLR4hmoc8340DRgomXQfWUoz5l5o//Sk9x+BxEgQVbclw0flTNetAV8VX8F5OKiuId
- KOI53jpsMhE8kD3TpWk3bU7fATIYK6sY9n1cmo3Ch12CaPKNVzgr/qcIHCmA==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ bh=jZYskyW08zgMImgX0YFcFXsxVtNqFp2DmI9fJNn8/bM=;
+ b=WIkyQOISdx/5adfTADOMdDhWYm5xLPIfDd1HqDUk0f6Ykl+Uii8g6tlE9rDzHBuksPOa2
+ 7haFfNwuLfJVXmHqMn6yT3r9BHIM+Y2degioyS7+4L8GrC6NLJzWCjhsV16w49RLl8P6rz2
+ WpAabNbsq5AFjo0WlAHiG53l0eVLnR8pYPklYmmjryD+eaDCzXvOXxvhdFoOPnjSO20GNuX
+ MZGIzsdh03ysYy+N/eGGpIXk+1qfYG5X/FBeO+P6/m4izB7PBsONTdEuHD1hT7wqfyYIs+l
+ disZJlYfr+Y5CfzlxOM1XQNVUAd02vyPl/9U+3Qt3zZPmjsb76tMMOp5TACw==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=gmail.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 1A02A43E5F
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 19:50:05 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1F37D10E4CD
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 20:06:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1787083595;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kC/dDzPkhBKmqZfRJaxYKTQVcVVSzYp8W1GJeiC+MzU=;
-	b=W2s3kQNphsCwMvSDEL5VkBLwO+uvQZiK7XGgPnDkR0xTbPgjYjydq/FOJn01AnuKiM6DSw
-	Wb66rvUIWDWUnCdnNAhZoWj7Dcjb2t0gjXm+5t0W0XMYL2mNF8WGm80blW/ficmmcTz1dT
-	XkT4MSGDB9oo+lnRh3gpOITbMHGsBnA=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-20-irhVAaKNMvGU0szoXEOH9w-1; Tue, 18 Aug 2026 16:06:33 -0400
-X-MC-Unique: irhVAaKNMvGU0szoXEOH9w-1
-X-Mimecast-MFC-AGG-ID: irhVAaKNMvGU0szoXEOH9w_1787083593
-Received: by mail-qt1-f200.google.com with SMTP id
- d75a77b69052e-5283df62d68so2706881cf.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 03817478F2
+	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 19:53:11 +0000 (UTC)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 36F7010E4E0
+	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 20:09:42 +0000 (UTC)
+Received: by mail-pl1-f179.google.com with SMTP id
+ d9443c01a7336-2cee9b74ee1so1706685ad.3
         for <nouveau@lists.freedesktop.org>;
- Tue, 18 Aug 2026 13:06:33 -0700 (PDT)
+ Tue, 18 Aug 2026 13:09:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1787083782; cv=none;
+        d=google.com; s=arc-20260327;
+        b=EZbohVd6WeKguSwnqacT6eARMe3HoCZT7B+JMO/LqtwqUicIxDLYhSNKmXM+bplWEZ
+         BWNUFu5TohXA3e8e7PCoV/u7mCbd+WOX2F/2ZPGzIwXYcCsooANA1weQEMZKCGwG7TCf
+         kfxVRmNyAhWHi+M9M6DjhmfVUX6xZxxfp1LFqvjEQGvixYbrxg5/q1mdpzZM83SD4RtZ
+         mGrGIQUUBsFNBbEUJREOs5+HPnhhkc3xvIPGG25hYNmWiLzkToeXajG+TaFjWV0LBWtn
+         pHKu4m+VMyAHzrGbadrE/aO06jb5JFFD0cqjV6CDkCr0uHnSj3GF5Tgu1kkliH4Kfd9C
+         fcjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=jZYskyW08zgMImgX0YFcFXsxVtNqFp2DmI9fJNn8/bM=;
+        fh=xoO6+oTC5OZLvTooHY4IA3zDhA8YZP30G6b+n610WjE=;
+        b=LOZqXG60O5xAzTk5SCDKZTssTrQgiBaEj5so3psEVGJB1odwwH/nL+8XNROHCciVt+
+         BVLBs0iXl1flKw1VixjvdplnNxT0l0+3LactrD/gHbLxpu2sFJ/wvDGyNqFCAFTUNLWN
+         GOBs2+7JDajGnZf0BEXRFvmwV5WVbXJ/taOrW/jEq/EHkuVTna+h1xjAWiJJ86uoK4H6
+         hmzKUZRVDmCMvCDCnO6+vqOdlryEH+R5OvOheUqbPkziVpiyxpSnXNv5xEZGZBTWJO7Q
+         a9iKBReM0Yl1QtArNbP4VmOcTByGWIiSjaOuYqAoCo6ljy4hJTAjhCNDIjPXeIY0tfL8
+         rwIg==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1787083782; x=1787688582;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=jZYskyW08zgMImgX0YFcFXsxVtNqFp2DmI9fJNn8/bM=;
+        b=TiFRc4XobPJsuHx+Dx/yoR0QCN53Tv9jXqvQ3x1jalZW4edRoycvyDfEbvdP/bwcIu
+         wA6TOl/OuVOLRuxOtWpmTnYL3EIhlAscH301ResNNwUE/LHteP963E1AINUyZrCDwb3j
+         A+QMm6rYhtB3aN5qamxYJL6XiJPmQicWKBaRlmDdzDk+W1zhjV6ziYF3oEEdLCwf6/7+
+         VS/kFlQX6Qn6EowECS+gp2zlG34jOQmfyROul7GPzDHOCTBmXib7YtjFQeRoatTlu05p
+         RLmjgHG7VAEn08Hju6SktTa5yS4z1sOMNz2qUnwcP/8jR+G2P+6ZmChpu2i86joXrsGi
+         DQ/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787083593; x=1787688393;
-        h=mime-version:user-agent:content-transfer-encoding:content-type
-         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+        d=1e100.net; s=20251104; t=1787083782; x=1787688582;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=W0aG3oVjVh9wvRvxA+7YAWsrda/70h7qzTFUlFLOBEk=;
-        b=qbeQuyQl6OUmcYozaw0e9cPrhukbx7ET5a4btxZiij4hu3VkNSXA3EMugtNTQv8JM2
-         qSXGqwsz/lD6h3SUv/V18R7eQY8Gj+tPA+0hG+0aCR8gfKpjXtEkzDG+CnMnVmFav09z
-         pguhlXZrK388zoekgE5sFf4if+20Mg2D3VzlHCu1eHEIJ6Ck1x50jhUoGzdH0jMX5FMk
-         QBn22IcLYo+9aNqH9iq2qFsRC4jvIR6FgyQQlEEO0kr5u96tQfvWzf0w6JP+ff+x6XDH
-         8CcPukxuws8ILXibDMKcNCsnSrW4BYGmOED8olSpoUOyww2PbXpBhXro9Skdi0C++8st
-         FsvQ==
+        bh=jZYskyW08zgMImgX0YFcFXsxVtNqFp2DmI9fJNn8/bM=;
+        b=GhJ6pIkCP0q6JEA+lCD+Sw7Y5/MhMGwf11U69sq0e76kFcg7vUZb5P16mYl5XuGcbR
+         DFdU/PvvvwmsMNePUJKomvlZ1Lbyxrne2t1wRUP5bjS5DAeWA21d7JPQAPrq0POKokvF
+         74qn9Fg5C1OVgXm7h141B7KGf3sOOUGsDQ4Z0fCIoUTkYRHLUUOvQPfOYPuRODTFYGL8
+         yw0jSgV/vhZLJqmMYHyWFkNAraFWSJInPiGguwNptw3rwFtqYL/8aZ8lpwOZf3cFfggd
+         ZIDdy5Ni/3rrl5NVhRloiN7Nb5YNFJjKTguPEVofhiK/cL1nIdWIKrYqYrfvSluvw6/K
+         TcNw==
 X-Forwarded-Encrypted: i=1;
- AHgh+RpWoWYhlDiPQzJcMjnNoeYAkKGvtix6J9PQ7VZTrvBbIFnRcZDobJufOchTQHxI0kLw8KRIsAr3@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywgt5I1oKAi8p1CXRhAsk4BN3qqMWDdvqdo1Hbhf7qYLZ0vM9Xv
-	nRHQi5VqnSlR6HO11GMDzGvrZxRBaI/jn2waiInCJNIIGqcpCrw4M+g+lDnnrOAZ6VFEGNzWu8C
-	D1V/4KLdlCIA0gGwk6BPBNPKObQ56MYDarDYbnIQ1u90xC6E0KYHyF0L2Pm5/ZvIKK+8=
-X-Gm-Gg: AR+sD13NfFBMuTNI/9EGEvGU2qS12Aob+YxS4la3VqDwZK5sXNiaA4XSRIseUcXtdy0
-	jSy0iQ4/byQoB17VrC4GPGSN9+EwlNM4wbOZsbXkmpthw69CWg9dUakdBhci3tLnrcG6I2aUv9k
-	sTAix1TWexNN/utD2PhQFeD8awejfIoA6LvlV1IuCUr2pZzRvbtXcceCvMvwQzRk0vuQnqprbNs
-	UlY2//HtIwUz2lRngdcrkmHEp8Q9bktam8pvjpwJ6dPXSWBhfF+t3seDaWpB33xg+iXuG9BIXHJ
-	xG6ka1E+mjBD887sO7F6t4oX2mcDjgvGlN3osjI3Y4/O76GRwLCPBx6xIOBRRfIzlBrOVYqe
-X-Received: by 2002:a05:622a:1cce:b0:517:7e26:36a4 with SMTP id
- d75a77b69052e-52dd3217f71mr6824531cf.34.1787083592891;
-        Tue, 18 Aug 2026 13:06:32 -0700 (PDT)
-X-Received: by 2002:a05:622a:1cce:b0:517:7e26:36a4 with SMTP id
- d75a77b69052e-52dd3217f71mr6823861cf.34.1787083592378;
-        Tue, 18 Aug 2026 13:06:32 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93])
-        by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-52db625afc2sm47274971cf.26.2026.08.18.13.06.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Aug 2026 13:06:31 -0700 (PDT)
-Message-ID: <6a9619f71c1f033044ba01c6ff6ba78af4a0aff1.camel@redhat.com>
-Subject: Re: [PATCH 5/7] nouveau/gsp: fix vblank interrupts on GB20x
-From: lyude@redhat.com
-To: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
-Date: Tue, 18 Aug 2026 16:06:30 -0400
-In-Reply-To: 
- <CAA+WOBvj2Q3-P9F5JgA4S+C0E46Zkyt6bLcVzWhfvaWWmTH7Vg@mail.gmail.com>
-References: <20260814235705.59132-1-mohamedahmedegypt2001@gmail.com>
-	 <20260814235705.59132-6-mohamedahmedegypt2001@gmail.com>
-	 <996d2033b1522090867e50f181e9b4daaab19861.camel@redhat.com>
-	 <CAA+WOBvj2Q3-P9F5JgA4S+C0E46Zkyt6bLcVzWhfvaWWmTH7Vg@mail.gmail.com>
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
+ AHgh+Rq1q7oxe/P3K6nL8T1AtlR6DN7eHHtoogCFc0EGNF1BxU0AcHfFVag/Wdo4PrbM4iK7XzO3lhIQ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwEwzaFse/YGfEHNyVuKQzBKksOwQbkO+MZRs2DUejE2GIdYmvx
+	+4i/I+QFMyJw+gHM7UqUfJY0y3gvZQFvTIc20JilGXYWKnF9ua7+SptexWuZMSUyfDDqj9RDgh2
+	MpjKEhq2mtAL64qayyHU3/qEfuI1taLU=
+X-Gm-Gg: AR+sD11/H94NKxDa51HkELJevRSt3K2BgGXJRGF4hYkekOHWLLEJ0sraEiH1VU5sAxf
+	VZ6QNRGmU0D9BAALL40lE7B93orpbD5/firjQV0bgV7rUr/Ewu6VQjBhUGGMp7xFKNTLmmexCWZ
+	1hwsYm3Cm9kMyXYj3cQZYYxJGLZQdNb9ZPLQNPnmbkRfYHqZcIda0BU658TsTsOwk1gJS51ylLF
+	bQVYLNnosfM5s0QZ9lR1q6ViOGYDAUcuhTC7Btz/tQRY1T9qj/cNPs6rzQbkvIRQKHg3DEttVCI
+	3buapesN3koaATTAKUy0AmCDpbDNDlGTDGRmDSr9T4y4ELjoYfiP6g==
+X-Received: by 2002:a17:90b:4490:b0:393:288:29e3 with SMTP id
+ 98e67ed59e1d1-3957b2527c3mr403834a91.10.1787083781624; Tue, 18 Aug 2026
+ 13:09:41 -0700 (PDT)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: x4z6hTxXrjAOOBol3FbCSvJ351SyPPGqCzo9cENFC_Q_1787083593
-X-Mimecast-Originator: redhat.com
+References: <20260814235705.59132-1-mohamedahmedegypt2001@gmail.com>
+ <20260814235705.59132-6-mohamedahmedegypt2001@gmail.com>
+ <996d2033b1522090867e50f181e9b4daaab19861.camel@redhat.com>
+ <CAA+WOBvj2Q3-P9F5JgA4S+C0E46Zkyt6bLcVzWhfvaWWmTH7Vg@mail.gmail.com>
+ <6a9619f71c1f033044ba01c6ff6ba78af4a0aff1.camel@redhat.com>
+In-Reply-To: <6a9619f71c1f033044ba01c6ff6ba78af4a0aff1.camel@redhat.com>
+From: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
+Date: Wed, 19 Aug 2026 00:09:29 +0400
+X-Gm-Features: AcwNN1W_auS0i7vhE5u1Af6pg4eCo3cKJPP2Rl5vF5JZ1RJWuxPIS13GyvwK7hI
+Message-ID: 
+ <CAA+WOBtbC176yVMZ1OZHQANNdNhHuGVtNMdiDLeSvHKmsD3L-A@mail.gmail.com>
+Subject: Re: [PATCH 5/7] nouveau/gsp: fix vblank interrupts on GB20x
+To: lyude@redhat.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-Message-ID-Hash: NTDSMSFNCY7YHR4OHJUG6BQAWMW7F5RK
-X-Message-ID-Hash: NTDSMSFNCY7YHR4OHJUG6BQAWMW7F5RK
-X-MailFrom: lyude@redhat.com
-X-Mailman-Rule-Hits: member-moderation
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: RXAMEHVXRUBI263FXCJKE2XUM6U7Y55O
+X-Message-ID-Hash: RXAMEHVXRUBI263FXCJKE2XUM6U7Y55O
+X-MailFrom: mohamedahmedegypt2001@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
 CC: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -139,9 +148,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NTDSMSFNCY7YHR4OHJUG6BQAWMW7F5RK/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RXAMEHVXRUBI263FXCJKE2XUM6U7Y55O/>
 Archived-At: 
- <https://lore.freedesktop.org/6a9619f71c1f033044ba01c6ff6ba78af4a0aff1.camel@redhat.com/>
+ <https://lore.freedesktop.org/CAA+WOBtbC176yVMZ1OZHQANNdNhHuGVtNMdiDLeSvHKmsD3L-A@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -151,122 +160,169 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-T24gV2VkLCAyMDI2LTA4LTE5IGF0IDAwOjAyICswNDAwLCBNb2hhbWVkIEFobWVkIHdyb3RlOgo+
-IE9uIFR1ZSwgQXVnIDE4LCAyMDI2IGF0IDI6NTnigK9BTSA8bHl1ZGVAcmVkaGF0LmNvbT4gd3Jv
-dGU6Cj4gPiAKPiA+IE9uIFNhdCwgMjAyNi0wOC0xNSBhdCAwMzo1NyArMDQwMCwgTW9oYW1lZCBB
-aG1lZCB3cm90ZToKPiA+ID4gCj4gPiA+ICsKPiA+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgbnZr
-bV9oZWFkX2Z1bmMKPiA+ID4gK2diMjAyX2hlYWQgPSB7Cj4gPiA+ICvCoMKgwqDCoCAuc3RhdGUg
-PSByNTM1X2hlYWRfc3RhdGUsCj4gPiA+ICvCoMKgwqDCoCAudmJsYW5rX2dldCA9IGdiMjAyX2hl
-YWRfdmJsYW5rX2dldCwKPiA+ID4gK8KgwqDCoMKgIC52YmxhbmtfcHV0ID0gZ2IyMDJfaGVhZF92
-YmxhbmtfcHV0LAo+ID4gPiArfTsKPiA+ID4gKwo+ID4gCj4gPiBZb3Ugc2hvdWxkIHByb2JhYmx5
-IGFkZCB0aGVzZSB0d28gYXMgd2VsbDoKPiA+IAo+ID4gwqDCoMKgwqDCoMKgwqAgLnN0YXRlID0g
-Z3YxMDBfaGVhZF9zdGF0ZSwKPiA+IMKgwqDCoMKgwqDCoMKgIC5yZ3BvcyA9IGd2MTAwX2hlYWRf
-cmdwb3MsCj4gPiAKPiA+IEkgZG9uJ3QgdGhpbmsgdGhleSd2ZSBhY3R1YWxseSBjaGFuZ2VkIGlu
-IGJsYWNrd2VsbCwgYnV0IGl0J3MKPiA+IHBvc3NpYmxlCj4gPiBtYXliZSB0aGV5IGRvIGNoYW5n
-ZSBpbiBHQjIwMHggc28geW91IHByb2JhYmx5IHdhbnQgdG8gZG91YmxlIGNoZWNrCj4gPiBzbwo+
-ID4gd2UgZG9uJ3QgbG9zZSBwcmVjaXNlIHZibGFuayB0aW1lc3RhbXBzIGFnYWluLgo+ID4gCj4g
-VGhlIGhlYWQgc3RhdGUgY2hhbmdlZCBhY3R1YWxseSAoYnV0IFJHIHBvc2l0aW9uIGRpZG4ndCks
-IHNvIGFkZGluZwo+IHRoaXMgaW4gd291bGQgYmUgYSByZWdyZXNzaW9uLiBJIGhhdmUgc29tZSB3
-b3JrIHRvIHdpcmUgaXQgdXAKPiBwcm9wZXJseQo+IChwYXJ0IG9mIFZSUiBicmluZ3VwKSBidXQg
-SSB3YXNuJ3Qgc3VyZSB3aGV0aGVyIHRvIGluY2x1ZGUgaXQgaW4gdGhpcwo+IHNlcmllcyBvciBu
-b3QuIFdlIGRvbid0IGhhdmUgcHJlY2lzZSB2YmxhbmsgdGltZXN0YW1wcyBmb3IgYW55dGhpbmcK
-PiBHU1AgYXRtIGFuZCBldmVyeXRoaW5nIGZhbGxzIGJhY2sgdG8gdGhlIGludGVycnVwdCBwYXRo
-LCBzbyBpdCB3b3VsZAo+IHRlY2huaWNhbGx5IGJlIGEgbmV3IGZlYXR1cmUgcmF0aGVyIHRoYW4g
-Zml4IHVwcy4KCkFjdHVhbGx5IHdlIGRlZmluaXRlbHkgZG8gbm93ISBXZSBkaWRuJ3QgdXNlZCB0
-byBmb3IgYWdlcywgYnV0IEkgd3JvdGUKYSBwYXRjaCB0aGF0IGdvdCB1cHN0cmVhbWVkIGZvciBp
-dCBhIGZldyB3ZWVrcyBhZ28sIHlvdSBjYW4gc2VlIGl0CmhlcmU6CgpzdGF0aWMgY29uc3Qgc3Ry
-dWN0IG52a21faGVhZF9mdW5jCnI1MzVfaGVhZCA9IHsKCS5zdGF0ZSA9IGd2MTAwX2hlYWRfc3Rh
-dGUsCgkucmdwb3MgPSBndjEwMF9oZWFkX3JncG9zLAoJLnZibGFua19nZXQgPSByNTM1X2hlYWRf
-dmJsYW5rX2dldCwKCS52YmxhbmtfcHV0ID0gcjUzNV9oZWFkX3ZibGFua19wdXQsCn07CgpJZiB0
-aGUgcGF0Y2ggZm9yIGFkZGluZyB0aGlzIHRvIGJsYWNrd2VsbCBpcyBhbHJlYWR5IHJlYWR5IEkg
-d291bGRuJ3QKbWluZCB0YWtpbmcgaXQgYXMgcGFydCBvZiB0aGlzIHNlcmllcywgYnV0IHRoYXQn
-cyB1cCB0byB5b3UKCj4gPiA+IMKgc3RhdGljIHN0cnVjdCBudmttX2Nvbm4gKgo+ID4gPiDCoHI1
-MzVfY29ubl9uZXcoc3RydWN0IG52a21fZGlzcCAqZGlzcCwgdTMyIGlkKQo+ID4gPiDCoHsKPiA+
-ID4gQEAgLTE0OTYsNiArMTUyMywyMCBAQCByNTM1X2Rpc3BfaW50cihzdHJ1Y3QgbnZrbV9pbnRo
-ICppbnRoKQo+ID4gPiDCoMKgwqDCoMKgIHJldHVybiBJUlFfSEFORExFRDsKPiA+ID4gwqB9Cj4g
-PiA+IAo+ID4gPiArc3RhdGljIGlycXJldHVybl90Cj4gPiA+ICtnYjIwMl9kaXNwX2ludHIoc3Ry
-dWN0IG52a21faW50aCAqaW50aCkKPiA+ID4gK3sKPiA+ID4gK8KgwqDCoMKgIHN0cnVjdCBudmtt
-X2Rpc3AgKmRpc3AgPSBjb250YWluZXJfb2YoaW50aCwgdHlwZW9mKCpkaXNwKSwKPiA+ID4gZW5n
-aW5lLnN1YmRldi5pbnRoKTsKPiA+ID4gK8KgwqDCoMKgIGlycXJldHVybl90IHJldCA9IHI1MzVf
-ZGlzcF9pbnRyKGludGgpOwo+ID4gPiArCj4gPiA+ICvCoMKgwqDCoCAvKiBUaGUgRkUgaW50ZXJy
-dXB0IHZlY3RvcnMgYXJlIG1lc3NhZ2UtYmFzZWQgb24gTlZENS4wLgo+ID4gPiBSZS0KPiA+ID4g
-YXJtIHRoZQo+ID4gPiArwqDCoMKgwqDCoCAqIGxvdy1sYXRlbmN5IHZlY3RvciBzbyBpdCBmaXJl
-cyBhZ2FpbiBmb3IgYW55IGV2ZW50IHRoYXQKPiA+ID4gbGF0Y2hlZAo+ID4gPiArwqDCoMKgwqDC
-oCAqIHdoaWxlIHdlIHdlcmUgc2VydmljaW5nLgo+ID4gPiArwqDCoMKgwqDCoCAqLwo+ID4gPiAr
-wqDCoMKgwqAgbnZrbV93cjMyKGRpc3AtPmVuZ2luZS5zdWJkZXYuZGV2aWNlLCAweDYxMWYzNCwK
-PiA+ID4gMHgwMDAwMDAwMSk7Cj4gPiA+ICvCoMKgwqDCoCByZXR1cm4gcmV0Owo+ID4gPiArfQo+
-ID4gPiArCj4gPiA+IMKgc3RhdGljIHZvaWQKPiA+ID4gwqByNTM1X2Rpc3BfZmluaShzdHJ1Y3Qg
-bnZrbV9kaXNwICpkaXNwLCBib29sIHN1c3BlbmQpCj4gPiA+IMKgewo+ID4gPiBAQCAtMTU2OCw3
-ICsxNjA5LDkgQEAgcjUzNV9kaXNwX29uZWluaXQoc3RydWN0IG52a21fZGlzcCAqZGlzcCkKPiA+
-ID4gwqDCoMKgwqDCoCBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSA9IGRpc3AtPmVuZ2luZS5z
-dWJkZXYuZGV2aWNlOwo+ID4gPiDCoMKgwqDCoMKgIHN0cnVjdCBudmttX2dzcCAqZ3NwID0gZGV2
-aWNlLT5nc3A7Cj4gPiA+IMKgwqDCoMKgwqAgY29uc3Qgc3RydWN0IG52a21fcm1fYXBpICpybWFw
-aSA9IGdzcC0+cm0tPmFwaTsKPiA+ID4gK8KgwqDCoMKgIGNvbnN0IHN0cnVjdCBudmttX3JtX2dw
-dSAqZ3B1ID0gZ3NwLT5ybS0+Z3B1Owo+ID4gPiDCoMKgwqDCoMKgIE5WMjA4MF9DVFJMX0lOVEVS
-TkFMX0RJU1BMQVlfV1JJVEVfSU5TVF9NRU1fUEFSQU1TICpjdHJsOwo+ID4gPiArwqDCoMKgwqAg
-bnZrbV9pbnRoX2Z1bmMgaW50cl9mdW5jOwo+ID4gPiDCoMKgwqDCoMKgIHVuc2lnbmVkIGxvbmcg
-bWFzazsKPiA+ID4gwqDCoMKgwqDCoCBpbnQgcmV0LCBpOwo+ID4gPiAKPiA+ID4gQEAgLTE3MjIs
-NyArMTc2NSwxMiBAQCByNTM1X2Rpc3Bfb25laW5pdChzdHJ1Y3QgbnZrbV9kaXNwICpkaXNwKQo+
-ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBudmttX2dzcF9ybV9jdHJsX2RvbmUoJmRp
-c3AtPnJtLm9iamNvbSwgY3RybCk7Cj4gPiA+IAo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBmb3JfZWFjaF9zZXRfYml0KGksICZkaXNwLT5oZWFkLm1hc2ssIGRpc3AtCj4gPiA+ID5o
-ZWFkLm5yKQo+ID4gPiB7Cj4gPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHJldCA9IG52a21faGVhZF9uZXdfKCZyNTM1X2hlYWQsIGRpc3AsIGkpOwo+ID4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb25zdCBzdHJ1Y3QgbnZr
-bV9oZWFkX2Z1bmMgKmZ1bmMgPQo+ID4gPiAmcjUzNV9oZWFkOwo+ID4gPiArCj4gPiA+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlmIChncHUtPmRpc3AuY2xhc3Mu
-cm9vdCA+PSBHQjIwMl9ESVNQKQo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZnVuYyA9ICZnYjIwMl9oZWFkOwo+ID4gPiArCj4g
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldCA9IG52a21f
-aGVhZF9uZXdfKGZ1bmMsIGRpc3AsIGkpOwo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgaWYgKHJldCkKPiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gcmV0Owo+ID4gPiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Cj4gPiA+IEBAIC0xNzY2LDEyICsxODE0LDIxIEBAIHI1
-MzVfZGlzcF9vbmVpbml0KHN0cnVjdCBudmttX2Rpc3AgKmRpc3ApCj4gPiA+IMKgwqDCoMKgwqAg
-aWYgKHJldCkKPiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIHJldDsKPiA+
-ID4gCj4gPiA+IC3CoMKgwqDCoCByZXQgPSBudmttX2dzcF9pbnRyX3N0YWxsKGdzcCwgZGlzcC0+
-ZW5naW5lLnN1YmRldi50eXBlLAo+ID4gPiBkaXNwLT5lbmdpbmUuc3ViZGV2Lmluc3QpOwo+ID4g
-PiArwqDCoMKgwqAgaWYgKGdwdS0+ZGlzcC5jbGFzcy5yb290ID49IEdCMjAyX0RJU1ApIHsKPiA+
-ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAvKiBHQjIweCBkZWxpdmVyIGhlYWQtdGltaW5n
-IGludGVycnVwdHMgb24gdGhlCj4gPiA+IGRpc3BsYXkncwo+ID4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgKiBzZXBhcmF0ZSBsb3ctbGF0ZW5jeSB2ZWN0b3IgKGludGVycnVwdCB0YWJs
-ZQo+ID4gPiBpbnN0YW5jZSAxKS4KPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICov
-Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0ID0gbnZrbV9nc3BfaW50cl9zdGFs
-bChnc3AsIGRpc3AtCj4gPiA+ID4gZW5naW5lLnN1YmRldi50eXBlLCAxKTsKPiA+ID4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBpbnRyX2Z1bmMgPSBnYjIwMl9kaXNwX2ludHI7Cj4gPiA+ICvC
-oMKgwqDCoCB9IGVsc2Ugewo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldCA9IG52
-a21fZ3NwX2ludHJfc3RhbGwoZ3NwLCBkaXNwLQo+ID4gPiA+IGVuZ2luZS5zdWJkZXYudHlwZSwg
-ZGlzcC0+ZW5naW5lLnN1YmRldi5pbnN0KTsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBpbnRyX2Z1bmMgPSByNTM1X2Rpc3BfaW50cjsKPiA+ID4gK8KgwqDCoMKgIH0KPiA+ID4gwqDC
-oMKgwqDCoCBpZiAocmV0IDwgMCkKPiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0
-dXJuIHJldDsKPiA+ID4gCj4gPiA+IMKgwqDCoMKgwqAgcmV0ID0gbnZrbV9pbnRoX2FkZCgmZGV2
-aWNlLT52Zm4tPmludHIsIHJldCwKPiA+ID4gTlZLTV9JTlRSX1BSSU9fTk9STUFMLCAmZGlzcC0+
-ZW5naW5lLnN1YmRldiwKPiA+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCByNTM1X2Rpc3BfaW50ciwgJmRpc3AtCj4gPiA+ID4gZW5naW5lLnN1YmRl
-di5pbnRoKTsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBpbnRyX2Z1bmMsICZkaXNwLT5lbmdpbmUuc3ViZGV2LmludGgpOwo+ID4gPiDCoMKg
-wqDCoMKgIGlmIChyZXQpCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiBy
-ZXQ7Cj4gPiA+IAo+ID4gPiBkaWZmIC0tZ2l0Cj4gPiA+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvZ3NwL3JtL3I1NzAvZ3NwLmMKPiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9nc3Avcm0vcjU3MC9nc3AuYwo+ID4gPiBpbmRleCA5OTY5NDFj
-NjY4YmEuLjI1OTBiMjI2NjNjYiAxMDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvZ3NwL3JtL3I1NzAvZ3NwLmMKPiA+ID4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZ3NwL3JtL3I1NzAvZ3NwLmMKPiA+ID4gQEAgLTQ0
-LDYgKzQ0LDE0IEBAIHI1NzBfZ3NwX3hsYXRfbWNfZW5naW5lX2lkeCh1MzIgbWNfZW5naW5lX2lk
-eCwKPiA+ID4gZW51bSBudmttX3N1YmRldl90eXBlICpwdHlwZSwgaW50Cj4gPiA+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgICpwdHlwZSA9IE5WS01fRU5HSU5FX0RJU1A7Cj4gPiA+IMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgICpwaW5zdCA9IDA7Cj4gPiA+IMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIHJldHVybiB0cnVlOwo+ID4gPiArwqDCoMKgwqAgY2FzZSBNQ19FTkdJTkVfSURY
-X0RJU1BfTE9XOgo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC8qIEdCMjB4KyByZXBv
-cnQgYSBzZXBhcmF0ZSBsb3ctbGF0ZW5jeSBkaXNwbGF5Cj4gPiA+IHZlY3RvciwgdXNlZAo+ID4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBmb3IgaGVhZC10aW1pbmcgaW50ZXJydXB0
-cy4gRXhwb3NlIGl0IGFzIGEKPiA+ID4gc2Vjb25kCj4gPiA+IERJU1AKPiA+ID4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgICogaW50ZXJydXB0IGluc3RhbmNlLgo+ID4gPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgKi8KPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqcHR5
-cGUgPSBOVktNX0VOR0lORV9ESVNQOwo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICpw
-aW5zdCA9IDE7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIHRydWU7Cj4g
-PiA+IMKgwqDCoMKgwqAgY2FzZSBNQ19FTkdJTkVfSURYX0NFMCAuLi4gTUNfRU5HSU5FX0lEWF9D
-RTE5Ogo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqcHR5cGUgPSBOVktNX0VOR0lO
-RV9DRTsKPiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKnBpbnN0ID0gbWNfZW5naW5l
-X2lkeCAtIE1DX0VOR0lORV9JRFhfQ0UwOwo+ID4gCg0K
-
+On Wed, Aug 19, 2026 at 12:06=E2=80=AFAM <lyude@redhat.com> wrote:
+>
+> On Wed, 2026-08-19 at 00:02 +0400, Mohamed Ahmed wrote:
+> > On Tue, Aug 18, 2026 at 2:59=E2=80=AFAM <lyude@redhat.com> wrote:
+> > >
+> > > On Sat, 2026-08-15 at 03:57 +0400, Mohamed Ahmed wrote:
+> > > >
+> > > > +
+> > > > +static const struct nvkm_head_func
+> > > > +gb202_head =3D {
+> > > > +     .state =3D r535_head_state,
+> > > > +     .vblank_get =3D gb202_head_vblank_get,
+> > > > +     .vblank_put =3D gb202_head_vblank_put,
+> > > > +};
+> > > > +
+> > >
+> > > You should probably add these two as well:
+> > >
+> > >         .state =3D gv100_head_state,
+> > >         .rgpos =3D gv100_head_rgpos,
+> > >
+> > > I don't think they've actually changed in blackwell, but it's
+> > > possible
+> > > maybe they do change in GB200x so you probably want to double check
+> > > so
+> > > we don't lose precise vblank timestamps again.
+> > >
+> > The head state changed actually (but RG position didn't), so adding
+> > this in would be a regression. I have some work to wire it up
+> > properly
+> > (part of VRR bringup) but I wasn't sure whether to include it in this
+> > series or not. We don't have precise vblank timestamps for anything
+> > GSP atm and everything falls back to the interrupt path, so it would
+> > technically be a new feature rather than fix ups.
+>
+> Actually we definitely do now! We didn't used to for ages, but I wrote
+> a patch that got upstreamed for it a few weeks ago, you can see it
+> here:
+>
+> static const struct nvkm_head_func
+> r535_head =3D {
+>         .state =3D gv100_head_state,
+>         .rgpos =3D gv100_head_rgpos,
+>         .vblank_get =3D r535_head_vblank_get,
+>         .vblank_put =3D r535_head_vblank_put,
+> };
+>
+> If the patch for adding this to blackwell is already ready I wouldn't
+> mind taking it as part of this series, but that's up to you
+>
+Ohh woops, sorry. I missed that. Yes, I'll rebase on top of the latest
+then and re-test.
+> > > >  static struct nvkm_conn *
+> > > >  r535_conn_new(struct nvkm_disp *disp, u32 id)
+> > > >  {
+> > > > @@ -1496,6 +1523,20 @@ r535_disp_intr(struct nvkm_inth *inth)
+> > > >       return IRQ_HANDLED;
+> > > >  }
+> > > >
+> > > > +static irqreturn_t
+> > > > +gb202_disp_intr(struct nvkm_inth *inth)
+> > > > +{
+> > > > +     struct nvkm_disp *disp =3D container_of(inth, typeof(*disp),
+> > > > engine.subdev.inth);
+> > > > +     irqreturn_t ret =3D r535_disp_intr(inth);
+> > > > +
+> > > > +     /* The FE interrupt vectors are message-based on NVD5.0.
+> > > > Re-
+> > > > arm the
+> > > > +      * low-latency vector so it fires again for any event that
+> > > > latched
+> > > > +      * while we were servicing.
+> > > > +      */
+> > > > +     nvkm_wr32(disp->engine.subdev.device, 0x611f34,
+> > > > 0x00000001);
+> > > > +     return ret;
+> > > > +}
+> > > > +
+> > > >  static void
+> > > >  r535_disp_fini(struct nvkm_disp *disp, bool suspend)
+> > > >  {
+> > > > @@ -1568,7 +1609,9 @@ r535_disp_oneinit(struct nvkm_disp *disp)
+> > > >       struct nvkm_device *device =3D disp->engine.subdev.device;
+> > > >       struct nvkm_gsp *gsp =3D device->gsp;
+> > > >       const struct nvkm_rm_api *rmapi =3D gsp->rm->api;
+> > > > +     const struct nvkm_rm_gpu *gpu =3D gsp->rm->gpu;
+> > > >       NV2080_CTRL_INTERNAL_DISPLAY_WRITE_INST_MEM_PARAMS *ctrl;
+> > > > +     nvkm_inth_func intr_func;
+> > > >       unsigned long mask;
+> > > >       int ret, i;
+> > > >
+> > > > @@ -1722,7 +1765,12 @@ r535_disp_oneinit(struct nvkm_disp *disp)
+> > > >               nvkm_gsp_rm_ctrl_done(&disp->rm.objcom, ctrl);
+> > > >
+> > > >               for_each_set_bit(i, &disp->head.mask, disp-
+> > > > >head.nr)
+> > > > {
+> > > > -                     ret =3D nvkm_head_new_(&r535_head, disp, i);
+> > > > +                     const struct nvkm_head_func *func =3D
+> > > > &r535_head;
+> > > > +
+> > > > +                     if (gpu->disp.class.root >=3D GB202_DISP)
+> > > > +                             func =3D &gb202_head;
+> > > > +
+> > > > +                     ret =3D nvkm_head_new_(func, disp, i);
+> > > >                       if (ret)
+> > > >                               return ret;
+> > > >               }
+> > > > @@ -1766,12 +1814,21 @@ r535_disp_oneinit(struct nvkm_disp *disp)
+> > > >       if (ret)
+> > > >               return ret;
+> > > >
+> > > > -     ret =3D nvkm_gsp_intr_stall(gsp, disp->engine.subdev.type,
+> > > > disp->engine.subdev.inst);
+> > > > +     if (gpu->disp.class.root >=3D GB202_DISP) {
+> > > > +             /* GB20x deliver head-timing interrupts on the
+> > > > display's
+> > > > +              * separate low-latency vector (interrupt table
+> > > > instance 1).
+> > > > +              */
+> > > > +             ret =3D nvkm_gsp_intr_stall(gsp, disp-
+> > > > > engine.subdev.type, 1);
+> > > > +             intr_func =3D gb202_disp_intr;
+> > > > +     } else {
+> > > > +             ret =3D nvkm_gsp_intr_stall(gsp, disp-
+> > > > > engine.subdev.type, disp->engine.subdev.inst);
+> > > > +             intr_func =3D r535_disp_intr;
+> > > > +     }
+> > > >       if (ret < 0)
+> > > >               return ret;
+> > > >
+> > > >       ret =3D nvkm_inth_add(&device->vfn->intr, ret,
+> > > > NVKM_INTR_PRIO_NORMAL, &disp->engine.subdev,
+> > > > -                         r535_disp_intr, &disp-
+> > > > > engine.subdev.inth);
+> > > > +                         intr_func, &disp->engine.subdev.inth);
+> > > >       if (ret)
+> > > >               return ret;
+> > > >
+> > > > diff --git
+> > > > a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c
+> > > > b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c
+> > > > index 996941c668ba..2590b22663cb 100644
+> > > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c
+> > > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c
+> > > > @@ -44,6 +44,14 @@ r570_gsp_xlat_mc_engine_idx(u32 mc_engine_idx,
+> > > > enum nvkm_subdev_type *ptype, int
+> > > >               *ptype =3D NVKM_ENGINE_DISP;
+> > > >               *pinst =3D 0;
+> > > >               return true;
+> > > > +     case MC_ENGINE_IDX_DISP_LOW:
+> > > > +             /* GB20x+ report a separate low-latency display
+> > > > vector, used
+> > > > +              * for head-timing interrupts. Expose it as a
+> > > > second
+> > > > DISP
+> > > > +              * interrupt instance.
+> > > > +              */
+> > > > +             *ptype =3D NVKM_ENGINE_DISP;
+> > > > +             *pinst =3D 1;
+> > > > +             return true;
+> > > >       case MC_ENGINE_IDX_CE0 ... MC_ENGINE_IDX_CE19:
+> > > >               *ptype =3D NVKM_ENGINE_CE;
+> > > >               *pinst =3D mc_engine_idx - MC_ENGINE_IDX_CE0;
+> > >
+>
