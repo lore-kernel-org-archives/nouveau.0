@@ -4,39 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B646C5DF7D
-	for <nouveau@archiver.kernel.org>; Tue, 18 Aug 2026 12:51:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FF63C5DF7E
+	for <nouveau@archiver.kernel.org>; Tue, 18 Aug 2026 12:51:58 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E52E510EB45;
-	Tue, 18 Aug 2026 12:51:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2A55210EB48;
+	Tue, 18 Aug 2026 12:51:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="XYup1uGb";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="w7fEnJZy";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="SB8IqDt9";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="cGJZVIK3";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="enSAMH7j";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="frjoziAg";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 42BEA478C5;
-	Tue, 18 Aug 2026 12:35:26 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 8030146D2B;
+	Tue, 18 Aug 2026 12:35:27 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787056526;
- b=zU5sSGLPMKVFFTBus1zzQVKUkUVuapN4GO10dRJhvPEUrev4v7lSSVNKngopXb0MM+cYy
- t85WvFDYmDK6kjLVblRp8cVJkUHDy9+e9HrXrNJ0GmWORoZ8MqTu1dvSfkdeDmfgi/4Hl6u
- KpewB1FexI1BNjTfswV1r5f7MHIaJ9h5i4EQQFi0XkNk/1Gk/yVrhkjy0qSgtcGBW4ZpEUM
- QFBFB0Z7gt8bxg90SNramD18xReelAacCCwVYGHwO91ItoeiUQgLycaqhLMVrDtmvHBWMki
- EHpobkXnV523GDopQcDEAGMHSq2Gfdx9sQza5oTVsKDfSfjvtllbTG9D8hEw==
+ s=20240201; t=1787056527;
+ b=ZqFPh9acomf8HEkXVYNPR/sDECleDYlTScz9NPwLqEV0aPjVw1ityDojLHAv3yFz9BC8z
+ ZbaF8D7QDtgH/B69F2d5wQMaRqMYbxfGddQWWOBuYZV2MMKZTrEGitcQSzDK4hgrRMS/g5m
+ RuQMchC35EK/Btg62y/Apfx3qm3h0ghVQtfFJOTyUraFg46p75GWZNHMr/K4zdx4ZfKp/7W
+ FB/RWNclsiT5jCD/8qsGLfR1cVMXhdHfzgqVoP9DBrqIAzoV6DQRJaBdo26LUYA608oHxoT
+ 8dDwq3AeZbRq3/wOiHvlOuFscIn0L98Wtxa16kfEpjYhV6qAlqlYUL4WyX8w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787056526; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787056527; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=lurynGJFfEOjpSoiEvFLb2rSec2t0K5pgw8WURsM3ZM=;
- b=rNnGPn3XvlrQ1sAqgNLzxXMG8MNvG4TTyt3HwVYUEThdBqK+Kro1CSWdukYMQA4PRecWx
- 1BlzYyaqHnPweiaX9aBNaDRnE6I+VNIcUgygTDtcLVn/7DX/MmiVXOW6pdckxru17U6xSUJ
- kEMBxKlvrwQR4vLeoQsEtyRUfrpTBjK10UGbSN9vHMivtaUDazXHva9ga7nmZDKcy2J2j3z
- Y2koiHsoQRoUFz9+gzWOXa4GnBFIvbNo8osGzZuy04GB1VvfTJQQGHSqEQR1EaD2PEua4sc
- K9AL8s+MlB97s5lO6SxUyRb/UH2OZKSKscQ2GDULo7bHxcH6xmwX/HbIB8iA==
+ bh=vEUnJVKyRqaw2oJE0p+7XPzDoUMdTd1XhCSyTm76Sls=;
+ b=fBPmPMqELDwSw9szpj76G6otXXCFHwEyJcRjmWO+mPrjpmMhjkoGAVosyPGTpx+jZa9sj
+ bnohLM7qu0nBKS9z9CfXfqjphrSUfWs9G4+vVCVDFqvEHB/YDUgRCmOs8rkamC8Y/bMuzPe
+ 34r7Cg52nUGUUWOVYIItu4Jk9B2VRZJ219URNzLh6269enbQw0kViBHxLyp9W3V2YEyZba3
+ wUqZWNmyXVeNDy5wmk7I/begB0Aytk9970t6ixs6eUgMSepIA+w6N9/2wwbT8M8Zu4QWCSv
+ bzOcdYVrIltwRUXvIhQSWPMkzM1YTD5rcToH9jc79MVVJxiomPMSvFgcDVKQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
@@ -45,50 +47,69 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 13E9546D2B
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 12:35:23 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7484110EB3E
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 12:51:53 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+	by kara.freedesktop.org (Postfix) with ESMTPS id 38B2C478BD
+	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 12:35:25 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 987A610EB38
+	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 12:51:55 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id BDB8E3E75;
-	Tue, 18 Aug 2026 12:50:18 +0000 (UTC)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 012C98458B;
+	Tue, 18 Aug 2026 12:50:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_rsa;
-	t=1787057418;
+	t=1787057427;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=lurynGJFfEOjpSoiEvFLb2rSec2t0K5pgw8WURsM3ZM=;
-	b=XYup1uGbrJML4Mzy59EIa1+NKb8rhGkIloNjVQIk8cLr8NCC+flnp+SXRdO8x+0AEsBZdM
-	A3wq8ctRSLTUprnpI1f9Ay56yZdS0DArlBCoYiG2ciKAIO82tvPyMeCV+//1UMbywlYmsX
-	Udzky4X/z9GbC3QOXOoStuJ0Mq5D7fw=
+	bh=vEUnJVKyRqaw2oJE0p+7XPzDoUMdTd1XhCSyTm76Sls=;
+	b=SB8IqDt930lx8gbu6TDdQTbWBQOd/m0orN5xNz8FCnU9Va+6xvZYDhY6z4csnEas0nNZDR
+	OjH4eC05RWLWFG+gqj9fo3/p4ERYB1qusj34DsU5Z6ojaBLAHtxu1uwcj0TyKtL+sxBEZc
+	MS1FOshTKl4kIUDW2V/NXv59kQBp0PU=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1787057418;
+	s=susede2_ed25519; t=1787057427;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=lurynGJFfEOjpSoiEvFLb2rSec2t0K5pgw8WURsM3ZM=;
-	b=w7fEnJZyzqyNLqZ3HvZ8TEICA8+rVdi3XmaL7yk8FQOqe2nvGJ3D+rf/DlXIfppQAiuADg
-	21+vbzKmmXos/4Aw==
+	bh=vEUnJVKyRqaw2oJE0p+7XPzDoUMdTd1XhCSyTm76Sls=;
+	b=cGJZVIK3mLo5oUSlaPuth8y+rlk7EvLl5mowmfdy3xZKK82uG7gtC/l8AHJ7fN+A0tG4Bd
+	JRtVA0QRZhpxv6BQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1787057423;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vEUnJVKyRqaw2oJE0p+7XPzDoUMdTd1XhCSyTm76Sls=;
+	b=enSAMH7jcNTe+Q2jqJSROkKDRaCTWjGQB3SwTlh+qv8WPG7gfnSEh85HTpI9B6JpWAwu9l
+	mSDk0+ajXFfjrLJ70bd1pCXRrcPZGr+BA9ntgoIxHcnM/qlD1zPsHtl/nb1Tlk7QTHDWFI
+	WJRbDBeHhvB54mv+nQcUba9Qyjj5Iig=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1787057423;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vEUnJVKyRqaw2oJE0p+7XPzDoUMdTd1XhCSyTm76Sls=;
+	b=frjoziAgcX9tx1QDqoAV9prLlG8E/W+IdI5WShAjZlEomWGjGWEFHXi3u4e30s1wL4rzmp
+	nVHW0yqY25j+GSBg==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 45649362E;
-	Tue, 18 Aug 2026 12:50:18 +0000 (UTC)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C063F367B;
+	Tue, 18 Aug 2026 12:50:19 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
 	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id yB+4DwpVhGojIAAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Tue, 18 Aug 2026 12:50:18 +0000
+	id 0DjJLQtVhGojIAAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Tue, 18 Aug 2026 12:50:19 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: jfalempe@redhat.com,
 	javierm@redhat.com,
@@ -96,26 +117,39 @@ To: jfalempe@redhat.com,
 	simona@ffwll.ch,
 	maarten.lankhorst@linux.intel.com,
 	mripard@kernel.org
-Subject: [PATCH 02/12] drm/panic: Make allocation of zlib workspace more
- robust
-Date: Tue, 18 Aug 2026 14:28:00 +0200
-Message-ID: <20260818125012.468092-3-tzimmermann@suse.de>
+Subject: [PATCH 05/12] drm/panic: Pass colors to draw_panic_dispatch()
+Date: Tue, 18 Aug 2026 14:28:03 +0200
+Message-ID: <20260818125012.468092-6-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260818125012.468092-1-tzimmermann@suse.de>
 References: <20260818125012.468092-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-4.00 / 50.00];
+X-Spamd-Result: default: False [-6.80 / 50.00];
 	REPLY(-4.00)[];
-	R_RATELIMIT(0.00)[to_ip_from(RLqtkr6cif1ebgurukgmwdm7xc)]
-X-Rspamd-Queue-Id: BDB8E3E75
-X-Rspamd-Pre-Result: action=no action;
-	module=replies;
-	Message is reply to one we originated
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-Message-ID-Hash: T62463YHY6KJSAR3LJ66VMCXE64GPTIJ
-X-Message-ID-Hash: T62463YHY6KJSAR3LJ66VMCXE64GPTIJ
+	BAYES_HAM(-3.00)[100.00%];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_MISSING_CHARSET(0.50)[];
+	NEURAL_HAM_SHORT(-0.20)[-0.998];
+	MIME_GOOD(-0.10)[text/plain];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_TO(0.00)[redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid,imap1.dmz-prg2.suse.org:helo];
+	FROM_EQ_ENVFROM(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	RCVD_TLS_ALL(0.00)[];
+	R_RATELIMIT(0.00)[to_ip_from(RLqirfcw6gnbcr9a9yhi49fhi6)];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com]
+Message-ID-Hash: 7LVPR3HB4Y4QVYW37V7YPTIKJ7LFITRS
+X-Message-ID-Hash: 7LVPR3HB4Y4QVYW37V7YPTIKJ7LFITRS
 X-MailFrom: tzimmermann@suse.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -132,9 +166,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/T62463YHY6KJSAR3LJ66VMCXE64GPTIJ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7LVPR3HB4Y4QVYW37V7YPTIKJ7LFITRS/>
 Archived-At: 
- <https://lore.freedesktop.org/20260818125012.468092-3-tzimmermann@suse.de/>
+ <https://lore.freedesktop.org/20260818125012.468092-6-tzimmermann@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -144,41 +178,217 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Test the zlib workspace size to not have a negative value. This
-would be a driver bug. Also touch allocated memory so that the
-pages are available upon a panic.
+Set the panic-screen colors in draw_panic_plane() as a single point
+of truth. Pass the values into the individual drawing functions.
+
+In the test cases, replace the Kconfig-defined colors with white and
+black. Allows for removal of the tests' limitations and dependency on
+the exact values. All tests now always verify the generated output.
+
+Hardcoding the test colors will later also allow for building the
+test case without having DRM panic handling enabled.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/drm_panic.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/drm_panic.c            | 54 +++++++++++++++-----------
+ drivers/gpu/drm/tests/drm_panic_test.c | 26 +++++++++----
+ 2 files changed, 49 insertions(+), 31 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
-index 0685f7d8dba2..705b72bf0d83 100644
+index 594235661710..ede620b27515 100644
 --- a/drivers/gpu/drm/drm_panic.c
 +++ b/drivers/gpu/drm/drm_panic.c
-@@ -634,13 +634,19 @@ static struct z_stream_s stream;
- 
- static void __init drm_panic_qr_init(void)
- {
-+	int wssize;
-+
-+	wssize = zlib_deflate_workspacesize(WINDOW_BITS, MEM_LEVEL);
-+	if (WARN_ON_ONCE(wssize < 0))
-+		return;
- 	/* best-effort allocation; can be NULL */
--	stream.workspace = kmalloc(zlib_deflate_workspacesize(WINDOW_BITS, MEM_LEVEL),
--				   GFP_KERNEL);
-+	stream.workspace = kmalloc(wssize, GFP_KERNEL);
- 
- 	/* touch memory so that pages are there in the case of a panic */
- 	memset(qrbuf1, 0, sizeof(qrbuf1));
- 	memset(qrbuf2, 0, sizeof(qrbuf2));
-+	if (stream.workspace)
-+		memset(stream.workspace, 0, wssize);
+@@ -478,12 +478,8 @@ static void drm_panic_logo_draw(struct drm_scanout_buffer *sb, struct drm_rect *
+ 				   fg_color);
  }
  
- static void drm_panic_qr_exit(void)
+-static int draw_panic_screen_user(struct drm_scanout_buffer *sb)
++static int draw_panic_screen_user(struct drm_scanout_buffer *sb, u32 fg_color, u32 bg_color)
+ {
+-	u32 fg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_FOREGROUND_COLOR,
+-						    sb->format->format);
+-	u32 bg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_BACKGROUND_COLOR,
+-						    sb->format->format);
+ 	const struct font_desc *font = get_default_font(sb->width, sb->height, NULL, NULL);
+ 	struct drm_rect r_screen, r_logo, r_msg;
+ 	unsigned int msg_width, msg_height;
+@@ -491,6 +487,9 @@ static int draw_panic_screen_user(struct drm_scanout_buffer *sb)
+ 	if (!font)
+ 		return -EINVAL;
+ 
++	fg_color = drm_draw_color_from_xrgb8888(fg_color, sb->format->format);
++	bg_color = drm_draw_color_from_xrgb8888(bg_color, sb->format->format);
++
+ 	r_screen = DRM_RECT_INIT(0, 0, sb->width, sb->height);
+ 	drm_panic_logo_rect(&r_logo, font);
+ 
+@@ -549,12 +548,8 @@ static int draw_line_with_wrap(struct drm_scanout_buffer *sb, const struct font_
+  * Draw the kmsg buffer to the screen, starting from the youngest message at the bottom,
+  * and going up until reaching the top of the screen.
+  */
+-static int draw_panic_screen_kmsg(struct drm_scanout_buffer *sb)
++static int draw_panic_screen_kmsg(struct drm_scanout_buffer *sb, u32 fg_color, u32 bg_color)
+ {
+-	u32 fg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_FOREGROUND_COLOR,
+-						    sb->format->format);
+-	u32 bg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_BACKGROUND_COLOR,
+-						    sb->format->format);
+ 	const struct font_desc *font = get_default_font(sb->width, sb->height, NULL, NULL);
+ 	struct drm_rect r_screen = DRM_RECT_INIT(0, 0, sb->width, sb->height);
+ 	struct kmsg_dump_iter iter;
+@@ -566,6 +561,9 @@ static int draw_panic_screen_kmsg(struct drm_scanout_buffer *sb)
+ 	if (!font || font->width > sb->width)
+ 		return -EINVAL;
+ 
++	fg_color = drm_draw_color_from_xrgb8888(fg_color, sb->format->format);
++	bg_color = drm_draw_color_from_xrgb8888(bg_color, sb->format->format);
++
+ 	yoffset = sb->height - font->height - (sb->height % font->height) / 2;
+ 
+ 	/* Fill with the background color, and draw text on top */
+@@ -748,12 +746,9 @@ static int drm_panic_get_qr_code(u8 **qr_image)
+ /*
+  * Draw the panic message at the center of the screen, with a QR Code
+  */
+-static int _draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
++static int _draw_panic_screen_qr_code(struct drm_scanout_buffer *sb,
++				      u32 fg_color, u32 bg_color)
+ {
+-	u32 fg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_FOREGROUND_COLOR,
+-						    sb->format->format);
+-	u32 bg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_BACKGROUND_COLOR,
+-						    sb->format->format);
+ 	const struct font_desc *font = get_default_font(sb->width, sb->height, NULL, NULL);
+ 	struct drm_rect r_screen, r_logo, r_msg, r_qr, r_qr_canvas;
+ 	unsigned int max_qr_size, scale;
+@@ -766,6 +761,9 @@ static int _draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
+ 	if (!font)
+ 		return -EINVAL;
+ 
++	fg_color = drm_draw_color_from_xrgb8888(fg_color, sb->format->format);
++	bg_color = drm_draw_color_from_xrgb8888(bg_color, sb->format->format);
++
+ 	r_screen = DRM_RECT_INIT(0, 0, sb->width, sb->height);
+ 
+ 	drm_panic_logo_rect(&r_logo, font);
+@@ -818,10 +816,10 @@ static int _draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
+ 	return 0;
+ }
+ 
+-static int draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
++static int draw_panic_screen_qr_code(struct drm_scanout_buffer *sb, u32 fg_color, u32 bg_color)
+ {
+-	if (_draw_panic_screen_qr_code(sb))
+-		draw_panic_screen_user(sb);
++	if (_draw_panic_screen_qr_code(sb, fg_color, bg_color))
++		draw_panic_screen_user(sb, fg_color, bg_color);
+ 	return 0;
+ }
+ #else
+@@ -893,22 +891,22 @@ static bool drm_panic_is_format_supported(const struct drm_format_info *format)
+ 	return drm_draw_can_convert_from_xrgb8888(format->format);
+ }
+ 
+-static int draw_panic_dispatch(struct drm_scanout_buffer *sb)
++static int draw_panic_dispatch(struct drm_scanout_buffer *sb, u32 fg_color, u32 bg_color)
+ {
+ 	int ret;
+ 
+ 	switch (drm_panic_type) {
+ 	case DRM_PANIC_TYPE_KMSG:
+-		ret = draw_panic_screen_kmsg(sb);
++		ret = draw_panic_screen_kmsg(sb, fg_color, bg_color);
+ 		break;
+ #if IS_ENABLED(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
+ 	case DRM_PANIC_TYPE_QR:
+-		ret = draw_panic_screen_qr_code(sb);
++		ret = draw_panic_screen_qr_code(sb, fg_color, bg_color);
+ 		break;
+ #endif
+ 	case DRM_PANIC_TYPE_USER:
+ 	default:
+-		ret = draw_panic_screen_user(sb);
++		ret = draw_panic_screen_user(sb, fg_color, bg_color);
+ 	}
+ 
+ 	return ret;
+@@ -943,6 +941,16 @@ static void draw_panic_plane(struct drm_plane *plane, const char *description)
+ 	struct drm_scanout_buffer sb = { };
+ 	int ret;
+ 	unsigned long flags;
++#if defined(CONFIG_DRM_PANIC_FOREGROUND_COLOR)
++	u32 fg_color = CONFIG_DRM_PANIC_FOREGROUND_COLOR;
++#else
++	u32 fg_color = 0x00ffffff;
++#endif
++#if defined(CONFIG_DRM_PANIC_BACKGROUND_COLOR)
++	u32 bg_color = CONFIG_DRM_PANIC_BACKGROUND_COLOR;
++#else
++	u32 bg_color = 0x00000000;
++#endif
+ 
+ 	if (!drm_panic_trylock(plane->dev, flags))
+ 		return;
+@@ -958,7 +966,7 @@ static void draw_panic_plane(struct drm_plane *plane, const char *description)
+ 
+ 	drm_panic_set_description(description);
+ 
+-	ret = draw_panic_dispatch(&sb);
++	ret = draw_panic_dispatch(&sb, fg_color, bg_color);
+ 	if (!ret) {
+ 		/*
+ 		 * Only flush if we have a panic screen to display. Otherwise
+diff --git a/drivers/gpu/drm/tests/drm_panic_test.c b/drivers/gpu/drm/tests/drm_panic_test.c
+index fdd77b0cc54c..969a096ec840 100644
+--- a/drivers/gpu/drm/tests/drm_panic_test.c
++++ b/drivers/gpu/drm/tests/drm_panic_test.c
+@@ -14,17 +14,10 @@
+ #include <linux/units.h>
+ #include <linux/vmalloc.h>
+ 
+-/* Check the framebuffer color only if the panic colors are the default */
+-#if (CONFIG_DRM_PANIC_BACKGROUND_COLOR == 0 && \
+-	CONFIG_DRM_PANIC_FOREGROUND_COLOR == 0xffffff)
+-
+ static void drm_panic_check_color_byte(struct kunit *test, u8 b)
+ {
+ 	KUNIT_EXPECT_TRUE(test, (b == 0 || b == 0xff));
+ }
+-#else
+-static void drm_panic_check_color_byte(struct kunit *test, u8 b) {}
+-#endif
+ 
+ struct drm_test_mode {
+ 	const int width;
+@@ -48,10 +41,27 @@ struct drm_test_mode {
+ 	.width = w, \
+ 	.height = h, \
+ 	.format = f, \
+-	.draw_screen = draw_panic_screen_##name, \
++	.draw_screen = draw_panic_screen_ ## name ## _default, \
+ 	.fname = #name, \
+ 	}, \
+ 
++static int draw_panic_screen_user_default(struct drm_scanout_buffer *sb)
++{
++	return draw_panic_screen_user(sb, 0x00ffffff, 0x00000000);
++}
++
++static int draw_panic_screen_kmsg_default(struct drm_scanout_buffer *sb)
++{
++	return draw_panic_screen_kmsg(sb, 0x00ffffff, 0x00000000);
++}
++
++#if IS_ENABLED(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
++static int draw_panic_screen_qr_code_default(struct drm_scanout_buffer *sb)
++{
++	return draw_panic_screen_qr_code(sb, 0x00ffffff, 0x00000000);
++}
++#endif
++
+ static const struct drm_test_mode drm_test_modes_cases[] = {
+ 	DRM_TEST_MODE_LIST(user)
+ 	DRM_TEST_MODE_LIST(kmsg)
 -- 
 2.55.0
 
