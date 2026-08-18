@@ -4,171 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BF94C5DF7E
-	for <nouveau@archiver.kernel.org>; Tue, 18 Aug 2026 12:55:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DB0AC5DF7D
+	for <nouveau@archiver.kernel.org>; Tue, 18 Aug 2026 15:26:40 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4E2FA10EB60;
-	Tue, 18 Aug 2026 12:55:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6839210EBB7;
+	Tue, 18 Aug 2026 15:26:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Z88GztwC";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="0A1c5aPM";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="bnvWNKN3";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="UEgg4hEl";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nifty.ne.jp header.i=@nifty.ne.jp header.b="RXOMzCze";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 98BD3478E7;
-	Tue, 18 Aug 2026 12:39:06 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 74233478EE;
+	Tue, 18 Aug 2026 15:10:08 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787056746;
- b=VKm2cTTKd0mCtMeb9RC0RB8sMkwT5+EnhaY7nhR773SNFuU1RVISeCo1ZPfGAfTEuszAQ
- iGsx5Zq7MP1wbnGccwDwEPd2vj/jhb5Ozvz6MFxuaSAp/MTw1bKoE4yn81kAA+/O9sW3mSN
- R9pBFILKllJ8kWxiQX4qHGLOLZrroASDA961bMpp6tPD/EqlgwycfJBX9KF4yNhlaDIktSX
- T9fEWRTVEGqRkceDIxR875/ZxST9PwRrQdJ69F7aylIkjFoTdWt/ucPNcuBKpFyhvwjB6wD
- yJw5YyjUdREBpNkuB6Ls0ubMz8TORPOBMz8ZeESICfwtFpqSdmKNhiUVAA0w==
+ s=20240201; t=1787065808;
+ b=n/j/xi6tA1niuYAmw1bmTPyI0DsfQF8UVraVN7VR/nQxC8kW51M0tnBvdYWrquNrV1e49
+ Eb/Vrn1UetrhteE4Wf8lSBn0Kv/QAngrWwVPRpVsiifeh+9AKlyGeQVAAXFxfYJWojzq2D6
+ zw/0HQBDy0Sn5MZMCTZOeZwlM/HN67hlVJU9Q4T05jYkldby/4Hhehryv472D3n1ywfSkT/
+ yoMLfqvYewJTZJaImmyFyN9x8Pi9dMqpyDMYEk2MMiFIIX7tl0zjcIvN7WcB7+lIJ0gISk1
+ QHxcLqPpkRjXE4ol7uxNnDPG3l5bb3wYlyg51+j/j3ukAnkxwv1FgfvER9nA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787056746; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787065808; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=H+bcWc4T/rU3VJYnflqTO5mpTU63URyw7VznDPWHcA0=;
- b=dxZHATS9qA7n6mmqPB5aa0z969uLAE8cm2HlnGDOfAy1RAfSLUbFoqY9zVPz5ya+kk5xi
- QpXWa4LXHEwWFmm15oZ/3vF8TgLsMuyFqtVGF6fl+SmvpA7l4scx8bDECneNaYRMDB+9Nq9
- Sy6bS0Gdbc3kvAaMsFBiE3yJolhgqnEIi/Xz698NnqvTzmKZjqgR5VNCf5fpA8h5U+OGbyy
- /zY3U9lahIebCT4ii45wN5iTFDG1I3e9MOnFn7jawuTHJ9hWG9vtPQOk1dY8CNR6yolbAng
- oyFbVA6d/uiLOnvuwOD0/8a1KdLpQ22F93ixG7ryaB9+LQ02jYNaQJAM+KEw==
+ bh=VV3fsrnwtbIg4scMnbRWdN8Kc/L1AB3L+OZdUmOlIQM=;
+ b=E6kDUiUAlInuU9rYIxs2Qk6toSqxBLidu5HX0wtcAEOea7HWLY1gnzprO10UTGYJkk/y6
+ Zn477lV6ba3jmJzEmREqKH0QsjeTQBkOS3iRgdmB8kER8KYbvOATF71fO4nKCUPHJT8Xi/3
+ KXE/mgMz0tWoG0u6x/xGhugD7iw9ibQOC1Uxz1eF2sj71ina+aDOnG0N4ztj7nM/hYl4aRT
+ z+fwvm6HG5aVKY16SFBEc8SvU84KNp7vHF86Q3N65hSckRtG5ZKt41Ss/xxyFUFBw/MZu1a
+ lgpPVWkcjzp/MwFNkC9tAXX7SqmYalJ8Mue/xqHQEyJ2AzN6Tnnfbto0SYcg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=suse.de;
+ dkim=pass header.d=nifty.ne.jp;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
+  dmarc=pass (Used From Domain Record) header.from=nifty.ne.jp
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=nifty.ne.jp;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=nifty.ne.jp
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B392C45297
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 12:39:03 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2117610EB55
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 12:55:34 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 82F8C3EBD;
-	Tue, 18 Aug 2026 12:50:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_rsa;
-	t=1787057427;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=H+bcWc4T/rU3VJYnflqTO5mpTU63URyw7VznDPWHcA0=;
-	b=Z88GztwCCatW/H/uskajNcA46j7QOQcPqEU8P20avJdJy2CXcGyyRYDwE5CAYFDKfLc86B
-	FyQFPjmqhjtyXuwo8l3P6gK225jif20wFcvlJtyrWL3x3imHQAfFoXrwZRitDlGSN0jkvc
-	UqWjML9tMqvfq6jkYsy7nmE772IVCFc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1787057427;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=H+bcWc4T/rU3VJYnflqTO5mpTU63URyw7VznDPWHcA0=;
-	b=0A1c5aPMTnHHEJ6rIXyy/+peCcZQ4ykHjlRriaEYQJ0Dc4YZ/NQ0K7GF/GrO0xsc7KPpwh
-	g2c6xZkRgOJi57CA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_rsa;
-	t=1787057423;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=H+bcWc4T/rU3VJYnflqTO5mpTU63URyw7VznDPWHcA0=;
-	b=bnvWNKN3izrmYsYYhi2y/HstSlabK46I1lmloa4ucnshsOeH1Jv+ZIbBJwvbnG+YQXR2+3
-	mZuRKWk9Wm0TmR5GPR6Br8wJ0g2VgTe+6hNVyHTCA/hAQXGTMMhDYCxY0gvy4u2Oh1nzCY
-	MX/BgqaTSjQdtWjD283xUc87+W6LoaQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1787057423;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=H+bcWc4T/rU3VJYnflqTO5mpTU63URyw7VznDPWHcA0=;
-	b=UEgg4hEljsD5umpamNvvTFD9Rohmv/TNMp3RHFalLPZNYh0eWj0BY8P0N6FZwh5cF7RVOB
-	ehRyK6Vsen6pjKDQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 475D6367E;
-	Tue, 18 Aug 2026 12:50:21 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id sG9SEA1VhGojIAAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Tue, 18 Aug 2026 12:50:21 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: jfalempe@redhat.com,
-	javierm@redhat.com,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org
-Subject: [PATCH 08/12] drm/panic: Split draw_panic_plane()
-Date: Tue, 18 Aug 2026 14:28:06 +0200
-Message-ID: <20260818125012.468092-9-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260818125012.468092-1-tzimmermann@suse.de>
-References: <20260818125012.468092-1-tzimmermann@suse.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-6.80 / 50.00];
-	REPLY(-4.00)[];
-	BAYES_HAM(-3.00)[100.00%];
-	MID_CONTAINS_FROM(1.00)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_MISSING_CHARSET(0.50)[];
-	NEURAL_HAM_SHORT(-0.20)[-0.998];
-	MIME_GOOD(-0.10)[text/plain];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_TO(0.00)[redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:email,suse.de:mid];
-	FROM_EQ_ENVFROM(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	RCVD_TLS_ALL(0.00)[];
-	R_RATELIMIT(0.00)[to_ip_from(RLqirfcw6gnbcr9a9yhi49fhi6)];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com]
-Message-ID-Hash: LWFGJAORAQ7LQVIEJSAUKSONLMJTHEWZ
-X-Message-ID-Hash: LWFGJAORAQ7LQVIEJSAUKSONLMJTHEWZ
-X-MailFrom: tzimmermann@suse.de
+	by kara.freedesktop.org (Postfix) with ESMTPS id E304343E5F
+	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 02:46:57 +0000 (UTC)
+X-Greylist: delayed 388 seconds by postgrey-1.36 at gabe;
+ Tue, 18 Aug 2026 03:03:26 UTC
+Received: from mta-sndfb-w02.mail.nifty.com (mta-sndfb-w02.mail.nifty.com
+ [106.153.227.66])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3476110E4B3;
+	Tue, 18 Aug 2026 03:03:26 +0000 (UTC)
+Received: from HP-Z230 by mta-snd-w07.mail.nifty.com with ESMTP
+          id <20260818025655235.IIMY.18412.HP-Z230@nifty.com>;
+          Tue, 18 Aug 2026 11:56:55 +0900
+Date: Tue, 18 Aug 2026 11:56:53 +0900
+From: Takashi Yano <takashi.yano@nifty.ne.jp>
+To: Ben Skeggs <bskeggs@redhat.com>, Lyude Paul <lyude@redhat.com>, Danilo
+ Krummrich <me@dakr.org>
+Subject: X does not start (or does not show screen) on DisplayPort of NVIDIA
+ Quadro 600 with nouveau
+Message-Id: <20260818115653.b3a2d355a1cc4c71090c7b78@nifty.ne.jp>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.30; i686-pc-mingw32)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.ne.jp;
+ s=default-1th84yt82rvi; t=1787021815;
+ bh=VV3fsrnwtbIg4scMnbRWdN8Kc/L1AB3L+OZdUmOlIQM=;
+ h=Date:From:To:Cc:Subject;
+ b=RXOMzCzeZnabLVrLEAyZMSpVrqaxcx5YYQhAu4Hxh8K6FqjM6sUqiBvN9gjY/+5XNYZ7EQ6J
+ 7g221Hs+VMXe3RP5wRw+00jxCzg+9Rs/DecVCrVz8+nkNwfSkW3D6IgURCF+fGLGJlCH+Krg4l
+ Z6yrC2XQ8jjmfDl4Z17+AoQMOd9y7piVUAv48CAWhUi5CsDTiThHJvpt+r9NBET8DrFi2aYkoW
+ 8JZ2p9LME3BhbV3iYuAxakQUzqMldXleFtrEttRi7vCAPIp/LQYPxt1iUF7FkO3nQjx1JQKiWX
+ 9doiWRO2NilIHFsdgoM2V2+HONKfiWyTuX435qTrsR5L4ygQ==
+X-MailFrom: takashi.yano@nifty.ne.jp
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
- sashiko-reviews@lists.linux.dev
+ loop; banned-address; member-moderation
+Message-ID-Hash: 3CMT44R6HU45KXHVYLH3XFXISWBZT55H
+X-Message-ID-Hash: 3CMT44R6HU45KXHVYLH3XFXISWBZT55H
+X-Mailman-Approved-At: Tue, 18 Aug 2026 15:10:06 +0000
+CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LWFGJAORAQ7LQVIEJSAUKSONLMJTHEWZ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3CMT44R6HU45KXHVYLH3XFXISWBZT55H/>
 Archived-At: 
- <https://lore.freedesktop.org/20260818125012.468092-9-tzimmermann@suse.de/>
+ <https://lore.freedesktop.org/20260818115653.b3a2d355a1cc4c71090c7b78@nifty.ne.jp/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -178,125 +104,20 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Move locking and parameters from draw_panic_plane() into the new
-helper drm_panic_display_panic_screen(). Call draw_panic_plane() from
-there.
+Greetings,
 
-The new helper drm_panic_display_panic_screen() is now the DRM core's
-interface for displaying a panic screen. The code remaining in
-draw_panic_plane() still does all the heavy lifting. It will become a
-plane helper for DRM drivers.
+I apologize if you have already noticed this or are already
+working on it, but I wanted to let you know that I have posted
+a bug report along with a corresponding patch at:
+https://gitlab.freedesktop.org/drm/nouveau/-/work_items/496
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/drm_panic.c | 60 ++++++++++++++++++++-----------------
- 1 file changed, 33 insertions(+), 27 deletions(-)
+The report describes an issue where the nouveau driver fails to
+output the correct signal on the DisplayPort of the NVIDIA Quadro 600.
+The bug also affects the Quadro 2000, 4000, and FX 1800, but it
+does not affect the Quadro K420, K600, and K620.
 
-diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
-index 0960750bfce2..2263a11efdf6 100644
---- a/drivers/gpu/drm/drm_panic.c
-+++ b/drivers/gpu/drm/drm_panic.c
-@@ -940,38 +940,21 @@ static void drm_panic_clear_description(void)
- 	desc_line->txt = NULL;
- }
- 
--static void draw_panic_plane(struct drm_plane *plane, const char *description)
-+static void draw_panic_plane(struct drm_plane *plane, const char *description,
-+			     enum drm_panic_type panic_type, u32 fg_color, u32 bg_color,
-+			     unsigned int qr_version)
- {
- 	struct drm_scanout_buffer sb = { };
- 	int ret;
--	unsigned long flags;
--#if defined(CONFIG_DRM_PANIC_FOREGROUND_COLOR)
--	u32 fg_color = CONFIG_DRM_PANIC_FOREGROUND_COLOR;
--#else
--	u32 fg_color = 0x00ffffff;
--#endif
--#if defined(CONFIG_DRM_PANIC_BACKGROUND_COLOR)
--	u32 bg_color = CONFIG_DRM_PANIC_BACKGROUND_COLOR;
--#else
--	u32 bg_color = 0x00000000;
--#endif
--#if IS_ENABLED(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
--	unsigned int qr_version = panic_qr_version;
--#else
--	unsigned int qr_version = 0;
--#endif
--
--	if (!drm_panic_trylock(plane->dev, flags))
--		return;
- 
- 	ret = plane->helper_private->get_scanout_buffer(plane, &sb);
- 
- 	if (ret || !drm_panic_is_format_supported(sb.format))
--		goto unlock;
-+		return;
- 
- 	/* One of these should be set, or it can't draw pixels */
- 	if (!sb.set_pixel && !sb.pages && iosys_map_is_null(&sb.map[0]))
--		goto unlock;
-+		return;
- 
- 	drm_panic_set_description(description);
- 
-@@ -986,9 +969,33 @@ static void draw_panic_plane(struct drm_plane *plane, const char *description)
- 	}
- 
- 	drm_panic_clear_description();
-+}
- 
--unlock:
--	drm_panic_unlock(plane->dev, flags);
-+static void drm_panic_display_panic_screen(struct drm_plane *plane, const char *description)
-+{
-+#if defined(CONFIG_DRM_PANIC_FOREGROUND_COLOR)
-+	u32 fg_color = CONFIG_DRM_PANIC_FOREGROUND_COLOR;
-+#else
-+	u32 fg_color = 0x00ffffff;
-+#endif
-+#if defined(CONFIG_DRM_PANIC_BACKGROUND_COLOR)
-+	u32 bg_color = CONFIG_DRM_PANIC_BACKGROUND_COLOR;
-+#else
-+	u32 bg_color = 0x00000000;
-+#endif
-+#if IS_ENABLED(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
-+	unsigned int qr_version = panic_qr_version;
-+#else
-+	unsigned int qr_version = 0;
-+#endif
-+	struct drm_device *dev = plane->dev;
-+	unsigned long flags;
-+
-+	if (drm_panic_trylock(dev, flags)) {
-+		draw_panic_plane(plane, description, drm_panic_type,
-+				 fg_color, bg_color, qr_version);
-+		drm_panic_unlock(dev, flags);
-+	}
- }
- 
- static struct drm_plane *to_drm_plane(struct kmsg_dumper *kd)
-@@ -1001,10 +1008,9 @@ static void drm_panic(struct kmsg_dumper *dumper, struct kmsg_dump_detail *detai
- 	struct drm_plane *plane = to_drm_plane(dumper);
- 
- 	if (detail->reason == KMSG_DUMP_PANIC)
--		draw_panic_plane(plane, detail->description);
-+		drm_panic_display_panic_screen(plane, detail->description);
- }
- 
--
- /*
-  * DEBUG FS, This is currently unsafe.
-  * Create one file per plane, so it's possible to debug one plane at a time.
-@@ -1021,7 +1027,7 @@ static ssize_t debugfs_trigger_write(struct file *file, const char __user *user_
- 	if (kstrtobool_from_user(user_buf, count, &run) == 0 && run) {
- 		struct drm_plane *plane = file->private_data;
- 
--		draw_panic_plane(plane, "Test from debugfs");
-+		drm_panic_display_panic_screen(plane, "Test from debugfs");
- 	}
- 	return count;
- }
+I would appreciate it if you could take a look. Any assistance
+or feedback would be greatly appreciated.
+
 -- 
-2.55.0
-
+Takashi Yano <takashi.yano@nifty.ne.jp>
