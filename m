@@ -4,147 +4,201 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F8DBC5DF7D
-	for <nouveau@archiver.kernel.org>; Wed, 19 Aug 2026 00:11:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A184C5B572
+	for <nouveau@archiver.kernel.org>; Wed, 19 Aug 2026 06:18:05 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5A7D810ED0C;
-	Wed, 19 Aug 2026 00:11:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D7A5D10E524;
+	Wed, 19 Aug 2026 06:18:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UdTJqcUd";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="dO720plT";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3Q9NN6B3";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="L8HnCUTS";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="eaPdP7nU";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 992394795C;
-	Tue, 18 Aug 2026 23:54:36 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 858F44792E;
+	Wed, 19 Aug 2026 06:01:32 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787097276;
- b=Z0jNGb1EQK6I8wXHtK0vd8j8z9euTiPIdIE7jpOP+8myR6SA7Lma/1mBLhUbnoJNjHaqs
- aAX1t3kXXa3IbrhrQtm7nl3fBxdagNMdI4J/dqyppYQQqfySbVcJdglCNUk0d0q21hm6yjK
- mSTAFXJgqvBHPxdcWV54w0PESdu/nvEICrxWd6HygT4RyYD5NHwgKWKiReOCuXYJL3yImC6
- N0Ta+c/psrXyzMurIfRjL2ls81mRSkKPJNeGwCfLUKOM6kv2u5FESShyo0qC6PmGat+opLB
- Fg69b1snOupbSmmWrBJ/tlUnceKPgC2FPRorz+mzEieweth23/5jXXWXRvZg==
+ s=20240201; t=1787119292;
+ b=a2td67G7iQq1TyhrLkH/1N75gcosF5XHD94sYUbp1ABYcTc7g35T3gXCTn5l2fXV+uuzc
+ F/2KbNCYeyQr/pHJlvyMm7TVmUikFQqBJXiF7XP3BjrkbV9W7B9JUIQG/xq2KuoazikpMi9
+ XLsDGgJGRHcSNNY3ujHup07etryuLGDiXcdU/Bj8rumqGTgZDs0Wi43jk0OKm9CL92gfGlQ
+ hc9QAehMnPEGjEisbp2v5G/kSMLWicr0fttgmn0ZEBTdVD+NY3a2Sc0A66IdsDJKqp0FGxQ
+ 6zdUUt3JwnmJ6qWe9vRj1bDNHTVVxm/RluFBpL3ajefemQWTO7kvsnoNOu/Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787097276; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787119292; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=6PkDd0UmCahKdu3JZanls061LW3iQXGbXeZcNXkwJrg=;
- b=a8/LIfAub74YrW1rCaroEiuQRM95BpM6Moc0VLgp3EuhHI5+mVd1q9oFgx2v50s2B1E+W
- 2YHNSPV0WvEPragrpNGir2ZBqWy1Khz4C5Zq91a2Q/Y5Q+o0I2VzldeAfFpR0dbSkqKpzXM
- QORavkNsIet6deBYMBcW7ZUA+Am6Xw3gd2YZp2BWOaWiCIEoRSDy2x/xlkS/d8U/NE2skiU
- w054C+EH7hw3QCOLuNK9tDkeO/nphhjaSmhR5sYpqTIuoMy1Pqfk6O6/4NRQD457qCI5PBS
- ttU5Q0iqAZ12p3CRASBUmDUCWv1UsAsitD4hPiS4/cOt0+kCy52tQzQFX/yA==
+ bh=c/AzOS9nYCn1gKcDW+iR9M86QEqFfEOWGqdTZE1/Q8A=;
+ b=nZK7ylApik/NyOf+/PdONjo+5+XFLPJnpCwm0Tqwim1wM2IbkBPMTqRxLPI6+2tlWQ2Y/
+ GdiurkI79GqzRCAqga/LbtQfozpVW4DpEsDdOD7oPVF0Zoxi3JDtm+pyCpPsgJGcJQB3N4E
+ oHXZcetuijWS4eep/wZBap1RwBNy+aDOVNmUizXsXvnG6CrUAocgTRQd+YVDNfOXXhGKNks
+ 2X+nxOTaXZSeZVHKSMpAPbH3kVobyarTP8B49ikZj7ipYaBPBdP+T3WlVQKyWRTYRGr6G2G
+ HMosNNDTIsCErqbQVp40N0xy/YyopkHNilFhTXi4EKacTSQBFRiARRM8VIAw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 059BF4792F
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 23:54:35 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 665A010ED06
-	for <nouveau@lists.freedesktop.org>; Wed, 19 Aug 2026 00:11:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1787098265;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	by kara.freedesktop.org (Postfix) with ESMTPS id 8BECB47475
+	for <nouveau@lists.freedesktop.org>; Wed, 19 Aug 2026 06:01:29 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6102810E51A
+	for <nouveau@lists.freedesktop.org>; Wed, 19 Aug 2026 06:18:01 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 168B33E69;
+	Wed, 19 Aug 2026 06:16:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1787120204;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=6PkDd0UmCahKdu3JZanls061LW3iQXGbXeZcNXkwJrg=;
-	b=UdTJqcUd54BKD5yvU+axzaaqqfT1WzBSOIih/k4lYV5IMvbtpWuK3ZicES74jfPGNqw+6G
-	pcIQ8wp/JWKtZowEjeCLC4THp5uerPKRcNb8Woix1aiVaKR8tYuZYSnTkzv12phJuaOdXB
-	5ogdhm7y4qrGDyfj4V4RfEOyh1lMO1Q=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-376-MKluMAoOOmul59ri0nI2EQ-1; Tue, 18 Aug 2026 20:11:02 -0400
-X-MC-Unique: MKluMAoOOmul59ri0nI2EQ-1
-X-Mimecast-MFC-AGG-ID: MKluMAoOOmul59ri0nI2EQ_1787098261
-Received: by mail-qv1-f70.google.com with SMTP id
- 6a1803df08f44-8f0f45415cfso5699916d6.2
-        for <nouveau@lists.freedesktop.org>;
- Tue, 18 Aug 2026 17:11:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787098261; x=1787703061;
-        h=mime-version:user-agent:content-transfer-encoding:content-type
-         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=3meVETvNh0oF+MgWc75MBOQm9AMx1Iu8D1AK3Y3rmHY=;
-        b=r5PO6yZmvji8JXdnjKs2eGuwgjVD/ukufj4dKAfzg6kDvKBl7dfCPyYSAHS9jE6JVT
-         EAaeBRGt3hDEt7gIh1uz5YgnMm5bLSZaEhgpdjbba+dMAd1uE70DpFMcr3bI/32b98+1
-         rqTGg3Ip4Px9ShlciqKtL5is1L9FpJH2ZWx9x16gvWjJnLD127AnhqCV2wc5JEevpGUK
-         aAHPAFx7gVeWjGs2z+k6ZiJhtXlsvIOSCqrLI5KShrr4JotHk2qA7xC/Zs7VXKrR//ya
-         9GDRN5KS5yDRPdDdR7s91tUYaQ2D9tomTc53gZYmkcaxFR1FiKE7RPubaqDjYRpqx2ic
-         1bXA==
-X-Forwarded-Encrypted: i=1;
- AHgh+RrD6z3F7PzAXhyw1JRzJAwb9a/wNH4QujjhhydJBJa8Jyk7pABYpVeswPg6VuousiVsXDHiBAtq@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyciNM7IrBl4WFOHZEYylSrBYJD987D10conae6xKaQeqLw0Vy1
-	oq/dedb1xwiRWimCGM1vRjsOLcW2x9SfPdzqrWtLAIZzcOYlshDTZ7hzlYP2nnp26T6xTE51Thz
-	LlhsAy9/GEa+2hBoabbPTccVkKD9w0mQb7DnhdrbGVnqS8CPXL/kfMUqY2qqMxtT1X7g=
-X-Gm-Gg: AR+sD12nXoSFYgZaGdPnJrOjJLJ0ZfHiG3oewG2HYPLTg1x0ffgwGBEFwX2utPFyvce
-	cxXkT39LJvEuDjCBpBwgBO65g0ynI1NpgxdTSnH9w+Bm8FjH4+3jzwYBL2+Mth3UdtfGwq7RWPR
-	u+CRjIk5ZGGQ0DXVHCFEaEtUcOY0jqv0MHONJUPajy4t7/bPvxhjDW4gR1xp12yzTdp+958efPK
-	Gg4LRFRgpzyw7qhf06G9PhIDRrjo79h18V3hnur8HVHbkn+z3wHajEJpaa8TfLEXDJogevO0cz2
-	+9G7ywjYslepGwSCbSB/LxZzcWstauBTk4USeuCuBBLRmS92cNUJxTmBetbBMAiLUm30IhCb
-X-Received: by 2002:a05:6214:4186:b0:8fd:d5a7:f970 with SMTP id
- 6a1803df08f44-90c5e6cc420mr7993496d6.11.1787098261464;
-        Tue, 18 Aug 2026 17:11:01 -0700 (PDT)
-X-Received: by 2002:a05:6214:4186:b0:8fd:d5a7:f970 with SMTP id
- 6a1803df08f44-90c5e6cc420mr7993056d6.11.1787098261046;
-        Tue, 18 Aug 2026 17:11:01 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93])
-        by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-90c5f2911a5sm1572226d6.30.2026.08.18.17.10.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Aug 2026 17:10:59 -0700 (PDT)
-Message-ID: <ff6ff03c9150d84c02042f6d810cab9b0c9db51b.camel@redhat.com>
-Subject: Re: [PATCH 4/6] drm/nouveau/kms/nv50-: Stop using nv_encoder->crtc
- in nv50_disp_atomic_commit_core()
-From: lyude@redhat.com
-To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org, Marek Czernohous <mczernohous@gmail.com>
-Date: Tue, 18 Aug 2026 20:10:58 -0400
-In-Reply-To: <20260818235637.1738055-5-lyude@redhat.com>
-References: <20260818235637.1738055-1-lyude@redhat.com>
-	 <20260818235637.1738055-5-lyude@redhat.com>
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=c/AzOS9nYCn1gKcDW+iR9M86QEqFfEOWGqdTZE1/Q8A=;
+	b=dO720plTJcEcHC+arFs6mB/9g8FDyt9rYEInkQG8s2VxFn+S+3tlBdg/z0/AE76kVegV/J
+	po0cwcLIJ0eVH1dO9hOcYHWbGx/nXdmjU0jchzVB/Ap9d4oLj2BeJMXDhXaD1gW3tzAHoa
+	VMq/ekbE9a8qAKfFTXWZ3jSUpCcnGBI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1787120204;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=c/AzOS9nYCn1gKcDW+iR9M86QEqFfEOWGqdTZE1/Q8A=;
+	b=3Q9NN6B3P//DA/0r1qISw0CBzYxq34c3kFnAVy/gpQSWIUSsUBzu81MGBqHvUkojiRlIT4
+	IvkPnljiLo7vL3CA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1787120200;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=c/AzOS9nYCn1gKcDW+iR9M86QEqFfEOWGqdTZE1/Q8A=;
+	b=L8HnCUTSvXwz89JqoFEUVGXfyBa/oJZAT7BC7J3w1uwidMcKF4OuijNQdTHOe7KdU9uEgh
+	5FjLcKdQXjz0iGVcE0TMronQ79HDZTovL3ne4XDVb7NDRzvZyTBD8D37rgnErtXW0X/CoY
+	vMYe1wsMsZ1pQJYvLMtEzC1qL6dpgqk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1787120200;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=c/AzOS9nYCn1gKcDW+iR9M86QEqFfEOWGqdTZE1/Q8A=;
+	b=eaPdP7nUjcgGMN2xiwEPnkNBTlV45RYeLfigA5z8I3ZRnJMisCHgbu0N+Luewac2zV75sO
+	rnXH4UsE7FZEdMAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 960AA2F81;
+	Wed, 19 Aug 2026 06:16:39 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id B2BRI0dKhWpUcwAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Wed, 19 Aug 2026 06:16:39 +0000
+Message-ID: <614bdf7b-031d-444b-a30c-132daa55ce3e@suse.de>
+Date: Wed, 19 Aug 2026 08:16:39 +0200
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: ZQs-vB9Fjcm7MictxIWaxWj7oA0y0ITxKlCDj4bFybU_1787098261
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: ERY6DJRBGGPMMMYL2BLGZ3IA6RY7XPPG
-X-Message-ID-Hash: ERY6DJRBGGPMMMYL2BLGZ3IA6RY7XPPG
-X-MailFrom: lyude@redhat.com
-X-Mailman-Rule-Hits: member-moderation
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 11/12] drm/panic: Move panic display code into helper
+ library
+To: Randy Dunlap <rdunlap@infradead.org>, jfalempe@redhat.com,
+ javierm@redhat.com, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org
+References: <20260818125012.468092-1-tzimmermann@suse.de>
+ <20260818125012.468092-12-tzimmermann@suse.de>
+ <916c4bd5-c73f-466e-8e9b-aee9d4d7d742@infradead.org>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <916c4bd5-c73f-466e-8e9b-aee9d4d7d742@infradead.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-4.50 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.19)[-0.973];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FREEMAIL_TO(0.00)[infradead.org,redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	DKIM_TRACE(0.00)[suse.de:+];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,suse.de:mid,suse.de:dkim,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo]
+X-Rspamd-Queue-Id: 168B33E69
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+Message-ID-Hash: EXR42CRR3YYNM6AIL7J5QVWECFJ7622I
+X-Message-ID-Hash: EXR42CRR3YYNM6AIL7J5QVWECFJ7622I
+X-MailFrom: tzimmermann@suse.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
-CC: Marek Czernohous <marek@czernohous.de>,
- Faith Ekstrand <faith.ekstrand@collabora.com>,
- Dave Airlie <airlied@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Kees Cook <kees@kernel.org>,
- Marco Crivellari <marco.crivellari@suse.com>,
- Simona Vetter <simona@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>,
- Maxime Ripard <mripard@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Jani Nikula <jani.nikula@intel.com>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
+ sashiko-reviews@lists.linux.dev
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ERY6DJRBGGPMMMYL2BLGZ3IA6RY7XPPG/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EXR42CRR3YYNM6AIL7J5QVWECFJ7622I/>
 Archived-At: 
- <https://lore.freedesktop.org/ff6ff03c9150d84c02042f6d810cab9b0c9db51b.camel@redhat.com/>
+ <https://lore.freedesktop.org/614bdf7b-031d-444b-a30c-132daa55ce3e@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -154,54 +208,59 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-This is wrong and I only just noticed it before getting ready to finish
-up work - whether we need to use the new or old state depends on if
-we're enabling or disabling - otherwise we'll end up with an unexpected
-!nv_crtc
+Hi
 
-Will send a respin of this tomorrow
+Am 18.08.26 um 17:55 schrieb Randy Dunlap:
+> Hi,
+>
+> On 8/18/26 5:28 AM, Thomas Zimmermann wrote:
+>>   M:	Hans de Goede <hansg@kernel.org>
+>> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+>> index 323422861e8f..cdfd72d9a9c5 100644
+>> --- a/drivers/gpu/drm/Kconfig
+>> +++ b/drivers/gpu/drm/Kconfig
+>> @@ -45,6 +45,7 @@ config DRM_MIPI_DSI
+>>   config DRM_KMS_HELPER
+>>   	tristate
+>>   	depends on DRM
+>> +	select DRM_PANIC_HELPER if DRM_PANIC
+> but DRM_PANIC_HELPER depends on DRM_TTM so
+> DRM_KMS_HELPER should also depend on DRM_TTM. Otherwise:
 
-On Tue, 2026-08-18 at 19:48 -0400, Lyude Paul wrote:
-> Another leftover spot where we still use nv_encoder->crtc. Get rid of
-> it
-> and do the right thing: get the currently assigned CRTC from the new
-> atomic
-> state.
->=20
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Reported-by: Marek Czernohous <marek@czernohous.de>
-> ---
-> =C2=A0drivers/gpu/drm/nouveau/dispnv50/disp.c | 8 ++++++--
-> =C2=A01 file changed, 6 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> index f19820dc055ae..63d554e97fb62 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -2171,10 +2171,14 @@ nv50_disp_atomic_commit_core(struct
-> drm_atomic_commit *state, u32 *interlock)
-> =C2=A0=09list_for_each_entry(outp, &atom->outp, head) {
-> =C2=A0=09=09if (outp->encoder->encoder_type !=3D
-> DRM_MODE_ENCODER_DPMST) {
-> =C2=A0=09=09=09struct nouveau_encoder *nv_encoder =3D
-> nouveau_encoder(outp->encoder);
-> +=09=09=09struct nouveau_crtc *nv_crtc =3D
-> nv50_outp_get_new_crtc(state, nv_encoder);
-> +
-> +=09=09=09if (drm_WARN_ON(drm->dev, !nv_crtc))
-> +=09=09=09=09continue;
-> =C2=A0
-> =C2=A0=09=09=09if (outp->enabled) {
-> -=09=09=09=09nv50_audio_enable(outp->encoder,
-> nouveau_crtc(nv_encoder->crtc),
-> -=09=09=09=09=09=09=C2=A0 nv_encoder->conn,
-> NULL, NULL);
-> +=09=09=09=09nv50_audio_enable(outp->encoder,
-> nv_crtc, nv_encoder->conn, NULL,
-> +=09=09=09=09=09=09=C2=A0 NULL);
-> =C2=A0=09=09=09=09outp->enabled =3D outp->disabled =3D
-> false;
-> =C2=A0=09=09=09} else {
-> =C2=A0=09=09=09=09if (outp->disabled) {
+Oops, how did that creep in?  There's no TTM dependency. This Kconfig 
+change appears to be a copy-paste accident. Thanks for noting.
+
+Best regards
+Thomas
+
+>
+> WARNING: unmet direct dependencies detected for DRM_PANIC_HELPER
+>    Depends on [n]: HAS_IOMEM [=y] && DRM [=y] && DRM_TTM [=n]
+>    Selected by [y]:
+>    - DRM_KMS_HELPER [=y] && HAS_IOMEM [=y] && DRM [=y] && DRM_PANIC [=y]
+>
+>
+>>   	select FB_CORE if DRM_FBDEV_EMULATION
+>>   	help
+>>   	  CRTC helpers for KMS drivers.
+>> @@ -130,6 +131,10 @@ config DRM_PANIC_SCREEN_QR_VERSION
+>>   	  Smaller QR code are easier to read, but will contain less debugging
+>>   	  data. Default is 40.
+>>   
+>> +config DRM_PANIC_HELPER
+>> +	bool
+>> +	depends on DRM_TTM
+>> +
+>>   config DRM_RAS
+>>   	bool "DRM RAS support"
+>>   	depends on DRM
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG Nürnberg)
+
 
