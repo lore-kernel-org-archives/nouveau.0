@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC439C5DF81
-	for <nouveau@archiver.kernel.org>; Tue, 18 Aug 2026 23:58:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C07CC5DF7D
+	for <nouveau@archiver.kernel.org>; Wed, 19 Aug 2026 00:02:19 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6AF8C10ED0C;
-	Tue, 18 Aug 2026 23:58:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id F003E10ED06;
+	Wed, 19 Aug 2026 00:02:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="LpeSFfYo";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="AYVU13Wm";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B9E9C47947;
-	Tue, 18 Aug 2026 23:42:05 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 378A947956;
+	Tue, 18 Aug 2026 23:45:47 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787096525;
- b=HoHI5mQ4+Kb2m55kixLhXzcxzbji1Ouc8BQVWLKFj3kC/YfvhxI1O0cDniLJ2t+oovMRw
- h7UTkNwFe60ihFdcLLuwefyU59knVqQ3K6tOUH3iUwjPya3enpYB8ExMK+scqgSWablPVxh
- plZSqViE9t8l7CWZxR4D/vNU3NTn6UpIpn9eZhK74db3B/Mmceyywi9XCj7O1YpYLtwJem9
- oeQbtG+fOCafwoSADNbUXbCzBtBjuOM+iszjnrNlVkftCrzJya80aikvsO+YIs7G6Rowm0k
- WgHoVmakLPYH+f2mb+T895vPzjNxubbIo9S6fJj9l1v+sxr/3M7kjtiAQbuw==
+ s=20240201; t=1787096747;
+ b=dZ0rQFXg4BI26qmTjc+1M87u9OurhwIekx9IoBgdxNXhzRSIpzl/b4oVy6DAlcB6FxN6u
+ TKONfbo0tax4TWSaiX/7lxO6Pnon/E9L5MTA8lIaJmj2O9diTcC6wpTiWt5QVGjFZerYE7a
+ eCFQjPNHN2yRLGU+x8cJTMayMGnz7+ksKzaQ7q9U02OFctrk+OVByIGIHWVdFT/4qALUV3T
+ 1AoJkPvpynEvKSPTKLQh5cOzAQSyQDDER+IuCMQN1Kp4XYOFs8qY5r42YfcDXe7PE39i7rG
+ Pv1tASm28K0AQ4Qh6PQvGvEpsfOWC+1X4zgfqnlxBeeJ1geWy+Nq79qlzpOA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787096525; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787096747; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=tz/yXH3YIXKsxVZ87/WPseHbbbdSG7a6l6OJ3Eub38g=;
- b=JnALXTZnUSR/jDy8YlqGxNqHuYJJeovc1LjQWtCwRl8eYpzFg7I129AWGRTq6Z6iOCCGG
- MVlIfUJBGYPIcIqbReUzh85PRyVyU9bDCzrX7rGaNbiNvRmU1JjZ5HiE4Ytbn1Pgrmszo7g
- DoeJx5vt9uFL9Vc/FbKNnMmSNOW+MV09jY41XS4H6VAVdN+wUW1JreBRfo5DolLyVXu03TG
- el7bPKS9afcttSuXXkuHtojlr29CJoVTlYwOV9fSIoDjXhWuxLHNOGu65A4Fc+xKVT4L7mX
- 6OFH/0DXZHaxK9TJWX78dYilF+whN/L+/L3R7ZMbjTNoHYlfOCWQPe2zRq8w==
+ bh=gUqJG69YbmkVqa7BJeUUv+0NNdL/7u3t7EUGaMdcZdg=;
+ b=f1YSFI/e3k3sEWB9eClKKfa5asTKdUMS3xicG0VPcChOKgsXZiUbfxnoumde5LYLmH/Sj
+ ezVhmjxbaTR1/V40ad1pltpJWZBSLaDKsnTt8JZlQ6dkkbbHUJ0zYE3xEjzoM7epcwA60pT
+ cPMawTG0CHHnJgYQ+hIYrinnIlIr3Cdteg8/zPO2VN042B4RjmkchUNsK6GgptwBxUL6BA6
+ 7LHtF/QNb9jJs8+6nTz8Foj1/Y3APthqAXsa2wuFKrAilpri2/ks+ML/RQpUaheM0Xw1DIH
+ VRhRSNE3YiOq7c4S2FmR0ioDuYlE+QWTK865m4FaJUVWk5eRhPkiO2WamIkQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,84 +46,84 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id BC6E247932
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 23:42:02 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id B19D1478C9
+	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 23:45:44 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3175510ED05
-	for <nouveau@lists.freedesktop.org>; Tue, 18 Aug 2026 23:58:34 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 22A6810ECF3
+	for <nouveau@lists.freedesktop.org>; Wed, 19 Aug 2026 00:02:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1787097513;
+	s=mimecast20190719; t=1787097735;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=tz/yXH3YIXKsxVZ87/WPseHbbbdSG7a6l6OJ3Eub38g=;
-	b=LpeSFfYoDylpGMCM3najpsWxdWM7lZIZ1PJlZsN9Kt7CWNjVhvTguLheaE+Ajweh0Vy3tm
-	tj5jZBGXfXdFqhhGEgBkQ2+GrVaLqGv45OFHc+VBGJPj2g4bs54jioGXBtoHBAOoouWow4
-	MMQtG/RSrAbBxgGZsj9UoPHISHJsGIU=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=gUqJG69YbmkVqa7BJeUUv+0NNdL/7u3t7EUGaMdcZdg=;
+	b=AYVU13Wmf9/esGEnvgvPj6amy4Tba9k48xsEk541EhUiGukmWTdiJM7lJyXrTgPwVH+kLt
+	2y/scZkzkftrRGwjZ3wcK+itPgfP8VWsJMgekxpSEJ9DUl7kUbVhS1psuj6xCfkFF6fm90
+	9vtR9bplE5qdmyKrhPufmu/8M5uUoXw=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-377-pfZZ4rVkNrWJ8LO8KEoWUw-1; Tue, 18 Aug 2026 19:58:27 -0400
-X-MC-Unique: pfZZ4rVkNrWJ8LO8KEoWUw-1
-X-Mimecast-MFC-AGG-ID: pfZZ4rVkNrWJ8LO8KEoWUw_1787097507
-Received: by mail-qt1-f198.google.com with SMTP id
- d75a77b69052e-52827090cc5so4817111cf.0
+ us-mta-62-YM2GHMqWMP-N6bgKheqnqA-1; Tue, 18 Aug 2026 20:02:11 -0400
+X-MC-Unique: YM2GHMqWMP-N6bgKheqnqA-1
+X-Mimecast-MFC-AGG-ID: YM2GHMqWMP-N6bgKheqnqA_1787097731
+Received: by mail-qk1-f199.google.com with SMTP id
+ af79cd13be357-92e695a3b28so175900685a.1
         for <nouveau@lists.freedesktop.org>;
- Tue, 18 Aug 2026 16:58:27 -0700 (PDT)
+ Tue, 18 Aug 2026 17:02:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787097507; x=1787702307;
+        d=1e100.net; s=20251104; t=1787097731; x=1787702531;
         h=mime-version:user-agent:content-transfer-encoding:content-type
          :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=tz/yXH3YIXKsxVZ87/WPseHbbbdSG7a6l6OJ3Eub38g=;
-        b=nQ+nKb6iqxj90T2IW8KNSxd5zvGQ/DVxXamUTtd8vDoqYorO5qsinmCz0yI8UfUjQf
-         Jt8yHtIFZOGZuSLXeNX39Si2nmoaP4Xvdwpaf0Z9/hMglfI6corsA87GjNbnSRj7Fbfr
-         NppU4NUNMqAb+6KTow6ivD9mvVCa24SWxpLmpMbsuzvNZdJ4efo81B1wS1/QhiV1eVAB
-         3UmBXRr2L4ZGdbnG0PHmyuw+IVahjs3JOB9SzX4oVf0LDlywGh6xU+uO1HHO0R/FkC0T
-         pCqddOmyJv0Sahwq5dreTkh6SpEcVYPe90G30XlPcfD/c6bVuquCpPeOjtAwhG2ygbUN
-         IyUg==
+        bh=gUqJG69YbmkVqa7BJeUUv+0NNdL/7u3t7EUGaMdcZdg=;
+        b=DYM87es9XrW+IqYyYq5KksGQ5DPujXNvxJqZ3cOKLSq8gxw/l1hCIsZ1EfFb58gwzs
+         mfvmMFDuHyLgGIEZGwEUYqcLb6hIgTHv9kYy21JcQSp3N+wEOaB4zz87KLA58hxDDUpX
+         9oXtYeMLT7d3tWUBSB1LAhKMbEuaBv+KINzNm07OyMlpq0R4zH6b0FxwFcWW6QgKHWSu
+         OGgXI2FyoyI7AQMtK1mDbfhAKlrKsggxVu/zNC+LCW7kdRH+rVVTrqaYZVgIcOtbFqo/
+         Bj2ZchmGFfcBEXcBaMZncjwdumqxyx9gclk2lKNR8E9aZRoI5DylL6ugPTgUmwV3Uzow
+         xc9g==
 X-Forwarded-Encrypted: i=1;
- AHgh+Rr+fBaQL5mVe+KVfJVhJ8pP93z2FkSs4ruI4+cX+wbiFZ816hz8lk+de1144KscRVCfcDBdJuP6@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxst19exwDbhfm9b0tPqWJAAkqu2Rh0eVQneYPoAwhTvzxO2/0w
-	1aN5+QjNZ8MKpKHEZ9t8UR3/zhwX1DS3f3m2CQO+3+4+gyXF2WCJSCLQ1cI0SxbHsJv7f5aZHDf
-	Kn8Nq5w8pATFkskFN7aXFMRs/Jki8gny5RifQ4f6LSmSUL3MK4vHkHF2FloJ+gSe0BPI=
-X-Gm-Gg: AR+sD11f3Rqlmqp1gobtr8PVtBVBBh1jt1mYqIHoEYKdv7LJbBCzjGhYAOC+hDVDuib
-	R3AvtWhUZITxG07ih0cJ16LtiEhlE8kaV9oPyf5CB0fWFF27LqN03quF+4KGfbFVEum+iNXyc0n
-	HoQ1jrxXV8U7UkOZdxbVcvwBy09fPt000Otj1biCAGyw4VWNQzKpTS7PZ+zHhNG9svDjHsAbt38
-	uaZc2i/aTGVzZZqyvjdrWCKqe+dKYivOGagUkvU3UzjZzmLVDN/qv/KEy9c8P/2gnRXfEvlEgm0
-	iCmxNVhf6oeWeDHXS426jzu/cUwVySAnCxUNGRjl3aRaDX1Ni5hKkIaHUwVN7msUUeML9nqB
-X-Received: by 2002:ac8:7fcc:0:b0:51c:1ea:e290 with SMTP id
- d75a77b69052e-52dd4970d83mr7644951cf.17.1787097506692;
-        Tue, 18 Aug 2026 16:58:26 -0700 (PDT)
-X-Received: by 2002:ac8:7fcc:0:b0:51c:1ea:e290 with SMTP id
- d75a77b69052e-52dd4970d83mr7644631cf.17.1787097506193;
-        Tue, 18 Aug 2026 16:58:26 -0700 (PDT)
+ AHgh+RoJ9BK1EE5izg7VsRRWIzHXDonV49SpnL0M1uj30yr35bFlG3K3+xuFMy7p6l3wH9QXyy1n9TMG@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx+d4T2UbBi84OxYWOpi3+qtK6TSjt4w9EouRSGraDSNHF3KbMl
+	TUfbIJqa2hIA/7FjVaHAwCdmRzJU4r+eGdJO1ikpekKulLLyRaZhK883BAo38WSaAiKW6qh9KMm
+	rUxXzRK3J1sofmgPMNPMy+kheZMIsQxnmeVWwfAmZlLLRtIeL+zCIubBHnpO6U32zd+M=
+X-Gm-Gg: AR+sD13w/jC7IOTqYv+XAEz2ubkZxT7xJXIfMiQKczhzY1Urvwaqvx5zuYyXNrHLokM
+	UMBEnpzLwjl2oTXKJx9X/pPotXl0jcIHmCQJuWNIw0XMvxqyRmFAh4ol6anNx78WqvrPtVc5nUI
+	llgFSE0sXm0rCocb1ImA6FYO0V06IzCRVICaBYgjeoSXZBDvlpiOkhqBacug2auPrS9sca9EpGG
+	FxpDKPaNltoxcWIO/YhAZuu/i24/DOyKR4NKQ8U+ZbWtLDCTdKLmL3TJbg4Yf859q2xotuzaQ6A
+	NKX45Tp/JHD97GfGoxwOF/C/VPsuzrMZhUrvmQpNMQ4EvY7zRLpCG9vXvR/fbPjWOION+yPj
+X-Received: by 2002:a05:620a:2986:b0:936:9253:897a with SMTP id
+ af79cd13be357-9371e430b4cmr101027285a.9.1787097731230;
+        Tue, 18 Aug 2026 17:02:11 -0700 (PDT)
+X-Received: by 2002:a05:620a:2986:b0:936:9253:897a with SMTP id
+ af79cd13be357-9371e430b4cmr101019085a.9.1787097730662;
+        Tue, 18 Aug 2026 17:02:10 -0700 (PDT)
 Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-52dd872a9e6sm382701cf.20.2026.08.18.16.58.24
+ af79cd13be357-9372059ae63sm12749885a.46.2026.08.18.17.02.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Aug 2026 16:58:25 -0700 (PDT)
-Message-ID: <3c85782ad840395622a93e9c30f151296dea838b.camel@redhat.com>
-Subject: Re: [PATCH 0/3] drm/nouveau: teardown ordering fixes for events and
- work
+        Tue, 18 Aug 2026 17:02:09 -0700 (PDT)
+Message-ID: <6244a95cc925d8b0f3c01ac000ca56dad246305b.camel@redhat.com>
+Subject: Re: [PATCH v4 0/2] drm/nouveau: NVAC (MCP79) stability: MSI rearm
+ and a NULL crtc guard
 From: lyude@redhat.com
 To: Marek Czernohous <mczernohous@gmail.com>, nouveau@lists.freedesktop.org,
  	dri-devel@lists.freedesktop.org
-Date: Tue, 18 Aug 2026 19:58:24 -0400
-In-Reply-To: <178682366001.3748010.7798811159846779765@gmail.com>
-References: <178682366001.3748010.7798811159846779765@gmail.com>
+Date: Tue, 18 Aug 2026 20:02:08 -0400
+In-Reply-To: <178688574400.522643.6695278742335367229@gmail.com>
+References: <178688574400.522643.6695278742335367229@gmail.com>
 User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: MLMJUFKeWz-SDsrZtKJ93F80KkHysgqBgmPlvMabTrc_1787097507
+X-Mimecast-MFC-PROC-ID: Li-9Jxky7XNAjtEKfH5XPszYnSTXK_l1PetgeHSRJdI_1787097731
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: DRDGIKT3ZYGHSZFQU5XTSP5Z43X3XG77
-X-Message-ID-Hash: DRDGIKT3ZYGHSZFQU5XTSP5Z43X3XG77
+Message-ID-Hash: 5674AJ2E2N53HC5ZYYAOMBTFL24YRKRB
+X-Message-ID-Hash: 5674AJ2E2N53HC5ZYYAOMBTFL24YRKRB
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -134,9 +134,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DRDGIKT3ZYGHSZFQU5XTSP5Z43X3XG77/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5674AJ2E2N53HC5ZYYAOMBTFL24YRKRB/>
 Archived-At: 
- <https://lore.freedesktop.org/3c85782ad840395622a93e9c30f151296dea838b.camel@redhat.com/>
+ <https://lore.freedesktop.org/6244a95cc925d8b0f3c01ac000ca56dad246305b.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -146,160 +146,109 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Thank you for all of the submissions! JFYI - I should be able to get to
-reviewing this one tomorrow
+First patch looks fine, I sent a new patch series to address the issue
+pointed out by patch 2, as it was a bit of a bandaid around a larger
+issue.
 
-On Sat, 2026-08-15 at 21:54 +0200, Marek Czernohous wrote:
+Will push the first patch in just a moment
+
+On Sun, 2026-08-16 at 15:09 +0200, Marek Czernohous wrote:
 > From: Marek Czernohous <marek@czernohous.de>
 >=20
-> Three teardown fixes in nouveau, all the same shape: something that
-> can
-> still run after the thing it points at has been torn down or freed.
->=20
-> Two of them are not my finding. The Sashiko review bot flagged them
-> as
-> pre-existing issues in its review of my nv04 FIFO series,
+> This is v4 of two NVAC (MCP79) stability fixes.=C2=A0 v3 went out on 11
+> June
+> and has had no replies:
 >=20
 > =C2=A0
-> https://lore.kernel.org/nouveau/20260812231330.705425-1-mczernohous@gmail=
-.com/
+> https://lore.kernel.org/all/20260611124535.527275-1-mczernohous@gmail.com=
+/
 >=20
-> naming nouveau_fence_context_del() and nouveau_connector_destroy()
-> directly. It was right about both. 1/3 and 2/3 carry a Reported-by
-> accordingly. 3/3 is mine, found while following the irq_work of 2/3
-> into its handler, which is nouveau_dp_irq().
+> Nothing in either patch changed.=C2=A0 Same diffs, same reasoning, same
+> trailers.=C2=A0 The reason this is a v4 and not a ping is that 2/2 no
+> longer
+> applies to mainline, so a ping would have pointed at a series nobody
+> can
+> test.
 >=20
-> 1/3 nouveau_fence_context_del() cancels the uevent work first and
-> drops
-> =C2=A0=C2=A0=C2=A0 the event afterwards. In between, the event is still a=
-rmed and
-> =C2=A0=C2=A0=C2=A0 nouveau_fence_wait_uevent_handler() queues the work
-> unconditionally,
-> =C2=A0=C2=A0=C2=A0 so a non-stall interrupt in that window re-arms the wo=
-rk that was
-> =C2=A0=C2=A0=C2=A0 just cancelled. The callers free the context immediate=
-ly after,
-> =C2=A0=C2=A0=C2=A0 which leaves nouveau_fence_uevent_work() walking freed=
- memory.
-> =C2=A0=C2=A0=C2=A0 Destroy the event first, then drain.
+> What moved was somebody else's context, not this code.
+> Commit 5164f7e7ff8e ("drm: Rename struct drm_atomic_state to
+> drm_atomic_commit") changed the callback signature, so
+> nv50_sor_atomic_disable() now takes a struct drm_atomic_commit
+> *state.
+> 2/2 is rebased onto that by hand.=C2=A0 1/2 applies unchanged and is
+> byte-identical to v3.
 >=20
-> 2/3 nouveau_connector_destroy() drops the connector's two events but
-> =C2=A0=C2=A0=C2=A0 never drains nv_connector->irq_work, which is what the=
- DP IRQ
-> event
-> =C2=A0=C2=A0=C2=A0 schedules. The work can then run against a connector t=
-hat is
-> about
-> =C2=A0=C2=A0=C2=A0 to be, or has already been, freed.
+> Both bugs are still live in c21bb4193868.=C2=A0 dispnv50/disp.c:1568 stil=
+l
+> does nv50_head(nv_encoder->crtc) with no NULL check, and there is no
+> guard anywhere in the function.=C2=A0 Immediately below it, :1570 takes
+> nv50_outp_get_old_connector() and :1572 dereferences the result
+> without
+> checking it.
 >=20
-> 3/3 nouveau_dp_irq() looks the encoder up and dereferences it in the
-> =C2=A0=C2=A0=C2=A0 declaration block, five lines above the NULL test that=
- the same
-> =C2=A0=C2=A0=C2=A0 function already carries.
+> 1/2 drm/nouveau/pci: use config-space MSI rearm on MCP79/MCP7A (NVAC)
 >=20
-> 2/3 and 3/3 both point at the same commit. Commit 773eb04d14a1
-> ("drm/nouveau/disp: expose conn event class") turned nouveau_dp_irq()
-> into a work callback, and that single change introduced both the
-> undrained work and the early dereference: the drm pointer used to be
-> an
-> argument, and recovering it from the encoder put a dereference above
-> the
-> existing test.
->=20
-> All three carry Fixes: and Cc: stable. 1/3 and 2/3 are use-after-free
-> windows, and each commit message names the trigger, the window, and
-> the
-> freed object the work then touches. 3/3 is a NULL dereference sitting
-> above the function's own NULL test.
->=20
-> I also looked one level up, since it would have been the obvious next
-> instance. drm->hpd_work is drained in nouveau_display_fini(), right
-> after the hotplug events are blocked, under
-> "if (!runtime && !drm->headless)". That guard does not exempt the
-> teardown path: nouveau_drm.c:597 calls nouveau_display_fini(dev,
-> false,
-> false) immediately before nouveau_display_destroy(), so runtime is
-> false there. The runtime exemption belongs to the suspend path
-> (nouveau_display.c:781), which frees nothing. So there is no fourth
-> patch here.
->=20
-> Testing
->=20
-> =C2=A0 Reference hardware: Apple Macmini3,1, MCP79 / GeForce 9400M (NVAC)=
-,
-> =C2=A0 Core 2 Duo, Wayland (labwc). Note for 1/3 that this chip takes the
-> =C2=A0 nv84_fence path, which is the one where the event exists at all.
->=20
-> =C2=A0 Build. The series is built against the stated base commit, as a
-> full
-> =C2=A0 kernel build rather than a module-only one, so modpost actually
-> =C2=A0 resolved the module's symbols instead of being skipped for want of
-> =C2=A0 Module.symvers: zero compiler warnings, zero compiler errors,
-> =C2=A0 nouveau.ko produced. checkpatch.pl --strict is clean on all three
-> =C2=A0 patches and on this cover.
->=20
-> =C2=A0 What the testing does not show, stated plainly: I have not managed
-> to
-> =C2=A0 hit any of these three windows deliberately on this hardware. They
-> are
-> =C2=A0 ordering bugs reasoned out from the source rather than from a
-> =C2=A0 reproduction, and I would rather say that than dress up a crash I
-> do
-> =C2=A0 not have. Each patch names the file and the function it argues fro=
-m
-> so
-> =C2=A0 the reasoning can be checked directly.
->=20
-> AI assistance
->=20
-> =C2=A0 Lyude asked on an earlier thread whether these patches were writte=
-n
-> by
-> =C2=A0 a human and pointed at Documentation/process/coding-assistants.rst=
-.
-> =C2=A0 The answer, repeated here for the archive: this work is AI
-> assisted. I
-> =C2=A0 use Claude (claude-opus-5) as a coding and analysis assistant.
-> Every
-> =C2=A0 patch carries an Assisted-by trailer accordingly, and no Signed-
-> off-by
-> =C2=A0 is added by the tool.
->=20
-> =C2=A0 Nature of the assistance, so you can calibrate your review: the
-> =C2=A0 assistant did most of the code archaeology and drafting. I
-> described
-> =C2=A0 symptoms, asked for the mechanism to be traced in the source rathe=
-r
-> =C2=A0 than guessed, and asked for each claim to be backed by a file and =
-a
-> =C2=A0 line. The assistant also reviewed its own drafts adversarially,
+> =C2=A0=C2=A0=C2=A0 NVAC re-arms MSI through the MMIO mirror of PCI config=
+ space,
 > which
-> =C2=A0 is how two errors in 1/3 were caught before this posting: an
-> earlier
-> =C2=A0 draft claimed nouveau_fence_context_kill() does not touch the
-> event,
-> =C2=A0 which the source contradicts, and it illustrated the freeing calle=
-r
-> =C2=A0 with nv04_fence_context_del(), which is precisely the case that
-> cannot
-> =C2=A0 reach the bug, since nouveau_fence_context_new() returns before
-> =C2=A0 nvif_event_ctor() unless nv84_fence_create() set priv->uevent. Bot=
-h
-> =C2=A0 are corrected. I reviewed the result, I understand the code, and I
-> =C2=A0 take responsibility for it.
+> =C2=A0=C2=A0=C2=A0 is unreliable on this IGP.=C2=A0 A missed re-arm leave=
+s the interrupt
+> =C2=A0=C2=A0=C2=A0 line dead, submission times out and the GPU looks hung=
+ until
+> =C2=A0=C2=A0=C2=A0 reboot.=C2=A0 Give NVAC its own pci func that re-arms =
+through real
+> =C2=A0=C2=A0=C2=A0 config space, the way commit 5112abc6a433 ("drm/nouvea=
+u/pci/g92:
+> =C2=A0=C2=A0=C2=A0 Fix rearm") already did for g92.=C2=A0 Only NVAC is sw=
+itched, because
+> =C2=A0=C2=A0=C2=A0 that is the part this was validated on.
 >=20
-> Marek Czernohous (3):
-> =C2=A0 drm/nouveau: destroy the fence event before cancelling its work
-> =C2=A0 drm/nouveau: cancel the DP IRQ work before freeing the connector
-> =C2=A0 drm/nouveau: don't dereference outp before checking it in
-> =C2=A0=C2=A0=C2=A0 nouveau_dp_irq
+> 2/2 drm/nouveau/kms: guard NULL crtc in nv50_sor_atomic_disable()
 >=20
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_connector.c | 1 +
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_dp.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 4 +++-
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_fence.c=C2=A0=C2=A0=C2=A0=C2=A0 | 2=
- +-
-> =C2=A03 files changed, 5 insertions(+), 2 deletions(-)
+> =C2=A0=C2=A0=C2=A0 Restore the NULL check that
+> =C2=A0=C2=A0=C2=A0 commit f575f2bdb6c3 ("drm/nouveau/kms/nv50-: Remove
+> =C2=A0=C2=A0=C2=A0 (nv_encoder->crtc) checks in ->disable callbacks") rem=
+oved, as a
+> =C2=A0=C2=A0=C2=A0 drm_WARN_ON_ONCE() rather than a silent return, since =
+a NULL crtc
+> =C2=A0=C2=A0=C2=A0 here is a state-tracking inconsistency worth seeing.=
+=C2=A0 The guard
+> is
+> =C2=A0=C2=A0=C2=A0 hoisted above the backlight teardown so the old connec=
+tor is only
+> =C2=A0=C2=A0=C2=A0 used after it has been checked; without that the oops =
+would just
+> =C2=A0=C2=A0=C2=A0 move a few lines down.
+>=20
+> Testing.=C2=A0 The MSI change continues to run here on the Mac mini as a
+> daily driver, and Fab Stz confirmed it independently on an iMac9,1.
+> Both Tested-by tags are carried over unchanged from v3; the
+> diffs they were given are the diffs sent here, apart from the
+> mechanical
+> rebase of 2/2.=C2=A0 For v4 I rebuilt 2/2 with
+> CONFIG_DRM_NOUVEAU_BACKLIGHT
+> set to y and to n, because the patch splits the #ifdef block in two
+> and
+> that is where a change of this shape tends to break.
+>=20
+> If something about the shape of the series is what is holding it up,
+> I
+> would rather hear that than keep rebasing it.
+>=20
+> Marek Czernohous (2):
+> =C2=A0 drm/nouveau/pci: use config-space MSI rearm on MCP79/MCP7A (NVAC)
+> =C2=A0 drm/nouveau/kms: guard NULL crtc in nv50_sor_atomic_disable()
+>=20
+> =C2=A0drivers/gpu/drm/nouveau/dispnv50/disp.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 30 +++++++++++++---
+> =C2=A0.../gpu/drm/nouveau/include/nvkm/subdev/pci.h |=C2=A0 1 +
+> =C2=A0.../gpu/drm/nouveau/nvkm/engine/device/base.c |=C2=A0 2 +-
+> =C2=A0.../gpu/drm/nouveau/nvkm/subdev/pci/Kbuild=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 1 +
+> =C2=A0.../gpu/drm/nouveau/nvkm/subdev/pci/mcp79.c=C2=A0=C2=A0 | 35
+> +++++++++++++++++++
+> =C2=A05 files changed, 63 insertions(+), 6 deletions(-)
+> =C2=A0create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/pci/mcp79.c
 >=20
 >=20
 > base-commit: c21bb4193868a8de71fc4693fa741e195fdf5d86
