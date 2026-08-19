@@ -4,194 +4,117 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1039C5DF6D
-	for <nouveau@archiver.kernel.org>; Wed, 19 Aug 2026 10:45:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63665C5DF85
+	for <nouveau@archiver.kernel.org>; Wed, 19 Aug 2026 16:00:04 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A800610E86E;
-	Wed, 19 Aug 2026 10:45:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3C3DF10EE53;
+	Wed, 19 Aug 2026 16:00:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="LdNWfzPK";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="NtPGda8x";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="HtiVdQ6P";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="nQiVOu0G";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Db5P/FPB";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E13D74797A;
-	Wed, 19 Aug 2026 10:29:19 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 030994796D;
+	Wed, 19 Aug 2026 15:43:31 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787135359;
- b=FVNkUmqfcksN8ZD5wrOFuXzQjDT+ZZG08Vd0Qud9TVYi8rzbugwGh1D9K4vpoPEg2X7xh
- Wr8l/FskJNaKjuFkU7dFy8pG3h8g7kKoMKdyGZiybYdSBGCM7O0os1eyaN7agQLRCun902/
- secnHmNje48vDAeMT54nBnkxnObPa3TFa8cHH/OfT05NcnhuDtr3cJvvgbIKyImSh+XTAE7
- Xhk1eannoIbIZfsmy8lP2f3OJ8HisG28FiEc+J+tVwqPxRshjJk10VYNbe3VxJKLFdKuL6H
- Q3LimWc/r4A3wviYywvUhCKf2L+SMaOpxP80oQ88dl8YJGUGWBhuf0XDSC+Q==
+ s=20240201; t=1787154210;
+ b=kXUzbijlYp7ITzuORBZlaLL/SPEM3M8I4pYrrRHILSH6zAgcoEOhCHXv63MASCag/PCLb
+ mV0M7wCo/80dgXhxe4KVScvFlyHSOW4GeGNTTbhi+WBholFoOdRNINBDpLcPdrHp2IUcXeB
+ MYHrCo1PfDeLP2ah34Z3cFoZCN48hpJ0zYhHZpJXji04vU+Q1qkm5qmcVvIdGyFsFpaBxJ8
+ Jqugx2vyadOl3rIsDWx+245IHfjyVQ2ttOcYS4aBQECfN7lgRGFNETsR5hZY8Age9BVJM7Q
+ jc/MoDZvMJYjz+tFobfdAFFLAoHrjyB2IcEpNlFS5vHHbyE9uanYLXAZS6Gw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787135359; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787154210; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Hg/ZPXFle3feAVe1hiMHSTS/1Mz1wkpga/z0zY78R5Q=;
- b=nNAKwUIdwkeFyAYKr4nFKVlv+RuXVW3CW2C5HzUmW1cHRVCcZeKzeTaLzO+bT4067ed7X
- L/4GHh3xqWxh7rc2Lx+vwONTzjFIJ1yh2PosS47vazrRTVfrPWcx3GWMAQfoi+snPiA/gAJ
- 9ddUyp9KeOpSOBOaoV9sFagJmmGv5AmtxYbvu7vzUDjMNOOdsy968ouG7dzHZe7DrpphaKp
- wXsYH0nqMFZYiWAFLKpxUd93npeVj2mcvzCcwWkl3zFQd30DiT/OJTHLv5H6odUd03MKd2L
- 4FUSImRPyBPeSMXM6GR590q36TeDnZy41yW/mDKP6g332BhI6xGBzsxiRteQ==
+ bh=3Iz/4jWyINOcI8ZACwTPuDHgHiq9U8jasCe3dns6TY8=;
+ b=a/mSbVgmQHQ8M2ksWWVtCT2tPT/kVaEjowzrMpob1ajUOqiNm5fkR+bjh4NCJ7XruuFDF
+ Taf+C6xXOfth5fio/enBKs7n2ZY/ghhVx/MfKv4M7YmXCWCeKVHbN0ehEYpU3x21ZSFwAKa
+ g+oLxFzLSUtGyQ9dw+vMxQ7alDp5dIUm/xqEN7HdHjZhcA0aUOaJ+Mp8OBQN+D+Krc+geyS
+ jKRdYsMbuL4e/g11UyD4SftzGDdwmnaY3F4QPBhhhFVH222y9ZgXHCeSvGr24oUqOSVc8UE
+ goVeJcYil6oc0ony+R7WQMd5QmjNCXVhHjExuaHxgQFR2BvhDsmntS61bW0g==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=suse.de;
+ dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E780F450AA
-	for <nouveau@lists.freedesktop.org>; Wed, 19 Aug 2026 10:29:15 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E1D0710EDB8;
-	Wed, 19 Aug 2026 10:45:47 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	by kara.freedesktop.org (Postfix) with ESMTPS id B0C28450AA
+	for <nouveau@lists.freedesktop.org>; Wed, 19 Aug 2026 15:43:28 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 92F3A10EE5E
+	for <nouveau@lists.freedesktop.org>; Wed, 19 Aug 2026 16:00:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1787155200;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=3Iz/4jWyINOcI8ZACwTPuDHgHiq9U8jasCe3dns6TY8=;
+	b=Db5P/FPBRwfWVL7C5QgKndVWF3ENkYiF+4DRarfzkV/FTvc7NJqaswpjB3jzdKLPQEl13M
+	llSwFaCy08xGJcbkrvxiy402QxzCekwy0oGzOmHgCc2DDEovo6jnxIR0mBIhncxEAKWRiE
+	ksGkQVenrLXWyXnr0O3TItBF4sAeumY=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-641-axtJ9z8wNKiQactqz3rnBQ-1; Wed,
+ 19 Aug 2026 11:59:46 -0400
+X-MC-Unique: axtJ9z8wNKiQactqz3rnBQ-1
+X-Mimecast-MFC-AGG-ID: axtJ9z8wNKiQactqz3rnBQ_1787155182
+Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 3CA123ECE;
-	Wed, 19 Aug 2026 10:45:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_rsa;
-	t=1787136342;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=Hg/ZPXFle3feAVe1hiMHSTS/1Mz1wkpga/z0zY78R5Q=;
-	b=LdNWfzPKrb9NDTksCcvaHrsvxugOfINA1v+h3Kxy67vH2zhc75r2JKsfmAAhoII4pijNSl
-	DamY7typxy92U9RMhZP6Sk+eDBWphjO7TfrMGA6m0nv+DQmV6o0cPOsy5bl7f8mbDMhkuM
-	fEkDpG5lCEQUoiHXix5NG6Zduj7fH0w=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1787136342;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=Hg/ZPXFle3feAVe1hiMHSTS/1Mz1wkpga/z0zY78R5Q=;
-	b=NtPGda8xTU4/ykIvNTrk/MXoH9S0MdxTKEoPi+bSi+fNK8qvsVvOrNREMwnZWfeM++KHAq
-	bAb3yg0PLR0wlCBw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_rsa;
-	t=1787136338;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=Hg/ZPXFle3feAVe1hiMHSTS/1Mz1wkpga/z0zY78R5Q=;
-	b=HtiVdQ6P+QJOYv7bdivbBbzsLhrDtGsKdck5z+Rrnv5Or6Yb44FhFp1YxLUk3gDWrB9qYV
-	cn2gnBsxFaQ4xwdio3kwwY4iDLHaGThOj7ebSl9TL/PcG3Ua+Yaq9p1sn/dvBl9zZR/kEE
-	h4zGF9BReqs7jdJ4u7HD2AXm8xs8UR8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1787136338;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=Hg/ZPXFle3feAVe1hiMHSTS/1Mz1wkpga/z0zY78R5Q=;
-	b=nQiVOu0G3/p+k3HKPnabYNUqcD5L4WSj9Qhtsmg5DXJti+Tl/1EJONrUHo9Krh/jZRLA7e
-	BT6JqTT+EATfroAQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AC5BB2F81;
-	Wed, 19 Aug 2026 10:45:37 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id PoR9KFGJhWo/KAAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Wed, 19 Aug 2026 10:45:37 +0000
-Message-ID: <427a13f5-c820-4aa1-b19f-1fb0493d264d@suse.de>
-Date: Wed, 19 Aug 2026 12:45:37 +0200
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 189DD1955F1D;
+	Wed, 19 Aug 2026 15:59:41 +0000 (UTC)
+Received: from GoldenWind.lan (unknown [10.22.89.72])
+	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id DD8EE1800346;
+	Wed, 19 Aug 2026 15:59:36 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org,
+	nouveau@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	Marek Czernohous <mczernohous@gmail.com>
+Subject: [PATCH v2 0/6] Obliterate nouveau_encoder->crtc
+Date: Wed, 19 Aug 2026 11:43:47 -0400
+Message-ID: <20260819155934.154125-1-lyude@redhat.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/12] drm/panic: Allocate QR-code buffers statically
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-References: <20260818125012.468092-1-tzimmermann@suse.de>
- <20260818125012.468092-2-tzimmermann@suse.de>
- <CAMuHMdWYVjvGM2pOzWoDq8LUSrkFtzOQwdmosHYQuBLnSn3D-Q@mail.gmail.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: 
- <CAMuHMdWYVjvGM2pOzWoDq8LUSrkFtzOQwdmosHYQuBLnSn3D-Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+X-Mimecast-MFC-PROC-ID: Oj5D-DPFSwge0sEFI8erOFxTPVj3igEvJ-PtLD_lS8k_1787155182
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-4.30 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,lists.freedesktop.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	RCVD_TLS_ALL(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.com:url,suse.de:mid,suse.de:email]
-Message-ID-Hash: J4F3NRF3JVNRMT3BMEA7RLVOOCJB4QJG
-X-Message-ID-Hash: J4F3NRF3JVNRMT3BMEA7RLVOOCJB4QJG
-X-MailFrom: tzimmermann@suse.de
+content-type: text/plain; charset="US-ASCII"; x-default=true
+Message-ID-Hash: WVRWLKTUMKC35BPW5FIQ4Z2L5ACQRGSV
+X-Message-ID-Hash: WVRWLKTUMKC35BPW5FIQ4Z2L5ACQRGSV
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: jfalempe@redhat.com, javierm@redhat.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
- sashiko-reviews@lists.linux.dev
+ loop; banned-address
+CC: Dave Airlie <airlied@redhat.com>, Marek Czernohous <marek@czernohous.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Marco Crivellari <marco.crivellari@suse.com>, Kees Cook <kees@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>,
+ Maxime Ripard <mripard@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Jani Nikula <jani.nikula@intel.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/J4F3NRF3JVNRMT3BMEA7RLVOOCJB4QJG/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WVRWLKTUMKC35BPW5FIQ4Z2L5ACQRGSV/>
 Archived-At: 
- <https://lore.freedesktop.org/427a13f5-c820-4aa1-b19f-1fb0493d264d@suse.de/>
+ <https://lore.freedesktop.org/20260819155934.154125-1-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -201,91 +124,36 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hi
+This is mostly a leftover artifact from the pre-atomic days, and while
+we've been using it for a while now - it isn't great. Mostly because having
+redundant state tracking for things atomic already keeps track of is pretty
+much always error prone, as anyone working on nouveau who isn't already
+very well versed in atomic modesetting isn't going to realize this isn't
+the right way to see what CRTC is assigned to an encoder.
 
-Am 19.08.26 um 11:38 schrieb Geert Uytterhoeven:
-> Hi Thomas,
->
-> On Tue, 18 Aug 2026 at 15:00, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> Declare qrbuf1 and qrbuf2 as static arrays so that the module loader
->> allocates them for us. Avoids the kmalloc later on. Also allows for
->> using sizeof() to get the number of bytes in each array. Access the
->> arrays once with memset, so that the physical pages are available on
->> a panic.
->>
->> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Thanks for your patch!
->
->> --- a/drivers/gpu/drm/drm_panic.c
->> +++ b/drivers/gpu/drm/drm_panic.c
->> @@ -628,24 +628,23 @@ MODULE_PARM_DESC(panic_qr_version, "maximum version (size) of the QR code");
->>   #define WINDOW_BITS 12
->>   #define MEM_LEVEL 4
->>
->> -static char *qrbuf1;
->> -static char *qrbuf2;
->> +static u8 qrbuf1[QR_BUFFER1_SIZE];
->> +static u8 qrbuf2[QR_BUFFER2_SIZE];
-> I am not a big fan of increasing kernel size like this.
-> You may run (faster) into boot loader limitations.
+Also - this patch series does fix an actual bug (patches 1-3).
 
-Which limitation would this be?
+Previous version of this patch series:
 
->
->>   static struct z_stream_s stream;
->>
->>   static void __init drm_panic_qr_init(void)
->>   {
->> -       qrbuf1 = kmalloc(QR_BUFFER1_SIZE, GFP_KERNEL);
->> -       qrbuf2 = kmalloc(QR_BUFFER2_SIZE, GFP_KERNEL);
->> +       /* best-effort allocation; can be NULL */
->>          stream.workspace = kmalloc(zlib_deflate_workspacesize(WINDOW_BITS, MEM_LEVEL),
->>                                     GFP_KERNEL);
-> <ironic>Why not use a static array for this, too?</ironic>
+	https://patchwork.freedesktop.org/series/172417/
 
-I tried, by the size is calculated at runtime.
+Lyude Paul (6):
+  drm/nouveau/kms/nv50-: Move DPCD backlight disable into its own
+    function
+  drm/nouveau/kms/nv50-: Add nv50_outp_get_old_crtc()
+  drm/nouveau/kms/nv50-: Stop using nv_encoder->crtc in
+    nv50_sor_atomic_disable()
+  drm/nouveau/kms/nv50-: Stop using nv_encoder->crtc in
+    nv50_disp_atomic_commit_core()
+  drm/nouveau/kms/nv50-: Add nouveau_encoder->audio.crtc
+  drm/nouveau/kms/nv50-: Obliterate nouveau_encoder->crtc
+
+ drivers/gpu/drm/nouveau/dispnv50/disp.c   | 78 ++++++++++++++++-------
+ drivers/gpu/drm/nouveau/nouveau_encoder.h |  4 +-
+ 2 files changed, 56 insertions(+), 26 deletions(-)
 
 
->
->> +
->> +       /* touch memory so that pages are there in the case of a panic */
->> +       memset(qrbuf1, 0, sizeof(qrbuf1));
->> +       memset(qrbuf2, 0, sizeof(qrbuf2));
-> Please clarify "there"?
-> In cache? Not all systems have sufficient data cache, so it may be
-> evicted at any time.
-> In RAM? AFAIK kernel and module memory is not demand-paged.
-> In TLB? Like cache, it may be evicted at any time.
-
-I'd like to avoid looking for a page after a panic has already occurred. 
-But I guess it might not make a difference, given all the DRM that is 
-involved.
-
-The motivation here was that I did not like that panic handling depends 
-on a number of dynamic kmallocs, with which we don't even detect alloc 
-failures until a panic has occurred.
-
->
-> So IMHO this is futile.
-
-Noted.
-
-Best regards
-Thomas
-
->
->>   }
-> Gr{oetje,eeting}s,
->
->                          Geert
->
-
+base-commit: 0e118b936dc5904cf0d9859882a40c96057b083d
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG Nürnberg)
-
+2.55.0
 
