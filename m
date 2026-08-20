@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EB09C5DF86
-	for <nouveau@archiver.kernel.org>; Thu, 20 Aug 2026 20:01:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 680DFC5DF81
+	for <nouveau@archiver.kernel.org>; Thu, 20 Aug 2026 21:56:33 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3059710E5FF;
-	Thu, 20 Aug 2026 20:01:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BD04210F1A9;
+	Thu, 20 Aug 2026 21:56:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="GefwR9/Q";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Q4oBQtwG";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6230A47A76;
-	Thu, 20 Aug 2026 19:45:08 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id BEFE147A81;
+	Thu, 20 Aug 2026 21:39:56 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787255108;
- b=ynyDG94Ic5YgiK+NBbBNmJ0WrftY6pm5CCBiC0iNzzhBmprGMtoI+SKzxFN7BFeubvzGy
- kzo6f24jVk+P6nxgTfUhTA794y2O3FkBF7OPTZothQqhmk+uP82q9MttAVoh5aM+H4noAwe
- zEFsvoGKLxX3PDB/ni++r6r1pPn3JjNzcxc8G6dOZpgh7reVLEGxWOwj78byO4aK+j+3jgP
- ocPv0qeuZdUBLGu2x3X7cvNKgqMrVeypiyTaB0K2B4tE644a8ifWBw7xnh3eVsZcTjiARdq
- 3boUOI+c6YS/ev0DmJqxiAwsLqI7gHHlEINHRW+G891W4qKpvH9ZCYUePpPA==
+ s=20240201; t=1787261996;
+ b=vdoRHyWHAguAOFeF2vkfJJK+y7EKkFExRWujIp3Fv7YMvwbS8VecRPZsrvYlAqXK7niJ1
+ 7fJzTwyTjlwRiQa4EHSSdP9YrW+Mk4KgqKgV6OAy/p5nzlO8wv1gwvM6qY/PrdE4hQYkvGJ
+ J4htVp+xzTox+aedN3x3gnASccoifvkD1LRrVkFgy8grk+q/fS2sz3JBLd7fAGTbJ+TQ0aH
+ e49ohmCVpV6S+RRKuYMEAvlapzYHVcF8gJUKn/ONb0+57mtEqpsw3W3JAocpyM1RCTMbUAy
+ GK7mvVPBCW8LieMq286Bx7UDqeVougaJlho/h3j7d4G5ERNIBxMxd1SjeQHg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787255108; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787261996; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=yJKPICihK9XYAlei4GXUvaTGSn4DbGwdgj148h871wM=;
- b=ZjGa5zGONVVD5snw1Rq3uQkWvTAumrKTzbmuFWGP9LMz61wEhNqSkj062GwOhrXPWqtFZ
- 91YGbk9N5AU/AlnoH4Gl7ONsVgua+4uDOobcnyTpUjd6os4GI5+n7wB4x3RepXuU189grmR
- nLdSHHzJBZ/0naoV0YhMxednoBQN7ZD1TZMxDhOmUMdFmidRlpU7jivz/uHHAEg2L8pLCcO
- fKgp6hAPSYBK04GSLUggbotdVYa2vchD2tEXM0YGsrXRTOsTkZoEH5OTHUMPvd0RVpNyqLn
- U/m0RgDyRW9G1fYUfgOWu+Rxg265ZKxMnjWZpBbx+m+5OWMYkdfO16kqYJ3A==
+ bh=qJNhFXppokjOp9Um282YuDdOK7JlZ3LGM60w1T1FT9E=;
+ b=F4x9wT87kcP0UIo81+xTU4yzmOQaJPWxrFynLjOBJhfLwQEwomrETrhw3DkhjXdsd1/Xc
+ sRmAt+/aiTr7y8UgWcXwiQozuB/QW8y2LzaMAKjqg57damDT58PYbRYHaxt+/OiWZqFDy81
+ +28sVt8oY3K1Kxi9FCEgWjttTc61Qpyd1ubJzV/5Z5g3NES4m8wD2lo/H5jJliIMSVqBPFK
+ ugYfEYB8WQKteHJ0dx9ppOet/osustZI8LGtx+foixbeo0WnxRzueYeCU9CibwJFpT5aXfK
+ GWwAGFtUJDNnLuyHVKvJHTNDiBc4AbYaNKRFmMAgf6G7lbTQQdUE+xUUZ48A==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,85 +46,85 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id CEAD0473C8
-	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 19:45:06 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id B16C647A41
+	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 21:39:53 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 480FD10E0A7
-	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 20:01:42 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4D4A510E210
+	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 21:56:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1787256101;
+	s=mimecast20190719; t=1787262988;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=yJKPICihK9XYAlei4GXUvaTGSn4DbGwdgj148h871wM=;
-	b=GefwR9/Q+Zu59T0Sk/pxSPSVYcJOuKLlkxNs1SRZtS8TaVafyV+AcfZlUXMk+GuPQOhA0e
-	UOuMtepTyaMoODnKk6tz649Xu3S90NRsnQmFsFd7yBXE0NEQy8Ey2RgBHqttn/LVHFEZZq
-	RQAqu9ussgUxXnMFesBxMVp36oLmi/U=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=qJNhFXppokjOp9Um282YuDdOK7JlZ3LGM60w1T1FT9E=;
+	b=Q4oBQtwGNeCHEKr6A9uvsPNqt/4oDhbL6VEbrpXpVN01XmDa6gkYdIZsUQzjDato5OdI5r
+	j22dmtInhpZl3oSiZauADVfhxnE6j0JAU6+7EE5ZRuvZ2CQe2fQvclCGMjLsBNNDHXF/KY
+	pe9hreIGA8nN7ML1rDiCbRNHYpfzXH0=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-454-neamIkyaMwKzyhOPvWWPrQ-1; Thu, 20 Aug 2026 16:01:34 -0400
-X-MC-Unique: neamIkyaMwKzyhOPvWWPrQ-1
-X-Mimecast-MFC-AGG-ID: neamIkyaMwKzyhOPvWWPrQ_1787256093
-Received: by mail-qv1-f69.google.com with SMTP id
- 6a1803df08f44-9087f2fe592so1866176d6.0
+ us-mta-571-ZIZNQC2fPlifTKHpJTuQow-1; Thu, 20 Aug 2026 17:56:25 -0400
+X-MC-Unique: ZIZNQC2fPlifTKHpJTuQow-1
+X-Mimecast-MFC-AGG-ID: ZIZNQC2fPlifTKHpJTuQow_1787262984
+Received: by mail-qk1-f197.google.com with SMTP id
+ af79cd13be357-936708f129aso30041885a.0
         for <nouveau@lists.freedesktop.org>;
- Thu, 20 Aug 2026 13:01:34 -0700 (PDT)
+ Thu, 20 Aug 2026 14:56:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787256093; x=1787860893;
+        d=1e100.net; s=20251104; t=1787262984; x=1787867784;
         h=mime-version:user-agent:content-transfer-encoding:content-type
          :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=yJKPICihK9XYAlei4GXUvaTGSn4DbGwdgj148h871wM=;
-        b=mVdmH2B9KGmJDlDbOud19QvzyFPyiWrlqIKDKpoZ44OXLvic5tBgFG+8hZub8YEVwY
-         rTAgezX64M03gV/cMCTx+7ns5uM7e1jkeXA42Ruw7wP5XyFEKWKyDjeU6YlI8AhJXWZ3
-         5oKTEp5ZcD+0Jd8oc9xJuhpFdltUZv7PC2djZtxejXtwbMt9+6YngXIn4epNZFUKNgzG
-         jZ1jAXzDSeXK5huvHPTg4Z9yq6nWjqg5+qPaikDR/SeyzybphVPSyloeHx/+zHmcqNWw
-         i6TKBpL14eIJq616I1jXa5TL4/T9+ce4rpr6gOYnda2cGTHjqmQANvj7dBp1p/eSwx7D
-         mRIA==
+        bh=lzTaBAeZXEpNdEF6mCBk0yTwt9Zf1jS1qQHVYWMdOMI=;
+        b=a8gyFLVEZk2Sf8tCIWd87PodF9R67DvnTPQKK7tyLAX/CVv7YVVxeVfGpQRsJV+NdV
+         7rE+mOqSfKBF0iwBpzN9VRp83VfMG0CFKlmoon8sg3pq4+AP4siynwiALY3fS6Z6GqB7
+         XzfTChaIJxxSwhE+LDOc2+cumQOBx8MbjQK8Fn3rcpwQ7ZwjlwqjXIi2AwQ9HZ16UmUf
+         kOfbqIfpnfMws8pDnANLPQwo84JGUelnlhgRTT7ZBaCCYtlzhpesMUuCPMkcc2vd8rxb
+         Op7agXgwY0Fw0yENHJqDVUh398ydyeOQX7WCSLLts+ZGMGFvEuJVfz3HZLVhSY/Dzdgv
+         6TzQ==
 X-Forwarded-Encrypted: i=1;
- AHgh+RquDQ6rfKe/tJ9zvC1jT0A0lDfGfqzYV0G7UBRj0yKvzGLKCSNJBPPnxKFciPRpoMPYld06fXeQ@lists.freedesktop.org
-X-Gm-Message-State: AFuF++mBhk1okRsgREYZ/RhXW3tX7BNylAhiGzA5ZGCw/zDNj8MReHZm
-	yn/AGDm8sRMpXbXbVMEbZt9iGPKodYLKhnjYZSqIaiytQ3ov/40gJNsKJdiKiTpjBuLcgkEk8OP
-	F4H9OcupABf7fktg8Qgoalem5jkMMwb0jSPTZeMp4mVTSbfGSf2DKk/7zaTg+HPrNZHg=
-X-Gm-Gg: AR+sD10N52IrQ8InyW8/l9kqaSeXz7eAIhRUCPPCpZvbYSN+r9k6DvrTzrmjtGpvKcx
-	sf1BSVUxwTyD3fHt3KKz+vqnAoqOuD8Mmx/VJspkZg5lpy57Scz0gm6W6lSiehSoLcNz2pzBXuz
-	gNNSs4ZVOtphcUEPdTttZGcX0joSoEpX8MoqBtAxkw41K1J7bsy53+SfLsW4ldcW0TIhQ/fAGFq
-	LvLxZA2TDYDku6bY1G1KHgATEugbNPP0ZKe3qnPAMA8WSpY2wFs433t+76AT/YZT6IRH9bEZj6q
-	z2J+Ylo2mrYIG3sn76kG+xotPzIBLyI3bEHrI48lGles/EgeteVtp5e1iOUZOUSXjQl1/aJ6
-X-Received: by 2002:a05:6214:4113:b0:90a:74d4:e4ac with SMTP id
- 6a1803df08f44-90c80c5b401mr6881856d6.16.1787256092628;
-        Thu, 20 Aug 2026 13:01:32 -0700 (PDT)
-X-Received: by 2002:a05:6214:4113:b0:90a:74d4:e4ac with SMTP id
- 6a1803df08f44-90c80c5b401mr6880856d6.16.1787256092024;
-        Thu, 20 Aug 2026 13:01:32 -0700 (PDT)
+ AHgh+Rq5QLEv0DVTLybWS8kvTajM35PMi3BUGzyR+HYS8wecrwXSRiRw+ddhdtAokvV+m5BJs+qePPiz@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxcH4NHqzEv9M8H7E/mYY2fVOmFGyGPFx5b6EvnVOGVN/3nfQYI
+	uKtyDIcU8KtfdhJgegReEVt4/izGTbS0C5uuQrMMP3YluZiL7iy7cdljq0yvGN3OtFOLAgJLcwD
+	TxE/8FaGLPPcOTGvKu79buP/TOkw0vSDQzGERPXkfFyEW29kCBmcxxBC67UaLLwMMsMY=
+X-Gm-Gg: AR+sD119dEWXt4v7smAteEMTMFeEF9q9cwh3nFLH6QgtDzFRyvpKS5Zb5bAPwugbdHu
+	Bvis1GcM9XgPHR/D1Yaml91wmOfgr/WLPH/ddt6RMy+r09wB7LLivkwBYHlzg/cTs7P6w5BxaXl
+	9DPm2QJAia91SQvGNzdoOpQSuylMcwpWNtof6syxnI8p307OqWFGoVyEKa+YKSoFcxiG0SD8z7n
+	706rqv8g1xrIIZYwz69dk4e2yPGdt1uwuYDncwVlYt3CJ49/0y8YvmgqhRIbKC9fKRZzS3+IlOS
+	qpMV449wg9P8TSev3J07QkWVFOJcuyvwoE0VFblZTmqBz6tWpLn+7/otkKuqgSosezozlu25
+X-Received: by 2002:a05:620a:1132:b0:937:36c0:bf6 with SMTP id
+ af79cd13be357-9373958fcdamr105262185a.16.1787262984426;
+        Thu, 20 Aug 2026 14:56:24 -0700 (PDT)
+X-Received: by 2002:a05:620a:1132:b0:937:36c0:bf6 with SMTP id
+ af79cd13be357-9373958fcdamr105260085a.16.1787262983921;
+        Thu, 20 Aug 2026 14:56:23 -0700 (PDT)
 Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-90c5f2a1139sm45835516d6.34.2026.08.20.13.01.29
+ af79cd13be357-937204aa8a6sm461514385a.11.2026.08.20.14.56.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Aug 2026 13:01:30 -0700 (PDT)
-Message-ID: <4ae8c1b945b83dfeafe4c89d59ec03c994242fd9.camel@redhat.com>
-Subject: Re: [PATCH v3 2/4] drm/nouveau: subscribe to the channel-kill event
- after the fence context
+        Thu, 20 Aug 2026 14:56:22 -0700 (PDT)
+Message-ID: <9414b8d122b9489056d72ee1605787ee038e62b7.camel@redhat.com>
+Subject: Re: [PATCH v3 4/4] drm/nouveau: subscribe to channel-kill events on
+ NV50 and newer
 From: lyude@redhat.com
 To: Marek Czernohous <mczernohous@gmail.com>, nouveau@lists.freedesktop.org,
  	dri-devel@lists.freedesktop.org
-Date: Thu, 20 Aug 2026 16:01:29 -0400
-In-Reply-To: <20260812231330.705425-3-mczernohous@gmail.com>
+Date: Thu, 20 Aug 2026 17:56:21 -0400
+In-Reply-To: <20260812231330.705425-5-mczernohous@gmail.com>
 References: <20260812231330.705425-1-mczernohous@gmail.com>
-	 <20260812231330.705425-3-mczernohous@gmail.com>
+	 <20260812231330.705425-5-mczernohous@gmail.com>
 User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: JMLWoweMSX6FCOiAoZhWw3Es89JKJIr1eX9sR_Ht-Bo_1787256093
+X-Mimecast-MFC-PROC-ID: SBc71fRaWoBI8oGK4bJvM_WUJ4qtEIUraKbfVlWjJF4_1787262984
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: QIL5A5MJ5WZN7GW43AE5G2FIO635UA6Z
-X-Message-ID-Hash: QIL5A5MJ5WZN7GW43AE5G2FIO635UA6Z
+Message-ID-Hash: 2MHGWDHPRDA6XGIXLDFWXFN76ZJUVBZF
+X-Message-ID-Hash: 2MHGWDHPRDA6XGIXLDFWXFN76ZJUVBZF
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -135,9 +135,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QIL5A5MJ5WZN7GW43AE5G2FIO635UA6Z/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2MHGWDHPRDA6XGIXLDFWXFN76ZJUVBZF/>
 Archived-At: 
- <https://lore.freedesktop.org/4ae8c1b945b83dfeafe4c89d59ec03c994242fd9.camel@redhat.com/>
+ <https://lore.freedesktop.org/9414b8d122b9489056d72ee1605787ee038e62b7.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -147,155 +147,87 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
+This one is going to need some input from others I believe, mostly in
+that I'd want to really make sure we know what the implications of
+enabling an event like this on Tesla are and what kind of testing we
+would need to know this isn't going to break things.
+
+If it was a slightly newer generation I wouldn't be as worried. What
+kind of testing have you done with this so far in terms of workload in
+addition to what you mentioned on the cover letter? Tried running any
+games, anything graphics intensive, etc.?
+
 On Thu, 2026-08-13 at 01:13 +0200, Marek Czernohous wrote:
+> From: Marek Czernohous <marek@czernohous.de>
 >=20
-> Move the subscription behind context_new() so the handler cannot
-> observe
-> a half-built fence context. The failure path is unchanged in effect:
+> nouveau_channel_init() only subscribes to the channel-killed event
+> for
+> FERMI_CHANNEL_GPFIFO and newer. On NV50/Tesla the subscription
+> therefore
+> never happens, and nvkm_chan_error()'s NVKM_CHAN_EVENT_ERRORED is
+> delivered into an empty notifier list.
+>=20
+> Today that is harmless, because nothing kills a channel on Tesla: the
+> only nvkm_chan_error() callers are the Fermi and newer recovery
+> paths.
+> So this patch changes no observable behaviour on its own, and that is
+> deliberate: it removes a latent trap before anything can fall into
+> it.
+> I am carrying a Tesla recovery path that does add such a caller and
+> will
+> send it separately once it is ready. Without a subscriber in place
 > the
-> caller drops the channel with nouveau_channel_del() either way, which
-> since the previous patch unsubscribes before freeing the context.
+> consequences there are severe: nouveau_channel_killed() never runs,
+> so
+> nouveau_fence_context_kill() never runs either, and the pending
+> fences
+> of the killed channel are never signalled. Everything waiting on them
+> waits forever: drm_atomic_helper_wait_for_fences() in the display
+> commit
+> tail waits uninterruptibly and without a timeout, and the TTM delayed
+> delete workers wait in TASK_UNINTERRUPTIBLE. The user sees a frozen
+> desktop on a machine that is otherwise alive, and nothing in the
+> kernel
+> ends that state: both waits pass MAX_SCHEDULE_TIMEOUT, so the fences
+> cannot time out. They are signalled only when the fence context is
+> torn
+> down, that is when the DRM client owning the channel closes its fd
+> and
+> nouveau_fence_context_del() runs. Killing the client, or rebooting,
+> clears it; waiting does not.
+> That is also a dma-fence contract violation: a fence must always be
+> signalled, with an error if necessary.
 >=20
-> One behavioural change worth naming, and it is not free: a kill
-> delivered while the channel is still initialising is no longer
-> observed,
-> because the subscription is not armed yet. That window does not close
-> here, it moves, and on Fermi and newer it grows by the span between
-> the
-> old subscription point and context_new(). What changes is what the
-> window costs. Before, a kill landing in it reached a half-built fence
-> context; now it is missed, and the channel is left blocked with
-> chan->killed still 0, so nouveau_channel_idle() and the checks in
-> nouveau_gem_ioctl_pushbuf() and nouveau_exec_ioctl_exec() keep
-> treating
-> it as alive. The missed-kill window is not introduced by this patch
-> either:
-> nvkm_uchan_init() already calls nvkm_chan_allow() and
-> nvkm_chan_insert(),
-> so the channel is schedulable before nouveau_channel_init()
-> subscribes at
-> all. Closing it properly means subscribing before the channel becomes
-> schedulable, which is a bigger change than this fix.
-
-I don't think this would be a big change, actually. If I understand
-this code properly, we don't need to move around the channel event init
-at all. Maybe:
-
- * Add another atomic to `nouveau_fence` to indicate if the fence is
-   ready
- * Have `nouveau_channel_kill()` check this atomic after setting the
-   killed bit, and only call `nouveau_fence_context_kill()` in the
-   event the atomic is set.
- * Back in `nouveau_channel_init()`, after we initialize the rest of
-   the channel (we still haven't set the atomic yet) grab the fence
-   context lock to delay, but not block, any incoming kills.
- * Check the killed atomic to see if a kill event came in the window
-   before the fence was ready.
- * Set the atomic indicating that the fence is ready.
- * Drop the lock.
- * If we found that the killed atomic had been set while holding the
-   lock, call nouveau_fence_context_kill() manually (or queue up a call
-   to it if that works better with a workqueue perhaps?).
-
-Hopefully I didn't miss anything that would make my idea not make
-sense. And consider trying to write the respin without using claude!
-You will learn more, the work I've done is the only reason I was able
-to think of a solution like that only a few minutes after reading the
-code here.
-
-Also - it might not need to be an atomic, I'd have to look a bit more
-closely to know though.
-
+> Lower the class gate to NV50_CHANNEL_GPFIFO. The nvkm side is already
+> class neutral: the KILLED case hangs the notifier on runl->chid-
+> >event,
+> which every fifo owns since the runlist rework, and
+> nvkm_uchan_uevent()
+> does not discriminate by class. Pre-NV50 chips keep the old
+> behaviour,
+> so NV04 to NV40 are unaffected.
 >=20
-> As with the previous patch this is unreachable below Fermi today, and
-> the last patch in this series lowers the gate to NV50.
->=20
-> Fixes: ea13e5abf807 ("drm/nouveau: signal pending fences when channel
-> has been killed")
-> Cc: stable@vger.kernel.org
 > Assisted-by: Claude:claude-opus-5
 > Signed-off-by: Marek Czernohous <marek@czernohous.de>
 > ---
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_chan.c | 55 +++++++++++++++--------=
--
-> --
-> =C2=A01 file changed, 33 insertions(+), 22 deletions(-)
+> =C2=A0drivers/gpu/drm/nouveau/nouveau_chan.c | 2 +-
+> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
 >=20
 > diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c
 > b/drivers/gpu/drm/nouveau/nouveau_chan.c
-> index f142f6310596..07b0bd1bc519 100644
+> index 07b0bd1bc519..5c2f4b9342b7 100644
 > --- a/drivers/gpu/drm/nouveau/nouveau_chan.c
 > +++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
-> @@ -370,27 +370,6 @@ nouveau_channel_init(struct nouveau_channel
+> @@ -485,7 +485,7 @@ nouveau_channel_init(struct nouveau_channel
 > *chan, u32 vram, u32 gart)
-> =C2=A0 if (ret)
-> =C2=A0 return ret;
-> =C2=A0
-> - if (chan->user.oclass >=3D FERMI_CHANNEL_GPFIFO) {
-> - DEFINE_RAW_FLEX(struct nvif_event_v0, args, data,
-> - sizeof(struct nvif_chan_event_v0));
-> - struct nvif_chan_event_v0 *host =3D
-> - (struct nvif_chan_event_v0 *)args->data;
-> -
-> - host->version =3D 0;
-> - host->type =3D NVIF_CHAN_EVENT_V0_KILLED;
-> -
-> - ret =3D nvif_event_ctor(&chan->user, "abi16ChanKilled", chan->chid,
-> - =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nouveau_channel_killed, false,
-> - =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 args, __struct_size(args), &chan->kill);
-> - if (ret =3D=3D 0)
-> - ret =3D nvif_event_allow(&chan->kill);
-> - if (ret) {
-> - NV_ERROR(drm, "Failed to request channel kill "
-> - =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "notification: %d\n", ret);
-> - return ret;
-> - }
-> - }
-> -
-> =C2=A0 /* allocate dma objects to cover all allowed vram, and gart */
-> =C2=A0 if (device->info.family < NV_DEVICE_INFO_V0_FERMI) {
-> =C2=A0 if (device->info.family >=3D NV_DEVICE_INFO_V0_TESLA) {
-> @@ -494,7 +473,39 @@ nouveau_channel_init(struct nouveau_channel
-> *chan, u32 vram, u32 gart)
-> =C2=A0 }
-> =C2=A0
-> =C2=A0 /* initialise synchronisation */
-> - return nouveau_fence(drm)->context_new(chan);
-> + ret =3D nouveau_fence(drm)->context_new(chan);
-> + if (ret)
-> + return ret;
-> +
-> + /*
-> + * Subscribe to the channel-kill event last.=C2=A0 The handler
-> + * dereferences chan->fence, and the fence context is only complete
-> + * once context_new() has returned: the backends assign chan->fence
-> + * from kzalloc() before nouveau_fence_context_new() initialises the
-> + * lock and the pending list, so an event arriving in between would
-> + * find a non-NULL but unusable context and walk a NULL list head.
-> + */
-> + if (chan->user.oclass >=3D FERMI_CHANNEL_GPFIFO) {
-> + DEFINE_RAW_FLEX(struct nvif_event_v0, args, data,
-> + sizeof(struct nvif_chan_event_v0));
-> + struct nvif_chan_event_v0 *host =3D
-> + (struct nvif_chan_event_v0 *)args->data;
-> +
-> + host->version =3D 0;
-> + host->type =3D NVIF_CHAN_EVENT_V0_KILLED;
-> +
-> + ret =3D nvif_event_ctor(&chan->user, "abi16ChanKilled", chan->chid,
-> + =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nouveau_channel_killed, false,
-> + =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 args, __struct_size(args), &chan->kill);
-> + if (ret =3D=3D 0)
-> + ret =3D nvif_event_allow(&chan->kill);
-> + if (ret) {
-> + NV_ERROR(drm, "Failed to request channel kill notification: %d\n",
-> ret);
-> + return ret;
-> + }
-> + }
-> +
-> + return 0;
-> =C2=A0}
-> =C2=A0
-> =C2=A0int
+> =C2=A0=09 * lock and the pending list, so an event arriving in
+> between would
+> =C2=A0=09 * find a non-NULL but unusable context and walk a NULL list
+> head.
+> =C2=A0=09 */
+> -=09if (chan->user.oclass >=3D FERMI_CHANNEL_GPFIFO) {
+> +=09if (chan->user.oclass >=3D NV50_CHANNEL_GPFIFO) {
+> =C2=A0=09=09DEFINE_RAW_FLEX(struct nvif_event_v0, args, data,
+> =C2=A0=09=09=09=09sizeof(struct nvif_chan_event_v0));
+> =C2=A0=09=09struct nvif_chan_event_v0 *host =3D
 
