@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52F18C5DF86
-	for <nouveau@archiver.kernel.org>; Thu, 20 Aug 2026 16:51:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97462C5DF81
+	for <nouveau@archiver.kernel.org>; Thu, 20 Aug 2026 16:51:08 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2C4C410F120;
-	Thu, 20 Aug 2026 16:51:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7470910F126;
+	Thu, 20 Aug 2026 16:51:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KNjm17SA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="B24uFRo3";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B1787479F6;
-	Thu, 20 Aug 2026 16:34:27 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 07E0E479F8;
+	Thu, 20 Aug 2026 16:34:33 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787243667;
- b=JMo3NOw4Vfb2+FB3Ns3CeTG2RZ8XRT6CCuxg8GGtv5iSAflyhrPeD6BqUdEkllsCNjwTg
- YOAf8ZNIAwEqA5C7Gh4wP+G9Rjg88e/pSS0gMPzVMmeo2bwsPuKJQ4IMf8AT2aU/cFMIRs6
- xcCmoImu/5SV6HVlKHd/8NeKlH8UODa6wUfR9H2E5zmuRi6eju8Q9MgVSgMGiV/A8Wd/KzI
- FLwbvh1tnNmVg5XFbeucswX9XBpRrxxTN3Tp/APpcL/zaexLiOanECs+MRakGVuvN3XZKaI
- h5sG80Vbm5+d7pKZmUpqaeah3M6FqMAUUAggCLLT6UgIa9NV6N7RmtHDcrFg==
+ s=20240201; t=1787243672;
+ b=lPa7qavm0aiQtL4I0/MkT44EGPpW06sRiwTKRVTDAsX3F74GKzabsoZPSk35moHa9fWYE
+ tQ55zgMbSCGySdR8M13BHk7qxFRBlzOlPwX4w+NT9MrajWsqGnztVomYbsb/hqTRGo71r6Y
+ iSyt63LOLlK6wPEd7tIcmrar0Z2aouGYlGX988PGAejav1h4O7AkxZP9DB64Jkd70gC2B06
+ L+AWjC6NglyUA9Q3ngJXx5Y66j509Y2BxpqiO2/5Sw3pJUXHh/WImblLHtM3lyct6r6BWHs
+ KoIMgyREHwlWqglToB9Kya5YP67zRwvaAmX97yowQUDvMiFCmdwmxhzyrVZQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787243667; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787243672; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=PblTzKwEMx0jDI4oVKpj3IJS/TAZT0OEcT+54p3qrbc=;
- b=0CZU8LThTTmxHtZu73+fYh7RSgqA154Yrg24U5y4mhfvdICCiEZJmk4A8YDmXVXyxwUlS
- +MInpeLiK2l3GWw2ZoOEBvb0gmLosrkz8NBQmLdKW3EpczJBGTs7rbpWElLWthlGj5F3TyE
- /jULNjwf0I01P85GC+ZLjsOsyOzcvW93BdxgMpTD8cMMB3IKH87614kcBBeEImAPQUfqiTo
- /VNRmNwz4eguUNSoARMXqkDGn+uDH1ka8mk+9Eu6QuXBblPzDkcvNMRKWylpPAup0DIgrHP
- mKyD8Ky0wBTUCzc2YWZywL8XwMQEBvtICckbt8gHK9pfG/mq30WiwQwKo7/A==
+ bh=xoij1rKhFdJD5+LmFn+9RDZC5MZ7psm+4aCRvb4W/Ds=;
+ b=eY5ZPfj4ILBBZ6WSkNkR4okpEia7L2zqz5nX5iREVsrfudTS91k9YE+ORbL3ZRi3ne3Ny
+ XXkXSG2DC2yczTA4DX26Z+T+47nJ1v7cPcLmVdq9l343dh9vlTSlvy1oc8vW0a/vDIcuAkA
+ PpfbrmAnFC3mIdZmCKhDoUKI0iNILL05rheXEFVKBXyIB4MP9eRFvrbyq/qOKiSqn1/FZPL
+ XdyuORZ1mky9iV43Bft4wUMIU99NxawASRXFtu42k8DmVG/z5xY5MDZFo9KvuDIfx4bYloN
+ +TsMbcAqjPatKL9u9cnaLjj2I9ZMe8gdVfGu8FpXRgH7kjA5eaXc5z4r4bAA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,72 +46,73 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5EAC447960
-	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 16:34:24 +0000 (UTC)
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AE59B10E216
-	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 16:50:59 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-4955aa106b1so563635e9.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id C553647960
+	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 16:34:30 +0000 (UTC)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 228A710F126
+	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 16:51:06 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-4955aa106b1so564935e9.0
         for <nouveau@lists.freedesktop.org>;
- Thu, 20 Aug 2026 09:50:59 -0700 (PDT)
+ Thu, 20 Aug 2026 09:51:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787244658; x=1787849458;
+        d=gmail.com; s=20251104; t=1787244664; x=1787849464;
  darn=lists.freedesktop.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=PblTzKwEMx0jDI4oVKpj3IJS/TAZT0OEcT+54p3qrbc=;
-        b=KNjm17SAAfEJuBF28OhZJMDup5SJJm8h/o/F65iHgZbEabWg7U6jePL1mu1Y4LHjsK
-         qLEvHFdpTvHnFHuvmg2C8LPx6dyGJwg7g1GaTZnKLS86UTm6kljbkZbCZqVavZV4/4oS
-         xO5PEkDW0Ws8HDy5TYxe9M0i6ZYGOtJHpYX/kAyeF717PCw5MbH6stIIVwJS/9pbjytK
-         gRNf1NpEgZAXiIuB5mxMPuww2Ss3YbFswWYtzVkz4XVTqr5WqBxcStABh3Sj0wadCyid
-         3UzWXwQQGPChjBBt2F1cl9Rb+3gLycpGpHO3glw/X0BwL1U8BEBlpYRCN18N+elgGmHc
-         eHVw==
+        bh=xoij1rKhFdJD5+LmFn+9RDZC5MZ7psm+4aCRvb4W/Ds=;
+        b=B24uFRo3Hzxj/IeGZ+KSNWWzGUoQIp79kKLk0zHDNtq+Am8N3GIRhVEFOExKPgt/jL
+         6peMJnGVd7PmZagDvlGrTtX1KiArenrfn6feANKRuHbPB0II3qel0mBGfr/zr+M9+Xy8
+         ZLqeq5jwgrA2LINmRQprB+7uI8EEAX3Y5FQ8dKsCQegOaJwsaBH9cPUMsh6si5IFedvR
+         Cfbshl/gbf2Vlf6BS1VvOgcwuleFEoVtc+TFVUYLZZNkLuFKDWjHn4cTs6gzHOisLQz6
+         eL8I0ZZEDOHqUDdP5cSlYN4zkmINkGdh6h9VKe0bzw+ykq/U01Uadu5awHz9NSPvWzwn
+         ahmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787244658; x=1787849458;
+        d=1e100.net; s=20251104; t=1787244664; x=1787849464;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=PblTzKwEMx0jDI4oVKpj3IJS/TAZT0OEcT+54p3qrbc=;
-        b=VYELNUB/GqPBm6Zp+PcmupCPz4cGg/egZwJFW08/jsDl9Dp0z/h0BFpX8og3HGqJ87
-         RDemb0vMM3d6WKmxRBZqr0YOdNpEcJuR/c+GjvJQfVICjxIvVxUaSlxW1JtKDk8jhZ8g
-         dOb84f9Vco4pz40BS+CCh9rETj0yrU/eqC4CgdWLxWIdXO3paxm2vIdufG+ik+mWp7Hw
-         yngTczFFbql3A7joockieoxhn3oinRB3+PCInyHDMyaJWM+Fr6zalJckTHzmGwKUv61u
-         13VGcPQwYrcvw2325c+VZYD7eW8S+Yyo3tO7U7bN5G8fPQ2IIP8Osq/nRfxKKHIXtq9o
-         zGLg==
+        bh=xoij1rKhFdJD5+LmFn+9RDZC5MZ7psm+4aCRvb4W/Ds=;
+        b=BxDxEcaWljWgkPFEPf7RCekEkOKVL3UMIWdAtYjAB3/OORgtD7F1LckshCy97uKCiJ
+         2eGarJaEg3W+xZt+MUD2mzMuP2KW4RUZuEquyvffIZe5T9fMUqfyJy2zLBd3XwSzlZPH
+         s5L8pSej1T7szFMp8FYgIL1Ze74NLiPy1wFLCYCpGQ8k/T31gEyiWAwxnF7XNG9dRv74
+         YdWvJ+EToUj5KGDfrlbP8mj9+UWQORp41aZIImiJOoIEvDkjvz0XPOA3UWk4RjgjvSsn
+         na1U4WBnHsxvuQmuqKrUYfw7GcF4GPGnsfbti9vGDXflHhBgsID6o96dL6tyqlpAk5Q1
+         GLfg==
 X-Forwarded-Encrypted: i=1;
- AHgh+Rrg4XYrHVugxjloPg3pmq9DXb26z757+xNVMd5CdRyxfD5jNRBRRA9RnxpgPz4OhxDflsoiL864@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyc98zgGZa9W5mWICJzLGbq8qKeGuTxAdj1odFuOIsi9giGrOyb
-	f9IqB3db4IYotFktU/wKKYKNya8UXYSk5FNTz7XkFgfrJHYRf5WcR8T8
-X-Gm-Gg: AR+sD13sa4IK7RAovO1/1LLoNBRN4yW1ICibnAxo2Xu9tC0F0c4Gg4HcKEdtHCcDBbz
-	QfN5RANEf1ukLkqLgmlKircaquhXp9Xv4sYiH8vd7uTJS/cOaA5jnCzuyv2N0PPPDG140ArRkFh
-	bNgDXhxB7M8USOzpPJF+0wJ7YCx0Wr/PSjCcAl6pOzfNRWz2T/6j+S1dJ5UrEWX/Tp5S/6U5ENW
-	l3fnDS3jpov9RMJzBtHvPeuu1oGZZWdco/av1dpemQZLKWeyxoJPxc+UJ1MiLH26K7DlDQk1YSP
-	WkGKSex6G5HZgjoYusZU0xZpPf5QFffCrUcZjYqUUqSLPaMKwFzw+NB9C1B4S67XCgyXEtztQOc
-	RXuheRm37vAa5+4CdKGe6gn0a1vpCorP0ta9zSJaUwqeFw++aGXbTTAMZccry5rmbONERD+z4Ol
-	CiKF7BBQz71J/hqXQXDkDpupyI7kX/fNpMZEw5QRHxxissUao77dJjFXr7t7mcddM0UZE=
-X-Received: by 2002:a05:600c:1910:b0:499:5f7a:7ea2 with SMTP id
- 5b1f17b1804b1-499b845c7d9mr2645455e9.12.1787244657983;
-        Thu, 20 Aug 2026 09:50:57 -0700 (PDT)
+ AHgh+Rppe2Ty9eAz/43+LbwhvL2HXrc/MLSapiewOIcKN9ICF+jHgADjcB3KHpTb1iwTcH4QLaQsYqWj@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxM96zx6x8oihUc16TDQTcH75vAwqxoqQ5zcxlzkTF7bI9XpCCf
+	r/sVfqNxQCfGdtWRssQLYwrF625TzQ4uuzykOpBqExNrEBIgXtNjrOlm
+X-Gm-Gg: AR+sD11jyWQFErg9+zU99KNT+hFHoYwm3y/gpwm9QbAioo1jFuHAyvBgSLEQrvW0B8j
+	zGXnOwihOMADB01Cog+RBy7epBxoM7w7CgnwEkozp/FJH8Bx+361ajsHlMG7AQILFKToUyXcjLG
+	MULrF1k0rQjhnUYQ41aOcuX9HwXYmFsSRO4H0R4yI6bwA+UHzVew9nCo3qCvNqoSB1kP2IiLxtK
+	r+Xx2NJs/aT6MivaExlNCnM4owxCY3hc6TjBy0wrYHDlVeRSy+L55cSNDhb2beTDk6UIkCsmDn6
+	qerxidBBo94fGMo8UIiyWU/EG9xv986ax/Udc/Erg3gEcP+Z1O5CzmNM2vpGGEHFwsbyq4PM4ce
+	MFHCLirtUS6iJ41BmJBinvvgutFdycKMKp7/joct9dzcUNstEUFfBXBSkQdBrs34T5OiiHXQ2Ya
+	v6ZNLBxcTdtAkF3IcVtpjNb8Oq2R9pEJ0PveugkRijdThs/1W5Of+GA7rzBgTHJqas9TE=
+X-Received: by 2002:a05:600c:c8c:b0:499:af7d:b759 with SMTP id
+ 5b1f17b1804b1-499b845c91cmr3249335e9.13.1787244664550;
+        Thu, 20 Aug 2026 09:51:04 -0700 (PDT)
 Received: from fedora ([5.31.134.170])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-499aa1111b2sm205307545e9.5.2026.08.20.09.50.53
+ 5b1f17b1804b1-499aa1111b2sm205307545e9.5.2026.08.20.09.50.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Aug 2026 09:50:56 -0700 (PDT)
+        Thu, 20 Aug 2026 09:51:02 -0700 (PDT)
 From: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH v2 08/10] drm/nouveau/gsp: fix vblank interrupts on GB20x
-Date: Thu, 20 Aug 2026 20:49:27 +0400
-Message-ID: <20260820164929.17117-9-mohamedahmedegypt2001@gmail.com>
+Subject: [PATCH v2 09/10] drm/nouveau/dispnv50: program pixel clocks above
+ 2.147GHz on GB20x
+Date: Thu, 20 Aug 2026 20:49:28 +0400
+Message-ID: <20260820164929.17117-10-mohamedahmedegypt2001@gmail.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260820164929.17117-1-mohamedahmedegypt2001@gmail.com>
 References: <20260820164929.17117-1-mohamedahmedegypt2001@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 2NJINTDV43JDKYEKZUATX3RQVLWMN6PH
-X-Message-ID-Hash: 2NJINTDV43JDKYEKZUATX3RQVLWMN6PH
+Message-ID-Hash: TBYRTQID4NDC3PU7HETEVTKFDUAUSO36
+X-Message-ID-Hash: TBYRTQID4NDC3PU7HETEVTKFDUAUSO36
 X-MailFrom: mohamedahmedegypt2001@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -126,9 +127,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2NJINTDV43JDKYEKZUATX3RQVLWMN6PH/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TBYRTQID4NDC3PU7HETEVTKFDUAUSO36/>
 Archived-At: 
- <https://lore.freedesktop.org/20260820164929.17117-9-mohamedahmedegypt2001@gmail.com/>
+ <https://lore.freedesktop.org/20260820164929.17117-10-mohamedahmedegypt2001@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -138,144 +139,88 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-The GSP path programs per-head timing (vblank) interrupts the same way on
-every generation. NVD5.0 (GB20x) reworked the FE interrupt frontend
-around four message-based kernel vectors (high latency, low latency, PMU,
-and GSP) and moved RM head-timing interrupts to the dedicated low-latency
-vector:
+The HEAD_SET_PIXEL_CLOCK_FREQUENCY(_MAX) methods carry only 31 HERTZ
+bits. Starting with C97D the upper bits live in separate
+HEAD_SET_PIXEL_CLOCK_FREQUENCY_HI(_MAX) methods, which nouveau never
+programmed and headca7d_mode() computed m->clock * 1000 into the 31-bit
+field. NVVAL's mask then silently truncates anything past 2^31 Hz, which
+means that every mode scanned out at pclk modulo 2^31.
 
- - The enable is NV_PDISP_FE_RM_INTR_EN1_HEAD_TIMING, 0x611ef0 +
-   head*4 (570.144 kernel_head_0501.c, renamed kernel_head_0502.c from
-   575.51.02 on, and v05_01 dev_disp.h).
+No mode nouveau can currently commit crosses the boundary (an
+uncompressed HDMI FRL mode tops out around 1.78GHz at 8bpc), but this is
+a prerequisite for the upcoming DSC work, which makes 2.147GHz+ modes
+reachable.
 
- - The vector is reported as a separate interrupt table entry,
-   MC_ENGINE_IDX_DISP_LOW (intr_gb202.c, intrCacheDispIntrVectors).
-
- - The vector must be re-armed through NV_PDISP_FE_INTR_RETRIGGER(1)
-   at 0x611f34 after servicing (kdispServiceInterrupt ->
-   kdispIntrRetrigger_v05_01).
-
-The event latch (0x611800), per-head status (0x611c00), and dispatch
-summary (0x611ec0) the interrupt handler uses are unchanged on GB20x
-(kheadReadPendingVblank_v03_00 and kheadResetPendingLastData_v03_00
-remain for DISPv0502+).
-
-On GB20x the old code enables head timing onto the legacy vector, leaves
-its handler there, and never re-arms the message-based vectors. Page
-flips still complete (nv50 sends those events from the commit path), so
-the desktop looks fine while DRM vblank waits and vblank sequence queries
-are affected.
-
-Supply GB20x vblank enables and an interrupt handler that re-arms the
-vector after servicing through gb202_gsp_disp, translate the low-latency
-interrupt table entry as a second NVKM_ENGINE_DISP instance, and flag
-the table so r535_disp_oneinit() attaches the handler to that instance.
+Program the full value split across the low and HI methods, exactly
+as OpenRM's EvoSetRasterParams9() does (nvkms-evo4.c, 31-bit low word
+plus the 4 HI HERTZ bits, giving 35 bits of range).
 
 Signed-off-by: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
 ---
- .../gpu/drm/nouveau/nvkm/engine/disp/gb202.c  | 42 +++++++++++++++++--
- .../nouveau/nvkm/subdev/gsp/rm/r535/disp.c    |  5 ++-
- .../drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c |  9 ++++
- 3 files changed, 52 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/headca7d.c   | 21 ++++++++++++++++---
+ .../drm/nouveau/include/nvhw/class/clca7d.h   |  4 ++++
+ 2 files changed, 22 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
-index a66c820be9fe..f78669bafd64 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
-@@ -130,6 +130,40 @@ gb202_head_state(struct nvkm_head *head, struct nvkm_head_state *state)
- 	}
- }
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/headca7d.c b/drivers/gpu/drm/nouveau/dispnv50/headca7d.c
+index eeaeb15aa664..678cbc78ca9f 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/headca7d.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/headca7d.c
+@@ -219,10 +219,11 @@ headca7d_mode(struct nv50_head *head, struct nv50_head_atom *asyh)
+ {
+ 	struct nvif_push *push = &head->disp->core->chan.push;
+ 	struct nv50_head_mode *m = &asyh->mode;
++	const u64 hz = (u64)m->clock * 1000;
+ 	const int i = head->base.index;
+ 	int ret;
  
-+/* NVD5.0 (GB20x and later) moved the RM head-timing interrupt enable to
-+ * the low-latency vector's EN1 block. The event latch is unchanged.
-+ */
-+static void
-+gb202_head_vblank_put(struct nvkm_head *head)
-+{
-+	struct nvkm_device *device = head->disp->engine.subdev.device;
-+
-+	nvkm_mask(device, 0x611ef0 + (head->id * 4), 0x00000002, 0x00000000);
-+}
-+
-+static void
-+gb202_head_vblank_get(struct nvkm_head *head)
-+{
-+	struct nvkm_device *device = head->disp->engine.subdev.device;
-+
-+	nvkm_wr32(device, 0x611800 + (head->id * 4), 0x00000002);
-+	nvkm_mask(device, 0x611ef0 + (head->id * 4), 0x00000002, 0x00000002);
-+}
-+
-+static irqreturn_t
-+gb202_disp_intr(struct nvkm_inth *inth)
-+{
-+	struct nvkm_disp *disp = container_of(inth, typeof(*disp), engine.subdev.inth);
-+	irqreturn_t ret = tu102_disp_intr(inth);
-+
-+	/* The FE interrupt vectors are message-based on NVD5.0. Re-arm the
-+	 * low-latency vector so it fires again for any event that latched
-+	 * while we were servicing.
+-	ret = PUSH_WAIT(push, 11);
++	ret = PUSH_WAIT(push, 14);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -245,11 +246,25 @@ headca7d_mode(struct nv50_head *head, struct nv50_head_atom *asyh)
+ 	PUSH_MTHD(push, NVCA7D, HEAD_SET_CONTROL(i),
+ 		  NVDEF(NVCA7D, HEAD_SET_CONTROL, STRUCTURE, PROGRESSIVE));
+ 
++	/* The FREQUENCY methods carry only 31 HERTZ bits; the upper bits
++	 * of anything past 2.147GHz live in the HI methods
++	 * (EvoSetRasterParams9()). Truncating would scan out at pclk modulo 2^31.
 +	 */
-+	nvkm_wr32(disp->engine.subdev.device, 0x611f34, 0x00000001);
-+	return ret;
-+}
-+
- /* GB20x is GSP-only. This table supplies the register programming the
-  * GSP-RM display path needs from the chip.
-  */
-@@ -137,11 +171,13 @@ static const struct nvkm_disp_func
- gb202_gsp_disp = {
- 	.uevent = &gv100_disp_chan_uevent,
- 	.ramht_size = 0x2000,
--	.gsp.intr = tu102_disp_intr,
-+	/* Head timing arrives on the dedicated low-latency vector. */
-+	.gsp.intr = gb202_disp_intr,
-+	.gsp.intr_low_latency = true,
- 	.gsp.head_state = gb202_head_state,
- 	.gsp.head_rgpos = gv100_head_rgpos,
--	.gsp.vblank_get = tu102_head_vblank_get,
--	.gsp.vblank_put = tu102_head_vblank_put,
-+	.gsp.vblank_get = gb202_head_vblank_get,
-+	.gsp.vblank_put = gb202_head_vblank_put,
- 	.gsp.hdmi_gcp = gb202_sor_hdmi_gcp,
- 	/* The legacy AVI unit is unchanged on GB20x. */
- 	.gsp.hdmi_infoframe_avi = gv100_sor_hdmi_infoframe_avi,
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-index 3a8ff621ed62..a95f78c4502f 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-@@ -1705,7 +1705,10 @@ r535_disp_oneinit(struct nvkm_disp *disp)
+ 	PUSH_MTHD(push, NVCA7D, HEAD_SET_PIXEL_CLOCK_FREQUENCY(i),
+-		  NVVAL(NVCA7D, HEAD_SET_PIXEL_CLOCK_FREQUENCY, HERTZ, m->clock * 1000));
++		  NVVAL(NVCA7D, HEAD_SET_PIXEL_CLOCK_FREQUENCY, HERTZ,
++			(u32)(hz & 0x7fffffff)));
  
- 	/* Chips that raise head-timing interrupts on a separate low-latency
- 	 * vector report it as a second DISP interrupt table entry, exposed
--	 * as instance 1 by the RM engine-index translation.
-+	 * as instance 1 by the RM engine-index translation (see
-+	 * r570_gsp_xlat_mc_engine_idx()). Their high-latency vector
-+	 * (instance 0) is left unhandled as no event nouveau enables is
-+	 * routed to it, and without a handler it stays masked.
- 	 */
- 	ret = nvkm_gsp_intr_stall(gsp, disp->engine.subdev.type,
- 				  disp->func->gsp.intr_low_latency ? 1 : disp->engine.subdev.inst);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c
-index 3e391646d8f7..b45781cd0dfd 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c
-@@ -44,6 +44,15 @@ r570_gsp_xlat_mc_engine_idx(u32 mc_engine_idx, enum nvkm_subdev_type *ptype, int
- 		*ptype = NVKM_ENGINE_DISP;
- 		*pinst = 0;
- 		return true;
-+	case MC_ENGINE_IDX_DISP_LOW:
-+		/* GB20x+ report a separate low-latency display vector, used
-+		 * for head-timing interrupts. Expose it as a second DISP
-+		 * interrupt instance. r535_disp_oneinit() attaches the
-+		 * handler to it when the chip's gsp.intr_low_latency is set.
-+		 */
-+		*ptype = NVKM_ENGINE_DISP;
-+		*pinst = 1;
-+		return true;
- 	case MC_ENGINE_IDX_CE0 ... MC_ENGINE_IDX_CE19:
- 		*ptype = NVKM_ENGINE_CE;
- 		*pinst = mc_engine_idx - MC_ENGINE_IDX_CE0;
+ 	PUSH_MTHD(push, NVCA7D, HEAD_SET_PIXEL_CLOCK_FREQUENCY_MAX(i),
+-		  NVVAL(NVCA7D, HEAD_SET_PIXEL_CLOCK_FREQUENCY_MAX, HERTZ, m->clock * 1000));
++		  NVVAL(NVCA7D, HEAD_SET_PIXEL_CLOCK_FREQUENCY_MAX, HERTZ,
++			(u32)(hz & 0x7fffffff)));
++
++	PUSH_MTHD(push, NVCA7D, HEAD_SET_PIXEL_CLOCK_FREQUENCY_HI(i),
++		  NVVAL(NVCA7D, HEAD_SET_PIXEL_CLOCK_FREQUENCY_HI, HERTZ,
++			(u32)(hz >> 31)),
++
++				HEAD_SET_PIXEL_CLOCK_FREQUENCY_HI_MAX(i),
++		  NVVAL(NVCA7D, HEAD_SET_PIXEL_CLOCK_FREQUENCY_HI_MAX, HERTZ,
++			(u32)(hz >> 31)));
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/nouveau/include/nvhw/class/clca7d.h b/drivers/gpu/drm/nouveau/include/nvhw/class/clca7d.h
+index 0fec6fc21d44..5754878ddc69 100644
+--- a/drivers/gpu/drm/nouveau/include/nvhw/class/clca7d.h
++++ b/drivers/gpu/drm/nouveau/include/nvhw/class/clca7d.h
+@@ -734,6 +734,10 @@
+ #define NVCA7D_HEAD_SET_CONTROL_CURSOR_COMPOSITION_BYPASS                       20:20
+ #define NVCA7D_HEAD_SET_CONTROL_CURSOR_COMPOSITION_BYPASS_DISABLE               (0x00000000)
+ #define NVCA7D_HEAD_SET_CONTROL_CURSOR_COMPOSITION_BYPASS_ENABLE                (0x00000001)
++#define NVCA7D_HEAD_SET_PIXEL_CLOCK_FREQUENCY_HI(a)                             (0x000020C0 + (a)*0x00000800)
++#define NVCA7D_HEAD_SET_PIXEL_CLOCK_FREQUENCY_HI_HERTZ                          3:0
++#define NVCA7D_HEAD_SET_PIXEL_CLOCK_FREQUENCY_HI_MAX(a)                         (0x000020C4 + (a)*0x00000800)
++#define NVCA7D_HEAD_SET_PIXEL_CLOCK_FREQUENCY_HI_MAX_HERTZ                      3:0
+ #define NVCA7D_HEAD_SET_SURFACE_ADDRESS_HI_CRC(a)                               (0x00002150 + (a)*0x00000800)
+ #define NVCA7D_HEAD_SET_SURFACE_ADDRESS_HI_CRC_ADDRESS_HI                       31:0
+ #define NVCA7D_HEAD_SET_SURFACE_ADDRESS_LO_CRC(a)                               (0x00002154 + (a)*0x00000800)
 -- 
 2.55.0
 
