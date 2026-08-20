@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54BBFC5DF8A
-	for <nouveau@archiver.kernel.org>; Thu, 20 Aug 2026 16:50:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A448EC5DF81
+	for <nouveau@archiver.kernel.org>; Thu, 20 Aug 2026 16:50:43 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 16D0810F116;
-	Thu, 20 Aug 2026 16:50:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6216C10F118;
+	Thu, 20 Aug 2026 16:50:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="l/aoUkug";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JrSn0lXp";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9DE70479DC;
-	Thu, 20 Aug 2026 16:34:01 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id DF255479E3;
+	Thu, 20 Aug 2026 16:34:07 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787243641;
- b=LSEFAF13ptkwJLppPWT962GG+54VwzLvFgxHKN+AbIWwqh/IbDsdZ4iNRiYpK85/VPStc
- PBNql4EHVtfQ29f6wpL1pidSwlvPZnaYR3z18yjDlobItYH7jaVdXQeSKTCRonA5ysiFyp3
- L/VN9hXZPk+URyCe4peQivYpgLvqsNd/s9xksJBkZe3X/5PPbzv8CVwpNuHScF1pzOr2ZCP
- TtgCcXXrguyDAFwae9TFFeB2iJ5u4Ap5o0ganUyzJsOH49OUMVOnwGrpUsrqzwS78G+j4Rl
- wXKAUArJ1jIAPsYl5OU+rKwu/ZljprUgqTqPK3Fe9yA+UEB8bNsid75hlZhQ==
+ s=20240201; t=1787243647;
+ b=W/2ezGS3p0fZxDGTo/7nH/c7ae6DFtK+ZENv6nrYv96r2taUmDd7OnLqbiC+PRSGAX6kq
+ 8hXINfzi7c0RFViRYlfza/GvuULYPrKQDdpcimlsfaQuXL/tkE2EQ2ZhX8HNdIu2IbF4D3W
+ P2UinRR2+c+a5iRbdNvLBExjUQ/ZMUihJ9DhOUxX8/snEfIWGKtQL553PqFT32QB3Ka8dE/
+ 01op3e4p0xXVZSx1mpIXzeYB6ICrYVkKkaVLyIs9kl2z3rBFKftUZuVl7ITWXWrzyBPjOCb
+ psXfxY50JDCiJMIRWJXpmQA97CrtfBYwB6AvGzef/iICGTcO9yC5HU/zdGBA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787243641; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787243647; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Ycg+tBlFzf10BcsIAnsRc1Aa1/nfomdKMEdD+fHIfbQ=;
- b=KLc51qE+i4ffEeQquafH6HlT3qgfZ3LPagjVIQxgy2cQGoRawEY3lL5lHiueX72SQXZYS
- hgRqZpQRO4jYnVgLowYuVowQTYfiIOjNnpctWbdkeuHqGQ5fT/hqPf9VtO4ZD0QBbfc/Zyh
- txbGHlwWwE/TXBj8syLJfHFz9sQAdb7HmK66dyEcpy6GxfxunWem0bQDLcu4MIPXqiwFOoO
- vXqWjOjGu5CO+L4gS+M6fZIycWrZk5G0+H5T2u8dlIwvOPUZkFvBoFc22D5CmORQRqzhd6M
- A2Iwt3r3VJ6r2XOJFo0fFDfdokjRQWS2kgdG4NR200vj685EjSv6bWjDhZhw==
+ bh=Y+Y9y81hA9Cad/KoflpAlEdybDJIGHGo0qSz9MnRnh8=;
+ b=VvMBtODaQWPULqFihZIqOzHZ7HCY74DupNG2yDmQlB6B16zJ13+Djwx1ajymz+ZULmcYO
+ 0wdsv3b0Qim0S3EI08NUep6/j+QWMAolc2v3Os1KCUVwz2fjfD4WseNAFKrBT7pzehTkdm/
+ p6fapANK2pPne0zJTByCnphY8hKUk/wv1/cSG97jgkb41P/cwhs0sOQlIuHlg6NMbT9drxI
+ L7ZAYsvI2aDwRha5fJFAP84BXFHWzH+X6P4wiKbUdNNU/kqBGAU1my/XovarosxWTyf0n0l
+ /tlq4qpBaHKnX9WqyXNHSiDH+SiOk9YRU61GwE56hkvRhTI7grUAByR+2STA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,74 +46,73 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A003947960
-	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 16:33:58 +0000 (UTC)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EAC3110F100
-	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 16:50:33 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-49954b88fffso486295e9.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 744C847960
+	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 16:34:05 +0000 (UTC)
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
+ [209.85.221.54])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C473810F10F
+	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 16:50:40 +0000 (UTC)
+Received: by mail-wr1-f54.google.com with SMTP id
+ ffacd0b85a97d-480033bdcf4so78602f8f.2
         for <nouveau@lists.freedesktop.org>;
- Thu, 20 Aug 2026 09:50:33 -0700 (PDT)
+ Thu, 20 Aug 2026 09:50:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787244632; x=1787849432;
+        d=gmail.com; s=20251104; t=1787244639; x=1787849439;
  darn=lists.freedesktop.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Ycg+tBlFzf10BcsIAnsRc1Aa1/nfomdKMEdD+fHIfbQ=;
-        b=l/aoUkugE2v6aJLTRtIKCCSzx52+hP1bG5OHp8PxSAzJ8jWQsOeYpCoeXfLrnXha63
-         TwEYlLo4HBa/QGJF5dzIzNHwnJMFf54cqdYys1STZKFMWJtD5PlMvj5BeOZrNE2ikYn3
-         fivgvo6LITe4//rFSGTh/n8p51nVsiz/nHYoDM8pAVzcbh2Rt+mZsrbwGjOYCu5WLf1o
-         3LpPUUoH/ZfJa/q2Ylj2nZwICnd/PI8j6nVKGa3wO9esPW3IEBw4EfL01Y/QBhP9Oqba
-         o5nhg1raKVFzrgGM8iWTh+fOH+EguuDFqnse7PCdtChujkG+nWMtA237TxQXVqQN25+t
-         dJUA==
+        bh=Y+Y9y81hA9Cad/KoflpAlEdybDJIGHGo0qSz9MnRnh8=;
+        b=JrSn0lXpN1kgEvx9VvzPpkQceZWdz5GogdmA10gAQJNKj9tPksmXzcQ6+jWl8EOWCA
+         VK9OBB28VVSYygZAA3k6MAWW0HuYF+bqXEiI9R6JqFx4NvWgY/czKsXqnHHXm9afXwCo
+         ct/lIj0ASuvxj7OVuIhZs/9B3jbfC0HgkXRbJoP7DDTp+n6kpgQMPx+4pzJzQL7b+a7m
+         JlNcf9GcJR82WR63i5y2ZKSkGnnwM+gOXRh4SIgg7TjrOrQBf9ss+nUsODRy1wQf+xnV
+         X9J20fmIKTlqQ7zM0ZC+ddBeO9Jmi0MnItJ8sxTQVV1dKNE/eWgw9r+aoMrXn1MlYoGr
+         y97Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787244632; x=1787849432;
+        d=1e100.net; s=20251104; t=1787244639; x=1787849439;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Ycg+tBlFzf10BcsIAnsRc1Aa1/nfomdKMEdD+fHIfbQ=;
-        b=PM6kERI53aJy/GAm6pGUzP2S235SK/6YeWO8eWUfx2dQRakzdPeiBTQBmTjvypPfZ2
-         80nV/er6iP5V8f5AZnYEMfidAbDUiQ56g0QyOfXYyjXw7xoNsGU6hSwRznvkF0bWKfSq
-         1Z/ZjsTdExx5HGzNHo/z71c3QlzOmsnN7+ZNL8AxYThLcdJIpzUxtPy7VD1iJK+U0QOm
-         hfD2XLWXcncA8Ml/2AvTUDTNqUAvA1IT3jKbcT4wZ4/dS+x9Aaxt0U0fwtI1W20oEUnf
-         9TeMjU8NwH2uI/moHvfq2aWyV43zvwDrUSSDhWXkav/sF8sT4HYFxrNWsiOOaMoFPUZ0
-         lOEQ==
+        bh=Y+Y9y81hA9Cad/KoflpAlEdybDJIGHGo0qSz9MnRnh8=;
+        b=WD/xixIEmBJg+0GpPHR3RKPcUMLrn5g0O/cwIKQ06Z/Tx9YWT9dwkSPcwzViV5ZVEC
+         UxT7q5P82eb5rj2rgu30sIruXKACAJvvvtka8ZlywWwa9K9z9e5zfiprXXAYsQN0E2dm
+         kbHjY74bezlx7F15AhRvEjOC6HO9e5sVzV8f00MCeYVAklJ2hY8D4BvIlGNDvWz/VWib
+         AgiAkoshte8wEb6rccK/YLnkhg9pDtAOOTLDHTQKaVxUQkIC5mqzX1nc3Q93BLFInk9P
+         QUmZiW51kVVvkslaaIwFnNHh/KG1433OPwRFXTzb8EQL6uAgMu9uUYNgruLE1g7jYpJW
+         zSUA==
 X-Forwarded-Encrypted: i=1;
- AHgh+Rpj2FKBWhw0F93kgnUXt1LUg9a3l0p4jtqPxS7SMJWpCH2nZ8RvmcwJlIFjY9diteU+kLJZ68Ys@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw10bFg23lQ/U0+5ka45pikggkncQhhsnOxUnOH5XZy7rfo7qdJ
-	/xnUTzmXVkZOrs9jo13qZMniNPBsSlsDP34Lv4u8vvwWif0Owxax/vfG
-X-Gm-Gg: AR+sD12s59bf6s8rK6F1i/H9cPH8VYc5evUcVZ8/OhLJRMkBTUMKFsSnYXgFdqF5gzm
-	PRRlF0I71s7r6A0fR2apY8KW+YLFZvpbRmgHwrJ3Zr0hBDVQK79BiMwbETahQkKhjR+JheBfBAg
-	6GkjLr0qX/Pp32aUlT9QxzHgUHFMavZOIcnBHPA3z758plwqX1ljKMQUaTzlxtH3FlIDPTGX2Et
-	PGKzye9IMUvBdbPxdUJsxu8wa5zVUvof1CiqyBcZamdsWXYmOPSvO0452egQ+j/0uAHTEs2OYCk
-	d0BAwx+jXBy2AK5wIM+2G/uHMsvuzP+UMOaeifKrNHpKk8GrTZQ24nS0sYulFvblYV/ZEJ3kPaJ
-	xv+yk/hpyGE7QIEcVD66LxB2Cqb+JZ1ACmYXHngnC8q9UQfeZ+qd7xWsKOw5e3JHCNJ3d9B9qRF
-	bz94SNj2cy2xfpGEKmFkIbrceV4vAMoRU81Xw6/F3h2FMIxzcZHOOW1taioJa+vpBHH2yV83dZp
-	NHjXQ==
-X-Received: by 2002:a05:600c:8108:b0:493:a966:d5b5 with SMTP id
- 5b1f17b1804b1-499b82f40b6mr5097465e9.2.1787244632248;
-        Thu, 20 Aug 2026 09:50:32 -0700 (PDT)
+ AHgh+Ro7/RpB1SBSJ7YoK4svmelUNtc3xHSWUXF4urzJ6RaRnOaxBALk4FYZiZ5FKtkELchTJzDwkwg8@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwkVSwDWvDCf2sxUYM/tty5XEtAQqftHRBZj5kHyuT7867+Wj2J
+	kwjLSg7KXYAdAlpMK7nxvKdathaCrv5Xto7nr48dX0wnJ06LMHNGlNvd
+X-Gm-Gg: AR+sD10ytcyV6cDCTWhZzkjWMGTOpTUYQNMSN1THKYES1tZmUzuDYPjGdKOrYoFISht
+	C3gEbKa7W68vOxzg44woEq20i311VtbpoM3mULvqQUaiWS0JX96btKTT7SyvE8B24ErA66FkQSi
+	R4RvOiO9TuXIzrtPeQXg5DlZdJj6XQ1gcmwbRmAVScBkejHkSCPB+NoQJWjG5D9EFE8ej7gBc43
+	vtmL3tmosK9Qtc8pyZbwkbrRRL7E0Mdb8Jd4fHUaT7cf1ZIq6cLB5VVCEERwZs/R9DoWqXB1Hdb
+	Fp7d7893V/yZVeOoHcDK/w4m+FJbNrtPenta8tTyDypp/7anqwUC2Uuv/6uh3CCgMBndQ7TDDCJ
+	iWkfiCDYGmnFwX5evPLbwXwRmOJqVRdwM8jJ1ddVTynQb8zqiHX/tRGXxCFVWTBgz9yMowDocY6
+	3BOZg/oJKeSnzZVWnfYpA4SAdTvYNuvLbOzTq0q3LoyHIqLdErjMEc+e5taypyqOnWMAU=
+X-Received: by 2002:a05:600c:19c7:b0:499:484a:81d0 with SMTP id
+ 5b1f17b1804b1-499b82e84aemr4300455e9.9.1787244639062;
+        Thu, 20 Aug 2026 09:50:39 -0700 (PDT)
 Received: from fedora ([5.31.134.170])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-499aa1111b2sm205307545e9.5.2026.08.20.09.50.26
+ 5b1f17b1804b1-499aa1111b2sm205307545e9.5.2026.08.20.09.50.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Aug 2026 09:50:29 -0700 (PDT)
+        Thu, 20 Aug 2026 09:50:36 -0700 (PDT)
 From: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH v2 04/10] drm/nouveau/disp: fix HDMI vendor infoframes on
- GB20x
-Date: Thu, 20 Aug 2026 20:49:23 +0400
-Message-ID: <20260820164929.17117-5-mohamedahmedegypt2001@gmail.com>
+Subject: [PATCH v2 05/10] drm/nouveau/disp: fix HDMI GCP AVMute register
+ offsets on GB20x
+Date: Thu, 20 Aug 2026 20:49:24 +0400
+Message-ID: <20260820164929.17117-6-mohamedahmedegypt2001@gmail.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260820164929.17117-1-mohamedahmedegypt2001@gmail.com>
 References: <20260820164929.17117-1-mohamedahmedegypt2001@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: V6OM3VPCU2ACAYO6KTO7GHRVSBOUVB2C
-X-Message-ID-Hash: V6OM3VPCU2ACAYO6KTO7GHRVSBOUVB2C
+Message-ID-Hash: SG2RMCG5IQHF63UDIRORJAQG4CZL3RGL
+X-Message-ID-Hash: SG2RMCG5IQHF63UDIRORJAQG4CZL3RGL
 X-MailFrom: mohamedahmedegypt2001@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -128,9 +127,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/V6OM3VPCU2ACAYO6KTO7GHRVSBOUVB2C/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SG2RMCG5IQHF63UDIRORJAQG4CZL3RGL/>
 Archived-At: 
- <https://lore.freedesktop.org/20260820164929.17117-5-mohamedahmedegypt2001@gmail.com/>
+ <https://lore.freedesktop.org/20260820164929.17117-6-mohamedahmedegypt2001@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -140,212 +139,70 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-The GSP path reuses the GV100 direct-MMIO infoframe writers on every
-chip. On GB20x that is only half right as while the legacy SF AVI unit is
-unchanged, the legacy VSI unit at 0x6f0100 was removed, so
-gv100_sor_hdmi_infoframe_vsi() writes into a reserved area and no vendor
-infoframe ever reaches the HW. This affects HDMI-VIC signalling which
-can impact some 4K modes for legacy HDMI 1.4 sinks.
+The GSP path brackets audio enablement with a General Control Packet
+AVMute toggle. r535_sor_hdmi_audio() calls the gsp.hdmi_gcp hook, which
+every chip so far serves with tu102_sor_hdmi_gcp() and the legacy GCP
+unit at 0x6f00c0/0x6f00cc. On GB20x the SF packet units were compacted
+and the old generic and VSI units are gone (ACR keeps slot 2) and the
+GCP unit moved from slot 3 to slot 1 (control 0x6f0040 and subpack
+0x6f004c from NVIDIA's published clc971.h. The same offsets are also
+used by OpenRM's hdmiWriteGeneralCtrlPacketC871() on these chips). The
+old addresses are reserved on GB20x, so the AVMute writes were silent
+no-ops and mitigated only by the equivalent GCP r535_sor_hdmi_audio()
+already sends through the SET_OD_PACKET RM control.
 
-GB20x (NVDisplay 5.0+) reorganised the SF HDMI packet units. Per NVIDIA's
-published C971/CA71 DISP_SF_USER class headers, only three legacy units
-remain (AVI at +0x000, GCP at +0x040, ACR at +0x080), and vendor
-infoframes must instead be sent through the shared generic infoframe
-units at +0x130, whose 9-dword packet slots are loaded through the
-shared data port at +0x3f0/+0x3f4.
+Add a GB20x GCP writer using the new offsets and hook it into
+gb202_gsp_disp, keeping the direct MMIO path in sync with the hardware
+as on earlier chips.
 
-Add a VSI writer using the same programming sequence OpenRM uses on
-these chips (nvhdmipkt_C971.c, programAdvancedInfoframeC971()): disable
-the unit and wait for it to idle, clear the SENT status, write the packet
-through the data port with a zero inserted in HB3 after the three header
-bytes, then enable the unit for every-frame transmission during vblank.
-Generic unit 1 is used for the VSI, matching the slot assignment in
-NVIDIA's nvkms (NVHDMIPKT_TYPE_SHARED_GENERIC2, unit 0 is reserved
-for extended metadata packets and unit 2 for the HDR DRM infoframe,
-if those are wired up later).
-
-GB20x so far shared GA10x's display entry point. Give it its own,
-gb202_disp_new(), with a gb202_gsp_disp table that supplies the VSI
-writer to the GSP path and otherwise carries the same hooks as GA10x.
-The following fixes fill in the rest of the GB20x differences there.
+Only SB0 (the AVMute bit) is written. On NVD5.0 the subpack register also
+carries SB1_CTRL (bit 24), which selects where the deep-color CD/PP
+fields are generated (hardware or from the driver, with the default being
+HW). hdmiWriteGeneralCtrlPacketC871() likewise writes only SB0-SB2.
 
 Signed-off-by: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
 ---
- .../drm/nouveau/include/nvkm/engine/disp.h    |  1 +
- .../gpu/drm/nouveau/nvkm/engine/device/base.c | 10 +-
- .../gpu/drm/nouveau/nvkm/engine/disp/Kbuild   |  1 +
- .../gpu/drm/nouveau/nvkm/engine/disp/gb202.c  | 91 +++++++++++++++++++
- 4 files changed, 98 insertions(+), 5 deletions(-)
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
+ .../gpu/drm/nouveau/nvkm/engine/disp/gb202.c  | 20 ++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h b/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
-index 7903d7470d19..01145db32c53 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
-@@ -87,4 +87,5 @@ int gp102_disp_new(struct nvkm_device *, enum nvkm_subdev_type, int inst, struct
- int gv100_disp_new(struct nvkm_device *, enum nvkm_subdev_type, int inst, struct nvkm_disp **);
- int tu102_disp_new(struct nvkm_device *, enum nvkm_subdev_type, int inst, struct nvkm_disp **);
- int ga102_disp_new(struct nvkm_device *, enum nvkm_subdev_type, int inst, struct nvkm_disp **);
-+int gb202_disp_new(struct nvkm_device *, enum nvkm_subdev_type, int inst, struct nvkm_disp **);
- #endif
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-index ea62dc97f118..96c8a5b29999 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-@@ -2846,7 +2846,7 @@ nv1b2_chipset = {
- 	.pci      = { 0x00000001, gh100_pci_new },
- 	.timer    = { 0x00000001, gk20a_timer_new },
- 	.vfn      = { 0x00000001, ga100_vfn_new },
--	.disp     = { 0x00000001, ga102_disp_new },
-+	.disp     = { 0x00000001, gb202_disp_new },
- 	.fifo     = { 0x00000001, ga102_fifo_new },
- };
- 
-@@ -2862,7 +2862,7 @@ nv1b3_chipset = {
- 	.pci      = { 0x00000001, gh100_pci_new },
- 	.timer    = { 0x00000001, gk20a_timer_new },
- 	.vfn      = { 0x00000001, ga100_vfn_new },
--	.disp     = { 0x00000001, ga102_disp_new },
-+	.disp     = { 0x00000001, gb202_disp_new },
- 	.fifo     = { 0x00000001, ga102_fifo_new },
- };
- 
-@@ -2878,7 +2878,7 @@ nv1b5_chipset = {
- 	.pci      = { 0x00000001, gh100_pci_new },
- 	.timer    = { 0x00000001, gk20a_timer_new },
- 	.vfn      = { 0x00000001, ga100_vfn_new },
--	.disp     = { 0x00000001, ga102_disp_new },
-+	.disp     = { 0x00000001, gb202_disp_new },
- 	.fifo     = { 0x00000001, ga102_fifo_new },
- };
- 
-@@ -2894,7 +2894,7 @@ nv1b6_chipset = {
- 	.pci      = { 0x00000001, gh100_pci_new },
- 	.timer    = { 0x00000001, gk20a_timer_new },
- 	.vfn      = { 0x00000001, ga100_vfn_new },
--	.disp     = { 0x00000001, ga102_disp_new },
-+	.disp     = { 0x00000001, gb202_disp_new },
- 	.fifo     = { 0x00000001, ga102_fifo_new },
- };
- 
-@@ -2910,7 +2910,7 @@ nv1b7_chipset = {
- 	.pci      = { 0x00000001, gh100_pci_new },
- 	.timer    = { 0x00000001, gk20a_timer_new },
- 	.vfn      = { 0x00000001, ga100_vfn_new },
--	.disp     = { 0x00000001, ga102_disp_new },
-+	.disp     = { 0x00000001, gb202_disp_new },
- 	.fifo     = { 0x00000001, ga102_fifo_new },
- };
- 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/Kbuild b/drivers/gpu/drm/nouveau/nvkm/engine/disp/Kbuild
-index e1aecd3fe96c..98d6ca5ac311 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/Kbuild
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/Kbuild
-@@ -27,6 +27,7 @@ nvkm-y += nvkm/engine/disp/gp102.o
- nvkm-y += nvkm/engine/disp/gv100.o
- nvkm-y += nvkm/engine/disp/tu102.o
- nvkm-y += nvkm/engine/disp/ga102.o
-+nvkm-y += nvkm/engine/disp/gb202.o
- 
- nvkm-y += nvkm/engine/disp/udisp.o
- nvkm-y += nvkm/engine/disp/uconn.o
 diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
-new file mode 100644
-index 000000000000..fa83aee35ae7
---- /dev/null
+index fa83aee35ae7..4863b2b36db0 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
-@@ -0,0 +1,91 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright 2026 Valve Corp.
-+ */
-+#include "priv.h"
-+#include "head.h"
-+#include "ior.h"
-+
-+#include <subdev/timer.h>
-+
-+/* GB20x (NVD5.0) reorganised the SF HDMI packet units. The AVI unit is
-+ * unchanged from GV100, but the legacy VSI unit is gone. Vendor infoframes
-+ * are sent through the shared generic infoframe units instead. Register
-+ * layout per NVIDIA's clc971.h/clca71.h, programming sequence per
-+ * nvhdmipkt_C971.c:programAdvancedInfoframeC971().
+@@ -65,6 +65,24 @@ gb202_sor_hdmi_infoframe_vsi(struct nvkm_ior *ior, int head, void *data, u32 siz
+ 	nvkm_wr32(device, 0x6f03f8 + hoff, 0x00000002);
+ }
+ 
++/* General Control Packet AVMute bracket. The GCP unit moved to slot 1 on
++ * NVD5.0. Only SB0 (the AVMute bit) is ours to write so we must not do a
++ * full write here: SB1 carries the deep-color CD/PP fields, and SB1_CTRL
++ * (bit 24, new with clc871.h) controls where their generation happens (HW
++ * or driver) on these chips, with the default being HW.
 + */
 +static void
-+gb202_sor_hdmi_infoframe_vsi(struct nvkm_ior *ior, int head, void *data, u32 size)
++gb202_sor_hdmi_gcp(struct nvkm_ior *sor, int head, bool enable)
 +{
-+	struct nvkm_device *device = ior->disp->engine.subdev.device;
-+	const u32 hoff = head * 0x400;
-+	/* Generic infoframe unit 1, the slot NVIDIA's driver uses for the VSI. */
-+	const u32 ctrl = 0x6f0138 + hoff;
-+	u8 buf[36] = {};
-+	int i;
++	struct nvkm_device *device = sor->disp->engine.subdev.device;
++	const u32 hdmi = head * 0x400;
 +
-+	/* Disable the unit and wait for it to go idle. */
-+	nvkm_mask(device, ctrl, 0x00000001, 0x00000000);
-+	if (nvkm_msec(device, 2000,
-+		if (!(nvkm_rd32(device, ctrl) & 0x00400000))
-+			break;
-+	) < 0)
-+		return;
-+
-+	if (!size)
-+		return;
-+
-+	/* Clear SENT status, and point the data port at unit 1's slot. */
-+	nvkm_mask(device, ctrl, 0x00800000, 0x00800000);
-+	nvkm_wr32(device, 0x6f03f0 + hoff, 0x00000001);
-+
-+	/* The data port takes the raw packet, except that a zero is inserted
-+	 * in HB3 after the three header bytes. A slot is 9 dwords (HB0-3 plus
-+	 * up to 32 payload bytes). An HDMI infoframe carries at most PB0-27,
-+	 * so the tail stays zero, and we always write the whole slot.
-+	 */
-+	size = min_t(u32, size, 31);
-+	memcpy(buf, data, min_t(u32, size, 3));
-+	if (size > 3)
-+		memcpy(&buf[4], (u8 *)data + 3, size - 3);
-+
-+	for (i = 0; i < 36; i += 4) {
-+		nvkm_wr32(device, 0x6f03f4 + hoff, buf[i + 0] | buf[i + 1] << 8 |
-+						   buf[i + 2] << 16 |
-+						   (u32)buf[i + 3] << 24);
-+	}
-+
-+	/* No flip ID or scanline matching. */
-+	nvkm_wr32(device, 0x6f013c + hoff, 0x00000000);
-+
-+	/* ENABLE | RUN_MODE=ALWAYS | LOC=VBLANK | OFFSET=1 | SIZE=0. */
-+	nvkm_wr32(device, ctrl, 0x00000041);
-+
-+	/* Audio priority low (the init value). */
-+	nvkm_wr32(device, 0x6f03f8 + hoff, 0x00000002);
++	nvkm_mask(device, 0x6f0040 + hdmi, 0x00000001, 0x00000000);
++	nvkm_mask(device, 0x6f004c + hdmi, 0x000000ff, !enable ? 0x00000001 :
++								 0x00000010);
++	nvkm_mask(device, 0x6f0040 + hdmi, 0x00000001, 0x00000001);
 +}
 +
-+/* GB20x is GSP-only. This table supplies the register programming the
-+ * GSP-RM display path needs from the chip.
-+ */
-+static const struct nvkm_disp_func
-+gb202_gsp_disp = {
-+	.uevent = &gv100_disp_chan_uevent,
-+	.ramht_size = 0x2000,
-+	.gsp.intr = tu102_disp_intr,
-+	.gsp.head_state = gv100_head_state,
-+	.gsp.head_rgpos = gv100_head_rgpos,
-+	.gsp.vblank_get = tu102_head_vblank_get,
-+	.gsp.vblank_put = tu102_head_vblank_put,
-+	.gsp.hdmi_gcp = tu102_sor_hdmi_gcp,
-+	/* The legacy AVI unit is unchanged on GB20x. */
-+	.gsp.hdmi_infoframe_avi = gv100_sor_hdmi_infoframe_avi,
-+	.gsp.hdmi_infoframe_vsi = gb202_sor_hdmi_infoframe_vsi,
-+};
-+
-+int
-+gb202_disp_new(struct nvkm_device *device, enum nvkm_subdev_type type, int inst,
-+	       struct nvkm_disp **pdisp)
-+{
-+	return r535_disp_new(&gb202_gsp_disp, device, type, inst, pdisp);
-+}
+ /* GB20x is GSP-only. This table supplies the register programming the
+  * GSP-RM display path needs from the chip.
+  */
+@@ -77,7 +95,7 @@ gb202_gsp_disp = {
+ 	.gsp.head_rgpos = gv100_head_rgpos,
+ 	.gsp.vblank_get = tu102_head_vblank_get,
+ 	.gsp.vblank_put = tu102_head_vblank_put,
+-	.gsp.hdmi_gcp = tu102_sor_hdmi_gcp,
++	.gsp.hdmi_gcp = gb202_sor_hdmi_gcp,
+ 	/* The legacy AVI unit is unchanged on GB20x. */
+ 	.gsp.hdmi_infoframe_avi = gv100_sor_hdmi_infoframe_avi,
+ 	.gsp.hdmi_infoframe_vsi = gb202_sor_hdmi_infoframe_vsi,
 -- 
 2.55.0
 
