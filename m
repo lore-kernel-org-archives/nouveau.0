@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4B22C5DF7D
-	for <nouveau@archiver.kernel.org>; Fri, 21 Aug 2026 15:23:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B259C5DF96
+	for <nouveau@archiver.kernel.org>; Fri, 21 Aug 2026 15:23:13 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C122410F2E4;
-	Fri, 21 Aug 2026 15:23:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 50B0810F318;
+	Fri, 21 Aug 2026 15:23:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WKDWFe+z";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Z/y22Gub";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 1D73B47AA1;
-	Fri, 21 Aug 2026 15:06:32 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id B858147A8E;
+	Fri, 21 Aug 2026 15:06:34 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787324791;
- b=okPb8XlwDRLO5nYGZkOb8fVYSVtSJZx6FCMmTXnklY0i8BE9LS3J/Hx4luMlOo9lPVqPz
- MLkEc1PehpHlaxFiC2Y1QWoCidxqnYjlf0uOqirdF30lwEk+4+W0DZZQfqmWbzdTursBNk1
- eS5L8oxXauR0o3HvkyEVlHBF2kXXAngxKuK1buXliUe7HAdD4WB4aEPTEfdsrbsJtRXlGlX
- IQAWVmExRx3/9RnDR8FMsi/DN5w08dskwT4J72d6XpUGYxZAsCfHVtuLq3LOHsA6DbvsVFK
- Vh9zSkJmVlGKbFNMkriUrZAaqJFI0l0eVGTZddTiDWoy0LocX7FIYhgd04uw==
+ s=20240201; t=1787324794;
+ b=rAD/ZEDhn0FD5aTIdJPR26F8TkrZNv0QPOksYN9kE8y5DWZNAGP0UsFWJGxZoyJBIW/xR
+ Qkws5qcEv2eWXw8lrWDSDzTz4ZPJKWyFfiqXImtUzpsfxaU/MeJxR54QYEZxvXX+7Gl3Mm3
+ Lk6Z51jeaIAPzTTVk5JTbyal8adwdx9OlE3bOAejmmp5ysbMJ1Y3VDTpgAwzPQI+Nnbq0nx
+ 7x0ccPN4ZDhfEaRSg8emvT/Gf+SZ9JTWChYwyX/t8LjIQdvVuA/gK90hpM9YS3caLbdLIQ2
+ LDdMvegWzMBFn7ri6D0QwZ2gQwVodN1gGCv8olxf/2niQmZ+KjwEJw2EgwwA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787324791; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787324794; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Wt70YXWaIggScCHa2VlJmb1FulxNMTZ4XUn6wxtJEjg=;
- b=OotoB9z9pkdTYx5Ur7Y+Whpe5n5mmOa92csxWS/B/5+SUgd+p0463+5PKE0jyPH7zCIW6
- qEHhuvMvFJsJra6VEu7q+JTQZqcxgutZgQIjirVjcc3G0dNSMbyvGu+/Qa3jHrZh7q/FiZy
- 5MVbh2+jEQjFGcUid6FKzMj40R8iPKqqm2P6nxueaUHk+1xOfsL5sxu5x7taVgPfYXvFlil
- ZHviQkSQumr8SGh6msk/AhRgUxmcuBYKwcvjbnwR+vPsCEzaC+rEc9KAULO5TEgE2qbkfZx
- rZLLaoBkulLgAe7a/YHGjPjrmTW4wUxjHpYMxhFFuim+h4vJii29aNnIrCDg==
+ bh=YGnVjNNQSxXEhjGwV8/5Y2JvucgSZxjVxoUzS+hSzcQ=;
+ b=JLgfTU0eveDKgLnblkbk2CLM1IwW5Un/ixwY2VXvIW6+xNWkXoTr0TCQA60jOu0m4L8a5
+ KYuRcYv+ZTSiGFDqWZi8HaQdc4SUTy6JpBFwMPhRdrRxaT0gZ5XHZw3gvLTUW4c+66Nomk+
+ vzmSdFDTS6ecD/skInk6XXXC68kmYdPdadk/oi1imAMeJ57KAoZ7+YCvhhX8ls7DUG1xDpg
+ rFf4XX27243Lq6Y0X+CUcKgNwJSkcZh3Kxp7nPmJKH8kGGkR0umdKr0Yrrz7Rp2udH97c1T
+ zAPttY9nkjfLMY9XuGJQ3nM3TwAnVdIVQR2goJ2u/1XA2B+4skiEXo46SLtg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,72 +46,75 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 8937F47589
-	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 15:06:28 +0000 (UTC)
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
- [209.85.218.50])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CD32F10E2EC
-	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 15:23:05 +0000 (UTC)
-Received: by mail-ej1-f50.google.com with SMTP id
- a640c23a62f3a-c15b51ba80dso10834766b.2
+	by kara.freedesktop.org (Postfix) with ESMTPS id E93EC47A9F
+	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 15:06:31 +0000 (UTC)
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
+ [209.85.218.53])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 57C2810E2EC
+	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 15:23:09 +0000 (UTC)
+Received: by mail-ej1-f53.google.com with SMTP id
+ a640c23a62f3a-c082647cd0dso11699266b.0
         for <nouveau@lists.freedesktop.org>;
- Fri, 21 Aug 2026 08:23:05 -0700 (PDT)
+ Fri, 21 Aug 2026 08:23:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787325784; x=1787930584;
+        d=gmail.com; s=20251104; t=1787325788; x=1787930588;
  darn=lists.freedesktop.org;
-        h=content-transfer-encoding:content-type:mime-version:message-id:cc
-         :to:subject:date:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Wt70YXWaIggScCHa2VlJmb1FulxNMTZ4XUn6wxtJEjg=;
-        b=WKDWFe+znQBoUFd9BORfLDT+tEIoRUF+noRxN294KS9lW5pxDUTh9ftYV+eJlI/8wE
-         T6IRreLW8fFFlOiZMdeLd2CiyJGRVZ+qSvRG0EAiXYR2AAx07zHcUstQfGdlqA7LqOp2
-         tjKEU6eTjWCzdkHJsb4Gwqb2AMDoBVkByzdjsFgCmUQqGR+hi3jZUpXNXGUXAsZB77E0
-         XBbCr4ISni6LLaR8UFMriGEFxhRk0x1V2+i/yo1zCItuYPEF67xjjEzhMJ6jV4LGwy9r
-         SOC3g9m/6OtcnLw/L8085NsZkj92x1tnMXeT8cIKrd6tKssPAhaFNfzTk4WqhH+VJOUd
-         8dqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787325784; x=1787930584;
-        h=content-transfer-encoding:content-type:mime-version:message-id:cc
-         :to:subject:date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:cc:to:subject:date:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=Wt70YXWaIggScCHa2VlJmb1FulxNMTZ4XUn6wxtJEjg=;
-        b=moM6ccnVPSs8td+EunZUINt93uMEdlRS73uGnOuHf3p6klbVCeflqv14UhJ+L0iLfV
-         hYbyeu8OCOe8lMqStg4GXoWW895WITmJuEDx9kr5ocw7m67Qr+C9XaZxKgBjrpmaLGSR
-         zd2N8QcQJv66HHUGot76uFJk+5/HkFxPosXXMytWzdDkcT0jaD/Tqrx4OW6T2BoZxR32
-         2R+Hz7Azfi8QHOkKb1O1hkjM0fowFzm6/3+WJ9o+ehTwNJzuELdyOq+BYi76ej305zM3
-         Ei+qRVYytUpnkPZgvKjhdeKYGZ9FiR8FCHEg7J98L7HSM/ZuhzNZAYXjkWqXEOb7f/NG
-         TLWg==
-X-Gm-Message-State: AFuF++lQ+tBGm+y1XjA6nZwp2DVSX7b94e6/c3YQETNoFNnYvFRn5k4E
-	WtzkNeqqq4l/GGaeQNGOcc++fBi55m1rH+agqHoUInlUDZYB8Vk5mi0QPvZx9GfS
-X-Gm-Gg: AR+sD1154Pk00fL35jN3XPjSIchaMd634ABHkBmvy7xaaIb+HHc8WL+P6Q8VeNupkaH
-	dBNFwJnPHqYort7r0ZiBrsHBXOckcTHmkqYE51IBMqJMT0XazQT2/SILpd6Nnm/xb1MQUBDlDQg
-	OW0jsU0Lvw9icN0ZaLRnsoXOqSq0I+zCPmYR5Bjgqt+KgB/yIad+kh+RW8jI6ZKUZKnwsLGFFzi
-	p+kZc+dashCOtdx0FuPcR5RhriNjPG3aeFl2+1SlY72xF9dfyE0Yel+Wxj5DdghBOCyw/NqNp+B
-	Hb2tr5KyGOGYaAHENl0AYOw1xbhauJluQ0ivlyMhDEYh6WymH2S6brEF1QETf4Z0NG4svrjLXMk
-	VLw7qNfK2IReGxf+KaoNo0sLlwk/p1t0B+DAm8zckv9RoFLOGkyid34qAE2VaGu+//qikO1HcDH
-	ATX081dHCNHJDeyvFqLtVbdFVZ7oSIOxuSNUuvM1rtfh4WN7xMcHOnMv6S3eV3b+xvIio7Y8S/z
-	cWV+r6peCNWZ9qWhgLI/WaAm/AsI0T5/NplT9ttbyYVLN+hlHkbGOG1JqLP3Rok
-X-Received: by 2002:a17:907:97c1:b0:c21:764c:9417 with SMTP id
- a640c23a62f3a-c246a2eb944mr404614866b.1.1787325783909;
-        Fri, 21 Aug 2026 08:23:03 -0700 (PDT)
+        bh=YGnVjNNQSxXEhjGwV8/5Y2JvucgSZxjVxoUzS+hSzcQ=;
+        b=Z/y22Gub4YgjAxwD5wHrDelj+d7iCI5pbMLgW1kpp2J5Fw2pFLHdzchlp1V4YhGfmQ
+         7uNSYgdUc/7jP/4fUmn0ECXdq6qMzhZv0t52bVU/CT5GupGn/t0IrMs087xZhO6OqeIz
+         VYXxLBx84UqD901tFleqiUq0Se8OTDBFYN7xs4gibTh153gUcozHW16A03S7Up49tyRk
+         P+HjBWry5hH8uSDQXYV2Y5tBc0VRs+XKiIrtCwhg8LG0BhsCE1JeJgKTFSv+x0hN+7lc
+         vuHQgpjXz8SA8jEYvJQ8dikxfECjIf/D3hrekU5k174wmhk6cMeXGpXE6z3m/wN3Fy+9
+         hKwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1787325788; x=1787930588;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:cc:to:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=YGnVjNNQSxXEhjGwV8/5Y2JvucgSZxjVxoUzS+hSzcQ=;
+        b=kPWbk51SZB+0OlklNsaP2ROtZnNPXuQMQtkim+Zo+BIJLu76HVdY6HmPVdKVna5GUh
+         qzL+UsJR2D4j3K5Dg+fbP5a46jcl7lFOAQplsYIFS6JShaxMkjrGL6R2f/+K3YESKh2y
+         cEUvxzRsds/Bl7JeaWVv1OzWuKJoi4HcMp1aPMOVN7vvWlFWlqXmOpCv8rqeJzzzygSh
+         oZQW1OD9WiG9k9/p/ryn3y6yhP9XQXh7xWo1MjMDzbtMtEy3TWpw4LfqLkZSAxIeTquW
+         O7/Gm2Gp4Ywl1nOU/4y34FpxbThur5rhtU8TlC2/GIAiVHd6HOB/Jw+6fvGEs48dQN7o
+         VAwA==
+X-Gm-Message-State: AFuF++m00cujx8uCDv2xa1iwUZMm/GF7EABxHwcXIGRvSo1wsbaleoNN
+	KUp1agtN0BC0ZBy0HY4wzBAXdSoEDf8PHVgics/pb5mEJgJ1EkpkQwaAAQfS6kwX
+X-Gm-Gg: AR+sD11SJFBHwTHWrg0LtNzpxx+aK2d5wCWBx1SNPQ553rLtgiuq8u20Xlpx9LlfgVL
+	CcvfgofHEtd4q3ba00MwqPE4SuylJ62Ym54cy+1pMs6XRKliOk/4nhAq0G3mOqDhEg5i1fELyKF
+	2M+AGoLut70oKRIQ1KqGgD4PfPLrVPnkTa7LqJGQZGgPFlluJuWVOTihBZ+zzi5fPx220RvNbfc
+	tXw5+I5WOvuVZnqphYImDukRtugLYn5TAWkhidW+ojz9ig4QEpseM/UTRVBpdfkvFSrQERV+jkK
+	gsVxXF267ke03ZQKwfq3SK7WaDwRbMYZLKh5iRddfF+QpS2b2x9jxqNXlP+AGYjG51qKHISXbYx
+	g4XnBDis5lGiX1oYCK+81REO4yRvYWt9PSWoVA7Egl2y4blRV5/nAojMVnOAF27+BSqQpv8j9aC
+	9/TrK4VhV7DMFRYP0nREbtpwY6PoGLM50/vCdskuMx0Bo2SmstiUzIyagdJgdnF8o5itL9ArqAC
+	8RYxowEeZeFrS+FmeoaMAQox+hKx7QdfDvozpPA/w==
+X-Received: by 2002:a17:907:6d20:b0:c15:9f0c:8d31 with SMTP id
+ a640c23a62f3a-c246a5f67f3mr391862066b.2.1787325787404;
+        Fri, 21 Aug 2026 08:23:07 -0700 (PDT)
 Received: from [127.0.0.1] (ip-109-193-028-127.um39.pools.vodafone-ip.de.
  [109.193.28.127])
         by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-c24591dc662sm506198566b.42.2026.08.21.08.23.02
+ a640c23a62f3a-c24591dc662sm506198566b.42.2026.08.21.08.23.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Aug 2026 08:23:03 -0700 (PDT)
+        Fri, 21 Aug 2026 08:23:06 -0700 (PDT)
 From: Marek Czernohous <mczernohous@gmail.com>
 X-Google-Original-From: Marek Czernohous <marek@czernohous.de>
 Date: Fri, 21 Aug 2026 17:23:01 +0200
-Subject: [PATCH v4 0/3] drm/nouveau: channel-kill event ordering fixes,
- and lower the gate to NV50
+Subject: [PATCH v4 1/3] drm/nouveau: unsubscribe the channel-kill event before
+ the fence context
 To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <178732578167.167481.5619512544301226563@gmail.com>
+Message-ID: <178732578167.167481.14789825868710929167@gmail.com>
+In-Reply-To: <178732578167.167481.5619512544301226563@gmail.com>
+References: <178732578167.167481.5619512544301226563@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: P67TSIRUMRV44BCG52DJLOJIEKK5EQ33
-X-Message-ID-Hash: P67TSIRUMRV44BCG52DJLOJIEKK5EQ33
+Message-ID-Hash: HG2ML2F3E3EZRPMCH4JI2XEUIPJ4CDQ7
+X-Message-ID-Hash: HG2ML2F3E3EZRPMCH4JI2XEUIPJ4CDQ7
 X-MailFrom: mczernohous@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -124,9 +127,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/P67TSIRUMRV44BCG52DJLOJIEKK5EQ33/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HG2ML2F3E3EZRPMCH4JI2XEUIPJ4CDQ7/>
 Archived-At: 
- <https://lore.freedesktop.org/178732578167.167481.5619512544301226563@gmail.com/>
+ <https://lore.freedesktop.org/178732578167.167481.14789825868710929167@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,139 +139,70 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-This is v4. v3 is here:
+nouveau_channel_del() tears the fence context down first and only drops
+the channel-kill subscription later, in the middle of the nvif object
+teardown:
 
-  https://lore.kernel.org/all/20260812231330.705425-1-mczernohous@gmail.com/
+	if (chan->fence)
+		nouveau_fence(chan->cli->drm)->context_del(chan);
+	...
+	nvif_object_dtor(&chan->vram);
+	nvif_event_dtor(&chan->kill);
 
-Thank you for the review. Changes since v3:
+The subscribed handler is nouveau_channel_killed(), which calls
+nouveau_channel_kill() and from there nouveau_fence_context_kill() on
+chan->fence. A kill event delivered in that window takes fctx->lock and
+walks fctx->pending on a fence context that context_del() has already
+freed.
 
-1/3 unchanged, and now carries Lyude's Reviewed-by.
+Nothing reaches this below Fermi today, because the subscription is
+gated on FERMI_CHANNEL_GPFIFO and nothing kills a channel there. On
+Fermi and newer the window is real but narrow, since a kill has to land
+exactly while the channel is being destroyed. That is reason enough on
+its own, which is why this carries a Fixes: tag. The last patch in this
+series subscribes Tesla channels as well; nothing kills those today, so
+it does not widen the exposure now, but it is the groundwork for a
+recovery path that would, and the ordering is better fixed before that
+lands than alongside it.
 
-2/3 rewritten. v3 moved the subscription behind context_new(), which
-    traded a half-built fence context for a missed kill. Lyude pointed out
-    that the subscription does not have to move at all: give the fence
-    context a flag and have the two sides hand the kill over.
+Drop the subscription before anything it depends on is torn down.
 
-3/3 is v3's 4/4, unchanged in code. Lyude asked what testing this has had
-    on Tesla and said it will need input from others; the testing question
-    is answered under Testing below. It is last in the series so it can be
-    dropped without disturbing the two fixes, and I am happy for it to
-    wait for that input rather than go with them.
+Fixes: ea13e5abf807 ("drm/nouveau: signal pending fences when channel has been killed")
+Cc: stable@vger.kernel.org
+Assisted-by: Claude:claude-opus-5
+Signed-off-by: Marek Czernohous <marek@czernohous.de>
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_chan.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-Withdrawn since v3
-
-  v3 carried a patch that demoted one specific CACHE_ERROR to debug
-  level and attributed it to a Mesa bind probe. I am withdrawing it,
-  because that attribution does not survive a look at the tree. Method
-  0x0060 on this class is SET_CONTEXT_DMA_SEMAPHORE
-  (nvhw/class/cl826f.h), and the writer is the kernel itself,
-  nv84_fence_emit32() and nv84_fence_sync32(), on subchannel 0
-  (nvif/push006c.h). The data is the VRAM ctxdma handle that Mesa picks
-  (nouveau_screen.c, .vram = 0xbeef0201) and the kernel binds at channel
-  creation. All 99 logged occurrences behind that patch read "subc 0
-  mthd 0060 data beef0201". Mesa's NV50 Gallium never writes on
-  subchannel 0. So this is the driver's own semaphore-context rebind
-  being rejected by the puller now and then, and I have not established
-  why. I will look at it separately rather than carry it here.
-
-On 2/3, and the two places where it differs from the sketch
-
-  The sketch checks chan->killed before setting ->ready, but each side
-  has to store its own flag before loading the other's, or one
-  interleaving loses the kill even under sequential consistency;
-  swapped, with smp_mb() on both sides, it is the store-buffering
-  pattern. And the kill side cannot take fctx->lock, because that lock
-  is exactly what must not be touched before the context is built, so
-  ->ready is a plain bool read outside the lock, published with release
-  and read with acquire. The commit message has the full argument.
-
-On the aside about writing the respin without Claude
-
-  This work is AI assisted, as the Assisted-by trailers say.
-
-  The advice is right, and I would rather say so than let it pass. The
-  honest position, though, is that I doubt I would have got to these
-  bugs at all without the assistance.
-
-Testing
-
-  Reference hardware: Apple Mac mini Late 2009, MCP79 / GeForce 9400M
-  (NVAC), Core 2 Duo, Wayland (labwc).
-
-  Build. Built against the base commit named at the end of this mail.
-  The nouveau module compiles and links with W=1 and no new warnings.
-  checkpatch.pl --strict is clean on all three patches.
-
-  Deliberate channel kills on Tesla, which is Lyude's question on 3/3.
-
-  The kill path on this hardware has been exercised on purpose, not only
-  observed, and under a real 3D workload. A local debug patch, which is
-  not part of this series, synthesises a CACHE_ERROR on a nominated
-  channel. The victim was SuperTuxKart, with its channel live under
-  load. Verbatim, timestamps and unrelated lines elided:
-
-    nouveau 0000:02:00.0: fifo: inject:   ch   2 [labwc[5670]] errored 0
-    nouveau 0000:02:00.0: fifo: inject:   ch   3 [labwc[5670]] errored 0
-    nouveau 0000:02:00.0: fifo: inject:   ch   4 [Xwayland[242990]] errored 0
-    nouveau 0000:02:00.0: fifo: inject:   ch   5 [supertuxkart[1181685]] errored 0
-    [...]
-    nouveau 0000:02:00.0: fifo: ch 5 fault 1/3 in 10000ms window, skipping method and resuming (Tier-0)
-    nouveau 0000:02:00.0: fifo: ch 5 fault 2/3 in 10000ms window, skipping method and resuming (Tier-0)
-    nouveau 0000:02:00.0: fifo:000000:0005:0005:[supertuxkart[1181685]] errored - disabling channel
-    nouveau 0000:02:00.0: Xwayland[242990]: channel 5 killed!
-    supertuxkart[1181685]: segfault at 560800000000 ip 00007f617c0d5ba6 [...] in libgallium
-
-  So on NVAC, with 3/3 in place, the ERRORED event is delivered, the
-  handler runs, the fence context is killed, and the compositor is
-  unaffected.
-
-  Two limits on what that proves. The escalation that disabled the
-  channel is local and not in this series; what this series contributes
-  is that the event reaches a subscriber at all instead of being dropped
-  into an empty notifier list. And the victim did not survive its own
-  channel being killed: it segfaulted inside Mesa rather than handling
-  the -ENODEV fences. Without the subscription it would have hung
-  instead.
-
-  Games and sustained 3D. glxgears without vsync for ten minutes, and
-  SuperTuxKart for a full race, ten and a half minutes, both with 3/3 in
-  place. In both runs everything the kernel said came at window creation
-  and was the known benign gr DATA_ERROR trap: 71 of those for glxgears,
-  three for SuperTuxKart, and none at all once either was running. No
-  wedge, no unexpected kill, and the session came through both
-  unchanged.
-
-  Soak. Code equivalent to 1/3 and 3/3 has been running on this machine
-  since 2026-07-25, across the kernel bumps 7.1.5 through 7.1.8, with no
-  regression.
-
-  The 2/3 in this posting has NOT been soaked. What has been running
-  since 2026-08-06 is the v3 form of it, which moved the subscription;
-  the handover in this version is new as of today. I will report back
-  once it has run.
-
-  What the soak does not show, stated plainly: that tree carries local
-  patches this series does not, including a cap on the plane-fence wait
-  in the nonblocking commit tail. So the soak says these changes do not
-  misbehave in daily use. It is not an independent demonstration of the
-  failure modes above.
-
-  1/3 and 2/3 are ordering fixes for windows I have not managed to hit
-  deliberately; the reasoning is from the source.
-
-Marek Czernohous (3):
-  drm/nouveau: unsubscribe the channel-kill event before the fence
-    context
-  drm/nouveau: don't kill a fence context that is not ready yet
-  drm/nouveau: subscribe to channel-kill events on NV50 and newer
-
- drivers/gpu/drm/nouveau/nouveau_chan.c  | 30 ++++++++++++++++++++-----
- drivers/gpu/drm/nouveau/nouveau_fence.c | 19 ++++++++++++++++
- drivers/gpu/drm/nouveau/nouveau_fence.h |  8 +++++++
- 3 files changed, 52 insertions(+), 5 deletions(-)
-
-
-base-commit: c21bb4193868a8de71fc4693fa741e195fdf5d86
+diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
+index 598513f60449..f142f6310596 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_chan.c
++++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
+@@ -90,6 +90,14 @@ nouveau_channel_del(struct nouveau_channel **pchan)
+ {
+ 	struct nouveau_channel *chan = *pchan;
+ 	if (chan) {
++		/*
++		 * Drop the kill-event subscription first.  Its handler
++		 * dereferences chan->fence, which the fence context teardown
++		 * below frees, so leaving it armed across the teardown leaves
++		 * a window for a use-after-free.
++		 */
++		nvif_event_dtor(&chan->kill);
++
+ 		if (chan->fence)
+ 			nouveau_fence(chan->cli->drm)->context_del(chan);
+ 
+@@ -100,7 +108,6 @@ nouveau_channel_del(struct nouveau_channel **pchan)
+ 		nvif_object_dtor(&chan->nvsw);
+ 		nvif_object_dtor(&chan->gart);
+ 		nvif_object_dtor(&chan->vram);
+-		nvif_event_dtor(&chan->kill);
+ 		nvif_object_dtor(&chan->user);
+ 		nvif_mem_dtor(&chan->mem_userd);
+ 		nouveau_vma_del(&chan->sema.vma);
 -- 
 2.54.0
 
