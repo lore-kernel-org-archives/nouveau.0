@@ -4,140 +4,200 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 680DFC5DF81
-	for <nouveau@archiver.kernel.org>; Thu, 20 Aug 2026 21:56:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5468CC5DF88
+	for <nouveau@archiver.kernel.org>; Fri, 21 Aug 2026 06:39:43 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BD04210F1A9;
-	Thu, 20 Aug 2026 21:56:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0A010F237;
+	Fri, 21 Aug 2026 06:39:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Q4oBQtwG";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="bwcBwS0+";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="6Z4vcbQC";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="mL9/9Iir";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="xbk2DB96";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id BEFE147A81;
-	Thu, 20 Aug 2026 21:39:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 3E87D47A85;
+	Fri, 21 Aug 2026 06:23:06 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787261996;
- b=vdoRHyWHAguAOFeF2vkfJJK+y7EKkFExRWujIp3Fv7YMvwbS8VecRPZsrvYlAqXK7niJ1
- 7fJzTwyTjlwRiQa4EHSSdP9YrW+Mk4KgqKgV6OAy/p5nzlO8wv1gwvM6qY/PrdE4hQYkvGJ
- J4htVp+xzTox+aedN3x3gnASccoifvkD1LRrVkFgy8grk+q/fS2sz3JBLd7fAGTbJ+TQ0aH
- e49ohmCVpV6S+RRKuYMEAvlapzYHVcF8gJUKn/ONb0+57mtEqpsw3W3JAocpyM1RCTMbUAy
- GK7mvVPBCW8LieMq286Bx7UDqeVougaJlho/h3j7d4G5ERNIBxMxd1SjeQHg==
+ s=20240201; t=1787293386;
+ b=B0IupQZAMydeU9w3s8d1jkWQUIiDk/PbTvIbnzdZqdfJlp0mIldcBWUBU386FM2AKUUtz
+ MXixj8PAnvr8z01g8rVY65RZYJsLHtFvzGDzBry92WQ3WTdsSo/cuSJ/WZTcTWhmvrpV7Bu
+ NtjtJzMf6BY1p1aBp2cGpLxMhDvYz6pDPxA6lJfLDzWVfSNuK5AGy28pWDtEGsT2TBI1Lt8
+ zCLs4dT6+lnr2O+Yn0DJNiWWl+Z15vB+K0/Oo4vyhA5GJgxUXWLZczTDR/RIf+HEIlwzcj3
+ uaAxZhR1YonADkqVf+qNEftgig7onEth9uFHYwXrZF6Rc9LBrcHpxlGawicw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787261996; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787293386; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=qJNhFXppokjOp9Um282YuDdOK7JlZ3LGM60w1T1FT9E=;
- b=F4x9wT87kcP0UIo81+xTU4yzmOQaJPWxrFynLjOBJhfLwQEwomrETrhw3DkhjXdsd1/Xc
- sRmAt+/aiTr7y8UgWcXwiQozuB/QW8y2LzaMAKjqg57damDT58PYbRYHaxt+/OiWZqFDy81
- +28sVt8oY3K1Kxi9FCEgWjttTc61Qpyd1ubJzV/5Z5g3NES4m8wD2lo/H5jJliIMSVqBPFK
- ugYfEYB8WQKteHJ0dx9ppOet/osustZI8LGtx+foixbeo0WnxRzueYeCU9CibwJFpT5aXfK
- GWwAGFtUJDNnLuyHVKvJHTNDiBc4AbYaNKRFmMAgf6G7lbTQQdUE+xUUZ48A==
+ bh=IMECoYsWSShMDNVZ8JDbQREho5iWl1tF8HaXKW+o8bY=;
+ b=bTER1kxMoBC8jtTSgbQyipJ6Hy7rbVMDxANrIM/fFQ2olMlBHAK+Zxpj/diOJEZjG2Zqp
+ THNHMCLv4nnkPjtXVXFnz7yESxZeNN+BDTbhIhy97QwNyw13qPmP+EL4p+bnvPDDKBj3seq
+ xz4/MrOONDovcLmHdbpMKpe8o3ze7XBPgLtAZIAFyYOej5w1B1+tNFgfGwS0VYelhz1FNCy
+ v1TEQz0f5ag8w1Zo/kTWNvR1hu4Wpj6skW6h1M4qCxNKJLymKUJMEY7sBbt30wgeOy06FH0
+ dkwIhWn3iWBkIJMBa0D3DfMuSNwtA0j8+6x2CuK6zej0qypFddZUyOATWV+A==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B16C647A41
-	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 21:39:53 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4D4A510E210
-	for <nouveau@lists.freedesktop.org>; Thu, 20 Aug 2026 21:56:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1787262988;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	by kara.freedesktop.org (Postfix) with ESMTPS id 5F48547965
+	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 06:23:03 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A86A210F237
+	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 06:39:39 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 3284B3EAF;
+	Fri, 21 Aug 2026 06:38:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1787294328;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qJNhFXppokjOp9Um282YuDdOK7JlZ3LGM60w1T1FT9E=;
-	b=Q4oBQtwGNeCHEKr6A9uvsPNqt/4oDhbL6VEbrpXpVN01XmDa6gkYdIZsUQzjDato5OdI5r
-	j22dmtInhpZl3oSiZauADVfhxnE6j0JAU6+7EE5ZRuvZ2CQe2fQvclCGMjLsBNNDHXF/KY
-	pe9hreIGA8nN7ML1rDiCbRNHYpfzXH0=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-571-ZIZNQC2fPlifTKHpJTuQow-1; Thu, 20 Aug 2026 17:56:25 -0400
-X-MC-Unique: ZIZNQC2fPlifTKHpJTuQow-1
-X-Mimecast-MFC-AGG-ID: ZIZNQC2fPlifTKHpJTuQow_1787262984
-Received: by mail-qk1-f197.google.com with SMTP id
- af79cd13be357-936708f129aso30041885a.0
-        for <nouveau@lists.freedesktop.org>;
- Thu, 20 Aug 2026 14:56:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787262984; x=1787867784;
-        h=mime-version:user-agent:content-transfer-encoding:content-type
-         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=lzTaBAeZXEpNdEF6mCBk0yTwt9Zf1jS1qQHVYWMdOMI=;
-        b=a8gyFLVEZk2Sf8tCIWd87PodF9R67DvnTPQKK7tyLAX/CVv7YVVxeVfGpQRsJV+NdV
-         7rE+mOqSfKBF0iwBpzN9VRp83VfMG0CFKlmoon8sg3pq4+AP4siynwiALY3fS6Z6GqB7
-         XzfTChaIJxxSwhE+LDOc2+cumQOBx8MbjQK8Fn3rcpwQ7ZwjlwqjXIi2AwQ9HZ16UmUf
-         kOfbqIfpnfMws8pDnANLPQwo84JGUelnlhgRTT7ZBaCCYtlzhpesMUuCPMkcc2vd8rxb
-         Op7agXgwY0Fw0yENHJqDVUh398ydyeOQX7WCSLLts+ZGMGFvEuJVfz3HZLVhSY/Dzdgv
-         6TzQ==
-X-Forwarded-Encrypted: i=1;
- AHgh+Rq5QLEv0DVTLybWS8kvTajM35PMi3BUGzyR+HYS8wecrwXSRiRw+ddhdtAokvV+m5BJs+qePPiz@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxcH4NHqzEv9M8H7E/mYY2fVOmFGyGPFx5b6EvnVOGVN/3nfQYI
-	uKtyDIcU8KtfdhJgegReEVt4/izGTbS0C5uuQrMMP3YluZiL7iy7cdljq0yvGN3OtFOLAgJLcwD
-	TxE/8FaGLPPcOTGvKu79buP/TOkw0vSDQzGERPXkfFyEW29kCBmcxxBC67UaLLwMMsMY=
-X-Gm-Gg: AR+sD119dEWXt4v7smAteEMTMFeEF9q9cwh3nFLH6QgtDzFRyvpKS5Zb5bAPwugbdHu
-	Bvis1GcM9XgPHR/D1Yaml91wmOfgr/WLPH/ddt6RMy+r09wB7LLivkwBYHlzg/cTs7P6w5BxaXl
-	9DPm2QJAia91SQvGNzdoOpQSuylMcwpWNtof6syxnI8p307OqWFGoVyEKa+YKSoFcxiG0SD8z7n
-	706rqv8g1xrIIZYwz69dk4e2yPGdt1uwuYDncwVlYt3CJ49/0y8YvmgqhRIbKC9fKRZzS3+IlOS
-	qpMV449wg9P8TSev3J07QkWVFOJcuyvwoE0VFblZTmqBz6tWpLn+7/otkKuqgSosezozlu25
-X-Received: by 2002:a05:620a:1132:b0:937:36c0:bf6 with SMTP id
- af79cd13be357-9373958fcdamr105262185a.16.1787262984426;
-        Thu, 20 Aug 2026 14:56:24 -0700 (PDT)
-X-Received: by 2002:a05:620a:1132:b0:937:36c0:bf6 with SMTP id
- af79cd13be357-9373958fcdamr105260085a.16.1787262983921;
-        Thu, 20 Aug 2026 14:56:23 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93])
-        by smtp.gmail.com with ESMTPSA id
- af79cd13be357-937204aa8a6sm461514385a.11.2026.08.20.14.56.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Aug 2026 14:56:22 -0700 (PDT)
-Message-ID: <9414b8d122b9489056d72ee1605787ee038e62b7.camel@redhat.com>
-Subject: Re: [PATCH v3 4/4] drm/nouveau: subscribe to channel-kill events on
- NV50 and newer
-From: lyude@redhat.com
-To: Marek Czernohous <mczernohous@gmail.com>, nouveau@lists.freedesktop.org,
- 	dri-devel@lists.freedesktop.org
-Date: Thu, 20 Aug 2026 17:56:21 -0400
-In-Reply-To: <20260812231330.705425-5-mczernohous@gmail.com>
-References: <20260812231330.705425-1-mczernohous@gmail.com>
-	 <20260812231330.705425-5-mczernohous@gmail.com>
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=IMECoYsWSShMDNVZ8JDbQREho5iWl1tF8HaXKW+o8bY=;
+	b=bwcBwS0+RC4EqtR9XE60Dr7YThswkD9m/wJHGl0tYz+b+jnsCbHokMe2hGq/Uqk4uzT50A
+	eo3102wp6SGIjVNcjni9XRheTPpNywHtnve3o/8JTxEV7f0KyAXhdofQzz/9ZLDSC0zYU4
+	Y6GN1+Rph/uZtJg+IxXU5IT21JaHaQE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1787294328;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=IMECoYsWSShMDNVZ8JDbQREho5iWl1tF8HaXKW+o8bY=;
+	b=6Z4vcbQCxluqvDsyVW5JOdb+VetFkKQe/E/aiunFRyGnD0F+w7Vd66aAq33oo/wFBvKlfS
+	DD681hcQkd6gUCBw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1787294324;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=IMECoYsWSShMDNVZ8JDbQREho5iWl1tF8HaXKW+o8bY=;
+	b=mL9/9IirJ/hFuHoEJ9tqN6Gyj/BzCxbBnS8Vhpd9olYi8cAzb5Q7wleR0jkMWFnb6EQXj4
+	MbELBsuGxlTEhOXwdoUh5C2t3dHRphQ2taTyOQWKik5ErjYPYnJRZqA4MOEXeGdv8z+pmE
+	DnM6e+TO6hELLfr5XGJHojqd0ilrLZA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1787294324;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=IMECoYsWSShMDNVZ8JDbQREho5iWl1tF8HaXKW+o8bY=;
+	b=xbk2DB96M/yt8An1/BaVXFIB/WVgjEWwzS3BFmfjzbloxDMaBSaA5lj+zU3stDKov/MLO3
+	gePOA+Nf5lkyeWCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id BBCDE3329;
+	Fri, 21 Aug 2026 06:38:43 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id us1oLHPyh2pUAgAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Fri, 21 Aug 2026 06:38:43 +0000
+Message-ID: <3d0d14e6-05d2-4fc4-befe-e1d0cafc91db@suse.de>
+Date: Fri, 21 Aug 2026 08:38:43 +0200
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: SBc71fRaWoBI8oGK4bJvM_WUJ4qtEIUraKbfVlWjJF4_1787262984
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 2MHGWDHPRDA6XGIXLDFWXFN76ZJUVBZF
-X-Message-ID-Hash: 2MHGWDHPRDA6XGIXLDFWXFN76ZJUVBZF
-X-MailFrom: lyude@redhat.com
-X-Mailman-Rule-Hits: member-moderation
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/12] drm/panic: Split into core and helpers
+To: Jocelyn Falempe <jfalempe@redhat.com>, javierm@redhat.com,
+ airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org
+References: <20260818125012.468092-1-tzimmermann@suse.de>
+ <e4da5ba4-9a02-4080-9a83-19d401017910@redhat.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <e4da5ba4-9a02-4080-9a83-19d401017910@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Action: no action
+X-Rspamd-Queue-Id: 3284B3EAF
+X-Spamd-Result: default: False [-4.51 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-0.999];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FREEMAIL_TO(0.00)[redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	RCVD_TLS_ALL(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[suse.de:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.de:mid,suse.de:dkim]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+Message-ID-Hash: YF6ULUCIXTMTKB6PEBQQICPPB2XU6ET3
+X-Message-ID-Hash: YF6ULUCIXTMTKB6PEBQQICPPB2XU6ET3
+X-MailFrom: tzimmermann@suse.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
-CC: linux-kernel@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Ben Skeggs <bskeggs@nvidia.com>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
+ sashiko-reviews@lists.linux.dev
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2MHGWDHPRDA6XGIXLDFWXFN76ZJUVBZF/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YF6ULUCIXTMTKB6PEBQQICPPB2XU6ET3/>
 Archived-At: 
- <https://lore.freedesktop.org/9414b8d122b9489056d72ee1605787ee038e62b7.camel@redhat.com/>
+ <https://lore.freedesktop.org/3d0d14e6-05d2-4fc4-befe-e1d0cafc91db@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -147,87 +207,75 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-This one is going to need some input from others I believe, mostly in
-that I'd want to really make sure we know what the implications of
-enabling an event like this on Tesla are and what kind of testing we
-would need to know this isn't going to break things.
+Hi Jocelyn
 
-If it was a slightly newer generation I wouldn't be as worried. What
-kind of testing have you done with this so far in terms of workload in
-addition to what you mentioned on the cover letter? Tried running any
-games, anything graphics intensive, etc.?
+Am 20.08.26 um 19:49 schrieb Jocelyn Falempe:
+> On 18/08/2026 14:27, Thomas Zimmermann wrote:
+>> Split DRM's current panic handling into a core and a helper module.
+>> The core is still part of DRM's core library. The panic helpers are
+>> part of DRM's KMS helper module (for now).
+>>
+>> The motivation behind this series is to get panic handling's drawing
+>> code out of the DRM core. At some point it should share a single
+>> module with DRM's other drawing and format conversion.
+>>
+>> With the series applied, panic hanlding follows DRM's established
+>> design pattern of having a DRM core interface with an dedicated
+>> implementation in each driver. Drivers share common code in helper
+>> modules. For panic handling, the DRM core still contains the panic
+>> entry points, the parameters and the debugfs interface. All drawing
+>> is now located in the panic helpers.
+>>
+>> Patches 1 to 4 improve several issues in the current panic code. It
+>> makes sense to fix them before moving the core around.
+>>
+>> Patches 5 to 8 put handling of all panic state and locking into a
+>> single place, drm_panic_display_panic_screen(). It is maintained by
+>> panic handling's DRM core code. This also enables the test cases to
+>> work more independently from the kernel's configuration.
+>>
+>> Patches 9 to 11 split the panic-handling code into the core and panic
+>> helpers. The former maintain all state, locking and public interfaces.
+>> The latter handles drawing and details of the involved framebuffers.
+>>
+>> DRM devices that offer panic handling provide a single callback, struct
+>> drm_plane_funcs.display_panic_screen. A new initializer macro makes it
+>> point to the existing panic-drawing implementation. Hence there's no
+>> change in features or functionality. If panic handling is configured
+>> off, it all clears out to NULL.
+>>
+>> Patch 12 reworks the test cases slighly, so that they can be build as
+>> a separate module. Do 'modprobe drm_panic_helper_test' to run them.
+>>
+>> Tested under bochs with debugfs and test cases.
+>
+> Overall the series looks good to me, and I like the split between the 
+> helper and the core.
+> I would just drop the first two patches, as I don't see much 
+> difference between static allocation or kmalloc() at init, and I think 
+> that memset() the buffers to 0 is not useful in this case.
 
-On Thu, 2026-08-13 at 01:13 +0200, Marek Czernohous wrote:
-> From: Marek Czernohous <marek@czernohous.de>
->=20
-> nouveau_channel_init() only subscribes to the channel-killed event
-> for
-> FERMI_CHANNEL_GPFIFO and newer. On NV50/Tesla the subscription
-> therefore
-> never happens, and nvkm_chan_error()'s NVKM_CHAN_EVENT_ERRORED is
-> delivered into an empty notifier list.
->=20
-> Today that is harmless, because nothing kills a channel on Tesla: the
-> only nvkm_chan_error() callers are the Fermi and newer recovery
-> paths.
-> So this patch changes no observable behaviour on its own, and that is
-> deliberate: it removes a latent trap before anything can fall into
-> it.
-> I am carrying a Tesla recovery path that does add such a caller and
-> will
-> send it separately once it is ready. Without a subscriber in place
-> the
-> consequences there are severe: nouveau_channel_killed() never runs,
-> so
-> nouveau_fence_context_kill() never runs either, and the pending
-> fences
-> of the killed channel are never signalled. Everything waiting on them
-> waits forever: drm_atomic_helper_wait_for_fences() in the display
-> commit
-> tail waits uninterruptibly and without a timeout, and the TTM delayed
-> delete workers wait in TASK_UNINTERRUPTIBLE. The user sees a frozen
-> desktop on a machine that is otherwise alive, and nothing in the
-> kernel
-> ends that state: both waits pass MAX_SCHEDULE_TIMEOUT, so the fences
-> cannot time out. They are signalled only when the fence context is
-> torn
-> down, that is when the DRM client owning the channel closes its fd
-> and
-> nouveau_fence_context_del() runs. Killing the client, or rebooting,
-> clears it; waiting does not.
-> That is also a dma-fence contract violation: a fence must always be
-> signalled, with an error if necessary.
->=20
-> Lower the class gate to NV50_CHANNEL_GPFIFO. The nvkm side is already
-> class neutral: the KILLED case hangs the notifier on runl->chid-
-> >event,
-> which every fifo owns since the runlist rework, and
-> nvkm_uchan_uevent()
-> does not discriminate by class. Pre-NV50 chips keep the old
-> behaviour,
-> so NV04 to NV40 are unaffected.
->=20
-> Assisted-by: Claude:claude-opus-5
-> Signed-off-by: Marek Czernohous <marek@czernohous.de>
-> ---
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_chan.c | 2 +-
-> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c
-> b/drivers/gpu/drm/nouveau/nouveau_chan.c
-> index 07b0bd1bc519..5c2f4b9342b7 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_chan.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
-> @@ -485,7 +485,7 @@ nouveau_channel_init(struct nouveau_channel
-> *chan, u32 vram, u32 gart)
-> =C2=A0=09 * lock and the pending list, so an event arriving in
-> between would
-> =C2=A0=09 * find a non-NULL but unusable context and walk a NULL list
-> head.
-> =C2=A0=09 */
-> -=09if (chan->user.oclass >=3D FERMI_CHANNEL_GPFIFO) {
-> +=09if (chan->user.oclass >=3D NV50_CHANNEL_GPFIFO) {
-> =C2=A0=09=09DEFINE_RAW_FLEX(struct nvif_event_v0, args, data,
-> =C2=A0=09=09=09=09sizeof(struct nvif_chan_event_v0));
-> =C2=A0=09=09struct nvif_chan_event_v0 *host =3D
+Ok. Geert also expressed a dislike for these changes.
+
+I have a number of changes done from the Sashiko review and will post an 
+update to the series early next week.
+
+Thanks for reviewing.
+
+Best regards
+Thomas
+
+
+>
+> Best regards,
+>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG Nürnberg)
+
 
