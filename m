@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EEB0C5DF94
-	for <nouveau@archiver.kernel.org>; Fri, 21 Aug 2026 21:31:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64161C5DF97
+	for <nouveau@archiver.kernel.org>; Fri, 21 Aug 2026 21:52:24 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B665210F3B4;
-	Fri, 21 Aug 2026 21:31:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AA65C10F3D0;
+	Fri, 21 Aug 2026 21:52:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="SkY99Ifx";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="YKxmkSFp";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9595447AD4;
-	Fri, 21 Aug 2026 21:15:00 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 67A3547ADB;
+	Fri, 21 Aug 2026 21:35:45 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787346900;
- b=FP0noQchgyGzqTdSP9j1TzY24CNfrqTMaLkPOgBHfH9Uayqg52wfrfbSIzFi9MyKJq1jV
- GgVf4ya29rnjqzRQ57mqrLGyrkkNqyxxHGS1OXnjEkROjMDj+XQV97Ws8r4E92sEVXOXzAQ
- E7ChKBAmDjo6cIEu1uf3NAsjdet+F0xfpKNu9KTO1uyc1XGl8rk9L4ujnVsuUDSQFOAM4t+
- 1nwHNBEiABU5PXq7QBfrlNjWHjliROJjX+QMaBtYRYYL9nPdUTS1NZ7rcyuhxdEp319S5BD
- NbJ0iS0xII5hOJ1fznaFAwBx0nEbRBlP2OgQfHP94A/RI52XdZOuws/KNuBw==
+ s=20240201; t=1787348145;
+ b=FDFfcE5hXokYHokRDMfB5urI8AAqZFMios2QGnIB7DJFDgpmdvtyvvEFaCrguiuj+IWij
+ Zqq2jzZoqAFWD0bp9pykVzEalvtz11OJCs877Dcr3zfow1B3hDk5sh4W5UgH3heVSjdNkL5
+ VNqZxvwQmpyDD8QB1+UxvjgC8PjkjmCIhqFG7AiQgzKCcJwLTFQ1Ic/G/NvCto0hNQcCEI7
+ gHGsmxROGs0tHmprIG9jI2H2AlG9Wrvk4KcYkoyEt+HbB9Gsrb4Y6E6O16b19oZk2gnrNAF
+ N3XJU6LwKUu7L3NHkgoHQ2PFZFUgu02oLR8UfmvCvIK6uK6TqJEqACxziA+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787346900; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787348145; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=pr8d0fOTk7HJ92WIwFvUNvFQngG76dHS9ck0/MtLkMs=;
- b=JawJsk3B5dYqFvPLnN/QE5rr5ZC9UKOG/OyYLqQgqarF15ih3jyLgSyNNS1iXq9KPoSxv
- HP4FuDYs9S6bkQlHNPZ6zo5odRwWWSQWf74lEqScSSgEnfPGONz0xG325Dw9ygUiNQv/zqt
- 1TO44RNEO/qwPSjS72L7Ssn26FbD0wJz0cOaVYavuY7Hyh5KUSYkqCT+xWFZ8xNBry5BRg/
- KUPcnu984Ghx9WhRLc4gJZ//DXW8hVThdkI7Aitx9Q9WlCqRUAdJfyjmoY7sNl0Pi0GtkKH
- zyRi+OF5kkcyuVdjMs9ynlkdS/BQRr7sAkLej4eCLdDQGqvwemme+fsuQexg==
+ bh=dxTIrj5toN2wZbiMOEAp8/1FtnWPmkO2zwot3SvJAQ4=;
+ b=cFTqsQhnUvmXOfKkyh8VysJGes/EbmCB/tq/A6SE6tExoK/6Z/Qm8XJibl8MFA1IVBv4U
+ hUaO8oS6nuQtsrsbbetb+CdhsnxJkn5CLpWcbPS/Rkr+PiCWkrc8VBmC+qYbE5jBCnRRB02
+ qCCQsfO/04FF2/hGxwNM3Hk0bU4VzHep/CJ/lQtp/+wCgqPVXWJhA6OyRm9e5z+AEnyhCch
+ GRZm8FFsT7PY76e55Gal/IGkTSxQ9htsKXMbI9tkYntqIlP4d7s1nA6A/9bVNufMl7G4ZY3
+ TtNzcy3Wd4smHuAzvQxL6j37cepZfZTd5oDDQXviUg6q8jeuSy6LxnTZWeFA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,85 +46,85 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4CE6447AB5
-	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 21:14:57 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id A92DD474BB
+	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 21:35:41 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2746410E376
-	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 21:31:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6A17A10F3C4
+	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 21:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1787347894;
+	s=mimecast20190719; t=1787349138;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=pr8d0fOTk7HJ92WIwFvUNvFQngG76dHS9ck0/MtLkMs=;
-	b=SkY99IfxbyfCag4EnAuLeARxMk6SOTaJxzMR+j9U7/o3Zr+jicHrCF7YIaBHLrlwLeX8ou
-	5Z+xWbk22uFVLvKEBZx4ETLCwMLwchjFe+1MVqSLyYbxhB6J9ChXoFRRuyqINzfkLrr1bq
-	482gGag9xlVjS/uBFmFGRY7jZhR3Gu4=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=dxTIrj5toN2wZbiMOEAp8/1FtnWPmkO2zwot3SvJAQ4=;
+	b=YKxmkSFppHTQQWO1l4+B1s2rMJ0zbdtauTwhJKciqYV8uKC07d4sQcqsh8Yz5HbD2hRUjG
+	1n7xRtvXNMImnogV2vXQ8wo/8hh/YZ2K/KZfE0XlRbeLyC9sOKdzOgRG0CMBkyNmt5RAIY
+	oFMdB2yfnCeJqKbMVvSOQKhfeUCkQ50=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-619-kgmVv5epNd-Fs0iNHRpbMA-1; Fri, 21 Aug 2026 17:31:33 -0400
-X-MC-Unique: kgmVv5epNd-Fs0iNHRpbMA-1
-X-Mimecast-MFC-AGG-ID: kgmVv5epNd-Fs0iNHRpbMA_1787347893
-Received: by mail-qv1-f72.google.com with SMTP id
- 6a1803df08f44-8eeba1d9e47so10222076d6.2
+ us-mta-155-TZQy2EGcOfW1QiDngDof4w-1; Fri, 21 Aug 2026 17:52:16 -0400
+X-MC-Unique: TZQy2EGcOfW1QiDngDof4w-1
+X-Mimecast-MFC-AGG-ID: TZQy2EGcOfW1QiDngDof4w_1787349136
+Received: by mail-qk1-f200.google.com with SMTP id
+ af79cd13be357-93494527488so242506085a.3
         for <nouveau@lists.freedesktop.org>;
- Fri, 21 Aug 2026 14:31:33 -0700 (PDT)
+ Fri, 21 Aug 2026 14:52:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787347892; x=1787952692;
+        d=1e100.net; s=20251104; t=1787349136; x=1787953936;
         h=mime-version:user-agent:content-transfer-encoding:content-type
          :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=+lJHW5Uuf0wtGywk/XA4axlvgeXcz2UVQQ73YnPogIk=;
-        b=Se6QZVWiRb6CagpWaIY6WZv526JWA91rsbzyUdqEfdKf2SECHChv5nRNEcADjKANqK
-         +hAGPODrj9DcqH8cXwm4YIjmIolKfsenszEr93mRjRzIuncl9LhRihMrdyhNawolN57c
-         5pB0dQofwQ8CYuaAHfJy8rjquYIU1zCK/EZMc7Tpy2a5NyQZqCcbIJ1M/8KDe3jONx6g
-         C+AmwROSyo4jj1hebF8+EkK11Gki1ayqQKQirWZZ7eKvT1Il0X06Fai0b4OgR693c2jZ
-         EXhWeduEreZ4TNsmaWSBEJwUxqTGhSlkRNitsp6dYQKV+uRTyXMYxmgDXIqlNBxK/34Z
-         DrOw==
+        bh=KWxHNd99XGX0A91OcehYQd0todjKC95ynNoZwWY1F3w=;
+        b=DlVF4fOM2yHa2J0iHBxWRksIGwM08BFy/gW1Ei7bU+bseNm3jHFrvJLh+ONZLFTO4n
+         rwpyhAUvnQm3H4mp1ci8z7XONXcfNdX5Koui6VZDfdHj+isa+fr7FF/5BTEC9tKLNVM4
+         mSxyl6ZUbA6rpucFG5mQhjXJKB7AqX5JLQXw8sNjcxA9FHiO+1/nC5YLOYc+yC5asUTB
+         xkNz33GZS+1cLuoubXdUPkTFAm+S2EpJhHlYXppA3qSfp6GZ97w6InHQjF0so1EE2RrL
+         pw/ztSDbI1E5AtWx/NxQwfAeX5QRKrOdrTeJLFEUEET7MFPf5rmXTHcLVANE7aH/zF+J
+         QI7A==
 X-Forwarded-Encrypted: i=1;
- AHgh+RrgEZxLgZ4Ma6r6ZshF/F/JtUhH2QeeTbuprYfM+ZnuLk2VWQWGBxD954pfvcFmOWsXkfln/ew2@lists.freedesktop.org
-X-Gm-Message-State: AFuF++nlfgju/tcfhbviXMq6njl+woiybLTtM0v4CAA7inLlrVWscnu/
-	gjZ1Kek+4XyXZUhTls57doIJ5oG+UL3/ASMu7DHS2Kvoz7/IEABYaPedSPmaY0h41W37DEiURuk
-	F2bnn+EgsVKIxljJeelUV2H8/o3jYhT5wCadhP1awblvt5WzhPZH7iH1Ho7H7HWl5YHM=
-X-Gm-Gg: AR+sD11XlSRNZNyzl5tm6lwIwBzgEb/2TODWIn9aUyL5qGavcrQ8KSZmkRrQzgYY7Op
-	jIz7erdq9Q608VcDes9pEQqFXTp9OhcW3AU3LkDqu8Gu8okf2pXpBRbPqRvtNnmCRQRIgKBnSXa
-	CCY8hye6sgd6a1prDXVBB9w8EuB5SFepQO5kuyF9CtAM0jP2bVZl/yaRZHMxJphTMw6jktUiJPW
-	3KawJ1CFWK02wzBCTiePNk21t71vwtT1xR8sjrFqcF9wFjuGbfZ2RkE5xEKZdRX0dfMkqFQe0d2
-	BalYJxiYEy2r2tPvO02JBHxJi4rzRw0XRNbq82asjYZXnEJsLCrvnFK071zvoEcmzdwtSIvm
-X-Received: by 2002:a05:6214:cc5:b0:8cc:d29:9f73 with SMTP id
- 6a1803df08f44-90c80c661f8mr90295506d6.21.1787347892633;
-        Fri, 21 Aug 2026 14:31:32 -0700 (PDT)
-X-Received: by 2002:a05:6214:cc5:b0:8cc:d29:9f73 with SMTP id
- 6a1803df08f44-90c80c661f8mr90295106d6.21.1787347892151;
-        Fri, 21 Aug 2026 14:31:32 -0700 (PDT)
+ AHgh+RouV4J6hHJiwJt6bT+2UrIFvaP9BPuboVWGhhRI4FUAof0XGdRJ3mJLhLPEJAbTZsgDweq3JV7S@lists.freedesktop.org
+X-Gm-Message-State: AFuF++neTxjf3yHNuPNgm/eSZ0JSyNY+Zsq6rOmeBiaA/B/E5gryuztk
+	rRlPDlpgWO5EbybZJGIfidpsGDULlYnyxoD4NLZd2uJptiykco0V3tiOwr0jOzvuYHTGQ51H4jd
+	VU711LOLXmYOTRo2Pk50WosLmftLLQxsCIEUF1COI1kW/nBPCcGIIfRGBgfms5Iz3JUw=
+X-Gm-Gg: AR+sD13tTilj+UUy2xYRLnSNpSe0jTBmWKNRwK4pKCHufmsbOrq5qO2ad3XbECOnexm
+	RXaAHHSKqYsQEPvRy4HaUvWoMyj9ynJSnve75zThXTDgZEpkI/XiFkSyPFdupKiIxuifdHfWj5O
+	TH6+s17UiJVgrJrI28F/TXGe7u9KPY6WbTlzqzIj557jxGc6tGF+GfFoUPeQlScz3fJIj+pPVhj
+	HRYQN9bxUYmq5/ArViUOXEUDvRKALjISGPQNrhx2uyNiOlsnW32JzVaSKXUHH2lmACxnRLviuvo
+	KiDFIMq09/2dhWNBSCvxwG/4oNmSM+pX6HF/U0qoxQu4Zb+buFZqqKKVROwnMpN7u7uExE3P
+X-Received: by 2002:a05:620a:1d0d:b0:937:1710:f839 with SMTP id
+ af79cd13be357-937395f9133mr938555685a.47.1787349135745;
+        Fri, 21 Aug 2026 14:52:15 -0700 (PDT)
+X-Received: by 2002:a05:620a:1d0d:b0:937:1710:f839 with SMTP id
+ af79cd13be357-937395f9133mr938550485a.47.1787349135161;
+        Fri, 21 Aug 2026 14:52:15 -0700 (PDT)
 Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-90c5f2906afsm71653306d6.25.2026.08.21.14.31.31
+ af79cd13be357-93749e9f94bsm5008085a.37.2026.08.21.14.52.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Aug 2026 14:31:31 -0700 (PDT)
-Message-ID: <e90f41a9449e13f5ace29a647af6f64c2d302655.camel@redhat.com>
-Subject: Re: [PATCH v2 01/10] drm/nouveau/disp: move GSP head-timing ISR and
- vblank helpers to tu102.c
+        Fri, 21 Aug 2026 14:52:14 -0700 (PDT)
+Message-ID: <66c8492e4018fa32c59aaef767a975fdc8887b41.camel@redhat.com>
+Subject: Re: [PATCH v2 04/10] drm/nouveau/disp: fix HDMI vendor infoframes
+ on GB20x
 From: lyude@redhat.com
 To: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
 	linux-kernel@vger.kernel.org
-Date: Fri, 21 Aug 2026 17:31:30 -0400
-In-Reply-To: <20260820164929.17117-2-mohamedahmedegypt2001@gmail.com>
+Date: Fri, 21 Aug 2026 17:52:13 -0400
+In-Reply-To: <20260820164929.17117-5-mohamedahmedegypt2001@gmail.com>
 References: <20260820164929.17117-1-mohamedahmedegypt2001@gmail.com>
-	 <20260820164929.17117-2-mohamedahmedegypt2001@gmail.com>
+	 <20260820164929.17117-5-mohamedahmedegypt2001@gmail.com>
 User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: X-x6MptIur87nHw4cDzzOdJkYqi5cqIHcdoj_obOvLU_1787347893
+X-Mimecast-MFC-PROC-ID: guk9Y9NoBgYB2_rGQT1jq8TEMNh_6D7nqe826fvAP00_1787349136
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: PM6OCK6SN4XU75JXI7QUF3PGE67CJB5C
-X-Message-ID-Hash: PM6OCK6SN4XU75JXI7QUF3PGE67CJB5C
+Message-ID-Hash: SHPEIY5RJH4BBZBRRHBFDB5LM5UQNEW2
+X-Message-ID-Hash: SHPEIY5RJH4BBZBRRHBFDB5LM5UQNEW2
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -137,9 +137,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PM6OCK6SN4XU75JXI7QUF3PGE67CJB5C/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SHPEIY5RJH4BBZBRRHBFDB5LM5UQNEW2/>
 Archived-At: 
- <https://lore.freedesktop.org/e90f41a9449e13f5ace29a647af6f64c2d302655.camel@redhat.com/>
+ <https://lore.freedesktop.org/66c8492e4018fa32c59aaef767a975fdc8887b41.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -152,238 +152,262 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 Reviewed-by: Lyude Paul <lyude@redhat.com>
 
 On Thu, 2026-08-20 at 20:49 +0400, Mohamed Ahmed wrote:
-> The GSP-RM display code in rm/r535/disp.c owns a handful of direct
-> MMIO
-> routines: the head-timing (vblank) interrupt handler and the per-head
-> vblank enable/disable. They program display registers, not RM, so
-> they
-> belong with the rest of the per-chip register code in engine/disp/.
+> The GSP path reuses the GV100 direct-MMIO infoframe writers on every
+> chip. On GB20x that is only half right as while the legacy SF AVI
+> unit is
+> unchanged, the legacy VSI unit at 0x6f0100 was removed, so
+> gv100_sor_hdmi_infoframe_vsi() writes into a reserved area and no
+> vendor
+> infoframe ever reaches the HW. This affects HDMI-VIC signalling which
+> can impact some 4K modes for legacy HDMI 1.4 sinks.
 >=20
-> Move them to tu102.c (Turing is the first GSP-capable generation) as
-> tu102_disp_intr() and tu102_head_vblank_get()/put(), exported for
-> rm/r535/disp.c, which keeps calling them by name for now. No
-> functional
-> change.
+> GB20x (NVDisplay 5.0+) reorganised the SF HDMI packet units. Per
+> NVIDIA's
+> published C971/CA71 DISP_SF_USER class headers, only three legacy
+> units
+> remain (AVI at +0x000, GCP at +0x040, ACR at +0x080), and vendor
+> infoframes must instead be sent through the shared generic infoframe
+> units at +0x130, whose 9-dword packet slots are loaded through the
+> shared data port at +0x3f0/+0x3f4.
+>=20
+> Add a VSI writer using the same programming sequence OpenRM uses on
+> these chips (nvhdmipkt_C971.c, programAdvancedInfoframeC971()):
+> disable
+> the unit and wait for it to idle, clear the SENT status, write the
+> packet
+> through the data port with a zero inserted in HB3 after the three
+> header
+> bytes, then enable the unit for every-frame transmission during
+> vblank.
+> Generic unit 1 is used for the VSI, matching the slot assignment in
+> NVIDIA's nvkms (NVHDMIPKT_TYPE_SHARED_GENERIC2, unit 0 is reserved
+> for extended metadata packets and unit 2 for the HDR DRM infoframe,
+> if those are wired up later).
+>=20
+> GB20x so far shared GA10x's display entry point. Give it its own,
+> gb202_disp_new(), with a gb202_gsp_disp table that supplies the VSI
+> writer to the GSP path and otherwise carries the same hooks as GA10x.
+> The following fixes fill in the rest of the GB20x differences there.
 >=20
 > Signed-off-by: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
 > ---
-> =C2=A0.../gpu/drm/nouveau/nvkm/engine/disp/head.h=C2=A0=C2=A0 |=C2=A0 3 +=
-+
-> =C2=A0.../gpu/drm/nouveau/nvkm/engine/disp/priv.h=C2=A0=C2=A0 |=C2=A0 1 +
-> =C2=A0.../gpu/drm/nouveau/nvkm/engine/disp/tu102.c=C2=A0 | 50
-> ++++++++++++++++++
-> =C2=A0.../nouveau/nvkm/subdev/gsp/rm/r535/disp.c=C2=A0=C2=A0=C2=A0 | 52 +=
-+---------------
-> --
-> =C2=A04 files changed, 57 insertions(+), 49 deletions(-)
+> =C2=A0.../drm/nouveau/include/nvkm/engine/disp.h=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 1 +
+> =C2=A0.../gpu/drm/nouveau/nvkm/engine/device/base.c | 10 +-
+> =C2=A0.../gpu/drm/nouveau/nvkm/engine/disp/Kbuild=C2=A0=C2=A0 |=C2=A0 1 +
+> =C2=A0.../gpu/drm/nouveau/nvkm/engine/disp/gb202.c=C2=A0 | 91
+> +++++++++++++++++++
+> =C2=A04 files changed, 98 insertions(+), 5 deletions(-)
+> =C2=A0create mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
 >=20
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h
-> b/drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h
-> index b642729c254f..986043e87554 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/head.h
-> @@ -56,6 +56,9 @@ int gv100_head_new(struct nvkm_disp *, int id);
-> =C2=A0void gv100_head_state(struct nvkm_head *head, struct nvkm_head_stat=
-e
-> *state);
-> =C2=A0void gv100_head_rgpos(struct nvkm_head *head, u16 *hline, u16
-> *vline);
+> diff --git a/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
+> b/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
+> index 7903d7470d19..01145db32c53 100644
+> --- a/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
+> +++ b/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
+> @@ -87,4 +87,5 @@ int gp102_disp_new(struct nvkm_device *, enum
+> nvkm_subdev_type, int inst, struct
+> =C2=A0int gv100_disp_new(struct nvkm_device *, enum nvkm_subdev_type, int
+> inst, struct nvkm_disp **);
+> =C2=A0int tu102_disp_new(struct nvkm_device *, enum nvkm_subdev_type, int
+> inst, struct nvkm_disp **);
+> =C2=A0int ga102_disp_new(struct nvkm_device *, enum nvkm_subdev_type, int
+> inst, struct nvkm_disp **);
+> +int gb202_disp_new(struct nvkm_device *, enum nvkm_subdev_type, int
+> inst, struct nvkm_disp **);
+> =C2=A0#endif
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+> b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+> index ea62dc97f118..96c8a5b29999 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+> @@ -2846,7 +2846,7 @@ nv1b2_chipset =3D {
+> =C2=A0=09.pci=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gh100_pci_n=
+ew },
+> =C2=A0=09.timer=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gk20a_timer_new },
+> =C2=A0=09.vfn=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga100_vfn_n=
+ew },
+> -=09.disp=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga102_disp_new },
+> +=09.disp=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gb202_disp_new },
+> =C2=A0=09.fifo=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga102_fifo_new }=
+,
+> =C2=A0};
 > =C2=A0
-> +void tu102_head_vblank_get(struct nvkm_head *);
-> +void tu102_head_vblank_put(struct nvkm_head *);
-> +
-> =C2=A0#define HEAD_MSG(h,l,f,a...) do
-> {=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
-> =C2=A0=09struct nvkm_head *_h =3D
-> (h);=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
-> =C2=A0=09nvkm_##l(&_h->disp->engine.subdev, "head-%d: "f"\n", _h->id,
-> ##a);=C2=A0=C2=A0=C2=A0=C2=A0 \
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/priv.h
-> b/drivers/gpu/drm/nouveau/nvkm/engine/disp/priv.h
-> index a3fd7cb7c488..722ec340e12a 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/priv.h
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/priv.h
-> @@ -72,6 +72,7 @@ int gv100_disp_wndw_cnt(struct nvkm_disp *,
-> unsigned long *);
-> =C2=A0int gv100_disp_caps_new(const struct nvkm_oclass *, void *, u32,
-> struct nvkm_object **);
+> @@ -2862,7 +2862,7 @@ nv1b3_chipset =3D {
+> =C2=A0=09.pci=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gh100_pci_n=
+ew },
+> =C2=A0=09.timer=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gk20a_timer_new },
+> =C2=A0=09.vfn=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga100_vfn_n=
+ew },
+> -=09.disp=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga102_disp_new },
+> +=09.disp=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gb202_disp_new },
+> =C2=A0=09.fifo=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga102_fifo_new }=
+,
+> =C2=A0};
 > =C2=A0
-> =C2=A0int tu102_disp_init(struct nvkm_disp *);
-> +irqreturn_t tu102_disp_intr(struct nvkm_inth *);
+> @@ -2878,7 +2878,7 @@ nv1b5_chipset =3D {
+> =C2=A0=09.pci=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gh100_pci_n=
+ew },
+> =C2=A0=09.timer=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gk20a_timer_new },
+> =C2=A0=09.vfn=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga100_vfn_n=
+ew },
+> -=09.disp=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga102_disp_new },
+> +=09.disp=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gb202_disp_new },
+> =C2=A0=09.fifo=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga102_fifo_new }=
+,
+> =C2=A0};
 > =C2=A0
-> =C2=A0void nv50_disp_dptmds_war_2(struct nvkm_disp *, struct dcb_output
-> *);
-> =C2=A0void nv50_disp_dptmds_war_3(struct nvkm_disp *, struct dcb_output
-> *);
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
-> b/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
-> index dcb9f8ba374c..7b70b466fa36 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
-> @@ -104,6 +104,56 @@ tu102_sor_new(struct nvkm_disp *disp, int id)
-> =C2=A0=09return nvkm_ior_new_(&tu102_sor, disp, SOR, id, hda &
-> BIT(id));
-> =C2=A0}
+> @@ -2894,7 +2894,7 @@ nv1b6_chipset =3D {
+> =C2=A0=09.pci=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gh100_pci_n=
+ew },
+> =C2=A0=09.timer=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gk20a_timer_new },
+> =C2=A0=09.vfn=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga100_vfn_n=
+ew },
+> -=09.disp=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga102_disp_new },
+> +=09.disp=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gb202_disp_new },
+> =C2=A0=09.fifo=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga102_fifo_new }=
+,
+> =C2=A0};
 > =C2=A0
-> +/* The GSP-RM display path leaves head-timing (vblank) interrupts
-> and their
-> + * enables to us. These program the RM head-timing line (bit 1 of
-> the
-> + * per-head enable, not the bit nvkm's own gv100 path uses).
+> @@ -2910,7 +2910,7 @@ nv1b7_chipset =3D {
+> =C2=A0=09.pci=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gh100_pci_n=
+ew },
+> =C2=A0=09.timer=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gk20a_timer_new },
+> =C2=A0=09.vfn=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga100_vfn_n=
+ew },
+> -=09.disp=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga102_disp_new },
+> +=09.disp=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, gb202_disp_new },
+> =C2=A0=09.fifo=C2=A0=C2=A0=C2=A0=C2=A0 =3D { 0x00000001, ga102_fifo_new }=
+,
+> =C2=A0};
+> =C2=A0
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/Kbuild
+> b/drivers/gpu/drm/nouveau/nvkm/engine/disp/Kbuild
+> index e1aecd3fe96c..98d6ca5ac311 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/Kbuild
+> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/Kbuild
+> @@ -27,6 +27,7 @@ nvkm-y +=3D nvkm/engine/disp/gp102.o
+> =C2=A0nvkm-y +=3D nvkm/engine/disp/gv100.o
+> =C2=A0nvkm-y +=3D nvkm/engine/disp/tu102.o
+> =C2=A0nvkm-y +=3D nvkm/engine/disp/ga102.o
+> +nvkm-y +=3D nvkm/engine/disp/gb202.o
+> =C2=A0
+> =C2=A0nvkm-y +=3D nvkm/engine/disp/udisp.o
+> =C2=A0nvkm-y +=3D nvkm/engine/disp/uconn.o
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
+> b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
+> new file mode 100644
+> index 000000000000..fa83aee35ae7
+> --- /dev/null
+> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
+> @@ -0,0 +1,91 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright 2026 Valve Corp.
 > + */
-> +void
-> +tu102_head_vblank_put(struct nvkm_head *head)
-> +{
-> +=09struct nvkm_device *device =3D head->disp-
-> >engine.subdev.device;
+> +#include "priv.h"
+> +#include "head.h"
+> +#include "ior.h"
 > +
-> +=09nvkm_mask(device, 0x611d80 + (head->id * 4), 0x00000002,
-> 0x00000000);
-> +}
+> +#include <subdev/timer.h>
 > +
-> +void
-> +tu102_head_vblank_get(struct nvkm_head *head)
-> +{
-> +=09struct nvkm_device *device =3D head->disp-
-> >engine.subdev.device;
-> +
-> +=09nvkm_wr32(device, 0x611800 + (head->id * 4), 0x00000002);
-> +=09nvkm_mask(device, 0x611d80 + (head->id * 4), 0x00000002,
-> 0x00000002);
-> +}
-> +
+> +/* GB20x (NVD5.0) reorganised the SF HDMI packet units. The AVI unit
+> is
+> + * unchanged from GV100, but the legacy VSI unit is gone. Vendor
+> infoframes
+> + * are sent through the shared generic infoframe units instead.
+> Register
+> + * layout per NVIDIA's clc971.h/clca71.h, programming sequence per
+> + * nvhdmipkt_C971.c:programAdvancedInfoframeC971().
+> + */
 > +static void
-> +tu102_disp_intr_head_timing(struct nvkm_disp *disp, int head)
+> +gb202_sor_hdmi_infoframe_vsi(struct nvkm_ior *ior, int head, void
+> *data, u32 size)
 > +{
-> +=09struct nvkm_subdev *subdev =3D &disp->engine.subdev;
-> +=09struct nvkm_device *device =3D subdev->device;
-> +=09u32 stat =3D nvkm_rd32(device, 0x611c00 + (head * 0x04));
+> +=09struct nvkm_device *device =3D ior->disp-
+> >engine.subdev.device;
+> +=09const u32 hoff =3D head * 0x400;
+> +=09/* Generic infoframe unit 1, the slot NVIDIA's driver uses
+> for the VSI. */
+> +=09const u32 ctrl =3D 0x6f0138 + hoff;
+> +=09u8 buf[36] =3D {};
+> +=09int i;
 > +
-> +=09if (stat & 0x00000002) {
-> +=09=09nvkm_disp_vblank(disp, head);
+> +=09/* Disable the unit and wait for it to go idle. */
+> +=09nvkm_mask(device, ctrl, 0x00000001, 0x00000000);
+> +=09if (nvkm_msec(device, 2000,
+> +=09=09if (!(nvkm_rd32(device, ctrl) & 0x00400000))
+> +=09=09=09break;
+> +=09) < 0)
+> +=09=09return;
 > +
-> +=09=09nvkm_wr32(device, 0x611800 + (head * 0x04),
-> 0x00000002);
+> +=09if (!size)
+> +=09=09return;
+> +
+> +=09/* Clear SENT status, and point the data port at unit 1's
+> slot. */
+> +=09nvkm_mask(device, ctrl, 0x00800000, 0x00800000);
+> +=09nvkm_wr32(device, 0x6f03f0 + hoff, 0x00000001);
+> +
+> +=09/* The data port takes the raw packet, except that a zero is
+> inserted
+> +=09 * in HB3 after the three header bytes. A slot is 9 dwords
+> (HB0-3 plus
+> +=09 * up to 32 payload bytes). An HDMI infoframe carries at
+> most PB0-27,
+> +=09 * so the tail stays zero, and we always write the whole
+> slot.
+> +=09 */
+> +=09size =3D min_t(u32, size, 31);
+> +=09memcpy(buf, data, min_t(u32, size, 3));
+> +=09if (size > 3)
+> +=09=09memcpy(&buf[4], (u8 *)data + 3, size - 3);
+> +
+> +=09for (i =3D 0; i < 36; i +=3D 4) {
+> +=09=09nvkm_wr32(device, 0x6f03f4 + hoff, buf[i + 0] |
+> buf[i + 1] << 8 |
+> +=09=09=09=09=09=09=C2=A0=C2=A0 buf[i + 2] << 16
+> |
+> +=09=09=09=09=09=09=C2=A0=C2=A0 (u32)buf[i + 3]
+> << 24);
 > +=09}
+> +
+> +=09/* No flip ID or scanline matching. */
+> +=09nvkm_wr32(device, 0x6f013c + hoff, 0x00000000);
+> +
+> +=09/* ENABLE | RUN_MODE=3DALWAYS | LOC=3DVBLANK | OFFSET=3D1 |
+> SIZE=3D0. */
+> +=09nvkm_wr32(device, ctrl, 0x00000041);
+> +
+> +=09/* Audio priority low (the init value). */
+> +=09nvkm_wr32(device, 0x6f03f8 + hoff, 0x00000002);
 > +}
 > +
-> +irqreturn_t
-> +tu102_disp_intr(struct nvkm_inth *inth)
+> +/* GB20x is GSP-only. This table supplies the register programming
+> the
+> + * GSP-RM display path needs from the chip.
+> + */
+> +static const struct nvkm_disp_func
+> +gb202_gsp_disp =3D {
+> +=09.uevent =3D &gv100_disp_chan_uevent,
+> +=09.ramht_size =3D 0x2000,
+> +=09.gsp.intr =3D tu102_disp_intr,
+> +=09.gsp.head_state =3D gv100_head_state,
+> +=09.gsp.head_rgpos =3D gv100_head_rgpos,
+> +=09.gsp.vblank_get =3D tu102_head_vblank_get,
+> +=09.gsp.vblank_put =3D tu102_head_vblank_put,
+> +=09.gsp.hdmi_gcp =3D tu102_sor_hdmi_gcp,
+> +=09/* The legacy AVI unit is unchanged on GB20x. */
+> +=09.gsp.hdmi_infoframe_avi =3D gv100_sor_hdmi_infoframe_avi,
+> +=09.gsp.hdmi_infoframe_vsi =3D gb202_sor_hdmi_infoframe_vsi,
+> +};
+> +
+> +int
+> +gb202_disp_new(struct nvkm_device *device, enum nvkm_subdev_type
+> type, int inst,
+> +=09=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct nvkm_disp **pdisp)
 > +{
-> +=09struct nvkm_disp *disp =3D container_of(inth, typeof(*disp),
-> engine.subdev.inth);
-> +=09struct nvkm_subdev *subdev =3D &disp->engine.subdev;
-> +=09struct nvkm_device *device =3D subdev->device;
-> +=09unsigned long mask =3D nvkm_rd32(device, 0x611ec0) &
-> 0x000000ff;
-> +=09int head;
-> +
-> +=09for_each_set_bit(head, &mask, 8)
-> +=09=09tu102_disp_intr_head_timing(disp, head);
-> +
-> +=09return IRQ_HANDLED;
+> +=09return r535_disp_new(&gb202_gsp_disp, device, type, inst,
+> pdisp);
 > +}
-> +
-> =C2=A0int
-> =C2=A0tu102_disp_init(struct nvkm_disp *disp)
-> =C2=A0{
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-> b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-> index e77733a5d9c3..8e57bb6519e5 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-> @@ -608,29 +608,12 @@ r535_sor_cnt(struct nvkm_disp *disp, unsigned
-> long *pmask)
-> =C2=A0=09return 4;
-> =C2=A0}
-> =C2=A0
-> -static void
-> -r535_head_vblank_put(struct nvkm_head *head)
-> -{
-> -=09struct nvkm_device *device =3D head->disp-
-> >engine.subdev.device;
-> -
-> -=09nvkm_mask(device, 0x611d80 + (head->id * 4), 0x00000002,
-> 0x00000000);
-> -}
-> -
-> -static void
-> -r535_head_vblank_get(struct nvkm_head *head)
-> -{
-> -=09struct nvkm_device *device =3D head->disp-
-> >engine.subdev.device;
-> -
-> -=09nvkm_wr32(device, 0x611800 + (head->id * 4), 0x00000002);
-> -=09nvkm_mask(device, 0x611d80 + (head->id * 4), 0x00000002,
-> 0x00000002);
-> -}
-> -
-> =C2=A0static const struct nvkm_head_func
-> =C2=A0r535_head =3D {
-> =C2=A0=09.state =3D gv100_head_state,
-> =C2=A0=09.rgpos =3D gv100_head_rgpos,
-> -=09.vblank_get =3D r535_head_vblank_get,
-> -=09.vblank_put =3D r535_head_vblank_put,
-> +=09.vblank_get =3D tu102_head_vblank_get,
-> +=09.vblank_put =3D tu102_head_vblank_put,
-> =C2=A0};
-> =C2=A0
-> =C2=A0static struct nvkm_conn *
-> @@ -1404,35 +1387,6 @@ static const struct nvkm_event_func
-> =C2=A0r535_disp_event =3D {
-> =C2=A0};
-> =C2=A0
-> -static void
-> -r535_disp_intr_head_timing(struct nvkm_disp *disp, int head)
-> -{
-> -=09struct nvkm_subdev *subdev =3D &disp->engine.subdev;
-> -=09struct nvkm_device *device =3D subdev->device;
-> -=09u32 stat =3D nvkm_rd32(device, 0x611c00 + (head * 0x04));
-> -
-> -=09if (stat & 0x00000002) {
-> -=09=09nvkm_disp_vblank(disp, head);
-> -
-> -=09=09nvkm_wr32(device, 0x611800 + (head * 0x04),
-> 0x00000002);
-> -=09}
-> -}
-> -
-> -static irqreturn_t
-> -r535_disp_intr(struct nvkm_inth *inth)
-> -{
-> -=09struct nvkm_disp *disp =3D container_of(inth, typeof(*disp),
-> engine.subdev.inth);
-> -=09struct nvkm_subdev *subdev =3D &disp->engine.subdev;
-> -=09struct nvkm_device *device =3D subdev->device;
-> -=09unsigned long mask =3D nvkm_rd32(device, 0x611ec0) &
-> 0x000000ff;
-> -=09int head;
-> -
-> -=09for_each_set_bit(head, &mask, 8)
-> -=09=09r535_disp_intr_head_timing(disp, head);
-> -
-> -=09return IRQ_HANDLED;
-> -}
-> -
-> =C2=A0static void
-> =C2=A0r535_disp_fini(struct nvkm_disp *disp, bool suspend)
-> =C2=A0{
-> @@ -1708,7 +1662,7 @@ r535_disp_oneinit(struct nvkm_disp *disp)
-> =C2=A0=09=09return ret;
-> =C2=A0
-> =C2=A0=09ret =3D nvkm_inth_add(&device->vfn->intr, ret,
-> NVKM_INTR_PRIO_NORMAL, &disp->engine.subdev,
-> -=09=09=09=C2=A0=C2=A0=C2=A0 r535_disp_intr, &disp-
-> >engine.subdev.inth);
-> +=09=09=09=C2=A0=C2=A0=C2=A0 tu102_disp_intr, &disp-
-> >engine.subdev.inth);
-> =C2=A0=09if (ret)
-> =C2=A0=09=09return ret;
-> =C2=A0
 
