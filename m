@@ -4,129 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEAC3C5DF7D
-	for <nouveau@archiver.kernel.org>; Fri, 21 Aug 2026 15:37:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66B28C5DF7D
+	for <nouveau@archiver.kernel.org>; Fri, 21 Aug 2026 19:26:44 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 26DC010F32B;
-	Fri, 21 Aug 2026 15:37:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9AE10F4C2;
+	Fri, 21 Aug 2026 19:26:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="stK1XJCs";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="coOb3s4k";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6D11C47A9F;
-	Fri, 21 Aug 2026 15:21:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4747E47AB0;
+	Fri, 21 Aug 2026 19:09:49 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787325678;
- b=CMornLYUTP0vrD8JBQikm+fhUh1ik0Im/oWiGK1pYZV4Z1fbz26AFbKQx4bcsYbU+TSP4
- /6mp+X5M8sYa3I3DTCRUGbWljO0J3SAdF7RO96e5G/hW3j7gBcMr/d6zipy28pIIF9mrv1A
- xZH/xx+PEfC+hMY513RMfWwGdaJt5L20H+o52PSDiEOZeqcLvB0+qNLgA6/aKDoQk7MKwig
- c+9Ke34626nBTMSPOMs/KaAR/5mSDJtO9YLcp9q0fX119mmcf+HzslIZ05DZFJT04lrOEgU
- RYQaSFOqIu9qcTOmbICa1n5gOWSKStWfggXpmXeUrK4TXkVF4vxU/n1js7JA==
+ s=20240201; t=1787339389;
+ b=brQFJBwnGS8osnrPR7RHYnuCUYeWc8o8GhAYTxRs7WUThB+lm1KEX3jh6FOpE5LUM0KN1
+ AtDTVm/sqz+BVsgj0CckjEK6lkZYgZe3jUaBIhBVK3g0NltHGiT/4bm+ba5Dv+PR9bYkMRE
+ 1K+AVB94GymwZcU3CAEn/ZzSRLsmGNcnnlh7uRE+i0FnuxeLi3v8rq4t39FQaFpO7Hsuoc8
+ 8p0EKDEpfxR1EmspP2KNcCcE4PKGuMEvW6/s0Gn52G+8z8kbtybu3iRKPlqK51r/LkdhT84
+ es09Ka2NvZTOmNUQ9aJf3oJ2q06JeV/V11gp0QtqPkWpY9PwHEY7Jx8FKKMw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787325678; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787339389; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ryew6n4D2AjCQNgITduRRpkXWCv+k6Vg9rO7DLoolms=;
- b=Nh7DQFxfNFkkOugvaHc5Wg7Eri9gT+hRNX3qBzV+m7CDrv2NpSQm6wcguT45tUhvwrmNZ
- 4BTO4QYA8MP//qqK6ZxpawsXuaPlPq8/MB1o9n2dtBesncuZXKawUghsBHCm57N6Dy0ujtv
- PQHypXv9VP0MxWQrPEW+Tod860UICQncxCxGAwAZHuwHFrrMhVWtzDqynvOkQppheluSSFI
- PG4Eb4NcxP3viTg68IIS28J4cCJNoyhFTExPKRQZdUQb6Ky1nFnbXFN3IoP52G2PgWO/zWH
- msm+EWo1M7MGaJrL0zGhtclMC0+s0Cbuygz+O5tj1mSsBcBwGKqy1d9zH6gw==
+ bh=WNXf/dJ9hBuXVYCJeUCVP8nSk43isZcQqKrxyAyY8Co=;
+ b=CyxjtHtPvsol8xXnTxp82fzrL50S06T0gel42WtYLnvhjmkxztMPlBGnAMXdXjLtrZJPR
+ Y+Q0eiux2bCrFKtUUHs8LptYrB1qUG4PE5EHLBSbzEzubDpOp5BRR0PPVACqX4Vsalts6ac
+ Z+B5nrNPT06aXDpk5kG6b+cs4F6DJn68dXkJlM0+BWC/U1/OQYMRqDjUNSb6RueLIl67drH
+ +eaJJPxHZGdRt1Nn03iSa0CXWQnNsjm3Qr+ucX5YfYIlY7Ztl+FsSYkqF1BaMyTcY6V0esf
+ OMbvejXMDpFOOK8EbFahCyNpSqGRAChFrJdwNMKGvPxxdnZYGTP60zhKxQ8w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=fail header.d=redhat.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+  dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=fail header.d=redhat.com;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5CA6D47A9B
-	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 15:21:15 +0000 (UTC)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
- [209.85.208.52])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA6B10E31A
-	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 15:37:52 +0000 (UTC)
-Received: by mail-ed1-f52.google.com with SMTP id
- 4fb4d7f45d1cf-69f4acf7047so189958a12.3
+	by kara.freedesktop.org (Postfix) with ESMTPS id 13646475CA
+	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 19:09:36 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com (unknown [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7C51710F43B
+	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 19:26:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1787340343;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=WNXf/dJ9hBuXVYCJeUCVP8nSk43isZcQqKrxyAyY8Co=;
+	b=coOb3s4kiWo848RPGWuxux0rtfzCxH+1KmNbRle5aZT7GqO+V8WjLat/F0nE3T1Yij7Kzv
+	8rualJEszioxEhGDtjtSLGJ11cOgiMCW3eLwnMwdw1p/aC1bGYoDev0RpsKMaNACBqFrkC
+	ib6vcYNMd5t0lT8dCZxjp54ViKR6SNQ=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-686-PASqIEweMBqAXjkx6R1Nxw-1; Fri, 21 Aug 2026 15:25:42 -0400
+X-MC-Unique: PASqIEweMBqAXjkx6R1Nxw-1
+X-Mimecast-MFC-AGG-ID: PASqIEweMBqAXjkx6R1Nxw_1787340342
+Received: by mail-qt1-f197.google.com with SMTP id
+ d75a77b69052e-51c1d137a68so26076981cf.3
         for <nouveau@lists.freedesktop.org>;
- Fri, 21 Aug 2026 08:37:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1787326671; x=1787931471;
- darn=lists.freedesktop.org;
-        h=mime-version:content-transfer-encoding:content-type:date:message-id
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=ryew6n4D2AjCQNgITduRRpkXWCv+k6Vg9rO7DLoolms=;
-        b=stK1XJCsjM18JGudnWijHswiPtQ+arVod9/d4xFKE6U1F6bZllijzS2l9YKW182smb
-         MaTmCxAIMbFe6WO9J223FYIxtO48ZnaWRfsnlxnLbQJv9TM57YY2oZneYLlrNhUzl7+Q
-         W0LHgVNVm1sVZSJDFng1mI5E8XIVySRn3koqyFiQ+LYQ3xFleQPv4jo0pWicOb7Obsx/
-         qgTJ4b1yUsCvljeQ88iB/SMKv21h2P/RBa3haQB5V0R/Ws3qOEYPtynbpENGNlkuDhUu
-         diXU+Yfn5EjR3HlqrOP4htKnjKKhMDmx2bLbTKCq3n+fitqbX4dW56CLwNLBxM8/KvfQ
-         YrjA==
+ Fri, 21 Aug 2026 12:25:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787326671; x=1787931471;
-        h=mime-version:content-transfer-encoding:content-type:date:message-id
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=ryew6n4D2AjCQNgITduRRpkXWCv+k6Vg9rO7DLoolms=;
-        b=tU6SIGjqS/uIqH4oyvhhNF0amgJUpyG4ueiShlRdykYOO6xiIC38ENWW5zh97p6JZL
-         cG9cgn733koljy79mmNB8HEZS8tG8fzLQ04i9Jjmpwb1Ifz9KZkY5XYZk36PDm5PO6vQ
-         eWPavXpuhGtWX+7eRcNXklG/dzbpgNwMvpwuSSBLFn30JpkzV/dFrG5XC/mqhb+mbT3Z
-         MZiPpmkSBCkOOrANtpzmMfkZKcYK9/jzCmPnXECAqSEyToM5friG3dtmGGfF51BD8vds
-         AQU9L7zsDlg4dl09S+s1ZZOqYDDbYY2DmhAai9WZ6RP17BcuioyZpP9pje7mguT1zzeR
-         eEEQ==
-X-Gm-Message-State: AFuF++lmsDYavLPqpYvMci8rNs8kttlArIlAhctfVhnE06Ehxxc4Tfpk
-	d5vAr3Fnn3QSNVVG9bXpiSE0dt+RnuG/EvGnzR2T3Uso9IB0EBP/uWJsM9jWe6s7
-X-Gm-Gg: AR+sD138i6K6EjMHcW+Wa0+850KfGl9hZvDaBMR4+Vrs0ytem+Zo1fYfoAOiyzQMYhs
-	aMKDnAg7ss+nAA5WqdnBlDsDi60riYLiNQhGMJ3ItCLHEr0lpHcfl5hj9WgBATKRO0vGr6xN/jf
-	WjCvP/FC7vcckAtmmQKFuLCF8LyEaHWtIQ6PY0Zsedt7qsYlW2ebSrd3SUkNQzRSL5E+ckXyMcX
-	rKtBqInktukiwx7kHroCgHd+2YM5goNoVdQjUKMYkxAJvDRqUcvII3H5p1AOlmRZcKXpZDSdD9q
-	IIfRNymwtT/EHl+LXUHnzurFKnHzSa97j653PJS1RkHsL8ZxK3y8vJzTEnPU7OGB8AcliN2qWYx
-	YJiaNRyRTXo2gdSFSg9mPUrgjum4bYJvOpao7IOk1cVirTp7hJCqnGCFL9jMAvnoB8ng1O/FqMM
-	/L8zp3E1uepkz5f7NzbPuIplIxIVQxlvF10GgQyfIhjY7AlOqRmG2mY5kEzf/CGSoVOOdwS03ds
-	LdZVOhBE8optDZhaJP9pdfuqwTvKQS9bR+PkgTDWpieou2xtWPO
-X-Received: by 2002:a05:6402:d0e:b0:6a3:fee5:adc8 with SMTP id
- 4fb4d7f45d1cf-6a42eeb84dcmr4232330a12.0.1787326670812;
-        Fri, 21 Aug 2026 08:37:50 -0700 (PDT)
-Received: from [127.0.0.1] (ip-109-193-028-127.um39.pools.vodafone-ip.de.
- [109.193.28.127])
+        d=1e100.net; s=20251104; t=1787340342; x=1787945142;
+        h=mime-version:user-agent:content-transfer-encoding:content-type
+         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=XTWvZVA7JaArjs8Zd1HxJ0CjIfwAygH13+3hEPTRLdA=;
+        b=XKgyW7WBTcGKxSH7iriS/1M9OfSF+ZBsERWH3dKjX/jCs2KV4NEcSpUojWCCjyiDrV
+         vviuVL0/rN1HkL06sgfFZc9nkhdMo7wZN7HyfBPsCd1SwRbMH3bGBYME9AFlQvce+lBp
+         MJPYu/vXP2io88GsjgDqmD9yXV7rHoVROooHYoCw51swiZjT7nsgkc26ktnI0pyGBkg1
+         j7RPZN9+uO+IvOdFbCyjfxmCJvnqXzjaV33eUk1RAUAxdLwJFRD/+S+MB5i0qqYZ/4hV
+         t/VYaion1rHsjlw0zxFPh4M8mjt7TwzKYPT5GG0oPRpPvB20CaSaGU0phR4K+9mO6wcN
+         esuw==
+X-Forwarded-Encrypted: i=1;
+ AHgh+Ropv7Sg2+PH4A8/9J26xI10Mm1uZxofSPWLr7v62DnKFkmzL2di9QEy5roQayqXEHeipgYuyPN6@lists.freedesktop.org
+X-Gm-Message-State: AFuF++kF+2qSMitan60yHScuKU/XjjfcyJQtW49OrWb+/Z5CSW6Lop6y
+	XfaIgN6QKbCipx0J86VQxpCvwQ66PLb0+29eK1adInmiDaXqOHgXNHtTJAXGAK+YfOuQ9kL15hC
+	Htk5+oQgR8hRwK0R/fIHVzy5vRP0rb/BmfdJeKERLOkKZAWAi6Lhh6cduE3ILgJ9N1xY=
+X-Gm-Gg: AR+sD10Y/fQjCD29QsuYpas6m8d88hY5VZYKnGF5JjarsGdDsVtvpquwhgubfguJxGS
+	yHWAyttZAwkUdcrqVo7tTCp8g+m59MJNwow6Iv2zpJPuVxRdIyulUs+66dza5Z61uUUaFeLv+He
+	R5wMhVHlJBDxriRSwOUiz7AZbtVgmwIjgiemg1kTifrVUZFVAMvXac10ASFeNVpgCjpjR7m0pD0
+	03Aq8DAFhee7gSTO+eBSruBs4MsF5wK7Nf+eygG710f+8WAlB2DFn5PrRQYIKjvYDOlx5B5twry
+	kRF8NlQNm9sef9QEhV46LcV0hQXem6ZYaNPUMlx1OWMI4UpkJ44wShb7/9Xh4ctlZZMdjn8a
+X-Received: by 2002:a05:622a:481a:b0:52d:78c9:9377 with SMTP id
+ d75a77b69052e-52e09ce9a34mr4129431cf.36.1787340341574;
+        Fri, 21 Aug 2026 12:25:41 -0700 (PDT)
+X-Received: by 2002:a05:622a:481a:b0:52d:78c9:9377 with SMTP id
+ d75a77b69052e-52e09ce9a34mr4127511cf.36.1787340339927;
+        Fri, 21 Aug 2026 12:25:39 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-6a3ff156693sm6962450a12.15.2026.08.21.08.37.49
+ d75a77b69052e-52e09ae930fsm1418381cf.27.2026.08.21.12.25.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Aug 2026 08:37:50 -0700 (PDT)
-From: Marek Czernohous <mczernohous@gmail.com>
-X-Google-Original-From: Marek Czernohous <marek@czernohous.de>
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [BUG] nouveau: lockdep: cli->mutex vs reservation inversion is back
- with atomic, via the cursor plane
-Message-ID: <178732666901.188627.15234683743061737710@gmail.com>
-Date: Fri, 21 Aug 2026 17:37:49 +0200
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        Fri, 21 Aug 2026 12:25:39 -0700 (PDT)
+Message-ID: <7509463d112de8807ba8be03a00a178a37891a94.camel@redhat.com>
+Subject: Re: [PATCH v2 02/10] drm/nouveau/disp: move the GSP HDMI GCP AVMute
+ write to engine/disp
+From: lyude@redhat.com
+To: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
+	linux-kernel@vger.kernel.org
+Date: Fri, 21 Aug 2026 15:25:38 -0400
+In-Reply-To: <20260820164929.17117-3-mohamedahmedegypt2001@gmail.com>
+References: <20260820164929.17117-1-mohamedahmedegypt2001@gmail.com>
+	 <20260820164929.17117-3-mohamedahmedegypt2001@gmail.com>
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-Message-ID-Hash: 63X27AHYSU7SDEMEUODIMR5QJNXABDI4
-X-Message-ID-Hash: 63X27AHYSU7SDEMEUODIMR5QJNXABDI4
-X-MailFrom: mczernohous@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: jR9KnbLOUEVxPwVu6cHZwJqfxWQufZKOI77FbIJREAc_1787340342
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: 5QUS4BU2SSGOZRMKY5DSF5NFOPQJSTGT
+X-Message-ID-Hash: 5QUS4BU2SSGOZRMKY5DSF5NFOPQJSTGT
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: linux-kernel@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
- Simona Vetter <simona@ffwll.ch>,
+ loop; banned-address
+CC: dri-devel@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Mary Guillemard <mary@mary.zone>, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/63X27AHYSU7SDEMEUODIMR5QJNXABDI4/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5QUS4BU2SSGOZRMKY5DSF5NFOPQJSTGT/>
 Archived-At: 
- <https://lore.freedesktop.org/178732666901.188627.15234683743061737710@gmail.com/>
+ <https://lore.freedesktop.org/7509463d112de8807ba8be03a00a178a37891a94.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,247 +145,97 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hi,
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-On a kernel with CONFIG_PROVE_LOCKING, nouveau reports a possible
-circular locking dependency between cli->mutex and the buffer
-reservation (reservation_ww_class_mutex) within two minutes of a
-Wayland session starting, on the first cursor update. Full splat at
-the end.
-
-The two paths, as lockdep shows them:
-
-  A  reservation -> cli->mutex
-
-     drm_mode_cursor_ioctl
-       drm_atomic_helper_update_plane
-         nv50_disp_atomic_commit
-           drm_atomic_helper_prepare_planes
-             nv50_wndw_prepare_fb
-               nouveau_bo_pin                  takes reservation
-                 nouveau_bo_pin_locked
-                   ttm_bo_validate
-                     nouveau_bo_move
-                       nouveau_bo_move_m2mf    takes cli->mutex   (nouveau_bo.c:1028)
-
-  B  cli->mutex -> reservation
-
-     nouveau_abi16_ioctl_channel_alloc
-       nouveau_abi16_get                       takes cli->mutex   (nouveau_abi16.c:61)
-         nouveau_channel_new
-           nouveau_channel_ctor
-             nouveau_channel_prep
-               nouveau_bo_new_map
-                 nouveau_bo_new_pin
-                   nouveau_bo_pin              takes reservation
-
-So the cursor buffer is pinned under its reservation, gets moved by TTM
-on the way, and the M2MF copy takes cli->mutex underneath; while channel
-allocation holds cli->mutex across the whole ioctl and pins the push
-buffer, which takes a reservation underneath. Two locks, two orders.
-
-This is not a new pairing. It is the one Ben Skeggs fixed in 2013:
-
-  commit 060810d7abaa ("drm/nouveau: fix locking issues in page flipping paths")
-
-which says "the pinning of new_bo can potentially cause a buffer move,
-which would result in attempting to acquire the same mutex again", and
-annotated the m2mf side with mutex_lock_nested(SINGLE_DEPTH_NESTING).
-That annotation was then removed for the atomic case in
-
-  commit 551620f2a381 ("drm/nouveau: Drop mutex_lock_nested for atomic")
-
-whose message reads, in full candour, "Purely conjecture, but I think
-the original locking inversion with the legacy page flip code between
-flipping and ttm's bo move function shoudn't exist anymore with atomic:
-With atomic the bo pinning and actual modeset commit is completely
-separated in the code paths."
-
-The conjecture was right about page flips and wrong about cursors. The
-cursor plane still pins its buffer inside the atomic commit
-(nv50_wndw_prepare_fb -> nouveau_bo_pin), and a pin can still move the
-buffer, and the move still takes cli->mutex. That is path A above, and
-it is exactly the shape the 2013 commit describes. Since that 2020
-commit the atomic branch takes cli->mutex plainly, so lockdep now sees the
-inversion against path B and reports it. I cannot say whether the
-nested annotation was hiding a real deadlock or a false one; what I can
-say is that the ordering it was covering is still there.
-
-I have not seen the deadlock itself, only the report. To hit it one
-thread has to be allocating a channel while another moves a cursor
-whose buffer happens to need a TTM move. On this machine every GL
-client opens a channel on start, and the compositor updates the cursor
-constantly, so the window is open routinely even if it is narrow.
-
-Environment:
-
-  7.2.0 (base-commit: c21bb4193868a8de71fc4693fa741e195fdf5d86), built from
-  source with
-  PROVE_LOCKING, DEBUG_WW_MUTEX_SLOWPATH, DEBUG_MUTEXES.
-  Apple Mac mini Late 2009, MCP79 / GeForce 9400M (NVAC, nv50/Tesla).
-  Wayland, labwc 0.20.1, Xwayland 24.1.13, Mesa 26.1.6.
-  The splat appeared once, 118 s after boot, from labwc's first cursor
-  update. lockdep reports each chain once, so one is the expected count.
-
-The tree carries local nouveau patches, none of which touch
-nouveau_bo_move_m2mf(), nouveau_abi16_get(), nouveau_channel_prep() or
-cli->mutex; both frames in the splat are upstream code. I can retest
-on a clean tree if that is wanted, and I can try to turn the report
-into a deadlock with a channel-allocation loop against a cursor loop,
-if that would help decide how real it is.
-
-I am not proposing a fix, because I do not know which order is the
-intended one. The two obvious shapes are to re-add the nested
-annotation for atomic, which puts 2013 back and makes lockdep quiet
-without answering the question, or to keep cli->mutex out of the move
-path when called from a plane pin. Someone who knows why m2mf needs
-cli->mutex at all is better placed than I am.
-
-Marek
-
-[  118.950482] WARNING: possible circular locking dependency detected
-[  118.950486] 7.2.0-gentoo-nvac-soak #1 Tainted: G S         OE      
-[  118.950491] ------------------------------------------------------
-[  118.950493] labwc/8055 is trying to acquire lock:
-[  118.950496] ffff889b88c302d0 (&cli->mutex){+.+.}-{4:4}, at: nouveau_bo_move_m2mf+0x9d/0x260 [nouveau]
-[  118.950923] 
-[  118.950923] but task is already holding lock:
-[  118.950925] ffff889be638f198 (reservation_ww_class_mutex){+.+.}-{4:4}, at: nouveau_bo_pin+0x29/0xb0 [nouveau]
-[  118.951221] 
-[  118.951221] which lock already depends on the new lock.
-[  118.951221] 
-[  118.951223] 
-[  118.951223] the existing dependency chain (in reverse order) is:
-[  118.951226] 
-[  118.951226] -> #1 (reservation_ww_class_mutex){+.+.}-{4:4}:
-[  118.951235]        __lock_acquire+0x55d/0xbd0
-[  118.951244]        lock_acquire.part.0+0x78/0x1c0
-[  118.951249]        __ww_mutex_lock.constprop.0+0xfe/0x1640
-[  118.951256]        ww_mutex_lock+0x3c/0xb0
-[  118.951261]        nouveau_bo_pin+0x29/0xb0 [nouveau]
-[  118.951501]        nouveau_bo_new_pin+0x7b/0xa0 [nouveau]
-[  118.951501]        nouveau_bo_new_map+0x31/0x90 [nouveau]
-[  118.951501]        nouveau_channel_prep+0xfb/0x330 [nouveau]
-[  118.951501]        nouveau_channel_ctor+0x22e/0x5b0 [nouveau]
-[  118.951501]        nouveau_channel_new+0x2b/0xc0 [nouveau]
-[  118.951501]        nouveau_abi16_ioctl_channel_alloc+0x158/0x460 [nouveau]
-[  118.951501]        drm_ioctl_kernel+0xb1/0x110
-[  118.951501]        drm_ioctl+0x2b5/0x580
-[  118.951501]        nouveau_drm_ioctl+0x5b/0xc0 [nouveau]
-[  118.951501]        __x64_sys_ioctl+0x97/0xe0
-[  118.951501]        do_syscall_64+0xf4/0x690
-[  118.951501]        entry_SYSCALL_64_after_hwframe+0x76/0x7e
-[  118.951501] 
-[  118.951501] -> #0 (&cli->mutex){+.+.}-{4:4}:
-[  118.951501]        check_prev_add+0xe1/0xe00
-[  118.951501]        validate_chain+0x4c1/0x730
-[  118.951501]        __lock_acquire+0x55d/0xbd0
-[  118.951501]        lock_acquire.part.0+0x78/0x1c0
-[  118.951501]        __mutex_lock+0xda/0x10a0
-[  118.951501]        nouveau_bo_move_m2mf+0x9d/0x260 [nouveau]
-[  118.951501]        nouveau_bo_move+0x4ec/0x880 [nouveau]
-[  118.951501]        ttm_bo_handle_move_mem+0xd0/0x1a0 [ttm]
-[  118.951501]        ttm_bo_validate+0xf5/0x1e0 [ttm]
-[  118.951501]        nouveau_bo_pin_locked+0xad/0x250 [nouveau]
-[  118.951501]        nouveau_bo_pin+0x41/0xb0 [nouveau]
-[  118.954757]        nv50_wndw_prepare_fb+0x4d/0x160 [nouveau]
-[  118.954757]        drm_atomic_helper_prepare_planes.part.0+0x2d/0x1d0 [drm_kms_helper]
-[  118.954757]        nv50_disp_atomic_commit.part.0+0xbc/0x1e0 [nouveau]
-[  118.954757]        drm_atomic_commit+0xb1/0xe0
-[  118.954757]        drm_atomic_helper_update_plane+0xf1/0x150 [drm_kms_helper]
-[  118.954757]        drm_mode_cursor_universal+0xf4/0x2d0
-[  118.954757]        drm_mode_cursor_common+0x110/0x240
-[  118.954757]        drm_mode_cursor_ioctl+0x51/0x70
-[  118.954757]        drm_ioctl_kernel+0xb1/0x110
-[  118.954757]        drm_ioctl+0x2b5/0x580
-[  118.954757]        nouveau_drm_ioctl+0x5b/0xc0 [nouveau]
-[  118.954757]        __x64_sys_ioctl+0x97/0xe0
-[  118.954757]        do_syscall_64+0xf4/0x690
-[  118.954757]        entry_SYSCALL_64_after_hwframe+0x76/0x7e
-[  118.954757] 
-[  118.954757] other info that might help us debug this:
-[  118.954757] 
-[  118.954757]  Possible unsafe locking scenario:
-[  118.954757] 
-[  118.954757]        CPU0                    CPU1
-[  118.954757]        ----                    ----
-[  118.954757]   lock(reservation_ww_class_mutex);
-[  118.954757]                                lock(&cli->mutex);
-[  118.954757]                                lock(reservation_ww_class_mutex);
-[  118.954757]   lock(&cli->mutex);
-[  118.954757] 
-                - Last output repeated twice -
-[  118.954757] 3 locks held by labwc/8055:
-[  118.954757]  #0: ffffc8b8412bba00 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_mode_cursor_common+0xd2/0x240
-[  118.954757]  #1: ffffc8b8412bba28 (crtc_ww_class_mutex){+.+.}-{4:4}, at: drm_mode_cursor_common+0xd2/0x240
-[  118.954757]  #2: ffff889be638f198 (reservation_ww_class_mutex){+.+.}-{4:4}, at: nouveau_bo_pin+0x29/0xb0 [nouveau]
-[  118.954757] 
-[  118.954757] stack backtrace:
-[  118.954757] CPU: 0 UID: 1000 PID: 8055 Comm: labwc Tainted: G S         OE       7.2.0-gentoo-nvac-soak #1 PREEMPT(lazy) 
-[  118.954757] Tainted: [S]=CPU_OUT_OF_SPEC, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
-[  118.954757] Hardware name: Apple Inc. Macmini3,1/Mac-F22C86C8, BIOS     MM31.88Z.0081.B06.0904271717 04/27/09
-[  118.954757] Call Trace:
-[  118.954757]  <TASK>
-[  118.954757]  dump_stack_lvl+0x6e/0xa0
-[  118.954757]  print_circular_bug.cold+0x38/0x46
-[  118.954757]  check_noncircular+0x148/0x170
-[  118.954757]  check_prev_add+0xe1/0xe00
-[  118.954757]  ? look_up_lock_class+0x59/0x120
-[  118.954757]  validate_chain+0x4c1/0x730
-[  118.954757]  __lock_acquire+0x55d/0xbd0
-[  118.954757]  lock_acquire.part.0+0x78/0x1c0
-[  118.954757]  ? nouveau_bo_move_m2mf+0x9d/0x260 [nouveau]
-[  118.954757]  __mutex_lock+0xda/0x10a0
-[  118.954757]  ? nouveau_bo_move_m2mf+0x9d/0x260 [nouveau]
-                - Last output repeated 2 times -
-[  118.954757]  nouveau_bo_move_m2mf+0x9d/0x260 [nouveau]
-[  118.954757]  nouveau_bo_move+0x4ec/0x880 [nouveau]
-[  118.954757]  ? lock_is_held_type+0x9a/0x110
-[  118.954757]  ? dma_resv_reserve_fences+0x2db/0x360
-[  118.954757]  ttm_bo_handle_move_mem+0xd0/0x1a0 [ttm]
-[  118.954757]  ttm_bo_validate+0xf5/0x1e0 [ttm]
-[  118.954757]  nouveau_bo_pin_locked+0xad/0x250 [nouveau]
-[  118.954757]  nouveau_bo_pin+0x41/0xb0 [nouveau]
-[  118.954757]  nv50_wndw_prepare_fb+0x4d/0x160 [nouveau]
-[  118.954757]  drm_atomic_helper_prepare_planes.part.0+0x2d/0x1d0 [drm_kms_helper]
-[  118.954757]  nv50_disp_atomic_commit.part.0+0xbc/0x1e0 [nouveau]
-[  118.954757]  drm_atomic_commit+0xb1/0xe0
-[  118.954757]  ? __pfx___drm_printfn_info+0x10/0x10
-[  118.954757]  drm_atomic_helper_update_plane+0xf1/0x150 [drm_kms_helper]
-[  118.954757]  drm_mode_cursor_universal+0xf4/0x2d0
-[  118.954757]  ? __pfx_drm_mode_cursor_ioctl+0x10/0x10
-[  118.954757]  drm_mode_cursor_common+0x110/0x240
-[  118.954757]  ? __pfx_drm_mode_cursor_ioctl+0x10/0x10
-[  118.954757]  drm_mode_cursor_ioctl+0x51/0x70
-[  118.954757]  drm_ioctl_kernel+0xb1/0x110
-[  118.954757]  drm_ioctl+0x2b5/0x580
-[  118.954757]  ? __pfx_drm_mode_cursor_ioctl+0x10/0x10
-[  118.954757]  nouveau_drm_ioctl+0x5b/0xc0 [nouveau]
-[  118.954757]  __x64_sys_ioctl+0x97/0xe0
-[  118.954757]  do_syscall_64+0xf4/0x690
-[  118.954757]  ? __lock_acquire+0x55d/0xbd0
-[  118.954757]  ? timerqueue_linked_add+0x7e/0xd0
-[  118.954757]  ? __hrtimer_start_range_ns+0x1db/0x6c0
-[  118.954757]  ? find_held_lock+0x2b/0x80
-                - Last output repeated twice -
-[  118.954757]  ? __lock_release.isra.0+0x59/0x170
-[  118.954757]  ? lockdep_hardirqs_on_prepare.part.0+0x9b/0x140
-[  118.954757]  ? trace_hardirqs_on+0x18/0xf0
-[  118.954757]  ? finish_task_switch.isra.0+0x103/0x3b0
-[  118.954757]  ? __schedule+0x674/0x800
-[  118.954757]  ? trace_hardirqs_off+0x4e/0xe0
-[  118.954757]  ? schedule+0x3a/0x100
-[  118.954757]  ? switch_fpu_return+0x115/0x140
-[  118.954757]  ? trace_hardirqs_on_prepare+0xc6/0xe0
-[  118.954757]  ? lockdep_hardirqs_on_prepare.part.0+0x9b/0x140
-[  118.954757]  ? trace_hardirqs_on+0x18/0xf0
-[  118.954757]  ? do_syscall_64+0xab/0x690
-[  118.954757]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-[  118.954757] RIP: 0033:0x7f7154522e3f
-[  118.954757] RAX: ffffffffffffffda RBX: 000055a34bec4a88 RCX: 00007f7154522e3f
-[  118.954757] RDX: 00007ffd6d92e900 RSI: 00000000c01c64a3 RDI: 000000000000000e
-[  118.954757] RBP: 00007ffd6d92e900 R08: 0000000000000040 R09: 000055a34be9a3e0
-[  118.954757] R10: 0000000000000030 R11: 0000000000000246 R12: 00000000c01c64a3
-[  118.954757] R13: 000000000000000e R14: 00007ffd6d92eb40 R15: 000055a34cdaebf0
-[  118.954757]  </TASK>
+On Thu, 2026-08-20 at 20:49 +0400, Mohamed Ahmed wrote:
+> r535_sor_hdmi_audio() pairs two RM controls (a SET_OD_PACKET carrying
+> the same General Control Packet, and the audio mute-stream toggle)
+> with a direct write of the GCP AVMute bit through the SF GCP unit.
+> The controls are RM and stay, but the direct write is register
+> programming and moves next to the other per-chip display code as
+> tu102_sor_hdmi_gcp(). No functional change.
+>=20
+> Signed-off-by: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
+> ---
+> =C2=A0drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.h=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 1 +
+> =C2=A0drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c=C2=A0 | 15
+> +++++++++++++++
+> =C2=A0.../drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 9 +--------
+> =C2=A03 files changed, 17 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.h
+> b/drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.h
+> index 3ba04bead2f9..5d682a774f2d 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.h
+> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.h
+> @@ -194,6 +194,7 @@ void gv100_sor_dp_audio_sym(struct nvkm_ior *,
+> int, u16, u32);
+> =C2=A0void gv100_sor_dp_watermark(struct nvkm_ior *, int, u8);
+> =C2=A0extern const struct nvkm_ior_func_hda gv100_sor_hda;
+> =C2=A0
+> +void tu102_sor_hdmi_gcp(struct nvkm_ior *, int, bool);
+> =C2=A0void tu102_sor_dp_vcpi(struct nvkm_ior *, int, u8, u8, u16, u16);
+> =C2=A0
+> =C2=A0int nv50_pior_cnt(struct nvkm_disp *, unsigned long *);
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
+> b/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
+> index 7b70b466fa36..6cfd52c9056f 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
+> @@ -30,6 +30,21 @@
+> =C2=A0
+> =C2=A0#include <nvif/class.h>
+> =C2=A0
+> +/* General Control Packet: bracket an audio enable/disable with
+> AVMute
+> + * through the legacy GCP SF unit. Used by the GSP-RM path, which
+> sends the
+> + * equivalent packet via RM as well but keeps the direct write in
+> sync.
+> + */
+> +void
+> +tu102_sor_hdmi_gcp(struct nvkm_ior *sor, int head, bool enable)
+> +{
+> +=09struct nvkm_device *device =3D sor->disp-
+> >engine.subdev.device;
+> +=09const u32 hdmi =3D head * 0x400;
+> +
+> +=09nvkm_mask(device, 0x6f00c0 + hdmi, 0x00000001, 0x00000000);
+> +=09nvkm_wr32(device, 0x6f00cc + hdmi, !enable ? 0x00000001 :
+> 0x00000010);
+> +=09nvkm_mask(device, 0x6f00c0 + hdmi, 0x00000001, 0x00000001);
+> +}
+> +
+> =C2=A0void
+> =C2=A0tu102_sor_dp_vcpi(struct nvkm_ior *sor, int head, u8 slot, u8
+> slot_nr, u16 pbn, u16 aligned)
+> =C2=A0{
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> index 8e57bb6519e5..cd4451e62512 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> @@ -545,16 +545,9 @@ r535_sor_hdmi_ctrl_audio(struct nvkm_outp *outp,
+> bool enable)
+> =C2=A0static void
+> =C2=A0r535_sor_hdmi_audio(struct nvkm_ior *sor, int head, bool enable)
+> =C2=A0{
+> -=09struct nvkm_device *device =3D sor->disp-
+> >engine.subdev.device;
+> -=09const u32 hdmi =3D head * 0x400;
+> -
+> =C2=A0=09r535_sor_hdmi_ctrl_audio(sor->asy.outp, enable);
+> =C2=A0=09r535_sor_hdmi_ctrl_audio_mute(sor->asy.outp, !enable);
+> -
+> -=09/* General Control (GCP). */
+> -=09nvkm_mask(device, 0x6f00c0 + hdmi, 0x00000001, 0x00000000);
+> -=09nvkm_wr32(device, 0x6f00cc + hdmi, !enable ? 0x00000001 :
+> 0x00000010);
+> -=09nvkm_mask(device, 0x6f00c0 + hdmi, 0x00000001, 0x00000001);
+> +=09tu102_sor_hdmi_gcp(sor, head, enable);
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void
 
