@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 731B2C5DF97
-	for <nouveau@archiver.kernel.org>; Fri, 21 Aug 2026 21:59:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79FE2C5DF9B
+	for <nouveau@archiver.kernel.org>; Fri, 21 Aug 2026 22:02:23 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 349E310F3CE;
-	Fri, 21 Aug 2026 21:59:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D88E910F3D5;
+	Fri, 21 Aug 2026 22:02:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="DiEA8sNy";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fae0vF4x";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E9E6247AE2;
-	Fri, 21 Aug 2026 21:42:58 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 926AA47AE7;
+	Fri, 21 Aug 2026 21:45:44 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787348578;
- b=aV4bcyw5geQj6tY0VjBddwMQ1BcsqtiHkjqv1Bv8LkTPiOCZRoKjRGLfzMGcBDuGbbKH3
- 8gBne6pbthmuTVxkx60Qi+sCHVlzNY6AgQm1BPzuqfoyJg7oAjzMIuMUpo3XZErWWK06cDX
- xDMk15atD+PB+/Jel4fqR72lT7oAibcFmteOOSlPh0maLtVoidx2qurl2kxC+ND1Vuwxhp5
- I9Wn6dQo1ijCbNFHKaQ4U2+LQ//n78qzKay02Cuc5Qh3rSv4FmLJMTspKqVsCTpL+HYzEkR
- 3xwDNz7fjXO7Mz2ipUQki6ep65ECvdEp1sV8Kds6XCYccI0ji0j9G4WCGM/A==
+ s=20240201; t=1787348744;
+ b=Yi+mswCuNfE8qaPOPhBLN+FrY+Di79cuI05dk9LeqbD/CKMFJBnBbBYU7AxUIjUrytO9p
+ 7rGvE49jhpIrlVZ4P0TozcdCG5ohouX7Nqs+BxKXLAsewKGC4OPtVChuFgT+R+7ywpPztPS
+ m3lUv2hyx0zU65ERWvJs+OXGY/ve4YyrXBKaaZQx5bD7Wap6nGMq4YBy+NXm7Skp1xa2awx
+ Hb9nEpGg1Tukqf9MPMzr6uT1wVpvkCQgmPp9YDl3h5qMvzu+f5Yaw67sqKsaxE38sRmL/O/
+ W3X5ijlnX65kV3yjZcL7GNpUCMdQpAfaFlzfqL/bkhKQ5W3gxojCsiQsDh6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787348578; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787348744; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=tYY+VYhzG1oHVnCCsnrZL1hda9ZFN1K71JsN0AuTTHI=;
- b=Saev04cYpSXk2boqMHlxQOnG8d3VoUD2pWYyTi2jD/eNiD7Herzn0UsyP4YhBDDg8PLMd
- /mDvBiX+6XWEeD1gUBMHsemtNeRm4pxzgtnOyZhwRdJMdSwedJP65Poum2MwvihdXwZ87lE
- 8EPJ1XgjUeMceEz+IakxFrWEReBSsTF4syRnwhSLQ8L2+xgipuuO4ZXq0oEM9ApK7j28ZRn
- 6NxoEw2MSWoJjjygoTKbQTse+Y0YOUCdQY92ZU01aLvFwDRdA93G8TnBR1CgpUqE1x9q7nI
- DAVj0U5FrJGo8VUz4a8+aToA4YUaCSXUrH6qo5/L0SIUAJtRRGQY3qtFt3tA==
+ bh=D+aF5SWpzj0IMMiUIe2sX0uwtLDyPi9UzPsNgctanKk=;
+ b=ybngEKmozwn4u6HH1/ZSF0HRodTMr+hbFkevn8CKgAAkF6JthBI6af3IDgrrxybH7zXi8
+ SGVO7v+5tE9suvFtqKrXHTkAPd71PjwFYk16Oy/3CLPhwqcSKaJVGtBzrfgbJzacHumxB1w
+ AKeB/4196iQsQqj2lfIDmFuZ5k14+OgH4RPbf44lEb2dPL+UUuWsCrDCMpqlSGp5EhdID2l
+ vIyHIxXj67U4fbnKHpqRlFkHoqe0zPs7eDbA+eQHnQwstk7jtDyj2t96ineWr/t+eKClD8v
+ QSvfiQ9MlYRlBhK4fEME4+xvE76SiSJycJrrPw+x+5SASg9AVw6TGKxRU7Pw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,85 +46,85 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D396947AB5
-	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 21:42:55 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id BA922474BB
+	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 21:45:41 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AB4F010F3C4
-	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 21:59:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7C28F10F3C8
+	for <nouveau@lists.freedesktop.org>; Fri, 21 Aug 2026 22:02:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1787349572;
+	s=mimecast20190719; t=1787349738;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=tYY+VYhzG1oHVnCCsnrZL1hda9ZFN1K71JsN0AuTTHI=;
-	b=DiEA8sNy/kuT7LHkAU71ULAnRbBLVBaNI8QhNzkXIJZYpp2T2o5QL30F58n7bMXL3YZD2E
-	G80++zIE5ytShcQdQYSTUD2VsTYTInqe8WiWp5GXAlXRQE55YYBA+zCzx/tpV5q9hz740K
-	CYC+8ZYQan1bk17IcAVPnLKTQR2iar8=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=D+aF5SWpzj0IMMiUIe2sX0uwtLDyPi9UzPsNgctanKk=;
+	b=fae0vF4xhjxAQvPbLUxlJICsIAAtYV8MEzZXmZtJNdPqR0ablqSjMG/G0usDFG5xFDRHxZ
+	OSIZfvI1K7shNiIMTDLAN95LjqckZY08ermcd3dEQRyfWik3OvqfwP8FqYZnBkelM8+Qpi
+	tTmTu2f+Ea1/V1zqowROzJ2hy+hsbUE=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-640-5_p2LdTpM6aw6xOa16ULXg-1; Fri, 21 Aug 2026 17:59:31 -0400
-X-MC-Unique: 5_p2LdTpM6aw6xOa16ULXg-1
-X-Mimecast-MFC-AGG-ID: 5_p2LdTpM6aw6xOa16ULXg_1787349571
-Received: by mail-qk1-f197.google.com with SMTP id
- af79cd13be357-92e820609d9so147783685a.2
+ us-mta-644-y0CDfetUMNKT5R2K47qFrg-1; Fri, 21 Aug 2026 18:02:17 -0400
+X-MC-Unique: y0CDfetUMNKT5R2K47qFrg-1
+X-Mimecast-MFC-AGG-ID: y0CDfetUMNKT5R2K47qFrg_1787349736
+Received: by mail-qt1-f198.google.com with SMTP id
+ d75a77b69052e-51bf321d786so13552661cf.1
         for <nouveau@lists.freedesktop.org>;
- Fri, 21 Aug 2026 14:59:31 -0700 (PDT)
+ Fri, 21 Aug 2026 15:02:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787349571; x=1787954371;
+        d=1e100.net; s=20251104; t=1787349736; x=1787954536;
         h=mime-version:user-agent:content-transfer-encoding:content-type
          :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Yu+hOZT2DZL8hLRcYSAFyvPiNjPMHm+BvocQ7hwJTWc=;
-        b=fmLyvoDOLnG6TxScQcVpCXv1vb88iIreQTfmlPvvRbHvcPMmjQ6qL1KQbTTZ/1ZH7m
-         MZWgj1GjkgG1gv38NOD0+x2NKT2nmLxCdgvH0BHTsOiytbXH7v/Y6DHfuVpWVxfRV4Fg
-         /Sa1kSvl1U9UichL89IXHnKvJIA/yJKnpHms6G7v2FyUrViNeJ21PVqeb8iQv8a+RVOM
-         KCkd4dQ4HvtPxn7YcetvR7oswqDHl8bA6D5CNyHry5wGJIiQuKQc6x7/RZPNSeEghpxY
-         ZbXcGgjM8QwdjtTSKO3KB7libMrvzcu1A8VxUrkbS9XPd59WBIR5H/w235BuHo2Qwk2o
-         7DWg==
+        bh=7JvFgvcNT0JoaQlZJf2gAQv9c8TyqYAeQTsUG3MJuR4=;
+        b=GFuOeAr4WHXzspsqOImf3T5TSqZJcSooyuObk73KeMx4r3bPY+usnDSeKDQx8Edz7C
+         KlDRvZz3IpnuRZGMR5QbNVesaphtqJCjELjXy06U2zn8cEcDcaJz6N3fLFlK/LIOAvz7
+         cLIJDa2ikwKjQe7fjLep+IiZRaTrwbA+BNRnpHZcC5DPkd0x+mvZtJkswos0KGwQKbOj
+         XWUs7wrJ2F9UI9LIf4uKnjO4jZtHSNwZIUHPZjfRbfVvSrvWE1vVuu8vHFLwbrwfeqkz
+         xRogWpYqgGUf57lJRWOUnhpG789b3Qy7PEZ0NBfiAaOqIlQNcOjPRNj5X/D9X0txWVu0
+         AJ3A==
 X-Forwarded-Encrypted: i=1;
- AHgh+Rr3bfqcdrZs7vAXs55lsHsZzw97DLFhmWAoTKYUpLkPUzKuGPlLDzUChvNHCzRC2Ajl/kAIbndM@lists.freedesktop.org
-X-Gm-Message-State: AFuF++nbZIwuo42DH3+Ow94IoKZ1yQTdvMCKrlz0c9+Bbm5Y/VaCn9Ff
-	Ss+972ALTEL4qsQQeNw6gTUBdh2NGBdbaDA9zi+LqlfE89U3w3xnWAE+Aqg1VxjoLAqwESt5twu
-	GY3UVptLER/G59U2UUAfBqkK5MiOmlJD2osw1n+iKRyKpEF9AE31cUj48wdTs6lOZ4LI=
-X-Gm-Gg: AR+sD11ltvMvBzUDuf/o47RO7skmBTm5yIOd3WAqfiDoa3GzdAj7EhrJJ4SNg3aGxdo
-	oBDoPRttBJq5nNJPqDq5Qh7fg0uFAFsGmGcEFckdC4vQbOQj/HQC7V7FiewtVI8rrhtYER7dP0A
-	Z3xZfTLh8+2dvffGobCT3Y0q7usQlas6SCOG7I2Rp/phPn+ModQlSR/waAR6VsEXxeQy9Pt2QPw
-	jkPEZt6STbJbMBBJXbOnU+U7oay+r5CFjsNiPZh+e7fmlfqudxezS0+3dmuzT3LZz0G/zxVM88d
-	BsRFM94NwEHelbAZShklRVu5CIaJWNsNLotWvsCPFY2lBf40SVf7eabVXTjyTXe4xqG9xsfz
-X-Received: by 2002:a05:620a:288b:b0:936:51af:1de0 with SMTP id
- af79cd13be357-937395f23d9mr843720185a.47.1787349570858;
-        Fri, 21 Aug 2026 14:59:30 -0700 (PDT)
-X-Received: by 2002:a05:620a:288b:b0:936:51af:1de0 with SMTP id
- af79cd13be357-937395f23d9mr843716385a.47.1787349570425;
-        Fri, 21 Aug 2026 14:59:30 -0700 (PDT)
+ AHgh+RpQABTAC5k932/BmdZCRrWCWwb6cQGkkvX+AMBCVip9djfFIYzzGKjwAwrxuYHg9t3sOyBfmY+m@lists.freedesktop.org
+X-Gm-Message-State: AFuF++mjCiBjtEENHBulomVZPWqLt0nfyRS2RoQX1NyawJTutWDzOq1G
+	rle48ctQHDEc63xFSiF8Ch8Lq++3x9t1lCzrorKaZgPf8zzfHh//mVfzrkU47fALsxyF1RdaTqd
+	aC/vxgHV/AX8awJgA7vr4IjhKZt3m8nPHXynqz5cfScYx7XIu7BytQug79XN2YmL28NI=
+X-Gm-Gg: AR+sD136kzj+VNgpZ0u/3Ul7IbStwm8PKW7NTYJuCLti5VHOTcJUcdaVVT+6fLdfFbp
+	FOCqNmT2ymR4VMna1x5WtIxmJ9NOlxkx+VnYMW0rRzWimqnMc4gsVbARdbHAcGShqu7chtQyVJs
+	azxg3G6tjFTq0GQ7BTi3GbELlM6TLc2ZevorGUiHFtfYt+ANP6QSXVe4jHrcN5IpLhg3AGdz2i1
+	zYZFrmPyVQ2Xazy+raxHTvMwq8mAo9EnFGpohfmfiNU9UIpUdA/3Q1uQmexLz+rkrejIrP976Rf
+	EUQWrvmgADLAQ5DvGiyFhU4YrWG3Y9ZbbRSNiLxFGXsTQlOhSgh4E1u75Tzje1bP4tiF8jOE
+X-Received: by 2002:a05:622a:5a12:b0:528:3882:386a with SMTP id
+ d75a77b69052e-52df572d755mr93022671cf.11.1787349736359;
+        Fri, 21 Aug 2026 15:02:16 -0700 (PDT)
+X-Received: by 2002:a05:622a:5a12:b0:528:3882:386a with SMTP id
+ d75a77b69052e-52df572d755mr93021811cf.11.1787349735880;
+        Fri, 21 Aug 2026 15:02:15 -0700 (PDT)
 Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- af79cd13be357-93749adeee6sm7807585a.15.2026.08.21.14.59.29
+ d75a77b69052e-52e099a8331sm3893421cf.9.2026.08.21.15.02.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Aug 2026 14:59:29 -0700 (PDT)
-Message-ID: <66d7cd7ee0a94e01ccb559a36178497ae2d806ad.camel@redhat.com>
-Subject: Re: [PATCH v2 05/10] drm/nouveau/disp: fix HDMI GCP AVMute register
- offsets on GB20x
+        Fri, 21 Aug 2026 15:02:14 -0700 (PDT)
+Message-ID: <b91ad24281d52efd681f24e7f954f684104a84a7.camel@redhat.com>
+Subject: Re: [PATCH v2 06/10] drm/nouveau/gsp: use per-version
+ DP_CONFIG_STREAM params on r570 firmware
 From: lyude@redhat.com
 To: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
 	linux-kernel@vger.kernel.org
-Date: Fri, 21 Aug 2026 17:59:28 -0400
-In-Reply-To: <20260820164929.17117-6-mohamedahmedegypt2001@gmail.com>
+Date: Fri, 21 Aug 2026 18:02:14 -0400
+In-Reply-To: <20260820164929.17117-7-mohamedahmedegypt2001@gmail.com>
 References: <20260820164929.17117-1-mohamedahmedegypt2001@gmail.com>
-	 <20260820164929.17117-6-mohamedahmedegypt2001@gmail.com>
+	 <20260820164929.17117-7-mohamedahmedegypt2001@gmail.com>
 User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: Qi6pueGlnTes05ULoKlWeol4LRRcOM5LTjSnOW73DZk_1787349571
+X-Mimecast-MFC-PROC-ID: wP_CB_s_K5vX-Lb60V7MAEtygrUMrtkhXDoasgXR3Tw_1787349736
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 6IKMMG5HL5BU2ZDKW4WN7ROPG6VADFFE
-X-Message-ID-Hash: 6IKMMG5HL5BU2ZDKW4WN7ROPG6VADFFE
+Message-ID-Hash: DCPXMRNIIHXQNCAQO5EP444WNJOFT3II
+X-Message-ID-Hash: DCPXMRNIIHXQNCAQO5EP444WNJOFT3II
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -137,9 +137,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6IKMMG5HL5BU2ZDKW4WN7ROPG6VADFFE/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DCPXMRNIIHXQNCAQO5EP444WNJOFT3II/>
 Archived-At: 
- <https://lore.freedesktop.org/66d7cd7ee0a94e01ccb559a36178497ae2d806ad.camel@redhat.com/>
+ <https://lore.freedesktop.org/b91ad24281d52efd681f24e7f954f684104a84a7.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -149,90 +149,280 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Code-wise this looks totally fine, but I'm not actually getting any
-audio on my local GB206 setup. Is this expected, e.g. will we need more
-work to actually get it working?
+We should probably Cc this to stable. With that fixed:
+
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
 On Thu, 2026-08-20 at 20:49 +0400, Mohamed Ahmed wrote:
-> The GSP path brackets audio enablement with a General Control Packet
-> AVMute toggle. r535_sor_hdmi_audio() calls the gsp.hdmi_gcp hook,
-> which
-> every chip so far serves with tu102_sor_hdmi_gcp() and the legacy GCP
-> unit at 0x6f00c0/0x6f00cc. On GB20x the SF packet units were
-> compacted
-> and the old generic and VSI units are gone (ACR keeps slot 2) and the
-> GCP unit moved from slot 3 to slot 1 (control 0x6f0040 and subpack
-> 0x6f004c from NVIDIA's published clc971.h. The same offsets are also
-> used by OpenRM's hdmiWriteGeneralCtrlPacketC871() on these chips).
-> The
-> old addresses are reserved on GB20x, so the AVMute writes were silent
-> no-ops and mitigated only by the equivalent GCP r535_sor_hdmi_audio()
-> already sends through the SET_OD_PACKET RM control.
+> NVIDIA removed the deprecated actualPclkHz/linkClkFreqHz fields and
+> the
+> whole Legacy{activeCnt, activeFrac, activePolarity, mvidWarEnabled,
+> MvidWarParams} block from the SST sub-struct of
+> NV0073_CTRL_CMD_DP_CONFIG_STREAM_PARAMS between the 535 and 570
+> releases
+> (compared in OpenRM tags 535.113.01 vs 570.144), shrinking the
+> struct.
 >=20
-> Add a GB20x GCP writer using the new offsets and hook it into
-> gb202_gsp_disp, keeping the direct MMIO path in sync with the
-> hardware
-> as on earlier chips.
+> Everything nouveau writes sits at identical offsets in both layouts
+> except the trailing SST.bEnableAudioOverRightPanel (written as zero),
+> but
+> the size is wrong on r570, which means r535_sor_dp_sst() and
+> r535_sor_dp_vcpi() are sent with an incorrect size.
 >=20
-> Only SB0 (the AVMute bit) is written. On NVD5.0 the subpack register
-> also
-> carries SB1_CTRL (bit 24), which selects where the deep-color CD/PP
-> fields are generated (hardware or from the driver, with the default
-> being
-> HW). hdmiWriteGeneralCtrlPacketC871() likewise writes only SB0-SB2.
+> Route the .sst/.vcpi IOR functions through nvkm_rm_api_disp the same
+> way
+> bl_ctrl and dp.get_caps/set_indexed_link_rates already are. Keep the
+> existing implementation for r535 and add an r570 implementation built
+> against the 570.144 layout, which already exists in r570/nvrm/disp.h
+> but
+> was unused until now. Also add the NV0073_CTRL_CMD_DP_CONFIG_STREAM
+> define that was missing from the layout.
+>=20
+> Other DP controls sent through shared r535 code did not change layout
+> between the tags.
 >=20
 > Signed-off-by: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
 > ---
-> =C2=A0.../gpu/drm/nouveau/nvkm/engine/disp/gb202.c=C2=A0 | 20
-> ++++++++++++++++++-
-> =C2=A01 file changed, 19 insertions(+), 1 deletion(-)
+> =C2=A0.../nouveau/nvkm/subdev/gsp/rm/r535/disp.c=C2=A0=C2=A0=C2=A0 | 33 +=
++++++++--
+> =C2=A0.../nouveau/nvkm/subdev/gsp/rm/r570/disp.c=C2=A0=C2=A0=C2=A0 | 64
+> +++++++++++++++++++
+> =C2=A0.../nvkm/subdev/gsp/rm/r570/nvrm/disp.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 2 +
+> =C2=A0.../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h=C2=A0=C2=A0 |=C2=A0 5 +=
++
+> =C2=A04 files changed, 97 insertions(+), 7 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
-> b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
-> index fa83aee35ae7..4863b2b36db0 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
-> @@ -65,6 +65,24 @@ gb202_sor_hdmi_infoframe_vsi(struct nvkm_ior *ior,
-> int head, void *data, u32 siz
-> =C2=A0=09nvkm_wr32(device, 0x6f03f8 + hoff, 0x00000002);
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> index f3e55253bcbc..3a8ff621ed62 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+> @@ -400,16 +400,16 @@ r535_sor_dp_audio(struct nvkm_ior *sor, int
+> head, bool enable)
+> =C2=A0=09=09r535_sor_dp_audio_mute(sor, false);
 > =C2=A0}
 > =C2=A0
-> +/* General Control Packet AVMute bracket. The GCP unit moved to slot
-> 1 on
-> + * NVD5.0. Only SB0 (the AVMute bit) is ours to write so we must not
-> do a
-> + * full write here: SB1 carries the deep-color CD/PP fields, and
-> SB1_CTRL
-> + * (bit 24, new with clc871.h) controls where their generation
-> happens (HW
-> + * or driver) on these chips, with the default being HW.
-> + */
-> +static void
-> +gb202_sor_hdmi_gcp(struct nvkm_ior *sor, int head, bool enable)
-> +{
-> +=09struct nvkm_device *device =3D sor->disp-
-> >engine.subdev.device;
-> +=09const u32 hdmi =3D head * 0x400;
-> +
-> +=09nvkm_mask(device, 0x6f0040 + hdmi, 0x00000001, 0x00000000);
-> +=09nvkm_mask(device, 0x6f004c + hdmi, 0x000000ff, !enable ?
-> 0x00000001 :
-> +=09=09=09=09=09=09=09=09
-> 0x00000010);
-> +=09nvkm_mask(device, 0x6f0040 + hdmi, 0x00000001, 0x00000001);
+> -static void
+> -r535_sor_dp_vcpi(struct nvkm_ior *sor, int head, u8 slot, u8
+> slot_nr, u16 pbn, u16 aligned_pbn)
+> +static int
+> +r535_dp_vcpi(struct nvkm_ior *sor, int head, u8 slot, u8 slot_nr,
+> u16 pbn, u16 aligned_pbn)
+> =C2=A0{
+> =C2=A0=09struct nvkm_disp *disp =3D sor->disp;
+> =C2=A0=09struct NV0073_CTRL_CMD_DP_CONFIG_STREAM_PARAMS *ctrl;
+> =C2=A0
+> =C2=A0=09ctrl =3D nvkm_gsp_rm_ctrl_get(&disp->rm.objcom,
+> =C2=A0=09=09=09=09=C2=A0=C2=A0=C2=A0
+> NV0073_CTRL_CMD_DP_CONFIG_STREAM, sizeof(*ctrl));
+> -=09if (WARN_ON(IS_ERR(ctrl)))
+> -=09=09return;
+> +=09if (IS_ERR(ctrl))
+> +=09=09return PTR_ERR(ctrl);
+> =C2=A0
+> =C2=A0=09ctrl->subDeviceInstance =3D 0;
+> =C2=A0=09ctrl->head =3D head;
+> @@ -429,12 +429,20 @@ r535_sor_dp_vcpi(struct nvkm_ior *sor, int
+> head, u8 slot, u8 slot_nr, u16 pbn, u
+> =C2=A0=09ctrl->MST.sendACT =3D 0;
+> =C2=A0=09ctrl->MST.singleHeadMSTPipeline =3D 0;
+> =C2=A0=09ctrl->MST.bEnableAudioOverRightPanel =3D 0;
+> -=09WARN_ON(nvkm_gsp_rm_ctrl_wr(&disp->rm.objcom, ctrl));
+> +=09return nvkm_gsp_rm_ctrl_wr(&disp->rm.objcom, ctrl);
 > +}
 > +
-> =C2=A0/* GB20x is GSP-only. This table supplies the register programming
-> the
-> =C2=A0 * GSP-RM display path needs from the chip.
-> =C2=A0 */
-> @@ -77,7 +95,7 @@ gb202_gsp_disp =3D {
-> =C2=A0=09.gsp.head_rgpos =3D gv100_head_rgpos,
-> =C2=A0=09.gsp.vblank_get =3D tu102_head_vblank_get,
-> =C2=A0=09.gsp.vblank_put =3D tu102_head_vblank_put,
-> -=09.gsp.hdmi_gcp =3D tu102_sor_hdmi_gcp,
-> +=09.gsp.hdmi_gcp =3D gb202_sor_hdmi_gcp,
-> =C2=A0=09/* The legacy AVI unit is unchanged on GB20x. */
-> =C2=A0=09.gsp.hdmi_infoframe_avi =3D gv100_sor_hdmi_infoframe_avi,
-> =C2=A0=09.gsp.hdmi_infoframe_vsi =3D gb202_sor_hdmi_infoframe_vsi,
+> +static void
+> +r535_sor_dp_vcpi(struct nvkm_ior *sor, int head, u8 slot, u8
+> slot_nr, u16 pbn, u16 aligned_pbn)
+> +{
+> +=09const struct nvkm_rm_api *rmapi =3D sor->disp-
+> >engine.subdev.device->gsp->rm->api;
+> +
+> +=09WARN_ON(rmapi->disp->dp.vcpi(sor, head, slot, slot_nr, pbn,
+> aligned_pbn));
+> =C2=A0}
+> =C2=A0
+> =C2=A0static int
+> -r535_sor_dp_sst(struct nvkm_ior *sor, int head, bool ef,
+> -=09=09u32 watermark, u32 hblanksym, u32 vblanksym)
+> +r535_dp_sst(struct nvkm_ior *sor, int head, bool ef,
+> +=09=C2=A0=C2=A0=C2=A0 u32 watermark, u32 hblanksym, u32 vblanksym)
+> =C2=A0{
+> =C2=A0=09struct nvkm_disp *disp =3D sor->disp;
+> =C2=A0=09struct NV0073_CTRL_CMD_DP_CONFIG_STREAM_PARAMS *ctrl;
+> @@ -461,6 +469,15 @@ r535_sor_dp_sst(struct nvkm_ior *sor, int head,
+> bool ef,
+> =C2=A0=09return nvkm_gsp_rm_ctrl_wr(&disp->rm.objcom, ctrl);
+> =C2=A0}
+> =C2=A0
+> +static int
+> +r535_sor_dp_sst(struct nvkm_ior *sor, int head, bool ef,
+> +=09=09u32 watermark, u32 hblanksym, u32 vblanksym)
+> +{
+> +=09const struct nvkm_rm_api *rmapi =3D sor->disp-
+> >engine.subdev.device->gsp->rm->api;
+> +
+> +=09return rmapi->disp->dp.sst(sor, head, ef, watermark,
+> hblanksym, vblanksym);
+> +}
+> +
+> =C2=A0static const struct nvkm_ior_func_dp
+> =C2=A0r535_sor_dp =3D {
+> =C2=A0=09.sst =3D r535_sor_dp_sst,
+> @@ -1771,6 +1788,8 @@ r535_disp =3D {
+> =C2=A0=09.dp =3D {
+> =C2=A0=09=09.get_caps =3D r535_dp_get_caps,
+> =C2=A0=09=09.set_indexed_link_rates =3D
+> r535_dp_set_indexed_link_rates,
+> +=09=09.sst =3D r535_dp_sst,
+> +=09=09.vcpi =3D r535_dp_vcpi,
+> =C2=A0=09},
+> =C2=A0=09.chan =3D {
+> =C2=A0=09=09.set_pushbuf =3D r535_disp_chan_set_pushbuf,
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/disp.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/disp.c
+> index a96e31c2d80b..8a23837f356e 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/disp.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/disp.c
+> @@ -5,6 +5,7 @@
+> =C2=A0#include <rm/rm.h>
+> =C2=A0
+> =C2=A0#include <engine/disp.h>
+> +#include <engine/disp/ior.h>
+> =C2=A0#include <engine/disp/outp.h>
+> =C2=A0
+> =C2=A0#include "nvhw/drf.h"
+> @@ -74,6 +75,67 @@ r570_disp_chan_set_pushbuf(struct nvkm_disp *disp,
+> s32 oclass, int inst, struct
+> =C2=A0=09return nvkm_gsp_rm_ctrl_wr(&gsp->internal.device.subdevice,
+> ctrl);
+> =C2=A0}
+> =C2=A0
+> +static int
+> +r570_dp_vcpi(struct nvkm_ior *sor, int head, u8 slot, u8 slot_nr,
+> u16 pbn, u16 aligned_pbn)
+> +{
+> +=09struct nvkm_disp *disp =3D sor->disp;
+> +=09NV0073_CTRL_CMD_DP_CONFIG_STREAM_PARAMS *ctrl;
+> +
+> +=09ctrl =3D nvkm_gsp_rm_ctrl_get(&disp->rm.objcom,
+> +=09=09=09=09=C2=A0=C2=A0=C2=A0
+> NV0073_CTRL_CMD_DP_CONFIG_STREAM, sizeof(*ctrl));
+> +=09if (IS_ERR(ctrl))
+> +=09=09return PTR_ERR(ctrl);
+> +
+> +=09ctrl->subDeviceInstance =3D 0;
+> +=09ctrl->head =3D head;
+> +=09ctrl->sorIndex =3D sor->id;
+> +=09ctrl->dpLink =3D sor->asy.link =3D=3D 2;
+> +=09ctrl->bEnableOverride =3D 1;
+> +=09ctrl->bMST =3D 1;
+> +=09ctrl->hBlankSym =3D 0;
+> +=09ctrl->vBlankSym =3D 0;
+> +=09ctrl->colorFormat =3D 0;
+> +=09ctrl->bEnableTwoHeadOneOr =3D 0;
+> +=09ctrl->singleHeadMultistreamMode =3D 0;
+> +=09ctrl->MST.slotStart =3D slot;
+> +=09ctrl->MST.slotEnd =3D slot + slot_nr - 1;
+> +=09ctrl->MST.PBN =3D pbn;
+> +=09ctrl->MST.Timeslice =3D aligned_pbn;
+> +=09ctrl->MST.sendACT =3D 0;
+> +=09ctrl->MST.singleHeadMSTPipeline =3D 0;
+> +=09ctrl->MST.bEnableAudioOverRightPanel =3D 0;
+> +=09return nvkm_gsp_rm_ctrl_wr(&disp->rm.objcom, ctrl);
+> +}
+> +
+> +static int
+> +r570_dp_sst(struct nvkm_ior *sor, int head, bool ef,
+> +=09=C2=A0=C2=A0=C2=A0 u32 watermark, u32 hblanksym, u32 vblanksym)
+> +{
+> +=09struct nvkm_disp *disp =3D sor->disp;
+> +=09NV0073_CTRL_CMD_DP_CONFIG_STREAM_PARAMS *ctrl;
+> +
+> +=09ctrl =3D nvkm_gsp_rm_ctrl_get(&disp->rm.objcom,
+> +=09=09=09=09=C2=A0=C2=A0=C2=A0
+> NV0073_CTRL_CMD_DP_CONFIG_STREAM, sizeof(*ctrl));
+> +=09if (IS_ERR(ctrl))
+> +=09=09return PTR_ERR(ctrl);
+> +
+> +=09ctrl->subDeviceInstance =3D 0;
+> +=09ctrl->head =3D head;
+> +=09ctrl->sorIndex =3D sor->id;
+> +=09ctrl->dpLink =3D sor->asy.link =3D=3D 2;
+> +=09ctrl->bEnableOverride =3D 1;
+> +=09ctrl->bMST =3D 0;
+> +=09ctrl->hBlankSym =3D hblanksym;
+> +=09ctrl->vBlankSym =3D vblanksym;
+> +=09ctrl->colorFormat =3D 0;
+> +=09ctrl->bEnableTwoHeadOneOr =3D 0;
+> +=09ctrl->SST.bEnhancedFraming =3D ef;
+> +=09ctrl->SST.tuSize =3D 64;
+> +=09ctrl->SST.waterMark =3D watermark;
+> +=09ctrl->SST.bEnableAudioOverRightPanel =3D 0;
+> +=09return nvkm_gsp_rm_ctrl_wr(&disp->rm.objcom, ctrl);
+> +}
+> +
+> =C2=A0static int
+> =C2=A0r570_dp_set_indexed_link_rates(struct nvkm_outp *outp)
+> =C2=A0{
+> @@ -255,6 +317,8 @@ r570_disp =3D {
+> =C2=A0=09.dp =3D {
+> =C2=A0=09=09.get_caps =3D r570_dp_get_caps,
+> =C2=A0=09=09.set_indexed_link_rates =3D
+> r570_dp_set_indexed_link_rates,
+> +=09=09.sst =3D r570_dp_sst,
+> +=09=09.vcpi =3D r570_dp_vcpi,
+> =C2=A0=09},
+> =C2=A0=09.chan =3D {
+> =C2=A0=09=09.set_pushbuf =3D r570_disp_chan_set_pushbuf,
+> diff --git
+> a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/disp.h
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/disp.h
+> index 06e972835d77..742b25a2a12d 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/disp.h
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/disp.h
+> @@ -256,6 +256,8 @@ typedef struct NV0073_CTRL_DP_CTRL_PARAMS {
+> =C2=A0=C2=A0=C2=A0=C2=A0 NvU32 eightLaneDpcdBaseAddr;
+> =C2=A0} NV0073_CTRL_DP_CTRL_PARAMS;
+> =C2=A0
+> +#define NV0073_CTRL_CMD_DP_CONFIG_STREAM=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0
+> (0x731362U) /* finn: Evaluated from
+> "(FINN_NV04_DISPLAY_COMMON_DP_INTERFACE_ID << 8) |
+> NV0073_CTRL_CMD_DP_CONFIG_STREAM_PARAMS_MESSAGE_ID" */
+> +
+> =C2=A0typedef struct NV0073_CTRL_CMD_DP_CONFIG_STREAM_PARAMS {
+> =C2=A0=C2=A0=C2=A0=C2=A0 NvU32=C2=A0 subDeviceInstance;
+> =C2=A0=C2=A0=C2=A0=C2=A0 NvU32=C2=A0 head;
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
+> index 0fb0e67406c6..e9ac47d86b69 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
+> @@ -6,6 +6,7 @@
+> =C2=A0#ifndef __NVKM_RM_H__
+> =C2=A0#define __NVKM_RM_H__
+> =C2=A0#include "handles.h"
+> +struct nvkm_ior;
+> =C2=A0struct nvkm_outp;
+> =C2=A0struct r535_gr;
+> =C2=A0
+> @@ -93,6 +94,10 @@ struct nvkm_rm_api {
+> =C2=A0=09=09struct {
+> =C2=A0=09=09=09int (*get_caps)(struct nvkm_disp *, int
+> *link_bw, bool *mst, bool *wm);
+> =C2=A0=09=09=09int (*set_indexed_link_rates)(struct
+> nvkm_outp *);
+> +=09=09=09int (*sst)(struct nvkm_ior *, int head, bool
+> ef,
+> +=09=09=09=09=C2=A0=C2=A0 u32 watermark, u32 hblanksym, u32
+> vblanksym);
+> +=09=09=09int (*vcpi)(struct nvkm_ior *, int head,
+> +=09=09=09=09=C2=A0=C2=A0=C2=A0 u8 slot, u8 slot_nr, u16 pbn,
+> u16 aligned_pbn);
+> =C2=A0=09=09} dp;
+> =C2=A0
+> =C2=A0=09=09struct {
 
