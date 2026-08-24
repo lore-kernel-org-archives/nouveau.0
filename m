@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D118C5DF81
-	for <nouveau@archiver.kernel.org>; Mon, 24 Aug 2026 12:59:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98A22C5DF81
+	for <nouveau@archiver.kernel.org>; Mon, 24 Aug 2026 14:30:03 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 266E610E7CF;
-	Mon, 24 Aug 2026 12:59:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 578A810E555;
+	Mon, 24 Aug 2026 14:30:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="b4nMG6oI";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="R8q1M4c+";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="aBIRFlP6";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="+QrvSpZB";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="jPAk+QU8";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="5lDYM8Sp";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="bsPlg+u0";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="OLusts3S";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2819C47B5D;
-	Mon, 24 Aug 2026 12:42:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 29AE047B66;
+	Mon, 24 Aug 2026 14:13:18 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787575376;
- b=tyOMR6dkybGTJiPwPRIxdbamwvbwHAeev0tzO2sgHVb43IkVXpNATivlqGUXQUDxI5nZt
- wfNcW4F2hnLyawW4q+t9f3jjIj5AKBxy8hDZHnH/lIMS225iw9O8uNjGZsbodZrU69lrMia
- RUA3qPE0mzFowKCT/pKCRJWUMwmBYZW5pGuTsmNqpRZOSokq4rkj5hkTY3+OwgGGalalBaH
- rx6HLmgxIVoqLrv2YDA7QzQ/RrjUBIS1Tz8nkgOznX8h6omSTH5l63EGpfhdQIeJrmODu9v
- WmxAIxR8cnCrAqearEI6mvfY7D+3gIYBoMc0pUNlFRhT+W3qeuN4uADEKn5A==
+ s=20240201; t=1787580797;
+ b=WFfzQN6GPdluZR9m3hltqrb1r8AU9Lm5WG3HR+nr+4hS1z0infU0mFxFKuyNws34tnvKr
+ w8bNkDfhRZZXjuAWYjY0Eu83vtGH2zOMjjjVdJb3B1Z72ZE2G9QTs5mkCwTCR8Q1cPsiSdn
+ qiBi06K8AZgotGtVMrr/qx6/zDBxoRRJRYwINMTk2mxOM0BV+MCsbNNtvED4MmMYInSpjQN
+ cyanolp5RyKSOA9U45BgMKaf5QL5YNHTbUiPm/zlKKBbnE7rF1+cbQbjDpvqVtg1tDXKza8
+ 2cHjBtjMTm7By7pHoAwYVjs9+FTAHj55AeIEY2VvsATX9ybo2M8k+uZG1jIQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787575376; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787580797; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=vDSmxFASz+fkrhZzUl77TDXseYfLE5/RPWlWXgBn8tc=;
- b=0r+itoo3yUPolEBKUNZ+yaRsIgon8cM3E1Fk8gOK8oHZvdeoUZf3nAxkzUCCs+Vibak8/
- aHDbYywJoSdC2rKzw3mpHaKC2CvtNYbx6nFsH7DApZmTdCnUSsqOtioejGeKiqI7Zu2vTAa
- 0eDTlYDcQurqxgJ+wAH/jnK/NUN5NXPwhquRt3e0glMS0hmy19O2Cf4IXVL2sdZB8qPzGi9
- gOWcTVApJo8LBQ299OQOOCSCeanXhNcp0hs/mOmgkk/rM8OYVJ4SFdv/3o8NzbSF4qHKPNF
- YSwNcHJOvx4Jxg0nEu0mzfexcI0pn/jZAXP+5a1oGDfak53oB1Lc9BG9q01g==
+ bh=oRfeKqw0N0kQLKC+424hjjzXjyHez3BAAze+hVfK2Rg=;
+ b=KZ58TwSsjZy81uw00gq5re7Y627c6fC/vYb8AJEAGaIs0OtYZrzztsX/m4zLafNEuh3eW
+ F+MjF3zMn6lQ1YJxijThDpH48t2AEcwcg3eiqlFynI/RP3SWJUowRIajsqF2TnkGHcg0Aw2
+ mi2t9/KcKKxaWxmqx2Vv361eOTLOQG+KgMm089xruYt8vVcqwh9ydY71rudJnVTstUqv9vJ
+ yJ3qA+PzToxdS7jX32PXJAEet4pZ+YRSsSteDbe4s9sVQLen0OKr1DHSYqmIhoCyUjW9gAS
+ VvyeC+VfTqncS7Ot0BFNWz9zZEk/iWrvjLNgRbjpJDNGr1ey3ZR5DMAagK4g==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
@@ -47,131 +47,241 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E21CB41832
-	for <nouveau@lists.freedesktop.org>; Mon, 24 Aug 2026 12:42:52 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0AB8B4064D
+	for <nouveau@lists.freedesktop.org>; Mon, 24 Aug 2026 11:12:52 +0000 (UTC)
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 97E9910E7B5
-	for <nouveau@lists.freedesktop.org>; Mon, 24 Aug 2026 12:59:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 67ABA10E74D;
+	Mon, 24 Aug 2026 11:29:35 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 0CB6F1F45F;
-	Mon, 24 Aug 2026 12:52:12 +0000 (UTC)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 2B5911F82E;
+	Mon, 24 Aug 2026 11:28:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_rsa;
-	t=1787575936;
+	t=1787570893;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vDSmxFASz+fkrhZzUl77TDXseYfLE5/RPWlWXgBn8tc=;
-	b=b4nMG6oIR8iSZpPaxrfQN5El39KyJKWOEUkCl5OpvExfqATh7u37VIHqx0UpbT7dzcyHEG
-	K4vV6RD0Om6GKZQcrBs5K9EaY1FzQuFh/Z+sKJHf9sG+PpMbTK8DDGWc9XOTG4yc4dS5Re
-	PklyOhYU70PfsEeeipUqnvzVv3RqA6c=
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=oRfeKqw0N0kQLKC+424hjjzXjyHez3BAAze+hVfK2Rg=;
+	b=jPAk+QU8Oz9JiYGtn+V5jZxMEyjAvNiz7x+giw+idIe7iWHZ3M9kfknb1WdCY6dzXCmQD3
+	RUzjbubEF3hnieEB81hcTriJJ/TZwn9WrJvXmwfrSSxcQQ1ZlbjhLeh4wlav9BK5HaMwO3
+	6684oDDWCwOgqkGGromNNiB5crtoKp8=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1787575936;
+	s=susede2_ed25519; t=1787570893;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vDSmxFASz+fkrhZzUl77TDXseYfLE5/RPWlWXgBn8tc=;
-	b=R8q1M4c+MTfap+bhVzUARZPw+Ip5Cx2kFP2H4j43ky/kG30qAYU0IK3vKqihQHuDtZz/tm
-	35RFhgjyy1dy8RAQ==
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=oRfeKqw0N0kQLKC+424hjjzXjyHez3BAAze+hVfK2Rg=;
+	b=5lDYM8Sp+2Zs/UK8WEQsqpqKl/p+3waU+CqzB8+6scnvBPnqiDamSiTmKrctumFJCWBEYi
+	aX34sUfDAX5NblCQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_rsa;
-	t=1787575932;
+	t=1787570889;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vDSmxFASz+fkrhZzUl77TDXseYfLE5/RPWlWXgBn8tc=;
-	b=aBIRFlP6paT4N3trcB0wPfhixBBoQsU36F61Y0v/hO7DXQYNDSa9zd5H7K7ncQxcr9tPsi
-	xvzYmMOVBJh2p8VBqzHj4FE1LiGmN/AMxW4zUs6eqVfFlY/oEK9aQGNq61pEKImaPkzmbc
-	Ceu8+9dRXR4/fdalXZJnU5QaNM/Lyzo=
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=oRfeKqw0N0kQLKC+424hjjzXjyHez3BAAze+hVfK2Rg=;
+	b=bsPlg+u0OwdeHNbNGrLeK44/R8qCs4CSg2PYS8tAMdo+SiYAgso2oR9h7L/qr4Kf3DuMkG
+	JKgB4VRdqQ8XdeAhqD8b8vI76Bx+jM9yHqOPuKlYDaI0OV9UYbWCi5Q1nsdyTPB6peYLQF
+	TjI7tAEaxq6cznVveiRZRfRGOnX5P94=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1787575932;
+	s=susede2_ed25519; t=1787570889;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vDSmxFASz+fkrhZzUl77TDXseYfLE5/RPWlWXgBn8tc=;
-	b=+QrvSpZBbEhaJ/Ac1pHKNBtWLjVml1HSeW+8DbrU/qF0mIG/CYkefnNqcpB6FMAUIZxejZ
-	LWyBVGsREBZCYsBg==
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=oRfeKqw0N0kQLKC+424hjjzXjyHez3BAAze+hVfK2Rg=;
+	b=OLusts3Smqe2AFyYsDutCyN37J42MZz2JAj9qpn2mbZkclBOoroaTNZlb/XsAZWC4PdLh8
+	KxcB0oUEd1WRgsCA==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8768513331;
-	Mon, 24 Aug 2026 12:52:11 +0000 (UTC)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 2DC4E1333B;
+	Mon, 24 Aug 2026 11:28:06 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
 	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id MLvbH3s+jGpyNwAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Mon, 24 Aug 2026 12:52:11 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: jfalempe@redhat.com,
-	javierm@redhat.com,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	geert@linux-m68k.org,
-	rdunlap@infradead.org
-Subject: [PATCH v2 11/13] drm/panic: Internalize panic locking in DRM core and
- helpers
-Date: Mon, 24 Aug 2026 14:43:42 +0200
-Message-ID: <20260824125201.218863-12-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260824125201.218863-1-tzimmermann@suse.de>
-References: <20260824125201.218863-1-tzimmermann@suse.de>
+	id l1sQCsYqjGpBYAAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Mon, 24 Aug 2026 11:28:06 +0000
+Message-ID: <c56a1ec4-b70d-4ff6-a2ca-4ff625845b4e@suse.de>
+Date: Mon, 24 Aug 2026 13:28:05 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/70] drm/crtc: Convert all drivers to
+ atomic_create_state and remove reset
+To: Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+References: <20260821-drm-no-more-crtc-reset-v1-0-fb793475c05a@kernel.org>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20260821-drm-no-more-crtc-reset-v1-0-fb793475c05a@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-7.30 / 50.00];
-	REPLY(-4.00)[];
+X-Spamd-Result: default: False [-0.80 / 50.00];
 	BAYES_HAM(-3.00)[100.00%];
-	MID_CONTAINS_FROM(1.00)[];
+	FORGED_RECIPIENTS(2.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:k@chaosmail.tech,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:liviu.dudau@arm.com,m:linux@armlinux.org.uk,m:alim.akhtar@samsung.com,m:inki.dae@samsung.com,m:kyungmin.park@samsung.com,m:sw0312.kim@samsung.com,m:linux-samsung-soc@vger.kernel.org,m:stefan@agner.ch,m:rubenru09@aol.com,m:tiantao6@hisilicon.com,m:kong.kongxinwei@hisilicon.com,m:jstultz@google.com,m:linux-hyperv@vger.kernel.org,m:festevam@gmail.com,m:kernel@pengutronix.de,m:s.hauer@pengutronix.de,m:laurentiu.palcu@oss.nxp.com,m:l.stach@pengutronix.de,m:paul@crapouillou.net,m:linux-mips@vger.kernel.org,m:paulk@sys-base.io,m:jbrunet@baylibre.com,m:khilman@baylibre.com,m:martin.blumenstingl@googlemail.com,m:jesszhan0024@gmail.com,m:marijn.suijten@somainline.org,m:robin.clark@oss.qualcomm.com,m:sean@poorly.run,m:linux-arm-msm@vger.kernel.org,m:marex@denx.de,m:airlied@redhat.com,m:kraxel@redhat.com,m:geert+renesas@glider.be,m:linux-renesas-soc@vger.kern
+ el.org,m:marcus.folkesson@gmail.com,m:zhang.lyra@gmail.com,m:orsonzhai@gmail.com,m:alain.volmat@foss.st.com,m:rgallaispou@gmail.com,m:alexandre.torgue@foss.st.com,m:mcoquelin.stm32@gmail.com,m:philippe.cornu@foss.st.com,m:raphael.gallais-pou@foss.st.com,m:yannick.fertre@foss.st.com,m:samuel@sholland.org,m:gargaditya08@proton.me,m:zaq14760@gmail.com,m:lanzano.alex@gmail.com,m:olvaffe@gmail.com,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:michal.simek@amd.com,m:javierm@redhat.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:jfalempe@redhat.com,m:alexandre.belloni@bootlin.com,m:claudiu.beznea@tuxon.dev,s:kieran.bingham@ideasonboard.com,s:laurent.pinchart@ideasonboard.com,s:tomi.valkeinen@ideasonboard.com,s:mcanal@igalia.com,s:chenhuacai@kernel.org,s:chunkuang.hu@kernel.org,s:dakr@kernel.org,s:thierry.reding@kernel.org,s:nouveau@lists.freedesktop.org,s:linux-rockchip@lists.infradead.org,s:lvjianmin@loongson.cn,s:wuqianhai@loongson.cn,s:manikandan.m@microchip.com,s:
+ nicolas.ferre@microchip.com,s:jonathanh@nvidia.com,s:mperttunen@nvidia.com];
+	SUSPICIOUS_RECIPS(1.50)[];
 	NEURAL_HAM_LONG(-1.00)[-1.000];
 	NEURAL_HAM_SHORT(-0.20)[-0.999];
 	MIME_GOOD(-0.10)[text/plain];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_RCPT(0.00)[renesas];
+	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,gmail.com,ffwll.ch];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,linux-m68k.org,infradead.org];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	R_RATELIMIT(0.00)[to_ip_from(RLqirfcw6gnbcr9a9yhi49fhi6)];
 	RCVD_TLS_ALL(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,jannau.net,chaosmail.tech,lists.linux.dev,amd.com,arm.com,armlinux.org.uk,samsung.com,kernel.org,linaro.org,vger.kernel.org,nxp.com,agner.ch,aol.com,hisilicon.com,huawei.com,google.com,microsoft.com,linux.microsoft.com,gmail.com,pengutronix.de,oss.nxp.com,crapouillou.net,intel.com,sys-base.io,baylibre.com,googlemail.com,lists.infradead.org,linux.dev,somainline.org,oss.qualcomm.com,poorly.run,denx.de,redhat.com,glider.be,linux.alibaba.com,foss.st.com,sholland.org,iki.fi,ideasonboard.com,proton.me,kodeit.net,iscas.ac.cn,collabora.com,chromium.org,igalia.com,bootlin.com,tuxon.dev,microchip.com,loongson.cn,aosc.io,xry111.site,bp.renesas.com,sntech.de,rock-chips.com,nvidia.com,raspberrypi.com,broadcom.com];
+	R_RATELIMIT(0.00)[to_ip_from(RLoadnimawcdo3as9ydearnodd)];
+	FROM_EQ_ENVFROM(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid,imap1.dmz-prg2.suse.org:helo,gitlab.freedesktop.org:url]
-Message-ID-Hash: MUCJCD24RTQ42H6RNRD2LRNWZWSH2LGJ
-X-Message-ID-Hash: MUCJCD24RTQ42H6RNRD2LRNWZWSH2LGJ
+	TO_MATCH_ENVRCPT_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[135];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid,imap1.dmz-prg2.suse.org:helo,suse.com:url]
 X-MailFrom: tzimmermann@suse.de
+X-Mailman-Rule-Hits: max-recipients
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
- sashiko-reviews@lists.linux.dev
+ implicit-dest; max-size; news-moderation; no-subject; digests;
+ suspicious-header
+Message-ID-Hash: 2DWV5DZBTLF7SVVKAUF3XELF4JKXR2IL
+X-Message-ID-Hash: 2DWV5DZBTLF7SVVKAUF3XELF4JKXR2IL
+X-Mailman-Approved-At: Mon, 24 Aug 2026 14:13:15 +0000
+CC: dri-devel@lists.freedesktop.org, Janne Grunau <j@jannau.net>,
+ Sasha Finkelstein <k@chaosmail.tech>, asahi@lists.linux.dev,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Liviu Dudau <liviu.dudau@arm.com>, Russell King <linux@armlinux.org.uk>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
+ Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
+ Ruben Wauters <rubenru09@aol.com>, Tian Tao <tiantao6@hisilicon.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Yongbang Shi <shiyongbang@huawei.com>, John Stultz <jstultz@google.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Xinliang Liu <xinliang.liu@linaro.org>, Yongqin Liu <yongqin.liu@linaro.org>,
+ Dexuan Cui <decui@microsoft.com>, Long Li <longli@microsoft.com>,
+ Saurabh Sengar <ssengar@linux.microsoft.com>, linux-hyperv@vger.kernel.org,
+ Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+ Liu Ying <victor.liu@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Lucas Stach <l.stach@pengutronix.de>, Paul Cercueil <paul@crapouillou.net>,
+ linux-mips@vger.kernel.org,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ Paul Kocialkowski <paulk@sys-base.io>, Jerome Brunet <jbrunet@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ Marek Vasut <marex@denx.de>, Dave Airlie <airlied@redhat.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
+ virtualization@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>,
+ linux-renesas-soc@vger.kernel.org,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Orson Zhai <orsonzhai@gmail.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Raphael Gallais-Pou <rgallaispou@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Yannick Fertre <yannick.fertre@foss.st.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
+ Jyri Sarha <jyri.sarha@iki.fi>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Aditya Garg <gargaditya08@proton.me>, Aun-Ali Zaidi <admin@kodeit.net>,
+ LiangCheng Wang <zaq14760@gmail.com>, Alex Lanzano <lanzano.alex@gmail.com>,
+ Hans de Goede <hansg@kernel.org>, Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Michal Simek <michal.simek@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Jocelyn Falempe <jfalempe@redhat.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Dharma Balasubiramani <dharma.b@microchip.com>,
+ Manikandan Muralidharan <manikandan.m@microchip.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Huacai Chen <chenhuacai@kernel.org>,
+ Jianmin Lv <lvjianmin@loongson.cn>, Mingcong Bai <jeffbai@aosc.io>,
+ Qianhai Wu <wuqianhai@loongson.cn>, Xi Ruoyao <xry111@xry111.site>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, Sandy Huang <hjc@rock-chips.com>,
+ linux-rockchip@lists.infradead.org, Iker Pedrosa <ikerpedrosam@gmail.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Zack Rusin <zack.rusin@broadcom.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MUCJCD24RTQ42H6RNRD2LRNWZWSH2LGJ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2DWV5DZBTLF7SVVKAUF3XELF4JKXR2IL/>
 Archived-At: 
- <https://lore.freedesktop.org/20260824125201.218863-12-tzimmermann@suse.de/>
+ <https://lore.freedesktop.org/c56a1ec4-b70d-4ff6-a2ca-4ff625845b4e@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -181,260 +291,211 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-None of the DRM drivers handles panic locking. Declare the interfaces
-in an internal header file. Move the trylock required during the panic
-into the DRM core's sources.
+Hi Maxime
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- Documentation/gpu/drm-kms.rst        |  3 ++
- MAINTAINERS                          |  3 +-
- drivers/gpu/drm/drm_atomic_helper.c  |  2 +-
- drivers/gpu/drm/drm_drv.c            |  2 +-
- drivers/gpu/drm/drm_panic.c          |  4 ++
- drivers/gpu/drm/drm_panic_internal.h | 55 +++++++++++++++++++++++
- include/drm/drm_panic.h              | 65 ----------------------------
- 7 files changed, 66 insertions(+), 68 deletions(-)
- create mode 100644 drivers/gpu/drm/drm_panic_internal.h
+Am 21.08.26 um 16:38 schrieb Maxime Ripard:
+> This is a follow-up to the plane reset removal series, and part of a
+> larger effort to remove the reset hook from all KMS objects.
+>
+> The CRTC reset hook is overloaded: it is called both at probe time to
+> create the initial software state and during suspend/resume to reset
+> hardware and software state. These two roles have different
+> requirements, and the reset hook is not fallible, making error
+> handling difficult for the initial state allocation path.
+>
+> While reset has the semantics to reset both the software and hardware
+> state, the vast majority of implementations and all the helpers only
+> reset the software state, making them equivalent to
+> atomic_create_state in practice. The atomic_create_state hook makes
+> this explicit: it only allocates and initializes a pristine state
+> without any side effect, and returns the state pointer or an ERR_PTR
+> on failure.
+>
+> This series converts all CRTC drivers tree-wide from the reset hook to
+> atomic_create_state, then removes the reset hook from struct
+> drm_crtc_funcs entirely. Two drivers (tilcdc and loongson) had actual
+> hardware reset logic mixed into their reset hook; those are moved to
+> CRTC creation instead. The conversions were done using a combination of
+> Coccinelle semantic patches and manual adjustments.
+>
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
 
-diff --git a/Documentation/gpu/drm-kms.rst b/Documentation/gpu/drm-kms.rst
-index 0dd440a14946..8988fd64369b 100644
---- a/Documentation/gpu/drm-kms.rst
-+++ b/Documentation/gpu/drm-kms.rst
-@@ -421,6 +421,9 @@ Plane Panic Functions Reference
- .. kernel-doc:: include/drm/drm_panic.h
-    :internal:
- 
-+.. kernel-doc:: drivers/gpu/drm/drm_panic_internal.h
-+   :internal:
-+
- .. kernel-doc:: drivers/gpu/drm/drm_panic.c
-    :export:
- 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 472c5c48729d..f3dfdd9314bd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9018,7 +9018,8 @@ S:	Supported
- T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
- F:	drivers/gpu/drm/drm_draw.c
- F:	drivers/gpu/drm/drm_draw_internal.h
--F:	drivers/gpu/drm/drm_panic*.c
-+F:	drivers/gpu/drm/drm_panic.c
-+F:	drivers/gpu/drm/drm_panic_internal.h
- F:	drivers/gpu/drm/tests/drm_panic_test.c
- F:	include/drm/drm_panic.h
- F:	include/drm/drm_panic_helper.h
-diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-index 285aac3554df..af3934df3313 100644
---- a/drivers/gpu/drm/drm_atomic_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_helper.c
-@@ -41,7 +41,6 @@
- #include <drm/drm_drv.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_gem_atomic_helper.h>
--#include <drm/drm_panic.h>
- #include <drm/drm_print.h>
- #include <drm/drm_self_refresh_helper.h>
- #include <drm/drm_vblank.h>
-@@ -49,6 +48,7 @@
- 
- #include "drm_crtc_helper_internal.h"
- #include "drm_crtc_internal.h"
-+#include "drm_panic_internal.h"
- 
- /**
-  * DOC: overview
-diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-index c808958a2188..02ff02931515 100644
---- a/drivers/gpu/drm/drm_drv.c
-+++ b/drivers/gpu/drm/drm_drv.c
-@@ -50,13 +50,13 @@
- #include <drm/drm_file.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_mode_object.h>
--#include <drm/drm_panic.h>
- #include <drm/drm_print.h>
- #include <drm/drm_privacy_screen_machine.h>
- #include <drm/drm_ras_genl_family.h>
- 
- #include "drm_crtc_internal.h"
- #include "drm_internal.h"
-+#include "drm_panic_internal.h"
- 
- MODULE_AUTHOR("Gareth Hughes, Leif Delgass, José Fonseca, Jon Smirl");
- MODULE_DESCRIPTION("DRM shared core routines");
-diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
-index 0fe9a0d67db3..9a6e3704bf09 100644
---- a/drivers/gpu/drm/drm_panic.c
-+++ b/drivers/gpu/drm/drm_panic.c
-@@ -35,6 +35,7 @@
- 
- #include "drm_crtc_internal.h"
- #include "drm_draw_internal.h"
-+#include "drm_panic_internal.h"
- 
- MODULE_AUTHOR("Jocelyn Falempe");
- MODULE_DESCRIPTION("DRM panic handler");
-@@ -976,6 +977,9 @@ int drm_plane_helper_display_panic_screen(struct drm_plane *plane, const char *d
- }
- EXPORT_SYMBOL(drm_plane_helper_display_panic_screen);
- 
-+#define drm_panic_trylock(dev, flags) \
-+	raw_spin_trylock_irqsave(&(dev)->mode_config.panic_lock, flags)
-+
- static void drm_panic_display_panic_screen(struct drm_plane *plane, const char *description)
- {
- #if defined(CONFIG_DRM_PANIC_FOREGROUND_COLOR)
-diff --git a/drivers/gpu/drm/drm_panic_internal.h b/drivers/gpu/drm/drm_panic_internal.h
-new file mode 100644
-index 000000000000..c68d64c56e15
---- /dev/null
-+++ b/drivers/gpu/drm/drm_panic_internal.h
-@@ -0,0 +1,55 @@
-+/* SPDX-License-Identifier: GPL-2.0 or MIT */
-+
-+/*
-+ * Copyright (c) 2024 Intel
-+ * Copyright (c) 2024 Red Hat
-+ */
-+
-+#ifndef __DRM_PANIC_INTERNAL_H__
-+#define __DRM_PANIC_INTERNAL_H__
-+
-+#include <linux/spinlock.h>
-+
-+struct drm_device;
-+
-+#ifdef CONFIG_DRM_PANIC
-+
-+/**
-+ * drm_panic_lock - protect panic printing relevant state
-+ * @dev: struct drm_device
-+ * @flags: unsigned long irq flags you need to pass to the unlock() counterpart
-+ *
-+ * This function must be called to protect software and hardware state that the
-+ * panic printing code must be able to rely on. The protected sections must be
-+ * as small as possible. It uses the irqsave/irqrestore variant, and can be
-+ * called from irq handler. Examples include:
-+ *
-+ * - Access to peek/poke or other similar registers, if that is the way the
-+ *   driver prints the pixels into the scanout buffer at panic time.
-+ *
-+ * - Updates to pointers like &drm_plane.state, allowing the panic handler to
-+ *   safely deference these. This is done in drm_atomic_helper_swap_state().
-+ *
-+ * - An state that isn't invariant and that the driver must be able to access
-+ *   during panic printing.
-+ */
-+#define drm_panic_lock(dev, flags) \
-+	raw_spin_lock_irqsave(&(dev)->mode_config.panic_lock, flags)
-+
-+/**
-+ * drm_panic_unlock - end of the panic printing critical section
-+ * @dev: struct drm_device
-+ * @flags: irq flags that were returned when acquiring the lock
-+ *
-+ * Unlocks the raw spinlock acquired by either drm_panic_lock() or
-+ * drm_panic_trylock().
-+ */
-+#define drm_panic_unlock(dev, flags) \
-+	raw_spin_unlock_irqrestore(&(dev)->mode_config.panic_lock, flags)
-+
-+#else
-+static inline void drm_panic_lock(struct drm_device *dev, unsigned long flags) {}
-+static inline void drm_panic_unlock(struct drm_device *dev, unsigned long flags) {}
-+#endif
-+
-+#endif /* __DRM_PANIC_INTERNAL_H__ */
-diff --git a/include/drm/drm_panic.h b/include/drm/drm_panic.h
-index 430df536de14..99572b7eeab9 100644
---- a/include/drm/drm_panic.h
-+++ b/include/drm/drm_panic.h
-@@ -8,11 +8,9 @@
- #ifndef __DRM_PANIC_H__
- #define __DRM_PANIC_H__
- 
--#include <linux/module.h>
- #include <linux/types.h>
- #include <linux/iosys-map.h>
- 
--#include <drm/drm_device.h>
- #include <drm/drm_fourcc.h>
- 
- struct page;
-@@ -85,71 +83,8 @@ struct drm_scanout_buffer {
- 	 * set_pixel()
- 	 */
- 	void *private;
--
- };
- 
--#ifdef CONFIG_DRM_PANIC
--
--/**
-- * drm_panic_trylock - try to enter the panic printing critical section
-- * @dev: struct drm_device
-- * @flags: unsigned long irq flags you need to pass to the unlock() counterpart
-- *
-- * The panic-printing code calls this function. The panic printing attempt must
-- * be aborted if the trylock fails.
-- *
-- * Return:
-- * %0 when failing to acquire the raw spinlock, nonzero on success.
-- */
--#define drm_panic_trylock(dev, flags) \
--	raw_spin_trylock_irqsave(&(dev)->mode_config.panic_lock, flags)
--
--/**
-- * drm_panic_lock - protect panic printing relevant state
-- * @dev: struct drm_device
-- * @flags: unsigned long irq flags you need to pass to the unlock() counterpart
-- *
-- * This function must be called to protect software and hardware state that the
-- * panic printing code must be able to rely on. The protected sections must be
-- * as small as possible. It uses the irqsave/irqrestore variant, and can be
-- * called from irq handler. Examples include:
-- *
-- * - Access to peek/poke or other similar registers, if that is the way the
-- *   driver prints the pixels into the scanout buffer at panic time.
-- *
-- * - Updates to pointers like &drm_plane.state, allowing the panic handler to
-- *   safely deference these. This is done in drm_atomic_helper_swap_state().
-- *
-- * - An state that isn't invariant and that the driver must be able to access
-- *   during panic printing.
-- */
--
--#define drm_panic_lock(dev, flags) \
--	raw_spin_lock_irqsave(&(dev)->mode_config.panic_lock, flags)
--
--/**
-- * drm_panic_unlock - end of the panic printing critical section
-- * @dev: struct drm_device
-- * @flags: irq flags that were returned when acquiring the lock
-- *
-- * Unlocks the raw spinlock acquired by either drm_panic_lock() or
-- * drm_panic_trylock().
-- */
--#define drm_panic_unlock(dev, flags) \
--	raw_spin_unlock_irqrestore(&(dev)->mode_config.panic_lock, flags)
--
--#else
--
--static inline bool drm_panic_trylock(struct drm_device *dev, unsigned long flags)
--{
--	return true;
--}
--
--static inline void drm_panic_lock(struct drm_device *dev, unsigned long flags) {}
--static inline void drm_panic_unlock(struct drm_device *dev, unsigned long flags) {}
--
--#endif
--
- #if defined(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
- size_t drm_panic_qr_max_data_size(u8 version, size_t url_len);
- 
+I've gone through the series and it looks good to me; except for patch 50.
+
+Feel free to add
+
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+to the series with the exception of patch 50.
+
+Best regards
+Thomas
+
+
+> ---
+> Maxime Ripard (70):
+>        drm/adp: Switch to drm_atomic_helper_crtc_create_state
+>        drm/amdgpu: vkms: Switch to drm_atomic_helper_crtc_create_state
+>        drm/arm: hdlcd: Switch to drm_atomic_helper_crtc_create_state
+>        drm/armada: Switch to drm_atomic_helper_crtc_create_state
+>        drm/exynos: Switch to drm_atomic_helper_crtc_create_state
+>        drm/fsl-dcu: Switch to drm_atomic_helper_crtc_create_state
+>        drm/gud: Switch to drm_atomic_helper_crtc_create_state
+>        drm/hisilicon: hibmc: Switch to drm_atomic_helper_crtc_create_state
+>        drm/hisilicon: kirin: Switch to drm_atomic_helper_crtc_create_state
+>        drm/hyperv: Switch to drm_atomic_helper_crtc_create_state
+>        drm/imx: dc: Switch to drm_atomic_helper_crtc_create_state
+>        drm/imx: dcss: Switch to drm_atomic_helper_crtc_create_state
+>        drm/ingenic: Switch to drm_atomic_helper_crtc_create_state
+>        drm/kmb: Switch to drm_atomic_helper_crtc_create_state
+>        drm/logicvc: Switch to drm_atomic_helper_crtc_create_state
+>        drm/meson: Switch to drm_atomic_helper_crtc_create_state
+>        drm/msm: mdp4: Switch to drm_atomic_helper_crtc_create_state
+>        drm/mxs: mxsfb: Switch to drm_atomic_helper_crtc_create_state
+>        drm/qxl: Switch to drm_atomic_helper_crtc_create_state
+>        drm/renesas: shmobile: Switch to drm_atomic_helper_crtc_create_state
+>        drm/simple-kms: Remove unused reset_crtc hook
+>        drm/simple-kms: Switch to drm_atomic_helper_crtc_create_state
+>        drm/sitronix: st7571: Switch to drm_atomic_helper_crtc_create_state
+>        drm/sprd: Switch to drm_atomic_helper_crtc_create_state
+>        drm/sti: Switch to drm_atomic_helper_crtc_create_state
+>        drm/stm: Switch to drm_atomic_helper_crtc_create_state
+>        drm/sun4i: Switch to drm_atomic_helper_crtc_create_state
+>        drm/tests: Switch to drm_atomic_helper_crtc_create_state
+>        drm/tilcdc: Move hardware reset to CRTC creation
+>        drm/tilcdc: Switch to drm_atomic_helper_crtc_create_state
+>        drm/tiny: appletbdrm: Switch to drm_atomic_helper_crtc_create_state
+>        drm/tiny: bochs: Switch to drm_atomic_helper_crtc_create_state
+>        drm/tiny: cirrus: Switch to drm_atomic_helper_crtc_create_state
+>        drm/tiny: pixpaper: Switch to drm_atomic_helper_crtc_create_state
+>        drm/tiny: sharp: Switch to drm_atomic_helper_crtc_create_state
+>        drm/udl: Switch to drm_atomic_helper_crtc_create_state
+>        drm/vbox: Switch to drm_atomic_helper_crtc_create_state
+>        drm/verisilicon: Switch to drm_atomic_helper_crtc_create_state
+>        drm/virtio: Switch to drm_atomic_helper_crtc_create_state
+>        drm/xlnx: Switch to drm_atomic_helper_crtc_create_state
+>        drm/mipi-dbi: Switch to drm_atomic_helper_crtc_create_state
+>        drm/atomic-helper: Remove drm_atomic_helper_crtc_reset
+>        sysfb: Convert to create_state
+>        drm/amdgpu: dm: Convert to atomic_create_state
+>        drm/komeda: Convert to atomic_create_state
+>        drm/malidp: Convert to atomic_create_state
+>        drm/ast: Convert to atomic_create_state
+>        drm/atmel-hlcdc: Convert to atomic_create_state
+>        drm/imx: ipuv3: Convert to atomic_create_state
+>        drm/loongsoon: Move hardware reset to CRTC creation
+>        drm/loongson: Convert to atomic_create_state
+>        drm/mediatek: Convert to atomic_create_state
+>        drm/mgag200: Convert to atomic_create_state
+>        drm/msm: dpu1: Convert to atomic_create_state
+>        drm/msm: mdp5: Convert to atomic_create_state
+>        drm/mxsfb: lcdif: Convert to atomic_create_state
+>        drm/nouveau: Convert to atomic_create_state
+>        drm/omapdrm: Convert to atomic_create_state
+>        drm/rcar-du: Convert to atomic_create_state
+>        drm/rzg2l-du: Convert to atomic_create_state
+>        drm/rockchip: vop: Convert to atomic_create_state
+>        drm/rockchip: vop2: Convert to atomic_create_state
+>        drm/sitronix: st7920: Convert to atomic_create_state
+>        drm/solomon: ssd130x: Convert to atomic_create_state
+>        drm/tegra: Convert to atomic_create_state
+>        drm/vc4: Convert to atomic_create_state
+>        drm/vkms: Convert to atomic_create_state
+>        drm/vmwgfx: Convert to atomic_create_state
+>        drm/atomic-helper: Remove __drm_atomic_helper_crtc_reset
+>        drm/crtc: Remove reset
+>
+>   drivers/gpu/drm/adp/adp_drv.c                      |  2 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c           |  2 +-
+>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c | 17 ++++----
+>   drivers/gpu/drm/arm/display/komeda/komeda_crtc.c   | 18 ++++----
+>   drivers/gpu/drm/arm/hdlcd_crtc.c                   |  2 +-
+>   drivers/gpu/drm/arm/malidp_crtc.c                  | 18 ++++----
+>   drivers/gpu/drm/armada/armada_crtc.c               |  2 +-
+>   drivers/gpu/drm/ast/ast_mode.c                     | 18 ++++----
+>   drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c     | 19 ++++-----
+>   drivers/gpu/drm/drm_atomic_state_helper.c          | 45 --------------------
+>   drivers/gpu/drm/drm_mode_config.c                  |  4 +-
+>   drivers/gpu/drm/drm_simple_kms_helper.c            | 13 +-----
+>   drivers/gpu/drm/exynos/exynos_drm_crtc.c           |  2 +-
+>   drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_crtc.c         |  2 +-
+>   drivers/gpu/drm/gud/gud_drv.c                      |  2 +-
+>   drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c     |  2 +-
+>   drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c    |  2 +-
+>   drivers/gpu/drm/hyperv/hyperv_drm_modeset.c        |  2 +-
+>   drivers/gpu/drm/imx/dc/dc-crtc.c                   |  2 +-
+>   drivers/gpu/drm/imx/dcss/dcss-crtc.c               |  2 +-
+>   drivers/gpu/drm/imx/ipuv3/ipuv3-crtc.c             | 18 ++++----
+>   drivers/gpu/drm/ingenic/ingenic-drm-drv.c          |  2 +-
+>   drivers/gpu/drm/kmb/kmb_crtc.c                     |  2 +-
+>   drivers/gpu/drm/logicvc/logicvc_crtc.c             |  2 +-
+>   drivers/gpu/drm/loongson/lsdc_crtc.c               | 26 ++++++------
+>   drivers/gpu/drm/mediatek/mtk_crtc.c                | 18 ++++----
+>   drivers/gpu/drm/meson/meson_crtc.c                 |  2 +-
+>   drivers/gpu/drm/mgag200/mgag200_drv.h              |  4 +-
+>   drivers/gpu/drm/mgag200/mgag200_mode.c             | 15 ++++---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c           | 18 ++++----
+>   drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c          |  2 +-
+>   drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c          | 20 ++++-----
+>   drivers/gpu/drm/mxsfb/lcdif_kms.c                  | 17 ++++----
+>   drivers/gpu/drm/mxsfb/mxsfb_kms.c                  |  4 +-
+>   drivers/gpu/drm/nouveau/dispnv50/head.c            | 14 +++----
+>   drivers/gpu/drm/omapdrm/omap_crtc.c                | 17 ++++----
+>   drivers/gpu/drm/qxl/qxl_display.c                  |  2 +-
+>   drivers/gpu/drm/renesas/rcar-du/rcar_du_crtc.c     | 17 ++++----
+>   drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c      | 15 +++----
+>   drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c  |  2 +-
+>   drivers/gpu/drm/rockchip/rockchip_drm_vop.c        | 18 ++++----
+>   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       | 18 ++++----
+>   drivers/gpu/drm/sitronix/st7571.c                  |  2 +-
+>   drivers/gpu/drm/sitronix/st7920.c                  | 10 +++--
+>   drivers/gpu/drm/solomon/ssd130x.c                  | 10 +++--
+>   drivers/gpu/drm/sprd/sprd_dpu.c                    |  2 +-
+>   drivers/gpu/drm/sti/sti_crtc.c                     |  2 +-
+>   drivers/gpu/drm/stm/ltdc.c                         |  4 +-
+>   drivers/gpu/drm/sun4i/sun4i_crtc.c                 |  2 +-
+>   drivers/gpu/drm/sysfb/drm_sysfb_helper.h           |  4 +-
+>   drivers/gpu/drm/sysfb/drm_sysfb_modeset.c          | 20 ++++-----
+>   drivers/gpu/drm/tegra/dc.c                         | 18 ++++----
+>   drivers/gpu/drm/tests/drm_kunit_helpers.c          |  2 +-
+>   drivers/gpu/drm/tilcdc/tilcdc_crtc.c               | 49 +++++++++-------------
+>   drivers/gpu/drm/tiny/appletbdrm.c                  |  2 +-
+>   drivers/gpu/drm/tiny/bochs.c                       |  2 +-
+>   drivers/gpu/drm/tiny/cirrus-qemu.c                 |  2 +-
+>   drivers/gpu/drm/tiny/pixpaper.c                    |  2 +-
+>   drivers/gpu/drm/tiny/sharp-memory.c                |  2 +-
+>   drivers/gpu/drm/udl/udl_modeset.c                  |  2 +-
+>   drivers/gpu/drm/vboxvideo/vbox_mode.c              |  2 +-
+>   drivers/gpu/drm/vc4/tests/vc4_mock_crtc.c          |  2 +-
+>   drivers/gpu/drm/vc4/vc4_crtc.c                     | 14 +++----
+>   drivers/gpu/drm/vc4/vc4_drv.h                      |  2 +-
+>   drivers/gpu/drm/vc4/vc4_txp.c                      |  2 +-
+>   drivers/gpu/drm/verisilicon/vs_crtc.c              |  2 +-
+>   drivers/gpu/drm/virtio/virtgpu_display.c           |  2 +-
+>   drivers/gpu/drm/vkms/vkms_crtc.c                   | 18 ++++----
+>   drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                | 22 ++++------
+>   drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                |  2 +-
+>   drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c                |  2 +-
+>   drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c               |  2 +-
+>   drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c               |  2 +-
+>   drivers/gpu/drm/xlnx/zynqmp_kms.c                  |  2 +-
+>   include/drm/drm_atomic_state_helper.h              |  3 --
+>   include/drm/drm_crtc.h                             | 12 ------
+>   include/drm/drm_mipi_dbi.h                         |  2 +-
+>   include/drm/drm_simple_kms_helper.h                |  1 -
+>   78 files changed, 275 insertions(+), 385 deletions(-)
+> ---
+> base-commit: 7ea58b9ddb52264a4ed36bccb975062ada32c62d
+> change-id: 20260709-drm-no-more-crtc-reset-14a4d5bc8d41
+>
+> Best regards,
+
 -- 
-2.55.0
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG Nürnberg)
+
 
