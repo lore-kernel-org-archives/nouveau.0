@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50872C5DF81
-	for <nouveau@archiver.kernel.org>; Mon, 24 Aug 2026 12:53:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8845BC5DF81
+	for <nouveau@archiver.kernel.org>; Mon, 24 Aug 2026 12:53:40 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2A8D610E7A1;
-	Mon, 24 Aug 2026 12:53:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5FB9E10E7AA;
+	Mon, 24 Aug 2026 12:53:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="o94tW+dS";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="x1GwUmd5";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="vYjkh/rr";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="m6d6k4ZR";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="P9t+Dtad";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="vjbUTsJ6";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="GTegslBR";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="8G2yBA/j";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 336E547501;
-	Mon, 24 Aug 2026 12:36:38 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 6C2C34750A;
+	Mon, 24 Aug 2026 12:36:56 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787574998;
- b=bcx8wl8wfICXvQiTE8eGt0rRMtIl2t7pJXEHNhe2JQtTjiiADAaSVhD1fM7Uz/Pvmggf8
- XJWFbGV4rT3Kdw6rjSksKiC3sEM/RYnujZ5XOHTeMa4AdpebNlpxI517TwapJQzR37Db/zP
- KBvtiV0qyzmp8sZU7TcOUlVPG8L5yx3tHXEiIk2W35pV0cBF0Wwa9yfioRLDL+bzpJjfyJ3
- kk1DA3SY9ugy5mEzYvXr3NbN7ajE1LI3B2IAlWJdEAp1ha5xtoiwslL9TLyzEW8fP+j+VSS
- DPb3ojwHBv3ixivNXt7wb11NEOz8DA5KsIr36MyRqk5zG5vkKzJTtcGAhZ1w==
+ s=20240201; t=1787575016;
+ b=zLhYEQJvaDuYJuElAk1BKWhw3Yc7c0yJ68Jv2ap1+RidO4bFINNy8bHdBIfEyiuiO/jFV
+ wVC1if9eETDTQgpxebU4Er6dS57YdczyWhq4udBC5xTD2yA1YzIl4RzZmMN35mT0e6TETd0
+ 3Xec5nvmpUzFDWl9JQIuo1fXG/4H4XwMwMAeswkB3k6KFm/jpeMR+WG7egIkfY8mUCYmUop
+ xNYiwAPD5e88JGqAOkdTJ/uu+9oZ41khfByMkSnhgiDuk50g9gCvfRbItQzmyv5E9prLX7K
+ phxrP/iFBudM5xcAeqhLb6AJBzmDJ7VkEVkQDq95pY2+r6sGwoPmCbCZj9Cg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787574998; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1787575016; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=nBNm64Do0yMi6eg+lktNipkmpIXwtijB3dY2IOtN9Kg=;
- b=QO+FLK8cNAvADMzvBdEHK6etf8149uKR0diMlNTHaoXfZdVfX2HJLezfyU4/dyTIlIoF2
- YjlahPMUm/adZzXykwgBE7s7uUCLAatqc0+iyLMc/epQ9air7JAVLMt0OI9MJ3oboGt86S1
- r5W+xn4X1ICrcMFyn5uOsmZ/GCy1giYkK7YgZkJlikgJjmRiXIxKtssrm530/sXPkom3nxh
- W46W4oo4s1ITI2UQTbzyOODwssZFuLNCXmi7n9uDHHwsdkQxPfd211q5ht0aGuqLvB1B0Qu
- 2CDrprtqUpDblb453EcQkYfLkDAsC90mRTP3dRyKmber8LyXQwOkOaV5hz9g==
+ bh=SnvK6SDSqRaczPeuHNPtlErQ77C4BU5i8ISwXQWL8II=;
+ b=h5l6WPlyc5t53ERV7LvomsBX0sbCDDMYpNkXTJdxKp2Ua7ZRq3M8rAnBLq4lXCNQyqmsd
+ BtrqnX3HFudJzYM6z3mYhkdQQmXDVuliZi5qdszDGfG6WuDuCeYcTfmCHtNkprJuZouG2gz
+ qxErDrfawIrQwjY8N8ITs5DMARtfoBtmRLmRuu5xYQ/8mvlO85JzkJYhWLWvGuhOgzYHBog
+ faJy9trRmbqR9yGDIYFrcpVoh+flAtmlAKIDPHRMytiH+IxGBKGOXqK9jq9JpOH4z+GcHwZ
+ isyplY9bX905FjKBxi5Wu8NIbf+AqcnEmOop6MqkpeKrqb+If1ubC5HzgtFg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
@@ -47,69 +47,69 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 8E94440951
-	for <nouveau@lists.freedesktop.org>; Mon, 24 Aug 2026 12:36:35 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id C174D40951
+	for <nouveau@lists.freedesktop.org>; Mon, 24 Aug 2026 12:36:53 +0000 (UTC)
 Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4214110E797
-	for <nouveau@lists.freedesktop.org>; Mon, 24 Aug 2026 12:53:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4E64410E7A7
+	for <nouveau@lists.freedesktop.org>; Mon, 24 Aug 2026 12:53:37 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id B7B2E86823;
-	Mon, 24 Aug 2026 12:52:06 +0000 (UTC)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 73A418687F;
+	Mon, 24 Aug 2026 12:52:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_rsa;
-	t=1787575930;
+	t=1787575935;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=nBNm64Do0yMi6eg+lktNipkmpIXwtijB3dY2IOtN9Kg=;
-	b=o94tW+dS1XyV818RG7hX2fE0xNtuyNTS7rGx6jkSG1x1RxGzbD6xkxquSZFd7VfCT1Bkag
-	5RLmH5XohflnKv8A3TNtagfRbI8iFtJaO300RahK1ddmTa4yCB0JusHSmRz291BbqxUXLz
-	mKTFSsEpEC3gzJrcwuGPG1iDoPHiHbo=
+	bh=SnvK6SDSqRaczPeuHNPtlErQ77C4BU5i8ISwXQWL8II=;
+	b=P9t+DtadulI1oue0GnNO0Ql2H7mlotkFsuUVB6B/qgoCtFsa5Cr5faO1a5ioFl1F3N2dxq
+	cRXOixzBM6PiwkZ6mpj/ZZd7UDoRN/oE23GYYuzVhgQYxB7FjqGJ51Oa0PJOURASp70UOv
+	FLRVDU7cah4n4iNab2WK9cUGsToIANA=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1787575930;
+	s=susede2_ed25519; t=1787575935;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=nBNm64Do0yMi6eg+lktNipkmpIXwtijB3dY2IOtN9Kg=;
-	b=x1GwUmd54pcBD1kzhHqE+7Xyvz4Y2yjrBkk/6BLz9ZXaSqY4i2TN2kwy8BU+d708NDKRuk
-	abpZ+QJBZHgFmKAw==
+	bh=SnvK6SDSqRaczPeuHNPtlErQ77C4BU5i8ISwXQWL8II=;
+	b=vjbUTsJ6Gl4XVS7/2WK6IwWYNZHKQV1+bVUX3k9I2RgaVB6T7LXnZbC1CiGSruwI5FHb2p
+	SSlo/u+IyKNMrgAg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_rsa;
-	t=1787575926;
+	t=1787575931;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=nBNm64Do0yMi6eg+lktNipkmpIXwtijB3dY2IOtN9Kg=;
-	b=vYjkh/rrdb092WXxmm3APEe+u8e91ejm0wyq685FYAt0bQqjhT4sb87UuLd6rmEYyigkvr
-	kcVrww68Vcbz3wi37CSF2yRHK7Cuu8HKQ6wBVzVm8fpkbuPyUkBPp4utFyw/3/58Nr68fg
-	m0BemhHw/D8H/XsPFIYJwCarkK0t7RA=
+	bh=SnvK6SDSqRaczPeuHNPtlErQ77C4BU5i8ISwXQWL8II=;
+	b=GTegslBRuabet5LRB5k4RBcM5Oj8dViIWKBDgdW1/auSgWtdFnele0OWr5SOVeX2Fzk1iA
+	CfQxgmCLtowXd18Xfuz45hdeuaFTcOsdti3xORaA1NFL2kbC+us92SVUmSHpcDk9WaxhU5
+	ky94QOgLLpGQqcdGBzhElF2c2SBMn9k=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1787575926;
+	s=susede2_ed25519; t=1787575931;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=nBNm64Do0yMi6eg+lktNipkmpIXwtijB3dY2IOtN9Kg=;
-	b=m6d6k4ZRT7y2gDom701TpE7liTcsQCL2yNDvLod9kpod2abp/fUg9UQH8zobQ54RU6JQZZ
-	SEmoLlioPV5GKzBw==
+	bh=SnvK6SDSqRaczPeuHNPtlErQ77C4BU5i8ISwXQWL8II=;
+	b=8G2yBA/jvQsxZH51NwZCCYszke9hE/Ec0iPpC8wivAdkte51tRwl7WfUsBZlwAKKs699Hk
+	LEitt7vQplX6XABw==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3B2771333B;
-	Mon, 24 Aug 2026 12:52:06 +0000 (UTC)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 547D5133D1;
+	Mon, 24 Aug 2026 12:52:07 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
 	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id OJxLDXY+jGpyNwAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Mon, 24 Aug 2026 12:52:06 +0000
+	id +DNIE3c+jGpyNwAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Mon, 24 Aug 2026 12:52:07 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: jfalempe@redhat.com,
 	javierm@redhat.com,
@@ -119,10 +119,9 @@ To: jfalempe@redhat.com,
 	mripard@kernel.org,
 	geert@linux-m68k.org,
 	rdunlap@infradead.org
-Subject: [PATCH v2 01/13] drm/panic: Do not use un-escaped URL as format
- string
-Date: Mon, 24 Aug 2026 14:43:32 +0200
-Message-ID: <20260824125201.218863-2-tzimmermann@suse.de>
+Subject: [PATCH v2 03/13] drm/panic: Return -EINVAL if font is not available
+Date: Mon, 24 Aug 2026 14:43:34 +0200
+Message-ID: <20260824125201.218863-4-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260824125201.218863-1-tzimmermann@suse.de>
 References: <20260824125201.218863-1-tzimmermann@suse.de>
@@ -130,7 +129,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-6.80 / 50.00];
 	REPLY(-4.00)[];
-	BAYES_HAM(-3.00)[100.00%];
+	BAYES_HAM(-3.00)[99.99%];
 	MID_CONTAINS_FROM(1.00)[];
 	NEURAL_HAM_LONG(-1.00)[-1.000];
 	R_MISSING_CHARSET(0.50)[];
@@ -141,18 +140,18 @@ X-Spamd-Result: default: False [-6.80 / 50.00];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	TO_MATCH_ENVRCPT_ALL(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FREEMAIL_TO(0.00)[redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,linux-m68k.org,infradead.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid,imap1.dmz-prg2.suse.org:helo];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid,suse.de:email];
 	FROM_EQ_ENVFROM(0.00)[];
 	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	RCVD_TLS_ALL(0.00)[];
 	R_RATELIMIT(0.00)[to_ip_from(RLqirfcw6gnbcr9a9yhi49fhi6)];
 	FREEMAIL_ENVRCPT(0.00)[gmail.com]
-Message-ID-Hash: QXIJROPQYUBO34IILNOTLJMKHWKRNDFT
-X-Message-ID-Hash: QXIJROPQYUBO34IILNOTLJMKHWKRNDFT
+Message-ID-Hash: ALP75ZZMFUC2PLR3U52XPT6HAFDU4GWP
+X-Message-ID-Hash: ALP75ZZMFUC2PLR3U52XPT6HAFDU4GWP
 X-MailFrom: tzimmermann@suse.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -164,14 +163,14 @@ CC: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
  intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
  linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
  linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
- sashiko-reviews@lists.linux.dev, stable@vger.kernel.org
+ sashiko-reviews@lists.linux.dev
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QXIJROPQYUBO34IILNOTLJMKHWKRNDFT/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ALP75ZZMFUC2PLR3U52XPT6HAFDU4GWP/>
 Archived-At: 
- <https://lore.freedesktop.org/20260824125201.218863-2-tzimmermann@suse.de/>
+ <https://lore.freedesktop.org/20260824125201.218863-4-tzimmermann@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -181,37 +180,31 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Replace the direct use of DRM_PANIC_SCREEN_QR_CODE_URL in snprintf()
-with a %s conversion specifier. Avoids a possible vulnerabilty from
-a crafted URL string.
-
-As the attacker needs to control the kernel at the Kconfig level, the
-potential for an exploit is likely low.
+Font lookup does not allocate memory. Hence reporting ENOMEM on
+failed lookups is misleading. Report EINVAL instead.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Fixes: cb5164ac43d0 ("drm/panic: Add a QR code panic screen")
-Cc: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v6.12+
+Reviewed-by: Jocelyn Falempe <jfalempe@redhat.com>
 ---
- drivers/gpu/drm/drm_panic.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/drm_panic.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
-index e576c4791861..ba21df4be338 100644
+index d28ce8878e05..62490d32019c 100644
 --- a/drivers/gpu/drm/drm_panic.c
 +++ b/drivers/gpu/drm/drm_panic.c
-@@ -658,7 +658,8 @@ static int drm_panic_get_qr_code_url(u8 **qr_image)
- 	char *kmsg;
- 	int max_qr_data_size, url_len;
+@@ -751,8 +751,10 @@ static int _draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
+ 	int qr_width, qr_canvas_width, qr_pitch, v_margin;
+ 	u8 *qr_image;
  
--	url_len = snprintf(url, sizeof(url), CONFIG_DRM_PANIC_SCREEN_QR_CODE_URL "?a=%s&v=%s&z=",
-+	url_len = snprintf(url, sizeof(url), "%s?a=%s&v=%s&z=",
-+			   CONFIG_DRM_PANIC_SCREEN_QR_CODE_URL,
- 			   utsname()->machine, utsname()->release);
+-	if (!font || !qrbuf1 || !qrbuf2 || !stream.workspace)
++	if (!qrbuf1 || !qrbuf2 || !stream.workspace)
+ 		return -ENOMEM;
++	if (!font)
++		return -EINVAL;
  
- 	max_qr_data_size = drm_panic_qr_max_data_size(panic_qr_version, url_len);
+ 	r_screen = DRM_RECT_INIT(0, 0, sb->width, sb->height);
+ 
 -- 
 2.55.0
 
