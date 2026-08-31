@@ -4,98 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D8E2C61DC6
-	for <nouveau@archiver.kernel.org>; Thu, 27 Aug 2026 01:50:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC902C624CE
+	for <nouveau@archiver.kernel.org>; Tue,  1 Sep 2026 01:05:57 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3D10510E380;
-	Thu, 27 Aug 2026 01:50:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 43F9910E01F;
+	Tue,  1 Sep 2026 01:05:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Fa7a1Q3Y";
+	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9663747C5C;
-	Thu, 27 Aug 2026 01:34:04 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 8763C47CF6;
+	Tue,  1 Sep 2026 00:48:55 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1787794444;
- b=zQ8j/eihtKtRUIYBUxk/TsSwz0KNQIkSUkl89XJ+iMTGz+ds0AGlNtWbRa/UtNGV/qDft
- o36fA4XX/hi5IYQ4wFQO9PqAqCA0kmaTYL8dtu8GqwqeRq3h199zcnVR5+M8W7/DBa7N5uf
- JDmqBU4rXzAJCmIOpp53+yOa+/a9WXA/+mSfDqTbJYSbRN2pxyVKa8YDiGesKFgvliq8FOk
- SVQTpTILQrEKa4DAMWmamy+cTZ1MNoXCJXhN1U0W2G9sM0nUHSN5PbPDkQ7AM+GiFc6QV21
- 4s1ksHDoJuhM2os2NmY/PqlTn3nVsQent1bV8vpDmqf98rzSXS0W3Q+isIiQ==
+ s=20240201; t=1788223735;
+ b=Nw9g5yllBOu+ZisTmYQMpIfJmywh2LEYqjKU0ZRbFddpzKYUO1jDUHz7CnWIrVUoAF7Po
+ cPyD4k6UGCRc6YJQMqGFOTyvxAVzsxZSsiCsUdZxe/odw6fZ3MRzYUoPQCru51wYYLfd9MH
+ o4OGaDTkeHcPXVWHtDvjuN7KnaYlnikrVpT0BONNZ2URfUeHUyIr7IGr+cbo3IBFaZ/IYQO
+ 1zHfI/wgmsN2BPclCpAJlPXvF+JQNVZzkyoN5tOcGHX7XcRbmIWBQImGFo6QkP8HxHoQc8Q
+ js9VJoTn3FxRiW/ekiiMUG2lrDFee938dsooAFN1eL+ZYy+04q2o7V+4/I4w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1787794444; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1788223735; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=RaH2chO7cLRFBStKaxw8jAE0xI1hp3jpGBCNQ6tZBQ8=;
- b=MB+aeRFsO38bH92hlSoEYC4lxqpY3JQm+IQ96aalmZkBBEXlycYOwGaU/YH8lXkE69coj
- VD6kIvSsHc4JDeiy2WA2h1f3kNK+JogOAlnOt+nP67zr27D7s3XYLEwbvmqWUTiLkpTKP8J
- M3HiHMncljw6lUXu7SxxbNPxRs+gWab9/ubDR6bVQ4ex1dx675c08HdUIlIaDAgVLuMHPTA
- dln8F8UoaoRyN+el9ymuwhBkeOMJU2dF64xFTUMGssr02dw8dj9a5qktA+rOq9HZCvxixo0
- DCCQAtStgIzXBw0IQrxC6x+atNa7P8NlqxaLhvK+/nEOBBb7tTc4WAzOfG8w==
-ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
+ bh=3d2wE4iPk/eSRIKBUJMr1Vert2gthTCrW2UXhnx95p4=;
+ b=eHiBZ5R9ez48WeusChTrHYSfWAJUsPUz3nGwte8W1AXLwe6jUdTFMGOLg+gqi+HFok+Vc
+ StzbMIMcSrHZ8pctTY3xzzTDgyRsTpDHzNyY15nAfAQsKl38Yg4bnh0j7oe2XudExcmhUO+
+ V/NIT6tLHzwtA9eI5x5AqwucIJGsyvt9mcewe3lXN0wimYKMsub2+PlKlK5+e6wQDhIGD4n
+ 9QtTKofQbXhKU0claOQThrUwDiAjy2kKHS2PmKXLLs34uGMNNf4Nly9PK7l1dO0J4cy6k6y
+ 6tTK7I+QzR9mXGJnMz7Jt2/l2PqPLVrT0yaKktS0hO7XW4s6Nqy9fycuBhYw==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=gmail.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=gmail.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C2B7147604
-	for <nouveau@lists.freedesktop.org>; Thu, 27 Aug 2026 01:34:02 +0000 (UTC)
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E496E10E023
-	for <nouveau@lists.freedesktop.org>; Thu, 27 Aug 2026 01:50:51 +0000 (UTC)
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-65-O8H2j3s-Pfen7cCOp754PA-1; Wed,
- 26 Aug 2026 21:50:45 -0400
-X-MC-Unique: O8H2j3s-Pfen7cCOp754PA-1
-X-Mimecast-MFC-AGG-ID: O8H2j3s-Pfen7cCOp754PA_1787795445
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id AEAD91831341;
-	Thu, 27 Aug 2026 01:50:44 +0000 (UTC)
-Received: from dreadlord.taild9177d.ts.net (unknown [10.67.32.85])
-	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 0227219560AB;
-	Thu, 27 Aug 2026 01:50:41 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] nouveau/connector: set no zero sized all displayport on
- nouveau
-Date: Thu, 27 Aug 2026 11:50:38 +1000
-Message-ID: <20260827015038.3483865-1-airlied@gmail.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id E8CF04733C
+	for <nouveau@lists.freedesktop.org>; Tue,  1 Sep 2026 00:48:51 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8D54310E858;
+	Mon, 31 Aug 2026 13:36:35 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 9A17F60215;
+	Mon, 31 Aug 2026 13:36:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 016D61F000E9;
+	Mon, 31 Aug 2026 13:36:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1788183394;
+	bh=3d2wE4iPk/eSRIKBUJMr1Vert2gthTCrW2UXhnx95p4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Fa7a1Q3YoUsfdoMvZbQAiBxdeh/TNaAy2cWmN+gHJtD0G5fAKj07cg5+8PsqlLHGz
+	 A1PAQuTvFk3cBiBuBnU9BX06M7lLnfqiM9pOLnHs/A2YOWF6hTp4V8VTsE2c/GmSFo
+	 URF1s+nDBwrxxWO45AdqLpYaq6wzMJThp7iMOVVQEGXgXFPN8CtiP/WnqMUZqdnyKW
+	 EQDpd7/10qJ2kUHSiXAJKr/GRWQLdNSiDsyIUkC44uOO8x+JESPpssnyKwOnT03CZH
+	 1TMqMRafZA0VRWtpwFEEpq9yiXTseAFhl04jX5wKhiXF3DXtIzYeLnD80tcC/prJs1
+	 YmW1jKy9yiPhA==
+Date: Mon, 31 Aug 2026 15:36:29 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>
+Subject: Re: [PATCH 00/70] drm/crtc: Convert all drivers to
+ atomic_create_state and remove reset
+Message-ID: <apWDRq8YOTwvGuSf@houat>
+References: <20260821-drm-no-more-crtc-reset-v1-0-fb793475c05a@kernel.org>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: KNX3JY8wRtyQh_oqRbFF0j0HZahtXOF3S5uPaZAL11Y_1787795445
-X-Mimecast-Originator: gmail.com
-Content-Transfer-Encoding: quoted-printable
-content-type: text/plain; charset=WINDOWS-1252; x-default=true
-Message-ID-Hash: V52YXY6N4APMP37JEIXYHYJCSRQVDFO2
-X-Message-ID-Hash: V52YXY6N4APMP37JEIXYHYJCSRQVDFO2
-X-MailFrom: airlied@gmail.com
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="eainbiqt42xdkeio"
+Content-Disposition: inline
+In-Reply-To: <20260821-drm-no-more-crtc-reset-v1-0-fb793475c05a@kernel.org>
+Message-ID-Hash: J3VMKNVDQX7CDHSOGIAU6DT72MSF4KGN
+X-Message-ID-Hash: J3VMKNVDQX7CDHSOGIAU6DT72MSF4KGN
+X-MailFrom: mripard@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: nouveau@lists.freedesktop.org, dakr@kernel.org
+ loop; banned-address; member-moderation
+CC: dri-devel@lists.freedesktop.org, Janne Grunau <j@jannau.net>,
+ Sasha Finkelstein <k@chaosmail.tech>, asahi@lists.linux.dev,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Liviu Dudau <liviu.dudau@arm.com>, Russell King <linux@armlinux.org.uk>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
+ Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
+ Ruben Wauters <rubenru09@aol.com>, Tian Tao <tiantao6@hisilicon.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Yongbang Shi <shiyongbang@huawei.com>, John Stultz <jstultz@google.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Xinliang Liu <xinliang.liu@linaro.org>, Yongqin Liu <yongqin.liu@linaro.org>,
+ Dexuan Cui <decui@microsoft.com>, Long Li <longli@microsoft.com>,
+ Saurabh Sengar <ssengar@linux.microsoft.com>, linux-hyperv@vger.kernel.org,
+ Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+ Liu Ying <victor.liu@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Lucas Stach <l.stach@pengutronix.de>, Paul Cercueil <paul@crapouillou.net>,
+ linux-mips@vger.kernel.org,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ Paul Kocialkowski <paulk@sys-base.io>, Jerome Brunet <jbrunet@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ Marek Vasut <marex@denx.de>, Dave Airlie <airlied@redhat.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
+ virtualization@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>,
+ linux-renesas-soc@vger.kernel.org,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Orson Zhai <orsonzhai@gmail.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Raphael Gallais-Pou <rgallaispou@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Yannick Fertre <yannick.fertre@foss.st.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
+ Jyri Sarha <jyri.sarha@iki.fi>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Aditya Garg <gargaditya08@proton.me>, Aun-Ali Zaidi <admin@kodeit.net>,
+ LiangCheng Wang <zaq14760@gmail.com>, Alex Lanzano <lanzano.alex@gmail.com>,
+ Hans de Goede <hansg@kernel.org>, Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Michal Simek <michal.simek@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Jocelyn Falempe <jfalempe@redhat.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Dharma Balasubiramani <dharma.b@microchip.com>,
+ Manikandan Muralidharan <manikandan.m@microchip.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Huacai Chen <chenhuacai@kernel.org>,
+ Jianmin Lv <lvjianmin@loongson.cn>, Mingcong Bai <jeffbai@aosc.io>,
+ Qianhai Wu <wuqianhai@loongson.cn>, Xi Ruoyao <xry111@xry111.site>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, Sandy Huang <hjc@rock-chips.com>,
+ linux-rockchip@lists.infradead.org, Iker Pedrosa <ikerpedrosam@gmail.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
+ =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Zack Rusin <zack.rusin@broadcom.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/V52YXY6N4APMP37JEIXYHYJCSRQVDFO2/>
-Archived-At: 
- <https://lore.freedesktop.org/20260827015038.3483865-1-airlied@gmail.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/J3VMKNVDQX7CDHSOGIAU6DT72MSF4KGN/>
+Archived-At: <https://lore.freedesktop.org/apWDRq8YOTwvGuSf@houat/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -105,33 +192,57 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
 
-I'm seeing failures on Turing with some monitors, let just
-not bother with zero sized on any nvidia GPU.
+--eainbiqt42xdkeio
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 00/70] drm/crtc: Convert all drivers to
+ atomic_create_state and remove reset
+MIME-Version: 1.0
 
-Fixes: 6cc6e08d4542 ("drm/nouveau/kms: add support for GB20x")
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_connector.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+On Fri, Aug 21, 2026 at 04:38:36PM +0200, Maxime Ripard wrote:
+> This is a follow-up to the plane reset removal series, and part of a
+> larger effort to remove the reset hook from all KMS objects.
+>=20
+> The CRTC reset hook is overloaded: it is called both at probe time to
+> create the initial software state and during suspend/resume to reset
+> hardware and software state. These two roles have different
+> requirements, and the reset hook is not fallible, making error
+> handling difficult for the initial state allocation path.
+>=20
+> While reset has the semantics to reset both the software and hardware
+> state, the vast majority of implementations and all the helpers only
+> reset the software state, making them equivalent to
+> atomic_create_state in practice. The atomic_create_state hook makes
+> this explicit: it only allocates and initializes a pristine state
+> without any side effect, and returns the state pointer or an ERR_PTR
+> on failure.
+>=20
+> This series converts all CRTC drivers tree-wide from the reset hook to
+> atomic_create_state, then removes the reset hook from struct
+> drm_crtc_funcs entirely. Two drivers (tilcdc and loongson) had actual
+> hardware reset logic mixed into their reset hook; those are moved to
+> CRTC creation instead. The conversions were done using a combination of
+> Coccinelle semantic patches and manual adjustments.
+>=20
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/=
-nouveau/nouveau_connector.c
-index b0b0ad9a0c24..9b9c9ea2bce1 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1404,8 +1404,7 @@ nouveau_connector_create(struct drm_device *dev, int =
-index)
- =09=09nv_connector->aux.drm_dev =3D dev;
- =09=09nv_connector->aux.transfer =3D nouveau_connector_aux_xfer;
- =09=09nv_connector->aux.name =3D connector->name;
--=09=09if (disp->disp.object.oclass >=3D GB202_DISP)
--=09=09=09nv_connector->aux.no_zero_sized =3D true;
-+=09=09nv_connector->aux.no_zero_sized =3D true;
- =09=09drm_dp_aux_init(&nv_connector->aux);
- =09=09break;
- =09default:
---=20
-2.54.0
 
+Applied patches 1,3-14,16-28,31-41,43,45-49,52-62,64-68 to drm-misc-next
+
+Maxime
+
+--eainbiqt42xdkeio
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCapWDXQAKCRAnX84Zoj2+
+dtnDAYDvbcHtYOX7CuJCyNGSb99Ed+Livj62dMg0nsp864oeIMVzqxGBJIKgPp8Z
+RCHnUyUBfAxvXYJDr3LaH94QifMoTvJPOgPapZRwWXp6VAygmOgZF8WFxC9cEp2h
+0/QjaJymHA==
+=mCUP
+-----END PGP SIGNATURE-----
+
+--eainbiqt42xdkeio--
