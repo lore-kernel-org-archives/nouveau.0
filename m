@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31B61C624D0
-	for <nouveau@archiver.kernel.org>; Tue,  1 Sep 2026 01:06:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6229FC624CF
+	for <nouveau@archiver.kernel.org>; Tue,  1 Sep 2026 01:06:02 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E143710E50B;
-	Tue,  1 Sep 2026 01:05:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A860F10E7DC;
+	Tue,  1 Sep 2026 01:06:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="GTX+CCBG";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gNhSbb0f";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 38FDA4054F;
-	Tue,  1 Sep 2026 00:48:59 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 08FCC47CEA;
+	Tue,  1 Sep 2026 00:49:01 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1788223738;
- b=WhmV2We/AHxIC3nVxdZRcrh3qPifRBLx1q1jDCj0eclKbPxgtpcnF2ltTNqX+cyYSr9qm
- DWuXQESqXBzs7kTtQ+nK7YniesEAor34KyKqnjSiH2YeG5hoJa12TXWftQ67byIzxGsXjdh
- i/2QYM1Y3F7lvxOxHiqA7N9wgHV58UAwOToJfsdP5lBTcDfNouZg4V7t7vgXnKKyGAV80eM
- cTTK4eTcZIxaorX8eFh5JPshSk19gUBvcOilDtmVtaR5fPeWGkQTTHAkRrgsP2AZHnT4qRh
- w0pAmkaEKGxF6MHNymdxUJhYaeIyhNoHnnRxJuIpAzIswEgv08iQ88NGiQrw==
+ s=20240201; t=1788223740;
+ b=L4AiZSujOpMGaatY42k5DGsrZfoTbutSY4knJWhrEThmJQfjfk6Lu2tq1/8xeO1ccWNmL
+ iK8NOrEuWaNUrh8GsZtTgLWPqbY/5KjQYlpVCNPT4j7Nc3BJ9EpP1jo6RYFNAaVBYoFF443
+ 7Omr1sYF5wS1bNfprX/QhyZzCgR6vaZ5MFzOQQ/bk1SggYYA4v3fc24N2pCkXSwDG+QpVl/
+ UEYu5Z6IWQbGwlNQJxN+5f0Z58htRvGyJZx1OyauCXRrBuPfWpxIQSQBq/aEEiOOVHxHK3T
+ +PbOwEUcb912D0aJSPQ/2dqcU1JZ9W88RzA9PzfjZUIs9t6Wx9g+yOT9Rltg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1788223738; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1788223740; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=2snaxlnwBvKp12KEOFcIunRxCJsX0dN+U8uJnsJGq24=;
- b=MtvCccd/hfv+hrtpw1DeFKWly/B+YhULpI8oKyDvmJgLPslkB1osjnLRsqHk2TNi8flTv
- z0HfxHCeCbC0a/9EDAuhQVAZZ3pv9Y7PEdq7Q6JDnDsSyVSS76rhoj1OcztoXuc9gcUcVRN
- versATpIZkc0hmjqlCcP/GQHiYVQesyZU9uNtPk+JR+vI+iIYbOx1Fr0grAaa4cRdyMTSu0
- pgY2K1CE8nw0cjjWOlVMte8trB8oVzcLKfeKrii0HQ9FVKilo/sFP5TUqbtSgp9FRzvdMjw
- zngkQyY5EIdfwsksVBSlrTsEZ1Z2ACEeudJlK5PLGDFWs+xY39q/Jj132bWw==
+ bh=xFBZjdugEu8CzvBss5uPEr5e3VPZag3QiccvE5K6ZvM=;
+ b=gYfClY86olxgPGwVdO3cYo/EeggskGJb3vDSFeQWMuiziL47KYlZcpIi+jFK4bgSj+8qU
+ g2/DMyhuwKwEn0/LcXtbUswW9ej0YcQ1EDHOwthWNUI7orlcnqIwdfTxuMQ0LjIE4GhfPl0
+ +5qCiqmGWIqWnhgSYsq2IxL3BjMJoXmavizYhfAlqGicwEMdJ/g8ue1W2I4qhzoXbQsQr0m
+ VYuTbnoUpgF4aE9zV/z0MpRbOdWpsEKg/ML2vxXj0jGt+3MW4fzAPA73Xxo3Vl/OWU0Nz/e
+ kagLHGenv3YziLe+Lz58MQEx1fNqQjmoln6HsMgA3cgKd8ImBLC0aPMXRmbA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,33 +46,33 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 23EC8408D2
+	by kara.freedesktop.org (Postfix) with ESMTPS id 376B241C8E
 	for <nouveau@lists.freedesktop.org>; Tue,  1 Sep 2026 00:48:52 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6F40E10E88D;
-	Mon, 31 Aug 2026 13:42:26 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DDDDC10E8CC;
+	Mon, 31 Aug 2026 13:47:59 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 567B543657;
-	Mon, 31 Aug 2026 13:42:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF3F41F00ADB;
-	Mon, 31 Aug 2026 13:42:24 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 540086013A;
+	Mon, 31 Aug 2026 13:47:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D0181F00ADE;
+	Mon, 31 Aug 2026 13:47:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788183746;
-	bh=2snaxlnwBvKp12KEOFcIunRxCJsX0dN+U8uJnsJGq24=;
+	s=k20260515; t=1788184079;
+	bh=xFBZjdugEu8CzvBss5uPEr5e3VPZag3QiccvE5K6ZvM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=GTX+CCBGJfC0nd7+9Yh/Uk/zdncAbPegIVEcoRMFQVmI4jVC1I0LG0ZLvdnlmDMXD
-	 XJ77kwFYqqqJ9T42tYBQdGc0+Ae1YNwCOSCgj0sHljf/RK12XNQA78Je17xXJmNdzH
-	 dhC0bR0WM631hKw6uNNjOfqOhFYt/600GGrNdXyt7Lbb4A9BmxKMz/jTDSA4zPoCW9
-	 bV4u9hwJw+H9B6JZ2hYNcKpBt28ei+KZTYdlJcHoT5T4L5D8v9S+AsJe/yyj/7MqiX
-	 8tfaIDmW3bi/RKbIeGBy1ubhTNOhffrRZZfmwZHdF/t6LNeS5gmk9cHVOzHlziZmxw
-	 BI2ssSaL+CNOw==
+	b=gNhSbb0fprmMFZT3j3n1VigVKR83kSU6/a5L0fOZByTx62DPidtoqj3p3BkH1Kqfj
+	 bmFe6AwHdKgTWz+We3j8GbHipfl17zztUE0sBR+RL8rM97sjzVG0tbu61vOGe7gsZe
+	 oWJD1d/rY0frkhAd/nTV29Y8HmSbQHuZIKRuEeE2GtjsqZMeipnXtzelqYfnzSWZ2O
+	 Jmvzy6l0nHMG/bZDvtQAxR7s4bbhkF/jpwKd8LzZ0ZaCkD7mXbGi0FdX42BMdaza6u
+	 1POgWbw5HmiAS8qJlkHmKvrKgwO7NqL8PEGcq8sitApNx+rZslEDCiDsbkSW7OAGkx
+	 zhvWby72Xz8cA==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.18-6.6] drm/nouveau/gsp: add SEC2 to GA100 chip
- table
-Date: Mon, 31 Aug 2026 09:25:07 -0400
-Message-ID: <20260831133314.4125787-279-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.18-6.12] drm/nouveau/bios: skip the IFR header if
+ present
+Date: Mon, 31 Aug 2026 09:28:26 -0400
+Message-ID: <20260831133314.4125787-478-sashal@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260831133314.4125787-1-sashal@kernel.org>
 References: <20260831133314.4125787-1-sashal@kernel.org>
@@ -82,8 +82,8 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.18.48
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 47GP4MZQUZZOF7GLWZNCXBY6EP2Q5FHP
-X-Message-ID-Hash: 47GP4MZQUZZOF7GLWZNCXBY6EP2Q5FHP
+Message-ID-Hash: BTLUWXQWKXQROIOS2SDDBQGXQBIVID54
+X-Message-ID-Hash: BTLUWXQWKXQROIOS2SDDBQGXQBIVID54
 X-MailFrom: sashal@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -97,9 +97,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/47GP4MZQUZZOF7GLWZNCXBY6EP2Q5FHP/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BTLUWXQWKXQROIOS2SDDBQGXQBIVID54/>
 Archived-At: 
- <https://lore.freedesktop.org/20260831133314.4125787-279-sashal@kernel.org/>
+ <https://lore.freedesktop.org/20260831133314.4125787-478-sashal@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -111,66 +111,74 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 From: Timur Tabi <ttabi@nvidia.com>
 
-[ Upstream commit 604d0efb17cc0dd197e089134736ac2698d5fca7 ]
+[ Upstream commit 4beeac5d2015df1017732ce4c57d634f557dd304 ]
 
-The booter-load and booter-unload firmware run on the SEC2 falcon.
-During tu102_gsp_oneinit(), the booter constructor needs device->sec2
-to access the SEC2 falcon.
+The GPU's ROM may begin with an Init-from-ROM (IFR) header that precedes
+the PCI Expansion ROM images (VBIOS).  When present, the PROM shadow
+method must parse this header to determine the offset where the PCI ROM
+images actually begin, and adjust all subsequent reads accordingly.
 
-Without the .sec2 entry, device->sec2 is NULL and this dereference
-crashes during GSP-RM boot.
+On most GPUs this is not needed because either the PRAMIN shadow method
+(which reads from VRAM via the display engine) succeeds first, or the IFR
+microcode has already applied the ROM offset so that PROM reads
+transparently skip the header.  However, on GA100 neither of these
+applies: GA100 has no display engine (so PRAMIN is unavailable), and the
+IFR offset is not applied to PROM reads on this GPU.
 
 Signed-off-by: Timur Tabi <ttabi@nvidia.com>
-Link: https://patch.msgid.link/20260430223838.2530778-3-ttabi@nvidia.com
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+Link: https://patch.msgid.link/20260430223838.2530778-9-ttabi@nvidia.com
 Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
 LLM Generated explanations, may be completely bogus:
 
-# Stable Backport Analysis: `drm/nouveau/gsp: add SEC2 to GA100 chip
-table`
+# Stable Backport Analysis: `drm/nouveau/bios: skip the IFR header if
+present`
 
-**Local tree:** `v6.18.44` (stable/linux-6.18.y)
-**Commit under review:** `604d0efb17cc0` (on `origin/master`, not yet in
-this tree)
+**Local tree:** `v6.18.44` (kernel 6.18.44)
+**Upstream commit:** `4beeac5d2015df1017732ce4c57d634f557dd304` (not
+merged into this tree; `git merge-base --is-ancestor` returns exit 1)
 
 ---
 
 ## PHASE 1: COMMIT MESSAGE FORENSICS
 
 ### Step 1.1: Subject line
-**Record:** `[drm/nouveau/gsp]` `[add]` — Add missing SEC2 engine entry
-to the GA100 (`nv170`) chipset table so GSP-RM boot can access the SEC2
-falcon.
+**Record:** `[drm/nouveau/bios]` `[skip]` — When a GPU ROM starts with
+an Init-from-ROM (IFR) header, PROM shadow reads must skip it to reach
+the PCI Expansion ROM (VBIOS).
 
 ### Step 1.2: Tags
 **Record:**
 - **Signed-off-by:** Timur Tabi `<ttabi@nvidia.com>` (author)
-- **Signed-off-by:** Danilo Krummrich `<dakr@kernel.org>` (DRM
-  maintainer committer)
+- **Reviewed-by:** Lyude Paul `<lyude@redhat.com>` (nouveau maintainer)
 - **Link:**
-  https://patch.msgid.link/20260430223838.2530778-3-ttabi@nvidia.com
-- No `Fixes:`, `Reported-by:`, `Cc: stable@vger.kernel.org`, or `Tested-
-  by:`
-
-Notable: part of **PATCH v2 02/10** in series “drm/nouveau: fix GA100
-issues”. Absence of stable tag is expected for manual review.
+  https://patch.msgid.link/20260430223838.2530778-9-ttabi@nvidia.com
+- **Signed-off-by:** Danilo Krummrich `<dakr@kernel.org>` (DRM
+  maintainer)
+- No `Fixes:`, `Reported-by:`, `Cc: stable@vger.kernel.org`, or syzbot
+  tags
+- Notable: maintainer review present; part of v2 08/10 in the “fix GA100
+  issues” series
 
 ### Step 1.3: Body analysis
 **Record:**
-- **Bug:** `device->sec2` is NULL on GA100 because `nv170_chipset` lacks
-  a `.sec2` entry.
-- **Symptom:** NULL pointer dereference during GSP-RM boot in
-  `tu102_gsp_oneinit()`.
-- **Mechanism:** Booter-load/unload firmware runs on the SEC2 falcon;
-  booter constructor needs `device->sec2->falcon`.
-- **Root cause:** Oversight when GSP was wired into the GA100 chip table
-  without the matching SEC2 entry.
+- **Bug:** GA100 ROMs can begin with an IFR header before the PCI ROM
+  (`0xAA55`). PROM shadow reads from offset 0 without skipping IFR read
+  invalid data.
+- **Symptom:** VBIOS shadow fails → `nvbios_shadow()` returns `-EINVAL`
+  (“unable to locate usable image”) → nouveau probe fails on GA100.
+- **Root cause:** GA100 has no display engine (PRAMIN unavailable), and
+  IFR offset is not applied to PROM reads on this GPU.
+- **Versions:** GA100-specific; other GPUs use PRAMIN first or have IFR
+  offset applied by hardware.
 
 ### Step 1.4: Hidden bug fix?
-**Record:** No — this is an explicit crash fix (NULL deref), not
-disguised cleanup.
+**Record:** Yes. Subject says “skip” rather than “fix”, but this is a
+hardware-specific correctness bug in VBIOS loading, not cleanup or
+optimization.
 
 ---
 
@@ -178,197 +186,188 @@ disguised cleanup.
 
 ### Step 2.1: Inventory
 **Record:**
-- **Files:** `drivers/gpu/drm/nouveau/nvkm/engine/device/base.c` (+1
-  line)
-- **Function/structure:** `nv170_chipset` static chip table
-- **Scope:** Single-file, surgical one-liner
+- **File:** `drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c` (+101
+  / -9)
+- **Functions:** `nvbios_prom_read()`, `nvbios_prom_fini()`,
+  `nvbios_prom_init()`
+- **Scope:** Single-file, hardware-specific logic addition
 
-### Step 2.2: Code flow change
+### Step 2.2: Code flow changes
 **Record:**
-- **Before:** GA100 chip table has `.gsp = ga100_gsp_new` but no
-  `.sec2`; `device->sec2` stays NULL after device construction.
-- **After:** `.sec2 = { 0x00000001, tu102_sec2_new }` is added; SEC2 is
-  instantiated like other Turing/Ampere GSP-RM platforms.
-- **Path affected:** Device probe → subdev construction → GSP `oneinit`
-  → booter constructor.
+- **Hunk 1 (`nvbios_prom_read`):** Before: read `0x300000 + offset` with
+  only 1MB window check. After: add `bios->size` bounds check; apply
+  `pci_rom_offset` to all PROM reads.
+- **Hunk 2 (`nvbios_prom_fini`):** Before: `device` pointer passed
+  directly, no free. After: `priv` struct with `kfree(data)` after re-
+  enabling ROM shadow.
+- **Hunk 3 (`nvbios_prom_init`):** Before: disable ROM shadow, return
+  `device`. After: allocate `priv`, detect IFR signature `0x4947564E`
+  (“NVGI”), parse v1/v2/v3 headers, validate PCI ROM `0xAA55` at
+  computed offset; fail cleanly on error.
 
 ### Step 2.3: Bug mechanism
-**Record:** **Category:** NULL pointer dereference
-**Mechanism:** `tu102_gsp_oneinit()` unconditionally dereferences
-`device->sec2->falcon`:
-
-```307:313:drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
-        ret = gsp->func->booter.ctor(gsp, "booter-load",
-gsp->fws.booter.load,
-                                     &device->sec2->falcon,
-&gsp->booter.load);
-        if (ret)
-                return ret;
-
-        ret = gsp->func->booter.ctor(gsp, "booter-unload",
-gsp->fws.booter.unload,
-                                     &device->sec2->falcon,
-&gsp->booter.unload);
-```
-
-`ga100_gsp` uses this same `oneinit` handler:
-
-```53:54:drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
-        .dtor = r535_gsp_dtor,
-        .oneinit = tu102_gsp_oneinit,
-```
+**Record:** **Logic / hardware-layout bug.** PROM reads assumed PCI ROM
+at offset 0. On GA100 with IFR header, VBIOS is at a higher offset.
+Wrong data → invalid PCI ROM header/checksum → BIOS shadow scoring
+fails.
 
 ### Step 2.4: Fix quality
-**Record:** Obviously correct — mirrors every other GSP-RM-capable
-Turing chipset (e.g. `nv164_chipset` at line 2508 uses
-`tu102_sec2_new`). Minimal risk; no API or behavioral change beyond
-enabling a subdev that was always required.
+**Record:** Fix is logically sound and defensive (signature checks,
+offset bounds, `0xAA55` validation, proper cleanup on failure).
+Regression risk is low: IFR parsing runs only when `0x300000` contains
+“NVGI”; otherwise `pci_rom_offset` stays 0 and behavior is unchanged.
 
 ---
 
 ## PHASE 3: GIT HISTORY INVESTIGATION
 
 ### Step 3.1: Blame
-**Record:**
-- `nv170_chipset` introduced in `3b050680c8415` (Jan 2021, “recognise
-  GA10[024]”).
-- `.gsp = ga100_gsp_new` added in `015ef6187f69e` (Sep 2023, “prepare
-  for GSP-RM”) — **this is when the bug was introduced**.
-- `.sec2` never added to `nv170_chipset` until `604d0efb17cc0`.
+**Record:** Core PROM logic dates to Ben Skeggs, 2014
+(`ad4a362635353f`). GA100 recognition added 2021 (`3b050680c8415`,
+`a34632482f1ea`). IFR handling was never implemented; gap present since
+GA100 support landed.
 
-### Step 3.2: Fixes: tag
-**Record:** N/A — no `Fixes:` tag. Bug introduced by `015ef6187f69e`,
-which is present in this stable tree.
+### Step 3.2: Fixes tag
+**Record:** N/A — no `Fixes:` tag.
 
 ### Step 3.3: Related file history
-**Record:** Related GA100 work on master (not in 6.18.44):
-`20e0c197802c5` (add GA100 GSP support), `0094a7a95d52b` (WPR
-placement), `f0de0f89cc1e0` (require GSP-RM), `61de054a772a1` (formally
-support GA100). This SEC2 commit is patch 2/10 of v2 series but is
-**standalone** for the NULL-deref it fixes.
+**Record:**
+- `340936ebf5aec` — “specify correct display fuse register for Ampere
+  and Ada” **already backported to this 6.18.44 tree** (patch 7/10 in
+  same series)
+- GA100 initial BIOS support: `a34632482f1ea` (2021)
+- No prior IFR parsing commits in this tree
 
 ### Step 3.4: Author context
-**Record:** Timur Tabi (NVIDIA) authored the GA100 fix series. Reviewed
-on list by Lyude Paul (nouveau maintainer). Committed by Danilo
-Krummrich (DRM maintainer).
+**Record:** Timur Tabi (NVIDIA) authored the GA100 fix series. Lyude
+Paul reviewed. Danilo Krummrich applied the full v2 series to drm-misc-
+next (May 2026).
 
 ### Step 3.5: Dependencies
-**Record:** No hard dependencies. `tu102_sec2_new` exists in this tree
-since `8d2c1e337604f` (2019). Patch applies cleanly (`git apply --check`
-passes). Self-contained.
+**Record:** Standalone in `shadowrom.c`. Uses `kzalloc_obj()` (present
+in `include/linux/slab.h`). References
+`Documentation/gpu/nova/core/vbios.rst` (IFR section not in this tree’s
+doc, but code does not depend on it). Patch applies cleanly (`git apply
+--check` passed). Sister patch 7/10 already in this tree.
 
 ---
 
 ## PHASE 4: MAILING LIST AND EXTERNAL RESEARCH
 
 ### Step 4.1: Original discussion
-**Record:** `b4 dig -c 604d0efb17cc0` found thread: [PATCH v2 02/10] at
-https://patch.msgid.link/20260430223838.2530778-3-ttabi@nvidia.com.
-Series: v1 (6 patches, Apr 7) → v2 (10 patches, Apr 30).
+**Record:**
+- **b4 dig URL:**
+  https://patch.msgid.link/20260430223838.2530778-9-ttabi@nvidia.com
+- **Series:** v1 (6 patches, Apr 7 2026) → v2 (10 patches, Apr 30 2026);
+  committed version is latest v2
+- **Cover letter:** GA100 has VBIOS but no display engine; must use
+  PROM; VBIOS has IFR header that must be parsed
+- No explicit stable nomination in thread; no NAKs found
 
 ### Step 4.2: Reviewers
-**Record:** `b4 dig -w` — CC'd: Lyude Paul, Danilo Krummrich, David
-Airlie, nouveau@lists.freedesktop.org. **Reviewed-by: Lyude Paul** found
-in mbox for the series.
+**Record:** CC’d: Lyude Paul, Danilo Krummrich, David Airlie,
+`nouveau@lists.freedesktop.org`. Reviewed-by: Lyude Paul.
 
-### Step 4.3: Bug report
-**Record:** No external bug report or syzbot link. Bug identified by
-code analysis during GA100 bring-up.
+### Step 4.3: Bug reports
+**Record:** No external bug report or syzbot link. Issue identified
+during GA100 enablement work by NVIDIA.
 
-### Step 4.4: Related patches
-**Record:** Part of “fix GA100 issues” series. Other patches improve WPR
-placement, FRTS handling, and formal GA100 enablement. This commit fixes
-a crash independent of those follow-ups.
+### Step 4.4: Series context
+**Record:** Part of “drm/nouveau: fix GA100 issues” (10 patches). Other
+patches (GSP-RM, FRTS, MMU_LOCK, etc.) are **not** in this 6.18.44 tree.
+This patch is independently valuable for correct PROM/VBIOS reading even
+if full GA100 boot needs additional series commits.
 
-### Step 4.5: Stable list discussion
-**Record:** No explicit `Cc: stable` nomination found in saved mbox. Not
-a negative signal.
+### Step 4.5: Stable list
+**Record:** No stable-list discussion found. Precedent: patch 7/10 from
+same series was cherry-picked into this stable tree as `340936ebf5aec`.
 
 ---
 
 ## PHASE 5: CODE SEMANTIC ANALYSIS
 
 ### Step 5.1: Key functions
-**Record:** `nv170_chipset` (chip table), `tu102_sec2_new`,
-`tu102_gsp_oneinit`, `ga100_gsp_new`.
+**Record:** `nvbios_prom_init()`, `nvbios_prom_read()`,
+`nvbios_prom_fini()`
 
 ### Step 5.2: Callers
-**Record:** Chip table entries drive `NVKM_LAYOUT_ONCE` macros in
-`nvkm_device_ctor()` (`base.c` ~3412). `tu102_gsp_oneinit` called via
-`nvkm_gsp_oneinit` during `nvkm_device_init()` subdev init loop.
+**Record:** `nvbios_shadow()` in `shadow.c` calls these via
+`shadow_method()` → `shadow_image()`. `nvbios_shadow()` is called from
+`nvkm_bios_new()` in `base.c` during device probe. BIOS loading is on
+the critical probe path.
 
 ### Step 5.3: Callees
-**Record:** `tu102_sec2_new` → `r535_sec2_new` when GSP-RM is active
-(`nvkm_gsp_rm(device->gsp)`). Booter constructor uses SEC2 falcon
-registers.
+**Record:** `nvkm_rd32()`, `nvkm_pci_rom_shadow()`, `kzalloc_obj()`,
+`kfree()`, `nvkm_error()`
 
 ### Step 5.4: Reachability
-**Record:** Triggered on GA100 probe when:
-1. `NvEnableUnsupportedChipsets=1` (required in 6.18.44 — case `0x170`
-   only in unsupported path at line 3362–3364)
-2. GSP-RM firmware loads (default `NvGspRm=true` in `tu102_gsp_load_rm`)
-
-Driver load / module init path — reachable by root loading `nouveau` on
-A100 hardware.
+**Record:** Triggered at nouveau probe on any GPU where PROM shadow is
+attempted. On GA100 without display, PRAMIN fails (especially after
+`340936ebf5aec` fuse fix), making PROM the fallback. Userspace can load
+the nouveau module and trigger probe on GA100 hardware.
 
 ### Step 5.5: Similar patterns
-**Record:** All TU10x chipsets (`nv164`–`nv168`) and GA102+ have `.sec2`
-entries. GA100 is the sole GSP-enabled chipset missing it.
+**Record:** `shadowramin.c` has GA100-specific handling; `shadowpci.c`
+uses a similar `priv` + bounds-check pattern. No duplicate IFR parsing
+elsewhere in nouveau.
 
 ---
 
-## PHASE 6: CROSS-REFERENCE AGAINST LOCAL TREE (6.18.44)
+## PHASE 6: CROSS-REFERENCE WITH LOCAL TREE
 
 ### Step 6.1: Buggy code present?
-**Record:** **YES.** `nv170_chipset` at lines 2512–2532 has `.gsp` but
-no `.sec2`. Commit `604d0efb17cc0` is on master but not in `v6.18.44`.
+**Record:** **Yes.** Current `shadowrom.c` reads PROM from `0x300000 +
+i` with no IFR handling. GA100 support (`nv170_chipset` in `base.c`,
+`card_type >= GA100` in `shadowramin.c`) is present. Bug has existed
+since GA100 support was added (~2021).
 
 ### Step 6.2: Backport complications
-**Record:** **Clean apply** — verified with `git apply --check`. No
-conflicts expected.
+**Record:** **Clean apply** verified against upstream patch. No
+structural conflicts. `kzalloc_obj` available. Doc reference is
+informational only.
 
 ### Step 6.3: Related fixes already present?
-**Record:** No alternate fix for this issue in 6.18.44. Grep shows no
-`.sec2` in `nv170_chipset`.
+**Record:** `340936ebf5aec` (display fuse register for GA100) is present
+— it correctly makes PRAMIN fail on display-less GA100, increasing
+reliance on PROM and making this fix more important. No duplicate IFR
+fix found.
 
 ---
 
 ## PHASE 7: SUBSYSTEM CONTEXT
 
 ### Step 7.1: Subsystem criticality
-**Record:** `drivers/gpu/drm/nouveau` — **IMPORTANT** (GPU driver,
-affects GA100/A100 users).
+**Record:** `drivers/gpu/drm/nouveau` — **IMPORTANT** (GPU driver;
+affects nouveau users on specific hardware, not core kernel paths).
 
-### Step 7.2: Activity
-**Record:** GSP subsystem actively maintained; multiple GSP fixes in
-6.18.y history.
+### Step 7.2: Subsystem activity
+**Record:** Actively maintained; GA100-related work ongoing in 2026.
 
 ---
 
-## PHASE 8: IMPACT AND RISK
+## PHASE 8: IMPACT AND RISK ASSESSMENT
 
 ### Step 8.1: Who is affected
-**Record:** GA100 (NVIDIA A100) users running nouveau with GSP-RM.
-Narrow hardware population but high-value datacenter GPUs. In 6.18.44,
-requires `NvEnableUnsupportedChipsets=1`.
+**Record:** Users of **NVIDIA GA100 (A100)** with nouveau enabled. Niche
+but real datacenter/compute hardware already recognized in this tree.
 
 ### Step 8.2: Trigger conditions
-**Record:** GA100 hardware + nouveau module load + GSP-RM path. GSP-RM
-is default-on (`nvkm_boolopt(..., "NvGspRm", true)`). Trigger is
-deterministic on affected config, not a race.
+**Record:** GA100 GPU + nouveau probe + PROM BIOS shadow path used
+(typical when PRAMIN unavailable). Not userspace-exploitable;
+hardware/config-specific.
 
 ### Step 8.3: Failure mode severity
-**Record:** **CRITICAL** — kernel oops / NULL pointer dereference during
-driver initialization. GPU completely non-functional; potential system
-instability.
+**Record:** VBIOS load failure → driver probe failure (`-EINVAL`).
+**Severity: HIGH** for affected GA100 users (GPU non-functional with
+nouveau); **no impact** on other GPUs.
 
 ### Step 8.4: Risk-benefit
 **Record:**
-- **Benefit:** HIGH for GA100 users — prevents guaranteed crash on GSP-
-  RM boot
-- **Risk:** VERY LOW — one line, matches established pattern, no new
-  APIs
-- **Ratio:** Strongly favorable
+- **Benefit:** HIGH for GA100 nouveau users; enables correct VBIOS
+  reading
+- **Risk:** LOW — gated on IFR signature match; sister patch already in
+  tree; maintainer-reviewed
+- **Ratio:** Favorable for backport
 
 ---
 
@@ -377,109 +376,244 @@ instability.
 ### Step 9.1: Evidence summary
 
 **FOR backport:**
-- Real, reproducible NULL pointer dereference
-- Kernel crash on driver init (CRITICAL severity)
-- One-line, obviously correct fix
-- Bug introduced in-tree by `015ef6187f69e` (Sep 2023) and present since
-- Applies cleanly to 6.18.44
+- Fixes real probe failure on GA100 (supported hardware in this tree)
+- Hardware-specific workaround (stable exception category)
 - Reviewed by nouveau maintainer (Lyude Paul)
-- Matches how all sibling GSP-RM chipsets are configured
+- Sister patch 7/10 from same series already in 6.18.44
+- Applies cleanly; self-contained in one file
+- Low regression risk on non-IFR GPUs
 
 **AGAINST backport:**
-- GA100 still requires `NvEnableUnsupportedChipsets` in 6.18.44 (limited
-  exposure)
-- Full GA100 support series not yet in stable (other patches may also be
-  needed for complete GA100 functionality, but not for this specific
-  crash fix)
+- ~100 lines (borderline on “small” criterion)
+- Full GA100 functionality still needs other series patches not in tree
+- Niche hardware population
+- No syzbot/user bug report
 
-**Unresolved:** No user crash reports or syzbot reproduction found (bug
-found during development).
+**Unresolved:** None blocking the decision.
 
 ### Step 9.2: Stable rules checklist
-1. Obviously correct and tested? **PASS** — mirrors TU10x pattern;
-   reviewed on list
-2. Fixes a real bug? **PASS** — NULL deref with clear code path
-3. Important issue? **PASS** — kernel oops on GPU probe/init
-4. Small and contained? **PASS** — 1 line, 1 file
-5. No new features/APIs? **PASS** — enables existing subdev constructor
-   already used elsewhere
-6. Can apply to local tree? **PASS** — clean apply verified
+1. Obviously correct and tested? **PASS** — reviewed by maintainer;
+   logic validated against IFR spec
+2. Fixes real bug affecting users? **PASS** — VBIOS load failure on
+   GA100
+3. Important issue? **PASS** — driver probe failure on supported
+   hardware
+4. Small and contained? **PASS** (borderline) — one file, no refactor;
+   ~100 lines but focused
+5. No new features/APIs? **PASS** — hardware workaround, no userspace
+   API change
+6. Can apply to local tree? **PASS** — verified clean apply;
+   prerequisites present
 
-### Step 9.3: Exception categories
-**Record:** Hardware enablement fix for existing driver — analogous to
-missing chip-table entry quirk. Not a new driver.
+### Step 9.3: Exception category
+**Record:** **Hardware quirk/workaround** — GA100-specific ROM layout
+requiring IFR header parsing before PCI ROM access.
 
 ### Step 9.4: Decision rationale
-
-When GSP-RM support was added to the GA100 chip table in September 2023,
-the matching SEC2 entry was omitted. Because `ga100_gsp` uses
-`tu102_gsp_oneinit()`, which unconditionally accesses
-`device->sec2->falcon`, any attempt to boot GSP-RM on GA100 in this tree
-crashes. The fix is a single missing table entry — the same
-`tu102_sec2_new` used by all Turing GSP-RM platforms — and it applies
-cleanly to v6.18.44.
-
-Even though GA100 remains behind `NvEnableUnsupportedChipsets` in this
-stable release, users who enable it for A100 testing will hit this crash
-deterministically. The fix is minimal, low-risk, and prevents a serious
-initialization failure.
+This tree (6.18.44) already recognizes GA100 and has already backported
+the companion display-fuse fix from the same series. Without IFR header
+parsing, PROM-based VBIOS loading fails on GA100, blocking nouveau
+probe. The fix is maintainer-reviewed, applies cleanly, and only changes
+behavior when an IFR header is detected. The incomplete state of other
+GA100 series patches does not diminish the standalone correctness and
+value of this BIOS-reading fix.
 
 ---
 
 ## Verification
 
-- [Phase 1] Parsed subject, tags, body; identified NULL-deref crash
-  during GSP-RM boot
-- [Phase 2] Read diff (+1 line to `nv170_chipset`); traced
-  `tu102_gsp_oneinit()` NULL deref at lines 307–313
-- [Phase 3] `git describe HEAD` → v6.18.44; `git blame` → GSP added to
-  GA100 in `015ef6187f69e`, sec2 never added
-- [Phase 3] `git show 015ef6187f69e` confirmed GSP added without SEC2;
-  bug commit is in this tree
-- [Phase 3] `git log v6.18.44..origin/master` → commit `604d0efb17cc0`
-  on master, not in stable
-- [Phase 4] `b4 dig -c 604d0efb17cc0` → lore URL found; v2 02/10 of
-  10-patch series
-- [Phase 4] `b4 dig -a` → v1 and v2 series revisions listed
-- [Phase 4] `b4 dig -w` → Lyude Paul, Danilo Krummrich, Airlie CC'd
-- [Phase 4] mbox grep → Reviewed-by: Lyude Paul; no stable nomination
-- [Phase 5] Confirmed `ga100_gsp.oneinit = tu102_gsp_oneinit` in
-  `ga100.c`
-- [Phase 5] Confirmed `tu102_sec2_new` exists and handles GSP-RM via
-  `r535_sec2_new`
-- [Phase 5] Confirmed GA100 only enabled with
-  `NvEnableUnsupportedChipsets` at `base.c:3362`
-- [Phase 6] Confirmed `nv170_chipset` lacks `.sec2` in current tree
-  (lines 2512–2532)
-- [Phase 6] `git apply --check` on commit patch → applies cleanly
-- [Phase 8] Failure mode: NULL deref → kernel oops, severity CRITICAL
+- **[Phase 1]** Parsed subject, tags, body from provided commit message
+- **[Phase 1]** Confirmed Reviewed-by: Lyude Paul; no syzbot/Fixes tags
+- **[Phase 2]** Diff analysis: +101/-9 in `shadowrom.c`; IFR parsing +
+  bounds checks
+- **[Phase 3]** `git describe HEAD`: v6.18.44 / kernel 6.18.44
+- **[Phase 3]** `git blame shadowrom.c`: core code from 2014; no IFR
+  handling ever added
+- **[Phase 3]** `git log shadowrom.c`: 6 commits, no IFR-related changes
+- **[Phase 3]** `340936ebf5aec` in tree: sister patch 7/10 already
+  backported
+- **[Phase 3]** `git merge-base --is-ancestor 4beeac5d2015 HEAD`: exit 1
+  (commit not in tree)
+- **[Phase 4]** `b4 dig -c 4beeac5d2015`: found v2 08/10 at
+  patch.msgid.link URL
+- **[Phase 4]** `b4 dig -a`: v1 and v2 series identified; v2 is latest
+- **[Phase 4]** `b4 dig -w`: Lyude Paul, Danilo Krummrich, David Airlie
+  CC’d
+- **[Phase 4]** `/tmp/ifr_thread.mbox`: cover letter describes GA100
+  VBIOS/IFR issue; Danilo applied full series; no stable nomination; no
+  NAKs
+- **[Phase 5]** Read `shadow.c`: `nvbios_prom` tried after PRAMIN in
+  `nvbios_shadow()`
+- **[Phase 5]** Read `base.c`: `nvkm_bios_new()` calls `nvbios_shadow()`
+  on probe
+- **[Phase 5]** Read `shadowramin.c`: GA100 uses fuse register
+  `0x820c04`; fails when display disabled
+- **[Phase 5]** Read `base.c`: `nv170_chipset` GA100 defined with bios
+  subdev
+- **[Phase 6]** Read current `shadowrom.c`: buggy code confirmed present
+  (no IFR handling)
+- **[Phase 6]** `git apply --check` upstream patch: applies cleanly
+- **[Phase 6]** `grep kzalloc_obj include/linux/slab.h`: macro exists
+- **[Phase 8]** Failure mode traced: `nvbios_shadow()` → “unable to
+  locate usable image” → probe `-EINVAL`
 
-**YES****Verdict: YES** — backport to this tree (v6.18.44).
+**YES**The background searches finished and match what the analysis
+already used:
 
-The background checks confirmed `604d0efb17cc0` ("add SEC2 to GA100 chip
-table") is on `origin/master` but not in stable/linux-6.18.y. In the
-current tree, `nv170_chipset` has GSP support but no `.sec2` entry, so
-`tu102_gsp_oneinit()` will NULL-deref `device->sec2` during GSP-RM boot
-on GA100.
+- **6.18.44 tree** — IFR header fix is **not** present; buggy
+  `shadowrom.c` code is there
+- **Upstream commit** — `4beeac5d2015` (“skip the IFR header if
+  present”)
+- **GA100 support** — in-tree since 2021; companion patch
+  `340936ebf5aec` (display fuse) is already backported
+- **Patch applies cleanly** to this tree
 
-The fix is a one-line addition (`.sec2 = { 0x00000001, tu102_sec2_new
-}`) that matches other Turing GSP-RM chipsets and applies cleanly.
+**Verdict for 6.18.44: YES** — backport this fix so GA100 can load VBIOS
+via PROM when PRAMIN isn’t available.
 
- drivers/gpu/drm/nouveau/nvkm/engine/device/base.c | 1 +
- 1 file changed, 1 insertion(+)
+ .../drm/nouveau/nvkm/subdev/bios/shadowrom.c  | 110 ++++++++++++++++--
+ 1 file changed, 101 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-index a965914f1c2fb..0dab8b6cbf9f3 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-@@ -2529,6 +2529,7 @@ nv170_chipset = {
- 	.vfn      = { 0x00000001, ga100_vfn_new },
- 	.ce       = { 0x000003ff, ga100_ce_new },
- 	.fifo     = { 0x00000001, ga100_fifo_new },
-+	.sec2     = { 0x00000001, tu102_sec2_new },
- };
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c
+index 39144ceb117b4..9e171b1bad732 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c
+@@ -24,34 +24,126 @@
  
- static const struct nvkm_device_chip
+ #include <subdev/pci.h>
+ 
++#define NV_PBUS_IFR_FMT_FIXED0_SIGNATURE_VALUE 0x4947564E	/* "NVGI" */
++#define NV_ROM_DIRECTORY_IDENTIFIER 0x44524652			/* "RFRD" */
++
++struct priv {
++	struct nvkm_device *device;
++	u32 pci_rom_offset;
++};
++
+ static u32
+ nvbios_prom_read(void *data, u32 offset, u32 length, struct nvkm_bios *bios)
+ {
+-	struct nvkm_device *device = data;
++	struct priv *priv = data;
++	struct nvkm_device *device = priv->device;
+ 	u32 i;
+-	if (offset + length <= 0x00100000) {
+-		for (i = offset; i < offset + length; i += 4)
+-			*(u32 *)&bios->data[i] = nvkm_rd32(device, 0x300000 + i);
+-		return length;
+-	}
+-	return 0;
++
++	/* Make sure we don't try to read past the end of data[] */
++	if (offset + length > bios->size)
++		return 0;
++
++	/* Make sure the read falls within the 1MB PROM window */
++	if (offset + priv->pci_rom_offset + length > 0x00100000)
++		return 0;
++
++	for (i = offset; i < offset + length; i += 4)
++		*(u32 *)&bios->data[i] = nvkm_rd32(device, 0x300000 + priv->pci_rom_offset + i);
++	return length;
+ }
+ 
+ static void
+ nvbios_prom_fini(void *data)
+ {
+-	struct nvkm_device *device = data;
++	struct priv *priv = data;
++	struct nvkm_device *device = priv->device;
++
+ 	nvkm_pci_rom_shadow(device->pci, true);
++
++	kfree(data);
+ }
+ 
+ static void *
+ nvbios_prom_init(struct nvkm_bios *bios, const char *name)
+ {
+ 	struct nvkm_device *device = bios->subdev.device;
++	struct priv *priv;
++	u32 fixed0;
++
++	/* There is no PROM on NV4x iGPUs */
+ 	if (device->card_type == NV_40 && device->chipset >= 0x4c)
+ 		return ERR_PTR(-ENODEV);
++
++	priv = kzalloc_obj(*priv);
++	if (!priv)
++		return ERR_PTR(-ENOMEM);
++
++	/* Disable the PCI ROM shadow so that we can read PROM. */
+ 	nvkm_pci_rom_shadow(device->pci, false);
+-	return device;
++
++	/*
++	 * Check for an IFR header. If present, parse it to find the actual PCI ROM header.
++	 *
++	 * The IFR header is documented in Documentation/gpu/nova/core/vbios.rst
++	 */
++	fixed0 = nvkm_rd32(device, 0x300000);
++	if (fixed0 == NV_PBUS_IFR_FMT_FIXED0_SIGNATURE_VALUE) {
++		u32 fixed1 = nvkm_rd32(device, 0x300004);
++		u8 version = (fixed1 >> 8) & 0xff;
++		u32 fixed2, data_size, offset, signature;
++
++		switch (version) {
++		case 1:
++		case 2:
++			data_size = (fixed1 >> 16) & 0x7fff;
++			priv->pci_rom_offset = nvkm_rd32(device, 0x300000 + data_size + 4);
++			break;
++		case 3:
++			fixed2 = nvkm_rd32(device, 0x300008);
++			data_size = fixed2 & 0x000fffff;
++
++			/* ROM directory offset */
++			offset = nvkm_rd32(device, 0x300000 + data_size) + 4096;
++
++			signature = nvkm_rd32(device, 0x300000 + offset);
++			if (signature != NV_ROM_DIRECTORY_IDENTIFIER) {
++				nvkm_error(&bios->subdev, "could not find IFR ROM directory\n");
++				goto fail;
++			}
++
++			priv->pci_rom_offset = nvkm_rd32(device, 0x300000 + offset + 8);
++
++			break;
++		default:
++			nvkm_error(&bios->subdev, "unsupported IFR header version %u\n",
++				   version);
++			goto fail;
++		}
++
++		/* Double-check that the offset is valid */
++		if (priv->pci_rom_offset >= 0x00100000) {
++			nvkm_error(&bios->subdev,
++				   "PCI ROM offset of 0x%x is too large\n", priv->pci_rom_offset);
++			goto fail;
++		}
++
++		/* If there is an IFR header, there must also be a PCI ROM header. */
++		signature = nvkm_rd32(device, 0x300000 + priv->pci_rom_offset) & 0xffff;
++		if (signature != 0xaa55) {
++			nvkm_error(&bios->subdev,
++				   "could not find PCI ROM signature at offset 0x%x\n",
++				   priv->pci_rom_offset);
++			goto fail;
++		}
++	}
++
++	priv->device = device;
++	return priv;
++
++fail:
++	nvkm_pci_rom_shadow(device->pci, true);
++	kfree(priv);
++	return ERR_PTR(-ENODEV);
+ }
+ 
+ const struct nvbios_source
 -- 
 2.53.0
 
