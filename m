@@ -4,119 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C6A4C61DD6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF799C61DFD
 	for <nouveau@archiver.kernel.org>; Wed,  2 Sep 2026 05:05:59 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 49CAC10EEDF;
-	Wed,  2 Sep 2026 05:05:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 895D310ED0D;
+	Wed,  2 Sep 2026 05:05:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=smail.nju.edu.cn header.i=@smail.nju.edu.cn header.b="Q/vWKjlW";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DZnp7Cb+";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id EAEAA47E00;
-	Wed,  2 Sep 2026 04:48:54 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4998447DFF;
+	Wed,  2 Sep 2026 04:48:56 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1788324534;
- b=fvgj6oJbFaZULJqgvgqlu7gBTlTvDHlvUP3FxGn6Z0DJ9LKiCpuqUjagUgtzamu8NJHw/
- IQQWqTEvS5lpK5zWK1/8m2zmR80z7ap0EnK5f5cZwFPx2NO271oy7x/QWs8nuKVpyPHjAr4
- McZAMwOngb2YAYlO7ilRHtgvzZImnF+IM6gsDjYxhRpIiM5eTvkCyd+ksdN8vgtzqjLQZpa
- xlp7qNkW1e7L4nHvfTavvcmGSoytN7XIitusWBYrl3KD1yF0C+f5+9MIsPAaVF7UhCiRjVZ
- vHyeZSNTt9EqxYWHHq00FzHtqpVVh65vnFewkfyEViLVQFH/wQ/C3JR9CBRg==
+ s=20240201; t=1788324536;
+ b=x+OqmAAUfkuDRwJKsDLT5SZh2KTwuXBMQTkqd821ln6Jc/QXRqh5CkirR3z9IBWAOtpGA
+ 4wZqfAvY4E9KatHT7VxnE0EcFt2on93U8LodGIEtxwQGZ8W6CdVPYhFkrPKkF/zp+eRgA6d
+ EiJAjDr/upisXXuDBASZKrYwUZej6qqGHUDHSfqRUu40I8FLO7+Ef2kCEzc5wlsbH+AEpyu
+ dkf3gtaiNM2aIfxryUod7sWxGlrAmeBenoPs0VvTis8Ni4al5SqVmHT/kodxMs27vjVMnY6
+ w6gg67rYrqVws5uLvEpNsSqud0Ym0Il1+q+QdqQokDPVY85jKLtxx7yEiYAw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1788324534; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1788324536; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=HgDg80tnyywBo64CnNxFufQ3b217DthmKnoye0wSXsU=;
- b=oGiqwtJ6Za870fsC4Vt4cP5DOEs4QgkiTc5QQ2RtGmkVUD9FEI3yCxfJMpgh6O/EXwkBF
- 0fVqrjqNNDVN2MGDLAxa/Au82PXVYod4hb61v1Thd4nWyzopKySnfSMr0OY8N1hQZMVjArI
- Et04UyTJen9RYb+UWsYnIWkzfEhn/snqHZkTdFdEa/bsC9kBS5t3dkBpRwWILtBnDE5GIQA
- VtAHAypkla2PFhHvRYqdIw4WjhdVFnBsXQG63RfcVamHYbCNL51Fy/BwdUfYLIzEU1y0pPT
- PO4WkWqKhS3P+6WeJYTuc06rGshiTWxllIpAywdv8XC0JJG5AyjCtHtiYxhQ==
+ bh=ItPrb8m+8Z75krTp11hhE6Jc3K1gPkj7qQ/v5ze/0As=;
+ b=jXa4jJdFW2dKT1/NLRBfl8FXWZPzYwnF+d0DsdIVG+joYDSZUJdL+TDMovauhRt2bya3H
+ IhmalqEqiF9+y53eIzrGR9mH09Ax5s5YiJhiv4gedpuDq+KenhurQK8vtkwwIHOhJpojozW
+ lqT7yqxYgXgGp0Epq7naEmh19NLxqNg+TQMsQVHSyomwZV2evm5OjFwupL+vfEkvNYDiL7b
+ 2uEU1xshOQcJAvPFf60lm0AwtAAVSQYE1EKMb+oLByhZ/RuMDxzjhGfjVPpALaE1CfPGCLb
+ a/xUdmZ3T/RJAEwPcDyGEU/fdACBOJrpm2ls79kV9DwrOh2h2xTVdeTUZKDg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=smail.nju.edu.cn;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=smail.nju.edu.cn
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=smail.nju.edu.cn; arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=smail.nju.edu.cn
- policy.dmarc=reject
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 66B9947DC7
+	by kara.freedesktop.org (Postfix) with ESMTPS id B07B547DC7
 	for <nouveau@lists.freedesktop.org>; Wed,  2 Sep 2026 04:48:49 +0000 (UTC)
-Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7D97510E44F;
-	Wed,  2 Sep 2026 02:38:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smail.nju.edu.cn;
-	s=iohv2404; t=1788316718;
-	bh=HgDg80tnyywBo64CnNxFufQ3b217DthmKnoye0wSXsU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=Q/vWKjlWyZ/+KFJ3Uh1dhnPucSe4bFcSupR6UoQ5zWOM2/zvANhFStCi8bksmmT9U
-	 Z3KLxhGahQd+gn49ouwEF3k2iq8eZoW0dzZ7tO1uGUsaOiRG5YhVIKXO22ilPARb04
-	 VP3d/aYJJ4XU9IU7Vql8rzZrtYiNelFkUxm1PWi0=
-X-QQ-mid: zesmtpip3t1788316711tab458a83
-X-QQ-Originating-IP: svliSfrIKtSXLTHN7VTB1VcWbIBFuc1Kt1E2PKiS/Pc=
-Received: from [127.0.0.1] ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with
-	id ; Wed, 02 Sep 2026 10:38:30 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 17053342436727511011
-Message-ID: 
- <5CD1D03C87727CAF+89c500c9-7087-4e63-b1d8-fded3c73ee49@smail.nju.edu.cn>
-Date: Wed, 2 Sep 2026 10:38:29 +0800
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2C71D10E308;
+	Tue,  1 Sep 2026 20:29:11 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id AF5F243C53;
+	Tue,  1 Sep 2026 20:29:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A38511F000E9;
+	Tue,  1 Sep 2026 20:29:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1788294550;
+	bh=ItPrb8m+8Z75krTp11hhE6Jc3K1gPkj7qQ/v5ze/0As=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=DZnp7Cb+mm1iS1vX2nH9QUjMDPPWrpfvCDM3ZbIQC0REkHUwO/19ZK5AmjML+IWpA
+	 sKqY07WnE394O1OfphCqtORuUbXwLb1uSRZ7RGkt/tLK7xUVF2RzclQJ99giNkREDm
+	 4mhoUSXOagxpB2o4CVe7zQzSXOusS8oIK/ojra3VAJgjKxERGjNIyQetisv51ta8GB
+	 ZPFslsUeOKlJxzG69AgC/6gRtaiuh1UNpT+9n5JJy50orhQ1hVOfXTGvvqyS9Ieq7N
+	 v/RgsOiFoBRCTI3pySCePHxaIGUTNRYklb+HPOK8lwSDG38p1e3rL8Xo1fIylumCMn
+	 8wEhPCCu0JyaA==
+From: Danilo Krummrich <dakr@kernel.org>
+To: Aaron Kling <webgeek1234@gmail.com>
+Subject: Re: [PATCH v2] drm/nouveau: Use write-combined maps for coherent
+Date: Tue,  1 Sep 2026 22:29:00 +0200
+Message-ID: <20260901202900.6808-1-dakr@kernel.org>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260821-tegra-coherent-wc-v2-1-2b1ddb67bf18@gmail.com>
+References: <20260821-tegra-coherent-wc-v2-1-2b1ddb67bf18@gmail.com>
+X-Patch-Reply: applied
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/nouveau/uvmm: fix UAF in bind job cleanup
-To: lyude@redhat.com, dakr@kernel.org
-References: 
- <7F26D29D0BD60619+20260901063255.661503-1-peiyang_he@smail.nju.edu.cn>
-Content-Language: en-US
-From: Peiyang He <peiyang_he@smail.nju.edu.cn>
-In-Reply-To: 
- <7F26D29D0BD60619+20260901063255.661503-1-peiyang_he@smail.nju.edu.cn>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:smail.nju.edu.cn:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: MD5XEDocxEOLJs3Cmx3L5NxwLFgnmstUws3xluGcAliII/sizzTACps2
-	qL+bYjd4iNTf9GO8NocRwAY7ZFyzC9pttQN2RbQCh5t8jJ2zs+ZPNTijeQY/FDxUTtIQwAg
-	5tsribeDs3XJRBbEo1fU3M1nTLK6iPE09uFjBNFbaJrlVOHBarUmlMsFw8XkN13LJFpdMec
-	iHnIKhmNESWLWRGD7mZC0zlXX85svnb4KNuIjTmRK4kSv9u85FR827SjJOQCtDXiJ09oMLo
-	lg1EvMb+gqa7GomT3Ky2kwUoiETMyCXMNkLloQ2TmgweuWFFYEdCxxjsd/gw4/E1twYwhDV
-	84tupUdu8b7z10vm6ME06RnlC1TMFbb7L6kMf0mfrvGZqzyUuwrUqPUjLadrb/ZRcHAwwpt
-	gt6EE8s+2YKWCpP34n5/hkAScFfrtD+PHSRgWPeGm1a3U15I8sV/OaDiKa01SKdSDSgGjQo
-	JjUV/LYbJTHr5Y6RWwS4Ma8R92gglaBzYO1WqtLLBfMK8gCcGswr40sXyjJrt/vUfDkHuXm
-	0s6TicDZ7dX8icR2VHwLuJlHcGO0TOWfFVngkitzWJBF8jwL3Jl94tgvfEBm3JJDZY0MGsx
-	BXdMM7al4uzjyzfWdQy8B8J2U0NbJGOBg9QnKqPR1VepA5CYUD+Wj+k+z8htX2tWaKf9RRh
-	kScXc6EcHLmuJ8NmAwQAnihifon3MlB0Hr9nq19iolKyjftWcHZ7Q/l2soEwSO9LbVEr1Ij
-	LYHRBzMobVUx/O1GTqLS5yOgchtxzkbeq1B2fJAczfha4dMkpxlQB70HG5Sa9wtq6y4RD+n
-	lSine0iBrGVMfFriklx5huyUkBeDls75ysWPO80BHYxeilLWpd3+c1Y+kfyjSuorTiJ73sv
-	nqmkiEcCEmCauPNe31UN/BHvIfAQ5HwfX8JxZfZCR8YdXmaNI/A0xWHTSdiaCojm3x6R9ZQ
-	AY/Zpxo3vONnSgf41TbD3uzlsJwZlX85bVqmkmWa3feaj8eLp+a6MrlHeV+yzwMsygzkcoO
-	rIuwvggYiPjhrynNBalXxMHZRjuNRt1jR09ZH/Lh3QAu3m+AhFVcgQ5EXWMKYPCu2Xh0CZ+
-	g==
-X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
-X-QQ-RECHKSPAM: 0
-Message-ID-Hash: QVK7K6EXSTU7LXRRWCGWMSPSZCOCEWVR
-X-Message-ID-Hash: QVK7K6EXSTU7LXRRWCGWMSPSZCOCEWVR
-X-MailFrom: peiyang_he@smail.nju.edu.cn
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: XNRMM2KF5XXOJTLQCSUHNWLMNNE2ZI5V
+X-Message-ID-Hash: XNRMM2KF5XXOJTLQCSUHNWLMNNE2ZI5V
+X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
+CC: Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Faith Ekstrand <faith.ekstrand@collabora.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QVK7K6EXSTU7LXRRWCGWMSPSZCOCEWVR/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XNRMM2KF5XXOJTLQCSUHNWLMNNE2ZI5V/>
 Archived-At: 
- <https://lore.freedesktop.org/5CD1D03C87727CAF+89c500c9-7087-4e63-b1d8-fded3c73ee49@smail.nju.edu.cn/>
+ <https://lore.freedesktop.org/20260901202900.6808-1-dakr@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -126,34 +105,18 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 2026/9/1 14:32, Peiyang He wrote:
->  drivers/gpu/drm/nouveau/nouveau_uvmm.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> index f5e4756b4de4..aad14316cbef 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> @@ -1318,6 +1318,7 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job,
->  			op->reg = nouveau_uvma_region_find(uvmm, op->va.addr,
->  							   op->va.range);
->  			if (!op->reg || op->reg->dirty) {
-> +				op->reg = NULL;
->  				ret = -ENOENT;
->  				goto unwind_continue;
->  			}
-> @@ -1327,6 +1328,7 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job,
->  								op->va.range);
->  			if (IS_ERR(op->ops)) {
->  				ret = PTR_ERR(op->ops);
-> +				op->reg = NULL;
->  				goto unwind_continue;
->  			}
->  
-> 
-> base-commit: 786262be6048deab760f68c8acc2c85607165894
+On Fri, 21 Aug 2026 23:42:59 -0500, Aaron Kling wrote:
+> [PATCH v2] drm/nouveau: Use write-combined maps for coherent
 
-This patch is identical to Zhenhao's[1], so please ignore this patch.
-Sorry for the disturbance.
+Applied, thanks!
 
-[1]: https://lore.kernel.org/all/20260811-nouveau-uvmm-vmbind-fixes-v2-2-aaee4b395d04@gmail.com/
+  Branch: drm-misc-fixes
+  Tree:   https://gitlab.freedesktop.org/drm/misc/kernel.git
+
+[1/1] drm/nouveau: Use write-combined maps for coherent
+      commit: 774b73428e6e
+
+The patch will appear in the next linux-next integration (typically within 24
+hours on weekdays).
+
+The patch is queued up for Linus's tree and should land in the next -rc release.
