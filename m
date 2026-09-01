@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9C90C624CF
-	for <nouveau@archiver.kernel.org>; Tue,  1 Sep 2026 09:07:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A072C61DD3
+	for <nouveau@archiver.kernel.org>; Tue,  1 Sep 2026 09:09:18 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id DF5FC10EC31;
-	Tue,  1 Sep 2026 09:07:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA6110EC3B;
+	Tue,  1 Sep 2026 09:09:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZLv9z5Oz";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YnrUBwmc";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6B2C147D39;
-	Tue,  1 Sep 2026 08:50:08 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C93CA47D3E;
+	Tue,  1 Sep 2026 08:52:16 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1788252608;
- b=MHT6reYy24mRLhzxH9/K3tl/lglFdzOMTN6bAlTFtd0tGGi17hIUk/Q5Dswhff88Rp/la
- pKW6VyuSZSGrtysazKLXD6hTfFdQygxumxeib/hmcEcw3CooqoP2ZYaV12Vna8n2ngeDvu5
- HtUwykLIhzPUURsQShB9M5dlImgiVPjBiY68hC6N6VsET3mh5AWwo2o4QEfA49k+Y2bN0E9
- SE1UEmiivGpbFMO1tGyQzP7KN1eoqTV87iETgq6cCydiu9eL914BV0BAdQ2oBGpKubJktSA
- ilKHlbyXWJLBAE4e/RAPnW34iP6DUBlbqXgnI5ptg2umK4DgXF9yqqsPOP3w==
+ s=20240201; t=1788252736;
+ b=lIme/E+f7WHaCbmFI6l/+Y03pBds4+eqw6MndZTCHiwO8pnBPHvIykS5bSCG+lnkzSrcn
+ PU18UK3MLCulks3vVTsJUmR6wIDGV0KR4vML2jlFiUkYdnjbG7Q0nsb0twTtoazwHXOTbKv
+ 7dkz4mGCS6CvrldXP/rViJfI3gSK+qeUVf7/WMX570HzzgkjZJJfYqBO6L9KP+zNLvQlhfx
+ PYJoB9X6iJFaKXqfTP5p5moBTH8YzGcKbxIFIh5dBZmMoVi7ZldA1llBUacgJiXyRZ17unt
+ Cz54xaHAmy0jIedIJl2+j4at09hkwYyUt3nB8J6uMJb25ApD01oBySkewMYw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1788252608; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1788252736; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=m/wEGTF4f7C70SB4/q9aIKOMg+2fN6lt/IMX6OVr2GE=;
- b=mf6ZlO9M6+Wx0xa9lsOeQzuvWsLDik4qm3nKlRr44epx3IbrJEF/ubeG1lRZwquJNifQ7
- hJBYtpiFG0q/HsJkyeB9rqz/xeObXKwr49m8loPrSJBB+MfQAGDEAOIsdx5zLmMaGJDSYk1
- RAzd9M2nw9V9HccyMoTNbJ+uqBUWKiVh4/RcYVf4uWrc/eSw0e6igY7tgdSRpZ+N8AzM5hj
- M/f1afHfKAJ4EjdthOr8wP/RyiORtoxDEuxQbXIoZYWrWoNYovlxuDyu4exQ5Sxv8tWoNy4
- lLhXPpJrX8jhs0tslzykH8UQFC8ZYKIFGuSgVBFXH2Uqc6aQ/KgSyEwZN8Iw==
+ bh=LmKfrcBCf+s8osjs3jVsCHiYNiCClUW4L4OdCzj7khA=;
+ b=FXTNdzuzQhzNAYhFck12Us3pqqLeblHrDhUoSdEIvTaWSE3EzPDy+Jv2RhvbZn4aOwPH3
+ rk8Z2GfjqwyWVfbKP913BMKiTaWDjRNhZxyT3jZgsBggWXjmbuNFRlK0V3KHu9Gp/jRYt4g
+ jVKJbGdwaFE/XzOyCxW7Ri/1n1F5PkjnCnTottVMxdhifR26PFpwP3hIDJnwdrRMG7ZZYbF
+ UHKBmVRw+HF6X6ghghhUHL0Te8Z9dFv9MvUUKbUss5OEiri3VSmdsOJ9DJf4LN1FvPe3tZ6
+ sckUysRvpGQXP3Y5dVFNg0kPjnP+BQmN0N9v/TzP32OTCH+ILqssDfEr8vkQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,65 +46,53 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 8DC0347D28
-	for <nouveau@lists.freedesktop.org>; Tue,  1 Sep 2026 08:50:05 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BA03B10EC15;
-	Tue,  1 Sep 2026 09:07:06 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id DF00247D25
+	for <nouveau@lists.freedesktop.org>; Tue,  1 Sep 2026 08:52:14 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2B8B510EC2F;
+	Tue,  1 Sep 2026 09:09:16 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D6D29601DE;
-	Tue,  1 Sep 2026 09:07:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBE701F000E9;
-	Tue,  1 Sep 2026 09:07:02 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id D2263414D7;
+	Tue,  1 Sep 2026 09:09:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99A711F000E9;
+	Tue,  1 Sep 2026 09:09:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788253625;
-	bh=m/wEGTF4f7C70SB4/q9aIKOMg+2fN6lt/IMX6OVr2GE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=ZLv9z5OzoD0fx0iYaQYmDawsSdPZZbIEG6BC3Nio+WgHgZj2R8fnHzPnvWo4SiKZY
-	 /Of7JDUDx8RQZgRNlPu0NMl+oU0rov2ViyfmzazCwUqbQpeZo69AS03Xjy9Nemwvue
-	 1yd5pahrTxqSacJKWqYwwBEhvHuyLxN4szUq6g1IGkgOBQQ2rRzpZlMNZqSA3pMN7y
-	 9oKHA4EG0gWAE+gdrMw9AHbwa86VqFfe4W3IbtjZzYeugQGBgYYg7s5d8PTa6YVPqS
-	 ghMwkdjf4ELQY+uSeA09R38BT4sRW+FX7EN5XYlSdHAo2SkFeBA2pRMj6C8CVEc4vT
-	 L1yofrhBrittQ==
-Message-ID: <2e433e8d-a71e-49e4-8dea-659a94c8143f@kernel.org>
-Date: Tue, 1 Sep 2026 11:07:01 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/nouveau: bound sync and op counts in EXEC and
- VM_BIND
-To: Dave Airlie <airlied@gmail.com>, Junrui Luo <moonafterrain@outlook.com>
-References: <20260808-nouveau-fixes-v1-0-c3ebdc17a89c@outlook.com>
- <20260808-nouveau-fixes-v1-1-c3ebdc17a89c@outlook.com>
- <CAMwc25qozGSRw8KKNzVhakH1jCNWsFS_z=mFn9hswxjdNNX0GA@mail.gmail.com>
- <55965C34-9026-4EE7-B2F0-1D5D9807D682@outlook.com>
- <CAPM=9txG6wEwx_L5RsB+3gEuT6dYJQvrPpQnHHF4V1gFZpWNFQ@mail.gmail.com>
+	s=k20260515; t=1788253755;
+	bh=LmKfrcBCf+s8osjs3jVsCHiYNiCClUW4L4OdCzj7khA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=YnrUBwmcU16iObto6eZ28OSGICXXqpQwOYQmO0TYOq5CQfa7E/B+PpKfZZWF99luc
+	 cBm9ouOQR0xvoptqhFsD/RwfI7UWymejWPA3WUz04Ai4UMrwyQ16XLyoQqzZZ/x4qo
+	 whkGPwTjv59R9Pf5XsoVBrhMPkOO2+I+fC10PtfWMChmXmk0KDzyEx7XoHSpDXfmtH
+	 2dOMqYqsta3kPueISufHoKrqkvIHJ0+GsUvRynvoFTm4vmQCk9M9xnlq98RzlJ9l9T
+	 miQDmvMa3HNvUSjukOrA/HLPOIv8x1QT9cj35eZhStyZM5PXgVf55/ORdZg/iEHjBE
+	 0PSlySt2kQ15Q==
 From: Danilo Krummrich <dakr@kernel.org>
-Content-Language: en-US
-In-Reply-To: 
- <CAPM=9txG6wEwx_L5RsB+3gEuT6dYJQvrPpQnHHF4V1gFZpWNFQ@mail.gmail.com>
+To: Dave Airlie <airlied@gmail.com>
+Subject: Re: [PATCH] nouveau/instmem: handle iomapping already existing
+Date: Tue,  1 Sep 2026 11:09:04 +0200
+Message-ID: <20260901090904.9188-1-dakr@kernel.org>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260825030615.3464436-1-airlied@gmail.com>
+References: <20260825030615.3464436-1-airlied@gmail.com>
+X-Patch-Reply: applied
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: JFCMBWKYJE3VF2E7P3JIBPTXF3YHNKNZ
-X-Message-ID-Hash: JFCMBWKYJE3VF2E7P3JIBPTXF3YHNKNZ
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: ID4NFRH244JSNYSLSCPDX6QW6QJRW3MV
+X-Message-ID-Hash: ID4NFRH244JSNYSLSCPDX6QW6QJRW3MV
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: David Airlie <airlied@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Yuhao Jiang <danisjiang@gmail.com>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dakr@kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JFCMBWKYJE3VF2E7P3JIBPTXF3YHNKNZ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ID4NFRH244JSNYSLSCPDX6QW6QJRW3MV/>
 Archived-At: 
- <https://lore.freedesktop.org/2e433e8d-a71e-49e4-8dea-659a94c8143f@kernel.org/>
+ <https://lore.freedesktop.org/20260901090904.9188-1-dakr@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -114,30 +102,18 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 8/11/26 6:05 AM, Dave Airlie wrote:
-> On Tue, 11 Aug 2026 at 14:00, Junrui Luo <moonafterrain@outlook.com> wrote:
->>
->> On Mon, Aug 10, 2026 at 08:43:50AM +1000, David Airlie wrote:
->>> Have you run a complete Vulkan CTS with NVK across this with no regressions?
->>>
->>> I'm weary of those limits being too low, but I think the only app that
->>> might push them beyond CTS would be Forza Horizon 5 or 6.
->>
->> No, I have not. I don't currently have the hardware to run NVK, so I can't
->> offer a CTS run or any other regression test for this.
->>
->> Is there a better guard that avoids a hard limit here, or does this need
->> a test before it can go in?
-> 
-> Looking at xe it also has 1024 limit on number of syncs, but it
-> doesn't have any limit on number of binds,
-> 
->                 *bind_ops = kvmalloc_objs(struct drm_xe_vm_bind_op,
->                                           args->num_binds,
->                                           GFP_KERNEL | __GFP_ACCOUNT |
-> __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
-> 
-> Maybe nouveau could do the same.
-SGTM, I'd also be hesitant to put a hard limit on VM_BIND.
+On Tue, 25 Aug 2026 13:06:15 +1000, Dave Airlie wrote:
+> [PATCH] nouveau/instmem: handle iomapping already existing
 
-@Junrui: Can you please resend?
+Applied, thanks!
+
+  Branch: drm-misc-fixes
+  Tree:   https://gitlab.freedesktop.org/drm/misc/kernel.git
+
+[1/1] nouveau/instmem: handle iomapping already existing
+      commit: deced5fa01c5
+
+The patch will appear in the next linux-next integration (typically within 24
+hours on weekdays).
+
+The patch is queued up for Linus's tree and should land in the next -rc release.
