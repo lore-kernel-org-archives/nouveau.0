@@ -4,100 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F0F2C88E4C
-	for <nouveau@archiver.kernel.org>; Fri, 11 Sep 2026 08:31:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 699D3C88E50
+	for <nouveau@archiver.kernel.org>; Fri, 11 Sep 2026 08:51:33 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9FF0E10E3A4;
-	Fri, 11 Sep 2026 08:31:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D4E3D10E0B7;
+	Fri, 11 Sep 2026 08:51:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=arm.com header.i=@arm.com header.b="FLFpvNgM";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WJaO26YQ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0399B40206;
-	Fri, 11 Sep 2026 08:14:09 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id DB9AB402F0;
+	Fri, 11 Sep 2026 08:34:07 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789114448;
- b=rH88O8wiqvwNEKA8jIwAoSJzFao81yBu+kj1QMlzgWtp29m3MT8UffJSQLHemsytaipaM
- 2X9DyITaw/EUniUDn6JEpF5VOtt59qXhu92Yj2gIjBnAnJl1196Ogb6TeIEWvbD3oL05vcz
- /eZpZ2TYvvSPkFo2jGhYvIBPT3dGUzNYL/c4tCtuEOIIGlTArhaD3R1fCOZFo+2dswob7FR
- 2oxo2PRJmOvkBiqJBlq8rPHwqfD8mRIHz11miB/ZyJo288A6tHDT74FN82fEoyLxkdZ6xvq
- 0+4NunaQF5pFjzsob0sOxoxnPCvnAdBae/FEfCqYf826YquuCSvu/u5Gv4rw==
+ s=20240201; t=1789115647;
+ b=BjoPAXyYLLsAIC9GotS/m7fuKOhCwrJ8aK0hJPN4bxGt77Vbu1MsI/K4UEWaILcUGydvp
+ PCCMo/WFYcPzlE6cCuUswazR4JpgCTRjPStmEWFy/ui1nOuLuW/vn5h38U3RxQG8v6HNDzL
+ KGKR8d8mXkELDC6LphXPWYktrIA5lSFeIMDmpNknsQ2os7Kbr88k/eKyh/PWXaz3gtpQXIx
+ b6jcdPgYfJDckTMqy9Id4QDlh1CyVAdudAayRxljHHAF/l7GvX6ldUiBWMlb1Hrbi4RkXqC
+ O29nChJJgOccTWCP/4k5H55BlbEYmL7trlbcaSyD81GOJdORiBzynxiHxqfQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789114448; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1789115647; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=fHvEZyGHFXSOOWopt+ZiGXvrQE2U51JO9qYHTx451cA=;
- b=d0UU6uS6E54w1uLbnC80o1PdeFiAkf8zXapu39bqB4PQAiOYY3ArVflHR8BdZJ0617eD6
- PG+6IftacphldviCO8pBkGD2xRtyqzdp+xOeTZVUf98nr97ZzwsoSH2CMQwZivyy5dxTDMF
- LuDM8z+wEy0BZFmfrXLXWTXbSKrRQAdoPOWOhknvUTJlYl4eCkH3qpUuUjBhYhi++GFcCrv
- aXogfFa7tUvM1DbHiv4pkufjTXvSf5GyuU6AjmmgsIFsRIp5/YK2zE/6FThCGG1CXNJQgW+
- 4j1UnivvWCQ/fXM42W3l5Z0KKVX5p1jNfF6brGBDWqPOqrmhcJoJ9q6KEf6A==
+ bh=45Fa9JFJgFfxvMXU87kkWtdb4QSxmQx0SdJUFfq54ZE=;
+ b=gk1UFh3cQJDM2TKLVHGrN6qEyDv4ZyLwGTvb85mMZC/0MIuixYCtN6cawwo9FVul1BjHl
+ vBmaGKWrD8ggi4f+At/Blfoq8vERNtjjOxWhl7dXwW9JUjB9fHDPEF2omfMCvAyMIwLq02m
+ 6Ff49jvrtIFPQhZ8l8v0kvkjDXLOz9EjGLFISl6pUmZWH5+ZZ/sjdG7jR3PDzB8rZkFzUdE
+ uA0g2Shr407OuEX9Ucrnf0DlMbuHx19SmDSpM3zGNZ1y9OsbirnvH4jcOA+M4RUp9Rw6gCw
+ bUi1uXd0zLxyoZlY4pNj2CpXVcNDq5ZNoVciADufIc0Cj4UJj+xgox9EG3hQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=arm.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=arm.com policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=arm.com;
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=arm.com policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 94D644005A
-	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 08:14:05 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA2A410F574
-	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 08:25:09 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CEC1C28AC
-	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 01:25:05 -0700 (PDT)
-Received: from [192.168.0.1] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 631F33F7B4
-	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 01:25:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1789115109; bh=pg2xKrTSSwShkOsUdLdeGDqS93TawwwTnBwMiecesqU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FLFpvNgMaejdBZr/dwBAjsPOdiKXOXGhkd5iL15TvjiulJdQNO8wvAVC4qjKST/n0
-	 n5pRc4vgdNRgX9JLFlnchVbb56PBSBHWDMhbBZJuI49CPyqe1+ZRt4Fn0kl9mENoGC
-	 9cDn0U42PEsKLZ1k52+atB4G7OCbDCAKhskeZLas=
-Date: Fri, 11 Sep 2026 09:24:49 +0100
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Zhenhao Wan <whi4ed0g@gmail.com>
-Subject: Re: [PATCH v2 2/2] drm/gpuvm: reject zero-length range in
- drm_gpuvm_range_valid()
-Message-ID: <aqO60UtyI9WlN0fw@e142607>
-References: <20260902-drm-gpuvm-zerorange-v2-v2-0-da63269c6ec4@gmail.com>
- <20260902-drm-gpuvm-zerorange-v2-v2-2-da63269c6ec4@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260902-drm-gpuvm-zerorange-v2-v2-2-da63269c6ec4@gmail.com>
-Message-ID-Hash: D7CO2UOZ65XFQLBX77HQC6RTOKSE7ROB
-X-Message-ID-Hash: D7CO2UOZ65XFQLBX77HQC6RTOKSE7ROB
-X-MailFrom: liviu.dudau@arm.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id 8A28D40102
+	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 08:34:04 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8D59510E61E;
+	Tue,  8 Sep 2026 15:27:03 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 5EB6F400EF;
+	Tue,  8 Sep 2026 15:27:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AADED1F00A3A;
+	Tue,  8 Sep 2026 15:27:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1788881223;
+	bh=45Fa9JFJgFfxvMXU87kkWtdb4QSxmQx0SdJUFfq54ZE=;
+	h=Date:From:To:Subject:In-Reply-To:References:Cc;
+	b=WJaO26YQEBESzQ+3+b4rBC4UvX2za9FEQXE6OjU06tsjMOKruOfHgjVU3OfNEKChr
+	 Vyoi1VuCgZ3tlP62Ne6W+P7cu3seWG0c/EHV1AFLITSLy5tFI2iqIb8hmbhxb7Kvl9
+	 WFNMiCfnk4ILz94eoTQWnkmM16Mjg+5EWijqRsK0cQP9UPnZo1DdiwmDs1Hk9/tPJO
+	 PlS6aH1ZBPSAyr7BcO6VhkrJqpyV5xIxqPrnFO4tytf7Y4EwEIV3jv9xQ4+Ml+kqMT
+	 AFMq2j7A4SCxp6nKvzlPeQ8PtwtNc7gmAlwN93R3Ams3lJkVXm13RWHUJhwxGt6PuR
+	 vqjKcbOPxYy5g==
+Message-ID: <467a6478db3c7140ca9f4d0e5c11d029@kernel.org>
+Date: Tue, 08 Sep 2026 15:26:59 +0000
+From: "Maxime Ripard" <mripard@kernel.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Subject: Re: [PATCH v2 3/7] vga_switcheroo: Add pre_switch callback to
+ client ops
+In-Reply-To: <20260709092215.168172-4-tzimmermann@suse.de>
+References: <20260709092215.168172-4-tzimmermann@suse.de>
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: M3YNFVJ6767JTNBVWJM3INGWF5UI3XG6
+X-Message-ID-Hash: M3YNFVJ6767JTNBVWJM3INGWF5UI3XG6
+X-MailFrom: mripard@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Grant Likely <grant.likely@linaro.org>, Heiko Stuebner <heiko@sntech.de>,
- Danilo Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Alice Ryhl <aliceryhl@google.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- Dave Airlie <airlied@redhat.com>, Yuhao Jiang <danisjiang@gmail.com>,
- stable@vger.kernel.org
+ loop; banned-address; member-moderation
+CC: alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
+ christian.koenig@amd.com, dakr@kernel.org, deller@gmx.de,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, jfalempe@redhat.com,
+ joonas.lahtinen@linux.intel.com, linux-fbdev@vger.kernel.org,
+ maarten.lankhorst@linux.intel.com, Maxime Ripard <mripard@kernel.org>,
+ nouveau@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ sashiko-reviews@lists.linux.dev, simona@ffwll.ch, tursulin@ursulin.net
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/D7CO2UOZ65XFQLBX77HQC6RTOKSE7ROB/>
-Archived-At: <https://lore.freedesktop.org/aqO60UtyI9WlN0fw@e142607/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/M3YNFVJ6767JTNBVWJM3INGWF5UI3XG6/>
+Archived-At: 
+ <https://lore.freedesktop.org/467a6478db3c7140ca9f4d0e5c11d029@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -107,86 +105,16 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, Sep 02, 2026 at 08:28:43PM +0800, Zhenhao Wan wrote:
-> drm_gpuvm_range_valid() is the common gate every GPUVM map/unmap path
-> funnels through: drm_gpuva_insert(), __drm_gpuvm_sm_map() and
-> __drm_gpuvm_sm_unmap() all reject a request unless it passes. It checks
-> for overflow, the managed-range bounds and kernel-node overlap, but it
-> never rejects a zero-length range. A range of 0 is page-aligned and
-> addr + 0 does not overflow, so a zero-length VM_BIND request from
-> userspace passes validation.
+On Thu, 9 Jul 2026 11:15:59 +0200, Thomas Zimmermann wrote:
+> Add pre_switch to struct vga_switcheroo_client_ops to inform the
+> switcheroo client about upcoming switches of the outputs.
 > 
-> The GPUVA interval tree derives a node's last key as addr + range - 1
-> (GPUVA_LAST()). With range == 0 this underflows to addr - 1, producing
-> an interval whose end lies below its start (and, for addr == 0, wraps to
-> U64_MAX). __drm_gpuva_insert() then issues its overlap query with that
-> inverted interval, so the -EEXIST guard matches nothing and a malformed
-> zero-length node is inserted, corrupting the augmented interval tree's
-> subtree-last invariant and misleading the overlap checks of later
-> map/unmap operations on the same VM.
+> This callback is intended to replace the hard-coded call to fbdev's
+> fb_switch_outputs(). With DRM supporting more clients than just fbdev
 > 
-> Because the shared helper's own kerneldoc promises to validate "the
-> range" yet silently accepts range == 0, drivers have papered over this
-> individually and inconsistently: imagination and xe reject a zero range
-> at/near the ioctl boundary, while nouveau and msm do not. Fix it once at
-> the common gate so every current and future caller is covered.
-> 
-> The only in-tree user that legitimately accepts a zero range,
-> xe's DRM_XE_VM_BIND_OP_UNMAP_ALL, interprets it at its ioctl layer and
-> never passes range == 0 into the GPUVM core, so it is unaffected. The
-> in-core lookups drm_gpuva_find_prev()/drm_gpuva_find_next() pass
-> range == 1 and are likewise unaffected.
-> 
-> Fixes: e6303f323b1a ("drm: manager to keep track of GPUs VA mappings")
-> Reported-by: Yuhao Jiang <danisjiang@gmail.com>
-> Assisted-by: Claude:claude-opus-5
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Zhenhao Wan <whi4ed0g@gmail.com>
+> [ ... ]
 
-Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
-Best regards,
-Liviu
-
-> ---
->  drivers/gpu/drm/drm_gpuvm.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-> index c422c5af1f4b..b73ad6988171 100644
-> --- a/drivers/gpu/drm/drm_gpuvm.c
-> +++ b/drivers/gpu/drm/drm_gpuvm.c
-> @@ -1021,7 +1021,8 @@ drm_gpuvm_in_kernel_node(struct drm_gpuvm *gpuvm, u64 addr, u64 range)
->   * @addr: the base address
->   * @range: the range starting from the base address
->   *
-> - * Checks whether the range is within the GPUVM's managed boundaries.
-> + * Checks whether the range is non-zero and within the GPUVM's managed
-> + * boundaries.
->   *
->   * Returns: true for a valid range, false otherwise
->   */
-> @@ -1029,7 +1030,8 @@ bool
->  drm_gpuvm_range_valid(struct drm_gpuvm *gpuvm,
->  		      u64 addr, u64 range)
->  {
-> -	return !drm_gpuvm_check_overflow(addr, range) &&
-> +	return range != 0 &&
-> +	       !drm_gpuvm_check_overflow(addr, range) &&
->  	       drm_gpuvm_in_mm_range(gpuvm, addr, range) &&
->  	       !drm_gpuvm_in_kernel_node(gpuvm, addr, range);
->  }
-> 
-> -- 
-> 2.34.1
-> 
-
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+Thanks!
+Maxime
