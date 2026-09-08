@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1483AC88E50
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70D4DC88E53
 	for <nouveau@archiver.kernel.org>; Fri, 11 Sep 2026 08:52:25 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id DB65F10F577;
-	Fri, 11 Sep 2026 08:52:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4A70010F587;
+	Fri, 11 Sep 2026 08:52:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="i5c65ouB";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XvCV66AB";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 179414153D;
+	by kara.freedesktop.org (Postfix) with ESMTP id 9BD4140412;
 	Fri, 11 Sep 2026 08:35:00 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789115699;
- b=pKPIW4NGufaCwQGpuk3m8Ag8kLmAy3c34PwOlkRzJln/xpVzyd40aksVc0KG6+QxdxAhh
- 2xFYG9Sr6K+7i7wDC43KALidIP/uG3isxnuk1E12aUYi7GADd9uj28nHEgzb/py67oRq8NO
- LhcJL9cjoICiK/Fd13dxbuwtxA1u1IleQ7CZYSwRFnlVRRqC3szoM/Gx+98VZZc8hqYzVYY
- yuQq7580ysR88gSq3ED/oiWV8GWExHQ0XQPViIVjDiS29J7Wy6+W5N4K5thBQ1FRxqBTO4P
- oaj4Wcclkeun+skGk2cwcpxDpuBd3LaZSWRyD5jKUJWkCTsqLRuf61Jp+wag==
+ s=20240201; t=1789115700;
+ b=OE/KQKr4WlsS5Qc+K9Xb+LtCj65DoVX3mwbs+e7kE3IDAgjMOlrIv3J7UvIE+sKusupeo
+ damlspVv7pEv000QQEvd7SwPoms95jjWFCyxal6ia9x7pcTYPcozOYFRPNz4PdRME3zmq76
+ SHG0pBr7x5FFfBzxEURLA4gl1oRn+u7e+mJMFZOjTZze0pTwPJOVlH+fyvvEGRY2cKFBK7o
+ n+eFVMl1MDM4smPKj4knn6+VvVyp31In8xLlqnaarbsBoqWdx0d0PwcWAAc++q2CdUNGbT/
+ d9nGThwwmjLhTn6PXuhPC5NSbfZ5RWhpsi4SoVpmnGa6FphHy3iZJJrfiQ2g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789115699; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1789115700; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=9Y0RYiQlqdq8T8rHGKcY5WJFbZOHMj5XD8BYUCfkmiM=;
- b=ydqUOcTdWMc71MRF+Fa8VumwIRzrxIJFABbsPb1hCUPzXI6PASQcaZYes+NupL2+QAOX2
- Q9Sl4KQ63m+x2oRKv6t7SOZjxiuArmM5CXOnaNxngYgvJ64/fgJI3fW07iC4WcMb5h6kbOz
- AGdxB+QR9btWmppnHeB+IS5KTLrZOcE0ELFLAKZgLTRFmcanzUYy0aNPtlDIVdHltyN3deh
- pSWRFiyS+2shJKWHvOL/7Wadih50uGOSFho29TZPj3rkDNYBTvjuy+Fxx76jksFS1pPA2Qn
- LFoihPJiYs02qNYZ/O0y2g+h5/Be4ryf8bTotgYmRO+wHHa8b+5BsFznm1Ew==
+ bh=qQbruPdcRkbgl8HfIhF5I/ft20+teeU0jvwgM4rj26A=;
+ b=Q8XiqZeOQw80U7GEVKpip4oOSpHDvL0Dg0SlYeGUJWZA90X5XE+VHP3k7yTsLtnrydb7H
+ QNDj4G76zqP5w/n03BFF7ZEpyBJZcusxZRSiXiSee+FJTDJo196O59ZC5W2RyYVv5UcT1V2
+ qIPxHSoiXX1dCWgQt0M7lEqhQBmlpgHVU+8Rex5DhII2PuHbajDZ8DaLpKaMgCzxBa0OTXX
+ 5gkSflCWIAYh2N3dM/OGOWJLa7MHhOYK+Pwk0NpkBIPKGKCoDBBEXcVvNtqlyWQEtK/9ave
+ mx7rUdZa3YytM67SG8trQDZ7iIvufYSB+/LhPSEtQo+FRviDdIQz7LL3BaUQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,37 +46,37 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 698B2403BB
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6E285403E7
 	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 08:34:09 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D70EB10ECAF;
-	Tue,  8 Sep 2026 15:27:26 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D187810ECB9;
+	Tue,  8 Sep 2026 15:27:57 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B8A88601FB;
-	Tue,  8 Sep 2026 15:27:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7F591F00A3A;
-	Tue,  8 Sep 2026 15:27:24 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id B8DC54081D;
+	Tue,  8 Sep 2026 15:27:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 205C11F00A3D;
+	Tue,  8 Sep 2026 15:27:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788881245;
-	bh=9Y0RYiQlqdq8T8rHGKcY5WJFbZOHMj5XD8BYUCfkmiM=;
+	s=k20260515; t=1788881277;
+	bh=qQbruPdcRkbgl8HfIhF5I/ft20+teeU0jvwgM4rj26A=;
 	h=Date:From:To:Subject:In-Reply-To:References:Cc;
-	b=i5c65ouBuEyZ6oB7J0Er0dVut/Yg1ePEEy4oGAe64mY5uM6ZfpbkeT5m9W1IA29ab
-	 JpZ8/TAPB6a+2NvkxIL3f43y3pKy3+R0TC/cYTdy6ySa2sA4ar26sqHKau57vlmrUD
-	 jUqXiw954XFwqTofPlkk19Rd+03vy+ibx0rr6Jd6qWdhOzm+xsuUUy33Uj1Yq52ZJW
-	 ijmyGte57XMTYBeOmQngxbymMaE/F8EJ6TAWS+WzjcxZj+Lz3mcDTkMdZK7PZzdBmi
-	 IYXFACNOY2LwM8qmgJLPf4tQ/RvntUz7HPGkC10AaLkELj5a6/IQ76M/xV1tJVqxDk
-	 w55vjeDNey8AA==
-Message-ID: <315455b0aa801c7dbd1b1e2ecf7282c3@kernel.org>
-Date: Tue, 08 Sep 2026 15:27:22 +0000
+	b=XvCV66ABTo4OWC/44sKVa92p43c+0v2J/iue6EFeR7/Ok7g9uSLGMfm7n9kpFj+16
+	 eaikSUvoM2QGhoGsPbre8P6lPx0m5u79AcCtOL8NixpXvvpGIOiF04OfQV3zomh5TZ
+	 f3fXub9npQTUMyUJhRJ5Fswyh1Z5p5dLb8nCk+HQiCMiFmNxmADmW9gI0h4g6nfSGw
+	 EXqAJM6Y8TwdYsZiWXGUcNq56dSWn3+VTCvOiUanLgZEith4u8+5FXT6jvORYU7bXF
+	 O2/G0LRiyojLTsip/Af1WrCdo3eZlYiM4WM7rNVggZa/d3sP+EDG9zDB+raGj+HlMv
+	 9IimSxGYTwg7g==
+Message-ID: <73f10ae2aa96eeefbec0f1308d85899b@kernel.org>
+Date: Tue, 08 Sep 2026 15:27:54 +0000
 From: "Maxime Ripard" <mripard@kernel.org>
 To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Subject: Re: [PATCH v2 4/7] vga_switcheroo: Add post_switch callback to
- client ops
-In-Reply-To: <20260709092215.168172-5-tzimmermann@suse.de>
-References: <20260709092215.168172-5-tzimmermann@suse.de>
+Subject: Re: [PATCH v2 5/7] drm: Implement struct
+ vga_switcheroo_client_ops.pre_switch
+In-Reply-To: <20260709092215.168172-6-tzimmermann@suse.de>
+References: <20260709092215.168172-6-tzimmermann@suse.de>
 Content-Transfer-Encoding: 7bit
-Message-ID-Hash: DYTYM3S3QFCYOZZ2SXZY2QX7XJBJIVWG
-X-Message-ID-Hash: DYTYM3S3QFCYOZZ2SXZY2QX7XJBJIVWG
+Message-ID-Hash: XPD5NVTIHAPD3WKQY624XXFUNLPV25Y6
+X-Message-ID-Hash: XPD5NVTIHAPD3WKQY624XXFUNLPV25Y6
 X-MailFrom: mripard@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -93,9 +93,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DYTYM3S3QFCYOZZ2SXZY2QX7XJBJIVWG/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XPD5NVTIHAPD3WKQY624XXFUNLPV25Y6/>
 Archived-At: 
- <https://lore.freedesktop.org/315455b0aa801c7dbd1b1e2ecf7282c3@kernel.org/>
+ <https://lore.freedesktop.org/73f10ae2aa96eeefbec0f1308d85899b@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -105,12 +105,12 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu, 9 Jul 2026 11:16:00 +0200, Thomas Zimmermann wrote:
-> Add post_switch to struct vga_switcheroo_client_ops to inform the
-> switcheroo client about a completed switch of the output.
+On Thu, 9 Jul 2026 11:16:01 +0200, Thomas Zimmermann wrote:
+> Call drm_client_dev_acquire_outputs() from vga_switcheroo's pre_switch
+> callback. Pushes fbcon updates from vga_switcheroo into DRM's fbdev
+> emulation. This affects amdgpu, i915, nouveau and radeon. No other
+> drivers implement vga_switcheroo.
 > 
-> This callback is intended to replace the reprobe client op. It is a
-> rename of reprobe for consistency with pre_switch.
 > 
 > [ ... ]
 
