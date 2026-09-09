@@ -4,104 +4,179 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EA69C88E4C
-	for <nouveau@archiver.kernel.org>; Fri, 11 Sep 2026 08:52:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 248D4C88E53
+	for <nouveau@archiver.kernel.org>; Fri, 11 Sep 2026 08:52:12 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 67DDA10EBB6;
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E311B10F234;
 	Fri, 11 Sep 2026 08:52:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="F/mP6zR9";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="z7xTRyL1";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qSI2sFng";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="sPZpMIfe";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="WqWSlJ2b";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C58BC4064A;
-	Fri, 11 Sep 2026 08:34:47 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4FBAD4064A;
+	Fri, 11 Sep 2026 08:34:48 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789115687;
- b=XbGT9zgZfRscH3KAq/IrNZjiun1pmPVNK4RJt1xrPC/6U7LqxLBU0fDIl/fozFLzR7LMs
- C1Mwooc/LxNzNYy+Qper0oGnCBdTz3Uegt7NPKAXPnGVPRGJ513Gg7ZSi/NwIQOGuTAo+Ko
- SFC18VYeTUYlRkdRuStRSpyTWoaP5gff7+kqhb2jL4sVWk/pSfLva3oHg/o0zhvaW3ghmBW
- fvMUUqOt3fbxWZ1iC/7wE1JQWvUhgIaMB96pPnZ/SGbdwLNSEgbx5O7nTWxE22f6MOONE7N
- OGYeShon4d+n1zhKUO8gM+U4XFXlKutLoqRV/VsD7/FWLVGIEAjLdvcKn32w==
+ s=20240201; t=1789115688;
+ b=CcDOcgdtdVkIpTKZKD9dVdMRrtYLSIJP5paPJ6KCJ7sWiZPbFeH/G7l6ZPVOwqRs8KswB
+ tg499KPkpAzz87YxAJrAEYT2B68KjUgYdbhA+JxsBZvPBRHOiE6Ol3RdHa5YJbVuaGbInR5
+ IecyPo4kLM/rcDI12PpHUFgAxKMSsfNkm9yWcw90F8OWqq85xNBgwMrNXHcw6bIYOuk7H2H
+ IIBB3wjjWh44jhmSZHIbi2Suhrhk6iw31RRStkiQ/hszgqo29Z5u/a2efwaspEKj19XVQnE
+ RyjPS0FoIOulYAneEyVkaJ4tppml4Ks0EIhTm/Qsyox6KD93nGtyrPkTLYHQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789115687; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1789115688; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=NwjaNs6IUndl2gXpaLfGpDskp0OgoGLOd1KybhPijWY=;
- b=08mDmksbyZhpKkDAPm3wfp5u7yqYNRHnfg3FkohpK76LWsWsVeVGV0Ui/ZFlSq0uAPJRt
- W9dgpvjDUecWWtOxpCYlQ0kStmnOFVg2jcmeu5KpeQyF4wQEiWroMfL3wVihiP1+fFCahDn
- SX0Eym48bqjs6aaqBv1mNqmxy8ZgI6B2CdvH6pvvICn16Yp0eMaO/yUtXofngAB15jWQUg2
- Pf434h4foGnPMBp4+SPfL0IbeSyDo2yLHp2ipxlNeH+68MxjCoCW49Jt0X3loTjLAEMquV6
- 39CRDdwzwXzlWAVO8lbIdr9T/5KXfZ4gcP3QbbuB1R8qILTMb/KR9TlM+EFg==
+ bh=gROToXlK8SjdMBn2SBlcMsgteVlZQArVpFSxxwGrkhg=;
+ b=UYm6lpjsBGdKAme2o3L7fXoPlA3doeClEz06Zwrb/G6m5B3BC+riKfmdKHIXgVTQQQEHl
+ xZYB4l4fHRr5ls03vW32eIN0JCArEEvNEBOoy4PIawFiBVPJR3+nrzEfEfs0nW5uUImb0EF
+ CxeL5qdfBLbkm9ejfVNMe1B7cvHCdLsXv3PygNN09dYvjPomCgi56tWYZsmCSvm5AagQ4RU
+ kq7xc2BZAx7wDcuoNAuvA4FsHmV/78SM3HeJ7A4ra66KHbXYWztsaEBnLd80LZr7YUoncZw
+ gsx6tM5UZ1Zy9zCF6EX/ZqoU+uNZf8q/ZjdDofSknCYKtwmviAS9CJsSPRog==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 98D37403AC
+	by kara.freedesktop.org (Postfix) with ESMTPS id B9644402F0
 	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 08:34:08 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id F330B10EC79;
-	Tue,  8 Sep 2026 14:49:26 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DC92C432D5;
-	Tue,  8 Sep 2026 14:49:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F3551F00AC4;
-	Tue,  8 Sep 2026 14:49:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788878966;
-	bh=NwjaNs6IUndl2gXpaLfGpDskp0OgoGLOd1KybhPijWY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=F/mP6zR9ifSoK3pSq2b6BfxUkp/VPDdJ9AiYBOL3ADqvfOMvI8mQ+gXZPFE117b/W
-	 UlU4eGNzinNbveHS1keZ3bttSBXitPyRYsOC0VnO6Evf5h2MJ3d435BRZJIa+ZCKHi
-	 SRKLfz6HToeQzuL1a5z/avBejcLcKTLqhj4e8YpYvB54YoI69Wed4LUGqNDuKsD4Ri
-	 4QtC/LD0AxW/75NC6rMxwYTTykJkcHKbQQmicgOenyHHQf3KXILDCb9ApX2PB/Ezcu
-	 FeqIXg9eBVkJmyHtB86qOaahU7gyJ3RuiRRgSYovnwevBAyvqvfmc5Z+JU6rwdVo+n
-	 u+VZ4HwXNi/oA==
-From: Maxime Ripard <mripard@kernel.org>
-Date: Tue, 08 Sep 2026 16:47:04 +0200
-Subject: [PATCH v4 33/41] drm/nouveau: Convert to atomic_create_state
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 49E0410F01D
+	for <nouveau@lists.freedesktop.org>; Wed,  9 Sep 2026 09:00:11 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 632751F7D7;
+	Wed,  9 Sep 2026 08:58:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1788944325;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gROToXlK8SjdMBn2SBlcMsgteVlZQArVpFSxxwGrkhg=;
+	b=z7xTRyL1wXVV1rvAQKLCLLva9+HnO24fblx+4pk0rQfgSM978D6npVe59sBGaRfo8iWEnN
+	w8NFSVEozAb3Bj5j5sDkc9EjxSJY6J9NpJLmm9+t+qk0GO8LO6mfPjBldDIV1NOYwDS1AN
+	fVjxRxxYc7lPaQthOIM0KirzHNGODoA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1788944325;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gROToXlK8SjdMBn2SBlcMsgteVlZQArVpFSxxwGrkhg=;
+	b=qSI2sFngMhRav8YrlXi90/Lyzl0ZJ1ByrFsOUcb9GlvgTv0TSL5pg97Dh9fnl1VU1HAjrw
+	2KAfBdo/R2pRwwCw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1788944321;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gROToXlK8SjdMBn2SBlcMsgteVlZQArVpFSxxwGrkhg=;
+	b=sPZpMIfeFaZUQQtiQZ/sEFg6HOXP6u0DKoRb4DawgCdWAmCo6EiKPW0wJ0R6iwUkx0gJC2
+	7ebkQZYOq+x2gASrv490hnd4vK1KhNSp4oWTyG/SAlC95nEVUibeOwrNw6E8U4Oqdl3dcT
+	aBr2VvUW78lte/WYY0PXyvVj8WpOC1c=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1788944321;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gROToXlK8SjdMBn2SBlcMsgteVlZQArVpFSxxwGrkhg=;
+	b=WqWSlJ2bdTuzoV9l+0zIrR3vIXcQhiSNiN6NmPT9WHl6pS1NCHHMt6wcoaLjdjYtLNUFhz
+	HB4gY6Wnldd3saCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AC9BD1392A;
+	Wed,  9 Sep 2026 08:58:35 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id SMK4KLsfoWoVUQAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Wed, 09 Sep 2026 08:58:35 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jfalempe@redhat.com,
+	javierm@redhat.com,
+	airlied@gmail.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	geert@linux-m68k.org,
+	rdunlap@infradead.org
+Subject: [PATCH v4 07/14] drm/panic: Return from screen_user if display is too
+ small
+Date: Wed,  9 Sep 2026 10:55:22 +0200
+Message-ID: <20260909085826.64529-8-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260909085826.64529-1-tzimmermann@suse.de>
+References: <20260909085826.64529-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260908-drm-no-more-plane-reset-v4-33-a31b3fcfc989@kernel.org>
-References: <20260908-drm-no-more-plane-reset-v4-0-a31b3fcfc989@kernel.org>
-In-Reply-To: <20260908-drm-no-more-plane-reset-v4-0-a31b3fcfc989@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6859; i=mripard@kernel.org;
- h=from:subject:message-id; bh=Q+C4TrUeYvtnn+F29bUT+4DVtypeetMRonq1BJqna9c=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFkL5O8sf9L47+R13XmfNQpnlFs4FISeXvRJ69fCvGj+u
- T8Vt9QWdUxlYRDmZJAVU2R5IhN2enn74ioH+5U/YOawMoEMYeDiFICJfDvD2LBs/iXlTXwrnksE
- rJya+L7055ScQFkjb8MbKTnJeTuFN1/eEbcovkDwky5z5dwn3oolbxgbZpSbTfydE1IqeV4iz7/
- ory1z5DLrJN6K0hOtNkblGy/sUeI7NvfOqhU7cng75/zZPkMKAA==
-X-Developer-Key: i=mripard@kernel.org; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
-Message-ID-Hash: FYUO6E4LY3DAMUZFRB3UMLFSEXVQDUVR
-X-Message-ID-Hash: FYUO6E4LY3DAMUZFRB3UMLFSEXVQDUVR
-X-MailFrom: mripard@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Action: no action
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: 632751F7D7
+X-Spamd-Result: default: False [-3.01 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	URIBL_BLOCKED(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:email,suse.de:mid];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:email,suse.de:mid,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
+	FREEMAIL_TO(0.00)[redhat.com,gmail.com,linux.intel.com,kernel.org,linux-m68k.org,infradead.org];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	R_RATELIMIT(0.00)[to_ip_from(RLo585esf9b7txaosbn5shab9z)];
+	DKIM_TRACE(0.00)[suse.de:+]
+Message-ID-Hash: IP22XMLES5TP46QMMXFHTRO4JNVO3U5B
+X-Message-ID-Hash: IP22XMLES5TP46QMMXFHTRO4JNVO3U5B
+X-MailFrom: tzimmermann@suse.de
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- dakr@kernel.org, nouveau@lists.freedesktop.org
+ loop; banned-address
+CC: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
+ sashiko-reviews@lists.linux.dev
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FYUO6E4LY3DAMUZFRB3UMLFSEXVQDUVR/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IP22XMLES5TP46QMMXFHTRO4JNVO3U5B/>
 Archived-At: 
- <https://lore.freedesktop.org/20260908-drm-no-more-plane-reset-v4-33-a31b3fcfc989@kernel.org/>
+ <https://lore.freedesktop.org/20260909085826.64529-8-tzimmermann@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -111,328 +186,42 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-The plane reset implementation creates a custom state
-subclass, but only initializes a pristine state without resetting any
-hardware. This is equivalent to what atomic_create_state expects.
-Convert to it.
+Return an error if the display is too small to display at least a
+single character. If the panic handler cannot display any message
+it does at least not destroy the current output, which might help
+with identifying the problem.
 
-The conversion was done using the following Coccinelle semantic patch:
+v4:
+- also check font height against scanout buffer (Jocelyn)
 
-@@
-identifier funcs;
-symbol drm_atomic_helper_plane_reset;
-symbol drm_atomic_helper_plane_create_state;
-@@
-
-struct drm_plane_funcs funcs = {
-  ...,
-- .reset = drm_atomic_helper_plane_reset,
-+ .atomic_create_state = drm_atomic_helper_plane_create_state,
-  ...,
-};
-
-@match_struct_reset@
-identifier funcs, reset_func;
-@@
-struct drm_plane_funcs funcs = {
-    ...,
-    .reset = reset_func,
-    ...,
-};
-
-@reset_uses_helpers depends on match_struct_reset@
-identifier match_struct_reset.reset_func;
-@@
-
- void reset_func(...)
- {
- 	<+...
-(
- 	__drm_atomic_helper_plane_reset(...);
-|
-	__drm_gem_reset_shadow_plane(...);
-)
- 	...+>
- }
-
-@match_struct_destroy@
-identifier funcs, destroy_func;
-@@
-struct drm_plane_funcs funcs = {
-    ...,
-    .atomic_destroy_state = destroy_func,
-    ...,
-};
-
-@script:python renamed_func@
-old_name << match_struct_reset.reset_func;
-new_name;
-@@
-if old_name.endswith("_reset"):
-    coccinelle.new_name = old_name.replace("_reset", "_create_state")
-else:
-    coccinelle.new_name = old_name
-
-@update_struct depends on match_struct_reset && reset_uses_helpers@
-identifier match_struct_reset.funcs, match_struct_reset.reset_func;
-identifier renamed_func.new_name;
-@@
-struct drm_plane_funcs funcs = {
-    ...,
--   .reset = reset_func,
-+   .atomic_create_state = new_name,
-    ...,
-};
-
-@drop_destroy depends on update_struct && match_struct_destroy@
-identifier match_struct_reset.reset_func;
-identifier match_struct_destroy.destroy_func;
-identifier container_func;
-identifier P;
-symbol drm_atomic_helper_plane_destroy_state;
-symbol __drm_atomic_helper_plane_destroy_state;
-@@
-
- void reset_func(struct drm_plane *P)
- {
- 	...
-(
--	if (P->state) {
-- 		<+...
-(
--		drm_atomic_helper_plane_destroy_state(P, P->state);
-|
--		__drm_atomic_helper_plane_destroy_state(P->state);
-|
--		P->funcs->atomic_destroy_state(P, P->state);
-|
--		destroy_func(P, P->state);
-)
-- 		...+>
-- 	}
-|
--	drm_WARN_ON_ONCE(P->dev, P->state);
-|
--	WARN_ON(P->state);
-)
- 	...
-(
--	kfree(P->state);
-|
--	kfree(container_func(P->state));
-|
- 	// kfree is optional
-)
-(
--	P->state = NULL;
-|
- 	// plane->state clearing is optional
-)
- 	...
- }
-
-@drop_destroy_mtk depends on update_struct@
-identifier P;
-symbol __drm_atomic_helper_plane_destroy_state;
-symbol to_mtk_plane_state;
-@@
-
- void mtk_plane_reset(struct drm_plane *P)
- {
- 	...
--	if (P->state) {
--		__drm_atomic_helper_plane_destroy_state(P->state);
--		...
--	} else {
- 		...
--	}
- 	...
- }
-
-@transform_nv50_wndw depends on update_struct@
-identifier S;
-@@
-
- void nv50_wndw_reset(...)
- {
- 	...
--	if (WARN_ON(!(S = kzalloc_obj(*S))))
-+	S = kzalloc_obj(*S);
-+	if (WARN_ON(!S))
- 		return;
- 	...
- }
-
-@transform_kzalloc depends on update_struct@
-identifier match_struct_reset.reset_func;
-identifier P, S;
-statement ST;
-statement list STL;
-@@
-
- void reset_func(struct drm_plane *P)
- {
- 	<...
- 	S = kzalloc_obj(*S);
-(
--	if (S)
--	{
--		STL
--	}
-+	if (!S) return;
-+
-+	STL
-|
--	if (S) ST
-+	if (!S) return;
-+
-+	ST
-)
-	...>
- }
-
-@transform_body depends on update_struct@
-identifier match_struct_reset.reset_func;
-identifier renamed_func.new_name;
-identifier S, P;
-expression PS;
-@@
-- void reset_func(struct drm_plane *P)
-+ struct drm_plane_state *new_name(struct drm_plane *P)
-{
-	...
- 	S = kzalloc_obj(*S);
-	...
-(
- 	if (!S) {
-		...
--		return;
-+		return ERR_PTR(-ENOMEM);
- 	}
-|
- 	if (WARN_ON(!S)) {
-		...
--		return;
-+		return ERR_PTR(-ENOMEM);
- 	}
-|
- 	if (S == NULL) {
- 		...
--		return;
-+		return ERR_PTR(-ENOMEM);
- 	}
-)
-	...
-(
--	__drm_atomic_helper_plane_reset(P, PS);
-+	__drm_atomic_helper_plane_state_init(PS, P);
-|
--	__drm_gem_reset_shadow_plane(P, PS);
-+	__drm_gem_shadow_plane_state_init(P, PS);
-)
-	...
-}
-
-@update_early_return depends on update_struct@
-identifier match_struct_reset.reset_func;
-identifier renamed_func.new_name;
-identifier P;
-expression PS;
-@@
- struct drm_plane_state *new_name(struct drm_plane *P)
-{
-	<+...
--	return;
-+	return ERR_PTR(-EINVAL);
-	...+>
-}
-
-@update_return_plane depends on update_struct@
-identifier match_struct_reset.reset_func;
-identifier renamed_func.new_name;
-identifier P;
-expression PS;
-@@
- struct drm_plane_state *new_name(struct drm_plane *P)
-{
-	...
- 	__drm_atomic_helper_plane_state_init(PS, P);
-	...
-+
-+	return PS;
-}
-
-@update_return_shadow depends on update_struct@
-identifier renamed_func.new_name;
-identifier P;
-expression PS;
-@@
- struct drm_plane_state *new_name(struct drm_plane *P)
-{
-	...
- 	__drm_gem_shadow_plane_state_init(P, PS);
-	...
-+
-+	return &PS->base;
-}
-
-Reviewed-by: Lyude Paul <lyude@redhat.com>
-Signed-off-by: Maxime Ripard <mripard@kernel.org>
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Jocelyn Falempe <jfalempe@redhat.com>
 ---
-Cc: dakr@kernel.org
-Cc: lyude@redhat.com
-Cc: nouveau@lists.freedesktop.org
----
- drivers/gpu/drm/nouveau/dispnv50/wndw.c | 15 +++++++--------
- 1 file changed, 7 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/drm_panic.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-index 15a322422f4e..378095138d12 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-@@ -750,22 +750,21 @@ nv50_wndw_zpos_default(struct drm_plane *plane)
- {
- 	return (plane->type == DRM_PLANE_TYPE_PRIMARY) ? 0 :
- 	       (plane->type == DRM_PLANE_TYPE_OVERLAY) ? 1 : 255;
- }
+diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
+index f597ef04c5bc..b1cd5e5865a0 100644
+--- a/drivers/gpu/drm/drm_panic.c
++++ b/drivers/gpu/drm/drm_panic.c
+@@ -486,7 +486,7 @@ static int draw_panic_screen_user(struct drm_scanout_buffer *sb, u32 fg_color, u
+ 	struct drm_rect r_screen, r_logo, r_msg;
+ 	unsigned int msg_width, msg_height;
  
--static void
--nv50_wndw_reset(struct drm_plane *plane)
-+static struct drm_plane_state *nv50_wndw_create_state(struct drm_plane *plane)
- {
- 	struct nv50_wndw_atom *asyw;
+-	if (!font)
++	if (!font || font->width > sb->width || font->height > sb->height)
+ 		return -EINVAL;
  
--	if (WARN_ON(!(asyw = kzalloc_obj(*asyw))))
--		return;
-+	asyw = kzalloc_obj(*asyw);
-+	if (WARN_ON(!asyw))
-+		return ERR_PTR(-ENOMEM);
+ 	fg_color = drm_draw_color_from_xrgb8888(fg_color, sb->format->format);
+@@ -560,7 +560,7 @@ static int draw_panic_screen_kmsg(struct drm_scanout_buffer *sb, u32 fg_color, u
+ 	struct drm_panic_line line;
+ 	int yoffset;
  
--	if (plane->state)
--		plane->funcs->atomic_destroy_state(plane, plane->state);
-+	__drm_atomic_helper_plane_state_init(&asyw->state, plane);
+-	if (!font || font->width > sb->width)
++	if (!font || font->width > sb->width || font->height > sb->height)
+ 		return -EINVAL;
  
--	__drm_atomic_helper_plane_reset(plane, &asyw->state);
-+	return &asyw->state;
- }
- 
- static void
- nv50_wndw_destroy(struct drm_plane *plane)
- {
-@@ -835,11 +834,11 @@ static bool nv50_plane_format_mod_supported(struct drm_plane *plane,
- const struct drm_plane_funcs
- nv50_wndw = {
- 	.update_plane = drm_atomic_helper_update_plane,
- 	.disable_plane = drm_atomic_helper_disable_plane,
- 	.destroy = nv50_wndw_destroy,
--	.reset = nv50_wndw_reset,
-+	.atomic_create_state = nv50_wndw_create_state,
- 	.atomic_duplicate_state = nv50_wndw_atomic_duplicate_state,
- 	.atomic_destroy_state = nv50_wndw_atomic_destroy_state,
- 	.format_mod_supported = nv50_plane_format_mod_supported,
- };
- 
-
+ 	fg_color = drm_draw_color_from_xrgb8888(fg_color, sb->format->format);
 -- 
 2.55.0
 
