@@ -4,116 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE349C88E50
-	for <nouveau@archiver.kernel.org>; Fri, 11 Sep 2026 09:33:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79473C88E4D
+	for <nouveau@archiver.kernel.org>; Fri, 11 Sep 2026 12:46:07 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6702710E336;
-	Fri, 11 Sep 2026 09:33:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 401B310F5AB;
+	Fri, 11 Sep 2026 12:46:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=smail.nju.edu.cn header.i=@smail.nju.edu.cn header.b="Y2fuVcjz";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="0YT2oS46";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="5noCCjOB";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B256941E2B;
-	Fri, 11 Sep 2026 09:16:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 3220E41E47;
+	Fri, 11 Sep 2026 12:28:43 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789118178;
- b=I4fNOeVd3NjK5WihNy9gXjZBOBQ1pTDL8BmgSliZQlG/F/EnfkUUFrlTHaxjvy7VoAhSQ
- izh89auTRsSbcMixcoEWIcHUff+8YQ/ml85ng27HVbz2g+/vewlVL87hnIfZ3nZpZrwXq11
- iGBjm1Nmf+Hri8ub9Q1lkvKeIfWjdv4VQ3azwDXXOCpQ8V9VPHl7MGzZAtFGQH74KsajSWg
- HWCDn5UyEBXdwL9WVbq9VWOJy3EivD4ItuKZhTJwzkmzQMWIQM4gdftSfOTM8iD/2/ljIOA
- GhKfVWON4VDn45u5SxEaX0JIalh1nyiOYBZVVUjZWgENqztf3BlauV7pU5Bg==
+ s=20240201; t=1789129723;
+ b=mBdPvnt79aRXkB7jXjMHFXd9rZx2VeuGMpTFJPKrmaMBGLhNC3cpIbdMxapsT6iiYlVXn
+ lBomYkMkNiXeG5w1g0gKgyH5Z3Kqo6SrHOTOmXmHHuK0zp4mZSuBmdk2dNxF3wMarIpE6rK
+ vA1D8wu6cLGoiUjtDydoY8GFPB2EdgBKkXhOSUKbwYDzeF8JV9RV34qaGN8Yqs4JFqLCxYW
+ 0t4/oiZWk4Y/2QM0b+vjymkMroBKqJDRHXlUeUi63qW/YhDzNhuT82mfZ8wamNLeheaU2H6
+ bBkwowKTwS5etoYZSU8EEYlOntrXKYTU67sCpI47dg8qAZZ5NNVcM5PLCVBw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789118178; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1789129723; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=nl+3kTEA6kG+Ya0Qebsmh5RZwS1Ke2Bdvprd1eODfmg=;
- b=SKoUym/olWiJDeIE9epcN/nU/BkTxDr/0A/esYGPWAcuJgcZXBH/E68E02Q2kT9xpzd8u
- ynOEqUezukwBZk+Asz5WmtnhLpOlQ8TO+y2WJiJ9ZmABk+nzOiq4+POKTNZQlx91GI4O52q
- qRMe+TMi9A/cUMxyabeEyFtHo3z/ltOyiLdAr2eFI6HuA2Tmn27QlkFU5VCruFuCZBRIcUD
- y8Udjsqoq1KZGs9v5KTNRJEQktw4mtCmqdQ5rwWpj1j6HAFIkXYGQMutl3T1aziIclFFf7g
- S9SOKohOu9rIWFw22meoiwlxtBH1Qxi6+pds9JWNSJAd+QXTdblZASwVmLkg==
+ bh=tzsC2VzdToDvjyu2bKo4kXLJkrMvANfsE4sUyvOrhy8=;
+ b=N4YEmVp7mpXddsKZcFzh/bnkSKJNVWPqrk/Yska8isFxfG50m9s0hGpWJIuSYnjSff0Ch
+ KG4t89by+IJR4o4prbIkGss6+ropQaoSE5hut33FqvqsvGHnP5PSmKPcSRA/6XifTdadKIi
+ 0Fw+3eCURJup3bg7r3n3lNtTgkVJrN/QBn4jOInyghvJXodJ7e8vXDUGRgJDqG05jwZpk5K
+ IU3X6p4HUb8uolh9bYSWQgp7oVMpvULBG2D0WbbxRqhHOKbsD8rlL/TUy5UBsrc0pswhKwf
+ kh/7z3Zy5RZmzNhY5o9WAs3nRXdwDgfc+j52X4p7AIy39Z22NMjJXMQMviDw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=smail.nju.edu.cn;
+ dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=smail.nju.edu.cn
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=smail.nju.edu.cn; arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=smail.nju.edu.cn
- policy.dmarc=reject
+  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E76FD40086
-	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 09:16:15 +0000 (UTC)
-Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A774D10E047
-	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 09:33:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smail.nju.edu.cn;
-	s=iohv2404; t=1789119215;
-	bh=nl+3kTEA6kG+Ya0Qebsmh5RZwS1Ke2Bdvprd1eODfmg=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=Y2fuVcjz1Vy81NYsvAbLPsvWLWm2BNDuxzjTugP2v2LDSvizsfuzr3YBv1TjG7yG3
-	 jq/lHWausqjiTGHao74YtPuLz60DDQwccYO0Me+lOraJOmA0wirSVuD1t/TARlf+D8
-	 3Nn6IS++yj50jAc0R+HH3a6/H8kFTKtDKIBO91S8=
-X-QQ-mid: esmtpgz12t1789118950ta17ba4e3
-X-QQ-Originating-IP: 74Cznb4R1YCb91v6oqvm5/Nsioh1HIbE26jAmimgBZA=
-Received: from hepeiyang-vm.wu.lxd ( [36.152.24.170])
-	by bizesmtp.qq.com (ESMTP) with
-	id ; Fri, 11 Sep 2026 17:29:09 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 8586802869201418434
-EX-QQ-RecipientCnt: 9
-From: Peiyang He <peiyang_he@smail.nju.edu.cn>
-To: lyude@redhat.com,
-	dakr@kernel.org,
-	dri-devel@lists.freedesktop.org,
-	nouveau@lists.freedesktop.org
-Subject: [PATCH] drm/nouveau: fix memory leak in r535_gr_promote_ctx
-Date: Fri, 11 Sep 2026 17:28:51 +0800
-Message-ID: 
- <DFACFA54B3906F4E+20260911092851.1201981-1-peiyang_he@smail.nju.edu.cn>
-X-Mailer: git-send-email 2.43.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9D00641DB6
+	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 12:28:40 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4939E10F5AA
+	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 12:46:04 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 9908D1F79D;
+	Fri, 11 Sep 2026 12:45:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1789130746;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=tzsC2VzdToDvjyu2bKo4kXLJkrMvANfsE4sUyvOrhy8=;
+	b=0YT2oS467GDz5Jb+FNn42kMHKgOv8Os+MTeed95wwhwmprlCL0grm5Ze4oi4tGk3S5YutP
+	99+RwGo3JJq50EzEBXFD/XWuMrT6bHQU17q3r0LzJS9aHxDqP2mCQ01vts9po0Xb+WSYx7
+	SjLLTtgANg5BUx+Iwb/4nLveg2RZJLw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1789130746;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=tzsC2VzdToDvjyu2bKo4kXLJkrMvANfsE4sUyvOrhy8=;
+	b=5noCCjOByuvOQLxXAMnWcFFwzL91l8msT3tuk55VUOqYc6+kVx9JFbAeIOK+xjspayPRMR
+	bjuHvzX9/Pq6q0Dg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id E8A6C136ED;
+	Fri, 11 Sep 2026 12:45:45 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id 0F1yN/n3o2r8EQAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Fri, 11 Sep 2026 12:45:45 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jfalempe@redhat.com,
+	javierm@redhat.com,
+	airlied@gmail.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	geert@linux-m68k.org,
+	rdunlap@infradead.org
+Subject: [PATCH v5 01/14] drm/panic: Do not use un-escaped URL as format
+ string
+Date: Fri, 11 Sep 2026 14:43:54 +0200
+Message-ID: <20260911124540.279841-2-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260911124540.279841-1-tzimmermann@suse.de>
+References: <20260911124540.279841-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:smail.nju.edu.cn:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: OKhYnE1LzMsBFJThBdom6MSL09/zZx+fUTFPK7C0Kk4pBozE8BMIOhJc
-	mGKcDWVIvQ4YNZD6P25hWWzECf8xafn0stCUGIlb6rZLRvSvAScwOvbFRONrYVw0KliegIR
-	lpOpBqNkJFpnywid4PN5Xx4OosUTpORgK16vYl56ABhEIY5swVnwIJIBY7CG8YWAm2/taDH
-	1AEJTdORNDWHVszEezcCzvjDgUEnkY7aVrk9UW58J4YcxUBTvPlZL1ORDCHQzIaH49qpMSx
-	dnJSk411pT5ov+iGGw2a2TvER0zWO5cKIgDgGfOi6wqQIkR1Pq4mJjTPg7WH7s/+n3K+QOx
-	5iZi+IDVxObf39sxxPuSm9xdT3TFOVn/Pp4U5+pQHry7riFCSSDAadvwoGxgSpaA8sY1KO9
-	WQX497ie5sI90BcKKH8L7kdQoU3y5Qwhr9891TE9tAZ899mIkldzfp3ZWCGh1RXGoapGOPI
-	D82yea/SFHpWFIaTxJpon/HqJ9EGiGqCCEeuwoBJ3W64qAy4JJeiudgRCdgKCD6x0tJo59Q
-	4/wJu08Ip+IJwfpQRQtglgA/e9v5NGAmKh1L+bj98jfSaCAMf4d/UbRK35yfo1FmTX3Kiy4
-	rq+6ojeRMuM2foIpdwN6hBitLIDQvsYfqO3QXnDuV2/rS4+g0i3NtzJw8HzTdIM1TnJfHOY
-	WTEiXENv0A9PupS36GGgJGOqVPm21TKse9VoOVHxDIHxAt6v5LPIOtUJp2n7XJDhua+RXSK
-	/zFFf2FcFZAB6sI9w0sTMucSqQbTAN1eyXPY/aR56jsjYba5qhxmE5/U3fYArzOclBpAHJm
-	33KUf6RC3GIe2NExnX0wlGgl1KVqP5WQJK4sXBpQxRT1cet8zcZK52OW2BQlUTtRGM2HDmC
-	iEyroqxhShqPU29O3xZNdjzJdcB4oL8B1elUZO/zPuwEvO2B8OAhnxPAJmnaCAo12kMKfPG
-	UfzBm26LIV180yMI3gAdlPlvP3TQ96oTKFcyqqDhcjfvycHQquaGw+kmOiSikJjSRTL3WLO
-	qNy4usfG2a71pyiwLqVC68Up14klx7HlX3+hSeC0845gDmVgl3
-X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
-X-QQ-RECHKSPAM: 0
-Message-ID-Hash: 3ADGHEWVLU6TCXNITWZZ4IXQOAWPR2SK
-X-Message-ID-Hash: 3ADGHEWVLU6TCXNITWZZ4IXQOAWPR2SK
-X-MailFrom: peiyang_he@smail.nju.edu.cn
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Rspamd-Queue-Id: 9908D1F79D
+X-Rspamd-Pre-Result: action=no action;
+	module=replies;
+	Message is reply to one we originated
+X-Rspamd-Action: no action
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-4.00 / 50.00];
+	REPLY(-4.00)[];
+	R_RATELIMIT(0.00)[to_ip_from(RLo585esf9b7txaosbn5shab9z)]
+Message-ID-Hash: YWSOETCKFIU5EGF4XJYILXZDRAZVU2RS
+X-Message-ID-Hash: YWSOETCKFIU5EGF4XJYILXZDRAZVU2RS
+X-MailFrom: tzimmermann@suse.de
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: linux-kernel@vger.kernel.org, stable@vger.kernel.org, bskeggs@redhat.com,
- airlied@redhat.com, Peiyang He <peiyang_he@smail.nju.edu.cn>
+ loop; banned-address
+CC: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
+ sashiko-reviews@lists.linux.dev, stable@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3ADGHEWVLU6TCXNITWZZ4IXQOAWPR2SK/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YWSOETCKFIU5EGF4XJYILXZDRAZVU2RS/>
 Archived-At: 
- <https://lore.freedesktop.org/DFACFA54B3906F4E+20260911092851.1201981-1-peiyang_he@smail.nju.edu.cn/>
+ <https://lore.freedesktop.org/20260911124540.279841-2-tzimmermann@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -123,196 +144,38 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-r535_gr_promote_ctx() gets the GPU_PROMOTE_CTX RM control RPC before it
-allocates and maps the context buffers. If nvkm_memory_new(),
-nvkm_vmm_get_locked(), or nvkm_memory_map() fails, the function returns
-without submitting the RPC and leaks the request allocation. The leaked
-allocation is a 4KiB GSP message queue element. This leak can be reliably
-triggered by a non-root user with access to the nouveau device node,
-and repeated leak can lead to a local denial of service.
+Replace the direct use of DRM_PANIC_SCREEN_QR_CODE_URL in snprintf()
+with a %s conversion specifier. Avoids a possible vulnerabilty from
+a crafted URL string.
 
-Found when fuzzing the nouveau driver with a modified Syzkaller:
+As the attacker needs to control the kernel at the Kconfig level, the
+potential for an exploit is likely low.
 
-	BUG: memory leak
-	unreferenced object 0xffff888019cb8000 (size 4096):
-	comm "syz.6.42", pid 2747, jiffies 4294720158
-	hex dump (first 32 bytes):
-		00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-		00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	backtrace (crc 43f743b8):
-		kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
-		slab_post_alloc_hook mm/slub.c:4597 [inline]
-		slab_alloc_node mm/slub.c:4917 [inline]
-		__do_kmalloc_node mm/slub.c:5333 [inline]
-		__kvmalloc_node_noprof+0x62c/0x9e0 mm/slub.c:6905
-		r535_gsp_cmdq_get drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c:426 [inline]
-		r535_gsp_rpc_get+0x3e/0x230 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c:617
-		nvkm_gsp_rpc_get drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h:281 [inline]
-		r535_gsp_rpc_rm_ctrl_get+0x138/0x490 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/ctrl.c:75
-		nvkm_gsp_rm_ctrl_get drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h:323 [inline]
-		r535_gr_promote_ctx+0x1c5/0x1700 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c:68
-		r535_gr_chan_new+0x140/0x1c0 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c:159
-		nvkm_gr_cclass_new+0x99/0xd0 drivers/gpu/drm/nouveau/nvkm/engine/gr/base.c:117
-		nvkm_cgrp_ectx_get+0x48a/0x860 drivers/gpu/drm/nouveau/nvkm/engine/fifo/cgrp.c:82
-		nvkm_cgrp_vctx_get+0x252/0xd00 drivers/gpu/drm/nouveau/nvkm/engine/fifo/cgrp.c:136
-		nvkm_chan_cctx_get+0x2ae/0xb70 drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c:112
-		nvkm_uchan_object_new+0x285/0x840 drivers/gpu/drm/nouveau/nvkm/engine/fifo/uchan.c:177
-		nvkm_ioctl_new+0x378/0x930 drivers/gpu/drm/nouveau/nvkm/core/ioctl.c:132
-		nvkm_ioctl_path drivers/gpu/drm/nouveau/nvkm/core/ioctl.c:278 [inline]
-		nvkm_ioctl+0x286/0x9b0 drivers/gpu/drm/nouveau/nvkm/core/ioctl.c:300
-		nvif_object_ioctl drivers/gpu/drm/nouveau/nvif/object.c:46 [inline]
-		nvif_object_ctor+0x3cc/0x5c0 drivers/gpu/drm/nouveau/nvif/object.c:269
-		nouveau_abi16_ioctl_grobj_alloc+0x43f/0x9d0 drivers/gpu/drm/nouveau/nouveau_abi16.c:635
-		drm_ioctl_kernel+0x192/0x350 drivers/gpu/drm/drm_ioctl.c:817
-		drm_ioctl+0x4f8/0xb40 drivers/gpu/drm/drm_ioctl.c:914
-
-Fix by splitting the original loop in r535_gr_promote_ctx() in two.
-The first loop performs all fallible allocation and mapping work.
-After the first loop succeeds, allocate the control RPC.
-Then use the second loop to fill the promote entries and submit the RPC.
-
-Cc: stable@vger.kernel.org
-Fixes: 361c3cd8ae12 ("drm/nouveau/gr/r535: initial support")
-Signed-off-by: Peiyang He <peiyang_he@smail.nju.edu.cn>
-Assisted-by: Codex:gpt-5.5
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Jocelyn Falempe <jfalempe@redhat.com>
+Fixes: cb5164ac43d0 ("drm/panic: Add a QR code panic screen")
+Cc: Javier Martinez Canillas <javierm@redhat.com>
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v6.12+
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c | 54 +++++++++++++---------
- 1 file changed, 33 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/drm_panic.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
-index 034db286d285..8b3474733311 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
-@@ -47,97 +47,109 @@ r535_gr_chan_dtor(struct nvkm_object *object)
- 		nvkm_memory_unref(&grc->mem[i]);
- 	}
+diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
+index e576c4791861..ba21df4be338 100644
+--- a/drivers/gpu/drm/drm_panic.c
++++ b/drivers/gpu/drm/drm_panic.c
+@@ -658,7 +658,8 @@ static int drm_panic_get_qr_code_url(u8 **qr_image)
+ 	char *kmsg;
+ 	int max_qr_data_size, url_len;
  
- 	nvkm_vmm_unref(&grc->vmm);
- 	return grc;
- }
+-	url_len = snprintf(url, sizeof(url), CONFIG_DRM_PANIC_SCREEN_QR_CODE_URL "?a=%s&v=%s&z=",
++	url_len = snprintf(url, sizeof(url), "%s?a=%s&v=%s&z=",
++			   CONFIG_DRM_PANIC_SCREEN_QR_CODE_URL,
+ 			   utsname()->machine, utsname()->release);
  
- static const struct nvkm_object_func
- r535_gr_chan = {
- 	.dtor = r535_gr_chan_dtor,
- };
- 
- int
- r535_gr_promote_ctx(struct r535_gr *gr, bool golden, struct nvkm_vmm *vmm,
- 		    struct nvkm_memory **pmem, struct nvkm_vma **pvma,
- 		    struct nvkm_gsp_object *chan)
- {
- 	struct nvkm_subdev *subdev = &gr->base.engine.subdev;
- 	struct nvkm_device *device = subdev->device;
- 	NV2080_CTRL_GPU_PROMOTE_CTX_PARAMS *ctrl;
-+	int ret;
- 
--	ctrl = nvkm_gsp_rm_ctrl_get(&vmm->rm.device.subdevice,
--				    NV2080_CTRL_CMD_GPU_PROMOTE_CTX, sizeof(*ctrl));
--	if (WARN_ON(IS_ERR(ctrl)))
--		return PTR_ERR(ctrl);
--
--	ctrl->engineType = 1;
--	ctrl->hChanClient = vmm->rm.client.object.handle;
--	ctrl->hObject = chan->handle;
--
-+	/* Allocate and map all context buffers before getting the control RPC. */
- 	for (int i = 0; i < gr->ctxbuf_nr; i++) {
--		NV2080_CTRL_GPU_PROMOTE_CTX_BUFFER_ENTRY *entry =
--			&ctrl->promoteEntry[ctrl->entryCount];
- 		const bool alloc = golden || !gr->ctxbuf[i].global;
--		int ret;
--
--		entry->bufferId = gr->ctxbuf[i].bufferId;
--		entry->bInitialize = gr->ctxbuf[i].init && alloc;
-+		const bool nonmapped = alloc && gr->ctxbuf[i].bufferId ==
-+			NV2080_CTRL_GPU_PROMOTE_CTX_BUFFER_ID_PRIV_ACCESS_MAP;
- 
- 		if (alloc) {
- 			ret = nvkm_memory_new(device, gr->ctxbuf[i].init ?
- 					      NVKM_MEM_TARGET_INST : NVKM_MEM_TARGET_INST_SR_LOST,
- 					      gr->ctxbuf[i].size, 1 << gr->ctxbuf[i].page,
- 					      gr->ctxbuf[i].init, &pmem[i]);
- 			if (WARN_ON(ret))
- 				return ret;
--
--			if (gr->ctxbuf[i].bufferId ==
--					NV2080_CTRL_GPU_PROMOTE_CTX_BUFFER_ID_PRIV_ACCESS_MAP)
--				entry->bNonmapped = 1;
- 		} else {
- 			if (gr->ctxbuf[i].bufferId ==
- 				NV2080_CTRL_GPU_PROMOTE_CTX_BUFFER_ID_UNRESTRICTED_PRIV_ACCESS_MAP)
- 				continue;
- 
- 			pmem[i] = nvkm_memory_ref(gr->ctxbuf_mem[i]);
- 		}
- 
--		if (!entry->bNonmapped) {
-+		if (!nonmapped) {
- 			struct gf100_vmm_map_v0 args = {
- 				.priv = 1,
- 				.ro   = gr->ctxbuf[i].ro,
- 			};
- 
- 			mutex_lock(&vmm->mutex.vmm);
- 			ret = nvkm_vmm_get_locked(vmm, false, true, false, 0, gr->ctxbuf[i].align,
- 						  nvkm_memory_size(pmem[i]), &pvma[i]);
- 			mutex_unlock(&vmm->mutex.vmm);
- 			if (ret)
- 				return ret;
- 
- 			ret = nvkm_memory_map(pmem[i], 0, vmm, pvma[i], &args, sizeof(args));
- 			if (ret)
- 				return ret;
-+		}
-+	}
- 
-+	ctrl = nvkm_gsp_rm_ctrl_get(&vmm->rm.device.subdevice,
-+				    NV2080_CTRL_CMD_GPU_PROMOTE_CTX, sizeof(*ctrl));
-+	if (WARN_ON(IS_ERR(ctrl)))
-+		return PTR_ERR(ctrl);
-+
-+	ctrl->engineType = 1;
-+	ctrl->hChanClient = vmm->rm.client.object.handle;
-+	ctrl->hObject = chan->handle;
-+
-+	for (int i = 0; i < gr->ctxbuf_nr; i++) {
-+		NV2080_CTRL_GPU_PROMOTE_CTX_BUFFER_ENTRY *entry =
-+			&ctrl->promoteEntry[ctrl->entryCount];
-+		const bool alloc = golden || !gr->ctxbuf[i].global;
-+
-+		if (!alloc && gr->ctxbuf[i].bufferId ==
-+			NV2080_CTRL_GPU_PROMOTE_CTX_BUFFER_ID_UNRESTRICTED_PRIV_ACCESS_MAP)
-+			continue;
-+
-+		entry->bufferId = gr->ctxbuf[i].bufferId;
-+		entry->bInitialize = gr->ctxbuf[i].init && alloc;
-+
-+		if (alloc && gr->ctxbuf[i].bufferId ==
-+				NV2080_CTRL_GPU_PROMOTE_CTX_BUFFER_ID_PRIV_ACCESS_MAP)
-+			entry->bNonmapped = 1;
-+
-+		if (!entry->bNonmapped)
- 			entry->gpuVirtAddr = pvma[i]->addr;
--		}
- 
- 		if (entry->bInitialize) {
- 			entry->gpuPhysAddr = nvkm_memory_addr(pmem[i]);
- 			entry->size = gr->ctxbuf[i].size;
- 			entry->physAttr = 4;
- 		}
- 
- 		nvkm_debug(subdev,
- 			   "promote %02d: pa %016llx/%08x sz %016llx va %016llx init:%d nm:%d\n",
- 			   entry->bufferId, entry->gpuPhysAddr, entry->physAttr, entry->size,
- 			   entry->gpuVirtAddr, entry->bInitialize, entry->bNonmapped);
- 
- 		ctrl->entryCount++;
- 	}
- 
- 	return nvkm_gsp_rm_ctrl_wr(&vmm->rm.device.subdevice, ctrl);
- }
- 
- int
- r535_gr_chan_new(struct nvkm_gr *base, struct nvkm_chan *chan, const struct nvkm_oclass *oclass,
+ 	max_qr_data_size = drm_panic_qr_max_data_size(panic_qr_version, url_len);
 -- 
-2.43.0
+2.55.0
+
