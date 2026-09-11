@@ -4,98 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF799C61DFD
-	for <nouveau@archiver.kernel.org>; Wed,  2 Sep 2026 05:05:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A346C88E4C
+	for <nouveau@archiver.kernel.org>; Fri, 11 Sep 2026 08:26:33 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 895D310ED0D;
-	Wed,  2 Sep 2026 05:05:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2C2D310E387;
+	Fri, 11 Sep 2026 08:26:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DZnp7Cb+";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=arm.com header.i=@arm.com header.b="dUNzDW/o";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4998447DFF;
-	Wed,  2 Sep 2026 04:48:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 89DE540106;
+	Fri, 11 Sep 2026 08:09:09 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1788324536;
- b=x+OqmAAUfkuDRwJKsDLT5SZh2KTwuXBMQTkqd821ln6Jc/QXRqh5CkirR3z9IBWAOtpGA
- 4wZqfAvY4E9KatHT7VxnE0EcFt2on93U8LodGIEtxwQGZ8W6CdVPYhFkrPKkF/zp+eRgA6d
- EiJAjDr/upisXXuDBASZKrYwUZej6qqGHUDHSfqRUu40I8FLO7+Ef2kCEzc5wlsbH+AEpyu
- dkf3gtaiNM2aIfxryUod7sWxGlrAmeBenoPs0VvTis8Ni4al5SqVmHT/kodxMs27vjVMnY6
- w6gg67rYrqVws5uLvEpNsSqud0Ym0Il1+q+QdqQokDPVY85jKLtxx7yEiYAw==
+ s=20240201; t=1789114149;
+ b=bOk2qRZpHWxHaozqriQuqn59PaVnS6BdsAcGIv+BC22HC1J/2ltb5TchCiK370f2zRTDz
+ 6YWtGOCSWo041zRPVcqvRyRo1zRB5V2Vjkks4BLPR97Y1LksgzSbbNxEqsyYOWmoiwXvgnf
+ FeWQTdHAGCrOJSYrtp0/0HF1YX3vZza3vvg6bMqGictIUWyS+hnXlBhHQn/kZ/D7aF6vywZ
+ pG1z7AA4L0isg6ClNXL9yn9E/xP2fL63nOpSqaQbF8lpynOsaXdAgO2lmItId6nkyHPYHlU
+ gZtHRfoEfuF4skz5V/WbTI+vSADz6GFZAJqBKzW+Eha8nUDx5LZ5HmR5IkIQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1788324536; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1789114149; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ItPrb8m+8Z75krTp11hhE6Jc3K1gPkj7qQ/v5ze/0As=;
- b=jXa4jJdFW2dKT1/NLRBfl8FXWZPzYwnF+d0DsdIVG+joYDSZUJdL+TDMovauhRt2bya3H
- IhmalqEqiF9+y53eIzrGR9mH09Ax5s5YiJhiv4gedpuDq+KenhurQK8vtkwwIHOhJpojozW
- lqT7yqxYgXgGp0Epq7naEmh19NLxqNg+TQMsQVHSyomwZV2evm5OjFwupL+vfEkvNYDiL7b
- 2uEU1xshOQcJAvPFf60lm0AwtAAVSQYE1EKMb+oLByhZ/RuMDxzjhGfjVPpALaE1CfPGCLb
- a/xUdmZ3T/RJAEwPcDyGEU/fdACBOJrpm2ls79kV9DwrOh2h2xTVdeTUZKDg==
+ bh=aJhDJKc9RhifU3n4P1nGqlePMPCOS8CsZN4corcuHao=;
+ b=dwqRJ4QpSaQeu0QQ35w3Nv4+yzEj4QXd1hbct7naVGMFcxsmTp4EyOV70m+2Q9A8DnE49
+ sv7ic/vCirr/Xj6DU9gCRnSmO9kRY9LK15ZfxINqUo4nUxNo6ZUQJBXArZ0YPMlIemJdXsu
+ o+xhRoxXX+1k/Z9Zioto2Kr02ukb2hPGJ9CBLrCUcMAUaoRx6SZ+X2gF9fS1FzU3Y69GwuS
+ 06mpkP8rbMzZqsNTRaEgArPyNYGecRdKaj+cTvQgto3JfZee2wzuc71UzVHe5RZpmbIYXxz
+ DlLwamFPql/KLtrebnAK5H5jzLmgzgn3mAjGZQng6Cx6/xRx50y6azemKg5w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=arm.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+  dmarc=pass (Used From Domain Record) header.from=arm.com policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=arm.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=arm.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B07B547DC7
-	for <nouveau@lists.freedesktop.org>; Wed,  2 Sep 2026 04:48:49 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2C71D10E308;
-	Tue,  1 Sep 2026 20:29:11 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id AF5F243C53;
-	Tue,  1 Sep 2026 20:29:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A38511F000E9;
-	Tue,  1 Sep 2026 20:29:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788294550;
-	bh=ItPrb8m+8Z75krTp11hhE6Jc3K1gPkj7qQ/v5ze/0As=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=DZnp7Cb+mm1iS1vX2nH9QUjMDPPWrpfvCDM3ZbIQC0REkHUwO/19ZK5AmjML+IWpA
-	 sKqY07WnE394O1OfphCqtORuUbXwLb1uSRZ7RGkt/tLK7xUVF2RzclQJ99giNkREDm
-	 4mhoUSXOagxpB2o4CVe7zQzSXOusS8oIK/ojra3VAJgjKxERGjNIyQetisv51ta8GB
-	 ZPFslsUeOKlJxzG69AgC/6gRtaiuh1UNpT+9n5JJy50orhQ1hVOfXTGvvqyS9Ieq7N
-	 v/RgsOiFoBRCTI3pySCePHxaIGUTNRYklb+HPOK8lwSDG38p1e3rL8Xo1fIylumCMn
-	 8wEhPCCu0JyaA==
-From: Danilo Krummrich <dakr@kernel.org>
-To: Aaron Kling <webgeek1234@gmail.com>
-Subject: Re: [PATCH v2] drm/nouveau: Use write-combined maps for coherent
-Date: Tue,  1 Sep 2026 22:29:00 +0200
-Message-ID: <20260901202900.6808-1-dakr@kernel.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260821-tegra-coherent-wc-v2-1-2b1ddb67bf18@gmail.com>
-References: <20260821-tegra-coherent-wc-v2-1-2b1ddb67bf18@gmail.com>
-X-Patch-Reply: applied
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1CED840029
+	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 08:09:05 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FDAD10F56B
+	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 08:21:18 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E7F2B288E
+	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 01:21:13 -0700 (PDT)
+Received: from [192.168.0.1] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 723583F7B4
+	for <nouveau@lists.freedesktop.org>; Fri, 11 Sep 2026 01:21:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1789114877; bh=zJtaryYqa/C9k3EO/Gny1L1VYdmh/q+o7VrPEjvE2I0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dUNzDW/oEXtcjJldlNXUYGHbLdIGUv61k/hCpI2hagXGCx4YC9RTUjMSMFD6BzwSY
+	 TtAvS1zlcJrDzWxWI7HhHgTnpYh96giagVFiW74yauQAbBjfPZWrz/YP2H7S6Wg2YR
+	 1r9QDOR7wsKwWtvgDP5qklQ0eUpFVaKZibgAmbMI=
+Date: Fri, 11 Sep 2026 09:20:56 +0100
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Zhenhao Wan <whi4ed0g@gmail.com>
+Subject: Re: [PATCH v2 1/2] drm/panthor: Treat a zero-length VM_BIND op as a
+ no-op
+Message-ID: <aqO56GMt4i3bXqk6@e142607>
+References: <20260902-drm-gpuvm-zerorange-v2-v2-0-da63269c6ec4@gmail.com>
+ <20260902-drm-gpuvm-zerorange-v2-v2-1-da63269c6ec4@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: XNRMM2KF5XXOJTLQCSUHNWLMNNE2ZI5V
-X-Message-ID-Hash: XNRMM2KF5XXOJTLQCSUHNWLMNNE2ZI5V
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+In-Reply-To: <20260902-drm-gpuvm-zerorange-v2-v2-1-da63269c6ec4@gmail.com>
+Message-ID-Hash: KOSVWCCET3WLFKVATQ5GIEZMYYI6K2AC
+X-Message-ID-Hash: KOSVWCCET3WLFKVATQ5GIEZMYYI6K2AC
+X-MailFrom: liviu.dudau@arm.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Danilo Krummrich <dakr@kernel.org>,
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Faith Ekstrand <faith.ekstrand@collabora.com>
+ Grant Likely <grant.likely@linaro.org>, Heiko Stuebner <heiko@sntech.de>,
+ Danilo Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Alice Ryhl <aliceryhl@google.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>, Yuhao Jiang <danisjiang@gmail.com>,
+ stable@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XNRMM2KF5XXOJTLQCSUHNWLMNNE2ZI5V/>
-Archived-At: 
- <https://lore.freedesktop.org/20260901202900.6808-1-dakr@kernel.org/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KOSVWCCET3WLFKVATQ5GIEZMYYI6K2AC/>
+Archived-At: <https://lore.freedesktop.org/aqO56GMt4i3bXqk6@e142607/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -105,18 +107,72 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri, 21 Aug 2026 23:42:59 -0500, Aaron Kling wrote:
-> [PATCH v2] drm/nouveau: Use write-combined maps for coherent
+On Wed, Sep 02, 2026 at 08:28:42PM +0800, Zhenhao Wan wrote:
+> panthor_vm_bind_exec_sync_op() short-circuits a zero-length operation: it
+> returns 0 immediately when op->size is 0. The asynchronous VM_BIND path
+> has no equivalent guard.
+> 
+> An async MAP or UNMAP with size == 0 is not rejected: only alignment is
+> checked in panthor_vm_bind_prepare_op_ctx() and IS_ALIGNED(0) is true, so
+> the op is queued and panthor_vm_exec_op() calls drm_gpuvm_sm_map() /
+> drm_gpuvm_sm_unmap() with a zero range. A zero-length map into unmapped
+> space then reaches drm_gpuva_insert(), where the GPUVA interval-tree last
+> key addr + range - 1 underflows to addr - 1 and a malformed node whose end
+> lies below its start can be inserted, corrupting the augmented interval
+> tree.
+> 
+> Mirror the synchronous path and treat a zero-length map or unmap as a no-op
+> in panthor_vm_exec_op(), before any lock is taken or the GPUVA tree is
+> touched. This also keeps the async path robust if the core drm_gpuvm range
+> validation is tightened to reject a zero range, which would otherwise make
+> panthor_vm_bind_run_job() flag the VM unusable on the resulting -EINVAL.
+> 
+> Fixes: 647810ec2476 ("drm/panthor: Add the MMU/VM logical block")
+> Reported-by: Yuhao Jiang <danisjiang@gmail.com>
+> Assisted-by: Claude:claude-opus-5
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Zhenhao Wan <whi4ed0g@gmail.com>
 
-Applied, thanks!
+Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
 
-  Branch: drm-misc-fixes
-  Tree:   https://gitlab.freedesktop.org/drm/misc/kernel.git
+Best regards,
+Liviu
 
-[1/1] drm/nouveau: Use write-combined maps for coherent
-      commit: 774b73428e6e
+> ---
+>  drivers/gpu/drm/panthor/panthor_mmu.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/panthor/panthor_mmu.c
+> index e592a8ebb478..93542f59cb5e 100644
+> --- a/drivers/gpu/drm/panthor/panthor_mmu.c
+> +++ b/drivers/gpu/drm/panthor/panthor_mmu.c
+> @@ -2591,6 +2591,15 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct panthor_vm_op_ctx *op,
+>  	if (op_type == DRM_PANTHOR_VM_BIND_OP_TYPE_SYNC_ONLY)
+>  		return 0;
+>  
+> +	/*
+> +	 * A zero-length map or unmap is a no-op. The synchronous bind path
+> +	 * already short-circuits it in panthor_vm_bind_exec_sync_op(); mirror
+> +	 * that here so an asynchronous zero-length op does not fail and flag the
+> +	 * VM as unusable.
+> +	 */
+> +	if (!op->va.range)
+> +		return 0;
+> +
+>  	mutex_lock(&vm->op_lock);
+>  	vm->op_ctx = op;
+>  
+> 
+> -- 
+> 2.34.1
+> 
 
-The patch will appear in the next linux-next integration (typically within 24
-hours on weekdays).
-
-The patch is queued up for Linus's tree and should land in the next -rc release.
+-- 
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
