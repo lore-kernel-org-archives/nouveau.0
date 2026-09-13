@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5894EC88E65
-	for <nouveau@archiver.kernel.org>; Sun, 13 Sep 2026 13:21:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C00DC88E72
+	for <nouveau@archiver.kernel.org>; Mon, 14 Sep 2026 14:07:25 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3178710E8FE;
-	Sun, 13 Sep 2026 13:21:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1E0A210EEDC;
+	Mon, 14 Sep 2026 14:07:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aDgmG2KJ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c7nnbJyl";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B0A6647D99;
-	Sun, 13 Sep 2026 13:03:38 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4609D48050;
+	Mon, 14 Sep 2026 13:49:54 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789304618;
- b=z6TGsdOnaPPJfNGns5UHrCz+w94x9gQW3isYRAvOm4G2h769VLcRos/quDBw8Cz5ePfe7
- Av4xJwg2DyAjos2mqOxIqCf2gGecSHHby7xvcS6v/Ip0ngqx8YtNgfWJJbtaBzWqi71to7e
- RJWomozKrbxokvHkeTP0+HcU9O8xnaPVmCNd/NVpy7Y6Ge2phsKwbH4UvUl64cgyc4f5aCG
- GqiIjl5v7fzIV6oGxCmwJ8Y8Ed9JcHmDQzRHMVZar/bAuh9o/QJE3PpN9EeHuZI7w3XNp9n
- cZYQ8FjDic9JwkvEL+DMgBtNtOuyf0J5ZWtGvVf9cmLXLFQQXUifYWhbgQWg==
+ s=20240201; t=1789393794;
+ b=WzQzQQXin0SUEhR35MKDxgEuhxJu3OFpm7jJnTLaiSFbGaRhq75toXiKBdULFos120W+1
+ eorgjHl+iLeIifatzJrf5qmyMenEbCWnqFxq0GGbCutsFnBLGTBUKYnXilfiyyIFkJPQzYR
+ qa4tkSgXA52FRTCsCMI83hb5+O2efrXEJ0a3+qUyM96FJ4yeOal+tiScHCmsL6tMpK7mgut
+ +XXFDBzlwZ1sUxzbmAS1hPz2Vk2yY0QLkmiIcFRjEedLrA7Sv5QylfBrPGpPHu5WmbJvXKJ
+ XY2zKrr1mxS7O/liRlD+5ycDsHLm2+BGL65PaadjGmzfEhM8MlCWwCIPTjTA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789304618; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1789393794; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=HhWhTVqsOkpUdCAWPzbi+pVqLfh+oq55gUD464xfMJg=;
- b=mHoa7S91K1y8ttHGr69tK6X61n07mu2yRfsUdsY3yMsZ8nq9+H4PmLFGhZTj3JZOmBPfV
- Rnco3MqpZzYO/g7VpLZT5XLQoOhofLJYuqrLyKwsK6jh64RNQoxJcziJRK8sGpqisp9cLT1
- Ee0k+pDNBRym+ca1z/hkquc3/f/zuJBTcuZ4o4CuWaZZkgx6w1RzSlHQ/bI2xWdG6y1sKnG
- amvyuaNovFuiOCS/f3+S24m1u3xnNTnAXhDQcoWWPUUKu8/6zCy8xuioxfFxzgvxFbC1iTp
- Sf/35qr/yfeZTTQpYxFQaqIFvBUh++jutdHCXpZH4ltWLeu94toG1NhLukFA==
+ bh=Pa8OFY4TTfkGf1f2ba0w2jmPlViOEeXI2aNAgx40u2c=;
+ b=JlC3HXO2PnHGoswG9DiSmm2SNz1zgm6nCbIPeiaX4GO6qiLqjuE0Hb0mXBgteyicbhsCj
+ u2MciAS8Ff1g7WRa5PwTGSDVOdd+ZCI358qugSbA+ChIWGyHI4QLpHt6sSyfngIM1huIwZe
+ 45/FT5jihRFbvWqFJ8ymRcdGsjXLd+PCIhcwJEBc4LLWt6Amoo4dAdzcBlFN9Bni2RewKH1
+ l1bJwMXD+Zl2dxeUfwS3m9pGNG3CQMZ/i3yrVvNSMcLlsMYub7Ch/MOr6oQOtD+QDUrSYlR
+ kadU8ZGdCUfGjaUrG5lbHmO8noYp97oNvEYaEDLjo0ex0LiwRkJcLuWtl8Sw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,93 +46,84 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9F22840794
-	for <nouveau@lists.freedesktop.org>; Sat, 12 Sep 2026 21:27:25 +0000 (UTC)
-Received: from mail-oa1-f67.google.com (mail-oa1-f67.google.com
- [209.85.160.67])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7B2AD10E4E7
-	for <nouveau@lists.freedesktop.org>; Sat, 12 Sep 2026 21:44:52 +0000 (UTC)
-Received: by mail-oa1-f67.google.com with SMTP id
- 586e51a60fabf-46ac530b9ebso1602508fac.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id DCDE646F1F
+	for <nouveau@lists.freedesktop.org>; Sun, 13 Sep 2026 19:55:38 +0000 (UTC)
+Received: from mail-lf2-f12.google.com (mail-lf2-f12.google.com
+ [74.125.229.204])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D10B710E471
+	for <nouveau@lists.freedesktop.org>; Sun, 13 Sep 2026 20:13:07 +0000 (UTC)
+Received: by mail-lf2-f12.google.com with SMTP id
+ 2adb3069b0e04-5b5e4f1744fso1779197e87.2
         for <nouveau@lists.freedesktop.org>;
- Sat, 12 Sep 2026 14:44:52 -0700 (PDT)
+ Sun, 13 Sep 2026 13:13:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789249491; x=1789854291;
+        d=gmail.com; s=20251104; t=1789330386; x=1789935186;
  darn=lists.freedesktop.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=HhWhTVqsOkpUdCAWPzbi+pVqLfh+oq55gUD464xfMJg=;
-        b=aDgmG2KJgQJPny+eUB7SAixSHYBcVZYRNf9EAB6fiCpFSQSogGkFKG6pMt2F+ABlZc
-         281oCas7SmDStyb6jOPzfArMgUK7DEGoAYJFtVCKLTPsPZPlwnkYGcK7/8z6Be43mz/R
-         MCaSFVLQkT31E4p70fztAhtz4Jbvl6bZnBQ25lKhoWiZSAcV4C1bMhByrRtTd/Cc3Dg/
-         xaebXUPIx6ErKqg0p+4uzG3JHAAF+/S8XVloSuF2Gu66NbiwZeY6Bu7hiPvDmLxuCWX+
-         rz3bp97F5VM1TW+c8ED+/YTNcsScaExZK+Cqmlr2XJqUsUFLNajrH/skBrLYBK6TE/kb
-         MqNA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Pa8OFY4TTfkGf1f2ba0w2jmPlViOEeXI2aNAgx40u2c=;
+        b=c7nnbJyl65ZllrxYXqtn3LAv7f3ID0ibIfE0JoHMm5BaGuJTDoOYobM4g+8nCed+f5
+         D7HTf1Kq7f/GRlDZcnm1FNxisHtYc3kUSAbir1ibKhZbrRp4i3QoF0eUF/VZ3oWqqDEi
+         PYq8I7g+4tcJGcO/nMEsnJ7ZXJfj9tKhm0110bZ7cnavZdMf6w2q3PFddd9JLKgiVPKw
+         BxDJmRT4KLu2PVGUgnQJBOCXfFu761UeSV9ioTelCQU+G7+sYT1bR7ZHq5a885iE+dUJ
+         h4LjbmHvbatkmMbYVU0xG6IrUbjAD2Bl4qQ5iAtFokOB9X7RRBxlzpzYa5omHo/9mWNv
+         8ObA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1789249491; x=1789854291;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20251104; t=1789330386; x=1789935186;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=HhWhTVqsOkpUdCAWPzbi+pVqLfh+oq55gUD464xfMJg=;
-        b=sKyfoytC0AZ61V5Dr/pYyhhWXEmvqPu5aGPJT/gItDP/GEWiQG8vPYedGpLEZgp4N7
-         6J2MPmbmQl588MM1XRrrLSdshAhXoeWYVTkWv4+O7iSv4O5oliRxhi6jCqBm+4aAqIMd
-         zaiLmmQBwFGrTvXXSaJbirUP4L/pIMEBOaQc86q7R1EhANR9lICwksDRVfFno/3BNu3r
-         wqANKGiWzjMAbzz0xUJFIXWXS8J1sBAZPm10b5mpaXo9Y+l8UYQaV4xic4rLeysOegov
-         xgwz5rQRl/1XVa7lk/QkQ4TP9RKUYdqJvQ4kkmJsDeFDadbuddH19d1e/hnVg9PzBop2
-         wDnw==
-X-Forwarded-Encrypted: i=1;
- AKwUvBzhNx533rb5MARAf0KN6WV5hzC2Jy074p+TnIwvjQSQDUOvR6jaDMAzcDwAzcIRroSlmmf5w3uj@lists.freedesktop.org
-X-Gm-Message-State: AFuF++klsLw8tqGwq0ToRBC4f99AIXc5WNK5ZLnp8cfUY3DYx36IzGIl
-	7HZNa5jepUQRauwEjeVG8Y12YWnT7jPAHt5Yr3lxrmuZKrjOrsf2rYqVwxbssqMWvEw=
-X-Gm-Gg: AYBFou2eo0KA6/lznGiATnqxHbvv1KmUZzqyvwAZdSqSVlxIAotWJF7E4sVzPNWXI4O
-	Rs/fOd6pn/KF12BYnr+cVr0Z/I0cwAHupDlkNONcvyKtsw1amAqQ438CPRvtDXyA67feLXwv6+T
-	9x8v18JE77yRkNdJZZ3ihuA6tcivOL2o+yCPscoetliK/yob/RD4QIQpZHYx3bECuOvYDyd9WTX
-	nVhSgSrhg92l8soXXFNsA/KEYdgDuiYdldSCPQWHrvjaWCPRXyRb1MVfrV8JAPgqJInnpjJE2Eo
-	jVdx2pLOZLbLPUUDzNx+PWWfJdfDWoR3Ax2bzlbhRaLP3mQB3L85sk/Q+sTZl2jTAujAQBhqUXG
-	H9f3ZKrpFAJrzmvUbXQ14y+GCQutm9Jh4Z938B4LUL2bDpH1KqxzPIhebfy5osZzm+1TG6f+rky
-	JtqskxOe28OmowkQqzRxA+YU8msb4nROJGbSSRZMfCGMT3a2ANuJb7+G/VC9Lf7VfNI+relndXR
-	tFAS7AdiqaTUfyp6DO9jRo8Cg0=
-X-Received: by 2002:a05:6870:e89:b0:469:fb8a:b5b0 with SMTP id
- 586e51a60fabf-47c978e0ae3mr8164063fac.9.1789249491570;
-        Sat, 12 Sep 2026 14:44:51 -0700 (PDT)
-Received: from ?IPV6:2600:8804:5716:d800::c389? ([2600:8804:5716:d800::c389])
+        bh=Pa8OFY4TTfkGf1f2ba0w2jmPlViOEeXI2aNAgx40u2c=;
+        b=ruh2pcUfSHHwyD9/oH+nmEXA2brX+Jp9FW9R5jpqPmKTJq1V2prjHljn+zM1gR18pj
+         QsxXx6mzElyxCKbpDeyjB25ah8MU6r8hK0jhk0d4jh5NuHq1SH2j9MaAoYSgt7PaSyN0
+         j8uK65xgtdLVVP2jRJpAsndGVjX54XI2PAwFDXStSmua9tKPrs2h1vQdaTsH/SZIiis3
+         np6NQNwZz2BllZ4YI6uGd3fJ8dG/mQ/X8L9N5HE5SbuhL19NgPgMjFKarX3cSzO4PJul
+         4WqtwMTxX7oLJoulGKsBcnT6xwUotnkzZv3o774kU4SlCZ0506db1HcBuAtxYDpYR3dq
+         DXyw==
+X-Gm-Message-State: AFuF++kpr8wvkmSTDmp5+BKAavuW3rvkF/4oPc92NUvkduAaAzfP4DVc
+	BzFnA9Nz31wOD0CGZk2GNafy62akJVPXwXIA5x82u0asqgOebh15McpG
+X-Gm-Gg: AYBFou1jmUoGAkXXexuqlwcfhf4r4IRP6nQKGv1dB62KuaHNzGlJjNszqKdUrF0Ywv3
+	YLSoOvJ/XqTZeKpcoRjSx6HqYC2WjYJIT6R1EdssLF/IL6pNJX9hG+dDM1UMUq3Dy2GPXkmBAtz
+	tcs0si7jSg09J5gz2eEetdBKgSff/41/YhwKqY8t5rVZtgg9DFMSMfZnK3g7EcfuRcVP6aqv8Dv
+	r48GpzAc6RoSmybrJrV58ujbnD3FgD7CYAcTm6weGNUPKHoUXQc4HnGfPS/wsBOdDgkn0wCI18h
+	P1f2MNGGGMBQXlZ64wWjsS7seGHAy7EUdWZlG/nFkL/DB9FBFyJKMiByetfxzzdf6JflGKXjnWx
+	3f27cxtZNLVFcZFJL5i9LOhzDl5Gka4+U4kXunsqwuw86qcy890JtV70VAGLzh4I6ofmOiBhDS0
+	NauA5otvRvNlCAOyLkVgtz6HkzZeA4wsggkp3qgTNHqWpisqPj7DD5gB27TOm4RbPejVY65lb7e
+	hxF41d51YHL6Ke3X95b5fVHzCjxG8mKs8g5PCgk04Oa
+X-Received: by 2002:a05:6512:3e15:b0:5b6:183c:5ca2 with SMTP id
+ 2adb3069b0e04-5b8a8f0064bmr1551667e87.64.1789330385733;
+        Sun, 13 Sep 2026 13:13:05 -0700 (PDT)
+Received: from tallipc.shacknet.nu (91-157-240-22.elisa-laajakaista.fi.
+ [91.157.240.22])
         by smtp.gmail.com with ESMTPSA id
- 586e51a60fabf-47df42b4699sm6246514fac.0.2026.09.12.14.44.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Sep 2026 14:44:50 -0700 (PDT)
-Message-ID: <688b15d1-a85b-492e-ba1e-b4da548ebd06@gmail.com>
-Date: Sat, 12 Sep 2026 16:44:48 -0500
+ 2adb3069b0e04-5b8a03a85cesm2003345e87.1.2026.09.13.13.13.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Sep 2026 13:13:05 -0700 (PDT)
+From: Risto Pajula <or.pajula@gmail.com>
+To: Lyude Paul <lyude@redhat.com>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH 0/2] drm/nouveau: fix GK107 VDPAU regressions
+Date: Sun, 13 Sep 2026 23:12:23 +0300
+Message-ID: <20260913201225.5975-1-or.pajula@gmail.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] pci: Add broken-GPE quirk for Lenovo Legion 16APH8 and
- 16AHP9 Nvidia GPUs
-To: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org
-References: <20260821200607.621341-1-lyude@redhat.com>
-Content-Language: en-US
-From: Ryan Brue <ryanbrue.dev@gmail.com>
-In-Reply-To: <20260821200607.621341-1-lyude@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MailFrom: ryanbrue.dev@gmail.com
+Content-Transfer-Encoding: 8bit
+X-MailFrom: or.pajula@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: VVDRS5OY7YAGBRP2XKQHKULV3R3CF7GK
-X-Message-ID-Hash: VVDRS5OY7YAGBRP2XKQHKULV3R3CF7GK
-X-Mailman-Approved-At: Sun, 13 Sep 2026 13:03:36 +0000
-CC: Mark Pearson <mpearson-lenovo@squebb.ca>, stable@vger.kernel.org
+Message-ID-Hash: KUGTFNMFXDKWYCX4ZIWDOQV6DF7F45TY
+X-Message-ID-Hash: KUGTFNMFXDKWYCX4ZIWDOQV6DF7F45TY
+X-Mailman-Approved-At: Mon, 14 Sep 2026 13:49:52 +0000
+CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Risto Pajula <or.pajula@gmail.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VVDRS5OY7YAGBRP2XKQHKULV3R3CF7GK/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KUGTFNMFXDKWYCX4ZIWDOQV6DF7F45TY/>
 Archived-At: 
- <https://lore.freedesktop.org/688b15d1-a85b-492e-ba1e-b4da548ebd06@gmail.com/>
+ <https://lore.freedesktop.org/20260913201225.5975-1-or.pajula@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -142,52 +133,49 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 8/21/26 3:04 PM, Lyude Paul wrote:
-> On the Lenovo Legion Slim 5 16APH8 and 16AHP9, the firmware appears to enjoy
-> firing a GPE on the parent PCIe port of the nvidia GPU very shortly after the
-> GPU enters D3Cold. This means that every time the GPU is runtime suspended,
-> ACPI firmware immediately wakes up its parent PCIe port, which then wakes up
-> the GPU. Once it falls asleep again, the cycle repeats.
->
-> See: https://github.com/NVIDIA/open-gpu-kernel-modules/issues/905
->
-> Note, this bug doesn't require Nvidia's driver. It happens on nouveau and
-> nova as well, and it even seems possible for this to happen without any
-> driver loaded.
->
-> This seems to simply be a bug. Luckily, there is nothing that we actually
-> need ACPI wakeup events for on the GPU. Events such as display connector
-> hotplug events in D3Cold come through as ACPI_VIDEO events which aren't
-> affected by this quirk.
->
-> Reported-by: Ryan Brue <ryanbrue.dev@gmail.com>
-> Co-authored-by: Ryan Brue <ryanbrue.dev@gmail.com>
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: stable@vger.kernel.org
-> Fixes: https://github.com/NVIDIA/open-gpu-kernel-modules/issues/905
->
-> ---
-> V2:
-> * Don't forget to actually use parent_adev with acpi_remove_pm_notifier()
-> * Check if parent_adev is NULL (could happen if booted with acpi=off), just
->    consider it a no-op if it is.
-> * Base the patch off Linux master instead, I based it off drm-misc-next by
->    mistake because I'm too used to working on DRM drivers :).
->
->   drivers/pci/quirks.c | 79 ++++++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 79 insertions(+)
-FWIW, this has been tested by me, with positive results, on my Lenovo 
-Legion Slim 5 16APH8. Not sure if this warrants a Tested-by trailer 
-since I'm a co-author, but just in case.
+Hi,
 
-In the thread [1], we have had another user report positive results on 
-their 16AHP9 (note that Lenovo seems to have switched the P and the H 
-around for the laptop one generation up for some reason). Said user 
-tested on both OpenRM and nouveau on top of kernel 7.1.10.
+This series fixes two independent Nouveau regressions affecting VDPAU
+hardware video decoding on NVIDIA GK107 (Kepler).
 
-This means we have tested 16APH8 on nouveau, and 16AHP9 on both OpenRM 
-and nouveau.
+Patch 1 fixes engine context mappings for the legacy MSVLD, MSPDEC and
+MSPPP video engines. Since commit 8ab849d6dd4c
+("drm/nouveau/fifo: add new engine context handling"), privileged engine
+context mappings cause FIFO PRIV_VIOLATION faults and kill the channel
+during VDPAU decoding on GK107.
 
-[1] 
-https://github.com/NVIDIA/open-gpu-kernel-modules/issues/905#issuecomment-5444071160 
+Patch 2 fixes a fence/progress hang introduced by commit 55e1a5996085
+("drm/nouveau/fifo/ga100-: add per-runlist nonstall intr handling").
+Legacy FIFO implementations use a single global nonstall event at
+index 0, while channel event registration was changed to use runl->id
+unconditionally. This can leave fence completion waiting for an event
+that is never signalled.
+
+
+Tested on NVIDIA GK107 with a Linux 7.3-rc2 based drm-misc tree,
+Mesa 25.0.7 and mpv using VDPAU_DRIVER=nouveau and vdpau-copy.
+
+With both patches applied:
+
+  H.264 1920x1080:        PASS
+  MPEG-2 1920x1080:      PASS
+  VC-1 Advanced Profile: PASS
+
+All three tests completed using VDPAU hardware decoding. No Nouveau
+faults were reported in dmesg.
+
+
+Thanks,
+Risto
+
+Risto Pajula (2):
+  drm/nouveau/fifo/gk104: fix legacy video engine context mappings
+  drm/nouveau/fifo: use global nonstall event on legacy FIFO
+
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c | 14 ++++++++++++++
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/uchan.c |  3 ++-
+ 2 files changed, 16 insertions(+), 1 deletion(-)
+
+-- 
+2.47.3
 
