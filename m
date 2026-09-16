@@ -4,93 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C0B8C88E7F
-	for <nouveau@archiver.kernel.org>; Wed, 16 Sep 2026 18:10:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D35E3C982C9
+	for <nouveau@archiver.kernel.org>; Wed, 16 Sep 2026 21:13:11 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 69F7F10ED3E;
-	Wed, 16 Sep 2026 18:10:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3EE7E10E2D3;
+	Wed, 16 Sep 2026 21:13:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="LW0nbeam";
+	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CEBE048106;
-	Wed, 16 Sep 2026 17:52:57 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 531F84812F;
+	Wed, 16 Sep 2026 20:55:35 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789581177;
- b=lkZD5DiuRGsH2cKCMGEtZ82VMzFXWfAxEDg3hUXpSZrunkJt5TtQ6MUHY7sjwKaSXRTqM
- 6WAgAlc6y8FfabKpt3FmJf7ai8tgh96oVmn6lWrw/nwYizp0UWwgUgpX9/Ai96WDnCIeEyP
- EAfDrqsySuUb8ln8BY9GgacGv94BTu/uKczrj/WS3nObWV4j5OTlvtJkiApKKsK6xqXLM9j
- 5uvwoMmazJx+JmMrX9majXgfv3amsQ54D3c736++us5DlTM6s0aswM8jepD9q/EEZ+IUOTC
- GTpofKG5oqDI9v/mPs+xXzhTvZtRXWeQkkT+lYWxffUOZfLM+VsPU3ddbdyQ==
+ s=20240201; t=1789592135;
+ b=vFKY7F3IcveOB13O8+dcNTif9y696CgPHgGFNe0bv4sfLwkRox3Uc7D8RmyazkEKDU848
+ 7M+bgdKOCmYsfqiMmLqVgVnuy9wUw0DvO6Ezu8eSMz8PcwOZurtdEMYwh5EnUBcVuI+Bc4G
+ 2GdzojFeZaVrvL115mAXZgrD/IovWq/YD0o1PeOlKF8N4ggObwClyFqmYaVuO0L0cQtpp83
+ cAQrgI37RMMRKipdUv2Fcd9Pw7bewghU023NM79GLbitvtbyYuItlD+rs+y0liTtIZLaz5a
+ c4JAPIHSyeS7mWZsTApaJaoD8JvdZkZUPyr4IDTULoHh/Sppfvf1XHBzd5gQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789581177; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1789592135; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=v9kOhDroVQb5w6d5XlgV/Bry2JCViNrWumkW/bvPL00=;
- b=h49CTJmzbwAkXO4ykxCpvpO9kVlLIa4lsfcRQQ4ohMK8XgYd8LxjWa9Q/HZR6ALMdjYWp
- le1XUrBo1RMA8yQfHVlbNppqsO1RDxYBF7PZOi5EkDdwMU7Z/urOsZzFF5gyceprm0BT5b/
- 5GCQ0ZXo4olfdEzIeeRWPkxbQAIk6H1e8TVKaOTgFp9KzSHfpGSkT16lX4bFpFjLyB2EN8S
- fKf28KZQSj0EsDPpWYw2jTMnY4aZ2zvYt7Uz62vfNkK4+1auVVCJdUswFIOVnqiksyPMGHj
- E+oFr6sJ+TjmI/YxSZNVjG2i9bvUEbCyqE2kXnN4a8U4nuAV4y4E5k/U9mgQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
+ bh=g2VZBiIhAndeip+NGRI8TveTvXF5sUhhIo3CK7DVi2o=;
+ b=ZgIL5lD5qL/N0L/aW55KWhtzqpmT/zwwrs3fibNUiPWYqwAVry2wKb7BV02Y/oGQ4sSDv
+ 6PBwCU83HvZdo6dd+UAjC+2SvLXI0B29AQ0DCTzOaGnfYC+UZZuRlVoB9plPHxhwkCRxEJu
+ +RJKrbl2GmGTqbeZ1Orr3s/+689Zgo3p2+INXdEZeMqJipscYXDFCiJxuCEZ5zeuz21+NQQ
+ J4uHSUcPLIdIsQVIgv+Nim9PituGLGRGyKdgf+HzB0TGJ950MKnT9+3PtLMCbpSQxzRThXo
+ UbcrkY8Hlr+NWTVcy40SyXrtN12vRVQT0YOxCDPwAIquWod0Az2QJ1qIbIHg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
-  dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=fail;
- arc=none (Message is not ARC signed); dmarc=none
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 782F648102
-	for <nouveau@lists.freedesktop.org>; Wed, 16 Sep 2026 17:52:54 +0000 (UTC)
-Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6C5D510ED31
-	for <nouveau@lists.freedesktop.org>; Wed, 16 Sep 2026 18:10:29 +0000 (UTC)
-Received: from dfae2b116770.home.arpa (unknown [36.110.52.2])
-	by APP-05 (Coremail) with SMTP id zQCowACXAz622apqvB1vCA--.23380S2;
-	Thu, 17 Sep 2026 02:02:30 +0800 (CST)
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: airlied@gmail.com
-Subject: [PATCH] drm/nouveau: Fix gem reference leak in validate_init()
-Date: Wed, 16 Sep 2026 18:02:02 +0000
-Message-Id: <20260916180202.2090231-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.34.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id D3823480F5
+	for <nouveau@lists.freedesktop.org>; Wed, 16 Sep 2026 20:55:32 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6A78010E110
+	for <nouveau@lists.freedesktop.org>; Wed, 16 Sep 2026 21:13:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1789593187;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=g2VZBiIhAndeip+NGRI8TveTvXF5sUhhIo3CK7DVi2o=;
+	b=LW0nbeamPdOxokyADdfJDKjjmLcKLgZV3xZSJMzZINNPevJRDkMPFw5gyw3a+Q7yzo4v4w
+	sAsM916K6rw2Ne1VfB5+JHeWBndiMEx0RGDoeHvBxUGNZvYj2jPu3cLoAjFJDOfeAnf2h6
+	5R0O4aVIOV8Mr4jp7lIRxSaTZaXD7B8=
+Received: from mail-ua1-f72.google.com (mail-ua1-f72.google.com
+ [209.85.222.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-465-3pwEc-dwNlq9aV7ED1vPCQ-1; Wed, 16 Sep 2026 17:13:04 -0400
+X-MC-Unique: 3pwEc-dwNlq9aV7ED1vPCQ-1
+X-Mimecast-MFC-AGG-ID: 3pwEc-dwNlq9aV7ED1vPCQ_1789593184
+Received: by mail-ua1-f72.google.com with SMTP id
+ a1e0cc1a2514c-980c3b71002so106840241.3
+        for <nouveau@lists.freedesktop.org>;
+ Wed, 16 Sep 2026 14:13:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789593184; x=1790197984;
+        h=mime-version:user-agent:content-transfer-encoding:content-type
+         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=g2VZBiIhAndeip+NGRI8TveTvXF5sUhhIo3CK7DVi2o=;
+        b=DEFAfRb8Mm2QYH2p6hBqdE9jILJXcHZbzUp2qGHaGgzvEMZ1CNAYMytSErdFjZHgtB
+         Uw3wCQA5lBdJpyTPaOdyN+zW2+b7C6JTNaaHNW5d/JLA0zcBQhEJzYL76g1anX/xxZKP
+         uAKqNLvTG9x2Jhq0ekIjMO8/7pu33r6o1kHIBTTvN7cJwUOg4pls9RwpZJOQ28gl/E0P
+         +CHkSlPli5+QHfYtGzPF91ByAznxEEvf75sYu2vFfV31nmzaJOmniOfanDWH0wOy9uxm
+         /FhY4szZHrWG2r3qKW9NFNHlEMdGyI1QPrcxjlRUjyEylYp10de0+rtOn+eGPJngfxdp
+         0zsA==
+X-Forwarded-Encrypted: i=1;
+ AKwUvByOCB26SXW+QtlNAEnHNEAPV1fl2TEIQlaylIrbXPu9ryewbZOwuZ5HHC3eNA2FeLGiDnLFe3XF@lists.freedesktop.org
+X-Gm-Message-State: AFuF++mzWOcjWs+stBFcHxlmdXvRCx4SvE3lG5fyG9U6y4Iv359IHAu6
+	Q/Ls/7gmhhZA3O60YLmZqCVi8PqFj6sMGtBk/9KUvIyUGamLuaTwor01huc6NULa6m+SAgvxWUW
+	B8/LA3+dSlnvcRhj+7etdlqYbzFDlseDamVynJtUEX/odG4TKnfRLGc3hKtxU8/D8dPk=
+X-Gm-Gg: AYBFou2vZHUDdUGP9ZJy5HCKBUotYzMwTZh7QkirC/swanCbowSWbm14t1Oi69gABbs
+	mn0EK8n4yIjHHcs86N4SAArcajsYHk5H3zWZR7MGf8j5NVA2H/rNRZ9tj46fhlAEujMsKTrWDRm
+	LOybenkGfq/Bg3t7BIPIA5842Ng3umDzipnbQse2M7pMfoHIe1OceCTC71vwG8lTGmjI60/QEUT
+	IGItaNE1w6Ly947N+7Dtsmlr2aLL3iFtD5wK3p+hfF3BmEvmRr0iLYtC4BHbZ85Ro6yuwyBmlpS
+	6eXJRsdDcsq67UqIxdNuq0g2TaY4tZ5K//3+y0jAC9wBW48DhuTUjhtniGCKVaypVcVRBvlL
+X-Received: by 2002:a05:6102:1628:b0:79b:f57e:ea17 with SMTP id
+ ada2fe7eead31-7a201fa284dmr272256137.3.1789593183913;
+        Wed, 16 Sep 2026 14:13:03 -0700 (PDT)
+X-Received: by 2002:a05:6102:1628:b0:79b:f57e:ea17 with SMTP id
+ ada2fe7eead31-7a201fa284dmr272241137.3.1789593183541;
+        Wed, 16 Sep 2026 14:13:03 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93])
+        by smtp.gmail.com with ESMTPSA id
+ ada2fe7eead31-7a1e384dc10sm1123769137.11.2026.09.16.14.13.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Sep 2026 14:13:02 -0700 (PDT)
+Message-ID: <b143ac7a1a911146f3569b934a8da54734610728.camel@redhat.com>
+Subject: Re: [PATCH v3 1/5] drm/nouveau/gsp/r535: Add support for
+ INTERNAL_GCX_ENTRY_PREREQUISITE
+From: lyude@redhat.com
+To: David Airlie <airlied@redhat.com>
+Date: Wed, 16 Sep 2026 17:13:01 -0400
+In-Reply-To: 
+ <CAMwc25rP6u9=0PxN_OpYUs33cNqoiYYEFpwN4FKPQyHvNb+=Cg@mail.gmail.com>
+References: <20260916001603.22394-1-lyude@redhat.com>
+	 <20260916001603.22394-2-lyude@redhat.com>
+	 <CAMwc25rP6u9=0PxN_OpYUs33cNqoiYYEFpwN4FKPQyHvNb+=Cg@mail.gmail.com>
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: zQCowACXAz622apqvB1vCA--.23380S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Ar17Kw4rGFyfuFy3Gr1DGFg_yoW8Gr4rpr
-	ZFkF1jyrWUGw4xKr4xtF1DA3Wakan2gry8GF9ay34agr4fAr1UXrW5Cw1YvrWayF4fC3ya
-	qrnrtasFqryYyaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9v14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxV
-	WxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2Wl
-	Yx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC6x0Yz7
-	v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF
-	7I0E8cxan2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026x
-	CaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_
-	JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r
-	1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr1UMIIF0xvE42xK8VAvwI8IcIk0
-	rVWUJVWUCwCI42IY6I8E87Iv67AKxVWxJVW8Jr1lIxAIcVC2z280aVCY1x0267AKxVWxJr
-	0_GcJvcSsGvfC2KfnxnUUI43ZEXa7VU1VHq7UUUUU==
-X-Originating-IP: [36.110.52.2]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBgUMA2qqok97cAAAsq
-Message-ID-Hash: GIR36F3JYV7HMYPE5HB57ZNTXLH3TAWE
-X-Message-ID-Hash: GIR36F3JYV7HMYPE5HB57ZNTXLH3TAWE
-X-MailFrom: vulab@iscas.ac.cn
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: nLzzStlXr1Lg0KHKLXIMUZ1YwUhIPcybH_6Pg760j3E_1789593184
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: 55JKM6DTTAF75A6O7INFA5XCARC35WAH
+X-Message-ID-Hash: 55JKM6DTTAF75A6O7INFA5XCARC35WAH
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: bskeggs@redhat.com, dakr@kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, nouveau@lists.freedesktop.org, simona@ffwll.ch,
- Wentao Liang <vulab@iscas.ac.cn>, stable@vger.kernel.org
+ loop; banned-address
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org,
+ Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Kees Cook <kees@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Maxime Ripard <mripard@kernel.org>, Hongling Zeng <zenghongling@kylinos.cn>,
+ Danilo Krummrich <dakr@kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GIR36F3JYV7HMYPE5HB57ZNTXLH3TAWE/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/55JKM6DTTAF75A6O7INFA5XCARC35WAH/>
 Archived-At: 
- <https://lore.freedesktop.org/20260916180202.2090231-1-vulab@iscas.ac.cn/>
+ <https://lore.freedesktop.org/b143ac7a1a911146f3569b934a8da54734610728.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -100,39 +154,20 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On the ttm_bo_reserve() failure and "vma not found" error paths, the
-loop breaks without adding the looked-up object to any validate list,
-so the reference taken by drm_gem_object_lookup() is never released;
-validate_fini() only walks the spliced lists.  Drop the reference
-before breaking out on both paths.
 
-Fixes: 19ca10d82e33bcfe ("drm/nouveau/gem: lookup VMAs for buffers referenced by pushbuf ioctl")
-Cc: stable@vger.kernel.org
-Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
----
- drivers/gpu/drm/nouveau/nouveau_gem.c | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index 20dba02d6175..c2601b559947 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -513,6 +513,7 @@ validate_init(struct nouveau_channel *chan, struct drm_file *file_priv,
- 			if (unlikely(ret)) {
- 				if (ret != -ERESTARTSYS)
- 					NV_PRINTK(err, cli, "fail reserve\n");
-+				drm_gem_object_put(gem);
- 				break;
- 			}
- 		}
-@@ -522,6 +523,7 @@ validate_init(struct nouveau_channel *chan, struct drm_file *file_priv,
- 			struct nouveau_vma *vma = nouveau_vma_find(nvbo, vmm);
- 			if (!vma) {
- 				NV_PRINTK(err, cli, "vma not found!\n");
-+				drm_gem_object_put(gem);
- 				ret = -EINVAL;
- 				break;
- 			}
--- 
-2.34.1
+On Wed, 2026-09-16 at 10:42 +1000, David Airlie wrote:
+> > +typedef struct NV2080_CTRL_INTERNAL_GCX_ENTRY_PREREQUISITE_PARAMS
+> > {
+> > +=C2=A0=C2=A0=C2=A0 NvBool bIsGC6Satisfied;
+> > +=C2=A0=C2=A0=C2=A0 NvBool bIsGCOFFSatisfied;
+> > +} NV2080_CTRL_INTERNAL_GCX_ENTRY_PREREQUISITE_PARAMS;
+>=20
+> Have you confirmed this struct didn't change in r570,
+>=20
+> Thanks,
+
+It would appear I have made a mistake - this struct isn't even in r535,
+which I could have sworn I explicitly checked. Glad I double checked
+before responding, thanks for noticing this :)
 
