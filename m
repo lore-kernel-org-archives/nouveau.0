@@ -4,62 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B4C6C982C9
-	for <nouveau@archiver.kernel.org>; Wed, 16 Sep 2026 18:10:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C0B8C88E7F
+	for <nouveau@archiver.kernel.org>; Wed, 16 Sep 2026 18:10:33 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 22A8310ED34;
-	Wed, 16 Sep 2026 18:10:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 69F7F10ED3E;
+	Wed, 16 Sep 2026 18:10:33 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7E53E48105;
-	Wed, 16 Sep 2026 17:52:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id CEBE048106;
+	Wed, 16 Sep 2026 17:52:57 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789581176;
- b=VxaL5aYhATM58zXqzFUQcMG+UA9eL+i/AWkXvvhhktw9CJS+VQXpmpMEo3NVnSbRiPJHl
- SbY+dAsZZMWzBgcQVxIJRC+PN1PATNC+Ub4Q6i7a2J0Zch4uDmmcTkyGOdn0C+83rDAb1Ft
- BzlBCqzjM1dJ8k/3Lve8OJbOREA5zHViXNZwnpQ7fugl6mc/uP8Reo8qW1EypCqqaN6oCsb
- 9akZV86AO3L0FcC8tKmuxm2O6AB9sq7tH8CS9pPlcfuTjPnd179S4P6m9dzJQISvToqzhqn
- Rq8QVh33O+fU1OvMPwiG6kOM/gNGc+Y+Ic0v3Q6sZtNntEQNkhxKP1Jixnlg==
+ s=20240201; t=1789581177;
+ b=lkZD5DiuRGsH2cKCMGEtZ82VMzFXWfAxEDg3hUXpSZrunkJt5TtQ6MUHY7sjwKaSXRTqM
+ 6WAgAlc6y8FfabKpt3FmJf7ai8tgh96oVmn6lWrw/nwYizp0UWwgUgpX9/Ai96WDnCIeEyP
+ EAfDrqsySuUb8ln8BY9GgacGv94BTu/uKczrj/WS3nObWV4j5OTlvtJkiApKKsK6xqXLM9j
+ 5uvwoMmazJx+JmMrX9majXgfv3amsQ54D3c736++us5DlTM6s0aswM8jepD9q/EEZ+IUOTC
+ GTpofKG5oqDI9v/mPs+xXzhTvZtRXWeQkkT+lYWxffUOZfLM+VsPU3ddbdyQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789581176; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1789581177; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=6jsQ3xemWOzULHtv1ukYJenLc1PMNN6gxdHuLsUeHnI=;
- b=UmQImLjNSogS0403V6NjqrXnqDAHrEhJ4tDSpQmvDiWVbayoUHldAhu1Wkl5QbsudoLz8
- V66Djq/5+PYnhOAHRi6wFWeztCVqoWH3JtkDIiAprE5z4i863SO/FETOc7VCklZJaKAJmuL
- pgDPTxYyaKqkZ34GWbGpCRcbM5CgBd7ASD1RXmTEdR/g9A4Wio4fNTsJVt3+6oAWKVCcVKi
- NBpkuzrSSzGLx1pm6uLrj774VnrWOITkBJaEqKejO48O4FIs5ieJVdMeGMKa3rhPPfs1U6T
- Lt+Je05FIg+kz30IS909BKMQqHY64uLHLb29byESB3YFX4KTbCwlh5NGw7wQ==
+ bh=v9kOhDroVQb5w6d5XlgV/Bry2JCViNrWumkW/bvPL00=;
+ b=h49CTJmzbwAkXO4ykxCpvpO9kVlLIa4lsfcRQQ4ohMK8XgYd8LxjWa9Q/HZR6ALMdjYWp
+ le1XUrBo1RMA8yQfHVlbNppqsO1RDxYBF7PZOi5EkDdwMU7Z/urOsZzFF5gyceprm0BT5b/
+ 5GCQ0ZXo4olfdEzIeeRWPkxbQAIk6H1e8TVKaOTgFp9KzSHfpGSkT16lX4bFpFjLyB2EN8S
+ fKf28KZQSj0EsDPpWYw2jTMnY4aZ2zvYt7Uz62vfNkK4+1auVVCJdUswFIOVnqiksyPMGHj
+ E+oFr6sJ+TjmI/YxSZNVjG2i9bvUEbCyqE2kXnN4a8U4nuAV4y4E5k/U9mgQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
   dmarc=none
 Authentication-Results: mail.freedesktop.org; dkim=fail;
  arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 73506478BC
+	by kara.freedesktop.org (Postfix) with ESMTPS id 782F648102
 	for <nouveau@lists.freedesktop.org>; Wed, 16 Sep 2026 17:52:54 +0000 (UTC)
 Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6815110ED29
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6C5D510ED31
 	for <nouveau@lists.freedesktop.org>; Wed, 16 Sep 2026 18:10:29 +0000 (UTC)
 Received: from dfae2b116770.home.arpa (unknown [36.110.52.2])
-	by APP-05 (Coremail) with SMTP id zQCowAB3pkAa2qpqgSRvCA--.23709S2;
-	Thu, 17 Sep 2026 02:04:10 +0800 (CST)
+	by APP-05 (Coremail) with SMTP id zQCowACXAz622apqvB1vCA--.23380S2;
+	Thu, 17 Sep 2026 02:02:30 +0800 (CST)
 From: Wentao Liang <vulab@iscas.ac.cn>
 To: airlied@gmail.com
-Subject: [PATCH] drm/nouveau: Fix runtime PM leak in
- nouveau_connector_detect()
-Date: Wed, 16 Sep 2026 18:03:42 +0000
-Message-Id: <20260916180342.2090360-1-vulab@iscas.ac.cn>
+Subject: [PATCH] drm/nouveau: Fix gem reference leak in validate_init()
+Date: Wed, 16 Sep 2026 18:02:02 +0000
+Message-Id: <20260916180202.2090231-1-vulab@iscas.ac.cn>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: zQCowAB3pkAa2qpqgSRvCA--.23709S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7trykXr1UGw4kGF1DurW3Jrb_yoW8Jw1kpF
-	ZrKFWSyrWkJw4rK3WvyF18JFy3A3ykJFW5Gasaq34Uuw1rAr1Uuw48Aw1qqFyjyr95G3yY
-	y3ZFq39Iqa15C3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+X-CM-TRANSID: zQCowACXAz622apqvB1vCA--.23380S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Ar17Kw4rGFyfuFy3Gr1DGFg_yoW8Gr4rpr
+	ZFkF1jyrWUGw4xKr4xtF1DA3Wakan2gry8GF9ay34agr4fAr1UXrW5Cw1YvrWayF4fC3ya
+	qrnrtasFqryYyaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
 	9KBjDU0xBIdaVrnRJUUU9v14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
 	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
 	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
@@ -74,9 +73,9 @@ X-Coremail-Antispam: 1UD129KBjvJXoW7trykXr1UGw4kGF1DurW3Jrb_yoW8Jw1kpF
 	rVWUJVWUCwCI42IY6I8E87Iv67AKxVWxJVW8Jr1lIxAIcVC2z280aVCY1x0267AKxVWxJr
 	0_GcJvcSsGvfC2KfnxnUUI43ZEXa7VU1VHq7UUUUU==
 X-Originating-IP: [36.110.52.2]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCRUMA2qqozV6OgAAsF
-Message-ID-Hash: T7I5W4VKUWFQKRU75JU3EUE643LT75HR
-X-Message-ID-Hash: T7I5W4VKUWFQKRU75JU3EUE643LT75HR
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBgUMA2qqok97cAAAsq
+Message-ID-Hash: GIR36F3JYV7HMYPE5HB57ZNTXLH3TAWE
+X-Message-ID-Hash: GIR36F3JYV7HMYPE5HB57ZNTXLH3TAWE
 X-MailFrom: vulab@iscas.ac.cn
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -89,9 +88,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/T7I5W4VKUWFQKRU75JU3EUE643LT75HR/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GIR36F3JYV7HMYPE5HB57ZNTXLH3TAWE/>
 Archived-At: 
- <https://lore.freedesktop.org/20260916180342.2090360-1-vulab@iscas.ac.cn/>
+ <https://lore.freedesktop.org/20260916180202.2090231-1-vulab@iscas.ac.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -101,38 +100,39 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-If nvif_outp_edid_get() fails, nouveau_connector_detect() returns
-early without dropping the runtime PM reference taken at the start
-of the function, keeping the device powered on until the next
-successful detect.
+On the ttm_bo_reserve() failure and "vma not found" error paths, the
+loop breaks without adding the looked-up object to any validate list,
+so the reference taken by drm_gem_object_lookup() is never released;
+validate_fini() only walks the spliced lists.  Drop the reference
+before breaking out on both paths.
 
-Balance the reference on the error path like the other exit paths
-do.
-
-Fixes: 0cd7e0718139 ("drm/nouveau/disp: add output method to fetch edid")
+Fixes: 19ca10d82e33bcfe ("drm/nouveau/gem: lookup VMAs for buffers referenced by pushbuf ioctl")
 Cc: stable@vger.kernel.org
 Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
 ---
- drivers/gpu/drm/nouveau/nouveau_connector.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nouveau_gem.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index cc239492c7f0..4a750d4bf1f4 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -600,8 +600,11 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
- 				new_edid = drm_get_edid(connector, nv_encoder->i2c);
- 		} else {
- 			ret = nvif_outp_edid_get(&nv_encoder->outp, (u8 **)&new_edid);
--			if (ret < 0)
-+			if (ret < 0) {
-+				pm_runtime_mark_last_busy(dev->dev);
-+				pm_runtime_put_autosuspend(dev->dev);
- 				return connector_status_disconnected;
-+			}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 20dba02d6175..c2601b559947 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -513,6 +513,7 @@ validate_init(struct nouveau_channel *chan, struct drm_file *file_priv,
+ 			if (unlikely(ret)) {
+ 				if (ret != -ERESTARTSYS)
+ 					NV_PRINTK(err, cli, "fail reserve\n");
++				drm_gem_object_put(gem);
+ 				break;
+ 			}
  		}
- 
- 		nouveau_connector_set_edid(nv_connector, new_edid);
+@@ -522,6 +523,7 @@ validate_init(struct nouveau_channel *chan, struct drm_file *file_priv,
+ 			struct nouveau_vma *vma = nouveau_vma_find(nvbo, vmm);
+ 			if (!vma) {
+ 				NV_PRINTK(err, cli, "vma not found!\n");
++				drm_gem_object_put(gem);
+ 				ret = -EINVAL;
+ 				break;
+ 			}
 -- 
 2.34.1
 
