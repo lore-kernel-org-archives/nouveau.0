@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68019C982D2
-	for <nouveau@archiver.kernel.org>; Thu, 17 Sep 2026 21:20:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4D0BC982D2
+	for <nouveau@archiver.kernel.org>; Thu, 17 Sep 2026 21:36:08 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8F04910F08F;
-	Thu, 17 Sep 2026 21:20:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5A55510F115;
+	Thu, 17 Sep 2026 21:36:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="eVSQvUEr";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="B5U8CmOo";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7105348268;
-	Thu, 17 Sep 2026 21:03:20 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 32C3A4826B;
+	Thu, 17 Sep 2026 21:18:28 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789679000;
- b=D7BeeWsY5I9F05mk7d8A1h/1vH3+Y1kW0IW80gQ3g9L2/Gh8ImgRna+1Q8JsqyIoiQIp6
- 9H5bmQXu2T/Tb8fmyDfBR3JqDupv46519FVn2WPpZ031oK719b1kLPXeZ7tkj7QimdLJxlb
- J+yLqMj22ilUDuqILnL4M8o1WMBXq8xyh1D/MG5TEZisjZ3Yz04q4ABkWQM8LyM1k5l95+N
- iv1AutPCr7UflEPs5ygqwe1A0EzVv64ic66M2NcnvMBTt2u/5vvPx9bsJDynnpJYRnyWZ2c
- CNy01kdvPlzZdys78JejKEmHIWUszdbLGiPWNO9NnREHGpc5OB7sj+ahNFdA==
+ s=20240201; t=1789679908;
+ b=hfxNW1AQLRzZ3ftD6EMYyX7yKICnm+VZHHYaGa1lkxzlo/kA3hMr0xhXPmQhPPGmME5Ez
+ ohOdi6QdXRV5qKc3f1mJs9JZKoy7PBxx29cghf997TxjDvBzHct/ljK/OTMIs8qIqoy3lLY
+ 9abP/qVU2uCA2/OuY+owCynUsyeTYvQS0uHZnlJpHX46fjK1e1J5YabpbE8dpf+4rBkrvP6
+ MqyqBZ15tqMAHRxsjqQFcyAdkTaX2TmFwg8qDICwktxPWDWF4gPLcFLBPm+SfHty92b+Y9a
+ 142uScLrQdt+iFDpbEpY1wnRUq48QhXeYZtn5k6RW3gv80GPM9ZRF8tiKYeg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789679000; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1789679908; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=gs0ZA/ay3udSCcdGUTHlIySdt1oxO2eK9Nory3aiYPY=;
- b=HtBnb1JxaY4YxafEUt/ui0GjDfLrm/e/Zz3zwEEzqizcayChognIPXcCQM8z3fKww5VHU
- zG0v+xAxV02CcXbejF/uk4LPzKQzS2K/l5gtRAtFYut0iPB6zwD50opwi8145Ut84LAe31u
- QMdf6S7qVO9MVdAgF5z/ExAG2Ful3OnctAS471ysHagXt2qHUNE1DAAvCw2uTe9XdK3dFYp
- qWJjYVDktstqmlD77HojAbbhOdzl8c9QqAuzuiVYH1S2okcZ7wL/YalWU4jP9Ba2sUAhaAe
- 6bZQIvO4UPna8UzoZK0LhtuqRgJbn4/1ASgeWs+aPyfzhDZwDaOR/ikeap9A==
+ bh=I87HRKxUjbLtk6rWRYvy4vS0t0WCg7MM2j1+qGT2I8o=;
+ b=yuVr4Ox2hddhB0vecaZS9UCxxrs3MoTRMKbYGgi3gt/ac1LuGg6kStTzA8dJbX9BhISu7
+ XsRoYOpxEkfSutOF55+lSB5+Q2ru+SOBlkpJljr+REHFUkzt3hGG4PpZwg14gkdp39bBGgM
+ dqKDZ16+LJu2sdkL07YUsL071HQXKaLRcR0KnEG/kjIlR703q1SbqRklkAcgOoQxjszrMXy
+ 9l0DzJ3LfsnV791ov8UoHKUjWk2NVCT1qeV7PnQFEzD46rmUf5EFUvjVzOeYwqBTyhYZoCJ
+ u7nux5vv3N4kw8dFLhH7IuXOidbXnlGMVP2tuuHtEs30Q65XqDoj9lMXeH1w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,99 +46,98 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3B7F148233
-	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 21:03:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id E1194481EA
+	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 21:18:25 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0144D10ECCD
-	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 21:20:55 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A224210E045
+	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 21:36:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1789680055;
+	s=mimecast20190719; t=1789680962;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=gs0ZA/ay3udSCcdGUTHlIySdt1oxO2eK9Nory3aiYPY=;
-	b=eVSQvUErgXVVuYISqwKdv2qgIpWX0Ve5bkA8akidwA7u3K0SSyoYU/6GMuFUv6Av16mQPS
-	VmoSrMvpnFtWTejucBcvyvdHV5TBcGskS3e/O1XPZiRjfPJKBnmCQDmpdV/6n9lWtJzHSc
-	rGTlisMOZQ/7MiGnIbVmp50BbzLz7kk=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=I87HRKxUjbLtk6rWRYvy4vS0t0WCg7MM2j1+qGT2I8o=;
+	b=B5U8CmOoQduaUQfX3vgIdxVn0Fui0Q7hkAKlG3Lj6RNfYQXdu+Ah3NnEa5lk97sCAVIXuV
+	1I5OkuGd+MiSEcylmcNA+VMXUf8uOMks2C7/4km6jGIDTcZ74q6loL5YUknFSd/ICQQcr8
+	vlZ52yGUTxhRjPV1Kt7jWb2ZQjl+2rk=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-47-0iu961IeNZ-j0pW-Y59NAg-1; Thu, 17 Sep 2026 17:20:51 -0400
-X-MC-Unique: 0iu961IeNZ-j0pW-Y59NAg-1
-X-Mimecast-MFC-AGG-ID: 0iu961IeNZ-j0pW-Y59NAg_1789680050
-Received: by mail-qv1-f72.google.com with SMTP id
- 6a1803df08f44-9123be39eeaso2659926d6.2
+ us-mta-622-YILuZF5KMUqgsk9wgtM9Xg-1; Thu, 17 Sep 2026 17:36:01 -0400
+X-MC-Unique: YILuZF5KMUqgsk9wgtM9Xg-1
+X-Mimecast-MFC-AGG-ID: YILuZF5KMUqgsk9wgtM9Xg_1789680961
+Received: by mail-qv1-f70.google.com with SMTP id
+ 6a1803df08f44-91219341db7so2989416d6.1
         for <nouveau@lists.freedesktop.org>;
- Thu, 17 Sep 2026 14:20:51 -0700 (PDT)
+ Thu, 17 Sep 2026 14:36:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789680050; x=1790284850;
+        d=1e100.net; s=20260707; t=1789680961; x=1790285761;
         h=mime-version:user-agent:content-transfer-encoding:content-type
          :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=6VsOqYOO7JiWmEXlBhZj+zFUtxnW7W9uLbNfBZMlGXA=;
-        b=hDEYgx/eRI2dXTedljVklcFRgu+KTKNh/mJAweZZYa+RyeUN94wEdL54RNqLPti15l
-         y7JU3Vidalbt8+ZZ6uC9/GQQJOhLEwsrmks7Tj3jU5nRud8uq74B1T78q33Rzgy2iH6h
-         uAVtsRkW73NDGleJjrdb+BARuQAgiIx2BkewubWmV5jQuUR1syZncldGMoEJGe0INLSz
-         2frFbZ8s2Dt5/LWFSsZdO78M8cceBFjAsqBaruCFMwND2tSbJZyn5vxr7Bkd41mo/kxH
-         QlOlo4WU9LmELC47d7WHsuyZqG2/Rg+lyS8nS8COivorj2bQ8JAhTPwIQu3bBlX5khR5
-         Dh3A==
+        bh=GPQYwNrXtzx5wg61th1A6MtnGzGLpKWbnnt0jGgdHkE=;
+        b=WQN7XVhfxFrKF8ulOeuDlWqe66dBJX9CG+/r7/V94D3XT+dCqQsEEwrT3vYpASLiL+
+         BB8PJ4Bx3QUflP4QPh8xQ+Vxg1LG76M/rXiR/LoSQYDknWEvDc8vJyVnrZ0TiA3vdrl5
+         rmIXBKLGFakxeX15rOSiuSCxE6sqPuj8sAlGuQ9oiA4lC2otMk1yaFxnsKD45AnKwuAX
+         uPuLr0A3/0logGfxJf4l19Ey07o7Tv23HQnMsV/QR4Q5nWFTwzfFBljt3tZ+gGXJrnkw
+         xxcLTtJQJxebB/2Ts3M4KswMYCZ6Bt/BsQ14h+UR5wdf6jM+FyoD5CnCfZ680aqULo+h
+         FoqA==
 X-Forwarded-Encrypted: i=1;
- AKwUvBwTu1wyP9kbi0NLIR5OfMipWNHH9e2JLlV311GmshW1TU362RXA2Xentd5fS/IZU3PP1qYJrpOi@lists.freedesktop.org
-X-Gm-Message-State: AFuF++nhHqbDZbvQnFSRSaBeGWBYXe/hG6KO31vSGxsMhR8LlcDW15gn
-	FZI6iIM38e1Q0ahRMx1stR2WbCl/hQdbY5I7MZVNj+9JkBsEckgTI2CZLpSpIWHND/2HKax9pBM
-	R+Lbvm9U7iwY877hbvJRKDZ4w09ayCQntOpsLdUS4AIIrGpX/1DbGXTzUy6O7CfXCiM2p95JaFd
-	A=
-X-Gm-Gg: AYBFou35lfMy82FptGCV+wRwINrtvLhTKl7j0UcyHwWvDxF1jn53h/dWuLl6hH9uzcw
-	Mp56TjmBlXtAL7tYd+NKhNuGut27/OWsrUzSmWavCZHLp7gCeJFjHSu+RigQmIxLtlEwNfXZbzv
-	eseWvpipkCStZIiSdDISCziOQc+RA/83NGqV9HHAc5AgCxD8U/JyA/N+aZ7/FZHFFrDUZoM9jFK
-	uSbA7c6mgCaOlE3V6312NhuJSsXk0hC2sbOqF9WdgRoV+sHCEvSuo+yQZXJmyyTW8HNga6Fl6LA
-	HjScN2+09DwjvbfKdS4lkgwhbWgIkoA0mTBeeJ+c2fi0eIMt/VxRN6tkvamUlTWg14KRpcJD
-X-Received: by 2002:a05:620a:4503:b0:93b:d79f:d94a with SMTP id
- af79cd13be357-93bdca2b54cmr40080885a.63.1789680050288;
-        Thu, 17 Sep 2026 14:20:50 -0700 (PDT)
-X-Received: by 2002:a05:620a:4503:b0:93b:d79f:d94a with SMTP id
- af79cd13be357-93bdca2b54cmr40075985a.63.1789680049769;
-        Thu, 17 Sep 2026 14:20:49 -0700 (PDT)
+ AKwUvBwXwPn0yG6Haeq0c6zcjqTIE7oLS6p3o096P/4/MsbL/emW1XPLsbMSROHahHiaTKwQqKSQ02s2@lists.freedesktop.org
+X-Gm-Message-State: AFuF++kB7jcPJmwD3YseobfD4uZClu4/ZykOsJwh/uSgYXWxCqKZ5iSS
+	JsZVIuhjl4SDce3HmwhXE04UoCQOC3imqokmvB8GDiwhJFhv5fP5oh7wKVH2bhiqw+0iwrSCXdn
+	DvQjK++9sbC5oxIQmo1HT1d1S7oKyGfCWQzrxya2/8XLrklq3R35nkHsywkH7OoaxyYg=
+X-Gm-Gg: AYBFou3ba34Kt6V1p3EzdyUUkKhwdMatcJ2bYSw2jGYbIpfaWKZEIShohCSZ+U8MYOE
+	HMzHAVDJFvgp9xZEfvzhW7Zn9Y8fGRjlFeco5jjMuCPQAzpsi1MRkAoq0QOGNs2Rmo9ebmV6pVD
+	wjCxLJ/e78UH/fwes5ExPGuJrzGDwlgaFikppnDLgX1UxsZF7lGo34304Qxu7YZphMPof7Sjj+0
+	+OQy+aeFf9fVDFzLSfLfGjKAAqqce6g/q0NIURTLqQQAxRt8r+h9tqTm8QUc0h8sRZsrpaeJX8d
+	fQkpWqZoNzSxyy+NRaUJ3yLVTNXjzUXil7KPSpTKH4hYjffreiXoDeukgW+SDBotJu2m/uAY
+X-Received: by 2002:a0c:fa46:0:b0:912:428a:8bb2 with SMTP id
+ 6a1803df08f44-91254b57120mr8659306d6.19.1789680960576;
+        Thu, 17 Sep 2026 14:36:00 -0700 (PDT)
+X-Received: by 2002:a0c:fa46:0:b0:912:428a:8bb2 with SMTP id
+ 6a1803df08f44-91254b57120mr8659126d6.19.1789680960046;
+        Thu, 17 Sep 2026 14:36:00 -0700 (PDT)
 Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- af79cd13be357-93b78223240sm561790285a.23.2026.09.17.14.20.48
+ 6a1803df08f44-91252cd9fc8sm7298096d6.38.2026.09.17.14.35.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Sep 2026 14:20:49 -0700 (PDT)
-Message-ID: <fb1701bbd7fb65ae808f495488880e2f0fbbced3.camel@redhat.com>
-Subject: Re: [PATCH] drm/nouveau: don't bump pin count on failed re-pin in
- nouveau_bo_pin_locked()
+        Thu, 17 Sep 2026 14:35:59 -0700 (PDT)
+Message-ID: <c0c9f4af21a0918f1198cc929820c01c1190f5b6.camel@redhat.com>
+Subject: Re: [PATCH] drm/nouveau/uvmm: fix UAF in nouveau_uvmm_sm when BO is
+ in TTM_PL_SYSTEM
 From: lyude@redhat.com
-To: Peiyang He <peiyang_he@smail.nju.edu.cn>, dakr@kernel.org,
-	dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Date: Thu, 17 Sep 2026 17:20:48 -0400
+To: Peiyang He <peiyang_he@smail.nju.edu.cn>, dakr@kernel.org
+Date: Thu, 17 Sep 2026 17:35:57 -0400
 In-Reply-To: 
- <4C61D1CE5BB7CD58+20260910080659.2798052-1-peiyang_he@smail.nju.edu.cn>
+ <0D77BEC410CE0129+20260907052204.1431488-1-peiyang_he@smail.nju.edu.cn>
 References: 
- <4C61D1CE5BB7CD58+20260910080659.2798052-1-peiyang_he@smail.nju.edu.cn>
+ <0D77BEC410CE0129+20260907052204.1431488-1-peiyang_he@smail.nju.edu.cn>
 User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: EG8M2PL5jovc8X87o0_VVUGyKRCJsCo7Q1JBCSb07iU_1789680050
+X-Mimecast-MFC-PROC-ID: EYI91RFNJkK6kswK1wceG2wYz2NIwwBuCuEKs30Jdns_1789680961
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: KXT6Y4STKZZ3XAY7GSMU34WQMBD5CYG4
-X-Message-ID-Hash: KXT6Y4STKZZ3XAY7GSMU34WQMBD5CYG4
+Message-ID-Hash: RCJ3JGGCWEZ3HZP45KO3IAE6T6NYMGKQ
+X-Message-ID-Hash: RCJ3JGGCWEZ3HZP45KO3IAE6T6NYMGKQ
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address
-CC: linux-kernel@vger.kernel.org, stable@vger.kernel.org, bskeggs@redhat.com
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, airlied@redhat.com
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KXT6Y4STKZZ3XAY7GSMU34WQMBD5CYG4/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RCJ3JGGCWEZ3HZP45KO3IAE6T6NYMGKQ/>
 Archived-At: 
- <https://lore.freedesktop.org/fb1701bbd7fb65ae808f495488880e2f0fbbced3.camel@redhat.com/>
+ <https://lore.freedesktop.org/c0c9f4af21a0918f1198cc929820c01c1190f5b6.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -148,184 +147,222 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu, 2026-09-10 at 16:06 +0800, Peiyang He wrote:
-> nouveau_bo_pin_locked() checks whether an already pinned BO is in a
-> memory domain compatible with a new pin request. When the domains are
-> incompatible, it sets -EBUSY but still calls ttm_bo_pin() before
-> returning.
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+
+Will push to drm-misc-fixes in just a moment
+
+On Mon, 2026-09-07 at 13:22 +0800, Peiyang He wrote:
+> nouveau_uvmm_sm() calls op_map(), which passes bo->resource through
+> nouveau_mem() to nouveau_uvma_map(). nouveau_uvmm_vmm_map() then
+> reads
+> mem->mem.type.
 >=20
-> Callers treat a failed nouveau_bo_pin() as not having acquired a new
-> pin,
-> so the extra pin count is never decreased by a matching unpin.
-> This triggers the warning in ttm_bo_release():
+> But this is only valid when bo->resource is backed by struct
+> nouveau_mem,
+> as is the case for VRAM and TT resources. If the BO is left in
+> TTM_PL_SYSTEM, bo->resource is only a struct ttm_resource. Treating
+> it
+> as struct nouveau_mem makes the mem->mem.type read past the end of
+> the
+> resource, causing a KASAN: slab-use-after-free Read in
+> nouveau_uvmm_sm
+> report:
 >=20
-> =09WARN_ON_ONCE(bo->pin_count);
+> BUG: KASAN: slab-use-after-free in nouveau_uvmm_vmm_map
+> drivers/gpu/drm/nouveau/nouveau_uvmm.c:152 [inline]
+> BUG: KASAN: slab-use-after-free in nouveau_uvma_map
+> drivers/gpu/drm/nouveau/nouveau_uvmm.c:199 [inline]
+> BUG: KASAN: slab-use-after-free in op_map
+> drivers/gpu/drm/nouveau/nouveau_uvmm.c:849 [inline]
+> BUG: KASAN: slab-use-after-free in
+> nouveau_uvmm_sm.constprop.0+0x6ab/0x900
+> drivers/gpu/drm/nouveau/nouveau_uvmm.c:903
+> Read of size 1 at addr ffff888127d3e3a0 by task kworker/0:1/11
 >=20
-> Found when fuzzing the nouveau driver with a modified Syzkaller:
->=20
-> =09WARNING: drivers/gpu/drm/ttm/ttm_bo.c:256 at
-> ttm_bo_release+0x827/0x9e0 drivers/gpu/drm/ttm/ttm_bo.c:256, CPU#1:
-> syz.3.24/2212
-> =09Modules linked in:
-> =09CPU: 1 UID: 0 PID: 2212 Comm: syz.3.24 Not tainted 7.2.0 #24
+> CPU: 0 UID: 0 PID: 11 Comm: kworker/0:1 Not tainted 7.2.0 #5
 > PREEMPT(lazy)=20
-> =09nouveau 0000:01:00.0: gsp:msg fn:103 len:0x40/0x20 res:0x19
-> resp:0x19
-> =09Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS
-> 1.16.3-debian-1.16.3-2 04/01/2014
-> =09RIP: 0010:ttm_bo_release+0x827/0x9e0
-> drivers/gpu/drm/ttm/ttm_bo.c:256
-> =09Code: 02 00 0f 85 51 01 00 00 48 8b 7b 08 e8 d2 20 01 00 e9
-> 80 fd ff ff e8 d8 15 c0 fe 90 0f 0b 90 e9 e1 f8 ff ff e8 ca 15 c0 fe
-> 90 <0f> 0b 90 e9 a4 f8 ff ff e8 bc 15 c0 fe be 03 00 00 00 4c 89 e7
-> e8
-> =09msg: 00000000: 05 00 d0 c1 04 00 f0 f1 01 30 00 00 2d 90 00
-> 00=C2=A0 .........0..-...
-> =09RSP: 0018:ffffc9000f5cf710 EFLAGS: 00010293
-> =09RAX: 0000000000000000 RBX: ffff888018e5d2a8 RCX:
-> ffffffff82bb1b36
-> =09RDX: ffff888017b68000 RSI: 0000000000000004 RDI:
-> ffff888018e5d2a8
-> =09msg: 00000010: 19 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-> 00=C2=A0 ................
-> =09RBP: ffff88801261c720 R08: 0000000000000001 R09:
-> ffffed10031cba55
-> =09R10: ffff888018e5d2ab R11: 00000000000000f3 R12:
-> ffff888018e5d290
-> =09R13: ffff888018e5d2d4 R14: ffff88801b219c18 R15:
-> dffffc0000000000
-> =09FS:=C2=A0 0000000000000000(0000) GS:ffff8880e0f6f000(0000)
-> knlGS:0000000000000000
-> =09CS:=C2=A0 0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> =09CR2: 0000001b31223ffc CR3: 0000000028e00005 CR4:
-> 0000000000770ef0
-> =09PKRU: 80000000
-> =09Call Trace:
-> =09<TASK>
-> =09kref_put include/linux/kref.h:65 [inline]
-> =09ttm_bo_put drivers/gpu/drm/ttm/ttm_bo.c:325 [inline]
-> =09ttm_bo_fini+0x55/0x80 drivers/gpu/drm/ttm/ttm_bo.c:330
-> =09nouveau_gem_object_del+0xb2/0x1b0
-> drivers/gpu/drm/nouveau/nouveau_gem.c:90
-> =09drm_gem_object_free+0x5f/0x90 drivers/gpu/drm/drm_gem.c:1165
-> =09kref_put include/linux/kref.h:65 [inline]
-> =09__drm_gem_object_put include/drm/drm_gem.h:562 [inline]
-> =09drm_gem_object_put include/drm/drm_gem.h:575 [inline]
-> =09nouveau_abi16_chan_fini.constprop.0+0x44f/0x5a0
-> drivers/gpu/drm/nouveau/nouveau_abi16.c:195
-> =09nouveau 0000:01:00.0: syz.2.23[2209]: Unknown handle
-> 0x00000000
-> =09nouveau_abi16_fini+0x1d0/0x340
-> drivers/gpu/drm/nouveau/nouveau_abi16.c:225
-> =09nouveau_drm_postclose+0x18b/0x3e0
-> drivers/gpu/drm/nouveau/nouveau_drm.c:1284
-> =09nouveau 0000:01:00.0: syz.2.23[2209]: validate_init
-> =09drm_file_free.part.0+0x6d6/0xb60
-> drivers/gpu/drm/drm_file.c:267
-> =09drm_file_free drivers/gpu/drm/drm_file.c:237 [inline]
-> =09drm_close_helper.isra.0+0x11a/0x160
-> drivers/gpu/drm/drm_file.c:290
-> =09drm_release+0x1ab/0x330 drivers/gpu/drm/drm_file.c:438
-> =09__fput+0x39c/0xa60 fs/file_table.c:512
-> =09nouveau 0000:01:00.0: syz.2.23[2209]: validate: -2
-> =09task_work_run+0x15a/0x230 kernel/task_work.c:233
-> =09exit_task_work include/linux/task_work.h:40 [inline]
-> =09do_exit+0x82b/0x25a0 kernel/exit.c:1009
-> =09do_group_exit+0xc2/0x280 kernel/exit.c:1152
-> =09get_signal+0x1d6e/0x1f30 kernel/signal.c:3046
-> =09arch_do_signal_or_restart+0x7d/0x6e0
-> arch/x86/kernel/signal.c:337
-> =09__exit_to_user_mode_loop kernel/entry/common.c:66 [inline]
-> =09exit_to_user_mode_loop+0xdf/0x440 kernel/entry/common.c:101
-> =09__exit_to_user_mode_prepare include/linux/irq-entry-
-> common.h:207 [inline]
-> =09syscall_exit_to_user_mode_prepare include/linux/irq-entry-
-> common.h:230 [inline]
-> =09syscall_exit_to_user_mode include/linux/entry-common.h:318
+> Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.16.3-
+> debian-1.16.3-2 04/01/2014
+> Workqueue: nouveau_sched_wq_2224 drm_sched_run_job_work
+> Call Trace:
+> =C2=A0<TASK>
+> =C2=A0__dump_stack lib/dump_stack.c:94 [inline]
+> =C2=A0dump_stack_lvl+0x95/0xe0 lib/dump_stack.c:120
+> =C2=A0print_address_description mm/kasan/report.c:378 [inline]
+> =C2=A0print_report+0xcb/0x5a0 mm/kasan/report.c:482
+> =C2=A0kasan_report+0xca/0x100 mm/kasan/report.c:595
+> =C2=A0nouveau_uvmm_vmm_map drivers/gpu/drm/nouveau/nouveau_uvmm.c:152
 > [inline]
-> =09do_syscall_64+0x4f8/0x690 arch/x86/entry/syscall_64.c:100
-> =09entry_SYSCALL_64_after_hwframe+0x77/0x7f
-> =09RIP: 0033:0x7f12bac8594d
-> =09Code: Unable to access opcode bytes at 0x7f12bac85923.
-> =09RSP: 002b:00007f12b96e70d8 EFLAGS: 00000246 ORIG_RAX:
-> 00000000000000ca
-> =09RAX: 0000000000000001 RBX: 00007f12baf15fa8 RCX:
-> 00007f12bac8594d
-> =09RDX: 00000000000f4240 RSI: 0000000000000081 RDI:
-> 00007f12baf15fac
-> =09RBP: 00007f12baf15fa0 R08: 00007f12baee8000 R09:
-> 0000000000000000
-> =09R10: 0000000000000000 R11: 0000000000000246 R12:
-> 0000000000000000
-> =09R13: 00007f12baf16038 R14: 0000000000000006 R15:
-> 00007ffe2ed394b0
-> =09</TASK>
-> =09irq event stamp: 47867
-> =09hardirqs last=C2=A0 enabled at (47883): [<ffffffff815cafc6>]
-> __up_console_sem+0x66/0x70 kernel/printk/printk.c:347
-> =09hardirqs last disabled at (47892): [<ffffffff815cafab>]
-> __up_console_sem+0x4b/0x70 kernel/printk/printk.c:345
-> =09softirqs last=C2=A0 enabled at (47880): [<ffffffff81434277>]
-> __do_softirq kernel/softirq.c:656 [inline]
-> =09softirqs last=C2=A0 enabled at (47880): [<ffffffff81434277>]
-> invoke_softirq kernel/softirq.c:496 [inline]
-> =09softirqs last=C2=A0 enabled at (47880): [<ffffffff81434277>]
-> __irq_exit_rcu+0x137/0x1c0 kernel/softirq.c:735
-> =09softirqs last disabled at (47875): [<ffffffff81434277>]
-> __do_softirq kernel/softirq.c:656 [inline]
-> =09softirqs last disabled at (47875): [<ffffffff81434277>]
-> invoke_softirq kernel/softirq.c:496 [inline]
-> =09softirqs last disabled at (47875): [<ffffffff81434277>]
-> __irq_exit_rcu+0x137/0x1c0 kernel/softirq.c:735
+> =C2=A0nouveau_uvma_map drivers/gpu/drm/nouveau/nouveau_uvmm.c:199 [inline=
+]
+> =C2=A0op_map drivers/gpu/drm/nouveau/nouveau_uvmm.c:849 [inline]
+> =C2=A0nouveau_uvmm_sm.constprop.0+0x6ab/0x900
+> drivers/gpu/drm/nouveau/nouveau_uvmm.c:903
+> =C2=A0nouveau_uvmm_sm_unmap drivers/gpu/drm/nouveau/nouveau_uvmm.c:932
+> [inline]
+> =C2=A0nouveau_uvmm_bind_job_run+0xd6/0x250
+> drivers/gpu/drm/nouveau/nouveau_uvmm.c:1532
+> =C2=A0nouveau_job_run drivers/gpu/drm/nouveau/nouveau_sched.c:350 [inline=
+]
+> =C2=A0nouveau_sched_run_job+0x62/0xd0
+> drivers/gpu/drm/nouveau/nouveau_sched.c:364
+> =C2=A0drm_sched_run_job_work+0x356/0xa10
+> drivers/gpu/drm/scheduler/sched_main.c:1061
+> =C2=A0process_one_work+0x8a5/0x1900 kernel/workqueue.c:3322
+> =C2=A0process_scheduled_works kernel/workqueue.c:3405 [inline]
+> =C2=A0worker_thread+0x5dd/0xd80 kernel/workqueue.c:3486
+> =C2=A0kthread+0x31d/0x420 kernel/kthread.c:436
+> =C2=A0ret_from_fork+0x662/0x940 arch/x86/kernel/process.c:158
+> =C2=A0ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+> =C2=A0</TASK>
 >=20
-> Fix by going to the out path as soon as the incompatible placement
-> is detected. This matches the correct bahaviour in other DRM drivers
-> such as amdgpu_bo_pin() in amdgpu.
+> Allocated by task 2224 on cpu 0 at 66.550027s:
+> =C2=A0kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+> =C2=A0kasan_save_track+0x17/0x60 mm/kasan/common.c:78
+> =C2=A0poison_kmalloc_redzone mm/kasan/common.c:398 [inline]
+> =C2=A0__kasan_kmalloc+0xaa/0xb0 mm/kasan/common.c:415
+> =C2=A0kasan_kmalloc include/linux/kasan.h:263 [inline]
+> =C2=A0__do_kmalloc_node mm/slub.c:5334 [inline]
+> =C2=A0__kmalloc_noprof+0x304/0x7c0 mm/slub.c:5359
+> =C2=A0_kmalloc_noprof include/linux/slab.h:992 [inline]
+> =C2=A0dma_resv_list_alloc+0x27/0x90 drivers/dma-buf/dma-resv.c:106
+> =C2=A0dma_resv_reserve_fences+0x60e/0xa30 drivers/dma-buf/dma-resv.c:205
+> =C2=A0ttm_bo_alloc_resource+0x12c/0xbd0 drivers/gpu/drm/ttm/ttm_bo.c:721
+> =C2=A0ttm_bo_validate+0x1bc/0x4a0 drivers/gpu/drm/ttm/ttm_bo.c:856
+> =C2=A0ttm_bo_init_reserved+0x2c3/0x570 drivers/gpu/drm/ttm/ttm_bo.c:970
+> =C2=A0nouveau_bo_init+0x159/0x2c0 drivers/gpu/drm/nouveau/nouveau_bo.c:35=
+9
+> =C2=A0nouveau_gem_new+0x234/0x5f0
+> drivers/gpu/drm/nouveau/nouveau_gem.c:272
+> =C2=A0nouveau_gem_ioctl_new+0x1eb/0x420
+> drivers/gpu/drm/nouveau/nouveau_gem.c:352
+> =C2=A0drm_ioctl_kernel+0x192/0x350 drivers/gpu/drm/drm_ioctl.c:817
+> =C2=A0drm_ioctl+0x4f8/0xb40 drivers/gpu/drm/drm_ioctl.c:914
+> =C2=A0nouveau_drm_ioctl+0xea/0x2c0
+> drivers/gpu/drm/nouveau/nouveau_drm.c:1338
+> =C2=A0vfs_ioctl fs/ioctl.c:51 [inline]
+> =C2=A0__do_sys_ioctl fs/ioctl.c:597 [inline]
+> =C2=A0__se_sys_ioctl fs/ioctl.c:583 [inline]
+> =C2=A0__x64_sys_ioctl+0x180/0x1d0 fs/ioctl.c:583
+> =C2=A0do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+> =C2=A0do_syscall_64+0x115/0x690 arch/x86/entry/syscall_64.c:94
+> =C2=A0entry_SYSCALL_64_after_hwframe+0x77/0x7f
 >=20
+> Freed by task 2223 on cpu 0 at 66.554063s:
+> =C2=A0kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+> =C2=A0kasan_save_track+0x17/0x60 mm/kasan/common.c:78
+> =C2=A0kasan_save_free_info+0x3b/0x60 mm/kasan/generic.c:584
+> =C2=A0poison_slab_object mm/kasan/common.c:253 [inline]
+> =C2=A0__kasan_slab_free+0x61/0x80 mm/kasan/common.c:285
+> =C2=A0kasan_slab_free include/linux/kasan.h:235 [inline]
+> =C2=A0slab_free_hook mm/slub.c:2677 [inline]
+> =C2=A0__rcu_free_sheaf_prepare+0xb6/0x2e0 mm/slub.c:2928
+> =C2=A0rcu_free_sheaf+0x1b/0x120 mm/slub.c:5978
+> =C2=A0rcu_do_batch kernel/rcu/tree.c:2645 [inline]
+> =C2=A0rcu_core+0x521/0x1490 kernel/rcu/tree.c:2897
+> =C2=A0handle_softirqs+0x1b1/0x8a0 kernel/softirq.c:622
+> =C2=A0__do_softirq kernel/softirq.c:656 [inline]
+> =C2=A0invoke_softirq kernel/softirq.c:496 [inline]
+> =C2=A0__irq_exit_rcu+0x137/0x1c0 kernel/softirq.c:735
+> =C2=A0irq_exit_rcu+0x9/0x20 kernel/softirq.c:752
+> =C2=A0instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1062
+> [inline]
+> =C2=A0sysvec_apic_timer_interrupt+0x70/0x80
+> arch/x86/kernel/apic/apic.c:1062
+> =C2=A0asm_sysvec_apic_timer_interrupt+0x1a/0x20
+> arch/x86/include/asm/idtentry.h:674
+>=20
+> The buggy address belongs to the object at ffff888127d3e380
+> =C2=A0which belongs to the cache kmalloc-96 of size 96
+> The buggy address is located 32 bytes inside of
+> =C2=A0freed 96-byte region [ffff888127d3e380, ffff888127d3e3e0)
+>=20
+> The buggy address belongs to the physical page:
+> page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0
+> pfn:0x127d3e
+> flags: 0x200000000000000(node=3D0|zone=3D2)
+> page_type: f5(slab)
+> raw: 0200000000000000 ffff888100041280 dead000000000122
+> 0000000000000000
+> raw: 0000000000000000 0000000000200020 00000000f5000000
+> 0000000000000000
+> page dumped because: kasan: bad access detected
+>=20
+> Memory state around the buggy address:
+> =C2=A0ffff888127d3e280: 00 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc
+> =C2=A0ffff888127d3e300: 00 00 00 00 00 00 00 00 00 00 00 fc fc fc fc fc
+> > ffff888127d3e380: fa fb fb fb fb fb fb fb fb fb fb fb fc fc fc fc
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
+> =C2=A0ffff888127d3e400: fa fb fb fb fb fb fb fb fb fb fb fb fc fc fc fc
+> =C2=A0ffff888127d3e480: 00 00 00 00 00 00 00 00 00 00 fc fc fc fc fc fc
+>=20
+> Fix by resetting the placement to the BO's valid domains before
+> calling nouveau_bo_validate(), matching the handling in
+> nouveau_uvmm_bo_validate(), so map jobs do not run for SYSTEM
+> resources;
+> Reject BO that cannot reside in VRAM or GART;
+> Also skip op_map() when the GPUVA has been invalidated, matching the
+> handling in the unmap and remap paths.
+>=20
+> Found when fuzzing the nouveau driver with a modified Syzkaller.
+>=20
+> Fixes: b88baab82871 ("drm/nouveau: implement new VM_BIND uAPI")
 > Cc: stable@vger.kernel.org
-> Fixes: ad76b3f7c7a0 ("drm/nouveau: teach nouveau_bo_pin() how to
-> force a contig vram allocation")
 > Signed-off-by: Peiyang He <peiyang_he@smail.nju.edu.cn>
 > Assisted-by: Codex:gpt-5.5
-
-This can and probably should just be:
-
-Assisted-by: LLM
-
-Instead of mentioning the LLM specifically used.
-
 > ---
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_bo.c | 1 +
-> =C2=A01 file changed, 1 insertion(+)
+> =C2=A0drivers/gpu/drm/nouveau/nouveau_uvmm.c | 13 +++++++++++--
+> =C2=A01 file changed, 11 insertions(+), 2 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> index 0e8de6d4b36f..bdd0390b590e 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> @@ -578,6 +578,7 @@ int nouveau_bo_pin_locked(struct nouveau_bo
-> *nvbo, uint32_t domain, bool contig)
-> =C2=A0=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "0x%08x vs 0x%08x\n", bo=
-,
-> =C2=A0=09=09=09=09 bo->resource->mem_type, domain);
-> =C2=A0=09=09=09ret =3D -EBUSY;
-> +=09=09=09goto out;
-
-Would probably be better to just turn this into an else:
-
-=09if (error) {
-=09=09NV_ERROR(drm, "bo %p pinned elsewhere: "
-=09=09=09      "0x%08x vs 0x%08x\n", bo,
-=09=09=09 bo->resource->mem_type, domain);
-=09=09ret =3D -EBUSY;
-=09} else {
-=09=09ttm_bo_pin(&nvbo->bo);
-=09}
-
-
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> index fc125fd44a9b..2026fe6b48c6 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> @@ -846,6 +846,9 @@ op_map(struct nouveau_uvma *uvma)
+> =C2=A0{
+> =C2=A0=09struct nouveau_bo *nvbo =3D nouveau_gem_object(uvma-
+> >va.gem.obj);
+> =C2=A0
+> +=09if (drm_gpuva_invalidated(&uvma->va))
+> +=09=09return;
+> +
+> =C2=A0=09nouveau_uvma_map(uvma, nouveau_mem(nvbo->bo.resource));
+> =C2=A0}
+> =C2=A0
+> @@ -1232,6 +1235,7 @@ bind_lock_validate(struct nouveau_job *job,
+> struct drm_exec *exec,
+> =C2=A0
+> =C2=A0=09=09drm_gpuva_for_each_op(va_op, op->ops) {
+> =C2=A0=09=09=09struct drm_gem_object *obj =3D
+> op_gem_obj(va_op);
+> +=09=09=09struct nouveau_bo *nvbo;
+> =C2=A0
+> =C2=A0=09=09=09if (unlikely(!obj))
+> =C2=A0=09=09=09=09continue;
+> @@ -1246,8 +1250,13 @@ bind_lock_validate(struct nouveau_job *job,
+> struct drm_exec *exec,
+> =C2=A0=09=09=09if (va_op->op =3D=3D DRM_GPUVA_OP_UNMAP)
+> =C2=A0=09=09=09=09continue;
+> =C2=A0
+> -=09=09=09ret =3D
+> nouveau_bo_validate(nouveau_gem_object(obj),
+> -=09=09=09=09=09=09=C2=A0 true, false);
+> +=09=09=09nvbo =3D nouveau_gem_object(obj);
+> +=09=09=09if (!(nvbo->valid_domains &
+> +=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (NOUVEAU_GEM_DOMAIN_VRAM |
+> NOUVEAU_GEM_DOMAIN_GART)))
+> +=09=09=09=09return -EINVAL;
+> +
+> +=09=09=09nouveau_bo_placement_set(nvbo, nvbo-
+> >valid_domains, 0);
+> +=09=09=09ret =3D nouveau_bo_validate(nvbo, true,
+> false);
+> =C2=A0=09=09=09if (ret)
+> =C2=A0=09=09=09=09return ret;
 > =C2=A0=09=09}
-> =C2=A0=09=09ttm_bo_pin(&nvbo->bo);
-> =C2=A0=09=09goto out;
->=20
-> base-commit: df2908090cda368b01ff43709f51890076c56157
+> =C2=A0=09}
+> =C2=A0
 
