@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C3AEC88E72
-	for <nouveau@archiver.kernel.org>; Thu, 17 Sep 2026 18:23:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49545C88E72
+	for <nouveau@archiver.kernel.org>; Thu, 17 Sep 2026 19:09:05 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CCC9B10F058;
-	Thu, 17 Sep 2026 18:23:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7DD2910F079;
+	Thu, 17 Sep 2026 19:09:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="P1oVLhe6";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="RKhytnOR";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E97CC481E7;
-	Thu, 17 Sep 2026 18:05:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 8B965481F1;
+	Thu, 17 Sep 2026 18:51:26 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789668356;
- b=jFCIODrGKhNObDRtyh0+3hsn4QaoETfzzf+g5ssxO5HCGr5bSvIeOGQd27BhsFJXqyfeZ
- yLI3M57rUf0ZI/0yj0uWDqogHXWPf3c4pCFugwhHu+DX4iaMQ3b6RFnDUzftbbzXp1pSYFP
- /EjdnZuxtYEx6Cl8U/sa1hTLdbCLmfJEzLlhAYUDzV/6N19Hqf5hVg4jURNMnmPCwVaoFLp
- 6enC4O9Re1no4fzH/wd0dioR4uj/vmDVMQBpLZnbpr1dMN+DCazRilQwEgDVAuFbU2wjBhN
- htiEBmcdGpMqBYUsVWOTg54+MvYOq3eBwzkUGNzhWwjMoSJJfJkaBCNZb5Uw==
+ s=20240201; t=1789671086;
+ b=NkXuOFfz6xJ8qKcTxtsY9VkJERKq7TSsPzCTFTl7a7pqE1kTf9bqfSq5BsmK6WIINLd8d
+ u0jstMA9HduKr6AT58DTkwkURDyFn6PD+8t2idG5FiN6yLKuIKf3mlEmrgfcKyyXLsntJP7
+ xQPuJlij092nm1UDJAweHF74rjB6n4BqHbKl+0xxZi/yZJ/XMTETg1ai7NK4MZS6kkzRTRn
+ 9rYSD2Wc7JZGizJJ1yFkZ1r2UCI8gl3PMaKpk+Ft0eMFmljiQ97W1m76xkNUrK9C6mZARds
+ sry/o1nQ8IfIt1AU774k+LqPSIHfVLVDkY++1hZyP7XXCskAwhN2fcHKvLcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789668356; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1789671086; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=nN+X7/soQGz+UP9W+KThO9HODN8BfebifEMis1Y5K7U=;
- b=t9rj9hwOfM17MKXdp+ubWN8xnmCuXKPaOL+LjyhUuLocSP26+1jqZwkVKeO8UKe/9XHfV
- RMd+D7s0MnmowWMxL8DgiKFKvqMeK3Kj2y0/YefDWs1qMb4Wd586OFfQUZkAHrISCpnTPL2
- 9WZt9Qw0YZOC5LCdEGCI1FDqMw1EpgS0jNvkzEEwLEZ+vRS96DVZU6yd4jRAa4G/nFr+BCS
- a1HZ99B2taU2cn98+kP8n+Mh/DWuZJV7pNUFRReyMQ4wI96PfZV5nU1D7u8BkVO5HGbYSsq
- OxC+PpNfAp9op66R2nmNLFuvGASaYhhxxwolJAky+/2Xq1btQwcmgJaXRT+A==
+ bh=Shd+9zYz2MIFpfBEwcTjBlPbohGUXJNzi3P46VFt1WQ=;
+ b=ne2wdmqdEYaiWVmMxOUOVLz7E54I0vU8Q2ZGwkFXRFmhSYAjfXToFnu7peCQ4YQo81yfA
+ BMhqPA/WM0nAoCCTakxF2GxoSlcPQ7ole/L/qGCsAYwNqW7nNUbA5skaak3DeI13g8fyw7r
+ mKFsAzcTQunsmyL1oqbDLhqA9yPT6wiBDieTpmbIWOADzKY+415hEsEhYxLW1CaIT9WArNj
+ LyXQykIl4znMVB66bRPdXwwlfbh/Bsc51YTALY+/C3pzR1P4pwRG2JhBtpCJrE8u2/ODmra
+ AgB6XB76gug9N91Kr5/s1EfTW3wJ5tDlf1NR3d/Y4RjlyXUgY3X/jcqnqdhA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,98 +46,75 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B2FFD481B7
-	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 18:05:53 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id DF49A481B7
+	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 18:51:23 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 424DD10F04E
-	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 18:23:31 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7C11D10F071
+	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 19:09:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1789669410;
+	s=mimecast20190719; t=1789672140;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nN+X7/soQGz+UP9W+KThO9HODN8BfebifEMis1Y5K7U=;
-	b=P1oVLhe6UE/Db5QSeLw5Zj7N4+jOAvg6OlFQb/M4DyOkmAtdZZXzk53R3CgEdIqHSW3sI1
-	RMGkDk96CkZ7Sl51NvcHauNL59PFRu/vjJiYXzkfl2LRYskd25hA3b2JwYBZ5u90qMYt4l
-	GqQWyLEAw8NEmIskHygkdMRH+VwuXD4=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-316-CsOL2py9P_SDB4PWdouKoA-1; Thu, 17 Sep 2026 14:23:29 -0400
-X-MC-Unique: CsOL2py9P_SDB4PWdouKoA-1
-X-Mimecast-MFC-AGG-ID: CsOL2py9P_SDB4PWdouKoA_1789669409
-Received: by mail-qv1-f70.google.com with SMTP id
- 6a1803df08f44-9104eedb5b0so21727876d6.0
-        for <nouveau@lists.freedesktop.org>;
- Thu, 17 Sep 2026 11:23:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789669409; x=1790274209;
-        h=mime-version:user-agent:content-transfer-encoding:content-type
-         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=WDPWA2x/XShhRvPN2CAJ/FdnJPiyLxgST24Qp2ARue0=;
-        b=ImzNvI7HT4UXL8vkNyklUyf9Kf5bYygkHR7+elID1jmPKHVdAUX4YuF4gLmS8+vJqT
-         p3jVyCA/BB0pQBemupko5qeGlkx3FlVQ+gcK6Z3vy+bnc4r6pJ34OijcXu09p1luYGEQ
-         0jbhFP7z+Gru8kNf5MpU0F8LjaViEXIhXC8lKlF+Tjem2yJJL3N5+Sn6/pYppXvjyOYC
-         nawmIIdpfq8hNeEcis0Pzc0l4uZpKP+02ZCw2T7KRrwueKB4zM8RsIE+HogPlqsxjOt/
-         SLvyhGfcTesPlul9IhPrQ3DRF9quDRslHOR8SaNJs6ExJV+rGA25+f4peOeJdwOKu6fU
-         PhlQ==
-X-Forwarded-Encrypted: i=1;
- AKwUvBwWEMANgdxmnmRj4jXM0brnSag46ruC+HyukMMxG9RZ/vtRb2Fs1zfFVxHX1d9P56tTW+gNNQkS@lists.freedesktop.org
-X-Gm-Message-State: AFuF++mophdwchkm7VD7E83rWmzoYfG7Uq9lN2LJ3bMyv6eQC3Kh5xfA
-	8MVq1fao2B91RdTR2dj0YArX9HLJc7ckUl3X4RJbw7P9wKKSIeeJUV/TnhTfuuUyJcP4s/5iwdU
-	Fwn3m5Fvelmy6vgsuMCmlA8kukZy/M8ulx8IiGQe181eaF+QtN0eGBiBKhFSQffCr0d8=
-X-Gm-Gg: AYBFou0L48CyLKmEASDXTDXtbpXBuckEIBS+oMNkjJo+XhsgHxmRbEJGAGIRM70NPug
-	YVRGyba962x5AyOZDiudngX77NEOUObPiGghWBBT12g1VvtdXWZteXF8Uf00OUA+cH11PaCa/5h
-	u3ZRNXc4Sr2gYj3k2oXRVjHMmRHpnuoNEq7P7ZxWhHVVA7DQHmNK9+yrb0s2UqsaQJp1C2xRdlt
-	lAhkagcK0zDqU+5iZcxPz0iBuYcrOgLb74DphRGhylVzHM3UnoLXBEdJsMEeaifHyeTaRXimp0V
-	XkPQCRG5Rxkmw69n1Zn922hoxSGtlDxQhbMQTpeOH0f1ZlLzATEmoPlvsYHGMSH7S7STNCfH
-X-Received: by 2002:a05:6214:80d6:10b0:90e:98c9:548 with SMTP id
- 6a1803df08f44-91254ba3a7dmr883516d6.1.1789669408605;
-        Thu, 17 Sep 2026 11:23:28 -0700 (PDT)
-X-Received: by 2002:a05:6214:80d6:10b0:90e:98c9:548 with SMTP id
- 6a1803df08f44-91254ba3a7dmr883226d6.1.1789669408180;
-        Thu, 17 Sep 2026 11:23:28 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93])
-        by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-91252d17cecsm3762106d6.44.2026.09.17.11.23.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Sep 2026 11:23:26 -0700 (PDT)
-Message-ID: <fc7bae477fdeab0bcbb908863b4f434dc03844f2.camel@redhat.com>
-Subject: Re: [PATCH] drm/nouveau: Fix runtime PM leak in
- nouveau_connector_detect()
-From: lyude@redhat.com
-To: Wentao Liang <vulab@iscas.ac.cn>, airlied@gmail.com
-Date: Thu, 17 Sep 2026 14:23:24 -0400
-In-Reply-To: <20260916180342.2090360-1-vulab@iscas.ac.cn>
-References: <20260916180342.2090360-1-vulab@iscas.ac.cn>
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Shd+9zYz2MIFpfBEwcTjBlPbohGUXJNzi3P46VFt1WQ=;
+	b=RKhytnORL2+Q6ayiW9q/NhWAfVNEpNI7S4HMwX++wCWrhT6We2Bk+UojGRKKPQJAMBgKW6
+	0Szfws6U2+PivD1LU9SdjfT27+I6TYIp/T8ZFGauEahr1MFbRtmxCeNWeb5FeMj+9YE/iO
+	xLWNWYciVz3uwv9YpGpD2YJOCLIqBm0=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-101-laRmQZWkNrSytWpybp495g-1; Thu,
+ 17 Sep 2026 15:08:55 -0400
+X-MC-Unique: laRmQZWkNrSytWpybp495g-1
+X-Mimecast-MFC-AGG-ID: laRmQZWkNrSytWpybp495g_1789672133
+Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 6CEFA197750B;
+	Thu, 17 Sep 2026 19:08:52 +0000 (UTC)
+Received: from GoldenWind.lan (unknown [10.22.64.177])
+	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 9530C19AC048;
+	Thu, 17 Sep 2026 19:08:49 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org,
+	nouveau@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/5] drm/nouveau/gsp/r570: Follow OpenRM's runtime PM
+ process more closely
+Date: Thu, 17 Sep 2026 14:54:24 -0400
+Message-ID: <20260917185916.1089621-1-lyude@redhat.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 9UjibseIy5Tl-djKjRfZT6iTjOTvl77w9dQNqtlVsnI_1789669409
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
+X-Mimecast-MFC-PROC-ID: GGkPuxpXDpp6KZG-SDFvmtM3ou9U3xTvNfBGcrGdYLs_1789672133
 X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: Y7C57RFDZFPJJWEVDDAT3H2U5OYJSKJJ
-X-Message-ID-Hash: Y7C57RFDZFPJJWEVDDAT3H2U5OYJSKJJ
+Content-Transfer-Encoding: 8bit
+content-type: text/plain; charset="US-ASCII"; x-default=true
+Message-ID-Hash: NH4Y6W2MT5J2KOQL6WCIMHOL226M6DFD
+X-Message-ID-Hash: NH4Y6W2MT5J2KOQL6WCIMHOL226M6DFD
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address
-CC: bskeggs@redhat.com, dakr@kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, nouveau@lists.freedesktop.org, simona@ffwll.ch,
- stable@vger.kernel.org
+CC: Dave Airlie <airlied@redhat.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Kees Cook <kees@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Maxime Ripard <mripard@kernel.org>, Hongling Zeng <zenghongling@kylinos.cn>,
+ Danilo Krummrich <dakr@kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Y7C57RFDZFPJJWEVDDAT3H2U5OYJSKJJ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NH4Y6W2MT5J2KOQL6WCIMHOL226M6DFD/>
 Archived-At: 
- <https://lore.freedesktop.org/fc7bae477fdeab0bcbb908863b4f434dc03844f2.camel@redhat.com/>
+ <https://lore.freedesktop.org/20260917185916.1089621-1-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -147,50 +124,56 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Nice catch!
+While we have runtime PM working a lot more reliably then in the past
+with R570, we're still doing things a lot differently then OpenRM. For
+instance, we don't save/restore comptag backing stores, and we don't ask
+GSP whether it's OK to enter GcOff.
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+This series fixes this, and gets our runtime PM process to look a lot
+closer to OpenRM's by implementing some missing pieces and workarounds.
 
-Will push to drm-misc-fixes in just a moment
+Tested on my daily-driver desktop with an AD102, a ThinkPad P17 Gen1
+with a GA103GLM, a Dell Precision 7780 with an AD103, and my test
+machine with a GB206.
 
-On Wed, 2026-09-16 at 18:03 +0000, Wentao Liang wrote:
-> If nvif_outp_edid_get() fails, nouveau_connector_detect() returns
-> early without dropping the runtime PM reference taken at the start
-> of the function, keeping the device powered on until the next
-> successful detect.
->=20
-> Balance the reference on the error path like the other exit paths
-> do.
->=20
-> Fixes: 0cd7e0718139 ("drm/nouveau/disp: add output method to fetch
-> edid")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
-> ---
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_connector.c | 5 ++++-
-> =C2=A01 file changed, 4 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> index cc239492c7f0..4a750d4bf1f4 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> @@ -600,8 +600,11 @@ nouveau_connector_detect(struct drm_connector
-> *connector, bool force)
-> =C2=A0=09=09=09=09new_edid =3D drm_get_edid(connector,
-> nv_encoder->i2c);
-> =C2=A0=09=09} else {
-> =C2=A0=09=09=09ret =3D nvif_outp_edid_get(&nv_encoder->outp,
-> (u8 **)&new_edid);
-> -=09=09=09if (ret < 0)
-> +=09=09=09if (ret < 0) {
-> +=09=09=09=09pm_runtime_mark_last_busy(dev->dev);
-> +=09=09=09=09pm_runtime_put_autosuspend(dev-
-> >dev);
-> =C2=A0=09=09=09=09return
-> connector_status_disconnected;
-> +=09=09=09}
-> =C2=A0=09=09}
-> =C2=A0
-> =C2=A0=09=09nouveau_connector_set_edid(nv_connector, new_edid);
+Patch series based on drm-misc/drm-misc-next. Branch with patches here:
+
+	https://gitlab.freedesktop.org/lyudess/linux/-/commits/nouveau/rpm-openrm-sync
+
+Previous version:
+
+	https://patchwork.freedesktop.org/series/173901/
+
+NOTE: There are no actual changes besides a single fix to patch 1, which
+had already been requested from airlied but somehow didn't get sent with
+the rest of the patches.
+
+Lyude Paul (5):
+  drm/nouveau/gsp/r570: Add support for INTERNAL_GCX_ENTRY_PREREQUISITE
+  drm/nouveau/gsp/r535: Add support for MEMSYS_GET_STATIC_CONFIG
+  drm/nouveau/gsp/r570: Add comp mode workaround from issue #3172217
+  drm/nouveau/gsp/r570: Start saving comptag backing stores
+  drm/nouveau/gsp/r570: Enable Gcoff in fbsr again
+
+ drivers/gpu/drm/nouveau/include/nvif/cl0080.h | 10 +++
+ drivers/gpu/drm/nouveau/include/nvif/device.h |  1 +
+ .../gpu/drm/nouveau/include/nvkm/subdev/gsp.h |  6 ++
+ drivers/gpu/drm/nouveau/nouveau_drm.c         | 13 ++++
+ drivers/gpu/drm/nouveau/nvif/device.c         | 13 ++++
+ .../gpu/drm/nouveau/nvkm/engine/device/user.c | 35 +++++++++
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/base.c    | 10 +++
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/priv.h    |  1 +
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c | 17 ++++
+ .../nvkm/subdev/gsp/rm/r535/nvrm/gsp.h        | 45 +++++++++++
+ .../nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c    | 77 ++++++++++++++++++-
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c | 36 +++++++++
+ .../nvkm/subdev/gsp/rm/r570/nvrm/fbsr.h       | 29 +++++++
+ .../nvkm/subdev/gsp/rm/r570/nvrm/gsp.h        |  7 ++
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h   |  3 +
+ 15 files changed, 301 insertions(+), 2 deletions(-)
+
+
+base-commit: 1e04611d3735543bd80a67d9d13dc13f503746fb
+-- 
+2.55.0
 
