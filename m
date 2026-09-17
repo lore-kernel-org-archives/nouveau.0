@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A767C982D6
-	for <nouveau@archiver.kernel.org>; Thu, 17 Sep 2026 16:28:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CBBFC982D2
+	for <nouveau@archiver.kernel.org>; Thu, 17 Sep 2026 17:01:03 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4CD0C10E63F;
-	Thu, 17 Sep 2026 16:28:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7287B10EFFD;
+	Thu, 17 Sep 2026 17:01:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="GiRaOsne";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="HJx7DXJf";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 97F2B481AC;
-	Thu, 17 Sep 2026 16:10:53 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A7C01481B2;
+	Thu, 17 Sep 2026 16:43:24 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789661453;
- b=ZVypvSZNZfb/0OOCsqSXo+e8Pun4bKS1qM+QVhRaTzpX6O54DTOiQ7AniZbgY8ehuS7be
- TJFZvMrRxCMQ+a/jmIoiKXmVb1JXA0eRdMBmN/VB3u9q0wbENNuNE7vVdyMT9wcwdH/Lsk3
- aIJ/fJUiVx0+DhDjUJhzoE7sP/UP0WlCJIy70CyqQZKEZ3PSP1eVWoxDpxAMSgACef0TVnj
- WWMCmXq1NOXGbEbLi/QfCXSM71IdmmnqpZxnSKFTNCK1legFNmRh2x842VFnX1MHvL1kQAU
- KkDG1xnm+A69Mv/B3Y5z/0CZ0n2JX1DE/2+iaV33QpM9fy+3mdFMVvAPtHuw==
+ s=20240201; t=1789663404;
+ b=WhEN7pJNsA1VXFhbOiivYliEuaZRfNAkKpl/nvhWmnvJTAqT5tj1eZiKOa0BC9qtPhFMX
+ +np5VNT1E5tH1VAGKLMBNOKJGVVWAKoJTAS0VraJRW1XnCNsl+SyC4tA8QylZWDmQ6BAfk4
+ Zx4vkkFf4tGe4hAxkaStYXsjIfxw1aK3qLS2JHn/xlqjTIp5+AX5M3cI+7W9/fR4F/NMLw2
+ 6TdGO/xmawnunTTB+MYU43PXLaBUxEz2Ds5MXJKYknVGUSxC0B4ubIyeLwRNKoFqC5JP87p
+ Gt8jayhYJqt7GcJ86feaSq83eRHUFj4eh22oeqj8fyvyH5gSdr3v7RKhjUeA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789661453; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1789663404; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=nI01nierIQhKdbu+9MV6yfFxFnly7TF1DFNzMzDFFYs=;
- b=pwjRldhQnuIRew9Ngp1qVsQ5U4VHZFpnzSaYTaq+fbvjNPuPvENK2sly797c9/cajHf+9
- GqWNrSU+hz4kGTTGRPeV3pcMEohj0+kQ474WMI3Z8exlWlR4DrCsgFUNPI+7SfWrG7ZNKxf
- SMiJIcvvZyjbdVz6ISXeSzG1gOKu8L//gsGCZa/rODysQpCvVnpHVi9wMCjuoLy8vUJAvcZ
- Il7XpuI6sTtmo++tIjKQjpeZU2M5Dbodo3vzw73N39qc+sYjVzDCEo2qiVy21fXeJ/vfEEV
- oIOgVFnwMIO7mMT6mRP4c/+gxpJabk960J9YezBP3ogv6bx2+0eHxWAKboDA==
+ bh=3cUvhJCeylyKmCRzVdnpI1XudDCvPfdO1HTMEIyjjhA=;
+ b=LkiNjMnJqLz8NxgBKU60cnELrnhbz1rhRDwFprez0vXARqNaKqgBiBXkJgEHieqrZJbnf
+ lRrvnqHL2Xy3i4y+XRQ+m/iJNev/q+3NMBr5n6+LTmPhVfhniufMnSY5bEcj+8zSAeV+WhR
+ 3IAs/SGjusl2aVN4yqRR7YD02xc78ApDWf2bIipADMoCNHzhiETvpxapOleEzcPZvax+CoW
+ +oAGGH5kbQmxLl0lWrBSKNw240Al3vroFeVXfMtck312XtYefr32axEyCA/Tf9H5La+d/PD
+ mSWkXyNVYUdDlGPMxGsdXgzisO1jhmefr7eRX2Lz/4tmyixGeWEiugLtWfpg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,98 +46,75 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A62E1481A1
-	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 16:10:50 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id C797E480F6
+	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 16:43:21 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E5C1710E0AE
-	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 16:28:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2F5D810EFDA
+	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 17:00:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1789662507;
+	s=mimecast20190719; t=1789664458;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nI01nierIQhKdbu+9MV6yfFxFnly7TF1DFNzMzDFFYs=;
-	b=GiRaOsnew0pnW28b6Fl6Yew89HPZJkGJvQYFIqCI8Xyts+Mqe4rHGbNS6I8Ih/5BghPpOJ
-	8A/9+UP949rJQFowEbCg7uj/KIhloDtFzzAvwS0A+K4QZbnC9VPKzAnxwg6tDJ3/KLS3CX
-	HsyNHhTwgWj+ltGMkOCs5wuvAoUlI4I=
-Received: from mail-yx1-f71.google.com (mail-yx1-f71.google.com
- [74.125.224.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-658-CQymBieuMk-w7gtagz5DCg-1; Thu, 17 Sep 2026 12:28:25 -0400
-X-MC-Unique: CQymBieuMk-w7gtagz5DCg-1
-X-Mimecast-MFC-AGG-ID: CQymBieuMk-w7gtagz5DCg_1789662504
-Received: by mail-yx1-f71.google.com with SMTP id
- 956f58d0204a3-66ce3040ea9so996328d50.2
-        for <nouveau@lists.freedesktop.org>;
- Thu, 17 Sep 2026 09:28:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789662504; x=1790267304;
-        h=mime-version:user-agent:content-transfer-encoding:content-type
-         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=T9Zesbadxeg7oTrWei3JYdZLdaxPsolNq8bf7iCfLoA=;
-        b=sYCUOpvuHJxTGn0w6Rqf+i9OoAnPmlQZMC6CXsCI6JX5pL08H+K/40XSPiWhhwiKYL
-         gEpI8YxaIpMgBjZk3DhycmZsdj/IqdfsmcxYPnmBAYZpVZeDd1f1VivjjU2IsAIcqeZh
-         VXFyEWm1aBQpJHUyJHfMzvqgNVJNtslwKpKuKRHEMHPDBJ35eW0L8cqAlsSdITY+Euqg
-         Giqjy7nC7kZ3yW1aLqBAqv78IfgbOyXVKNK9ojMPeTdMWyvAIQeEDOwm8z2NFC78SnYJ
-         oRNDOvdie/wM4c1oLEC6yy92ZfslRr2GHcuZV75X4b4QvleENGCQe6dTOwM6xyPTCi+p
-         +KMA==
-X-Forwarded-Encrypted: i=1;
- AKwUvBwWC4n75GLlFsV7zDbRm8Lf2ps9R9oWGhaYAv4jK1pf4HxXyQ0W844Rrw67E5rvdRLe1yQdGkNn@lists.freedesktop.org
-X-Gm-Message-State: AFuF++n7V+ib6hf8Z1XsiXP5Cr4102x7/mk0Ao14mdSGPyLQP3OhZ0hl
-	YRkP4r5nvlTOe27PL8LnWf4RZzSFnmbBaSDVy2Vv5u+kIhVCsiO/ESb7jP9F+md4JqAcbxsD8k8
-	oEY3ekYuDiIWffxErEVnQCvPZT0EtXpd5eu5hQPyqVv3XjbmOyIEjCmWp0hjPsJSLJT0=
-X-Gm-Gg: AYBFou0uJBFX5t9feIIq3NLfbB4HKnNuS3DHFq+Ckdmv3HTycA6zvfF2dlzQPB3dE+0
-	tYEuSPqeOxQRx6v4qOxJICO+YXxAGTNC+hcK2H/2brFyF5P3YC+5jjsic1bcdTWZb++VM0HxHQ4
-	/wiCXbLHOPhap2g4py1oWTKkY5VQq40GtmkqDOAcC2gT178c1GhFJxEYQhE4TOyKZLlCj4LIoPW
-	FlTGUTH7W7E0FDq24q5HvLDxTmWokwUsoieVMvjRlIO/Ks+faMQ+W5EGaIYQBEg9yKexuRStfvQ
-	/61wcNNeT1seFPy29T6UfuLvINuTuTwqFIWWivHQDmI+p/x+l+K6aeHsExnVVA85HUOKCjp9
-X-Received: by 2002:a05:690e:480c:b0:66f:c1bc:4099 with SMTP id
- 956f58d0204a3-671632fcb0dmr1856042d50.92.1789662504423;
-        Thu, 17 Sep 2026 09:28:24 -0700 (PDT)
-X-Received: by 2002:a05:690e:480c:b0:66f:c1bc:4099 with SMTP id
- 956f58d0204a3-671632fcb0dmr1856033d50.92.1789662503824;
-        Thu, 17 Sep 2026 09:28:23 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93])
-        by smtp.gmail.com with ESMTPSA id
- 00721157ae682-896ca03f345sm1229717b3.20.2026.09.17.09.28.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Sep 2026 09:28:22 -0700 (PDT)
-Message-ID: <4170733fbe8a738f925986f0a17d03c39b066c17.camel@redhat.com>
-Subject: Re: [PATCH] drm/nouveau/disp: don't reject HDMI config on cards
- without SCDC
-From: lyude@redhat.com
-To: Tano Dzhinski <tano.dzhinski@gmail.com>, Danilo Krummrich
- <dakr@kernel.org>
-Date: Thu, 17 Sep 2026 12:28:21 -0400
-In-Reply-To: <20260917135051.47683-1-tano.dzhinski@gmail.com>
-References: <20260917135051.47683-1-tano.dzhinski@gmail.com>
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=3cUvhJCeylyKmCRzVdnpI1XudDCvPfdO1HTMEIyjjhA=;
+	b=HJx7DXJfho5gdM7uIjwYSJqPnRIKoRZQFa2WorKkjXQSv+Cy81C5Eq36FsFqtmLq1f1gV/
+	A9Ih6ApUhuZd5z1zRneRnH7WLP0gl4+oGrNyCz5XH+gLOr138JqJJ72Fo+b0r0idt5modh
+	IHVQCVU6uwIg5GqBYEEAKO1GqGi/sws=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-104-fL7CYz7kOVOXxBhP8eCeEA-1; Thu,
+ 17 Sep 2026 13:00:52 -0400
+X-MC-Unique: fL7CYz7kOVOXxBhP8eCeEA-1
+X-Mimecast-MFC-AGG-ID: fL7CYz7kOVOXxBhP8eCeEA_1789664450
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 172EE1802554;
+	Thu, 17 Sep 2026 17:00:50 +0000 (UTC)
+Received: from GoldenWind.lan (unknown [10.22.64.177])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id E1D3930002C2;
+	Thu, 17 Sep 2026 17:00:46 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: dri-devel@lists.freedesktop.org,
+	nouveau@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/5] drm/nouveau/gsp/r570: Follow OpenRM's runtime PM
+ process more closely
+Date: Thu, 17 Sep 2026 12:58:31 -0400
+Message-ID: <20260917170042.440276-1-lyude@redhat.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 9Rn1sIumHJAWW22NR9c6qIMWnPDCkfvZpnovdrcH_Us_1789662504
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+X-Mimecast-MFC-PROC-ID: rG_JtN7v4wkN_e9MZzfQR7cV0CTFBaV5wuWHPj4Zi7A_1789664450
 X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: OYUSERZS6UDDFMYO6ORWWSVQI2CFT6DC
-X-Message-ID-Hash: OYUSERZS6UDDFMYO6ORWWSVQI2CFT6DC
+Content-Transfer-Encoding: 8bit
+content-type: text/plain; charset="US-ASCII"; x-default=true
+Message-ID-Hash: UPE5VUYDXFXIKY76PZ5JJFYXFXKWSNBH
+X-Message-ID-Hash: UPE5VUYDXFXIKY76PZ5JJFYXFXKWSNBH
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address
-CC: Ben Skeggs <bskeggs@redhat.com>, Simona Vetter <simona@ffwll.ch>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+CC: Dave Airlie <airlied@redhat.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Kees Cook <kees@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Maxime Ripard <mripard@kernel.org>, Hongling Zeng <zenghongling@kylinos.cn>,
+ Danilo Krummrich <dakr@kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OYUSERZS6UDDFMYO6ORWWSVQI2CFT6DC/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/UPE5VUYDXFXIKY76PZ5JJFYXFXKWSNBH/>
 Archived-At: 
- <https://lore.freedesktop.org/4170733fbe8a738f925986f0a17d03c39b066c17.camel@redhat.com/>
+ <https://lore.freedesktop.org/20260917170042.440276-1-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -147,58 +124,52 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hi - apologies for missing the patch previously, and thank you for
-bringing this to my attention!
+While we have runtime PM working a lot more reliably then in the past
+with R570, we're still doing things a lot differently then OpenRM. For
+instance, we don't save/restore comptag backing stores, and we don't ask
+GSP whether it's OK to enter GcOff.
 
-Would you mind re-sending with the original authorship + a Co-authored-
-by tag for yourself to make sure we give the original author credit?
+This series fixes this, and gets our runtime PM process to look a lot
+closer to OpenRM's by implementing some missing pieces and workarounds.
 
-On Thu, 2026-09-17 at 13:50 +0000, Tano Dzhinski wrote:
-> nv50_hdmi_enable() passes the sink's SCDC capability from its EDID
-> straight through to nvif_outp_hdmi(). On pre-Maxwell-2 cards there is
-> no
-> hdmi->scdc callback, so nvkm_uoutp_mthd_hdmi() rejects the whole
-> configuration with -EINVAL, and nv50_hdmi_enable() returns before
-> hdmi->ctrl() runs and before the AVI and VSI infoframes are sent.
->=20
-> The result on such a card driving an SCDC-capable HDMI 2.0 sink is
-> that
-> HDMI audio silently stops working. Video is unaffected, and nothing
-> is
-> logged, which makes the failure hard to attribute.
->=20
-> SCDC is optional, and the hdmi->scdc() call further down is already
-> guarded against a missing callback. Requesting it on a card that
-> cannot
-> do it need not invalidate the rest of the HDMI configuration, so drop
-> that term from the condition and let the existing guard skip SCDC
-> alone.
->=20
-> Giuseppe Ranieri posted a fix for this to the nouveau list on
-> 2026-01-17, which received no review:
-> https://ratatoskr.run/nouveau/2026/01/16963412
->=20
-> Fixes: 6c6abab20b99 ("drm/nouveau/disp: add output hdmi config
-> method")
-> Signed-off-by: Tano Dzhinski <tano.dzhinski@gmail.com>
-> ---
-> =C2=A0drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c | 3 +--
-> =C2=A01 file changed, 1 insertion(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-> b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-> index 377d0e0cef84..9887b3898505 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-> @@ -253,8 +253,7 @@ nvkm_uoutp_mthd_hdmi(struct nvkm_outp *outp, void
-> *argv, u32 argc)
-> =C2=A0
-> =C2=A0=09if (!ior->func->hdmi ||
-> =C2=A0=09=C2=A0=C2=A0=C2=A0 args->v0.max_ac_packet > 0x1f ||
-> -=09=C2=A0=C2=A0=C2=A0 args->v0.rekey > 0x7f ||
-> -=09=C2=A0=C2=A0=C2=A0 (args->v0.scdc && !ior->func->hdmi->scdc))
-> +=09=C2=A0=C2=A0=C2=A0 args->v0.rekey > 0x7f)
-> =C2=A0=09=09return -EINVAL;
-> =C2=A0
-> =C2=A0=09if (!args->v0.enable) {
+Tested on my daily-driver desktop with an AD102, a ThinkPad P17 Gen1
+with a GA103GLM, a Dell Precision 7780 with an AD103, and my test
+machine with a GB206.
+
+Patch series based on drm-misc/drm-misc-next. Branch with patches here:
+
+	https://gitlab.freedesktop.org/lyudess/linux/-/commits/nouveau/rpm-openrm-sync
+
+Previous version:
+
+	https://patchwork.freedesktop.org/series/173901/
+
+Lyude Paul (5):
+  drm/nouveau/gsp/r570: Add support for INTERNAL_GCX_ENTRY_PREREQUISITE
+  drm/nouveau/gsp/r535: Add support for MEMSYS_GET_STATIC_CONFIG
+  drm/nouveau/gsp/r570: Add comp mode workaround from issue #3172217
+  drm/nouveau/gsp/r570: Start saving comptag backing stores
+  drm/nouveau/gsp/r570: Enable Gcoff in fbsr again
+
+ drivers/gpu/drm/nouveau/include/nvif/cl0080.h | 10 +++
+ drivers/gpu/drm/nouveau/include/nvif/device.h |  1 +
+ .../gpu/drm/nouveau/include/nvkm/subdev/gsp.h |  6 ++
+ drivers/gpu/drm/nouveau/nouveau_drm.c         | 13 ++++
+ drivers/gpu/drm/nouveau/nvif/device.c         | 13 ++++
+ .../gpu/drm/nouveau/nvkm/engine/device/user.c | 35 +++++++++
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/base.c    | 10 +++
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/priv.h    |  1 +
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c | 17 ++++
+ .../nvkm/subdev/gsp/rm/r535/nvrm/gsp.h        | 45 +++++++++++
+ .../nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c    | 77 ++++++++++++++++++-
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c | 36 +++++++++
+ .../nvkm/subdev/gsp/rm/r570/nvrm/fbsr.h       | 29 +++++++
+ .../nvkm/subdev/gsp/rm/r570/nvrm/gsp.h        |  7 ++
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h   |  3 +
+ 15 files changed, 301 insertions(+), 2 deletions(-)
+
+
+base-commit: 5535d5e61a77ad79118ea7665ce1c14f857f0f12
+-- 
+2.55.0
 
