@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2865DC982D0
-	for <nouveau@archiver.kernel.org>; Thu, 17 Sep 2026 20:26:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0BFFC88E72
+	for <nouveau@archiver.kernel.org>; Thu, 17 Sep 2026 20:34:53 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 005BA10F0A0;
-	Thu, 17 Sep 2026 20:26:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7991010F111;
+	Thu, 17 Sep 2026 20:34:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="hyp29NaH";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="O0TZAYm9";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E01014822A;
-	Thu, 17 Sep 2026 20:09:11 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 66D1E48230;
+	Thu, 17 Sep 2026 20:17:15 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789675751;
- b=Epk3sdOfdZzNYJOX9W3cJV/DRRIKzIzSkjRpc2cEwvSbolwCoFmrf5Bto5mGwy6MFReuO
- dpwDxwar5ti4MMcJhNPGc+jg5/AcE9D/kIhz3ME088LjczW6lj8+kdBWAIZLBWxNUbHvGjP
- NHJw7SKgqA6fCe5o1gbZLTLCf3rVAg6Vh7+OsEGwbTzzfNS60iysETOStuYPDH5FKp++44v
- HnUmeIot2yxZqxbqTFQSmYd61N7jRHksqZq5zAgRP3ldRQlzOlanZtG/8wbl3B30JCox5dE
- S/edpMCE6L91P3gVg+TH5hSil/XUraIJ8HzVEr399U6NmM1sAvoX7zn5Wtsw==
+ s=20240201; t=1789676235;
+ b=u5OGa37Sm4tuV1lh9elGWgov5zh9XZ5yXhxUtvF6Skz3SNwHm3J+oAmE9RoVu++AWS7z6
+ vu1spB3wGu0ss+URYt6rOL4WNqAYggxqceAFUkQDkgyy6Ig/+OOsAcJ7zgMufBzPKZC1aE5
+ GgmDEJdBExOtgVU4bDpMPFlk1e7hOJzXoaFFHw/KSa7ALLHU1QitnYFrz+41z0xS64t4tSB
+ 30VfBCd9Gv8kdfndvzJahOfkp8P3c5POzE06GJ3QvNOcMzvMt/+IwEtsCqsKrpJQyAR3i1n
+ qxeFiusOIMJHcQYRVVRUD8jw9m0+m1kfpG01Nl9VN+N9a2P35fYYsiTdObJw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789675751; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1789676235; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ya+cIlw22G+pUR3u7ErvGhK75QjcpcCjqrMDeSWo6yw=;
- b=y7zjWRAdGnZcOwmnEQ3gr+c1q7EG5f9/vNJJsFb5mCZry0IhjltOhi/P7ThP2omX3skp8
- ifI71HVFYPe93PQidebt8OkCG6KovRVxoTwJxdzsBsM3Nc8Px0Nx+Y/vvYs6yX6UxrWfhOE
- 6/N3PoNSLaeLBRW8ZaYN88t/bJNYM/9D1f+yxKU82GMfPNuEElAIKICGJOiknmCr3FZ2g2e
- MmuomowO0dOKlI9aro0iHou5Auq2xaHXmFpLRHISENr8ctRIfaxOVdjb5fa2K1nuz8NJUF4
- NQgmusPx8BZ1gfzI9rtPL/EvEBpZmW+589qyr0FqDooeuFAVslWn9Tc9MfOg==
+ bh=mYjbBVwargHWsKu07Jhp0TKQU4hcLQthxlQyB3uB2hE=;
+ b=T9L8YsKzssHR2tKQi0bLlBQSIDzsne4QiQjjlwjb3j9Tfvv0ypc24c4ReN+5KfAqCFCdi
+ R0KXcVxFWk/LhWr3l65Wdnhf4xs7GKkKFEZSxhPu4pcKyPWhplkLXyw3vBH4JQGafULOH8z
+ 3r7HKPjwDlATRl+trscHWjWA7wegbTt5T330Ygj6mOvpiSTu3dt46z0fZJb5JW0iXcZIo9l
+ p9eMXXjy8FLM8kVFN58Y2z8Ovzs/Z9EOe9gpa8t0KomAHfyWgpCs671mvc8JH9OyemL5aZv
+ TGhj6WXWpjZ5KEUIF2hxUAqbZhSoTbySHJ+m62cFH7T6Ev7PNu8gFFoRK4ug==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,100 +46,98 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4FB48481F4
-	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 20:09:08 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id ED0A4481EA
+	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 20:17:12 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EC9AC10F076
-	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 20:26:45 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A5AE010F106
+	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 20:34:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1789676805;
+	s=mimecast20190719; t=1789677290;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ya+cIlw22G+pUR3u7ErvGhK75QjcpcCjqrMDeSWo6yw=;
-	b=hyp29NaHyZlOgkDHgmbmNYOe6bCBS5j1cJfFeAY/sRcguEXVoK7GSGbLNIvx5SmuWsfGEy
-	bA0r0qltyRY1CWwWNtRJssBy4ykZ8OvA5r2zmcHy9FP1RR1atYU0qYEWa9qFZ1Jmx0BlRL
-	oLZQDwCe+dah/JQ6Wag8naXsvqMci3k=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=mYjbBVwargHWsKu07Jhp0TKQU4hcLQthxlQyB3uB2hE=;
+	b=O0TZAYm9PNBBakPWkNOZcS9QOqthErBjwXIzKtJA5MOOqxG+N5fI3P1/KevGILP2Rz43i+
+	bfOWhO19rGX5poak4y3kb41fpjBRVxdl81MFp10nZtZohIoIg0rLm6+P+qYQpH8wQUYlkz
+	wJV0lLGKcek2XfA90IYaRvbkIMntEew=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-15-oc6DftTlPE68ztpyv3ZRYA-1; Thu, 17 Sep 2026 16:26:44 -0400
-X-MC-Unique: oc6DftTlPE68ztpyv3ZRYA-1
-X-Mimecast-MFC-AGG-ID: oc6DftTlPE68ztpyv3ZRYA_1789676803
-Received: by mail-qv1-f70.google.com with SMTP id
- 6a1803df08f44-90e8341cfb4so2541026d6.0
+ us-mta-678-aiKHaDMRPrmKxRtf6llpUw-1; Thu, 17 Sep 2026 16:34:46 -0400
+X-MC-Unique: aiKHaDMRPrmKxRtf6llpUw-1
+X-Mimecast-MFC-AGG-ID: aiKHaDMRPrmKxRtf6llpUw_1789677286
+Received: by mail-qk1-f200.google.com with SMTP id
+ af79cd13be357-93bd22160bbso7412885a.1
         for <nouveau@lists.freedesktop.org>;
- Thu, 17 Sep 2026 13:26:44 -0700 (PDT)
+ Thu, 17 Sep 2026 13:34:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789676803; x=1790281603;
+        d=1e100.net; s=20260707; t=1789677286; x=1790282086;
         h=mime-version:user-agent:content-transfer-encoding:content-type
          :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ya+cIlw22G+pUR3u7ErvGhK75QjcpcCjqrMDeSWo6yw=;
-        b=HsIgurQmeXh9jNe4XnZcMxB3KMFpLVbN3t/6Cn2h7zwPkucwa193PxyLGeN+YFSXSC
-         yEFDs22VctU3vvdghByTDCzwpolHXTd31pmYUK1p9vFTuvICVvirVRI2WTKURUTiysLG
-         5sLsVu3NIZjNhye1cLMK78gPIckROAuqEl+8z2mtv4lYrkdki44FuGDGvI87eTMOcB4k
-         hW8TkO7KiUpgQLVE4c8kamze47+0LbksSTYFSzgX9Zr8AmxKLOn3/vqvG/MEbVpJlbOK
-         Mssy7eVp+PcyHKCWmEbygaokBpDe3d7MO+5cdmCaIL+bsFqxv+mQU96zV1WA5fdMCZBQ
-         fjUg==
+        bh=mYjbBVwargHWsKu07Jhp0TKQU4hcLQthxlQyB3uB2hE=;
+        b=XnkWt3f4v2APmMpu//noaDpZX306GS6rpPsS3YfsLc2t/cgrZFpayQUQpulxH/R9rn
+         SBXLYCObHc6C3gA/Z7fXnDIn6cJPU81Ws/AmM8g6veoPFHIqNtE+W71NjQmzzthaR/hn
+         T8zlNUeUb39aArERGg4PDmi78yqdkjbVdCVsRZzL9ZTP7uyP2EU2zcY7aKqzATY05yDb
+         aJp22QgdoDkGsk/iW0+UwJpfhONxL4UGVQ/WIR3tfOZTrAk3FOACG122cVkjqlLYwBLO
+         ncueglbaZH2tAa5wazCEhNZR0wgwZ/+uU/k0BAgvorYzauIX0Df/DeOKaKkCt3HfAv9e
+         BRnQ==
 X-Forwarded-Encrypted: i=1;
- AKwUvBz33v9VdIxrAeC62o6d0CQf32s4VVJh5C+0IBstrRyK7v6231RXuw8qZWFJgOrHHKLRTmZsJ67c@lists.freedesktop.org
-X-Gm-Message-State: AFuF++meBlBBiIzf0txGCDPloagG0qTDDQoxOQsWU9PV+KLgYX5eJWPW
-	kyZNhCvEd3VHVhkn/QJSb55x4YwLKI621tkLIlN2lLLOEEWF25Y1bA8XSJsB/w0Yot4sCeiWJXE
-	/2iAOWMP/9arqk9MKpL4AaFdYCQ085hXSuTl+FmaKvwuDUJ9EAsHo66kZOSdMqQ5YaWo=
-X-Gm-Gg: AYBFou3TUPW/Ez1KAZAAlOUeiSDb0FnsEzJt4izjpPpavb7VkEyIAEf8kt7s0iyKuHL
-	LA2rPgH69gPfmRFMAnGRXcwTGTtk7oC/Isag/pIcoFrWFe0dzF35IqV15NAGIFcYGLO8nIcDLSO
-	HOtrgvXkE/npnrZcO/Hncb2iRA3Ory1RyRRu962jGrODFSSSMoOWzj3ugakrp7gCO4ymQYB1Ksb
-	YzZOmXlx2HGzPWVfkvty7KkM0g7rNOCr7oCWf3Z1GXWBjKd/8d3P7kH6pEkTPKoLRV6VFzrWlg0
-	dRT5sQaMlQqDjmYXX3ATk46XimBSma3mLHHCTOs4NvruWNhpVqFYQeTAzdheFidF2/YrZCjj
-X-Received: by 2002:ac8:7e81:0:b0:530:256c:3718 with SMTP id
- d75a77b69052e-5329e4f5460mr6673771cf.38.1789676803193;
-        Thu, 17 Sep 2026 13:26:43 -0700 (PDT)
-X-Received: by 2002:ac8:7e81:0:b0:530:256c:3718 with SMTP id
- d75a77b69052e-5329e4f5460mr6672891cf.38.1789676802166;
-        Thu, 17 Sep 2026 13:26:42 -0700 (PDT)
+ AKwUvByzWcAIWNxbpyAPbkyC8YhBJTWPWBjNbrd7KdIkPHlYiejsniFogPb9cxH3rZfxgmyNGx1pY+kF@lists.freedesktop.org
+X-Gm-Message-State: AFuF++lKrAY/6x9wUlBMX0QQOY6m9k6aWn/i1f1A04AS1XNJzKifvxxC
+	lEenJIyOVnloVjCLykDi1fL7E1EjIBgeALzYqpIf6VP9MlriQCCJINUWR+5doZlhx3u9N2Lc/UA
+	ynzgxsc/16sWTy/KXVC+xqT85bh/JtPOzPAzPCs+Rgoejx92CKYUEfO9gP3qctiYmdR4=
+X-Gm-Gg: AYBFou1q63lK85T3DYdJFwIyIbCvfgL9/+He2EN9uJPQxcF2cg+OEzkmkrGcNOnW4Yt
+	eDqHqweqMzsOY6Ut6wy6ON7Mv/6I3wdXSCedDdjlZ3+AZaB1rLV5kEG6FeadSfnQkfbR5pKrna6
+	o00wKlYobFXR7AEiyoogtbr42Bp2IrmZUfsSmAQNuOz7B4RHkXFWbu8WWF9//B+U/CqRJEDQLCX
+	yirWM59vL3qejpX+O/tadFhmgkL2Fmclde092y+WwpJznhF5uG+M1K+He0oY5i3GUZH3YAePGG7
+	4wzdI0zP1rmod27qrxqyJNacO0N9sy0DMMcChinJqT/zj90V3awxHhoZmiZHtTFRmT9rI6eo
+X-Received: by 2002:a05:620a:254a:b0:93b:d79f:d951 with SMTP id
+ af79cd13be357-93bdca433b5mr16959885a.70.1789677286172;
+        Thu, 17 Sep 2026 13:34:46 -0700 (PDT)
+X-Received: by 2002:a05:620a:254a:b0:93b:d79f:d951 with SMTP id
+ af79cd13be357-93bdca433b5mr16957185a.70.1789677285807;
+        Thu, 17 Sep 2026 13:34:45 -0700 (PDT)
 Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-91252c805e1sm6287236d6.19.2026.09.17.13.26.41
+ af79cd13be357-93b781deec2sm559137785a.7.2026.09.17.13.34.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Sep 2026 13:26:41 -0700 (PDT)
-Message-ID: <bd730e30c96bea38d8430460ee73f073e280374c.camel@redhat.com>
-Subject: Re: [PATCH 1/2] drm/nouveau: Fix NULL pointer dereferences in
- GETPARAM ioctl
+        Thu, 17 Sep 2026 13:34:45 -0700 (PDT)
+Message-ID: <fcd366286750d61f0d4e2b99ddef2a9d36e72b0f.camel@redhat.com>
+Subject: Re: [PATCH] drm/nouveau/bios/init: drop unneeded semicolon
 From: lyude@redhat.com
-To: Jim Cromie <jim.cromie@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann	 <tzimmermann@suse.de>, David
- Airlie <airlied@gmail.com>, Simona Vetter	 <simona@ffwll.ch>
-Date: Thu, 17 Sep 2026 16:26:40 -0400
-In-Reply-To: <20260815-null-fixes-v1-1-0df9dda951fb@gmail.com>
-References: <20260815-null-fixes-v1-0-0df9dda951fb@gmail.com>
-	 <20260815-null-fixes-v1-1-0df9dda951fb@gmail.com>
+To: Julia Lawall <Julia.Lawall@inria.fr>
+Date: Thu, 17 Sep 2026 16:34:44 -0400
+In-Reply-To: <20260801191002.1383835-8-Julia.Lawall@inria.fr>
+References: <20260801191002.1383835-8-Julia.Lawall@inria.fr>
 User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: kjNyoN-2BhpwQUcYSc8kUL-xxKIPaJ4UsXdEINrBpIA_1789676803
+X-Mimecast-MFC-PROC-ID: ugrEOv5s9CgmtIDq8MWEt5T_kkBBvLr-iM5xg2ZVfDA_1789677286
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 7GFZWMMARNCS75SW6CFIX3RBJHASOARX
-X-Message-ID-Hash: 7GFZWMMARNCS75SW6CFIX3RBJHASOARX
+Message-ID-Hash: 5Y5RFHAWLENDHFVPHQZZTRUT7GETMZKK
+X-Message-ID-Hash: 5Y5RFHAWLENDHFVPHQZZTRUT7GETMZKK
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+CC: kernel-janitors@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7GFZWMMARNCS75SW6CFIX3RBJHASOARX/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5Y5RFHAWLENDHFVPHQZZTRUT7GETMZKK/>
 Archived-At: 
- <https://lore.freedesktop.org/bd730e30c96bea38d8430460ee73f073e280374c.camel@redhat.com/>
+ <https://lore.freedesktop.org/fcd366286750d61f0d4e2b99ddef2a9d36e72b0f.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -149,34 +147,47 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Sat, 2026-08-15 at 11:30 -0600, Jim Cromie wrote:
-> When hardware or firmware initialization fails, the graphics engine
-> (gr) or device functions may remain NULL. Attempting to access these
-> during the GETPARAM ioctl (e.g., NOUVEAU_GETPARAM_GRAPH_UNITS)
-> results
-> in a kernel NULL pointer dereference, causing a crash when userspace
-> (GNOME/Mesa) attempts to probe the device.
->=20
-> Add safety checks for 'gr', 'gr->func', and 'nvkm_device->func' in
-> the
-> ioctl handler. Return -ENODEV to signal the missing hardware state to
-> userspace, and use NV_ERROR_ONCE to provide diagnostic proof in the
-> kernel log without risking a console flood.
->=20
-> RFC:
->=20
-> These crashes may not be repeatable, they happened while I was trying
-> to build nouveau as a builtin module, with binary blobs in the kernel
-> image, on a laptop with an encrypted disk.=C2=A0 Gemini tells me this
-> won't
-> work, so I punted.
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-"Gemini tells me this won't work, so I punted."
+Will push to drm-misc-next in a moment
 
-I'm sorry, what exactly do you mean here? And could you clarify what
-LLMs were used for in writing this series? Code generation, analysis,
-etc.?
-
+On Sat, 2026-08-01 at 21:09 +0200, Julia Lawall wrote:
+> When a function-like macro expands to an expression, that expression
+> doesn't need a semicolon after it.=C2=A0 All uses have been verified to
+> have their own semicolons.
 >=20
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+> This was found using the following Coccinelle semantic patch:
+>=20
+> @r@
+> identifier i : script:ocaml() { String.lowercase_ascii i =3D i };
+> expression e;
+> @@
+>=20
+> *#define i(...) e;
+>=20
+> Signed-off-by: Julia Lawall <Julia.Lawall@inria.fr>
+>=20
+> ---
+> =C2=A0drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c |=C2=A0=C2=A0=C2=A0=
+ 2 +-
+> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+> index b54f044c4..3f888fb97 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+> @@ -403,7 +403,7 @@ init_table_(struct nvbios_init *init, u16 offset,
+> const char *name)
+> =C2=A0#define init_io_condition_table(b) init_table_((b), 0x08, "io
+> condition table")
+> =C2=A0#define init_io_flag_condition_table(b) init_table_((b), 0x0a, "io
+> flag condition table")
+> =C2=A0#define init_function_table(b) init_table_((b), 0x0c, "function
+> table")
+> -#define init_xlat_table(b) init_table_((b), 0x10, "xlat table");
+> +#define init_xlat_table(b) init_table_((b), 0x10, "xlat table")
+> =C2=A0
+> =C2=A0static u16
+> =C2=A0init_script(struct nvkm_bios *bios, int index)
 
