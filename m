@@ -4,149 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51FF9C982D8
-	for <nouveau@archiver.kernel.org>; Thu, 17 Sep 2026 21:56:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD2BCC982D0
+	for <nouveau@archiver.kernel.org>; Thu, 17 Sep 2026 22:10:15 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CBC4310E4D8;
-	Thu, 17 Sep 2026 21:56:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7B76410E4E6;
+	Thu, 17 Sep 2026 22:10:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cqWJoRLt";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="EcZ1oSDL";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9C4734827E;
-	Thu, 17 Sep 2026 21:39:08 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789681148;
- b=MdUwu1cFN6+/vgdKw5MKp4hA7CM2GUTsZ2auaN+wv0F4/7TUbQ2A3cKTJ2jKYGy3wYWv+
- O3Dn9Lqf80POvQvMraHqCsvOL+WdCXCK4xE3LdciqUYZWKuSVUMbusDmRzRRlS6tH9ct7jT
- kwWSIdtwfNfQS0882ykpfgcQAsmiMeZn2ksgL6waO3TMvatE4rf2xfVGp7IbR+UQTlA7HUx
- pCR2OaSOBqDNsf43FJwAoAnhEID2Oz7/FBwFu6M6joPH43QFubdGjidhNCvK4rZOhbR7nJM
- EZxsuVKfeWrHy1ULxsc8C5JQmwivaZ1WE7IRZWfFrurT7n6jpUdq46xAW/cw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789681148; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 433B948284;
+	Thu, 17 Sep 2026 21:52:35 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1789681955;
+ b=y3SNm1s8MwqdU2p88zNuwfOxPqL6QCN3F3/8+en/CRaglt8Gk0fJc7UZy2z+HIl9kNRtL
+ JSxNDyfz3ZP96sA0jdIDXKZfVKVrVnraX4GlaAG4LThiMfdd0bfgu0zNyBEiOGYkO83UZt3
+ nK+G1x0RDgtJIbZQChTGKIyQyagk7wHI2mzJDeA+/VN9pXk7gPyTIujiiKCNfWpxLCheZ22
+ ab9qqdjwfT34ik61ajSnKa9XEQ4WP2d16vw6A0AUXYkFSXPuQb+EcTzHgaAb5e5B0VduRn3
+ Dby/kToXeoHvbCXCVAOtQF1yR+rJ1RSmNep7XZldzV3jqSuLcnVIV9QSAiqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1789681955; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=er5a82jOE/dMjvQLmdh6qXHLj1Ar/Uat8F/LKGOIt+k=;
- b=WPcUkHoqTJPbmJFQj1gUkE8u7vInZEHcjGdDufvvg04aEu+6S90nKCnj1jjIBzGpyY846
- 3f0LjfPZ+ZRzO9rygPfUfI2q/VG4HQWyZFeRm6BH7aOJ2hiEqrfpKeAinh3KO/jt/34VsV3
- r4fxBJyajrl8gHn3EhQrSt5+KxmOmfLQXgYJOHPyPyAExLkgwv2MRoBaUuIT9PoNn2kJweS
- Od4WeG52SMLTsYP9n5HMC4aTO+iY9Wj1+qwJPRvb8xJfGgxFMG3FJYC3zcExtU1Qt7Fbag1
- Om49NGfZM/zMy98QszcwpkCniOD/AJIN2EUGBs7dNk11gILK0sZS7TecSWFg==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ bh=Ud4TYwbWHYsVK5PwKqeeWvh3vyT9zE8Y/zwj3gXwLMk=;
+ b=YdTuLtFcC7ftW1FRrHoJJyDX7knkVLRftTDD6eCBLA4cxdv97fJZIo2o4CPbMNTxKACsA
+ CTmW/Cm81yoR9GuJNT/f79n3Ay/8sa1Xqf0tcMX1qQziMKORgX86npAu+c+ZqVikES44ob4
+ a9kL4z8Tb1KNAAhw18E7IuA830bRWmRgOYsUr7zl4fiooRpq4GWR6JZ0VNnEVtvmXAkU+L1
+ 5/Zqh98Nx4J9sX9EkzfvcGOg8vcLG61RO4iZTi1RkZFEVURbm7Q+dUgUvK/RBkc8iW+XekR
+ 4m2xxUiNjZn10jzmYEkkzecFqLwqntBZBzCIlcRo9f9vg1fm+d2s/PFI9Jqg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D3B95481EA
-	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 21:39:04 +0000 (UTC)
-Received: from mail-oa2-f24.google.com (mail-oa2-f24.google.com
- [74.125.231.88])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D17F910E055
-	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 21:56:42 +0000 (UTC)
-Received: by mail-oa2-f24.google.com with SMTP id
- 586e51a60fabf-482620dc91bso119846fac.2
+	by kara.freedesktop.org (Postfix) with ESMTPS id B9CA448233
+	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 21:52:32 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9896D10E4C5
+	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 22:10:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1789683009;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ud4TYwbWHYsVK5PwKqeeWvh3vyT9zE8Y/zwj3gXwLMk=;
+	b=EcZ1oSDLZAStU9v/LLLJAZtazjMdGRvJ678CiDpmIP/LXH7v2BT4NFxmnIcTGGZGV6s7E3
+	p1YfS156nQxlOWI46l726nQfRBhW1CZmoQEHKFt11MU42dsfWc1C1zmRcrrhMxBL2IsUsG
+	Pb2ho5ocUbvdTJHcmxZeMty9DgHYY94=
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
+ [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-387-ex74Eb8jPCmX54DaGCarEw-1; Thu, 17 Sep 2026 18:10:08 -0400
+X-MC-Unique: ex74Eb8jPCmX54DaGCarEw-1
+X-Mimecast-MFC-AGG-ID: ex74Eb8jPCmX54DaGCarEw_1789683008
+Received: by mail-qv1-f69.google.com with SMTP id
+ 6a1803df08f44-912330dd4dbso29469226d6.1
         for <nouveau@lists.freedesktop.org>;
- Thu, 17 Sep 2026 14:56:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1789682202; cv=none;
-        d=google.com; s=arc-20260327;
-        b=AtWrSb6rv9FlRqFJtgAKnUdCD6DzAj5gzdKoeL4HdhJpYH17KvZyQXozufxwIDCmRn
-         9mcELdek6dVzPl8AOx9q2x8M8IEkKK4I61iDHQcIyO5LwA9o48IvSZvfuCypO+ioxZMk
-         2DrdHYIl4+/PYjU2BXCmchVubJmQDQ1RxycFAWrdNaiR8TL70Wb7FtyiXcajnuYxx612
-         BgBz/47GEONuWsSOCA9RXoRcKdJOxp4KGf5kJqyOWszpIkP0Bdr7n+Bn9B3b/6CXOnhu
-         imidjIQlgBLNCc0KvW4UCoRs+EVag/Y07uS1qnjp9YLeQPCeYSdZ4VQYKmG/B3djkU51
-         lDwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=er5a82jOE/dMjvQLmdh6qXHLj1Ar/Uat8F/LKGOIt+k=;
-        fh=ce9FTwB5GhQl38RFXx5t9mGdEOpT7A8hWrewAGECm78=;
-        b=RByAAPRVZDIZ4ybtIVydjcysd10dZaIncfniCWLALXwSa0Lj5Tm2uy8tzpgdLb+VwA
-         jzzb7sEHOblH7ZWeTc1HnDBebtiCRC+QgdflPI8TRSZyxxQ3IA+2k8iI8yt8L7fpb9cP
-         6eT/6wkOpCWKRwJanVWLX/z2cP/wOux5n8o41MvkoGjJZoxi+pQYlC1a4Kr93h9qVHvk
-         MHML4TfBYQhOZ7XMQ2GqFCU6yx1zkZDk6Pjhxg9ezvExIeXSJ4qSgG7MVZGCwmXk3l9w
-         Nc6UFLFy19vtLetdUysTDhhq48ZztqaUlBwh+/HZkzsEemOic4w++djWPKgIKe8m6v5F
-         ueXg==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789682202; x=1790287002;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=er5a82jOE/dMjvQLmdh6qXHLj1Ar/Uat8F/LKGOIt+k=;
-        b=cqWJoRLt436bOgof+JkIZOaDjWVC6y7c+ZcBs3hBQtNVb3ldj66F63QtHlsWS2K5au
-         NVlashruLeb9xaFGrAJojVfRHZywKRn2oE797vW698uNDJaonrXGEspbnr/ZuUVX2QME
-         F4D4uBxVcJTgx8VOa1JjX5GDYrwovnFYqhUXOVX9cHcuBLQZUriCUCrs5gaYZUs6omHU
-         dOAJZVQ2Mvo3FYkHR7UQTKKuhrU8GdmOu80sZNM4WP4DEoPjVsbMK2m999v/hWky2uuL
-         iyCfPlmeoo8WGqgt3znnbTPnUpXE+MEMhWEBTZ757k9sKiniQyps03kZ6wQkjkneWu3S
-         +33g==
+ Thu, 17 Sep 2026 15:10:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789682202; x=1790287002;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
+        d=1e100.net; s=20260707; t=1789683008; x=1790287808;
+        h=mime-version:user-agent:content-transfer-encoding:content-type
+         :references:in-reply-to:date:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=er5a82jOE/dMjvQLmdh6qXHLj1Ar/Uat8F/LKGOIt+k=;
-        b=alcC1eTNJ4ZSWJ/8zksyevn6lFX5KZS80LkBGMQy3/tmjnOeaYr335to7Nayiph5be
-         6pB0yYriKWDUmoVbZ3ngwr7de9Mtd7/Y62acZSnqp8NYDaHfe9Xzs/9FWfVHJxyYwGxr
-         aE1lI9RRxiZ0mp84HxWKP5CgwyjwxhXvT9hN3919LZLTsxvxWbhYOf2k7RyD0t27bhyU
-         /xLEOmfISZ/AsKDhKKbBO3KTsHUFlBkPNCB1cP2hX24bcLn4T7Ws3SCUaYvoWd36o/7Y
-         bth59fSP4GEZ3lfS+Mr3Otwcp9xxV3BEpUXxV0G+1eLCP+KVS3bx9YMxBxi19XVQ8L22
-         lhcQ==
+        bh=8z7jGkncFvYX44ONKGgmNu9yUifGbhbRMAl3u7dsO+Y=;
+        b=fSWlV7ZT9PG139YBF32jDzT/d4CDvFeV5u2NZuqPmlhHA/8MIdqCfmyEGv0w+7oYyw
+         11NBDfXFrgg9tttWFFX7sMAlHxFhu/GE1mVGdbdOTGApgxJZUGYo3f8z050DuKONzJwt
+         LeW2anhO68dfXPMWKklLKnmjjDmIRmpqEpUoLidtD2zSUabjA99e9sf/ydvFdOpXb8iv
+         zrrLzN56gudm0W6kzBIP98hxarujwBGPDM/ER9ky3vZPFVumYsgu0u4L/7XPnjYTwGGW
+         F+YsF04pgnlNS+WGd4w1y+uEYh+DN8DvKlPtDNTTMZceoUQ7Kv/deKtkQASvUu74dJr9
+         x6ag==
 X-Forwarded-Encrypted: i=1;
- AKwUvBxGfwcSSUZALNxmDiSs9ZH27DPsx2eOD1ykcsLEsits5tzjkK6udfiHc8T+uwv2tOBGm9TY4twr@lists.freedesktop.org
-X-Gm-Message-State: AFuF++la05no4hE+eEL/hS4f9JD31Gx/0EUvQfdDgKEnoAikZS8Ea6VW
-	x5Ga+qMgw9QTT03A72R1CuaCX7BFo0mxyakVGwhiQDMg5RKu0h7nmfb8JA+/AJlsWz63g2n07lC
-	qtL7AsKaLuXxjSNNUOfKENkr9y9E6BSQ=
-X-Gm-Gg: AYBFou2AEvUxVJHljeYNkVUG6eAUNIv4kd7Qe9Zk6Cvk0YihUiap72RTocqzYyShSpZ
-	Qyy0Wm6ZD0wy69iF5gsK0VAPFvDnSnEyhXFNpeYHJtRHoB8bFGpPwzZKBtQq6NExFBVmgOQHTY8
-	DtGJmVbj/c2zitwu5JElvheiSZSkuUmbRCB1gqh47oG0cPVtKT/f7x8YCM/mxjbJXOSwKZBYYh7
-	7zo7RwKXZszJLSLG9W8NqucmXO2CyayXFMBoVhMEs1FKZ2N+M+CYfCbHpjBYS1xPHs7d56zwZjF
-	LylMDX8RGdpXxrCJwBFoOGgHkqA5gywRSW5vYd3E++w7t6amttGU9NvPpz+YMfI0QOF6Qy2YeZ/
-	9Ncn7c3RdOxbPXGaK2HlT0yYHboAQBCFG0tLP
-X-Received: by 2002:a05:6820:2219:b0:6b1:61b8:7ed5 with SMTP id
- 006d021491bc7-6ca9a132698mr439448eaf.1.1789682201892; Thu, 17 Sep 2026
- 14:56:41 -0700 (PDT)
+ AKwUvBzCUf0u1VnIJM391Bptse+j09IOQy/YlgmXGUL/eaqlngVVAwkqw48HkEnWfLcu1IX9yEjdVKNl@lists.freedesktop.org
+X-Gm-Message-State: AFuF++lG74KW3R5rQ/JndgoCqiC7lPP778oF2FgxBxSvJfwBrBPaod6F
+	bVljmyzPnRnK/6bWeo6aQRMfg7X7JIuxNRq0rxMm8GXmf1Ujh+sgq2ZwtUnK1HtKRGysvjz0+MY
+	2Nv/q4iTvbeMyCUciR8k7p29fqb13MT+XLX2wqg5bPk8X+X8vH0C7L84OwwirAv4h6Oc=
+X-Gm-Gg: AYBFou2RO/kq0BogmTiE9QOmalQPaoe+jT2Bp19fktf8yyRSvyUWtGsy5uKoV5tQWce
+	wi3U3xqZef1cn7Rjm5Ziw9DXEc+kUEhpINPOga357RhZ1+zI26VtIUXsW7cCsP25HjeUjVMkx7p
+	zcl3vnyGS9ibh1aBo9HjPg+1lCoHqrd3vE4jPOYMlF+NW0J6VqzDP2tfhnneT2ATbt+K+b8AkXg
+	5ZEoJBP8C1BJYLJqNH2CO4dHx85TeXLamlqX5r+NDZc6EUbHQh1wCUWCz8MalQR0339PsnZeSx/
+	b8ipRva/5PQA5piNHfhvM8VtTSqVqwx20wDqtbYzmXhLobBVyoJhV34D+id16hmLQlLT384c
+X-Received: by 2002:a05:620a:1a17:b0:93a:1091:e692 with SMTP id
+ af79cd13be357-93bdbaa321dmr92011685a.7.1789683007868;
+        Thu, 17 Sep 2026 15:10:07 -0700 (PDT)
+X-Received: by 2002:a05:620a:1a17:b0:93a:1091:e692 with SMTP id
+ af79cd13be357-93bdbaa321dmr92006185a.7.1789683007243;
+        Thu, 17 Sep 2026 15:10:07 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93])
+        by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-93b781dfde3sm572372785a.12.2026.09.17.15.10.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Sep 2026 15:10:06 -0700 (PDT)
+Message-ID: <ff3015a1c4b08088b0638b00670e86d612a27978.camel@redhat.com>
+Subject: Re: [PATCH] drm/nouveau: Fix memory leaks in debugfs and hwmon init
+ error paths
+From: lyude@redhat.com
+To: liupeng <liupeng01@kylinos.cn>, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann	 <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>, Simona Vetter	 <simona@ffwll.ch>, Guenter Roeck
+ <linux@roeck-us.net>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+	 <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA
+ GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, open list
+ <linux-kernel@vger.kernel.org>, "open list:HARDWARE
+ ""MONITORING:Keyword:(devm_)?hwmon_device_(un)?register(|_with_groups|_with_info)"
+	 <linux-hwmon@vger.kernel.org>
+Date: Thu, 17 Sep 2026 18:10:05 -0400
+In-Reply-To: <20260824090505.49913-1-liupeng01@kylinos.cn>
+References: <20260824090505.49913-1-liupeng01@kylinos.cn>
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-References: <20260917135051.47683-1-tano.dzhinski@gmail.com>
- <20260917215114.1136715-1-tano.dzhinski@gmail.com>
-In-Reply-To: <20260917215114.1136715-1-tano.dzhinski@gmail.com>
-From: tanodzh <tano.dzhinski@gmail.com>
-Date: Fri, 18 Sep 2026 00:56:26 +0300
-X-Gm-Features: AcwNN1UdQBWI62Niu39vnc_MepV5q8WTyFHhbRmt4e0Z1fYt3vUYBBKqOEmd_No
-Message-ID: 
- <CAJhzm-8wFgQoAt3gYHnKg-f-dVCiUycdcs38CUOa-rSrmT2NFQ@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/nouveau/disp: don't reject HDMI config on cards
- without SCDC
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: Mva6S30jtblNCF38pB81dLGTBILizASIWcsm5VUm-Ys_1789683008
+X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: AXSV3GI7XJYVMYJAMKHGNGSRTDEWABHL
-X-Message-ID-Hash: AXSV3GI7XJYVMYJAMKHGNGSRTDEWABHL
-X-MailFrom: tano.dzhinski@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Message-ID-Hash: GNIVVTHBT4PPUNETN2VVSLI7J7ID5AEU
+X-Message-ID-Hash: GNIVVTHBT4PPUNETN2VVSLI7J7ID5AEU
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Giuseppe Ranieri <giuseppe@ranieri.dev>, Simona Vetter <simona@ffwll.ch>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+ loop; banned-address
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AXSV3GI7XJYVMYJAMKHGNGSRTDEWABHL/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GNIVVTHBT4PPUNETN2VVSLI7J7ID5AEU/>
 Archived-At: 
- <https://lore.freedesktop.org/CAJhzm-8wFgQoAt3gYHnKg-f-dVCiUycdcs38CUOa-rSrmT2NFQ@mail.gmail.com/>
+ <https://lore.freedesktop.org/ff3015a1c4b08088b0638b00670e86d612a27978.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -156,70 +152,75 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-FYI - the CC to Giuseppe bounced: ranieri.dev no longer resolves
-(NXDOMAIN on the MX lookup), so he can't be reached at that address
-anymore. Possibly why the original posting went unanswered from his
-side too.
+Mind adding the proper Fixes: tags and Cc: tags here?
 
-The From: and Signed-off-by: in v2 still record him as the author,
-which seemed right to keep regardless.
-
-Everything else on the CC list delivered fine.
-
-Tano
-
-
-=D0=9D=D0=B0 =D0=BF=D1=82, 18.09.2026=E2=80=AF=D0=B3. =D0=B2 0:51 Tano Dzhi=
-nski <tano.dzhinski@gmail.com> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=D0=B0:
->
-> From: Giuseppe Ranieri <giuseppe@ranieri.dev>
->
-> nv50_hdmi_enable() passes the sink's SCDC capability from its EDID
-> straight through to nvif_outp_hdmi(). On pre-Maxwell-2 cards there is no
-> hdmi->scdc callback, so nvkm_uoutp_mthd_hdmi() rejects the whole
-> configuration with -EINVAL, and nv50_hdmi_enable() returns before
-> hdmi->ctrl() runs and before the AVI and VSI infoframes are sent.
->
-> The result on such a card driving an SCDC-capable HDMI 2.0 sink is that
-> HDMI audio silently stops working. Video is unaffected, and nothing is
-> logged, which makes the failure hard to attribute.
->
-> SCDC is optional, and the hdmi->scdc() call further down is already
-> guarded against a missing callback. Requesting it on a card that cannot
-> do it need not invalidate the rest of the HDMI configuration, so drop
-> that term from the condition and let the existing guard skip SCDC alone.
->
-> Fixes: 6c6abab20b99 ("drm/nouveau/disp: add output hdmi config method")
-> Signed-off-by: Giuseppe Ranieri <giuseppe@ranieri.dev>
-> Co-authored-by: Tano Dzhinski <tano.dzhinski@gmail.com>
-> Signed-off-by: Tano Dzhinski <tano.dzhinski@gmail.com>
-> Tested-by: Tano Dzhinski <tano.dzhinski@gmail.com>
+On Mon, 2026-08-24 at 17:05 +0800, liupeng wrote:
+> In nouveau_debugfs_init(), if nvif_object_ctor() fails, the
+> previously
+> allocated drm->debugfs is leaked because the function returns the
+> error code directly.
+>=20
+> In nouveau_hwmon_init(), if hwmon_device_register_with_info() fails,
+> the allocated hwmon structure is leaked because the function returns
+> the error code directly.
+>=20
+> Fix both by freeing the allocated memory and clearing the pointer on
+> the error paths.
+>=20
+> Signed-off-by: liupeng <liupeng01@kylinos.cn>
 > ---
-> v2: restore Giuseppe Ranieri's original authorship and Signed-off-by
->     (he posted this fix to the nouveau list on 2026-01-17,
->     https://ratatoskr.run/nouveau/2026/01/16963412), per Lyude's
->     review of v1. Added Co-authored-by and Tested-by.
->     Tested on GK104 (GTX 670MX) with BenQ PD2700U and EW2790U.
->
->  drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c b/drivers/g=
-pu/drm/nouveau/nvkm/engine/disp/uoutp.c
-> index 377d0e0cef84..9887b3898505 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-> @@ -253,8 +253,7 @@ nvkm_uoutp_mthd_hdmi(struct nvkm_outp *outp, void *ar=
-gv, u32 argc)
->
->         if (!ior->func->hdmi ||
->             args->v0.max_ac_packet > 0x1f ||
-> -           args->v0.rekey > 0x7f ||
-> -           (args->v0.scdc && !ior->func->hdmi->scdc))
-> +           args->v0.rekey > 0x7f)
->                 return -EINVAL;
->
->         if (!args->v0.enable) {
-> --
-> 2.43.0
->
+> =C2=A0drivers/gpu/drm/nouveau/nouveau_debugfs.c | 15 ++++++++++++---
+> =C2=A0drivers/gpu/drm/nouveau/nouveau_hwmon.c=C2=A0=C2=A0 |=C2=A0 2 ++
+> =C2=A02 files changed, 14 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+> b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+> index 47d5579c568d..88223931f382 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+> @@ -295,13 +295,22 @@ nouveau_drm_debugfs_init(struct drm_minor
+> *minor)
+> =C2=A0int
+> =C2=A0nouveau_debugfs_init(struct nouveau_drm *drm)
+> =C2=A0{
+> +=09int ret;
+> +
+> =C2=A0=09drm->debugfs =3D kzalloc_obj(*drm->debugfs);
+> =C2=A0=09if (!drm->debugfs)
+> =C2=A0=09=09return -ENOMEM;
+> =C2=A0
+> -=09return nvif_object_ctor(&drm->client.device.object,
+> "debugfsCtrl", 0,
+> -=09=09=09=09NVIF_CLASS_CONTROL, NULL, 0,
+> -=09=09=09=09&drm->debugfs->ctrl);
+> +=09ret =3D nvif_object_ctor(&drm->client.device.object,
+> "debugfsCtrl", 0,
+> +=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 NVIF_CLASS_CONTROL, NULL, =
+0,
+> +=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &drm->debugfs->ctrl);
+> +=09if (ret) {
+> +=09=09kfree(drm->debugfs);
+> +=09=09drm->debugfs =3D NULL;
+> +=09=09return ret;
+> +=09}
+> +
+> +=09return 0;
+> =C2=A0}
+> =C2=A0
+> =C2=A0void
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> index 726397ab035d..ffbe7f542ab0 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> @@ -697,6 +697,8 @@ nouveau_hwmon_init(struct drm_device *dev)
+> =C2=A0=09if (IS_ERR(hwmon_dev)) {
+> =C2=A0=09=09ret =3D PTR_ERR(hwmon_dev);
+> =C2=A0=09=09NV_ERROR(drm, "Unable to register hwmon device:
+> %d\n", ret);
+> +=09=09drm->hwmon =3D NULL;
+> +=09=09kfree(hwmon);
+> =C2=A0=09=09return ret;
+> =C2=A0=09}
+> =C2=A0
+
