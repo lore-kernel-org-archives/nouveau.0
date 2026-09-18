@@ -4,183 +4,120 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45E11C88E72
-	for <nouveau@archiver.kernel.org>; Thu, 17 Sep 2026 22:44:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93A4BC982D0
+	for <nouveau@archiver.kernel.org>; Fri, 18 Sep 2026 02:54:10 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B360D10E942;
-	Thu, 17 Sep 2026 22:44:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B3B2C10F147;
+	Fri, 18 Sep 2026 02:54:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="PvYN+bQ9";
+	dkim=pass (1024-bit key; unprotected) header.d=smail.nju.edu.cn header.i=@smail.nju.edu.cn header.b="o74alXKo";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6526448296;
-	Thu, 17 Sep 2026 22:27:12 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789684032;
- b=tFupnN99PPgXPXL/6mUJwSGYkbWVmkN9cbXhdvFKEXL7Njg8REAh/bxjKG7a6/k2ricXe
- pgX/hILt1dQWzaLF/4Ujf9fakJnEeqyNnrxrRPIFxLn2VpzpI7Dt12GtmDTKIaJHxMa12ju
- bgq4zqUoqeUB7HgMro8esAQwodrjal4I4zrhRaERP2I2HP9Om7xQwQLMeolyzoXaIiT/+J1
- rsdRk0EVIv468Po5jXx2fhYLc4QK1QRV0ZutQAHu3cknKAFADkGYu9PNmHimzMcyw25MxJ6
- PukqGiwGuwmaa7KSVkUIOygmfaF1HpYZ1WKFW73zZToMWVU3K2vbngjN3m9A==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789684032; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 0E58E482A0;
+	Fri, 18 Sep 2026 02:36:31 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1789698990;
+ b=vo6v4SE9THsfoVm/hwQLdJXjoKTjQBY2ZLmE/7TnMsHApaK4yFMIkc97TIsxWvdEImFx6
+ URrL3IKNp8VSP7vv7h+NDJTnFu7yhLikxNDsYIsTNHJaNBeODX8UhLNM/+V4y8G1ZyA1qoj
+ xwYYEyy4TrbwOyaKeu1RTr0XNv9bYtweYIRzweoEpijyO6yQpWgZxV6lJmEC/rklittDBQb
+ sHTs2mOdpzJxlyT3Ub/gBTwAn4VjCJ3fjndnsFZi82Ted3IyJnZsuabfOqFxRlKUX+c9QRd
+ zqW1NC8AhBc2Qg77GtA/zSrvNNvVIqiC5ece3S91vBFli/UpEvRkt+atD2gw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1789698990; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=I7DCooW3ePhN66Ia9ccbSNaOaJ7OWSTl3aFd5aTZDlY=;
- b=zq+u37+rpOIlu2XNQDaG25lki5QUIpKtECHSjijH++YsBgCs5AJvI2vhfEM2PEDLs7x9h
- iKXGzuoYGEpV7htadw9O/o0VsUDrEgSAfyv+dJF2BUazpmDN1UFn8lmSQOD128vv+8sJQFa
- yHOBosLa9A7wMdGw4nNe7n3yNk/d6m+4B81ekCABE6YlIU4/D9mkkQ+ogCeUW+X5f5USwEN
- zUaWDFanJOnv0RPhXwiaJUEtSMn2yj/zXwxcb+I0f1bKirtYlWdjgcI0yG+gspz8O73iE24
- xhxOQSVVWkQnyfe56sXqODw2Nac2WWVmeyZhei4Oo5XrXxvjpuURP6wr3CCQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ bh=nvNhm30bTkmpK3DlDj1rjF67y0Iph2DAMagdKkZjH7E=;
+ b=bMNkJeHX1xCEy1PyW5z4KeeO+JQbgHIrvTzgXRfRxFLwdeGNU+Bb1JCPD5MVOShpRogV7
+ JEllXiwvChtqPPcOzHm3pvQnWaYwaAKPkwoDKJT1MYw2LKCxWPT0q2yV9Y19SC/e3Cn9ozI
+ teXJCgnUgNk1xFdT7+CucSJAxcuBvb995BmAeVZMnfuAw6aIEPLSkj29PvPFqypmKgOa5mM
+ ojqIwlBFOwhVwTC9F45xpR/JIHfzV3jERXhizdTqywRczbhzNZ+Gi2COzmaGjSGtlCJ6Ng0
+ 9EDwSTuToBV6vHfKWrkq2GJuoETj4icsuThMr1bIaViQwzb69L2OCLLdCTsw==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=smail.nju.edu.cn;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=smail.nju.edu.cn
  policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=smail.nju.edu.cn; arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=smail.nju.edu.cn
+ policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A32AF481EA
-	for <nouveau@lists.freedesktop.org>; Thu, 17 Sep 2026 22:27:09 +0000 (UTC)
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012041.outbound.protection.outlook.com
- [40.93.195.41])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9B4A210E4BF;
-	Thu, 17 Sep 2026 22:44:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VU8BcMUgsUfXlcMHVwjbCxypADpfcD1YNJ/iC/UY0VVRAPaGrgEp+QyzcRo5FZF4f9f8kZy/DM40XyjOprsODIFGe+W/mFtqq6fQ2C5xmJsGQzaEJl+Chc4ECg3LJDlfqHgNfPuythvWwWqyJMzo3mplzuBSMUcj81gWK4IQiFKWMnl7AscRj5TYPDtSoEM2ZpXuFhMeFbBtxZbzsukkPa9qXHOhiJa2fBB2tGpSE0k2Vw0LHZAu/7p6qPKMxGoB9bjd9BMuUmK+eIapStG+FwKv2jBZSnHUvrQpBU4xd3rzAUVORFraRJK0iO5qE7r363EOJ4T1cHBpv8TAHosx5A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I7DCooW3ePhN66Ia9ccbSNaOaJ7OWSTl3aFd5aTZDlY=;
- b=SJ1JtEtqqI1BCD/40LMYt0X9RIbaPf0RQaHrzCtjpOsEgX4KsepgYYSJyXaD0wxPbpddZPx5k8sDaBbvEfYW4c74xvuoI/vWwMl89QGSi6kUiNyIsQC2wSi7nkoFCMPIKVWI7qefC8FhCrvzQOOW5ebQAqFNpAd1Cm+eXgS4PDMSLM/Sb1VCGtQilWtXdu5QYURpeiK5Xpt7C6EQAmnCqNCE5TkBKvs+Ax9Hspe6AB26XDi0W1TQmsK8G/X6e+8qLINRiyaHMsCvjeCLQzib+NzTdCrQ98O8tELACZwBYWRUMSIIWDtEdDWzdx5XgTY4dOpKKCZypvnTU/gzdePFeg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I7DCooW3ePhN66Ia9ccbSNaOaJ7OWSTl3aFd5aTZDlY=;
- b=PvYN+bQ9tc/ubhaYAipjw8iteTiQITDdBpJkmHjMR9xXk/S7rJKYXqP3934pdwwFCh0u6HJ2psKAj+Oxs4oWxDK0CF2m7vzFe8rpbYY4vYIN2/qDGn84MY86nvKUR7mifZ1jmav1PeNZiYOS9++a7B2fIbbRQuZmxrACMNOxr7+V0SsvW3hCs0PWUasMn/tifri6XoTSQbdGDWJxKJlZWZIEo3lwyrX0o0jVWk623kthhO52z35e2UnnJ9DyqQvTRCtxBm4Pod4UhwM7/VkhMbW4bmTqb7voJZmH8sEyfuXrdmPr4R3Js71SbLOzYCQ6KrkdEVv3aGHCmvxkE5oRbA==
-Received: from CH3PR12MB9730.namprd12.prod.outlook.com (2603:10b6:610:253::9)
- by DSVPR12MB999307.namprd12.prod.outlook.com (2603:10b6:8:41a::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.428.12; Thu, 17 Sep
- 2026 22:44:43 +0000
-Received: from CH3PR12MB9730.namprd12.prod.outlook.com
- ([fe80::843d:c1f0:b2ed:4128]) by CH3PR12MB9730.namprd12.prod.outlook.com
- ([fe80::843d:c1f0:b2ed:4128%4]) with mapi id 15.21.0428.011; Thu, 17 Sep 2026
- 22:44:43 +0000
-Message-ID: <61d42916-a391-4b98-a6fc-84175127c2e2@nvidia.com>
-Date: Fri, 18 Sep 2026 08:44:35 +1000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/nouveau/uvmm: reject replace across page sizes
-To: moonafterrain@outlook.com, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andrew Morton <akpm@linux-foundation.org>, Mary Guillemard <mary@mary.zone>,
- Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
- James Jones <jajones@nvidia.com>
-References: <20260817-nouveau-fixes-v1-0-f518d0c735f3@outlook.com>
- <20260817-nouveau-fixes-v1-2-f518d0c735f3@outlook.com>
-Content-Language: en-US
-From: Balbir Singh <balbirs@nvidia.com>
-In-Reply-To: <20260817-nouveau-fixes-v1-2-f518d0c735f3@outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR13CA0005.namprd13.prod.outlook.com
- (2603:10b6:a03:2c0::10) To CH3PR12MB9730.namprd12.prod.outlook.com
- (2603:10b6:610:253::9)
+	by kara.freedesktop.org (Postfix) with ESMTPS id DB38F463F6
+	for <nouveau@lists.freedesktop.org>; Fri, 18 Sep 2026 02:36:24 +0000 (UTC)
+X-Greylist: delayed 145108 seconds by postgrey-1.36 at gabe;
+ Fri, 18 Sep 2026 02:53:59 UTC
+Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 083E910E075;
+	Fri, 18 Sep 2026 02:53:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smail.nju.edu.cn;
+	s=iohv2404; t=1789700025;
+	bh=nvNhm30bTkmpK3DlDj1rjF67y0Iph2DAMagdKkZjH7E=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=o74alXKoJqH9H+cVUyE6hodMGIIczClWt7Z9AiDMlkzbmlCHJjNi+Xbb+VvvLwe2M
+	 21kuUIu5kOM16JdMsrLx60iSudvhWvFohkil2K/zGPzL/z4kp4KMtfLt6190AigbLc
+	 9mSg4zXuRsJCg6DjPBlI7H2W/P/5x271t4IKwe/w=
+X-QQ-mid: zesmtpsz7t1789700020t017278c2
+X-QQ-Originating-IP: SEBRYKhRUBS3UfK9etoK6JS/aqRVVuu1ncdaA015qI0=
+Received: from hepeiyang-vm.wu.lxd ( [114.212.83.113])
+	by bizesmtp.qq.com (ESMTP) with
+	id ; Fri, 18 Sep 2026 10:53:38 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 15087163559953025601
+EX-QQ-RecipientCnt: 7
+From: Peiyang He <peiyang_he@smail.nju.edu.cn>
+To: lyude@redhat.com,
+	dakr@kernel.org,
+	dri-devel@lists.freedesktop.org,
+	nouveau@lists.freedesktop.org
+Subject: [PATCH v2] drm/nouveau: don't bump pin count on failed re-pin in
+ nouveau_bo_pin_locked()
+Date: Fri, 18 Sep 2026 10:53:12 +0800
+Message-ID: 
+ <EACEF2F4E098413F+20260918025312.2814889-1-peiyang_he@smail.nju.edu.cn>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR12MB9730:EE_|DSVPR12MB999307:EE_
-X-MS-Office365-Filtering-Correlation-Id: ec5cd6cd-3cd3-4434-8f55-08df150d4439
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|23010399003|366016|376014|7416014|1800799024|10067099003|56012099006|4143699003|11063799006|6133799003|921020|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 
-	sVNra5q5pioEcgvW7+EOEGdqQoFjaNEdTV0OiVCwf+rkm/GXeH2tfkYRTXh48+VwkK6sH0lh58sCUJexJWuUFNig852OQLxO84Xt6iqFLJ3nrzLYxhVWfQMfj0DbwNPx4wQ4X5PggY0vXGMFXsl2vAipFz2wEOaXB4BE+j78lLv6jgZgC1Il3PfXmQRo7Ih/1ob4B0z/1lZX0++RdcF7mlyxgX8F1Hx2SzQkapIaPMCuQoHwETxWH9d0KcELW+NACyycd86cnq1AFn0T/kgjauL01JvRpKhtLga8TnOh09ZSmgvvxQejcLf08daU8AJyMgt2IU1PJucr1VPPT0AE1wSPpzpdFH3NdwD9oXdsSUcHfGC39+tGr9jbQIF714KTj5mEoG1+TpCDDznTL7GxSU2wrZ5jUCmsKJefZ0gkHuZkpx7AEwPdAJYNUcMRglzWhINojz2jySsupxGbgY/QflHR4mJCElCVIBWPU8h7uDI/dGpsKETavBPdTuny3Te+JUnyQOdtFCWXBfnH2yblZ1SNTfEUsnS6DGLQT930metWctirDjAHQ51Gn20OJlOeWpOZgXBonR7VBVdU+yOMy+nCFA1GHQK0q1EWMpnyWPBcwuStbDAFLU2VAFSAGAamLGnb32KnloYTk7+9g91kUu9m0/XEgrie8cADo60gtoxDicFDiHwQzzdAqQ+u4qkbtM1uU/Sa7yxFN0dB61l5uA==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR12MB9730.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(376014)(7416014)(1800799024)(10067099003)(56012099006)(4143699003)(11063799006)(6133799003)(921020)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?eTFzRUJxMzZleVVlK2pBYjI5dUFPU09HeHVzM2hvU0RIZmZRelpEczhPWkJM?=
- =?utf-8?B?TkFya05FMDRBNmhXWHl3T05hQnl5cGQ0VzJMK2J5bTlLYVJxQWp6WEdteXVx?=
- =?utf-8?B?YXBaSUdqNCs4RjkwZ3cwK2FxdHQwckdIRnhMenZ6YkZRSitwRHNlMU1xaWpQ?=
- =?utf-8?B?cXRBNDI4UGJxVVdYbk4yUlhZazJtMG9sQzEzSFFBUEo1VUZHWUdUVXNEbUJG?=
- =?utf-8?B?dUk3eTUyTHVyMTJRSVhOWkJVSzBqNENOaXBVTDRLNnJqVHFORGFVdTdxNGg3?=
- =?utf-8?B?bVB5b3V3UDVNU3N4Yi9uaUxjL3FQRktPSDd6M3BFNVR2ZmJTTkVLNC8wNUtj?=
- =?utf-8?B?b1FwU3BXblJuVUR6dG5LQmdjN0JBVmg1a2NaVzZUcVJITHJ3VGlkeHFyMmFU?=
- =?utf-8?B?emdVb2JQTlc1MkE5NUhuVTIybEwyRzNYQzR5MFErcW1ZYk85OGJ4bjVGWXRp?=
- =?utf-8?B?L2xpaDRObkhFZjB1bnBHVnphZ3RKWVhRckNjZkFFek8vQktHa1FMZVU3ZWgr?=
- =?utf-8?B?NFlwdWlGcWI3ODRwTm1vb0RtNmY0MTlicjV5cXNZYXZ3TFk4R3oyQVhvYVNH?=
- =?utf-8?B?RmtjeHVOWUJPdWU2bHc5enNwbmFmMW9IaTJRMUlUN0lteUd1a1RQOXU2Zlow?=
- =?utf-8?B?cTlCQ0NaUWZOWitNSlpvUW1peGg2TWhpZ2hPcG5FSWx3TFEyT2xNWGtaQXdP?=
- =?utf-8?B?RFhoa1RWVFZ3dUlEcEp5bi9MdVhaQjRNOUF5ejhkUFBwamhWSDFqWU9EVDh0?=
- =?utf-8?B?bEQ2RXJYWVFSZDc2K1dQMWNhU1c0RExOdXRJcXlNUnE1Mno5aEVjeld3M25I?=
- =?utf-8?B?MG45Zk1uMWJrOWg4czNtVWt4NWJMdzZQK0RkVUg5b3RaVFhsa3lRY2hlM1NL?=
- =?utf-8?B?VnlxZ1VBbm50aWVuTzFVTUJIaWFkTkF2YXp4OWpPdjBjV051Q2ZEbXdXTVp5?=
- =?utf-8?B?QnFjeitTcEFKNEpmOVVJV2wyTHhMR0Q4cDZkdmJzWnA5ckpBdGlHWEZMeitL?=
- =?utf-8?B?amkzVGFUUEszMnF5eUhqL01sQzZFcDFmbi9yYWJuTWdWOURiT0h0SEI0c21S?=
- =?utf-8?B?M3lSTys1bVlZUzN2MWt5RkhJVm9tTGZXMTBYQmFkbzgreEtpZXplVFd5bGoz?=
- =?utf-8?B?UTdoU0dQZmFRVUtrK2pjc3orSVpEMzRjWEdnSisvL1dORFlGbVlJMmw5WXVk?=
- =?utf-8?B?NkFid1Y5NXYvT0JOQU1kM3BnUlFNN1h4MGhRRTJXMkxiNkZ2WWEwUVRZYlY5?=
- =?utf-8?B?dkZKSFBUMzZsS1B4alBzTTMvTGhGT05Ma1V0V0ZpTUdDVExJNTVxeDMrQk9l?=
- =?utf-8?B?U2dNaUNlU3JwbGU3bnE4dFlaODc3amJjNkZ4VDdsY0RZN3Eydm0vQkJRREtX?=
- =?utf-8?B?cnIzR0pxMU1PMFBOcmt0T3lxU0dDU0lDaktVR3h3MVZDMHl2R250eDhDRGY5?=
- =?utf-8?B?cTI5Q21iRTNhSXdScGFXbVpxRkNyTXNtdnpTNEZ6aFFiUlBqYmE3TXM3OGY2?=
- =?utf-8?B?QTdZcXlIYVhSd1p0dkFlYTQ3SW5QRjlVcXhodHZNSnlDU2xqeFpXWTJZQjl3?=
- =?utf-8?B?YmJWR1N4ZnRXSWRDTkorYis0aFIrcXdOUllTVFZxSWM0ampXSEFJMW96VkV3?=
- =?utf-8?B?T1lYYTU4cHRmT0ZndlQ4T3p5aXNkZGp0Skx3ejBSaVZ1b3V5SzV2ZjBVRmZy?=
- =?utf-8?B?eWVCSHRRQVhFVjFvU3lwRmtjbVlibTg4SG5hN0RBK1dXTTVqWllJSXNJc2Vr?=
- =?utf-8?B?eFpYenJ5elNBSWJqeHI4NjVrSktEdU0wNk1NSmQxcFNJbTVxUExIYmNNZFVW?=
- =?utf-8?B?Ykh2cmltVFhZSVRKY0IxL1dFOUZoTXJvWGtDQjNZMFlDZEQrTzJzeXNHVFow?=
- =?utf-8?B?Sk1YZ2NkZGJTd2VIb1NiK1lMTVhqYVd2WGtRN2xaVDhMNVlieG42aHQxbXVD?=
- =?utf-8?B?ejA2bnpENGptMUNrN1pkL0R2VlVNL0c2d1U4bkdVTGN5M28yRDU3WnpsdnBV?=
- =?utf-8?B?QXZWZmxTM3doQk42VVR6OVhYKzEvc2ZCRVRQOHNVVndCcW5rcjVmeElZN0Fu?=
- =?utf-8?B?NTBScW9nSm5iZWxQUUNzUHNXZmZrSzFPTmYyeTRDQTdCTHowOVUrSUlqaTkw?=
- =?utf-8?B?TjRBMGtXd254b0RBenJLR2pYQnlIQlRxYjBRS2ZmbllrellDS1Raam12OU41?=
- =?utf-8?B?YXlEUFdEbmwrV0N1dHo0dGswb01TUkNoTFdCMEg2enFwMnZQOTV0YTBHZWcz?=
- =?utf-8?B?ekRUdUl2c1JkYkdjRTdLYnFSUmxtTDQyK3V6a0w2RmhJVlI1clUzeUpZQU5y?=
- =?utf-8?B?ekRJbFp3SmR1WVBlNm1aOHdBYk9mVm5mdjVMdkdQVXJPTnl3QnlWUT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- ec5cd6cd-3cd3-4434-8f55-08df150d4439
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB9730.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2026 22:44:43.4303
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- hLfvD418WUW2joFPOWpzs39sW48IJQ5oAA7c91uF/yAnd0nFTHA6lrerrmp1rYo71Na8tZ2vTtA9mJDdx19dEg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSVPR12MB999307
-Message-ID-Hash: OYL2T4KNJEX576ZSMOFMWE5P64XJMXID
-X-Message-ID-Hash: OYL2T4KNJEX576ZSMOFMWE5P64XJMXID
-X-MailFrom: balbirs@nvidia.com
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:smail.nju.edu.cn:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: NgaJKxROpQTjQ/vxQilMFXJhaxbLfLcdJkTqcNpOCBsOkeHlcnT2Z4uD
+	/q9OrKzhFLE34/PIAlpb/TUQdvrieOQbPHze+SvvhtPeOOGCmG06LnXzTabZJNNCLcgJWNm
+	anjlQn75a/PKde8M2eVqJqHHOceDycJZRC6hUJusx4nYY+LP0dXqdGDyyziXWJSOvnfArAb
+	nYMq84WS/MExcFRbljnUfEK7Qq3sOKkkoaGfEIThz6I+VXr5/lkeU4fyiwTVAGuc1NzRAfC
+	lW2yc2J3RBR+SKiptwR2nWkEqdAg/rH2Wh2pgnNS2vfYJlpCs2g0OcEI0AKkcYoGx/3mELX
+	ed4wldfwLlV7178bRamJS8JlA+9BD+HUPPRXRhMO8HhxkxFYzU/19poktQBVdNAiblhSd9G
+	mj/OeCdbb052Dyner60lDvdQQ28nYJy/YdnCBJjkDAdMML9MJM/9yIpEl7J2I2EuPZIv5QR
+	tV+D57agjMGtm1XignSBtRSTlHxhA02hlPN0fF69BFySCJwNh1tMzk3IHuF8LLLcNvK4k47
+	hXzyrpHXC+DI0kpzuGmWzUV0fSNyNpyuVcb2j9noxA6SoOvC4d+7nlskuf3d09Pv8sl5/30
+	MP693Dopb0iVIYZ5evCwGrWV28e7m3maTcmC1p87KJk8sL/66wgBpUAWRhCR/6xQmfeOno0
+	huEwINUbClP19DOK7qd/lRT81vatz2vFz5haR9oqeM1OS6dqa9glttlpHtZdGm6JFn0XzLx
+	xLbTt9c84+z1M4voVQJ4jTdb5rWEcJsmV3ieHZIroT2QmjQVV2PCqKXxnidr4RfwGHvMYO4
+	VjdkXK90TuaBQObfEkaK8NGG3qOvq0GBsoQxqPdnUqh1I3jKIxYT35PTzuTtZx+5KN9wd9/
+	Gp1Ae6Oz3aU/r5bSFrZnpLJ+MY/ntA0WfIsiQnoUumbYSBFSvjDY/634zutzWKI7dLJ5sWq
+	gWnqgiphl0STcF1lJaP8sSgt58HVykSHklGsBMqWrLb6scrjgKtBvGsg+xVSE46sxc9LYMy
+	/n1LenTwhVWLXdZhcAU1WM4Txe+zLK6IiRjLvhPJoiBgSBj+uxtJRKi+3lRxYZPkqjp5PTj
+	Q==
+X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
+X-QQ-RECHKSPAM: 0
+Message-ID-Hash: JBRBEIHKXJ3TS3W2YCIPFSVO4EI46L5G
+X-Message-ID-Hash: JBRBEIHKXJ3TS3W2YCIPFSVO4EI46L5G
+X-MailFrom: peiyang_he@smail.nju.edu.cn
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Yuhao Jiang <danisjiang@gmail.com>,
- stable@vger.kernel.org
+ loop; banned-address; member-moderation
+CC: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Peiyang He <peiyang_he@smail.nju.edu.cn>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OYL2T4KNJEX576ZSMOFMWE5P64XJMXID/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JBRBEIHKXJ3TS3W2YCIPFSVO4EI46L5G/>
 Archived-At: 
- <https://lore.freedesktop.org/61d42916-a391-4b98-a6fc-84175127c2e2@nvidia.com/>
+ <https://lore.freedesktop.org/EACEF2F4E098413F+20260918025312.2814889-1-peiyang_he@smail.nju.edu.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -190,122 +127,123 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 8/17/26 4:50 PM, Junrui Luo via B4 Relay wrote:
-> From: Junrui Luo <moonafterrain@outlook.com>
-> 
-> A new mapping takes over the page tables of the mappings it replaces.
-> nouveau_uvmm_sm_prepare() only acquires page tables for the range no
-> existing mapping covers, and the map path frees the replaced mappings
-> without putting their references. That is only valid while all of them
-> use the same page size, which select_page_shift() no longer guarantees.
-> 
-> Rebinding a GART BO over a 2MiB VRAM BO therefore leaves the new mapping
-> owning page tables built for a different page size, and it then maps at a
-> size that was never referenced over that range. Since raw map does not
-> allocate, nvkm_vmm_iter() can walk down to a NULL leaf and dereference
-> it. The remainders of a split have the same problem: op_map_prepare()
-> recomputes a page size with select_page_shift() while the remainder keeps
-> the parent's page tables, so a parent that was itself downgraded can leave
-> a remainder that re-aligns to a larger size. This happens on the unmap
-> path too.
-> 
-> Reject the bind, and make split remainders inherit the page size of the
-> mapping they are split from.
-> 
-> Fixes: c488a94e7e14 ("drm/nouveau/uvmm: Allow larger pages")
-> Reported-by: Yuhao Jiang <danisjiang@gmail.com>
-> Assisted-by: Claude:claude-opus-5
+nouveau_bo_pin_locked() checks whether an already pinned BO is in a
+memory domain compatible with a new pin request. When the domains are
+incompatible, it sets -EBUSY but still calls ttm_bo_pin() before
+returning.
 
-We are moving to Assisted-by: LLM
+Callers treat a failed nouveau_bo_pin() as not having acquired a new pin,
+so the extra pin count is never decreased by a matching unpin.
+This triggers the warning in ttm_bo_release():
 
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Junrui Luo <moonafterrain@outlook.com>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_uvmm.c | 33 ++++++++++++++++++++++++++++++++-
->  1 file changed, 32 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> index f5e4756b4de4..6404c54d097c 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> @@ -85,6 +85,8 @@ struct uvmm_map_args {
->  	u64 addr;
->  	u64 range;
->  	u8 kind;
-> +	/* Page size to give the new mapping, or 0 to derive it from the op. */
-> +	u8 page_shift;
->  };
->  
->  static int
-> @@ -655,7 +657,8 @@ op_map_prepare(struct nouveau_uvmm *uvmm,
->  
->  	uvma->region = args->region;
->  	uvma->kind = args->kind;
-> -	uvma->page_shift = select_page_shift(uvmm, op);
-> +	uvma->page_shift = args->page_shift ? args->page_shift :
-> +			   select_page_shift(uvmm, op);
->  
->  	drm_gpuva_map(&uvmm->base, &uvma->va, op);
->  
-> @@ -684,8 +687,20 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
->  	struct drm_gpuva_op *op;
->  	u64 vmm_get_start = args ? args->addr : 0;
->  	u64 vmm_get_end = args ? args->addr + args->range : 0;
-> +	u8 map_page_shift = 0;
->  	int ret;
->  
-> +	/* A new mapping takes over the page tables of the mappings it replaces,
-> +	 * so every one of them has to be using its page size. The new mapping
-> +	 * is the last op drm_gpuvm_sm_map_ops_create() emits.
-> +	 */
-> +	if (args) {
-> +		struct drm_gpuva_op *last = drm_gpuva_last_op(ops);
-> +
-> +		if (last->op == DRM_GPUVA_OP_MAP)
-> +			map_page_shift = select_page_shift(uvmm, &last->map);
-> +	}
-> +
->  	drm_gpuva_for_each_op(op, ops) {
->  		switch (op->op) {
->  		case DRM_GPUVA_OP_MAP: {
-> @@ -713,11 +728,22 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
->  			struct uvmm_map_args remap_args = {
->  				.kind = uvma_from_va(va)->kind,
->  				.region = uvma_from_va(va)->region,
-> +				/* The remainders of the split keep the page
-> +				 * tables of the mapping they are split from,
-> +				 * so they must keep its page size too.
-> +				 */
-> +				.page_shift = uvma_from_va(va)->page_shift,
->  			};
->  			u64 ustart = va->va.addr;
->  			u64 urange = va->va.range;
->  			u64 uend = ustart + urange;
->  
-> +			if (map_page_shift &&
-> +			    uvma_from_va(va)->page_shift != map_page_shift) {
-> +				ret = -EINVAL;
-> +				goto unwind;
-> +			}
-> +
->  			op_unmap_prepare(r->unmap);
->  
->  			if (r->prev) {
-> @@ -756,6 +782,11 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
->  			u64 uend = ustart + urange;
->  			u8 page_shift = uvma_from_va(va)->page_shift;
->  
-> +			if (map_page_shift && page_shift != map_page_shift) {
-> +				ret = -EINVAL;
-> +				goto unwind;
-> +			}
-> +
->  			op_unmap_prepare(u);
->  
->  			if (!args)
-> 
+	WARN_ON_ONCE(bo->pin_count);
 
-Just wondering how this was tested/caught?
+Found when fuzzing the nouveau driver with a modified Syzkaller:
 
-Thanks,
-Balbir
+	WARNING: drivers/gpu/drm/ttm/ttm_bo.c:256 at ttm_bo_release+0x827/0x9e0 drivers/gpu/drm/ttm/ttm_bo.c:256, CPU#1: syz.3.24/2212
+	Modules linked in:
+	CPU: 1 UID: 0 PID: 2212 Comm: syz.3.24 Not tainted 7.2.0 #24 PREEMPT(lazy)
+	nouveau 0000:01:00.0: gsp:msg fn:103 len:0x40/0x20 res:0x19 resp:0x19
+	Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.16.3-debian-1.16.3-2 04/01/2014
+	RIP: 0010:ttm_bo_release+0x827/0x9e0 drivers/gpu/drm/ttm/ttm_bo.c:256
+	Code: 02 00 0f 85 51 01 00 00 48 8b 7b 08 e8 d2 20 01 00 e9 80 fd ff ff e8 d8 15 c0 fe 90 0f 0b 90 e9 e1 f8 ff ff e8 ca 15 c0 fe 90 <0f> 0b 90 e9 a4 f8 ff ff e8 bc 15 c0 fe be 03 00 00 00 4c 89 e7 e8
+	msg: 00000000: 05 00 d0 c1 04 00 f0 f1 01 30 00 00 2d 90 00 00  .........0..-...
+	RSP: 0018:ffffc9000f5cf710 EFLAGS: 00010293
+	RAX: 0000000000000000 RBX: ffff888018e5d2a8 RCX: ffffffff82bb1b36
+	RDX: ffff888017b68000 RSI: 0000000000000004 RDI: ffff888018e5d2a8
+	msg: 00000010: 19 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	RBP: ffff88801261c720 R08: 0000000000000001 R09: ffffed10031cba55
+	R10: ffff888018e5d2ab R11: 00000000000000f3 R12: ffff888018e5d290
+	R13: ffff888018e5d2d4 R14: ffff88801b219c18 R15: dffffc0000000000
+	FS:  0000000000000000(0000) GS:ffff8880e0f6f000(0000) knlGS:0000000000000000
+	CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+	CR2: 0000001b31223ffc CR3: 0000000028e00005 CR4: 0000000000770ef0
+	PKRU: 80000000
+	Call Trace:
+	<TASK>
+	kref_put include/linux/kref.h:65 [inline]
+	ttm_bo_put drivers/gpu/drm/ttm/ttm_bo.c:325 [inline]
+	ttm_bo_fini+0x55/0x80 drivers/gpu/drm/ttm/ttm_bo.c:330
+	nouveau_gem_object_del+0xb2/0x1b0 drivers/gpu/drm/nouveau/nouveau_gem.c:90
+	drm_gem_object_free+0x5f/0x90 drivers/gpu/drm/drm_gem.c:1165
+	kref_put include/linux/kref.h:65 [inline]
+	__drm_gem_object_put include/drm/drm_gem.h:562 [inline]
+	drm_gem_object_put include/drm/drm_gem.h:575 [inline]
+	nouveau_abi16_chan_fini.constprop.0+0x44f/0x5a0 drivers/gpu/drm/nouveau/nouveau_abi16.c:195
+	nouveau 0000:01:00.0: syz.2.23[2209]: Unknown handle 0x00000000
+	nouveau_abi16_fini+0x1d0/0x340 drivers/gpu/drm/nouveau/nouveau_abi16.c:225
+	nouveau_drm_postclose+0x18b/0x3e0 drivers/gpu/drm/nouveau/nouveau_drm.c:1284
+	nouveau 0000:01:00.0: syz.2.23[2209]: validate_init
+	drm_file_free.part.0+0x6d6/0xb60 drivers/gpu/drm/drm_file.c:267
+	drm_file_free drivers/gpu/drm/drm_file.c:237 [inline]
+	drm_close_helper.isra.0+0x11a/0x160 drivers/gpu/drm/drm_file.c:290
+	drm_release+0x1ab/0x330 drivers/gpu/drm/drm_file.c:438
+	__fput+0x39c/0xa60 fs/file_table.c:512
+	nouveau 0000:01:00.0: syz.2.23[2209]: validate: -2
+	task_work_run+0x15a/0x230 kernel/task_work.c:233
+	exit_task_work include/linux/task_work.h:40 [inline]
+	do_exit+0x82b/0x25a0 kernel/exit.c:1009
+	do_group_exit+0xc2/0x280 kernel/exit.c:1152
+	get_signal+0x1d6e/0x1f30 kernel/signal.c:3046
+	arch_do_signal_or_restart+0x7d/0x6e0 arch/x86/kernel/signal.c:337
+	__exit_to_user_mode_loop kernel/entry/common.c:66 [inline]
+	exit_to_user_mode_loop+0xdf/0x440 kernel/entry/common.c:101
+	__exit_to_user_mode_prepare include/linux/irq-entry-common.h:207 [inline]
+	syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:230 [inline]
+	syscall_exit_to_user_mode include/linux/entry-common.h:318 [inline]
+	do_syscall_64+0x4f8/0x690 arch/x86/entry/syscall_64.c:100
+	entry_SYSCALL_64_after_hwframe+0x77/0x7f
+	RIP: 0033:0x7f12bac8594d
+	Code: Unable to access opcode bytes at 0x7f12bac85923.
+	RSP: 002b:00007f12b96e70d8 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+	RAX: 0000000000000001 RBX: 00007f12baf15fa8 RCX: 00007f12bac8594d
+	RDX: 00000000000f4240 RSI: 0000000000000081 RDI: 00007f12baf15fac
+	RBP: 00007f12baf15fa0 R08: 00007f12baee8000 R09: 0000000000000000
+	R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+	R13: 00007f12baf16038 R14: 0000000000000006 R15: 00007ffe2ed394b0
+	</TASK>
+	irq event stamp: 47867
+	hardirqs last  enabled at (47883): [<ffffffff815cafc6>] __up_console_sem+0x66/0x70 kernel/printk/printk.c:347
+	hardirqs last disabled at (47892): [<ffffffff815cafab>] __up_console_sem+0x4b/0x70 kernel/printk/printk.c:345
+	softirqs last  enabled at (47880): [<ffffffff81434277>] __do_softirq kernel/softirq.c:656 [inline]
+	softirqs last  enabled at (47880): [<ffffffff81434277>] invoke_softirq kernel/softirq.c:496 [inline]
+	softirqs last  enabled at (47880): [<ffffffff81434277>] __irq_exit_rcu+0x137/0x1c0 kernel/softirq.c:735
+	softirqs last disabled at (47875): [<ffffffff81434277>] __do_softirq kernel/softirq.c:656 [inline]
+	softirqs last disabled at (47875): [<ffffffff81434277>] invoke_softirq kernel/softirq.c:496 [inline]
+	softirqs last disabled at (47875): [<ffffffff81434277>] __irq_exit_rcu+0x137/0x1c0 kernel/softirq.c:735
+
+Fix by calling ttm_bo_pin() only when the existing placement is compatible
+with the new pin request. This matches the correct behavior in other DRM
+drivers such as amdgpu_bo_pin() in amdgpu.
+
+Cc: stable@vger.kernel.org
+Fixes: ad76b3f7c7a0 ("drm/nouveau: teach nouveau_bo_pin() how to force a contig vram allocation")
+Signed-off-by: Peiyang He <peiyang_he@smail.nju.edu.cn>
+Assisted-by: LLM
+---
+Changes in v2:
+  - replace goto with else branch (suggested by Lyude Paul)
+  - fix Assisted-by tag
+
+ drivers/gpu/drm/nouveau/nouveau_bo.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 0e8de6d4b36f..6dcb92575eb4 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -578,8 +578,9 @@ int nouveau_bo_pin_locked(struct nouveau_bo *nvbo, uint32_t domain, bool contig)
+ 				      "0x%08x vs 0x%08x\n", bo,
+ 				 bo->resource->mem_type, domain);
+ 			ret = -EBUSY;
++		} else {
++			ttm_bo_pin(&nvbo->bo);
+ 		}
+-		ttm_bo_pin(&nvbo->bo);
+ 		goto out;
+ 	}
+ 
+
+base-commit: df2908090cda368b01ff43709f51890076c56157
+-- 
+2.43.0
