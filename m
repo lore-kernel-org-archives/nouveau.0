@@ -4,139 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93733C982D8
-	for <nouveau@archiver.kernel.org>; Fri, 18 Sep 2026 14:47:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E0C7C982D8
+	for <nouveau@archiver.kernel.org>; Fri, 18 Sep 2026 18:05:45 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6019B10F3F0;
-	Fri, 18 Sep 2026 14:47:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4210810F48C;
+	Fri, 18 Sep 2026 18:05:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ChchMQK/";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="iZhmnWb2";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id AEE08482EC;
-	Fri, 18 Sep 2026 14:30:13 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789741813;
- b=JqUWCUKuc3nJ9eqUiO7b89+GWfDK1m8Ct7K/yhRjkowtqfa0Pv0K+/V+tsr7YC+jIFUW2
- PNwx9hhvqINmgogVnf5bEgnfC1x7S1R3+GKlcARpJLFF6UHm8FIHVitjxUCgHI77moKatPa
- 0UQXoKrVt5pfS5AOKsBph1TgHJDp5Bzaq5JAYIog0tzByA9rcI7O6oyw001erpCwvEd92kd
- mzUdeY4uJ2AzI+qdVz75Tw6FpBLtmo7bxhCRU8AMtrJOdkUP33Rr7VIxVBLB6/LQNwTOfvR
- V2FihnGYxQonKno7otYiVV/gO3mwwqUhbEEhjPusKXN+mGo+7NhYesge3rjA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789741813; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 32015482F6;
+	Fri, 18 Sep 2026 17:48:05 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1789753685;
+ b=l40BINgZgrDtE44cwg+uDxD8mdREJXtBs+U7vic5Wfz86ETDpFCRqmw6yCB4HfjCFmU7J
+ m5YcoYtYhfQsPpHxLWbeEPPEaxUp2xdgA0JmkXjmdtDrynJNEqMytpRt54VXN1Juh1uu/PL
+ W53AynjwBAsaWT+n3zKGSFwdXJxiuAVArQ+NZsEjD9Ok1ZUYokJKEuhpPLkV63L9P0hcJM3
+ VjpsfdvvyTazFDOFqeJafVGMGERgQ66sdHepUwyqrxmOpMy2RHVpBh1x1QjapqNyrL2Ric7
+ EYa/1mboV9HAW2xv3fS1uhBay5Wn+YfOhXIsOml8Nz+JenETX47EIzVgOVWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1789753685; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=8yLmQImS/cva02RgmyxMSXkNs8cVs/ORnlbUr4+Nfrc=;
- b=E1N0J2JJnNe4MQPFiTLLQkUEyjn7HB9iPlaiV9AqsbA9andcKzDwJrCHyvL+HJxKslx9v
- ge79BHNNo35xRwmgdYa+9145EOOnskzStAPOgp+bp73cXqwDRGLzLmE3ljFZoCNUFmus9XM
- LQIJPiEeRAMb2Dd4yXYWz+nt5VZnwmOIVR5G06kR82h5nPzWgYxh+Tn+pQTl7QWJvrm1uMI
- EkueA38hVtFFOvu5F5qIrJqisa4ZgxZm/DitY19sbRk7lC/XNp/jGKSnRsjTvf/ccV7j3W3
- oMPhhvHNaaMcl23dA7LyL/BdKdjE0DJVGOEO9C8lHGvbhrkUouX3zQmMzinA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ bh=oprrZIAjlpFsvHJfs+zMLP7oKhVuy9HKJ3yJD5IzrmM=;
+ b=QqeAWeI+8KfeJxsoGJU2qujNkSeW2XxA1G/vV868XXZ8HKVh9aU7x52WLieMFe107EwJh
+ 5Qxez/XZjRUeN9AbcQuv8idk1fzEk5ybV9cf6Nsf+eLpqnbHl167ln9TojXkhfAj5rjKlgM
+ nAfOGtH8g13OG6JQyBb5Z9qxDt7pifhK6C1MqXZzXa+nQPKCcby7j/eRR6L8k6PQ7vQvr5V
+ WIpCWCErzYmuovT9vDEOr+iUrmqnGUO580ndhHxwz8F/a+UeHeXGbd1UZgPkgYfGEYuFr5n
+ wUUsMJ2UgZu4gBBjnTQCU+MV/AR8EJ2x1HHwcHx9fJNafESSJZpkTadoTbLQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 0FF54482DF
-	for <nouveau@lists.freedesktop.org>; Fri, 18 Sep 2026 14:08:05 +0000 (UTC)
-Received: from mail-yx2-f36.google.com (mail-yx2-f36.google.com
- [74.125.224.164])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6444C10F3EC
-	for <nouveau@lists.freedesktop.org>; Fri, 18 Sep 2026 14:25:44 +0000 (UTC)
-Received: by mail-yx2-f36.google.com with SMTP id
- 956f58d0204a3-66e4aaf2ecfso725276d50.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id 77602482C7
+	for <nouveau@lists.freedesktop.org>; Fri, 18 Sep 2026 17:48:01 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 31BC110F47E
+	for <nouveau@lists.freedesktop.org>; Fri, 18 Sep 2026 18:05:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1789754740;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oprrZIAjlpFsvHJfs+zMLP7oKhVuy9HKJ3yJD5IzrmM=;
+	b=iZhmnWb2fyFMXm9bU1ER3EnhCq9a8vrgeE5x+aWLQ3SUnV+eVaUV5D1B0NRuu8n1lZwowN
+	gfbsB7r4sZ23nlLaAYp+6ERHa8I4ZB2A6Y40wAaL7eNqMXmrAnT/FlHYFLZV4fEAFjfJut
+	HZfBGFdkV2mn3npE6+Wdwmh6/6IrV8E=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-637-7Oey7PWzM66yPPXSXByT2w-1; Fri, 18 Sep 2026 14:05:29 -0400
+X-MC-Unique: 7Oey7PWzM66yPPXSXByT2w-1
+X-Mimecast-MFC-AGG-ID: 7Oey7PWzM66yPPXSXByT2w_1789754727
+Received: by mail-qk1-f199.google.com with SMTP id
+ af79cd13be357-939f248907fso107735085a.3
         for <nouveau@lists.freedesktop.org>;
- Fri, 18 Sep 2026 07:25:44 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1789741543; cv=none;
-        d=google.com; s=arc-20260327;
-        b=N+NcoZpn1whDi7jqszJces38AA5/DPy5PZmAeOtqoKFIATDQEBfw1s5ph7tSVLPKxV
-         j0jlNItVA4klhSx43tVZBTsw9wFcl5dd3mNY+Gye9ee6FBB/HhnFvCaDcXkKKeFoYgd0
-         bWg99ZfBS4fmXVkpc4ZKi+UWxXBZOQtvKRUGeNJRoqGUHS+UBju7LI1tAqLX87fY/KKX
-         ffXvv4UDfZcNhsuhchfrgjAXAoLcc/q9SH1sduPTOcbMD2ceTUsvWW4Q0zvueoFTTOt1
-         rJceStA+xuxqHmBaAaF3V1F/Aad3Y0/OwT67/pN3t4yeSW0ZlTtqQ0DLDr6nCB82f4Da
-         Ic9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=8yLmQImS/cva02RgmyxMSXkNs8cVs/ORnlbUr4+Nfrc=;
-        fh=29tiuoGjHgfNiWmy4AGK+kAUV+Td0+ZvXYdl8Trm/ps=;
-        b=BCiI1MASnxj6a6AGp4M4BLsJcZVyV0Modu0BQIqVVGsvXyVma2mKBVFumwOXgDjWMd
-         Q7VgN18RnatdZADTNfLJdhTp9vrXdQbBrKzXcmZ9Lt0HQpj64vyVMBcaQQoBHEvC5V+W
-         j1rOcq2cSJjOgp+QcwQpCqRXJGpjt3tKCYh7j4vNaVDOzicKlN7ycxWczf4aHyfyNMcC
-         UwAv2FNtPLOJhmBep7kl/MPHD0KcFJFm0vMGWv5dFFnUkwrj97DT1FMQLUe18tlsWsQ3
-         rFJt14zHvzI2f1pvRGGt5WJJNgjtt6KP18L7YrsWFk1RfyjfsRdkLXETMnSX6XlI/Wqw
-         2Ppw==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789741543; x=1790346343;
- darn=lists.freedesktop.org;
-        h=content-type:cc:to:subject:message-id:date:from:mime-version:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=8yLmQImS/cva02RgmyxMSXkNs8cVs/ORnlbUr4+Nfrc=;
-        b=ChchMQK/ayVeuH98IvL6hxgZNL7rhAQkkGK++CiV2zLwGwVlrVarenXHVxLrRnJ0mH
-         yjgRcVIOSAwhCsDRofv5AWyhGAaHz+W3Pt+V7SMvOnyUOocTzs66ivjfUqFehNrn1086
-         +FbrdAjlLaO31UQ7lk/CUv4fx8ZGQbvDJK1vB++CcTgxTAjhCpWbWCflEKnTcBGxgqLq
-         SE0tuyWeGuMYPcopD8BtnDmPfSsX2iFReaq3thfQ/nxzDWH6QMILegk4o+WsWVATsyGR
-         Cd0BV8aedRMa5aBthstRSjR6EoSuBm9LL38zK7SZY0+8pivs69DP/cyt8sd3bo+skztl
-         WR/A==
+ Fri, 18 Sep 2026 11:05:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789741543; x=1790346343;
-        h=content-type:cc:to:subject:message-id:date:from:mime-version
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=8yLmQImS/cva02RgmyxMSXkNs8cVs/ORnlbUr4+Nfrc=;
-        b=z91ncEIULvo0+bM1y5HEegImF9dv3YB+Avwk0ZSkcB2g9ThzqFMNcDiGZDfGKKYw6Z
-         J98y0VLvF9T41U6vfQPFttUP7sF6zLxHqpzcDVYpHrXK/JKPPafQW/mFa0xODmHLK8yF
-         voLJIfwD+r2trHkITmfo5KvZrj8+sL71ybqt9GwIWihiGjbS1cQahaMZokIdxBgGY70/
-         tmXR1tNS938koOg5i+3r//Mm8/kRPgluGQtLs+2Wo0Sx4CWVksUgVCJqVZupuDNQZV+k
-         p5HuSPvp42CsOnD8fyxM8+kH2qPdZSCmVrdefHY5uFdszllO+WByvOvk5Fm7sq03Huus
-         Dvqw==
-X-Gm-Message-State: AFuF++nLlZQ1yNqcf31fHfHqTBInzMnARF+87MmicGUVaj0938ifPpNp
-	mCa0jEWCp+g18JxKxX1B5CQpqAllOgX48P6IHiKOPo/hSMLTL7kG3SHMipnaf6XFiwEDGbLcHKH
-	NycQbDmO5tGnFf1VDzGriWP8YRJF9VoMZQw==
-X-Gm-Gg: AYBFou2LvUwFTvYBpNyoP/L2dt/bCdava+A39Yzu3oRqYJpDv4qfCIG72PEhfYXOuoY
-	bqDzI4i4OWlDUmlmxBx6i6f8Rxw43rVEswyNwt/E8TfFV2C2FA+LsT0B5KdOxxYl07I3gp9P2f0
-	ceuqZ2y/K+mFlODWHLNpDAZK/LHlPzYGXkkkudApW9UITIEWJUr+P5BtB/phaUW9Yn58EyCLJF+
-	l9vEInW5g4ewlEL7V7SOMCZ+4OKAbKDmcaue8n0DhpJQjLPoI4R4BV+YL0GpyfS1NS+QlbbCxv1
-	ahmPEw0BPrGWnp4/kdxnXYR2BJlFkgFOcdJK7IAxpi+EPC83PL5RQOGDTEQkl6Dm85K9vTspKam
-	i+8h4zW3sN+qHposliv8rCD4iJJhYUMtmCwOOzWBm9DeXIdJGN2RvCtPBaGQs17RnRANf
-X-Received: by 2002:a05:690e:4848:b0:66f:c1be:84e9 with SMTP id
- 956f58d0204a3-6717fe06dcamr711135d50.87.1789741542889; Fri, 18 Sep 2026
- 07:25:42 -0700 (PDT)
+        d=1e100.net; s=20260707; t=1789754727; x=1790359527;
+        h=mime-version:user-agent:content-transfer-encoding:content-type
+         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=8MrzAMtxqLSmsHZdu6tZejw7G1EUBpmA2nrahp3/aZ0=;
+        b=stn961KkgB6s+nIMRmcWrEPzZdnSwUOt4rwacdLjBv1WNykDtHF+kFBFkdJE13oDzn
+         BpyegsuBUXv9+g4o4nEGYyFtrIpPXj21igxUBHaY+3B0lgqTYlOI2lGZrdLRk6jTX8iy
+         8DIdWC8Si6n0NyZ9N+tAL0uTq3xjh9DIdQovpQ0SWUXssR/+8rNl7+n0DpnqlSJMQyV2
+         Q2gqF121hO4flDAcvTcfDqOt4do1Y42WXCMWIHc2Eg6tGo/mhzfdW/ez4W7xO9h1ddK3
+         PmNTx2XjDgqgMkJr104A1xtlQ6+yED99p+2HYTQxl1qIfpRugxn0cMnayZaPsbu8C8T8
+         t/hQ==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBxa0VeMgtU3T5bjRYZi2HBZSik+wKHN1f/cbR6Zj7VT8Ez7lcKvzM00WtzUoDSkSdAckHihbogJ@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nMYsux8ehinOQqC64ZicVQh/V+EU2lwI0c+hetF7TEkzeILi6Q
+	zJjsj7yFGPgn0RNoOrhvrF/7/Z+k/9J9DjWqENAaQtZBoYitd9/AfRSftiWhZNCy9tbdxbgXOjO
+	4wT8waN5VXwjGUOTzC51WKmln2f5VOQV8nHyYFdne2LfwhmelMXVdQXG2wi/H0t3hHV0=
+X-Gm-Gg: AYBFou09Jn6hW+jJiDBLrLTbUFYiCFFhOKO0fqWkThE03MTyXF2Yutqi4GBho1KA8Gv
+	fv6jqXGMrOy8lBOHfzfXXC+yqoMm4bEqrhxlDR7/qg+I6mW+DRIO0JyNwogri6j4rfKY5hObWaI
+	P7pXPMPB8hEVWKjh2VIT3nA5+kTGLw/juapmbzoKcJACY9ljMWpXpbJaBHSONsUTQRNJrcG2U7Q
+	aG81X3olpEqJPaeia15omYEKgV66lF12nnbZ1cGRmOtae1OBT1ssD0E39lpSLOa3yWSmuyqzXXC
+	U11A27zx6lWBeRXmFqkB2SapzfWYFb+gaA0DTKK6DRdPCURAlrKYVpRkEhBci1v62a99ejD5
+X-Received: by 2002:a05:620a:178d:b0:93b:d7a2:dd36 with SMTP id
+ af79cd13be357-93bdca3f401mr534880985a.70.1789754727256;
+        Fri, 18 Sep 2026 11:05:27 -0700 (PDT)
+X-Received: by 2002:a05:620a:178d:b0:93b:d7a2:dd36 with SMTP id
+ af79cd13be357-93bdca3f401mr534873585a.70.1789754726696;
+        Fri, 18 Sep 2026 11:05:26 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93])
+        by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-93beda709b1sm3179785a.7.2026.09.18.11.05.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Sep 2026 11:05:26 -0700 (PDT)
+Message-ID: <fa3a44fa852c8fd3b86eeb7e03ba87692056fc3e.camel@redhat.com>
+Subject: Re: [PATCH v3 1/4] drm/nouveau/clk: fix list cursor use after loop
+ in nvkm_clk_ustate_update
+From: lyude@redhat.com
+To: Francesco Magazzu <postadelmaga@gmail.com>, Danilo Krummrich
+	 <dakr@kernel.org>
+Date: Fri, 18 Sep 2026 14:05:25 -0400
+In-Reply-To: <20260918131620.405133-2-postadelmaga@gmail.com>
+References: <20260918131620.405133-1-postadelmaga@gmail.com>
+	 <20260918131620.405133-2-postadelmaga@gmail.com>
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-From: Shane Ayerst <shanoes@gmail.com>
-Date: Fri, 18 Sep 2026 16:25:34 +0200
-X-Gm-Features: AcwNN1WdyN567dNjK4Y-6JB9CHAbSznmnOLJ44Vwjvz-KvK2k8k-40n4EqNJNU8
-Message-ID: 
- <CAB4-Kt44sPS7qoL+wNodsx7DwDxkvDD0nNHz05hmv8miaordmQ@mail.gmail.com>
-Subject: [BUG] GK107GLM (Quadro K1000M) never reclocks: PWM-flagged v0x50
- voltage table with no VID_PWM GPIO leaves vid_nr == 0
-To: nouveau@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000e75c77065bc2acde"
-X-MailFrom: shanoes@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: lNwQGZol1UOfA_4TYM3TbSOlBplByKKh9d6y5t-R4lY_1789754727
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: R2HZCAHUENSI5KBDW4B25XCROGPBFKBD
+X-Message-ID-Hash: R2HZCAHUENSI5KBDW4B25XCROGPBFKBD
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: P57B7BSK4HY4FD52EB452ZQ7EMLDSIK2
-X-Message-ID-Hash: P57B7BSK4HY4FD52EB452ZQ7EMLDSIK2
-X-Mailman-Approved-At: Fri, 18 Sep 2026 14:30:11 +0000
-CC: dri-devel@lists.freedesktop.org
+ loop; banned-address
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Dan Carpenter <error27@gmail.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/P57B7BSK4HY4FD52EB452ZQ7EMLDSIK2/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/R2HZCAHUENSI5KBDW4B25XCROGPBFKBD/>
 Archived-At: 
- <https://lore.freedesktop.org/CAB4-Kt44sPS7qoL+wNodsx7DwDxkvDD0nNHz05hmv8miaordmQ@mail.gmail.com/>
+ <https://lore.freedesktop.org/fa3a44fa852c8fd3b86eeb7e03ba87692056fc3e.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -146,261 +147,74 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
---000000000000e75c77065bc2acde
-Content-Type: text/plain; charset="UTF-8"
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-Hi All :)
+Will push to drm-misc-fixes in just a moment, thank you for the fixes!
 
-This is a bug report, not a patch submission. Claude Code was used to
-assist with the but triage and fix. I did patch a local build to
-confirm the diagnosis and I describe it below, but I have only this one
-board
-and no view of how a real fix should be shaped, so I am not proposing one.
+On Fri, 2026-09-18 at 15:16 +0200, Francesco Magazzu wrote:
+> From: Dan Carpenter <dan.carpenter@oracle.com>
+>=20
+> If list_for_each_entry() exits without hitting a break then "pstate"
+> is
+> not a valid pstate pointer.=C2=A0 Introduce a "found" variable instead.
+>=20
+> The check is reachable from userspace: nvkm_clk_ustate_update() takes
+> the
+> pstate id straight from the 'pstate' debugfs file, so requesting an
+> id
+> that is not in clk->states - or any id at all when the perf tables
+> are
+> broken and the list is empty - makes the pstate->pstate !=3D req test
+> dereference the list head cast to a struct nvkm_pstate, which is an
+> out-of-bounds read.
+>=20
+> Fixes: 7c8565220697 ("drm/nouveau/clk: implement power state and
+> engine clock control in core")
+> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+> [Francesco: rebased on drm-misc-next, expanded the commit message]
+> Signed-off-by: Francesco Magazzu <postadelmaga@gmail.com>
+> ---
+> This is Dan's 2022 patch, reposted with his authorship restored as
+> asked
+> in the review of v2.=C2=A0 The diff is byte for byte what he sent; the
+> commit
+> message keeps his original two sentences and adds a paragraph on how
+> the
+> check is reached from userspace.
+> Link: https://lore.kernel.org/dri-devel/YvSkKAdk8Pe0g2K9@kili/
+>=20
+> =C2=A0drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 7 +++++--
+> =C2=A01 file changed, 5 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> index 572e63846..5da82db71 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> @@ -473,6 +473,7 @@ static int
+> =C2=A0nvkm_clk_ustate_update(struct nvkm_clk *clk, int req)
+> =C2=A0{
+> =C2=A0=09struct nvkm_pstate *pstate;
+> +=09bool found =3D false;
+> =C2=A0=09int i =3D 0;
+> =C2=A0
+> =C2=A0=09if (!clk->allow_reclock)
+> @@ -480,12 +481,14 @@ nvkm_clk_ustate_update(struct nvkm_clk *clk,
+> int req)
+> =C2=A0
+> =C2=A0=09if (req !=3D -1 && req !=3D -2) {
+> =C2=A0=09=09list_for_each_entry(pstate, &clk->states, head) {
+> -=09=09=09if (pstate->pstate =3D=3D req)
+> +=09=09=09if (pstate->pstate =3D=3D req) {
+> +=09=09=09=09found =3D true;
+> =C2=A0=09=09=09=09break;
+> +=09=09=09}
+> =C2=A0=09=09=09i++;
+> =C2=A0=09=09}
+> =C2=A0
+> -=09=09if (pstate->pstate !=3D req)
+> +=09=09if (!found)
+> =C2=A0=09=09=09return -EINVAL;
+> =C2=A0=09=09req =3D i;
+> =C2=A0=09}
 
-HARDWARE
-NVIDIA GK107GLM [Quadro K1000M], 10de:0ffc rev a1, subsystem 103c:176b
-(HP mobile workstation). Single GPU, no iGPU.
-Kernel 7.2.5 (Arch), in-tree nouveau. Mesa 26.2.2.
-
-SYMPTOM
-Every reclock fails with -EINVAL; the card is pinned at core 405 MHz /
-memory 810 MHz for the life of the boot. Each pstate asks for a different
-voltage and gets the identical error:
-
-nouveau 0000:01:00.0: volt: couldn't set 837500uv
-nouveau 0000:01:00.0: clk: failed to raise voltage: -22
-nouveau 0000:01:00.0: clk: error setting pstate 0: -22
-
-nouveau 0000:01:00.0: volt: couldn't set 887500uv
-nouveau 0000:01:00.0: clk: failed to raise voltage: -22
-nouveau 0000:01:00.0: clk: error setting pstate 1: -22
-
-Earlier in the boot log:
-
-nouveau 0000:01:00.0: volt: Type mismatch between the voltage table type
-and the GPIO table. Fallback to GPIO mode.
-
-TO REPRODUCE
-1. Boot the affected card on nouveau.
-2. Confirm no VID table was built:
-ls /sys/class/drm/card0/device/hwmon/hwmon*/in0_min
-These files are created only when vid_nr > 0. Their absence is the
-signature of this bug.
-3. Force a real pstate transition (re-requesting the current state is
-silent and looks like success):
-sudo sh -c 'echo 0f > /sys/kernel/debug/dri/0000:01:00.0/pstate'
-4. Read dmesg for the lines above.
-
-Do not judge by the pstate file: it prints '*' against the target even
-when the apply failed. dmesg is the only reliable indicator. Also note
-"volt: VID" lines are nvkm_debug and invisible at the default loglevel.
-
-ROOT CAUSE
-The vBIOS voltage table (BIT 'P' +0x0c -> 0x85e6 here) is version 0x50 with
-its flag byte at +0x04 set to 0x01, so nvbios_volt_parse() classifies it as
-NVBIOS_VOLT_PWM and reads pwm_freq/pwm_range, leaving vidmask, step and
-ranged at zero.
-
-The board has no DCB_GPIO_VID_PWM (tag 0x81) entry at all. It drives the
-regulator through three VID GPIO lines (VID_0 line 11, VID_1 line 5,
-VID_2 line 6). gk104_volt_new() notices and falls back to GPIO mode - that
-is the "Type mismatch" message - but the table has already been parsed as
-PWM. This does two separate pieces of damage:
-
-1. In nvkm_volt_parse_bios(), both VID-building branches are gated on
-info.vidmask, which is 0, so neither runs and vid_nr stays 0.
-nvkm_volt_set() can then satisfy no request at all - hence the identical
--22 whichever voltage is asked for.
-
-2. The PWM branch also sets volt->max_uv = info.base + info.pwm_range,
-which here is 306250 + 6250 = 312500 uV. nvkm_cstate_new() rejects any
-cstep whose nvkm_volt_map_min() exceeds max_uv, and every cstep on this
-card needs more than 0.3125 V, so all of them are dropped and
-pstate->list is left empty. nvkm_cstate_prog() then falls back to
-&pstate->base. That is why the two requests above are exactly the PERF
-table's base voltages (pstate 07 -> vmap id 49 -> 837500 uV;
-pstate 0f -> vmap id 56 -> 887500 uV) rather than any cstep's.
-
-The data needed is present in the ROM but never read. The 8 entries start
-at table+hdr = 0x8601:
-
-00 43 00 80 / 01 44 80 80 / 02 45 00 81 / 03 46 80 81 /
-04 47 00 82 / 05 48 80 82 / 06 49 00 83 / 07 4a 80 83
-
-i.e. { vid:u8, voltage:u8 in 12.5 mV units, unk:u16 }, decoding to
-837500..925000 uV for vid 0..7 - a monotonic 12.5 mV ladder, and exactly
-the voltages the clock code asks for. nvbios_volt_entry_parse() has
-"case 0x50: break;", a deliberate no-op, so those rows are skipped.
-envytools' nvbios does not decode them either; it prints all four bytes of
-each entry as a single "unk" u32.
-
-Also ruled out: this is not missing headroom. BOOST v11 gives pstate f a
-max of 1701 MHz shader (~850 MHz core, the card's rated clock) and CSTEP
-v10 a 33-step 540..1690 MHz ladder. And there is no voltage-related
-nouveau.config option in this build to work around it.
-
-WHAT I CHANGED LOCALLY (to confirm the diagnosis, not as a proposed fix)
-Three files:
-- bios/volt.h: carry the GPIO-mode fields alongside a PWM-flagged table.
-- bios/volt.c: populate them when parsing a v0x50 PWM table, and implement
-case 0x50 in nvbios_volt_entry_parse() with the layout above, trusting
-the decode only when the voltage lands inside the table's own min/max.
-- volt/base.c: in nvkm_volt_parse_bios(), when the table is PWM-flagged
-and nvkm_gpio_find() finds no DCB_GPIO_VID_PWM, re-interpret it as GPIO
-before building the VID list.
-
-The GPIO re-interpretation is a guess about intent and the min/max guard is
-a heuristic. I can send the diff if it is useful.
-
-RESULTS
-An 8-entry VID table (837500..925000 uV) is built and reclocking works.
-pstate 0f applies core 645 MHz / memory 1800 MHz at 925 mV.
-
-glmark2 2023.01, Wayland, 800x600 windowed, same session and binary
-throughout. pstate 07 is the clock state stock nouveau is stuck in, so this
-measures what the bug costs:
-
-pstate 07 (405/810 MHz, 862 mV) Score 944 peak 63 C
-pstate 0f (645/1800 MHz, 925 mV) Score 1993 peak 73 C (+111%)
-
-glmark2-es2 at pstate 0f scores 2061. Memory-bound tests gain most:
-terrain 43 -> 86 FPS, refract 103 -> 243, desktop-blur 220 -> 492.
-
-Clocks held pstate 0f for 100% of the run, peak 73 C against a 95 C limit.
-Transitions 0f -> 07 -> 0f were clean, no GPU hang, compositor survived,
-and no new nouveau kernel messages during any run.
-
-Core tops out at 645 MHz rather than the 850 MHz the boost ladder implies,
-and this is not a second bug: the ceiling is the top VID, 925000 uV.
-nvkm_cstate_find_best() walks down from cstep 33 and stops at cstep 15
-(1290 MHz shader = 645 MHz core), whose vmap id 34 evaluates to
-887500 + 37500 = exactly 925000 uV. The next cstep up needs more than this
-3-bit VID GPIO regulator has wired.
-
-QUESTIONS
-- How widespread is this? The combination is "v0x50 voltage table flagged
-PWM + no DCB_GPIO_VID_PWM + VID GPIOs wired" - plausibly other Kepler
-mobile parts, but I have only the one board.
-- What is the right fix: re-interpreting the table as GPIO when the VID_PWM
-GPIO is absent, implementing the entry-parse path alone, or catching the
-contradiction somewhere earlier?
-- Is the { vid, voltage*12.5mV, unk } entry layout documented anywhere?
-- Would a warning when vid_nr ends at 0 with a voltage table present be
-worth having? Today the only symptom is -EINVAL from every pstate, which
-reads like a clock problem rather than a parsing one.
-
-I can supply the vBIOS dump (93696 bytes) and full dmesg on request.
-
-
-Regards,
-Shane Ayerst
-
---000000000000e75c77065bc2acde
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto"><div><div dir=3D"auto">Hi All :)</div><div dir=3D"auto"><=
-br></div><div dir=3D"auto">This is a bug report, not a patch submission. Cl=
-aude Code was used to assist with the but triage and fix. I did patch a loc=
-al build to<br>confirm the diagnosis and I describe it below, but I have on=
-ly this one board<br>and no view of how a real fix should be shaped, so I a=
-m not proposing one.<br><br>HARDWARE<br>  NVIDIA GK107GLM [Quadro K1000M], =
-10de:0ffc rev a1, subsystem 103c:176b<br>  (HP mobile workstation). Single =
-GPU, no iGPU.<br>  Kernel 7.2.5 (Arch), in-tree nouveau. Mesa 26.2.2.<br><b=
-r>SYMPTOM<br>  Every reclock fails with -EINVAL; the card is pinned at core=
- 405 MHz /<br>  memory 810 MHz for the life of the boot. Each pstate asks f=
-or a different<br>  voltage and gets the identical error:<br><br>    nouvea=
-u 0000:01:00.0: volt: couldn&#39;t set 837500uv<br>    nouveau 0000:01:00.0=
-: clk: failed to raise voltage: -22<br>    nouveau 0000:01:00.0: clk: error=
- setting pstate 0: -22<br><br>    nouveau 0000:01:00.0: volt: couldn&#39;t =
-set 887500uv<br>    nouveau 0000:01:00.0: clk: failed to raise voltage: -22=
-<br>    nouveau 0000:01:00.0: clk: error setting pstate 1: -22<br><br>  Ear=
-lier in the boot log:<br><br>    nouveau 0000:01:00.0: volt: Type mismatch =
-between the voltage table type<br>                               and the GP=
-IO table. Fallback to GPIO mode.<br><br>TO REPRODUCE<br>  1. Boot the affec=
-ted card on nouveau.<br>  2. Confirm no VID table was built:<br>       ls /=
-sys/class/drm/card0/device/hwmon/hwmon*/in0_min<br>     These files are cre=
-ated only when vid_nr &gt; 0. Their absence is the<br>     signature of thi=
-s bug.<br>  3. Force a real pstate transition (re-requesting the current st=
-ate is<br>     silent and looks like success):<br>       sudo sh -c &#39;ec=
-ho 0f &gt; /sys/kernel/debug/dri/0000:01:00.0/pstate&#39;<br>  4. Read dmes=
-g for the lines above.<br><br>  Do not judge by the pstate file: it prints =
-&#39;*&#39; against the target even<br>  when the apply failed. dmesg is th=
-e only reliable indicator. Also note<br>  &quot;volt: VID&quot; lines are n=
-vkm_debug and invisible at the default loglevel.<br><br>ROOT CAUSE<br>  The=
- vBIOS voltage table (BIT &#39;P&#39; +0x0c -&gt; 0x85e6 here) is version 0=
-x50 with<br>  its flag byte at +0x04 set to 0x01, so nvbios_volt_parse() cl=
-assifies it as<br>  NVBIOS_VOLT_PWM and reads pwm_freq/pwm_range, leaving v=
-idmask, step and<br>  ranged at zero.<br><br>  The board has no DCB_GPIO_VI=
-D_PWM (tag 0x81) entry at all. It drives the<br>  regulator through three V=
-ID GPIO lines (VID_0 line 11, VID_1 line 5,<br>  VID_2 line 6). gk104_volt_=
-new() notices and falls back to GPIO mode - that<br>  is the &quot;Type mis=
-match&quot; message - but the table has already been parsed as<br>  PWM. Th=
-is does two separate pieces of damage:<br><br>  1. In nvkm_volt_parse_bios(=
-), both VID-building branches are gated on<br>     info.vidmask, which is 0=
-, so neither runs and vid_nr stays 0.<br>     nvkm_volt_set() can then sati=
-sfy no request at all - hence the identical<br>     -22 whichever voltage i=
-s asked for.<br><br>  2. The PWM branch also sets volt-&gt;max_uv =3D info.=
-base + info.pwm_range,<br>     which here is 306250 + 6250 =3D 312500 uV. n=
-vkm_cstate_new() rejects any<br>     cstep whose nvkm_volt_map_min() exceed=
-s max_uv, and every cstep on this<br>     card needs more than 0.3125 V, so=
- all of them are dropped and<br>     pstate-&gt;list is left empty. nvkm_cs=
-tate_prog() then falls back to<br>     &amp;pstate-&gt;base. That is why th=
-e two requests above are exactly the PERF<br>     table&#39;s base voltages=
- (pstate 07 -&gt; vmap id 49 -&gt; 837500 uV;<br>     pstate 0f -&gt; vmap =
-id 56 -&gt; 887500 uV) rather than any cstep&#39;s.<br><br>  The data neede=
-d is present in the ROM but never read. The 8 entries start<br>  at table+h=
-dr =3D 0x8601:<br><br>    00 43 00 80 / 01 44 80 80 / 02 45 00 81 / 03 46 8=
-0 81 /<br>    04 47 00 82 / 05 48 80 82 / 06 49 00 83 / 07 4a 80 83<br><br>=
-  i.e. { vid:u8, voltage:u8 in 12.5 mV units, unk:u16 }, decoding to<br>  8=
-37500..925000 uV for vid 0..7 - a monotonic 12.5 mV ladder, and exactly<br>=
-  the voltages the clock code asks for. nvbios_volt_entry_parse() has<br>  =
-&quot;case 0x50: break;&quot;, a deliberate no-op, so those rows are skippe=
-d.<br>  envytools&#39; nvbios does not decode them either; it prints all fo=
-ur bytes of<br>  each entry as a single &quot;unk&quot; u32.<br><br>  Also =
-ruled out: this is not missing headroom. BOOST v11 gives pstate f a<br>  ma=
-x of 1701 MHz shader (~850 MHz core, the card&#39;s rated clock) and CSTEP<=
-br>  v10 a 33-step 540..1690 MHz ladder. And there is no voltage-related<br=
->  nouveau.config option in this build to work around it.<br><br>WHAT I CHA=
-NGED LOCALLY (to confirm the diagnosis, not as a proposed fix)<br>  Three f=
-iles:<br>   - bios/volt.h: carry the GPIO-mode fields alongside a PWM-flagg=
-ed table.<br>   - bios/volt.c: populate them when parsing a v0x50 PWM table=
-, and implement<br>     case 0x50 in nvbios_volt_entry_parse() with the lay=
-out above, trusting<br>     the decode only when the voltage lands inside t=
-he table&#39;s own min/max.<br>   - volt/base.c: in nvkm_volt_parse_bios(),=
- when the table is PWM-flagged<br>     and nvkm_gpio_find() finds no DCB_GP=
-IO_VID_PWM, re-interpret it as GPIO<br>     before building the VID list.<b=
-r><br>  The GPIO re-interpretation is a guess about intent and the min/max =
-guard is<br>  a heuristic. I can send the diff if it is useful.<br><br>RESU=
-LTS<br>  An 8-entry VID table (837500..925000 uV) is built and reclocking w=
-orks.<br>  pstate 0f applies core 645 MHz / memory 1800 MHz at 925 mV.<br><=
-br>  glmark2 2023.01, Wayland, 800x600 windowed, same session and binary<br=
->  throughout. pstate 07 is the clock state stock nouveau is stuck in, so t=
-his<br>  measures what the bug costs:<br><br>    pstate 07 (405/810 MHz, 86=
-2 mV)    Score  944    peak 63 C<br>    pstate 0f (645/1800 MHz, 925 mV)   =
-Score 1993    peak 73 C   (+111%)<br><br>  glmark2-es2 at pstate 0f scores =
-2061. Memory-bound tests gain most:<br>  terrain 43 -&gt; 86 FPS, refract 1=
-03 -&gt; 243, desktop-blur 220 -&gt; 492.<br><br>  Clocks held pstate 0f fo=
-r 100% of the run, peak 73 C against a 95 C limit.<br>  Transitions 0f -&gt=
-; 07 -&gt; 0f were clean, no GPU hang, compositor survived,<br>  and no new=
- nouveau kernel messages during any run.<br><br>  Core tops out at 645 MHz =
-rather than the 850 MHz the boost ladder implies,<br>  and this is not a se=
-cond bug: the ceiling is the top VID, 925000 uV.<br>  nvkm_cstate_find_best=
-() walks down from cstep 33 and stops at cstep 15<br>  (1290 MHz shader =3D=
- 645 MHz core), whose vmap id 34 evaluates to<br>  887500 + 37500 =3D exact=
-ly 925000 uV. The next cstep up needs more than this<br>  3-bit VID GPIO re=
-gulator has wired.<br><br>QUESTIONS<br>  - How widespread is this? The comb=
-ination is &quot;v0x50 voltage table flagged<br>    PWM + no DCB_GPIO_VID_P=
-WM + VID GPIOs wired&quot; - plausibly other Kepler<br>    mobile parts, bu=
-t I have only the one board.<br>  - What is the right fix: re-interpreting =
-the table as GPIO when the VID_PWM<br>    GPIO is absent, implementing the =
-entry-parse path alone, or catching the<br>    contradiction somewhere earl=
-ier?<br>  - Is the { vid, voltage*12.5mV, unk } entry layout documented any=
-where?<br>  - Would a warning when vid_nr ends at 0 with a voltage table pr=
-esent be<br>    worth having? Today the only symptom is -EINVAL from every =
-pstate, which<br>    reads like a clock problem rather than a parsing one.<=
-br><br>I can supply the vBIOS dump (93696 bytes) and full dmesg on request.=
-<br></div></div><br><br><div data-smartmail=3D"gmail_signature"><div dir=3D=
-"ltr"><div>Regards,</div>Shane Ayerst<br><br></div></div></div>
-
---000000000000e75c77065bc2acde--
