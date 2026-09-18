@@ -4,156 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABE51C982D2
-	for <nouveau@archiver.kernel.org>; Fri, 18 Sep 2026 02:56:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1171C88E75
+	for <nouveau@archiver.kernel.org>; Fri, 18 Sep 2026 04:53:13 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4B59910F14F;
-	Fri, 18 Sep 2026 02:56:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 70B6410F182;
+	Fri, 18 Sep 2026 04:53:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=smail.nju.edu.cn header.i=@smail.nju.edu.cn header.b="w95KzQGy";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NZQ6hzNU";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 96648463F6;
-	Fri, 18 Sep 2026 02:39:18 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1789699158;
- b=yInY7hTMwZk3UGAcUTUHtBeR6n3pBq4qLJMxkZKrCh7yAyMQb4OnoiN6jQ9P7RZF3+4g3
- m+evWiiEMOwc66WDvL3+6qholab3UWzVLVclzOgZVjSM3nZ6z7blw0AKpPmhsOfULXLpsHj
- dMF0H0jvXX2NDqkn2SRRYrZYC4zr7aJiMxUwON6dl3wLG2nvtHoWt3t5rXfV3Z5+em6OKs0
- mwRFadMwof/irmZRBtHA2tFnDvhrz0mqghhjNiPhf6yHFMmZOIbwIxn87vjddWH9mt2WbKa
- 04PCbe3FhvyZyiHSWmKl2l16L/k3NT5nsTc6aQljVw/NWCsw9IFBibb9pmYg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1789699158; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 950EC482B1;
+	Fri, 18 Sep 2026 04:35:34 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1789706134;
+ b=x39hKc1uUhcTOx5QrZc27Cazg26GMXVLvqAhFMEakV+KfpgR/L/RDT0cVZyvck17Dkn0T
+ TuaIoO/5dRFnGOCzmxVdVRZsuRhG4Tts0sms+UQfnyUSUdESr1Kx0QmPvCtbKgkI00KQ7T7
+ sn0Yz4nSTw8M8ENQwjdIWHRBl2NDWu9gkWgCyDcRQZ6CkqjTLe43Tgml/eib2CFJR4w9nqY
+ PYh/OEFwxtAabHdOUECo7IivZppOKWlBUcI/tr+8bVG+q5F5Iph0jFxEqUlVPzKGQCHLpg/
+ RuKSKX4vrkGhnyaMUoqFZGmh0XLYAVSHDsWgHnRC8eI6HbS9wLZhymJS6xyA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1789706134; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=xQ+zTE+9vU49o9RNcQsSxTV6kk2iH8SW9z3RxuGwdfo=;
- b=xoJb055MT5WWhOgkxSqvUcaH8xa4NqgUfVTGFcsVZORs3s9jWMTjQBDcWoUeK3QwzS6Dv
- Wdp8+zj9+XrsUTKuHdGnP5Y7RyDPa9vmtWvWf5u3o6f/Fwx7H0nUkdGqBztL+7Qmcuu5bkn
- kFUGpCzXobGVl9+n7s9g4WxJcCq8HJu8dnHnBj/qaJBKo7wqGS33NOv5QSpvTpIqIdjDzkA
- 81gzasIfF/AdoX96JE4ZWPjfwDRWrItPdUlz82KolH5kXwmXMy+vbIyq31MrLlTL59YUnmX
- n/NEWXfAdnZdhdZRIkLjd3QAPuIg9zK+RjZOViKqASy5p84KmIzdi86IDLjQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=smail.nju.edu.cn;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=smail.nju.edu.cn
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=smail.nju.edu.cn; arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=smail.nju.edu.cn
- policy.dmarc=reject
+ bh=z+CZ17DpPcTIMS3JOrKadGqKlhsKxoet5cv2gSH16lc=;
+ b=TN4QYXNWA7sXc3fFmsaEqpa5sK/8SwIzMmxYUmPFdlIdkVaXnl2VUP3YRhED/u9vFMjb1
+ mDWuScRyooruwQe5UorqRIiLblY12JN99StKk6Nt2q5G4/Z5B1dbZBvvX3sH1eYvCTa+K/d
+ eQdMkREMrRVGAFmvz4SxPZCKyKZTGFLc4QwdmeDG31RkFHPe73QGpN1mionfLphS5KLwBrs
+ 8cLdBf/ncnaef4Dn+Ppw4s7VYqWY1xrBtatYTe0HkAprNtkChkDA55TaSYviyFUTy+nutDC
+ 5LpVveApwCxzCYo0xFLErwlhiSZg96dG8+mJISMtw9zIOpl3bBuTTHVYkYTQ==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=gmail.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 123E7463F6
-	for <nouveau@lists.freedesktop.org>; Fri, 18 Sep 2026 02:39:15 +0000 (UTC)
-X-Greylist: delayed 145276 seconds by postgrey-1.36 at gabe;
- Fri, 18 Sep 2026 02:56:52 UTC
-Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.64.16])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AF34F10F11F;
-	Fri, 18 Sep 2026 02:56:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smail.nju.edu.cn;
-	s=iohv2404; t=1789700171;
-	bh=xQ+zTE+9vU49o9RNcQsSxTV6kk2iH8SW9z3RxuGwdfo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=w95KzQGyaMM//iF6gTjs6Tk9n/LNyXS+GGDxD68MvvF4Ekh/e+evgc/T+aWXtVmfF
-	 ZtOvVWpR0UH4Oy86w5rdxN1vlrRkDyk/iumO5OcfA56a/AsQpXVhRgFhOiVXld0oOu
-	 LlfX4kfwyC5vHMCHxTZU40/sUA+Lc0EQALLm41/8=
-X-QQ-mid: zesmtpip4t1789700166tfa6ff522
-X-QQ-Originating-IP: +IoAnuJOqXSFdaflOmt99MkgoaB2Z5g2bJ7LVggAuA0=
-Received: from [127.0.0.1] ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with
-	id ; Fri, 18 Sep 2026 10:56:03 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 15218402641133599604
-Message-ID: 
- <D5E5A48ABBA3A691+6cc38c11-c7a0-4e2f-b3b7-501fc1685808@smail.nju.edu.cn>
-Date: Fri, 18 Sep 2026 10:56:03 +0800
+	by kara.freedesktop.org (Postfix) with ESMTPS id EFF1B482AA
+	for <nouveau@lists.freedesktop.org>; Fri, 18 Sep 2026 04:35:30 +0000 (UTC)
+Received: from mail-yx2-f12.google.com (mail-yx2-f12.google.com
+ [74.125.224.140])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 95CE710F178
+	for <nouveau@lists.freedesktop.org>; Fri, 18 Sep 2026 04:53:09 +0000 (UTC)
+Received: by mail-yx2-f12.google.com with SMTP id
+ 956f58d0204a3-66e4aac929eso392985d50.0
+        for <nouveau@lists.freedesktop.org>;
+ Thu, 17 Sep 2026 21:53:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789707188; cv=none;
+        d=google.com; s=arc-20260327;
+        b=SgWcsvex1TgC7xti8f4DmrGIoheesg2/onQJazS5rX6tMJNoWuw0w1+9pNCNqqTzch
+         8bZMRgoehKZe/et4ewor8bdZvBEh3TbkjMVYXSa9n2Xe487qsvujHz5RY8bFdBAgWkQk
+         Y8Y1VNJwOpxIGN9QSffMTx6Q5exvd+1xlAt/QpfIeTNo06NtNPluLTWsOA2QPoHHxVUI
+         2Z8Px4Ot4pCD8wbDw+18L9BJmd6r4Uq89tR7RDyCZAPtWr93UysLu7PAHv9jtFKzcxMN
+         WbTtuUZTvqj1b5kP3mfSUCDTx5i6k4szTXuuxkjj7913rTXSpH1lhPyKMg0KkIcW1lrs
+         ZzDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=z+CZ17DpPcTIMS3JOrKadGqKlhsKxoet5cv2gSH16lc=;
+        fh=+RKsQaeDDG5oN0XlfvnHv9BuQFtgYliPlZn3UQR2+pM=;
+        b=X4YFmriEPdL71etO6xCNJ9NzXnjgTILnwZ3jes8rKaEZd22Now18+2P3+oc3Q+Rs/2
+         wOA4HML+T7gTngYcB+hlp7cJ7o3yYTS59BQb4iXFZYbzmgKKylzTnukaGWwnOncxrjjI
+         jcYgZXVoAC5inZUqNZMjdlLXXUo8r2TCjTc5wMoYohlb1PJN7J73zLHVuHd2cN9H9G31
+         2dD8McLQqhtDgcneacvDhioXHS2/qDsiF2sIEDkgExdoTGy97rn4bV8patTuteDo44/b
+         IcR4z40Hwo6aaPZqs8jAreF0peMRUNDUrOG7qUMWnmJgBWQaqipmsMtj+8/7L1PoeMM4
+         CRbg==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789707188; x=1790311988;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=z+CZ17DpPcTIMS3JOrKadGqKlhsKxoet5cv2gSH16lc=;
+        b=NZQ6hzNUSb5U5sHKjLLBZR9mD0yzQ2ZrC8956XAUMZQt5h9xuKu8YRgiE7kVkf82VF
+         WG5ETOAAQ+mv7Dbo4y3Ht4hHQJvJKt0HZNh02q6284TGXfblzBaMDe2Jxrcajl/wn7NE
+         eSjxSTBQnDkgb5wC3x7uwA3D+LdVoWbQJyOzJM+RiIXSDaWZTHI4bwkltbAIQ16UtIp2
+         RgBOIykCvAclE4O+GRy2Q21VHXrfAJDlBox3Z5+RB3RLjzLTU4Pa4vIAWkhISNHfH7mK
+         uUMJO11BRXyFT5LdQh6WxbVgloExeahCM5G2qDVzGrNIyPfDyNx2mZTkqzukDHtfDReT
+         TEaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789707188; x=1790311988;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=z+CZ17DpPcTIMS3JOrKadGqKlhsKxoet5cv2gSH16lc=;
+        b=Z+vBW1qnW5QdjQebjwD+pKfBQtapIPStA4TaxfqZehclScSJCW9qkLoPUpPFRhedaq
+         Lq6sJyHMlnbx4B9lFzvsXQxR93EJY5X0qiyfrr8CYTzsbqGiSKBaBN/rxcjcPx0HVUNm
+         J4OyWck5IfmIoHS0QZSmQ6CPy5HZbDFfpqonKfqMLyDH20/g4BKZu+EXhKOfSWoZItxV
+         mXciO/vEMdTiauNFKhgCHCdCOSBy8EgXlsUN/Qf85eE85FN/Oz4HLVM+dLlRyit/4NwQ
+         hxLHTlN8QK5yT68VjtRVdEhVCnm2Rg8sYsZu8p1vjpyE8PIovCvBh93IPHuLh3VY44Mt
+         J6sA==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBwA5h48QKykJ0OoKzS+naaBVjR9voyjqcSVa8/csd6DpTL2WqA/xG5T9L/JA+Et8karvUJr5H90@lists.freedesktop.org
+X-Gm-Message-State: AFuF++mVcsMubpOnMEkR66yfdGZbVNiQJ4MNaOYfDtylheZbOWi/OerK
+	NZ6QYfQR5jXYHjeuwVBaw+MP1APgRQ4OuPExIhCJBy0wzWTkQZgm+mfBexqOSA7XfGROMKOLusM
+	FISPH08LITGc5cJRcsEKact9WRIp5Xn4=
+X-Gm-Gg: AYBFou1eBYYiD1dWOJ2U2sio5qPRhWU48QQqv4p1kPb+JTSt2mPzkpY5RGIhBO4SOdj
+	lHLgQTyjvSgw/ONa5gZ1dzkglhVAKY1UrLKOSGgcdihWJp3c5cp5bMcc2/x6tGgfhLkjh6ZfmAG
+	yYq5t05Gn55qYhiHgJJYP7XW/HAaXqdFUGuiOjtRSslpDegUIVnc8scE3zmp1tsXXs+ur+2Fon8
+	J54nz7XGCG6xyT1wMcbxc5APVh1WoclUM02HbmkuchrkaYcEqa75V62W75wReN1eAp5FR2/CCju
+	SOAu7Nr0GMCYSFL5IgOEEZ+FtiegyjU+xwkGFJuTmzCzgb0VmWvyTi+Omnw5PCDMA9HnqqPfUTu
+	OJ478GX+54KUhaQDJuVQgQt8fZwNW01ZXbDveR/ZEx1ux
+X-Received: by 2002:a05:690e:bc3:b0:671:541e:2bc7 with SMTP id
+ 956f58d0204a3-6717fd8de49mr381411d50.58.1789707188354; Thu, 17 Sep 2026
+ 21:53:08 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/nouveau: don't bump pin count on failed re-pin in
- nouveau_bo_pin_locked()
-To: lyude@redhat.com, dakr@kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org
-References: 
- <4C61D1CE5BB7CD58+20260910080659.2798052-1-peiyang_he@smail.nju.edu.cn>
- <fb1701bbd7fb65ae808f495488880e2f0fbbced3.camel@redhat.com>
-Content-Language: en-US
-From: Peiyang He <peiyang_he@smail.nju.edu.cn>
-Autocrypt: addr=peiyang_he@smail.nju.edu.cn; keydata=
- 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
- Jf2f8FkzVjySi3JGfg==
-In-Reply-To: <fb1701bbd7fb65ae808f495488880e2f0fbbced3.camel@redhat.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:smail.nju.edu.cn:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: Ocns8ug84zPh5VotyTHfI4UHS7UOULyEAEOvhoMPudxzBr21g123S6We
-	fot8rKdR4ABJwRRwO9Q1GhDwwcrISwTABQxlSUMBvWkDCU/9FhGlvdR3MMpowyfKFMLKtCd
-	JdYs0RvgFXRgnlWlGMJ9qEjsrbks+yUeow7hXWfj7hqiB9z7gb95HmDYIAhw7lTlMmPRmKJ
-	ZasalP88OvT2eEX2KnAe5lYb2k38d53pAM9+1VJ42/yzxlSzBCnXpdml4kyAHXw78shLIU6
-	h5ekvbRDLwK/I+uS9G/JAm7CpTKV8CAQQeljcoYDw/JT6Jd8H8rrQEq9BZATOBO9rb3XD+R
-	4GIxEvMscmLQEh05xLMsJQIS5wsrzcvlI+LMeYDFWZP78/3akpF7QSrV8bywhe+9SXI3klZ
-	Pmk5KzPSb2f6ymqgJZw0cAncqXFBESxBoH3HUW4IoSN1R6gQUlOBS56jrKy282eeu/4nNXM
-	xdziFO89/cfW6BB/XQ1BRwbLafGbts5zbiKhLR5DINdlsQLlyCPsfBwNJ1zp1I5v5L/yPfa
-	nNN8iar2xd5NO+UFVcgNitIQ1Ih92PWXEB17T5vRiGXT0sszGekQ3/roUbAtPP92PW7PIfg
-	D4E26mwfXaahPct+pRsJ8S2BNjphpUE1yctj2GNXt/tFMnsUmd/jYI2iXTCeiaqfUwF93hH
-	44J3hpIq+SKEPd5UIfAe75wdO4wb+hzrpZf6v4wOmoTtmxZ6MpXGbfx4L7Y7wiiYRzKHDhv
-	ELehWuf1WVhwHbtvC2mLpMNbR8wbpzxK9wpghV/i/Knwn1MBIPXJbj7aGv6ArKonj5OX6B2
-	r2hi0QhQ+v2ecmWd0Bryu0+8bXU3jZpnIMXledFNL0pDYdtU1TErXh5BlAMbDWm6Au+0IrV
-	Ua7M1E7gPY+4vdv/lmYUvT9QewYXGSvmOkIj1lGJo3VILKf5Me7ygWHkC0GaPaki0PUTZPo
-	nVSU/Xggfi/zKfpPeDJe0QDiSKhynT0FyQpw+JDUe0kM7ytT8twfIwOX/t1yhffU03XUNK/
-	4WusBxHawRQuF21Kr/+Jq0RGEn511yTaWV+iLcu9/uo3YUqLDR0WA7uT4aJzWgYpBwP11SG
-	tjhqookUwp4cVdUNXuXmwn2cMaBUghfTQ==
-X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
-X-QQ-RECHKSPAM: 0
-Message-ID-Hash: 77H4VUOIMZAGOQND2VJ5I5IDWPEYWAAQ
-X-Message-ID-Hash: 77H4VUOIMZAGOQND2VJ5I5IDWPEYWAAQ
-X-MailFrom: peiyang_he@smail.nju.edu.cn
-X-Mailman-Rule-Hits: nonmember-moderation
+References: <20260815-null-fixes-v1-0-0df9dda951fb@gmail.com>
+ <20260815-null-fixes-v1-1-0df9dda951fb@gmail.com>
+ <bd730e30c96bea38d8430460ee73f073e280374c.camel@redhat.com>
+In-Reply-To: <bd730e30c96bea38d8430460ee73f073e280374c.camel@redhat.com>
+From: jim.cromie@gmail.com
+Date: Thu, 17 Sep 2026 22:52:42 -0600
+X-Gm-Features: AcwNN1WDOVB-bJ1pAJB3qllpj7DcCDRyteoOendxDaWbzrIb47hYb-rm-3IA-rQ
+Message-ID: 
+ <CAJfuBxwq83qUNd==gu+uK73guPfohN24q2-9iNamincgpt=EOQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/nouveau: Fix NULL pointer dereferences in
+ GETPARAM ioctl
+To: lyude@redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: KUN5WD36IHXY64PNV5S352G2MQCNBDOH
+X-Message-ID-Hash: KUN5WD36IHXY64PNV5S352G2MQCNBDOH
+X-MailFrom: jim.cromie@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: linux-kernel@vger.kernel.org, stable@vger.kernel.org, bskeggs@redhat.com
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/77H4VUOIMZAGOQND2VJ5I5IDWPEYWAAQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KUN5WD36IHXY64PNV5S352G2MQCNBDOH/>
 Archived-At: 
- <https://lore.freedesktop.org/D5E5A48ABBA3A691+6cc38c11-c7a0-4e2f-b3b7-501fc1685808@smail.nju.edu.cn/>
+ <https://lore.freedesktop.org/CAJfuBxwq83qUNd==gu+uK73guPfohN24q2-9iNamincgpt=EOQ@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -163,191 +160,109 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 2026/9/18 05:20, lyude@redhat.com wrote:
-> On Thu, 2026-09-10 at 16:06 +0800, Peiyang He wrote:
->> nouveau_bo_pin_locked() checks whether an already pinned BO is in a
->> memory domain compatible with a new pin request. When the domains are
->> incompatible, it sets -EBUSY but still calls ttm_bo_pin() before
->> returning.
->>
->> Callers treat a failed nouveau_bo_pin() as not having acquired a new
->> pin,
->> so the extra pin count is never decreased by a matching unpin.
->> This triggers the warning in ttm_bo_release():
->>
->> 	WARN_ON_ONCE(bo->pin_count);
->>
->> Found when fuzzing the nouveau driver with a modified Syzkaller:
->>
->> 	WARNING: drivers/gpu/drm/ttm/ttm_bo.c:256 at
->> ttm_bo_release+0x827/0x9e0 drivers/gpu/drm/ttm/ttm_bo.c:256, CPU#1:
->> syz.3.24/2212
->> 	Modules linked in:
->> 	CPU: 1 UID: 0 PID: 2212 Comm: syz.3.24 Not tainted 7.2.0 #24
->> PREEMPT(lazy) 
->> 	nouveau 0000:01:00.0: gsp:msg fn:103 len:0x40/0x20 res:0x19
->> resp:0x19
->> 	Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS
->> 1.16.3-debian-1.16.3-2 04/01/2014
->> 	RIP: 0010:ttm_bo_release+0x827/0x9e0
->> drivers/gpu/drm/ttm/ttm_bo.c:256
->> 	Code: 02 00 0f 85 51 01 00 00 48 8b 7b 08 e8 d2 20 01 00 e9
->> 80 fd ff ff e8 d8 15 c0 fe 90 0f 0b 90 e9 e1 f8 ff ff e8 ca 15 c0 fe
->> 90 <0f> 0b 90 e9 a4 f8 ff ff e8 bc 15 c0 fe be 03 00 00 00 4c 89 e7
->> e8
->> 	msg: 00000000: 05 00 d0 c1 04 00 f0 f1 01 30 00 00 2d 90 00
->> 00  .........0..-...
->> 	RSP: 0018:ffffc9000f5cf710 EFLAGS: 00010293
->> 	RAX: 0000000000000000 RBX: ffff888018e5d2a8 RCX:
->> ffffffff82bb1b36
->> 	RDX: ffff888017b68000 RSI: 0000000000000004 RDI:
->> ffff888018e5d2a8
->> 	msg: 00000010: 19 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->> 00  ................
->> 	RBP: ffff88801261c720 R08: 0000000000000001 R09:
->> ffffed10031cba55
->> 	R10: ffff888018e5d2ab R11: 00000000000000f3 R12:
->> ffff888018e5d290
->> 	R13: ffff888018e5d2d4 R14: ffff88801b219c18 R15:
->> dffffc0000000000
->> 	FS:  0000000000000000(0000) GS:ffff8880e0f6f000(0000)
->> knlGS:0000000000000000
->> 	CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
->> 	CR2: 0000001b31223ffc CR3: 0000000028e00005 CR4:
->> 0000000000770ef0
->> 	PKRU: 80000000
->> 	Call Trace:
->> 	<TASK>
->> 	kref_put include/linux/kref.h:65 [inline]
->> 	ttm_bo_put drivers/gpu/drm/ttm/ttm_bo.c:325 [inline]
->> 	ttm_bo_fini+0x55/0x80 drivers/gpu/drm/ttm/ttm_bo.c:330
->> 	nouveau_gem_object_del+0xb2/0x1b0
->> drivers/gpu/drm/nouveau/nouveau_gem.c:90
->> 	drm_gem_object_free+0x5f/0x90 drivers/gpu/drm/drm_gem.c:1165
->> 	kref_put include/linux/kref.h:65 [inline]
->> 	__drm_gem_object_put include/drm/drm_gem.h:562 [inline]
->> 	drm_gem_object_put include/drm/drm_gem.h:575 [inline]
->> 	nouveau_abi16_chan_fini.constprop.0+0x44f/0x5a0
->> drivers/gpu/drm/nouveau/nouveau_abi16.c:195
->> 	nouveau 0000:01:00.0: syz.2.23[2209]: Unknown handle
->> 0x00000000
->> 	nouveau_abi16_fini+0x1d0/0x340
->> drivers/gpu/drm/nouveau/nouveau_abi16.c:225
->> 	nouveau_drm_postclose+0x18b/0x3e0
->> drivers/gpu/drm/nouveau/nouveau_drm.c:1284
->> 	nouveau 0000:01:00.0: syz.2.23[2209]: validate_init
->> 	drm_file_free.part.0+0x6d6/0xb60
->> drivers/gpu/drm/drm_file.c:267
->> 	drm_file_free drivers/gpu/drm/drm_file.c:237 [inline]
->> 	drm_close_helper.isra.0+0x11a/0x160
->> drivers/gpu/drm/drm_file.c:290
->> 	drm_release+0x1ab/0x330 drivers/gpu/drm/drm_file.c:438
->> 	__fput+0x39c/0xa60 fs/file_table.c:512
->> 	nouveau 0000:01:00.0: syz.2.23[2209]: validate: -2
->> 	task_work_run+0x15a/0x230 kernel/task_work.c:233
->> 	exit_task_work include/linux/task_work.h:40 [inline]
->> 	do_exit+0x82b/0x25a0 kernel/exit.c:1009
->> 	do_group_exit+0xc2/0x280 kernel/exit.c:1152
->> 	get_signal+0x1d6e/0x1f30 kernel/signal.c:3046
->> 	arch_do_signal_or_restart+0x7d/0x6e0
->> arch/x86/kernel/signal.c:337
->> 	__exit_to_user_mode_loop kernel/entry/common.c:66 [inline]
->> 	exit_to_user_mode_loop+0xdf/0x440 kernel/entry/common.c:101
->> 	__exit_to_user_mode_prepare include/linux/irq-entry-
->> common.h:207 [inline]
->> 	syscall_exit_to_user_mode_prepare include/linux/irq-entry-
->> common.h:230 [inline]
->> 	syscall_exit_to_user_mode include/linux/entry-common.h:318
->> [inline]
->> 	do_syscall_64+0x4f8/0x690 arch/x86/entry/syscall_64.c:100
->> 	entry_SYSCALL_64_after_hwframe+0x77/0x7f
->> 	RIP: 0033:0x7f12bac8594d
->> 	Code: Unable to access opcode bytes at 0x7f12bac85923.
->> 	RSP: 002b:00007f12b96e70d8 EFLAGS: 00000246 ORIG_RAX:
->> 00000000000000ca
->> 	RAX: 0000000000000001 RBX: 00007f12baf15fa8 RCX:
->> 00007f12bac8594d
->> 	RDX: 00000000000f4240 RSI: 0000000000000081 RDI:
->> 00007f12baf15fac
->> 	RBP: 00007f12baf15fa0 R08: 00007f12baee8000 R09:
->> 0000000000000000
->> 	R10: 0000000000000000 R11: 0000000000000246 R12:
->> 0000000000000000
->> 	R13: 00007f12baf16038 R14: 0000000000000006 R15:
->> 00007ffe2ed394b0
->> 	</TASK>
->> 	irq event stamp: 47867
->> 	hardirqs last  enabled at (47883): [<ffffffff815cafc6>]
->> __up_console_sem+0x66/0x70 kernel/printk/printk.c:347
->> 	hardirqs last disabled at (47892): [<ffffffff815cafab>]
->> __up_console_sem+0x4b/0x70 kernel/printk/printk.c:345
->> 	softirqs last  enabled at (47880): [<ffffffff81434277>]
->> __do_softirq kernel/softirq.c:656 [inline]
->> 	softirqs last  enabled at (47880): [<ffffffff81434277>]
->> invoke_softirq kernel/softirq.c:496 [inline]
->> 	softirqs last  enabled at (47880): [<ffffffff81434277>]
->> __irq_exit_rcu+0x137/0x1c0 kernel/softirq.c:735
->> 	softirqs last disabled at (47875): [<ffffffff81434277>]
->> __do_softirq kernel/softirq.c:656 [inline]
->> 	softirqs last disabled at (47875): [<ffffffff81434277>]
->> invoke_softirq kernel/softirq.c:496 [inline]
->> 	softirqs last disabled at (47875): [<ffffffff81434277>]
->> __irq_exit_rcu+0x137/0x1c0 kernel/softirq.c:735
->>
->> Fix by going to the out path as soon as the incompatible placement
->> is detected. This matches the correct bahaviour in other DRM drivers
->> such as amdgpu_bo_pin() in amdgpu.
->>
->> Cc: stable@vger.kernel.org
->> Fixes: ad76b3f7c7a0 ("drm/nouveau: teach nouveau_bo_pin() how to
->> force a contig vram allocation")
->> Signed-off-by: Peiyang He <peiyang_he@smail.nju.edu.cn>
->> Assisted-by: Codex:gpt-5.5
-> 
-> This can and probably should just be:
-> 
-> Assisted-by: LLM
-> 
-> Instead of mentioning the LLM specifically used.
-> 
->> ---
->>  drivers/gpu/drm/nouveau/nouveau_bo.c | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c
->> b/drivers/gpu/drm/nouveau/nouveau_bo.c
->> index 0e8de6d4b36f..bdd0390b590e 100644
->> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
->> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
->> @@ -578,6 +578,7 @@ int nouveau_bo_pin_locked(struct nouveau_bo
->> *nvbo, uint32_t domain, bool contig)
->>  				      "0x%08x vs 0x%08x\n", bo,
->>  				 bo->resource->mem_type, domain);
->>  			ret = -EBUSY;
->> +			goto out;
-> 
-> Would probably be better to just turn this into an else:
-> 
-> 	if (error) {
-> 		NV_ERROR(drm, "bo %p pinned elsewhere: "
-> 			      "0x%08x vs 0x%08x\n", bo,
-> 			 bo->resource->mem_type, domain);
-> 		ret = -EBUSY;
-> 	} else {
-> 		ttm_bo_pin(&nvbo->bo);
-> 	}
-> 
-> 
->>  		}
->>  		ttm_bo_pin(&nvbo->bo);
->>  		goto out;
->>
->> base-commit: df2908090cda368b01ff43709f51890076c56157
-> 
-> 
+On Thu, Sep 17, 2026 at 2:26=E2=80=AFPM <lyude@redhat.com> wrote:
+>
+> On Sat, 2026-08-15 at 11:30 -0600, Jim Cromie wrote:
+> > When hardware or firmware initialization fails, the graphics engine
+> > (gr) or device functions may remain NULL. Attempting to access these
+> > during the GETPARAM ioctl (e.g., NOUVEAU_GETPARAM_GRAPH_UNITS)
+> > results
+> > in a kernel NULL pointer dereference, causing a crash when userspace
+> > (GNOME/Mesa) attempts to probe the device.
+> >
+> > Add safety checks for 'gr', 'gr->func', and 'nvkm_device->func' in
+> > the
+> > ioctl handler. Return -ENODEV to signal the missing hardware state to
+> > userspace, and use NV_ERROR_ONCE to provide diagnostic proof in the
+> > kernel log without risking a console flood.
+> >
+> > RFC:
+> >
+> > These crashes may not be repeatable, they happened while I was trying
+> > to build nouveau as a builtin module, with binary blobs in the kernel
+> > image, on a laptop with an encrypted disk.  Gemini tells me this
+> > won't
+> > work, so I punted.
+>
+> "Gemini tells me this won't work, so I punted."
+>
+> I'm sorry, what exactly do you mean here? And could you clarify what
+> LLMs were used for in writing this series? Code generation, analysis,
+> etc.?
 
-Thanks for your review! V2 sent.
+Gemini CLI v0.50.0 - or earlier, at that time.
 
-Best,
-Peiyang He
+these were drive-by patches I did while testing a patchset on HW.
+The bootlogs showed a null ptr splat
+I threw the logs to gemini, it tracked down the bug.
+the null ptr b4 deref was rather obvious.
 
+at time of writing there was also some FW churn going on,
+and it felt un-repeatable wo screwing with fwupd, which I wasnt gonna do.
+Plus the test scenario felt like it gonna fall apart.
+
+Since then Ive been merging it into builds for HW installs,
+I recently forgot to merge them, and one occurred immediately
+
+Sep 16 22:53:28 frodo kernel: Linux version
+7.3.0-rc3-rhx-00051-g3078971ab959 (jimc@frodo) (gcc (GCC) 16.2.1
+20260819 (Red Hat 16.2.1-2), GNU ld version 2.46.1-1.fc44) #>
+Sep 16 22:53:28 frodo kernel: Command line:
+BOOT_IMAGE=3D(hd0,gpt2)/vmlinuz-7.3.0-rc3-rhx-00051-g3078971ab959
+root=3DUUID=3D66f47421-b9ff-49ca-9257-0216463436c2 ro rootflags=3Ds>
+Sep 16 22:53:28 frodo kernel: BIOS-provided physical RAM map:
+...
+Sep 16 22:54:53 frodo kernel: BUG: kernel NULL pointer dereference,
+address: 00000000000000f0
+Sep 16 22:54:53 frodo kernel: #PF: supervisor read access in kernel mode
+Sep 16 22:54:53 frodo kernel: #PF: error_code(0x0000) - not-present page
+Sep 16 22:54:53 frodo kernel: PGD 0 P4D 0
+Sep 16 22:54:53 frodo kernel: Oops: Oops: 0000 [#3] SMP NOPTI
+Sep 16 22:54:53 frodo kernel: CPU: 2 UID: 60579 PID: 2445 Comm:
+gnome-shell Tainted: G      D
+7.3.0-rc3-rhx-00051-g3078971ab959 #10 PREEMPT(lazy)
+Sep 16 22:54:53 frodo kernel: Tainted: [D]=3DDIE
+Sep 16 22:54:53 frodo kernel: Hardware name: ASUSTeK COMPUTER INC.
+ASUS TUF Gaming A17 FA706QE_TUF706QE/FA706QE, BIOS FA706QE.311
+11/06/2025
+Sep 16 22:54:53 frodo kernel: RIP:
+0010:nouveau_abi16_ioctl_get_zcull_info+0x17/0xa0 [nouveau]
+Sep 16 22:54:53 frodo kernel: Code: 00 00 00 90 90 90 90 90 90 90 90
+90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 48 8b 47 40 48 8b
+00 48 8b 80 70 02 00 00 <80> b8>
+Sep 16 22:54:53 frodo kernel: RSP: 0018:ffffd36e025dbbb0 EFLAGS: 00010202
+Sep 16 22:54:53 frodo kernel: RAX: 0000000000000000 RBX:
+0000000000000020 RCX: 0000000000000020
+Sep 16 22:54:53 frodo kernel: RDX: ffff8c547be52600 RSI:
+ffffd36e025dbc50 RDI: ffff8c545440b800
+Sep 16 22:54:53 frodo kernel: RBP: ffff8c547be52600 R08:
+ffffd36e025dbc50 R09: ffffd36e025dbc50
+Sep 16 22:54:53 frodo kernel: R10: 0000000000000030 R11:
+ffff8c5454600098 R12: ffff8c545440b800
+Sep 16 22:54:53 frodo kernel: R13: ffffffffc31569e0 R14:
+ffffd36e025dbc50 R15: 0000000080306453
+Sep 16 22:54:53 frodo kernel: FS:  00007fa46fa77880(0000)
+GS:ffff8c576ab7a000(0000) knlGS:0000000000000000
+Sep 16 22:54:53 frodo kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 000000008005=
+0033
+Sep 16 22:54:53 frodo kernel: CR2: 00000000000000f0 CR3:
+000000011df78000 CR4: 0000000000f50ef0
+Sep 16 22:54:53 frodo kernel: PKRU: 55555554
+Sep 16 22:54:53 frodo kernel: Call Trace:
+Sep 16 22:54:53 frodo kernel:  <TASK>
+Sep 16 22:54:53 frodo kernel:  drm_ioctl_kernel+0xae/0x100
+Sep 16 22:54:53 frodo kernel:  drm_ioctl+0x2e0/0x560
+Sep 16 22:54:53 frodo kernel:  ?
+__pfx_nouveau_abi16_ioctl_get_zcull_info+0x10/0x10 [nouveau]
+Sep 16 22:54:53 frodo kernel:  nouveau_drm_ioctl+0x58/0xc0 [nouveau]
+Sep 16 22:54:53 frodo kernel:  __x64_sys_ioctl+0xb9/0x100
+Sep 16 22:54:53 frodo kernel:  ? do_syscall_64+0xfa/0x470
+Sep 16 22:54:53 frodo kernel:  do_syscall_64+0xbe/0x470
+
+if youd like, I can trim that part of the commit - msg
+or just edit out the noise.
+
+>
+> >
+> > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+>
