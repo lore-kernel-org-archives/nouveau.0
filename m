@@ -4,82 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8878DC982ED
-	for <nouveau@archiver.kernel.org>; Mon, 21 Sep 2026 14:46:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC77BC982FE
+	for <nouveau@archiver.kernel.org>; Tue, 22 Sep 2026 04:41:02 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D92FE10E382;
-	Mon, 21 Sep 2026 14:46:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 559A410E92F;
+	Tue, 22 Sep 2026 04:40:59 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 793A740249;
-	Mon, 21 Sep 2026 14:29:09 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A1732484FF;
+	Tue, 22 Sep 2026 04:23:11 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1790000949;
- b=XEYxAV4cUvn1w+u7X82VA6nriVxGQ++zLKm/FAGXO8s5+D0lg+E7dzAVeJV/d9vn8pfMu
- D4NOKRUEn0juJKI5nXOh+wv1W4bfkYkr3mDzWKlStJoGIUXwyym3qMcl40Y2xcEUlZezREn
- pkI2JDZQvxL0Oa145OoL/nZGchGk7+9RoVODg0RhjUkFcqF9ifZe19CEcHSvctYDbuXGk7R
- 2k9DvyfMvZVi7kREU7WmKrcWwWUHpkuTTy9tfUdPRTMG4guHwPRl6j3ChaJYXdXmWYPrN9t
- CDMhyrPATxx4xG+CoGtuRK1BwEJ67kacQstcL5TZ/ctqmZM+KmPWTFk7730g==
+ s=20240201; t=1790050991;
+ b=CobuuOneLAOSIyT7c40Q9om9Xd/OreZz2zn9pzlCjF7xzwQjz8lTgp6NSzssTzZ+HjsUJ
+ WBbeqiVtzxQBizYTX5auu434S/hWnfRBZxi0N+KiuXwgwAlaYb5i3m/jnpCteer/qfIxy9h
+ n66JG7x3VcbvnBx/1GiDaK1RhTVNt5rmEYdlNrBIH2911DQ2AJUm6DxYGLIyo1xi2KiyYps
+ MgIclvc9dH106x2kQYPSBeS8PQXdj3UYgB9cFrrjWEZmfFUWzzUT0u8p7gPs5mBKnV0DoWl
+ cioRNY49peWe694DKRzFI+aKVCNExpXQjV/r+hHKwfYxzRHEMuekHXSm5oBA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1790000949; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1790050991; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=AcZEkn88gSqiCF09fQw8dPbM3yyFNJcLtoZFL99q4X0=;
- b=pS9xiHEeRL/B78Vyl3uV0Ikb+sshhdXW1YsGW8Dn0STP5a7+4CRucKSOw8LE2F+1yd6oj
- tfLQObBs9g8RglZhgnjqxA9RjfxdrwlQAs58N1x9BkFypgo5/Dh2dEYKG5vAy2VOiBu8NnM
- dNe6XMLHbXNkI6Gd54nJw7TY8uYObZnwwQkEmvzjTfaCLKYKXNgmBQtznRpL/nMT3fei/9z
- 9gW6UntUfxzANEfHRft2NZNXiK+S8gP/ajMvxQijrvDgAjfkASSL8XYVXLpnClfWvbWTbfG
- EwNOy2hBVn8uRQYfB+RVwsTQMpUOzwK2YdgHp+iMjcmqWLAoRcF6tGUoy5fw==
+ bh=MHA6tWZCW9VBLrwjBD+6Eu0qi2QhP61GBy54kREIAio=;
+ b=NO7FmMNaWJjZX4rZ31xXZ7TXtN9uHhp7It5Wgmg3B3f5kH5k89EBDETWyWozwc//ksAWG
+ lYPALxQS0X5WehHz6q3GhQ3c8skhZFkG1ntjfxNeN6RuHGRgOw+R6LWct7ODVHgI5q24qLy
+ uoAs3kDLjJuJHLz5M5gWzF56thV5lbXqX8EIYhnOfxUiuyfrPAEgXvhY/qMZbrytrqlhRlJ
+ FvNcsywCfv8EWQp1TWbwffusuTJ5RJKfWj7LMTP3cFM1ZKHJZWcNyPGTf0lHWTAGamA5hDW
+ WE3tr/n8MGxWDMt7Ty+/T8KDN+rIq3ZK/ZoIS7qehaOkHqYOd8tlBkrgwKGw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=audible.transient.net
- policy.dmarc=none
+  dmarc=none
 Authentication-Results: mail.freedesktop.org; dkim=fail;
- arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=audible.transient.net
- policy.dmarc=none
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E6AF7400BE
-	for <nouveau@lists.freedesktop.org>; Mon, 21 Sep 2026 07:04:21 +0000 (UTC)
-Received: from audible.transient.net (audible.transient.net [24.143.126.66])
-	by gabe.freedesktop.org (Postfix) with SMTP id 5E11B10E4BD
-	for <nouveau@lists.freedesktop.org>; Mon, 21 Sep 2026 07:22:07 +0000 (UTC)
-Received: (qmail 22312 invoked from network); 21 Sep 2026 07:22:05 -0000
-Received: from stink-foot.audible.transient.net (192.168.2.99)
-  by canarsie.audible.transient.net with QMQP; 21 Sep 2026 07:22:05 -0000
-Received: (nullmailer pid 6931 invoked by uid 1000);
-	Mon, 21 Sep 2026 07:22:05 -0000
-Date: Mon, 21 Sep 2026 07:22:05 +0000
-From: Jamie Heilman <jamie@audible.transient.net>
-To: dri-devel@lists.freedesktop.org, airlied@gmail.com, dakr@kernel.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, lyude@redhat.com
-Subject: Re: trapped reads in 7.3-rc1 since nv50 instmem handling change
-Message-ID: <arDbHfeXuHDCKQNS@audible.transient.net>
-Mail-Followup-To: dri-devel@lists.freedesktop.org, airlied@gmail.com,
-	dakr@kernel.org, nouveau@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org, lyude@redhat.com
-References: <apnNRjrFPD48m4hO@audible.transient.net>
+	by kara.freedesktop.org (Postfix) with ESMTPS id AB818473C8
+	for <nouveau@lists.freedesktop.org>; Tue, 22 Sep 2026 04:23:08 +0000 (UTC)
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7301F10E0A9;
+	Tue, 22 Sep 2026 04:40:53 +0000 (UTC)
+X-UUID: c79e001ab63f11f19a56ed5b684f684d-20260922
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:99fb1a02-cb72-41ec-a2b8-5ae9963baf8a,IP:0,U
+	RL:0,TC:0,Content:0,EDM:25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:25
+X-CID-META: VersionHash:7db8b62,CLOUDID:f9727c3a18b6fcdb0b306d270e58f5f1,BulkI
+	D:nil,BulkQuantity:0,SF:81|82|102|136|865|898,TC:nil,Content:0|15|50|99,ED
+	M:5|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,
+	OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: c79e001ab63f11f19a56ed5b684f684d-20260922
+X-User: liupeng01@kylinos.cn
+Received: from t14 [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <liupeng01@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 109217882; Tue, 22 Sep 2026 12:40:47 +0800
+From: liupeng <liupeng01@kylinos.cn>
+To: lyude@redhat.com,
+	dakr@kernel.org
+Subject: [PATCH v2] drm/nouveau: Fix memory leaks in debugfs and hwmon init
+ error paths
+Date: Tue, 22 Sep 2026 12:40:44 +0800
+Message-ID: <20260922044044.21442-1-liupeng01@kylinos.cn>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <ff3015a1c4b08088b0638b00670e86d612a27978.camel@redhat.com>
+References: <ff3015a1c4b08088b0638b00670e86d612a27978.camel@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <apnNRjrFPD48m4hO@audible.transient.net>
-X-MailFrom: jamie@audible.transient.net
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: SKFO7VPRRTPA3BJGMQU7DZ7MUKCQHIXP
+X-Message-ID-Hash: SKFO7VPRRTPA3BJGMQU7DZ7MUKCQHIXP
+X-MailFrom: liupeng01@kylinos.cn
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: TKKQSK44WPDXHCRDM6VTFESD6FBPAH6A
-X-Message-ID-Hash: TKKQSK44WPDXHCRDM6VTFESD6FBPAH6A
-X-Mailman-Approved-At: Mon, 21 Sep 2026 14:29:08 +0000
+CC: maarten.lankhorst@linux.intel.com, mripard@kernel.org, simona@ffwll.ch,
+ linux@roeck-us.net, nouveau@karolherbst.de, bskeggs@redhat.com,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ stable@vger.kernel.org, liupeng <liupeng01@kylinos.cn>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TKKQSK44WPDXHCRDM6VTFESD6FBPAH6A/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SKFO7VPRRTPA3BJGMQU7DZ7MUKCQHIXP/>
 Archived-At: 
- <https://lore.freedesktop.org/arDbHfeXuHDCKQNS@audible.transient.net/>
+ <https://lore.freedesktop.org/20260922044044.21442-1-liupeng01@kylinos.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -89,43 +102,73 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Jamie Heilman wrote:
-> On my workstation with a Quadro NVS 290 running 7.3-rc1 I'm seeing
-> this sort of thing show up spuriously:
-> 
-> kernel: nouveau 0000:01:00.0: fb: trapped read at 0100ef56e0 on channel -1 [0fee0000 unknown] engine 06 [BAR] client 08 [PFIFO_READ] subclient 01 [IN] reason 00000002 [PAGE_NOT_PRESENT]
-> kernel: nouveau 0000:01:00.0: fb: trapped read at 0100f85788 on channel -1 [0fee0000 unknown] engine 06 [BAR] client 08 [PFIFO_READ] subclient 01 [IN] reason 00000002 [PAGE_NOT_PRESENT]
-> (repeated 16 times)
-> 
-> I bisected it back to 34e27b90552a (nouveau/instmem: use iomapping
-> interface for instmem handling).  The rest of the salient dmesg during
-> initialization is:
-> 
-> kernel: nouveau 0000:01:00.0: NVIDIA G86 (086f00a2)
-> kernel: nouveau 0000:01:00.0: bios: version 60.86.6c.00.21
-> kernel: nouveau 0000:01:00.0: vgaarb: deactivate vga console
-> kernel: Console: switching to colour dummy device 80x25
-> kernel: nouveau 0000:01:00.0: bios: M0203T not found
-> kernel: nouveau 0000:01:00.0: bios: M0203E not matched!
-> kernel: nouveau 0000:01:00.0: fb: 256 MiB DDR2
-> kernel: nouveau 0000:01:00.0: drm: VRAM: 256 MiB
-> kernel: nouveau 0000:01:00.0: drm: GART: 1048576 MiB
-> kernel: nouveau 0000:01:00.0: drm: TMDS table version 2.0
-> kernel: nouveau 0000:01:00.0: drm: MM: using CRYPT for buffer copies
-> kernel: [drm] Initialized nouveau 1.4.3 for 0000:01:00.0 on minor 0
-> kernel: Console: switching to colour frame buffer device 240x75
-> kernel: nouveau 0000:01:00.0: [drm] fb0: nouveaudrmfb frame buffer device
-> 
-> It doesn't always happen at boot, sometimes it takes a while to show
-> up as it seems to be related to how much I have going on at any point
-> in time.  That commit reverts cleanly for the moment, but I'm happy to
-> test any ideas or enable further debugging as needed, assuming this
-> wasn't intentional.
+In nouveau_debugfs_init(), if nvif_object_ctor() fails, the previously
+allocated drm->debugfs is leaked because the function returns the
+error code directly.
 
-This is still present after deced5fa01c5 ("nouveau/instmem: handle
-iomapping already existing") and in 7.3-rc4.  Apart from the log spam
-(which has made journald angry once by flooding the buffer) it doesn't
-seem to have any other serious consequences yet though.
+In nouveau_hwmon_init(), if hwmon_device_register_with_info() fails,
+the allocated hwmon structure is leaked because the function returns
+the error code directly.
 
+Fix both by freeing the allocated memory and clearing the pointer on
+the error paths.
+
+Fixes: b126a200e9db ("drm/nouveau/debugfs: we need a ctrl object for debugfs")
+Fixes: b9ed919f1c8f ("drm/nouveau/drm/pm: remove everything except the hwmon interfaces to THERM")
+Cc: stable@vger.kernel.org
+Signed-off-by: liupeng <liupeng01@kylinos.cn>
+---
+Changes in v2:
+- Add Fixes: tags for the commits that introduced the leaks
+- Add Cc: stable@vger.kernel.org for stable backporting
+
+ drivers/gpu/drm/nouveau/nouveau_debugfs.c | 15 ++++++++++++---
+ drivers/gpu/drm/nouveau/nouveau_hwmon.c   |  2 ++
+ 2 files changed, 14 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+index 47d5579c568d..88223931f382 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
++++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+@@ -295,13 +295,22 @@ nouveau_drm_debugfs_init(struct drm_minor *minor)
+ int
+ nouveau_debugfs_init(struct nouveau_drm *drm)
+ {
++	int ret;
++
+ 	drm->debugfs = kzalloc_obj(*drm->debugfs);
+ 	if (!drm->debugfs)
+ 		return -ENOMEM;
+ 
+-	return nvif_object_ctor(&drm->client.device.object, "debugfsCtrl", 0,
+-				NVIF_CLASS_CONTROL, NULL, 0,
+-				&drm->debugfs->ctrl);
++	ret = nvif_object_ctor(&drm->client.device.object, "debugfsCtrl", 0,
++			       NVIF_CLASS_CONTROL, NULL, 0,
++			       &drm->debugfs->ctrl);
++	if (ret) {
++		kfree(drm->debugfs);
++		drm->debugfs = NULL;
++		return ret;
++	}
++
++	return 0;
+ }
+ 
+ void
+diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+index 726397ab035d..ffbe7f542ab0 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+@@ -697,6 +697,8 @@ nouveau_hwmon_init(struct drm_device *dev)
+ 	if (IS_ERR(hwmon_dev)) {
+ 		ret = PTR_ERR(hwmon_dev);
+ 		NV_ERROR(drm, "Unable to register hwmon device: %d\n", ret);
++		drm->hwmon = NULL;
++		kfree(hwmon);
+ 		return ret;
+ 	}
+ 
 -- 
-Jamie Heilman                     http://audible.transient.net/~jamie/
+2.53.0
+
