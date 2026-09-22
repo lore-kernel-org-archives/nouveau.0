@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1F63C98302
-	for <nouveau@archiver.kernel.org>; Wed, 23 Sep 2026 01:25:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6232DC9830B
+	for <nouveau@archiver.kernel.org>; Wed, 23 Sep 2026 01:25:53 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A89B810EF1B;
-	Wed, 23 Sep 2026 01:25:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3818E10EF16;
+	Wed, 23 Sep 2026 01:25:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="Iv1x51OH";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="Km2cHfnm";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 162FA48546;
+	by kara.freedesktop.org (Postfix) with ESMTP id 9E8C24857A;
 	Wed, 23 Sep 2026 01:08:03 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1790125682;
- b=cOrfvgicOB0zIZGztXXyJMEw5x1G+P0Sa3QndpDbvmOcsMSM+YJhQtvM7MXjLMb02F6L9
- 14IiAIHIbkKJSdS/3+E50XK5uJF3AY+lJM4ORPacYx6ZHIsiJn/TLiGX72whdnZ2bLTSYkE
- fR2nlfzfHOilMhrqTrstCRfVgyKkqtsHBhPMPyRv2BIkYETDPfsW6UjL5SB5/Yb0wc03UsS
- hTEt4IJd0HAf8DFJpm9svcpuLjU78djXGECfu+jqcGGhV4e0jK+1QPnpwOrKx3zgwtjh5gt
- mtzARZas0dTt7T8IXKjEtsR9WAatdeCscrLskuFC0K1zLo0VuFXIsELtvOLA==
+ s=20240201; t=1790125683;
+ b=CLllycpQIrFDhiynYzom/z91ElzMNiQIR+rnT8+wwB5QSzbm1duYZ2a+w8G5BAnBbW/Iq
+ tzUnc5fM9PgID8jbulp8ZIwYd+Rg1ZhybD7MDMePp44e1QBD9i+XdhBSungugLic2X7wicK
+ WLs/yGwGjsvJZ35CZrXI6nJGkXJvJmls3Z1w5qrIwVzh00dTdJxYJHghLpyLwTnypMXRcXM
+ BmN91P+2akmiwa2E5Zs58HpVstJ4U4+V1/KcXwljHabEzPGjUtuwgDBNyKduN/RrdYY7X05
+ W2YyZf/vl3Oiatnigx2mxalAhy+0F8ArvdQehuYkaeI7gv4qvMJMG3MHMSnw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1790125682; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1790125683; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=RFMyv37nfT1ThIcxnUyGgIkus6kLsG8MS9T4H/vlFk4=;
- b=TswTuyOiHScgVxJnSFnpC4aZQpo8fn+HXb9wzgcyDkLGyqemR0YwM1dRPoBvXG0K8bEkI
- ehR6RerIB9EZrzRNf5YMRjZL8M7XHl/U69yvwlEt9CVB/A8FYg/2uVeJVmP5jzB9eIqMShx
- cfw4/Aqc3Mg1QgKElvAmu12StKTt21NsLr6CHWkka/VzL0jthgwuTUO9U0WODZsBsjrtbWX
- KfJ2n8o89zdwTJW6z+YwKjxmpWuBUfwDc9+crvv5aPVi05WuKXMP0jvkbtpNYlY3t3GSfwe
- E658RdfPA5nguaF1F5oZoZ1kK/96j0XOhklf3E0GaQANP+bsGKY9UmxxkHDw==
+ bh=rUZAn4+qNL34bUmwz1znA1X/HizHQYdaEs29wfahXLw=;
+ b=xkU1bzKFRsKbj7j9plG6yTz+YKVDY5AgYDZQGa3Q4JcJcl5u0amON3kIu3i4RzVMM2jbb
+ s7gAONX6elK3tlyJKPvLnzMI1BpLWshVYh1a/kqipE2q8JN+YPaJSXIYL2ZGYwcNGVyp3LC
+ MDXo0MzaMuIgGbalWYD10s41nR9WlW8zFFfv6P7YO+o3ESjqY0IrZs9M6ZwTCk45yY+JnIa
+ 4il5LcGqWR93uuMEsWw3Yj9BAUSFub9XzKwgaqFEKo089lVofvTJ1Qguf/GAEGkwZfdokxU
+ HyeRsIpEvwLTVx5FmQrtLHGtCM3+T3J1f/CeZv/6+RM14TVnOrTNuDQ4YH5A==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=yahoo.com;
   arc=none (Message is not ARC signed);
@@ -46,72 +46,72 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=yahoo.com;
  dmarc=pass (Used From Domain Record) header.from=yahoo.com
  policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 1DF3448507
-	for <nouveau@lists.freedesktop.org>; Tue, 22 Sep 2026 21:35:47 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 22BE948507
+	for <nouveau@lists.freedesktop.org>; Tue, 22 Sep 2026 21:35:57 +0000 (UTC)
 Received: from sonic.asd.mail.yahoo.com (sonic-usea1-0019.asd.mail.yahoo.com
  [34.2.64.18])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 04D3910EE8A
-	for <nouveau@lists.freedesktop.org>; Tue, 22 Sep 2026 21:53:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 09C6010EE92
+	for <nouveau@lists.freedesktop.org>; Tue, 22 Sep 2026 21:53:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1790114015; bh=RFMyv37nfT1ThIcxnUyGgIkus6kLsG8MS9T4H/vlFk4=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From:Subject:Reply-To;
- b=Iv1x51OHDUqcaHxm4/8sU5smQ3o+LSP+STS5xtUTpngFjLeJZP3xUQBXRdD6bOsNAbucWzKkjExeSajUMdYSLBqTqW/ogW8poqSeEFIzwhS3vXg1LSx+unf4HoVje9E8UFx7hLPdi+uFX1ENXl40KmZhUou0fU8HrG5KbYyXoYUSZPZozCg2gd1YRebh64MCCIWjkzIMWAYi3dUTP1Bs0ezNFC9IhOSDvbWn5dI6U+fFbMT1legU9Ng2WUqirIz9kUNBBr03edG0IXYLRUFha+u5VUgB+TQFI2RW937U78nRvRw7hAu8xqNcrd6XnGIeMB/whas6bunWbZ571alcbg==
+ t=1790114025; bh=rUZAn4+qNL34bUmwz1znA1X/HizHQYdaEs29wfahXLw=;
+ h=From:To:Cc:Subject:Date:References:From:Subject:Reply-To;
+ b=Km2cHfnm06AY7jXzOJAEvrOUbgnVKhwwoqW9KiNdCrP9oWxsZWBwa4g436b1Roz1f4PrdsE07x3URu73a4VaF5lEWF9/9ujRBchwWBc3bPSjiU2DlaR8gFa/Q9NG2xwgG7y22EHEyGULBMv5Lh0wiLw38jLXLuppa48tTEGurqM11UM2l3EaRl7tugPBwP8A3tJjumD4dUpWMGyFr97/DGkW40OLIaBDA5ldxTVAehbL18+lbrl6aA4ZIp5MzfctW1nEktPAdPHFYYBcOA5CCnxg4ecJOdqaN27GXjH+mDnUUTLpt2w+xk+YEy4gonEHm1Vws0Qkp957JH6Lq/mEqQ==
 X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1790114015; bh=PNcpsoObonkYRniT5Fj7+fIlI/7XxQiYiLgYwvpYQHy=;
+ t=1790114025; bh=UcWh9RH8GZS/5dH24HrJ4aCAQ7S/rO1C7k1CK1LNNJ0=;
  h=X-Sonic-MF:From:To:Subject:Date:From:Subject;
- b=Jrrc8lMyrXlXW+86JJIXqmtemQo2483FfbbhKm3vOnrNuGzVJ8+FalgRBk/5e0P3BAlOMGyN+FplaoF51WSNnDMDgG99o+5X/Ix1VxKjx4MLvaiH2FRTnsr/SZlRn4LKWTrj0In2IIrugsOxQ7Sw9Af8VMDleN39fn+z8bvVuiJnu0Cj2Xkx292pnqvK4Pf6irTJAQHLIdCuDaJuYlgK6JA0gtsn3CczFPHS19HQdwup8xTPV5bbAjOdCGvN9ZX814fSDDkZzNH+mck5QBNA4TuKEHy+3GUlagbXlbi+gpzMjPLQA0ZiJgQXBZelckqke/hODGhHJZKk/IgzQI21SA==
-X-YMail-OSG: ITs51cMVM1lSMGP.3fCwpaEP4Hs8mR7oxneeG58zg2MAv0nE9cbhpB75KSkQDbk
- tW.k1EKz7OgBBVsvM.kH2HkD_BVeBavM5KPjQ95MSLg1tpVoIaLOWJ05VuX08wVSJsJnCCITMERb
- 4cr_ZyeIAmx1pRLz3wF3ToLWDyPXjFw8ejVzbV89bQ8pG8Ad8fzPNnLyDITNS2ldVggwfBtnxEat
- nk.gljUQAxP4sHXtEf3HI9i27t79WONqonLhWe1nuWSm05sw0IJv9nb2pyx1iuRgFJ.oOYQISfeV
- 1MKyjpGjfx2lCa_dH61rkCrRD4XjWz5wgADW1eGIVtcYZsQCaDl44fGzHUpJzAtYTYfSbk.M7pOt
- ap6_L4NCdtWP1eGtuPWu5eiwrPp2M7_yEBI8J9BFFL_DUw._vk8lAzjW7NoJ_JPRz3ffu2m17Gsy
- NhlM2Vfj21ya5d0dc721q7nBPkcQn.swON5NHaKq1r45hvc7K4yUX4BbAeAIptv6MLf3a5.4KMdy
- iwDIPapT3CEjp14FZKknCgXYoAlKfq.6l0cXDbrxl1pom6n9VkuUpt5fytE5mwkfUECAd9.Ddbcl
- t.HUfrf0yS5cy1ZWleKgsGvdEz_OP5rmaR7opnNw3dGBNUJrVOCDBTY8rYGVAhuZJriGdsMoC3Z4
- D6l63XjolzZYzlYp3b2ZqNLQ7QjVuDbyrZyk62vhXTqItTYM5I9Vu.a5uv8hiXlv4IdLfqJ0swy.
- cFDF_6wi0b_S42HtwF1hL95zVPkU1Kc1nJY6F3nMY6fNwFaKcFfSD.31T1Fz.AVEgE5aM5jphKNw
- 7OBOi8oVjVuLMVEtAV4pVHKxY9K_ezAT8Yu6ft3MaWlqHiuImAG.lDJRQNDbwGZwN1qf01BraZsx
- 6mnM1x823ILF7BTlJ8DSBlqdiYH3kKBI0usATb4pa_yYqlu2SJQTia21M7QWViy_PcPn8ph3jGYa
- UG2jZH.3YtMc29IwQTFEaozCpGdbFgHVQwt6iN3UjopsO8H9xth.COrluvLCFpJcasnwew9f8Mqr
- 8KBgPNrlldyHzbXTufnkNKq_qaUUF85Dc7jun71UcuS0mAXhNskPzbtIVAYad7tgzY4r8q4FlsPY
- erfirrzovyEse8nHoYHpLj2v_dhliXxZtA_tTCHA_cDJJNQoV.3IRGn0M3Ky0RHBO31UyIFvlZy3
- HG0guPk1i6Jc8EZHeLpJST7jK8nNeOwud6SmPZ1Py.Dw02Wo4TDO9IRZxzXOj8ZmYKEFvfoZiz5b
- sXTVn2jpwnerqnutuVPK_g.4BjGNL8rD2NimW70NIjgSZQOUDr0lnDaLUNrUbS4S4AYZvB_wMx5x
- Z88kABp1ANwY2CO9I95JiyTaaa5uVuMFAi_Dy57Mwq5GJwg9hFmcOFp2020Ew7v0JsEZbk8o4.pC
- jeXdScS_45ij9RMGmzghrpc4Vml25MGZyhsQaPB0zQECe0BtV.eUisAvH.HMyz_12xM0a5RnrqqU
- 7t1htAIBkVSiXwLFlNHha2tKUYMNrrAMSD0ixEDdSxr5KHRbYi_5yOPDeyUNMcBMYzmrcQRyy7AV
- Aj3_NZJnA1pzH..iI7ypKV8RHS3DwM1dBbmRvEam8cMm6WyNGYF96Rq0Ulppb7t4CcpztTIMVlHr
- A8pLQjgewFl.yCzSBiJcod0.XTtMvPJEsxKT7M.BjZZsEi7lZMi5bhXHD8Ld3KeO7m2Jo8elzmX8
- oa2VCs3gMFBKuJofyRBVtR3GHycgre9eWWSokndy8AH1JdguYryQXiVhB.A0NghWFXkuiosfEDud
- D2c3TOAr8g4n6O6s2zOdFUPUzKToNCZ7P7KqkzVNwYR4ZI760SvL75pZoSkNn255EV7O0rQA2msz
- 89Hm8IHuf4_196r9pSwP.DOykhlOM1fNpS_rE1QNGwjUh_OewA4ZBcOt9k54fNjB1MARqctGYsl9
- SheQ6UUGPr6ep4i28zLpUC7OAeLB9.u1fEwfgIACFC3mZioqMFx2sekxo0Gv07PEgMYIMWL6JhRb
- zCXgtG40OfWOYn4heYbaPs14EANZT
+ b=etuOKs4GYWP7Eu/5rSsl8RqcQqa5j99rVBru6X1AbTpTwDXiSMNdjaSDNFukpVAZXDA9fQAeI5PhMYYuP9nkbeOSfD96Lk3TPzECDDWT1y3z7HdzE05/fcdKD622xO5EpWbopEDHV4EEcgO4hYR3DASU+b61SJYbbgfyAbc8X57AbQu3d6sntvXwryrYjIVWXhSNNscCt8/2sjTXcONLh3zf3vg7tX7BsmnOTlelFjzfOdjV0VtU3IfxoP4Tz2exVWWSTLzbcS8rZnSoDSAnV9FTXiSz1YMmTDwFZxLstz39apxTPZMhzRkSah4mTP2gyYrqwkI7+y01hG89lmIDBg==
+X-YMail-OSG: 80j1xB4VM1l76yilhwv2d_LlQLlT7uXeHB6HIn.I.ILTnGspSq_9S.xRPpz.wM3
+ nr1rqaL6KPOCmGIMm0ybHTJIheOOnKaMxi20sDtUkr78QqLgOk152Yd5ooM89896keLZJaej7fWA
+ 5acTGDIMvT2LHv1wo2ZsoyMjqoDRYDXRJVW54_AVxQ_mA3tpn_aasM45HhPS4cqUHGSPFHwXF333
+ o7eyWN5t3ZRKD8BKVjFKpmUsyHcoTVU9BYazh1XiW3H_w53yBKjaimEhlKGCbMoJc6uSJQjFpNRR
+ Gao4lgzDmF4nUr_mevLnCvq.r_X8G_QuknIxW3dz1zknVb6ZxRALINXmHXs693VIKvIQezUbSiG3
+ fJaS8UyIFwRjhI_WYOSB5pk4xhvcpklTVBJz91n0pTuaAXTaFRsTVfRnyVHYNZcim1AGm51ybAV1
+ SSZ8WfySAshMnba_9Yt2L5o6sb5HDzCq2IoZ58g9Sygg5BEoaI.quWnaIJtgA_5nTILxHKb4HAM_
+ lOphwAshUSx8r2p2BnURfIyeZy9l.lSdSunYAjd.l6twfJhxStZsP_jqpgNcqLKa9ZjDgSrYxV5X
+ HyT7bFzXFYAnYLa39K5iT8MgfmGNqwQPUJyxMhZhjw_1g0KMYI9bCh2s4HNTLS5AhuF_4f2x4jvU
+ cnT.ueDJQ3lNSPv0IGMXYUGiRUIM1p_dmP4JYm22Gx6fyDan.RD_jEC1ZMasWnvaPzxkCJyEb.gl
+ 2e_ZJLs6qEIYP98P4V78R6gr4_5OE7UyHC7qsyAHWTqY2T.yv7vvcCcOEIBTdJcBxqE19.dAqPVq
+ 6GTAIiMBO5KvRpjUWLPC6DbeqpPlxntfRYHWO7zMp5rx6QhcRNs2qsk9kpafqfemTZmTK5GdWiOl
+ .7vFkfdXyfLil1J47i9u3cAGNSfqPRM8tk8ydAXb4BmIeeJCM.grvKY2rxTbfUDHw.Hw3ampwuwY
+ eNYSipyUynyNIahCm7W7EKR6tzMzbngnNYBLi1yO_QNWnUSeAHT2iZDJlDEi2qK6bkWpEsdsJJVO
+ bXEJfl9l1eumxRnZJ1doilvtKaNsuBqhuZjnAONDA2JXrHbALH5ywFRs9VARmo9iixkMSb9Coo0q
+ d6_v1VLwIjZjCaFA2y8QhgxvZ0Wy7WT03wNW13LV_X1Pr5WEqudM0tVB3R9QmSgQdc7xty8JMgA3
+ sll7Nc4iAhtjpneTQjEL.H1AraIXWsALM9KnzJ895NbG.dE4VnXDl1W6zilNGW0lJvr5_2La7nQ0
+ kf4Qxxr.PUHj7xiuzDrZNr9Io5td5TrG_KTYQyAd50xoRtc8F.p13tgevOZM2QeY5sNvSeIoeXfl
+ yDYx1QTOLfcu.et8MztCkhyc3eyVmWuCmM7PJoT7msHbcXYkeEPax3qNfsWwrmq9R4qrxS2dOOxv
+ iTWNkgr9.bCwpfOERz.ryy7VG5kZO6VhxeonGEuuL290GJ17_ZcaBVJpYIeKqUcINdBK06_JX5HG
+ SJrYytPdWS8sU4P869vREA6jeyX.IhZr79qGurnVu.3PhjfzlJbJI7FpdknOY.ynCGVGUlr6ZFt6
+ wb32B3c8q_vNJnVtZy1A7FDrOF4n3XVAU5zppHoO.W75jDlDb_ZK7VoGGfwBtq6aQkPlACQHM0G9
+ wVB9zfYeb6OsDYi6ygbJnQNs0V.2eSmwwJIUZnHA6Zhs0ro4WxNczFivudf4JTKxQYWgliVQl0Od
+ dApliMqsXcmItBm0HkzCkYcEQ4jxlPVA.7d2olTupdQLcb104YtklKstNSrMwoyvJ.BFZxSAH6t_
+ NYSqmfNSijm065fn06zgouya1RfGERSPGSnh_mJ02nApBmtERYm1107Yd12GJ2xbd3bJnpiZue7R
+ IZX1a3fDEI7lQ6jtOmgdquMq_6Crj7HKvCFoJOevcFa5tP6CjEN.sO9I4s1HE3FMEQdSXKxvK6eG
+ 7eUgZrzzPiemcC0bnO9BEbTfN_8MzKdHy7a40ZDWBi9UtFg6_j.seAcLpR8n8fvTVGX2xHJXfceU
+ ZWozpNA31AFyVkV4TkrrVDgRRyCvFetPvoZQ9YWsngrf3ZINA
 X-Sonic-MF: <Capitain_Jack@yahoo.com>
-X-Sonic-ID: 77fd0c1c-e3c7-4a95-9628-373e461e910e
+X-Sonic-ID: 4b8ca253-1bf4-4e7c-82af-38fc693fe3f5
 Received: from sonic.gate.mail.ne1.yahoo.com by
  mail-asdoutdeli-p-cin-usea1-prod-sonicconsumer-svc-101 with HTTP;
- Tue, 22 Sep 2026 21:53:35 +0000
-Received: from dip33.lsn.bf1.yahoo.com ([67.195.177.42])
-          by hello (SMTP) with SMTP ID a34e68627d724ee34c25b40bae8a8d59;
-          Tue, 22 Sep 2026 21:53:29 +0000 (UTC)
+ Tue, 22 Sep 2026 21:53:45 +0000
+Received: from dip68.lsn.bf1.yahoo.com ([67.195.177.77])
+          by hello (SMTP) with SMTP ID 98779d167a59bfbe653b3ebdee112417;
+          Tue, 22 Sep 2026 21:53:39 +0000 (UTC)
 From: Daniel Campos Ramos <Capitain_Jack@yahoo.com>
 To: dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 3/3] drm/nouveau: program HDMI deep-color GCP fields
-Date: Tue, 22 Sep 2026 18:53:17 -0300
-Message-ID: <20260922215317.611388-4-Capitain_Jack@yahoo.com>
+Subject: [PATCH 0/6] drm/nouveau: HDMI output colour format and quantization
+ range
+Date: Tue, 22 Sep 2026 18:53:30 -0300
+Message-ID: <20260922215336.612239-1-Capitain_Jack@yahoo.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260922215317.611388-1-Capitain_Jack@yahoo.com>
-References: <20260922215317.611388-1-Capitain_Jack@yahoo.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+References: <20260922215336.612239-1-Capitain_Jack.ref@yahoo.com>
 X-MailFrom: Capitain_Jack@yahoo.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: BNL7IC5VS23NE663VHTTMNF6HTY7B5CN
-X-Message-ID-Hash: BNL7IC5VS23NE663VHTTMNF6HTY7B5CN
+Message-ID-Hash: Z3TBJH5ZLSEO3J6NJZCHLPNJDAKMEWYT
+X-Message-ID-Hash: Z3TBJH5ZLSEO3J6NJZCHLPNJDAKMEWYT
 X-Mailman-Approved-At: Wed, 23 Sep 2026 01:07:50 +0000
 CC: nouveau@lists.freedesktop.org, dakr@kernel.org,
  Daniel Campos Ramos <Capitain_Jack@yahoo.com>
@@ -119,9 +119,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BNL7IC5VS23NE663VHTTMNF6HTY7B5CN/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Z3TBJH5ZLSEO3J6NJZCHLPNJDAKMEWYT/>
 Archived-At: 
- <https://lore.freedesktop.org/20260922215317.611388-4-Capitain_Jack@yahoo.com/>
+ <https://lore.freedesktop.org/20260922215336.612239-1-Capitain_Jack@yahoo.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -131,95 +131,103 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-The GV100-class GCP writers always program a depth-less packet.  On GSP
-systems the HDMI audio setup runs after the display commit and writes that
-packet again, replacing any earlier deep-color declaration.
+Nouveau only ever outputs full-range RGB on HDMI.  This series adds the
+standard "Broadcast RGB" and "color format" connector properties on
+Turing to Ada heads and selects the pixel encoding together with the
+link depth: limited or full range RGB, and YCbCr 4:4:4, 4:2:2 and 4:2:0.
+It applies on top of the HDMI Deep Color series v2 (base and
+prerequisite ids below).
 
-Program cached CD and PP in the direct and GSP GCP paths.  Update only
-SB0..SB2 so generation-specific bits sharing the register remain intact,
-including GB20x SB1_CTRL.
+The hardware stage was already there.  On NVC57D-class heads the final
+colour conversion is HEAD_SET_PROCAMP plus the OCSC1 matrix and the
+output clamp ranges; nouveau only wrote PROCAMP, hardcoded to RGB/VESA
+under a TODO.  The programming follows NVIDIA's open NVKMS on the same
+classes (EvoSetProcAmpC5, EvoSetOCsc1C5, the YUV420PACKER head control).
+The OCSC1 matrices are the ITU-R BT.601, BT.709 and BT.2020 coefficients
+at limited-range scale; re-derived independently, they match NVIDIA's
+register values to within 4 in the last place, and the patch uses
+NVIDIA's values so the output is bit-identical to the proprietary driver
+on the same hardware.
 
-On a GA106 driving a Sony KDL-46HX855, the depth-less packet produced an
-incompatible-signal OSD at 1920x1080p60.  Restoring CD=6 and PP=2 after
-audio setup made the same sink accept the image and report 12-bit input.
+Selection policy follows drm_hdmi_state_helper.c, with amdgpu as the
+reference consumer of the "color format" property: sink rules per
+format (RGB/4:4:4 Deep Color bits, 4:2:2 up to 12 bpc in the 24-bit
+container, 4:2:0 through its own bits), TMDS character rates from
+drm_hdmi_compute_mode_clock(), "Automatic" picking RGB and falling back
+to 4:2:0, explicit requests honoured or refused.  YCbCr is limited range
+with the CTA-861 default colorimetry (BT.709 above 576 lines, BT.601
+below), declared in the AVI InfoFrame together with the pixel encoding.
 
-Signed-off-by: Daniel Campos Ramos <Capitain_Jack@yahoo.com>
----
- drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c | 12 ++++++------
- drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c |  4 +++-
- drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c |  4 +++-
- 3 files changed, 12 insertions(+), 8 deletions(-)
+One default changes: "Broadcast RGB" Automatic selects limited range for
+CE video formats, as i915 and the HDMI helpers do.  Today nouveau sends
+full-range pixels there and can only declare that to sinks with a Video
+Capability Data Block, so sinks without one apply their default limited
+range to full-range data.  "Full" restores the previous output.
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
-index d0360610f9fa..517a51caed2a 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gb202.c
-@@ -66,20 +66,20 @@ gb202_sor_hdmi_infoframe_vsi(struct nvkm_ior *ior, int head, void *data, u32 siz
- }
- 
- /* General Control Packet AVMute bracket. The GCP unit moved to slot 1 on
-- * NVD5.0. Only SB0 (the AVMute bit) is ours to write so we must not do a
-- * full write here: SB1 carries the deep-color CD/PP fields, and SB1_CTRL
-- * (bit 24, new with clc871.h) controls where their generation happens (HW
-- * or driver) on these chips, with the default being HW.
-+ * NVD5.0. SB0 carries AVMute, SB1 carries the deep-color CD/PP fields, and
-+ * SB1_CTRL (bit 24, new with clc871.h) controls where their generation
-+ * happens (HW or driver). Preserve SB1_CTRL while updating SB0..SB2.
-  */
- static void
- gb202_sor_hdmi_gcp(struct nvkm_ior *sor, int head, bool enable)
- {
- 	struct nvkm_device *device = sor->disp->engine.subdev.device;
- 	const u32 hdmi = head * 0x400;
-+	const u32 gcp = (!enable ? 0x00000001 : 0x00000010) |
-+			 sor->tmds.gcp_cd << 8 | sor->tmds.gcp_pp << 12;
- 
- 	nvkm_mask(device, 0x6f0040 + hdmi, 0x00000001, 0x00000000);
--	nvkm_mask(device, 0x6f004c + hdmi, 0x000000ff, !enable ? 0x00000001 :
--								 0x00000010);
-+	nvkm_mask(device, 0x6f004c + hdmi, 0x00ffffff, gcp);
- 	nvkm_mask(device, 0x6f0040 + hdmi, 0x00000001, 0x00000001);
- }
- 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c
-index 0608266188d3..d1e4b38b90a5 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.c
-@@ -149,6 +149,8 @@ gv100_sor_hdmi_ctrl(struct nvkm_ior *ior, int head, bool enable, u8 max_ac_packe
- 	const u32 ctrl = 0x40000000 * enable |
- 			 max_ac_packet << 16 |
- 			 rekey;
-+	const u32 gcp = 0x00000010 | ior->tmds.gcp_cd << 8 |
-+					   ior->tmds.gcp_pp << 12;
- 	const u32 hoff = head * 0x800;
- 	const u32 hdmi = head * 0x400;
- 
-@@ -162,7 +164,7 @@ gv100_sor_hdmi_ctrl(struct nvkm_ior *ior, int head, bool enable, u8 max_ac_packe
- 
- 	/* General Control (GCP). */
- 	nvkm_mask(device, 0x6f00c0 + hdmi, 0x00000001, 0x00000000);
--	nvkm_wr32(device, 0x6f00cc + hdmi, 0x00000010);
-+	nvkm_mask(device, 0x6f00cc + hdmi, 0x00ffffff, gcp);
- 	nvkm_mask(device, 0x6f00c0 + hdmi, 0x00000001, 0x00000001);
- 
- 	/* Audio Clock Regeneration (ACR). */
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
-index f6c163072ff6..49c84927583e 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.c
-@@ -39,9 +39,11 @@ tu102_sor_hdmi_gcp(struct nvkm_ior *sor, int head, bool enable)
- {
- 	struct nvkm_device *device = sor->disp->engine.subdev.device;
- 	const u32 hdmi = head * 0x400;
-+	const u32 gcp = (!enable ? 0x00000001 : 0x00000010) |
-+			 sor->tmds.gcp_cd << 8 | sor->tmds.gcp_pp << 12;
- 
- 	nvkm_mask(device, 0x6f00c0 + hdmi, 0x00000001, 0x00000000);
--	nvkm_wr32(device, 0x6f00cc + hdmi, !enable ? 0x00000001 : 0x00000010);
-+	nvkm_mask(device, 0x6f00cc + hdmi, 0x00ffffff, gcp);
- 	nvkm_mask(device, 0x6f00c0 + hdmi, 0x00000001, 0x00000001);
- }
- 
+  1: NVC57D output CSC and clamp methods (class header)
+  2: program PROCAMP/OCSC1/clamps from head state (no functional change)
+  3: Broadcast RGB
+  4: color format with YCbCr 4:4:4 and 4:2:2
+  5: YCbCr 4:2:0 on GA102+, gated per head on the capability notifier
+  6: the same properties on DVI connectors, which carry HDMI to HDMI
+     sinks through passive adapters (reported by the automated review
+     of the Deep Color series v1)
+
+Tested on a GA106 (RTX 3060) driving a Sony KDL-46HX855 (HDMI 1.4,
+YCbCr 4:4:4 and 4:2:2, DC_30/DC_36/DC_Y444, 225 MHz, no VCDB), 25
+configurations in two runs: RGB full, limited and automatic at 8/10/12
+bpc; YCbCr 4:4:4 and 4:2:2 at 8/10/12 bpc; BT.601 at 576p/480p and
+BT.709 from 720p; 640x480 held at 8 bpc; and side-by-side, top-and-
+bottom and frame-packed 3D at 12 bpc with YCbCr 4:4:4, limited RGB and
+YCbCr 4:2:2.  Every frame carried colour bars over near-black and
+near-white steps; the sink accepted each signal and displayed correct
+colours and levels, and the driver's selection was logged per step.
+
+Not tested here: 4:2:0 (the sink declares none) and DVI (the board has
+no DVI port); both reuse the paths exercised above.  Volta keeps its
+current behaviour (NVKMS has no Volta display code to compare against)
+and Blackwell (NVCA7D, same methods at a different stride) is left for
+a follow-up.  The class header additions are verbatim subsets of
+NVIDIA's headers and carry their usual checkpatch style findings.
+
+Normative chain: HDMI 1.4b section 6.5 (pixel encodings, General Control
+Packet), HDMI 2.0 section 7.1 (YCbCr 4:2:0), CTA-861 (AVI InfoFrame
+Y/C/Q/YQ fields, default colorimetry, the QS rule), ITU-R BT.601,
+BT.709 and BT.2020.  Bench harness and logs:
+https://github.com/danielcamposramos/sony-bravia-linux (tools/stereo-modeset,
+run27 and run28); curated public indexes:
+https://github.com/danielcamposramos/awesome-linux-hdr and
+https://github.com/danielcamposramos/awesome-stereoscopy.
+
+AI partners were leveraged in the production of this work.
+
+Daniel Campos Ramos (6):
+  drm/nouveau: add NVC57D output CSC and clamp range methods
+  drm/nouveau: program head output conversion for limited range and
+    YCbCr
+  drm/nouveau: add the Broadcast RGB property for HDMI
+  drm/nouveau: add HDMI YCbCr 4:4:4 and 4:2:2 output
+  drm/nouveau: add HDMI YCbCr 4:2:0 output on GA102 and later
+  drm/nouveau: expose HDMI output properties on DVI connectors
+
+ drivers/gpu/drm/nouveau/dispnv50/atom.h       |  11 +
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       | 305 +++++++++++++++---
+ drivers/gpu/drm/nouveau/dispnv50/head.c       |  19 ++
+ drivers/gpu/drm/nouveau/dispnv50/head.h       |   3 +
+ drivers/gpu/drm/nouveau/dispnv50/headc57d.c   | 112 +++++--
+ .../drm/nouveau/include/nvhw/class/clc57d.h   |  34 ++
+ .../drm/nouveau/include/nvhw/class/clc673.h   |  17 +
+ .../drm/nouveau/include/nvhw/class/clc67d.h   |  16 +
+ drivers/gpu/drm/nouveau/nouveau_connector.c   |  48 ++-
+ 9 files changed, 488 insertions(+), 77 deletions(-)
+ create mode 100644 drivers/gpu/drm/nouveau/include/nvhw/class/clc673.h
+ create mode 100644 drivers/gpu/drm/nouveau/include/nvhw/class/clc67d.h
+
+
+base-commit: 73ef663c75688168e31dbe9c585b939be410a945
+prerequisite-patch-id: 6bd193908862475dd809b40037984747467236d6
+prerequisite-patch-id: bf3b51b5393ef1c612930f4c474e6852372ca7db
+prerequisite-patch-id: 22c3f84b6576853e9d3053d4e5a15a4bd37e6dcd
 -- 
 2.53.0
 
