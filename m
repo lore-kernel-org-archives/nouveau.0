@@ -4,125 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15E26C98302
-	for <nouveau@archiver.kernel.org>; Wed, 23 Sep 2026 01:25:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C32B8C9830C
+	for <nouveau@archiver.kernel.org>; Wed, 23 Sep 2026 11:06:08 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id DDB1D10EF20;
-	Wed, 23 Sep 2026 01:25:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8F06310EFC4;
+	Wed, 23 Sep 2026 11:06:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="nQDV7CsQ";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="ePtxV5xp";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="J+WdkfMv";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="m5yKt4a2";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="vsplEf8y";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 5602C48580;
-	Wed, 23 Sep 2026 01:08:05 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 0CAB3485E8;
+	Wed, 23 Sep 2026 10:48:18 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1790125685;
- b=QyNjpj2v6zMCmFdooyvMQqo+563eqk2eWvK9ENUCDjHNcAx+yjvd7c0qxwFu1MaiURIAj
- 2s/HjV7mN7HoB6V7tlKQeQEqNS5WXrYuAYx2fZcIc7Q0mLrMoHViZ45JeFKo/VPZDe+ridM
- Z/7vulUsFhUQVxE4qc8Mqzd9ZNB0AAwUZyrtF50BCGSbaMO0gmNjH+GYwK5opyQxa6Bw8ii
- M+gbbVvzEbHJ3088OvMFslFEEzBi2q+tpwDcuDviQ9vqzAkddHNXHp4f+uDB6FJtoqXj2ln
- 2JrqQRzrIoqVlgG0HMKUgUvlsia77xLpTCeUy36wBByafBqB+YCGKIz2Ji4A==
+ s=20240201; t=1790160497;
+ b=dkwTV3GUFcetaEEpYvsjB6/S4aSe6BgjV2w3nz2+XzOMxZnCjrsBD2uS0m8bDjAt92Pi+
+ bZvn8/aKKbIlRPiFBwqbJJ8sa4032YisY5RzJy3kt44kUTm37oh6Jh58OjFYCmgyXMxy9ia
+ pU0OS1zGY/2VBTia+9tzJwLyEd+JUBQ9AQoAo0QGjdDCJJZmWWk0dGAhRrO+84tD0EiCLlb
+ 7vZj1+rHQSzDI+yCJNBjvu+l/Wh17asitin2cMVy51Go89sKTxhZaDkWtvX7EHKtU2cye8n
+ GLfkonM+WYfQphR/P4RFKFhgudYz1Cp+9E3TQIMbPvA5taxyw3JUZ6JEvzaQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1790125685; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1790160497; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=NVaWs4zBKL323Ekmtc+JE+yof11LKPeYjUbwqN++Tzw=;
- b=RNnOK+vcSXS46PTFNkLs3bu+6vgLwvW/g2SwEDjCq93sxK/vbIQMoJY04ZUrik7U6nRKQ
- 2A8d5HWh6Z+S4j3nAcglMEdbI0dz1rYB4KXI+1yottFsfSAVeIdTxcPFpuyh1G2nMzcGdb9
- OmBBRMyFAaFlNhmftBFk6ITyBvlNJ4pvqOwnhcriHNv0JGE7t6DuXm4BOV6HuZJmxlqRVBC
- d1PUVhjI2YfLosgRq9tlk1tqyuXq6WLds2mJ+/MwRU6EqxsTl3Kpf7IiEG1tE130sfCZsKa
- h4j5ZSgT1IReDCmObiDVg2IUQXwje+dzB5VMKx/r+VBX4vjyN14Zzq2ekrSQ==
+ bh=yig4P1nR/KUuXfkyUGF4O2Z2u6hzgy5a9b/28nBUgkg=;
+ b=PMrpzg3c8d/ztLPRQp29hjZqh9NveT2JlALeyuqVde6jNEudtq1s3T4KnfYhyHNgwWcqm
+ EOJ3flGTU70LugN9O16B8kCQYRTRLK5IXVDKmSwM1jAQCkI8GZ1jxjHueDxUVuDhk/njnv7
+ 58Nou2KuNK79VMCHfV0/aRjmyRiQlYJtNwvCqjVg5BC1TsSQ2fQWNP70i4mXmu8hoqOu7lg
+ Q+JLh3iR7ZDo/pN4qcPcrZvtKfU/7GdE2g19EpqFQ5PbPlUls6dxTezkNBNpx3BuzwFqyJl
+ MwF/ud2K057qTBcCnpXV8YR5I142sYXzpmmHl18UZ73GguNol2zi0M74SSmg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=yahoo.com;
+ dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=yahoo.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=yahoo.com;
+  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=yahoo.com
- policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id BCA2048507
-	for <nouveau@lists.freedesktop.org>; Tue, 22 Sep 2026 21:35:57 +0000 (UTC)
-Received: from sonic.asd.mail.yahoo.com (sonic-usea1-0019.asd.mail.yahoo.com
- [34.2.64.18])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A40CE10EE94
-	for <nouveau@lists.freedesktop.org>; Tue, 22 Sep 2026 21:53:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1790114025; bh=NVaWs4zBKL323Ekmtc+JE+yof11LKPeYjUbwqN++Tzw=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From:Subject:Reply-To;
- b=nQDV7CsQHmaLYDkkWDpLLqIUvBVbHx6EKxo9tp4hBm7SYDziXj/hUNGewmSoZpSk/v9ttMsDJifE27YDhWzfpws0bejTVxxKXTvTrSv1uc7xFMyKpmSgI0snHyga/QqPvboMdowfz6KPKmz4gi0rArtGXDkxM6C0fA4E/g35EzE1KWLXnKvBk2n/sIE2qxnHBi6geaimhQLAu7pV0uMy2iUiY2gI7wcvYAKCFOo65B1ZvaIL7QFLaNQRye2i2smDTklyweJVdFqfh63Snhb4FdXCEL3CfPiW7jisE0WDHnfDOnVGpqytscEiJj4fLOtOs0AYKAu+R+99GWMym+2VEg==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1790114025; bh=pRq9UB4oHREKdzeQHa8BpbWMwrcG/dWIDAKw8S+xikQ=;
- h=X-Sonic-MF:From:To:Subject:Date:From:Subject;
- b=MYpZv9SufsrFazM7UwmbGLNah/irl61yIRCVzjmYKGsoHM2vVTeQ4P+aRpkhLGhLwIbIAofRHqH2R/lBR9ahUT1tNl2woHQoJYFrmGlmQ1IhTzo1q7eIEC9vfvg7zDLQFmmhEDtpzPv9AzAv68o7UD/f3xVDSF/Us+by/d/grofvWKfTnhMwhdjplD1/Celv+IoaQFRB2yIpuGWWmVcyOLIX9/bxG4eX0SET4PfjztCHuDbSCpOjW4rWQ4gBb2iy+uSCvyvDtQhEGkB9MUtVJ4ZY4D5Y5+PNssbQn95Cw27aqjpnUPHJb/dvRwNxtrjAcuNy5n9YiTrYbJ3qlFPYwQ==
-X-YMail-OSG: CkIzVCYVM1kGH44IiWbDDYu4XHXNIvZXKec1HrvIcgJmELjKrKNYK8bB5Uajq6I
- 4.gN6B1hIakpqfXZJIppf.hCmI2JY1sUtUOJemx0BVNO7q_AWVNrUrVNdod8dnCsJboGRyC5xeeE
- KsxdRrIE1oQxvVWAMb1kbdFmuAVAu0CLyQdpeM1nzr2n3bZUikVxPNnbXSUVLeZzINkRs1N7Qk3_
- 3_1XA9E.DOHeg91AoC.dqCnwL6DzACPe5Ew5x9z6CscxrkQOhDtdOYO85SvWVvT9c2U4T75pMCYx
- 4xHnRvVIuSMcxshjh9_f449HPk_MH8.TzFww8FaUGbcESmJapTm5P2jkBIWj1s..7V0R3h69oXBu
- 5fC5MmuaoT.KhZXATp3whxNa_i_IbLYCP9kPdgk.5qAoiXGu555FSw1xt40G7W5qx4nFoV0b5rLr
- l45u2EBfmEpXumPpbQTntLZqr86q_QoOGDkece_wsHwLcKgoSuLsixCq3zEs4FpAaHvRDIAHYSoE
- CRi.s0iBYTeH9aGmBne686x0fxq8tr1ZQnmIeHbPi6e_vh.vMSta_G54vF8ExnD2A8lrE_q6RW__
- bzn0c_.A54TRE48MSGm5nX7qM1M3sf1x5cMnWLeXYE6O9iaCq7nHKjgkD7k9ZjDA7AImTD5ERN7Z
- GDPyUonUlR5WDhnxsVErtsXCDezilj_rB0FWcjoGP2NjMho82zor64.9gXGg_t2MGKQDCAOztDEj
- 2lzq32RhQpvK4xxi_IRmfq65wsCbDZJpMs7R44yuwm_S39xyGMPDkajgOQ4VrQz58r1ZTfVihbrT
- 74G_sMeHhsAZnM_BnDMxb20HsXx2wNBhWCCXtVsZ8KvVyfmSlmUv9L_4YcW4XEhxn.fugWHTcrGL
- EbvMrlneAL4yYIRViui.V087LtjYwocqbwlYfI_Ufx7P8SrZLHxiWvbuj4OuoCuJUyfGfzfca5OC
- fVJB17DOlSskWQBmV5fSVM6ok2alJDLIfNNre6oqMCqaMZI_U.7xc4eX2TQybyPJ4hqx_kghD4y6
- wXfGEFYj9kxML5ct_9HoGQLZLyhSINpOWudK7x5h3RG0YpkpGQk2DKetq15MdernVOYCqC.ay8vb
- 7Cv0gDtLVFEtwg4Hg9CAATxhSzlNudKqyMMLTHvs35.RBbY5G91AkZvPFLJqr9yO8zpWTaK2yYgo
- uL2eS5smWw5vuAcxfp6astYuSN5oOfM8sH5kSo78WZQn1UKz1CSw6vIre4u5vzB5IJdDAW6FQYHH
- CDdHjElugzP0LpX4pk6rGzZSuEWSHF.kaz39Xw42kM15GUHiGwA8m2AWaLUsbCyCrifuLp5dSKea
- g6mofAoXOeDY4cAQqpsBIOYWIIfbPOXBqajGbqlNG_sQY7x0DKUBttXox5wkbcTrqul22.XddpC_
- .Y6o1stqdt.fUV3k0XdmDUoO6mikvX87LOhMZk_pZFmnaIjtr36E_yGggMPvhfLKRsLH7DXy3Trq
- fOJouG08Y6_SB7PNBFUS0eQn_kNKYN4qaGiKpAS_EBvmUH7XEYZC3uI1KZ7ddKUZnntL0wAm7hjt
- 3w1ljF7K4GKPe14rPhKympaUSJRRs8wS41QU5FB2CQf9RThyJnnZHiI2.Zsh2HcAuak0vduxVhVL
- 8ddMnYDdkSsXKrm0_X3j8LA_AO__r9DNA6G0IxOYe6EdXmy8ZXaOpO6WOM5KpEUHiQvFt.1nDQwe
- Hht8O1Ij.L5pbAp6u.xfqAOZ0sr_h6jrD3vloQxdnFY2LyDHuMg1CmjAdydURtL486OR74JzRdUp
- .Ffw8mPHBdCS5xGtfFfJVCOqY2K1E7.ZNeiCC7GNWpcyWZ8CKmuJIJLZp3iaC_I.Saag4uhWAqnu
- MkdJG2K7oxR_95HjbdI2vwwhUP.hHRZt5UIQl1lFYL5qINVziqR9KrdxxHCe7yq_5Gh1X2f9jC5e
- .knmAtPqS8I5r225ZdDkP6QgGbojarMbE5y2yHWvC5YizJLse4A73CjutVCyRu5CO_yp3XYwq_x5
- Q0vO608zoZ_WPwl.vWmLRbVB5xmaURuk-
-X-Sonic-MF: <Capitain_Jack@yahoo.com>
-X-Sonic-ID: a4dc0f60-4fb2-4191-963f-f82f3d4953f2
-Received: from sonic.gate.mail.ne1.yahoo.com by
- mail-asdoutdeli-p-cin-usea1-prod-sonicconsumer-svc-102 with HTTP;
- Tue, 22 Sep 2026 21:53:45 +0000
-Received: from dip68.lsn.bf1.yahoo.com ([67.195.177.77])
-          by hello (SMTP) with SMTP ID 98779d167a59bfbe653b3ebdee112417;
-          Tue, 22 Sep 2026 21:53:42 +0000 (UTC)
-From: Daniel Campos Ramos <Capitain_Jack@yahoo.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 1/6] drm/nouveau: add NVC57D output CSC and clamp range
- methods
-Date: Tue, 22 Sep 2026 18:53:31 -0300
-Message-ID: <20260922215336.612239-2-Capitain_Jack@yahoo.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260922215336.612239-1-Capitain_Jack@yahoo.com>
-References: <20260922215336.612239-1-Capitain_Jack@yahoo.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6F04448338
+	for <nouveau@lists.freedesktop.org>; Wed, 23 Sep 2026 10:48:14 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8C6E210EFCF;
+	Wed, 23 Sep 2026 11:06:04 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id E84C321C07;
+	Wed, 23 Sep 2026 11:05:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1790161546;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+  content-transfer-encoding:content-transfer-encoding;
+	bh=yig4P1nR/KUuXfkyUGF4O2Z2u6hzgy5a9b/28nBUgkg=;
+	b=ePtxV5xpT8kK69c6QxNDO4furdu3M40140REdmVhxy9as5dPbyUr/uRJe4N4go7xr2pmJl
+	l0v8XBmVn1yllU9MKy1JgKgxZKHJx50yXMCUuy9q4gyrdSLjvQfb97KAN/hknQugGtRkag
+	0+PLjCx0AqRtQKcBf5pWdIuMgaQNU2E=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1790161546;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+  content-transfer-encoding:content-transfer-encoding;
+	bh=yig4P1nR/KUuXfkyUGF4O2Z2u6hzgy5a9b/28nBUgkg=;
+	b=J+WdkfMvtx3Z6FGXkOBbFg76sR2NA+Es/PJiyFaiCgBuoWQ17D0vNc9YnSYL/TpED8BzRx
+	gINVHglNrjfPlBAw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1790161542;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+  content-transfer-encoding:content-transfer-encoding;
+	bh=yig4P1nR/KUuXfkyUGF4O2Z2u6hzgy5a9b/28nBUgkg=;
+	b=m5yKt4a2fXeCzHw3ipzn/lBSRUYdp4k+kJ2mRUn6c5+U5r36PMvgsOZm+jr+0CnafI7kg/
+	QXnk4w90i0Mpc340hjS4jh//qAF7Co8aKR9Tcu65KB6N3wQTYuBqfT6CxPP70pew59GWa/
+	KuenZdsmc6j4ZiSTH0FZeNbuL9d5kUk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1790161542;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+  content-transfer-encoding:content-transfer-encoding;
+	bh=yig4P1nR/KUuXfkyUGF4O2Z2u6hzgy5a9b/28nBUgkg=;
+	b=vsplEf8yfCWyorb1CPQA1FraVVbOxPtSXYOyp7RR2I/wEotb7KJZ/+630wDBb9sEMz2oTV
+	ezeJIaUYCNypgTBA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 54EFA13432;
+	Wed, 23 Sep 2026 11:05:41 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id VCF1C4Wys2qeBAAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Wed, 23 Sep 2026 11:05:41 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jfalempe@redhat.com,
+	javierm@redhat.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	airlied@gmail.com,
+	simona@ffwll.ch
+Subject: [PATCH 0/2] drm/fbdev: Move helpers to clients/ subdirectory
+Date: Wed, 23 Sep 2026 12:59:08 +0200
+Message-ID: <20260923110537.451614-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-MailFrom: Capitain_Jack@yahoo.com
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Rspamd-Action: no action
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: E84C321C07
+X-Spamd-Result: default: False [-3.01 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_TLS_ALL(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	FREEMAIL_TO(0.00)[redhat.com,linux.intel.com,kernel.org,gmail.com,ffwll.ch];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:mid];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	R_RATELIMIT(0.00)[to_ip_from(RLqtkr6cif1ebgurukgmwdm7xc)];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	DKIM_TRACE(0.00)[suse.de:+]
+Message-ID-Hash: F7KL4ZLBMKLLHIQA2VBLRZRUHVGW5TYD
+X-Message-ID-Hash: F7KL4ZLBMKLLHIQA2VBLRZRUHVGW5TYD
+X-MailFrom: tzimmermann@suse.de
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: CLGR3RZSYF6DKWWYYUWGAKDN4DNBI5D3
-X-Message-ID-Hash: CLGR3RZSYF6DKWWYYUWGAKDN4DNBI5D3
-X-Mailman-Approved-At: Wed, 23 Sep 2026 01:07:51 +0000
-CC: nouveau@lists.freedesktop.org, dakr@kernel.org,
- Daniel Campos Ramos <Capitain_Jack@yahoo.com>
+ loop; banned-address
+CC: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, sashiko-reviews@lists.linux.dev
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CLGR3RZSYF6DKWWYYUWGAKDN4DNBI5D3/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/F7KL4ZLBMKLLHIQA2VBLRZRUHVGW5TYD/>
 Archived-At: 
- <https://lore.freedesktop.org/20260922215336.612239-2-Capitain_Jack@yahoo.com/>
+ <https://lore.freedesktop.org/20260923110537.451614-1-tzimmermann@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -132,71 +177,49 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Import the HEAD_SET_CLAMP_RANGE_{GREEN,RED_BLUE} and HEAD_SET_OCSC1*
-method definitions from NVIDIA's open-gpu-kernel-modules clc57d.h.
+Helpers for fbdev emulation are still linked into drm_kms_helper.ko,
+which is for mode setting. Move the source and header files to the
+clients/ subdirectory and link them into drm_client_lib.ko. This has
+some fallout throughout drivers, but it's all trivial.
 
-These program the head's final colour conversion stage on Turing and
-later display classes: OCSC1 converts the RGB pipeline output into
-limited-range RGB or YCbCr, and the clamp ranges bound the resulting
-codes.  They are needed to output anything other than full-range RGB.
+There are 3 module parameters to drm_kms_helper.ko that control fbdev
+emulation. For compatibility with existing installations, leave them
+in this module.
 
-No functional change.
+Thomas Zimmermann (2):
+  drm/fbdev: Move fbdev module parameters next to module init
+  drm/fbdev: Move fbdev helpers into client library
 
-Signed-off-by: Daniel Campos Ramos <Capitain_Jack@yahoo.com>
----
- .../drm/nouveau/include/nvhw/class/clc57d.h   | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
+ drivers/gpu/drm/Makefile                      |  1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       |  2 +-
+ drivers/gpu/drm/clients/Makefile              |  3 +-
+ drivers/gpu/drm/clients/drm_fbdev_client.c    |  2 +-
+ .../drm_fbdev_helper.c}                       | 34 +---------------
+ drivers/gpu/drm/drm_crtc_helper_internal.h    |  9 +++++
+ drivers/gpu/drm/drm_fbdev_dma.c               |  2 +-
+ drivers/gpu/drm/drm_fbdev_shmem.c             |  2 +-
+ drivers/gpu/drm/drm_fbdev_ttm.c               |  2 +-
+ drivers/gpu/drm/drm_kms_helper_common.c       | 39 +++++++++++++++++++
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c     |  2 +-
+ drivers/gpu/drm/gma500/fbdev.c                |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  2 +-
+ drivers/gpu/drm/msm/msm_debugfs.c             |  2 +-
+ drivers/gpu/drm/msm/msm_fbdev.c               |  2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       |  1 -
+ drivers/gpu/drm/omapdrm/omap_debugfs.c        |  2 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c          |  2 +-
+ drivers/gpu/drm/radeon/radeon_device.c        |  2 +-
+ drivers/gpu/drm/radeon/radeon_fbdev.c         |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c   |  2 +-
+ drivers/gpu/drm/sitronix/st7571.c             |  1 -
+ drivers/gpu/drm/tegra/fbdev.c                 |  2 +-
+ drivers/gpu/drm/vboxvideo/vbox_mode.c         |  2 +-
+ .../drm_fbdev_helper.h}                       |  4 +-
+ 26 files changed, 72 insertions(+), 56 deletions(-)
+ rename drivers/gpu/drm/{drm_fb_helper.c => clients/drm_fbdev_helper.c} (97%)
+ rename include/drm/{drm_fb_helper.h => clients/drm_fbdev_helper.h} (99%)
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvhw/class/clc57d.h b/drivers/gpu/drm/nouveau/include/nvhw/class/clc57d.h
-index d4bad2da3e56..ed9de61c5655 100644
---- a/drivers/gpu/drm/nouveau/include/nvhw/class/clc57d.h
-+++ b/drivers/gpu/drm/nouveau/include/nvhw/class/clc57d.h
-@@ -334,6 +334,12 @@
- #define NVC57D_HEAD_SET_CRC_CONTROL_CRC_DURING_SNOOZE                           9:9
- #define NVC57D_HEAD_SET_CRC_CONTROL_CRC_DURING_SNOOZE_DISABLE                   (0x00000000)
- #define NVC57D_HEAD_SET_CRC_CONTROL_CRC_DURING_SNOOZE_ENABLE                    (0x00000001)
-+#define NVC57D_HEAD_SET_CLAMP_RANGE_GREEN(a)                                    (0x00002238 + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_CLAMP_RANGE_GREEN_LOW                                   11:0
-+#define NVC57D_HEAD_SET_CLAMP_RANGE_GREEN_HIGH                                  27:16
-+#define NVC57D_HEAD_SET_CLAMP_RANGE_RED_BLUE(a)                                 (0x0000223C + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_CLAMP_RANGE_RED_BLUE_LOW                                11:0
-+#define NVC57D_HEAD_SET_CLAMP_RANGE_RED_BLUE_HIGH                               27:16
- #define NVC57D_HEAD_SET_OLUT_CONTROL(a)                                         (0x00002280 + (a)*0x00000400)
- #define NVC57D_HEAD_SET_OLUT_CONTROL_INTERPOLATE                                0:0
- #define NVC57D_HEAD_SET_OLUT_CONTROL_INTERPOLATE_DISABLE                        (0x00000000)
-@@ -352,4 +358,32 @@
- #define NVC57D_HEAD_SET_CONTEXT_DMA_OLUT_HANDLE                                 31:0
- #define NVC57D_HEAD_SET_OFFSET_OLUT(a)                                          (0x0000228C + (a)*0x00000400)
- #define NVC57D_HEAD_SET_OFFSET_OLUT_ORIGIN                                      31:0
-+#define NVC57D_HEAD_SET_OCSC1CONTROL(a)                                         (0x0000229C + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1CONTROL_ENABLE                                     0:0
-+#define NVC57D_HEAD_SET_OCSC1CONTROL_ENABLE_DISABLE                             (0x00000000)
-+#define NVC57D_HEAD_SET_OCSC1CONTROL_ENABLE_ENABLE                              (0x00000001)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C00(a)                                 (0x000022A0 + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C00_VALUE                              20:0
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C01(a)                                 (0x000022A4 + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C01_VALUE                              20:0
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C02(a)                                 (0x000022A8 + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C02_VALUE                              20:0
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C03(a)                                 (0x000022AC + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C03_VALUE                              20:0
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C10(a)                                 (0x000022B0 + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C10_VALUE                              20:0
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C11(a)                                 (0x000022B4 + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C11_VALUE                              20:0
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C12(a)                                 (0x000022B8 + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C12_VALUE                              20:0
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C13(a)                                 (0x000022BC + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C13_VALUE                              20:0
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C20(a)                                 (0x000022C0 + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C20_VALUE                              20:0
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C21(a)                                 (0x000022C4 + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C21_VALUE                              20:0
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C22(a)                                 (0x000022C8 + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C22_VALUE                              20:0
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C23(a)                                 (0x000022CC + (a)*0x00000400)
-+#define NVC57D_HEAD_SET_OCSC1COEFFICIENT_C23_VALUE                              20:0
- #endif // _clC57d_h
 -- 
-2.53.0
+2.55.0
 
