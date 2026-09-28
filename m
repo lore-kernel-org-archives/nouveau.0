@@ -4,41 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6617C9830D
-	for <nouveau@archiver.kernel.org>; Fri, 25 Sep 2026 07:20:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CC52CA5FA1
+	for <nouveau@archiver.kernel.org>; Mon, 28 Sep 2026 08:03:53 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7D6C510F8CE;
-	Fri, 25 Sep 2026 07:20:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 65F2F10E7F3;
+	Mon, 28 Sep 2026 08:03:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="18SOM8PW";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="NmFd4bZm";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.b="vsGxYTIY";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="frpVI67j";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="1GobiCOl";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="SaK2ecWu";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 02948486A2;
-	Fri, 25 Sep 2026 07:02:44 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 2E4F948762;
+	Mon, 28 Sep 2026 07:45:52 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1790319763;
- b=YsybL7bWmKVmwuA8FZXxC+NEa44s2RXhgsensoiyp5/8trJUUuXHp8lbmRzRLVTWoFMVh
- 7j2lFgT89K1DO3pDGVrg+A2ICFg5UAOHq25Mj1BdCc0cgQ1GlQits5MrQjfUh3Pr7ib7xDo
- 75jwBgxOkPHA98KStQjumHBox+ditain0a7fQ+VNYQtOSpLUiZLOkwTG5T84aQeUNXcgOE0
- fitbOEqATsRJ57E3zYkTyzAlvonB1L63KdGbuhlacKjH524U54RX11IcCjOTq/u8YsA+0z1
- eIXcGikvr7RKDHcFYRlbxy0se0vyBUGna4gYIA7gEkr4EMMMSYhBC30+hg2Q==
+ s=20240201; t=1790581552;
+ b=i0S6xhKzEz0yhvMQNN70yteGTwsy9RTPLvu493FIbet6icjQoEVppi23eo4wZZRB0+6hD
+ hKSPFtG2sAC4kIzfq0fllslsnyfg9oMYLXul2vgcLYsT2a1UbeERi2iLnk/n2ASIRxbdBS0
+ wTaFqTmVM4W0NC7myiaW21cB2praH8PlJHNVTU8iSdYBVdoWwDJp88FJpqJ28YHB0fqrpoT
+ 7OEWDSNxwybonLSP9pR6hzZLFreULUlhNmVJshLKn0VWWz4Veljg5LWbckKV4m5Pzq5s5c6
+ m4gK2Ao/Wk8z4tcq9HcW+ov0XrCi/wuRmbQZ4Gn2Gos1WyXkLi/b8tKl5sDA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1790319763; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1790581552; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=kzQJUx2j1q3dxukxSXHgfUHF2iPymWsIbBh6NfSN+fI=;
- b=OJKnSTNV4MYqdPt9JBMWJAdf3Omx6mG6IjjjkxOyIPaA8MmNh/UsImN181jmST3woYr8o
- C2+qXQwCwHhUyMu0vMK3UPa1l2eXIYkl4XCWo36MqX9DQ2ME0V8tGvyyIg1mT0T3EjSrqH/
- DmtNbAbTUJorhlr8IBQVJf22UE8oTEYfvcAXcAh+FVmOO+wt1frAlbipLlMQWXHQlZlsfrj
- 9y4Nv20xLPGBNb+e7r4RkPjLKJ4BbskDelaf2dI4Xn0qDgw2EnxE9quU0DxgjGQOyw319T6
- 1P1Z7/auye7od7PNKx/vsnCOXxxPNK5CQH+H2CZ7+5ZanVhTEGz98ieJvbog==
+ bh=C5EMpiV8cXb5hRSezSalMKSce3OsytwLWZguOo1OnZU=;
+ b=tAk1FJhnlXZgIjTAodhtnQLhTv0qEUWZ1lRfZ74/DJLBvCp14y6RXisjq5GK5DQ5kqKtZ
+ f2GPNuYNDpEkSZSLcWGX98kM2UbOSAv0lQaUVN69j/xI2FgcIQCr4lI8aVU66q8ux7Y48Lu
+ hr7CV9wmQ1ukS/pHrbilqNNwk7Tyef/FoHTCTs65vgQDxffp5fk5o3IdHUrSn7EbmdvBxdj
+ CAstfGTnu6w/VsxAeVDMZWy8/ybXdhUrpo1E4vvBCbSU24JOS71v70n+43UjuNfHVjny6Tz
+ SPPtELkuqA+XLDEvhIJL3W42AX/sPq8sMNKbSsqMbsst5Aa8iTyDZYSnkMRQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
@@ -47,69 +45,50 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E271947C2F
-	for <nouveau@lists.freedesktop.org>; Fri, 25 Sep 2026 07:02:41 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0222510F8CE;
-	Fri, 25 Sep 2026 07:20:36 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	by kara.freedesktop.org (Postfix) with ESMTPS id BC7ED4764D
+	for <nouveau@lists.freedesktop.org>; Mon, 28 Sep 2026 07:45:48 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7C5BD10E7EE;
+	Mon, 28 Sep 2026 08:03:49 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id B99ED1FE21;
-	Fri, 25 Sep 2026 07:19:38 +0000 (UTC)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 56E7922263;
+	Mon, 28 Sep 2026 08:03:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_rsa;
-	t=1790320782;
+	t=1790582611;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=kzQJUx2j1q3dxukxSXHgfUHF2iPymWsIbBh6NfSN+fI=;
-	b=18SOM8PWOlIfPA6xyyTOhyt/WQ/lLhSb1/eIzbR2RYm2COu+4k7lS9ot90Paq5su0KFvqy
-	ckyb1iekp7/MU9BIrsp28O8+3xtDdwHuJu2rOx/FXuxL7YOJkdSIerzk3nO9xuQaTGzJw1
-	E1aUMBELGSisB6by5tjNVHWOustLwbM=
+	bh=C5EMpiV8cXb5hRSezSalMKSce3OsytwLWZguOo1OnZU=;
+	b=1GobiCOlsAPXH8OA2nA10ge59M+PeLIFjfqEhp1js7hYg7nafhZtgaLweno/AD7ducV2uH
+	1LQHWQs/HmDBp1tLw7BX2FT/EYIrTdImKqw/2G9cFatbV8ZuReNGjoaTBfZq+J7lBhdVLz
+	ew6Q0V9yvqR/VTp7D6aPJanRvdi2Tis=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1790320782;
+	s=susede2_ed25519; t=1790582611;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=kzQJUx2j1q3dxukxSXHgfUHF2iPymWsIbBh6NfSN+fI=;
-	b=NmFd4bZmiA7i1WEMy4gvi859V+Bl+zuO17JMvvw3EwMwYBhtPZ0eON4ObDcyssVEs6FvNo
-	T2SUPcQVhBal+kCQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_rsa;
-	t=1790320778;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kzQJUx2j1q3dxukxSXHgfUHF2iPymWsIbBh6NfSN+fI=;
-	b=vsGxYTIYjk7cXs9lJ2DmEGJba1pCNOuwCBuQu04x8yHXzPk/lLHBMiJGXrl1KrLYWFw3M1
-	0pkzWZBWkkpQt+yqHqbCQ3MXSqMP27Ro/5j6n78my/vJLhTs5QdtKppZCog4J8mFbdK5Ly
-	8kqtjD+Heh6CRRaMN1qeMN0SOT6pkiM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1790320778;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kzQJUx2j1q3dxukxSXHgfUHF2iPymWsIbBh6NfSN+fI=;
-	b=frpVI67j9Tl2ZQHDFszFy8aLQwFT8OtnQk7GztonKt4L3n+2po9pmNWbu2bZHfxyW4nE/L
-	U3KaiEMo1jsED0AQ==
+	bh=C5EMpiV8cXb5hRSezSalMKSce3OsytwLWZguOo1OnZU=;
+	b=SaK2ecWuYu6lm4IG6Kl82csy0uPX9cjmMujjisPpsKsvf06UzmynJ3VyQn05q4w63SCI9q
+	y5sGUnkURecDEbAg==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id E126113929;
-	Fri, 25 Sep 2026 07:19:37 +0000 (UTC)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8539D13418;
+	Mon, 28 Sep 2026 08:03:30 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
 	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id 5u4JJoggtmpbBQAAD6G6ig:T3
-	(envelope-from <tzimmermann@suse.de>); Fri, 25 Sep 2026 07:19:37 +0000
+	id LwPoBFEfumpBYQAAD6G6ig:T3
+	(envelope-from <tzimmermann@suse.de>); Mon, 28 Sep 2026 08:03:30 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: jfalempe@redhat.com,
 	javierm@redhat.com,
@@ -119,39 +98,24 @@ To: jfalempe@redhat.com,
 	simona@ffwll.ch,
 	jani.nikula@linux.intel.com,
 	Alexander.Deucher@amd.com
-Subject: [PATCH v3 2/2] drm/fbdev: Move fbdev helpers into client library
-Date: Fri, 25 Sep 2026 09:17:50 +0200
-Message-ID: <20260925071933.44283-3-tzimmermann@suse.de>
+Subject: [PATCH v4 2/2] drm/fbdev: Move fbdev helpers into client library
+Date: Mon, 28 Sep 2026 10:01:25 +0200
+Message-ID: <20260928080323.23909-3-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260925071933.44283-1-tzimmermann@suse.de>
-References: <20260925071933.44283-1-tzimmermann@suse.de>
+In-Reply-To: <20260928080323.23909-1-tzimmermann@suse.de>
+References: <20260928080323.23909-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-6.80 / 50.00];
-	REPLY(-4.00)[];
-	BAYES_HAM(-3.00)[100.00%];
-	MID_CONTAINS_FROM(1.00)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_MISSING_CHARSET(0.50)[];
-	NEURAL_HAM_SHORT(-0.20)[-0.999];
-	MIME_GOOD(-0.10)[text/plain];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[redhat.com,linux.intel.com,kernel.org,gmail.com,ffwll.ch,amd.com];
-	RCVD_TLS_ALL(0.00)[];
-	R_RATELIMIT(0.00)[to_ip_from(RLq3cifbxyhc6qbbynzfc6amns)];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,intel.com:email,suse.de:email,suse.de:mid];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com]
-Message-ID-Hash: 5BH74TT7P75RFOX4LSN4SSAOXCIJKFJH
-X-Message-ID-Hash: 5BH74TT7P75RFOX4LSN4SSAOXCIJKFJH
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: 56E7922263
+X-Rspamd-Pre-Result: action=no action;
+	module=replies;
+	Message is reply to one we originated
+X-Spamd-Result: default: False [-4.00 / 50.00];
+	REPLY(-4.00)[]
+X-Rspamd-Action: no action
+Message-ID-Hash: J6GL2ZABNL2EOLYMXLSGACIPE2XENGFK
+X-Message-ID-Hash: J6GL2ZABNL2EOLYMXLSGACIPE2XENGFK
 X-MailFrom: tzimmermann@suse.de
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -167,9 +131,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5BH74TT7P75RFOX4LSN4SSAOXCIJKFJH/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/J6GL2ZABNL2EOLYMXLSGACIPE2XENGFK/>
 Archived-At: 
- <https://lore.freedesktop.org/20260925071933.44283-3-tzimmermann@suse.de/>
+ <https://lore.freedesktop.org/20260928080323.23909-3-tzimmermann@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -188,6 +152,8 @@ The old name was too reminiscent of DRM's framebuffer code.
 
 The GEM support code for fbdev remains part of DRM's memory managers.
 
+v4:
+- fix the depedendencies from v3
 v3:
 - remove obsolete dependencies from Kconfig
 v2:
@@ -197,34 +163,34 @@ Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 Acked-by: Jani Nikula <jani.nikula@intel.com>
 ---
- Documentation/gpu/drm-kms-helpers.rst                       | 6 +++---
- drivers/gpu/drm/Kconfig                                     | 4 ----
- drivers/gpu/drm/Makefile                                    | 1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c                 | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c                     | 2 +-
- drivers/gpu/drm/armada/armada_fbdev.c                       | 2 +-
- drivers/gpu/drm/clients/Makefile                            | 3 ++-
- drivers/gpu/drm/clients/drm_fbdev_client.c                  | 2 +-
- .../gpu/drm/{drm_fb_helper.c => clients/drm_fbdev_helper.c} | 2 +-
- drivers/gpu/drm/drm_fbdev_dma.c                             | 2 +-
- drivers/gpu/drm/drm_fbdev_shmem.c                           | 2 +-
- drivers/gpu/drm/drm_fbdev_ttm.c                             | 2 +-
- drivers/gpu/drm/exynos/exynos_drm_fbdev.c                   | 2 +-
- drivers/gpu/drm/gma500/fbdev.c                              | 2 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c                  | 2 +-
- drivers/gpu/drm/msm/msm_debugfs.c                           | 2 +-
- drivers/gpu/drm/msm/msm_fbdev.c                             | 2 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.c                     | 1 -
- drivers/gpu/drm/omapdrm/omap_debugfs.c                      | 2 +-
- drivers/gpu/drm/omapdrm/omap_fbdev.c                        | 2 +-
- drivers/gpu/drm/radeon/radeon_device.c                      | 2 +-
- drivers/gpu/drm/radeon/radeon_fbdev.c                       | 2 +-
- drivers/gpu/drm/rockchip/rockchip_drm_gem.c                 | 2 +-
- drivers/gpu/drm/sitronix/st7571.c                           | 1 -
- drivers/gpu/drm/tegra/fbdev.c                               | 2 +-
- drivers/gpu/drm/vboxvideo/vbox_mode.c                       | 2 +-
- include/drm/{drm_fb_helper.h => clients/drm_fbdev_helper.h} | 4 ++--
- 27 files changed, 27 insertions(+), 33 deletions(-)
+ Documentation/gpu/drm-kms-helpers.rst                      | 6 +++---
+ drivers/gpu/drm/Kconfig                                    | 7 +++----
+ drivers/gpu/drm/Makefile                                   | 1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c                | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c                    | 2 +-
+ drivers/gpu/drm/armada/armada_fbdev.c                      | 2 +-
+ drivers/gpu/drm/clients/Makefile                           | 3 ++-
+ drivers/gpu/drm/clients/drm_fbdev_client.c                 | 2 +-
+ .../drm/{drm_fb_helper.c => clients/drm_fbdev_helper.c}    | 2 +-
+ drivers/gpu/drm/drm_fbdev_dma.c                            | 2 +-
+ drivers/gpu/drm/drm_fbdev_shmem.c                          | 2 +-
+ drivers/gpu/drm/drm_fbdev_ttm.c                            | 2 +-
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c                  | 2 +-
+ drivers/gpu/drm/gma500/fbdev.c                             | 2 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c                 | 2 +-
+ drivers/gpu/drm/msm/msm_debugfs.c                          | 2 +-
+ drivers/gpu/drm/msm/msm_fbdev.c                            | 2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c                    | 1 -
+ drivers/gpu/drm/omapdrm/omap_debugfs.c                     | 2 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c                       | 2 +-
+ drivers/gpu/drm/radeon/radeon_device.c                     | 2 +-
+ drivers/gpu/drm/radeon/radeon_fbdev.c                      | 2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c                | 2 +-
+ drivers/gpu/drm/sitronix/st7571.c                          | 1 -
+ drivers/gpu/drm/tegra/fbdev.c                              | 2 +-
+ drivers/gpu/drm/vboxvideo/vbox_mode.c                      | 2 +-
+ .../drm/{drm_fb_helper.h => clients/drm_fbdev_helper.h}    | 4 ++--
+ 27 files changed, 30 insertions(+), 33 deletions(-)
  rename drivers/gpu/drm/{drm_fb_helper.c => clients/drm_fbdev_helper.c} (99%)
  rename include/drm/{drm_fb_helper.h => clients/drm_fbdev_helper.h} (99%)
 
@@ -250,7 +216,7 @@ index 400cd0112713..65bc16b96f8f 100644
  
  Draw Helper Functions Reference
 diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 65d46dfa7266..c15bfc15d9d2 100644
+index 65d46dfa7266..61111d50b1c6 100644
 --- a/drivers/gpu/drm/Kconfig
 +++ b/drivers/gpu/drm/Kconfig
 @@ -46,7 +46,6 @@ config DRM_KMS_HELPER
@@ -261,27 +227,30 @@ index 65d46dfa7266..c15bfc15d9d2 100644
  	help
  	  CRTC helpers for KMS drivers.
  
-@@ -256,7 +255,6 @@ config DRM_TTM_HELPER
+@@ -256,7 +255,7 @@ config DRM_TTM_HELPER
  	tristate
  	depends on DRM
  	select DRM_TTM
 -	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
++	select DRM_CLIENT_LIB if DRM_FBDEV_EMULATION
  	select FB_CORE if DRM_FBDEV_EMULATION
  	select FB_SYSMEM_HELPERS_DEFERRED if DRM_FBDEV_EMULATION
  	help
-@@ -265,7 +263,6 @@ config DRM_TTM_HELPER
+@@ -265,7 +264,7 @@ config DRM_TTM_HELPER
  config DRM_GEM_DMA_HELPER
  	tristate
  	depends on DRM
 -	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
++	select DRM_CLIENT_LIB if DRM_FBDEV_EMULATION
  	select FB_CORE if DRM_FBDEV_EMULATION
  	select FB_DMAMEM_HELPERS_DEFERRED if DRM_FBDEV_EMULATION
  	help
-@@ -274,7 +271,6 @@ config DRM_GEM_DMA_HELPER
+@@ -274,7 +273,7 @@ config DRM_GEM_DMA_HELPER
  config DRM_GEM_SHMEM_HELPER
  	tristate
  	depends on DRM && MMU
 -	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
++	select DRM_CLIENT_LIB if DRM_FBDEV_EMULATION
  	select FB_CORE if DRM_FBDEV_EMULATION
  	select FB_SYSMEM_HELPERS_DEFERRED if DRM_FBDEV_EMULATION
  	help
