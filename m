@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95483CA5FE6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26856CA5FE5
 	for <nouveau@archiver.kernel.org>; Fri,  2 Oct 2026 18:09:27 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E3BFB10F984;
-	Fri,  2 Oct 2026 18:09:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 91C3510F975;
+	Fri,  2 Oct 2026 18:09:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="PCQCGpPC";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JW1KR6lw";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id F15F0488F8;
-	Fri,  2 Oct 2026 17:51:14 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A48ED488F8;
+	Fri,  2 Oct 2026 17:51:13 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1790963474;
- b=oOsqgHYVQ/41LjR+ah8Qb138JPO6F8cXFVg75xzztgirZhDFVUZ/c52GOoCv25+P6I0BJ
- WjtyUSrNJ6sFSeJNFZcPqKK3JBibiXvwyX0dioRn5xnhcl5sSdgAiEdu5hhyPiRsxw2f76s
- kmp5fPBQTjh8sS2pT94u8iCMl1N2BQZZfA7kQuVrly9qS/DUkLZMGGBATflhOfokzMdtvRv
- m1AKEHpm0ZaEqXpWqc0X+hxBBlXRh+YNsEYrRnP6Yh0Ifh5+XqsiliKiElDDDRzyj2z5vnb
- rRzcXRM9CPPbooqAeAUJ+nmt3H03m9UDhnAg/El77DYyR69nm+Uj1KwODkxQ==
+ s=20240201; t=1790963473;
+ b=sJI2cB8LlnfFK2C/ZAfYVZ2RekbK8fUqmgsCZUapUPsGQ2UrzaapURqra1xQn4dPIiyTH
+ MmGL6wDBgImabQzucmd1qlLpGVOr7iYnQfez12n5EFuSIdStOz7armwHorsVu5KYxpbdyTj
+ jGj0ST5w0c298/drQPjKIGwTuFHVq0ANntNtuarzxCxQgecH/Pt8OF6ICG+adwGtCwN5zkr
+ lcyrdHXQjT6DSIY850Ahw7lMvGQDChtGUngHLfdXxsDHzJbcycRuplFOhEiQfM7P3VJmMoz
+ ZMbxYlLAF1t4o992Y8CPCV6nWqopaS54/BIiQFOpvU5yzPoeZ7On/TJd6ePQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1790963474; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1790963473; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=aMx/rIRuhVDIrp5zIUl3iUXwLPjbK0IeVUZ9EEoogFo=;
- b=ocMOxriUZLaHJMra5iCGbxberXEYFXNBE9A6Rh+BclcaoRmuMqEPeN9YsctRWSOHCSnJ8
- SWDQNzT4BpBN/QYrR+rIb/egAgvq4M9Yhz0TwT6G9mF8St/+tXAO8VDiigpnM0fq7wYffwp
- ewumb5xukVG7kQuSlJ6teCFnjKbeFv+iOC93UXnD7UNaUJox12H5uTrf6vZKJuhPKzOSJ8H
- 7okluBys6O4Ts38JattSkyYOMps/IlIj3G61e8yB95VS3aweJnBfbvj2QnsknlNR6AnqZl2
- d4zhI6KZnC8GaIPI1Rljgva6QXF1zSA5qTYhgsRc1vT4vApRf+hzeCLLFBKw==
+ bh=pgY5+GlNY/GS7kyyprN78FypnDJIgG4SMLW4P6avIpY=;
+ b=IzC+9n4aO7EnnAbQQOeyNkIJktL/c2OZiv+dAmC79gB/qvHWqfqtpzQhysV6ZsH88WO82
+ UAjRb2eLYYUKkfiPrBXtDSbUpAqQUD1Q9CLurq+hAh20EVy51BHYIbmv0jLDbuGZlrytU2I
+ sGEleG6hWeG75JOTnipwbWsfFSCKvuWz9sVku/jeEnijMiU4SZIXkEG/ins6XWMkXGQgc+C
+ 1b0ZsISQ4NkIggSmUUOe+38C91AMttzLnEnJvKoZVUWg497kRQ58eVo0aHTHnpe1vPdDSTe
+ XOFv4bvpD8mWHgwBJlkKFqpyRsRBfA1DnWEDE8k/aP6v7RkFKN/9nk31AG5g==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,38 +46,38 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3E2FA488BF
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2CB27488BF
 	for <nouveau@lists.freedesktop.org>; Fri,  2 Oct 2026 17:51:10 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0C9EE10E669;
-	Fri,  2 Oct 2026 18:09:21 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id A0B2A447FF;
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CE3B210E650;
 	Fri,  2 Oct 2026 18:09:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 83977C4AF19;
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 992A044514;
+	Fri,  2 Oct 2026 18:09:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 76D8FC4AF14;
 	Fri,  2 Oct 2026 18:09:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1790964560;
-	bh=JVcZAIT4blingZlqDwuU8K//v4iaqW2865cNyjb1tss=;
+	bh=Zxi8ngAQE4N498c9vJY+1kq/fCnMAbsmZCNLE2Mkets=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=PCQCGpPCwBuQy7Wov0S7nBnupga2y129u/XtM2F6/O3uGuDX9ZyE9BpFutGZzS1Ax
-	 B/oKm3wmNfQcRxI7oxFo/yhUsRhdUyY84ju7R1ubqEXL7tswEAtzK3JLT+o5So4MJK
-	 Laxe540A0205nYKaaBAyFQsTlPSXhGNVo9FMsM1b+nch9ORiwo//zMKtfLmZyPM1cM
-	 n/I8vipYp9V36tocoYIKpXeht4fFVPWr14grl+8jDfoBSkkMmHZAJ+FKEIFQw3UxPO
-	 du7ecSZjCbEbADefoAEn05MYM+mQf7/DdI+aRK7h/zg8d3XqFz444r6AcN5Z72bgVP
-	 oKWErocbXlk9A==
+	b=JW1KR6lw8U30fdg7lnerzmKHzWDaPSvAsrfrrKgnswlIoJvw+7mgUMrpOa5CIWiqz
+	 z6LCUsc9dh34/H1HJ9pEH7CdWUFFcBjAvM1Uy7VH0eomE/F121+GkTK9z3lSJ2qqzJ
+	 Nv30gkDJNz4nxYkHi0efrxA6aM0vXIKQ3akeFajBarOOj1swj3SWmaabirEvXiic08
+	 5UIyIIXCeCUH/ct435upHaJWK+dKBCm0Q/Mf4QcN4rkxL74IJIDpF4GWDyNPbPA1Lk
+	 DVt8pbBPoN4lsy/RNpH5oL9tb4Z3HZ00VLxeqnN+N1izL8jtc5lqwvykbfTEuNWgom
+	 5zYdoTcgAq3lQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
  (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B885CA5FE4;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 592A5CA5FE2;
 	Fri,  2 Oct 2026 18:09:20 +0000 (UTC)
 From: Jim Cromie via B4 Relay <devnull+jim.cromie.gmail.com@kernel.org>
-Date: Fri, 02 Oct 2026 12:09:14 -0600
-Subject: [PATCH 3/3] drm/nouveau/gsp: Fix NULL dereference in
- nvkm_gsp_gcx_ready()
+Date: Fri, 02 Oct 2026 12:09:13 -0600
+Subject: [PATCH 2/3] drm/nouveau: Fix NULL pointer dereference in
+ GET_ZCULL_INFO ioctl
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261002-my-fixups-v1-3-a83d20f9d3fe@gmail.com>
+Message-Id: <20261002-my-fixups-v1-2-a83d20f9d3fe@gmail.com>
 References: <20261002-my-fixups-v1-0-a83d20f9d3fe@gmail.com>
 In-Reply-To: <20261002-my-fixups-v1-0-a83d20f9d3fe@gmail.com>
 To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
@@ -86,18 +86,18 @@ To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Dave Airlie <airlied@redhat.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1790964559; l=2861;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1790964559; l=2253;
  i=jim.cromie@gmail.com; s=20260203; h=from:subject:message-id;
- bh=2M9dEq49i0aD+XeaJ6avEiyZMMSw/YZ4lgbD6+NZKCg=;
- b=kH526DYovITBtZAg3q9UHXTnXfSCO9eGG6JfkQ3j7V4TQMnLPlDc5Y7BkzXsm1Qn3VmfBHDPU
- cA/QFTTRIYtBPr8vE2YpS4xvYAFPodPQJlB+JLn5GI0QlLEb4WIaRVq
+ bh=L2BiCR5h7zbMn466+3toqqoccEcp+N08ZHOKB4ykJHg=;
+ b=4trrWqnFSWvbtlBEh0oeA1WGLJkQkvPLNvZc26k6fM08kA0otSAlnbpbG5LmUZQ7LKRjpMoKS
+ yTaR7AD+jH5AmyNRrVZet8zuAASC1MLXOz6wePMPQG8dMyAhbdGHRK5
 X-Developer-Key: i=jim.cromie@gmail.com; a=ed25519;
  pk=C6E5ODlPQo7ZBynATXH9wg7K6HxP0pIXyf4s38Qw0XE=
 X-Endpoint-Received: by B4 Relay for jim.cromie@gmail.com/20260203 with
  auth_id=958
 X-Original-From: Jim Cromie <jim.cromie@gmail.com>
-Message-ID-Hash: TNCZSGQ6OLY6UG4BSIVYSGGFPSOB42LU
-X-Message-ID-Hash: TNCZSGQ6OLY6UG4BSIVYSGGFPSOB42LU
+Message-ID-Hash: PBEKVI43ZZI7LWR7CBQ2AKLCVFWUIBIR
+X-Message-ID-Hash: PBEKVI43ZZI7LWR7CBQ2AKLCVFWUIBIR
 X-MailFrom: devnull+jim.cromie.gmail.com@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -110,9 +110,9 @@ Precedence: list
 Reply-To: jim.cromie@gmail.com
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TNCZSGQ6OLY6UG4BSIVYSGGFPSOB42LU/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PBEKVI43ZZI7LWR7CBQ2AKLCVFWUIBIR/>
 Archived-At: 
- <https://lore.freedesktop.org/20261002-my-fixups-v1-3-a83d20f9d3fe@gmail.com/>
+ <https://lore.freedesktop.org/20261002-my-fixups-v1-2-a83d20f9d3fe@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -124,69 +124,47 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 From: Jim Cromie <jim.cromie@gmail.com>
 
-Commit cb4c7603678c ("drm/nouveau/gsp/r570: Add support for
-INTERNAL_GCX_ENTRY_PREREQUISITE") hooked nvif_device_gcx_ready() into
-nouveau_pmops_runtime_suspend() to consult GSP before runtime suspend.
+When graphics engine firmware fails to load or initialization aborts
+early, nvxx_gr(drm) returns NULL. Calling DRM_IOCTL_NOUVEAU_GET_ZCULL_INFO
+causes nouveau_abi16_ioctl_get_zcull_info() to dereference gr at offset
+0xf0 without checking for NULL, triggering a kernel page fault.
 
-On GPUs running without GSP-RM (e.g. Volta GV100, NvGspRm=0, or missing
-GSP firmware blobs), device->gsp is instantiated but gsp->rm remains
-NULL. nvkm_udevice_gcx_ready() checked "!gsp" instead of verifying
-nvkm_gsp_rm(gsp), allowing non-RM instances to invoke
-nvkm_gsp_gcx_ready(). nvkm_gsp_gcx_ready() then unconditionally
-dereferenced gsp->rm->api, causing a kernel oops:
+Validate that gr is non-NULL before inspecting gr->has_zcull_info.
 
-  RIP: 0010:nvkm_gsp_gcx_ready+0x10/0x30 [nouveau]
-  Code: ... 48 8b 87 70 0e 00 00 <48> 8b 40 18 ...
-  RAX: 0000000000000000 RDI: ffff8c9555fca000
-  Call Trace:
-   nvkm_udevice_mthd+0xa5/0x150 [nouveau]
-   nvkm_ioctl+0xcc/0x1d0 [nouveau]
-   nvif_object_mthd+0x110/0x1e0 [nouveau]
-   nvif_device_gcx_ready+0x36/0x60 [nouveau]
-   nouveau_pmops_runtime_suspend+0x39/0x140 [nouveau]
-
-Instruction decode shows `mov rax, [rdi+0xe70]` loads gsp->rm (0x0),
-and `<48> 8b 40 18` (`mov rax, [rax+0x18]`) faults accessing rm->api.
-
-Fix by:
-0. Checking !nvkm_gsp_rm(gsp) in nvkm_udevice_gcx_ready() so non-RM
-   devices report GC6/GcOff ready and bypass the GSP call entirely.
-1. Guarding gsp and gsp->rm in nvkm_gsp_gcx_ready() before inspecting
-   gsp->rm->api->gsp->gcx_ready.
-
-Fixes: cb4c7603678c ("drm/nouveau/gsp/r570: Add support for INTERNAL_GCX_ENTRY_PREREQUISITE")
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/device/user.c | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c    | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+Aug 14 09:21:52 frodo kernel: BUG: kernel NULL pointer dereference, address: 00000000000000f0
+Aug 14 09:21:52 frodo kernel: #PF: error_code(0x0000) - not-present page
+Aug 14 09:21:52 frodo kernel: Oops: Oops: 0000 [#1] SMP NOPTI
+Aug 14 09:21:52 frodo kernel: RIP: 0010:nouveau_abi16_ioctl_get_zcull_info+0x17/0xa0 [nouveau]
+Aug 14 09:21:52 frodo kernel: Code: 00 00 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 48 8b 47 40 48 8b 00 48 8b 80 70 02 00 00 <80> b8 f0 00 00 00 00 74 72 8b 90 c0 00 00 00 89 16 8b 90 c4 00 00
+Aug 14 09:21:52 frodo kernel: Call Trace:
+Aug 14 09:21:52 frodo kernel:  <TASK>
+Aug 14 09:21:52 frodo kernel:  drm_ioctl_kernel+0xae/0x100
+Aug 14 09:21:52 frodo kernel:  drm_ioctl+0x2e0/0x560
+Aug 14 09:21:52 frodo kernel:  ? __pfx_nouveau_abi16_ioctl_get_zcull_info+0x10/0x10 [nouveau]
+Aug 14 09:21:52 frodo kernel:  nouveau_drm_ioctl+0x58/0xc0 [nouveau]
+Aug 14 09:21:52 frodo kernel:  __x64_sys_ioctl+0xb9/0x100
+Aug 14 09:21:52 frodo kernel:  do_syscall_64+0xe2/0x560
+Aug 14 09:21:52 frodo kernel:  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+Aug 14 09:21:52 frodo kernel:  </TASK>
+---
+ drivers/gpu/drm/nouveau/nouveau_abi16.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/user.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/user.c
-index f78e6b9b4292..d469437eb991 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/user.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/user.c
-@@ -201,7 +201,7 @@ nvkm_udevice_gcx_ready(struct nvkm_udevice *udev, void *data, u32 size)
- 	} *args = data;
- 	int ret = -ENOSYS;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+index cb1810dee8e5..0871ac025ace 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+@@ -357,7 +357,7 @@ nouveau_abi16_ioctl_get_zcull_info(ABI16_IOCTL_ARGS)
+ 	struct nvkm_gr *gr = nvxx_gr(drm);
+ 	struct drm_nouveau_get_zcull_info *out = data;
  
--	if (!gsp) {
-+	if (!nvkm_gsp_rm(gsp)) {
- 		args->v0.ready = NV_DEVICE_GC6_READY | NV_DEVICE_GCOFF_READY;
- 		return 0;
- 	}
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
-index e475d0e8fa7b..9e07d67dcb0f 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
-@@ -51,7 +51,7 @@ nvkm_gsp_intr_stall(struct nvkm_gsp *gsp, enum nvkm_subdev_type type, int inst)
- int
- nvkm_gsp_gcx_ready(struct nvkm_gsp *gsp)
- {
--	if (!gsp->rm->api->gsp->gcx_ready)
-+	if (!gsp || !gsp->rm || !gsp->rm->api->gsp->gcx_ready)
- 		return NV_DEVICE_GC6_READY | NV_DEVICE_GCOFF_READY;
+-	if (gr->has_zcull_info) {
++	if (gr && gr->has_zcull_info) {
+ 		const struct nvkm_gr_zcull_info *i = &gr->zcull_info;
  
- 	return gsp->rm->api->gsp->gcx_ready(gsp);
+ 		out->width_align_pixels = i->width_align_pixels;
 
 -- 
 2.55.0
