@@ -4,133 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13C63CA5FDD
-	for <nouveau@archiver.kernel.org>; Sat,  3 Oct 2026 14:14:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66318CA5FEC
+	for <nouveau@archiver.kernel.org>; Sat,  3 Oct 2026 14:14:51 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A119210E4EE;
-	Sat,  3 Oct 2026 14:14:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DB44110E506;
+	Sat,  3 Oct 2026 14:14:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=icloud.com header.i=@icloud.com header.b="VzjL+WHW";
+	dkim=pass (2048-bit key; secure) header.d=proton.me header.i=@proton.me header.b="YiWeKbRZ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C894248928;
-	Sat,  3 Oct 2026 13:55:48 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 1B7ED4892D;
+	Sat,  3 Oct 2026 13:56:37 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1791035748;
- b=YbNibu/WDbqnzHoIa3kH843/WdTVgHnBA2YLiWwmjLHy9cgJMGKas+aoM27ssUtcvvRhi
- JRTdNv2Zz7D+2xTGdnFicbNIwiiWkqA3evf5M3So729xJzkeVqWvRmenKvKKSOecLkz7tMd
- 8AMviAg5n6eFSp4z6uk4bkVFpMqT0dkxRngSqsee9/kRXlHoAzDv/pPagCZRotwEWLfVWpp
- jSYqKaz5K8xZLfOr+bmMKJqSzRT5xQig765NQn44eWusHD0a4naTf8h61k1scK1zgr+4fwA
- t9+41pZOu2XuedTtN6foc4WPeCwY4WsYqZRsPT+MWLGBow8SSvv7qYADtTRw==
+ s=20240201; t=1791035797;
+ b=BLr6fIkUQgAFxLDPHzgPYA3WxsunmQ2TN56EDEe8KZL8dE3eX2xIDK4u1tGtOIpKGJx+9
+ iQc37dfu5IoSbacBfXW1AcbVIYyNq8XIA5VHylI+43qE13/MBE5HLqeMqT1Ac2JaGcXa5qI
+ low484j5uieX+Qqt9XH/v+mQQwSXOYUMUJbe+6g9V2cSTCy7fBFmYpZ3Es6x9AmNX56M+r6
+ p3xiRnuuvoUSi2zQGtrF6l9mJuqAUjXTQRYKe8vvxtL0l+VdhJf1bmGInGmaNIUszlHF6Z9
+ SvLsiWkx18udvDVcDXuQpFL9jFGGaGzu8brPAyTprEttFhqFapEap3LjJ1FA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1791035748; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1791035797; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=aJsmC1mviHb37getbq+iRvVXVUnaonvh2KuAc9UpK0Q=;
- b=roLLVqw1dm66qottMRRVbe//lu90dewtxeiaxlhw+KbQjhZhCaQi6gFrMo9SvJzhN8dsh
- 5GLkvrFa6zphjLnxCEnc2b4rypyC2N4AR9Zz2WdDXQroLQqRNvkAkkGm1oz1k3LSK8hRk01
- wnVZQ6FbUmmAUUtWSD6HS+50uy95sxEX33aE/FpfQ6G6pRuNuc9mK0IxkrBd20Qp0Sbp8BD
- AalV2sA1qwoCtZnYPo8GqyKZRGamVmMLRhWvIQdYoNcuvSvi4r/j6yV/hujmocVox+p2WnU
- h5NGLjDJsaJvrYhCZo6DZGK3SMA+SeW4q5XOZCx4QAKljuwwuF7a6Xnp+NSQ==
+ bh=uKOFrcYUvJLyt5ryJRY9dNgLVksmMXbdUXCznCHCkek=;
+ b=mKlHv6FLSH4jyoq4CKMLxIehrA3QMDfHspdT4D5aETZ26bTk8lEMHgwYD4XjNHPBsjqTf
+ QxKrb2OkZZ4iOSXWQ4INVYo96HJGHT0aNn/9mWbyZnZ2dcH0/0Npt4M8OPErgGmLrNXBtXI
+ F1SpfxdYupO7xFCJdlrbkOcFwBbAP3c/uWv6uswYnOGzcYCQg7wnNNkbdpbWc1uG7Dj5ZLC
+ UMVBGw+E7I8cGYr3jFzxBClOcVo0VA/4nI4Fk2bPksEPWiJ+QRvf4R2BYfnvkSQOol83OS5
+ fB1ahOENWSWDquCNxsAVlp9zxUlmhGlXcsdDlAk2U8d4fjyPwqPFBNCwjpng==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=icloud.com;
+ dkim=pass header.d=proton.me;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=icloud.com
+  dmarc=pass (Used From Domain Record) header.from=proton.me
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=icloud.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=proton.me;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=icloud.com
+ dmarc=pass (Used From Domain Record) header.from=proton.me
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id BC249488F3
-	for <nouveau@lists.freedesktop.org>; Fri,  2 Oct 2026 21:19:00 +0000 (UTC)
-X-Greylist: delayed 509 seconds by postgrey-1.36 at gabe;
- Fri, 02 Oct 2026 21:37:11 UTC
-Received: from outbound.st.icloud.com (st-2002c-snip4-4.eps.apple.com
- [57.103.78.107])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B6B4210E2E9
-	for <nouveau@lists.freedesktop.org>; Fri,  2 Oct 2026 21:37:11 +0000 (UTC)
-Received: from outbound.st.icloud.com (unknown [127.0.0.2])
-	by p00-icloudmta-asmtp-us-east-1a-60-percent-9 (Postfix) with ESMTPS id
- 61D1D180070A;
-	Fri, 02 Oct 2026 21:28:38 +0000 (UTC)
-X-ICL-RepId: 01a0fe84-e89c-78f2-85a0-2a3521161b67
-X-ICL-Out-Info: 
- HUtFAUMEWwJACUgATUQeDx5WFlZNRAJCTQhKCkMFWhxBDUkdXA5bEhVdRVUXUhlHGFc4Wg5bBEcUFxtcABcNVk1QG18CQg8cE1YVEx9UVgNCGRBWAVhWXQVNGlwYWQ8cA01WWg5bBEcUFxtcABcbRgIEIwJfAEUCXglWATAXD1ZNUBtfAkIPHBNWFRMAXg8PTAtIAVsGWwJCC0kBVQRYHEkPTwdABkZUClwKRgVZK1sTVRdGCRkIXR0HWEcURw4PGVoUXBhT
-Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com; s=1a1hai;
- t=1790976522; x=1793568522; bh=aJsmC1mviHb37getbq+iRvVXVUnaonvh2KuAc9UpK0Q=;
- h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme;
- b=VzjL+WHWzkmGeRW/57/513c8MRKJqjVXa0MvzylFzyk/YQm5Latbd7tRiSdvDCdN835RL1K7ad8hzTxtXuPJy7JvN1LONuoImOq9htmyJxML/9FKeeTmkK9IqbvyIPUlBISF8p3oCkSmo6Wrbc3O4Eja68GewsJ06c9Ls7uSiNzSr67mY96aBi4w7ezr/4M8vFqIKuqU9KjSWWz7J5G3COaeTQFWLtcql/HGbiMIhsCA2plKFoZERnq10e9h/lL/ZgFzezQs/fRUWQ/92UK/nLLA5mmwNXcRfR1nLvOIjRXXwZJGVJF3OxmyzCdkqlnvu9Vc/Idw0Pc8oagSKkddBw==
-Received: from 252-PC-L.device.rit.edu (unknown [17.156.216.30])
-	by p00-icloudmta-asmtp-us-east-1a-60-percent-9 (Postfix) with ESMTPSA id
- 3F1AE18007D1;
-	Fri, 02 Oct 2026 21:28:37 +0000 (UTC)
-From: Finn Zeruhn <fzeruhn@icloud.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/dp: keep MOT set between messages when no_zero_sized is
- set
-Date: Fri,  2 Oct 2026 17:28:33 -0400
-Message-ID: <20261002212833.9674-1-fzeruhn@icloud.com>
-X-Mailer: git-send-email 2.56.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id C5B17474B4
+	for <nouveau@lists.freedesktop.org>; Sat,  3 Oct 2026 04:11:18 +0000 (UTC)
+Received: from mail-244105.protonmail.ch (mail-244105.protonmail.ch
+ [109.224.244.105])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4365E10E073
+	for <nouveau@lists.freedesktop.org>; Sat,  3 Oct 2026 04:29:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=6oae64mvdfepnnidhqmifd7kye.protonmail2; t=1791001762;
+	x=1791260962; bh=uKOFrcYUvJLyt5ryJRY9dNgLVksmMXbdUXCznCHCkek=;
+	h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=YiWeKbRZOuVUUjzfY2D228N8ZctxEQAiAVnNowtth0J51LKpYtQJZXVhW6CxSbwVo
+	 4bb89gyJt1S/PrU4gbCR3uZGusBzS9k6qfPEwkQ5a5iDXdgJHFZ+GhJQAcn2SA0zh0
+	 zHwLdXyBkoH73KHtbfPtt3ABaxCcLx8YCst4BSU4OxSKfv04RccB4uFs9+F9DqHWMc
+	 e01ulg/zgXTz7Nn5Rytz0EBN1pDVJ5qTzyojpDwiDfRIR91YvZU7NYiZOcHayupryP
+	 ScUbrtjSgONQvdDvQUdS9D8Zmjbp8No5RmZE07kYV/cM13qh+jyN5JRJiHeouf05ev
+	 XeIkv3b96kTNQ==
+Date: Sat, 03 Oct 2026 04:29:19 +0000
+To: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+From: Benchside Diaries <benchsidediaries@proton.me>
+Subject: GK208/GT 710: hardware H.264 decoding unavailable through
+ nouveau/VA-API
+Message-ID: 
+ <M9xzlIJLohCePhF3b4wVTy7w44BJ2TNKVQfoQiQLagutki8Qt4ubr2c_UzCc0Q4PXHL99CW8s__paLoeuoocfLOQPk7T9YYSYYSi70QkRAI=@proton.me>
+Feedback-ID: 211940248:user:proton
+X-Pm-Message-ID: 836e096af530824f703414b9f47c0868e8562e43
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authority-Info-Out: v=2.4 cv=U4KfzOru c=1 sm=1 tr=0 ts=6ac02207
- cx=c_apl:c_pps:t_out a=oyWFxbOnq+dmhQrAPgaJYA==:117
- a=oyWFxbOnq+dmhQrAPgaJYA==:17 a=660iZSQnnn4A:10 a=x7bEGLp0ZPQA:10
- a=UWokjQvqbcQA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=v3ZZPjhaAAAA:8
- a=tmjPn7o2apbUsHgEkIAA:9
-X-Proofpoint-ORIG-GUID: Rk3qkKmZ0gbJTD9A2W_CcYbjnSmjo3j-
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDAyMDA4NSBTYWx0ZWRfXzbmsrKE2psOA
- xup8hGPRrsgRj1iK+FU3T80jsfjf9FBXxBBclepIYFoQc91yW+eqhhaSUuJPhv66pSf9vx6GtLW
- q/BwF9ZShwI7GDLS9lOiZi8Ym+Zg55M5j3cyuNkhvrtmAq3OtVqBTvWldh5DhZImm+eL73Gpanf
- LQGix2chVlCqeS+TEPVORuPxATWeoqwRqPwhhK5/R+hPhEN8skDmw9ThWmng1cxwpM/VhHiCFD/
- J7hSfW8VS5EqHpakkRIQnBE5ZNfgGVknGZVrvERvzGPbSvom1dx7pNVHjNCtDqIeqBdWN2VZ/cf
- iP3hgeS4xu6FW+a9caqtXoybpZickU+ZP3csWhFwsLUSqHLc++JRL69Of2DVi4=
-X-Proofpoint-GUID: Rk3qkKmZ0gbJTD9A2W_CcYbjnSmjo3j-
-X-JNJ: AAAAAAABIX1DDu2r6CLCwNqrpo53j7UPSFCGV0xf2o7uDj4nKm+2DT0na4iiQnAkqlSq9p
- fd1oND7MDu/jefloDBNTXfT46NbSI3BbdjxIijySz6tblQaNxpAXjXbOdUd67NBHUSORx5
- caRIevSIRVV7Br585QQajTetwXgtPJokMMXGImmrG69Vi4aNgy7Bm9T4KDSK9T0EICj+EF
- 4ocLEm979UtKHMyOg8xK25zYurszrfAcRhUiRwvaKz1ZuuBcvK8btWeYAu2+T5Hw3eh134
- oCToOZZc/bQIjSu0s9jfnZR4cpaj4FQYtTKNn4slL5s/TCGhokxJzD504m3n6GjW+rG3c+
- 0reoln2gpes93hnLJAx++evdvYTJLx2p9TA/Kxo49zr8O5IzBUU/vLGImyk0XvXTD0TvVH
- 29eM9iOh8CbYUc7m/VwSXduISjcUMlB3vprql7RpBZzjKvvAc5rQZRDgqrzwjmLzTt47pE
- 4tjlryrUS9D7gYmLAFI2G+dYOxX8yMPLYxSQ3Y8nZ3bo2M66yVpQGqbpmHVBMUjae8eEMB
- 1Y9JFbZcxVWLaw3eaKFEQ8JKbomHsHh6NQEqSiRKPq5Oxw19BfZJZ0eBsL2oRkN2k9HSpL
- JXBP7Xwyl2xha2o3UCdNqurTSWkoJfJkU8W9HviC2d5jdVNBb1kZxNzm3d+9ZKCskTFLRI
- KYQ8o5zJPwIXNzo8TL7AccuCkqvwH8QDkQTD+ClhsQVigP/zb5ezCj+S2hwonLxlwu1fHs
- 9c0wf/xm1QaqkkJePWdA6aOXInwiBwfDjqESPWT6cX4xXLSxalrqI7isoQDKh5XyWYaRE8
- J1rWD9eb7LOxyaXgSeJFIuCn8JXtAOTg5rXHuIUVEAU5MtpqB07gqFQSuqKb9ymOEp5uj/
- 6ivTBKncKIimPx8fR0a0zGyiqntvDDHjH+yNiO6AN8D9rBYdUT+2V0Eu+30UApjHrtslU5
- pTGyVzEe1vDSTbiwHzJgnq+W2AleEtdJBNaykqHcUnHjpS4uXH0BgNOuyRijRiNZSUOgqo
- mQL5FIpiiIXDDfCUaQiHeSJV4UsTBTGiV4ut8ZeN8vQ26zfJjEuK+ojJOI8pO38SK/g3Wg
- gzmHIZujVYhY5P4kVWtcKENCyJingqGkDrw6YkdT/76qWhPtroukH3cu8TvhL55R6aFD+w
- Pa2/YFeAfqU/vMdvhrIvOdaq2fleuQbAXaUVGbAB2l/PTNoBJir2kAskNruk816za6oLC9
- zZVoGcCrCrkElepvrHG7g+WuSlkSm3eCqJt1UWCg3Ay+fnHf7HvP/0rRYAgGuBuJj2JdXv
- 9dGZQZyO9d4mlEHspPhwPd4OIm3tRH2H0dPhDFkCncndDhcU21thWu/3WAWZtjjPJ16g==
-X-Apple-Category-Label: MTE1NzgzMjUxMzU6JGNhdGVnb3J5JF9QZXJzb25hbCw=
-X-MailFrom: fzeruhn@icloud.com
+Content-Type: multipart/alternative;
+ boundary="b1=_0k8koZiT7wXIkWKjtxR4KSsBSU7gaDdDy9k8wWXmY10"
+X-MailFrom: benchsidediaries@proton.me
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: 4B5GS4PGQA7D7YSRTK73IMSXNOIOBZKA
-X-Message-ID-Hash: 4B5GS4PGQA7D7YSRTK73IMSXNOIOBZKA
-X-Mailman-Approved-At: Sat, 03 Oct 2026 13:55:45 +0000
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Finn Zeruhn <fzeruhn@icloud.com>,
- stable@vger.kernel.org
+Message-ID-Hash: H2TV5LNXKOMMKCH7ODTEBNTHUM3JR7QB
+X-Message-ID-Hash: H2TV5LNXKOMMKCH7ODTEBNTHUM3JR7QB
+X-Mailman-Approved-At: Sat, 03 Oct 2026 13:56:34 +0000
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4B5GS4PGQA7D7YSRTK73IMSXNOIOBZKA/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/H2TV5LNXKOMMKCH7ODTEBNTHUM3JR7QB/>
 Archived-At: 
- <https://lore.freedesktop.org/20261002212833.9674-1-fzeruhn@icloud.com/>
+ <https://lore.freedesktop.org/M9xzlIJLohCePhF3b4wVTy7w44BJ2TNKVQfoQiQLagutki8Qt4ubr2c_UzCc0Q4PXHL99CW8s__paLoeuoocfLOQPk7T9YYSYYSi70QkRAI=@proton.me/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -140,54 +98,165 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-When aux->no_zero_sized is set, drm_dp_i2c_xfer() cannot use a bare
-address packet to close the transaction, so it clears MOT on the last
-data packet instead. The check only looks at the position within the
-current i2c_msg, so MOT is cleared at the end of every message and each
-one is terminated by an I2C stop.
+--b1=_0k8koZiT7wXIkWKjtxR4KSsBSU7gaDdDy9k8wWXmY10
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-This breaks E-DDC reads of EDID blocks 2 and up. Those are read as three
-messages: a write of the segment pointer to 0x30, a write of the offset
-to 0x50, and the read. The stop after the first message resets the
-segment pointer, so the read returns segment 0 again.
+SGVsbG8gTm91dmVhdSBkZXZlbG9wZXJzLAoKRmlyc3Qgb2YgYWxsLCBJIHdvdWxkIGxpa2UgdG8g
+c2luY2VyZWx5IHRoYW5rIHlvdSBmb3IgeW91ciB3b3JrIG9uIG5vdXZlYXUuIEkgaGF2ZSBhbiBO
+VklESUEgR2VGb3JjZSBHVCA3MTAgKEdLMjA4Qi9LZXBsZXIpLCBhbmQgSSBhbSBjdXJyZW50bHkg
+dXNpbmcgRmVkb3JhIFdvcmtzdGF0aW9uIDQ0IHdpdGggR05PTUUgNTAuNSwgV2F5bGFuZCwgYW5k
+IG5vdXZlYXUuCgpJdCBpcyBxdWl0ZSBpbXByZXNzaXZlIHRvIGtlZXAgc3VjaCBhbiBvbGQgR1BV
+IHVzYWJsZSBvbiBhIG1vZGVybiBMaW51eCBkZXNrdG9wIHdpdGhvdXQgcmVseWluZyBvbiB0aGUg
+cHJvcHJpZXRhcnkgTlZJRElBIGRyaXZlciwgYW5kIEkgcmVhbGx5IGFwcHJlY2lhdGUgdGhlIHdv
+cmsgdGhlIGNvbW11bml0eSBpcyBkb2luZyBpbiB0aGlzIGFyZWEuCgpJIGFtIHRyeWluZyB0byB1
+bmRlcnN0YW5kIGEgc3BlY2lmaWMgdmlkZW8gcGxheWJhY2sgbGltaXRhdGlvbiBvbiBteSBzeXN0
+ZW0uCgpNeSBHVCA3MTAgaXMgYmFzZWQgb24gR0syMDhCLCBhbmQgYXMgZmFyIGFzIEkgdW5kZXJz
+dGFuZCwgdGhpcyBHUFUgaGFzIGRlZGljYXRlZCBoYXJkd2FyZSBmb3IgSC4yNjQgdmlkZW8gZGVj
+b2RpbmcuIFRoZSBOb3V2ZWF1IGRvY3VtZW50YXRpb24gYWxzbyBsaXN0cyBWUDUgYXMgc3VwcG9y
+dGluZyBILjI2NCBkZWNvZGluZy4KCkhvd2V2ZXIsIG9uIG15IGN1cnJlbnQgc3lzdGVtLCBoYXJk
+d2FyZSB2aWRlbyBkZWNvZGluZyBkb2VzIG5vdCBhcHBlYXIgdG8gYmUgYXZhaWxhYmxlIHRocm91
+Z2ggVkEtQVBJLgoKU3lzdGVtOgoKLQoKR1BVOiBOVklESUEgR0syMDhCIC8gR2VGb3JjZSBHVCA3
+MTAKCi0KCkRyaXZlcjogbm91dmVhdQoKLQoKTWVzYTogMjYuMi4zCgotCgpGZWRvcmE6IDQ0Cgot
+CgpHTk9NRTogNTAuNQoKLQoKRGlzcGxheSBzZXJ2ZXI6IFdheWxhbmQKCi0KCkZpcmVmb3g6IDE1
+NwoKLQoKVkEtQVBJOiAxLjIzCgpDdXJyZW50bHk6Cgp2YWluZm8gLS1kaXNwbGF5IHdheWxhbmQK
+CnJldHVybnMgb25seToKClZBUHJvZmlsZU1QRUcyU2ltcGxlIDogVkFFbnRyeXBvaW50VkxEClZB
+UHJvZmlsZU1QRUcyTWFpbiA6IFZBRW50cnlwb2ludFZMRAoKSC4yNjQsIFZQOSBhbmQgdGhlIG90
+aGVyIHJlbGV2YW50IGNvZGVjcyBhcmUgbm90IGV4cG9zZWQgYXMgaGFyZHdhcmUtZGVjb2RlZCBw
+cm9maWxlcy4KCkZpcmVmb3ggYWxzbyByZXBvcnRzOgoKSEFSRFdBUkVfVklERU9fREVDT0RJTkcK
+cnVudGltZTogdW5hdmFpbGFibGUKRkVBVFVSRV9GQUlMVVJFX1ZJREVPX0RFQ09ESU5HX1RFU1Rf
+RkFJTEVECgpJIHBlcmZvcm1lZCBzb21lIGNvbnRyb2xsZWQgWW91VHViZSB0ZXN0cyB1c2luZyB0
+aGUgc2FtZSAxMDgwcDYwIHZpZGVvLgoKV2l0aCBWUDkgYXQgMTA4MHA2MCwgSSBnZXQgYSBzaWdu
+aWZpY2FudCBudW1iZXIgb2YgZHJvcHBlZCBmcmFtZXMuCgpJIGFsc28gZm9yY2VkIHRoZSBzYW1l
+IHZpZGVvIHRvIEguMjY0IChhdmMxLjY0MDAyYSkuIEF0IDEwODBwNjAgSSBvYnNlcnZlZCBhcHBy
+b3hpbWF0ZWx5IDE4JSBkcm9wcGVkIGZyYW1lcy4KClJlZHVjaW5nIHRoZSB2aWRlbyB0byA3MjBw
+NjAgcmVkdWNlcyB0aGUgbnVtYmVyIG9mIGRyb3BwZWQgZnJhbWVzIHN1YnN0YW50aWFsbHkuCgpU
+aGUgQ1BVIGRvZXMgbm90IGFwcGVhciB0byBiZSBzaW1wbHkgc2F0dXJhdGVkIGR1cmluZyBwbGF5
+YmFjay4gVGhlIGJ1c2llc3QgQ1BVIGNvcmUgdHlwaWNhbGx5IHN0YXlzIGFyb3VuZCAyNiUuCgpJ
+IGFsc28gcmVwcm9kdWNlZCB0aGUgYmVoYXZpb3IgaW4gQ2hyb21lL0Nocm9taXVtLCBzbyBpdCBk
+b2VzIG5vdCBhcHBlYXIgdG8gYmUgc3BlY2lmaWMgdG8gRmlyZWZveC4KCkZvciBleGFtcGxlLCBp
+biBDaHJvbWUgdGhlIHNhbWUgMTA4MHA2MCBWUDkgdmlkZW8gcHJvZHVjZWQ6CgozMTggZHJvcHBl
+ZCBvZiAyMjA0IGZyYW1lcwoKd2hpbGUgYXQgNzIwcDYwIEkgb2JzZXJ2ZWQ6CgoxMzkgZHJvcHBl
+ZCBvZiAzNjA3IGZyYW1lcwoKVGhlIGV4YWN0IG51bWJlcnMgbmF0dXJhbGx5IHZhcnkgYmV0d2Vl
+biBydW5zLCBidXQgdGhlIGdlbmVyYWwgYmVoYXZpb3IgaXMgcmVwcm9kdWNpYmxlLgoKTXkgbWFp
+biBxdWVzdGlvbiBpczoKCklzIHRoZXJlIGN1cnJlbnRseSBhIGtub3duIGxpbWl0YXRpb24sIG1p
+c3NpbmcgZmlybXdhcmUsIG9yIHVuaW1wbGVtZW50ZWQgZnVuY3Rpb25hbGl0eSBpbiBub3V2ZWF1
+L01lc2EgdGhhdCBwcmV2ZW50cyB0aGUgR0syMDgvVlA1IHZpZGVvIGVuZ2luZSBmcm9tIGJlaW5n
+IHVzZWQgZm9yIEguMjY0IGRlY29kaW5nIHRocm91Z2ggVkEtQVBJPwoKSW4gcGFydGljdWxhciwg
+SSB3b3VsZCBsaWtlIHRvIHVuZGVyc3RhbmQgd2hldGhlciB0aGUgYWJzZW5jZSBvZiBILjI2NCBo
+YXJkd2FyZSBkZWNvZGluZyBpbiB2YWluZm8gaXMgZXhwZWN0ZWQgZm9yIEdLMjA4IGF0IHByZXNl
+bnQsIG9yIHdoZXRoZXIgdGhpcyBpbmRpY2F0ZXMgc29tZXRoaW5nIHRoYXQgc2hvdWxkIGJlIHBv
+c3NpYmxlIGJ1dCBpcyBub3QgY3VycmVudGx5IHdvcmtpbmcuCgpJIGhhdmUgYSB2YWd1ZSByZWNv
+bGxlY3Rpb24gdGhhdCB0aGlzIHNhbWUgR1QgNzEwIHdhcyBhYmxlIHRvIHBsYXkgMTA4MHA2MCBZ
+b3VUdWJlIHZpZGVvcyBtdWNoIG1vcmUgc21vb3RobHkgdW5kZXIgV2luZG93cyB1c2luZyB0aGUg
+cHJvcHJpZXRhcnkgTlZJRElBIGRyaXZlciwgYW5kIGFsc28gcHJldmlvdXNseSB1bmRlciBLdWJ1
+bnR1IHdpdGggdGhlIGxlZ2FjeSBOVklESUEgZHJpdmVyLiBJIGFtIG5vdCBjb21wbGV0ZWx5IGNl
+cnRhaW4gYWJvdXQgdGhlIExpbnV4IHBhcnQgb2YgdGhhdCByZWNvbGxlY3Rpb24sIHNvIEkgd291
+bGQgYmUgdmVyeSBpbnRlcmVzdGVkIGluIGtub3dpbmcgd2hldGhlciBzdWNoIHBlcmZvcm1hbmNl
+IHdvdWxkIGJlIGNvbnNpc3RlbnQgd2l0aCB0aGUga25vd24gdmlkZW8tZGVjb2RpbmcgY2FwYWJp
+bGl0aWVzIG9mIEdLMjA4LgoKSWYgdGhlcmUgYXJlIGFkZGl0aW9uYWwgdGVzdHMgSSBjYW4gcnVu
+IHRvIGhlbHAgZGlhZ25vc2UgdGhpcyDigJQgcGFydGljdWxhcmx5IHRlc3RzIGludm9sdmluZyB0
+aGUgVlA1IGVuZ2luZSwgSC4yNjQgZGVjb2RpbmcsIGZpcm13YXJlLCBWRFBBVS9WQS1BUEksIG9y
+IG5vdXZlYXUva2VybmVsIGxvZ3Mg4oCUIEkgd291bGQgYmUgdmVyeSBoYXBweSB0byBwcm92aWRl
+IHRoZSByZXN1bHRzLgoKSSBjYW4gYWxzbyBwcm92aWRlIGFkZGl0aW9uYWwgaW5mb3JtYXRpb24g
+c3VjaCBhczoKCi0KCmRtZXNnIG91dHB1dCBmcm9tIG5vdXZlYXUKCi0KCmtlcm5lbCB2ZXJzaW9u
+CgotCgpjb21wbGV0ZSB2YWluZm8gb3V0cHV0CgotCgpGaXJlZm94IGdyYXBoaWNzIGRpYWdub3N0
+aWNzCgotCgpNZXNhIGluZm9ybWF0aW9uCgotCgpsc3BjaSAtbm5rCgotCgpyZXN1bHRzIGZyb20g
+bG9jYWwgSC4yNjQgcGxheWJhY2sgd2l0aCBtcHYvZmZtcGVnCgotCgphbnkgb3RoZXIgZGlhZ25v
+c3RpYyBpbmZvcm1hdGlvbiB5b3UgY29uc2lkZXIgdXNlZnVsCgpBZ2FpbiwgdGhhbmsgeW91IHZl
+cnkgbXVjaCBmb3IgbWFpbnRhaW5pbmcgYW5kIGRldmVsb3Bpbmcgbm91dmVhdS4gTXkgZ29hbCBo
+ZXJlIGlzIG5vdCBzaW1wbHkgdG8gcmVwb3J0ICJZb3VUdWJlIGRyb3BzIGZyYW1lcyIsIGJ1dCB0
+byB1bmRlcnN0YW5kIHdoZXRoZXIgdGhlIEdLMjA4IGhhcyB2aWRlby1kZWNvZGluZyBjYXBhYmls
+aXRpZXMgdGhhdCBhcmUgY3VycmVudGx5IG5vdCBiZWluZyB1dGlsaXplZCBieSB0aGUgb3Blbi1z
+b3VyY2Ugc3RhY2ssIGFuZCwgaWYgc28sIHdoZXRoZXIgdGhlcmUgaXMgYW55dGhpbmcgSSBjYW4g
+ZG8gdG8gaGVscCBkaWFnbm9zZSBvciBpbXByb3ZlIHRoZSBzaXR1YXRpb24uCgpCZXN0IHJlZ2Fy
+ZHMsCgpMdWNhcw==
 
-On a Pimax Dream Air (three EDID blocks, native timings in a DisplayID
-extension in block 2) connected to an RTX 5070 Ti with nouveau, block 2
-reads back as a copy of block 0. The checksum is valid, so nothing is
-reported, and the connector only offers fallback modes.
+--b1=_0k8koZiT7wXIkWKjtxR4KSsBSU7gaDdDy9k8wWXmY10
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Clear MOT only on the last packet of the last message, as the commit
-that added the option describes. With this, block 2 reads correctly and
-the native 7104x3840 modes are listed for the Dream Air.
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7Ij48cD5IZWxsbyBOb3V2ZWF1IGRldmVsb3BlcnMsPC9wPjxwPkZpcnN0IG9mIGFsbCwgSSB3
+b3VsZCBsaWtlIHRvIHNpbmNlcmVseSB0aGFuayB5b3UgZm9yIHlvdXIgd29yayBvbiBub3V2ZWF1
+LiBJIGhhdmUgYW4gTlZJRElBIEdlRm9yY2UgR1QgNzEwIChHSzIwOEIvS2VwbGVyKSwgYW5kIEkg
+YW0gY3VycmVudGx5IHVzaW5nIEZlZG9yYSBXb3Jrc3RhdGlvbiA0NCB3aXRoIEdOT01FIDUwLjUs
+IFdheWxhbmQsIGFuZCBub3V2ZWF1LjwvcD48cD5JdCBpcyBxdWl0ZSBpbXByZXNzaXZlIHRvIGtl
+ZXAgc3VjaCBhbiBvbGQgR1BVIHVzYWJsZSBvbiBhIG1vZGVybiBMaW51eCBkZXNrdG9wIHdpdGhv
+dXQgcmVseWluZyBvbiB0aGUgcHJvcHJpZXRhcnkgTlZJRElBIGRyaXZlciwgYW5kIEkgcmVhbGx5
+IGFwcHJlY2lhdGUgdGhlIHdvcmsgdGhlIGNvbW11bml0eSBpcyBkb2luZyBpbiB0aGlzIGFyZWEu
+PC9wPjxwPkkgYW0gdHJ5aW5nIHRvIHVuZGVyc3RhbmQgYSBzcGVjaWZpYyB2aWRlbyBwbGF5YmFj
+ayBsaW1pdGF0aW9uIG9uIG15IHN5c3RlbS48L3A+PHA+TXkgR1QgNzEwIGlzIGJhc2VkIG9uIEdL
+MjA4QiwgYW5kIGFzIGZhciBhcyBJIHVuZGVyc3RhbmQsIHRoaXMgR1BVIGhhcyBkZWRpY2F0ZWQg
+aGFyZHdhcmUgZm9yIEguMjY0IHZpZGVvIGRlY29kaW5nLiBUaGUgTm91dmVhdSBkb2N1bWVudGF0
+aW9uIGFsc28gbGlzdHMgVlA1IGFzIHN1cHBvcnRpbmcgSC4yNjQgZGVjb2RpbmcuPC9wPjxwPkhv
+d2V2ZXIsIG9uIG15IGN1cnJlbnQgc3lzdGVtLCBoYXJkd2FyZSB2aWRlbyBkZWNvZGluZyBkb2Vz
+IG5vdCBhcHBlYXIgdG8gYmUgYXZhaWxhYmxlIHRocm91Z2ggVkEtQVBJLjwvcD48cD5TeXN0ZW06
+PC9wPjx1bD48bGk+PHA+R1BVOiBOVklESUEgR0syMDhCIC8gR2VGb3JjZSBHVCA3MTA8L3A+PC9s
+aT48bGk+PHA+RHJpdmVyOiBub3V2ZWF1PC9wPjwvbGk+PGxpPjxwPk1lc2E6IDI2LjIuMzwvcD48
+L2xpPjxsaT48cD5GZWRvcmE6IDQ0PC9wPjwvbGk+PGxpPjxwPkdOT01FOiA1MC41PC9wPjwvbGk+
+PGxpPjxwPkRpc3BsYXkgc2VydmVyOiBXYXlsYW5kPC9wPjwvbGk+PGxpPjxwPkZpcmVmb3g6IDE1
+NzwvcD48L2xpPjxsaT48cD5WQS1BUEk6IDEuMjM8L3A+PC9saT48L3VsPjxwPkN1cnJlbnRseTo8
+L3A+PHA+PGNvZGU+dmFpbmZvIC0tZGlzcGxheSB3YXlsYW5kPC9jb2RlPjwvcD48cD5yZXR1cm5z
+IG9ubHk6PC9wPjxwPjxjb2RlPlZBUHJvZmlsZU1QRUcyU2ltcGxlIDogVkFFbnRyeXBvaW50VkxE
+PC9jb2RlPjxicj48Y29kZT5WQVByb2ZpbGVNUEVHMk1haW4gOiBWQUVudHJ5cG9pbnRWTEQ8L2Nv
+ZGU+PC9wPjxwPkguMjY0LCBWUDkgYW5kIHRoZSBvdGhlciByZWxldmFudCBjb2RlY3MgYXJlIG5v
+dCBleHBvc2VkIGFzIGhhcmR3YXJlLWRlY29kZWQgcHJvZmlsZXMuPC9wPjxwPkZpcmVmb3ggYWxz
+byByZXBvcnRzOjwvcD48cD48Y29kZT5IQVJEV0FSRV9WSURFT19ERUNPRElORzwvY29kZT48YnI+
+PGNvZGU+cnVudGltZTogdW5hdmFpbGFibGU8L2NvZGU+PGJyPjxjb2RlPkZFQVRVUkVfRkFJTFVS
+RV9WSURFT19ERUNPRElOR19URVNUX0ZBSUxFRDwvY29kZT48L3A+PHA+SSBwZXJmb3JtZWQgc29t
+ZSBjb250cm9sbGVkIFlvdVR1YmUgdGVzdHMgdXNpbmcgdGhlIHNhbWUgMTA4MHA2MCB2aWRlby48
+L3A+PHA+V2l0aCBWUDkgYXQgMTA4MHA2MCwgSSBnZXQgYSBzaWduaWZpY2FudCBudW1iZXIgb2Yg
+ZHJvcHBlZCBmcmFtZXMuPC9wPjxwPkkgYWxzbyBmb3JjZWQgdGhlIHNhbWUgdmlkZW8gdG8gSC4y
+NjQgKDxjb2RlPmF2YzEuNjQwMDJhPC9jb2RlPikuIEF0IDEwODBwNjAgSSBvYnNlcnZlZCBhcHBy
+b3hpbWF0ZWx5IDE4JSBkcm9wcGVkIGZyYW1lcy48L3A+PHA+UmVkdWNpbmcgdGhlIHZpZGVvIHRv
+IDcyMHA2MCByZWR1Y2VzIHRoZSBudW1iZXIgb2YgZHJvcHBlZCBmcmFtZXMgc3Vic3RhbnRpYWxs
+eS48L3A+PHA+VGhlIENQVSBkb2VzIG5vdCBhcHBlYXIgdG8gYmUgc2ltcGx5IHNhdHVyYXRlZCBk
+dXJpbmcgcGxheWJhY2suIFRoZSBidXNpZXN0IENQVSBjb3JlIHR5cGljYWxseSBzdGF5cyBhcm91
+bmQgMjYlLjwvcD48cD5JIGFsc28gcmVwcm9kdWNlZCB0aGUgYmVoYXZpb3IgaW4gQ2hyb21lL0No
+cm9taXVtLCBzbyBpdCBkb2VzIG5vdCBhcHBlYXIgdG8gYmUgc3BlY2lmaWMgdG8gRmlyZWZveC48
+L3A+PHA+Rm9yIGV4YW1wbGUsIGluIENocm9tZSB0aGUgc2FtZSAxMDgwcDYwIFZQOSB2aWRlbyBw
+cm9kdWNlZDo8L3A+PHA+PGNvZGU+MzE4IGRyb3BwZWQgb2YgMjIwNCBmcmFtZXM8L2NvZGU+PC9w
+PjxwPndoaWxlIGF0IDcyMHA2MCBJIG9ic2VydmVkOjwvcD48cD48Y29kZT4xMzkgZHJvcHBlZCBv
+ZiAzNjA3IGZyYW1lczwvY29kZT48L3A+PHA+VGhlIGV4YWN0IG51bWJlcnMgbmF0dXJhbGx5IHZh
+cnkgYmV0d2VlbiBydW5zLCBidXQgdGhlIGdlbmVyYWwgYmVoYXZpb3IgaXMgcmVwcm9kdWNpYmxl
+LjwvcD48cD5NeSBtYWluIHF1ZXN0aW9uIGlzOjwvcD48cD48c3Ryb25nPklzIHRoZXJlIGN1cnJl
+bnRseSBhIGtub3duIGxpbWl0YXRpb24sIG1pc3NpbmcgZmlybXdhcmUsIG9yIHVuaW1wbGVtZW50
+ZWQgZnVuY3Rpb25hbGl0eSBpbiBub3V2ZWF1L01lc2EgdGhhdCBwcmV2ZW50cyB0aGUgR0syMDgv
+VlA1IHZpZGVvIGVuZ2luZSBmcm9tIGJlaW5nIHVzZWQgZm9yIEguMjY0IGRlY29kaW5nIHRocm91
+Z2ggVkEtQVBJPzwvc3Ryb25nPjwvcD48cD5JbiBwYXJ0aWN1bGFyLCBJIHdvdWxkIGxpa2UgdG8g
+dW5kZXJzdGFuZCB3aGV0aGVyIHRoZSBhYnNlbmNlIG9mIEguMjY0IGhhcmR3YXJlIGRlY29kaW5n
+IGluIDxjb2RlPnZhaW5mbzwvY29kZT4gaXMgZXhwZWN0ZWQgZm9yIEdLMjA4IGF0IHByZXNlbnQs
+IG9yIHdoZXRoZXIgdGhpcyBpbmRpY2F0ZXMgc29tZXRoaW5nIHRoYXQgc2hvdWxkIGJlIHBvc3Np
+YmxlIGJ1dCBpcyBub3QgY3VycmVudGx5IHdvcmtpbmcuPC9wPjxwPkkgaGF2ZSBhIHZhZ3VlIHJl
+Y29sbGVjdGlvbiB0aGF0IHRoaXMgc2FtZSBHVCA3MTAgd2FzIGFibGUgdG8gcGxheSAxMDgwcDYw
+IFlvdVR1YmUgdmlkZW9zIG11Y2ggbW9yZSBzbW9vdGhseSB1bmRlciBXaW5kb3dzIHVzaW5nIHRo
+ZSBwcm9wcmlldGFyeSBOVklESUEgZHJpdmVyLCBhbmQgYWxzbyBwcmV2aW91c2x5IHVuZGVyIEt1
+YnVudHUgd2l0aCB0aGUgbGVnYWN5IE5WSURJQSBkcml2ZXIuIEkgYW0gbm90IGNvbXBsZXRlbHkg
+Y2VydGFpbiBhYm91dCB0aGUgTGludXggcGFydCBvZiB0aGF0IHJlY29sbGVjdGlvbiwgc28gSSB3
+b3VsZCBiZSB2ZXJ5IGludGVyZXN0ZWQgaW4ga25vd2luZyB3aGV0aGVyIHN1Y2ggcGVyZm9ybWFu
+Y2Ugd291bGQgYmUgY29uc2lzdGVudCB3aXRoIHRoZSBrbm93biB2aWRlby1kZWNvZGluZyBjYXBh
+YmlsaXRpZXMgb2YgR0syMDguPC9wPjxwPklmIHRoZXJlIGFyZSBhZGRpdGlvbmFsIHRlc3RzIEkg
+Y2FuIHJ1biB0byBoZWxwIGRpYWdub3NlIHRoaXMg4oCUIHBhcnRpY3VsYXJseSB0ZXN0cyBpbnZv
+bHZpbmcgdGhlIFZQNSBlbmdpbmUsIEguMjY0IGRlY29kaW5nLCBmaXJtd2FyZSwgVkRQQVUvVkEt
+QVBJLCBvciBub3V2ZWF1L2tlcm5lbCBsb2dzIOKAlCBJIHdvdWxkIGJlIHZlcnkgaGFwcHkgdG8g
+cHJvdmlkZSB0aGUgcmVzdWx0cy48L3A+PHA+SSBjYW4gYWxzbyBwcm92aWRlIGFkZGl0aW9uYWwg
+aW5mb3JtYXRpb24gc3VjaCBhczo8L3A+PHVsPjxsaT48cD48Y29kZT5kbWVzZzwvY29kZT4gb3V0
+cHV0IGZyb20gbm91dmVhdTwvcD48L2xpPjxsaT48cD5rZXJuZWwgdmVyc2lvbjwvcD48L2xpPjxs
+aT48cD5jb21wbGV0ZSA8Y29kZT52YWluZm88L2NvZGU+IG91dHB1dDwvcD48L2xpPjxsaT48cD5G
+aXJlZm94IGdyYXBoaWNzIGRpYWdub3N0aWNzPC9wPjwvbGk+PGxpPjxwPk1lc2EgaW5mb3JtYXRp
+b248L3A+PC9saT48bGk+PHA+PGNvZGU+bHNwY2kgLW5uazwvY29kZT48L3A+PC9saT48bGk+PHA+
+cmVzdWx0cyBmcm9tIGxvY2FsIEguMjY0IHBsYXliYWNrIHdpdGggbXB2L2ZmbXBlZzwvcD48L2xp
+PjxsaT48cD5hbnkgb3RoZXIgZGlhZ25vc3RpYyBpbmZvcm1hdGlvbiB5b3UgY29uc2lkZXIgdXNl
+ZnVsPC9wPjwvbGk+PC91bD48cD5BZ2FpbiwgdGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgbWFpbnRh
+aW5pbmcgYW5kIGRldmVsb3Bpbmcgbm91dmVhdS4gTXkgZ29hbCBoZXJlIGlzIG5vdCBzaW1wbHkg
+dG8gcmVwb3J0ICJZb3VUdWJlIGRyb3BzIGZyYW1lcyIsIGJ1dCB0byB1bmRlcnN0YW5kIHdoZXRo
+ZXIgdGhlIEdLMjA4IGhhcyB2aWRlby1kZWNvZGluZyBjYXBhYmlsaXRpZXMgdGhhdCBhcmUgY3Vy
+cmVudGx5IG5vdCBiZWluZyB1dGlsaXplZCBieSB0aGUgb3Blbi1zb3VyY2Ugc3RhY2ssIGFuZCwg
+aWYgc28sIHdoZXRoZXIgdGhlcmUgaXMgYW55dGhpbmcgSSBjYW4gZG8gdG8gaGVscCBkaWFnbm9z
+ZSBvciBpbXByb3ZlIHRoZSBzaXR1YXRpb24uPC9wPjxwPkJlc3QgcmVnYXJkcyw8L3A+PHA+THVj
+YXM8L3A+PC9kaXY+
 
-The same problem was pointed out by the Sashiko review of the patch that
-sets no_zero_sized for all DisplayPort connectors in nouveau.
 
-Fixes: f0ddbb1eed18 ("drm/dp: add option to disable zero sized address only transactions.")
-Link: https://lore.kernel.org/all/20260827015758.0B4FB1F000E9@smtp.kernel.org/
-Cc: stable@vger.kernel.org
-Assisted-by: Claude:claude-opus-5-5
-Signed-off-by: Finn Zeruhn <fzeruhn@icloud.com>
----
- drivers/gpu/drm/display/drm_dp_helper.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index 488fd123a01a..7676285c19f8 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -2192,7 +2192,8 @@ static int drm_dp_i2c_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs,
- 			msg.buffer = msgs[i].buf + j;
- 			msg.size = min(transfer_size, msgs[i].len - j);
- 
--			if (j + msg.size == msgs[i].len && aux->no_zero_sized)
-+			if (aux->no_zero_sized && i == num - 1 &&
-+			    j + msg.size == msgs[i].len)
- 				msg.request &= ~DP_AUX_I2C_MOT;
- 			err = drm_dp_i2c_drain_msg(aux, &msg);
- 
-
-base-commit: bca45af5998a05f34b13a2ef11e639bac9c62643
--- 
-2.56.0
+--b1=_0k8koZiT7wXIkWKjtxR4KSsBSU7gaDdDy9k8wWXmY10--
 
