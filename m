@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33B6FCA5FE4
-	for <nouveau@archiver.kernel.org>; Sat,  3 Oct 2026 23:50:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCEEBCA5FE4
+	for <nouveau@archiver.kernel.org>; Sat,  3 Oct 2026 23:53:24 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 01CE410EA55;
-	Sat,  3 Oct 2026 23:50:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 634A810EA5D;
+	Sat,  3 Oct 2026 23:53:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="BRIzvNsh";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="RFUXgwxc";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4876B48953;
-	Sat,  3 Oct 2026 23:32:32 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A84C148958;
+	Sat,  3 Oct 2026 23:35:09 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1791070352;
- b=gDJEPF1r4DIDbio1y4yu2Ccmp6bazU+BFUb4Xb/gDB5znTOUUcJSwXFEBjTmppONQHx9G
- OINudsDdrOvrnpTQwZad4tI7XLOe61ww5tvK9WdhqBabCs0iq5lqXkGx4uA6Qcfvpwu6pCV
- SRCl1qjm0FTw/Dk8lcHVoN3BRJ+7iNiM3gt+FZ4RTEEqlNwUsJLmkr6PkzbM/q0xJ91P8SZ
- J4PyhZtj/MEv2xUzXzkwIFq5edfBm9oVsx+NgCz4/SqiEQagB5eIunAtVUeo4oslraoKtA0
- norn0El2O9hK+rQOVXpozI242uAL+xz07xsvIYXOrkSJLJnokcQl1tkCAm+w==
+ s=20240201; t=1791070509;
+ b=J9vLyJxQ/H9o1yy6lSgdePxmPYFj9UTPcaAn1w1HN42O+0wdgMYof2N5Z7pPV2cixsr+X
+ BUzD8o2aX0l3mwIuMdJLOeYU73PoIT4HCNnCuPOmh2AYWjrnB5m5+sADn+mGabWw6b2p4xW
+ IDb968LTR6yw+z/hPzhnia/2XbA/BJJHUCLM4nIsIqNGnZwMk0IMrTMn7WfUFD25vvIMZEY
+ DU1TmM51C2IOvzCTci9FTfP38H9ZV/KgtXUJfGpCmtQzRjJYJVhx2IbVQcSZTzJcWeEy4eE
+ LW35699oa/zYlapxJYQNUJ6cB0zJPoTnV/an0Y4BVJePBx2moMFlRaN4JCfg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1791070352; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1791070509; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=B/3UmNaiRwhpPw2YJCjvxb8KFBIDADavc+S6YIMIcUY=;
- b=EotHsCPVm57zr2GwDghwvCHXaepqAP5K0wg3ngCznmOTXaLCx/oXMfi7EIUw4r8Bw3YD2
- ataATDFE8eMzGlq1KeNnmyH5HUD6IHc7/5IjeWD67VoFFryApF3HqDpkcHMPLRtFvwK7GmQ
- uGDfnxbyuDkihmndbvGHu21VGm8WkntWA9Uri5MbMmseH8Jw/vdhEm47MKoj+cf95lW6UKD
- iNixD2IF0AB3kDaweb/dOLj8XmL031nN3Dx0HzQwnlrSPlsrOxVM7Vhg1OjyZ/Jnpa8aU3i
- vfbgv8vT2eGLuC8rHtw0Wu++onhGlXMnPIz01Y0q7LeRv+yE4A8fDoF+hATg==
+ bh=jQBAOegPmn5o0KwrDSe+SCJvqkmv9h853fQp6Dzeu7I=;
+ b=oz2RaaWYBOxjR0+u9mW44ANDkpHS9tViASn3WRkOmMRgRtKEvQ+nAT3cQEAXnrbYPTtU5
+ 2adMFbhvq01ocVOhScWW4nKPVykXoZ9BVeUo9gx7V6zXbCyF+0zJOkg97MU/x63FgrIhLUw
+ ltAPZE6SJcdTbABnqF44yvj5imlO/ioGh8pLpDiTHKPqNXAlxHQrlt/+OZGF5DuCwrW4ldo
+ Mdny0owsB/xHZ0ULLlQMgvmmTMh/cqC4qTEtjLXFv37adoZbKU6HZACXe0ejpaWUbyqri2S
+ 0VNlcSItGSk+hR/TD7eo9jiLnl3pJkS8A8JYzJiZOnQoBHsXHYyEygAxAjtQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,84 +46,84 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id F16BE474B4
-	for <nouveau@lists.freedesktop.org>; Sat,  3 Oct 2026 23:32:29 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 39890474B4
+	for <nouveau@lists.freedesktop.org>; Sat,  3 Oct 2026 23:35:07 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5AAFC10E32F
-	for <nouveau@lists.freedesktop.org>; Sat,  3 Oct 2026 23:50:43 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 957BC10E32F
+	for <nouveau@lists.freedesktop.org>; Sat,  3 Oct 2026 23:53:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1791071434;
+	s=mimecast20190719; t=1791071599;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=B/3UmNaiRwhpPw2YJCjvxb8KFBIDADavc+S6YIMIcUY=;
-	b=BRIzvNshDEZXf09eib+7K2QxXf+KDD5LgFgdUaW/+aP3Q+LpRNX8QQHXGCANLjM9gFpOWL
-	stldDnFp5ap9b+K9X7xplcnWHS/faMgY3JyzpzHwlmbTXrjAULyY+nyFRDXUX63RgwdQ6Q
-	97d3Mnwyc73VbeWwp9X+07gj6Zft6sg=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=jQBAOegPmn5o0KwrDSe+SCJvqkmv9h853fQp6Dzeu7I=;
+	b=RFUXgwxceV1jLcEH3cNV6IL6DDGlZasVU5W9U5pnGqPR6gIDGIZKcAuE2/uUgmKROHGbLo
+	DQo6qFzFJcuSpoHKxnI1dQGVr/X0MpsmhtPzWpJ7meyOnzTWB9tYca5uxu1qSTy+6ynzt7
+	vmbXxRP4F+/w6x943m+7xpQEVejtuXg=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-541-KC673p0SMFC3brjRJJY5SQ-1; Sat, 03 Oct 2026 19:50:27 -0400
-X-MC-Unique: KC673p0SMFC3brjRJJY5SQ-1
-X-Mimecast-MFC-AGG-ID: KC673p0SMFC3brjRJJY5SQ_1791071419
-Received: by mail-qk1-f197.google.com with SMTP id
- af79cd13be357-93ce7a85f04so96392785a.0
+ us-mta-680-nyv8OIGtO2Oxsn_M-mH4ug-1; Sat, 03 Oct 2026 19:53:18 -0400
+X-MC-Unique: nyv8OIGtO2Oxsn_M-mH4ug-1
+X-Mimecast-MFC-AGG-ID: nyv8OIGtO2Oxsn_M-mH4ug_1791071598
+Received: by mail-qv1-f72.google.com with SMTP id
+ 6a1803df08f44-91961d4b31bso7285596d6.0
         for <nouveau@lists.freedesktop.org>;
- Sat, 03 Oct 2026 16:50:21 -0700 (PDT)
+ Sat, 03 Oct 2026 16:53:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791071419; x=1791676219;
+        d=1e100.net; s=20260707; t=1791071598; x=1791676398;
         h=mime-version:user-agent:content-transfer-encoding:content-type
          :organization:references:in-reply-to:date:cc:to:from:subject
          :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=B/3UmNaiRwhpPw2YJCjvxb8KFBIDADavc+S6YIMIcUY=;
-        b=ihQDXexTQxAHaRdbappGoAnRkjVhcvpk9j3fXYgSECGMm49xpMVcCG9DCpkd5+6Jbo
-         X3zxN1CGEVKx7uM87fRACaeGoYzsrTP1sDqENgqlpQndhKsblC+79HBM1mbna0Lt0Uak
-         XrG/Sh+o0CqgCRxWUvk2shbqFYNRjTYxZ0fJRY4r3MtvhSUzCFkNejIlD5dMvgF0Bdif
-         +ON+2rMfLL9bYoKwwlbEPnxOoGIaV3yJuYqCD22sw11u4L40LEYPv8T0en4ESIU3xsuy
-         dO7pSumrjegvNx5j352q9XsDbunHuGvaoNgubahYVyR3s54GstH9g6BeKfZ2bfTBoPqU
-         2KdQ==
-X-Gm-Message-State: AFuF++lis4row5ofaYlhRmXg7/A7mpR6pp2HMylh/fd6TFm02VtAvaBP
-	3B9DDinPtHmgSJlmf+PC0iM53FJcw0T7MH2VVgfast81kjxaNO/x5Ur6UJeEc/7SA6BKrq6xzxv
-	ehh319DgJUQ5kXIaOkgH7QagMK2zjh3lCL3SLEE9qCby1E8YaIIc6NCWaScQH1Sn5gz8=
-X-Gm-Gg: AYBFou0CoYyR9Uuotbvcm1OIMyWADgSxptowTe4VbjzUKBxnf0QC8BTymdApulgqisH
-	36WU/8rn2LgrrYcIG2xZT/oX1YIB8GO48wIANrevTRQPlJfzvmOADqIDtDFkeoBloD1VPzCN4uk
-	bhjsu9kKQW/ItA2PY59fgwVLoTGsP5PaJ8hAhHPeRMtIaa2ze0POQDvYRU0uL37rAd7jIxiwoGY
-	RHauXTkmOXyhvYmI+UwfeacX4vwvUaXEgim6u0nEb7Hfih1jizYD9mUwhZCXygLkP3KFaCBS8Jc
-	L9g1WWPEGXBwMXiA6LhtNO0DehsvE8CUkaQrK+bqoyuPOM16V3cqjU4VPKk1XU9xD92uGr1omKM
-	bNk8p63OecCRLmPDEa27QtDNOu/kFhhR1DFx3YxpO4sQ=
-X-Received: by 2002:a05:620a:408f:b0:93b:d7a0:d9e5 with SMTP id
- af79cd13be357-93cf19ccc35mr1163959385a.63.1791071419158;
-        Sat, 03 Oct 2026 16:50:19 -0700 (PDT)
-X-Received: by 2002:a05:620a:408f:b0:93b:d7a0:d9e5 with SMTP id
- af79cd13be357-93cf19ccc35mr1163956985a.63.1791071418659;
-        Sat, 03 Oct 2026 16:50:18 -0700 (PDT)
+        bh=qLRLQ8eSTNCmaay3uboCAj9krXakpdS17eGjHEDNG68=;
+        b=XgXwbBxT03h8AJjQWPZmIlC/C0/EF0Mw6wom/jjkTcgmjgqGVS2j3SmGYmg/SlyRQ9
+         8v1KhXQEDRVeXM/d1JTCxXrk1r29KJ4gSiGu9nmbqWdlcTJ4wQIyMzmzQxZ0IBtSh9Ue
+         QTYXnqH9sQJCnfKTOUCMGSG5o1sL+zP+cf8UwqtJvZIfthuEAeYFIVIrgP0kVCP7p4P0
+         apMBySljgTlvqtrSvM+GgVXUi8FTa5TaCwtAfaN59yF9Hwiin20gVxIh+7U8m8XzBuVc
+         pWMn64ZB5jgfE3lyJlavlIRxNhXT5Y0yCnjtVlg06Q65ANWSAzvYq1r0P6A9m/Sv5d6h
+         6qbQ==
+X-Gm-Message-State: AFuF++l3VH0jsZnbHAZbuWe4wMwXsCceU41z4mcPEdi3QOwEsKIpcPQD
+	jcaWwyGMXLNRla1zFq7LNMVTYvKwJRq4om93N8vieZegpEWwVGH5MPY1eHyOvLiNM1i9Mq192Wp
+	Uyxb5CbRS6XKVpxj1crk2rUZEvNpnSlWfc0NehH3mtuOLpce/CDf8ytvyBzyZHR+N+wk=
+X-Gm-Gg: AYBFou1G0jmVozdmtSWbFbt/hYyRWwD59mVzmB/im64dcdN8j399jYynDlowGRsGJ1a
+	EnuokcG3jfQamAbboAaXrspU9KdLDZ3T5rPoSZ8tPpv3ztAHtgu5+0/IboU/oDPLLPQsL5F58Tu
+	emq7Lske2c1C4ui9Xv+W9ZXNhXLrq3o3H0oJKa6ZuU9e3+M9dSZUs5b/ZTlXGKy3X0JewQV+RkA
+	9WpljyEjQ3bpm5IzTg20fspfmAjhzeOVLbfmZ4Ru/kT56xOiHL/bT5N/06L8nE9knZy4mJMzQs2
+	tBnaffz/ll2JNn6TMWMtNqkpjl2DNkTqhs01aM3eANGPHK6zT3gglnThro0bTuRndkLw2wXZc37
+	lyACUwtjfOWmUtzjNwhoruQowDckIo1T5g2KYKnjlKAU=
+X-Received: by 2002:a05:622a:1aa9:b0:532:cc84:beca with SMTP id
+ d75a77b69052e-533d9737584mr122956251cf.41.1791071598179;
+        Sat, 03 Oct 2026 16:53:18 -0700 (PDT)
+X-Received: by 2002:a05:622a:1aa9:b0:532:cc84:beca with SMTP id
+ d75a77b69052e-533d9737584mr122955951cf.41.1791071597651;
+        Sat, 03 Oct 2026 16:53:17 -0700 (PDT)
 Received: from ?IPv6:2601:19b:4800:23d6:363c:3270:7dd9:b88d?
  ([2601:19b:4800:23d6:363c:3270:7dd9:b88d])
         by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-917e0bd29b1sm53947196d6.34.2026.10.03.16.50.15
+ 6a1803df08f44-917e0c43c47sm53463216d6.48.2026.10.03.16.53.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Oct 2026 16:50:17 -0700 (PDT)
-Message-ID: <83d3bfe053ba24a120cefd4d3310d0448559fcf3.camel@redhat.com>
-Subject: Re: [RFC PATCH 0/2] drm/nouveau: select GT21x performance levels by
- load through devfreq
+        Sat, 03 Oct 2026 16:53:16 -0700 (PDT)
+Message-ID: <cdc6f42770d824240a6d4474d090a9be8da7bc2a.camel@redhat.com>
+Subject: Re: [PATCH] drm/nouveau: request a privileged CE channel only on
+ Kepler and later
 From: Lyude Paul <lyude@redhat.com>
 To: Hamin Sung <hamin@saltyming.net>, Danilo Krummrich <dakr@kernel.org>
-Date: Sat, 03 Oct 2026 19:50:12 -0400
-In-Reply-To: <20261003223420.77993-1-hamin@saltyming.net>
-References: <20261003223420.77993-1-hamin@saltyming.net>
+Date: Sat, 03 Oct 2026 19:53:11 -0400
+In-Reply-To: <20261003223244.63133-1-hamin@saltyming.net>
+References: <20261003223244.63133-1-hamin@saltyming.net>
 Organization: Red Hat Inc.
 User-Agent: Evolution 3.58.3 (3.58.3-2.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 5dzgpJsLJGyGJTaUvFVTYRmSJyj7Br11kT5HDUsXNSg_1791071419
+X-Mimecast-MFC-PROC-ID: VE3ZZJqjl9D2703R3htXeIcKWQV8ma4FsBWy8_9nHhs_1791071598
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: HE26DRZRKERPB6HFS3KJ7TSIUJONKWML
-X-Message-ID-Hash: HE26DRZRKERPB6HFS3KJ7TSIUJONKWML
+Message-ID-Hash: WCYJATI4MOER7RT6AGFJQM6DZ4BKMZGO
+X-Message-ID-Hash: WCYJATI4MOER7RT6AGFJQM6DZ4BKMZGO
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -131,14 +131,16 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
 CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org,
- Simona Vetter <simona@ffwll.ch>, Aaron Kling <webgeek1234@gmail.com>
+ Simona Vetter <simona@ffwll.ch>, Yonatan Maman <Ymaman@Nvidia.com>,
+ Gal Shalom <GalShalom@Nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>,
+ stable@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HE26DRZRKERPB6HFS3KJ7TSIUJONKWML/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WCYJATI4MOER7RT6AGFJQM6DZ4BKMZGO/>
 Archived-At: 
- <https://lore.freedesktop.org/83d3bfe053ba24a120cefd4d3310d0448559fcf3.camel@redhat.com/>
+ <https://lore.freedesktop.org/cdc6f42770d824240a6d4474d090a9be8da7bc2a.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -148,105 +150,98 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-NAK
+The LLM didn't mention this (of course), but you need to increment the vers=
+ion
+of the patches that you send out when sending new versions along with a lis=
+t
+of changes that were actually made to the patch since the previous version.
 
-For one: this is way too big of a patch to accept with LLM assistance. It's
-fine to use an LLM as assistance in the process, but the actual code needs =
+Also, while LLM generated patches are fine for fixes (to an extent) - but
+please at least make sure you write the changelog by hand to avoid inevitab=
+le
+mistakes.
+
+On Sun, 2026-10-04 at 07:32 +0900, Hamin Sung wrote:
+> Since commit 04e0481526e3 ("nouveau/dmem: Fix privileged error in copy
+> engine channel"), nouveau_accel_ce_init() always asks for a privileged
+> channel.  Privileged channels are only implemented by the Kepler and
+> later FIFO code, so on GPUs with a copy engine but an older FIFO (GT21x,
+> MCP89 and Fermi) nvkm_chan_new_() rejects the request, and every boot
+> logs:
+>=20
+>   nouveau 0000:01:00.0: drm: failed to create ce channel, -22
+>=20
+> On Fermi, TTM then cannot use the COPY0/COPY1 classes, which are only
+> available on the CE channel, and falls back to M2MF on the graphics
+> channel for buffer moves.  GT21x and MCP89 create their copy engine
+> object on the main channel, so there only the error message is visible.
+>=20
+> The privileged channel is only needed by nouveau_dmem, which requires
+> Pascal or later.  Request it only where the FIFO supports it, and keep
+> using an unprivileged CE channel on older GPUs as before.
+>=20
+> Fixes: 04e0481526e3 ("nouveau/dmem: Fix privileged error in copy engine c=
+hannel")
+> Cc: stable@vger.kernel.org
+> Link: https://gitlab.freedesktop.org/drm/nouveau/-/issues/427
+> Assisted-by: Claude:claude-opus-5-5 sparse # max effort
+> Assisted-by: Claude:claude-fable-5-1 # max effort, review
+> Signed-off-by: Hamin Sung <hamin@saltyming.net>
+> ---
+>=20
+> Notes:
+>     Tested on a GeForce 310M (GT218) with 6.18.54: without this patch eve=
+ry
+>     boot logs "drm: failed to create ce channel, -22"; with it the messag=
+e is
+>     gone.  Both kernels report "MM: using COPY for buffer copies", as GT2=
+1x
+>     creates its copy engine object on the main channel.  I have no Fermi =
 to
-be written by hand. Also, if enabling reclocking on GT21X was this simple w=
+>     test the M2MF fallback described above, which comes from reading
+>     nouveau_bo_move_init().
+>    =20
+>     Found while setting up nouveau on that machine with an AI coding
+>     assistant, which also wrote the patch and ran the tests above on it;
+>     I have reviewed the patch and the test results.
+>=20
+>  drivers/gpu/drm/nouveau/nouveau_drm.c | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouv=
+eau/nouveau_drm.c
+> index 2c7077a49888..ddf6fb74f85a 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -337,6 +337,7 @@ static void
+>  nouveau_accel_ce_init(struct nouveau_drm *drm)
+>  {
+>  =09struct nvif_device *device =3D &drm->client.device;
+> +=09bool priv;
+>  =09u64 runm;
+>  =09int ret =3D 0;
+> =20
+> @@ -349,7 +350,14 @@ nouveau_accel_ce_init(struct nouveau_drm *drm)
+>  =09=09return;
+>  =09}
+> =20
+> -=09ret =3D nouveau_channel_new(&drm->client, true, runm, NvDmaFB, NvDmaT=
+T, &drm->cechan);
+> +=09/*
+> +=09 * nouveau_dmem copies need a privileged channel, but only the Kepler
+> +=09 * and later FIFO implementations support those; older ones reject th=
 e
-would have turned it on by default right now. This will cause flickering
-issues with displays because of the fact that we don't setup display
-watermarks, which is the primary reason we never made this automatic. On to=
-p
-of the fact that I'm fairly certain tesla has a number of other issues with
-reclocking in general.
-
-On Sun, 2026-10-04 at 07:34 +0900, Hamin Sung wrote:
-> On GT21x (GT215, GT216, GT218, MCP89), nouveau can reclock by hand, and
-> booting with nouveau.config=3DNvClkMode=3Dauto selects the clock subdev's
-> automatic mode.  Nothing adjusts the automatic pstate on these GPUs, so
-> automatic mode means the highest pstate.
+> +=09 * request.
+> +=09 */
+> +=09priv =3D device->info.family >=3D NV_DEVICE_INFO_V0_KEPLER;
+> +
+> +=09ret =3D nouveau_channel_new(&drm->client, priv, runm, NvDmaFB, NvDmaT=
+T, &drm->cechan);
+>  =09if (ret)
+>  =09=09NV_ERROR(drm, "failed to create ce channel, %d\n", ret);
+>  }
 >=20
-> This series measures graphics engine load with the PDAEMON idle counters
-> (patch 1) and lets the devfreq simple_ondemand governor choose the pstate
-> from it while automatic mode is selected (patch 2), along the lines of
-> the Tegra devfreq support from commit 6ca1701cecdb ("drm/nouveau: Support
-> devfreq for Tegra").  Nothing changes unless NvClkMode=3Dauto is given at
-> load time, and a fixed pstate written to debugfs still wins.
->=20
-> The devfreq device lives in the DRM layer rather than next to
-> gk20a_devfreq.c, because PCI suspend, resume, runtime PM and unbind are
-> handled in nouveau_drm.c, while nvkm subdev init runs again on every
-> resume.
->=20
-> On GT21x boards that need memory link training, the first pstate change
-> runs into the "scheduling while atomic" bug fixed by "drm/nouveau/fb/gt21=
-5:
-> don't sleep with PFIFO paused during link training", which I sent
-> separately for drm-misc-fixes.  This series makes that first change happe=
-n
-> automatically, so it should go in after that fix.
->=20
-> Testing:
->=20
->   - built with W=3D1 and sparse, with and without CONFIG_PM_DEVFREQ, and =
-the
->     Kconfig change checked on x86 and on an arm64 defconfig with Tegra
->   - GeForce 310M (GT218), 6.18.54 backport: its VBIOS has a single usable
->     performance level (the 135 and 405 MHz entries are marked 0xff), so t=
-he
->     series as posted does not register a devfreq device there.  With a
->     local change allowing a single level, devfreq registered
->     (simple_ondemand, one OPP at 625 MHz, delayed 100 ms timer) and the
->     load samples read 0% when idle, 3-4% while kmscube rendered at 60 fps=
-,
->     and 0% again afterwards.
->=20
-> So the counters and the sampling path work, but pstate changes driven by
-> the governor are untested: I have no GT21x board with several performance
-> levels.  Reports from anyone whose debugfs pstate file lists more than on=
-e
-> level would help, which is why this is an RFC.
->=20
-> Questions:
->=20
->   - Is the DRM-layer placement fine, or should this move into nvkm and
->     share code with gk20a_devfreq.c?
->   - Selecting DEVFREQ_GOV_SIMPLE_ONDEMAND from DRM_NOUVEAU when PM_DEVFRE=
-Q
->     is enabled: acceptable, or should it be left to the configuration?
->   - The 100 ms polling interval and the 50%/20% thresholds were chosen to
->     keep the costly GT21x pstate changes infrequent; better defaults are
->     welcome.
->=20
-> These patches were written with an AI coding assistant (see the
-> Assisted-by tags) at my direction, from a session that read the nouveau
-> clk, pmu and devfreq code and the envytools PDAEMON counter
-> documentation; the assistant also ran the builds and the hardware test
-> above on my machine.  I have reviewed the code and take responsibility
-> for it.
->=20
-> Hamin Sung (2):
->   drm/nouveau/pmu/gt215: add graphics engine load counters
->   drm/nouveau: select GT21x performance levels by load through devfreq
->=20
->  drivers/gpu/drm/nouveau/Kbuild                |   1 +
->  drivers/gpu/drm/nouveau/Kconfig               |   1 +
->  .../gpu/drm/nouveau/include/nvkm/subdev/pmu.h |   2 +
->  drivers/gpu/drm/nouveau/nouveau_devfreq.c     | 328 ++++++++++++++++++
->  drivers/gpu/drm/nouveau/nouveau_devfreq.h     |  19 +
->  drivers/gpu/drm/nouveau/nouveau_drm.c         |   7 +
->  drivers/gpu/drm/nouveau/nouveau_drv.h         |   1 +
->  .../gpu/drm/nouveau/nvkm/subdev/pmu/base.c    |  29 ++
->  .../gpu/drm/nouveau/nvkm/subdev/pmu/gt215.c   |  40 +++
->  .../gpu/drm/nouveau/nvkm/subdev/pmu/priv.h    |   5 +
->  10 files changed, 433 insertions(+)
->  create mode 100644 drivers/gpu/drm/nouveau/nouveau_devfreq.c
->  create mode 100644 drivers/gpu/drm/nouveau/nouveau_devfreq.h
->=20
->=20
-> base-commit: 70456f05d4b6396b22048c4b8cd3cb98ecf9f9e3
+> base-commit: bca45af5998a05f34b13a2ef11e639bac9c62643
 
 --=20
 Cheers,
