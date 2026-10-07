@@ -4,129 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1B65CA5FFC
-	for <nouveau@archiver.kernel.org>; Wed,  7 Oct 2026 13:51:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C90D9CA5FFC
+	for <nouveau@archiver.kernel.org>; Wed,  7 Oct 2026 15:06:53 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AAE9010F5F4;
-	Wed,  7 Oct 2026 13:51:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 824E610E5D6;
+	Wed,  7 Oct 2026 15:06:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="oAiqsCj9";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=mary.zone header.i=@mary.zone header.b="L6UDcIG0";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 15EA246035;
-	Wed,  7 Oct 2026 13:33:25 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C411B460BC;
+	Wed,  7 Oct 2026 14:48:31 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1791380004;
- b=YzNfnYjYrT9rKrk8dgA3wg44I6owhBuo8miH+JrQCees/zwIxCDK9kFwQwcbQBHsY//DU
- JoWpNu+D1oodKnC8ZDOlq1Pa7jE3PdiGjK06MCLqSEW+3Dyz99riUO3KXCosnM8dmgz6k64
- htzUBNj9AnSNrO3vBG48LKzPq6hkwL2RCYC3aU5NRQONNtrjht4ob+aU9J0IwQm4e5SzLMS
- gOFbv/+o+uTsVYit+POBJD1oUJUbPf2gDRg+dUjbBvYWGXgGDfTVE3bfeh8/fOl0y19kz8A
- Cm1RqBcTdnPuqxdqecx1l7MB20XopLrebu/kQ/VUpG6z0eWPJjCYWuSaBhXg==
+ s=20240201; t=1791384511;
+ b=rRXUReTajuRXOhh8AtybAGU9KMud6RHKno5irPGJ+ntRBYdRW+aFZKKPwhLRlIxJJ1duG
+ OMBP0IyC5bINxXg/ItGNxfb1zoHjmJc0mHf6ZvU/KBG83RCCM+FGRry+Lq1PUZ2NxUiXTuW
+ dTBs0APpSUXqBouj/ughqeeuXs6uOYLD8afLfxaqccQMsusEk9byE+xKXFW159zlVAjn73N
+ qnTYWdZsx3dw2i9P9FQATy5uLAZ63XQMPwkG32rYWBuYYRmWy06IlBI0yyCPmpPyFkaUQnY
+ R7JlPih3cYyf4dxR+0IGkjDLxPvPYaDemYDpP3OfhwcCHFChMvfUCHaxSNwA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1791380004; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1791384511; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=zzBNG15RNJWIVCxEfCEDNKw3ft0cluQEDOTAP62jMkk=;
- b=bRUpF/19fyhOvH3MYl/MN6kBWZr6tzifZKbM2w76K75P9S5OxOlKaRjsUmdCdcVaoAm8Y
- 0nY2/6S9LMxwEKuUyQv4Ld5wZvcz4PhEHq81qotPMN2ajziLtUuSozRfrE5ltEp9ARjzxXr
- c5B6ivEyTPZS0It93uVHKgSR/PW04Sboc+klA8vEn3i2dg4BfOZ4EV+gBMaagrURMAk6UJ2
- IDvcF6Xm7dR6t8BLxmWie5x15LugTxdoBaj4Ck/dchtIdLtPELcm+knJxH2yejU5/D709TB
- D3E08PJ9mK8DnWxIH4HQn14/OmcYrgIkA8uZ7yWVxKOsMci6SCXvTXHwpE/Q==
+ bh=DOJ+U00SQUr8WtqW1eYXxWRmcTZQxyCqqDPj+vlUgm8=;
+ b=fMuOp2BUyky8/HsJu5rHFPpXgkNVMXQ/ca7lFR+vr5Ljj8U/CbgBBfe/nADEWNiokB2eM
+ AzLvatVZCQURHKRn+zMf9jYot3aClG/ViR8Djf3eZDkVEVENxtqcI8GhyyWgVl4ucGaK7fk
+ +eBly5juL2ue+NDqby4DHo5E05inp0JKv1fU0pAQTMfBrIZL3sim+0wdHwBknLLnmbXu7WP
+ RXbqkw7kGZeKwFfbe81DaqUQJM+e3BkznM57ugDi8XPtrS6frkpGX1jEFIIAf9XmuzQeH7i
+ N4cDy04T8fK9IjlOv2fm8ZsOHYcJNIDbgDb9n4NudS/M3n89+m/leTiIfEsw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=fail header.d=mary.zone;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+  dmarc=fail (Used From Domain Record) header.from=mary.zone
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+Authentication-Results: mail.freedesktop.org; dkim=fail header.d=mary.zone;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
+ dmarc=fail (Used From Domain Record) header.from=mary.zone
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EAAAC401F0
-	for <nouveau@lists.freedesktop.org>; Tue,  6 Oct 2026 09:41:10 +0000 (UTC)
-Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com
- [74.125.82.172])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C0A7B10F27F
-	for <nouveau@lists.freedesktop.org>; Tue,  6 Oct 2026 09:59:29 +0000 (UTC)
-Received: by mail-dy1-f172.google.com with SMTP id
- 5a478bee46e88-34bb8b31647so4349733eec.0
-        for <nouveau@lists.freedesktop.org>;
- Tue, 06 Oct 2026 02:59:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1791280769; x=1791885569;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=zzBNG15RNJWIVCxEfCEDNKw3ft0cluQEDOTAP62jMkk=;
-        b=oAiqsCj9Y5MYQTaq0kvKP+Hcha0eg/F3hKxQ/yA0LeNMRGORQ54tR7r86CoyPgg3/L
-         bUZ2jYbQNfDMH9A3ycBNvV2IB0NO2c0bDdnYE5+9MfJXnfunmNH2LtKpd8facRnVco2Z
-         JXkpN/vzcvePKavRMKzm4vzmuv5CLoC+Df3W+JFNIdRcOlp6Z27b4S1h9DLlsd98zzxN
-         /50eRoni/4LqnSCUUo0Q5i731jfTZ4QO/Vg8REeFFGFoJyf1ipvi2gsJYhFx8TDKqj8G
-         4vzHVxdbLFNDBr9Bz7mJo5+5ejPXHkOhKBgob9k3j8qYQHJcEdAsBx6Siu2ty3Xo3cEY
-         XMKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791280769; x=1791885569;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=zzBNG15RNJWIVCxEfCEDNKw3ft0cluQEDOTAP62jMkk=;
-        b=NNMhP1LKJjsh/kj20Y8cg0kb15siEtX/8Q/GIhFDl8LFwG5sQ4F4tW1LJr59cNmuZh
-         ikvPrxELbitW5OL1rUj1mAVLOWk7WSwu1idQ/DQkZHO+OBZ9EJt549vdpHKSgHo73YZ7
-         qZaYNzwy+zXIlq6stdAB3OGDeqCUDJAgFl9t0Z4ynZV3jTvg2IQDjnGyQbpINTpNdNiF
-         0BX+zfg4irnyzir4sE5nvLx2+38RXeofiZ8OR4hmi7qMX6Zm9SVxpDoZ6sj/9qUAhsE+
-         voo7maou2E++GRR++bVANO6bn4nvBBgCXrIpJBybPfgdFX860YNlVdDjTVMkJKwJ/mbF
-         ZV1w==
-X-Gm-Message-State: AFq9FYKIQCcPUGdQlZISAGKDMLNRHihMUHEwe2AijXFWwniXBHq7aY4J
-	3ePSeRnizpJkz+rG+Y36U2ubM5rQbIWPKhAL0ZEpFKPUyLWp4yo5HPV7
-X-Gm-Gg: AYBFou39J3TrFMbhWrpDZ6R7ENdqqjdeqlFXuQUk6GEELu2qJ897sI6dP3Bon/pwj52
-	y8aU2NlhNQnrNUyO7bsK5K5nFACOVhny21bUUPanqn5h/sOyDUMN+AGQeIOZZzr6njEWQv3uc77
-	zWRecRFd+hIf2FPUku2Phzw5VmLHuhw8GyW7jcggYE8XMjA4AdkwonojSayynzOtmSrplgWCbZc
-	9dU5PHhjTpbNMoerGt+/A/cO0ZQbGSOzWXsjV9IUv58dvLokHtfu12dAoCqZIYbyDrdRo8T/kos
-	QUIh14s5CXboRlJJQAsbtB1lLBDHEDviccCnTX3kib5yVD44i//gB9Brygx/tgzRuZ8+D7VaX8K
-	ZHr+18lXHOWenNUmkRFrmnnlF9BKUsuV1ughgYMeNtO+IGAid7eGaW9/tzYcDf4DafQEH364eP0
-	40MqSPW8YzK5nLDXQGNzwIpcT2kw1d00qfq7/MnmL8ShXBbU1XpzQPpWS5z3F+mAp2x0pKY5SBt
-	CgId1IhL3uAp6XX3vDJn/Pm7/3hfSi6PmfTJWI=
-X-Received: by 2002:a05:693c:62d9:10b0:340:e422:fd40 with SMTP id
- 5a478bee46e88-3514e2a5419mr1086417eec.16.1791280768761;
-        Tue, 06 Oct 2026 02:59:28 -0700 (PDT)
-Received: from DESKTOP-HOME ([2406:5900:111f:dc2a:3071:69c7:a4c4:6259])
-        by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-351464fd465sm9305276eec.0.2026.10.06.02.59.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Oct 2026 02:59:28 -0700 (PDT)
-From: Beomseok Kim <dilddream31@gmail.com>
-To: emmanuel.fleury@u-bordeaux.fr
-Subject: Re: [PATCH] drm/nouveau: Fix NULL pointer dereference in
- nouveau_fence_sync() when prev->cli == NULL
-Date: Tue,  6 Oct 2026 18:58:41 +0900
-Message-ID: <20261006095841.35167-1-dilddream31@gmail.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <1690ea65-a1e0-4a34-bde1-bdd26e31c6c4@u-bordeaux.fr>
-References: <1690ea65-a1e0-4a34-bde1-bdd26e31c6c4@u-bordeaux.fr>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1F29E4204A
+	for <nouveau@lists.freedesktop.org>; Wed,  7 Oct 2026 14:48:28 +0000 (UTC)
+X-Greylist: delayed 2166 seconds by postgrey-1.36 at gabe;
+ Wed, 07 Oct 2026 15:06:49 UTC
+Received: from mta1.migadu.com (out-125.mta1.migadu.com [95.215.58.125])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 18B9710E204
+	for <nouveau@lists.freedesktop.org>; Wed,  7 Oct 2026 15:06:48 +0000 (UTC)
+X-Envelope-To: nouveau@lists.freedesktop.org
+DKIM-Signature: a=rsa-sha256; bh=k9AnQ5XvJt8ZcIfhZU8VWP5jz5T3cT4ex6UF/oaPJlM=;
+ c=simple/simple; d=mary.zone;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1791385607; v=1; x=1791990407;
+ b=L6UDcIG0uNhUrf+qOoe2VmAvqnrErGnn0CGaRfaUBNEukNeR1qrR9jKppj4iuvmsGmA8R/2Q
+ 7XajkA1wpHVnZEqiCk/PSpHjG49QIoo27cibfvPeyoqzaXaAstFalJdVM/itXTJk4N7TjDeht7B
+ 5SQM5LOrp+lvmvHPw5p1lyGawmRpks/99BCJt0rf/k7o7sAdbC8BhUYMYVah7ecfUVD5hV/utdh
+ xdEEnsyhDEEzj/hRGDCnwRrYTe4UCAmVVms7woXKXVW0DjWbX68iqbML02j6L2+TPJgytQjCgAA
+ RlWi5S1+dMbSsIJiVqc2fzZdJEftoEPorDYKJ5ya8AtaQ==
+X-Envelope-To: nouveau@lists.freedesktop.org
+Received: by smtp.migadu.com with ESMTPS id c8ba96c4795c968d;
+	Wed, 07 Oct 2026 14:30:33 +0000
+X-Mizu-Trace-ID: c8ba96c4795c968d
+X-Migadu-Flow: FLOW_OUT
+From: Mary Guillemard <mary@mary.zone>
+Date: Wed, 07 Oct 2026 16:30:15 +0200
+Subject: [PATCH] drm/nouveau: Skip the Turing CE workaround object for
+ non-GR channels
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MailFrom: dilddream31@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261007-turing-async-ce-fix-v1-1-12ee6ccd1a3c@mary.zone>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MQQqAIBAAvyJ7bkFFkvpKdBDdbC8WWlGEf086z
+ sDMC4UyU4FRvJDp4sJbaqA6AX51KRJyaAxa6l5JafE4M6eIrjzJoydc+EajSdmBtA3GQSv3TE3
+ /12mu9QNVwD9XZQAAAA==
+X-Change-ID: 20261007-turing-async-ce-fix-42e179e27d4a
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+X-Mailer: b4 0.14.3
+Message-ID-Hash: TXILTQW5H6WWQCC7W6CWGC7FYG4RZCNT
+X-Message-ID-Hash: TXILTQW5H6WWQCC7W6CWGC7FYG4RZCNT
+X-MailFrom: mary@mary.zone
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: X2VFIUMOICEQGOXAP77D2DGRDYMN6VVG
-X-Message-ID-Hash: X2VFIUMOICEQGOXAP77D2DGRDYMN6VVG
-X-Mailman-Approved-At: Wed, 07 Oct 2026 13:33:22 +0000
-CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dakr@kernel.org,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, simona@ffwll.ch
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Mary Guillemard <mary@mary.zone>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/X2VFIUMOICEQGOXAP77D2DGRDYMN6VVG/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TXILTQW5H6WWQCC7W6CWGC7FYG4RZCNT/>
 Archived-At: 
- <https://lore.freedesktop.org/20261006095841.35167-1-dilddream31@gmail.com/>
+ <https://lore.freedesktop.org/20261007-turing-async-ce-fix-v1-1-12ee6ccd1a3c@mary.zone/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,37 +110,37 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hi Emmanuel,
+This workaround is here for the old Gallium driver and predate async CE
+and NVDEC.  Instead of only skipping it for NVDEC, let's only apply it
+in case of GR channels.
 
-I have been looking into what appears to be the same NULL dereference in
-nouveau_fence_sync(), and I found a path that may explain how prev->cli
-ends up NULL.
+This should make async CE work properly on Turing by stopping the assign
+of a GRCE. (here CE0)
 
-In the failure I traced, nouveau_fence_no_signaling() removes the fence
-from the pending list, but leaves fence->channel pointing to the channel.
-The fence itself can remain alive through a BO reservation. After the
-channel is torn down, the same fence can later be encountered again in
-nouveau_fence_sync() through that stale channel association.
+Signed-off-by: Mary Guillemard <mary@mary.zone>
+---
+ drivers/gpu/drm/nouveau/nouveau_abi16.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The normal nouveau_fence_signal() path clears fence->channel when removing
-the fence from the pending list, so the no-signaling path appears
-asymmetric here.
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+index e907c1d07887..e876f154963d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+@@ -488,7 +488,7 @@ nouveau_abi16_ioctl_channel_alloc(ABI16_IOCTL_ARGS)
+ 			goto done;
+ 		break;
+ 	case NV_DEVICE_INFO_V0_TURING:
+-		if (engine != NV_DEVICE_HOST_RUNLIST_ENGINES_NVDEC) {
++		if (engine == NV_DEVICE_HOST_RUNLIST_ENGINES_GR) {
+ 			ret = nvif_object_ctor(&chan->chan->user, "abi16CeWar",
+ 					       0, TURING_DMA_COPY_A, NULL, 0,
+ 					       &chan->ce);
 
-I also did not find a normal path that explicitly sets channel->cli to
-NULL while keeping the channel valid. If this is the path leading to the
-crash, checking prev->cli here would prevent the dereference, but the stale
-fence->channel association would still remain.
+---
+base-commit: 70456f05d4b6396b22048c4b8cd3cb98ecf9f9e3
+change-id: 20261007-turing-async-ce-fix-42e179e27d4a
 
-The existing fence/channel lifetime handling seems to rely on clearing
-fence->channel once the fence is detached from the channel. If that is the
-intended invariant, preserving it in the no-signaling path seems preferable
-to allowing a non-NULL fence->channel to refer to a torn-down channel.
+Best regards,
+-- 
+Mary Guillemard <mary@mary.zone>
 
-I sent a separate patch that clears fence->channel in
-nouveau_fence_no_signaling():
-
-  [PATCH] drm/nouveau: Clear fence channel in no-signaling path
-  https://lore.kernel.org/r/20260928081450.19340-1-dilddream31@gmail.com
-
-Thanks,
-Beomseok
