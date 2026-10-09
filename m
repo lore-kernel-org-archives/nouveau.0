@@ -4,122 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 165EBCA6015
-	for <nouveau@archiver.kernel.org>; Fri,  9 Oct 2026 16:07:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29A4FCA601E
+	for <nouveau@archiver.kernel.org>; Fri,  9 Oct 2026 17:44:42 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8FFF410E96F;
-	Fri,  9 Oct 2026 16:07:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0167E10EAB4;
+	Fri,  9 Oct 2026 17:44:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="QRAuiJDF";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="oG6UMmUk";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 598FC489F1;
-	Fri,  9 Oct 2026 15:48:40 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 902A5489FA;
+	Fri,  9 Oct 2026 17:26:15 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1791560920;
- b=TgV/M7XwGCVyuzPBmumnGZrRG/H9OIYkcxF+p1v5Qj2bD1q6Ii73EvaSDp3qakPnzU0fG
- 3iRJ2324Wr9E2AgoUrYahjFUOXSyLotfcRBdeEE4WT32MXSSbPZRrLTITY/gntvCkaYlaKM
- Kanzun3EG55evMobRkwdz+M2gv+LXLZeC/nQLqbHSe09LTHSeVE3q8aw1uWMX5R9JmVFPm+
- ttdA0phazn7ueBBKO/q2mSj9ST+HEXQqUpXhwsMBh+MwzZkqnjLGjQiSH4wzZ+cUqT56DnP
- LTngWC0g4AM/6cmT+rtGyejhqsx14HF7p6Tj8zPmRHSYQrQmvpYzmvUyZHkA==
+ s=20240201; t=1791566775;
+ b=F7IoZN7BR++Ms/rWPfxfYGmn5hqRjWdP95XwWPWkHvozcvt5ixf3ZuI8WvpD3o25U25hQ
+ rZ8AdsHKJCwj5CPhZ185UVvzf5OCyPsNYBXx/hXMhDlhRnqcaoL4avfPv05HDsMxqKHVHXX
+ 891AnZ1PbppYhQERhgURjDo3hl97n1WoL8F72TvsShYcNqnvNkIv93/9ZUM8Ihny89WkjeZ
+ 9K/oI7pIHVvfYGHgeTOrFclvcA1ULsuk3dTgKuB8fBbV04LOVljXkl4i2GSeHqs1kLzdPCK
+ 92a8/Jdzumprlx+Kp0k713HOTGuRAKzXnfGmLILt/zX4ZFuPB1p9aHK5r0kg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1791560920; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1791566775; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=B2M4pGowMZiEyJl8E8cgedKxn75FQRUSPovlkwJbu5w=;
- b=HDOdHbJYNRrvF4LOqZ+oSbGspkJF3wjZLAnQX2D/S8zmM6yvqXVp9eTiFqBOAWPp4949J
- WCU6hUW07b0gbgcb+U1BIfNlkOr3ilpVH36pciEqoklHNxTFijZq/PUaM60CAQdHKJW0Ils
- IZMW7zGp+fVXhYCMAN0x8oLGhx6zcOECNUV4n+zxpDtQls5rLwhPro7f2mcCyYp5Ue/u/31
- XgahaVG6QGg5CxKRjfiUf6qGtnnHlTB4kv0ZJVVZBuY3aQqdmqnAXNFjPZ3gTae06D7zy5q
- fO2nmsa/DSoxafEpsZxVKaWUHuMzuT7BzkTwLtKZFK9LWs4xTYgs6HVl1DoA==
+ bh=ECUzoG5N0WYuYkgwRw45aiAlxZodcVapH13MsDozdjY=;
+ b=Kr5N87nDkS7I2ABC2tmPpu2F5hLuXVJ2LO+arvYqYX5QgLbUBH3FAY8sd/XS3RTDNya2D
+ 3mPURo5EGeoH1UHXBqAm1nq+akrNbw+ZCwSDcNe9sR4Hff+sOdafp+3lJKUIOFDZm5/CpgD
+ SfTSXrqJP/zThqXh5nh7vrBEhEm1/0O5Uj+HGvbqJMkAizrYVm47scAXgnpai5CZUfvcKJ2
+ V1uMrxB4bi+AOeO5WLZdDx5vR+ueyyVfmg+jvHdMUsD+KnVvCwf3si1qw7gtYxPKiQocVEw
+ /2gNTDxpwO64cLZPjkDSdLqWd2VHHDRrJxIL6QIPHxs3+4IH0qqRaSqtcSpg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=yahoo.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=yahoo.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=yahoo.com;
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=yahoo.com
- policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5300C48299
-	for <nouveau@lists.freedesktop.org>; Fri,  9 Oct 2026 15:48:38 +0000 (UTC)
-Received: from sonic.asd.mail.yahoo.com (sonic-usea1-0019.asd.mail.yahoo.com
- [34.2.64.18])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 16C8510E04F
-	for <nouveau@lists.freedesktop.org>; Fri,  9 Oct 2026 16:07:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1791562022; bh=B2M4pGowMZiEyJl8E8cgedKxn75FQRUSPovlkwJbu5w=;
- h=From:To:Subject:Date:References:From:Subject:Reply-To;
- b=QRAuiJDFugOdGLO5fnJ6exci+SuJ8b+gp2H5i2AckQc4FszvC+n1YHNS3eas0s3/6drEiPW1gYM5PgWsRjofTikbCWhN6CGw04fUibXUdwpnIxDXlBUGkWK14l9+0/HTO1XRte2nG1GXRVG4ckh4CZQ4bZyvm/lVUQmGG2QKCMoSH6phLiJ/sTOhB3WC1EJzssE//CX/hWI8er3VOuSyZibUby1wojSp+gGBpP7nDm+/mqUBuQkbvwcZ22zIqXjrQeKI7Ab78HyWy/YKq3yAl/kEi/4jLtSmzs3h1WwlAB68P906VF7GuQ7Xd50UoB5UL1WYwRSUw242bxGsO1KIDQ==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1791562022; bh=gq2N8UiYg2Lf4cwxDDzCoex1lRdV68y6QSVeqjBGX4v=;
- h=X-Sonic-MF:From:To:Subject:Date:From:Subject;
- b=S5EaHtum/Rqf+K0oxIPESth7jjO6OVaVbKVgT0g4VJ29Kw1UKBQw8Jn5iCup5Ie5X22cK8Xn51EfbrM/cWKkO4No7SearR9csscyqMZg/UBC1VADLJ3rplfAnd25mr/x9W1PdHZcwPNsKUxc6Ke96iYSmAg9nvQ1XxJ8xnxMZCt6UtloqswFKuBljdB0WHE2yO2YeCQ4vzaqWzKOGJw0TQKeDoR2/vUb4aT8U1lgKSAFOm5+ILF7x0F5GUCo5a1xHuixKot0V5JMZDDE6C4ENi7LOr2SrcXWDycwJ+1hQFgGLp6B8BJcslBJ5YKb8G+Fpin079ICEhfUC6UnAxja6Q==
-X-YMail-OSG: nEWl4m8VM1lSBUe0P.YgETElkIf0cef.lQ6VFP8_1C3ZM6KGYse0kpd_l0o4qDF
- IX1g11mLIKNftQQxYeH_BgPkyWrqdu3TJuB_ExIdvbfqj7U8yXGP66bf0g4KuQe6nG6F5qe1lLeV
- HLkzPpXaRIkMJZkSy3QBj22xQtmIfm8SBZ4dlghuPx32KqHl6za_RnQ9AzCkrbnAGKTXWzl.WZPb
- 0ucynqLR1BprsUNimerA1myHPimiLKDJm_29.KmJJlbogfZx2q7St.VNMtYdN89PvaoSbimOJtiq
- 1ieVaoIDg5U7PLfrwDcD3yS57SaFGWqCjVUkQ9SLo_CzOacKxRWeNFAdFPxBw6BVxFF4GwbNRTLP
- _xlyTg0I1Fuq8jo4VUo.QhK5G9mcCtpHohZKL3ohYzGCAy.uBGqYn3Z00PGXgpHsX7Dk9sj4HiUN
- D670aZvuQX4MzYpUrybvm7m_Pgmr1zE4jpSlT64HTi4dZvCSc42aKb1.IiZtDaUIvUjeurzaBqBt
- ltX9zg0swBVANWbLld63J8BBapWWn7_gqap3n1bcsle4457fEvDI6ImQG1Sqhd4ndzu9NrsgGfez
- ZDmpJE1EgyLqAW.0poN8O95FYTBcGl9BtkLbmHMeGtKqwjAm9IvOm.T5YGPIAJcRFnHFHlTcH_JZ
- MqDz5b2tK61WvaNhWZO0ewUIuQ4qCy0Rsml8cGxf52m3wqzNHktxARPf7KVlKEZmQrikFWediA4M
- nFM8MRQiIZ9aqq3l9uwQgwmUPWWIUOqCWj8ndOJ5pI40jBG8AGpkEOlJzk5sJ2X3urlLKapBoezr
- 77.JZRYLVBg1VXMF0MsvX52pe5QPsNPSnLXCRRz.cQ4isnAYy1_u7mQODWnft32ltmp2hJ8ms0AH
- Js1b_qaFtOroFNNFTYEFHO29cTXYAi_5eMEIHcC.jRcXTZxvw1oiceitria55HRLfSe624SpoHJJ
- bHaMywoKlUL6M2cpqXtO8cTsGkrmbw8cBMxh3zPCpAa_0.fevDgeLmK.eS86Hp0bSRboKge5MHYW
- LkeT3Kr7x09RG4enn3ovlIH14NVJH.E__a3j6BECZSKUFYMOhnX0sLRX4m24urPBA_sx9R.3_10b
- Yi9HQifbBZQLzrQD3rYt_I8sLiUoSYnhu76jLmg.4Le6khwsvbHjz8Bf1l7nRgFkrdoEX4DgnpgB
- pJ0rXKZ12cWF9GYaBPlLUs7mOH7YSiEDBzf_ZqkQLfBxG9Izz.Jx4V7fkzWgUkiFZdH_XwAsEHht
- Ols5zo4HCVtLJ94LSyrhtgWDPQOd6W9rRmTN63sF.B0MdZizj.0FqMeN7koNtn9WVaj7GwH1.Xn1
- iG1_xigGR4gA6buLHm7rQoF2ZX0MInB9v5XKGBCixscgD.P6wIVogkR9RuvG3AN0gO8HnnGCPzuQ
- Xeuk14xM43r0N0m9yxd2LS.0rc0ZF7N.NXgF0aMr_NJMLdtUg_J.uL3_bO7t4M40x8n1.CO6oHcj
- e7LxM5Rx5yjeXAYMhlfMXZTv40Mf5KUpB7icJEUaQ1BfFirmkyZsH3MwFD8t33zEhKSx34_FwDJ0
- b1X1jc8_qgflEay6U9.KDDEUS4ZSTFjG1bCauNaNz9JwwPQpExFUYf.ArKTL9XlqCRDbAgZ.ZV5K
- jd0eJ2tGWpR802XAPa1tnW.xPpyrk8FYYaRNrqQHvr406uFkdsHUZ4uAePExKanKdB8jT3NTI.hD
- dCpX_62n2zvTtPuxbwdK4qAAp.j0ieGOguDqctOd7KpX.SFnRapGfzU.1rUs8JB9JLG7CDtMXw9U
- hydZaJUKD..M3rUmYJFK6z3H6pBU9G2JnZMxhyGeq4jg8Adoz1FUv.sVJ5NqWlmSRl15YbJCtm0W
- 56BDtswiOHm.eWkCpwLud7GQ2wxbv2XVnAXDcGOCksHcYdrNWQqIzChiUGWfu1ftdS3Nvmpzp41g
- 0P4fnz7GqAUfxVKnQ9vyQl9CgtRzSVEEm60x59aXisiCAjar5briAvj1nlZ0vKHF070fCuoX8ei7
- OFkKK8Zx1yOqEURtBxpqR54jtN4wRq2p6mg--
-X-Sonic-MF: <capitain_jack@yahoo.com>
-X-Sonic-ID: f72892e3-13ea-49cc-935e-097bed59c733
-Received: from sonic.gate.mail.ne1.yahoo.com by
- mail-asdoutdeli-p-cin-usea1-prod-sonicconsumer-svc-102 with HTTP;
- Fri, 9 Oct 2026 16:07:02 +0000
-Received: from dip23.lsn.bf1.yahoo.com ([67.195.177.32])
-          by hello (SMTP) with SMTP ID 04ceabd07a40120fff6bc57f50929151;
-          Fri, 09 Oct 2026 16:06:57 +0000 (UTC)
-From: Daniel Ramos <capitain_jack@yahoo.com>
-To: nouveau@lists.freedesktop.org
-Subject: On nouveau's community and LLM statement
-Date: Fri, 09 Oct 2026 13:06:54 -0300
-Message-ID: <179156201409.1251903.7021297050250233959@yahoo.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+	by kara.freedesktop.org (Postfix) with ESMTPS id BAC6748299
+	for <nouveau@lists.freedesktop.org>; Fri,  9 Oct 2026 17:26:12 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DCE8D10EAA2;
+	Fri,  9 Oct 2026 17:44:38 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id ADB3C43CF6;
+	Fri,  9 Oct 2026 17:44:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 77C44C4AF09;
+	Fri,  9 Oct 2026 17:44:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1791567878;
+	bh=/fFdp633uSwnogK4eY0RGM25kPYtyLeTmwanN+nMgeg=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=oG6UMmUkpSGyKapC9SXro0755cq9dMXbujPMbdWiZWsLIvtCdBdzF3850cx/eNkPK
+	 RyfQgzh4GXxXNpKt9FPG+dRIPxhIjZXTpS2V/zvftDM0fImLgliA1e0CtjlsPSWT3K
+	 07ubF2UdMDYoVADELBaV3jFGweRi0ioZTE1Jbw5CeOgUSgqQy5XwxzLF0PR1pBxUkM
+	 LdY3AYWw3J92Tqg9vL8ojttsdwHNySwVQVhcPG3S7vpN7kRJLAl3yv3AToYnSYZ8e7
+	 hO3vZxVXnOdv0JvafqZzJNPgxynp2Bofe/mA9YqY/78rIMTCZeNflHY1vnOG0VMy38
+	 VEhCBpMfUZ3rg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 55DB8CA9EC1;
+	Fri,  9 Oct 2026 17:44:38 +0000 (UTC)
+From: Jim Cromie via B4 Relay <devnull+jim.cromie.gmail.com@kernel.org>
+Date: Fri, 09 Oct 2026 11:44:26 -0600
+Subject: [PATCH v2 3/3] nouveau: Fix NULL dereference in
+ nvkm_gsp_gcx_ready()
 MIME-Version: 1.0
-References: <179156201409.1251903.7021297050250233959.ref@yahoo.com>
-X-Mailer: WebService/1.1.26668
- mail.core.serving.mcws.prd.acl:role.token.mcws.jsmtp.yahoo
-Message-ID-Hash: LAIYVPYYPP4B26P55CHQ3W5KDVTQCHDZ
-X-Message-ID-Hash: LAIYVPYYPP4B26P55CHQ3W5KDVTQCHDZ
-X-MailFrom: capitain_jack@yahoo.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261009-my-fixups-v2-3-839e2bbe514d@gmail.com>
+References: <20261009-my-fixups-v2-0-839e2bbe514d@gmail.com>
+In-Reply-To: <20261009-my-fixups-v2-0-839e2bbe514d@gmail.com>
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Dave Airlie <airlied@redhat.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1791567877; l=3425;
+ i=jim.cromie@gmail.com; s=20260203; h=from:subject:message-id;
+ bh=YyKLmo0bEj/hJpRUlDlZOCssFCXNnz2YynMbMOOeOi4=;
+ b=UOPAMqmtzEXw0svG2xoRhLf7pa0/9gTca19f8JoK3eLaMt8FPyB6oNGnlVSyxtXKPSpi3IYhZ
+ IiR/juE41x5CH1MMejtk/VLRyAgubmV7cjNA/+0qHI5/NXBvF8OzuRL
+X-Developer-Key: i=jim.cromie@gmail.com; a=ed25519;
+ pk=C6E5ODlPQo7ZBynATXH9wg7K6HxP0pIXyf4s38Qw0XE=
+X-Endpoint-Received: by B4 Relay for jim.cromie@gmail.com/20260203 with
+ auth_id=958
+X-Original-From: Jim Cromie <jim.cromie@gmail.com>
+Message-ID-Hash: CMSO57VRJQ6LNH7ALGAZXO4A5KR4CHS6
+X-Message-ID-Hash: CMSO57VRJQ6LNH7ALGAZXO4A5KR4CHS6
+X-MailFrom: devnull+jim.cromie.gmail.com@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Daniel Campos Ramos <Capitain_Jack@yahoo.com>,
+ Jim Cromie <jim.cromie@gmail.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: jim.cromie@gmail.com
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LAIYVPYYPP4B26P55CHQ3W5KDVTQCHDZ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CMSO57VRJQ6LNH7ALGAZXO4A5KR4CHS6/>
 Archived-At: 
- <https://lore.freedesktop.org/179156201409.1251903.7021297050250233959@yahoo.com/>
+ <https://lore.freedesktop.org/20261009-my-fixups-v2-3-839e2bbe514d@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -129,38 +123,87 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hello,
+From: Jim Cromie <jim.cromie@gmail.com>
 
-I read the statement merged today, and I am sorry to see a community close it=
-s door to people because of the tools they use.
+Commit cb4c7603678c ("drm/nouveau/gsp/r570: Add support for
+INTERNAL_GCX_ENTRY_PREREQUISITE") hooked nvif_device_gcx_ready() into
+nouveau_pmops_runtime_suspend() to consult GSP before runtime suspend.
 
-I am an electrical engineer.
-I have used CAD and calculation tools for most of my career, and they never m=
-ade me less of an engineer.
-My name goes on what I sign, and I answer for every calculation, whatever com=
-puted it.
+On GPUs running without GSP-RM (e.g. Volta GV100, NvGspRm=0, or missing
+GSP firmware blobs), device->gsp is instantiated but gsp->rm remains
+NULL. nvkm_udevice_gcx_ready() checked "!gsp" instead of verifying
+nvkm_gsp_rm(gsp), allowing non-RM instances to invoke
+nvkm_gsp_gcx_ready(). nvkm_gsp_gcx_ready() then unconditionally
+dereferenced gsp->rm->api, causing a kernel oops:
 
-I also wrote websites by hand in Windows Notepad, when nothing better existed.
-Writing every line without help did not make me a better developer than the p=
-eople who later used IDEs, completion, hints and linters.
-It only made me slower.
+  RIP: 0010:nvkm_gsp_gcx_ready+0x10/0x30 [nouveau]
+  Code: ... 48 8b 87 70 0e 00 00 <48> 8b 40 18 ...
+  RAX: 0000000000000000 RDI: ffff8c9555fca000
+  Call Trace:
+   nvkm_udevice_mthd+0xa5/0x150 [nouveau]
+   nvkm_ioctl+0xcc/0x1d0 [nouveau]
+   nvif_object_mthd+0x110/0x1e0 [nouveau]
+   nvif_device_gcx_ready+0x36/0x60 [nouveau]
+   nouveau_pmops_runtime_suspend+0x39/0x140 [nouveau]
 
-Judging a contribution by the tool that helped write it, instead of by its qu=
-ality and by whether its author understands it and answers for it, is prejudi=
-ce.
-It measures a person by how they work, not by what they deliver.
+Instruction decode shows `mov rax, [rdi+0xe70]` loads gsp->rm (0x0),
+and `<48> 8b 40 18` (`mov rax, [rax+0x18]`) faults accessing rm->api.
 
-You are free to run your project as you see fit, and I respect that.
-Our work stays in our own tree, and we will send nothing here that your state=
-ment excludes.
-If nouveau ever decides not to exclude people who speak other languages and l=
-everage AI to write their pull requests and to port code from other languages=
- (which, again, is translation), I will gladly come back and upstream everyth=
-ing we are enhancing on our fork.
-Until then, I wanted to say once, plainly, that this rule leaves good enginee=
-rs outside, and that it is a loss for nouveau and for the people it could hav=
-e welcomed.
+Fix by:
+0. Checking !nvkm_gsp_rm(gsp) in nvkm_udevice_gcx_ready() so non-RM
+   devices report GC6/GcOff ready and bypass the GSP call entirely.
+1. Guarding gsp and gsp->rm in nvkm_gsp_gcx_ready() before inspecting
+   gsp->rm->api->gsp->gcx_ready.
 
-Daniel Ramos
+Fixes: cb4c7603678c ("drm/nouveau/gsp/r570: Add support for INTERNAL_GCX_ENTRY_PREREQUISITE")
+Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+---
+ drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/engine/device/user.c | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c    | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-This message was written with AI assistance for grammar and clarity.
+diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
+index ed5c6e0e68d3..933f13ed2a50 100644
+--- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
++++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
+@@ -274,7 +274,7 @@ struct nvkm_gsp {
+ static inline bool
+ nvkm_gsp_rm(struct nvkm_gsp *gsp)
+ {
+-	return gsp && (gsp->fws.rm || gsp->fw.img);
++	return gsp && gsp->rm && (gsp->fws.rm || gsp->fw.img);
+ }
+ 
+ #include <rm/rm.h>
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/user.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/user.c
+index f78e6b9b4292..d469437eb991 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/device/user.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/user.c
+@@ -201,7 +201,7 @@ nvkm_udevice_gcx_ready(struct nvkm_udevice *udev, void *data, u32 size)
+ 	} *args = data;
+ 	int ret = -ENOSYS;
+ 
+-	if (!gsp) {
++	if (!nvkm_gsp_rm(gsp)) {
+ 		args->v0.ready = NV_DEVICE_GC6_READY | NV_DEVICE_GCOFF_READY;
+ 		return 0;
+ 	}
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
+index e475d0e8fa7b..ea895f04293a 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
+@@ -51,7 +51,7 @@ nvkm_gsp_intr_stall(struct nvkm_gsp *gsp, enum nvkm_subdev_type type, int inst)
+ int
+ nvkm_gsp_gcx_ready(struct nvkm_gsp *gsp)
+ {
+-	if (!gsp->rm->api->gsp->gcx_ready)
++	if (!nvkm_gsp_rm(gsp) || !gsp->rm->api->gsp->gcx_ready)
+ 		return NV_DEVICE_GC6_READY | NV_DEVICE_GCOFF_READY;
+ 
+ 	return gsp->rm->api->gsp->gcx_ready(gsp);
+
+-- 
+2.56.0
+
+
