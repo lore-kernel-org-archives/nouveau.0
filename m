@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D1A2CA9EBB
-	for <nouveau@archiver.kernel.org>; Fri,  9 Oct 2026 22:23:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0CEECA9EBB
+	for <nouveau@archiver.kernel.org>; Fri,  9 Oct 2026 22:25:36 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 322031122E2;
-	Fri,  9 Oct 2026 22:23:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B0E081122E4;
+	Fri,  9 Oct 2026 22:25:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="aOmYC3dZ";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="CSW45Q12";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 5784948A3B;
-	Fri,  9 Oct 2026 22:04:51 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id E120748A3D;
+	Fri,  9 Oct 2026 22:07:06 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1791583491;
- b=pfA7ACN1dwaYmkdSuURfTC8dpt5U/DCOW2rTchjtwLbi1nKdmN1s+uLo6fEXPJc/6p4hn
- OBvYIC4bqPBxuNu0UIUb/CbHHJQEChYtB3YG24EmfuTVmq2UAmB6s9z80YhszZ+UsyvIIWi
- nOWM2exu6C+ccdmlfb+eVR3yBLGjxWNfSJkmGpL9NC965IeozpbeK0UtBLVhOaJglsK0rE/
- ZLWwU0mVgqBPCbycnl0G2WDsWEa8ImCLCFUacTox+pNB7FRHYm0hmUuUwUewolMBZNADS9R
- h2dsmmTZkTpBXjGL+aLESVjG4BI6oi6jmHnjOLbmaTZk26b7snR/u6TWzRSg==
+ s=20240201; t=1791583626;
+ b=H9DRm2n38oWEFNvlztn4vOTQ9gBtTDgseal6B+XtxIJWtJPe5lUheu+PxmIFJsMGF+4iX
+ +K0ViSTuMFPLpbUlzUxmmj5FgpiNso5q9p3BO+xg72cOi+5ZsGNjKGdGACOKVqz02gVUnOj
+ Qd0AUb27r+9zHwwalpuD452DaLcUJAhGFxvWizvj3qCQlADqOFeUxw5EG4fQSbr+HfZE5xt
+ tYMUjyftcuQINoJL4ZHSkDQ2x3PsHSwPhs1yrBpeZghlNpmOAR3xFQ1/pGK3KDXSMJnUp7z
+ yVGpjev21kIT1bM9QlosYvxZzS1ikbZDfLM6rCvjdYxsDk3oO+AJXtUMG77g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1791583491; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1791583626; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=PZhswLSZpKcNuqso9AUUCoP5Qyu4krUXD3dNinpXBKU=;
- b=vuhWZIn5TuSqiML4X5nk5y++3ZBV9MwKb/xU3hMfLwROy/5o+h32CQyDnQzlbMtQ5Ggnj
- w/5c/rSSTzfywKQlatyMaduYWCDdyajc8fhHrsfKqABvT8PJ6o57h2cRsnwhLDk9ATQt2cA
- tUX819uDU/tROkqabgKB3f39plfGwf4uJOjVkL/7hpdJDJwCR7/PO9c6jgBj7xEExDYF7RU
- 7BoSsOA0ToYfbeikJscACL10RuTkxZ8NzTgoHeUL7lKLvJYz3qR0Xd4rOl8/xiqsamTJ3uW
- M1++vAnMRstk2t4853o0avH9HN9QOy7nAyOrsw9DFBIhncv0EGSO8kwlofiQ==
+ bh=bK4K6Zwn6uj/JoYpayj3VUrzNvyKqfzTmCHlvOGm9C4=;
+ b=DJdYyEh8YeEKZK+f8IS3oQ2mEueo9Y1DZcBdCLe52vc6o/S5WzzbBjEBwNK7kUFR7gVbI
+ IxtILH6MtuTkMZrN/dByu1mv2fYR54xVKW9yyp2LhRmT7eFjoUq9ypLzhvC6E8/IEUjCZtb
+ LeOy2BSWn6bMxC0pOMRq9VxZV62gsdjyNrOZtuyAu6fyzre/0KjsTkLjJjR1a4OFwyY2Ekl
+ uXaWAguMvEznxUObx48IlgcZ2wdXSeXLh2aWqn86BsnundP85fCtKJAKR4N9u/hr3+RsLJm
+ KJ+f06XmlzTCnJQsZcnMGbLTUoUUE3L6gM2ORW3ylbDZ6Y99i6DmH19KGhMw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,103 +46,98 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id AA67148A2E
-	for <nouveau@lists.freedesktop.org>; Fri,  9 Oct 2026 22:04:47 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id BC7D748A2D
+	for <nouveau@lists.freedesktop.org>; Fri,  9 Oct 2026 22:07:04 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2963A1122C4
-	for <nouveau@lists.freedesktop.org>; Fri,  9 Oct 2026 22:23:14 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3C2A51122DB
+	for <nouveau@lists.freedesktop.org>; Fri,  9 Oct 2026 22:25:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1791584593;
+	s=mimecast20190719; t=1791584730;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=PZhswLSZpKcNuqso9AUUCoP5Qyu4krUXD3dNinpXBKU=;
-	b=aOmYC3dZ60nvIVLlQdVEuMjjVBiBDWoAu8qaRhlKm6zeXV0rOt9ysUddAIxUn+x191gOuF
-	IxoVyxi8qrR9V0KEBL6yEcO6R18AHf7bMpS5ErGZjDUxqw/2t9JESYAES3Wf+RYqnRhHiv
-	Awh4z6wl6V5gQZiBVqlHoS7M/V66h5k=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=bK4K6Zwn6uj/JoYpayj3VUrzNvyKqfzTmCHlvOGm9C4=;
+	b=CSW45Q12oNVZAg+6CisK5tEwsqBf4Z2rA0IbcAc+YmbqBMtl+Q6pj1fj6JPkUAMxfnm5D0
+	DNdYsjDiTk3vxXq6gefmYWMbSvJDrFtojb8/+hcbcyfQaZPotVc/z+7joM0RTHrdBVCuo8
+	VFTTrokZd1FvOcvzPz6ZibUp0PRgc+I=
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com
+ [209.85.208.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-601-IecNhTaIPwuDwMWTBNs8Ng-1; Fri, 9 Oct 2026 22:23:12 +0000
-X-MC-Unique: IecNhTaIPwuDwMWTBNs8Ng-1
-X-Mimecast-MFC-AGG-ID: IecNhTaIPwuDwMWTBNs8Ng_1791584591
-Received: by mail-qv1-f70.google.com with SMTP id
- 6a1803df08f44-917baea8e5dso5285316d6.3
+ us-mta-522-rvlIXHVeN-u5se0TZUzu-g-1; Fri, 9 Oct 2026 22:25:28 +0000
+X-MC-Unique: rvlIXHVeN-u5se0TZUzu-g-1
+X-Mimecast-MFC-AGG-ID: rvlIXHVeN-u5se0TZUzu-g_1791584727
+Received: by mail-lj1-f198.google.com with SMTP id
+ 38308e7fff4ca-3a998bcf6afso1298821fa.0
         for <nouveau@lists.freedesktop.org>;
- Fri, 09 Oct 2026 15:23:12 -0700 (PDT)
+ Fri, 09 Oct 2026 15:25:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791584591; x=1792189391;
+        d=1e100.net; s=20260707; t=1791584727; x=1792189527;
         h=mime-version:user-agent:content-transfer-encoding:content-type
          :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=1kJjybFGSYZCppzp0ILAQK86Y2LNrWWZ0v/kRNoEipQ=;
-        b=E7wgz1CAirqyEKKP7XG3fzlei6taS4jjF76gd3rCAEV7xrUH3yYowqhoCC3AU18LEo
-         eFkKuB/I7TfFz5gp4rc4XzIn/dw3TFEoxjqNYCgSmD+5I0JWu1vuinzPmE1KrjunNAlo
-         aEMfgC1mrD0eBDMsf9TT/lmvi15TYjG4v4IDQhfJkQtdZ+35lLzt8xZOm0UkjL9fLAje
-         C/Fr8BQg+NHeZEszmVQUACQYbJMuPBR6TI+HzJVSYmrdhTyJ2Ja2DifCy7GIxD5hEuH3
-         OPn4QmqrPyi/x6hEOj9ntEnVjpfod1C7US99GjIHi+onVqrlM9ZUUI0kG1mn1jvViiLb
-         nDXQ==
+        bh=bK4K6Zwn6uj/JoYpayj3VUrzNvyKqfzTmCHlvOGm9C4=;
+        b=bvQa+4w+1s0GcOT3zb7RwNRMyMvYmg++HBLZJ/etJv05bi5+qoZmpFKYRQQ+kkW8fk
+         WhfJU75gJtJ8BqWh093JF+wUz52DdXc+azO+i2FIfwC3IUtipWY/vU22dDJp0UTrIiJC
+         +iPdzgox9Fp980HbN9Np+RYCUqckb4yRuTlizwQRrvwOcCjMWE0iT6r1WbGkYR4BQ2l6
+         LOayvSRg46OGLwbT98KUCycL1H0ZiymUgooH6Y+L8Ef9oXWyQ0Wo7KSVaVKJU4O5xOqe
+         zJjlZsKF6B/pqFXHQzeftVICF+k0d0BKb5U7QA+847nSUDeZkw41qSmviP5RJaHE6I6P
+         w6qg==
 X-Forwarded-Encrypted: i=1;
- AKwUvBxzQjnN+qJUeWTn7grRG4Xdar82EeIEaeMGrwhoM+81glyWkyL+Btg7j7de1sRgojXeD2x3UX7u@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYJiVrRAlGFL/gOwrj5nOnorgjYbls+WN0zVJTiQ2C5aFi9k1TYF
-	39ZbodcNJX4OZJHYqA3loyH7BDZrRSOlTZgOKDj+rkdVoT7UWfvWfosFKCe4F5b8kidG3ntk6cY
-	nuROI8pWa5/QdSeyieJACZ7gL0sm+0NNwog/ch08vR58tYkiT74JkrW5WAabSY0Rd8mQ=
-X-Gm-Gg: AYBFou1SOWTNj/Z351M7WC8pcwUb9JqUPQCPtq5cGo0Rqolx2dz4bSNbK6Qws2R012q
-	YK06trieM8ykCA+99xfvKVE3OIBVgpDJuJCF1P6p0WK/HqwFGOk6c6zyjNG6D/9PzH7jlQc9Brx
-	d9LiO6zIBhv67ZrfejrvGn97Iuf5wsilzO3M2CCjJ/7yNmuwb3s3Yz1uL0WW5Mv51AFe4gtE2cp
-	m4/Pnx3J7Sh17oM0VeArGQKzzRYLRaukHu5aTiPgURTp2FTsb0oITwy8f0fc9YBnCon6LhEs0bc
-	53zmGKg1HFA42BPEkqG+G+10nVf79+MpjQlJO5oI80ZL77Hl9DOxrMfNCDOtuPf3Ivic2lA=
-X-Received: by 2002:a05:6214:769:b0:912:54f7:aea3 with SMTP id
- 6a1803df08f44-91b5534d151mr61194276d6.1.1791584591481;
-        Fri, 09 Oct 2026 15:23:11 -0700 (PDT)
-X-Received: by 2002:a05:6214:769:b0:912:54f7:aea3 with SMTP id
- 6a1803df08f44-91b5534d151mr61193756d6.1.1791584590983;
-        Fri, 09 Oct 2026 15:23:10 -0700 (PDT)
+ AKwUvBz7ZndLr7KJoebhalYRl3SJ+djRboslpYaM+RRu47rD3bfrRtRWeojtPkp/0ycb22RBNvIMt/b5@lists.freedesktop.org
+X-Gm-Message-State: AFq9FYKOV1iWC315UTZpFohn6Tpi46sd8+kXbsuka/UjI9d/oZdg7kAe
+	fFqqVzsYlaa3Hckmgd2h3+60IUtMaU8kLg4QVy/mA9RvDewk1Hl/HjiXhjhj4HG7ZR8J/t5bSE5
+	xu0Dl6ldhz/3YW7NgYQ/J1+KJZV7SLK32/MKtbP8huTyB5C1T8qYZrnzUFGJNRnJYph8=
+X-Gm-Gg: AYBFou1For4FPDQSlBUUvZgaIn9kxKbhFPIWIC8AbAue/NesQo5FVs0UWCtflEoLC7i
+	nziZOzXgOFapvL3i6ImD1nIOHr1elscziPHikRkzzrMrYA8KKl8B1NtTM51mCFpRlGgv3JwJgKN
+	WkOBCE0DdbFATlMJqXxdyrQ4zL6S0BlyEbc0hJQEGmYYAVk0jZFsb1FU0uy8BZITPOFSys2t0FI
+	/GmBu+lmGrV+mbdyoBe4jbjE02yjmZpv0sAG+igqx5lk3jwnaf2o+g9ND6N4B7mrerbveVyw/HB
+	O0NOeJTt620LHTBlHPuV4ByVwwQph5DPBSm4jiB8Z8EF2deYOog1CBBrp0z+WyfzFrLHqXQ=
+X-Received: by 2002:a05:651c:1510:b0:3a9:a07b:7448 with SMTP id
+ 38308e7fff4ca-3a9c2b34b4bmr8879361fa.19.1791584727361;
+        Fri, 09 Oct 2026 15:25:27 -0700 (PDT)
+X-Received: by 2002:a05:651c:1510:b0:3a9:a07b:7448 with SMTP id
+ 38308e7fff4ca-3a9c2b34b4bmr8879291fa.19.1791584726867;
+        Fri, 09 Oct 2026 15:25:26 -0700 (PDT)
 Received: from [192.168.8.4] ([100.0.180.93])
         by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-91b55017565sm29165376d6.15.2026.10.09.15.23.09
+ 38308e7fff4ca-3a9c3c9af97sm9864011fa.14.2026.10.09.15.25.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Oct 2026 15:23:10 -0700 (PDT)
-Message-ID: <f3576e4263b19d183e343eac9c56d4fc8385b431.camel@redhat.com>
-Subject: Re: [PATCH v2] drm/nouveau/uvmm: reject replace across page sizes
+        Fri, 09 Oct 2026 15:25:26 -0700 (PDT)
+Message-ID: <80477cda2bee82a656b866fea09b964ca9e0b955.camel@redhat.com>
+Subject: Re: [PATCH] drm/nouveau/kms: defer window LUT disable until the
+ image update
 From: lyude@redhat.com
-To: moonafterrain@outlook.com, Danilo Krummrich <dakr@kernel.org>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann	 <tzimmermann@suse.de>, David
- Airlie <airlied@gmail.com>, Simona Vetter	 <simona@ffwll.ch>, Andrew Morton
- <akpm@linux-foundation.org>, Balbir Singh	 <balbirs@nvidia.com>, Mary
- Guillemard <mary@mary.zone>, Mohamed Ahmed	
- <mohamedahmedegypt2001@gmail.com>, James Jones <jajones@nvidia.com>
-Date: Fri, 09 Oct 2026 18:23:09 -0400
-In-Reply-To: <9041ce7f5d6ae30213aa1ab895a4225fb33246ed.camel@redhat.com>
-References: <20261009-nouveau-fixes-v2-1-a0b71bf8df1b@outlook.com>
-	 <9041ce7f5d6ae30213aa1ab895a4225fb33246ed.camel@redhat.com>
+To: Solom Tamawy <solom@solom.dev>, nouveau@lists.freedesktop.org
+Date: Fri, 09 Oct 2026 18:25:24 -0400
+In-Reply-To: 
+ <CACbN=AsQdd1GsAA1FpNMZCrd4YNHidX_dQ1CmBW4zYUnHbrioQ@mail.gmail.com>
+References: 
+ <CACbN=AsQdd1GsAA1FpNMZCrd4YNHidX_dQ1CmBW4zYUnHbrioQ@mail.gmail.com>
 User-Agent: Evolution 3.58.3 (3.58.3-2.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: IwfgpQAUds9iO_np3xjDQXxcTN6mVNLTUad-sOnG3-s_1791584591
+X-Mimecast-MFC-PROC-ID: vToT1B-ZfQy4UnHmGHHJW9pPSWlS409tShllrWLbgJs_1791584727
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: DQ2HCOV25ARTAK3YVICZLHIWMW73U5ZZ
-X-Message-ID-Hash: DQ2HCOV25ARTAK3YVICZLHIWMW73U5ZZ
+Message-ID-Hash: QOR5ZRYLTQCAR5P3IFJYRV6ZIRRLQ4UN
+X-Message-ID-Hash: QOR5ZRYLTQCAR5P3IFJYRV6ZIRRLQ4UN
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Yuhao Jiang <danisjiang@gmail.com>,
- stable@vger.kernel.org
+CC: Danilo Krummrich <dakr@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DQ2HCOV25ARTAK3YVICZLHIWMW73U5ZZ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QOR5ZRYLTQCAR5P3IFJYRV6ZIRRLQ4UN/>
 Archived-At: 
- <https://lore.freedesktop.org/f3576e4263b19d183e343eac9c56d4fc8385b431.camel@redhat.com/>
+ <https://lore.freedesktop.org/80477cda2bee82a656b866fea09b964ca9e0b955.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -152,178 +147,208 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Wait-nope, hold on. Was double checking this to make sure there wasn't
-anything I missed, and the sashiko comment I'm seeing looks quite
-legitimate. Mind dropping my R-b and addressing that if it looks
-legitimate?
+JFYI - I will review this patch soon, but I'm currently waiting on
+getting the information I need from elsewhere to actually decode the
+NvDisplay error here just to double check that this fix makes sense.
 
-On Fri, 2026-10-09 at 18:19 -0400, lyude@redhat.com wrote:
-> Looks good to me, will push to drm-misc-fixes in a moment.
+On Sat, 2026-10-03 at 17:41 -0700, Solom Tamawy wrote:
+> A modeset on one head can set flush_disable for the entire atomic
+> commit while another window changes from an integer framebuffer to
+> FP16 without a modeset. The latter sets clr.xlut and set.image, but
+> not clr.image.
 >=20
-> On Fri, 2026-10-09 at 16:52 +0800, Junrui Luo via B4 Relay wrote:
-> > From: Junrui Luo <moonafterrain@outlook.com>
-> >=20
-> > A new mapping takes over the page tables of the mappings it
-> > replaces.
-> > nouveau_uvmm_sm_prepare() only acquires page tables for the range
-> > no
-> > existing mapping covers, and the map path frees the replaced
-> > mappings
-> > without putting their references. That is only valid while all of
-> > them
-> > use the same page size, which select_page_shift() no longer
-> > guarantees.
-> >=20
-> > Rebinding a GART BO over a 2MiB VRAM BO therefore leaves the new
-> > mapping
-> > owning page tables built for a different page size, and it then
-> > maps
-> > at a
-> > size that was never referenced over that range. Since raw map does
-> > not
-> > allocate, nvkm_vmm_iter() can walk down to a NULL leaf and
-> > dereference
-> > it. The remainders of a split have the same problem:
-> > op_map_prepare()
-> > recomputes a page size with select_page_shift() while the remainder
-> > keeps
-> > the parent's page tables, so a parent that was itself downgraded
-> > can
-> > leave
-> > a remainder that re-aligns to a larger size. This happens on the
-> > unmap
-> > path too.
-> >=20
-> > Reject the bind, and make split remainders inherit the page size of
-> > the
-> > mapping they are split from.
-> >=20
-> > Fixes: c488a94e7e14 ("drm/nouveau/uvmm: Allow larger pages")
-> > Reported-by: Yuhao Jiang <danisjiang@gmail.com>
-> > Assisted-by: LLM
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Junrui Luo <moonafterrain@outlook.com>
-> > Reviewed-by: Lyude Paul <lyude@redhat.com>
-> > ---
-> > Changes in v2:
-> > - Drop patch 1, which has been merged.
-> > - Use the abbreviated conditional operator for page_shift (Lyude
-> > Paul).
-> > - Compare against remap_args.page_shift (Lyude Paul).
-> > - Use Assisted-by: LLM (Balbir Singh).
-> > - Add Lyude's Reviewed-by.
-> > - Link to v1:
-> > https://lore.kernel.org/r/20260817-nouveau-fixes-v1-0-f518d0c735f3@outl=
-ook.com
-> > ---
-> > =C2=A0drivers/gpu/drm/nouveau/nouveau_uvmm.c | 32
-> > +++++++++++++++++++++++++++++++-
-> > =C2=A01 file changed, 31 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> > b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> > index f5e4756b4de4..aa5b93808f41 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-> > @@ -85,6 +85,8 @@ struct uvmm_map_args {
-> > =C2=A0=09u64 addr;
-> > =C2=A0=09u64 range;
-> > =C2=A0=09u8 kind;
-> > +=09/* Page size to give the new mapping, or 0 to derive it
-> > from
-> > the op. */
-> > +=09u8 page_shift;
-> > =C2=A0};
-> > =C2=A0
-> > =C2=A0static int
-> > @@ -655,7 +657,7 @@ op_map_prepare(struct nouveau_uvmm *uvmm,
-> > =C2=A0
-> > =C2=A0=09uvma->region =3D args->region;
-> > =C2=A0=09uvma->kind =3D args->kind;
-> > -=09uvma->page_shift =3D select_page_shift(uvmm, op);
-> > +=09uvma->page_shift =3D args->page_shift ?:
-> > select_page_shift(uvmm, op);
-> > =C2=A0
-> > =C2=A0=09drm_gpuva_map(&uvmm->base, &uvma->va, op);
-> > =C2=A0
-> > @@ -684,8 +686,20 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm
-> > *uvmm,
-> > =C2=A0=09struct drm_gpuva_op *op;
-> > =C2=A0=09u64 vmm_get_start =3D args ? args->addr : 0;
-> > =C2=A0=09u64 vmm_get_end =3D args ? args->addr + args->range : 0;
-> > +=09u8 map_page_shift =3D 0;
-> > =C2=A0=09int ret;
-> > =C2=A0
-> > +=09/* A new mapping takes over the page tables of the
-> > mappings
-> > it replaces,
-> > +=09 * so every one of them has to be using its page size. The
-> > new mapping
-> > +=09 * is the last op drm_gpuvm_sm_map_ops_create() emits.
-> > +=09 */
-> > +=09if (args) {
-> > +=09=09struct drm_gpuva_op *last =3D
-> > drm_gpuva_last_op(ops);
-> > +
-> > +=09=09if (last->op =3D=3D DRM_GPUVA_OP_MAP)
-> > +=09=09=09map_page_shift =3D select_page_shift(uvmm,
-> > &last->map);
-> > +=09}
-> > +
-> > =C2=A0=09drm_gpuva_for_each_op(op, ops) {
-> > =C2=A0=09=09switch (op->op) {
-> > =C2=A0=09=09case DRM_GPUVA_OP_MAP: {
-> > @@ -713,11 +727,22 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm
-> > *uvmm,
-> > =C2=A0=09=09=09struct uvmm_map_args remap_args =3D {
-> > =C2=A0=09=09=09=09.kind =3D uvma_from_va(va)->kind,
-> > =C2=A0=09=09=09=09.region =3D uvma_from_va(va)-
-> > >region,
-> > +=09=09=09=09/* The remainders of the split
-> > keep
-> > the page
-> > +=09=09=09=09 * tables of the mapping they are
-> > split from,
-> > +=09=09=09=09 * so they must keep its page size
-> > too.
-> > +=09=09=09=09 */
-> > +=09=09=09=09.page_shift =3D uvma_from_va(va)-
-> > > page_shift,
-> > =C2=A0=09=09=09};
-> > =C2=A0=09=09=09u64 ustart =3D va->va.addr;
-> > =C2=A0=09=09=09u64 urange =3D va->va.range;
-> > =C2=A0=09=09=09u64 uend =3D ustart + urange;
-> > =C2=A0
-> > +=09=09=09if (map_page_shift &&
-> > +=09=09=09=C2=A0=C2=A0=C2=A0 remap_args.page_shift !=3D
-> > map_page_shift)
-> > {
-> > +=09=09=09=09ret =3D -EINVAL;
-> > +=09=09=09=09goto unwind;
-> > +=09=09=09}
-> > +
-> > =C2=A0=09=09=09op_unmap_prepare(r->unmap);
-> > =C2=A0
-> > =C2=A0=09=09=09if (r->prev) {
-> > @@ -756,6 +781,11 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm
-> > *uvmm,
-> > =C2=A0=09=09=09u64 uend =3D ustart + urange;
-> > =C2=A0=09=09=09u8 page_shift =3D uvma_from_va(va)-
-> > > page_shift;
-> > =C2=A0
-> > +=09=09=09if (map_page_shift && page_shift !=3D
-> > map_page_shift) {
-> > +=09=09=09=09ret =3D -EINVAL;
-> > +=09=09=09=09goto unwind;
-> > +=09=09=09}
-> > +
-> > =C2=A0=09=09=09op_unmap_prepare(u);
-> > =C2=A0
-> > =C2=A0=09=09=09if (!args)
-> >=20
-> > ---
-> > base-commit: f5bbbfec59b4e2fb7520a91de3df8a6174325d6a
-> > change-id: 20260817-nouveau-fixes-23877845c3ab
-> >=20
-> > Best regards,
+> nv50_wndw_flush_clr() clears that window's ILUT before the
+> intermediate
+> disable UPDATE, leaving the old integer image enabled without its
+> LUT.
+> The new FP16 image is only programmed later in nv50_wndw_flush_set().
+> On hardware that uses the ILUT to convert integer input to the
+> internal
+> FP16 pipeline, the intermediate state is invalid.
+>=20
+> This ordering defect was found while investigating a Plasma login
+> hang
+> on GB205 after atomic modesetting became enabled by default. The
+> failure
+> logs contained window UPDATE exceptions followed by a core notifier
+> timeout:
+>=20
+> =C2=A0=C2=A0 gsp: Xid:56 CMDre 00000001 00000200 00000001 00000005 000000=
+2d
+> =C2=A0=C2=A0 gsp: Xid:56 CMDre 00000005 00000200 00000001 00000005 000000=
+2d
+> =C2=A0=C2=A0 drm: core notifier timeout
+>=20
+> Defer the LUT clear until the image update when the old image remains
+> enabled across a separate disable UPDATE. The LUT clear and new image
+> then take effect together. Keep early clears for windows whose images
+> are disabled and preserve the path without a separate disable UPDATE.
+> Pass flush_disable explicitly to the set phase, since the new plane
+> state's atomic-state backpointer is cleared during state swap.
+>=20
+> Fixes: ebf8ca6b3d6d ("drm/nouveau/kms/nv50-: disable input lut
+> harder")
+> Cc: stable@vger.kernel.org
+> Assisted-by: LLM
+> Signed-off-by: Solom Tamawy <solom@solom.dev>
+> ---
+> Based on linux-next f0406245cb9855e6318335a8a223551354291a46
+> (next-20261002). This is the functional fix only; atomic modesetting
+> remains enabled and the advertised formats are unchanged.
+>=20
+> Testing:
+> - A focused C harness extracts the actual pristine and patched flush
+> =C2=A0=C2=A0 helpers and models two heads at each UPDATE boundary. The pr=
+istine
+> =C2=A0=C2=A0 helpers fail the mixed-head integer-to-FP16 case; the patche=
+d
+> helpers
+> =C2=A0=C2=A0 pass all 14 cases. The model is not a full GPU simulator.
+> - Nouveau built against the matching kernel configuration and headers
+> =C2=A0=C2=A0 with successful modpost and BTF generation and no build warn=
+ings.
+> - I successfully logged into Plasma Wayland on RTX 5070
+> =C2=A0=C2=A0 (GB205), with three NVIDIA DP displays, amdgpu active on the
+> integrated
+> =C2=A0=C2=A0 GPU, and a CalDigit TS5 Plus dock connected before login. No
+> atomic=3D0
+> =C2=A0=C2=A0 override or USB/PCIe/Thunderbolt PM workarounds were present=
+. The
+> =C2=A0=C2=A0 expected patched module was loaded, and the I confirmed a
+> =C2=A0=C2=A0 successful DRM_CLIENT_CAP_ATOMIC=3D1 capability probe. No Xi=
+d or
+> core
+> =C2=A0=C2=A0 notifier timeout appeared in this boot.
+>=20
+> =C2=A0 drivers/gpu/drm/nouveau/dispnv50/disp.c |=C2=A0 2 +-
+> =C2=A0 drivers/gpu/drm/nouveau/dispnv50/wndw.c | 13 ++++++++++++-
+> =C2=A0 drivers/gpu/drm/nouveau/dispnv50/wndw.h |=C2=A0 4 ++--
+> =C2=A0 3 files changed, 15 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> index e91130f93db6..b7022a9b6e6f 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> @@ -2351,7 +2351,7 @@ nv50_disp_atomic_commit_tail(struct
+> drm_atomic_commit *state)
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (!asyw->clr.mask || atom->=
+flush_disable))
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 co=
+ntinue;
+>=20
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 nv50_wndw_flush_set(wndw, interlock, asyw);
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 nv50_wndw_flush_set(wndw, interlock,
+> atom->flush_disable, asyw);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>=20
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* Flush update. */
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+> b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+> index 74eb1dfcc043..ac59219e162a 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+> @@ -137,6 +137,14 @@ nv50_wndw_flush_clr(struct nv50_wndw *wndw, u32
+> *interlock, bool flush,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 union nv50_wndw_atom_mas=
+k clr =3D {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 .mask =3D asyw->clr.mask & ~(flush ? 0 : asyw-
+> >set.mask),
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> +
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* A different head can require a s=
+eparate disable update
+> while this
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * window only changes format.=
+ Keep its LUT enabled for the
+> old
+> image
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * until the new image is prog=
+rammed: integer formats require
+> an
+> ILUT.
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (flush && !clr.image && asyw->se=
+t.image)
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 clr.xlut =3D false;
+> +
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (clr.sema ) wndw->fun=
+c-> sema_clr(wndw);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (clr.ntfy ) wndw->fun=
+c-> ntfy_clr(wndw);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (clr.xlut ) wndw->fun=
+c-> xlut_clr(wndw);
+> @@ -147,7 +155,7 @@ nv50_wndw_flush_clr(struct nv50_wndw *wndw, u32
+> *interlock, bool flush,
+> =C2=A0 }
+>=20
+> =C2=A0 void
+> -nv50_wndw_flush_set(struct nv50_wndw *wndw, u32 *interlock,
+> +nv50_wndw_flush_set(struct nv50_wndw *wndw, u32 *interlock, bool
+> flush,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct nv50_wndw_atom *asy=
+w)
+> =C2=A0 {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (interlock[NV50_DISP_=
+INTERLOCK_CORE]) {
+> @@ -157,6 +165,9 @@ nv50_wndw_flush_set(struct nv50_wndw *wndw, u32
+> *interlock,
+>=20
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (asyw->set.sema ) wnd=
+w->func->sema_set (wndw, asyw);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (asyw->set.ntfy ) wnd=
+w->func->ntfy_set (wndw, asyw);
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* Apply a deferred LUT disable tog=
+ether with the new image.
+> */
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (flush && asyw->clr.xlut && !asy=
+w->clr.image && asyw-
+> >set.image)
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 wndw->func->xlut_clr(wndw);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (asyw->set.image) wnd=
+w->func->image_set(wndw, asyw);
+>=20
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (asyw->set.xlut ) {
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.h
+> b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
+> index 7bd8bcc199db..b0b1b10cf782 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/wndw.h
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.h
+> @@ -40,8 +40,8 @@ int nv50_wndw_new_(const struct nv50_wndw_func *,
+> struct drm_device *,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const u32 *format, u32 heads,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum nv50_disp_interlock_type, u=
+32
+> interlock_data,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct nv50_wndw **);
+> -void nv50_wndw_flush_set(struct nv50_wndw *, u32 *interlock,
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct n=
+v50_wndw_atom *);
+> +void nv50_wndw_flush_set(struct nv50_wndw *wndw, u32 *interlock,
+> bool
+> flush,
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct n=
+v50_wndw_atom *asyw);
+> =C2=A0 void nv50_wndw_flush_clr(struct nv50_wndw *, u32 *interlock, bool
+> flush,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 struct nv50_wndw_atom *);
+> =C2=A0 void nv50_wndw_ntfy_enable(struct nv50_wndw *, struct
+> nv50_wndw_atom *);
+>=20
+> base-commit: f0406245cb9855e6318335a8a223551354291a46
 
