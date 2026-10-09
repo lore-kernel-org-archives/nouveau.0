@@ -4,197 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E8B8CA6012
-	for <nouveau@archiver.kernel.org>; Fri,  9 Oct 2026 08:02:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33924CA6012
+	for <nouveau@archiver.kernel.org>; Fri,  9 Oct 2026 09:21:34 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2A85E10FF68;
-	Fri,  9 Oct 2026 08:02:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2599F89117;
+	Fri,  9 Oct 2026 09:21:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=outlook.com header.i=@outlook.com header.b="MKUUwq6K";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="V3ckakU/";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id A2000489E6;
-	Fri,  9 Oct 2026 07:43:48 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1791531828;
- b=gCAW2lLYaM7xAZmyQTuqsDr25ARaMS9X1WVrMFZ4YUGIUcnq6N842IWKQyA1zAWB+2dmn
- mlAn9GRJVPsuwuNi+EtUTBDu2kSayoma0xx2W2Kiu1+yFJbUZts1WVry8hhojBsCStnPgEo
- dUm+uo/rRGKBEqW2qL7Vh7NCdVUfwVTSaNobc5niXnrf9DmnnZb1v8sgMa15FOSq+edUND5
- qA1oFoqhqGy4CTZ33qvEhRkHonUkTw92q6hL98Ye8wJS0vepVhk8NnD4V8K5nHMX/HbceFh
- qIOU7Hdd3INyIorgkYHTcW9nmpj+GVxooal980OunmT3TIInOFMgfuwUUn2w==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1791531828; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 7E2FA489E9;
+	Fri,  9 Oct 2026 09:03:07 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1791536587;
+ b=bxju9IN9a38fxXLEDdMI72yjf0kGG7yxF7l0mzZYjfSnwfY1k3QrCsn0va32i0dvs3ZLe
+ meFw5HtHbx3SgiBSixYkHlkR7qBn+frg+S4NXr+bvNoe19SSwyByrPe7SkWBWzi7GD5nv7F
+ 26HTouBtON3S9vrdALnjCNY31vjtVRyKJDLFasRswbcsUfENFmoMJGW20bXpPv88YqcU9pe
+ aLo1VLVMzqRtdjGSr95Fx6z+CVNVqGqaSnH3MYIJi9QW3P7mhN2tgWQT357lnX/lAq9xCmU
+ D3SdHaSIFjKveujaAcRuJ8pMp440tSyLxl4eFZKu4UDmM62PtkS4dOSZacoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1791536587; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ipDsmwEasG+9StgsDx7RDFFBjLwK9g7whjLsKxG0NSw=;
- b=D5bd+nNFYVMciB5Lym4OesFhmuTiKkVx6L0zK2EnQxjW1dHZl99FeVGldHaBEWLX9XSKf
- NK+1anbfKtTkxE1DjGYI23bNGFZt1q7/p3pd6SRy9c0Orth3j1teVxGrz9JEIsFLzabbIUe
- j5wRoasRLFJLvT9T60GloWO22dddj3mKAeGcVn3VIhhWhSmIxcxIi3I9nY0rkcNgcAMALGh
- ag5c3v5lZFE93C41eQH40HuwByd6ccrGVvoXKFNXYS2HsdFVAPSUoK1chbee7q2JcMPyVDs
- pBwkvvZs5UfR8JQP3S/7Cnqa1x2lhO7LlJjDENA2k07y/i3LEuhMMmo3yFDA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=outlook.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=outlook.com
+ bh=4NURHoycVD5KOHaofvAoadC4bkZDEmi7PA9iRvj90Qw=;
+ b=aJm6f+R4Xk+zqk0hhK5zcPHhWe+15jtselSyqIDRFa5mcZF4QZKIn8S+hU181R/GkGO6R
+ mHaXfDDdJvX0q6w0Gf6EtHodidSS4phcaJLMJdgFFSL2gxaT3GIW0ha3D8Fzja62ih4NB2K
+ fd7KPyFXyVPzToIKTtz3nLqMp+cBwpQPnsFZuix0HMmyylalM0CeT8iIyjVrhskULcuf+9U
+ ymetWpFdCumtJFueGJTGufPP0aWH69vzWArszo0u8AZwYoR8AvqolJ5JYjLUf9bqVRM1pvD
+ koJtk881Xxr5NeMtk/3BWj5shfF3cx4kjn1eQ95dj45Fzukbk80oogNcyCAQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=outlook.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=outlook.com policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 62B7F48344
-	for <nouveau@lists.freedesktop.org>; Fri,  9 Oct 2026 07:43:45 +0000 (UTC)
-Received: from SY2PR01CU004.outbound.protection.outlook.com
- (mail-australiaeastazolkn19011027.outbound.protection.outlook.com
- [52.103.72.27])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 71D4210FF5F;
-	Fri,  9 Oct 2026 08:02:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Xdp6AkH916XjyCd+8mS9ckPabfOMiGUkLfhBR2ncgtTcZ2NyYf3ZTfLvgqsEQoImvdXKeFPKnFQnGDehN1bOl+Kb4JRnZr/3FLMaSsdJG+6hbAiFadcCRUaLWJfVT+RgqXmphBt/3XLsX4s8mbZ3o/0eD5BoGc2I4CEkNdS54k6RJrr21SZ1Kz02fu9dNCjjpO2XXnRH2f6dbO5GIwkjnINJFtOO7IlWroBXT18NTT1av5lwXA4AakVC9BBa3DiKukFJcKNF4JhP/49WeXcB1Rg3pf5I5q+a6NCaYCCjud+e1ePnJKlkFO3bdysBv+aUN1JvXNPiE5fD/tnBn8rvbA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ipDsmwEasG+9StgsDx7RDFFBjLwK9g7whjLsKxG0NSw=;
- b=VHdfx7c4EUX3FNfSxW5ncdujCP9XH+/5b4pDt/k7PbIKc2F4G4Fsl6bIYKMqNMUsw0Li+AQaPaPsw1ipYtLLQk3rKKzc2yI9sOfNpMfr9kLRF5EBoDjBJE4cK6a722IBh/qh7LgtTEBC8qTeYn4lAYDvmuMEznYhQlM4jvXInFwXXbd0I0SOQTi0v2ag9ULo/rgSuZI46quENZy73buiU3Z/JflJWV7fX4tX5JgLAEmg6P8YJH1m6dg1yiuEzAA/AhCIww1frHP5aosyMIK9woJCSEsUXdUGkhm7xHh/tZCpoOVJlQTTpAcjTO57hMa2x2GSzi2/izwdIXY8+Ui5gg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ipDsmwEasG+9StgsDx7RDFFBjLwK9g7whjLsKxG0NSw=;
- b=MKUUwq6K1Jqq0rWyWnGYyYHKS//e+47t1OzE3mBSF2rCtH6fG9oU3y09pe8XAjOCi+TbCs5LXS70YG1/w34BNLoGdrTQdxiw6uXRW7hNbH+qTIhCDg+qsijJIT7ua7sy/n/oJLf+N7jBuO4vW4fNl2NCPDWWX0TNh0zzqygxUuHCiQNp38aoNUk8bPlrW+++Tv9ty1w2wZyRnI7Oosvi2VNveha8j8sXZu9fi9mJA8wUcDQXEsCVL5+Lhkl5+Lv7QLPfB9UWK/I53cALCkq6rE1dKSH/mYAwWjAxIxeDLKD03jFVtj7gVuvUqOF+oh0r7Ax9RhVtsCmgdttQ8+9MWw==
-Received: from SYBPR01MB7881.ausprd01.prod.outlook.com (2603:10c6:10:1b0::5)
- by ME2PR01MB5667.ausprd01.prod.outlook.com (2603:10c6:220:d3::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.15; Fri, 9 Oct
- 2026 08:02:00 +0000
-Received: from SYBPR01MB7881.ausprd01.prod.outlook.com
- ([fe80::7cd2:d6e8:3fa0:5f0c]) by SYBPR01MB7881.ausprd01.prod.outlook.com
- ([fe80::7cd2:d6e8:3fa0:5f0c%7]) with mapi id 15.21.0522.002; Fri, 9 Oct 2026
- 08:02:00 +0000
-From: Junrui Luo <moonafterrain@outlook.com>
-To: Balbir Singh <balbirs@nvidia.com>
-Subject: Re: [PATCH 2/2] drm/nouveau/uvmm: reject replace across page sizes
-Thread-Topic: [PATCH 2/2] drm/nouveau/uvmm: reject replace across page sizes
-Thread-Index: AQHdRvYcklAowvA/gEmsg6OoXFvr57b0+X+A
-Date: Fri, 9 Oct 2026 08:02:00 +0000
-Message-ID: <FBF1ED94-0D02-4C4A-812B-818897A605C4@outlook.com>
-References: <20260817-nouveau-fixes-v1-0-f518d0c735f3@outlook.com>
- <20260817-nouveau-fixes-v1-2-f518d0c735f3@outlook.com>
- <61d42916-a391-4b98-a6fc-84175127c2e2@nvidia.com>
-In-Reply-To: <61d42916-a391-4b98-a6fc-84175127c2e2@nvidia.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SYBPR01MB7881:EE_|ME2PR01MB5667:EE_
-x-ms-office365-filtering-correlation-id: 3692f9eb-d79d-491b-a7de-08df25db98e1
-x-microsoft-antispam: 
- BCL:0;ARA:14566002|24021099003|25010399006|31061999003|22091999003|24121999003|4140399003|8060799015|19110799012|8062599012|15080799012|53005399003|40105399003|2607281247196008|102099032|440099028|3412199025;
-x-microsoft-antispam-message-info: 
- =?utf-8?B?S09YejRialZST1hHN1dHbjBzZWhUNCsrUk41ekFVUXFLNjc5aG04N3d4anph?=
- =?utf-8?B?RVdsMGFLdE1INGlLYkRSY2RGaHdFUjBxYlpFVGRpbVdtaVpTUTgwQU9sbjRJ?=
- =?utf-8?B?WWs4RFM5SEhUQkV4N21lK1NsekFFdlFPc1psc1Z3enJ1UDJWbDNsWi9jRERj?=
- =?utf-8?B?bWdBWGhMZndoVmRCQjh5TVZJMkk0b3JWbVJjaXlOc2Jwd2RKbXErTjNXdWhM?=
- =?utf-8?B?SlJ1emMyVEs0L0d6WjVMdDVBUmhIR1MxWmYreHR4eHZESVViWjlXYktmdGFj?=
- =?utf-8?B?cGdtUTBmVDJEdHBoSVZwZ0Q5QjRKazFVSGZyMzN6d0EyY2xWMkgrRUZ3U0Ir?=
- =?utf-8?B?WmpCRGZpSEs0UkhoRmR1YXZoRUkvY2ZVUFllVFo4ZmVxb3NocVJHMkdoR2g2?=
- =?utf-8?B?YVN0czNYR0lBblVYQlRQa3JrWkZlOVIvbDl4cnFUUlBOSE1DbFA4SU5Xdy9o?=
- =?utf-8?B?MFRjRmFjam5RMHU1TmIrSGgvc05mY3IrTko5S1JINzhyM28vYjJKSmRzUjU1?=
- =?utf-8?B?QzRXcnpZRlFkUm9WSkxOa0QzM1MxRktuZ2pzSVExa25IWXl4MEFJMDVnejNY?=
- =?utf-8?B?eVROdFBaSnFWUWt4Si9ORGdyWFpzOXo1VnlQUStMWi9jZklHYzFJY3JNazND?=
- =?utf-8?B?U2hzamVUSXhJQ25KWTB6RzNjcTdYc1B2akVneFJjK1JIeUM0ZTV4dnZsVk5Y?=
- =?utf-8?B?ZTUvZGRpaVRJZ0tTcFY2aFYvQnpyTnZJYWZYZXB4ak5oOGNSb01IVGIxMHVY?=
- =?utf-8?B?WWpMUFo1WnkycDlwb2hCQnIvYWxKbTg2TmxFNDJ4eEdRUFRlR1JvWEpMZUIx?=
- =?utf-8?B?TjA3b29PS2xOYWFGUDZDZlF1eVRmWjh1QmovMW1HTDQ0SzFSMUtmYWJtaGdN?=
- =?utf-8?B?dDdKckg4Q3ZOOVozOUVRZmFVcDRBUStvck9mcHpsSXRxeFMrS2xZUytRVzl0?=
- =?utf-8?B?TVV4bC8vZEJISGk3dDhuZ2Q4R25EdWxjS2VhSjFhTGV6aUZUUlp2a0R3VUV4?=
- =?utf-8?B?NWJWRVBtT0hNQ3lKZmRuMFFCRmd6K01jOENXTmVQMGpObUk4dGcvSUFnK1Nv?=
- =?utf-8?B?S1hvdXdFVndzUXlmdXNleUFyS2dpdEZpbkxwVUxreXp6eWNBejZTREJSblM1?=
- =?utf-8?B?eHJKbitoRmVmM3NPYzJpVFdySkt5ekxBbS9PSXJIZnUxdVA3OEN5ejNSc2pj?=
- =?utf-8?B?clpzckFmNFNhWXhQeE1oRzJ0UHJtNUdCcjQ0MnFIOEZockdvMmdLWXRsUmZG?=
- =?utf-8?B?cm1RRDJSd3c3L1V0cVZnVlZtL2NHUnJOVTNQVXFKTzM0NGs1cVNSYjZONExz?=
- =?utf-8?Q?7H7+tga8vELTF24kCtZngscmr1juHZ2nU4?=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?SjVYeU9qR3FUYWF1TXVTQlNKV2ZsQlVXUE9xcmZHcjNTZDBIeGJxbVdIdnRa?=
- =?utf-8?B?SVA2RDdyRDNQaGxHUWEwMHYwbG1HbFlzLzlmdC9rdTBLWTN1NFJCN1ZRNnBx?=
- =?utf-8?B?S2lSdXhKVHJrVjZCZGJpcUpmVElPNkR4SE9SRE1OZElrbU5mSnJqbjB5bXhJ?=
- =?utf-8?B?MjU2WE1sSjNya01MTHdtTEdTSmlWQzFzTG1qWlNyN2dkUThsZEMyb25FR2hP?=
- =?utf-8?B?U3dYTVBpd3lwOTlBU3Y0MXRSSi9hNzBITjMvWDRWY2JnL2xjMlJIMzNGNFBM?=
- =?utf-8?B?L1dxODdzdytyeDVhd3JNd3A3OUF1ZTdyUkFyQ0hDWXFrV1N4OEc5cWNjcllZ?=
- =?utf-8?B?R1pZYmN4d3M3UUsrdnVGdHlsblFweXBBRVpHaEpvY0pYNXQ0QWRMeWJhMXJC?=
- =?utf-8?B?c1ZvWitBYTRDMi9Vc2FGaHVYTE9OYUU4YXR3TUo4dVhBbGlock9GZkpIWWNL?=
- =?utf-8?B?SW5WSU1jeDl2alQrL0lnM0RuRlBXMU44dndRbHk4R1JiaHNudjdkRDdnbTli?=
- =?utf-8?B?NWwxTnJ1T2JTUWNjYzZEa2FISWhBUDNDb1E0bVgrYktnUFBNZmZtcWtZSktl?=
- =?utf-8?B?a3dqaTF3cXVXdUFOS3Y2TkQvdk1tb1Y4RDdtK2RKbVBxM3l6LytkbTBpRDJu?=
- =?utf-8?B?cDR2bTRBRTJESy90NU9HbXlHdUhpN25vWTkvYWRjTUMrc1JwN1F2aWJ3a00x?=
- =?utf-8?B?RXFyYjlHbncwaWcvV0R6SXY5UUUzWXJNRlBkWVF5UTMxTU5zQkpHV2tjOGQv?=
- =?utf-8?B?ZjRVT1B5WUIvSU0rb2I4MTMrdmhaVEtkNFl4QmxnbndzdC9sQmlYN2FmVTI2?=
- =?utf-8?B?alkxRmREbE00bDJuSWlDRFVtODg1N2tlcWV3TGlSVmppSXVOREpTQ2NFZ2ZN?=
- =?utf-8?B?ZFJNemVTQk9HbUpyNWVScG15NDVVck1JazBCUG1lbzdIS0Y2L05VU1JueDFa?=
- =?utf-8?B?dU9NaHNadXRIbGxnb0hVMlEyZGo0czJneEhaVTB1aDYxUmpLV2lJTHFrdTZZ?=
- =?utf-8?B?czd2QUx4bGtMS2Y2dW9EMkN3Sk5sNjl4WE5NTGU5bjV4RnJLbUc3K1hZUXNV?=
- =?utf-8?B?UWtDTUdtMHAwTi9OVnQzcnFwZHd2VHl3NTBudVJZaFRrTHcwcE8vVXMwcUdo?=
- =?utf-8?B?MlpIRVY5ZHF3SFJodjZMZnRxTS8rT3ZJcmJIU0dVZWtRVGF0akhQL25qOGdY?=
- =?utf-8?B?K0dOM09Mei9sdkcrWk9VTkIvL3doeWMrTnlXQW55Y0ZEOFlMdWZnMlZsWXJK?=
- =?utf-8?B?N3RMaHphai9CMWtFRjNVNy96N2xwc0VUZlB3OHFPdEgxRHQ4dWt3Sy9DV0Ft?=
- =?utf-8?B?YXVmbEEyc3RPbWlSZFdCS0hFOVNvWHgzT1F1S1BHSXpyT3pURzlCVWxJVWtl?=
- =?utf-8?B?TXdZRzIrb3lMVWc2VlFUMGxzWTJMRHRGSlhhZ1pOVnhxUWR2eC9JNElvUmlO?=
- =?utf-8?B?TkhMNkF2RmlVcnJyZHhXQjVTb2MrdUFJVUpZT2tSV0NVbWRYOG9zUnZ4VTJu?=
- =?utf-8?B?OUtQVGVPcmxKMkxVQmZlVGwvZG5ZRnExV050UStsbUFCQXcyWDNqVXFJbHYw?=
- =?utf-8?B?LzFVVGlsNkcyc0Z1K3QyTEdxeGYwUTJMUDM4MG9wNTIwNjRUSmtSV2s4UHNs?=
- =?utf-8?B?aTBNREw2dG5yTWxSQU9CZ29YSXFFcWFib3lJUmdCL282clZxRTB5Y2NjQXhQ?=
- =?utf-8?B?b0l2Y3JKdmhiMHFOY0ZXbmNwYndNc0o5YVRNamJWeWRRS3cyaTdjbzAvUVpI?=
- =?utf-8?B?RU40QzI2QlBQMGZHb3VRMmlpZDRDalBxeEgwclFBRDdRTzF3ZzFaZEtJSWRy?=
- =?utf-8?B?MHJQOGZyK3pyV1h6THNVSFZCcTRBM29ITERYU0Ztc25kYVp6LzRYRXpudGFs?=
- =?utf-8?B?UTdMU2MxYXh4YnR6Y2x0U09RT2QyZzRmOTZ0cGsxNHRCNkE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A52D2784EACFA24BA6CCDEA30A706BED@ausprd01.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by kara.freedesktop.org (Postfix) with ESMTPS id 74FE448344
+	for <nouveau@lists.freedesktop.org>; Fri,  9 Oct 2026 09:03:04 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 735AF10FFE8;
+	Fri,  9 Oct 2026 09:21:29 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 150B7439BA;
+	Fri,  9 Oct 2026 09:21:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DDCA7C2BCF4;
+	Fri,  9 Oct 2026 09:21:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1791537689;
+	bh=qxzaWP43zMK890klSaHe9pUuha590tppejHYhCYdmWM=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=V3ckakU/wOS5fjZI3UykxDY7NzSCB0syU5TwjQN4ZBPmVu5gnF9ovl0lMCydA+bT7
+	 27G5NE0rObBU9iPMFHgbFHhZdYnwAvhsf8ho8NxWxB48idEgRVQBcZ0Lyer2JH/P7w
+	 L3xgDTmGZS757S/mTZFSRRehrMoNdZbsMoEk45tFItRCAqUx93wtymMtVpMQdryFcW
+	 5Ie6GgqsdwKk2TQd4xKJCfsdJlLyFzIPZy7QAo9J/Zn0hVI0fQ34wIa3IsuL8RCa5N
+	 91tqdCCzF7T1pCqMa3UHHX2TyiWuMzk9COCXm/QJSQBFcbLSV1dXl8G9flpZGKs1M9
+	 tQ6X8vejdkvWA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C7B16CA6019;
+	Fri,  9 Oct 2026 09:21:28 +0000 (UTC)
+From: Junrui Luo via B4 Relay <devnull+moonafterrain.outlook.com@kernel.org>
+Date: Fri, 09 Oct 2026 16:52:22 +0800
+Subject: [PATCH v2] drm/nouveau/uvmm: reject replace across page sizes
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SYBPR01MB7881.ausprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
- 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 3692f9eb-d79d-491b-a7de-08df25db98e1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2026 08:02:00.2798
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 
- 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ME2PR01MB5667
-Message-ID-Hash: AUYA27JIRB7IVT3FFTZDIAFHHHVQ7U6T
-X-Message-ID-Hash: AUYA27JIRB7IVT3FFTZDIAFHHHVQ7U6T
-X-MailFrom: moonafterrain@outlook.com
-X-Mailman-Rule-Hits: nonmember-moderation
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Danilo Krummrich <dakr@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261009-nouveau-fixes-v2-1-a0b71bf8df1b@outlook.com>
+X-B4-Tracking: v=1; b=H4sIAEWryGoC/3WMyw7CIBBFf6WZtRgeIsSV/2G6qHSwRGUMFKJp+
+ u9i9y7PvTlngYwpYIZTt0DCGnKg2EDuOnDTEG/IwtgYJJdHboVhkUrFoTAf3piZVNYYe9BODVd
+ ozivhdjTl0jeeQp4pfbZ8Fb/1X6kKxpnXwo7cGaW9OlOZH0T3vaMn9Ou6fgGMdF8nrAAAAA==
+X-Change-ID: 20260817-nouveau-fixes-23877845c3ab
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Andrew Morton <akpm@linux-foundation.org>, Mary Guillemard <mary@mary.zone>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Balbir Singh <balbirs@nvidia.com>, Mary Guillemard <mary@mary.zone>,
  Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Yuhao Jiang <danisjiang@gmail.com>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
+ James Jones <jajones@nvidia.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4438;
+ i=moonafterrain@outlook.com; h=from:subject:message-id;
+ bh=6FpAwbqLK/tSxZV1GoB5Wx5YVWdL5AMEJN9IWTGboAc=;
+ b=owJ4nJvAy8zAJVb4wiKgu++DA+NptSSGrBObxKWk9iQ8Eb7z+YiglLegTv0bxkKF7RVzbj/3+
+ vpqZkaO+46OUhYGMS4GWTFFluMFl75Z+G7R3eKzJRlmDisTyBAGLk4BmMjiPoafjHutxK33MEb7
+ /oq8tHfa+d31Yo7xjwpto4ON2U/38TqUMfxPu3fV7qLlpMTHtqIyX01uf//C1jq7wLxn1VaOsF+
+ FP1dzAQCWFku6
+X-Developer-Key: i=moonafterrain@outlook.com; a=openpgp;
+ fpr=C770D2F6384DB42DB44CB46371E838508B8EF040
+X-Endpoint-Received: by B4 Relay for moonafterrain@outlook.com/default with
+ auth_id=909
+X-Original-From: Junrui Luo <moonafterrain@outlook.com>
+Message-ID-Hash: 3GH6IKMODN6G4OPTWIQ2LFHNKFW4AHVZ
+X-Message-ID-Hash: 3GH6IKMODN6G4OPTWIQ2LFHNKFW4AHVZ
+X-MailFrom: devnull+moonafterrain.outlook.com@kernel.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Yuhao Jiang <danisjiang@gmail.com>,
+ stable@vger.kernel.org, Junrui Luo <moonafterrain@outlook.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: moonafterrain@outlook.com
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AUYA27JIRB7IVT3FFTZDIAFHHHVQ7U6T/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3GH6IKMODN6G4OPTWIQ2LFHNKFW4AHVZ/>
 Archived-At: 
- <https://lore.freedesktop.org/FBF1ED94-0D02-4C4A-812B-818897A605C4@outlook.com/>
+ <https://lore.freedesktop.org/20261009-nouveau-fixes-v2-1-a0b71bf8df1b@outlook.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -204,10 +129,130 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-PiBPbiBTZXAgMTgsIDIwMjYsIGF0IDY6NDTigK9BTSwgQmFsYmlyIFNpbmdoIDxiYWxiaXJzQG52
-aWRpYS5jb20+IHdyb3RlOg0KPiANCj4gV2UgYXJlIG1vdmluZyB0byBBc3Npc3RlZC1ieTogTExN
-DQoNCkdvdCBpdC4NCg0KPiBKdXN0IHdvbmRlcmluZyBob3cgdGhpcyB3YXMgdGVzdGVkL2NhdWdo
-dD8NCg0KVGhpcyB3YXMgZm91bmQgdXNpbmcgYW4gTExNLWJhc2VkIGFnZW50IHdlIGRldmVsb3Bl
-ZCBhcyBwYXJ0IG9mIG91ciByZXNlYXJjaC4gV2UgdGhlbiBjaGVja2VkIGl0IG1hbnVhbGx5Lg0K
-DQpJIGRvbid0IGhhdmUgc3VpdGFibGUgaGFyZHdhcmUgdG8gdGVzdCB0aGlzIG9uLCBzbyBJIGhh
-dmVuJ3QgdGVzdGVkIGF0IHJ1bnRpbWUuDQoNClRoYW5rcywNCkp1bnJ1aQ==
+From: Junrui Luo <moonafterrain@outlook.com>
+
+A new mapping takes over the page tables of the mappings it replaces.
+nouveau_uvmm_sm_prepare() only acquires page tables for the range no
+existing mapping covers, and the map path frees the replaced mappings
+without putting their references. That is only valid while all of them
+use the same page size, which select_page_shift() no longer guarantees.
+
+Rebinding a GART BO over a 2MiB VRAM BO therefore leaves the new mapping
+owning page tables built for a different page size, and it then maps at a
+size that was never referenced over that range. Since raw map does not
+allocate, nvkm_vmm_iter() can walk down to a NULL leaf and dereference
+it. The remainders of a split have the same problem: op_map_prepare()
+recomputes a page size with select_page_shift() while the remainder keeps
+the parent's page tables, so a parent that was itself downgraded can leave
+a remainder that re-aligns to a larger size. This happens on the unmap
+path too.
+
+Reject the bind, and make split remainders inherit the page size of the
+mapping they are split from.
+
+Fixes: c488a94e7e14 ("drm/nouveau/uvmm: Allow larger pages")
+Reported-by: Yuhao Jiang <danisjiang@gmail.com>
+Assisted-by: LLM
+Cc: stable@vger.kernel.org
+Signed-off-by: Junrui Luo <moonafterrain@outlook.com>
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+---
+Changes in v2:
+- Drop patch 1, which has been merged.
+- Use the abbreviated conditional operator for page_shift (Lyude Paul).
+- Compare against remap_args.page_shift (Lyude Paul).
+- Use Assisted-by: LLM (Balbir Singh).
+- Add Lyude's Reviewed-by.
+- Link to v1: https://lore.kernel.org/r/20260817-nouveau-fixes-v1-0-f518d0c735f3@outlook.com
+---
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c | 32 +++++++++++++++++++++++++++++++-
+ 1 file changed, 31 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index f5e4756b4de4..aa5b93808f41 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -85,6 +85,8 @@ struct uvmm_map_args {
+ 	u64 addr;
+ 	u64 range;
+ 	u8 kind;
++	/* Page size to give the new mapping, or 0 to derive it from the op. */
++	u8 page_shift;
+ };
+ 
+ static int
+@@ -655,7 +657,7 @@ op_map_prepare(struct nouveau_uvmm *uvmm,
+ 
+ 	uvma->region = args->region;
+ 	uvma->kind = args->kind;
+-	uvma->page_shift = select_page_shift(uvmm, op);
++	uvma->page_shift = args->page_shift ?: select_page_shift(uvmm, op);
+ 
+ 	drm_gpuva_map(&uvmm->base, &uvma->va, op);
+ 
+@@ -684,8 +686,20 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
+ 	struct drm_gpuva_op *op;
+ 	u64 vmm_get_start = args ? args->addr : 0;
+ 	u64 vmm_get_end = args ? args->addr + args->range : 0;
++	u8 map_page_shift = 0;
+ 	int ret;
+ 
++	/* A new mapping takes over the page tables of the mappings it replaces,
++	 * so every one of them has to be using its page size. The new mapping
++	 * is the last op drm_gpuvm_sm_map_ops_create() emits.
++	 */
++	if (args) {
++		struct drm_gpuva_op *last = drm_gpuva_last_op(ops);
++
++		if (last->op == DRM_GPUVA_OP_MAP)
++			map_page_shift = select_page_shift(uvmm, &last->map);
++	}
++
+ 	drm_gpuva_for_each_op(op, ops) {
+ 		switch (op->op) {
+ 		case DRM_GPUVA_OP_MAP: {
+@@ -713,11 +727,22 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
+ 			struct uvmm_map_args remap_args = {
+ 				.kind = uvma_from_va(va)->kind,
+ 				.region = uvma_from_va(va)->region,
++				/* The remainders of the split keep the page
++				 * tables of the mapping they are split from,
++				 * so they must keep its page size too.
++				 */
++				.page_shift = uvma_from_va(va)->page_shift,
+ 			};
+ 			u64 ustart = va->va.addr;
+ 			u64 urange = va->va.range;
+ 			u64 uend = ustart + urange;
+ 
++			if (map_page_shift &&
++			    remap_args.page_shift != map_page_shift) {
++				ret = -EINVAL;
++				goto unwind;
++			}
++
+ 			op_unmap_prepare(r->unmap);
+ 
+ 			if (r->prev) {
+@@ -756,6 +781,11 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
+ 			u64 uend = ustart + urange;
+ 			u8 page_shift = uvma_from_va(va)->page_shift;
+ 
++			if (map_page_shift && page_shift != map_page_shift) {
++				ret = -EINVAL;
++				goto unwind;
++			}
++
+ 			op_unmap_prepare(u);
+ 
+ 			if (!args)
+
+---
+base-commit: f5bbbfec59b4e2fb7520a91de3df8a6174325d6a
+change-id: 20260817-nouveau-fixes-23877845c3ab
+
+Best regards,
+-- 
+Junrui Luo <moonafterrain@outlook.com>
+
+
