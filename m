@@ -4,122 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33924CA6012
-	for <nouveau@archiver.kernel.org>; Fri,  9 Oct 2026 09:21:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15A77CA9EBB
+	for <nouveau@archiver.kernel.org>; Fri,  9 Oct 2026 11:52:08 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2599F89117;
-	Fri,  9 Oct 2026 09:21:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="V3ckakU/";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D844D1120B7;
+	Fri,  9 Oct 2026 11:52:06 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7E2FA489E9;
-	Fri,  9 Oct 2026 09:03:07 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 06609489EE;
+	Fri,  9 Oct 2026 11:33:41 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1791536587;
- b=bxju9IN9a38fxXLEDdMI72yjf0kGG7yxF7l0mzZYjfSnwfY1k3QrCsn0va32i0dvs3ZLe
- meFw5HtHbx3SgiBSixYkHlkR7qBn+frg+S4NXr+bvNoe19SSwyByrPe7SkWBWzi7GD5nv7F
- 26HTouBtON3S9vrdALnjCNY31vjtVRyKJDLFasRswbcsUfENFmoMJGW20bXpPv88YqcU9pe
- aLo1VLVMzqRtdjGSr95Fx6z+CVNVqGqaSnH3MYIJi9QW3P7mhN2tgWQT357lnX/lAq9xCmU
- D3SdHaSIFjKveujaAcRuJ8pMp440tSyLxl4eFZKu4UDmM62PtkS4dOSZacoQ==
+ s=20240201; t=1791545620;
+ b=HWuAmS5FFSabKF0OSBc5QBWrjVnzLCwvbWWqEVW/ATPvuTcIIBLnFvChcIHK5Z/pE7ILT
+ Vn9Kp9FnThniv5cN+L2oKUpEdWZg2NmgclsgGdl+43HOVuxe1nrDnjCHKs90oheDeEJb/wM
+ BvDzdl0KDD91VStIrG6n74c6eFqJt4RbgpXuBTc593pVIjkFGAX77HPRHem9g2JNw6+gD/o
+ yUzLEmIIAvvfkPlHbRH89x1yAVfclSOu7zz8wy6WWcaXxv194Sr3PSof42t+BPIP9saO016
+ JU/ybHDF808w1lfG1FhRI79eRlgkmczJ5u3vQEr3GK+c6Fp91RyH6EjvIFjQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1791536587; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1791545620; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=4NURHoycVD5KOHaofvAoadC4bkZDEmi7PA9iRvj90Qw=;
- b=aJm6f+R4Xk+zqk0hhK5zcPHhWe+15jtselSyqIDRFa5mcZF4QZKIn8S+hU181R/GkGO6R
- mHaXfDDdJvX0q6w0Gf6EtHodidSS4phcaJLMJdgFFSL2gxaT3GIW0ha3D8Fzja62ih4NB2K
- fd7KPyFXyVPzToIKTtz3nLqMp+cBwpQPnsFZuix0HMmyylalM0CeT8iIyjVrhskULcuf+9U
- ymetWpFdCumtJFueGJTGufPP0aWH69vzWArszo0u8AZwYoR8AvqolJ5JYjLUf9bqVRM1pvD
- koJtk881Xxr5NeMtk/3BWj5shfF3cx4kjn1eQ95dj45Fzukbk80oogNcyCAQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ bh=ZRsZi7sHn7Nex9ImTTa7NUY7tLsvdF7CQoZAmljfEtE=;
+ b=thCiKnrJBn71Y2daXUyv4VE8A7RqO+ETA+9BA+RbldKx5IxU+i9uQ83dX1u7Ec3MpSsGg
+ 32iAvgmlZ7i+qxN7OXWqEWtCwsP3o2gxXsh/tsnbTrtAoN8BdJ3meEzA/DHBLdiksLHvUp/
+ p6omu3sG3q+tKzYm2tl/dEgxzZt2JMMo9RyCP6ScZKrYEe/UCmy/MuxgpUiZweCPNMRgGxs
+ cGgCSVIwTrX8Xuxh5i96oanUAAVrJYvHkURx5Z26uxBc4XWQkvO9bz7OumxNElL9P3a0I6v
+ xPjlAUalrb3TUhxTgsqRjfq9oultWYs5EdayPyKaKA7q3PfWSb7fjKAp50ow==
+ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+  dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=fail;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 74FE448344
-	for <nouveau@lists.freedesktop.org>; Fri,  9 Oct 2026 09:03:04 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 735AF10FFE8;
-	Fri,  9 Oct 2026 09:21:29 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 150B7439BA;
-	Fri,  9 Oct 2026 09:21:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DDCA7C2BCF4;
-	Fri,  9 Oct 2026 09:21:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1791537689;
-	bh=qxzaWP43zMK890klSaHe9pUuha590tppejHYhCYdmWM=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=V3ckakU/wOS5fjZI3UykxDY7NzSCB0syU5TwjQN4ZBPmVu5gnF9ovl0lMCydA+bT7
-	 27G5NE0rObBU9iPMFHgbFHhZdYnwAvhsf8ho8NxWxB48idEgRVQBcZ0Lyer2JH/P7w
-	 L3xgDTmGZS757S/mTZFSRRehrMoNdZbsMoEk45tFItRCAqUx93wtymMtVpMQdryFcW
-	 5Ie6GgqsdwKk2TQd4xKJCfsdJlLyFzIPZy7QAo9J/Zn0hVI0fQ34wIa3IsuL8RCa5N
-	 91tqdCCzF7T1pCqMa3UHHX2TyiWuMzk9COCXm/QJSQBFcbLSV1dXl8G9flpZGKs1M9
-	 tQ6X8vejdkvWA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C7B16CA6019;
-	Fri,  9 Oct 2026 09:21:28 +0000 (UTC)
-From: Junrui Luo via B4 Relay <devnull+moonafterrain.outlook.com@kernel.org>
-Date: Fri, 09 Oct 2026 16:52:22 +0800
-Subject: [PATCH v2] drm/nouveau/uvmm: reject replace across page sizes
+	by kara.freedesktop.org (Postfix) with ESMTPS id 747ED489E7
+	for <nouveau@lists.freedesktop.org>; Fri,  9 Oct 2026 11:33:38 +0000 (UTC)
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6A4F21120A2;
+	Fri,  9 Oct 2026 11:52:03 +0000 (UTC)
+X-UUID: d2798a54c3d711f19a56ed5b684f684d-20261009
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19,REQID:c691bcf6-e7dd-4ae4-8863-0b37bebbeaeb,IP:0,U
+	RL:0,TC:0,Content:0,EDM:25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:25
+X-CID-META: VersionHash:7db8b62,CLOUDID:ceed06e202d5449ce84cc283a9489a01,BulkI
+	D:nil,BulkQuantity:0,SF:81|82|102|136|865|898,TC:nil,Content:0|15|50|99,ED
+	M:5|-100,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,
+	OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: d2798a54c3d711f19a56ed5b684f684d-20261009
+X-User: liupeng01@kylinos.cn
+Received: from t14 [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <liupeng01@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 551343682; Fri, 09 Oct 2026 19:51:54 +0800
+From: liupeng <liupeng01@kylinos.cn>
+To: lyude@redhat.com,
+	dakr@kernel.org
+Subject: [PATCH v3] drm/nouveau: Fix memory leaks in debugfs and hwmon init
+ error paths
+Date: Fri,  9 Oct 2026 19:51:51 +0800
+Message-ID: <20261009115151.13877-1-liupeng01@kylinos.cn>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <ea9a1d374cf3127e5047bc73807ce821022e026e.camel@redhat.com>
+References: <ea9a1d374cf3127e5047bc73807ce821022e026e.camel@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261009-nouveau-fixes-v2-1-a0b71bf8df1b@outlook.com>
-X-B4-Tracking: v=1; b=H4sIAEWryGoC/3WMyw7CIBBFf6WZtRgeIsSV/2G6qHSwRGUMFKJp+
- u9i9y7PvTlngYwpYIZTt0DCGnKg2EDuOnDTEG/IwtgYJJdHboVhkUrFoTAf3piZVNYYe9BODVd
- ozivhdjTl0jeeQp4pfbZ8Fb/1X6kKxpnXwo7cGaW9OlOZH0T3vaMn9Ou6fgGMdF8nrAAAAA==
-X-Change-ID: 20260817-nouveau-fixes-23877845c3ab
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andrew Morton <akpm@linux-foundation.org>,
- Balbir Singh <balbirs@nvidia.com>, Mary Guillemard <mary@mary.zone>,
- Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
- James Jones <jajones@nvidia.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4438;
- i=moonafterrain@outlook.com; h=from:subject:message-id;
- bh=6FpAwbqLK/tSxZV1GoB5Wx5YVWdL5AMEJN9IWTGboAc=;
- b=owJ4nJvAy8zAJVb4wiKgu++DA+NptSSGrBObxKWk9iQ8Eb7z+YiglLegTv0bxkKF7RVzbj/3+
- vpqZkaO+46OUhYGMS4GWTFFluMFl75Z+G7R3eKzJRlmDisTyBAGLk4BmMjiPoafjHutxK33MEb7
- /oq8tHfa+d31Yo7xjwpto4ON2U/38TqUMfxPu3fV7qLlpMTHtqIyX01uf//C1jq7wLxn1VaOsF+
- FP1dzAQCWFku6
-X-Developer-Key: i=moonafterrain@outlook.com; a=openpgp;
- fpr=C770D2F6384DB42DB44CB46371E838508B8EF040
-X-Endpoint-Received: by B4 Relay for moonafterrain@outlook.com/default with
- auth_id=909
-X-Original-From: Junrui Luo <moonafterrain@outlook.com>
-Message-ID-Hash: 3GH6IKMODN6G4OPTWIQ2LFHNKFW4AHVZ
-X-Message-ID-Hash: 3GH6IKMODN6G4OPTWIQ2LFHNKFW4AHVZ
-X-MailFrom: devnull+moonafterrain.outlook.com@kernel.org
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: EFSXGZCHMDLJXNWRGZEALIQA3OD2IUJE
+X-Message-ID-Hash: EFSXGZCHMDLJXNWRGZEALIQA3OD2IUJE
+X-MailFrom: liupeng01@kylinos.cn
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Yuhao Jiang <danisjiang@gmail.com>,
- stable@vger.kernel.org, Junrui Luo <moonafterrain@outlook.com>
+ loop; banned-address; member-moderation
+CC: maarten.lankhorst@linux.intel.com, mripard@kernel.org, simona@ffwll.ch,
+ linux@roeck-us.net, nouveau@karolherbst.de, bskeggs@redhat.com,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ stable@vger.kernel.org, liupeng <liupeng01@kylinos.cn>
 X-Mailman-Version: 3.3.8
 Precedence: list
-Reply-To: moonafterrain@outlook.com
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3GH6IKMODN6G4OPTWIQ2LFHNKFW4AHVZ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EFSXGZCHMDLJXNWRGZEALIQA3OD2IUJE/>
 Archived-At: 
- <https://lore.freedesktop.org/20261009-nouveau-fixes-v2-1-a0b71bf8df1b@outlook.com/>
+ <https://lore.freedesktop.org/20261009115151.13877-1-liupeng01@kylinos.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -129,130 +102,73 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Junrui Luo <moonafterrain@outlook.com>
+In nouveau_debugfs_init(), if nvif_object_ctor() fails, the previously
+allocated drm->debugfs is leaked because the function returns the
+error code directly.
 
-A new mapping takes over the page tables of the mappings it replaces.
-nouveau_uvmm_sm_prepare() only acquires page tables for the range no
-existing mapping covers, and the map path frees the replaced mappings
-without putting their references. That is only valid while all of them
-use the same page size, which select_page_shift() no longer guarantees.
+In nouveau_hwmon_init(), if hwmon_device_register_with_info() fails,
+the allocated hwmon structure is leaked because the function returns
+the error code directly.
 
-Rebinding a GART BO over a 2MiB VRAM BO therefore leaves the new mapping
-owning page tables built for a different page size, and it then maps at a
-size that was never referenced over that range. Since raw map does not
-allocate, nvkm_vmm_iter() can walk down to a NULL leaf and dereference
-it. The remainders of a split have the same problem: op_map_prepare()
-recomputes a page size with select_page_shift() while the remainder keeps
-the parent's page tables, so a parent that was itself downgraded can leave
-a remainder that re-aligns to a larger size. This happens on the unmap
-path too.
+Fix both by freeing the allocated memory and clearing the pointer on
+the error paths.
 
-Reject the bind, and make split remainders inherit the page size of the
-mapping they are split from.
-
-Fixes: c488a94e7e14 ("drm/nouveau/uvmm: Allow larger pages")
-Reported-by: Yuhao Jiang <danisjiang@gmail.com>
-Assisted-by: LLM
+Fixes: b126a200e9db ("drm/nouveau/debugfs: we need a ctrl object for debugfs")
+Fixes: b9ed919f1c8f ("drm/nouveau/drm/pm: remove everything except the hwmon interfaces to THERM")
 Cc: stable@vger.kernel.org
-Signed-off-by: Junrui Luo <moonafterrain@outlook.com>
 Reviewed-by: Lyude Paul <lyude@redhat.com>
+Signed-off-by: liupeng <liupeng01@kylinos.cn>
 ---
-Changes in v2:
-- Drop patch 1, which has been merged.
-- Use the abbreviated conditional operator for page_shift (Lyude Paul).
-- Compare against remap_args.page_shift (Lyude Paul).
-- Use Assisted-by: LLM (Balbir Singh).
-- Add Lyude's Reviewed-by.
-- Link to v1: https://lore.kernel.org/r/20260817-nouveau-fixes-v1-0-f518d0c735f3@outlook.com
----
- drivers/gpu/drm/nouveau/nouveau_uvmm.c | 32 +++++++++++++++++++++++++++++++-
- 1 file changed, 31 insertions(+), 1 deletion(-)
+Changes in v3:
+- Drop the extra return in nouveau_debugfs_init() as suggested by Lyude.
+- Add Reviewed-by tag.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-index f5e4756b4de4..aa5b93808f41 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-@@ -85,6 +85,8 @@ struct uvmm_map_args {
- 	u64 addr;
- 	u64 range;
- 	u8 kind;
-+	/* Page size to give the new mapping, or 0 to derive it from the op. */
-+	u8 page_shift;
- };
- 
- static int
-@@ -655,7 +657,7 @@ op_map_prepare(struct nouveau_uvmm *uvmm,
- 
- 	uvma->region = args->region;
- 	uvma->kind = args->kind;
--	uvma->page_shift = select_page_shift(uvmm, op);
-+	uvma->page_shift = args->page_shift ?: select_page_shift(uvmm, op);
- 
- 	drm_gpuva_map(&uvmm->base, &uvma->va, op);
- 
-@@ -684,8 +686,20 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
- 	struct drm_gpuva_op *op;
- 	u64 vmm_get_start = args ? args->addr : 0;
- 	u64 vmm_get_end = args ? args->addr + args->range : 0;
-+	u8 map_page_shift = 0;
- 	int ret;
- 
-+	/* A new mapping takes over the page tables of the mappings it replaces,
-+	 * so every one of them has to be using its page size. The new mapping
-+	 * is the last op drm_gpuvm_sm_map_ops_create() emits.
-+	 */
-+	if (args) {
-+		struct drm_gpuva_op *last = drm_gpuva_last_op(ops);
+ drivers/gpu/drm/nouveau/nouveau_debugfs.c | 14 +++++++++++---
+ drivers/gpu/drm/nouveau/nouveau_hwmon.c   |  2 ++
+ 2 files changed, 13 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+index 47d5579c568d..338421e52f69 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
++++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+@@ -295,13 +295,21 @@ nouveau_drm_debugfs_init(struct drm_minor *minor)
+ int
+ nouveau_debugfs_init(struct nouveau_drm *drm)
+ {
++	int ret;
 +
-+		if (last->op == DRM_GPUVA_OP_MAP)
-+			map_page_shift = select_page_shift(uvmm, &last->map);
+ 	drm->debugfs = kzalloc_obj(*drm->debugfs);
+ 	if (!drm->debugfs)
+ 		return -ENOMEM;
+ 
+-	return nvif_object_ctor(&drm->client.device.object, "debugfsCtrl", 0,
+-				NVIF_CLASS_CONTROL, NULL, 0,
+-				&drm->debugfs->ctrl);
++	ret = nvif_object_ctor(&drm->client.device.object, "debugfsCtrl", 0,
++			       NVIF_CLASS_CONTROL, NULL, 0,
++			       &drm->debugfs->ctrl);
++	if (ret) {
++		kfree(drm->debugfs);
++		drm->debugfs = NULL;
 +	}
 +
- 	drm_gpuva_for_each_op(op, ops) {
- 		switch (op->op) {
- 		case DRM_GPUVA_OP_MAP: {
-@@ -713,11 +727,22 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
- 			struct uvmm_map_args remap_args = {
- 				.kind = uvma_from_va(va)->kind,
- 				.region = uvma_from_va(va)->region,
-+				/* The remainders of the split keep the page
-+				 * tables of the mapping they are split from,
-+				 * so they must keep its page size too.
-+				 */
-+				.page_shift = uvma_from_va(va)->page_shift,
- 			};
- 			u64 ustart = va->va.addr;
- 			u64 urange = va->va.range;
- 			u64 uend = ustart + urange;
++	return ret;
+ }
  
-+			if (map_page_shift &&
-+			    remap_args.page_shift != map_page_shift) {
-+				ret = -EINVAL;
-+				goto unwind;
-+			}
-+
- 			op_unmap_prepare(r->unmap);
+ void
+diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+index 726397ab035d..ffbe7f542ab0 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+@@ -697,6 +697,8 @@ nouveau_hwmon_init(struct drm_device *dev)
+ 	if (IS_ERR(hwmon_dev)) {
+ 		ret = PTR_ERR(hwmon_dev);
+ 		NV_ERROR(drm, "Unable to register hwmon device: %d\n", ret);
++		drm->hwmon = NULL;
++		kfree(hwmon);
+ 		return ret;
+ 	}
  
- 			if (r->prev) {
-@@ -756,6 +781,11 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
- 			u64 uend = ustart + urange;
- 			u8 page_shift = uvma_from_va(va)->page_shift;
- 
-+			if (map_page_shift && page_shift != map_page_shift) {
-+				ret = -EINVAL;
-+				goto unwind;
-+			}
-+
- 			op_unmap_prepare(u);
- 
- 			if (!args)
-
----
-base-commit: f5bbbfec59b4e2fb7520a91de3df8a6174325d6a
-change-id: 20260817-nouveau-fixes-23877845c3ab
-
-Best regards,
 -- 
-Junrui Luo <moonafterrain@outlook.com>
-
+2.53.0
 
