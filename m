@@ -4,142 +4,113 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E482FCA9ED0
-	for <nouveau@archiver.kernel.org>; Mon, 12 Oct 2026 12:51:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 377CDCC6B0F
+	for <nouveau@archiver.kernel.org>; Tue, 13 Oct 2026 14:06:04 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C304710F0BF;
-	Mon, 12 Oct 2026 12:51:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 09CD810E8C1;
+	Tue, 13 Oct 2026 14:05:59 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 3A72C48A62;
-	Mon, 12 Oct 2026 12:32:32 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 08B4448A6B;
+	Tue, 13 Oct 2026 13:47:24 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1791808352;
- b=l3HjGlP4x/wvTVMqDOAQGQyx4371UoHLQAYDCyC7S4X8tsseM4Y0/dmJC50OXaEcGnaMi
- n6qK7KiuSpy/xkdGLl0Pk9+gK5tMCm09Tn9KA+s5e5HhAwdZSgmmCbxW9kkaH8wC3xzAGnt
- L5l9NJ6ciEMEZ+gT9Z48+TrD8XL91sTcZePo0CibsVX/3TDQuSBmrmDEXTMJF9GSb83H4/N
- aC5f6GFHVDNen66o2FLvcl3vj740+dWcGEUurepHq341dnr7tVtFcjokoSwXGTuyRnL9e7X
- j/2xka+0JQ6a/+LzYYHWHgpJc6K3ej5La9L9J39JTacsV8+XtoovZ5qJnMPg==
+ s=20240201; t=1791899243;
+ b=IbXiqq3IrOebfGilRciriUaSH6F20FVT2jRtx6wNvD3rYIu6SCHRewdObUiNQouKoB7SZ
+ Fbs5ieysdjRM9ucfPXE59ac4cGsyYJxKFz9G1GfrD48QOLXIDD+kGvZJR2i48sdFD4qYlyo
+ Bk1dTjV6Zpc/t+wNDRHOD1oW+K5TNHb29qDiQ8bOj5kwhHP5808VDargG6LIS4RnslozHfi
+ 9rKEyx/uZB00AAq5/fFEb2r22qn4f8X6229vnJErcP0ggt3K6BBVvBBYCqEggPNzaU6mURH
+ xPDGSXN9zZ8m/IlGDWLyc8oQ2Y4eQ11bKs+7sstWgv1nTXhTFu8yKTSQVB2Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1791808352; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1791899243; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=86WcGAeEklYqbgh3KKZHUzYuJQ+5rJGp9flS10qudDU=;
- b=xv/3J+kGwwoyexeRcAthQI02I5z8Hk+jnJrXh9HpL6Pi3SpieFhyVK59uSlvB+ENP2OCk
- rlkcSEIu/xeHS8kpciAghapgyybzj2e8Ryl+o8zCzpn6ELawapmawc1qGc5vAoGlChe1ATW
- f2jdKkAb66aQZafZyLFvVRoglUt3yTpvxjP46kLud5oKVRrerGKNAJsHyD8KSivKnDYwrHN
- lqIZ0ikDzEGlADZ9idWAlx5wtvj7txiYetSEh72Nn7vF9qVvWo7sce0MI/qBAv8AgUaKbFz
- QeEvmIdoOgE00X1pU8dcEl/l3DuGIOrM5dDp4+kcGI8ZzL/+LXcAgPis2SEQ==
+ bh=4RNvChQmNx1ZsQjDMrdbwFGeu5n8buJ6kgh5fV9g8d4=;
+ b=Lv18em9l2cKY4lqvXCysxAExUdB9MFUfeVSUJqnYhm19Rx7c0DwoNEB3s/8iw3KKb9u69
+ dlEIAWwn+QEKgG9dFOOh84Ssww/YF14zTAEUaxbLSFUbmdiVC+0NyesFaqvtp9vlPReEpVX
+ pqJLz4DDvcaBkNIlQgKFjA8VccL5e6r0/G2WaljVnWXd+pc7PXC5gzpSrwB1F1wH1rkyhxZ
+ XJG+UGghMEb3rxb7h89HN0HOV5zj5ik0ZWco5QYfH3A2T00YsZajNi8M08871pb9GeAww3Z
+ 2X14FuQCG9VmT0uBsOp0RwDym6XjgI/TfW7mmjkB+a3yX6Li2HOGjEoCJjTQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=icloud.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+  dmarc=pass (Used From Domain Record) header.from=icloud.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=icloud.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
+ dmarc=pass (Used From Domain Record) header.from=icloud.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5150446D2A
-	for <nouveau@lists.freedesktop.org>; Mon, 12 Oct 2026 12:32:29 +0000 (UTC)
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
- [209.85.216.52])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A996E10F0AB
-	for <nouveau@lists.freedesktop.org>; Mon, 12 Oct 2026 12:50:56 +0000 (UTC)
-Received: by mail-pj1-f52.google.com with SMTP id
- 98e67ed59e1d1-3ab3260b2cdso752131a91.1
-        for <nouveau@lists.freedesktop.org>;
- Mon, 12 Oct 2026 05:50:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1791809456; x=1792414256;
- darn=lists.freedesktop.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=86WcGAeEklYqbgh3KKZHUzYuJQ+5rJGp9flS10qudDU=;
-        b=O1EO+5zgoi3WVNF6eH7HR2nDxnXiZiNfI0ITvVNG8aCg/tL9NV+ZMGSYNk3I30hB8F
-         iBbAqUkxBWma94hh5/igaV9tnCUquqfhExcGmaaeMetXditFMJmo6posZBkSsi3CI/0w
-         4BpT3NupIP+BITqkJ9SnctXtn/wBh8R3LPL7Xg2emcAup0R3NSJsiojXEwa3lYH49B+S
-         rxXbmtWxT7o1Q6m9egCNxe/jjPplUFbElVU66Z/DVYY8xikt8RICDMCW+5KQIkYSR+oL
-         Tk9u6gJ+Sn9uDBTTJ6o52Llxhoxql+TuFlXfuM728IOYNRdGrO2ahBw+rMBgoj6Mo7LF
-         oBBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791809456; x=1792414256;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=86WcGAeEklYqbgh3KKZHUzYuJQ+5rJGp9flS10qudDU=;
-        b=Cy6K8FppRoMyU0BC6/xYEx0sxbXcITRgAJnzUKXsTlgT+PfGAGADK+yJsnSI3i72Gc
-         PWqtjS/+jHdHaBBpP8hZFqZFj9DOqoj9/oihX7NYr58F3H6g7qFs999hDatD4O/LNIsS
-         mkMl8evlwuFeWK8d/z+NNBe9+c9gGkkw4jXYQoMIc5rc3Zgc4kIoHp22fZMJRJXIzFg2
-         sy0Dgug9A3YQk77nP4tPvta8PKvtBjvcQh1zNLwdkO6UHDVKbyIPWeDSbShQFQh4ARro
-         KtVt+JGw3lPr737UIYZmzP7SRbRWA088GQqbaF+L3VvZ/0bQ4dtvNV1NMstX0v4jCJnR
-         H5ZA==
-X-Forwarded-Encrypted: i=1;
- AKwUvBzXKY1/GYsxHUQL4GvXGCRGQ3YIb6GGKXtMZPjSaHdI/D0KuQNRFzYaxoinQlOazv1BBeWl+LlB@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYI+skftzfMZV/WCNGqQsfGfYNe+3JaV9RSr+I5BO+O7k1uxBUJe
-	tOojZU0EMQpv5y8hJUc219VB7Ool9vUpwUrCw4rFwUCGejrgejARroaQ
-X-Gm-Gg: AYBFou0kY4vBf+FyNEggJNUZPiAXSkjdRHSBvkvIgSYcuB8efTjOjth20KyMiWAtWMH
-	LLxouDWWthLaqjYRoh6LlfuEwlPPGSA3XUdXhVf9iOYNg1MMWoIhrIBs+mH8IcjhQKBrZm/vEaB
-	qJJCWVZohJxcKOP1Uejvvp+owK57WlME7okMOtnE0g4qmK91a6wCfgLb2RWUOfUTR5OEeDDRXUM
-	HObiDzlPcgFJuBY4dVdZg6zhX8dsHI4i+NBjDf4oISY3a3sL6yaI0aOVG3oirZDkOqLctBtqAGw
-	Zumml3N8A3UdeMgFt3/jjMiyexADIx7wj/XF7qJzdl5iiAh1k0q+88UuFnyLK2hDTetPcZO7H3P
-	3Mkm9Ul60+lZfg7rIGGa3VBxH/s3E1C/4U9KxAYTFN/ySrVsRGBj7t/ctaoYN64hfozaeQYqniv
-	BC+mVAcNURFzy17s5AUNJ7aSpzdXSz1JwCm9/DsJHKu7munYUksLCbVuWIWYJSa0l09QySeq6EV
-	vEVMS+YxcylU+c=
-X-Received: by 2002:a17:90b:1dc1:b0:3a0:eeda:39f3 with SMTP id
- 98e67ed59e1d1-3ab3aafac4fmr6499105a91.24.1791809456102;
-        Mon, 12 Oct 2026 05:50:56 -0700 (PDT)
-Received: from b4send_258f78389c344e02.eml ([23.155.4.238])
-        by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-3ab3962f771sm7634732a91.2.2026.10.12.05.50.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Oct 2026 05:50:55 -0700 (PDT)
-From: Zhenhao Wan <whi4ed0g@gmail.com>
-Date: Mon, 12 Oct 2026 20:50:47 +0800
-Subject: [PATCH v2] drm/nouveau/sw: prevent NULL deref of disp in vblank
- methods
+	by kara.freedesktop.org (Postfix) with ESMTPS id 55E8346D2A
+	for <nouveau@lists.freedesktop.org>; Mon, 12 Oct 2026 22:05:56 +0000 (UTC)
+X-Greylist: delayed 993 seconds by postgrey-1.36 at gabe;
+ Mon, 12 Oct 2026 22:24:24 UTC
+Received: from outbound.ci.icloud.com (ci-2007a-snip4-6.eps.apple.com
+ [57.103.88.9])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 828A910E6A8
+	for <nouveau@lists.freedesktop.org>; Mon, 12 Oct 2026 22:24:24 +0000 (UTC)
+Received: from outbound.ci.icloud.com (unknown [127.0.0.2])
+	by p00-icloudmta-asmtp-us-central-1k-60-percent-7 (Postfix) with ESMTPS id
+ 8A0641800C2B;
+	Mon, 12 Oct 2026 22:07:49 +0000 (UTC)
+X-ICL-RepId: 01a13228-6117-710b-afbc-3a1d3671b653
+X-ICL-Out-Info: 
+ HUtFAUMEWwJACUgATUQeDx5WFlZNRAJCTQhKCkMFWhxBDUkdXAVLVxQEHkkIRR5aHnkRUAFYHlZeWhdeTVEPDxlaFFwYU0VRH1RYQQ4KWgBQUR1fAgoERwRbF0YDU0VRGRcRUAFYHlZeWhdeTUcfQE1iSQFaGVscQBdKbk1TDw8ZWhRcGFNFUR9UWF4EU1YOQglKBVwHWgBCC0gEXw9FA0QBTgJABkZUClwKRgVZK1sTVRdGCRkIXR0HWEcURw4PGVoUXBhT
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com; s=1a1hai;
+ t=1791842870; x=1823378870; bh=4RNvChQmNx1ZsQjDMrdbwFGeu5n8buJ6kgh5fV9g8d4=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme;
+ b=Q1s4bxZQl+i4jQfbc4Uwe8Phh/tc/HpZKwSRaX61+mnRzAhG9X9wcVdle0RSCjmjRjM9P4NLxqIWum6n7ovuIyvvDfQKYFjSCdLhCoddneBg4fCmuIQRT0fv7ghIFHzCqEaeItQoKIas7nPtWRpK9ENVkjogDLNj5Z+O25JOnY4eyCq14QZFInr7rNUxWBF671KtFOASXNR1qMA0EUsGftVJsRpoAHck65RNR0UEPhvp0dlK+QaFhwhACllYdAJsGccJIJP36e5OyTPWwhQOX7eM4BSTCt66UkitDmPaReahsG6rWkfdcjNyUPdf4WQghAtZZq6ArE26DitoPsWlog==
+Received: from 252-PC-L.device.rit.edu (unknown [17.57.156.36])
+	by p00-icloudmta-asmtp-us-central-1k-60-percent-7 (Postfix) with ESMTPSA id
+ CC98918001AA;
+	Mon, 12 Oct 2026 22:07:48 +0000 (UTC)
+From: Finn Zeruhn <fzeruhn@icloud.com>
+To: dri-devel@lists.freedesktop.org
+Subject: [PATCH v2] drm/dp: keep MOT set between messages when no_zero_sized
+ is set
+Date: Mon, 12 Oct 2026 18:07:28 -0400
+Message-ID: <20261012220728.14861-1-fzeruhn@icloud.com>
+X-Mailer: git-send-email 2.56.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: 
- <20261012-nouveau-nvkm-absent-subdev-null-deref-v2-1-8b15a3f1c371@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAKbXzGoC/5WOSw6CMBRFt0Le2GdKwy+O3Idh0M9DqtCaljYaw
- t4tuAKH5+b+VgjkDQW4FCt4SiYYZzPwUwFqFPZOaHRm4Iw3rCs5WhcTiYg2PWcUMpBdMESpKaG
- N04SaPA041FzLWvGqYh3krlcWzfvYufU/zqEHqWUv3x2jCYvzn+NIKnffv5upRIYtsbodGkFSs
- Ot9FmY6KzdDv23bF5qNAU/sAAAA
-X-Change-ID: 20260812-nouveau-nvkm-absent-subdev-null-deref-f52db5c24408
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1791809447; l=3997;
- i=whi4ed0g@gmail.com; h=from:subject:message-id;
- bh=9D/BNSC23S/Qmnz/rEyuzPeALBLDnVdnrOUvYw7hLMw=;
- b=EjYVQoBJ6xfZQoHh8JqdMA3zViHlPBACAXRZvdK3Aszn9sbBVAZ7oNcqK6IEHDatxfkwImc/7
- QvOFnSStI5VCtBFFJdX0SXubQOKx+LQwBQlTOYP7bRY8+bvvPJjMtMg
-X-Developer-Key: i=whi4ed0g@gmail.com; a=ed25519;
- pk=zRTKlstE0LmilshGwJsFYEVjiT6RiXMBXK8Og6VmuVQ=
-Message-ID-Hash: 4ZNJTZXVHT5AUO26CIBBZDFDDURGX6K5
-X-Message-ID-Hash: 4ZNJTZXVHT5AUO26CIBBZDFDDURGX6K5
-X-MailFrom: whi4ed0g@gmail.com
+Content-Transfer-Encoding: 8bit
+X-Authority-Info-Out: v=2.4 cv=FJoWBuos c=1 sm=1 tr=0 ts=6acd5a36
+ cx=c_apl:c_pps:t_out a=2G65uMN5HjSv0sBfM2Yj2w==:117
+ a=2G65uMN5HjSv0sBfM2Yj2w==:17 a=660iZSQnnn4A:10 a=x7bEGLp0ZPQA:10
+ a=UWokjQvqbcQA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=v3ZZPjhaAAAA:8
+ a=4Y1DqYvJFVATt9YQ-gkA:9
+X-Proofpoint-GUID: UFaH4ZMkzSVwnaRhiXHg1unmSdFc41RC
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDEyMDA4OCBTYWx0ZWRfX8tGDfvLVTEu5
+ /eCKjCPFAZ3PUNHsiJtG9lMdT0xINTG5YvIw1F+NTKYoBdS1XzaEOhj/YqobqfVUfv5B4L0uZIo
+ ljg8gqUIJyJNFD8qxX1zqOs6btsxtg0zSA8j0+Ya+RLQoVJ5rIwLkuboYpKbiMVOeE9UhVU0MU4
+ 5ayYR1q3o+vvqlPwCMiDe3WPZ//ZmvVyp4dFf5tyIV8/+95Bm53ulaJq3LBKOVWJc2C4QqZ8MK/
+ /HocGvncg/EB/ScK51IefPuT3WlNgRZrhMpL0xOzcRyyjay21XTZIz3T6yJSMzcYy/sXOQCyYZl
+ V+SgL9ILd7CX3DWv88oX4tekCMNByptYxjyPUmaXsfcdNPZaP2QzUh4IaknhKI=
+X-Proofpoint-ORIG-GUID: UFaH4ZMkzSVwnaRhiXHg1unmSdFc41RC
+X-JNJ: 
+ AAAAAAABCa9tMSaO86BRh/JsoI4xZ5q9hHxPbgdazF/w/KUUMMSNABkQt2//kzYOF1jYZQfanTaMPKhFZ33ZInURycjHfhnrDRY4sFqsp/2TRrccKblweNpCdfRX1rZoHAXw7narf18KFfltC+JRJqtG2cZ3TEfl5yWvEgtuyLeNTaoCVxeXdgJkHrveZbEeK8TYzv3pY7sffO0NDPQAa0yU/2iA7f5Y2Vmq1YqUiMEwR/1iVOlnpp1s6lf0qN2YqJuI84Hhbo8zFZ/k0i0ktkkIS+EEb8jW9EbvDvbQlE+KButIqMDTJt0SMV+FtukY28lfwlt27z1Uc7xceZ/hFu7xApPUuvUqYhB5G6LW7dbQ7r3gAhmDS76ppuRssG6tzA3JrnYzwv1MAuuwvoPqlfqopXAiROzdpIrYO8+WdeJAKL/cFaqJPg0noUr6diAnrT0o/STLeDzfuja8VWcdAfyImPWAT0ok1GzFWaUoaJvlBrd+rR+3tCPjh1DK9bK0Zvfd3k8UHGjKFh9QRSyB3pRqwoMmOeh4NQnGiron/zsnAGL4PW5kUXQPWuuNFXQZIik2n7RFOwzyN5qQHoeMnS/GMP92R0PbcpDRfs+GZOkghcIpbJhLOgxMyxrJzurrt9+qXubllVm9JT6NOxgaRgKgu7zEhYZfnGqv3s3yyDTnmafmj7jdn1IFzFjwHP9eKZNjtQTmEdAtjF3PKYp/Jzuz0NdyuoVb3z9iXs986IqnOyysViYPbojMLeQBMeR6dpEpNu9hgrkDpv1LFBjQ8qGSgG/blH54UVrvpUHD/A0MJSOKbYYgd0n48xU4PDlpLOpn89hF2HdyQ7WKkGraKk7SMXa02uTHHm1vbK8yAFo1v6+eAf+QSnS5Pf+suHVkqVTBT10Udb5dQF9ciApOphQKHigsM44gWHea13QPU7itMeTjW+ngOM5eCLga5UXghMHPuM+yTemQUb53+i/KKkiEmglM442
+ HJ3CqF7kjUdGkCtoewtJiqrpFr9lsp/9oFzXJqdloy7bFp8SDzN11eBXhnS7YCV7wvVZKzZtCXW1RBadTBs6i+BJoGaP5tNLQl1k+i0l7j4qVBJH/V4/XL+XE+PLbQB2zRI//VtBCFZRJQpsXwe+/FYQ2xV2t5dswU8kRhC9Fut9a2kCZmhD8+eo2cH6Xx/z4bBY/GebqC5l8BtQcF6QRBL2Y+2VFM2N3SqoiVIeS5fzyfkhTcoEFKGGn5+dULNwKPGQS3TdiWytSB0KTACHuj1fWpQxYAlUCnSEknfkUFSn3UOw6JeqFN2QvyJvtJ1FNgkdQ9EuT1iT+sqeZrXqqeIQumf+kJmjawqg++zMjJkPjqbfUmg==
+X-Apple-Category-Label: MTE1NzgzMjUxMzU6JGNhdGVnb3J5JF9QZXJzb25hbCw=
+X-MailFrom: fzeruhn@icloud.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Yuhao Jiang <danisjiang@gmail.com>,
- Zhenhao Wan <whi4ed0g@gmail.com>, Ben Skeggs <bskeggs@redhat.com>
+Message-ID-Hash: VN2KNXB2JXJKWZF2SVXWIM3SU4ATFOGH
+X-Message-ID-Hash: VN2KNXB2JXJKWZF2SVXWIM3SU4ATFOGH
+X-Mailman-Approved-At: Tue, 13 Oct 2026 13:47:21 +0000
+CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Finn Zeruhn <fzeruhn@icloud.com>,
+ stable@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4ZNJTZXVHT5AUO26CIBBZDFDDURGX6K5/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VN2KNXB2JXJKWZF2SVXWIM3SU4ATFOGH/>
 Archived-At: 
- <https://lore.freedesktop.org/20261012-nouveau-nvkm-absent-subdev-null-deref-v2-1-8b15a3f1c371@gmail.com/>
+ <https://lore.freedesktop.org/20261012220728.14861-1-fzeruhn@icloud.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -149,90 +120,82 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-The NV50 and GF100 software-class vblank methods nv50_sw_chan_mthd()
-and gf100_sw_chan_mthd() evaluate "data < device->disp->vblank.index_nr"
-to validate the requested vblank head before allowing its notifier.
+When aux->no_zero_sized is set, drm_dp_i2c_xfer() cannot use a bare
+address packet to close the transaction, so it clears MOT on the last
+data packet instead. The check only looks at the position within the
+current i2c_msg, so MOT is cleared at the end of every message and each
+one is terminated by an I2C stop.
 
-On a headless card the display subdevice is absent: nvkm_subdev_disable()
-(strap-driven from devinit) and the -ENODEV path of the NVKM_LAYOUT_ONCE
-device constructor both leave device->disp == NULL while the device
-continues to probe and still registers a render node (DRIVER_RENDER). An
-unprivileged client holding a /dev/dri/renderD* fd can then create a
-software channel and push method 0x0408 (NV50) / 0x040c (GF100), which
-dereferences the NULL device->disp and oopses the kernel.
+This breaks E-DDC reads of EDID blocks 2 and up. Those are read as three
+messages: a write of the segment pointer to 0x30, a write of the offset
+to 0x50, and the read. The stop after the first message resets the
+segment pointer, so the read returns segment 0 again.
 
-The channel constructors nv50_sw_chan_new() and gf100_sw_chan_new()
-already tolerate an absent display ("for (i = 0; disp && ...)"), so no
-vblank notifier is ever registered on such a card and the method handlers
-are the only path that assumes disp is present. Guard the dereference
-with the same disp NULL test the constructors already use.
+On a Pimax Dream Air (three EDID blocks, native timings in a DisplayID
+extension in block 2) connected to an RTX 5070 Ti with nouveau, block 2
+reads back as a copy of block 0. The checksum is valid, so nothing is
+reported, and the connector only offers fallback modes.
 
-Fixes: 79ca27706a03 ("drm/nouveau/core: rework event interface")
-Reported-by: Yuhao Jiang <danisjiang@gmail.com>
-Assisted-by: LLM
-Reviewed-by: Lyude Paul <lyude@redhat.com>
-Signed-off-by: Zhenhao Wan <whi4ed0g@gmail.com>
+Clear MOT only on the last packet of the last message, as the commit
+that added the option describes. Trailing messages without data are
+skipped when looking for that packet, since nothing is sent for them
+and the stop would otherwise be lost. With this, block 2 reads
+correctly and the native 7104x3840 modes are listed for the Dream Air.
+
+The same problem was pointed out by the Sashiko review of the patch that
+sets no_zero_sized for all DisplayPort connectors in nouveau.
+
+Fixes: f0ddbb1eed18 ("drm/dp: add option to disable zero sized address only transactions.")
+Link: https://lore.kernel.org/all/20260827015758.0B4FB1F000E9@smtp.kernel.org/
+Cc: stable@vger.kernel.org
+Assisted-by: Claude:claude-opus-5-5
+Signed-off-by: Finn Zeruhn <fzeruhn@icloud.com>
 ---
 Changes in v2:
-- Add the Fixes: tag Lyude asked for. 79ca27706a03 replaced the NULL-safe
-  per-channel vblank.nr_event bound (0 when there is no display) with a
-  direct disp->vblank.index_nr dereference.
-- Drop Cc: stable and spell Assisted-by: as LLM, matching how Lyude
-  applied patch 2/2.
-- Pick up Lyude's Reviewed-by.
-- Patch 2/2 of v1 ("drm/nouveau: prevent NULL deref of gr in
-  GETPARAM_GRAPH_UNITS") is unchanged and already applied to
-  drm-misc-next as f569473c1393, so it is not resent.
-- Link to v1: https://patch.msgid.link/20260812-nouveau-nvkm-absent-subdev-null-deref-v1-0-7e057f6aeba0@gmail.com
+- Clear MOT on the last message that carries data, so a transfer that
+  ends in a zero-length message still gets its stop.
 
-To: Lyude Paul <lyude@redhat.com>
-To: Danilo Krummrich <dakr@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Maxime Ripard <mripard@kernel.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-To: David Airlie <airlied@gmail.com>
-To: Simona Vetter <simona@ffwll.ch>
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
----
- drivers/gpu/drm/nouveau/nvkm/engine/sw/gf100.c | 2 +-
- drivers/gpu/drm/nouveau/nvkm/engine/sw/nv50.c  | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+v1: https://lore.kernel.org/dri-devel/20261002212833.9674-1-fzeruhn@icloud.com/
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/sw/gf100.c b/drivers/gpu/drm/nouveau/nvkm/engine/sw/gf100.c
-index 0171cdf6f639..4cf8cd120c76 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/sw/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/sw/gf100.c
-@@ -72,7 +72,7 @@ gf100_sw_chan_mthd(struct nvkm_sw_chan *base, int subc, u32 mthd, u32 data)
- 		chan->vblank.value = data;
- 		return true;
- 	case 0x040c:
--		if (data < device->disp->vblank.index_nr) {
-+		if (device->disp && data < device->disp->vblank.index_nr) {
- 			nvkm_event_ntfy_allow(&chan->vblank.notify[data]);
- 			return true;
- 		}
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/sw/nv50.c b/drivers/gpu/drm/nouveau/nvkm/engine/sw/nv50.c
-index 0cfb1eaae6de..b202e11238a5 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/sw/nv50.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/sw/nv50.c
-@@ -69,7 +69,7 @@ nv50_sw_chan_mthd(struct nvkm_sw_chan *base, int subc, u32 mthd, u32 data)
- 	case 0x0400: chan->vblank.offset = data; return true;
- 	case 0x0404: chan->vblank.value  = data; return true;
- 	case 0x0408:
--		if (data < device->disp->vblank.index_nr) {
-+		if (device->disp && data < device->disp->vblank.index_nr) {
- 			nvkm_event_ntfy_allow(&chan->vblank.notify[data]);
- 			return true;
- 		}
+ drivers/gpu/drm/display/drm_dp_helper.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
----
-base-commit: db2ddb87143519e20a95aa36c60b36107b736a58
-change-id: 20260812-nouveau-nvkm-absent-subdev-null-deref-f52db5c24408
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+index 488fd123a01a..dfa64d20ab55 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -2149,7 +2149,7 @@ static int drm_dp_i2c_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs,
+ 			   int num)
+ {
+ 	struct drm_dp_aux *aux = adapter->algo_data;
+-	unsigned int i, j;
++	unsigned int i, j, last;
+ 	unsigned transfer_size;
+ 	struct drm_dp_aux_msg msg;
+ 	int err = 0;
+@@ -2159,6 +2159,10 @@ static int drm_dp_i2c_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs,
+ 
+ 	dp_aux_i2c_transfer_size = clamp(dp_aux_i2c_transfer_size, 1, DP_AUX_MAX_PAYLOAD_BYTES);
+ 
++	last = num - 1;
++	while (last > 0 && !msgs[last].len)
++		last--;
++
+ 	memset(&msg, 0, sizeof(msg));
+ 
+ 	for (i = 0; i < num; i++) {
+@@ -2192,7 +2196,8 @@ static int drm_dp_i2c_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs,
+ 			msg.buffer = msgs[i].buf + j;
+ 			msg.size = min(transfer_size, msgs[i].len - j);
+ 
+-			if (j + msg.size == msgs[i].len && aux->no_zero_sized)
++			if (aux->no_zero_sized && i == last &&
++			    j + msg.size == msgs[i].len)
+ 				msg.request &= ~DP_AUX_I2C_MOT;
+ 			err = drm_dp_i2c_drain_msg(aux, &msg);
+ 
 
-Best regards,
---  
-Zhenhao Wan <whi4ed0g@gmail.com>
+base-commit: bca45af5998a05f34b13a2ef11e639bac9c62643
+-- 
+2.56.0
 
