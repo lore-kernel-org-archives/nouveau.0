@@ -4,113 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 377CDCC6B0F
-	for <nouveau@archiver.kernel.org>; Tue, 13 Oct 2026 14:06:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CEEFCC6B12
+	for <nouveau@archiver.kernel.org>; Tue, 13 Oct 2026 14:52:29 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 09CD810E8C1;
-	Tue, 13 Oct 2026 14:05:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 50AC810E8E5;
+	Tue, 13 Oct 2026 14:52:22 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 08B4448A6B;
-	Tue, 13 Oct 2026 13:47:24 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 561A748A70;
+	Tue, 13 Oct 2026 14:33:47 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1791899243;
- b=IbXiqq3IrOebfGilRciriUaSH6F20FVT2jRtx6wNvD3rYIu6SCHRewdObUiNQouKoB7SZ
- Fbs5ieysdjRM9ucfPXE59ac4cGsyYJxKFz9G1GfrD48QOLXIDD+kGvZJR2i48sdFD4qYlyo
- Bk1dTjV6Zpc/t+wNDRHOD1oW+K5TNHb29qDiQ8bOj5kwhHP5808VDargG6LIS4RnslozHfi
- 9rKEyx/uZB00AAq5/fFEb2r22qn4f8X6229vnJErcP0ggt3K6BBVvBBYCqEggPNzaU6mURH
- xPDGSXN9zZ8m/IlGDWLyc8oQ2Y4eQ11bKs+7sstWgv1nTXhTFu8yKTSQVB2Q==
+ s=20240201; t=1791902027;
+ b=Sj5NBdHchLSbYD1S3P67Qb8tiLBgzCuS82Sd+5r3riKeOFbWd1bcR56DNehy1Py4y7eHF
+ /yHlTtq44zftLcZ6XAUECAB2ZWFc4hU5lf3/7J8hdM7+MSZJVVZAA4AkqBmFS987sy9zqzK
+ 4hDMe749yRaahECoZG9JzDCoTZR8lAxy6rYXwEw/XYysTD7FeBPJpnTXzRUABVfEeX8ryRN
+ PSu8bHf6ntxl+RyIhTS8JeydYqdELAqsRnhSuiML2nuAFSOsKkCE3IoELRSKXOYwbi+gkN0
+ k9nkwIX+PthXoED8ZxWXv/tMkeChnlEnXTuqwpq+NQ19uYaolt4tRCtnZvOg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1791899243; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1791902027; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=4RNvChQmNx1ZsQjDMrdbwFGeu5n8buJ6kgh5fV9g8d4=;
- b=Lv18em9l2cKY4lqvXCysxAExUdB9MFUfeVSUJqnYhm19Rx7c0DwoNEB3s/8iw3KKb9u69
- dlEIAWwn+QEKgG9dFOOh84Ssww/YF14zTAEUaxbLSFUbmdiVC+0NyesFaqvtp9vlPReEpVX
- pqJLz4DDvcaBkNIlQgKFjA8VccL5e6r0/G2WaljVnWXd+pc7PXC5gzpSrwB1F1wH1rkyhxZ
- XJG+UGghMEb3rxb7h89HN0HOV5zj5ik0ZWco5QYfH3A2T00YsZajNi8M08871pb9GeAww3Z
- 2X14FuQCG9VmT0uBsOp0RwDym6XjgI/TfW7mmjkB+a3yX6Li2HOGjEoCJjTQ==
+ bh=kYokskwFXqmZbxKXA0hYcmteDiHu4dzWazXznQi6jas=;
+ b=mQ5LYXjYFTckGO5RacXpNr/+MCCDoXW/bRjNtw1HNUcW3lYM1/1qKagT54QCQ/zMsjEnE
+ V0Qkcd4K0rnJbx7TEtQGHZSbcCqcFCllBXW1uj71aAdXHRgJbXjf03PyWDUwdrVfUMkgS3z
+ VXkcishcCPdd8Z5KcGJt6dxwDwmnLWuzVNtceX1feZAME81KlauUo5q5/s4+anv89UdRHwe
+ TbQvrWXNL7xeT3HPKMHwQtj7yp6ZgbJdxA9//rZajQ2fePjtaKfC9171Td77fCl9xakAam+
+ cOG3HAIvgoflYbq22G4J1CvpNIyhDYs+HqcO8qru1CtD3q7rG22GL9ZTtegg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=icloud.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=icloud.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=icloud.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=icloud.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 55E8346D2A
-	for <nouveau@lists.freedesktop.org>; Mon, 12 Oct 2026 22:05:56 +0000 (UTC)
-X-Greylist: delayed 993 seconds by postgrey-1.36 at gabe;
- Mon, 12 Oct 2026 22:24:24 UTC
-Received: from outbound.ci.icloud.com (ci-2007a-snip4-6.eps.apple.com
- [57.103.88.9])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 828A910E6A8
-	for <nouveau@lists.freedesktop.org>; Mon, 12 Oct 2026 22:24:24 +0000 (UTC)
-Received: from outbound.ci.icloud.com (unknown [127.0.0.2])
-	by p00-icloudmta-asmtp-us-central-1k-60-percent-7 (Postfix) with ESMTPS id
- 8A0641800C2B;
-	Mon, 12 Oct 2026 22:07:49 +0000 (UTC)
-X-ICL-RepId: 01a13228-6117-710b-afbc-3a1d3671b653
-X-ICL-Out-Info: 
- HUtFAUMEWwJACUgATUQeDx5WFlZNRAJCTQhKCkMFWhxBDUkdXAVLVxQEHkkIRR5aHnkRUAFYHlZeWhdeTVEPDxlaFFwYU0VRH1RYQQ4KWgBQUR1fAgoERwRbF0YDU0VRGRcRUAFYHlZeWhdeTUcfQE1iSQFaGVscQBdKbk1TDw8ZWhRcGFNFUR9UWF4EU1YOQglKBVwHWgBCC0gEXw9FA0QBTgJABkZUClwKRgVZK1sTVRdGCRkIXR0HWEcURw4PGVoUXBhT
-Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com; s=1a1hai;
- t=1791842870; x=1823378870; bh=4RNvChQmNx1ZsQjDMrdbwFGeu5n8buJ6kgh5fV9g8d4=;
- h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme;
- b=Q1s4bxZQl+i4jQfbc4Uwe8Phh/tc/HpZKwSRaX61+mnRzAhG9X9wcVdle0RSCjmjRjM9P4NLxqIWum6n7ovuIyvvDfQKYFjSCdLhCoddneBg4fCmuIQRT0fv7ghIFHzCqEaeItQoKIas7nPtWRpK9ENVkjogDLNj5Z+O25JOnY4eyCq14QZFInr7rNUxWBF671KtFOASXNR1qMA0EUsGftVJsRpoAHck65RNR0UEPhvp0dlK+QaFhwhACllYdAJsGccJIJP36e5OyTPWwhQOX7eM4BSTCt66UkitDmPaReahsG6rWkfdcjNyUPdf4WQghAtZZq6ArE26DitoPsWlog==
-Received: from 252-PC-L.device.rit.edu (unknown [17.57.156.36])
-	by p00-icloudmta-asmtp-us-central-1k-60-percent-7 (Postfix) with ESMTPSA id
- CC98918001AA;
-	Mon, 12 Oct 2026 22:07:48 +0000 (UTC)
-From: Finn Zeruhn <fzeruhn@icloud.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH v2] drm/dp: keep MOT set between messages when no_zero_sized
- is set
-Date: Mon, 12 Oct 2026 18:07:28 -0400
-Message-ID: <20261012220728.14861-1-fzeruhn@icloud.com>
-X-Mailer: git-send-email 2.56.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 97F7C48530
+	for <nouveau@lists.freedesktop.org>; Tue, 13 Oct 2026 14:33:44 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 480BB10E00F;
+	Tue, 13 Oct 2026 14:52:14 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 760D460A52;
+	Tue, 13 Oct 2026 14:52:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 276071F000FF;
+	Tue, 13 Oct 2026 14:52:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1791903133;
+	bh=kYokskwFXqmZbxKXA0hYcmteDiHu4dzWazXznQi6jas=;
+	h=From:To:Cc:Subject:Date;
+	b=maz/NfDLUqWVk46kbQMUYi+byb8hig2awtRci3j40GQMdgpsPuS0sCFthj5FFvq1n
+	 WBd+9CZfIpchLU1v2GvSoK418B55YxWRRVnYYJVBYdjT5KEAW3+IM0AchnSIuo3yaA
+	 w0hymCfISUgZUKjEHm1Xc2oh30ec4DIi890rilGsmcqHM9p3/NuNe88UKXFgWlRObE
+	 Gm8+In9FCU9xPAZlJ6EiJ1gnKqqt3neOvnQsDDduqrMA3v3KWZqcRFdNjyd9dsAqLJ
+	 WgI1UXnTeXyC6Cq5jiqiQ7F6914ahbIIdPSttuKaJwiGHVjlFGljGu9DaRq5Ne5Q3v
+	 as4m/OI4y0Slw==
+From: Sasha Levin <sashal@kernel.org>
+To: Thierry Reding <thierry.reding@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Lyude Paul <lyude@redhat.com>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH 1/3] dt-bindings: gpu: nvidia,gk20a: Allow a fuse clock after
+ the reference clock
+Date: Tue, 13 Oct 2026 10:52:08 -0400
+Message-ID: <20261013145210.103565-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Info-Out: v=2.4 cv=FJoWBuos c=1 sm=1 tr=0 ts=6acd5a36
- cx=c_apl:c_pps:t_out a=2G65uMN5HjSv0sBfM2Yj2w==:117
- a=2G65uMN5HjSv0sBfM2Yj2w==:17 a=660iZSQnnn4A:10 a=x7bEGLp0ZPQA:10
- a=UWokjQvqbcQA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=v3ZZPjhaAAAA:8
- a=4Y1DqYvJFVATt9YQ-gkA:9
-X-Proofpoint-GUID: UFaH4ZMkzSVwnaRhiXHg1unmSdFc41RC
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDEyMDA4OCBTYWx0ZWRfX8tGDfvLVTEu5
- /eCKjCPFAZ3PUNHsiJtG9lMdT0xINTG5YvIw1F+NTKYoBdS1XzaEOhj/YqobqfVUfv5B4L0uZIo
- ljg8gqUIJyJNFD8qxX1zqOs6btsxtg0zSA8j0+Ya+RLQoVJ5rIwLkuboYpKbiMVOeE9UhVU0MU4
- 5ayYR1q3o+vvqlPwCMiDe3WPZ//ZmvVyp4dFf5tyIV8/+95Bm53ulaJq3LBKOVWJc2C4QqZ8MK/
- /HocGvncg/EB/ScK51IefPuT3WlNgRZrhMpL0xOzcRyyjay21XTZIz3T6yJSMzcYy/sXOQCyYZl
- V+SgL9ILd7CX3DWv88oX4tekCMNByptYxjyPUmaXsfcdNPZaP2QzUh4IaknhKI=
-X-Proofpoint-ORIG-GUID: UFaH4ZMkzSVwnaRhiXHg1unmSdFc41RC
-X-JNJ: 
- AAAAAAABCa9tMSaO86BRh/JsoI4xZ5q9hHxPbgdazF/w/KUUMMSNABkQt2//kzYOF1jYZQfanTaMPKhFZ33ZInURycjHfhnrDRY4sFqsp/2TRrccKblweNpCdfRX1rZoHAXw7narf18KFfltC+JRJqtG2cZ3TEfl5yWvEgtuyLeNTaoCVxeXdgJkHrveZbEeK8TYzv3pY7sffO0NDPQAa0yU/2iA7f5Y2Vmq1YqUiMEwR/1iVOlnpp1s6lf0qN2YqJuI84Hhbo8zFZ/k0i0ktkkIS+EEb8jW9EbvDvbQlE+KButIqMDTJt0SMV+FtukY28lfwlt27z1Uc7xceZ/hFu7xApPUuvUqYhB5G6LW7dbQ7r3gAhmDS76ppuRssG6tzA3JrnYzwv1MAuuwvoPqlfqopXAiROzdpIrYO8+WdeJAKL/cFaqJPg0noUr6diAnrT0o/STLeDzfuja8VWcdAfyImPWAT0ok1GzFWaUoaJvlBrd+rR+3tCPjh1DK9bK0Zvfd3k8UHGjKFh9QRSyB3pRqwoMmOeh4NQnGiron/zsnAGL4PW5kUXQPWuuNFXQZIik2n7RFOwzyN5qQHoeMnS/GMP92R0PbcpDRfs+GZOkghcIpbJhLOgxMyxrJzurrt9+qXubllVm9JT6NOxgaRgKgu7zEhYZfnGqv3s3yyDTnmafmj7jdn1IFzFjwHP9eKZNjtQTmEdAtjF3PKYp/Jzuz0NdyuoVb3z9iXs986IqnOyysViYPbojMLeQBMeR6dpEpNu9hgrkDpv1LFBjQ8qGSgG/blH54UVrvpUHD/A0MJSOKbYYgd0n48xU4PDlpLOpn89hF2HdyQ7WKkGraKk7SMXa02uTHHm1vbK8yAFo1v6+eAf+QSnS5Pf+suHVkqVTBT10Udb5dQF9ciApOphQKHigsM44gWHea13QPU7itMeTjW+ngOM5eCLga5UXghMHPuM+yTemQUb53+i/KKkiEmglM442
- HJ3CqF7kjUdGkCtoewtJiqrpFr9lsp/9oFzXJqdloy7bFp8SDzN11eBXhnS7YCV7wvVZKzZtCXW1RBadTBs6i+BJoGaP5tNLQl1k+i0l7j4qVBJH/V4/XL+XE+PLbQB2zRI//VtBCFZRJQpsXwe+/FYQ2xV2t5dswU8kRhC9Fut9a2kCZmhD8+eo2cH6Xx/z4bBY/GebqC5l8BtQcF6QRBL2Y+2VFM2N3SqoiVIeS5fzyfkhTcoEFKGGn5+dULNwKPGQS3TdiWytSB0KTACHuj1fWpQxYAlUCnSEknfkUFSn3UOw6JeqFN2QvyJvtJ1FNgkdQ9EuT1iT+sqeZrXqqeIQumf+kJmjawqg++zMjJkPjqbfUmg==
-X-Apple-Category-Label: MTE1NzgzMjUxMzU6JGNhdGVnb3J5JF9QZXJzb25hbCw=
-X-MailFrom: fzeruhn@icloud.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Message-ID-Hash: 3FHH5KUX7ZJ34CCU7OMTEBDSJZLTW3HZ
+X-Message-ID-Hash: 3FHH5KUX7ZJ34CCU7OMTEBDSJZLTW3HZ
+X-MailFrom: sashal@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: VN2KNXB2JXJKWZF2SVXWIM3SU4ATFOGH
-X-Message-ID-Hash: VN2KNXB2JXJKWZF2SVXWIM3SU4ATFOGH
-X-Mailman-Approved-At: Tue, 13 Oct 2026 13:47:21 +0000
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Finn Zeruhn <fzeruhn@icloud.com>,
- stable@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>, Aaron Kling <webgeek1234@gmail.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Sasha Levin <sashal@kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VN2KNXB2JXJKWZF2SVXWIM3SU4ATFOGH/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3FHH5KUX7ZJ34CCU7OMTEBDSJZLTW3HZ/>
 Archived-At: 
- <https://lore.freedesktop.org/20261012220728.14861-1-fzeruhn@icloud.com/>
+ <https://lore.freedesktop.org/20261013145210.103565-1-sashal@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -120,82 +108,35 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-When aux->no_zero_sized is set, drm_dp_i2c_xfer() cannot use a bare
-address packet to close the transaction, so it clears MOT on the last
-data packet instead. The check only looks at the position within the
-current i2c_msg, so MOT is cleared at the end of every message and each
-one is terminated by an I2C stop.
+GM20B needs both its reference clock and the fuse clock while it is
+powered, so allow "fuse" as a fourth clock after "ref".
 
-This breaks E-DDC reads of EDID blocks 2 and up. Those are read as three
-messages: a write of the segment pointer to 0x30, a write of the offset
-to 0x50, and the read. The stop after the first message resets the
-segment pointer, so the read returns segment 0 again.
-
-On a Pimax Dream Air (three EDID blocks, native timings in a DisplayID
-extension in block 2) connected to an RTX 5070 Ti with nouveau, block 2
-reads back as a copy of block 0. The checksum is valid, so nothing is
-reported, and the connector only offers fallback modes.
-
-Clear MOT only on the last packet of the last message, as the commit
-that added the option describes. Trailing messages without data are
-skipped when looking for that packet, since nothing is sent for them
-and the stop would otherwise be lost. With this, block 2 reads
-correctly and the native 7104x3840 modes are listed for the Dream Air.
-
-The same problem was pointed out by the Sashiko review of the patch that
-sets no_zero_sized for all DisplayPort connectors in nouveau.
-
-Fixes: f0ddbb1eed18 ("drm/dp: add option to disable zero sized address only transactions.")
-Link: https://lore.kernel.org/all/20260827015758.0B4FB1F000E9@smtp.kernel.org/
-Cc: stable@vger.kernel.org
-Assisted-by: Claude:claude-opus-5-5
-Signed-off-by: Finn Zeruhn <fzeruhn@icloud.com>
+Assisted-by: LLM
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
-Changes in v2:
-- Clear MOT on the last message that carries data, so a transfer that
-  ends in a zero-length message still gets its stop.
+ Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-v1: https://lore.kernel.org/dri-devel/20261002212833.9674-1-fzeruhn@icloud.com/
-
- drivers/gpu/drm/display/drm_dp_helper.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index 488fd123a01a..dfa64d20ab55 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -2149,7 +2149,7 @@ static int drm_dp_i2c_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs,
- 			   int num)
- {
- 	struct drm_dp_aux *aux = adapter->algo_data;
--	unsigned int i, j;
-+	unsigned int i, j, last;
- 	unsigned transfer_size;
- 	struct drm_dp_aux_msg msg;
- 	int err = 0;
-@@ -2159,6 +2159,10 @@ static int drm_dp_i2c_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs,
+diff --git a/Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml b/Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml
+index 4d856a8b674c..ecbc20e6adec 100644
+--- a/Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml
++++ b/Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml
+@@ -44,6 +44,7 @@ properties:
+       - description: GPU clock
+       - description: Power clock
+       - description: Reference or fuse clock
++      - description: Fuse clock
  
- 	dp_aux_i2c_transfer_size = clamp(dp_aux_i2c_transfer_size, 1, DP_AUX_MAX_PAYLOAD_BYTES);
+   clock-names:
+     minItems: 2
+@@ -51,6 +52,7 @@ properties:
+       - const: gpu
+       - const: pwr
+       - enum: [ ref, fuse ]
++      - const: fuse
  
-+	last = num - 1;
-+	while (last > 0 && !msgs[last].len)
-+		last--;
-+
- 	memset(&msg, 0, sizeof(msg));
- 
- 	for (i = 0; i < num; i++) {
-@@ -2192,7 +2196,8 @@ static int drm_dp_i2c_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs,
- 			msg.buffer = msgs[i].buf + j;
- 			msg.size = min(transfer_size, msgs[i].len - j);
- 
--			if (j + msg.size == msgs[i].len && aux->no_zero_sized)
-+			if (aux->no_zero_sized && i == last &&
-+			    j + msg.size == msgs[i].len)
- 				msg.request &= ~DP_AUX_I2C_MOT;
- 			err = drm_dp_i2c_drain_msg(aux, &msg);
- 
-
-base-commit: bca45af5998a05f34b13a2ef11e639bac9c62643
+   resets:
+     maxItems: 1
 -- 
-2.56.0
+2.43.0
 
