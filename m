@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7967DCC6B0E
-	for <nouveau@archiver.kernel.org>; Tue, 13 Oct 2026 14:52:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 225F0CC6B16
+	for <nouveau@archiver.kernel.org>; Tue, 13 Oct 2026 15:36:26 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9A88010F893;
-	Tue, 13 Oct 2026 14:52:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 97FAF10ED73;
+	Tue, 13 Oct 2026 15:36:21 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 3A16548A78;
-	Tue, 13 Oct 2026 14:33:52 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 9025248A7F;
+	Tue, 13 Oct 2026 15:17:46 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1791902032;
- b=Twvk1dk7aKiiC8LVDR7eYyIBotBtEBYxWPthIWaf36MkJTfjm9wL4unoU1hqEhm5h6xVj
- 9GwMZ5EHMKCbqLmLu43+OeZdWovPwAJmjz9wBNIvWW68w090aKDBr5lFMSduxfI3MhyM9Mo
- HP9lP7OQCLphwfBobne110nrXdW/DbsgnyrxTvQ/wdInsjGQvifXULStC7xnG4gYF26PfnD
- kGdtX+lsMKCi3Au89akPUv46mS6/yKXlI3NMTDnpUaxX4QMv4BECOs4+Fx/13QcfllqyJbJ
- JQPB/XzfMyOz2svoQzN9M8W1JmRkbjYzleq9pY4UpmM3a5ImqiBlY6hNy4vg==
+ s=20240201; t=1791904666;
+ b=pPittYzVtPG1nbFrYzK1SKjaG8ewIlbuljGytTLCUGiV1mBe8W2HxPMfHsABHufFArZIq
+ AQe76tZazXlE/J9WJB7RDu0OyGZjKYCcsDIy2/1RkesXVKeXpGXzOBEWMlynrCmEFWD+0Ee
+ IVkOD6Kr1squ2+b8UlfWYOM5/CrO4sQ0TF8hkc+wdKQJzAHOwgTElQ8o4TdUvGeIcumnjwh
+ QirK7VMZP0nIhI30McNQ0VRaKzWcv4S1xa4nuh5oR+Dr8+8bz0ENmtBaIiZu6c8OaWZGXOY
+ Dy97VxenWluIJJ7+87xyUFncB9nASZKALQ+g94WIHORIECSkIQAmwPrcEiWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1791902032; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1791904666; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=kzhwRl3T1k1AdPv6B7bJL6B4cN4Kgv+yi+7DS1nteLA=;
- b=XMmOkcOe20tNfQmcwbX9yu4cPUKPqpnL2ms1u8a7EL4yJZ6ynUe9KuMHU6vYgFNR/TyzP
- ExosbDQBgrcXYPtEFkCssKFNQIXjU4Lpc9syUxfrrMMBETXFXKq2XLKlYubobNmSTQqivvb
- 1+6QyM3Bj13K0g7zcx3fJutf8P3IyS8q4z2G+HOumC8b8ifhToFnYdo8uDoldVgQbIAx494
- FR8ETjWwd83QXZDDlcqnGxeqzGG+d56D+UMLzphx9jFs/OZ1KlJdWwyEquZqPha3nB0HI3m
- /WRIJ8hg2S9bnwFF4cPmmappikP1oLblrieVxJb1Se42aVXIob+xvjWCoEXw==
+ bh=x/r2qWknVX2TAzPiv1tCSqpXAUTpPajkXsHA7HYPXA8=;
+ b=bwUp10NNKkNeO/vw554xRyuxRM7TB+3QvLkvmaL2EB/Myk5RD9uE/P9HuakoVIV4YtVSj
+ SG2ciatBAvHO5V0Un5h3whRXr8bxuRcCRhVtUe4rNfP950u2WpsTPGqGy3qpwZR/m1ceRB6
+ UHr/S2TZpqw4cO65FEhDDowsBxFfEgdJXMlHZhUn2SuSteHv27cQI3C4a8cqWWtic36K23/
+ Q7qdcieyOYplUByFMvsisXGywh8/OHXdfnB7GcoFcBosmzzh9+YU+ZKrZqLsXqwn0tM7PzY
+ +VO+Gl4vuD+wcv8g6pT6efKNSuvjBM1KAagLGoDbNZ47kxbuK9WgSzLME8iA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,64 +43,61 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4997848A6D
-	for <nouveau@lists.freedesktop.org>; Tue, 13 Oct 2026 14:33:48 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 44BCB48A6E
+	for <nouveau@lists.freedesktop.org>; Tue, 13 Oct 2026 15:17:43 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0ECCA10E8AB;
-	Tue, 13 Oct 2026 14:52:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0678B10EC8D;
+	Tue, 13 Oct 2026 15:36:13 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BFB2C438DC;
-	Tue, 13 Oct 2026 14:52:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAC6D1F00899;
-	Tue, 13 Oct 2026 14:52:15 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id C43B1433AB;
+	Tue, 13 Oct 2026 15:36:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2236B1F000FF;
+	Tue, 13 Oct 2026 15:36:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1791903137;
-	bh=kzhwRl3T1k1AdPv6B7bJL6B4cN4Kgv+yi+7DS1nteLA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=n1nHBZ0HSExzZ1ujuDc3pCPJMRgU2xATqpvt1ZSQPgAazeG0fwk7zadKRVqHZs9a3
-	 86Z9HehjzB9g/CJzIwUA0dZ2uEkc4R47jfK/1bbKfg4zJo7s//p3uMSIS1qOlVlaAz
-	 1DyUPJ8WlSqtZv8QXWHqUH4uL4dAlbADX6gwVhHiBTuJyu2T4X0wuaGzsQxP3IZJ6H
-	 MzIjh0n+h3QsUGQhptXFNdf0rsKB9pGAZW++N97dl5Ymy0izgovfSEeJGnHU1LCySM
-	 dwQYDaV1p0ROUFH0vIvdxd2eKYWwH7Df0gVkkTJ+9AonjUP5n4DNdhqNBBhgBZOdsR
-	 LZfZGBVR9YGGQ==
-From: Sasha Levin <sashal@kernel.org>
-To: Thierry Reding <thierry.reding@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Lyude Paul <lyude@redhat.com>,
-	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH 3/3] drm/nouveau/tegra: Keep the fuse clock enabled while the
- GPU is powered
-Date: Tue, 13 Oct 2026 10:52:10 -0400
-Message-ID: <20261013145210.103565-3-sashal@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261013145210.103565-1-sashal@kernel.org>
+	s=k20260515; t=1791905772;
+	bh=x/r2qWknVX2TAzPiv1tCSqpXAUTpPajkXsHA7HYPXA8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=iXwzVNFE9iJoQ7G94gK/qyzvD4nPXrjp2gI+RhH2u/JDsBAW9S9Jd0j3wTJ+6g2P/
+	 +KBIeE4v+qFrhldJ8WRBXvguP7p+BD4jv2hvV4bWP3/Z3UyaJjLyvxaOWpuTIGD+Cz
+	 hwxwWwAe+h7/MoemGZPI+h3eBCxAEnRWazrw3OigTP9x3lfrjKQAysinZ3KFFqL7Qv
+	 c3qUThFA/xM/YbfSWkUYgBiqYCIXmCJuinDLRUHbVxCZ4aH38KN+g8aGVxkoioKyTY
+	 FChL2VTbCjZK9eueD7feTUzantIJSs8Ua/MvZG4+J1Tiw4FuNe6UTVmd3WHedV8YLp
+	 sznf4tMiD4FjA==
+Date: Tue, 13 Oct 2026 17:36:09 +0200
+From: Thierry Reding <thierry.reding@kernel.org>
+To: Sasha Levin <sashal@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: gpu: nvidia,gk20a: Allow a fuse clock
+ after the reference clock
+Message-ID: <as5N73fHztX8hVWh@orome>
 References: <20261013145210.103565-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: TAVYEXV2UGT4VYBT35B5HVRJUEN4VJAG
-X-Message-ID-Hash: TAVYEXV2UGT4VYBT35B5HVRJUEN4VJAG
-X-MailFrom: sashal@kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="34qab4dj6g2yo5tq"
+Content-Disposition: inline
+In-Reply-To: <20261013145210.103565-1-sashal@kernel.org>
+Message-ID-Hash: JKVDC7XS2QXKUWHRHPNXZZGO56OF3LYC
+X-Message-ID-Hash: JKVDC7XS2QXKUWHRHPNXZZGO56OF3LYC
+X-MailFrom: thierry.reding@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
+CC: Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>,
  Mikko Perttunen <mperttunen@nvidia.com>, Aaron Kling <webgeek1234@gmail.com>,
  Dmitry Osipenko <dmitry.osipenko@collabora.com>,
  Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
- Sasha Levin <sashal@kernel.org>
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TAVYEXV2UGT4VYBT35B5HVRJUEN4VJAG/>
-Archived-At: 
- <https://lore.freedesktop.org/20261013145210.103565-3-sashal@kernel.org/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JKVDC7XS2QXKUWHRHPNXZZGO56OF3LYC/>
+Archived-At: <https://lore.freedesktop.org/as5N73fHztX8hVWh@orome/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -110,96 +107,95 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Since the GPU on the Jetson TX1 was enabled in commit d1b725476104
-("arm64: tegra: p2180: Explicitly enable GPU"), nouveau often fails to
-bring up the GM20B. Either BOOT_0 reads back garbage ("unknown chipset
-(5ffefa47)"), or PRI reads of the GPC PLL time out ("MMIO read of
-00000000 FAULT at 137000 [ TIMEOUT ]"), or the first register reads in
-nvkm_device_ctor() stall until an asynchronous SError. How often depends
-on the board; one board fails on every boot.
 
-nouveau powers the GPU up with the fuse clock gated: since commit
-24a15252ff04 ("soc/tegra: fuse: Add runtime PM support"), the Tegra fuse
-driver only enables that clock around its own fuse reads. NVIDIA's
-downstream nvgpu driver enables the fuse clock along with the other GPU
-clocks whenever the GPU is powered. Do the same: take an optional "fuse"
-clock and keep it enabled from before the GPU rail is turned on until
-after it is turned off.
+--34qab4dj6g2yo5tq
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/3] dt-bindings: gpu: nvidia,gk20a: Allow a fuse clock
+ after the reference clock
+MIME-Version: 1.0
 
-Tested on eight Jetson TX1 devkits, on mainline and on v6.18. Without
-this patch, the GPU failed to come up in 27 of 109 boots; with it, in 11
-of 291, none of them with a garbage BOOT_0. On the board that failed on
-every boot, 38 of 40 boots now succeed. The remaining failures are
-mostly a register read that stalls until an SError; wherever the console
-shows when, nouveau had already finished probing. Such stalls also occur
-without this patch and are a separate problem. The Jetson Nano, which
-shares the Tegra210 GPU node, still works (24 of 24 boots).
+On Tue, Oct 13, 2026 at 10:52:08AM -0400, Sasha Levin wrote:
+> GM20B needs both its reference clock and the fuse clock while it is
+> powered, so allow "fuse" as a fourth clock after "ref".
+>=20
+> Assisted-by: LLM
+> Signed-off-by: Sasha Levin <sashal@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml b/Do=
+cumentation/devicetree/bindings/gpu/nvidia,gk20a.yaml
+> index 4d856a8b674c..ecbc20e6adec 100644
+> --- a/Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml
+> @@ -44,6 +44,7 @@ properties:
+>        - description: GPU clock
+>        - description: Power clock
+>        - description: Reference or fuse clock
+> +      - description: Fuse clock
+> =20
+>    clock-names:
+>      minItems: 2
+> @@ -51,6 +52,7 @@ properties:
+>        - const: gpu
+>        - const: pwr
+>        - enum: [ ref, fuse ]
+> +      - const: fuse
 
-Fixes: d1b725476104 ("arm64: tegra: p2180: Explicitly enable GPU")
-Assisted-by: LLM
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/nouveau/include/nvkm/core/tegra.h  |  1 +
- drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 13 +++++++++++++
- 2 files changed, 14 insertions(+)
+Technically this now allows:
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/tegra.h b/drivers/gpu/drm/nouveau/include/nvkm/core/tegra.h
-index 6aaa30ef167f..0189043382d0 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/core/tegra.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/core/tegra.h
-@@ -15,6 +15,7 @@ struct nvkm_device_tegra {
- 	struct clk *clk;
- 	struct clk *clk_ref;
- 	struct clk *clk_pwr;
-+	struct clk *clk_fuse;
- 
- 	struct regulator *vdd;
- 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-index 3c8d0878891a..31f8eaa9d650 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-@@ -32,6 +32,10 @@ nvkm_device_tegra_power_up(struct nvkm_device_tegra *tdev)
- {
- 	int ret;
- 
-+	ret = clk_prepare_enable(tdev->clk_fuse);
-+	if (ret)
-+		return ret;
-+
- 	if (tdev->vdd) {
- 		ret = regulator_enable(tdev->vdd);
- 		if (ret)
-@@ -76,6 +80,7 @@ nvkm_device_tegra_power_up(struct nvkm_device_tegra *tdev)
- 	if (tdev->vdd)
- 		regulator_disable(tdev->vdd);
- err_power:
-+	clk_disable_unprepare(tdev->clk_fuse);
- 	return ret;
- }
- 
-@@ -95,6 +100,8 @@ nvkm_device_tegra_power_down(struct nvkm_device_tegra *tdev)
- 			return ret;
- 	}
- 
-+	clk_disable_unprepare(tdev->clk_fuse);
-+
- 	return 0;
- }
- 
-@@ -308,6 +315,12 @@ nvkm_device_tegra_new(const struct nvkm_device_tegra_func *func,
- 		goto free;
- 	}
- 
-+	tdev->clk_fuse = devm_clk_get_optional(&pdev->dev, "fuse");
-+	if (IS_ERR(tdev->clk_fuse)) {
-+		ret = PTR_ERR(tdev->clk_fuse);
-+		goto free;
-+	}
-+
- 	tdev->pmc = devm_tegra_pmc_get(&pdev->dev);
- 	if (IS_ERR(tdev->pmc)) {
- 		ret = PTR_ERR(tdev->pmc);
--- 
-2.43.0
+    clock-names =3D "gpu", "pwr", "fuse", "fuse";
 
+I think we may need a very explicit version to cover this now, something
+like:
+
+    clock-names:
+      oneOf:
+        # for GK20A, GP10B, and GV11B
+        - minItems: 2
+          items:
+            - const: gpu
+            - const: pwr
+            - const: fuse
+
+        # for GM20B
+        - minItems: 3
+          items:
+            - const: gpu
+            - const: pwr
+            - const: ref
+            - const: fuse
+
+We may also want to leave out the minItems property because it turns out
+the FUSE clock is indeed required, so we'll need to add it to all device
+trees anyway to fix this hang.
+
+The exact list of items could also go into the per-SoC/GPU conditional
+sections to be very exact.
+
+Thierry
+
+--34qab4dj6g2yo5tq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmrOT+YACgkQ3SOs138+
+s6HSbA/9GTMrx+cAkk1jspRnNnC4NMPsgoLBelda/o0nNLddHezxqjelJQZe2ITB
+BcLwHzvG+yZIoqvcobrIM3ub+u150reF93lLkcJhUyIDUzvEEztSfHPVg39ffBVl
+5THw3xMl5EXKrpYH2KGpGiYILz9hGsLLE1tVJnzJXUNJNewbMClq9QaCtPw20fqS
+tRCrdaRRCgnfckfg4Q8F0Mwy8CHheHdayMY3qX/u67b85pbYfyx54ZNF/Ro/Z0/j
+DP4xiuFsdppuYbb9tSJGc9bEPVn6ReFS1VTREGI0S7NRxIRKivktTaLWFSkH7mAc
+wREmsx5iMeUxrxmQ443TQLUdY28h13A+pA2Wb+Nc6m+7LKbuw3nEAShix9ifPGv4
+KAI3ukE8RV5JRy8whJLTNk1Pph9oBMf1CkyOVCAlZq1Q8uH++2ZBwbBjgEfacKgE
+qPgJyiYTHQ+RsuFvXBsKMiFat2hv3YaVvTWsG7NdO2BAzrh5Oi2zMeGG61R5Jcri
+X68hLj4z3ooAyGAO0Af9Dn9pFc21nc8e7Nv4wtPWF7FRv9D2aYr1sL9jEBMbMjp2
+XE2PM4N9S+w4QQZiqZOMIuqp4bp9IwJNT3f2RPZ93FmED1ZeAc5L2aKCB4u+X51h
+JK2KABvBUdzZeLdvPV+A1tfe2nNtMTUQufpUKEsAZIOKgN2EZSk=
+=EVv3
+-----END PGP SIGNATURE-----
+
+--34qab4dj6g2yo5tq--
