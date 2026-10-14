@@ -4,154 +4,177 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2789CCC6B1D
-	for <nouveau@archiver.kernel.org>; Wed, 14 Oct 2026 02:22:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2626FCC6B1A
+	for <nouveau@archiver.kernel.org>; Wed, 14 Oct 2026 17:27:27 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8657B10FA84;
-	Wed, 14 Oct 2026 02:22:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7BBD910FE4B;
+	Wed, 14 Oct 2026 17:27:21 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8861448A94;
-	Wed, 14 Oct 2026 02:04:04 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1791943444;
- b=h8V0MBk+39341Pu9dx8adLEbdOV2EUWkkLL/4QVpXnwwJdlh9cgzXC0A9kCf7aKQCYEIA
- nqoP135Hd6mE8iyLMLtZRPehJf6nSXB6i4zOumK+/lBnoFUPaJ6BbDnStagiFGprf9CIyT7
- 68ahSTsCRt4KS7XstT05RtMsccAQzuGZ9j2Sg0DyFUk0NtXXreicXreaq01/YnEPC6ntHW1
- wo5Xf9n/GD6an0EGhqYTscgmzUdShCjysybSaLMWV5ZpBQ4P1RrbGn5TGiIgASaza/bmult
- G4+frKepUIg3izF8lK5ZcIo5/rnU2UXqQNBbw0x7Kdzix4WK5Fa1x3E7MmNg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1791943444; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 1EF7948A9C;
+	Wed, 14 Oct 2026 17:08:44 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1791997723;
+ b=YQdf8lYdI3Mh+FpxdUswGsRobFcJf7H2GBZ5WGSoDGR2ZP9JrcK3ozJ5j72pxnp7m2jxw
+ 7hj0VYoH7AXvWd0PE4XWbtkH8KZD25k7KIuOWZei9wjYRnDGsJRV7RSQw1QSF1BZwGGJ9Rq
+ 6F4htYGlxgXO7Z8fgn0TL+K9BsWSrmR7B2HkQTZCH73wOAI5HkYeQM6mn1IEo7lEqhBMf6M
+ KyxXByoowqGahtC0moW8QtSpsHh1lzzHRTAwPE3tcsxqt9kZjVNIDxDwMpBcv5eWyGfvjEg
+ 4G2ZJ/u7SuXN4swHAvnswUfCmKwmgsnTlMlDinjDpDNAnqHV9fJdzEM+WvBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1791997723; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=uR6LzQI4dyAnk+9+CQvzUY4D1It975ps1tZNRpR3a0U=;
- b=rqJPeEaFdt/KmqDFOycEyCkvitGpbTgQFAvQpInqOAleA4qvQZyFT9CZsbBixuLIOXuml
- rlXw/0CTaif6/eiR7XlY8CFJc57qpE6qHJyoagHBZsMO/wptoR6D9EovzZR9YaOXyremg8N
- e5h8gRriPgBSHlzNlUWfSPx86keofJH86/rgTDIeKq55oJ/gAZwTIqYqI8NhIFpwiowUyw9
- OAGyaBS5/W4ARfyeEJUJW4X3jYTWZ0JGKtT+ObjJvvzilX5eUJoQTGozmnmzKFjjgrVHGpi
- 4BbY/E/6jNKXrVPjm0De+nwlzf+r9/PjVVG1nWKfRQfRxBZskaCdu8auWuBA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ bh=T1+E2k2Owgt5D89M0RIPqwAKDNzTjAgVytD2FAygs90=;
+ b=QfRe4gSnPSjW569VI+dH+ACTpVVZluBBvO6+N4sGIfG/bG6CxZHLwPivVt7wkvHE69+hg
+ G9xcNopkuQr/35S42sKsd8qpkcb6IPNMjRQtUwO/DdcdKZpF1duzpczXBOZgMh4trIE+7dY
+ TWXuXxsAj5igCqWdeK+VEXwPCJ7TsjjGGhGzkoSY6e4sqguhsGW4pF9UwMbjQ3JAEXHCT43
+ uQSAd8838TbJpa9wfeGJA3Ohep4Ph54zPHJDK5tNk/RPkzzuRkHLIKEFDXt0je15MNQSxjo
+ jB35NWKgUnD9vg+wDKyFCeE/yXleEbQiD+MtnEsUO7jsCTh8/vEeHluu3jEQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=fail header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=fail (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=fail header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=fail (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 568DD46ED7
-	for <nouveau@lists.freedesktop.org>; Wed, 14 Oct 2026 02:04:01 +0000 (UTC)
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
- [209.85.167.51])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2DCED10FA7C
-	for <nouveau@lists.freedesktop.org>; Wed, 14 Oct 2026 02:22:32 +0000 (UTC)
-Received: by mail-lf1-f51.google.com with SMTP id
- 2adb3069b0e04-5ba41ea31ccso4080958e87.0
-        for <nouveau@lists.freedesktop.org>;
- Tue, 13 Oct 2026 19:22:32 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1791944550; cv=none;
-        d=google.com; s=arc-20260327;
-        b=m6D04SnwRRQmxRUC/jwC/jh7o/12MnsoH+VmjH2agyhhEKw+n84W3kOfOqV97ZlAts
-         2dek1MlIYuY4BezfU9Je8ao4wFdURQELJ8nZ5+9HWXk0hi5fUwVYlTbN/eL3aivFMlF4
-         z0X3EQqemS3RRHS4sNMacNBalnvRMo3n7aiNItqVvWwgN8zHIMgdE/sGzSl4XwDPKsg+
-         U3SN2xHV7cYq9D05Y5gOEkXwaR7+X0gE1/kLeHKWdnV9/1BlzBJClB6bZDlWjUKrB+8B
-         rQye6NhbxJDVZKRzLVMUvu6Oag3qmKxO3S0+d4ILDg04NiF/GAZzniQQBmKcZb+YQeuD
-         8Afg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=uR6LzQI4dyAnk+9+CQvzUY4D1It975ps1tZNRpR3a0U=;
-        fh=W9yInHQkhGEWtZGkmXhKzlRkNg6BCZhWph/GEO3fAog=;
-        b=NkLUaslBNkXY6BEWYlhyiLJ3yL7bb8UJxZV2m+kZyy2yTuEvF/ef2+zzHLQiIJ7lwu
-         MkQH+2U15C0YJQdmNC8AazeS1XRJU/l/oo8e/OLesa0wgsineE1aFDJO5I2FWSBNkAPX
-         QENj3egEBUy3vOKCflgxjnpifN2dPfdIJcEfSnDlbtP+ax2Y2JAP4fouJP1M8Cq0r6sn
-         IDIfRFyHHbXOjj5xvwbwKB3WGZlCArDOQ5Gxx74jWbx05oNtJwzvZIE9Ukvkql+mhgX/
-         6FZApkyDb6n/hAz0GEVGMo/6KNow+TCpjc/5a54pJypu736mwtfmUKyAGV1MndjNq9FU
-         dh+w==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1791944550; x=1792549350;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=uR6LzQI4dyAnk+9+CQvzUY4D1It975ps1tZNRpR3a0U=;
-        b=G3PpvTzjtaoKCeq5EhhWxatuU1IBp3lTY1LU2Yldv2HyWxcRkRP4/db17mt4b8Ff7J
-         hHRIRxGO+j79Z02/LMePMp29jC8Wy5I+5C5UgmxQH6DvA45veFeV80QXk6a20GyZn//q
-         X0xi8tTjJikPslEbfL+7REhke3f6BOwvPzHYxySft56hjQFQ+9ey5fgrcz1rLWhX3cml
-         jGK/4d4LixJ6G38OYNBEpL4Ybcf754Zw7sgLh9KkSVQgGwxAuBvle8iftaLy0jOFq0j4
-         ix/ijGZKQxGRsPgOkRzXnsg15c86kalku0hawAxQaQPFoZLEbixyPfTMR73Y/inhh8W5
-         Lf3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791944550; x=1792549350;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=uR6LzQI4dyAnk+9+CQvzUY4D1It975ps1tZNRpR3a0U=;
-        b=Xnzn9E5OAU4v8dEuQx7nhFEQsCdlEx+OrYvWaXCB8GfP3K4AchetbP1zg5e3OgHWp0
-         L1cfK6aizplKpe/PNBoykg0EMVV/x0OtQG91jaJ4CcZ7wjYLQwgN8rSYZ2SFIHdEGgI1
-         cw7U/JIOZm+O59RsgABMnksjXC1iFCjyjMomJ6P+GcIl+BvuPEvwg8wt958cNG2YvenV
-         jwvHEPfnxOmKgiWbp2zZcJLZbfJ3yeza+StrUOg5y4kUlVVBs+6RyxW2KLVr0neE7RrO
-         hFnvmjHI7LhSiNKEzPdKUP45MokknVSmEzoyi7mfBH/V1EspwVO34yYdpVQ8L24JlY9R
-         n9eA==
-X-Forwarded-Encrypted: i=1;
- AKwUvBxvMjw9QSV9u5OnriHW2OSdYOQYAiljiAfjraLa6w0rDVGt5lW52mr+f8oCgg29ML9YsDQ/JGHg@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYJYzOSPwQvELm+qgHaEDSSj07BHbLMEGxgHeF5vU+/JvFhqlaUN
-	/5tljXLLgs5cpKHQAUTlTLCrtYBeOt7SVp12XnA9fUAWUsdKT2Wtf+IFaaoXjSsnDyo4Up5yqnq
-	IA+xHiQ85lVTFsQtqjvfVYYmHPAyCdQg=
-X-Gm-Gg: AYBFou1xhyeBKT9X8RGTD10Vmp/bQf3dryambF2O0uKPJucFHHITw3jDRNt3HzPxUpF
-	VThADdM55YDjy+QLNdEuT7v6BaRGXAky7rhBkyxjE+fMHNg4Dn5qQhNp3AG4v84n1VIxRR3dnUG
-	h/x/lnfu7s+tzVzNENc3Bo3aC51hJTuZg03BLCWXE5vQEbb+HFj5//nS7R3q/Tt9UCme3ITuvRZ
-	DuAPsxZnJa1gacklMK+M28CIcL1MyTi2Ewy5CpIVhHUr6oeS8WTxT8nNTfv9vvC8e57KcGMertj
-	9szBUZebAbuJNwJQ+FSJHP4brtJQEqZdp+aMbYyTRSA8Y1bKMj6vbS31/Tz94//oo0h8Z3nURFs
-	2GWd86t6ERm3AsNDf7t+wLBA2MjPMMu5cvhonpXVDt4c=
-X-Received: by 2002:a05:6512:224c:b0:5bc:f02e:9b2e with SMTP id
- 2adb3069b0e04-5bcf02e9c70mr3265873e87.9.1791944549826; Tue, 13 Oct 2026
- 19:22:29 -0700 (PDT)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9A9DB48A80
+	for <nouveau@lists.freedesktop.org>; Wed, 14 Oct 2026 17:08:41 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9D79D10E192;
+	Wed, 14 Oct 2026 17:27:13 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 804F260098;
+	Wed, 14 Oct 2026 17:27:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A2EA1F000C4;
+	Wed, 14 Oct 2026 17:27:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1791998832;
+	bh=T1+E2k2Owgt5D89M0RIPqwAKDNzTjAgVytD2FAygs90=;
+	h=From:Subject:Date:To:Cc;
+	b=DuZUaj/V/FfaUCL5qLj1FkcP5Nu8k/DEmJrFKpGEtqvc/RihMfUV3rYvXChynwZl3
+	 QGXRlVFN263fc9HP5EZJD80I+gHD8BXd+WAdU7Qt+XL2ceQOKxyAU75nhQJYUpDDDb
+	 BiKj+ch6lUZ5UgdRTWexBWSGtadx9UqKABOI3KCKucbA2mGtm4g2EZbzfit/ffNwhf
+	 11ND6IcHuGMowRW0fJ/o1aaedkVoQ3qUpvaSnqu2tI+CZ5ZNSNUB5GYK/u7oJahmTk
+	 2CC98zzf/nB0B1sj3UYglRbldPiOMRuHggw4bYFu96MVotkkxR0f/9SP2Fn7UopQfJ
+	 5deaPekM0KuoQ==
+From: Maxime Ripard <mripard@kernel.org>
+Subject: [PATCH 00/75] drm/connector: Convert all drivers to
+ atomic_create_state and remove reset
+Date: Wed, 14 Oct 2026 19:26:23 +0200
+Message-Id: 
+ <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
 MIME-Version: 1.0
-References: <20261013145210.103565-1-sashal@kernel.org>
- <as5R_xrDv4eVPdtz@orome>
-In-Reply-To: <as5R_xrDv4eVPdtz@orome>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Tue, 13 Oct 2026 21:22:18 -0500
-X-Gm-Features: AclHuK887CDwAvm9A-A5lvdpxpUm0jxZaYwqU9DtjoFJ0z65i4nraDiY5z22Q4Y
-Message-ID: 
- <CALHNRZ9zhVaz9UeYJTFRph+0JMM8x+5it_Xv7Qhy5f2kh12MDQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: gpu: nvidia,gk20a: Allow a fuse clock
- after the reference clock
-To: Thierry Reding <thierry.reding@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: ORYDV3S4LWYVGYJSVFVOBNEZN2LJLMBI
-X-Message-ID-Hash: ORYDV3S4LWYVGYJSVFVOBNEZN2LJLMBI
-X-MailFrom: webgeek1234@gmail.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXNwQ6CMBCE4Vche3YTaApYXsVwgDJoD211W4wJ4
+ d2tcvzm8M9OCeKQaKh2ErxdcjEUNJeK7GMKd7BbiknVqqv72vAinkNkHwVsYwiwOQoLEjLrFmj
+ 00ttOWSqFp2B1n3/9Np4WvLZyks+R5in9Mt67PFSmWVsFY65KzzQexxeznFx5nQAAAA==
+X-Change-ID: 20260709-drm-no-more-connector-reset-45ee14d7c62c
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=13365; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=/DhCCdduSvGU+jRohyrE71CT7KCgRbZ7hxwTqS0qh7s=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFnnd7vN6q5e3Reh/y9VQcHs49ar3P5OTUv6rHPkWKsPy
+ xc5bGHpmMrCIMzJICumyPJEJuz08vbFVQ72K3/AzGFlAhnCwMUpABOp72Rs2MhjsXneVibbsIJI
+ vVJzxg9/fd5UGQsk6k8N7tBevcP76h6f09Y80lf/fvny99XjmVdfM9ZwZDbc6dwvpbX20N8jwaw
+ TpgT4nAn2MHWbwivGZb/nrf6ZDWueCCRfjO/w6F0c32G1lAcA
+X-Developer-Key: i=mripard@kernel.org; a=openpgp;
+ fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
+Message-ID-Hash: G626C34PTZINNL2ENEEZDTFCDRJAA34P
+X-Message-ID-Hash: G626C34PTZINNL2ENEEZDTFCDRJAA34P
+X-MailFrom: mripard@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Sasha Levin <sashal@kernel.org>, Diogo Ivo <diogo.ivo@bootlin.com>,
- Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>,
+CC: dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Aun-Ali Zaidi <admin@kodeit.net>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>,
+ Dave Airlie <airlied@redhat.com>, Jocelyn Falempe <jfalempe@redhat.com>,
+ Francesco Dolcini <francesco@dolcini.it>, Ian Ray <ian.ray@gehealthcare.com>,
+ Martyn Welch <martyn.welch@collabora.co.uk>,
+ Peter Senna Tschudin <peter.senna@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
+ Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
+ Tian Tao <tiantao6@hisilicon.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Yongbang Shi <shiyongbang@huawei.com>, Dexuan Cui <decui@microsoft.com>,
+ Long Li <longli@microsoft.com>, Saurabh Sengar <ssengar@linux.microsoft.com>,
+ linux-hyperv@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+ Frank Li <Frank.Li@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
+ Paul Kocialkowski <paulk@sys-base.io>, Huacai Chen <chenhuacai@kernel.org>,
+ Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>,
+ Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>,
+ Xi Ruoyao <xry111@xry111.site>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
+ virtualization@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>,
+ linux-renesas-soc@vger.kernel.org,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Iker Pedrosa <ikerpedrosam@gmail.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Raphael Gallais-Pou <rgallaispou@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Yannick Fertre <yannick.fertre@foss.st.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
  Mikko Perttunen <mperttunen@nvidia.com>,
+ Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
+ Alexey Brodkin <abrodkin@synopsys.com>, Hans de Goede <hansg@kernel.org>,
+ LiangCheng Wang <zaq14760@gmail.com>, Alex Lanzano <lanzano.alex@gmail.com>,
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Chia-I Wu <olvaffe@gmail.com>,
  Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Ruben Wauters <rubenru09@aol.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Zack Rusin <zack.rusin@broadcom.com>, Aditya Garg <aditya.garg@linux.dev>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ORYDV3S4LWYVGYJSVFVOBNEZN2LJLMBI/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/G626C34PTZINNL2ENEEZDTFCDRJAA34P/>
 Archived-At: 
- <https://lore.freedesktop.org/CALHNRZ9zhVaz9UeYJTFRph+0JMM8x+5it_Xv7Qhy5f2kh12MDQ@mail.gmail.com/>
+ <https://lore.freedesktop.org/20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -161,35 +184,222 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue, Oct 13, 2026 at 10:46=E2=80=AFAM Thierry Reding
-<thierry.reding@kernel.org> wrote:
->
-> On Tue, Oct 13, 2026 at 10:52:08AM -0400, Sasha Levin wrote:
-> > GM20B needs both its reference clock and the fuse clock while it is
-> > powered, so allow "fuse" as a fourth clock after "ref".
-> >
-> > Assisted-by: LLM
-> > Signed-off-by: Sasha Levin <sashal@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/gpu/nvidia,gk20a.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
->
-> Aaron, Diogo,
->
-> I'm fairly sure I remember at least one of you mentioning that GM20B
-> wasn't always working reliably. Would you mind giving this series a spin
-> on your devices to see if it fixes any issues you were seeing, too?
+This is a follow-up to the plane and CRTC reset removal series, and
+part of a larger effort to remove the reset hook from all KMS objects.
 
-I've got a t210 nano a02 that essentially hasn't been able to load
-nouveau since I've started my Android Common Kernel effort over two
-years ago. I think it came up like twice when I accidentally left it
-boot looping for days and forgot about it, but never when I wanted it
-to.
+The connector reset hook is overloaded: it is called both at probe
+time to create the initial software state and during suspend/resume to
+reset hardware and software state. These two roles have different
+requirements, and the reset hook is not fallible, making error
+handling difficult for the initial state allocation path.
 
-With this series, nouveau loaded properly 3/3 boots. I'll keep this in
-my 6.18 kernel fork and see if any of my t210 devices hit the probe
-hang and will report back if I find a case this doesn't solve. I will
-also point other people I know with units affected by the issue to
-this series.
+While reset has the semantics to reset both the software and hardware
+state, the vast majority of implementations and all the helpers only
+reset the software state, making them equivalent to
+atomic_create_state in practice. The atomic_create_state hook makes
+this explicit: it only allocates and initializes a pristine state
+without any side effect, and returns the state pointer or an ERR_PTR
+on failure.
 
-Aaron
+This series converts all connector drivers tree-wide from the reset hook
+to atomic_create_state, then removes the reset hook from struct
+drm_connector_funcs entirely. The conversions were done using a
+combination of Coccinelle semantic patches, mechanical one-line
+replacements and manual adjustments.
+
+Signed-off-by: Maxime Ripard <mripard@kernel.org>
+---
+Maxime Ripard (75):
+      drm/panel: Add atomic_create_state support
+      drm/adp: Switch to drm_atomic_helper_connector_create_state
+      drm/amdgpu: vkms: Switch to drm_atomic_helper_connector_create_state
+      drm/amdgpu: dm: Switch to drm_atomic_helper_connector_create_state
+      drm/arm: komeda: Switch to drm_atomic_helper_connector_create_state
+      drm/aspeed: Switch to drm_atomic_helper_connector_create_state
+      drm/ast: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: analogix-anx6345: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: analogix-anx78xx: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: chrontel-ch7033: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: lontium-lt8912b: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: megachips: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: nxp-ptn3460: Switch to drm_atomic_helper_connector_create_state
+      drm/panel: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: sii902x: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: simple-bridge: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: synopsys: dw-hdmi: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: tc358767: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: tda998x: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: ti-tfp410: Switch to drm_atomic_helper_connector_create_state
+      drm/exynos: Switch to drm_atomic_helper_connector_create_state
+      drm/fsl-dcu: Switch to drm_atomic_helper_connector_create_state
+      drm/hisilicon: hibmc: Switch to drm_atomic_helper_connector_create_state
+      drm/hyperv: Switch to drm_atomic_helper_connector_create_state
+      drm/imx: ipuv3: Switch to drm_atomic_helper_connector_create_state
+      drm/logicvc: Switch to drm_atomic_helper_connector_create_state
+      drm/loongson: Switch to drm_atomic_helper_connector_create_state
+      drm/mgag200: Switch to drm_atomic_helper_connector_create_state
+      drm/mipi-dbi: Switch to drm_atomic_helper_connector_create_state
+      drm/msm: dpu1: Switch to drm_atomic_helper_connector_create_state
+      drm/qxl: Switch to drm_atomic_helper_connector_create_state
+      drm/renesas: shmobile: Switch to drm_atomic_helper_connector_create_state
+      drm/sitronix: st7571: Switch to drm_atomic_helper_connector_create_state
+      drm/sitronix: st7920: Switch to drm_atomic_helper_connector_create_state
+      drm/solomon: ssd130x: Switch to drm_atomic_helper_connector_create_state
+      drm/sti: Switch to drm_atomic_helper_connector_create_state
+      drm/stm: Switch to drm_atomic_helper_connector_create_state
+      drm/sun4i: Switch to drm_atomic_helper_connector_create_state
+      drm/sysfb: Switch to drm_atomic_helper_connector_create_state
+      drm/tegra: Switch to drm_atomic_helper_connector_create_state
+      drm/tests: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: arcpgu: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: bochs: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: cirrus: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: gm12u320: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: pixpaper: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: repaper: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: sharp: Switch to drm_atomic_helper_connector_create_state
+      drm/udl: Switch to drm_atomic_helper_connector_create_state
+      drm/vboxvideo: Switch to drm_atomic_helper_connector_create_state
+      drm/vc4: Switch to drm_atomic_helper_connector_create_state
+      drm/virtio: Switch to drm_atomic_helper_connector_create_state
+      drm/vkms: Switch to drm_atomic_helper_connector_create_state
+      drm/xen: Switch to drm_atomic_helper_connector_create_state
+      drm/atomic-state-helper: Rename connector_tv_margins_reset to state_init
+      drm/atomic-state-helper: Rename connector_tv_reset to state_init
+      drm/bridge: synopsys: dw-hdmi: Convert to atomic_create_state
+      drm/meson: Convert to atomic_create_state
+      drm/gud: Convert to atomic_create_state
+      drm/sun4i: hdmi: Convert to atomic_create_state
+      drm/sun4i: tv: Convert to atomic_create_state
+      drm/tests: hdmi: Convert to atomic_create_state
+      drm/vc4: hdmi: Convert to atomic_create_state
+      drm/vc4: vec: Convert to atomic_create_state
+      drm/connector: Remove drm_atomic_helper_connector_reset()
+      drm/amdgpu: dm: Convert to atomic_create_state
+      drm/malidp: Convert to atomic_create_state
+      drm/ast: Convert to atomic_create_state
+      drm/i915: Convert to atomic_create_state
+      drm/nouveau: Convert to atomic_create_state
+      drm/rcar-du: Convert to atomic_create_state
+      drm/tegra: Convert to atomic_create_state
+      drm/vmwgfx: Convert to atomic_create_state
+      drm/connector: Remove __drm_atomic_helper_connector_reset()
+      drm/connector: Remove reset
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c           |  2 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_connector.c    | 32 ++++----
+ .../amd/display/amdgpu_dm/amdgpu_dm_connector.h    |  3 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    |  4 +-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c   | 14 +++-
+ .../display/amdgpu_dm/tests/amdgpu_dm_audio_test.c |  2 +-
+ .../amdgpu_dm/tests/amdgpu_dm_backlight_test.c     |  2 +-
+ .../amdgpu_dm/tests/amdgpu_dm_connector_test.c     | 90 ++++++++++++++--------
+ .../display/amdgpu_dm/tests/amdgpu_dm_crc_test.c   |  7 +-
+ .../amdgpu_dm/tests/amdgpu_dm_helpers_test.c       |  2 +-
+ .../display/amdgpu_dm/tests/amdgpu_dm_irq_test.c   |  2 +-
+ .../amdgpu_dm/tests/amdgpu_dm_mst_types_test.c     |  4 +-
+ .../display/amdgpu_dm/tests/amdgpu_dm_wb_test.c    |  2 +-
+ .../drm/arm/display/komeda/komeda_wb_connector.c   |  2 +-
+ drivers/gpu/drm/arm/malidp_mw.c                    | 18 ++---
+ drivers/gpu/drm/aspeed/aspeed_gfx_out.c            |  2 +-
+ drivers/gpu/drm/ast/ast_dp.c                       | 19 ++---
+ drivers/gpu/drm/ast/ast_dp501.c                    |  2 +-
+ drivers/gpu/drm/ast/ast_sil164.c                   |  2 +-
+ drivers/gpu/drm/ast/ast_vga.c                      |  2 +-
+ drivers/gpu/drm/bridge/analogix/analogix-anx6345.c |  2 +-
+ drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c |  2 +-
+ drivers/gpu/drm/bridge/chrontel-ch7033.c           |  2 +-
+ drivers/gpu/drm/bridge/lontium-lt8912b.c           |  2 +-
+ .../drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c   |  2 +-
+ drivers/gpu/drm/bridge/nxp-ptn3460.c               |  2 +-
+ drivers/gpu/drm/bridge/sii902x.c                   |  2 +-
+ drivers/gpu/drm/bridge/simple-bridge.c             |  2 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          | 12 ++-
+ drivers/gpu/drm/bridge/tc358767.c                  |  2 +-
+ drivers/gpu/drm/bridge/tda998x_drv.c               |  2 +-
+ drivers/gpu/drm/bridge/ti-tfp410.c                 |  2 +-
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  3 +-
+ drivers/gpu/drm/drm_atomic_state_helper.c          | 68 ++++------------
+ drivers/gpu/drm/drm_connector.c                    |  8 --
+ drivers/gpu/drm/drm_mode_config.c                  |  4 +-
+ drivers/gpu/drm/drm_panel.c                        | 14 +++-
+ drivers/gpu/drm/exynos/exynos_drm_dpi.c            |  2 +-
+ drivers/gpu/drm/exynos/exynos_drm_vidi.c           |  2 +-
+ drivers/gpu/drm/exynos/exynos_hdmi.c               |  2 +-
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c          |  2 +-
+ drivers/gpu/drm/gud/gud_connector.c                | 20 +++--
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_dp.c     |  2 +-
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c   |  2 +-
+ drivers/gpu/drm/hyperv/hyperv_drm_modeset.c        |  2 +-
+ drivers/gpu/drm/i915/display/intel_connector.c     |  6 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c          |  6 +-
+ drivers/gpu/drm/imx/ipuv3/imx-tve.c                |  2 +-
+ drivers/gpu/drm/logicvc/logicvc_interface.c        |  2 +-
+ drivers/gpu/drm/loongson/lsdc_output_7a1000.c      |  2 +-
+ drivers/gpu/drm/loongson/lsdc_output_7a2000.c      |  4 +-
+ drivers/gpu/drm/meson/meson_encoder_hdmi.c         | 12 ++-
+ drivers/gpu/drm/mgag200/mgag200_vga.c              |  2 +-
+ drivers/gpu/drm/mgag200/mgag200_vga_bmc.c          |  2 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c      |  2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c            |  9 ++-
+ drivers/gpu/drm/nouveau/nouveau_connector.c        | 25 +++---
+ drivers/gpu/drm/nouveau/nouveau_connector.h        |  3 +-
+ drivers/gpu/drm/qxl/qxl_display.c                  |  2 +-
+ .../gpu/drm/renesas/rcar-du/rcar_du_writeback.c    | 15 ++--
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c  |  2 +-
+ drivers/gpu/drm/sitronix/st7571.c                  |  2 +-
+ drivers/gpu/drm/sitronix/st7920.c                  |  2 +-
+ drivers/gpu/drm/solomon/ssd130x.c                  |  2 +-
+ drivers/gpu/drm/sti/sti_dvo.c                      |  2 +-
+ drivers/gpu/drm/sti/sti_hda.c                      |  2 +-
+ drivers/gpu/drm/sti/sti_hdmi.c                     |  2 +-
+ drivers/gpu/drm/stm/lvds.c                         |  2 +-
+ drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             | 17 +++-
+ drivers/gpu/drm/sun4i/sun4i_lvds.c                 |  2 +-
+ drivers/gpu/drm/sun4i/sun4i_rgb.c                  |  2 +-
+ drivers/gpu/drm/sun4i/sun4i_tv.c                   | 16 +++-
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c             |  2 +-
+ drivers/gpu/drm/sysfb/drm_sysfb_helper.h           |  2 +-
+ drivers/gpu/drm/tegra/dsi.c                        | 17 ++--
+ drivers/gpu/drm/tegra/hdmi.c                       |  2 +-
+ drivers/gpu/drm/tegra/sor.c                        | 13 ++--
+ drivers/gpu/drm/tests/drm_atomic_commit_test.c     |  2 +-
+ drivers/gpu/drm/tests/drm_atomic_test.c            |  2 +-
+ drivers/gpu/drm/tests/drm_connector_test.c         |  4 +-
+ drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 17 +++-
+ drivers/gpu/drm/tests/drm_probe_helper_test.c      |  2 +-
+ drivers/gpu/drm/tiny/appletbdrm.c                  |  2 +-
+ drivers/gpu/drm/tiny/arcpgu.c                      |  2 +-
+ drivers/gpu/drm/tiny/bochs.c                       |  2 +-
+ drivers/gpu/drm/tiny/cirrus-qemu.c                 |  2 +-
+ drivers/gpu/drm/tiny/gm12u320.c                    |  2 +-
+ drivers/gpu/drm/tiny/pixpaper.c                    |  2 +-
+ drivers/gpu/drm/tiny/repaper.c                     |  2 +-
+ drivers/gpu/drm/tiny/sharp-memory.c                |  2 +-
+ drivers/gpu/drm/udl/udl_modeset.c                  |  2 +-
+ drivers/gpu/drm/vboxvideo/vbox_mode.c              |  2 +-
+ drivers/gpu/drm/vc4/tests/vc4_mock_output.c        |  2 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     | 32 ++++++--
+ drivers/gpu/drm/vc4/vc4_txp.c                      |  2 +-
+ drivers/gpu/drm/vc4/vc4_vec.c                      | 16 +++-
+ drivers/gpu/drm/virtio/virtgpu_display.c           |  2 +-
+ drivers/gpu/drm/vkms/vkms_connector.c              |  2 +-
+ drivers/gpu/drm/vkms/vkms_writeback.c              |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                | 23 ++----
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                |  3 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c                |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c               |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c               |  2 +-
+ drivers/gpu/drm/xen/xen_drm_front_conn.c           |  2 +-
+ include/drm/drm_atomic_state_helper.h              |  9 +--
+ include/drm/drm_connector.h                        | 12 ---
+ include/drm/drm_mipi_dbi.h                         |  2 +-
+ 108 files changed, 392 insertions(+), 331 deletions(-)
+---
+base-commit: 91f52e99824b0beebb48cad51bbda81437af8664
+change-id: 20260709-drm-no-more-connector-reset-45ee14d7c62c
+
+Best regards,
+-- 
+Maxime Ripard <mripard@kernel.org>
+
