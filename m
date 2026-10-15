@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53775CC6B38
-	for <nouveau@archiver.kernel.org>; Thu, 15 Oct 2026 09:11:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3A04CC6B33
+	for <nouveau@archiver.kernel.org>; Thu, 15 Oct 2026 10:41:10 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2C65911223B;
-	Thu, 15 Oct 2026 09:11:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 846181122A7;
+	Thu, 15 Oct 2026 10:41:05 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4C8B248AAE;
-	Thu, 15 Oct 2026 08:52:39 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 8407848AB2;
+	Thu, 15 Oct 2026 10:22:26 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1792054359;
- b=PjUHB9BL8zhW3R5CaNJtsgbUcsQQyLxFKa/dmpH/92GKH7GGO/FsMpw+WemR7rgpCzaT5
- nbs+zXPaUhVwmn0qjq3TpddtNwz686TQjrDJyICx3ARCgxxlvsUoYP35qLcC8NalTsBeFJF
- Pfcj8app5GNgQoiUOaqtBmURtPlm+ACHUFHzgCrNoEris5wEZcDT0ztYmhw3XXd13J+4EEg
- apQMyBBgXytVjvOODm7PPjMu9bvbqL0sX6hcDzKxVPrBgiqKFbAwoWMc8q6OXhRhstd8SbN
- NhIlvgHKlxdkHmMIfexNpuJ5AmULm424OLn9MKnBDqrcJCj6Vhxjf6SS2HUQ==
+ s=20240201; t=1792059746;
+ b=phmydwkde/BdvY2L+4IxLfjBbvLU9njeajXBDSwfp43PLxL47ak74LOaYQhMA8g2luBRO
+ REKB9E1PtT2NHH2NBrDFSvkhlVdNa8xjW1ddwg4LOMj43f8xFeHvDz+skOVbTtkc121gJen
+ gjiGz94jcMgDqlbo1O14lnACYKu0TglJcqyTuEb9qLQzwN0fsbxersamtpO3EuRrhbPo6kX
+ 8kVtXpwyjWw8aqb2IWn3/7D5buKwsebd+tTBh2EEWtv/X05cQm0CMS3Mb2CEVCbDg1Y58Mh
+ w9AZyFXhoYEe2M1/qj1Ou9koW6OvKFjR6EQ6arYtCXRFAtx3Vg0PRIkjU1hA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1792054359; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1792059746; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=jEoeOoyKShfauUM6omyrvuy8JMoL6O15hulliMOGIOA=;
- b=CW1oqAeyqJmQMDUPsAUqK5nwNyC8NjEdbNoXa19eLQCGi5Uc7pLD+fD5oPglyi6zefLvL
- jNXLDmJPHTgho+Zg1U8XlDgXGdeofBnzuUGI0BOiGk6NrkN7P0GhhJoD5PxG6I8jBnvpaDJ
- TVEvombgqQvskw4+RbCPZVG8RGjxGbDXFjhOekI6S6Xe44Hl3sdrcKdz03w6ivcspW/CJDd
- D7kX+7fVklgTnOO6RI++qLmGvlQpMHoiVV6aoWFa+3k1IYF6O7prkAQz41UREoNBotIl5a7
- vtnovRSfZ8cQLfyY4gZNCS5wTSK11kTVVv8Sh97aTvFD1WqsqJBG+T8qRhDw==
+ bh=GK7c7qoHtQuqEPaLuDtj2LTHMuxiL75fJf9jcPF0ouQ=;
+ b=E4wFX9SvHLkz4vCG2A4LYTKLINX5obNPILzXFx14fK4Jzgs0a6sszHoM+mzBLXwbLijSr
+ lSlyFI9Jw+qKOIrR0S3emr88qyOWyx1WbSNtX1CjyI8Xh+jQA3c+AViWTOhQdhQaAWe/gZV
+ 6+li5ykihqAQ0owfPc3+Ldiez8CEZHqiIBlO36sR9KNDAGhDAfgqdAY5pVD4CLisYZwLmS8
+ NfZBM9yfNvEwx9xJPK41hVqJBf2nrS4tlod2iufqt+FW/WbtXwNPItzlcfR66bmkzdsVxvL
+ OWeGEhq4zp5luQRB8/i62yB814nNi06Z6d0aEId5EeiV1MrJUEPHiAbWMg1A==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=pass;
@@ -42,88 +42,92 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 11C084874C
-	for <nouveau@lists.freedesktop.org>; Thu, 15 Oct 2026 08:52:36 +0000 (UTC)
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
- [209.85.222.178])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A9A5D11222F
-	for <nouveau@lists.freedesktop.org>; Thu, 15 Oct 2026 09:11:09 +0000 (UTC)
-Received: by mail-qk1-f178.google.com with SMTP id
- af79cd13be357-93a40a9a01aso250998185a.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 5CAC348A96
+	for <nouveau@lists.freedesktop.org>; Thu, 15 Oct 2026 10:22:23 +0000 (UTC)
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com
+ [209.85.222.170])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 26B9510EBC4
+	for <nouveau@lists.freedesktop.org>; Thu, 15 Oct 2026 10:40:57 +0000 (UTC)
+Received: by mail-qk1-f170.google.com with SMTP id
+ af79cd13be357-93e515769d3so432292985a.3
         for <nouveau@lists.freedesktop.org>;
- Thu, 15 Oct 2026 02:11:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1792055468; cv=none;
+ Thu, 15 Oct 2026 03:40:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1792060856; cv=none;
         d=google.com; s=arc-20260327;
-        b=AsQXnTZJUCZMZWp+twg3b4Uhh1YMtyswhS5Og4DzRQ3Bw7wzXVFdFT2tDdRsv6kKFm
-         btL4MKVyRzp1cf2eUWtCAK8y2s1KwR5Sksk7L46kDDLKHO1Drb+r9x55XPUslPnCa1FI
-         SQNS7gcuBd7e5NbGpEH02Ki5Jz+gtIiZl0cKVbmzZAGuPT3LKJPVfHhMTwjgE/hceu91
-         /p4FWSaCPxaffFge0lFxbp7ZsnPQe4hjE88r9WnTR1shCNdGfAhr27SKLSbeWXNfOm1k
-         MydWJjxW+WNrMBgSfi/sXb9Dl40dxPCMy6JsDtgg32sOZpqBpylnYypsHEKVxI2Z94MD
-         bgvQ==
+        b=iyNj5Wu2o3y7WrXPhNPPxIo3B7zURo2ATG3OQM/JYGhiuF3vNRlOBUDQQVXt6GJAlf
+         tEeo4SES9tmkSH9lzBPX8BK0Oh8z+eEHGcJT/+RDx3yhXgfYY3H0pN1xU8XiKJ/EKKFX
+         Qjz8TSFIsJcu8ru8YQD93VjhKYW1gnLnfxdGZ+AWzBFDZ2WpoqY7y6JkEsPvwebtKbPf
+         Hi0GK9yMRulY6PYE1jpwH35S8okmOQ3PS3hAreoio4g/r4khcSvuYtkb8mZLuEkae6mk
+         Yjc7CQoJmzvw8wqiPH5faBxzSz0YnsNYgA8nkD4VI6VREYgh4vgRtZJkqUkHY1SLaIVW
+         6K0Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=jEoeOoyKShfauUM6omyrvuy8JMoL6O15hulliMOGIOA=;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=GK7c7qoHtQuqEPaLuDtj2LTHMuxiL75fJf9jcPF0ouQ=;
         fh=byTEA01EvqHFQdcaWfFDNref5PecJIX/vxG30vPa5+Y=;
-        b=i8ZWS3RhEmy+1YYd3cvN3hNC54qcP5ZyFTv+G2flyNa9/x9JuoE4QgAUVJ6RVLLYJv
-         cdF/h8pXqAEx3EjuC68eOdnjnHw1d1I93ZIwINgKaTkWfgxW67bd0121iKv9Rhb4Kwge
-         EG21ThDPWcoqZsj1N9zp00sr2abwiNT/5TeB3xFLmbu+HBIf+vD0HA+/7+IMWUKy2/S2
-         CJClykG/3hPsTTEXRW4Q+HCRtXG50qnVzKmE+DEmdJIlFnLptJOVmkpy26jWmNiqzVMc
-         w5pN24fCsq4Ki8JBNmjWeZrpV6Eoun+9icsuyusLszCe26zOtw70XevHLqx4D9J97hDe
-         tY1Q==;
+        b=A4DuYJatGCGgy4GpKqBnfG7sAj+YvwW8U8sH+UKRvPKz9icqR/jDPLIIHpumguMl5F
+         MgexRXK1vePOEpc3GwbuDP/WFnhIygA4oKtQlewtga57kQTztVyXBFMI5ovsjmWXvw1x
+         pBfkL/hUTEzYhLR9pbsfx9fXrDLeG5BXZCmLYplM4psUruBa99AjOBCN80/xlfzvDXM2
+         9jl+vsmy3yrZAqkRrtNlos/ZPEa+iFuSKxXdzfeYe6JxRcak0bg8IzdacC/GxmSkj+fj
+         kyzI4MKPjV0e8zxPBAK7proztUUntaC5cTWvgMlU3gzZogTdVFK/CQuLORZ16XYDYLtm
+         tTZA==;
         darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1792055468; x=1792660268;
+        d=gmail.com; s=20251104; t=1792060856; x=1792665656;
  darn=lists.freedesktop.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=jEoeOoyKShfauUM6omyrvuy8JMoL6O15hulliMOGIOA=;
-        b=bA0oMtBlREg8pitz69UjrYJKVRFWZJvzUPLA5SczzxHRTzAcnh+pDOwfH6zif+/I13
-         VFtkDfPAAJctN8XfzLQwEfr2kYSX8IkfwjvDaTkQe8qfOr8CHjv9kXDAB3UIaOjpxJd1
-         tiCJRF5fCpfVVEbeiY9FWCDTKAakjQQYzNMxGz8LBMhvRFDgWd8f2w3kbEVN1YXBZFGI
-         XsoUE5SIOxCWPGNx6rwf5owCjaFucrb1GVvTKQuchUPNlMgbewXjS0v8YgSSvcaQVHY6
-         Dqon8EQcbc655/Y5L8KEsxfk42SYcbJs+eA3T5AB3rWPYRV/1klBvOs3gv0ENjhCbV7d
-         jGkg==
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=GK7c7qoHtQuqEPaLuDtj2LTHMuxiL75fJf9jcPF0ouQ=;
+        b=KvnzdQ0YGxZDmBcDTdZp9OGvRVfi9rdltGKidihFpfgpBXrtzAwkPvtYXkYCLiuECe
+         Fn2Gzkar89CHy7AIaoGYtAO1sOKiu+niy3cTdoDiPH5/U2lklouUPCpinq8HIxcSDNXh
+         SvcEnhliu6mNtUZe10mjLxb6qQQ3FQycvpv29lwQ0ewieKEm4jQHYRG5KRtBzRUI+Ihs
+         TXL69fNXqnzIRhhKR3BVqfZTe6R/nh8opTWLVF7pnD6dAkx2RD6YHrhMgq/WP6PmDy6H
+         HO3jfIXv67gTSS2ERbmv7CjyARmXGfRGC2zjpNtwh2pUY02UJaEU1/2leklO1MFcAOAo
+         59Tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792055468; x=1792660268;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=jEoeOoyKShfauUM6omyrvuy8JMoL6O15hulliMOGIOA=;
-        b=PC5KX/LZUbnf2W1mVB9DFM8GLf9fM1wXlRnhF8nl8p0T/NF5at93PZSH72J4MApGUg
-         MaK9Lk+59E5kXoLXt4QriCT1i+hsjFqvvCQLeA5QwAbsM+W25/ofMY5USolqKn6931Ym
-         /Rs2rbYdroUwx4sfr1rmZhcI3dBfJCZdtS09x6pXZEUUNrQj5yK4H60rxrOj+AB3IAW8
-         sryKPQ+lXN+P4PhdZRcqy7QljjqRPSLIczGM/+f9eUcCoiqlcZKW7j4JRi3FRqjzgP2e
-         S8H7PZTktPkwwoWjhO0bA7PMOnYvMvsLmmtEcYKhaXGrFWoZP9HHqoUNSc1HkfNae/vr
-         PtHQ==
-X-Gm-Message-State: AFq9FYLZsZmHTRx6Sl6C/vztcxWUYBj7rDNaUPpUArEtHxahvdYEYEOA
-	QY+56GXGWH4YPPZFtTr2x6kFUXp7YP0O1L4e+tiUPFfZ9yklQde5G/XCxidaQzCvrC+RTE9Y7Mu
-	sw0boAuYgnf+uueU9K0zAKzgmbiZH5MLbWq/Q
-X-Gm-Gg: AYBFou2RhMB2A+nIghi82RYMRmabSAImwgGbGz64qE/VYhW5hue6hcunPEsPkDnxBaP
-	wbjSvnqRel5W30q8a8ppHW/NXmFvK76/+sRTC/jEPW+jxIe6mTwUFQmK59ccVzj63JDKwwYnDUb
-	x402ULH85qHfl5sUDzOEYfSS1B9ufme0XFnMXRKY9TQt1ONU9dVx+lS6J/Y2TnB61y2LB3ohEHl
-	eQ3ELC1z72azif1oRLIpyrmOuqzxRPH6bn9amEoHpBAfGcMZ6/VZs8IvKrpoDpa/wxSe6woSIQw
-	WEchiJqt0+QKcJBUSbxjGeCom1KRRxZ/0i/p++jJKrNg7/QMpk31YBKANJbbZM5L5clCxZL4ZbH
-	3Zl0tcMgAOtg=
-X-Received: by 2002:a05:620a:2850:b0:93e:94c3:e851 with SMTP id
- af79cd13be357-93ec135054cmr2512973085a.9.1792055468406; Thu, 15 Oct 2026
- 02:11:08 -0700 (PDT)
+        d=1e100.net; s=20260707; t=1792060856; x=1792665656;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=GK7c7qoHtQuqEPaLuDtj2LTHMuxiL75fJf9jcPF0ouQ=;
+        b=QZaC+94AAZYLMi6qbiglhWy5DC2w8gIVvdqA0/ReWTb9hrHC8vUk7t1hs7xWewsG4R
+         AbyUhEpPcsCA+rc58/lk9EA1Xb1MKtXzmJAb3/tJoS+vhQJMyobM9oyM6Oc5SG1Bygd/
+         Nq6OG5J7ERz8pDfYA0K84jr2mCEs37VE3CfrQ2vgu8vJwFxmGFmQOWLGgr2LJJsZiUC6
+         he+azHkYV/SY7Wolvdcrkk0rlIalvxBwccoXhvF9OsR6dTXdvkf34lZbE/su16/rmNka
+         NLTNyZcn7DbRDuLOVz3rxIk92zfjSqr8nAwoD0HydFtYRnhsPHe35Bf2nKnWpcK1wZSj
+         2yEg==
+X-Gm-Message-State: AFq9FYKQxcuP4khNamaMfiZRidCpENlXZfZ+y5y73wJsfhsOxPMT/Qjq
+	BU2nSH6fWWa4uTCClXxu4KA9Vd81cugJtQgGXJG2bQJayWbC9vWJ/7SqmgHC5UHp1XBaGn2xcyz
+	5pZiPHL16HZPxYadDOEjwv6Kf2zjTQveApM3/qBQ=
+X-Gm-Gg: AYBFou20F1Vrdte41vl3v+5f8cD/YfECW64JBw6k4LrCSyjvFttu1EJbiieFelanufd
+	/a/A+FDHJanRVMK0+vCfKvkHxtB/vgwcyvJcSap3+R29UtOxQ3o6FzQZCPS3aDTZJUVyOPio+FU
+	SUhPcvKlEy8X7zHwz3TdcIzVJM/4Kp1ENJ/H1hriFYCB0BD8LEqWVwH0/UH+bYzblKAADE6sM/i
+	aSkzI3xgmFIGAzkTH7CGclQiPbFdAfr3xtjhxwYMrcayCTZHVYma3lvFSNUICcPnzBvF0AMuj7B
+	3gxPq/lYnn4da7mrwkZuh63dHPtCtcBXp+uat2/oVAU8B/GqFhgKyQEdgkc5fDLPwrlM6P5Zte3
+	vXK2qHZRd42gNDjd0KYbsw9ldc/UYn/nRHFkwHIBBQZbiOw==
+X-Received: by 2002:a05:620a:44c1:b0:93e:6e59:ad16 with SMTP id
+ af79cd13be357-93ebd1dfd74mr3037179085a.29.1792060856144; Thu, 15 Oct 2026
+ 03:40:56 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260928081450.19340-1-dilddream31@gmail.com>
-In-Reply-To: <20260928081450.19340-1-dilddream31@gmail.com>
-From: =?UTF-8?B?6rmA67KU7ISd?= <dilddream31@gmail.com>
-Date: Thu, 15 Oct 2026 18:10:57 +0900
-X-Gm-Features: AclHuK9dY7-4Z1BJVfwNpzcd1NSLlAb1ICM3Ix05ep8_FkWQ-f6VLJo26bPN6Nk
-Message-ID: 
  <CAGC3ukQ7gX97E7pG0Oy8H0cnmQzoA1038io+VhrBogPB3y9dDQ@mail.gmail.com>
+In-Reply-To: 
+ <CAGC3ukQ7gX97E7pG0Oy8H0cnmQzoA1038io+VhrBogPB3y9dDQ@mail.gmail.com>
+From: =?UTF-8?B?6rmA67KU7ISd?= <dilddream31@gmail.com>
+Date: Thu, 15 Oct 2026 19:40:44 +0900
+X-Gm-Features: AclHuK9ftaX0YjG2NCtLvWvZyiH7eh52x9bAW5dRWFx1APAiB6cYmVIL6REePPY
+Message-ID: 
+ <CAGC3ukSVk=N4ttd3hwnXXXppHchwroJmySPAFP65Vt+uP0COOw@mail.gmail.com>
 Subject: Re: [PATCH] drm/nouveau: Clear fence channel in no-signaling path
 To: nouveau@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="0000000000009cbe2f065ddd6d4f"
-Message-ID-Hash: SIDTMN7VBHQ6TWTY4I62XMNACIAWUZHD
-X-Message-ID-Hash: SIDTMN7VBHQ6TWTY4I62XMNACIAWUZHD
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: OAOUM6OFIRBAHB3E2DFTCWTMJJFQDWSI
+X-Message-ID-Hash: OAOUM6OFIRBAHB3E2DFTCWTMJJFQDWSI
 X-MailFrom: dilddream31@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -135,9 +139,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SIDTMN7VBHQ6TWTY4I62XMNACIAWUZHD/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OAOUM6OFIRBAHB3E2DFTCWTMJJFQDWSI/>
 Archived-At: 
- <https://lore.freedesktop.org/CAGC3ukQ7gX97E7pG0Oy8H0cnmQzoA1038io+VhrBogPB3y9dDQ@mail.gmail.com/>
+ <https://lore.freedesktop.org/CAGC3ukSVk=N4ttd3hwnXXXppHchwroJmySPAFP65Vt+uP0COOw@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -147,29 +151,34 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
---0000000000009cbe2f065ddd6d4f
-Content-Type: text/plain; charset="UTF-8"
-
 Gentle Ping.
 
 There has been some related discussion here:
-https://lore.kernel.org/r/1690ea65-a1e0-4a34-bde1-bdd26e31c6c4@u-bordeaux.fr
+https://lore.kernel.org/r/1690ea65-a1e0-4a34-bde1-bdd26e31c6c4@u-bordeaux.f=
+r
 
-The patch has also been independently tested, with no reproduction of the
-issue reported so far.
+The patch has also been independently tested, with no reproduction of
+the issue reported so far.
+
+Apologies if you received this twice. My previous message was rejected
+by the mailing list due to HTML formatting.
+
 
 Thanks.
 
---0000000000009cbe2f065ddd6d4f
-Content-Type: text/html; charset="UTF-8"
 
-<div><div style="font-size:inherit"><div style="font-size:inherit">
-
-<p dir="auto">Gentle Ping.</p>
-<p>There has been some related discussion here:<br>
-<a href="https://lore.kernel.org/r/1690ea65-a1e0-4a34-bde1-bdd26e31c6c4@u-bordeaux.fr">https://lore.kernel.org/r/1690ea65-a1e0-4a34-bde1-bdd26e31c6c4@u-bordeaux.fr</a></p>
-<p>The patch has also been independently tested, with no reproduction of the issue reported so far.</p>
-
-</div></div><br></div><div dir="auto">Thanks.</div>
-
---0000000000009cbe2f065ddd6d4f--
+2026=EB=85=84 10=EC=9B=94 15=EC=9D=BC (=EB=AA=A9) =EC=98=A4=ED=9B=84 6:10, =
+=EA=B9=80=EB=B2=94=EC=84=9D <dilddream31@gmail.com>=EB=8B=98=EC=9D=B4 =EC=
+=9E=91=EC=84=B1:
+>
+> Gentle Ping.
+>
+> There has been some related discussion here:
+> https://lore.kernel.org/r/1690ea65-a1e0-4a34-bde1-bdd26e31c6c4@u-bordeaux=
+.fr
+>
+> The patch has also been independently tested, with no reproduction of the=
+ issue reported so far.
+>
+>
+> Thanks.
