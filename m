@@ -4,144 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3A04CC6B33
-	for <nouveau@archiver.kernel.org>; Thu, 15 Oct 2026 10:41:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A923CCA46C
+	for <nouveau@archiver.kernel.org>; Fri, 16 Oct 2026 15:07:14 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 846181122A7;
-	Thu, 15 Oct 2026 10:41:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 61643112887;
+	Fri, 16 Oct 2026 15:07:09 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8407848AB2;
-	Thu, 15 Oct 2026 10:22:26 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1792059746;
- b=phmydwkde/BdvY2L+4IxLfjBbvLU9njeajXBDSwfp43PLxL47ak74LOaYQhMA8g2luBRO
- REKB9E1PtT2NHH2NBrDFSvkhlVdNa8xjW1ddwg4LOMj43f8xFeHvDz+skOVbTtkc121gJen
- gjiGz94jcMgDqlbo1O14lnACYKu0TglJcqyTuEb9qLQzwN0fsbxersamtpO3EuRrhbPo6kX
- 8kVtXpwyjWw8aqb2IWn3/7D5buKwsebd+tTBh2EEWtv/X05cQm0CMS3Mb2CEVCbDg1Y58Mh
- w9AZyFXhoYEe2M1/qj1Ou9koW6OvKFjR6EQ6arYtCXRFAtx3Vg0PRIkjU1hA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1792059746; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id BAB8548ADE;
+	Fri, 16 Oct 2026 14:48:27 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1792162107;
+ b=bjdf0DZ1BUe64KtCK4mjFQdQ0gjXIxSTpR3paOr7VWqh67xqwSnmFdGoiVrY9UoBzCN4C
+ gUQgNlG8ZosaS9SVmQCyYQ0lGRLkNAXdbbxAGcQb3tJhKqZ3k+BF2itmyV3Drj71KTF2UbK
+ MyRLHcjiHc5/s9J/4hgdu5dRnNC/izH02/j3SyqTeNAGwFxA48DTU90mO79jfiYvHWAQIVf
+ FhmhokkLKots8/s3/QHYFKiNywxyVdUg0o01IKfVcrugPQn+6a0Cp7xPe4T2+TMMHAXwAT5
+ iZb1ItF61KCYJWKQ+Tne6W4IsWA5GCJAw+ybNCRWNh+q2iLWtKH10paB81rQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1792162107; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=GK7c7qoHtQuqEPaLuDtj2LTHMuxiL75fJf9jcPF0ouQ=;
- b=E4wFX9SvHLkz4vCG2A4LYTKLINX5obNPILzXFx14fK4Jzgs0a6sszHoM+mzBLXwbLijSr
- lSlyFI9Jw+qKOIrR0S3emr88qyOWyx1WbSNtX1CjyI8Xh+jQA3c+AViWTOhQdhQaAWe/gZV
- 6+li5ykihqAQ0owfPc3+Ldiez8CEZHqiIBlO36sR9KNDAGhDAfgqdAY5pVD4CLisYZwLmS8
- NfZBM9yfNvEwx9xJPK41hVqJBf2nrS4tlod2iufqt+FW/WbtXwNPItzlcfR66bmkzdsVxvL
- OWeGEhq4zp5luQRB8/i62yB814nNi06Z6d0aEId5EeiV1MrJUEPHiAbWMg1A==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ bh=qgiGef4Ohy6VRaPUYC6AlFmNRyKjxhooP4OqvSap8is=;
+ b=pere1awUxGLn6XWneJyrjkJOsM9zuyJ6o4YmgXYBHJ+/RCvORKlAwrCyGdCrNwcCvXvfS
+ CWfI3sbS2p+OtX0sgceK205E/Q/9mshbgLAGHAOijhwH+RSd+kXD2euLcjPSmTCIGG3r6mf
+ DrEB9Z0bpWfG7U/YEetkIe3brJ3xcxb8hBuhvJk22+A+GvHUCh+GUN2cxn3PQ4c8vdAWrtn
+ ihnSDoHofaBXf9mfBx+Vfb1utGxgK3nuugFrmp2DN5CmnKObX4somzLa3cQr4+g2aUZPoeC
+ lp7fVb3IvT5qs8eW8vq3oa0g+OGEAfwAT+jZQ3ZYR2T/CDicNfP+Cl0XzNkA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5CAC348A96
-	for <nouveau@lists.freedesktop.org>; Thu, 15 Oct 2026 10:22:23 +0000 (UTC)
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com
- [209.85.222.170])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 26B9510EBC4
-	for <nouveau@lists.freedesktop.org>; Thu, 15 Oct 2026 10:40:57 +0000 (UTC)
-Received: by mail-qk1-f170.google.com with SMTP id
- af79cd13be357-93e515769d3so432292985a.3
-        for <nouveau@lists.freedesktop.org>;
- Thu, 15 Oct 2026 03:40:57 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1792060856; cv=none;
-        d=google.com; s=arc-20260327;
-        b=iyNj5Wu2o3y7WrXPhNPPxIo3B7zURo2ATG3OQM/JYGhiuF3vNRlOBUDQQVXt6GJAlf
-         tEeo4SES9tmkSH9lzBPX8BK0Oh8z+eEHGcJT/+RDx3yhXgfYY3H0pN1xU8XiKJ/EKKFX
-         Qjz8TSFIsJcu8ru8YQD93VjhKYW1gnLnfxdGZ+AWzBFDZ2WpoqY7y6JkEsPvwebtKbPf
-         Hi0GK9yMRulY6PYE1jpwH35S8okmOQ3PS3hAreoio4g/r4khcSvuYtkb8mZLuEkae6mk
-         Yjc7CQoJmzvw8wqiPH5faBxzSz0YnsNYgA8nkD4VI6VREYgh4vgRtZJkqUkHY1SLaIVW
-         6K0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=GK7c7qoHtQuqEPaLuDtj2LTHMuxiL75fJf9jcPF0ouQ=;
-        fh=byTEA01EvqHFQdcaWfFDNref5PecJIX/vxG30vPa5+Y=;
-        b=A4DuYJatGCGgy4GpKqBnfG7sAj+YvwW8U8sH+UKRvPKz9icqR/jDPLIIHpumguMl5F
-         MgexRXK1vePOEpc3GwbuDP/WFnhIygA4oKtQlewtga57kQTztVyXBFMI5ovsjmWXvw1x
-         pBfkL/hUTEzYhLR9pbsfx9fXrDLeG5BXZCmLYplM4psUruBa99AjOBCN80/xlfzvDXM2
-         9jl+vsmy3yrZAqkRrtNlos/ZPEa+iFuSKxXdzfeYe6JxRcak0bg8IzdacC/GxmSkj+fj
-         kyzI4MKPjV0e8zxPBAK7proztUUntaC5cTWvgMlU3gzZogTdVFK/CQuLORZ16XYDYLtm
-         tTZA==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1792060856; x=1792665656;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=GK7c7qoHtQuqEPaLuDtj2LTHMuxiL75fJf9jcPF0ouQ=;
-        b=KvnzdQ0YGxZDmBcDTdZp9OGvRVfi9rdltGKidihFpfgpBXrtzAwkPvtYXkYCLiuECe
-         Fn2Gzkar89CHy7AIaoGYtAO1sOKiu+niy3cTdoDiPH5/U2lklouUPCpinq8HIxcSDNXh
-         SvcEnhliu6mNtUZe10mjLxb6qQQ3FQycvpv29lwQ0ewieKEm4jQHYRG5KRtBzRUI+Ihs
-         TXL69fNXqnzIRhhKR3BVqfZTe6R/nh8opTWLVF7pnD6dAkx2RD6YHrhMgq/WP6PmDy6H
-         HO3jfIXv67gTSS2ERbmv7CjyARmXGfRGC2zjpNtwh2pUY02UJaEU1/2leklO1MFcAOAo
-         59Tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792060856; x=1792665656;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=GK7c7qoHtQuqEPaLuDtj2LTHMuxiL75fJf9jcPF0ouQ=;
-        b=QZaC+94AAZYLMi6qbiglhWy5DC2w8gIVvdqA0/ReWTb9hrHC8vUk7t1hs7xWewsG4R
-         AbyUhEpPcsCA+rc58/lk9EA1Xb1MKtXzmJAb3/tJoS+vhQJMyobM9oyM6Oc5SG1Bygd/
-         Nq6OG5J7ERz8pDfYA0K84jr2mCEs37VE3CfrQ2vgu8vJwFxmGFmQOWLGgr2LJJsZiUC6
-         he+azHkYV/SY7Wolvdcrkk0rlIalvxBwccoXhvF9OsR6dTXdvkf34lZbE/su16/rmNka
-         NLTNyZcn7DbRDuLOVz3rxIk92zfjSqr8nAwoD0HydFtYRnhsPHe35Bf2nKnWpcK1wZSj
-         2yEg==
-X-Gm-Message-State: AFq9FYKQxcuP4khNamaMfiZRidCpENlXZfZ+y5y73wJsfhsOxPMT/Qjq
-	BU2nSH6fWWa4uTCClXxu4KA9Vd81cugJtQgGXJG2bQJayWbC9vWJ/7SqmgHC5UHp1XBaGn2xcyz
-	5pZiPHL16HZPxYadDOEjwv6Kf2zjTQveApM3/qBQ=
-X-Gm-Gg: AYBFou20F1Vrdte41vl3v+5f8cD/YfECW64JBw6k4LrCSyjvFttu1EJbiieFelanufd
-	/a/A+FDHJanRVMK0+vCfKvkHxtB/vgwcyvJcSap3+R29UtOxQ3o6FzQZCPS3aDTZJUVyOPio+FU
-	SUhPcvKlEy8X7zHwz3TdcIzVJM/4Kp1ENJ/H1hriFYCB0BD8LEqWVwH0/UH+bYzblKAADE6sM/i
-	aSkzI3xgmFIGAzkTH7CGclQiPbFdAfr3xtjhxwYMrcayCTZHVYma3lvFSNUICcPnzBvF0AMuj7B
-	3gxPq/lYnn4da7mrwkZuh63dHPtCtcBXp+uat2/oVAU8B/GqFhgKyQEdgkc5fDLPwrlM6P5Zte3
-	vXK2qHZRd42gNDjd0KYbsw9ldc/UYn/nRHFkwHIBBQZbiOw==
-X-Received: by 2002:a05:620a:44c1:b0:93e:6e59:ad16 with SMTP id
- af79cd13be357-93ebd1dfd74mr3037179085a.29.1792060856144; Thu, 15 Oct 2026
- 03:40:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260928081450.19340-1-dilddream31@gmail.com>
- <CAGC3ukQ7gX97E7pG0Oy8H0cnmQzoA1038io+VhrBogPB3y9dDQ@mail.gmail.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id EC05248AC5
+	for <nouveau@lists.freedesktop.org>; Fri, 16 Oct 2026 14:48:24 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 35F6B10E144;
+	Fri, 16 Oct 2026 15:07:01 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 56861601FF;
+	Fri, 16 Oct 2026 15:07:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C15781F000C4;
+	Fri, 16 Oct 2026 15:06:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1792163220;
+	bh=qgiGef4Ohy6VRaPUYC6AlFmNRyKjxhooP4OqvSap8is=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=eV18hT0GJUaQWHwp7Ud3PDO7D6hZRb8bZhmXgdps3B8BS6n8oNJ0JGllQiOIL5tDP
+	 Sm/steBjr2D+Yo32uchtTymDOoEIcPaq4VI6WSikDzpGouECjbWUVLW7w9yFeVcsgN
+	 02VFgdWQOgAJ5by5jdKCTaA2WhUV2wFYDSyfDULQTbvubLT8hniX199/Slm0vXbZR2
+	 IQZm0/IZz7DZlUj5ENSfYBHMLo8QtFx+/3Njn/IvMWTwBJYMk/0rkA4a76NRnaV3YZ
+	 uopDBKWTIAyxKjcdyOUu7Z1DGoMj7Z2ldUbBCAWjfTtDyVPCr1XX9oKF9XIN6QoIXc
+	 wR5wn+tLG2xuQ==
+From: Maxime Ripard <mripard@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maxime Ripard <mripard@kernel.org>
+Subject: Re: (subset) [PATCH 00/75] drm/connector: Convert all drivers to
+ atomic_create_state and remove reset
+Date: Fri, 16 Oct 2026 17:06:53 +0200
+Message-ID: <179216309041.2383329.5085571920107795525.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.55.0
 In-Reply-To: 
- <CAGC3ukQ7gX97E7pG0Oy8H0cnmQzoA1038io+VhrBogPB3y9dDQ@mail.gmail.com>
-From: =?UTF-8?B?6rmA67KU7ISd?= <dilddream31@gmail.com>
-Date: Thu, 15 Oct 2026 19:40:44 +0900
-X-Gm-Features: AclHuK9ftaX0YjG2NCtLvWvZyiH7eh52x9bAW5dRWFx1APAiB6cYmVIL6REePPY
-Message-ID: 
- <CAGC3ukSVk=N4ttd3hwnXXXppHchwroJmySPAFP65Vt+uP0COOw@mail.gmail.com>
-Subject: Re: [PATCH] drm/nouveau: Clear fence channel in no-signaling path
-To: nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: OAOUM6OFIRBAHB3E2DFTCWTMJJFQDWSI
-X-Message-ID-Hash: OAOUM6OFIRBAHB3E2DFTCWTMJJFQDWSI
-X-MailFrom: dilddream31@gmail.com
+ <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
+References: 
+ <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: NZU3XAU6GHV2TUGJZMZKSD6ZEF6YMJ5I
+X-Message-ID-Hash: NZU3XAU6GHV2TUGJZMZKSD6ZEF6YMJ5I
+X-MailFrom: mripard@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: dakr@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- simona@ffwll.ch, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
+CC: dri-devel@lists.freedesktop.org, Aun-Ali Zaidi <admin@kodeit.net>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>,
+ Dave Airlie <airlied@redhat.com>, Jocelyn Falempe <jfalempe@redhat.com>,
+ Francesco Dolcini <francesco@dolcini.it>, Ian Ray <ian.ray@gehealthcare.com>,
+ Martyn Welch <martyn.welch@collabora.co.uk>,
+ Peter Senna Tschudin <peter.senna@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
+ Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
+ Tian Tao <tiantao6@hisilicon.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Yongbang Shi <shiyongbang@huawei.com>, Dexuan Cui <decui@microsoft.com>,
+ Long Li <longli@microsoft.com>, Saurabh Sengar <ssengar@linux.microsoft.com>,
+ linux-hyperv@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+ Frank Li <Frank.Li@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
+ Paul Kocialkowski <paulk@sys-base.io>, Huacai Chen <chenhuacai@kernel.org>,
+ Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>,
+ Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>,
+ Xi Ruoyao <xry111@xry111.site>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
+ virtualization@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>,
+ linux-renesas-soc@vger.kernel.org,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Iker Pedrosa <ikerpedrosam@gmail.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Raphael Gallais-Pou <rgallaispou@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Yannick Fertre <yannick.fertre@foss.st.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
+ Alexey Brodkin <abrodkin@synopsys.com>, Hans de Goede <hansg@kernel.org>,
+ LiangCheng Wang <zaq14760@gmail.com>, Alex Lanzano <lanzano.alex@gmail.com>,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Ruben Wauters <rubenru09@aol.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Zack Rusin <zack.rusin@broadcom.com>, Aditya Garg <aditya.garg@linux.dev>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OAOUM6OFIRBAHB3E2DFTCWTMJJFQDWSI/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NZU3XAU6GHV2TUGJZMZKSD6ZEF6YMJ5I/>
 Archived-At: 
- <https://lore.freedesktop.org/CAGC3ukSVk=N4ttd3hwnXXXppHchwroJmySPAFP65Vt+uP0COOw@mail.gmail.com/>
+ <https://lore.freedesktop.org/179216309041.2383329.5085571920107795525.b4-ty@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -151,34 +176,38 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Gentle Ping.
+On Wed, 14 Oct 2026 19:26:23 +0200, Maxime Ripard wrote:
+> This is a follow-up to the plane and CRTC reset removal series, and
+> part of a larger effort to remove the reset hook from all KMS objects.
+> 
+> The connector reset hook is overloaded: it is called both at probe
+> time to create the initial software state and during suspend/resume to
+> reset hardware and software state. These two roles have different
+> requirements, and the reset hook is not fallible, making error
+> handling difficult for the initial state allocation path.
+> 
+> [...]
 
-There has been some related discussion here:
-https://lore.kernel.org/r/1690ea65-a1e0-4a34-bde1-bdd26e31c6c4@u-bordeaux.f=
-r
+Applied to misc/kernel.git (drm-misc-next)
 
-The patch has also been independently tested, with no reproduction of
-the issue reported so far.
+[05/75] drm/arm: komeda: Switch to drm_atomic_helper_connector_create_state
+        commit: 849b1119cb1f429667bf3e79cba86ad397087ab7
+[11/75] drm/bridge: lontium-lt8912b: Switch to drm_atomic_helper_connector_create_state
+        commit: 80512a4f295c52caf1394677d9c80738b68c8831
+[12/75] drm/bridge: megachips: Switch to drm_atomic_helper_connector_create_state
+        commit: 9a4a55df74880acf7c2b954d6011aab579db5f5e
+[24/75] drm/hyperv: Switch to drm_atomic_helper_connector_create_state
+        commit: 7b9c28149a291451ada4c3e9fc7fd2ae13f36bc5
+[25/75] drm/imx: ipuv3: Switch to drm_atomic_helper_connector_create_state
+        commit: 75da1ba5a3c36dca76206ec8e90bebcfc3641c64
+[35/75] drm/solomon: ssd130x: Switch to drm_atomic_helper_connector_create_state
+        commit: 9ec42580ccceb54bd8e0b044729a98e4f345b522
+[39/75] drm/sysfb: Switch to drm_atomic_helper_connector_create_state
+        commit: af36b2313c54e10b832298033b8be2fd50746c96
+[51/75] drm/vc4: Switch to drm_atomic_helper_connector_create_state
+        commit: c81e4d88c3ed73483a99a90f56cc80c80eebc863
+[67/75] drm/malidp: Convert to atomic_create_state
+        commit: 8b32d0652db9bb6b01055311e1cce5e3c4b70137
 
-Apologies if you received this twice. My previous message was rejected
-by the mailing list due to HTML formatting.
-
-
-Thanks.
-
-
-2026=EB=85=84 10=EC=9B=94 15=EC=9D=BC (=EB=AA=A9) =EC=98=A4=ED=9B=84 6:10, =
-=EA=B9=80=EB=B2=94=EC=84=9D <dilddream31@gmail.com>=EB=8B=98=EC=9D=B4 =EC=
-=9E=91=EC=84=B1:
->
-> Gentle Ping.
->
-> There has been some related discussion here:
-> https://lore.kernel.org/r/1690ea65-a1e0-4a34-bde1-bdd26e31c6c4@u-bordeaux=
-.fr
->
-> The patch has also been independently tested, with no reproduction of the=
- issue reported so far.
->
->
-> Thanks.
+Thanks!
+Maxime
