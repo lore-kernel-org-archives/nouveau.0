@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F385CCA490
-	for <nouveau@archiver.kernel.org>; Fri, 16 Oct 2026 16:07:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84BEFCC6B38
+	for <nouveau@archiver.kernel.org>; Fri, 16 Oct 2026 16:07:27 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2636A11291B;
-	Fri, 16 Oct 2026 16:07:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D38AF11291C;
+	Fri, 16 Oct 2026 16:07:21 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6DCDE48AEB;
-	Fri, 16 Oct 2026 15:48:37 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 1BE4148AF3;
+	Fri, 16 Oct 2026 15:48:40 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1792165717;
- b=noYr0Ex91qldTLl3fKt0oOfQpblJDBFIyY9TlDWbaadf1fqfhpKE3TPobNNKT2rn9PgI9
- Bzv9bMKU+QnQgZqVIvFMZjLg2sRz/2dBcbAs51/mfJmf1Y86doLgjRlLBNJ01brQZAaYzh7
- o0VuP2Al3c455/C2Uc3BFzM8/djN/4lwgEa0lg9QCDeV2fCIXHpcLYq48vubdLd1+05LP0C
- S5gFqUUqH4Ef41KRro4wuwYT5jLd9UjFMwQLwtqtJk7l6zKwBJ8GId/5DTxxNEpXpUaOC0Y
- R+Lt75Qcf+v+fpxhuOjoe6MfUmW584iWvcLpF7CQhOf/NDxfalItWiu6obEA==
+ s=20240201; t=1792165719;
+ b=FmKlAcr5m5d5WMwhktyIGPwdx80NMeCqTFJDsSyCQRb6LW+gat5BnAH1m3D3yzmbyHbRs
+ dNkjp0gyPHj/UThKWg1c5dzGJpl0ftnATc/tvJ+XL9FYgQx115N5WfEQSGEMMIuitSAjGAq
+ orLBQYiuBcLveNZYcgZuPpZY1I0VbxoQJOqt21yQfNyfFl8qkZceyhYN0He0mnflptAvExu
+ 5hNolgeHnjNqF4vGKySK/UJgzWqUeuuKeOZ9aIkqUhrA4WDOCbyzdcWa5Ud0YghixoiAR8J
+ HhiuWkyYE93P++VCxqvRCffzYs9og3mHuVtcZNZrqrt/7yldoPa8M/Akgjrg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1792165717; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1792165719; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=sqd/v2ur0Dtc6p+7LVSgvGm/XLcvXx5qFoeVZPkfvmg=;
- b=i36BSBtokA1ONF3aIQo79eLNL2WzBoYpbka48014gDbkxvy/nL8bdNJm3NcvPdxovoNi7
- MqCTe4wg4axuaB9mfVrxOz1ITmbBEsVMsc9FYVxKiBxeoBWcO8x7yoQiemFoSDPBziZb53q
- bXuQLetub0cbfQ1VqgKLtgnQrVDATxaA/60bFjeAT7jnaG61TGYVW3Ge5RH9VytMrisEJSo
- glysgxgKtJM1PaTP17f1LPn/ipoSKei3gNhfsRBlT2rGqkyrlc9NYBLm0XFSl/8tbSP6OEX
- AHhttFxCfPGTUSAktumUlQkLUTB8grvCIzBxZlCCorlkKTLWZH9450i/XFPw==
+ bh=HoQcf7n8Q8ynNDAuwTEGdl/f27l9+9gdRy/4HNnkOVc=;
+ b=ZIjzvsnrVLmpXC9oVX5PGIj0mqxlgzZK5wOTrT6IMFHBbA06wM/gx1AzjaTvk2c9k89Y9
+ KxZycFV384ef0zQl/iUaxNI/bDTTKV+hsXpjjvoUszvHirH067eRG+9hlRuFHcEQyo8uxP5
+ wDLe2RlAoRJEIkf8dTT0os1Du1/HRXLbi4xDZm3Kjlfd15CzrZ0/3LNiMBHbWQLxlbJF0jm
+ 5nM36ncHFIuEQkcwoYiYM/6RkL/ihr0OR3ZGGFJ8BC36dJj10ZEWW3dN2y1SXaQDB8L/2h7
+ e5b5+g3Mv+WO2HLnC/qtoMpEQYlurwJPEhKBogOx1+cR76DwgCgySjKriNhQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,41 +43,41 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3251948AE6
-	for <nouveau@lists.freedesktop.org>; Fri, 16 Oct 2026 15:48:33 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3321848AC5
+	for <nouveau@lists.freedesktop.org>; Fri, 16 Oct 2026 15:48:36 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9EE72112891;
-	Fri, 16 Oct 2026 16:07:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B38381128E8;
+	Fri, 16 Oct 2026 16:07:11 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id AC6F560219;
+	by tor.source.kernel.org (Postfix) with ESMTP id 2EC3F60202;
+	Fri, 16 Oct 2026 16:07:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4B691F000C5;
 	Fri, 16 Oct 2026 16:07:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E99E1F000CB;
-	Fri, 16 Oct 2026 16:07:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792166828;
-	bh=sqd/v2ur0Dtc6p+7LVSgvGm/XLcvXx5qFoeVZPkfvmg=;
+	s=k20260515; t=1792166830;
+	bh=HoQcf7n8Q8ynNDAuwTEGdl/f27l9+9gdRy/4HNnkOVc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=COVDp2W7VFw1tqs3UT2/aPQ2P12Nh9GJyP0MPHtbjdgxSx/j9JIL0VqxHmdLqEW3o
-	 +Q6YatdZs3oQkDvoRILmeu5ASyQCMYsSFSg2r3Kxp/ANLsaNrOhXoCX3yS8x9CXP5e
-	 Z2GeyBJYAOi56ov3qkgvdyRIuUDPtBbWTf5vL1FAhHlC3gCL6K42/aFyBILf/jiK3y
-	 +2f8BWqt5G9/N77w46ojwUTMdY7Of/F2CejVGZh1Ub/Uwd6d/iw9T6sk4OTqQloNxT
-	 Qt7Oi2gZ/mOIj1ctdmfCbiRXbeYJh47lMh40q9bAAZfpTn7nSrN59Nw8U2roHGYAuJ
-	 tdCo89xQa8W8g==
+	b=F/Epq7AM1gSU+en4YO89dvsAJYKFrWxlTyCrAOyJJiNbc6OeZ/X2SNmQ6iYSi2onm
+	 esSIfTLvS62+8UY9Onu8T823en0EK/29yiaTsTsoMI+TLTYvWyBuDVaYHh7O01yhOI
+	 v1BiekT1LXDDQ/pyrQUP1EOKhUPfNJVqn94Cu/OK3GxoEE4EXOAbWYX6XEn/fGKyNa
+	 bqbZ6ixFMf2tSJp0cGSBK92yXZTxYsj4HQLcclbpoIyHRP5coDVgRix7KAo3gKyXb7
+	 /JDuuI+tLr0uybOzpo0YIu8Acp3Okj+YoNNpWQ4zGiwCsjxongmJGMm5rKTDXHHi4/
+	 Ul4ClICsVsldQ==
 From: Sasha Levin <sashal@kernel.org>
 To: Thierry Reding <thierry.reding@kernel.org>,
 	Jonathan Hunter <jonathanh@nvidia.com>,
 	Lyude Paul <lyude@redhat.com>,
 	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH v2 2/6] ARM: tegra: Add the fuse clock to the Tegra124 GPU
-Date: Fri, 16 Oct 2026 12:06:55 -0400
-Message-ID: <20261016160700.3831336-3-sashal@kernel.org>
+Subject: [PATCH v2 3/6] arm64: tegra: Add the fuse clock to the Tegra132 GPU
+Date: Fri, 16 Oct 2026 12:06:56 -0400
+Message-ID: <20261016160700.3831336-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261016160700.3831336-1-sashal@kernel.org>
 References: <20261016160700.3831336-1-sashal@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: HOBME4TW7UWDFWQBHVHPBNGPMJP26MWD
-X-Message-ID-Hash: HOBME4TW7UWDFWQBHVHPBNGPMJP26MWD
+Message-ID-Hash: 7EYXY2NXPYM4WCRJZCAUDPQBTETYCK6U
+X-Message-ID-Hash: 7EYXY2NXPYM4WCRJZCAUDPQBTETYCK6U
 X-MailFrom: sashal@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -98,9 +98,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HOBME4TW7UWDFWQBHVHPBNGPMJP26MWD/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7EYXY2NXPYM4WCRJZCAUDPQBTETYCK6U/>
 Archived-At: 
- <https://lore.freedesktop.org/20261016160700.3831336-3-sashal@kernel.org/>
+ <https://lore.freedesktop.org/20261016160700.3831336-4-sashal@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -112,20 +112,20 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 The GPU needs the fuse clock running while it is powered: the GM20B
 on Tegra210 often fails to initialize without it, and the GK20A on
-Tegra124 is expected to have the same requirement. Describe the fuse
+Tegra132 is expected to have the same requirement. Describe the fuse
 clock so that the GPU driver can keep it enabled.
 
 Assisted-by: LLM
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/nvidia/tegra124.dtsi | 5 +++--
+ arch/arm64/boot/dts/nvidia/tegra132.dtsi | 5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra124.dtsi b/arch/arm/boot/dts/nvidia/tegra124.dtsi
-index ce4efa1de509b..002acc7357238 100644
---- a/arch/arm/boot/dts/nvidia/tegra124.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra124.dtsi
-@@ -327,8 +327,9 @@ gpu@57000000 {
+diff --git a/arch/arm64/boot/dts/nvidia/tegra132.dtsi b/arch/arm64/boot/dts/nvidia/tegra132.dtsi
+index 26cd11a8a4a12..30f0d87aa70c2 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra132.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra132.dtsi
+@@ -195,8 +195,9 @@ gpu@57000000 {
  			     <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>;
  		interrupt-names = "stall", "nonstall";
  		clocks = <&tegra_car TEGRA124_CLK_GPU>,
@@ -136,7 +136,7 @@ index ce4efa1de509b..002acc7357238 100644
 +		clock-names = "gpu", "pwr", "fuse";
  		resets = <&tegra_car 184>;
  		reset-names = "gpu";
- 
+ 		status = "disabled";
 -- 
 2.53.0
 
