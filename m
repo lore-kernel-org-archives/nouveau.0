@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D274CCA46C
-	for <nouveau@archiver.kernel.org>; Fri, 16 Oct 2026 15:12:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EBCECCA46C
+	for <nouveau@archiver.kernel.org>; Fri, 16 Oct 2026 16:07:19 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E924A112891;
-	Fri, 16 Oct 2026 15:12:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A2E3B1128DF;
+	Fri, 16 Oct 2026 16:07:11 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 49ABB48AE3;
-	Fri, 16 Oct 2026 14:54:09 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id E544D48AE9;
+	Fri, 16 Oct 2026 15:48:29 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1792162449;
- b=NKqSDpxGYJsoFR2UvumGCfYuywQkRGH8lyDOQpTWwJJKyPHMs4XJwoK/SOXpRQHPb+E4w
- EgahuQxtgPRq4NSljZ3mlZJdiNTHOEQaMmKTrDX/jkqOvkjskCyyeQ7up1BrYjOEi7L2nJM
- CJ4TB+Ao8HcWv9u7/YagHjb5wcKm1gTWT6dWMs8CyZl1qg6qMSwVeA0yMnU9BFGgtjq2RnP
- BIc8LEMeMjZoGxiAoxeA3zPxPzsN3KgYmiD2d4Py8TGNGN8Dpzqnoe2JRdv//FyJB047Dgf
- QOtLNgWUN33p6uv7MHn+ZQANXTtuBkSU1ULMjIVriso5AC4ByDBa7PzV2WBw==
+ s=20240201; t=1792165709;
+ b=c2mZfybmIb8ZR5ugzJ4gXiivNPMGV5Z8HLPNNpM5BlGDkpHTSBKUzjzhk+WMQ0rOTnLlc
+ UDyuB5K8Ti9Nb5XRyyXZYAG0Foo1YNIo9eXcEJJ4BRN9+/eFc69jf9rrdW8USjxJnFb9xqH
+ atPOqk2FNwR0P+gaEj/8D81H/x6b/j8XP58h4S0OrocKP6Igy+aNakFX2cYDv1O3Au3HyoX
+ f6T4JtAhQaUfUxCbFzxwoOuY+e/nVbM9GYczBjve4erBKPIa6lWTOxfKHt4fM7NG1RQ2KvF
+ 4s7BoDESs26gFmOkUtLuN444qOgE7NK4xdUi/gI7QkJm2G7DEQp9eWzGdOpw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1792162449; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1792165709; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=zExOvzSfNAOGhWyHayoCJYIMW12XGItswYYl/21/DBA=;
- b=oWAljYx/PCuYE0CHDjsjtDiVQcFBMdysCZKbKgAnZfra5L7Iqrj7fYFIMw82+Y8FUkl0y
- vT7GVGHrKfVnnuTUpNiUgX0oD6BGEscltmZXicV692xNeHAQn0ADc3QE7Yl/rvkIK0p26N4
- fU5y9uNhnpO67V2SmcRru4WjUoGCXN9ezfUPLhGURhx/0BJhYYzz1SeAJhDnpg6IDdmcqwf
- 3et7iYqcJUXrCT97+qemk6gLF31QSytYGT6pZuoKJ0EeRxySMf2C4Mou7q4OTu4pqzYH+Gy
- u60d7HcUPUATzAtKfm+afMaO0qltD3BzyZWsrdDH3L1aFpJIvhppggnEiUig==
+ bh=OruC+xVMUOjeQ0CCeCTlrwXSIelR6KAByPpIlRqyTfk=;
+ b=QGtK9Xll7jKtZdMZBiYK32atYtK8UqARQJuom8YBgwSwJ2GilDfpOysx3ZyA9yuUoiGnY
+ /jcbSetCsoUfSVuQnhsdVZhRA7C6+YeLf5vozIQSrtA5nWpEZoeo4Kl6EI7juvjKXysEg5D
+ FBTn2NDU8ErITSrpY0HozPc9Yw8nHV2/EhssU18+7eAoM7sx5WcmpjeQIJAKKv2skp3v6I4
+ T/H10mbzqbY0I3vF7b47dcuWT6XSdjMeRXCAJrjC8WQvvZS+izDqiXWdQX7CFknDA59e9Hh
+ 12k5fXnMVCV4yHF9v/kWakjholYZWZl+4ugdMdS+YmYTuxVzmWSnSVNINzNw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,130 +43,63 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D1986403F8
-	for <nouveau@lists.freedesktop.org>; Fri, 16 Oct 2026 14:54:05 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1E51810E2DC;
-	Fri, 16 Oct 2026 15:12:42 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 7902848AC5
+	for <nouveau@lists.freedesktop.org>; Fri, 16 Oct 2026 15:48:27 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E871F1128D5;
+	Fri, 16 Oct 2026 16:07:03 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5F41B601FF;
-	Fri, 16 Oct 2026 15:12:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2F291F000C4;
-	Fri, 16 Oct 2026 15:12:39 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 7E3B942E71;
+	Fri, 16 Oct 2026 16:07:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20EC51F000C5;
+	Fri, 16 Oct 2026 16:07:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792163561;
-	bh=zExOvzSfNAOGhWyHayoCJYIMW12XGItswYYl/21/DBA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=HeXH2eNd0qTi1KJWMDpX2qurIIHfELGudDOFsBVj38SK5hgtwRmtRu++Y/B5kYqqd
-	 A4blc5Fp2xS9ugu94PJEByj6vIlDtKLwiWnVuaMsxRz0Ir4yLDMdWRBi4NsEDJfgYI
-	 dTCWHHQPHA4O4L72QOauM8WSJ4JjVCneqoIAwA1rVTR79Lh6W41DTt4LcokcrG/DS7
-	 QghFRktl0qmqBt0Q2454sV5etB2cRZSEkJVEe4jVB1iPvoqhJu/FGnl3nmWT7TfuCi
-	 kYiPGdYgWB0PP3fl0nc6yx6ZWW1MUxK7rfa2DXZnz9GRXCns4+n+2ph4Izy2R1nkwe
-	 CPOLN30xIOzMQ==
-From: Maxime Ripard <mripard@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maxime Ripard <mripard@kernel.org>
-Subject: Re: (subset) [PATCH 00/75] drm/connector: Convert all drivers to
- atomic_create_state and remove reset
-Date: Fri, 16 Oct 2026 17:12:34 +0200
-Message-ID: <179216354629.2387589.2597043397406887835.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: 
- <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
-References: 
- <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
+	s=k20260515; t=1792166823;
+	bh=OruC+xVMUOjeQ0CCeCTlrwXSIelR6KAByPpIlRqyTfk=;
+	h=From:To:Cc:Subject:Date;
+	b=nvN/Wjbo5/6SUmUglC+oaP9HXTRyaQEx6EkhnKmEZc916Ohdgbyh63cA1IL+hyWwQ
+	 /I8vZpAU1qsb2NZcWq0rczGwe/cnY0xA2eQAGCJgSSvno5N2zsbXYzDF91lbqMRUkJ
+	 labZHPSKPsl1bpf4Q2UxA6bBGrHFzqYJZKMSmRhPrHTiwevwNrfW5Sg0c/NBsiwwTD
+	 /PMEG1kiMTjJhlSSbb0Pf0EqVRRNNyQgsgF4vLH2y+k7aBjQF3z691/iswQf1NWlzV
+	 xcuMRYTUeb5BkfBbfc9FCCWmjijS86ZCzj2NoS/oXlcvUUbuCYay82GhN4OvmrOA7E
+	 R+AKrhnfLmSMg==
+From: Sasha Levin <sashal@kernel.org>
+To: Thierry Reding <thierry.reding@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Lyude Paul <lyude@redhat.com>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH v2 0/6] Keep the fuse clock enabled while the Tegra GPU is
+ powered
+Date: Fri, 16 Oct 2026 12:06:53 -0400
+Message-ID: <20261016160700.3831336-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: NL46KVB3H36UEOCCV2L4GPT7WS2E23FB
-X-Message-ID-Hash: NL46KVB3H36UEOCCV2L4GPT7WS2E23FB
-X-MailFrom: mripard@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+Message-ID-Hash: XJMSPMJUNTC4TIMAZVMTXWVEB4D4HO42
+X-Message-ID-Hash: XJMSPMJUNTC4TIMAZVMTXWVEB4D4HO42
+X-MailFrom: sashal@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: dri-devel@lists.freedesktop.org, Aun-Ali Zaidi <admin@kodeit.net>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>,
- Dave Airlie <airlied@redhat.com>, Jocelyn Falempe <jfalempe@redhat.com>,
- Francesco Dolcini <francesco@dolcini.it>, Ian Ray <ian.ray@gehealthcare.com>,
- Martyn Welch <martyn.welch@collabora.co.uk>,
- Peter Senna Tschudin <peter.senna@gmail.com>,
- Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>,
- Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
- Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
- Tian Tao <tiantao6@hisilicon.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Yongbang Shi <shiyongbang@huawei.com>, Dexuan Cui <decui@microsoft.com>,
- Long Li <longli@microsoft.com>, Saurabh Sengar <ssengar@linux.microsoft.com>,
- linux-hyperv@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
- Frank Li <Frank.Li@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
- Paul Kocialkowski <paulk@sys-base.io>, Huacai Chen <chenhuacai@kernel.org>,
- Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>,
- Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>,
- Xi Ruoyao <xry111@xry111.site>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
- virtualization@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>,
- linux-renesas-soc@vger.kernel.org,
- Marcus Folkesson <marcus.folkesson@gmail.com>,
- Iker Pedrosa <ikerpedrosam@gmail.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Alain Volmat <alain.volmat@foss.st.com>,
- Raphael Gallais-Pou <rgallaispou@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Philippe Cornu <philippe.cornu@foss.st.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Yannick Fertre <yannick.fertre@foss.st.com>, Chen-Yu Tsai <wens@kernel.org>,
- Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
- Alexey Brodkin <abrodkin@synopsys.com>, Hans de Goede <hansg@kernel.org>,
- LiangCheng Wang <zaq14760@gmail.com>, Alex Lanzano <lanzano.alex@gmail.com>,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Chia-I Wu <olvaffe@gmail.com>,
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Sasha Levin <sashal@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>, Aaron Kling <webgeek1234@gmail.com>,
+ Diogo Ivo <diogo.ivo@bootlin.com>, Svyatoslav Ryhel <clamor95@gmail.com>,
  Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Haneen Mohammed <hamohammed.sa@gmail.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Melissa Wen <melissa.srw@gmail.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Ruben Wauters <rubenru09@aol.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Magnus Damm <magnus.damm@gmail.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- Zack Rusin <zack.rusin@broadcom.com>, Aditya Garg <aditya.garg@linux.dev>
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NL46KVB3H36UEOCCV2L4GPT7WS2E23FB/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XJMSPMJUNTC4TIMAZVMTXWVEB4D4HO42/>
 Archived-At: 
- <https://lore.freedesktop.org/179216354629.2387589.2597043397406887835.b4-ty@kernel.org/>
+ <https://lore.freedesktop.org/20261016160700.3831336-1-sashal@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -176,22 +109,59 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, 14 Oct 2026 19:26:23 +0200, Maxime Ripard wrote:
-> This is a follow-up to the plane and CRTC reset removal series, and
-> part of a larger effort to remove the reset hook from all KMS objects.
-> 
-> The connector reset hook is overloaded: it is called both at probe
-> time to create the initial software state and during suspend/resume to
-> reset hardware and software state. These two roles have different
-> requirements, and the reset hook is not fallible, making error
-> handling difficult for the initial state allocation path.
-> 
-> [...]
+Since the GPU on the Jetson TX1 was enabled in its device tree, nouveau
+often fails to bring up the GM20B: BOOT_0 reads back garbage, PRI reads
+time out, or the first register reads stall until an SError. The GPU needs
+the fuse clock running while it is powered, but nothing keeps that clock
+enabled: the Tegra fuse driver only turns it on around its own fuse reads.
 
-Applied to misc/kernel.git (drm-misc-next)
+This series describes the fuse clock in the GPU device tree nodes and has
+nouveau keep it enabled from before the GPU rail is turned on until after
+it is turned off. Patch 1 makes the fuse clock required by the binding and
+lists the exact clocks for each GPU. Patches 2-5 add it to the Tegra124,
+Tegra132, Tegra186 and Tegra210 device trees; Tegra194 already has it.
+Patch 6 makes nouveau use it.
 
-[02/75] drm/adp: Switch to drm_atomic_helper_connector_create_state
-        commit: db1de27aca30ebaad04aea74ac21e4c4fb531a37
+nouveau keeps treating the fuse clock as optional, so device trees that
+lack it continue to work as before.
 
-Thanks!
-Maxime
+On eight Jetson TX1 devkits, the GPU failed to come up in 27 of 109 boots
+without the fix and in 11 of 291 with it; patch 6 has the details. Aaron
+Kling reported that a Jetson Nano that almost never loaded nouveau did so
+on 3 of 3 boots with v1. The Tegra124, Tegra132 and Tegra186 device tree
+changes have only been checked with dtbs_check.
+
+Changes in v2:
+- 1/6: List the exact clocks for each GPU, so that "fuse" cannot appear
+  twice, and make the fuse clock required (Thierry).
+- 2/6, 3/6, 4/6: New. Add the fuse clock to the Tegra124, Tegra132 and
+  Tegra186 GPUs as well (Thierry).
+- 5/6: Add a Fixes: tag, as the nouveau fix depends on it.
+- 6/6: Disable the fuse clock on power down even if disabling the
+  regulator fails (sashiko).
+
+v1: https://lore.kernel.org/r/20261013145210.103565-1-sashal@kernel.org
+
+Sasha Levin (6):
+  dt-bindings: gpu: nvidia,gk20a: Require the fuse clock
+  ARM: tegra: Add the fuse clock to the Tegra124 GPU
+  arm64: tegra: Add the fuse clock to the Tegra132 GPU
+  arm64: tegra: Add the fuse clock to the Tegra186 GPU
+  arm64: tegra: Add the fuse clock to the Tegra210 GPU
+  drm/nouveau/tegra: Keep the fuse clock enabled while the GPU is
+    powered
+
+ .../devicetree/bindings/gpu/nvidia,gk20a.yaml | 52 ++++++++++++++-----
+ arch/arm/boot/dts/nvidia/tegra124.dtsi        |  5 +-
+ arch/arm64/boot/dts/nvidia/tegra132.dtsi      |  5 +-
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi      |  5 +-
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  5 +-
+ .../gpu/drm/nouveau/include/nvkm/core/tegra.h |  1 +
+ .../drm/nouveau/nvkm/engine/device/tegra.c    | 22 +++++---
+ 7 files changed, 69 insertions(+), 26 deletions(-)
+
+
+base-commit: 70dd4ee72eb2d5793c62e71c14e3aba78e5a4e56
+-- 
+2.53.0
+
