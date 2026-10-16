@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A923CCA46C
-	for <nouveau@archiver.kernel.org>; Fri, 16 Oct 2026 15:07:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D274CCA46C
+	for <nouveau@archiver.kernel.org>; Fri, 16 Oct 2026 15:12:56 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 61643112887;
-	Fri, 16 Oct 2026 15:07:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E924A112891;
+	Fri, 16 Oct 2026 15:12:50 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id BAB8548ADE;
-	Fri, 16 Oct 2026 14:48:27 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 49ABB48AE3;
+	Fri, 16 Oct 2026 14:54:09 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1792162107;
- b=bjdf0DZ1BUe64KtCK4mjFQdQ0gjXIxSTpR3paOr7VWqh67xqwSnmFdGoiVrY9UoBzCN4C
- gUQgNlG8ZosaS9SVmQCyYQ0lGRLkNAXdbbxAGcQb3tJhKqZ3k+BF2itmyV3Drj71KTF2UbK
- MyRLHcjiHc5/s9J/4hgdu5dRnNC/izH02/j3SyqTeNAGwFxA48DTU90mO79jfiYvHWAQIVf
- FhmhokkLKots8/s3/QHYFKiNywxyVdUg0o01IKfVcrugPQn+6a0Cp7xPe4T2+TMMHAXwAT5
- iZb1ItF61KCYJWKQ+Tne6W4IsWA5GCJAw+ybNCRWNh+q2iLWtKH10paB81rQ==
+ s=20240201; t=1792162449;
+ b=NKqSDpxGYJsoFR2UvumGCfYuywQkRGH8lyDOQpTWwJJKyPHMs4XJwoK/SOXpRQHPb+E4w
+ EgahuQxtgPRq4NSljZ3mlZJdiNTHOEQaMmKTrDX/jkqOvkjskCyyeQ7up1BrYjOEi7L2nJM
+ CJ4TB+Ao8HcWv9u7/YagHjb5wcKm1gTWT6dWMs8CyZl1qg6qMSwVeA0yMnU9BFGgtjq2RnP
+ BIc8LEMeMjZoGxiAoxeA3zPxPzsN3KgYmiD2d4Py8TGNGN8Dpzqnoe2JRdv//FyJB047Dgf
+ QOtLNgWUN33p6uv7MHn+ZQANXTtuBkSU1ULMjIVriso5AC4ByDBa7PzV2WBw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1792162107; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1792162449; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=qgiGef4Ohy6VRaPUYC6AlFmNRyKjxhooP4OqvSap8is=;
- b=pere1awUxGLn6XWneJyrjkJOsM9zuyJ6o4YmgXYBHJ+/RCvORKlAwrCyGdCrNwcCvXvfS
- CWfI3sbS2p+OtX0sgceK205E/Q/9mshbgLAGHAOijhwH+RSd+kXD2euLcjPSmTCIGG3r6mf
- DrEB9Z0bpWfG7U/YEetkIe3brJ3xcxb8hBuhvJk22+A+GvHUCh+GUN2cxn3PQ4c8vdAWrtn
- ihnSDoHofaBXf9mfBx+Vfb1utGxgK3nuugFrmp2DN5CmnKObX4somzLa3cQr4+g2aUZPoeC
- lp7fVb3IvT5qs8eW8vq3oa0g+OGEAfwAT+jZQ3ZYR2T/CDicNfP+Cl0XzNkA==
+ bh=zExOvzSfNAOGhWyHayoCJYIMW12XGItswYYl/21/DBA=;
+ b=oWAljYx/PCuYE0CHDjsjtDiVQcFBMdysCZKbKgAnZfra5L7Iqrj7fYFIMw82+Y8FUkl0y
+ vT7GVGHrKfVnnuTUpNiUgX0oD6BGEscltmZXicV692xNeHAQn0ADc3QE7Yl/rvkIK0p26N4
+ fU5y9uNhnpO67V2SmcRru4WjUoGCXN9ezfUPLhGURhx/0BJhYYzz1SeAJhDnpg6IDdmcqwf
+ 3et7iYqcJUXrCT97+qemk6gLF31QSytYGT6pZuoKJ0EeRxySMf2C4Mou7q4OTu4pqzYH+Gy
+ u60d7HcUPUATzAtKfm+afMaO0qltD3BzyZWsrdDH3L1aFpJIvhppggnEiUig==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,26 +43,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EC05248AC5
-	for <nouveau@lists.freedesktop.org>; Fri, 16 Oct 2026 14:48:24 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id D1986403F8
+	for <nouveau@lists.freedesktop.org>; Fri, 16 Oct 2026 14:54:05 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 35F6B10E144;
-	Fri, 16 Oct 2026 15:07:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1E51810E2DC;
+	Fri, 16 Oct 2026 15:12:42 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 56861601FF;
-	Fri, 16 Oct 2026 15:07:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C15781F000C4;
-	Fri, 16 Oct 2026 15:06:58 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 5F41B601FF;
+	Fri, 16 Oct 2026 15:12:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2F291F000C4;
+	Fri, 16 Oct 2026 15:12:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792163220;
-	bh=qgiGef4Ohy6VRaPUYC6AlFmNRyKjxhooP4OqvSap8is=;
+	s=k20260515; t=1792163561;
+	bh=zExOvzSfNAOGhWyHayoCJYIMW12XGItswYYl/21/DBA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=eV18hT0GJUaQWHwp7Ud3PDO7D6hZRb8bZhmXgdps3B8BS6n8oNJ0JGllQiOIL5tDP
-	 Sm/steBjr2D+Yo32uchtTymDOoEIcPaq4VI6WSikDzpGouECjbWUVLW7w9yFeVcsgN
-	 02VFgdWQOgAJ5by5jdKCTaA2WhUV2wFYDSyfDULQTbvubLT8hniX199/Slm0vXbZR2
-	 IQZm0/IZz7DZlUj5ENSfYBHMLo8QtFx+/3Njn/IvMWTwBJYMk/0rkA4a76NRnaV3YZ
-	 uopDBKWTIAyxKjcdyOUu7Z1DGoMj7Z2ldUbBCAWjfTtDyVPCr1XX9oKF9XIN6QoIXc
-	 wR5wn+tLG2xuQ==
+	b=HeXH2eNd0qTi1KJWMDpX2qurIIHfELGudDOFsBVj38SK5hgtwRmtRu++Y/B5kYqqd
+	 A4blc5Fp2xS9ugu94PJEByj6vIlDtKLwiWnVuaMsxRz0Ir4yLDMdWRBi4NsEDJfgYI
+	 dTCWHHQPHA4O4L72QOauM8WSJ4JjVCneqoIAwA1rVTR79Lh6W41DTt4LcokcrG/DS7
+	 QghFRktl0qmqBt0Q2454sV5etB2cRZSEkJVEe4jVB1iPvoqhJu/FGnl3nmWT7TfuCi
+	 kYiPGdYgWB0PP3fl0nc6yx6ZWW1MUxK7rfa2DXZnz9GRXCns4+n+2ph4Izy2R1nkwe
+	 CPOLN30xIOzMQ==
 From: Maxime Ripard <mripard@kernel.org>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
@@ -71,8 +71,8 @@ To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>
 Subject: Re: (subset) [PATCH 00/75] drm/connector: Convert all drivers to
  atomic_create_state and remove reset
-Date: Fri, 16 Oct 2026 17:06:53 +0200
-Message-ID: <179216309041.2383329.5085571920107795525.b4-ty@kernel.org>
+Date: Fri, 16 Oct 2026 17:12:34 +0200
+Message-ID: <179216354629.2387589.2597043397406887835.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: 
  <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
@@ -81,8 +81,8 @@ References:
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: NZU3XAU6GHV2TUGJZMZKSD6ZEF6YMJ5I
-X-Message-ID-Hash: NZU3XAU6GHV2TUGJZMZKSD6ZEF6YMJ5I
+Message-ID-Hash: NL46KVB3H36UEOCCV2L4GPT7WS2E23FB
+X-Message-ID-Hash: NL46KVB3H36UEOCCV2L4GPT7WS2E23FB
 X-MailFrom: mripard@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -164,9 +164,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NZU3XAU6GHV2TUGJZMZKSD6ZEF6YMJ5I/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NL46KVB3H36UEOCCV2L4GPT7WS2E23FB/>
 Archived-At: 
- <https://lore.freedesktop.org/179216309041.2383329.5085571920107795525.b4-ty@kernel.org/>
+ <https://lore.freedesktop.org/179216354629.2387589.2597043397406887835.b4-ty@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -190,24 +190,8 @@ On Wed, 14 Oct 2026 19:26:23 +0200, Maxime Ripard wrote:
 
 Applied to misc/kernel.git (drm-misc-next)
 
-[05/75] drm/arm: komeda: Switch to drm_atomic_helper_connector_create_state
-        commit: 849b1119cb1f429667bf3e79cba86ad397087ab7
-[11/75] drm/bridge: lontium-lt8912b: Switch to drm_atomic_helper_connector_create_state
-        commit: 80512a4f295c52caf1394677d9c80738b68c8831
-[12/75] drm/bridge: megachips: Switch to drm_atomic_helper_connector_create_state
-        commit: 9a4a55df74880acf7c2b954d6011aab579db5f5e
-[24/75] drm/hyperv: Switch to drm_atomic_helper_connector_create_state
-        commit: 7b9c28149a291451ada4c3e9fc7fd2ae13f36bc5
-[25/75] drm/imx: ipuv3: Switch to drm_atomic_helper_connector_create_state
-        commit: 75da1ba5a3c36dca76206ec8e90bebcfc3641c64
-[35/75] drm/solomon: ssd130x: Switch to drm_atomic_helper_connector_create_state
-        commit: 9ec42580ccceb54bd8e0b044729a98e4f345b522
-[39/75] drm/sysfb: Switch to drm_atomic_helper_connector_create_state
-        commit: af36b2313c54e10b832298033b8be2fd50746c96
-[51/75] drm/vc4: Switch to drm_atomic_helper_connector_create_state
-        commit: c81e4d88c3ed73483a99a90f56cc80c80eebc863
-[67/75] drm/malidp: Convert to atomic_create_state
-        commit: 8b32d0652db9bb6b01055311e1cce5e3c4b70137
+[02/75] drm/adp: Switch to drm_atomic_helper_connector_create_state
+        commit: db1de27aca30ebaad04aea74ac21e4c4fb531a37
 
 Thanks!
 Maxime
