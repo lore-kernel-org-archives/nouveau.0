@@ -2,172 +2,133 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9E3609F0DC
-	for <nouveau@archiver.kernel.org>; Mon, 19 Oct 2026 15:16:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED7F1606AAD6
+	for <nouveau@archiver.kernel.org>; Mon, 19 Oct 2026 15:46:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=CnpQzRLX
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=MsrOG3oY;
+	dkim=fail reason="signature verification failed" header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=dRTjBlue
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C3DC910EE78;
-	Mon, 19 Oct 2026 15:16:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D0ADF10EE8F;
+	Mon, 19 Oct 2026 15:46:39 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8C7CC48B26;
-	Mon, 19 Oct 2026 14:57:17 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 7783B48B2C;
+	Mon, 19 Oct 2026 15:27:51 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1792421837;
- b=0wI6gVqi6MUbliDo6UNPR6L3v5Cbo0d/hD8eYUwGdpFL8mNu/JBBus0veyOZdkvUOu8ct
- BTsmsS8I9YArSt4AWQsCrrDR45H5tO3ao2iKPLwmwoIgku31MzPR+pgPa2hZUcgIp9LQd5Z
- tQZ6BhtgHxF4RIeULYDn6S9Ci4rXzJg2KJwuYda6H1ESPE9c0l7r5XfMPh0o1e0TLfAOFqN
- bfdj61V2XTmlXLniFUmboj5xCoxFHSjFheMbP8QTKwZZmAK6gnPOr0MAComwtZQlxdy8Ddy
- dxxHrMXMBT3QNpgvRiJZTGB2UIibY5lJSzelqmttRCjb9PEXWbHfiQDQSahQ==
+ s=20240201; t=1792423671;
+ b=oEFyVfcqm8oOu5zTSaLFVn+ugCSckZnvo4XW954S1SvOT+nP/3/0zHYT+G6I7HV0U4lGB
+ +nr6Aobv90Vsq/jxO9ns5L4hdPKDpVIQCswbj4jFacxAP8DgzExQ+HXeMpsg9VqqYUyv8lE
+ 8iuczZeRBCIQgf1tfHOTlnDmqeMzSeTDDD3cpeXD/8a6+vY/Fj0yal6vO0uKHKMO1iFV5JN
+ rqOvW0k2nj2vUsNd1Ew4SKXTS7GQB57JNVxmPVH5ClHbj3SNYq1wDFSjH+EZqUqPfINztVq
+ wPo33BzCn/d1LAYMCAaQZt77raMRVapJ1+Aqoh4NF9NYry3RqOeqkFUQh8OA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1792421837; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1792423671; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=rY7NXz2qfQQtnIEL3eObvxvEOIQ+EeZp99ff3bsp5sk=;
- b=Kg8V79hQrtbWMZgHdlZNyxqELE0wlH0N1pOdkVvugZbjddFcYXUqageEaHz/pvP3qCnK2
- BPeWk28j24zvNdxLWJaBv+qbzzjF55quG98YdCHiMTPnuYsFsO4H2KzF59WLYw6dE9aA/+a
- z3v+SkRuQ67S2xqSgNaN3DXhMsjDE2+H43JTPUxt4P3a+foq/RTKl3YHiyc3f/R2lQ4sRaJ
- ZcbJ49X2P2lxjCmc36V1iJro1dNjkbC1aykcJf3novruUhm/A1jZR6eqlmAX9C+YgViQSnx
- NTj88zk96JT25AFxbPr2v7/PUtSIBgT4Op15thFNfG3lZHrHe58QH73bKx+Q==
+ bh=Q42+1LT+/kIysWR1pP52zLF3q3QDlSMlW5TUG8Jhqvg=;
+ b=0M7wWX3gOx1P4GlQ21LhEDHHznAWquLfANRWLki3Rpro4tJKeYiNoMiNlaTn5Um4NOfIl
+ rfvhlctSx7N3Hr/GUyFgib0da6zapgdeEMZDVIRE4zRmwHghqh7ihqP7gaBfNSUpKKBaaEI
+ DY5g3invbWzqPP8VTZD7+WH3C3tgmwRSgniLXjAg+fala0hbPHlAwIB4TSsf+eb2KVfOnyr
+ c8XBq74W7r36NlM5aCbRAYp5wrdQvVMOgHzJaORxSugGrCmFDcZyrXTWktbuq/P3qIwim2u
+ SyWDKFI1w930Gg7vSXQ3C4X2U4JMB/Nr9vnaage0gQAmNY3/iLmXuUPYpi/Q==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 6DD9248895
-	for <nouveau@lists.freedesktop.org>; Mon, 19 Oct 2026 14:57:14 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 551BF10EE7F;
-	Mon, 19 Oct 2026 15:15:57 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A3451602A8;
-	Mon, 19 Oct 2026 15:15:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 269E71F000C4;
-	Mon, 19 Oct 2026 15:15:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792422956;
-	bh=rY7NXz2qfQQtnIEL3eObvxvEOIQ+EeZp99ff3bsp5sk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=CnpQzRLX3TYf8k0qu6IYpaMq62MrzgVnzWtCBEbdnX0IUPXFCp6FFVhb6e/W37EY7
-	 oQdkTxuZitFSXzUqh8YM+LI6hW4HWoVv72MiRtWfb/iuVaWOGKHt2j8Piy3XsHY4bv
-	 HfJH5x277Hg+W3vBh+BKJcUHigFzcPtKnByrkz6Qw0vZi1heWwAKuKjDH8y9RjWbAw
-	 ZWzbQHvwqs0XljbKJDetYNNwEqmAYS1SizYC8c9PQJ/+yV3C9kQ+UX6IhimWK6Szh4
-	 MliM2s0jWJxjgBc2N8LAVJSnUAeqxo/k14Kw0U606JcTDsTXyg4NEZpgxA/P9PGn8a
-	 a/NOnXhhwsAXA==
-From: Maxime Ripard <mripard@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maxime Ripard <mripard@kernel.org>
-Subject: Re: (subset) [PATCH 00/75] drm/connector: Convert all drivers to
- atomic_create_state and remove reset
-Date: Mon, 19 Oct 2026 17:15:50 +0200
-Message-ID: <179242294379.2822300.2839114266297465713.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: 
- <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
-References: 
- <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 51E1648B13
+	for <nouveau@lists.freedesktop.org>; Mon, 19 Oct 2026 15:27:48 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4104E10EE81;
+	Mon, 19 Oct 2026 15:46:31 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 2EC4621CA9;
+	Mon, 19 Oct 2026 15:46:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1792424778;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Q42+1LT+/kIysWR1pP52zLF3q3QDlSMlW5TUG8Jhqvg=;
+	b=MsrOG3oYS78SNJ7/ae2AH0ESftfF09tqFOLo3hMOAUt3slapAB7RrKO6+HesSxlqe6m/ue
+	QEqoOB94tRzhOxv0a2MF0h3uFdFZhqo/bEk8CDVG0YF67dcqPz2qqkDbMdCoK9GGd82iS4
+	Hb00NNR9DlS/BmHreEXJsRVzOrUheGs=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1792424778;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Q42+1LT+/kIysWR1pP52zLF3q3QDlSMlW5TUG8Jhqvg=;
+	b=dRTjBlueuN5bJ8GI4kyce071TiXAh7MkIvbio8l6r7/gH0P6dezWLAj20I7JwoEJfK3dni
+	+4kEw2LgrA9qYSCg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AA98A1376E;
+	Mon, 19 Oct 2026 15:46:17 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id gYPgBkk71mrrPAAAD6G6ig:T2
+	(envelope-from <tzimmermann@suse.de>); Mon, 19 Oct 2026 15:46:17 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jfalempe@redhat.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	airlied@gmail.com,
+	simona@ffwll.ch
+Subject: [PATCH 1/4] drm: Add helper module for working with pixel data
+Date: Mon, 19 Oct 2026 17:32:42 +0200
+Message-ID: <20261019154612.777074-2-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261019154612.777074-1-tzimmermann@suse.de>
+References: <20261019154612.777074-1-tzimmermann@suse.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: K626LXZ3NUEA7HQDTNHGBLJ3DTOHH7ZQ
-X-Message-ID-Hash: K626LXZ3NUEA7HQDTNHGBLJ3DTOHH7ZQ
-X-MailFrom: mripard@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Rspamd-Action: no action
+X-Spam-Score: -4.00
+X-Rspamd-Pre-Result: action=no action;
+	module=replies;
+	Message is reply to one we originated
+X-Spam-Level: 
+X-Rspamd-Queue-Id: 2EC4621CA9
+X-Spamd-Result: default: False [-4.00 / 50.00];
+	REPLY(-4.00)[]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+Message-ID-Hash: VOOVP4JZBHDR7DTLQCTFC4IMBFHV33LJ
+X-Message-ID-Hash: VOOVP4JZBHDR7DTLQCTFC4IMBFHV33LJ
+X-MailFrom: tzimmermann@suse.de
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: dri-devel@lists.freedesktop.org, Aun-Ali Zaidi <admin@kodeit.net>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>,
- Dave Airlie <airlied@redhat.com>, Jocelyn Falempe <jfalempe@redhat.com>,
- Francesco Dolcini <francesco@dolcini.it>, Ian Ray <ian.ray@gehealthcare.com>,
- Martyn Welch <martyn.welch@collabora.co.uk>,
- Peter Senna Tschudin <peter.senna@gmail.com>,
- Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>,
- Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
- Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
- Tian Tao <tiantao6@hisilicon.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Yongbang Shi <shiyongbang@huawei.com>, Dexuan Cui <decui@microsoft.com>,
- Long Li <longli@microsoft.com>, Saurabh Sengar <ssengar@linux.microsoft.com>,
- linux-hyperv@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
- Frank Li <Frank.Li@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
- Paul Kocialkowski <paulk@sys-base.io>, Huacai Chen <chenhuacai@kernel.org>,
- Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>,
- Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>,
- Xi Ruoyao <xry111@xry111.site>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
- virtualization@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>,
- linux-renesas-soc@vger.kernel.org,
- Marcus Folkesson <marcus.folkesson@gmail.com>,
- Iker Pedrosa <ikerpedrosam@gmail.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Alain Volmat <alain.volmat@foss.st.com>,
- Raphael Gallais-Pou <rgallaispou@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Philippe Cornu <philippe.cornu@foss.st.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Yannick Fertre <yannick.fertre@foss.st.com>, Chen-Yu Tsai <wens@kernel.org>,
- Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
- Alexey Brodkin <abrodkin@synopsys.com>, Hans de Goede <hansg@kernel.org>,
- LiangCheng Wang <zaq14760@gmail.com>, Alex Lanzano <lanzano.alex@gmail.com>,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Chia-I Wu <olvaffe@gmail.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Haneen Mohammed <hamohammed.sa@gmail.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Melissa Wen <melissa.srw@gmail.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Ruben Wauters <rubenru09@aol.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Magnus Damm <magnus.damm@gmail.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- Zack Rusin <zack.rusin@broadcom.com>, Aditya Garg <aditya.garg@linux.dev>
+ loop; banned-address
+CC: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ virtualization@lists.linux.dev, sashiko-reviews@lists.linux.dev
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/K626LXZ3NUEA7HQDTNHGBLJ3DTOHH7ZQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VOOVP4JZBHDR7DTLQCTFC4IMBFHV33LJ/>
 Archived-At: 
- <https://lore.freedesktop.org/179242294379.2822300.2839114266297465713.b4-ty@kernel.org/>
+ <https://lore.freedesktop.org/20261019154612.777074-2-tzimmermann@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -175,30 +136,71 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-6.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	RCVD_IN_ZEN_BLOCKED_OPENDNS,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,RCVD_IN_DNSWL_BLOCKED,
+	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,RCVD_IN_ZEN_BLOCKED_OPENDNS,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 14 Oct 2026 19:26:23 +0200, Maxime Ripard wrote:
-> This is a follow-up to the plane and CRTC reset removal series, and
-> part of a larger effort to remove the reset hook from all KMS objects.
-> 
-> The connector reset hook is overloaded: it is called both at probe
-> time to create the initial software state and during suspend/resume to
-> reset hardware and software state. These two roles have different
-> requirements, and the reset hook is not fallible, making error
-> handling difficult for the initial state allocation path.
-> 
-> [...]
+Add drm_pixel_helper.ko. This module will contain helpers that copy
+and process pixel data, such as framebuffers. Drivers that want to
+use the helpers should select DRM_PIXEL_HELPER.
 
-Applied to misc/kernel.git (drm-misc-next)
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+---
+ drivers/gpu/drm/Kconfig                   | 6 ++++++
+ drivers/gpu/drm/Makefile                  | 4 ++++
+ drivers/gpu/drm/drm_pixel_helper_common.c | 6 ++++++
+ 3 files changed, 16 insertions(+)
+ create mode 100644 drivers/gpu/drm/drm_pixel_helper_common.c
 
-[73/75] drm/vmwgfx: Convert to atomic_create_state
-        commit: e6bb593b800813788dc16179d1305747ff974d00
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index 61111d50b1c6..dce5e25671ee 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -49,6 +49,12 @@ config DRM_KMS_HELPER
+ 	help
+ 	  CRTC helpers for KMS drivers.
+ 
++config DRM_PIXEL_HELPER
++	tristate
++	depends on DRM
++	help
++	  Helpers for working with pixel data in DRM.
++
+ config DRM_DRAW
+ 	bool
+ 	depends on DRM
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index 2c6bc093a923..5f555a2c1a4c 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -99,6 +99,10 @@ obj-$(CONFIG_DRM_PANEL) += drm_panel.o
+ obj-$(CONFIG_DRM_PANEL_ORIENTATION_QUIRKS) += drm_panel_orientation_quirks.o
+ obj-$(CONFIG_DRM_PANEL_BACKLIGHT_QUIRKS) += drm_panel_backlight_quirks.o
+ 
++drm_pixel_helper-y := \
++	drm_pixel_helper_common.o
++obj-$(CONFIG_DRM_PIXEL_HELPER) += drm_pixel_helper.o
++
+ #
+ # Memory-management helpers
+ #
+diff --git a/drivers/gpu/drm/drm_pixel_helper_common.c b/drivers/gpu/drm/drm_pixel_helper_common.c
+new file mode 100644
+index 000000000000..743846e1e003
+--- /dev/null
++++ b/drivers/gpu/drm/drm_pixel_helper_common.c
+@@ -0,0 +1,6 @@
++// SPDX-License-Identifier: GPL-2.0 or MIT
++
++#include <linux/module.h>
++
++MODULE_DESCRIPTION("DRM pixel-data helpers");
++MODULE_LICENSE("GPL and additional rights");
+-- 
+2.56.0
 
-Thanks!
-Maxime
