@@ -2,169 +2,113 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE556086066
-	for <nouveau@archiver.kernel.org>; Mon, 19 Oct 2026 15:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 026EB606A31A
+	for <nouveau@archiver.kernel.org>; Mon, 19 Oct 2026 18:56:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=2XU3x6L6;
-	dkim=fail reason="signature verification failed" header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=4NvBHrrM;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=2XU3x6L6;
-	dkim=neutral header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=4NvBHrrM
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=AzdtfAe5
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EBCAC10EEB3;
-	Mon, 19 Oct 2026 15:47:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D47D410EA97;
+	Mon, 19 Oct 2026 18:56:44 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B816848B38;
-	Mon, 19 Oct 2026 15:29:06 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4013F48B3C;
+	Mon, 19 Oct 2026 18:37:56 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1792423746;
- b=jkf30TpYdF3ExcnWGZAjldjj8yUyHWYJIgZJeHanxAQqI33DdOCAyfzUxXpZiIAiUIRLq
- dQF55eZmwTuoNck4ZVBZBe725vhLCStqT+wkS0GyIEwkJlAU4oePA2G/5/FKt0qaF2hilCu
- rggFY9D06r8Sr/V4ja3oaz/BRKDaQ2H2dMMiOGYHhJ7pITrkcKDth7pqsA6QaQzPBHz2PNU
- TQt10zoI57eIrZU/Ocu4MPRHkITBkCsXBLxlAVqg6OZbaKaJgtlOsQ8x/craVCJBxXWbuTQ
- UOm4xNZH79XnqkcdPQNzmBTCwp7zUOgmnnMkhnkceEnwtELtyS7ufZDL60Xg==
+ s=20240201; t=1792435076;
+ b=FdVvzwobJ+xro8idERCInuWa6BecVTyQg0+B3lpvMmgB+/2qHCvlOnzqCmsgxr9tSqc+D
+ XmFF9lC3rflt/mAZzMz9B3YP2eFki46vVqLKBaqTRyeVmOBR1U47ZjXMF9B/tgt3CJXpW+6
+ i985pBjwQaMql6GRbjzfafFU1cSGsmWom/h4gOOI4Q8Rs60Z7xi/xyWeqhMqC1DA0RLch1G
+ nL+VvHK8aShOjb1srcIjkKjTKIri0GxETXeSdS3NRK88ikU1bEiWxoQ2iYSzJIh+MQp4c5L
+ grAJ7iPJbpmnakQXF0oDAE/GmzuE7vpEaJxzfkW7IWZcZYDYIpR17nmnUGHQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1792423746; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1792435076; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ACxUqLchSDqFg79x5G7fXNVlcAc+CFu7MScJYvXaE5o=;
- b=ud7hjxxURu2QOgZ9ywYlkPIv37jWSd/gvDYpS59IPnMxUzfFg/TjC10fp5ZJ05+v/xjO5
- aJsC2+6JxIuGCt/fxGyx8vl6V03figZoMyLXz5fi4aAbeKMM+LzlY2iiSGtW1iPZ7BjupkO
- oBacDfvvKPq8kxZwFXwIGKZETqmBOknlFNGzP/ShV6wRH3ojN/X6PrsRSwr+bRny2EJ8T02
- iPDLi7qPyuaBOQRzr+fN9v8bYX/yhew7GJmQci+uLz2HVuR06opUs8AzA+ZZNpGfJHaERpy
- gqpIFr2ZpLH15bQu66s5PMhOoYTxKOu2wRJ7OgCueKqgB+luPu1H6t7Z4yqA==
+ bh=igE/kEh0g7gFKv5PAwWV/CKHlROUnBFZYW4mh6vr2N4=;
+ b=0OkCEB8RmSKEShJiLYVUVP50NC9d8ENrMx5vdg0NZHMKPPPA8qt9/IG5FuGhfAjG1Tdw4
+ DWDmAI+E3oFLknnnStHP4pSDzioE3eTrSfMrENUpiK1idDxFgDi93MPsbRaYe3Q5iH9KOKY
+ /KebflLb7qFuyukpuPkHhvi26kXzjD7OVjuLjTm3ssvo2EOn7F3d97RptbtL877gYWf0LGT
+ LoqS22klElEy1ZrOmlaJOpctnhbkQvZk14pvFX8w/skQiOtWUT+AMR2ypk4de7DF4Jt3mUP
+ qfxah+74ViAueaNIL7Md9ONARrOFNq/PbxE4DcrQr4FCiyYmKXDNg57FrQlA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=suse.de;
+ dkim=pass header.d=163.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
+  dmarc=pass (Used From Domain Record) header.from=163.com policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=163.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=163.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9C52648B13
-	for <nouveau@lists.freedesktop.org>; Mon, 19 Oct 2026 15:29:04 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6D3DC10EE9B;
-	Mon, 19 Oct 2026 15:47:42 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 5E3CA21CE8;
-	Mon, 19 Oct 2026 15:46:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_rsa;
-	t=1792424779;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ACxUqLchSDqFg79x5G7fXNVlcAc+CFu7MScJYvXaE5o=;
-	b=2XU3x6L6wBsU9NTbPA20qzM4oAIcmU1jEnkXXLxlw4eGwebjQAmogVJ3ddUNm73wyt+rks
-	h3AxFHBGJLiXdCnCqm78+eITs8Y3N/WaNa1ZNDuE/fGgXmVRMo9unazeLPWLE5OKFt2gY3
-	i8YTNDN8SdRqVVNmYrC0VYpYepfKX8c=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1792424779;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ACxUqLchSDqFg79x5G7fXNVlcAc+CFu7MScJYvXaE5o=;
-	b=4NvBHrrMFq6p1xAns53IfLiWRU4tZ0BqyrsNX1ZJfrmAOkcHHKHkBDktCj2h/38qqdziLv
-	l7vtaRVWuMNQIrBg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_rsa;
-	t=1792424779;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ACxUqLchSDqFg79x5G7fXNVlcAc+CFu7MScJYvXaE5o=;
-	b=2XU3x6L6wBsU9NTbPA20qzM4oAIcmU1jEnkXXLxlw4eGwebjQAmogVJ3ddUNm73wyt+rks
-	h3AxFHBGJLiXdCnCqm78+eITs8Y3N/WaNa1ZNDuE/fGgXmVRMo9unazeLPWLE5OKFt2gY3
-	i8YTNDN8SdRqVVNmYrC0VYpYepfKX8c=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1792424779;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ACxUqLchSDqFg79x5G7fXNVlcAc+CFu7MScJYvXaE5o=;
-	b=4NvBHrrMFq6p1xAns53IfLiWRU4tZ0BqyrsNX1ZJfrmAOkcHHKHkBDktCj2h/38qqdziLv
-	l7vtaRVWuMNQIrBg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id DBDAA137D4;
-	Mon, 19 Oct 2026 15:46:18 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id gYPgBkk71mrrPAAAD6G6ig:T5
-	(envelope-from <tzimmermann@suse.de>); Mon, 19 Oct 2026 15:46:18 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: jfalempe@redhat.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	airlied@gmail.com,
-	simona@ffwll.ch
-Subject: [PATCH 4/4] drm/pixel: Link draw helpers into drm_pixel_helper.ko
-Date: Mon, 19 Oct 2026 17:32:45 +0200
-Message-ID: <20261019154612.777074-5-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261019154612.777074-1-tzimmermann@suse.de>
-References: <20261019154612.777074-1-tzimmermann@suse.de>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 8F07147642
+	for <nouveau@lists.freedesktop.org>; Mon, 19 Oct 2026 08:27:13 +0000 (UTC)
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0CC4310E0B1;
+	Mon, 19 Oct 2026 08:45:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=ig
+	E/kEh0g7gFKv5PAwWV/CKHlROUnBFZYW4mh6vr2N4=; b=AzdtfAe5zCDyzRWfoy
+	A8T89jA2HQr8wbyEZdpPqe/doMfmtb9xr4UUbuMykAvVfcCXOEvfuLObr+ILhobp
+	Zk9lujS6CP6KKg9YJeEC9+/DkFLfwCNo35LZ4C+rU2LMSgHi93QP73mb3EnU+Q0I
+	PChWPOT8P+Ax5fzR8RSis8rNA=
+Received: from pc.localdomain (unknown [])
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id
+ _____wDnt9ng19VqcQOlAw--.9091S2;
+	Mon, 19 Oct 2026 16:42:10 +0800 (CST)
+From: Jiale Yao <yaojiale02@163.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Lyude Paul <lyude@redhat.com>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Dave Airlie <airlied@redhat.com>,
+	Gerd Hoffmann <kraxel@redhat.com>,
+	Alex Deucher <alexander.deucher@amd.com>,
+	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+	Huang Rui <ray.huang@amd.com>,
+	Matthew Auld <matthew.auld@intel.com>,
+	Matthew Brost <matthew.brost@intel.com>,
+	Zack Rusin <zack.rusin@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ben Skeggs <bskeggs@redhat.com>,
+	David Rheinsberg <david@readahead.eu>,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	nouveau@lists.freedesktop.org,
+	virtualization@lists.linux.dev,
+	spice-devel@lists.freedesktop.org,
+	amd-gfx@lists.freedesktop.org
+Subject: [PATCH 0/6] drm: reject empty TTM range manager sizes
+Date: Mon, 19 Oct 2026 16:41:32 +0800
+Message-Id: <20261019084138.1821477-1-yaojiale02@163.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Score: -6.80
-X-Spam-Level: 
-X-Spamd-Result: default: False [-6.80 / 50.00];
-	REPLY(-4.00)[];
-	BAYES_HAM(-3.00)[100.00%];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_TO(0.00)[redhat.com,linux.intel.com,kernel.org,gmail.com,ffwll.ch];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,imap1.dmz-prg2.suse.org:helo];
-	FROM_EQ_ENVFROM(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	RCVD_TLS_ALL(0.00)[];
-	R_RATELIMIT(0.00)[to_ip_from(RLqirfcw6gnbcr9a9yhi49fhi6)];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com]
-Message-ID-Hash: TVB4OLG2Z4EB54MP5LB5O7A43PRTLRDC
-X-Message-ID-Hash: TVB4OLG2Z4EB54MP5LB5O7A43PRTLRDC
-X-MailFrom: tzimmermann@suse.de
-X-Mailman-Rule-Hits: member-moderation
+X-CM-TRANSID: _____wDnt9ng19VqcQOlAw--.9091S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7GrWkAFWUGFW8GFyfAw4rGrg_yoWkArb_u3
+	40vas7Wr1UGrnxXF4Iyr47Ar12ka1UuayDZwnFv3y3Ary3Xr1UX348Gr93Ww18C3Z8KFn0
+	krnYqw1YyrnIkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRt9a97UUUUU==
+X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbC7wM+eGrV1+M2UQAA3G
+X-MailFrom: yaojiale02@163.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
-CC: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- virtualization@lists.linux.dev, sashiko-reviews@lists.linux.dev
+ loop; banned-address; member-moderation
+Message-ID-Hash: 3GRB5XYDIUVCITLZSDMUSDRCEQ2UJFEY
+X-Message-ID-Hash: 3GRB5XYDIUVCITLZSDMUSDRCEQ2UJFEY
+X-Mailman-Approved-At: Mon, 19 Oct 2026 18:37:53 +0000
+CC: Jiale Yao <yaojiale02@163.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TVB4OLG2Z4EB54MP5LB5O7A43PRTLRDC/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3GRB5XYDIUVCITLZSDMUSDRCEQ2UJFEY/>
 Archived-At: 
- <https://lore.freedesktop.org/20261019154612.777074-5-tzimmermann@suse.de/>
+ <https://lore.freedesktop.org/20261019084138.1821477-1-yaojiale02@163.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -172,101 +116,41 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,RCVD_IN_ZEN_BLOCKED_OPENDNS,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Move drm_draw.o from the DRM core to drm_pixel_helper.ko. Remove the
-Kconfig option DRM_DRAW and provide the draw helpers unconditionally.
+drm_mm_init() rejects a zero-length allocation range with a BUG check.
+Several DRM TTM users can derive a zero page count from device-provided
+VRAM metadata and pass it to the range manager.
 
-Having draw code in the DRM core is a left-over fro when panic handling
-was entirely located in the DRM core as well. With all the panic drawing
-in drm_pixel_helper.ko, the drawing helpers can go there as well. DRM's
-log clients also uses the drawing helpers for output. Update the Kconfig
-rules to select DRM_PIXEL_HELPER instead of DRM_DRAW for this client.
+This series rejects empty ranges at the affected callers and adds a
+defensive check in the common range manager. Patches 1 through 4 and
+6 validate the individual driver inputs. Patch 5 protects the shared
+range-manager API against any remaining zero-page caller.
 
-The format and the draw helpers share the per-pixel color-format code
-from drm_format_internal. Putting it all into one place will hopefully
-help with sharing more code in the future.
+The series was checked with scripts/checkpatch.pl for every code patch.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/Kconfig                           | 5 -----
- drivers/gpu/drm/Makefile                          | 2 +-
- drivers/gpu/drm/clients/Kconfig                   | 2 +-
- drivers/gpu/drm/{drm_draw.c => drm_draw_helper.c} | 0
- 4 files changed, 2 insertions(+), 7 deletions(-)
- rename drivers/gpu/drm/{drm_draw.c => drm_draw_helper.c} (100%)
+Jiale Yao (6):
+  drm/vram-helper: reject empty VRAM ranges
+  drm/nouveau: reject empty VRAM ranges
+  drm/qxl: reject empty TTM memory ranges
+  drm/radeon: reject empty VRAM ranges
+  drm/ttm: reject empty range manager sizes
+  drm/vmwgfx: reject empty VRAM ranges
 
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index bf7c59944340..1b16e6101a53 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -52,15 +52,10 @@ config DRM_KMS_HELPER
- config DRM_PIXEL_HELPER
- 	tristate
- 	depends on DRM
--	select DRM_DRAW if DRM_PANIC
- 	select FONT_SUPPORT if DRM_PANIC
- 	help
- 	  Helpers for working with pixel data in DRM.
- 
--config DRM_DRAW
--	bool
--	depends on DRM
--
- config DRM_PANIC
- 	bool "Display a user-friendly message when a kernel panic occurs"
- 	depends on DRM && PRINTK
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 18a5a5baf029..ab9eb4c21264 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -91,7 +91,6 @@ drm-$(CONFIG_DRM_PRIVACY_SCREEN) += \
- 	drm_privacy_screen_x86.o
- drm-$(CONFIG_DRM_ACCEL) += ../../accel/drm_accel.o
- drm-$(CONFIG_DRM_PANIC) += drm_panic.o
--drm-$(CONFIG_DRM_DRAW) += drm_draw.o
- drm-$(CONFIG_DRM_RAS) += drm_ras.o drm_ras_nl.o drm_ras_genl_family.o
- obj-$(CONFIG_DRM)	+= drm.o
- 
-@@ -100,6 +99,7 @@ obj-$(CONFIG_DRM_PANEL_ORIENTATION_QUIRKS) += drm_panel_orientation_quirks.o
- obj-$(CONFIG_DRM_PANEL_BACKLIGHT_QUIRKS) += drm_panel_backlight_quirks.o
- 
- drm_pixel_helper-y := \
-+	drm_draw_helper.o \
- 	drm_format_helper.o \
- 	drm_pixel_helper_common.o
- drm_pixel_helper-$(CONFIG_DRM_PANIC) += drm_panic_helper.o
-diff --git a/drivers/gpu/drm/clients/Kconfig b/drivers/gpu/drm/clients/Kconfig
-index 6096c623d9d5..8d21edc4cc5b 100644
---- a/drivers/gpu/drm/clients/Kconfig
-+++ b/drivers/gpu/drm/clients/Kconfig
-@@ -3,6 +3,7 @@
- config DRM_CLIENT_LIB
- 	tristate
- 	depends on DRM
-+	select DRM_PIXEL_HELPER if DRM_CLIENT_LOG
- 	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
- 	select FB_CORE if DRM_FBDEV_EMULATION
- 	help
-@@ -76,7 +77,6 @@ config DRM_CLIENT_LOG
- 	depends on DRM_CLIENT_SELECTION
- 	select DRM_CLIENT
- 	select DRM_CLIENT_SETUP
--	select DRM_DRAW
- 	select FONT_SUPPORT
- 	help
- 	  This enable a drm logger, that will print the kernel messages to the
-diff --git a/drivers/gpu/drm/drm_draw.c b/drivers/gpu/drm/drm_draw_helper.c
-similarity index 100%
-rename from drivers/gpu/drm/drm_draw.c
-rename to drivers/gpu/drm/drm_draw_helper.c
+ drivers/gpu/drm/drm_gem_vram_helper.c   | 3 +++
+ drivers/gpu/drm/nouveau/nouveau_ttm.c   | 3 +++
+ drivers/gpu/drm/qxl/qxl_ttm.c           | 3 +++
+ drivers/gpu/drm/radeon/radeon_ttm.c     | 3 +++
+ drivers/gpu/drm/ttm/ttm_range_manager.c | 3 +++
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c     | 4 ++++
+ 6 files changed, 19 insertions(+)
+
 -- 
-2.56.0
+2.34.1
 
