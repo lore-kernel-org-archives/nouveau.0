@@ -1,185 +1,173 @@
-Return-Path: <nouveau-bounces@lists.freedesktop.org>
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFBB6CCF2D6
-	for <nouveau@archiver.kernel.org>; Mon, 19 Oct 2026 08:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9E3609F0DC
+	for <nouveau@archiver.kernel.org>; Mon, 19 Oct 2026 15:16:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=CnpQzRLX
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0F30710E8A8;
-	Mon, 19 Oct 2026 08:48:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C3DC910EE78;
+	Mon, 19 Oct 2026 15:16:05 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 661AD48B12;
-	Mon, 19 Oct 2026 08:29:56 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1792398596;
- b=BT/RO33lG1t68LVW3pWtLH0VHmd1b2/QjsMHG+zPaHUgH3QqOzhPEYOV1gQ1E4s8AmAH0
- YsLhFalivKWBQB8tTQzwL1xvuQ9BFtWKFa1QAh9U/50M/5gjhxfbDicHUDa4WsAkDZVHaVG
- qnc/JJHLvMNOmchqqhukCCFwhZ1xah8U0WPDJ8TLOzbW6BR9n5iiNUcgv8TdStX1/Qw7LOB
- iCeykk1XXAmQDzRaYkOgESLqXNHBA/z+o0BVNICaViugEJJ5HIwBbZwr2/qTS4Jy9oSxoLY
- kP2MCWv41UQVJnPp/wNAo7pDcIfefU2OoA/6+rS9A3v0KzSS6UtBBXLiPBNw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1792398596; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 8C7CC48B26;
+	Mon, 19 Oct 2026 14:57:17 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1792421837;
+ b=0wI6gVqi6MUbliDo6UNPR6L3v5Cbo0d/hD8eYUwGdpFL8mNu/JBBus0veyOZdkvUOu8ct
+ BTsmsS8I9YArSt4AWQsCrrDR45H5tO3ao2iKPLwmwoIgku31MzPR+pgPa2hZUcgIp9LQd5Z
+ tQZ6BhtgHxF4RIeULYDn6S9Ci4rXzJg2KJwuYda6H1ESPE9c0l7r5XfMPh0o1e0TLfAOFqN
+ bfdj61V2XTmlXLniFUmboj5xCoxFHSjFheMbP8QTKwZZmAK6gnPOr0MAComwtZQlxdy8Ddy
+ dxxHrMXMBT3QNpgvRiJZTGB2UIibY5lJSzelqmttRCjb9PEXWbHfiQDQSahQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1792421837; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=M60A7iMZbc9qnqJK9RCpJAehgbykrLh8EW+f5UWXAnY=;
- b=v9hDLICpCLSAichtDQ8KPGmLS4UA1jVUI0wDnlFTPqSbCVsJxdavk1xHCSoG3sC1BehVd
- 5/JKAS/MHLOqy7K2Um8BbYck990i1NZePUjvY3TIqVavjIGWnNY6P0B68Z/sR8G9cJyO3Rj
- 0W27DlgkiUTp3+FCUMPFfoBHCoWOWKjMazd6IDYSocRavfw4mIdpqzZu6B1dCzx7HBC+mQS
- TMq747u89MJhuFCk++zxwoIccXtP+XvKqwl7vWOgZ1ZPERQ8pBD7lARG60LAeI2EtixaNgh
- 9wfy27rrlxwoNJ+MxrrBRAQRYKLxty/ir9xsF6DYZOwNcw2Lp3HynUL2YvJA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=amd.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=amd.com
+ bh=rY7NXz2qfQQtnIEL3eObvxvEOIQ+EeZp99ff3bsp5sk=;
+ b=Kg8V79hQrtbWMZgHdlZNyxqELE0wlH0N1pOdkVvugZbjddFcYXUqageEaHz/pvP3qCnK2
+ BPeWk28j24zvNdxLWJaBv+qbzzjF55quG98YdCHiMTPnuYsFsO4H2KzF59WLYw6dE9aA/+a
+ z3v+SkRuQ67S2xqSgNaN3DXhMsjDE2+H43JTPUxt4P3a+foq/RTKl3YHiyc3f/R2lQ4sRaJ
+ ZcbJ49X2P2lxjCmc36V1iJro1dNjkbC1aykcJf3novruUhm/A1jZR6eqlmAX9C+YgViQSnx
+ NTj88zk96JT25AFxbPr2v7/PUtSIBgT4Op15thFNfG3lZHrHe58QH73bKx+Q==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=amd.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=amd.com policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 7B1AD47642
-	for <nouveau@lists.freedesktop.org>; Mon, 19 Oct 2026 08:29:52 +0000 (UTC)
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010069.outbound.protection.outlook.com [52.101.56.69])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C41E010E0B1;
-	Mon, 19 Oct 2026 08:48:34 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ewni72/a1D9nNq+UCEcN0rMtfEZZeET1BCOCA7ETruT2w6UNpVwxYAIJT9+lxOu2CC9ja3Wre9uYUdq9SI9hX8PkzYzzfI8HRGt1DY/9b5iM6UtEvEWZlBgPCJLzG/j55e0zLzWMLZxneTNotJKschG3ff96UvuFYQP2t90Uczg6dJmaT1yCYQlYRaa1f+CjtQTyb5Y0olnXgABqMee7+l+DU8rdJesnTcnPT28okwnOetiY2XfuWNKgToobg7goWRt6G+GNZtXNkF7ukfFncplv4QEYp5RgtgYgi9bYkORHr3e8mBLrnzHd0JeVsRU6ihFRiTPdjW87HboZFUhn8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M60A7iMZbc9qnqJK9RCpJAehgbykrLh8EW+f5UWXAnY=;
- b=ceZzGR4aD+8zyBNPPOotNOhOjeZvRjhfWZevNrEdas7nafN+FhODqCeIHBEzK8wGJOsJ3bE1h5d9fbVm8BM6L6mViHD7ArirPtoS+fL/Nnh4ccaSIbbiopL36u+vE2RXq2oINT7CTwvaxbvwiRTgadO63qSxJcmWNmKk0D2ZeNBE+ll1nCNtE4F7mBWrHQTwYPSnRXbI1z0d+Qiv9HJvyb2zdKOVN2rPlN8wV801v56/6z7f8glR8V9ENYBlw+j/rFNHdRKBeuBecRuUB6xQcqy2f0e4sy5KYmcsdaFVqqH834CKMhLl7JDePqX8UkkBe2GjPyJ+snN067HK5TSYsg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M60A7iMZbc9qnqJK9RCpJAehgbykrLh8EW+f5UWXAnY=;
- b=x3RbJjxdD1/0KDeAYG6mdmwBEof8mDQYTkgldLpDyk4pax8E5HBrUy+b5bbyW30ef1A5UoBGtsPkOs/fogbIa3MX7Ic5GF5PrVEuu5rEsTZKRAupN/Ix0gBAYmEX6LhODh8feRZv+SyBJHVRLjSKONmv7IHCxySgMnQG4vztK7I=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by CYYPR12MB8924.namprd12.prod.outlook.com (2603:10b6:930:bd::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.18; Mon, 19 Oct
- 2026 08:48:30 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%3]) with mapi id 15.21.0522.017; Mon, 19 Oct 2026
- 08:48:30 +0000
-Message-ID: <c0a9c733-5910-400d-8db6-3fc25986dd02@amd.com>
-Date: Mon, 19 Oct 2026 10:48:24 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] drm: reject empty TTM range manager sizes
-To: Jiale Yao <yaojiale02@163.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Zack Rusin
- <zack.rusin@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ben Skeggs <bskeggs@redhat.com>,
- David Rheinsberg <david@readahead.eu>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-References: <20261019084138.1821477-1-yaojiale02@163.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20261019084138.1821477-1-yaojiale02@163.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0104.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9c::11) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6DD9248895
+	for <nouveau@lists.freedesktop.org>; Mon, 19 Oct 2026 14:57:14 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 551BF10EE7F;
+	Mon, 19 Oct 2026 15:15:57 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id A3451602A8;
+	Mon, 19 Oct 2026 15:15:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 269E71F000C4;
+	Mon, 19 Oct 2026 15:15:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1792422956;
+	bh=rY7NXz2qfQQtnIEL3eObvxvEOIQ+EeZp99ff3bsp5sk=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=CnpQzRLX3TYf8k0qu6IYpaMq62MrzgVnzWtCBEbdnX0IUPXFCp6FFVhb6e/W37EY7
+	 oQdkTxuZitFSXzUqh8YM+LI6hW4HWoVv72MiRtWfb/iuVaWOGKHt2j8Piy3XsHY4bv
+	 HfJH5x277Hg+W3vBh+BKJcUHigFzcPtKnByrkz6Qw0vZi1heWwAKuKjDH8y9RjWbAw
+	 ZWzbQHvwqs0XljbKJDetYNNwEqmAYS1SizYC8c9PQJ/+yV3C9kQ+UX6IhimWK6Szh4
+	 MliM2s0jWJxjgBc2N8LAVJSnUAeqxo/k14Kw0U606JcTDsTXyg4NEZpgxA/P9PGn8a
+	 a/NOnXhhwsAXA==
+From: Maxime Ripard <mripard@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maxime Ripard <mripard@kernel.org>
+Subject: Re: (subset) [PATCH 00/75] drm/connector: Convert all drivers to
+ atomic_create_state and remove reset
+Date: Mon, 19 Oct 2026 17:15:50 +0200
+Message-ID: <179242294379.2822300.2839114266297465713.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: 
+ <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
+References: 
+ <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
+X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CYYPR12MB8924:EE_
-X-MS-Office365-Filtering-Correlation-Id: fcdde232-78a6-4c03-a2c4-08df2dbdc02d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|366016|23010399003|376014|7416014|921020|56012099006|11063799006|261009223027099003|261009221227099003|10067099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 
-	oXjhhGgmw+3jA0KBphD58k8cHsuU16KdevJDn5hPmENT+u7fzvHenHKdfWUWJVMLmA5oWjm1L8xWbwnUm2pVcP0wpRzvQbkbfOrZ571Q6ePG2lBajIXWxMCBidRCapTYuToKwrnybwvowzGuXXs/NkpYSwLWHqcpyL/SKANfuyU2aSRsvPUTXvVw96R79k+f0KykZD4s1SLOzPxw5YY8oSq9nwASXRo/pDauH7H8t5xxeitrB2WLzIDmhuZby+BcymlWLQVcsmlh7JWXJViffc8nfsE87pneO5LMmMFTpt1JvZib4I4EqrlSg9cgIINth9ANEPY/XJHZSZdwz5mrI3eF9JrUZBA2LJ9TUYes2GAHvCKxXUrvrP5FWPvv0ecLT5I/shqut/l8+1sSRvz7vFWRaO+APT8SWEahmkq/F5rSYlyWuYkz/OEtyOIHCj73q4N/5FUVBMkTpny2+w8WxCXFfVDgR4HOMz/pJv3Znp0yHbb4pnXboLkWgoNB+a+q1OWHiOYqxGZyxjT0tC7lW1TnTC63WwU+jP30LGuWYyoSKqgWUdo1ZAvpxjO/xjiAyQ3oZpuitoPWt/T0t6ped7f/0aJGIpuxIqN2a0Gmnsf2EkTXOXnUw2yJKTMPpm6dPv1E3X6XyETe59QnYJgqUCoXCLsCk7OJr2mqCOgC2+LcnW6/h+ZKANYDA/54XMQaPUUF1USQfjmAhoQE0n9r+Q==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB5685.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(7416014)(921020)(56012099006)(11063799006)(261009223027099003)(261009221227099003)(10067099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?TFFMZ09WbkttcEsrZU1ZV3FDWklQaTNpclRSa0taWGNGMjNGR0JsTG9YUXFm?=
- =?utf-8?B?UERuMmlSU1RLajl2QUxmRTlkcnZWRytxQ3pBZFhUSUI3eERvMStRd25rZ2Vt?=
- =?utf-8?B?TUN1cGg0U2JCejRCeVNIQUhUQlBwZnBRVEVYMlQvOG0vYUgzeERUM0hNa2lz?=
- =?utf-8?B?VEJzQ010T3Z4R29wK3JpRmErM0kxa2tOVEwxMS9NSTZCY3pnVTcvdDRzcEsx?=
- =?utf-8?B?NUFBTzJGWjl5SXI3WmpGT1ZXRTRZUG9vK3M1cWF0UStma21JcG5GYnJud2V4?=
- =?utf-8?B?Y3Z5TFlzcDY5ajQ2ejZrbDZIb210Si81a1paTWtIUHlPTy9vZU8xZDAzUmQz?=
- =?utf-8?B?OWNXdHlSZVAweDdaaVBVTERYbWV4YzFyZTh5TW9OUnhLZEJqbE8xdGtJZUd4?=
- =?utf-8?B?SitoMW9WZjRPeEZUZTBFc29qT09FSUIzMmt4VzEvd01oWXVIVndxd1gxNk1G?=
- =?utf-8?B?U3lCSkpOaTRkaUdCOTZVZGEyVW5GUHJEa1FOTEgwKy9rU0dOVmVNdjFHRHdu?=
- =?utf-8?B?djY5UitnKzZoTGpGWUhnajdnZGQ4SWFZaTFudHFwMWtrRU9rNk04dkVleE5R?=
- =?utf-8?B?N3pZOERpTlhkK1lLR0ROOSt6S3NhcDRqUmRNcmgwMktjc3VoT25PbGVKOERG?=
- =?utf-8?B?eEc5OGtOa2lzYlRyVDdDUkdsL09EMWdXbjFSMVZKREZNSXlXZ1U4Y1JHcnJy?=
- =?utf-8?B?aDNOcDJKSUVkdm9QeFRZWjJMZk1vTmlZSmluUmdLSGtZM3BRczllTi9yRUVi?=
- =?utf-8?B?eHlORzZyRTBSRDYvclkwdmYwRDVOeWEzS1VlbnJab1hrMmcwM3Y3QmZMcTc4?=
- =?utf-8?B?WlczaTAwb01WaEVvRzd3TUFWUnZBdlhJa3pwQmVpTWt2WmtqQXZmZnA1dHhP?=
- =?utf-8?B?TzJUUS9HaUR2M2tQaXZSU2U5SUpKcENBQkxxL3M3aEdOTm5MeForSnY4M1J6?=
- =?utf-8?B?c3cyQTlxRlBXbENhSjRiYUZDMTloaGlLbjQyeFhjeVNMenAvWGlXODFMZk5k?=
- =?utf-8?B?Qmt2Nk1uQVJCOFpWc2d5Unh0SHcrdEJKU2VXKzhrYlJmR0p5RVRVcnZjUFRH?=
- =?utf-8?B?amlNMmtxRDM4V2llL2tPT0QvVXZPR0FhNEN4cm83Y0FvaHVzSFNvOWQzSTlw?=
- =?utf-8?B?a0txbS8vRnRYRGNyaXMzcHgyR2FOM01XNkZWNTdSWERjTi9mL1BKcWxFc25Z?=
- =?utf-8?B?WkxnS0VpOVZRMmxNWXNhd0taRytTUmNQOGR1L2tQajVvYk9kb1dkcS9DOVIx?=
- =?utf-8?B?MTVvSFFYMWora01zN2FHdWtaL1R5WDhmR3I5NlpqRUF6REhoN0FRdytGMjdG?=
- =?utf-8?B?K2FJSjFVZzBJTCtqL1BlaUM0aFZBcS9leUJuOUZXanZoN3RzWVZDMXN1ZDZT?=
- =?utf-8?B?NFR4WFc4b2lHUDhucG1HZkFjNytHRGh3L081WVlHOGdMVW5ZaXVVeldqcTl6?=
- =?utf-8?B?NTJlOG56UEdnZFJoQlhQbUtiZjRhbDRVeWY3bUpEMXF2RXVUWVg0VmJ6NllL?=
- =?utf-8?B?RXdhS2JneHJNMklXeS9Od1d2YVQxbjF5czFvM1JiY0ZKbmhWU3V0b3dHU1Uv?=
- =?utf-8?B?dFVoTlMwU3o5NnlCRVJqTVkwN3RzTC85aWFzUExEZk04bFY0RDE0a2RodmVW?=
- =?utf-8?B?bFNPaCtlVlNJdHQzb1ZYTG9XU3RGSWtJVG1wME1tZklKaFpCaVVnRW0xanlJ?=
- =?utf-8?B?Q2d2UHloK0FITTdQUVFCcEJuazhpK04vdDh3QlJmZ2xmOWh5OTJpcytaRmFy?=
- =?utf-8?B?Nm04V3c1SDdEcmJrN2tzZzhCSUtLbEw4WW8yeTFZRGd5V2JYL2JGeU1nanFk?=
- =?utf-8?B?YVZ5My9UR3ZyWU5waVMyc2hmVVBvMThKaUx2bkpzNEx0WDdGelNleDNWYTE2?=
- =?utf-8?B?MitmQWREa2hYQ1pvVFFveERPZys0bGtSYlhvWlhIYjQ5UjRSNXA1RWduMU1Z?=
- =?utf-8?B?UkZ1aWcwZ2RKaTUzYm1ONCtFbm5mbnI4YnRqVDZDVVJhVkN5cUJOWDFLYUx2?=
- =?utf-8?B?Z0IrdUhFc3VRWjBBU0tOd3I1NGN3MHVHTjNGT1ZFN3JQOXpqSFNybnNobVFM?=
- =?utf-8?B?VWVYOUJveitwNURWTUZQTUxsRnI1Q3lWWmYrcWJrTjRRbGhPRUl0N0ZTRFdV?=
- =?utf-8?B?SGpVblFUM2taWXpCem1PVEgzNFpkWGVUQi9NSkkxTy80ZUhEa3BJemx1Z0dB?=
- =?utf-8?B?RWI5WTZWUkV2ZktRcFdlVlp5dHVybGVmVnZsTFAyWE1OdHZLSXRrdGx0dmYv?=
- =?utf-8?B?MTQyZ2VveFpBVU0vZWVsMm0wUkhZOGhMMWNxdHZxenBmSWxVS0dXMFhDQmVH?=
- =?utf-8?Q?jxgQGuMbm0spLLrXhI?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- fcdde232-78a6-4c03-a2c4-08df2dbdc02d
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2026 08:48:30.7349
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- o3sX0oX476f/4ZxfTtw5tBLfyXLaGfgrXT1aldZn4r24Ncz7GlqWgXrw4OplMX17
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8924
-Message-ID-Hash: DMSVNA7YGQ3WHVYWRYP7GWA6WD7PWEED
-X-Message-ID-Hash: DMSVNA7YGQ3WHVYWRYP7GWA6WD7PWEED
-X-MailFrom: Christian.Koenig@amd.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: K626LXZ3NUEA7HQDTNHGBLJ3DTOHH7ZQ
+X-Message-ID-Hash: K626LXZ3NUEA7HQDTNHGBLJ3DTOHH7ZQ
+X-MailFrom: mripard@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
+ loop; banned-address; member-moderation
+CC: dri-devel@lists.freedesktop.org, Aun-Ali Zaidi <admin@kodeit.net>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>,
+ Dave Airlie <airlied@redhat.com>, Jocelyn Falempe <jfalempe@redhat.com>,
+ Francesco Dolcini <francesco@dolcini.it>, Ian Ray <ian.ray@gehealthcare.com>,
+ Martyn Welch <martyn.welch@collabora.co.uk>,
+ Peter Senna Tschudin <peter.senna@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
+ Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
+ Tian Tao <tiantao6@hisilicon.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Yongbang Shi <shiyongbang@huawei.com>, Dexuan Cui <decui@microsoft.com>,
+ Long Li <longli@microsoft.com>, Saurabh Sengar <ssengar@linux.microsoft.com>,
+ linux-hyperv@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+ Frank Li <Frank.Li@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
+ Paul Kocialkowski <paulk@sys-base.io>, Huacai Chen <chenhuacai@kernel.org>,
+ Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>,
+ Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>,
+ Xi Ruoyao <xry111@xry111.site>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
+ virtualization@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>,
+ linux-renesas-soc@vger.kernel.org,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Iker Pedrosa <ikerpedrosam@gmail.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Raphael Gallais-Pou <rgallaispou@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Yannick Fertre <yannick.fertre@foss.st.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
+ Alexey Brodkin <abrodkin@synopsys.com>, Hans de Goede <hansg@kernel.org>,
+ LiangCheng Wang <zaq14760@gmail.com>, Alex Lanzano <lanzano.alex@gmail.com>,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Ruben Wauters <rubenru09@aol.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Zack Rusin <zack.rusin@broadcom.com>, Aditya Garg <aditya.garg@linux.dev>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DMSVNA7YGQ3WHVYWRYP7GWA6WD7PWEED/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/K626LXZ3NUEA7HQDTNHGBLJ3DTOHH7ZQ/>
 Archived-At: 
- <https://lore.freedesktop.org/c0a9c733-5910-400d-8db6-3fc25986dd02@amd.com/>
+ <https://lore.freedesktop.org/179242294379.2822300.2839114266297465713.b4-ty@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -187,44 +175,30 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
+X-Spam-Status: No, score=-6.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	RCVD_IN_ZEN_BLOCKED_OPENDNS,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
+	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/19/26 10:41, Jiale Yao wrote:
-> drm_mm_init() rejects a zero-length allocation range with a BUG check.
-> Several DRM TTM users can derive a zero page count from device-provided
-> VRAM metadata and pass it to the range manager.
-
-The BUG check is there to point out driver bugs which try to initialize a VRAM manager while no VRAM is installed.
-
-That is intended behavior and returning an error instead of running into a BUG() makes that intended behavior go away and eventually cause more problems down the road.
-
-So absolutely clear NAK to that.
-
-Regards,
-Christian.
-
+On Wed, 14 Oct 2026 19:26:23 +0200, Maxime Ripard wrote:
+> This is a follow-up to the plane and CRTC reset removal series, and
+> part of a larger effort to remove the reset hook from all KMS objects.
 > 
-> This series rejects empty ranges at the affected callers and adds a
-> defensive check in the common range manager. Patches 1 through 4 and
-> 6 validate the individual driver inputs. Patch 5 protects the shared
-> range-manager API against any remaining zero-page caller.
+> The connector reset hook is overloaded: it is called both at probe
+> time to create the initial software state and during suspend/resume to
+> reset hardware and software state. These two roles have different
+> requirements, and the reset hook is not fallible, making error
+> handling difficult for the initial state allocation path.
 > 
-> The series was checked with scripts/checkpatch.pl for every code patch.
-> 
-> Jiale Yao (6):
->   drm/vram-helper: reject empty VRAM ranges
->   drm/nouveau: reject empty VRAM ranges
->   drm/qxl: reject empty TTM memory ranges
->   drm/radeon: reject empty VRAM ranges
->   drm/ttm: reject empty range manager sizes
->   drm/vmwgfx: reject empty VRAM ranges
-> 
->  drivers/gpu/drm/drm_gem_vram_helper.c   | 3 +++
->  drivers/gpu/drm/nouveau/nouveau_ttm.c   | 3 +++
->  drivers/gpu/drm/qxl/qxl_ttm.c           | 3 +++
->  drivers/gpu/drm/radeon/radeon_ttm.c     | 3 +++
->  drivers/gpu/drm/ttm/ttm_range_manager.c | 3 +++
->  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c     | 4 ++++
->  6 files changed, 19 insertions(+)
-> 
+> [...]
 
+Applied to misc/kernel.git (drm-misc-next)
+
+[73/75] drm/vmwgfx: Convert to atomic_create_state
+        commit: e6bb593b800813788dc16179d1305747ff974d00
+
+Thanks!
+Maxime
