@@ -2,107 +2,123 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D551606A31B
-	for <nouveau@archiver.kernel.org>; Mon, 19 Oct 2026 18:56:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D4F4606A31B
+	for <nouveau@archiver.kernel.org>; Tue, 20 Oct 2026 17:53:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=W+SsKTAA
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=k/Pu9fQr
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 45D0B10EACB;
-	Mon, 19 Oct 2026 18:56:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD8110E3B0;
+	Tue, 20 Oct 2026 17:53:24 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B8C6D48B3B;
-	Mon, 19 Oct 2026 18:38:01 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 9963948B4E;
+	Tue, 20 Oct 2026 17:34:33 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1792435081;
- b=i8Er2GttzPicTc+VmINR0O3zAoGiOPrjEcJzGgk13pQ3ejj6iJJhXki8aS8VwfEQw4vxn
- /yU54qGQQ6bco+35OReFQJDj5n90Btw2cXvbDKEKj1gKfesjW9SbAQWgJKMnOhq5RO69bDQ
- ec3pPNn9m5rCKlxMrAoqxufCNy7X6YOuipBLhPZanvsLBU0BQK7o0a2OepdhGPtKxFXJH1Y
- qwxcbAbwL9sGY9u6HTqiZOqtLpBulEmPUx8LC1dUlrtWD6j6sJgV7oe/+pAdL05mloTeM8l
- d3H7u0TgLE92b+XTYJGyNo42sE1KePq3uJUYyEc1gAisumTOvmPMgf/0Om7Q==
+ s=20240201; t=1792517673;
+ b=pk5961KxGqbIx4xx0NV5XQfiOXguUc+i0xA8IhwaO7w5ZkVW/N+YTje9YbEQZZp9DtfDM
+ DVhMK9E+r6xj5D6SJrBp6XcQ9jgbzyYsJTQi+sDx0f899o9IjwLrP7MaH6cWZlnulncpY5V
+ lCv/Zn1CgjJpFWSR8UJ5Xhf4UDzZVepJOH1RoNq8x3cFcttQJRFrGixTizy7+Xone0McILY
+ 7RFJ1vjK8to92dLKKftl5btGnemyrbOyfpPWwfHH018IJkoetIp1PAC7JpWndDVKpjf/cUr
+ Lrk9lFeE2bSf9iGYgbEe61Gk1HYvKFnktG+plQeXGP1pK9w24YMH8QFwJZLw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1792435081; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1792517673; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=whcwWcGUKRfvtRwNpcj2S48Yg35okxV42v9ufuqcUeM=;
- b=JX2I5s4Io2xvZB/0r5C3wPT5R0TS/q95ZtjPa3Dp4cQ16je/V6NTflcvkdxXp6rnSWh4I
- 6WDQZFyWm5xnf+riBl9Zb4NOnq6x+VT8jazo+yOp0Z2h9mX5O0ppcyH8Xh9/zqLcOlwuhwO
- jhHpMi7rBJotz+gXI0gvn17NDJrE5GB8Gmnf/LCOkhUElAZ6VJvyM0BrTXONhdnxxIF+l7U
- 17Zfx4aNC7U1IMVpppKLsY4bcw3pDTTs/yd/Xe3XP75RUttWruWLrJ/oCJfJgAl2ZL/Rw38
- 7Vg/3F7I92VLFHWTtFZieAsoh/qzEqxY2fAv9ZXP1nMPu1hlB3SNBlc7LMvw==
+ bh=Y0Vtm/ADE7KmOIdpmnsidnESC11fnafsTwZQ5s+7Btg=;
+ b=ryT/pqMmC1RVmmv5kpyePuw2GXkGBO9Wycx147pwRa0WMdyHgwPHuc+zPdGOeX8rl+JnH
+ LNRK0U+FZvu8Rpkbk/LwDG/CtjeqBwA0xmQFWhi0lU3Xv0Jamkh7S9pF3glQTjxpO42S7Qw
+ CGwEMqZ5gOo3ZiLsZ6vfpI9g84SaWlONx/B+tzr8wazRZraaNPMOIWWGYATxojy5PCk1ks/
+ 3j3q71t8t2oE7+mHlKDdgubvoMrkVgmFYYrJBtu5T4UdRs+ozLuWMBn4LgDB7ppI8oksGog
+ ra+Iw9+G5pDLdmiWoFGagquUlq4oGxPzKUk95SvkKv7kFX/irn3Fw2aQTKRQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=163.com;
+ dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=163.com policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=163.com;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=163.com policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B76E347B29
-	for <nouveau@lists.freedesktop.org>; Mon, 19 Oct 2026 08:33:24 +0000 (UTC)
-X-Greylist: delayed 406 seconds by postgrey-1.36 at gabe;
- Mon, 19 Oct 2026 08:52:06 UTC
-Received: from mail-proxy25210.mail.163.com (mail-proxy25210.mail.163.com
- [103.129.252.10])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BA65210E8A8
-	for <nouveau@lists.freedesktop.org>; Mon, 19 Oct 2026 08:52:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=wh
-	cwWcGUKRfvtRwNpcj2S48Yg35okxV42v9ufuqcUeM=; b=W+SsKTAAxDCRa/2MyW
-	7zwswFvwlpPCDRlltEZ6E+KT3p5mq8UV4sv+a4IF2KMh5C+zcUmpysq+ubRRPi3J
-	iL3hGfLCqIJFXAGLjmHqL4FxmxdDIzbKa47RmRvysgh7NA4n0oa/lrTrfpGao2U6
-	n1EYUuUgdyKUVkGdCIUqmVwmM=
-Received: from pc.localdomain (unknown [])
-	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id
- _____wDnt9ng19VqcQOlAw--.9091S4;
-	Mon, 19 Oct 2026 16:42:15 +0800 (CST)
-From: Jiale Yao <yaojiale02@163.com>
-To: Lyude Paul <lyude@redhat.com>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Ben Skeggs <bskeggs@redhat.com>,
-	Dave Airlie <airlied@redhat.com>,
-	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
-	dri-devel@lists.freedesktop.org,
-	nouveau@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/6] drm/nouveau: reject empty VRAM ranges
-Date: Mon, 19 Oct 2026 16:41:34 +0800
-Message-Id: <20261019084138.1821477-3-yaojiale02@163.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261019084138.1821477-1-yaojiale02@163.com>
-References: <20261019084138.1821477-1-yaojiale02@163.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 4E16147642
+	for <nouveau@lists.freedesktop.org>; Tue, 20 Oct 2026 17:30:11 +0000 (UTC)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
+ [209.85.221.53])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BB41E10E027
+	for <nouveau@lists.freedesktop.org>; Tue, 20 Oct 2026 17:48:56 +0000 (UTC)
+Received: by mail-wr1-f53.google.com with SMTP id
+ ffacd0b85a97d-48dfdd0678dso2385454f8f.0
+        for <nouveau@lists.freedesktop.org>;
+ Tue, 20 Oct 2026 10:48:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1792518535; x=1793123335;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Y0Vtm/ADE7KmOIdpmnsidnESC11fnafsTwZQ5s+7Btg=;
+        b=k/Pu9fQrWpsamDxMdEk2njkDs0gRsC1eI90aIUMXJp5rbaLRmdvUtY76fEb7dekJf5
+         xmsySCf0+BlGfv6HFGNfRAyTO4xYhSY77PurBZd5yYeTnoM8zbLil0DzpCVY7xhdNQaH
+         GIVgkjN+UXleo1gqk/opzRkTe4YkbnFdo+HIZeWlvXcRDXr4AXHI2koPc7HOmw7a3Y+8
+         s5J1P5K8qjZGZ6BQlGwA6DwVWEC2BAn59lZos1pcIexKS8FjLb36bKJjPRa61LyWUPaI
+         awF0ZkiD5LC9tn34KjQPrsXe0JsaWh8pKa8+kxuTNMvZv/0sapSFiY4tXzxMp5A18SSL
+         jxtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792518535; x=1793123335;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Y0Vtm/ADE7KmOIdpmnsidnESC11fnafsTwZQ5s+7Btg=;
+        b=wbTyf/+OKsFpS0Wdm1GwVJT/Zc6j8AtkvwHB7uNAPJcfqK5oxdrHOD3rJZ0FdNXW8V
+         ZnLZ1J6vBV090SLSpCMq+jum3ide3K4/9GXvPtuWHzAcWLT/qA0XstQVqRoAvPWGA1FK
+         ycDPOhYPFT95BgKqJskxnVPqj2+W++84EKUPYzsZutz2wJAqzKOnxvFnZ98MXb6GyVjC
+         nhrpzSCU7CxHh100ePKwEUbu4rB/z5JXLPT/+34+qhBmAuIyTUrDNjSnPTFmsnQkkPde
+         ExKvC7rXHiaEo4eltAYgpIkG54JtpV6LmaB3KGzRCFTo6D+iw9PwXBuObnRV9H3nez5c
+         2aXg==
+X-Gm-Message-State: AFq9FYIx0lWzVgnhEsR1gBNgclONxJdvCvN/UuOw3aBUzKe9C7dvTEOy
+	3ERRxOylSunqouJUwN0n+xbxecKOIEa4dL9tzesTlLEA6RFXOLYJ2koJtt4h6h0uMbc=
+X-Gm-Gg: AYBFou1Uj7a5S5gCZgdad9RyyI++rCXQNHMZ74OMNYDJM3lL1e4q+eeR1yDk4D4WxVL
+	vApkVLIC62TcHF0TRBE03qejaeGEJi8xuxbYZCBJ6X64zUdFlapXz/3J/8b/44liCrTKYtoys4s
+	GujS4b9et5VIKbIIoXlBrShgywQyUXAI8cuazFR7xCcCcAy1IAME6FvG5BNuD5Md28Fxt69juPw
+	NSZrK/XmUvibVDFcEDLuWMn31knDD2nMdrSoS5wCnplLJ2k+EK4LRyCbMq7ZLg6P2m6uAAn+ZUw
+	Xj/QIItEcqWO7z1PxrjpsU4emN8nrliW9vlLIAkCanJK7feGNIcg5JXUHv3w4/cg7c8/XxiN6Xy
+	kWsio7y8uiitslscQT0g80RuhstewD0F2vM8o5tElHUZVCCrfnkLmlp6L7NS0wH9RxQB64sex/F
+	pvsbzJJxLF9sZVBsbOVpW48di+vb5dmEL+NeUwirPgveqYmXxEQdlODeLOpEPFBhR7k++Mq/XkO
+	JOZ
+X-Received: by 2002:a05:6000:46d6:b0:48d:ba3b:af36 with SMTP id
+ ffacd0b85a97d-48e07fa415amr15481519f8f.37.1792518534973;
+        Tue, 20 Oct 2026 10:48:54 -0700 (PDT)
+Received: from TimsUbuntu.lan ([2a0c:a741:55:dd00:e8a1:89b4:8207:6a6])
+        by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-48e1d838dd6sm7597643f8f.58.2026.10.20.10.48.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Oct 2026 10:48:54 -0700 (PDT)
+From: Matt Harding <majaharding@gmail.com>
+To: nouveau@lists.freedesktop.org
+Subject: [PATCH] nouveau: Fix rerunning VBIOS on GF104
+Date: Tue, 20 Oct 2026 18:48:00 +0100
+Message-ID: <20261020174800.178426-1-majaharding@gmail.com>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wDnt9ng19VqcQOlAw--.9091S4
-X-Coremail-Antispam: 1Uf129KBjvdXoWrKrWUZw17Xr1kArW3ZF18Xwb_yoWDXFc_CF
-	4xXFn3Gr1kKrWDtw4DAr43XFW2ka1UWF40vrs2qasxtry7XrySg347Xr1fXrykC3WIgFZ5
-	G3Z0van5KFnI9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRJManUUUUUU==
-X-CM-SenderInfo: x1dryxhdohiji6rwjhhfrp/xtbCzgc-eWrV1+czqwAA3Y
-X-MailFrom: yaojiale02@163.com
+X-MailFrom: majaharding@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: 57QI2KNPMOEXFV7Z6TZFPHRXCJTUGU4I
-X-Message-ID-Hash: 57QI2KNPMOEXFV7Z6TZFPHRXCJTUGU4I
-X-Mailman-Approved-At: Mon, 19 Oct 2026 18:37:59 +0000
-CC: Jiale Yao <yaojiale02@163.com>
+Message-ID-Hash: 3MO2ICPEXUURFAPF2U6RK2RVWNQVRJZU
+X-Message-ID-Hash: 3MO2ICPEXUURFAPF2U6RK2RVWNQVRJZU
+X-Mailman-Approved-At: Tue, 20 Oct 2026 17:34:31 +0000
+CC: dakr@kernel.org, Matt Harding <majaharding@gmail.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/57QI2KNPMOEXFV7Z6TZFPHRXCJTUGU4I/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3MO2ICPEXUURFAPF2U6RK2RVWNQVRJZU/>
 Archived-At: 
- <https://lore.freedesktop.org/20261019084138.1821477-3-yaojiale02@163.com/>
+ <https://lore.freedesktop.org/20261020174800.178426-1-majaharding@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -110,38 +126,152 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.7 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A VRAM range smaller than a page becomes a zero-page TTM range and
-causes drm_mm_init() to hit its zero-range BUG check. Reject it before
-creating the VRAM manager.
+In 2016, in commit a6a0f67ca7aae2e6 `drm/nouveau/devinit/gf100-: detect if BIOS invoked devinit`
+Nvidia engineer Gnurou changed how Nouveau detects that the VBIOS has
+already run for GF100 GPUs and newer. This was by reading a bit called
+NV_PTOP_SCRATCH1_DEVINIT_COMPLETED in a register at address 0x2240c.
 
-Fixes: 37205891d84f ("drm/ttm: make ttm_range_man_init/takedown take type + args")
-Signed-off-by: Jiale Yao <yaojiale02@163.com>
+However, on my Nvidia GTX 460, a GF104 card, this register doesn't appear
+to exist or behave that way. This results in Nouveau re-running the VBIOS,
+when the card had already been initialised by the BIOS at boot time. This
+causes the hardware to get in a bad state, causing symptoms in the system
+log such as an MMIO fault with the message:
+`nouveau 0000:01:00.0: bus: MMIO write of 00000002 FAULT at 13c1d4 [ PRIVRING ]`
+among other MMIO faults, and a stack trace in:
+`drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.c:305 nvkm_outp_inherit+0xf5/0x140`
+among others.
+
+I've seen another report of the same problem on the ubuntu mailing list:
+https://www.mail-archive.com/ubuntu-bugs%40lists.ubuntu.com/msg6269141.html
+
+My proposed fix for this is to revert the GF100 preinit subroutine to
+nv50_devinit_preinit(), and to push the logic in gf100_devinit_preinit()
+up to gm107.c.
+
+I also have a laptop with a GTX 630M, with a GF108, and I note that the
+register bit in question appears to exist and function as expected on that
+chip. So it appears that it exists on some GF chips, but not all. So it
+may be be possible, with enough investigation, to make this more snuggly
+fit the exact chips which support this feature. However,
+nv50_devinit_preinit() seems to work well enough for both of these chips,
+and as it was used for this family of chips before the bug was introduced,
+I think reverting to it is acceptable.
+
+Fixes: a6a0f67ca7aa ("drm/nouveau/devinit/gf100-: detect if BIOS invoked devinit")
+Signed-off-by: Matt Harding <majaharding@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_ttm.c | 3 +++
- 1 file changed, 3 insertions(+)
+ .../gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c  | 16 +---------------
+ .../gpu/drm/nouveau/nvkm/subdev/devinit/gm107.c  | 16 +++++++++++++++-
+ .../gpu/drm/nouveau/nvkm/subdev/devinit/gm200.c  |  2 +-
+ .../gpu/drm/nouveau/nvkm/subdev/devinit/gv100.c  |  2 +-
+ .../gpu/drm/nouveau/nvkm/subdev/devinit/nv50.h   |  2 +-
+ 5 files changed, 19 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-index cfc0868e2dd3..99c74c3b5976 100644
---- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-@@ -181,6 +181,9 @@ nouveau_ttm_init_host(struct nouveau_drm *drm, u8 kind)
- static int
- nouveau_ttm_init_vram(struct nouveau_drm *drm)
- {
-+	if (drm->gem.vram_available < PAGE_SIZE)
-+		return -EINVAL;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
+index 5368e705e7fd..069f64283b45 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
+@@ -87,23 +87,9 @@ gf100_devinit_disable(struct nvkm_devinit *init)
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_CE, 1);
+ }
+ 
+-void
+-gf100_devinit_preinit(struct nvkm_devinit *base)
+-{
+-	struct nv50_devinit *init = nv50_devinit(base);
+-	struct nvkm_subdev *subdev = &init->base.subdev;
+-	struct nvkm_device *device = subdev->device;
+-
+-	/*
+-	 * This bit is set by devinit, and flips back to 0 on suspend. We
+-	 * can use it as a reliable way to know whether we should run devinit.
+-	 */
+-	base->post = ((nvkm_rd32(device, 0x2240c) & BIT(1)) == 0);
+-}
+-
+ static const struct nvkm_devinit_func
+ gf100_devinit = {
+-	.preinit = gf100_devinit_preinit,
++	.preinit = nv50_devinit_preinit,
+ 	.init = nv50_devinit_init,
+ 	.post = nv04_devinit_post,
+ 	.pll_set = gf100_devinit_pll_set,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm107.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm107.c
+index 271bfa038f5b..caabd6975a92 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm107.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm107.c
+@@ -45,9 +45,23 @@ gm107_devinit_disable(struct nvkm_devinit *init)
+ 		nvkm_subdev_disable(device, NVKM_ENGINE_DISP, 0);
+ }
+ 
++void
++gm107_devinit_preinit(struct nvkm_devinit *base)
++{
++	struct nv50_devinit *init = nv50_devinit(base);
++	struct nvkm_subdev *subdev = &init->base.subdev;
++	struct nvkm_device *device = subdev->device;
 +
- 	if (drm->client.device.info.family >= NV_DEVICE_INFO_V0_TESLA) {
- 		struct ttm_resource_manager *man = kzalloc_obj(*man);
++	/*
++	 * This bit is set by devinit, and flips back to 0 on suspend. We
++	 * can use it as a reliable way to know whether we should run devinit.
++	 */
++	base->post = ((nvkm_rd32(device, 0x2240c) & BIT(1)) == 0);
++}
++
+ static const struct nvkm_devinit_func
+ gm107_devinit = {
+-	.preinit = gf100_devinit_preinit,
++	.preinit = gm107_devinit_preinit,
+ 	.init = nv50_devinit_init,
+ 	.post = nv04_devinit_post,
+ 	.pll_set = gf100_devinit_pll_set,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm200.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm200.c
+index f30718d7e61a..86e6585244b7 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm200.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm200.c
+@@ -177,7 +177,7 @@ gm200_devinit_post(struct nvkm_devinit *base, bool post)
+ 
+ static const struct nvkm_devinit_func
+ gm200_devinit = {
+-	.preinit = gf100_devinit_preinit,
++	.preinit = gm107_devinit_preinit,
+ 	.init = nv50_devinit_init,
+ 	.post = gm200_devinit_post,
+ 	.pll_set = gf100_devinit_pll_set,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gv100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gv100.c
+index b4d1688517d5..2c20460201a8 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gv100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gv100.c
+@@ -64,7 +64,7 @@ gv100_devinit_pll_set(struct nvkm_devinit *init, u32 type, u32 freq)
+ 
+ static const struct nvkm_devinit_func
+ gv100_devinit = {
+-	.preinit = gf100_devinit_preinit,
++	.preinit = gm107_devinit_preinit,
+ 	.init = nv50_devinit_init,
+ 	.post = gm200_devinit_post,
+ 	.pll_set = gv100_devinit_pll_set,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.h b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.h
+index 8de409c084c1..8697c2cbd409 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.h
+@@ -21,7 +21,7 @@ int  gf100_devinit_ctor(struct nvkm_object *, struct nvkm_object *,
+ 			struct nvkm_oclass *, void *, u32,
+ 			struct nvkm_object **);
+ int  gf100_devinit_pll_set(struct nvkm_devinit *, u32, u32);
+-void gf100_devinit_preinit(struct nvkm_devinit *);
++void gm107_devinit_preinit(struct nvkm_devinit *);
+ 
+ void  gm107_devinit_disable(struct nvkm_devinit *);
  
 -- 
-2.34.1
+2.53.0
 
