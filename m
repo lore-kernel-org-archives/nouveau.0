@@ -2,130 +2,142 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2597C606A31A
-	for <nouveau@archiver.kernel.org>; Thu, 22 Oct 2026 23:43:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5ADE606A31B
+	for <nouveau@archiver.kernel.org>; Fri, 23 Oct 2026 09:38:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=g1vizFPD
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HrL9TBoy
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5678510E508;
-	Thu, 22 Oct 2026 23:43:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9060710E616;
+	Fri, 23 Oct 2026 09:38:47 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B464B47B24;
-	Thu, 22 Oct 2026 23:24:51 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1792711491;
- b=T/YucBQ4Pddx82ssScavIiam50HChZMSV0tu53GklOQZpAz72IpR17EWsUzD5fV7unr87
- LUNmX2S4sWWKe2WM3HsIPa2ktVxMyk5o1k5mapAUTSsJqw5YH7Nwnh+zTJTZxT6OriGWPae
- ZtX7mGIPm0to0JtH9yatI54ijoQTUseNVX5G3/ag5lu9aAHpIdLMqsdfhNg8+0dM/Op+xwR
- SOj1e4nOfVJ+DBBBsBmP7kuQIdYFDUIiEzYSXSrrFmIAb0lDJFWh4JVpsLG+vMjwFF2P8AU
- tGNIJJ33NMy5V95rg4ZftJkdk+GtWQUNPSgM+FnIwjj7QD/jxMrAkrK0t6AA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1792711491; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 12DCA48B4A;
+	Fri, 23 Oct 2026 09:19:51 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1792747190;
+ b=a+xASNiy5Wh8c532oUmcviRUhgr8x8kV1KKAQGUGfoDQlZChOMgj6SeZ/o2Hfy1OEOu0p
+ VTTSpHH4GvesCK+viT0UfJX8HizqdwlfjOw0D9IRNWPd/cpHoac/jmLvJnaOvusD5Twv5Lk
+ PU3F4Ev6fKWEn/ZW78WaQl6DD2iWk6IkmtEyEDCngvE6Z+AqrB7/Sdswm77bT4kwYCWxkow
+ wSsjs2CAMmvZ1mJttFRelRCQNbWJKYkCx3GAtCzCgPp2aZT7Y8OATJDJb7YDXNGb3F63S0Q
+ bdqE+WxBB+YnDot+HQUuESuQ2Nt5aKIOmHEv5f3rLX1vf+FxPN1RNC40ljfw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1792747190; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=WT2TOXMwrCOf5xSTdDSPXtJnpx/lq+nJmOy+mLlD8TI=;
- b=BhO8PcKrUqhXAluYLrfe8ttyQjSRLP4/LOHwFBqzYzt2/tm2VqbC7ZwP68RG+6LNUdpMq
- ldOOyA18nRAdW4xrm6OtBbbZokxJ7x+yf+7UIUq2F+gyZKz61Frg3I10cgIIaQ/LqowV4Df
- 1aG30mxeP02DfxrtneJMFwoGiiS+X2a9NgPBMz4K16/uPJ0rMQNeHHntdI/X5IUDx2Mqr0s
- f52ILZRgdDQjYP6zrPD8C12KxHSmIM4TQF3XodqmrGubfJqUEr2LvUtVIPH6dAMWF09fGdB
- LRU/zgrX4zMkIS1YP0LJWioET+/iq7WDo2idQdIkMvqg81EuFzqhD7IzyyLQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ bh=ivlu9gZUoZpAO3rDeEUhzGrJLnpEDAs/cTBRPWcuhG8=;
+ b=jN1y1PDu72njE0HmSNkTrz27MyiBEFrYZkh7+rMidjzlkbUfpXRmI8JbX3wAAhq4GmDSh
+ J0cX9GKgFs9/rpiDN95CeTABJfKzzSe3k2JRuUdjWA0GJksCKldNuUVYmjqOswoM6sdkCoJ
+ tA8NO/KeC9kOJ2rDF6BB48Q4tLD/OS/1ZwvN0SJTLfFEIQvJVZBmGucY34FpIdHLh7OSA1b
+ c9V1+/XNTw2YgfxPHLMxminfSSmjRHhuTgQXuGVA/pIdKMy/kBA6g6TwBfO0QiaCID2etgz
+ Upnd4dpwl9CnX+ZpI2fbQeVkHpMlD1iaOmlhkVkgGBVrJfc+fZBsJHwjyoSw==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=kernel.org policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id F0A864713D
-	for <nouveau@lists.freedesktop.org>; Thu, 22 Oct 2026 15:18:29 +0000 (UTC)
-Received: from mail-dl1-f54.google.com (mail-dl1-f54.google.com
- [74.125.82.54])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A2C3410E443
-	for <nouveau@lists.freedesktop.org>; Thu, 22 Oct 2026 15:37:19 +0000 (UTC)
-Received: by mail-dl1-f54.google.com with SMTP id
- a92af1059eb24-15943c9c005so2354810c88.1
-        for <nouveau@lists.freedesktop.org>;
- Thu, 22 Oct 2026 08:37:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1792683439; x=1793288239;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=WT2TOXMwrCOf5xSTdDSPXtJnpx/lq+nJmOy+mLlD8TI=;
-        b=g1vizFPDYX2Oo6c78eTeZElM/fYiKMhcdhYODWtipyzJqYN2eEA2k2kw+6OJK5ofjT
-         PWlkVyUu7qTyuWj7Car5ZSdtj3RQATQ2cWwcrCi8JlZzH2Dc4E+o5UUMQRcXRQYAbng4
-         AkAAn/oTmR6P6oyGJcF99ngZGkA4sp0NhU48gYdfqYfz7dt9rtuLQPxYRMGHstvTKFz/
-         AQqW8SRDhCPJZ5prb81oHY9erWFETlDlK+PZmSdJmF52BYaXKbooau3xq7rPHgTahSJW
-         ae4+FvjE24Z0VqDv83dCkQ1PD5JtJDIwljjIQT6mbqYjJXc0GeqiY17k+Ol4J2S3WfOn
-         Ua3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792683439; x=1793288239;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=WT2TOXMwrCOf5xSTdDSPXtJnpx/lq+nJmOy+mLlD8TI=;
-        b=N0Hqkb2muKHiSCbJa4T1ixhX9Q4HG2JsYLHtAKqDL6fvWv8eK0TMZD/hAzragjTExT
-         rcc2pYjzbj5SHhauEQGaeBVQLra7Kg6PFM66qpAKO71h4ViOPH5rYyJEFsnr1f2U5YNh
-         kz7V1vx9csJ/t7JyDfROYWQvv7fGtanjANEvPG97cQfJEg2U2T6NR/l/ycEgDqUsEq44
-         eM6Fgv/mSj8L6XX2nKWg2CK6fjp70VPIqN78xnPrKGJ8yzqR5HDJMXk7CS5D7cI6I+n7
-         uXgYv5qjJ/wKtOLFo3Vwgz0h9VXqEckL2UQqOiaJFp1J2oWgw8OBIseBC6+VC3NvPbf6
-         /kMg==
-X-Forwarded-Encrypted: i=1;
- AKwUvBymnQVw2xRNbMCKpC17otjHvahAcGfHuFFVO3FGo2Y7sslCjp257lveC7HdgzEPj0yS4zTlf9T8@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYJYdrx3W5GBgLKHu1s7Y3dcPbSIZ90XDNnyG2Mko54jQSVl+f7/
-	BDxw3FZqJLU2OVJ4b1d3NDwmol+syiQU+bhGbgcUDRUJbmsVssDWlZAq
-X-Gm-Gg: AYBFou3YEUhhBu5UqdRiGJ/hG6XElOHMsBGj9X7shUxY3tfMwUU/CwHO3undZrEaatN
-	S4WfTfIKewAfPVIb2NyavsZVMSt/vQnxN9zwdKOn9riP2UMt30ktmqUs/3d6x4tuLUaokIeqkey
-	sGUyDT86OXhuurIw0rZ8B9Jlda93mJYtdlxYCX2ztZ2ggEeENaB/rQwoT9WVvv5hQo7LzUUM0k/
-	qxY+ZlRX0meTBmtZECc2DglqEXKDIJxutdNKLc0K0I3GHY+PDA9IfObaWBX61ccuJF6PHXTpyzs
-	aZ4QmN0Zqfu9IMs6xBNJvRnS7RXw2SE2N5+9ea1iSnqBYDhTE3Dr4/KO+nLpOq6O/Y1utM/oXY3
-	Xudj3L6vSW0SWVUm6wsAk6JHxJErfRQoPc0QwANIUQ1fVxyVdKmr8VQl/FI34/rhstE3hVrn5qH
-	oQs0ZJFMcvsLnudu4MbrShr3Ucl602RuCmA/iqgHlIDEW4uxxdc6enmNHn2O5ZuiGbjNaapy6+y
-	2iSqJwuCoku//j1kZchph0rxXqq3jPHC7nO1sfOy5QB1mlLQARFy7/FAsBHIIIYEXfZfB89cb/i
-	Z3I=
-X-Received: by 2002:a05:701b:2616:b0:182:2feb:a170 with SMTP id
- a92af1059eb24-190a6adcb12mr6334470c88.11.1792683438586;
-        Thu, 22 Oct 2026 08:37:18 -0700 (PDT)
-Received: from kush-pc ([106.213.87.38])
-        by smtp.gmail.com with ESMTPSA id
- a92af1059eb24-1903bf5d0a1sm15780435c88.14.2026.10.22.08.37.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Oct 2026 08:37:17 -0700 (PDT)
-From: Kush Chandak <kushc451@gmail.com>
-To: Risto Pajula <or.pajula@gmail.com>
-Subject: Re: [PATCH 0/2] drm/nouveau: fix GK107 VDPAU regressions
-Date: Thu, 22 Oct 2026 21:07:12 +0530
-Message-ID: <20261022153712.11208-1-kushc451@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260913201225.5975-1-or.pajula@gmail.com>
-References: <20260913201225.5975-1-or.pajula@gmail.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id EE082413B4
+	for <nouveau@lists.freedesktop.org>; Fri, 23 Oct 2026 09:19:47 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 33E1A10E5DF;
+	Fri, 23 Oct 2026 09:38:39 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 56DC16024D;
+	Fri, 23 Oct 2026 09:38:38 +0000 (UTC)
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1792748318;
+	b=o1GvNGOdaSySdRmtmL/ylJp60kMg3TkQCUoaF9jigroj+l9JS75eqTl9NlvtEBXlR72q
+	 Go0J7R2PxmWOqSkSLr7g9LfcRGxOWkqy3HyS/cwkJPPgAFYS5j2mgya0Um0ST9MpvLFwj
+	 wj5L3URPKelxKt5aP1YfDJ5O2P5RohAfmsuoMYUqyxJm4JNKcSFPJOfBh7amThdgJJf29
+	 NqXxZjvtv2sutT1lOKt1SSw5gbuprfwtZORRbeIldL4j9VA7hed4K7DB85lFu7wiPuCjT
+	 zEY9HmmOIeKyHy8+2xob6KkW8TsBb6pEYx8eFomtXkVC5VQ4wzeG7yE0pMlvHCGjyQg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1792748318;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=ivlu9gZUoZpAO3rDeEUhzGrJLnpEDAs/cTBRPWcuhG8=;
+	b=qOnwyMJDaJpfwCn3F76cBDylH1JAGDyVADQM2MdOAOg/LFuGUpDeMYbBpMVYo+Pq3QmG
+	 2ExpJFO+sS0WfFqdl9w8G1ukXjDYc5ggfy6+xrDg2AOAIjkOqTC/zn4kHzoAoNWpEnwjK
+	 hbWOcDjxd0SAiunM9ricbXCA3A7MTkEggP3tb2t7ejBsIi+x9dhRdlRcBy1g6WaqceZqV
+	 Zct+Zx4lbaCAP1CzCemFiF8gfwYLxwJ3nNYTGg17BbaZ9E0RKpzJv6ZhCb4ccLPSFITRl
+	 xokUZ3IgySk1WG8mjc88xBjRmbkYWXjeoNk3c8XQvTSibxuqsAdSaJ6OtljsrQU/UtQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org;
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest
+ SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 7761F1F01825;
+	Fri, 23 Oct 2026 09:38:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1792748318;
+	bh=ivlu9gZUoZpAO3rDeEUhzGrJLnpEDAs/cTBRPWcuhG8=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=HrL9TBoy80ZaW5AKCY59p6fLWAvUHDO7sjAZkwEC9sHWwV14uItPHG/nX8LW7pmZR
+	 7j7qttlrhKJMp0nDGEHuYh/ja/l0bxmzk4yLUNLF0aD5M7Mi3TMx/DRXHgK+sRt5Jr
+	 +e2YhBbt2CA2qn6+vM69NxvEVfLo/DRDvdbxSDVy+fbPM8oFpw9vcfnfglsfv7K97u
+	 vp2G+CrPnvX2tBfUhLRzHHtItTteNN+k1pUX4NsNmITp/QvXpl80E1uUaxsyx6thqg
+	 ubLPY4/mYWClGGnJI3noX8Tc03A11Sx/W8WLZ2jB+zd7WtbMftLQp6xC6ogg3SY8iT
+	 w8ZmEt63V1A/w==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id C7EA944457;
+	Fri, 23 Oct 2026 09:38:36 +0000 (UTC)
+From: Joe Finzel via B4 Relay <devnull+joe.sudmix.de@kernel.org>
+Date: Fri, 23 Oct 2026 11:38:05 +0200
+Subject: [PATCH] drm/nouveau/gsp: only handle GSP interrupts routed to the
+ host
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MailFrom: kushc451@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261023-nouveau-gsp-irqdest-v1-1-5dd6131faa14@sudmix.de>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MQQqAIBBA0avErBtQA8muEi0kp5qNllMRSHdPW
+ r7F/wWEMpPA0BTIdLNwihW6bWDefFwJOVSDUcZqZTqM6brJX7jKjpyPQHKiV712QVPwzkIt90w
+ LP/91nN73A0eequxlAAAA
+X-Change-ID: 20261023-nouveau-gsp-irqdest-a0819d1eda96
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Ben Skeggs <bskeggs@nvidia.com>, Dave Airlie <airlied@redhat.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1792748316; l=4484;
+ i=joe@sudmix.de; s=default; h=from:subject:message-id;
+ bh=b17+26F2qy81a+KL88BTwZnr9eyzHZo5HKZat40hBY0=;
+ b=MbIuyuHc8Or6oZda9Wk1YBS5NKVR+tSNgUAdhPdBE3ZtOClgBMW1X93E8PHSnTQpSFYVhTLo0
+ mcivfq9ZJCuAIrUbRqoyhiYIYpa/MDhEK0WuDFxf8AcprRTcqtduk3G
+X-Developer-Key: i=joe@sudmix.de; a=ed25519;
+ pk=vaX11uVm57me/1N8otNmzMMnsE+f0U3/Hi9TCPbnvZM=
+X-Endpoint-Received: by B4 Relay for joe@sudmix.de/default with
+ auth_id=1151
+X-Original-From: Joe Finzel <joe@sudmix.de>
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: LLIDZWXEHFZUY5RQC3OM6VH77BSVGPD7
+X-Message-ID-Hash: LLIDZWXEHFZUY5RQC3OM6VH77BSVGPD7
+X-MailFrom: devnull+joe.sudmix.de@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: IGGVLGLHIJMLJZEHH34KNVCL5UF4W7AO
-X-Message-ID-Hash: IGGVLGLHIJMLJZEHH34KNVCL5UF4W7AO
-X-Mailman-Approved-At: Thu, 22 Oct 2026 23:24:49 +0000
-CC: Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Joe Finzel <joe@sudmix.de>
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: joe@sudmix.de
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IGGVLGLHIJMLJZEHH34KNVCL5UF4W7AO/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LLIDZWXEHFZUY5RQC3OM6VH77BSVGPD7/>
 Archived-At: 
- <https://lore.freedesktop.org/20261022153712.11208-1-kushc451@gmail.com/>
+ <https://lore.freedesktop.org/20261023-nouveau-gsp-irqdest-v1-1-5dd6131faa14@sudmix.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -133,50 +145,114 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-8.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, 13 Sep 2026 23:12:23 +0300, Risto Pajula wrote:
-> This series fixes two independent Nouveau regressions affecting VDPAU
-> hardware video decoding on NVIDIA GK107 (Kepler).
+From: Joe Finzel <joe@sudmix.de>
 
-I ran into both regressions on a GK208B (GeForce GT 710, NV106) with
-VA-API and arrived at the same two fixes. Built against the same nouveau
-source, my versions and this series give identical machine code for
-gk104.o and uchan.o.
+The GSP's interrupt handler takes every pending interrupt the RISC-V
+IRQMASK enables as its own, without looking at IRQDEST, which says
+whether an interrupt goes to the host or to the GSP itself. One that
+belongs to GSP-RM, pending when the host's handler runs for the message
+queue, is reported as unknown, cleared and masked off with IRQMCLR,
+taking it away from the firmware:
 
-Tested on Ubuntu 26.04 (kernel 7.0.0-38) with the two changes applied
-to nouveau, video firmware extracted from NVIDIA 340.108, Mesa 26.0.8
-with the VA-API fixes from Mesa MR !45340, and ffmpeg -hwaccel vaapi:
+  nouveau 0000:01:00.0: gsp: intr 00040000
 
-  H.264 1920x1080:  600/600 frames identical to software decoding, 115 fps
-  MPEG-2 1920x1080: 300 frames, 164 fps
-  no nouveau messages in dmesg
+NVIDIA's driver reads the interrupts routed to the host as
+IRQSTAT & IRQMASK & IRQDEST (kflcnRiscvReadIntrStatus_TU102() and
+_GA102()). Do the same, with IRQDEST from NVIDIA's register headers
+next to IRQMASK on each falcon.
 
-Without patch 1, MSVLD faults with PRIV_VIOLATION on the first frame
-and the channel is killed. With only patch 1, decoding blocks for 30 s
-in DRM_IOCTL_NOUVEAU_GEM_CPU_PREP and then fails with -EBUSY.
+Seen once in a few boots on an RTX 3070 Ti (GA104, GSP-RM 570.144),
+before the login prompt. There IRQMASK reads 0x01049042 and IRQDEST
+0x01000040: 0x00040000 is enabled but routed to the GSP.
 
-Patch 2 also fixes an out-of-bounds access. Without nonstall_ctor,
-nvkm_fifo_oneinit() creates the non-stall event with a single index,
-so event->refs[] has one entry, but nvkm_event_get()/nvkm_event_put()
-are called with index runl->id and don't check it against index_nr.
-The Kepler video engines are on non-zero runlists, so their channels'
-non-stall events increment and decrement memory past the end of
-refs[].
+Fixes: 830531e94712 ("drm/nouveau/gsp/r535: add interrupt handling")
+Cc: stable@vger.kernel.org
+Signed-off-by: Joe Finzel <joe@sudmix.de>
+---
+ drivers/gpu/drm/nouveau/include/nvkm/engine/falcon.h  | 1 +
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c       | 1 +
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c       | 1 +
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c | 4 +++-
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c       | 1 +
+ 5 files changed, 7 insertions(+), 1 deletion(-)
 
-Both regressions are in stable kernels (since 6.2 and 6.6), so it may
-be worth adding
+diff --git a/drivers/gpu/drm/nouveau/include/nvkm/engine/falcon.h b/drivers/gpu/drm/nouveau/include/nvkm/engine/falcon.h
+index 341f133dc38..eb8adaf07fe 100644
+--- a/drivers/gpu/drm/nouveau/include/nvkm/engine/falcon.h
++++ b/drivers/gpu/drm/nouveau/include/nvkm/engine/falcon.h
+@@ -63,6 +63,7 @@ struct nvkm_falcon_func {
+ 	int (*select)(struct nvkm_falcon *);
+ 	u32 addr2;
+ 	u32 riscv_irqmask;
++	u32 riscv_irqdest;
+ 	bool reset_pmc;
+ 	int (*reset_eng)(struct nvkm_falcon *);
+ 	int (*reset_prep)(struct nvkm_falcon *);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
+index d5126fe39d2..10e2813a016 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
+@@ -27,6 +27,7 @@ ga100_gsp_flcn = {
+ 	.enable = gm200_flcn_enable,
+ 	.addr2 = 0x1000,
+ 	.riscv_irqmask = 0x2b4,
++	.riscv_irqdest = 0x2b8,
+ 	.reset_eng = gp102_flcn_reset_eng,
+ 	.reset_wait_mem_scrubbing = gm200_flcn_reset_wait_mem_scrubbing,
+ 	.bind_inst = gm200_flcn_bind_inst,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
+index b6b3eb6f4c0..96fa26fa612 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
+@@ -140,6 +140,7 @@ ga102_gsp_flcn = {
+ 	.select = ga102_flcn_select,
+ 	.addr2 = 0x1000,
+ 	.riscv_irqmask = 0x528,
++	.riscv_irqdest = 0x52c,
+ 	.reset_eng = gp102_flcn_reset_eng,
+ 	.reset_prep = ga102_flcn_reset_prep,
+ 	.reset_wait_mem_scrubbing = ga102_flcn_reset_wait_mem_scrubbing,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
+index 94925f1590e..463e463db24 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
+@@ -64,7 +64,9 @@ r535_gsp_intr(struct nvkm_inth *inth)
+ 	u32 intr = nvkm_falcon_rd32(&gsp->falcon, 0x0008);
+ 	u32 inte = nvkm_falcon_rd32(&gsp->falcon, gsp->falcon.func->addr2 +
+ 						  gsp->falcon.func->riscv_irqmask);
+-	u32 stat = intr & inte;
++	u32 dest = nvkm_falcon_rd32(&gsp->falcon, gsp->falcon.func->addr2 +
++						  gsp->falcon.func->riscv_irqdest);
++	u32 stat = intr & inte & dest;
+ 
+ 	if (!stat) {
+ 		nvkm_debug(subdev, "inte %08x %08x\n", intr, inte);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
+index 11a37963bd4..823532758af 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
+@@ -420,6 +420,7 @@ tu102_gsp_flcn = {
+ 	.enable = gm200_flcn_enable,
+ 	.addr2 = 0x1000,
+ 	.riscv_irqmask = 0x2b4,
++	.riscv_irqdest = 0x2b8,
+ 	.reset_eng = gp102_flcn_reset_eng,
+ 	.reset_wait_mem_scrubbing = gm200_flcn_reset_wait_mem_scrubbing,
+ 	.bind_inst = gm200_flcn_bind_inst,
 
-  Cc: stable@vger.kernel.org
+---
+base-commit: fb26cf4f1df40a462ea65552a3fbcc8cfafab523
+change-id: 20261023-nouveau-gsp-irqdest-a0819d1eda96
 
-to both patches.
+Best regards,
+-- 
+Joe Finzel <joe@sudmix.de>
 
-Tested-by: Kush Chandak <kushc451@gmail.com>
 
-I used an AI assistant (Claude) to help debug and test this.
