@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D414B606A31F
-	for <nouveau@archiver.kernel.org>; Sun, 25 Oct 2026 10:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B34606A31B
+	for <nouveau@archiver.kernel.org>; Sun, 25 Oct 2026 10:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=yandex.com header.i=@yandex.com header.a=rsa-sha256 header.s=mail header.b=EEYfXOWF
+	dkim=pass (1024-bit key, unprotected) header.d=yandex.com header.i=@yandex.com header.a=rsa-sha256 header.s=mail header.b=egosjMlG
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9711510E878;
-	Sun, 25 Oct 2026 10:17:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3596110E877;
+	Sun, 25 Oct 2026 10:24:36 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9963748B91;
-	Sun, 25 Oct 2026 09:58:17 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 1E32348B94;
+	Sun, 25 Oct 2026 10:05:35 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1792922297;
- b=obKHWOc1wI8+N5g34NTfeRgFuaPy7War5Z2pB5mmAhq4yYNr6qwJfFhtQva2zz4OhpPBl
- AANhqNN+aVXSh+XFhZ3vyTkyRMkOkKE/Up9k6v/xjKWQJL36pMaWyyoZ6FUpkwm3F+JKpIw
- 0rBvCJiCUyknfZmjvfeY8X07QFtchAfUs5DztlKiT6S7VAEupl5qdLJGSGWwl2eL0X1cG3d
- SATP3qVvUE+gw32p6zIdN6qN0fsU4xq+yEe5AtVlVTs8yPONsHpaLepWb/3kjYccTIcMbRx
- 28jj/cFZz8CbCGTm3i9vNbBhrtHtVkHNH+h8DEw6//HSEtRGyjI56SHigQFA==
+ s=20240201; t=1792922734;
+ b=DgeD+NtwzXKtkHks1j3VZj+qOU8PoC7Unf4UdQZGtwVSqiP8huP29JPACfPjxJptqEBjr
+ /HmmGIzaaJPOaK4h0wYoKpsvhSCrNQrJ2gUDOZq4WgD28Zcs/BrkMM6JNbA8vYWHBuR4xRy
+ rMDdvMkf2qejcW2StxV4gBWBBAZFx9smjHn82p4LmPbQP7K9QE8tC8Xoh+UcH3zoP/IwgxF
+ CEdWThx3Y2OWGP8Kc75Sa1VtRFPEnniRNFcCpofnwqubiG8K1b9+4uu33fnFLBpalffMHRI
+ mKI23AtR7hsLvMjFnrCkkPPu96PaefONovC79eyuDS2z17zVrc+9SnS2EXfA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1792922297; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1792922734; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=aywIEJcQk95fG8yqIcjxmlvLYBajOmCJTLQHqNczgu8=;
- b=iuHxMg6kwPvO8iqbB8zwZv/oJLkWoWjWJrm2SwMQhyTP/zKGUSs6ehP2gswM3Q6X+m/CS
- sqCxzsmx3Ga3r/C3d5TNgK3GxftraL3vNAujMAZorJgrdZTUJo/AvZDrNibN6gx2ncNX48Q
- 0R+8nk2goOJbfZ2l5qJFexc4LxaFbKzsOhShFLpYWoByCq16hJEYFsxafBxfUnJNy6Ngg9g
- Q5LsT3tLKFaU6SirMEV6D+d9GI58jk3Gj9wqPWbxovVfH/peMB6ILUHW/8exVLaH2zuG2Ox
- oOQMrhAsBK7xF6U5VUHpJTJ6YXCn0N/qL95T0AX6pLhBSejm/cUdTmBAo6Kg==
+ bh=HOQH/UzmoIGTnx1h57ThuzE++YZYHn+wnPmoRVPN7rQ=;
+ b=eM50U/N4PRs7cyxwUZ1/ddofmmcJ259Y+rCqKvhuSbQ7abFSECatgiaWzCjonuCt+UJnF
+ 4WjULQZ6G3K0RwNxH8TxoQOyEmKu8k3vpULHu9HUqh0BT10K/Dz+RSrSPBGOqhdSa/LZnQ1
+ as70MKh8Sg3wbEof4/HTsSpxsejuvzRNvAGKe5hxWTtG5oGYV5s+TjO436SbNJBpKQ7n2Cc
+ L5xwBU1aEjqi+5uS7XWSCwj4YTHaoPoDaTJXAJnf8NMe2LQAPD9nkhWXQwaHXu32HE5DBqJ
+ KKCuNjAZhkPNCg1qQo6Xn2devj9s0tz6qUq1pWbnfDMZIA8KLnnq0uhLdTKA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=yandex.com;
   arc=none (Message is not ARC signed);
@@ -42,53 +42,54 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=yandex.com;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=yandex.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 8720A4713D
-	for <nouveau@lists.freedesktop.org>; Sun, 25 Oct 2026 09:58:13 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id A768946EDA
+	for <nouveau@lists.freedesktop.org>; Sun, 25 Oct 2026 10:05:32 +0000 (UTC)
 Received: from forward101d.mail.yandex.net (forward101d.mail.yandex.net
  [51.250.60.161])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2B13310E5AC;
-	Sun, 25 Oct 2026 10:17:08 +0000 (UTC)
-Received: from mail-nwsmtp-smtp-production-main-37.yp-c.yandex.net
- (mail-nwsmtp-smtp-production-main-37.yp-c.yandex.net)
-	by forward101d.mail.yandex.net (postfix) with ESMTPS id 85EA0C0055;
-	Sun, 25 Oct 2026 13:17:06 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-37 with ESMTPSA id
- tGcxncXiEeA0-zOYGgoQe;
-	Sun, 25 Oct 2026 13:17:05 +0300
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4E78910E042;
+	Sun, 25 Oct 2026 10:24:28 +0000 (UTC)
+Received: from mail-nwsmtp-smtp-production-main-63.yp-c.yandex.net
+ (mail-nwsmtp-smtp-production-main-63.yp-c.yandex.net)
+	by forward101d.mail.yandex.net (postfix) with ESMTPS id EC19EC0031;
+	Sun, 25 Oct 2026 13:24:26 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-63 with ESMTPSA id
+ GOcbPNXdW8c0-FgVCqyJ5;
+	Sun, 25 Oct 2026 13:24:26 +0300
 X-Yandex-Fwd: 1
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
-	t=1792923425; bh=aywIEJcQk95fG8yqIcjxmlvLYBajOmCJTLQHqNczgu8=;
-	h=Message-ID:Date:Cc:Subject:To:From;
-	b=EEYfXOWFv9681Ho52IVEpkX/6dfK4Ss2QV/7Py6bd0W+nKcvwc174djHurL1q4aFT
-	 HzN4AJwenj7cZ9S0gJ6cylsQ189Jyf+AT8mGGf7ye7CWgAMw3KQgeF3LsJ/3+KlwNR
-	 x+lhRBU72VCyTJisII9bcYIxvVRJrPQL4yw84ztU=
+	t=1792923866; bh=HOQH/UzmoIGTnx1h57ThuzE++YZYHn+wnPmoRVPN7rQ=;
+	h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
+	b=egosjMlGlkadXOkgB1h4WlCwWAucMXZNqV/3WX9ti+N9PCuyer4YRlqvF61AiGKcZ
+	 bS5rPjOrxftr+UNmi+5M/f/ETvrRJRr8p4buyRuvSyjz978AnWNiR2T+fZqIwlsk0W
+	 4gHvG70uf/rRir7t6fUJy9k1wTtMzA7oQf51vWkg=
 From: Alex <xnderv@yandex.com>
 To: Lyude Paul <lyude@redhat.com>,
 	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH] drm/nouveau/therm: mask the update bit when reading back the
- fan PWM duty
-Date: Sun, 25 Oct 2026 13:16:40 +0300
-Message-ID: <20261025101640.49779-1-xnderv@yandex.com>
+Subject: Re: [PATCH] drm/nouveau/therm: mask the update bit when reading back
+ the fan PWM duty
+Date: Sun, 25 Oct 2026 13:24:13 +0300
+Message-ID: <20261025102413.51786-1-xnderv@yandex.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261025101640.49779-1-xnderv@yandex.com>
+References: <20261025101640.49779-1-xnderv@yandex.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: IUR7V37PDRK7CGKZNKTF2XZXSRRWYBVZ
-X-Message-ID-Hash: IUR7V37PDRK7CGKZNKTF2XZXSRRWYBVZ
+Message-ID-Hash: DIIVGK3ZK73PPPNK5A3YVRZTG7O3ZNU6
+X-Message-ID-Hash: DIIVGK3ZK73PPPNK5A3YVRZTG7O3ZNU6
 X-MailFrom: xnderv@yandex.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
 CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Alex <xnderv@yandex.com>,
- stable@vger.kernel.org
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, xnderv@yandex.com
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IUR7V37PDRK7CGKZNKTF2XZXSRRWYBVZ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DIIVGK3ZK73PPPNK5A3YVRZTG7O3ZNU6/>
 Archived-At: 
- <https://lore.freedesktop.org/20261025101640.49779-1-xnderv@yandex.com/>
+ <https://lore.freedesktop.org/20261025102413.51786-1-xnderv@yandex.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -98,93 +99,12 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
 	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-nv50_fan_pwm_set() and gf119_fan_pwm_set() write the fan duty cycle to
-0xe118 with bit 31 set.  Normally the bit reads back clear, but when
-the register is read back shortly after such a write it can still be
-set, and nv50_fan_pwm_get() and gf119_fan_pwm_get() return it as part
-of the duty cycle.  nvkm_fanpwm_get() then takes divs = max(divs, duty),
-so divs becomes 0x8000xxxx too, and duty * 100 wraps around in u32
-(0x80000000 * 100 == 0 mod 2^32): the fan speed reads as 0%.
-nvkm_fan_update() uses that as the current speed and steps up from it,
-so it writes 3% to the fan and then ramps it back by 3% per bump
-period.
+I forgot to add my sign-off to this patch, sorry about that:
 
-The reads that hit this come from the two therm timers.
-nvkm_therm_alarm() (the 1 s poll) and nvkm_fan_alarm() (the bump
-alarm) both call nvkm_fan_update(), which reads the duty cycle before
-it writes a new one.  When the two alarms fire within microseconds of
-each other, the second one reads 0xe118 right after the first one
-wrote it.  On the board below the bump period is 500 ms, so this
-happens again and again while the temperature target keeps moving.
-
-Seen on a GeForce GTX 560 Ti (GF114, nv50 PWM path) while the
-temperature changed quickly under load: a bpftrace probe on
-nv50_fan_pwm_get() saw 7 of 239 reads in two minutes come 7-25 us after
-the other timer's write with bit 31 still set (e.g. 0x800001e1 with
-divs 0x21c), and each of them was followed by a drop to 3%.
-
-gm107_fan_pwm_get() and the PTHERM path of gf119_fan_pwm_get() already
-mask their duty reads; do the same for 0xe118.
-
-Testing: with this change the same workload and probe gave no such
-reads in 155 and no fan drops.  The board was running out-of-tree
-reclocking patches; the therm and fan code was unmodified.  The gf119
-hunk changes the same register in the same way but was not tested on
-GF119 or later hardware.  Both files build without warnings.
-
-The problem was found and analysed, the bpftrace probes were written,
-and this fix and changelog were drafted with an AI assistant (Claude
-Opus 5.5 by Anthropic) during an interactive debugging session.  I
-reviewed the change and ran the tests on my card.
-
-Fixes: cb9fa62671ac ("drm/nv50/pm: add support for pwm fan control")
-Fixes: bc79202f4c8f ("nvd0/therm: implement more appropriate pwm fan control functions")
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c | 6 +++++-
- drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c  | 6 +++++-
- 2 files changed, 10 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c
-index 684aff7..f56e763 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c
-@@ -74,7 +74,11 @@ gf119_fan_pwm_get(struct nvkm_therm *therm, int line, u32 *divs, u32 *duty)
- 	else if (indx < 2) {
- 		if (nvkm_rd32(device, 0x00d610 + (line * 0x04)) & 0x00000040) {
- 			*divs = nvkm_rd32(device, 0x00e114 + (indx * 8));
--			*duty = nvkm_rd32(device, 0x00e118 + (indx * 8));
-+			/*
-+			 * Bit 31 is the update trigger set by pwm_set();
-+			 * it can still read back as set after a write.
-+			 */
-+			*duty = nvkm_rd32(device, 0x00e118 + (indx * 8)) & 0x7fffffff;
- 			return 0;
- 		}
- 	} else if (indx == 2) {
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c
-index 9cf16a7..9272256 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c
-@@ -72,7 +72,11 @@ nv50_fan_pwm_get(struct nvkm_therm *therm, int line, u32 *divs, u32 *duty)
- 
- 	if (nvkm_rd32(device, ctrl) & (1 << line)) {
- 		*divs = nvkm_rd32(device, 0x00e114 + (id * 8));
--		*duty = nvkm_rd32(device, 0x00e118 + (id * 8));
-+		/*
-+		 * Bit 31 is the update trigger set by pwm_set();
-+		 * it can still read back as set after a write.
-+		 */
-+		*duty = nvkm_rd32(device, 0x00e118 + (id * 8)) & 0x7fffffff;
- 		return 0;
- 	}
- 
--- 
-2.53.0
-
+Signed-off-by: Alex <xnderv@yandex.com>
