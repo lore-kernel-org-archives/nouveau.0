@@ -2,98 +2,129 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B65606A31A
-	for <nouveau@archiver.kernel.org>; Mon, 26 Oct 2026 14:05:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D708B606A31E
+	for <nouveau@archiver.kernel.org>; Mon, 26 Oct 2026 21:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=LLyjpEmk
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=PkUFjQUd
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E736B10EF26;
-	Mon, 26 Oct 2026 14:05:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 099E010E3CB;
+	Mon, 26 Oct 2026 21:14:32 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 5F87948BB3;
-	Mon, 26 Oct 2026 13:46:10 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C538248BC0;
+	Mon, 26 Oct 2026 20:55:27 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793022370;
- b=q64VpQ/gaJnO9RRKJy+ZvAAosnWHGzKzNKCD+KikxunPdNbUvXvtH+qryOmym6kqGMRUa
- CHcYQ+SIt+VSbmjnEAb045DKD6OkYvMBsu2NuwVZ5KslyWyo1QV8OHvnNHM8dVHDOzCI8Js
- yxYEDGWE+2cVOlg1ww6NRGinhAINZ74RMYWHQhBjGZB2qVZnjJUAuZb3YcVmGw6Ymm4LvKM
- fnGJQQMZ5odLWAS6Ou7FsHXE1Dw9Q14SVw+KxTw2D4Sq8PStocs82bR97HW/iGGa3MGga9N
- dYrwMJ9Kp/VjAAbFfScimKQMKK7JObG57gyjztr3Oraxsa9IDH6ab0Ua/1+w==
+ s=20240201; t=1793048127;
+ b=PT7Z7FuYE2yAl715CZq5MXFRALWsOOBQbHE2+V43eWzqE5MeWuPGb5Y8QKUaArGpF5+ag
+ CxThxKm/LVKFAydfSxHkiRgcHrjZLm7IPEtTHvx/zarEWBjMUiOYLC7QILCjU0n/ZqnXNwS
+ MI0maQVrlWFPI0UdlfAYWmTLEr5S1UEAv4sRaHglK+Ke+Sz2ac4QVLala2UpoWruJ3Ygdc/
+ ji9tK9qnLxxIFOaW3KNd+quQuF8MG1PKwI5RwrYGrvmS9mEjfksCS42j4w+F80ueDg44xN1
+ 3K5+j7i7sJOJZtQbysYFeJ/bWe9aNGzr9x7iiELo6WssSXcw6yvKzNFon6uQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793022370; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793048127; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=jj1MjgOd7ph17eSLnFe4gEdUh/YrPp8vDaEc/Ca1zL4=;
- b=fynou4inwByQLhevB+L+HgINr23fIgO/XFhxxK1r7AASW6960TJoJi3c2U+O0OEXx1s3i
- zS9mEf/sV5Et7dV9FRQYoY0y8eO0QDdHijcDKLTiCUk6BkFPnLWQQQmJM+djVT7gEdQmyAk
- 4DufuW0AqbVX0OKDnr7jv5rsV1m4r7eELMv48KL2IE4VoYW+kJMuih6VBZkoiwuGgyQUnY+
- r5jvliVx7us5RDPO7bos3VutbQ4ZjPQafOIKXT9sKekKZDsmcVvc2aiSjSv7yRKQpFMm7Zx
- 2ySkrIvvOZeKp2eJC+JXzG76bpbQbDM5REHTMuJ+hPgQNMumaPbLI0Bdy7CA==
+ bh=rszKDmeyYp+Dq9ttmtnC0+XaYnbTJ3v9qyyrMyWHQC8=;
+ b=ugIHrZu+/KIdNj64Dq/JFslSZkJPkOHBQQTiB1UtBKb4bLzS1IEpSwAEFm1pQKj+2dFff
+ XKvva90AfP8Ano90ybQprHaKToLf1jKfbohR3mnHMcxjF377m8JdMKZHJVWub47ElFLNGUb
+ vHjEgRa8WK8a+SGJKbjPHZY50y/USYnTP+ewS31zLV1EPS643ccaD7R4DiAnOx7DQVbjpg1
+ f4HGtET6l28cGPEi78EAihHEqS/wz/5NI3tqWbhEPteMTo253jqIczPIuQ9QqIjeF72yHMR
+ 7H1hTpxQqbltIFCVI0Qmo4weuRzkCEFwqCrvT16+Mlv8Mg9a4456i1UxMWzw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=nabladev.com;
+ dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=nabladev.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=nabladev.com;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=nabladev.com
- policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 980F74713D
-	for <nouveau@lists.freedesktop.org>; Sun, 25 Oct 2026 21:16:58 +0000 (UTC)
-X-Greylist: delayed 316 seconds by postgrey-1.36 at gabe;
- Sun, 25 Oct 2026 21:35:55 UTC
-Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 42E0710E27D
-	for <nouveau@lists.freedesktop.org>; Sun, 25 Oct 2026 21:35:55 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 150DF10B4D8;
-	Sun, 25 Oct 2026 22:30:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1792963832;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=jj1MjgOd7ph17eSLnFe4gEdUh/YrPp8vDaEc/Ca1zL4=;
-	b=LLyjpEmki+TFrSIFf1nvZW/KdeHT7Z9a+irrY2XsElQfX3WG2r0KNb2xz0K2zocLSUTdKp
-	rAlCnHRQYdYd/lALV7La4xrDOxXmKndkILZ9LYMgNaYlv0X9qH+WQl27vcox9hd3EYERYL
-	1/dR7tqwq/TJrKqeNzgh2emioedvGMpu6erdkIekOHw2dTfrps++mrWRPhVnZL/UlR33gW
-	oZzHE3mql/gmN2H+axAs9YYgxGMyprGtHsQjH8vILTbLmP4A7zwWo1OlNrgn/skvJLbmv3
-	3jr5T1b8BhoUUnGS0gLyWbzfF0pSUYQ+bcQIQdGmXjkWMneA+koXf41KS9KGZA==
-From: Marek Vasut <marex@nabladev.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] Revert "nouveau: pci: quiesce GPU on shutdown"
-Date: Sun, 25 Oct 2026 22:30:06 +0100
-Message-ID: <20261025213027.842978-1-marex@nabladev.com>
-X-Mailer: git-send-email 2.53.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 7695C48BA3
+	for <nouveau@lists.freedesktop.org>; Mon, 26 Oct 2026 20:55:25 +0000 (UTC)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 785CE10E39B
+	for <nouveau@lists.freedesktop.org>; Mon, 26 Oct 2026 21:14:24 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-4956869750eso23322835e9.2
+        for <nouveau@lists.freedesktop.org>;
+ Mon, 26 Oct 2026 14:14:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1793049263; x=1793654063;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=rszKDmeyYp+Dq9ttmtnC0+XaYnbTJ3v9qyyrMyWHQC8=;
+        b=PkUFjQUdHIFTkXa9Ys27N2aEYpL+fuGLRzali4pVGn2Qq02iXTNEo9wc4DOHQBHjGb
+         qxPoGqNzStWtiSAAZOoRS1Xjo5Gy0P0ZNAmFV4KLG2Ls5MrcuAIxBoen/WjYHjxLzY6D
+         NA1AHN/cN0dGdu7d9iRiihot7K8Xglg/HHLIQpkI+mitwCKSmGvW38XR/pBqKsE7rw+3
+         44/jCb/f3OVfpxTanJ3Pg4R76XJ/M9ZsjibxjyqMNMjlYqNV534SbAbag0u30l0Is9tH
+         eWzEFZcgjaepYtVeeNUdyFSPcqOvDUlnUG5qtpuSbP8stKyACkFKD4U6+QsFLu7QJh6Z
+         z+nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793049263; x=1793654063;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=rszKDmeyYp+Dq9ttmtnC0+XaYnbTJ3v9qyyrMyWHQC8=;
+        b=JnFsoT3+oEqZdHD1Z0pdeZ7Imu0yTRtFWcm2t4neuT68xfDlF/D8Um2ZnmAAcY1KT9
+         mZYCOIusZdgnEw4QQt1lQRJj4CiIFYnJ64/RUH7bO92/hzAdFh9LBVQEz4PsMTRKZBp3
+         ap3++oEO8RYxS/m/l3e3KpJ9rl6KKKGIomDbvJxRPAy99OQ/C5AnDXaDiCB9hYq7ZEsx
+         CUCaEG0afVq8Q73EF1RUZ7TyRWOrlLMDPLZtux1z068UOz3HdGNn7T6UAYweSr/t8PCQ
+         0MUx28VqetjlAt2VTrEdParxYcdp++GcScEYIxM03UyUMVZdCK+X4xHz/QjJ4CrZwmAz
+         Azuw==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBydEnm3Rk1OoYQ/vZmSN+x78tHkw6RDn+OPUjx8Pr+E4H4uVl0ZLQ4qxDJ+1thDW3sKgasOJc76@lists.freedesktop.org
+X-Gm-Message-State: AFq9FYI+T7e6u8Jzi93DCViRuk5fPkYJqL4Lmx8MlBosIUhv/2bHhoqj
+	GyHCAG0WBm4qjMSD6lg72iUGmATlz3J1QSs2esB+iQdAbbx8SPzaDH7r
+X-Gm-Gg: AYBFou3CWnjZRJacjvxEvCfSC+McopCIgCF0XBEaV3W3428vkFCWhgjb8pKD5A2aINg
+	uPTnhEV73OigwFe76+VAiUGWMUgM9wWvsNHAYPZq1IH6L9yQbV9aV85tn3x/CSnAH2+y+Rw/4Mc
+	q6slKY/K27iBgLOZAqC9m4Y3nYfPl2O6DzRyjyOuyS9R7LZ3Q4AbofbmBEfLsObAXGvJKOKKXqo
+	9SP4L8sVxmwUP+xooBKSVPMwslibB0KpxmHR/3sj2MTTJzc1678Z7t7IQMY3NcO+Rx7srPWntUC
+	G1jAtnR26PsmM5WHGBna8V9qzXJ+ZL2FKAy+BFev6VwRsDmsbBaqoNZugpUh/I2NE66Y76umYO2
+	pVdQOHhlIwAb67mXmyfsXApxVwa5Nu836AbseDWgB1YMUR96qVCVVFvuAZ9rgP33IdjrGma+0FK
+	KsXyq56geKRQ2VhK9pCUbFFCiRCz4JhLRcb6W81wFLDLCvV3O3W0ZYEMvhJwjD7YhMF49jdj6Yq
+	ZxtR8d/zWhQIVkZh2gQGyZRHwyfTN+CswCGmYhAnWtQKSB4W+b9XS4fZDCPNBspfk3Y
+X-Received: by 2002:a05:600c:34d5:b0:4a0:2391:6540 with SMTP id
+ 5b1f17b1804b1-4a35aca2b53mr133051625e9.25.1793049262694;
+        Mon, 26 Oct 2026 14:14:22 -0700 (PDT)
+Received: from fra-x8664.wind3.hub ([151.16.244.30])
+        by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4a35a08dcbfsm145886715e9.2.2026.10.26.14.14.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Oct 2026 14:14:20 -0700 (PDT)
+From: Francesco Magazzu <postadelmaga@gmail.com>
+To: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH 1/2] drm/nouveau/clk: don't ignore RAM clock programming
+ errors in nvkm_pstate_prog
+Date: Mon, 26 Oct 2026 22:14:18 +0100
+Message-ID: <20261026211418.351923-1-postadelmaga@gmail.com>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20260727152821.128432-1-postadelmaga@gmail.com>
+References: <20260727152821.128432-1-postadelmaga@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-MailFrom: marex@nabladev.com
+Message-ID-Hash: PXO7LCC33W72AWYH6CLQ7EVL36RTDITF
+X-Message-ID-Hash: PXO7LCC33W72AWYH6CLQ7EVL36RTDITF
+X-MailFrom: postadelmaga@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: 6HB53OLUZIMXTJG2Q3ZND6X5CDMKOOBN
-X-Message-ID-Hash: 6HB53OLUZIMXTJG2Q3ZND6X5CDMKOOBN
-X-Mailman-Approved-At: Mon, 26 Oct 2026 13:46:08 +0000
-CC: Marek Vasut <marex@nabladev.com>, Danilo Krummrich <dakr@kernel.org>,
- Li Chen <me@linux.beauty>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Ole Carlsen <ole.carlsen@tutamail.com>,
- Simona Vetter <simona@ffwll.ch>,
- =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
+CC: Danilo Krummrich <dakr@kernel.org>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6HB53OLUZIMXTJG2Q3ZND6X5CDMKOOBN/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PXO7LCC33W72AWYH6CLQ7EVL36RTDITF/>
 Archived-At: 
- <https://lore.freedesktop.org/20261025213027.842978-1-marex@nabladev.com/>
+ <https://lore.freedesktop.org/20261026211418.351923-1-postadelmaga@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -101,102 +132,24 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-3.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This reverts commit 310326bb7df4bba094a3fc60364c641c547fd923.
+Hi Lyude,
 
-This breaks shutdown on ThinkPad W510, without the offending commit
-the system normally powers off, with the offending commit the system
-ends up spinning indefinitely and the CPU fan goes full throttle on
-shutdown.
+Gentle ping on these two.  The v3 of the cursor series is in v7.3 now,
+thanks for picking it up - but these two don't show up in mainline or in
+drm-misc-next, so I suspect they got lost after your review.
 
-The behavior was already reported in debian bugtracker multiple times
-for various other computers too, and git bisect lands as this commit.
-https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1141969
-https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1146033
+Both still apply on current mainline (one line of offset).  On
+drm-misc-next 2/2 needs the v3 series to be there first, since its
+context comes from "drm/nouveau/clk: don't use the pstate cursor after
+the loop" - so either after the next backmerge, or I can rebase and
+resend, whichever is less work for you.
 
-I tested the revert with Linux 7.2.12 from debian unstable, not next
-or drm trees, mainly because it was easier with debian test-patches
-script on that machine.
-
-Signed-off-by: Marek Vasut <marex@nabladev.com>
----
-Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Li Chen <me@linux.beauty>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Ole Carlsen <ole.carlsen@tutamail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Uwe Kleine-König <ukleinek@debian.org>
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Cc: nouveau@lists.freedesktop.org
----
-NOTE: Maybe the revert is not the ideal solution, but it does fix my
-      problem, and I think being able to shut computer down is a good
-      functionality to have.
----
- drivers/gpu/drm/nouveau/nouveau_drm.c | 32 ---------------------------
- 1 file changed, 32 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 5e1336615cf6d..36c74f9edaa83 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -1090,37 +1090,6 @@ nouveau_pmops_resume(struct device *dev)
- 	return ret;
- }
- 
--static void
--nouveau_drm_shutdown(struct pci_dev *pdev)
--{
--	struct nouveau_drm *drm = pci_get_drvdata(pdev);
--	int ret;
--
--	if (!drm)
--		return;
--
--	if (drm->dev->switch_power_state == DRM_SWITCH_POWER_OFF ||
--	    drm->dev->switch_power_state == DRM_SWITCH_POWER_DYNAMIC_OFF)
--		return;
--
--	ret = nouveau_do_suspend(drm, false);
--	if (ret)
--		NV_ERROR(drm, "shutdown suspend failed with: %d\n", ret);
--
--	pci_save_state(pdev);
--	pci_disable_device(pdev);
--	pci_set_power_state(pdev, PCI_D3hot);
--	/*
--	 *  This is just to give the pci power transition time to settle
--	 *  before an immediate kexec jump. it’s mirroring the existing
--	 *  nouveau_pmops_suspend() behavior, which already does
--	 *  udelay(200) right after pci_set_power_state(..., pci_d3hot). In
--	 *  ->shutdown() we’re allowed to sleep, so I used usleep_range()
--	 *  instead of a busy-wait udelay().
--	 */
--	usleep_range(200, 400);
--}
--
- static int
- nouveau_pmops_freeze(struct device *dev)
- {
-@@ -1480,7 +1449,6 @@ nouveau_drm_pci_driver = {
- 	.id_table = nouveau_drm_pci_table,
- 	.probe = nouveau_drm_probe,
- 	.remove = nouveau_drm_remove,
--	.shutdown = nouveau_drm_shutdown,
- 	.driver.pm = &nouveau_pm_ops,
- };
- 
--- 
-2.53.0
-
+Thanks,
+Francesco
