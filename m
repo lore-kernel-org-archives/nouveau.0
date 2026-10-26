@@ -2,95 +2,139 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47A7606A31A
-	for <nouveau@archiver.kernel.org>; Sat, 31 Oct 2026 02:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A7B606A321
+	for <nouveau@archiver.kernel.org>; Sat, 31 Oct 2026 02:09:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=eYPRJGbl
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AF258112A2B;
-	Sat, 31 Oct 2026 02:08:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 13FC5112A6B;
+	Sat, 31 Oct 2026 02:09:14 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 3D1C248C17;
-	Sat, 31 Oct 2026 01:49:09 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793411349;
- b=mVvYmg7aGgwY4ayZv59KCeBOf9yDpM8aDalmUtQNaJk2uhUuTQ7OYVrOil1mneQRX9xQX
- nNZdAbe/oipJX/uwDUbib9ApA8n4nObh18Bg61/IfS/v0nHFZjS3xxkHxxtpKuAn3UDVx9O
- 8Z03GmiwyAsicWW67f34ruYOBKdxgRuJZBttNq2qF7nk7nSZKJTcRtaTSkKAKvkzho4/g5N
- LUuxzYwr6LtjazzbfmbvQe5x4rtBdHkyuyPPu8TTdVBeua0M/u6EQp0R92CTDl2AF4fGJgk
- rNoRPDyt8LcN9XukZz9R3prvISB6/IeS8ok/g0jVSbLVmCC+1hsJcQdNe63w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793411349; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 9FF5848C24;
+	Sat, 31 Oct 2026 01:50:00 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1793411400;
+ b=C9nvquQjhIX3y+hMfAkSDhnXJjh4+5LvlaOgKZ6tNxontlMrMEFy/4b1TvcBThZ7HbQcI
+ rdUTAfV7TFOySaYqbkN2tqvFeMfhNxfq8nFtCdyEclNxKXpyLIWUXd9RVeuCBV87IUVl07/
+ BwqpcURhDfplwRlRj46SSJ0PI1DVwyKtpAg1KK+RsbfWHOJKDEjvwCZVi3RLhTYQCRr4QNr
+ SXcFWVm74hrPFN3UA5yCROJWB1hIjUpK6t8sgSJAazUm5JNbm3Q9Me1ffT9eBYkfWfVDq7V
+ ia+tja/R9LipmjKX+K3s+tCDjaMln3Z9n0gCWQnPzmlo1ux1YLPnofQpkHwA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1793411400; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=3qAG2o3ko8PoWBmrG3Va0eNZxNccB7JjZx7iVudfhMo=;
- b=JPTagAQ+yslZ4uuQv/tQo2GAi+NTt1vt5oLTw7y1BwKfD76Q46G0/o4uiHmhmKhmmZywU
- FvXRaQCFWad3irjJxU5QIw/GSGtbewyTLNuyqzt4hGpgn3aJ6sOLT9/fKXWbPzkYtsA8XM2
- iUKBraw3K9QYeOItL4oQQh22xqc+/v9jY0ZBt2MRKKEbKYziFQZD9VlvIso++w86HJnmDzR
- ZcTlwyl4uLXKnOVyx0xORbPK49ImzYsqpk3bNziM0eLZMryUIXCukT/OsJlsLk6krWSF25e
- PTACLSz135QoAoOxl0jTc5lngKaymkJXS1jQ0eSNQ3GqaNxB8JD9KHw+gZ7w==
-ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
-  arc=none (Message is not ARC signed);
-  dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=fail;
- arc=none (Message is not ARC signed); dmarc=none
+ bh=IUnZOMuEwAyZgw4JuQeLgbiv3U6p5wn4LjgdqDGJyJU=;
+ b=ri0ckhCqzdVkeSXNpgxjeX4fgj7OJYi8HVGWmOH5fi9usa0B3aXdOLWi97sMarijUxVCr
+ eLkwJ+cvbzCMi20dW7YW5tCqhmoXbRy4jDxXWEvNk2vd8j8Wn0oCsE2LsabOnlpH3ntUn8y
+ O5dxTwXd/LJwRXDIUTFZLA+qrOOczSaWYPiU7oKmDBVk9cP6vrLTf0bhWL5WTjoqFpH8ZWz
+ pCjoNR/rXMndeDUx8QYe6wJZHKIanMSLgcet7F9VuMV/x6cPKY3FtY0UTFmoy0blbl3B3Zv
+ lC8efcvUTwGErXDSubicjJBAaCI3jkZIMDaw5bwp5KI+ixEqZp1mrDQbqz7Q==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=gmail.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3157D46BCB
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 05:23:35 +0000 (UTC)
-X-Greylist: delayed 2313 seconds by postgrey-1.36 at gabe;
- Thu, 29 Oct 2026 05:42:44 UTC
-Received: from mailtransmit05.runbox.com (mailtransmit05.runbox.com
- [185.226.149.38])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6506D10E778;
-	Thu, 29 Oct 2026 05:42:44 +0000 (UTC)
-Received: from mailtransmit03.runbox ([10.9.9.163] helo=aibo.runbox.com)
-	by mailtransmit05.runbox.com with esmtps  (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.93)
-	(envelope-from <martin.roukala@mupuf.org>)
-	id 1xMIJ6-00GDZn-Rh; Thu, 29 Oct 2026 06:04:08 +0100
-Received: from [10.9.9.73] (helo=submission02.runbox)
-	by mailtransmit03.runbox with esmtp (Exim 4.86_2)
-	(envelope-from <martin.roukala@mupuf.org>)
-	id 1xMIJ5-0002Xo-Jg; Thu, 29 Oct 2026 06:04:07 +0100
-Received: by submission02.runbox with esmtpsa  [Authenticated ID (1057822)]
-  (TLS1.2:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.95)
-	id 1xMIIs-00Gwma-JZ;
-	Thu, 29 Oct 2026 06:03:54 +0100
-Message-ID: <1c76eb81-feac-419c-bcb8-bb505788e549@mupuf.org>
-Date: Thu, 29 Oct 2026 07:03:54 +0200
+	by kara.freedesktop.org (Postfix) with ESMTPS id 015FC47BC6
+	for <nouveau@lists.freedesktop.org>; Mon, 26 Oct 2026 19:45:53 +0000 (UTC)
+Received: from mail-pz2-f8.google.com (mail-pz2-f8.google.com [74.125.228.8])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DD61410E354
+	for <nouveau@lists.freedesktop.org>; Mon, 26 Oct 2026 20:04:51 +0000 (UTC)
+Received: by mail-pz2-f8.google.com with SMTP id
+ 41be03b00d2f7-cd3da0e82daso724509a12.1
+        for <nouveau@lists.freedesktop.org>;
+ Mon, 26 Oct 2026 13:04:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1793045091; cv=none;
+        d=google.com; s=arc-20260327;
+        b=En00XTsv2va58+GJMktOu3h/JVJgxo+Cv7WOe5sM9ydnLxKRbQC/He/jpqGbDAvyE/
+         /tZJ9XR3frZ3mCNYaYnUar9gikYhA1m6UQMqLJxWBeCBgB8RhaK1q0e7yTtPuV4fKe3V
+         R8+2ysrLb+b3l2ZaNn/CeK3z+Tn8FC28O7T2trArTdvL2ougjSwTKvCqe8aY88MBFn8D
+         yH1OL5dUFLpvJwHstXOVlDJqbLXoEJhUlH4KKjkFaeWjwBOse8+BwzlBnPjlaTK/QXYY
+         U/gHolSLaG8745KNvMGQdur/vJSwEZWKEwu01CdTjGA5LwjsZ8NOPB2fw7Vp52GGw5Oz
+         4pWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=IUnZOMuEwAyZgw4JuQeLgbiv3U6p5wn4LjgdqDGJyJU=;
+        fh=TvPdpj9s51L+q6iVdWnIf8JRPWtyzFvsSrNX/1hFbzc=;
+        b=hG1eZM00MDUFX3tNSYNF+J4cVTmtmKhanh0blxbePosT1UXjGpYEGCeBWpMpQKl8Sp
+         nc2WEFR3kKua7khQzCp58L0LeGDmzJOCXJf7sfacZDDvvOwI5u0ZOpwvfWCHkuaxh0Pm
+         0c6Eqq7uA6+fOiVbvqdsEVRiZFBju0o5VY3nwwpaOjnLALiff1MYwuuK7xVwfa8Vq1Th
+         CdW5qDuvfbEo+LM8RQ5fiLeQqtUdq5hewr9EkBRo6t7K82mCP+yKX77PMkPkwhO10VWh
+         zaacp9eRjQRoVwcfMJdtl3Z9MWVvCx50tmt2SZl23qS6fcVbqp7yxvmhVN3AKo42i7sg
+         pBkg==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1793045091; x=1793649891;
+ darn=lists.freedesktop.org;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=IUnZOMuEwAyZgw4JuQeLgbiv3U6p5wn4LjgdqDGJyJU=;
+        b=eYPRJGblHJVjX/1CGtDRXty6O8xwxUhYgxbfp+FXMVY7YBtNPgrnBiQfQOAZnPJPWn
+         xZJ2YAqHuISh7ntW9MQ7oGhjCiIgTtAIvJfSpp08jUOOqQURisrdUNPHbyiae0kwRIIB
+         FH4JyR/htIBbXbKzy6u/jNB46YpCzlkHj+J9xyo3Oug0PLyes69hg99j+uRcZEcXY/Uk
+         DAQ8pVYZH/u+tZNmjx/UL1ydWOWnlfePvQhkqY6WRWXCzlhu6IYdfwBDFTikGTGZQhWy
+         Zf3IhLYglP7Q9SPHaQQEawwsdpTxtePSEOYwov7QDn2KLPZdkgVtTCXKDWeGrxCNQuMb
+         bMVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793045091; x=1793649891;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=IUnZOMuEwAyZgw4JuQeLgbiv3U6p5wn4LjgdqDGJyJU=;
+        b=iKx2CxKYLay7cbtpy1sHslg/6gwCYBzF2FuRgFrK0Qc55phau2Zve3qgOCLjhiwRmX
+         pydZOKiFcxvhHsbQtu+iPeAZrI6gBNDyCX9qOeYFZh3N6KhMm2LqXKrXOXQmijTuiwXJ
+         h7FwXtpgINpueO7o1r/7YrM/vZi6abp8Ww61C3ThIJ/UYZsIR5hRmgH8mRMEvp9XIh2W
+         4MBCniYhyMYgykhpbm7r7m/pLnJK4ssCw7YqVleUPalAjAx+Jy3sMHJXryRJ9VcHgxfY
+         zeb5WAeQRrxByJgXYTMEvp1cW4Cyy067rRcyFNEIvVCdTuJUNJN78Z7HuxBdh8DrXA8e
+         AIAA==
+X-Gm-Message-State: AFq9FYJDLTL1aOWLe+ogwywc9GzG1b3DjODlQx6obdJeA+U2j516HRes
+	8q4v/zG+bTkYpvadCvf6Gp2x5Ct3Bt9ljwDOIKWgKt2F//5lA2Pn3TaBEARpN5Kj0uXGJWdaCUN
+	OG+T9cB+Lr8NbCta8ljU5vBPnUdGgmWpIQSOz
+X-Gm-Gg: AYBFou0/m6GcB4dLWWI8fwfOqsYjv3y7itfODeipXcSmBCr1ez1NizZtMiiASmM8Q99
+	yoOpvOVToJx5mFl3TTF6BmCuWwbSxDJrc50cmWoqe++SWqQ0jA/zaxlPGndogO+arDclVzBxunp
+	l31vb8D5QOIjklwtXBKqgbDss54V/j/sgCksm+kbnjHYdbwiVtHyBQ0qpKZbdfNkSvlQdb78UcB
+	TM5PU2ABm+MRQtYaaUyHdlMQGC5uxOxPMKohM3bUuO/bRKu5IbjYcyVPeNcb8avs5P9YgNSD+g6
+	aQX/7yAWgeNzUeT7OjMvRMDBfDoFXlmJmGtPKMtrn+ee6mnaXY6j5Npu8D4G1LrN1DANB0alr7n
+	5PY5nonEYEkvZ4e3q5c8DafhqPMCt75rMVtxVeZx0GCaN9GV35aBwo1fP5WYyNepPGBfqo7jMAl
+	1iNnOi1hgD1a8u4SSGz9/jOFXOhlYDXVsy2Cp7m7cY5M5f0qWP
+X-Received: by 2002:a05:6a21:4014:b0:3e2:aab8:4ec5 with SMTP id
+ adf61e73a8af0-3e7cd503e0emr5827828637.66.1793045090856; Mon, 26 Oct 2026
+ 13:04:50 -0700 (PDT)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/nouveau/therm: mask the update bit when reading back
- the fan PWM duty
-To: Alex <xnderv@yandex.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>
-References: <20261025101640.49779-1-xnderv@yandex.com>
-Content-Language: en-US
-From: Martin Roukala <martin.roukala@mupuf.org>
-In-Reply-To: <20261025101640.49779-1-xnderv@yandex.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MailFrom: martin.roukala@mupuf.org
+From: loong <loong.0x00@gmail.com>
+Date: Tue, 27 Oct 2026 04:04:14 +0800
+X-Gm-Features: AclHuK9U9hYp67C2U8Sx9nWhVGY355tQ3vEIqdJJXIhenopxrEtw7sjjby19_lQ
+Message-ID: 
+ <CAFugiW8OPd-OmkWyH4m9S-_-b_4r68EbidW1_NX9YgMPjt3kyA@mail.gmail.com>
+Subject: =?UTF-8?Q?nova=2Dcore_FSP_question=3A_host_BAR0_reads_of_GB202_FSP?=
+	=?UTF-8?Q?_falcon_registers_return_0xBADF5040_=E2=80=94_documented_decoupler?=
+	=?UTF-8?Q?_behavior=3F?=
+To: nouveau@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="000000000000b4f508065ec3d778"
+X-MailFrom: loong.0x00@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: ZG4C6ET5XRQO53GSH4RAHXWS6OJFMQXY
-X-Message-ID-Hash: ZG4C6ET5XRQO53GSH4RAHXWS6OJFMQXY
-X-Mailman-Approved-At: Sat, 31 Oct 2026 01:49:06 +0000
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Message-ID-Hash: XBGRKK5PKPTNCHGT3ZRKTGDJEDLZFTQT
+X-Message-ID-Hash: XBGRKK5PKPTNCHGT3ZRKTGDJEDLZFTQT
+X-Mailman-Approved-At: Sat, 31 Oct 2026 01:49:58 +0000
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZG4C6ET5XRQO53GSH4RAHXWS6OJFMQXY/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XBGRKK5PKPTNCHGT3ZRKTGDJEDLZFTQT/>
 Archived-At: 
- <https://lore.freedesktop.org/1c76eb81-feac-419c-bcb8-bb505788e549@mupuf.org/>
+ <https://lore.freedesktop.org/CAFugiW8OPd-OmkWyH4m9S-_-b_4r68EbidW1_NX9YgMPjt3kyA@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -98,116 +142,91 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.2 required=3.0 tests=BAYES_00,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=0.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,HTML_MESSAGE,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Alex,
+--000000000000b4f508065ec3d778
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 25/10/2026 12:16, Alex wrote:
-> nv50_fan_pwm_set() and gf119_fan_pwm_set() write the fan duty cycle to
-> 0xe118 with bit 31 set.  Normally the bit reads back clear, but when
-> the register is read back shortly after such a write it can still be
-> set, and nv50_fan_pwm_get() and gf119_fan_pwm_get() return it as part
-> of the duty cycle.  nvkm_fanpwm_get() then takes divs = max(divs, duty),
-> so divs becomes 0x8000xxxx too, and duty * 100 wraps around in u32
-> (0x80000000 * 100 == 0 mod 2^32): the fan speed reads as 0%.
-> nvkm_fan_update() uses that as the current speed and steps up from it,
-> so it writes 3% to the fan and then ramps it back by 3% per bump
-> period.
+Hello nova-core folks, First: thanks for upstreaming the FSP (Foundation
+Security Processor) support =E2=80=94 falcon/fsp.rs, fsp.rs and regs.rs in
+drivers/gpu/nova-core are great documentation of the Hopper/Blackwell boot
+flow. While studying it against a retail RTX 5090 (GB202, proprietary
+driver 615.78.08 loaded), I mapped the host-visible BAR0 behavior of the
+FSP register blocks and found a very clean split: Readable from the host
+(live values): - NV_PFSP_QUEUE_HEAD/TAIL and NV_PFSP_MSGQ_HEAD/TAIL @
+0x8f2c00 / 0x8f2c80 - NV_PFALCON_FALCON_EMEMC/EMEMD @ 0x8f2ac0/0x8f2ac4
+(EMEMC currently shows blk=3D0, aincr=3D1; EMEMD returns residual message
+bytes) Always return 0xBADF5040 from the host: -
+NV_PFALCON_FALCON_HWCFG1/HWCFG2, CPUCTL, MAILBOX0/1, IMEMC/DMEMC (PFALCON @
+0x8f2000) - FALCON_ENGINE @ 0x8f23c0 - the whole PFALCON2 block (MOD_SEL @
+0x8f3180, RISCV_CPUCTL @ 0x8f3388, CORE_SWITCH_RISCV_STATUS @ 0x8f3240,
+BCR_CTRL @ 0x8f3668) Three questions: 1. Is 0xBADF5040 the documented
+poison value that the BAR0 decoupler returns for falcon-internal registers
+when read from the host on Blackwell? I could not find it in the published
+swref headers. 2. Is this filtering static, or does it arm only after FSP
+secure boot completes =E2=80=94 i.e., is there a window during/after device=
+ reset
+(SBR/FLR) where HWCFG1 and friends read back real values from the host? 3.
+Is there any supported host-side way to read FSP engine state (core
+revision, security model, halted status) on GB20x for diagnostics, similar
+to what falcon register dumps give on GA10x? (Context: I'm building a
+hardware diagnostics tool that enumerates engine state. These observations
+come from pure BAR0 reads, no writes were performed.) Thanks a lot! Best
+regards, Loong
 
-Ooops, I never saw the update bit being sticky! I thought this was a 
-write-only bit :s Anyway, the code is:
+--000000000000b4f508065ec3d778
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-    Acked-by: Martin Roukala <martin.roukala@mupuf.org>
+<div dir=3D"ltr">Hello nova-core folks,
 
-Now, let's talk about the commit message: LLMs love to talk don't 
-they?Let's trim the commit message to the just the above as it provides 
-everything anyone bisecting to this change could ever want to know.
+First: thanks for upstreaming the FSP (Foundation Security Processor) suppo=
+rt =E2=80=94 falcon/fsp.rs, fsp.rs and regs.rs in drivers/gpu/nova-core are=
+ great documentation of the Hopper/Blackwell boot flow.
 
-Whatever comes after (but not including the `Fixes:` and `Cc:` trailers) 
-could be sent outside of the commit message, just as part of the email. 
-It is valuable to the reviewer, as it allows us to see how you found the 
-issue, figured out how to fix it, and how you tested it.
+While studying it against a retail RTX 5090 (GB202, proprietary driver 615.=
+78.08 loaded), I mapped the host-visible BAR0 behavior of the FSP register =
+blocks and found a very clean split:
 
-Anyway, thanks for your contribution. I am happy that you are taking 
-over this old project of mine (back when I was contributing as Martin 
-Peres, before I took my now-wife's name) :)
+Readable from the host (live values):
+- NV_PFSP_QUEUE_HEAD/TAIL and NV_PFSP_MSGQ_HEAD/TAIL @ 0x8f2c00 / 0x8f2c80
+- NV_PFALCON_FALCON_EMEMC/EMEMD @ 0x8f2ac0/0x8f2ac4 (EMEMC currently shows =
+blk=3D0, aincr=3D1; EMEMD returns residual message bytes)
 
-Thanks,
-Martin Roukala
-> 
-> The reads that hit this come from the two therm timers.
-> nvkm_therm_alarm() (the 1 s poll) and nvkm_fan_alarm() (the bump
-> alarm) both call nvkm_fan_update(), which reads the duty cycle before
-> it writes a new one.  When the two alarms fire within microseconds of
-> each other, the second one reads 0xe118 right after the first one
-> wrote it.  On the board below the bump period is 500 ms, so this
-> happens again and again while the temperature target keeps moving.
-> 
-> Seen on a GeForce GTX 560 Ti (GF114, nv50 PWM path) while the
-> temperature changed quickly under load: a bpftrace probe on
-> nv50_fan_pwm_get() saw 7 of 239 reads in two minutes come 7-25 us after
-> the other timer's write with bit 31 still set (e.g. 0x800001e1 with
-> divs 0x21c), and each of them was followed by a drop to 3%.
-> 
-> gm107_fan_pwm_get() and the PTHERM path of gf119_fan_pwm_get() already
-> mask their duty reads; do the same for 0xe118.
-> 
-> Testing: with this change the same workload and probe gave no such
-> reads in 155 and no fan drops.  The board was running out-of-tree
-> reclocking patches; the therm and fan code was unmodified.  The gf119
-> hunk changes the same register in the same way but was not tested on
-> GF119 or later hardware.  Both files build without warnings.
-> 
-> The problem was found and analysed, the bpftrace probes were written,
-> and this fix and changelog were drafted with an AI assistant (Claude
-> Opus 5.5 by Anthropic) during an interactive debugging session.  I
-> reviewed the change and ran the tests on my card.
-> 
-> Fixes: cb9fa62671ac ("drm/nv50/pm: add support for pwm fan control")
-> Fixes: bc79202f4c8f ("nvd0/therm: implement more appropriate pwm fan control functions")
-> Cc: stable@vger.kernel.org
-> ---
->   drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c | 6 +++++-
->   drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c  | 6 +++++-
->   2 files changed, 10 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c
-> index 684aff7..f56e763 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c
-> @@ -74,7 +74,11 @@ gf119_fan_pwm_get(struct nvkm_therm *therm, int line, u32 *divs, u32 *duty)
->   	else if (indx < 2) {
->   		if (nvkm_rd32(device, 0x00d610 + (line * 0x04)) & 0x00000040) {
->   			*divs = nvkm_rd32(device, 0x00e114 + (indx * 8));
-> -			*duty = nvkm_rd32(device, 0x00e118 + (indx * 8));
-> +			/*
-> +			 * Bit 31 is the update trigger set by pwm_set();
-> +			 * it can still read back as set after a write.
-> +			 */
-> +			*duty = nvkm_rd32(device, 0x00e118 + (indx * 8)) & 0x7fffffff;
->   			return 0;
->   		}
->   	} else if (indx == 2) {
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c
-> index 9cf16a7..9272256 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c
-> @@ -72,7 +72,11 @@ nv50_fan_pwm_get(struct nvkm_therm *therm, int line, u32 *divs, u32 *duty)
->   
->   	if (nvkm_rd32(device, ctrl) & (1 << line)) {
->   		*divs = nvkm_rd32(device, 0x00e114 + (id * 8));
-> -		*duty = nvkm_rd32(device, 0x00e118 + (id * 8));
-> +		/*
-> +		 * Bit 31 is the update trigger set by pwm_set();
-> +		 * it can still read back as set after a write.
-> +		 */
-> +		*duty = nvkm_rd32(device, 0x00e118 + (id * 8)) & 0x7fffffff;
->   		return 0;
->   	}
->   
+Always return 0xBADF5040 from the host:
+- NV_PFALCON_FALCON_HWCFG1/HWCFG2, CPUCTL, MAILBOX0/1, IMEMC/DMEMC (PFALCON=
+ @ 0x8f2000)
+- FALCON_ENGINE @ 0x8f23c0
+- the whole PFALCON2 block (MOD_SEL @ 0x8f3180, RISCV_CPUCTL @ 0x8f3388, CO=
+RE_SWITCH_RISCV_STATUS @ 0x8f3240, BCR_CTRL @ 0x8f3668)
 
+Three questions:
+
+1. Is 0xBADF5040 the documented poison value that the BAR0 decoupler return=
+s for falcon-internal registers when read from the host on Blackwell? I cou=
+ld not find it in the published swref headers.
+
+2. Is this filtering static, or does it arm only after FSP secure boot comp=
+letes =E2=80=94 i.e., is there a window during/after device reset (SBR/FLR)=
+ where HWCFG1 and friends read back real values from the host?
+
+3. Is there any supported host-side way to read FSP engine state (core revi=
+sion, security model, halted status) on GB20x for diagnostics, similar to w=
+hat falcon register dumps give on GA10x?
+
+(Context: I&#39;m building a hardware diagnostics tool that enumerates engi=
+ne state. These observations come from pure BAR0 reads, no writes were perf=
+ormed.)
+
+Thanks a lot!
+
+Best regards,
+Loong</div>
+
+--000000000000b4f508065ec3d778--
