@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39ACC606A32C
-	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 10:00:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 614FE606A325
+	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 10:00:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mMwkC4rb
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=baiCwMb4
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1DEDC112190;
-	Thu, 29 Oct 2026 10:00:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8F35911219B;
+	Thu, 29 Oct 2026 10:00:25 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 50F6248BDA;
-	Thu, 29 Oct 2026 09:40:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C66FD48BDE;
+	Thu, 29 Oct 2026 09:41:15 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793266856;
- b=X9trD4UzfW7BUgcC/dqIUoBUyJtFKGdwo9Bat5EyQxkLDo1sxof8lxO6mfJ6m6d/fgsmW
- L24cF0aXR9eQcFXDLFSYOc2EdSpUegs8ZATs6m0hEt4cxuemGf6P48V+81dSoqAokYgaw/t
- fGXIKVvSXuVpij/UTFWE+65x8B2dkb5QnSYTTQHirhd51+h6WjrX7MGrg9q9aM89pPICN6n
- LfCS71DQR93nlkWJUCEExfrQEOYud6YHVYUnlip5dAqXPkcS6vXFpfMIis7tMqju2F9Pld6
- a5IsQjeK0J0EfO0xjss3K0KcxKUD9jUl3QbhcZWWlmYXkOPflf5Q0mxE4cJg==
+ s=20240201; t=1793266875;
+ b=d8vfECJMNBUyM+jSFNhvmANKqkOMLaUXbojGTDdq3CVE5Ou8B6Os/4xQ5y1EzJLKZtyTd
+ 7MVJog5WQnUqrz7Uf2jINzz+BdNouUmX8Xhj3nUVWlDrDvoAscwRa+UczcDXEusNQkzI3t9
+ nDK/2AaJ8WguwfA4LN5OPmPJCJqdDjH3yDKcT91a83Q6zWLMKrHk8Swo4luX37GaIH/HdKJ
+ orLJpfX/OTgAb84R6bHabFjD4Vf6wxgneHv/7MvwNt1/AwATEB+WEvCIWmzE1ACf2mK0waV
+ N2eLA2LbVArwnGH2Jif4GxtGTJBVA7nq6SCtxUzd5X64WVAmx+edVg5j5HVg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793266856; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793266875; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=BlR02fcSQh6d0JDhMlZWs6ZOUTC1ug5V4gj89nHdCiw=;
- b=IdQ6Q5xbNToZ1gwbh+nr8A5uHhEjf9l3IlxZGkJsTexo0hrstNoTy3T8JGJwdLeELLTT1
- ZN/TpY8Vs/i8UEAQ3k9LE71fhIB34Rf1Euwgs56WDHsv2tairybSl19qAj9a3UluB/TJcnm
- nKhwqTgOgixOYBj6Mhj0VF6jN7iQTd+4cznzCsBDfxz1wcipq51N0Dk06SqMfgUjDbdIvCf
- ArTyOQ1X55Nra7Lvp+KyrYCnY5LZ1mhVjPZk9oJIwxo9t9WZLiXZz0KD/IAbqaAavrypf4g
- SXz5czUWZwkTrZqsz0YbP+goFtVka9Wcx9hMSfKNuXcCmRgpqW9JspNqlL/w==
+ bh=WKgY4TxM7jCCTLKvPKBg2Os4gMDYJkQWtwa2sp51kDE=;
+ b=u7oo240ZjZCo33UqrUL0EGc459D0VVJvu/cgCjpsYLb4PKAGoDPNAF6RE7utJPVoYtBdh
+ IDA42VpZAn8OoQVm1DoA5byTftqjy+Z2xyUKcBsCeGZkMSnnUdCg4UlfixLD9QUyOUabdTU
+ r1qcMiDaGrT/E7jCX/MlTOcW+rgJD9M3v+5dPzw1nM97U4Ad31XPzLwMNSEbf2u+ruGF2uo
+ YAzMdwhK2kcJAF/Di6Y8KVSzXPKRRcNozIldMsF71xgoqH8vLgIwlxMeTEfUED39PnpjBWA
+ 3oqQ12+P3WRi4BcVPGftbix3nTnFpXSE4LrgHjMHaKGdgqJ2eAHuGNNyqAow==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,26 +43,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E872246BCB;
-	Thu, 29 Oct 2026 09:40:52 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3B9DA46BCB;
+	Thu, 29 Oct 2026 09:41:13 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7F8A111215D;
-	Thu, 29 Oct 2026 09:59:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C7D5911216E;
+	Thu, 29 Oct 2026 10:00:17 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6594E400F0;
+	by sea.source.kernel.org (Postfix) with ESMTP id ABBFB402FB;
+	Thu, 29 Oct 2026 10:00:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B63621F01828;
 	Thu, 29 Oct 2026 09:59:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27E541F01829;
-	Thu, 29 Oct 2026 09:59:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793267997;
-	bh=BlR02fcSQh6d0JDhMlZWs6ZOUTC1ug5V4gj89nHdCiw=;
+	s=k20260515; t=1793268017;
+	bh=WKgY4TxM7jCCTLKvPKBg2Os4gMDYJkQWtwa2sp51kDE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=mMwkC4rbYBZKFHoDULMbOUQTiMIeewFQtew5dxFsygorpCCeQP4W1KfdBtKUNgajP
-	 FQFHnnpxd/k95t50EJyK0qUoUn8hQUb1P7XqFVBZgnu1mZvr/7WIx9nJ6fp6tO6VEi
-	 XRL8rU1K5ZUOO3EVruDcvEc2vSW/tt7XE/0njpvmEiG1DdePcgXoXTKo9vL+kINANO
-	 Hj8Fz75BHePb3t5otXkRaXAsHnMm/qRPQT8x+z4Y63witomkrevSCxQsCAUXoeHwW+
-	 GTgsVuFIXws3fjsY28HpPEsvEV3VmuhFwTCfl/OcYb3+t+MIjqkaVu55NBl0J/rdU3
-	 8ZcwP03x8rDFg==
+	b=baiCwMb4N80s/wYScg8peqquVrnIxU2J0+kSJgvciGEDkhkeSpiwqOGZvHBxsi0LO
+	 83Y8Qdm88haCAL7OoIhGJLG87zWYHs5Dmbw9wTTFSGXelkhBoV2CErv6UzJ7Og4oti
+	 T/BlIXfNAzcPkiRRAdbPcHftzcmxj3jUyJP/Efe8cTASzdYwMmYT7MIowSXb20HqmD
+	 4Eu057SH8gJa+Kr1lyQqyJjo2UVqDPsLEJ9DafJkgX0YOhLBedzCTZdexnprq3eQZf
+	 xE5xJXUonpzifrxiXRXdhKtH7kYZwst6cnR32e28C4D93HOKnOLE0PwAxZQE0kj/Rl
+	 XX8uiGMH5YNBg==
 From: Philipp Stanner <phasta@kernel.org>
 To: Min Ma <mamin506@gmail.com>,
 	Lizhi Hou <lizhi.hou@amd.com>,
@@ -146,17 +146,18 @@ To: Min Ma <mamin506@gmail.com>,
 	Michael Bommarito <michael.bommarito@gmail.com>,
 	Sam Day <me@samcday.com>,
 	Gabriel Prostitis <prostitisgabriel@gmail.com>
-Subject: [RFC PATCH 4/6] dma-buf: dma-fence: remove dma_fence_init64()
-Date: Thu, 29 Oct 2026 10:55:41 +0100
-Message-ID: <20261029095542.1526750-7-phasta@kernel.org>
+Subject: [RFC PATCH 5/6] dma-buf: dma-fence: Close race in
+ dma_fence_is_signaled() by default
+Date: Thu, 29 Oct 2026 10:55:42 +0100
+Message-ID: <20261029095542.1526750-8-phasta@kernel.org>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261029095542.1526750-3-phasta@kernel.org>
 References: <20261029095542.1526750-3-phasta@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 3ZDXOAAEROU46OXKBLJJQZTWM7IBZX4F
-X-Message-ID-Hash: 3ZDXOAAEROU46OXKBLJJQZTWM7IBZX4F
+Message-ID-Hash: PLPOLPWTDBK74W2MZGKE5VVGYDBZQF5R
+X-Message-ID-Hash: PLPOLPWTDBK74W2MZGKE5VVGYDBZQF5R
 X-MailFrom: phasta@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -175,9 +176,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3ZDXOAAEROU46OXKBLJJQZTWM7IBZX4F/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PLPOLPWTDBK74W2MZGKE5VVGYDBZQF5R/>
 Archived-At: 
- <https://lore.freedesktop.org/20261029095542.1526750-7-phasta@kernel.org/>
+ <https://lore.freedesktop.org/20261029095542.1526750-8-phasta@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -193,68 +194,103 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-All users of dma_fence_init64() have been removed. They now use the
-respective initialization flag in dma_fence_init().
+dma_fence_is_signaled() contains a lockless check of the signaled-bit,
+which is set under lock protection. This is a race condition which makes
+the API fragile and has caused at least two bugs already, addressed in:
 
-Remove dma_fence_init64().
+	commit c8a5d5ea3ba6 ("nouveau: fix client work fence deletion race")
+	commit 7c703a7d3f2b ("drm/amdgpu: Fix one use-after-free of VM")
+
+It has been argued by some that this race cannot be closed for the
+entire kernel through locking because this would lead to a cache line
+invalidation for all parties reading that fence. While it remains
+unclear why these parties don't simply let themselves be notified about
+the fence being signaled instead of checking this repeatedly manually,
+there is a way to preserve this behavior in any case:
+
+This patch adds a new flag for dma_fence_init(),
+DMA_FENCE_INIT_FLAG_RACY_SIGNALED_CHECK. If this flag is not set, the
+spinlock is taken and dma_fence_is_signaled() becomes perfectly
+synchronized: it can only return true once signaling of the fence is
+completed.
+
+Disable the racy check for everyone by default. Should some parties
+really experience severe performance degredations because of this, they
+can trivially re-enable the race condition for their driver by setting
+the flag in dma_fence_init().
 
 Signed-off-by: Philipp Stanner <phasta@kernel.org>
 ---
- drivers/dma-buf/dma-fence.c | 27 ---------------------------
- include/linux/dma-fence.h   |  2 --
- 2 files changed, 29 deletions(-)
+ drivers/dma-buf/dma-fence.c |  2 ++
+ include/linux/dma-fence.h   | 22 ++++++++++++++++++++++
+ 2 files changed, 24 insertions(+)
 
 diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
-index b11ee52a40d8..f7c084926ae6 100644
+index f7c084926ae6..1ae8c7aade39 100644
 --- a/drivers/dma-buf/dma-fence.c
 +++ b/drivers/dma-buf/dma-fence.c
-@@ -1124,33 +1124,6 @@ dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
- }
- EXPORT_SYMBOL(dma_fence_init);
+@@ -1119,6 +1119,8 @@ dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
+ 	/* Mapp the init_flags to the fence-internal flags. */
+ 	if (test_bit(DMA_FENCE_INIT_FLAG_SEQNO64, &init_flags))
+ 		set_bit(DMA_FENCE_FLAG_SEQNO64_BIT, &fence_flag_bits);
++	if (test_bit(DMA_FENCE_INIT_FLAG_RACY_SIGNALED_CHECK, &init_flags))
++		set_bit(DMA_FENCE_FLAG_RACY_SIGNALED_CHECK_BIT, &fence_flag_bits);
  
--/**
-- * dma_fence_init64 - Initialize a custom fence with 64-bit seqno support.
-- * @fence: the fence to initialize
-- * @ops: the dma_fence_ops for operations on this fence
-- * @lock: optional irqsafe spinlock to use for locking this fence
-- * @context: the execution context this fence is run on
-- * @seqno: a linear increasing sequence number for this context
-- *
-- * Initializes an allocated fence, the caller doesn't have to keep its
-- * refcount after committing with this fence, but it will need to hold a
-- * refcount again if &dma_fence_ops.enable_signaling gets called.
-- *
-- * Context and seqno are used for easy comparison between fences, allowing
-- * to check which fence is later by simply using dma_fence_later().
-- *
-- * New users MUST NOT use external locks. Check the documentation in
-- * dma_fence_init() to understand the motives behind the legacy use cases.
-- */
--void
--dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
--		 spinlock_t *lock, u64 context, u64 seqno)
--{
--	__dma_fence_init(fence, ops, lock, context, seqno,
--			 BIT(DMA_FENCE_FLAG_SEQNO64_BIT));
--}
--EXPORT_SYMBOL(dma_fence_init64);
--
- /**
-  * dma_fence_driver_name - Access the driver name
-  * @fence: the fence to query
+ 	__dma_fence_init(fence, ops, lock, context, seqno, fence_flag_bits);
+ }
 diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
-index 6654bcc2441f..52e7ddfd2d06 100644
+index 52e7ddfd2d06..ee6e8de3ebc6 100644
 --- a/include/linux/dma-fence.h
 +++ b/include/linux/dma-fence.h
-@@ -300,8 +300,6 @@ struct dma_fence_ops {
- void dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
- 		    spinlock_t *lock, u64 context, u64 seqno,
- 		    unsigned long flags);
--void dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
--		      spinlock_t *lock, u64 context, u64 seqno);
- void dma_fence_release(struct kref *kref);
- void dma_fence_free(struct dma_fence *fence);
- void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq);
+@@ -115,6 +115,7 @@ enum dma_fence_flag_bits {
+ 	DMA_FENCE_FLAG_SIGNALED_BIT,
+ 	DMA_FENCE_FLAG_TIMESTAMP_BIT,
+ 	DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
++	DMA_FENCE_FLAG_RACY_SIGNALED_CHECK_BIT,
+ 
+ 	DMA_FENCE_FLAG_USER_BITS, /* must always be last member */
+ };
+@@ -124,9 +125,12 @@ enum dma_fence_flag_bits {
+  * These flags can be passed in dma_fence_init().
+  *
+  * @DMA_FENCE_INIT_FLAG_SEQNO64: Use 64-bit sequence numbers.
++ * @DMA_FENCE_INIT_FLAG_RACY_SIGNALED_CHECK:
++ * Legacy flag. Enables a race condition in dma_fence_is_signaled().
+  */
+ enum dma_fence_init_flags {
+ 	DMA_FENCE_INIT_FLAG_SEQNO64,
++	DMA_FENCE_INIT_FLAG_RACY_SIGNALED_CHECK,
+ 
+ 	/* Must always be last member. */
+ 	DMA_FENCE_INIT_FLAG_NR_OF_FLAGs,
+@@ -568,9 +572,27 @@ dma_fence_is_signaled_locked(struct dma_fence *fence)
+ static inline bool
+ dma_fence_is_signaled(struct dma_fence *fence)
+ {
++	const bool racy_check = test_bit(DMA_FENCE_FLAG_RACY_SIGNALED_CHECK_BIT,
++					 &fence->flags);
+ 	const struct dma_fence_ops *ops;
++	bool signaled = false;
++	unsigned long flags;
+ 
++	/*
++	 * For legacy reasons, there is a race window here against parties
++	 * signaling the fence. They might still be doing that right now.
++	 *
++	 * For most users, this window shall be closed, but there are parties
++	 * for whom the cache-line invalidation by taking the lock might be so
++	 * significant that they prefer to accept the race at their own risk.
++	 */
++	if (!racy_check)
++		dma_fence_lock_irqsave(fence, flags);
+ 	if (dma_fence_test_signaled_flag(fence))
++		signaled = true;
++	if (!racy_check)
++		dma_fence_unlock_irqrestore(fence, flags);
++	if (signaled)
+ 		return true;
+ 
+ 	rcu_read_lock();
 -- 
 2.56.0
 
