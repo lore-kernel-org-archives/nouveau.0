@@ -2,96 +2,81 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EA1C606A32A
-	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 10:23:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B712606A31E
+	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 10:29:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=Ql2h6Chx
+	dkim=pass (2048-bit key, unprotected) header.d=mailbox.org header.i=@mailbox.org header.a=rsa-sha256 header.s=mail20150812 header.b=owjb1PqO
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 171541121C3;
-	Thu, 29 Oct 2026 10:23:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B14361121CA;
+	Thu, 29 Oct 2026 10:29:11 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 3C52B48BE2;
-	Thu, 29 Oct 2026 10:04:37 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793268277;
- b=cPW2JHpqZz1lMMnRr0fVxFAma7CwCZPAARDQhBbNcc8nwvvFETynUudG7JfRtHUBSeP/n
- xx4s6FuLD44ADlf10iSjtqLvW9ANl1jlVO94MiiNx+o6fLjX78WzRHtB4mX80SW2AeY4UtG
- 0EksqcueyCS7W4A7mkF6Hm0uKpBowsNiV08pwLSuJsbWDhFPG7t1h/xS+SgIquOn5W5a/U1
- yNbRPa/E2vDZRNZxhDUAWmmE6IMy4pjt8czzXEXAJp2fcfTflofWvcokB6WonDo73KeHWWx
- NwwPX1X//HovPAhLO9k/K05iZY+dpOcDNeuGEJa5HXG/Hau9mcFz9HEEmuNg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793268277; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id D266348BE5;
+	Thu, 29 Oct 2026 10:10:01 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1793268601;
+ b=Y2KBNBlgJyxoiFr+65EffvvemH7Ha+9QnMZnQdChic7irlcdTAuzmHOQjWMRI6+7H7vKW
+ 2/bj5X/qG+2L328Iccj+ialSzCkL5LsZyrSaRwPmbvB1aTee/oCHEh9pwgyseerQN1+RqfS
+ 8IG3m4WLATzO4yb8ze7NZJFaMiGTYEuWZLBw1JD16LUT7VLQZ53rVRMvkEKWfq+T8xo8aWA
+ nHPlzQnHuGijuQYBxl0HlHkO3E8t6NH5lvuu54m4iGNDlMSBhI1SUWIdGd8DiQ9NwvVc73B
+ w1fRz3KkHgWzde53cWz0ohINR9g2z3+JY1W+UexPfmPUVhuB262JzZAOWJJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1793268601; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=h/NTq1WLBMPSLF6XFZgbhvzXQ8oYuf+0ZqChn7K5Lhk=;
- b=hbrnZcnLQnR2kMuLCP2lNvmDRC4sg0viqWSS//UssDqHDAdC61kpQDrsMxphAUUqe5/XN
- bO4TzZmOptOvDg8ZeAP08R99csdB9a83IJ/xjtMY1ZS6jHqErXBI6hgJPWCEA4MalVfyiPY
- 3tYpveI5OKXSu/LCgZQz7zFaSbK/OQS39m3jmi0C1IDdmaEL2rcoFqPYQ5MbjPem/lq0esx
- lnSrXY3/tMjPZk/ZKv3HsHgiSoJQ59BPhpO7Dsdl3n13VTUn/bd2OPXH9EFFMTqf0b2dzWd
- hgQjX8sEnaEjElWmf5lUdvYOh9K35JHxZ8sBJdR86nTiQmbM2qxfNlAArXGA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=pengutronix.de;
-  arc=pass;
-  dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=pengutronix.de; arc=pass; dmarc=none
+ bh=PQfG2Km+YKrxCDPAAbbWYdryEevMUab9CWpj+Sh05TA=;
+ b=P9zSqEXuJ1ja+9EB7kD9s53jg/8LoxY4inGIOIzdgG1oYXIozdDDDrnNoxyedupQvNIXi
+ VewTjtm3gnunfjCyXY9PSrUj5nW/L001qVuGCk6T//LnwfgtWYtsQp6CNpe5onsQ4FUPfGf
+ qLWtJTE7Cs7Djmz0hhqEnfGHCJo91rpMaVtUKAwxNPw0dQA58H7qaY32+tkXRG3w9TeiX04
+ rBq0zTLZBsk/HXufjXxUnCULCfzRTcJJ5WysFrvBautwS8nLxFmpIincRRtJjEPiJrv7u4K
+ FJZNv32XbJXoyzNSrZ6iv45xphnNlUkVuudsx7lLeqXopL4K2+uN0bpKkLJw==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=mailbox.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=mailbox.org
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=mailbox.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=mailbox.org
+ policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 335DF46BCB;
-	Thu, 29 Oct 2026 10:04:34 +0000 (UTC)
-Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de
- [185.203.200.13])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A47C710E4DE;
-	Thu, 29 Oct 2026 10:23:38 +0000 (UTC)
-Received: from [IPv6:::1] (ptz.office.stw.pengutronix.de
- [IPv6:2a0a:edc0:0:900:1d::77])
-	(Authenticated sender: lst@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 9E169200AD7;
-	Thu, 29 Oct 2026 11:23:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1793269416;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	by kara.freedesktop.org (Postfix) with ESMTPS id 229FF46CD7;
+	Thu, 29 Oct 2026 10:09:58 +0000 (UTC)
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 92D2E1121C2;
+	Thu, 29 Oct 2026 10:29:02 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits)
+ server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4jFgSW3XgszMlJf;
+	Thu, 29 Oct 2026 11:28:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812;
+	t=1793269739; h=from:from:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+	 content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=h/NTq1WLBMPSLF6XFZgbhvzXQ8oYuf+0ZqChn7K5Lhk=;
-	b=Ql2h6ChxMtOcGZatguhKGOuEC+rmEILtn+if2SqEYCCbxsuZJ6Ru1gYHv8VOZp6Mh4UHgD
-	nqC+Abc2a38Cwsw0drk11FIo/o24C4d78/xhRP3/VTW8wljjZU8itJ+/kl8dIca91QxHTe
-	zvq2X5SIBOfNysNtdZi59WpQkG7l62333eKKoo1mxhb7lKFl0mbo4G2Zx6icW/xkO4bTTE
-	YLTxcS/jNobwPebe1QvNnKjEU9FWzz23p1+A9z4qKfS4d3UnGFoteuJK8i4EG/TbM+kgZm
-	36EtXeEIB1VKZmg46ZE6J8JvC49oxRtIkz9PpvGhCuexji4WQBw+w9KH7UeaQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1793269416;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=h/NTq1WLBMPSLF6XFZgbhvzXQ8oYuf+0ZqChn7K5Lhk=;
-	b=GGV5mVLTXHW8P1GM8MYEEw2sQLTe4MwdizvhP5Gb/W/2fDooOaBhx/Sa6fBxsgpigJrLiU
-	igwFXfs2zGARcG6oRLe3YbfOnTu/2cJUh7LRJrnnkQS9jz/1Y3UBwkh5VQ/POkNwIuxIT0
-	KQqycJPkCqfr8Rb3w+LWfxdHK9tZOIFSmALUHySLhH2nMw1ohIN5PV6epE7MfW9GnTgZiP
-	aB1o7tlQphCTr3i/eUUYsp9+VzsQAbIi7aed/Fs9CWQwqWGP3mh0SmpkOiff1MJ5KuNFqQ
-	/B16Le4NHB27ysqZuAH84XpNo3HERRJf+Gjr9xim0+G/tMzPUQcCR7egGl6w6w==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=lst@pengutronix.de smtp.mailfrom=l.stach@pengutronix.de
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1793269416; a=rsa-sha256;
-	cv=none;
-	b=WpN8WUnDHqz9Mc+CuO1qqQ2s1JkX/YAqSIeMD64lYoC6u7e/Mf6zaDQORC81p8qVmhEOlB
-	Qyk2Tu3F5ZFoPi+6o3G5P8XatkbqSpZqIMxTmNYjN7iZ9PyGZF+UJ9ECFfr5xTsdvve48U
-	DwjbkCL6Gqu4fpyQEmvvgJ4MB8/2UNwQB3y97Tn6pks8uSBKkJNnVRBHkLNA79FYLoF/UQ
-	/Fka7A7sY843ZzZCE560WkHfHGLJkmQ0WFB126J4qtxaMZHhGGerIFlt07dEmX36MJuoaj
-	+Fi5x3cZiGZ8NviUZwVGZyTDLNtqw6kmMNQeZKWIuGV0RSo3ygqYDO8hsPjmKA==
-Message-ID: <abca3f0039b07999e29558690c27fef23292bea3.camel@pengutronix.de>
+	bh=PQfG2Km+YKrxCDPAAbbWYdryEevMUab9CWpj+Sh05TA=;
+	b=owjb1PqOwF30L04GcK9Gww366AX2aDnKYxBGxkid6fiIMNw14Fg6DhRRdvbRSRfBeVSMQl
+	WaxlytFFpjs1RJoZ5N45Sz33bL9w1qJBlyeR1eU5rt65f55C6aO6qdifwEcZ130ppK53tP
+	pSveThL3uREOnABjLcdpsunrn9gRUFcZLXwXOSMIY/Byy+6Sd2LBtfvMGzoSgr9hC9w0Ly
+	5xXQ0diqvtpnZBddkWZNE4v0Z6yBzfp+Ldvy08kYgCZJDjkf6XZXF1wQdHfrhUyKVv7ICE
+	Oy4tVehaRM110/poQ6AB8ew8cPWmwyLlOdtLmIRxn5M7f9zit58chkxeIOjPjA==
+Message-ID: <3565783722927fa48a30f48b063ef99bcd703eab.camel@mailbox.org>
 Subject: Re: [RFC PATCH 0/6] dma-buf: Phase out is_signaled() race
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Philipp Stanner <phasta@kernel.org>, Min Ma <mamin506@gmail.com>, Lizhi
- Hou	 <lizhi.hou@amd.com>, Oded Gabbay <ogabbay@kernel.org>, "Rob Herring
- (Arm)"	 <robh@kernel.org>, Tomeu Vizoso <tomeu@tomeuvizoso.net>, Karol
- Wachowski	 <karol.wachowski@linux.intel.com>, Andrzej Kacprowski	
+From: Philipp Stanner <phasta@mailbox.org>
+To: Lucas Stach <l.stach@pengutronix.de>, Philipp Stanner
+ <phasta@kernel.org>,  Min Ma <mamin506@gmail.com>, Lizhi Hou
+ <lizhi.hou@amd.com>, Oded Gabbay <ogabbay@kernel.org>,  "Rob Herring (Arm)"
+	 <robh@kernel.org>, Tomeu Vizoso <tomeu@tomeuvizoso.net>, Karol Wachowski	
+ <karol.wachowski@linux.intel.com>, Andrzej Kacprowski	
  <andrzej.kacprowski@linux.intel.com>, Sumit Semwal
  <sumit.semwal@linaro.org>,  Christian =?ISO-8859-1?Q?K=F6nig?=	
  <christian.koenig@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
@@ -141,17 +126,20 @@ To: Philipp Stanner <phasta@kernel.org>, Min Ma <mamin506@gmail.com>, Lizhi
  <joelagnelf@nvidia.com>, Al Viro <viro@zeniv.linux.org.uk>,  Neill Kapron
  <nkapron@google.com>, Michael Bommarito <michael.bommarito@gmail.com>, Sam
  Day <me@samcday.com>,  Gabriel Prostitis <prostitisgabriel@gmail.com>
-Date: Thu, 29 Oct 2026 11:23:34 +0100
-In-Reply-To: <20261029095542.1526750-3-phasta@kernel.org>
+Date: Thu, 29 Oct 2026 11:28:39 +0100
+In-Reply-To: <abca3f0039b07999e29558690c27fef23292bea3.camel@pengutronix.de>
 References: <20261029095542.1526750-3-phasta@kernel.org>
+	 <abca3f0039b07999e29558690c27fef23292bea3.camel@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.60.2 (3.60.2-2.fc44) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-ID-Hash: BOZO5I3DH4D6W42ED4MWRH74O5KCJEUY
-X-Message-ID-Hash: BOZO5I3DH4D6W42ED4MWRH74O5KCJEUY
-X-MailFrom: l.stach@pengutronix.de
+X-MBO-RS-META: j7weafhpcaunystyo7r38dam3cyszcnz
+X-MBO-RS-ID: 051d97976afa34da498
+Message-ID-Hash: ENYCOO2GVJQGOIDDXA45K2FYERUDHJU7
+X-Message-ID-Hash: ENYCOO2GVJQGOIDDXA45K2FYERUDHJU7
+X-MailFrom: phasta@mailbox.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
@@ -167,11 +155,12 @@ CC: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  linux-usb@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: phasta@kernel.org
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BOZO5I3DH4D6W42ED4MWRH74O5KCJEUY/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ENYCOO2GVJQGOIDDXA45K2FYERUDHJU7/>
 Archived-At: 
- <https://lore.freedesktop.org/abca3f0039b07999e29558690c27fef23292bea3.camel@pengutronix.de/>
+ <https://lore.freedesktop.org/3565783722927fa48a30f48b063ef99bcd703eab.camel@mailbox.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -179,133 +168,44 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Philipp, hi Christian,
+On Thu, 2026-10-29 at 11:23 +0100, Lucas Stach wrote:
+> Hi Philipp, hi Christian,
 
-Am Donnerstag, dem 29.10.2026 um 10:55 +0100 schrieb Philipp Stanner:
-> dma_fence_is_signaled() can return true *while* the fence is signaling.
-> This has caused explosions before and I guess we can agree that it's
-> just not ideal.
->=20
-> The fundamental issue is that the fence-signaled-bit is set under lock
-> protection but read without it.
->=20
-> So ideally, we would read it with the lock. This would not change the
-> relative order, i.e. the bit would still be true in the fence callbacks.
->=20
-> Christian informs us that taking the lock causes people to complain
-> about performance regressions because the lock-taking shoots down copied
-> cache-lines. (which is weird since it would mean that someone is
-> repeatedly polling on fences instead of just registering a callback to
-> notify himself once it signals)
->=20
-I think we would all be interested in the actual use-case that's
-sensitive to this kind of latency.
+Jo Lucas
 
-However, I wonder if this is even an issue anymore with the lock
-inlined into the fence structure. With the deprecated external lock you
-would potentially get two cacheline bounces/remote invalidations for
-the exclusive access: once for the lock and one for the
-test_and_set_bit atomic op on the flags field.
-Now with the inlined lock, the lock operation will bring the cacheline
-into exclusive state on the local CPU and the flag check would then
-operate on that same cacheline, so there should be only a very minimal
-penalty compared to the sole atomic op.
+>=20
+> Am Donnerstag, dem 29.10.2026 um 10:55 +0100 schrieb Philipp Stanner:
 
-Regards,
-Lucas
+[=E2=80=A6]
 
-> Let's accept the potential for regressions as true for now.
-> Nevertheless, I think I can propose a path towards removing the race:
+> I think we would all be interested in the actual use-case that's
+> sensitive to this kind of latency.
+
+Me too.
+
+Let me use this opportunity to stress that in the future, in DRM,
+whenever we have [to accept] a racy "optimization", both commit
+messages and code comments must document why it exists and who
+requested it with what proof.
+
+Would save us lots of time when those things are discussed >5 years
+later.
+
 >=20
-> This series suggests taking the lock in dma_fence_is_signaled() *unless*
-> the driver explicitly asks for a check with a race-condition.
->=20
-> As a preparation, I allow drivers to set flags when initializing fences.
-> Then, we add a flag with which the driver can switch locking off for
-> that particular function.
->=20
-> By default, we let all drivers take the lock.
->=20
-> Should we then, in the kernel release process get reports about
-> regressions, we can set the race-flag for the affected driver and
-> restore the old behavior.
->=20
-> Should there be no reports, we could phase the flag out again after a
-> few releases, always taking the lock.
->=20
-> New users would always see the lock.
->=20
-> I put all potentially affected parties on Cc. Please point out if you
-> can already foresee your driver being negatively affected by this.
->=20
-> P.
->=20
->=20
-> Philipp Stanner (6):
->   dma-buf: dma-fence: Add flags parameter to dma_fence_init()
->   dma-buf: dma-fence: Add flag for using 64-bit seqnos
->   dma-buf: Port users of dma_fence_init64()
->   dma-buf: dma-fence: remove dma_fence_init64()
->   dma-buf: dma-fence: Close race in dma_fence_is_signaled() by default
->   drm/nouveau: Remove hacky fence check
->=20
->  drivers/accel/amdxdna/amdxdna_ctx.c           |  2 +-
->  drivers/accel/ethosu/ethosu_job.c             |  2 +-
->  drivers/accel/ivpu/ivpu_job.c                 |  2 +-
->  drivers/accel/rocket/rocket_job.c             |  2 +-
->  drivers/dma-buf/dma-fence-array.c             |  2 +-
->  drivers/dma-buf/dma-fence-chain.c             |  4 +-
->  drivers/dma-buf/dma-fence.c                   | 44 +++++------------
->  drivers/dma-buf/st-dma-fence-chain.c          |  2 +-
->  drivers/dma-buf/st-dma-fence-unwrap.c         |  2 +-
->  drivers/dma-buf/st-dma-fence.c                |  2 +-
->  drivers/dma-buf/st-dma-resv.c                 |  2 +-
->  drivers/dma-buf/sw_sync.c                     |  2 +-
->  .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c  |  2 +-
->  .../drm/amd/amdgpu/amdgpu_eviction_fence.c    |  7 +--
->  drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c     |  2 +-
->  .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   |  5 +-
->  .../gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c  |  5 +-
->  drivers/gpu/drm/drm_crtc.c                    |  2 +-
->  drivers/gpu/drm/drm_writeback.c               |  2 +-
->  drivers/gpu/drm/etnaviv/etnaviv_gpu.c         |  2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  |  2 +-
->  drivers/gpu/drm/i915/i915_request.c           |  2 +-
->  drivers/gpu/drm/i915/i915_sw_fence_work.c     |  2 +-
->  drivers/gpu/drm/i915/i915_vma_resource.c      |  2 +-
->  .../gpu/drm/i915/selftests/i915_sw_fence.c    |  2 +-
->  drivers/gpu/drm/imagination/pvr_ccb.c         |  2 +-
->  drivers/gpu/drm/imagination/pvr_queue.c       |  2 +-
->  drivers/gpu/drm/lima/lima_sched.c             |  2 +-
->  drivers/gpu/drm/msm/msm_fence.c               |  2 +-
->  drivers/gpu/drm/nouveau/nouveau_drm.c         | 13 -----
->  drivers/gpu/drm/nouveau/nouveau_fence.c       |  4 +-
->  drivers/gpu/drm/panfrost/panfrost_job.c       |  2 +-
->  drivers/gpu/drm/panthor/panthor_sched.c       |  2 +-
->  drivers/gpu/drm/qxl/qxl_release.c             |  2 +-
->  drivers/gpu/drm/radeon/radeon_fence.c         |  2 +-
->  drivers/gpu/drm/scheduler/sched_fence.c       |  4 +-
->  .../gpu/drm/scheduler/tests/mock_scheduler.c  |  2 +-
->  drivers/gpu/drm/ttm/tests/ttm_bo_test.c       |  2 +-
->  .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  |  2 +-
->  drivers/gpu/drm/v3d/v3d_fence.c               |  2 +-
->  drivers/gpu/drm/vc4/vc4_gem.c                 |  2 +-
->  drivers/gpu/drm/vgem/vgem_fence.c             |  2 +-
->  drivers/gpu/drm/virtio/virtgpu_fence.c        |  2 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_fence.c         |  2 +-
->  drivers/gpu/drm/xe/xe_hw_fence.c              |  2 +-
->  drivers/gpu/drm/xe/xe_oa.c                    |  2 +-
->  drivers/gpu/drm/xe/xe_preempt_fence.c         |  2 +-
->  drivers/gpu/drm/xe/xe_tlb_inval.c             |  2 +-
->  drivers/gpu/host1x/fence.c                    |  2 +-
->  drivers/iio/industrialio-buffer.c             |  2 +-
->  drivers/usb/gadget/function/f_fs.c            |  2 +-
->  include/linux/dma-fence.h                     | 48 +++++++++++++++++--
->  52 files changed, 115 insertions(+), 105 deletions(-)
+> However, I wonder if this is even an issue anymore with the lock
+> inlined into the fence structure.
+
+Almost no one uses inline-lock so far. So unfortunately, we might
+regress old drivers, maybe.
+
+But sounds as if you're in favor of phasing the locklessness out :)
+
+
+P.
