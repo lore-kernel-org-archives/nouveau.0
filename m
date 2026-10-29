@@ -2,93 +2,119 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40072606A31A
-	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 05:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AABE5606A321
+	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 09:21:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=free.fr header.i=@free.fr header.a=rsa-sha256 header.s=smtp-20201208 header.b=pe1f/agE
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=af1EHBsg
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 162E310E7AB;
-	Thu, 29 Oct 2026 05:24:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 017D8112106;
+	Thu, 29 Oct 2026 09:21:45 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id AD45148BC8;
-	Thu, 29 Oct 2026 05:05:31 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4215548BCD;
+	Thu, 29 Oct 2026 09:02:35 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793250331;
- b=h4xuZGeZBJPBUw/fxjJrhQwzaCA7Xc1O+AFjB4/kOCXZyugX0qSgSUkCAKeu7bMxIFUmY
- gNeAd1gOr/CxMbC62WupT8uarAZrnnU2qB6ILio+Ae6/XnpjQ56EM48aBAhf9pIArkzBeIc
- lF4sIZwdmsq2MC/ICT5ljf85GJSpqtS8G4E1d7PZHWkrjX5maCK3zlwKZ6PrvktcQcAkfGf
- OtYhBNoPhkiFYQaht2ITegzNxYu2my5aUpCP0Y9pAbR1uTvUno8DviXskNhX9Sv7bNDxWJX
- 1Nvec22Rdh5krYKikZ+X7aqt4W4V9MJ2A1PLSKw0lARYNC49qZY5rkyr33Fw==
+ s=20240201; t=1793264555;
+ b=CS2KYWIY4b3ji7DcYhCJAdTtRGW91m40vHallQiz95wDjclTwmBP5hUCo7KpasGfcgkLv
+ 85jMtXfRFyIIsfFEuPAjSydXTsMbIZJiFmWA6lR+SF6w5TrdpeKHCpJwEHlryU0BU3eTRWz
+ oUFQ9GtHExu/ysqqdPpKrqF0/zXwal9hDtCWqo5Ky8B43J7dQT1vNLWQpKtvUNnU11rWw3z
+ d4IyFEcJ1+ok7zlSfQY1ovAq10umQhpITwHV09dif1tnS04GZ+owupPmsJlPRz1Hr192RUt
+ ZrgnE9+4FN2RoqjMv2wXZxBIuH/2pc3HTiZzcfdYAvXXJSpLgwSJV4xXEgTA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793250331; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793264555; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=CIEQ9OtPejwKejOtSr3C0xbvZUdg8Vv6JgbdFtJ0FW0=;
- b=jzF8JXJ5Lk4tGLOAB4yAYKRBt7xJooZChmabpN8RZD7GT5DC2DICCM7lfiUxckfhdPvhu
- yBpKK4XrbkYI5EMRRyz7jiwlJOLFmvQ3sxHlzSHxuvPbbAgeus+NGrEA8+PsVNe21Vvt/Ea
- RHZphqlLUFmPa5S0uDg6P//puAnC2bRy5uNlcYeHhuW6HbzHOFHBnuVRmyRn+J0FYMyBElZ
- J/AGUDEAhOnB2XCBKzvEoIY3yLt3FTG/ZFnT3sA+U0U0A+th3eJ/g7lAtKfgpZwW1zf+Ry2
- 7GDl/jeAIlRzxBxZFbJe1uouMGMfrGl33ia2/kYjdXNhuq6w4t1jyAFbodnA==
+ bh=Qy/kVfKNgUf36VE7Put0l4SrqxIVRoYBNPmeqe2K+Bs=;
+ b=MCAlyYSvDgroeEbfKde/g/EPyElLoYWnTFjjhiNqTgrre61SMMLRkIXd++DmMzSK8Y76K
+ PdHndv5XXg1sOruQWOdXMaZ7P7TzBUL2Bs26cC/pA1K6GY8uFPWBlHCkE0G/zXiCXb7Mxpi
+ iyoeJ7/MOAS6+hEApNgFkmFxieZxJUfl20G1cmBC0xK0gMMA+wTTlG/IE4zm+zJND6tCdSs
+ BZ9K1p1FwlEufFdeducjvPp39yYYxgWrYPjoEYHlPw5pT8dNrb4uZvhbT8HLB+FiOREMYLj
+ ze9mCAYv0sNOpOhKQ+3qYUo7c0k6oNcmQWrFHltXvOYIoDG3ZUh69g2WbN5Q==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=free.fr;
+ dkim=pass header.d=intel.com header.i=@intel.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=free.fr policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=free.fr;
+  dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=intel.com header.i=@intel.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=free.fr policy.dmarc=none
+ dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4ABEE46CD7
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 05:05:28 +0000 (UTC)
-Received: from smtp1-g21.free.fr (smtp1-g21.free.fr [212.27.42.1])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 54A3A10E1E7
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 05:24:32 +0000 (UTC)
-Received: from [192.168.0.65] (unknown [91.154.212.51])
-	(Authenticated sender: martin.peres@free.fr)
-	by smtp1-g21.free.fr (Postfix) with ESMTPSA id F038AB00535;
-	Thu, 29 Oct 2026 06:24:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1793251470;
-	bh=mmT9sOYbIGj/0XEbOG8eQKrxI4S+bPjVlyXS+Tmalyo=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=pe1f/agEBf+kPtruA0NejxpyHjVO6vQB8usxQMDpsQ4U4civmzi4Fkbiyqu61Cpxa
-	 eFy8WMnTvYmlV9jmWqM5mnsqsWD2GTkps4UrsO36iKWoUzAaTc7/A7Yx3eExtlKjWL
-	 AizWURI6bUzpzi974aY6sMT/m94mUfhGraFeXFIaEF6Q32buLQ9t3dE/52NUiCAb0i
-	 zj1W1vKsGcMUBbbh53mUasrEMs1MRmsjpt9t9ZqvKPBFZSHcQKokQlL+9+G7K0YHrr
-	 IsW1OI7Fpp3torWrH15SKDkUEByGm+jhNyahy7BrXZr8GBw+/MM6nfkMNZu5PufOcn
-	 RO3q6AQFgxnMQ==
-Message-ID: <8abb7b92-c16a-47a9-8caf-49773845c246@free.fr>
-Date: Thu, 29 Oct 2026 07:24:28 +0200
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2C1AF46CD7
+	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 09:02:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9984710E4A3;
+	Thu, 29 Oct 2026 09:21:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1793265697; x=1824801697;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=+bpb/8kPIVNwRKvdj/29TyIe1DPVEf5uWH63MxBSu2M=;
+  b=af1EHBsgsBSXRKVjOa0BsV98anVD6rbDEue1hieOU1Rbd/ngmlNxxILO
+   KDR5zFHR6Ep/c+LnWBSzql0pP70ucyVLLWNfgVNb0S1tnAf8G8sz3gJe2
+   dQgd8XiiFlRxuRqdTkB0PXFPd9klIpaJtBauzEKYNdV0VjBDuwDpHnxh/
+   eDsVguRE3S+LKIeqUHDzJy7hp+BZizK+mtebdHV4nAgaFT/cDlu/PL/SF
+   zJsIbf07hRnl3oZJ2lRpNXno1CK+YcOQA+0pc8Eg0HuWQ3fat8+ghyi2H
+   ugfPUgr5mUZ9su5685MG9oFxSWxGVpwaw6sabiUQpzKD6LOwb6TdvyUcz
+   g==;
+X-CSE-ConnectionGUID: RjEl/lIPSIiy7fNORBbi8g==
+X-CSE-MsgGUID: TBkjgOznTBWiOL8eDobJwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1886267"
+X-IronPort-AV: E=Sophos;i="6.27,184,1787036400";
+   d="scan'208";a="1886267"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2026 02:21:36 -0700
+X-CSE-ConnectionGUID: 1lluCUtBT2+pODh0CfA0Lw==
+X-CSE-MsgGUID: JZUywEd0TAenJ/1+NKOZuw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,184,1787036400";
+   d="scan'208";a="5222047"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.74])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2026 02:21:32 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Dmitry Malovanyy <dmitrymalovanyy@gmail.com>
+Subject: Re: [PATCH] drm/dp: Keep base enhanced framing cap from extended
+ DPCD caps
+In-Reply-To: 
+ <CAKCCmHOLiSkBp0kTy128it5znRpQ4yS_MOohZOq38T0TF3RFmQ@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261028162941.62762-1-dmitrymalovanyy@gmail.com>
+ <77b574384ed695f8ea06a2ed142907e7d5f118d6@intel.com>
+ <CAKCCmHOLiSkBp0kTy128it5znRpQ4yS_MOohZOq38T0TF3RFmQ@mail.gmail.com>
+Date: Thu, 29 Oct 2026 11:21:29 +0200
+Message-ID: <ad139110db6e7c4017a908ca76246646f84a8f0c@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC] Fermi (GF11x) reclocking: a model of the NVIDIA driver's
- clock management, a lab nouveau module, and a call for NVIDIA 390 traces from
- GDDR5 cards
-To: Alex <xnderv@yandex.com>, nouveau@lists.freedesktop.org
-References: <20261028185052.54427-1-xnderv@yandex.com>
-Content-Language: en-US
-From: Martin Roukala <martin.peres@free.fr>
-In-Reply-To: <20261028185052.54427-1-xnderv@yandex.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: QDXBSXBHJFESHV6P7VHSGRXYYCRZKYHD
-X-Message-ID-Hash: QDXBSXBHJFESHV6P7VHSGRXYYCRZKYHD
-X-MailFrom: martin.peres@free.fr
+Content-Type: text/plain
+Message-ID-Hash: VHDIOWKUPWQU4ZC7ZBLYERICBMWADQRP
+X-Message-ID-Hash: VHDIOWKUPWQU4ZC7ZBLYERICBMWADQRP
+X-MailFrom: jani.nikula@intel.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
+ loop; banned-address; member-moderation
+CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+ Simona Vetter <simona@ffwll.ch>,
+ Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Harry Wentland <harry.wentland@amd.com>, Danilo Krummrich <dakr@kernel.org>,
+ nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QDXBSXBHJFESHV6P7VHSGRXYYCRZKYHD/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VHDIOWKUPWQU4ZC7ZBLYERICBMWADQRP/>
 Archived-At: 
- <https://lore.freedesktop.org/8abb7b92-c16a-47a9-8caf-49773845c246@free.fr/>
+ <https://lore.freedesktop.org/ad139110db6e7c4017a908ca76246646f84a8f0c@intel.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -96,70 +122,180 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-9.2 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Alex,
+On Thu, 29 Oct 2026, Dmitry Malovanyy <dmitrymalovanyy@gmail.com> wrote:
+> On Wed, 28 Oct 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>> Additionally, a DPRX with DPCD r1.2+ must indicate support for enhanced
+>> framing. The display is also in violation of the spec.
+>>
+>> That said, the spec kind of says to use enhanced framing for DPRX with
+>> DPCD r1.2+. It's subtle, but it doesn't say check the capability
+>> anymore, just the DPCD revision. That's my reading of DP v1.1a, v1.2a,
+>> v1.3, v1.4a and v2.1a anyway.
+>
+> Thanks for the quick review!
+>
+> Yes, I checked DP 1.2 and it is there in 2.2.1.1, "An upstream device
+> interoperating with a downstream device with DPCD Revision of 1.2 or
+> higher must enable Enhanced Framing Mode". So doing it in
+> drm_dp_enhanced_frame_cap() makes more sense, agree.
+>
+>> I think drm_dp_enhanced_frame_cap() should probably be:
+>>
+>> static inline bool
+>> drm_dp_enhanced_frame_cap(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+>> {
+>>         return dpcd[DP_DPCD_REV] >= 0x12 || dpcd[DP_DPCD_REV] >= 0x11 &&
+>>                 (dpcd[DP_MAX_LANE_COUNT] & DP_ENHANCED_FRAME_CAP);
+>> }
+>>
+>> And the remaining direct references to DP_ENHANCED_FRAME_CAP should be
+>> migrated to use drm_dp_enhanced_frame_cap().
+>
+> Will do it in v2. I will add parens around the && part, otherwise gcc
+> complains with -Wparentheses.
 
-On 28/10/2026 20:50, Alex wrote:
-> Hi,
-> 
-> this is a hobby project, not a patch series yet, but it may interest people who still have Fermi cards.
-> 
-> Since early October we have been recording the NVIDIA 390.157 driver with mmiotrace on a GTX 560 Ti (GF114)
-> and on a second card (GTS 450, GF106, recorded by its owner), plus the last pre-390 drivers (270.x) on a 2011-era
-> stand, and turning what the driver does into a written model: which registers it touches in which order, which
-> waits it makes, and which of those steps are actually necessary (checked one change at a time, 60+ experiments).
-> Everything is from our own traces, VBIOS tables and open code (nouveau, NVIDIA's open Tegra/nvgpu code, open-gpu-doc);
-> no decompilation of the proprietary driver is used, so the results can go upstream if they are good enough.
-> 
-> What we have so far:
-> - Core reclocking on GF114 with nouveau's gf100 clock code plus the PTHERM/FSRM "bracket" the NVIDIA driver puts
->    around every domain mux switch (slowdown engaged before the switch, released after). Without the bracket the GPC
->    mux sticks occasionally on our card; with it and a dwell of ~4 us after the "engaged" flag, 0 stuck in thousands of
->    transitions. NVIDIA 390 waits 8 us by its own timer; 270.41.06 wraps only the mux write. Details, numbers and the
->    register-level map are in the repository.
+Another alternative is to have:
 
-Interesting, I don't remember ever seeing nvidia program the FSRM around 
-reclocking... but I barely looked at Fermi+ reclocking as I was more 
-concerned with the Tesla and under era.
+	/* brief comment explaining the reason with spec reference */
+	if (dpcd[DP_DPCD_REV] >= 0x12)
+		return true;
 
-> - Memory reclocking (GDDR5, 135/324/2004 MHz) by replaying the PMU memory scripts and host writes the NVIDIA driver ran
->    on the same card, through nouveau's memx. A generator that derives those scripts from any board's VBIOS reproduces
->    88 % of the registers on the second card; the rest is chip-level layout and driver-init bits.
+Up to you.
+
+> For the direct users I found cdns-mhdp8546, it6505 and gma500, I will
+> convert them into separate patches.
+
+Separate patches is the way to go, thanks.
+
+> There is also nouveau, dispnv50/disp.c checks the bit for the watermark
+> calculation, but the actual enable is in nvkm/engine/disp/dp.c with its
+> own definition. If I change only disp.c they will not agree with each
+> other. Should I convert both, or leave nouveau out for now?
+
+I'm afraid I can't speak for nouveau. I've Cc'd the maintainers.
+
+In general, I think choose an approach, mention it in the commit
+message(s) and why you think it makes sense, and you'll hopefully get
+told that's cool or the maintainers want it changed. People generally
+react better to code, right or wrong, than hypotheticals.
 
 
+BR,
+Jani.
 
-> - A VBIOS corpus of 306 Fermi images (with TechPowerUp's permission) that shows what is per-family, per-chip and
->    per-board.
 
-We have a private database of a ton of vbioses + associated mmiotraces, 
-I could give you access if you are interested and the repo still exists 
-somewhere :D
-
-> 
-> What we are looking for: owners of Fermi cards with GDDR5 (GF100/GF104/GF106/GF110/GF114/GF116 - GTX 4xx/5xx,
-> GTS 450, Quadro 2000-6000) willing to spend one evening recording the NVIDIA 390 driver with our script (needs a spare
-> disk with 390.157 and a kernel with CONFIG_MMIOTRACE) and to send the trace plus their VBIOS image. In return they get a
-> build of the lab module with their card's own sequences, and everything learned is published. It is a lab module:
-> hangs are possible, no warranty, no support promises.
-> 
-> Repository and the call with details: https://github.com/xnderv/nouveau-fix (issue #2).
-> Comments on the approach are welcome too, especially on what would be needed for an upstreamable version.
-
-Seems like a fun project, I wish you a lot of fun with it! If you need 
-historical context, please ping me at `martin.roukala@mupuf.org`, or on 
-IRC (in the #nouveau channel on OFTC, please ping mupuf).
-
-Cheers,
-Martin
-
-> 
+> drm_dp_get_phy_test_pattern() also uses DP_ENHANCED_FRAME_CAP but there
+> it is the DP_TEST_LANE_COUNT register, so I would leave it as is.
+>
+>> One of the main reasons I don't like this is that we have the logging
+>> for the base and extended caps, and this sneaks in a change without it
+>> being present in the logs.
+>
+> Makes sense, I didn't think about the logs.
+>
 > Thanks,
-> Alex (xnderv on GitHub)
+> Dmytro
+>
+> On Wed, 28 Oct 2026 at 18:24, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>>
+>> On Wed, 28 Oct 2026, Dmytro Malovanyi <dmitrymalovanyy@gmail.com> wrote:
+>> > Some sinks set DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT and advertise
+>> > DP_ENHANCED_FRAME_CAP in the base receiver caps, but clear it in the
+>> > extended receiver caps at 0x2200. drm_dp_read_extended_dpcd_caps()
+>> > replaces the base caps with the extended ones, so the link is trained
+>> > without enhanced framing.
+>> >
+>> > The Xiaomi Monitor A24i (P24FBA-RAGL) is one such sink:
+>> >
+>> >   base:     12 0a c4 01 01 00 01 80 02 00 06 00 00 00 81
+>> >   extended: 14 0a 44 00 01 00 01 80 02 02 06 00 00 00 81
+>> >
+>> > Without enhanced framing all lanes train (0x202-0x204: 77 77 81), but
+>> > the sink never syncs to the stream (SINK_STATUS 0x205: 00) and shows
+>> > "No signal" until it is power cycled. The same monitor works on macOS.
+>> >
+>> > DP 1.4 section 2.9.3.1, as quoted in the commit that added extended
+>> > caps support, says the extended caps match the base caps except for
+>> > DPCD_REV, MAX_LINK_RATE and DOWN_STREAM_PORT_PRESENT. Keep the base
+>> > value of DP_ENHANCED_FRAME_CAP.
+>>
+>> Thanks for the patch and explanation, refreshing clarity.
+>>
+>> The display is obviously being silly.
+>>
+>> Additionally, a DPRX with DPCD r1.2+ must indicate support for enhanced
+>> framing. The display is also in violation of the spec.
+>>
+>> That said, the spec kind of says to use enhanced framing for DPRX with
+>> DPCD r1.2+. It's subtle, but it doesn't say check the capability
+>> anymore, just the DPCD revision. That's my reading of DP v1.1a, v1.2a,
+>> v1.3, v1.4a and v2.1a anyway.
+>>
+>> So I guess that might be the more appropriate fix, really. Even if it's
+>> slightly more work.
+>>
+>> I think drm_dp_enhanced_frame_cap() should probably be:
+>>
+>> static inline bool
+>> drm_dp_enhanced_frame_cap(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+>> {
+>>         return dpcd[DP_DPCD_REV] >= 0x12 || dpcd[DP_DPCD_REV] >= 0x11 &&
+>>                 (dpcd[DP_MAX_LANE_COUNT] & DP_ENHANCED_FRAME_CAP);
+>> }
+>>
+>> And the remaining direct references to DP_ENHANCED_FRAME_CAP should be
+>> migrated to use drm_dp_enhanced_frame_cap().
+>>
+>> > With this change the link uses enhanced framing (0x101: 84) and the
+>> > sink syncs (0x205: 03).
+>> >
+>> > Tested on i915 (Arrow Lake-U) through a USB4 dock.
+>> >
+>> > Fixes: a1d926527b79 ("drm/i915: implement EXTENDED_RECEIVER_CAPABILITY_FIELD_PRESENT")
+>> > Cc: stable@vger.kernel.org
+>> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/17719
+>> > Signed-off-by: Dmytro Malovanyi <dmitrymalovanyy@gmail.com>
+>> > ---
+>> >  drivers/gpu/drm/display/drm_dp_helper.c | 3 +++
+>> >  1 file changed, 3 insertions(+)
+>> >
+>> > diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+>> > index e623ccb4c..205b6cc89 100644
+>> > --- a/drivers/gpu/drm/display/drm_dp_helper.c
+>> > +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+>> > @@ -1219,6 +1219,9 @@ static int drm_dp_read_extended_dpcd_caps(struct drm_dp_aux *aux,
+>> >
+>> >       drm_dbg_kms(aux->drm_dev, "%s: Base DPCD: %*ph\n", aux->name, DP_RECEIVER_CAP_SIZE, dpcd);
+>> >
+>> > +     /* Keep the base enhanced framing cap if the extended caps drop it */
+>> > +     dpcd_ext[DP_MAX_LANE_COUNT] |= dpcd[DP_MAX_LANE_COUNT] & DP_ENHANCED_FRAME_CAP;
+>>
+>> One of the main reasons I don't like this is that we have the logging
+>> for the base and extended caps, and this sneaks in a change without it
+>> being present in the logs.
+>>
+>> And having the decision in drm_dp_enhanced_frame_cap() is explicit and
+>> same for everyone.
+>>
+>> BR,
+>> Jani.
+>>
+>> > +
+>> >       memcpy(dpcd, dpcd_ext, sizeof(dpcd_ext));
+>> >
+>> >       return 0;
+>> >
+>> > base-commit: feaa32dc98090b2f45f7b6f179711a6640169c1a
+>>
+>> --
+>> Jani Nikula, Intel
 
+-- 
+Jani Nikula, Intel
