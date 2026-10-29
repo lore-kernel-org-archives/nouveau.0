@@ -2,123 +2,96 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D63D606A31A
-	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 12:07:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A6DF606A322
+	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 13:00:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KZGWNpnM
+	dkim=pass (1024-bit key, unprotected) header.d=yandex.com header.i=@yandex.com header.a=rsa-sha256 header.s=mail header.b=LGzwtka2
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 64312112256;
-	Thu, 29 Oct 2026 12:07:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EB1D811229F;
+	Thu, 29 Oct 2026 13:00:42 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6676A48BF5;
-	Thu, 29 Oct 2026 11:48:41 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id DE2F548BF6;
+	Thu, 29 Oct 2026 12:41:32 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793274521;
- b=lgSJlUQSsbH6UwBl0btDfrlBF0f7sGwG9XH6pWocxbG6YA5Xt5ovRezJJdO6Mwt+WZS6j
- ePvF1lGMHngXOJeEptw9oPx9v/qLst6lGcYh8G9YVvMCviEO+Jeq9yuaBE1rZSJDLettwGp
- u2LE1V3g5/0HrWRfdUm/s9sV4xNwo/AGOBgRfrgQsUSstfdPEVYGB59ujm4nueALbUXuOQH
- V/t6sjdWtSWg7BIXW8gX7K0YcZqObZyVrhMCVG9IIIV0S98R0dtyoYjZPML0ZMZTnjWgd4U
- EjUodL2t/7dmwXjn00aF4sTg9ezr5EGVRLg6ZznnTV6DHphHBlJ8HB4iUsxw==
+ s=20240201; t=1793277692;
+ b=OWvx6zUBtoOlN2Cf+iqa+X9Mb1xAe+Aifb/jldpOFh0CEriMcvrifw2+jmZu/t5IYm02E
+ exhX78Yg2fUFHOE92bNh52nv+GWjun7FXpc/P8sudxDp1sTPIZCD20j0WuG/oRovxZEf0FQ
+ g3y8NhgyvLVsp94Cx9F3//Jtn0avpGZ5qW35WcQ+tYySdGg8lcW7urGytZarsEt2gIqKSYZ
+ kmTmktM35UtvG+20NuOkZ+gcg3LW+LVjY9rCWqfVJh71hWOgA+iH2sr9r3jTrUsyQRXHm07
+ GxniqfCCMVy5qPE+9k/2qZrv3FrBrdmDN+/JIfCiB+fKrnimVG2IzTEFuhpA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793274521; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793277692; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=KovbahL1OolDw3hFQYP954cT0iXw86oK7FjWcAx8ziE=;
- b=xnDn5TeTqDSs5DTKRTuo8JrY/Y6hdLw88e+TmL7YIKsFvovOxBKGcOTyUnFLu0MilA3Le
- Fi3YyMjJg+nov3AbDbcxIcYRjKySN7jBrX4acYsJl+ZMQH8C0jlZXF9c0G2HwZ6Y0UcmA76
- vgkqD+K80XAU6GcROCiO5p2G1DbJGtaTshW6cfz2bDLP2yFMRK5loXN+2/J2sOlyomThoJy
- MvaJzdkyPOekErw6URTIaX3SgfcRwoNPXdRl1Hlo5mLMPg7wT7X3TQ/nc21/vu5V5/8helZ
- NMEYX+u7Pjr7VS+qlZh/aKbGbxVcOepGydqsMYMoxqQDfpZk7PZTRZ5si8dA==
+ bh=OUXYjt8dvAsEPE6PsQOQb6gwqlZLQFgR3EWNJ6ptA0E=;
+ b=KA9n0uP1nBtLPwxK0/uS398tczpHBNU2RIApNnE7ZBKwf7+3gMw4AxQij9bsgDlkWIRfH
+ Q7/VEBoQ4VyvDO0YEi+0jhmJt8A8PaoBoxwxh8Kol2m0GBE3KgtObDUfWIQ5PNlSzPI6uOJ
+ DpegFSS2Hrc4U/jNnJ+mDUTnBIbuMqfZk6XqFDL/YLF4xkAOCCB1UQuVRFhp2/+pH+w0vWy
+ qqKZcXHER0LHdZvuhW5540/TGxDrq9TiP5kqlGe6AgliYJo6LkKem+T03eNIZXVHC0qjmJv
+ d6Uc5SIus2XwYS9zp24UXewhVD10c5JT3hhwRm9BFDuGPiH8PCS97im5l7Vw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
+ dkim=pass header.d=yandex.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
+  dmarc=pass (Used From Domain Record) header.from=yandex.com
  policy.dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=yandex.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
- policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=yandex.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 6EBB546CD7
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 11:48:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1D982112237;
-	Thu, 29 Oct 2026 12:07:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1793275663; x=1824811663;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version;
-  bh=haNvBN+6I0qZH/hq50Aelh358H+KYj4WGO/+qKvSpSM=;
-  b=KZGWNpnMmzmDbcxDmvpaKhC6MkOOWRUeOSdG27qlJ3lNLA/Hw56tQa4g
-   FKOKvKkRGPoncZ3GaIbRVm/WAnle2bYa2ex1qwUXe59db8ZdrB/2JCu9l
-   XbqVi0Frk3FgrvFpVC6jEbKyTknnQdx+/b2YM6nJL4vEXBYM/JPbr+FZh
-   u7Z3Vs3uSp8NArJerqUG4zFMw5p55Nt/JuVdg3R4ASWsEm7AOXAbsaZOf
-   3gkNn3Qad7BKa/5JqAPE8ubtLllle6epsSL5TIuhUgc7uzgGN3WBO86xa
-   Ox21IzpFX7uWsobeH9g7TgbLqSbcH1hBSxSbsv3ADbne5hN/efHomZYpE
-   w==;
-X-CSE-ConnectionGUID: YrrpvMWiSDaL7vPPB1jk8A==
-X-CSE-MsgGUID: kLmZ+mczRvWPWcPXxEw8yg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="2040620"
-X-IronPort-AV: E=Sophos;i="6.27,184,1787036400";
-   d="scan'208";a="2040620"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2026 05:07:43 -0700
-X-CSE-ConnectionGUID: 9dIB48gXSJ+jv+6S2SeEtA==
-X-CSE-MsgGUID: fWa0pj25QlCDM7z+ywO4cA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,184,1787036400";
-   d="scan'208";a="5060783"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.145])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2026 05:07:36 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dmytro Malovanyi <dmitrymalovanyy@gmail.com>,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 5/5] drm/nouveau: Use enhanced framing for DPCD r1.2+
-In-Reply-To: <20261029101826.72773-6-dmitrymalovanyy@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20261029101826.72773-1-dmitrymalovanyy@gmail.com>
- <20261029101826.72773-6-dmitrymalovanyy@gmail.com>
-Date: Thu, 29 Oct 2026 14:07:32 +0200
-Message-ID: <566f5d1c9623a86589c2c28cb83434433e0de1d8@intel.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 589B746CD7
+	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 12:41:29 +0000 (UTC)
+Received: from forward103d.mail.yandex.net (forward103d.mail.yandex.net
+ [51.250.60.163])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0EB4F11226B;
+	Thu, 29 Oct 2026 13:00:33 +0000 (UTC)
+Received: from mail-nwsmtp-smtp-production-main-94
+ (mail-nwsmtp-smtp-production-main-94.iva.yp-c.yandex.net
+ [IPv6:2a02:6b8:c0c:2501:0:640:a27e:0])
+	by forward103d.mail.yandex.net (postfix) with ESMTPS id E9726C0844;
+	Thu, 29 Oct 2026 16:00:30 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-94 with ESMTPSA id
+ G0j4ICQiIeA0-NuWAJvZs;
+	Thu, 29 Oct 2026 16:00:29 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
+	t=1793278830; bh=OUXYjt8dvAsEPE6PsQOQb6gwqlZLQFgR3EWNJ6ptA0E=;
+	h=Message-ID:Date:Cc:Subject:To:From;
+	b=LGzwtka26ZTwj8w/A8gqOP8u+QKep05jpFHjy+bV3NIb5JGQ1N10zm84udaFNNx+A
+	 Sx/hm5s1K06tQH4wk6Cd5q48lv2LF4HlCpM5nrIH5zd/kOaRFoS8IvEZZfoDIYDpEf
+	 nNumWk/X+clpOFjd3ymAaVxLxfmoRT4nkot4tnEE=
+From: Alex <xnderv@yandex.com>
+To: Lyude Paul <lyude@redhat.com>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH v2] drm/nouveau/therm: mask the update bit when reading back
+ the fan PWM duty
+Date: Thu, 29 Oct 2026 16:00:12 +0300
+Message-ID: <20261029130012.21738-1-xnderv@yandex.com>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-Message-ID-Hash: C7MTEAZAJ4DCJCPH25FVG3YGOUHSAEMG
-X-Message-ID-Hash: C7MTEAZAJ4DCJCPH25FVG3YGOUHSAEMG
-X-MailFrom: jani.nikula@intel.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: T5FSWOSZU5NFE6LCOERYN3CE7VQVBJES
+X-Message-ID-Hash: T5FSWOSZU5NFE6LCOERYN3CE7VQVBJES
+X-MailFrom: xnderv@yandex.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Dmytro Malovanyi <dmitrymalovanyy@gmail.com>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Martin Roukala <martin.roukala@mupuf.org>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Alex <xnderv@yandex.com>,
+ stable@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/C7MTEAZAJ4DCJCPH25FVG3YGOUHSAEMG/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/T5FSWOSZU5NFE6LCOERYN3CE7VQVBJES/>
 Archived-At: 
- <https://lore.freedesktop.org/566f5d1c9623a86589c2c28cb83434433e0de1d8@intel.com/>
+ <https://lore.freedesktop.org/20261029130012.21738-1-xnderv@yandex.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -126,112 +99,93 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+X-Spam-Status: No, score=-15.7 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 29 Oct 2026, Dmytro Malovanyi <dmitrymalovanyy@gmail.com> wrote:
-> nv50_sor_dp_watermark_sst() checks DP_ENHANCED_FRAME_CAP for the
-> watermark calculation, but the actual enhanced framing enable is
-> decided in nvkm, in nvkm_dp_train(), nvkm_uoutp_mthd_dp_sst() and
-> r535_dp_train_target(), with its own copy of the check. Convert all of
-> them so they keep agreeing with each other.
->
-> dispnv50 uses drm_dp_enhanced_frame_cap(). nvkm does not include the
-> drm helpers, so add nvkm_dp_enhanced_frame_cap() with the same rule.
+nv50_fan_pwm_set() and gf119_fan_pwm_set() write the fan duty cycle to
+0xe118 with bit 31 set.  Normally the bit reads back clear, but when
+the register is read back shortly after such a write it can still be
+set, and nv50_fan_pwm_get() and gf119_fan_pwm_get() return it as part
+of the duty cycle.  nvkm_fanpwm_get() then takes divs = max(divs, duty),
+so divs becomes 0x8000xxxx too, and duty * 100 wraps around in u32
+(0x80000000 * 100 == 0 mod 2^32): the fan speed reads as 0%.
+nvkm_fan_update() uses that as the current speed and steps up from it,
+so it writes 3% to the fan and then ramps it back by 3% per bump
+period.
 
-Seems reasonable to me, but up to the nouveau maintainers.
+Found with the help of an AI assistant (Claude); reviewed and tested by me.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Fixes: cb9fa62671ac ("drm/nv50/pm: add support for pwm fan control")
+Fixes: bc79202f4c8f ("nvd0/therm: implement more appropriate pwm fan control functions")
+Cc: stable@vger.kernel.org
+Acked-by: Martin Roukala <martin.roukala@mupuf.org>
+Signed-off-by: Alex <xnderv@yandex.com>
+---
+v2: commit message trimmed as Martin asked, the details moved here; one
+sentence on the AI assistance kept in the changelog, as
+Documentation/process/generated-content.rst asks for tools used to find
+a problem; picked up Martin's Acked-by; code unchanged.
+v1: https://lore.kernel.org/all/20261025101640.49779-1-xnderv@yandex.com/
 
-> Compile tested only, I don't have nvidia hardware.
->
-> Signed-off-by: Dmytro Malovanyi <dmitrymalovanyy@gmail.com>
-> ---
->  drivers/gpu/drm/nouveau/dispnv50/disp.c               |  2 +-
->  drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c         |  2 +-
->  drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.h         | 11 +++++++++++
->  drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c      |  2 +-
->  .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c    |  2 +-
->  5 files changed, 15 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> index e91130f93..f965d4811 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -1607,7 +1607,7 @@ static bool
->  nv50_sor_dp_watermark_sst(struct nouveau_encoder *outp,
->  			  struct nv50_head *head, struct nv50_head_atom *asyh)
->  {
-> -	bool enhancedFraming = outp->dp.dpcd[DP_MAX_LANE_COUNT] & DP_ENHANCED_FRAME_CAP;
-> +	bool enhancedFraming = drm_dp_enhanced_frame_cap(outp->dp.dpcd);
->  	u64 minRate = outp->dp.link_bw * 1000;
->  	unsigned tuSize = 64;
->  	unsigned waterMark;
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c
-> index a109348bd..fbd9935f4 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c
-> @@ -509,7 +509,7 @@ nvkm_dp_train(struct nvkm_outp *outp, bool retrain)
->  	OUTP_DBG(outp, "training");
->  
->  	ior->dp.mst = outp->dp.lt.mst;
-> -	ior->dp.ef = outp->dp.dpcd[DPCD_RC02] & DPCD_RC02_ENHANCED_FRAME_CAP;
-> +	ior->dp.ef = nvkm_dp_enhanced_frame_cap(outp->dp.dpcd);
->  	ior->dp.bw = outp->dp.lt.bw;
->  	ior->dp.nr = outp->dp.lt.nr;
->  
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.h b/drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.h
-> index 9a6be4391..e56acc162 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.h
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.h
-> @@ -23,6 +23,17 @@ void nvkm_dp_enable(struct nvkm_outp *, bool auxpwr);
->  #define DPCD_RC10_SUPPORTED_LINK_RATES(i)                               0x00010
->  #define DPCD_RC10_SUPPORTED_LINK_RATES__SIZE                                 16
->  
-> +/* Same rule as drm_dp_enhanced_frame_cap() */
-> +static inline bool
-> +nvkm_dp_enhanced_frame_cap(const u8 *dpcd)
-> +{
-> +	if (dpcd[DPCD_RC00_DPCD_REV] >= 0x12)
-> +		return true;
-> +
-> +	return dpcd[DPCD_RC00_DPCD_REV] >= 0x11 &&
-> +	       (dpcd[DPCD_RC02] & DPCD_RC02_ENHANCED_FRAME_CAP);
-> +}
-> +
->  /* DPCD Link Configuration */
->  #define DPCD_LC00_LINK_BW_SET                                           0x00100
->  #define DPCD_LC01                                                       0x00101
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-> index 377d0e0ce..b0158fc30 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-> @@ -87,7 +87,7 @@ nvkm_uoutp_mthd_dp_sst(struct nvkm_outp *outp, void *argv, u32 argc)
->  		return 0;
->  
->  	return ior->func->dp->sst(ior, args->v0.head,
-> -				  outp->dp.dpcd[DPCD_RC02] & DPCD_RC02_ENHANCED_FRAME_CAP,
-> +				  nvkm_dp_enhanced_frame_cap(outp->dp.dpcd),
->  				  args->v0.watermark, args->v0.hblanksym, args->v0.vblanksym);
->  }
->  
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-> index f5f22173f..c62900320 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-> @@ -972,7 +972,7 @@ r535_dp_train_target(struct nvkm_outp *outp, u8 target, bool mst, u8 link_nr, u8
->  	if (mst)
->  		cmd |= NVDEF(NV0073_CTRL, DP_CMD, SET_FORMAT_MODE, MULTI_STREAM);
->  
-> -	if (outp->dp.dpcd[DPCD_RC02] & DPCD_RC02_ENHANCED_FRAME_CAP)
-> +	if (nvkm_dp_enhanced_frame_cap(outp->dp.dpcd))
->  		cmd |= NVDEF(NV0073_CTRL, DP_CMD, SET_ENHANCED_FRAMING, TRUE);
->  
->  	if (target == 0 &&
+How it was found: the reads that hit this come from the two therm timers.
+nvkm_therm_alarm() (the 1 s poll) and nvkm_fan_alarm() (the bump alarm)
+both call nvkm_fan_update(), which reads the duty cycle before it writes
+a new one. When the two alarms fire within microseconds of each other,
+the second one reads 0xe118 right after the first one wrote it. On a
+GeForce GTX 560 Ti (GF114, nv50 PWM path) a bpftrace probe on
+nv50_fan_pwm_get() saw 7 of 239 reads in two minutes come 7-25 us after
+the other timer's write with bit 31 still set (e.g. 0x800001e1 with divs
+0x21c), each followed by a drop to 3%. gm107_fan_pwm_get() and the
+PTHERM path of gf119_fan_pwm_get() already mask their duty reads.
 
+Testing: same workload and probe with the fix, no such reads in 155 and
+no fan drops. The gf119 hunk changes the same register in the same way
+but was not tested on GF119 or later hardware. Both files build without
+warnings.
+
+ drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c | 6 +++++-
+ drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c  | 6 +++++-
+ 2 files changed, 10 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c
+index 684aff7..f56e763 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.c
+@@ -74,7 +74,11 @@ gf119_fan_pwm_get(struct nvkm_therm *therm, int line, u32 *divs, u32 *duty)
+ 	else if (indx < 2) {
+ 		if (nvkm_rd32(device, 0x00d610 + (line * 0x04)) & 0x00000040) {
+ 			*divs = nvkm_rd32(device, 0x00e114 + (indx * 8));
+-			*duty = nvkm_rd32(device, 0x00e118 + (indx * 8));
++			/*
++			 * Bit 31 is the update trigger set by pwm_set();
++			 * it can still read back as set after a write.
++			 */
++			*duty = nvkm_rd32(device, 0x00e118 + (indx * 8)) & 0x7fffffff;
+ 			return 0;
+ 		}
+ 	} else if (indx == 2) {
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c
+index 9cf16a7..9272256 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.c
+@@ -72,7 +72,11 @@ nv50_fan_pwm_get(struct nvkm_therm *therm, int line, u32 *divs, u32 *duty)
+ 
+ 	if (nvkm_rd32(device, ctrl) & (1 << line)) {
+ 		*divs = nvkm_rd32(device, 0x00e114 + (id * 8));
+-		*duty = nvkm_rd32(device, 0x00e118 + (id * 8));
++		/*
++		 * Bit 31 is the update trigger set by pwm_set();
++		 * it can still read back as set after a write.
++		 */
++		*duty = nvkm_rd32(device, 0x00e118 + (id * 8)) & 0x7fffffff;
+ 		return 0;
+ 	}
+ 
 -- 
-Jani Nikula, Intel
+2.53.0
+
