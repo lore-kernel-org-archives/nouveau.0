@@ -2,243 +2,168 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C668A606A31A
-	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 13:44:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75DA8606A31D
+	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 15:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=kNKHDjEz
+	dkim=pass (1024-bit key, unprotected) header.d=alum.mit.edu header.i=@alum.mit.edu header.a=rsa-sha256 header.s=selector2 header.b=YXQg4+vZ
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C8C26112315;
-	Thu, 29 Oct 2026 13:44:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 558671123EE;
+	Thu, 29 Oct 2026 15:46:44 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id A9C4148BFD;
-	Thu, 29 Oct 2026 13:25:15 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 02CFE48C02;
+	Thu, 29 Oct 2026 15:27:34 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793280315;
- b=OSlVZZgKwVGP+rdZHM+Tc4CSGvZ9OoNNn0Wsdd72GkxxbcDxtPNt91Pcuc6Q2FCJqnHT8
- kyN0MoKXNf+qWqiToJFFLntrwtvqqrp46/0TsEusZVIZo6nULa6vhFxYJrZURmBnyoFkG9Z
- IRcXTXZaONAwjv0R9NbCa3VE5WIzM2biNTki7y0zcU8e1l5Z3gspPzlaw4aZbt/++QRX3Sn
- /3hXoMOuHyIpKWBiR0IOPie0gIpQGkiOAEmk1pmqDQxZFl6dAyoN0xj77ClUcVQUn2yiS8n
- V6yctu6IbgLjTaWLG5jd+i1alUqqT+iXNA7Ux6Axnj6uz6MsBXUcMG/DrcYw==
+ s=20240201; t=1793287653;
+ b=ILjno5qK5+aX28m90RupYhBjM+INDE/vGFUDRlb6gp4742I1ZyVUXcz5pH+vj8ZkWXZMW
+ kym7QBzLmwm7lDYYkTWcFjQl7Lln34XTgrtcntxFt/OcjSrpeAcRfiPrTZCx7zgQLmZwvng
+ QFXWQMH1HC8Du9kEayGevYPfndUn1kNp0wxcl1d89C7UieKsK4A8XIMXgqaC62z58VDiDjb
+ Bbaj6sbNpTFy8zX42Pc81DYjOOW6ulrq1asusu/pcAI66ZuvDszGJ+FEXGdQqiHnuDUmjSb
+ Xa8yvI7XUsrqoAAAf5nV0HzRmlb2NZ/MFD+LRrxqn4O6e4fiAhV8Wmhs9WFg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793280315; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793287653; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=1u4PYj+cvLRBRXYmD3Z/wuQ5LDXlcQvlgFzTpcHPDiw=;
- b=ngiVDSANU9Jjggi6WbSTbKo7EUPWDjRS+8o8ZsD5sSB+1M3lRn56kWaIdTOdpsdpiiI6o
- BKVBPQaAyHRH1fdZocfcnEweera8/8DA77Kp3UcdZvBP48TmBbxLVHBMWLrMBwLQJr6T3zt
- znx53y55vtbrNqSIviVwOnfXthDXuRAIEMWTE4NLSCpuARwREA+3D+NKepyxGXa6HWUPVVy
- GOVjtlSZ8/CRHZtXWhReu8oX+biVyeI4CywsQQFyEcPhM4iCsjdvXG8rnKQy6OqPqPqp833
- ZxINxM/qgaklVVmAXUx9n5u5KKOR4Sw8lyFyqOWJaIN7MrcyJP5vamY9X9YQ==
+ bh=ay6n7Klbj2VbbNZvY7N3Ue8A/MMbFz94+bzWv97g4Fo=;
+ b=fhAa/v4WMQaDyevS2ahFRDR+TX1PfnBP/Z5ppFM189DxpHH7MJKa7Z6AZF3Ww2OvZr7J+
+ PYN3KOFKKUn/7bTR2uamSrEftLkUBjs4kJeznOmG2I74O3iXp/HxH+cdzNKLVQj5hGy8WCq
+ sf7qpn5GnwDb2GMAS18Rr6DcKC4wBemQct+LZrZN7BNXw01vMTIYhsHV9tfNp1J4DbqXWUq
+ D6BpNcl/NRArcwcKBEes4zZGslXVpTBzHsAz8MLtTKXbafuwbqZuVF2LnAMfCfPhoadEZfh
+ KvIqo35SuAO+E6QE+bmFaagntOC146yIeCnjF3mIQuaHU7Br4mxDThjn3WQg==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=amd.com;
+ dkim=pass header.d=alum.mit.edu;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=amd.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=amd.com;
+  dmarc=pass (Used From Domain Record) header.from=alum.mit.edu
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=alum.mit.edu;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=amd.com policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=alum.mit.edu policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5132E46CD7;
-	Thu, 29 Oct 2026 13:25:13 +0000 (UTC)
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011061.outbound.protection.outlook.com [52.101.57.61])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2A3E91122F8;
-	Thu, 29 Oct 2026 13:44:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1BBAC46BCB
+	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 15:27:31 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11020116.outbound.protection.outlook.com [52.101.46.116])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1C4D010E3A8
+	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 15:46:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QdIiAqXAI+zWHrO16CJ5P0zhNYulxwjQYjPPM4Ui//BJ1bKvTnb72hqvnX+M2jOb+roky/Mc03bYLaohOOnKw0jo2BKS1mvPcILKupkX6qF6X9LbeFPfJZZ0mQ8PZuva7YvKhKkfUn9GTI3gAbXlkZsoPn6GJ2anQrbqiDJjK76xdfh1pGGPJztsqEmP58/MLvBJPd9NG4uV4xfnj1EMrzojTz83byf2bRMpWeUcXC4IcoVl05OP34uR3I7PhcL4lB1G3cvuV34h9YuzjGJYPArbepTzS3ADUKo/CeSiybHtEz/lOF3zRE+cT2Ztgs4tXJ0/gjaDcJd8IdC2w2bOuQ==
+ b=B5qKRRN6lYZKxgNUVY5twmYm3BFHM7qUUlU+xiGBqa+4E6stC62ZZ89820D4rVEHEDR9w+h8ZuPZWUsYQxJ10ZGns6iTGctBT3L3Bjoca0SxrsdobkzdYnprouG56ITdWcn9I2R1ffvXoC7tJKDXEcVON6ygSbqn4Wf5eCrLwOA+7n/EXrGmQ7s5p0+R3KvRReeXtCRoBGhpAPm4xtls9lXXdK2pElkqdcri7LcNUgNIzAvnGOvy5r5TvEWaf6Q6G6OC32yLgMKh9NZ/+Z1/R4b2CfdODpZVfguF9FjdYd0YmuwQGqA3PzUBfpSrC1JodaHb/eVZTS+v8OTcllTWeQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1u4PYj+cvLRBRXYmD3Z/wuQ5LDXlcQvlgFzTpcHPDiw=;
- b=wuS9l1D4AnMuSuUcy7Albr01USOAb+dWlWdFnLvG5S3HrEJHdWh7CVOTegEyVRX2Cgu0vMPaRCHrPaVNpU8qmYa62oSZNZcFHACOh8idSjJNySBG9f4Ou8rzOXTWUx2oiO2zw6euXoc6sc4W2sRg1AAt4YijE1QWqR7OHympdSkFtujfFDRSqzGqCshkAclmIGFwFseeuY8tojvTxuUy0WeksFXqa2IhU3SMJkktc+1ua7QaiNkBoaQc3csa/XlAoPlfxWGmZ7BVsTK74rhZPQPXnwWs5wgbBLHGfM/sy7tPckhEndA9kZIty2CJP4FPPj43D+s8BDeCJso+5lcRvA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ bh=ay6n7Klbj2VbbNZvY7N3Ue8A/MMbFz94+bzWv97g4Fo=;
+ b=SlvE9kklqp9DUSh+RYXVBAwyWqRgRhG6evWwb4nMmOWeYC0jNlK/iqRkU4i54okRGWaU/alNjrwo3edL5oRESL/1au6tLf/dyRwQ52ZXjt9CXe/NutlFaBYesYFiQI5D8ZL+aeCROhuaElHNWdvSAFDT8Ys4Xb2tACJKFeaFILJF2D+SE/rB7vS1U1XqXI6JGKP6GJ2dyU6FQ+x/rC+Lz27udKd881ebsgPZ3iaptBoUuNGUw/okTThNFO9BBQ+qwPYxgITtkDWMcjlC+2hAqjciKBIbhd3nNTHQ4pEoWx5GU30+nNBkRphZlbwTaF7Ud1oqrY4a0YHGMLoh/jqGSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 18.7.68.33) smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=alum.mit.edu; dmarc=pass (p=reject sp=reject pct=100)
+ action=none header.from=alum.mit.edu; dkim=none (message not signed);
+ arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alum.mit.edu;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1u4PYj+cvLRBRXYmD3Z/wuQ5LDXlcQvlgFzTpcHPDiw=;
- b=kNKHDjEzP3f325erIp5at/HZX5EzmIqaS3e8gWwC6h8mSUTFwtnxLMOft7AwC5ddFAC/MFnC47pvDYnfCpj4Lq9Bq6Qu1yJgozAe2UHtQMNC2xDSWWq5oXVw0ykLFlIWFgDHBWGZ78k/oX/qcqRc42fhrT6ju1IhKyBzzMicb4o=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by MN0PR12MB5716.namprd12.prod.outlook.com (2603:10b6:208:373::14) with
+ bh=ay6n7Klbj2VbbNZvY7N3Ue8A/MMbFz94+bzWv97g4Fo=;
+ b=YXQg4+vZ2PxqAyDG/XnYr1tGkSsEvAqvweFiLWSgrWPCLnKVR6uIZIs7AJuQ1NXYeoNKKUZNZmxwsBw5HVck52w2SnQqTqBwYJAtea3G3BInYmcxH5iM9pRo1n6m0d8BcUhQ0HLxP5xGYiHFhBGCYBW5FuuLEv/OGP1Rp00DdTU=
+Received: from SA0PR11CA0158.namprd11.prod.outlook.com (2603:10b6:806:1bb::13)
+ by SA0PR12MB7073.namprd12.prod.outlook.com (2603:10b6:806:2d5::8) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.8; Thu, 29 Oct
- 2026 13:44:11 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%3]) with mapi id 15.21.0546.021; Thu, 29 Oct 2026
- 13:44:11 +0000
-Message-ID: <2db0f1b4-6628-465e-928e-d779b89f59dc@amd.com>
-Date: Thu, 29 Oct 2026 14:43:52 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/6] dma-buf: Phase out is_signaled() race
-To: phasta@kernel.org, Lucas Stach <l.stach@pengutronix.de>,
- Min Ma <mamin506@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>,
- Oded Gabbay <ogabbay@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>,
- Tomeu Vizoso <tomeu@tomeuvizoso.net>,
- Karol Wachowski <karol.wachowski@linux.intel.com>,
- Andrzej Kacprowski <andrzej.kacprowski@linux.intel.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Russell King <linux+etnaviv@armlinux.org.uk>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Alessio Belle <alessio.belle@imgtec.com>,
- Luigi Santivetti <luigi.santivetti@imgtec.com>, Qiang Yu <yuq825@gmail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>, Lyude Paul
- <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>,
- =?UTF-8?Q?Adri=C3=A1n_Larumbe?= <adrian.larumbe@collabora.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Dave Airlie <airlied@redhat.com>,
- Gerd Hoffmann <kraxel@redhat.com>, Matthew Brost <matthew.brost@intel.com>,
- Natalie Vock <nat@pixelcluster.dev>,
- Arun Pravin <arunpravin.paneerselvam@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Melissa Wen <mwen@igalia.com>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
- <mcanal@igalia.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Thierry Reding <thierry.reding@kernel.org>,
- Mikko Perttunen <mperttunen@nvidia.com>, Jonathan Cameron
- <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sunil Khatri <sunil.khatri@amd.com>, Kees Cook <kees@kernel.org>,
- Jesse Zhang <jesse.zhang@amd.com>, =?UTF-8?Q?Timur_Krist=C3=B3f?=
- <timur.kristof@gmail.com>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Kexin Sun <kexinsun@smail.nju.edu.cn>, Prike Liang <Prike.Liang@amd.com>,
- David Rosca <david.rosca@amd.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Marco Crivellari <marco.crivellari@suse.com>,
- Shixiong Ou <oushixiong@kylinos.cn>,
- =?UTF-8?Q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>,
- Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, Al Viro <viro@zeniv.linux.org.uk>,
- Neill Kapron <nkapron@google.com>,
- Michael Bommarito <michael.bommarito@gmail.com>, Sam Day <me@samcday.com>,
- Gabriel Prostitis <prostitisgabriel@gmail.com>
-References: <20261029095542.1526750-3-phasta@kernel.org>
- <abca3f0039b07999e29558690c27fef23292bea3.camel@pengutronix.de>
- <3565783722927fa48a30f48b063ef99bcd703eab.camel@mailbox.org>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <3565783722927fa48a30f48b063ef99bcd703eab.camel@mailbox.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BL1P223CA0025.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:208:2c4::30) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+ 2026 15:46:33 +0000
+Received: from BN7PEPF00000096.namprd03.prod.outlook.com
+ (2603:10b6:806:1bb:cafe::a1) by SA0PR11CA0158.outlook.office365.com
+ (2603:10b6:806:1bb::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.569.9 via Frontend Transport; Thu, 29
+ Oct 2026 15:46:32 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 18.7.68.33) smtp.mailfrom=alum.mit.edu; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=alum.mit.edu;
+Received-SPF: Pass (protection.outlook.com: domain of alum.mit.edu designates
+ 18.7.68.33 as permitted sender) receiver=protection.outlook.com;
+ client-ip=18.7.68.33; helo=outgoing-alum.mit.edu; pr=C
+Received: from outgoing-alum.mit.edu (18.7.68.33) by
+ BN7PEPF00000096.mail.protection.outlook.com (10.167.245.74) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.569.4 via Frontend Transport; Thu, 29 Oct 2026 15:46:32 +0000
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
+ [209.85.218.53])
+	(authenticated bits=0)
+        (User authenticated as imirkin@ALUM.MIT.EDU)
+	by outgoing-alum.mit.edu (8.14.7/8.12.4) with ESMTP id 69TFkUpB013923
+	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 11:46:31 -0400
+Received: by mail-ej1-f53.google.com with SMTP id
+ a640c23a62f3a-c3fd91337baso398855966b.3
+        for <nouveau@lists.freedesktop.org>;
+ Thu, 29 Oct 2026 08:46:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AKwUvBx/wX8ZXurqPzXeNJViYFluRVUWoIgYBLRjlJ5puJJUnTLk1DN/2xMM8+GnPhJn4w9Q8gFrIgND@lists.freedesktop.org
+X-Gm-Message-State: AFq9FYLsnMrM2zR/NBmtlrpl/D5rnMD8q/blQ+AyMcmPI6/K52tmrT6x
+	hxugUdbhVDGYdL6o6/Hz1/edJ+6XAtiQY8DDEm9hwrQZ0Yv6wqchpRGMMeAOe4mHpnJjzY1KM5l
+	BsBBsbjg/BXzRx/kN3q5E1B2Xcm4WpFQ=
+X-Received: by 2002:a17:906:ee8b:b0:c3e:f39b:2286 with SMTP id
+ a640c23a62f3a-c49bd9d3f9fmr519577466b.0.1793288789796; Thu, 29 Oct 2026
+ 08:46:29 -0700 (PDT)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+References: <20261028185052.54427-1-xnderv@yandex.com>
+ <8abb7b92-c16a-47a9-8caf-49773845c246@free.fr>
+In-Reply-To: <8abb7b92-c16a-47a9-8caf-49773845c246@free.fr>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Date: Thu, 29 Oct 2026 11:46:17 -0400
+X-Gmail-Original-Message-ID: 
+ <CAKb7UvgJwO1C4=jR9V9mkbs=JA2wi2ptCOeJdG0-eL+gKoOdaQ@mail.gmail.com>
+X-Gm-Features: AclHuK99tAh5O0h0WiJFsz8HmWSiaOIlv7zjZDPHMJY9_4j6kOE52Wzfhxq1rog
+Message-ID: 
+ <CAKb7UvgJwO1C4=jR9V9mkbs=JA2wi2ptCOeJdG0-eL+gKoOdaQ@mail.gmail.com>
+Subject: Re: [RFC] Fermi (GF11x) reclocking: a model of the NVIDIA driver's
+ clock management, a lab nouveau module, and a call for NVIDIA 390 traces from
+ GDDR5 cards
+To: Martin Roukala <martin.peres@free.fr>
+Content-Type: multipart/alternative; boundary="0000000000004baef4065efc9522"
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN0PR12MB5716:EE_
-X-MS-Office365-Filtering-Correlation-Id: d4f175a8-d876-4067-d914-08df35c2b66d
+X-MS-TrafficTypeDiagnostic: BN7PEPF00000096:EE_|SA0PR12MB7073:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6b5ff337-f343-4e20-a033-08df35d3ce29
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|23010399003|1800799024|366016|376014|7416014|921020|11063799006|4143699003|56012099006|261026121527099003|261026140227099003|261028144727099003|10067099003|261022105027099003|22082099003|18002099003;
+	BCL:0;ARA:13230040|786006|376014|82310400026|36860700016|1800799024|43022699015|41320700013|23010399003|22082099003|18002099003|13003099007|8096899003|56012099006|4143699003|261026121527099003|261021123027099003|261026140227099003|261022105027099003|261022115727099003|261021121427099003|10067099003|261022075727099003|261009223027099003|261028144727099003|15866825006;
 X-Microsoft-Antispam-Message-Info: 
-	Lk286bQ5Rub5REwqftKLPts5rFVF0LYGEPbYRc0zyAUGxDspTrurJAog+OPthqT5Vht+kHe3ebOvp6Z643HNp4Dt37Z0Y1lHrfdGD0yH/ZYByx+UiURNiEeeuE8LSP6Erz4wrUfmP0SRL42fI/kKCWvgBHKy/7ml75lWCXUaDIA6zdv/2yVcwKA1kar0ikrLmH45bY+hNSCFh+d+xrk2LnCXG5kNh+eenz9uflwWXGfxF25I0GxBvxMvGQS2r8SLJSkwV6A2R3Vx2mTuVGL+PSPkHHuFHjlFt07t8gqeDy2AZslHHlTv9aRogsBhkep06jRL9NnElBrcIzD41LtOPL+t3PclZVVBSKe3X5WZQw0yagOX14G23m+IOuR5J7yk/Bu132jPhzColiDqRJ7dEpRfkioGKWAV45bR8T4v4kBPbXus63hLRkCkpzmI7rEkZWdokPxDBTmInl8bbp5+04KzU8Xae+5i2iAUOvJzNxgQhSPjFiFo4qIQ6I6yZxJouiJQZTuQNy7InhPg9bvJ0NxRuhWZ1DU4E2ES3osW7WkqHOXlSFrN6cS3JobXeOGJeqpVOHXYZQDyD7wYWrIhCz4kLEFDgz50w36REz/Expo3lZbq2Bf22NuOjk0DaLb/AeIAQOSCXem7zD4241MMacnIzoHk/k8HXuwC35YPT4cAbYNSQmJqxPTXsq/XDAl4DHmHWkL0j5CAqO3LayEuZA==
+	KsBG7pZZELqiLoIrA5qLe6sLkWzWQqxanjXwWwQqaC3rKCWVlrB6FuQtV6atAczlOCp9bN04M/PqERH3AoOsjP1VRDhLvpf3Rr7LrgHD1LyX+vY/SwUrmgtpbVUHVIRhscIn6OcnpWu50WV7eTBgB1twvOwOOD8qkkz+EHg4PVSmKfNfesevLBl3SKDOyfIckDqwERiqSORIXbXbnRXDn0V182TjiNj6frD9uhUqfsn1WQzapxtImVVWGMQKFmIH3OZcXiPdizI4CP+H3pl8qNQQrrP9T565wOsAxk6HlaIbhNgKj5v9sN+iAusbj6tx2LZc+WGi9TpPd3MNYhD+fCVj0VaT0Ye4n9zNGfib6Ep7o2DWSos+yrxMnl/RCH98PWhUxWM3hfWJOZs7Ykua+LNVAei6RxYRascl/br9LSnWx+VmXpdFt+KigKvXOC48dAdj69Ijg0vK/mMnAWy1QNtCc8YJoRnpXLA49S9PkAJVP0XytFlhe8sIjbO2BCSbBjgfIqsYpEHvkyffOdFl0R8EYOAC8Hh660wUo8fd3yuyxvzDxCQxUzYYdI/YaLprBw9TsDWJo1KUmB6Tlnq0IPy1NSRmPqiC0dQOPyRz3P00n3lxWfagiUQhGXXlKR4uFmcv0OuPpAoMOieCTEzm3bg74wEV4TGnl9RGKeNosqvD2jlIb83qAhvanlODUZewwpU3vo2i+hHWpjzWVSFh2g==
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB5685.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(7416014)(921020)(11063799006)(4143699003)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(10067099003)(261022105027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+	CIP:18.7.68.33;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:outgoing-alum.mit.edu;PTR:outgoing-alum.mit.edu;CAT:NONE;SFS:(13230040)(786006)(376014)(82310400026)(36860700016)(1800799024)(43022699015)(41320700013)(23010399003)(22082099003)(18002099003)(13003099007)(8096899003)(56012099006)(4143699003)(261026121527099003)(261021123027099003)(261026140227099003)(261022105027099003)(261022115727099003)(261021121427099003)(10067099003)(261022075727099003)(261009223027099003)(261028144727099003)(15866825006);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?eE5rYmJWYkxBcGFYd2oxZWxRai9VNHI2dldqOUN0UnppZ1JuTGs5aFVNVkFH?=
- =?utf-8?B?Y0NuOFhhQU90NGh0M1BLc3U0eWlpa3hLT3RLK0pGU1pYMloxSDl2MUZuV3c2?=
- =?utf-8?B?cVp1eVUwbXZ1SjVoNlNpSGloZW4yOVNaSUpnaUxraEg0d3lsOFVRTEFJRVdD?=
- =?utf-8?B?YlZ6bU1FUGthZEZkclVGOWNyeThoWGkrM1M3S2FDRmxFc3FlSUNlbnBsSzF1?=
- =?utf-8?B?aUxXYXZxL0dTUVJZV0RIaHBaTEMrSWtKWEZoMXpRUTllVExzUFFSTUtVU1p1?=
- =?utf-8?B?U3pwM3dCWWtxZDVYRkJzenRRZlZiRFNFRWtrY1BpTHFtUDc1Q1B6UDIrb0tB?=
- =?utf-8?B?UlNmQ3ppcTMxZXFidFcyNzE4Q1ZGNHZwWFhXWWwyREFQU0JpK2NJU3I2TFVO?=
- =?utf-8?B?Ulp6NGFYeHNsNmUyOXJNSUxMeENRTHZHaVpZQ3Y0ZWdTanM3N0tOVjgxdHVw?=
- =?utf-8?B?VWZ5MnptK0ZpN3NLbGUrZmxtWVlmeXpISzV1OURxeTNvWGhZb2l1ckFnZU5J?=
- =?utf-8?B?R2o1Nk1wcklrNXBlNEdEdFdYRmx3U0hOU3dMRVlsMmh1RC95enQ4QytmYm85?=
- =?utf-8?B?alJCWlNoQ1NIbDU4TGZRbGs1Sy9MYlNJV2s0WGRvSGUvMlB3RjdMWm5YZkNH?=
- =?utf-8?B?bWRMZk1tcTRZWHg1eVNTWnl2OWhYcTVsRTN5Tkw0dHR5SG5nT0xRTmdsMzk3?=
- =?utf-8?B?UFAzVmhvREdzb21sK0ZsVU9JUCtEZ21UVm1NelE3QmZqMlpkcUZVR3ZzV2p0?=
- =?utf-8?B?eFR5K3gwT1ZialVZaVJjS3IvUjhjWGtXTm12aksxR1VhMkE4MG1XRng5d2FH?=
- =?utf-8?B?ckFZSFNTbktvNU9VRVlMV3E0M09GTG4rdFZWMFpTWDdITklmNzQwVDErLzlu?=
- =?utf-8?B?Um1GVWwrQklURy9UbnMwV0czQXNtTjZ3ZytiVnA2YmlsU1dqb3lXdk9QbWRq?=
- =?utf-8?B?YkJZVHZrR2NmMDlhUy8ybFZ6dDZSQkRud0pwM1p1RDNWUzZuak44ZTNmbEFD?=
- =?utf-8?B?WitwWXNCQzdxUW1tSm9FVnBJMm15Y1MyRTBkOEl3ejk5QmFyOHV5cTIzK3dV?=
- =?utf-8?B?RW1qcnVjNDBZWklCcDh0eDl6R3daMkZZWW0wWldMMDlxU1ljajlmU0RQRzZO?=
- =?utf-8?B?aHFuSWZKcHJCcmhKUXk2RWhDdDhkd0FPZTVtdWFhZ2F0d2tUYzhvWlZJZDBR?=
- =?utf-8?B?dG5UcUMrd25Fek1Da0pHMEt0eFJkb0RMOGxWSE02SXJmWjVyTFEvdUhacFkz?=
- =?utf-8?B?clI3eXJrUXU3eENrVHl2djRXRWtLOVhpUVVjVXNGbHVCTHVTeG0yOE1EM3dT?=
- =?utf-8?B?K2UzM1FVSkxkaVdvODFhQTQzUld2Z0dKYTZvSEJHZE5KclNmZ1pyK2hobE93?=
- =?utf-8?B?di9xRjRkT2pDS2lsaU5LN2NJTlhqdXh4a2xEaXdyMnJtQmNZMzB1MjBNdTNm?=
- =?utf-8?B?c21qWDl3S05mckdBWjRFejdmVkpmeW1pbWZ5ZENWa01xQUlQNDE3VmRtbVRE?=
- =?utf-8?B?Zm1oS2FTUmFrWDdHN3ozc25JWkVHMnZXZGZWNTVBYmxaTzhYcDFIRkdkeWNa?=
- =?utf-8?B?MThiQi9QK1h0aW02UW05MnZpOWhkV2U3Y211djNsN01WNkVrVmpQZXA3eUVu?=
- =?utf-8?B?NkQ1elN1NUJHVUxQUzJWS0had2YzR3NOeXNvRXdHa1lxNnFCOFJNcDk0ZWs5?=
- =?utf-8?B?NHJCK0xPY09HTmQ0VXVOemJVaENMeFhtS1RtYmVjQXB5NUgyQjgzS0c0K2Z3?=
- =?utf-8?B?eWNmaEJpMFYwOHB5bW11Y09TdFB3YjR2R0R4cEpqMlROak1nVkdUdXJRNnlQ?=
- =?utf-8?B?RHAzMWVib3hUM25nYWs1MHp5YXpGTUIzTEZqV2pVZmNGbWt3WW5UcTBVU3hk?=
- =?utf-8?B?WWpQNGx3aFN4S0lZaUphazc5M2NYdE9tVWhSZjdMMlB1TmUzcTlkNFByK2NW?=
- =?utf-8?B?cUdCcm9acUxVOUZhcjRWNnRUS1JDeTB3Z085OGxHelEyMEk2NGM4QTRvTU9q?=
- =?utf-8?B?WmhQUWovQzJ3R2UwNVBWamx2aVNxbWtxTGFoRHRlaWgyeEJna1A4SmUyazBr?=
- =?utf-8?B?aVNCTFF3WTR2UDdYdUkyZlprcytYL3NteXVkQ29LVDczMUtpRmtzb2Rhdkdt?=
- =?utf-8?B?cGpoZ1I0azYvSXBPcUpjZXY1cTAxNVo0My9hVll4d1ZsZGJNd3A2TlRlMnV6?=
- =?utf-8?B?STNlUGd4Zi82YnIxRHE3YU0xRVZIVUgydG1ZOURBYllzMVlmSkhwQ1F4VVFB?=
- =?utf-8?B?MHVWTjlCNC9VRzZxa2JXZnEvZk96eVdOQzRWZ21pOGhwZnB1clAxbDNjTWZF?=
- =?utf-8?Q?Wy8Zx8IkX+2cI+Z0ek?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- d4f175a8-d876-4067-d914-08df35c2b66d
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2026 13:44:11.2221
+	rBcvasCtH+6iVpVzgVFhZYpSRbSIOKjNfIA9aOX7U8C/epWsX9q+dlcDMpthqw9h9luOrUNBfM79dtzshBKk5Qyu2c6Mbq3ekwNawUt8yBNOTTeMcqreLJSwvaMDJYOXwtMpP10Ke0g06lSbNWU3qH98NhSnFomJhw38J4bh1ZruSwjktcsMogT7txfBoNNzGjxDj2SnSwaNwGFgJED7p/XiRlCmrXsKMF6IfOdbvDora+4y6Unb+oOfA8GNFrzxe93lp3twcpjzkGE5LkdqM49A0d78npCV1kbhNCgZaqbyB9eM0hMi+FwTe/NuN6kz4oemP/MxNsJib0hB47u5tjDeIPQPR+csdqJCmzuAKjrZ1+nhreSx+hy8REY6/RI7S5DAUxFB74c5YCl0aeIG3HoATphm4u/6MlyUQPfJ4dZ0LIax/ToUyY8AiwuYNmB8
+X-OriginatorOrg: alum.mit.edu
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2026 15:46:32.1471
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- +LipB9l1rBDBHZrY4fr2AuoSMtG65tQoTqpUAuJYZCa5LAdiRjkpqEsPhln5Da+e
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5716
-Message-ID-Hash: BKUAVAVDXBKUZT5RRHTSGNLR4QWXKPKB
-X-Message-ID-Hash: BKUAVAVDXBKUZT5RRHTSGNLR4QWXKPKB
-X-MailFrom: Christian.Koenig@amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 6b5ff337-f343-4e20-a033-08df35d3ce29
+X-MS-Exchange-CrossTenant-Id: 3326b102-c043-408b-a990-b89e477d582f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
+ TenantId=3326b102-c043-408b-a990-b89e477d582f;Ip=[18.7.68.33];Helo=[outgoing-alum.mit.edu]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	BN7PEPF00000096.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7073
+Message-ID-Hash: SQECWZR7TOC73GU3PGA6ESUWHIJSTWFC
+X-Message-ID-Hash: SQECWZR7TOC73GU3PGA6ESUWHIJSTWFC
+X-MailFrom: imirkin@alum.mit.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- imagination@lists.freedesktop.org, lima@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-usb@vger.kernel.org
+CC: Alex <xnderv@yandex.com>, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BKUAVAVDXBKUZT5RRHTSGNLR4QWXKPKB/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SQECWZR7TOC73GU3PGA6ESUWHIJSTWFC/>
 Archived-At: 
- <https://lore.freedesktop.org/2db0f1b4-6628-465e-928e-d779b89f59dc@amd.com/>
+ <https://lore.freedesktop.org/CAKb7UvgJwO1C4=jR9V9mkbs=JA2wi2ptCOeJdG0-eL+gKoOdaQ@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -246,61 +171,217 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,HTML_MESSAGE,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
 	autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi guys,
+--0000000000004baef4065efc9522
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/29/26 11:28, Philipp Stanner wrote:
-> On Thu, 2026-10-29 at 11:23 +0100, Lucas Stach wrote:
->> Hi Philipp, hi Christian,
-> 
-> Jo Lucas
-> 
->>
->> Am Donnerstag, dem 29.10.2026 um 10:55 +0100 schrieb Philipp Stanner:
-> 
-> […]
-> 
->> I think we would all be interested in the actual use-case that's
->> sensitive to this kind of latency.
+Not sure if Ben's still around on this list, but at one point he had a
+non-working fermi reclocking branch. This stuff is complicated
+unfortunately... it worked on (some?) of his boards, but then e.g. on my
+identical Quadro 400 board, it didn't work (but worked on his Quadro 400).
+I did some very basic searching but couldn't find it online, unfortunately
+it looks like cgit.freedesktop.org has died, so finding this stuff is much
+harder now. I have it locally somewhere if it's of interest.
 
-Well everything which wants things to start as early as possible when the fence is signaled and not wait for the callbacks to run is affected.
+Cheers,
 
-If I'm not completely mistaken when we start to wait for the callbacks to finish in is_signaled we break more things than we fix because some people relied on timing here.
+  -ilia
 
-> Me too.
-> 
-> Let me use this opportunity to stress that in the future, in DRM,
-> whenever we have [to accept] a racy "optimization", both commit
-> messages and code comments must document why it exists and who
-> requested it with what proof.
+On Thu, Oct 29, 2026 at 1:24=E2=80=AFAM Martin Roukala <martin.peres@free.f=
+r> wrote:
 
-That is a really good idea I think.
+> Hi Alex,
+>
+> On 28/10/2026 20:50, Alex wrote:
+> > Hi,
+> >
+> > this is a hobby project, not a patch series yet, but it may interest
+> people who still have Fermi cards.
+> >
+> > Since early October we have been recording the NVIDIA 390.157 driver
+> with mmiotrace on a GTX 560 Ti (GF114)
+> > and on a second card (GTS 450, GF106, recorded by its owner), plus the
+> last pre-390 drivers (270.x) on a 2011-era
+> > stand, and turning what the driver does into a written model: which
+> registers it touches in which order, which
+> > waits it makes, and which of those steps are actually necessary (checke=
+d
+> one change at a time, 60+ experiments).
+> > Everything is from our own traces, VBIOS tables and open code (nouveau,
+> NVIDIA's open Tegra/nvgpu code, open-gpu-doc);
+> > no decompilation of the proprietary driver is used, so the results can
+> go upstream if they are good enough.
+> >
+> > What we have so far:
+> > - Core reclocking on GF114 with nouveau's gf100 clock code plus the
+> PTHERM/FSRM "bracket" the NVIDIA driver puts
+> >    around every domain mux switch (slowdown engaged before the switch,
+> released after). Without the bracket the GPC
+> >    mux sticks occasionally on our card; with it and a dwell of ~4 us
+> after the "engaged" flag, 0 stuck in thousands of
+> >    transitions. NVIDIA 390 waits 8 us by its own timer; 270.41.06 wraps
+> only the mux write. Details, numbers and the
+> >    register-level map are in the repository.
+>
+> Interesting, I don't remember ever seeing nvidia program the FSRM around
+> reclocking... but I barely looked at Fermi+ reclocking as I was more
+> concerned with the Tesla and under era.
+>
+> > - Memory reclocking (GDDR5, 135/324/2004 MHz) by replaying the PMU
+> memory scripts and host writes the NVIDIA driver ran
+> >    on the same card, through nouveau's memx. A generator that derives
+> those scripts from any board's VBIOS reproduces
+> >    88 % of the registers on the second card; the rest is chip-level
+> layout and driver-init bits.
+>
+>
+>
+> > - A VBIOS corpus of 306 Fermi images (with TechPowerUp's permission)
+> that shows what is per-family, per-chip and
+> >    per-board.
+>
+> We have a private database of a ton of vbioses + associated mmiotraces,
+> I could give you access if you are interested and the repo still exists
+> somewhere :D
+>
+> >
+> > What we are looking for: owners of Fermi cards with GDDR5
+> (GF100/GF104/GF106/GF110/GF114/GF116 - GTX 4xx/5xx,
+> > GTS 450, Quadro 2000-6000) willing to spend one evening recording the
+> NVIDIA 390 driver with our script (needs a spare
+> > disk with 390.157 and a kernel with CONFIG_MMIOTRACE) and to send the
+> trace plus their VBIOS image. In return they get a
+> > build of the lab module with their card's own sequences, and everything
+> learned is published. It is a lab module:
+> > hangs are possible, no warranty, no support promises.
+> >
+> > Repository and the call with details:
+> https://github.com/xnderv/nouveau-fix (issue #2).
+> > Comments on the approach are welcome too, especially on what would be
+> needed for an upstreamable version.
+>
+> Seems like a fun project, I wish you a lot of fun with it! If you need
+> historical context, please ping me at `martin.roukala@mupuf.org`, or on
+> IRC (in the #nouveau channel on OFTC, please ping mupuf).
+>
+> Cheers,
+> Martin
+>
+> >
+> > Thanks,
+> > Alex (xnderv on GitHub)
+>
+>
 
-> 
-> Would save us lots of time when those things are discussed >5 years
-> later.
-> 
->>
->> However, I wonder if this is even an issue anymore with the lock
->> inlined into the fence structure.
-> 
-> Almost no one uses inline-lock so far. So unfortunately, we might
-> regress old drivers, maybe.
+--0000000000004baef4065efc9522
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Considering that I still get bug reports even for the performance of radeon when we change things I fear that this is true.
+<div dir=3D"ltr">Not sure if Ben&#39;s still around on this list, but at on=
+e point he had a non-working fermi reclocking branch. This stuff is complic=
+ated unfortunately... it worked on (some?) of his boards, but then e.g. on =
+my identical Quadro 400 board, it didn&#39;t work (but worked on his Quadro=
+ 400). I did some very basic searching but couldn&#39;t find it online, unf=
+ortunately it looks like <a href=3D"http://cgit.freedesktop.org">cgit.freed=
+esktop.org</a> has died, so finding this stuff is much harder now. I have i=
+t locally somewhere if it&#39;s of interest.<div><br></div><div>Cheers,</di=
+v><div><br></div><div>=C2=A0 -ilia</div></div><br><div class=3D"gmail_quote=
+ gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 2=
+9, 2026 at 1:24=E2=80=AFAM Martin Roukala &lt;<a href=3D"mailto:martin.pere=
+s@free.fr">martin.peres@free.fr</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">Hi Alex,<br>
+<br>
+On 28/10/2026 20:50, Alex wrote:<br>
+&gt; Hi,<br>
+&gt; <br>
+&gt; this is a hobby project, not a patch series yet, but it may interest p=
+eople who still have Fermi cards.<br>
+&gt; <br>
+&gt; Since early October we have been recording the NVIDIA 390.157 driver w=
+ith mmiotrace on a GTX 560 Ti (GF114)<br>
+&gt; and on a second card (GTS 450, GF106, recorded by its owner), plus the=
+ last pre-390 drivers (270.x) on a 2011-era<br>
+&gt; stand, and turning what the driver does into a written model: which re=
+gisters it touches in which order, which<br>
+&gt; waits it makes, and which of those steps are actually necessary (check=
+ed one change at a time, 60+ experiments).<br>
+&gt; Everything is from our own traces, VBIOS tables and open code (nouveau=
+, NVIDIA&#39;s open Tegra/nvgpu code, open-gpu-doc);<br>
+&gt; no decompilation of the proprietary driver is used, so the results can=
+ go upstream if they are good enough.<br>
+&gt; <br>
+&gt; What we have so far:<br>
+&gt; - Core reclocking on GF114 with nouveau&#39;s gf100 clock code plus th=
+e PTHERM/FSRM &quot;bracket&quot; the NVIDIA driver puts<br>
+&gt;=C2=A0 =C2=A0 around every domain mux switch (slowdown engaged before t=
+he switch, released after). Without the bracket the GPC<br>
+&gt;=C2=A0 =C2=A0 mux sticks occasionally on our card; with it and a dwell =
+of ~4 us after the &quot;engaged&quot; flag, 0 stuck in thousands of<br>
+&gt;=C2=A0 =C2=A0 transitions. NVIDIA 390 waits 8 us by its own timer; 270.=
+41.06 wraps only the mux write. Details, numbers and the<br>
+&gt;=C2=A0 =C2=A0 register-level map are in the repository.<br>
+<br>
+Interesting, I don&#39;t remember ever seeing nvidia program the FSRM aroun=
+d <br>
+reclocking... but I barely looked at Fermi+ reclocking as I was more <br>
+concerned with the Tesla and under era.<br>
+<br>
+&gt; - Memory reclocking (GDDR5, 135/324/2004 MHz) by replaying the PMU mem=
+ory scripts and host writes the NVIDIA driver ran<br>
+&gt;=C2=A0 =C2=A0 on the same card, through nouveau&#39;s memx. A generator=
+ that derives those scripts from any board&#39;s VBIOS reproduces<br>
+&gt;=C2=A0 =C2=A0 88 % of the registers on the second card; the rest is chi=
+p-level layout and driver-init bits.<br>
+<br>
+<br>
+<br>
+&gt; - A VBIOS corpus of 306 Fermi images (with TechPowerUp&#39;s permissio=
+n) that shows what is per-family, per-chip and<br>
+&gt;=C2=A0 =C2=A0 per-board.<br>
+<br>
+We have a private database of a ton of vbioses + associated mmiotraces, <br=
+>
+I could give you access if you are interested and the repo still exists <br=
+>
+somewhere :D<br>
+<br>
+&gt; <br>
+&gt; What we are looking for: owners of Fermi cards with GDDR5 (GF100/GF104=
+/GF106/GF110/GF114/GF116 - GTX 4xx/5xx,<br>
+&gt; GTS 450, Quadro 2000-6000) willing to spend one evening recording the =
+NVIDIA 390 driver with our script (needs a spare<br>
+&gt; disk with 390.157 and a kernel with CONFIG_MMIOTRACE) and to send the =
+trace plus their VBIOS image. In return they get a<br>
+&gt; build of the lab module with their card&#39;s own sequences, and every=
+thing learned is published. It is a lab module:<br>
+&gt; hangs are possible, no warranty, no support promises.<br>
+&gt; <br>
+&gt; Repository and the call with details: <a href=3D"https://github.com/xn=
+derv/nouveau-fix" rel=3D"noreferrer" target=3D"_blank">https://github.com/x=
+nderv/nouveau-fix</a> (issue #2).<br>
+&gt; Comments on the approach are welcome too, especially on what would be =
+needed for an upstreamable version.<br>
+<br>
+Seems like a fun project, I wish you a lot of fun with it! If you need <br>
+historical context, please ping me at `<a href=3D"mailto:martin.roukala@mup=
+uf.org" target=3D"_blank">martin.roukala@mupuf.org</a>`, or on <br>
+IRC (in the #nouveau channel on OFTC, please ping mupuf).<br>
+<br>
+Cheers,<br>
+Martin<br>
+<br>
+&gt; <br>
+&gt; Thanks,<br>
+&gt; Alex (xnderv on GitHub)<br>
+<br>
+</blockquote></div>
 
-Regards,
-Christian.
-
-> 
-> But sounds as if you're in favor of phasing the locklessness out :)
-> 
-> 
-> P.
-
+--0000000000004baef4065efc9522--
