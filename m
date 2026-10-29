@@ -2,178 +2,123 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4827E606A31D
-	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 11:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72757606A31A
+	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 11:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=YhheDy8E
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=FnvWHLMe
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B841C112214;
-	Thu, 29 Oct 2026 11:23:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BF08D11225A;
+	Thu, 29 Oct 2026 11:54:29 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CCF7248BE8;
-	Thu, 29 Oct 2026 11:04:48 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793271888;
- b=XkHx9QpOLZCrAurayMONDxNkD262MksCdArSIbGbU8DJaqT1Flg0/XzdAbztyD6oV2kz4
- Kz2t+XhQsi7AkXELJ52aGQKNfN//kBJSsNUXBOkuKv2h+0vcGewkZ97HW7EyfoubGm26LvQ
- /Up/ZC53lfx/C7KWA3SrAyRefL8McfTn+RJnnTibVnGPFN+KMtO3tdpWbYGWBio/SAlmQGM
- Q/G4F2mV2vcwBaM/1ul1j50X93x9rRVyJR39xx0k8jmWhF0V6f61LOQrgvdIDL3zLdZNRKs
- usvxRXPWcJjP9tzlC3gAd+QgZQyE4anJPn5Ii5+l2ojW0PkIaOZGhSixJDpg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793271888; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id CA09448BE9;
+	Thu, 29 Oct 2026 11:35:19 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1793273719;
+ b=pD5XCeFIYHhOB+4/BcN3UpfPe1CmLuOrAffNyeCDofZKvr/qwSPXxsrB2DkT+Eq/fg2v9
+ PPHLClZGlYpdddrdTRlrHRRfllsEbE4GFlr9282K7dXi7KkFjRtroCkYFhyerlfknBfQ1oc
+ 8dAMEqdKnpDbhr8vFmaTP+iCgpqclX6HPaGpksfx6y1L35n96tiSyC4DeqBnQ80ZDk3mTB8
+ acqZbO7G81JB/tpWJ5UyKyOIEsfYlJJROtzeC4oNGXCq/WCHhNNgj6/IqyLETZQsUHgdktM
+ 5NZPDl6m9tLgmgG/XcYQgK74dZVVK/ua33TLHio7CLyFuR68X39wy8Wrm2kQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1793273719; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=s4uscHTSNNyFgyqCTfvm7pgyQFz42LzvHFK7u0x0Cw0=;
- b=I5Mfn48np1SUmTLYmROOYfMuaOPpF7W3zDBw5mHTTsdTiA8lOuDcFZlfSNiVQpMO4TfFA
- W5iVaPeqwSGXy1xalNJhPQA9+jJAQfRCHv20L2IauekEfI6H9oUN/bTr7AsNV4DqAI4Os9N
- REIorjQ7nOTTW1xa0mxxZQCpb0YOdDAAMdV1J+rpCnJHErXg/4+JTZCjqOvOPM/5oF1bqXD
- DjdQNAtw7yJo8tfngTau6MIXeHucg5mPRgGOg5NFBOQhawjK6aytrwelOhDRPm9xvK1wRBF
- ijoMJS1DDaxBAywmxkCAYI/6QT48rhCBEV/ymlMXYyKhTmSPD+nOQ2jCAzAQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=pengutronix.de;
-  arc=pass;
-  dmarc=none
+ bh=YBi8xDJGx/6F9wWTOGSs2iQ/3D1cw/PX4gpZHk4mGeQ=;
+ b=Q4kZzU7MacQGxUfAT2xOByYFFRvTTR4AzWrhwcuK9nsRkA90uS/Z4wL5NL4N1pQt53jMy
+ m6eeLJsXQ83biR4A9LkDLoArmcd6NSj2nfDPGN00RUs2/ojPi2ObXht1VHk8FN1czZ7HImP
+ YqYAHCVE3CHBRTVq2wXT6+PMciprTmd4YC7PFGV4QagLnvB3+fLCuqCeQi3o96hEzO22eiO
+ tFjJ51DN610yLUljtelIVuMID2Dns//FB5zHP8oqkDNIMu8YSPcrUZSPTJDwmOIkbaQ4PKl
+ IWk/23WYeTUdT7P8VsoEIMYDh3vD9/TXMdkBKgxNSXJjOot5FulSv6q8233g==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=intel.com header.i=@intel.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
+ policy.dmarc=none
 Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=pengutronix.de; arc=pass; dmarc=none
+ dkim=pass header.d=intel.com header.i=@intel.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9DBDE46CD7;
-	Thu, 29 Oct 2026 11:04:45 +0000 (UTC)
-Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de
- [185.203.200.13])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 32C0A112208;
-	Thu, 29 Oct 2026 11:23:50 +0000 (UTC)
-Received: from [IPv6:::1] (ptz.office.stw.pengutronix.de
- [IPv6:2a0a:edc0:0:900:1d::77])
-	(Authenticated sender: lst@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 418BC2007F9;
-	Thu, 29 Oct 2026 12:23:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1793273028;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=s4uscHTSNNyFgyqCTfvm7pgyQFz42LzvHFK7u0x0Cw0=;
-	b=YhheDy8EfCQv89DyrUXN/Yqh1aav8HKOaPDt4/Y3XFIPfM2HQZksNK1Q4J8Xiva3N9Z1Am
-	tkP2eX7Gmfxohg3zXmJeyevXeiaQVGhGYtgf5DW7WiXDKCn+YIxVKqJUBhnT18fBqcR9od
-	pNUOxHrNlb/aeBZqcMinomv32QEtNIj5iOvnDLzi8UenUwl35U/mEBFZgBoAEnX3k3vgMh
-	WQOKG6XE+gjRy2dunur160DUflwOCoaEEllxXNkae4RdWnLlHPVfWZgcVG5KwuGlYdMS4j
-	K8l8J5jfGgLMMk0a9E7oE+GBGvUkDtPQtpWfP+urJK7Rg8cIfoftFRGLPfWCxA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1793273028;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=s4uscHTSNNyFgyqCTfvm7pgyQFz42LzvHFK7u0x0Cw0=;
-	b=YtyTqxntKVSuf0cXkpc84IWDjijQempbl/OM6z3jYncGCiwf/Ln99mK5+x8W0cyO9xO1gA
-	kZBUATT4teV385wTGMVEaT2ftHDv466XZMo/nCHJ+3VBjvaefh76HC4h6ZqGpVZBZzIif0
-	B0s67a7gzHS6sPKR61gN4QKr3LIKCsgfOapXu1CZ/XgwBY8WD5Dr2jHZMjCr5H6sThWMxU
-	MsRJbd3Mcfr33CLRmW8Bp3z2gPWqfmC5Y9O64Vqrjxd/mFXxtXsuyhRNEFalbt43sftG6G
-	xJ0leaBmncxO0k6VjKMNj5ycc2G3vyKocU53toT9hpLpEM+cmebxYVR8EEEN+Q==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=lst@pengutronix.de smtp.mailfrom=l.stach@pengutronix.de
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1793273028; a=rsa-sha256;
-	cv=none;
-	b=CMz7Ii0BbFpIf3JOy1xOkUy1/GalemR2HX7An2NH4NYYc7nV9uA9ia33/CLwhOM5TIZVCO
-	r5SjbN1jtUnItbnYc85Z8xd4yR28RKXjpQwR04UflRreGYa/mpCLkcKsFkvwIJI+HcAAQT
-	e6tyb0XkfNDiCGGfk7D6jVoenCj3H0aH4beZaCr4Eu2G+Ql31BsMOvYsHkb91GsL5HKzlk
-	3XcSZVASLqeWZ4KZWuMaxSYPs7oxi8oIKtwvZ2vU+4PLj3JdRq+wZ2/4S5M1ckb3lR6s7O
-	ZyHtIMqbdSoBMc5gGXlEKgsiCFaxc5lHEpetkI/HR6kfcn8G0LRnwE1RHAFQyQ==
-Message-ID: <d0610126883f23bec3472f41e528aae786f27c8c.camel@pengutronix.de>
-Subject: Re: [RFC PATCH 0/6] dma-buf: Phase out is_signaled() race
-From: Lucas Stach <l.stach@pengutronix.de>
-To: phasta@kernel.org, Min Ma <mamin506@gmail.com>, Lizhi Hou
- <lizhi.hou@amd.com>,  Oded Gabbay <ogabbay@kernel.org>, "Rob Herring (Arm)"
- <robh@kernel.org>, Tomeu Vizoso	 <tomeu@tomeuvizoso.net>, Karol Wachowski
- <karol.wachowski@linux.intel.com>,  Andrzej Kacprowski
- <andrzej.kacprowski@linux.intel.com>, Sumit Semwal
- <sumit.semwal@linaro.org>, Christian =?ISO-8859-1?Q?K=F6nig?=	
- <christian.koenig@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
- Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter	 <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Russell King	
- <linux+etnaviv@armlinux.org.uk>, Christian Gmeiner
- <christian.gmeiner@gmail.com>,  Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Alessio
- Belle	 <alessio.belle@imgtec.com>, Luigi Santivetti
- <luigi.santivetti@imgtec.com>,  Qiang Yu <yuq825@gmail.com>, Rob Clark
- <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov	 <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang	
- <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, Marijn Suijten	
- <marijn.suijten@somainline.org>, Lyude Paul <lyude@redhat.com>, Danilo
- Krummrich <dakr@kernel.org>, Boris Brezillon
- <boris.brezillon@collabora.com>, Steven Price	 <steven.price@arm.com>,
- =?ISO-8859-1?Q?Adri=E1n?= Larumbe	 <adrian.larumbe@collabora.com>, Liviu
- Dudau <liviu.dudau@arm.com>, Dave Airlie	 <airlied@redhat.com>, Gerd
- Hoffmann <kraxel@redhat.com>, Matthew Brost	 <matthew.brost@intel.com>,
- Natalie Vock <nat@pixelcluster.dev>, Arun Pravin	
- <arunpravin.paneerselvam@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Thomas =?ISO-8859-1?Q?Hellstr=F6m?=	 <thomas.hellstrom@linux.intel.com>,
- Melissa Wen <mwen@igalia.com>,  =?ISO-8859-1?Q?Ma=EDra?= Canal	
- <mcanal@igalia.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Raspberry Pi Kernel Maintenance	 <kernel-list@raspberrypi.com>, Dmitry
- Osipenko <dmitry.osipenko@collabora.com>,  Gurchetan Singh
- <gurchetansingh@chromium.org>, Chia-I Wu <olvaffe@gmail.com>, Zack Rusin
- <zack.rusin@broadcom.com>,  Broadcom internal kernel review list	
- <bcm-kernel-feedback-list@broadcom.com>, Thierry Reding	
- <thierry.reding@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>,
- Jonathan Cameron	 <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Sunil Khatri <sunil.khatri@amd.com>, Kees
- Cook	 <kees@kernel.org>, Jesse Zhang <jesse.zhang@amd.com>, Timur
- =?ISO-8859-1?Q?Krist=F3f?=	 <timur.kristof@gmail.com>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>,  Kexin Sun <kexinsun@smail.nju.edu.cn>,
- Prike Liang <Prike.Liang@amd.com>, David Rosca	 <david.rosca@amd.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>, Marco Crivellari
- <marco.crivellari@suse.com>, Shixiong Ou <oushixiong@kylinos.cn>, Jouni
- =?ISO-8859-1?Q?H=F6gander?=	 <jouni.hogander@intel.com>, Thadeu Lima de
- Souza Cascardo <cascardo@igalia.com>,  Pierre-Eric Pelloux-Prayer
- <pierre-eric.pelloux-prayer@amd.com>, Joel Fernandes
- <joelagnelf@nvidia.com>, Al Viro <viro@zeniv.linux.org.uk>,  Neill Kapron
- <nkapron@google.com>, Michael Bommarito <michael.bommarito@gmail.com>, Sam
- Day <me@samcday.com>,  Gabriel Prostitis <prostitisgabriel@gmail.com>
-Date: Thu, 29 Oct 2026 12:23:45 +0100
-In-Reply-To: <3565783722927fa48a30f48b063ef99bcd703eab.camel@mailbox.org>
-References: <20261029095542.1526750-3-phasta@kernel.org>
-		 <abca3f0039b07999e29558690c27fef23292bea3.camel@pengutronix.de>
-	 <3565783722927fa48a30f48b063ef99bcd703eab.camel@mailbox.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.60.2 (3.60.2-2.fc44) 
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3101646CD7
+	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 11:35:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D3F2E112220;
+	Thu, 29 Oct 2026 11:54:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1793274861; x=1824810861;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=JWrFGNTUYl9evw/cUDq4OqTIxZXe9cF0vyFHTZm8iS8=;
+  b=FnvWHLMe6zgrfKFJrVIJDXW+OQoTEyAHfNNzrXDDV0G4alV1C1goelJh
+   cuQgZ1Y+0Y2BN4cZyODokJujaOIFg8GPYrQtul87Up/e4KYp7/TtbppSs
+   AlcxFI6eYcHz8UQ78Q1S/zrVYDu7ggDkGg81YsyfkADUFiimH16EBd3HO
+   8PfRBwnKJrBZvi25ZB9BPZhIE50gZei0oYNLBqF5t6dnWer7hNLSNiISL
+   Ao//h8qx75T2Ayv3+WwtVfQYmkeCy3/gxPjKLSMJ/BCoIQVbs+zXXjp3j
+   AZRsuKJFmP0sV8YfTRULiLqi6rpaHOFjSmOqnE6p/QsWKC9D90btFpu1p
+   w==;
+X-CSE-ConnectionGUID: L6bTj8opTVS4O2QC8sBsVg==
+X-CSE-MsgGUID: ZEhw3ccDS/+fxHFloY5eig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1898030"
+X-IronPort-AV: E=Sophos;i="6.27,184,1787036400";
+   d="scan'208";a="1898030"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2026 04:54:21 -0700
+X-CSE-ConnectionGUID: +A58QkJcTMik+42R32X5Cw==
+X-CSE-MsgGUID: RDmo4aLCReW6b8SBGQAJbQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,184,1787036400";
+   d="scan'208";a="5218611"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.145])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2026 04:54:12 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Dmytro Malovanyi <dmitrymalovanyy@gmail.com>,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/5] drm/dp: Always use enhanced framing for DPCD r1.2+
+In-Reply-To: <20261029101826.72773-2-dmitrymalovanyy@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261029101826.72773-1-dmitrymalovanyy@gmail.com>
+ <20261029101826.72773-2-dmitrymalovanyy@gmail.com>
+Date: Thu, 29 Oct 2026 13:54:09 +0200
+Message-ID: <5c241fa804e1e4ea4518854a96097252f7a5317a@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-ID-Hash: LHTVMS6G6FZOELDEHGQBMPELQ2CGUQUL
-X-Message-ID-Hash: LHTVMS6G6FZOELDEHGQBMPELQ2CGUQUL
-X-MailFrom: l.stach@pengutronix.de
+Content-Type: text/plain
+Message-ID-Hash: MF23A2PVRKJK5GE55OVSSM2WH4O75UVT
+X-Message-ID-Hash: MF23A2PVRKJK5GE55OVSSM2WH4O75UVT
+X-MailFrom: jani.nikula@intel.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- imagination@lists.freedesktop.org, lima@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-usb@vger.kernel.org
+ loop; banned-address; member-moderation
+CC: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Dmytro Malovanyi <dmitrymalovanyy@gmail.com>, Leo Li <sunpeng.li@amd.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LHTVMS6G6FZOELDEHGQBMPELQ2CGUQUL/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MF23A2PVRKJK5GE55OVSSM2WH4O75UVT/>
 Archived-At: 
- <https://lore.freedesktop.org/d0610126883f23bec3472f41e528aae786f27c8c.camel@pengutronix.de/>
+ <https://lore.freedesktop.org/5c241fa804e1e4ea4518854a96097252f7a5317a@intel.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -181,78 +126,71 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Am Donnerstag, dem 29.10.2026 um 11:28 +0100 schrieb Philipp Stanner:
-> On Thu, 2026-10-29 at 11:23 +0100, Lucas Stach wrote:
-> > Hi Philipp, hi Christian,
->=20
-> Jo Lucas
->=20
-> >=20
-> > Am Donnerstag, dem 29.10.2026 um 10:55 +0100 schrieb Philipp Stanner:
->=20
-> [=E2=80=A6]
->=20
-> > I think we would all be interested in the actual use-case that's
-> > sensitive to this kind of latency.
->=20
-> Me too.
->=20
-> Let me use this opportunity to stress that in the future, in DRM,
-> whenever we have [to accept] a racy "optimization", both commit
-> messages and code comments must document why it exists and who
-> requested it with what proof.
->=20
-I don't fully agree that this is a racy optimization. To me it seems
-the most critical issue here is that "fence is signaled" is under
-specified.
+On Thu, 29 Oct 2026, Dmytro Malovanyi <dmitrymalovanyy@gmail.com> wrote:
+> DP 1.2 section 2.2.1.1 says "An upstream device interoperating with a
+> downstream device with DPCD Revision of 1.2 or higher must enable
+> Enhanced Framing Mode". So for r1.2+ the DPCD revision is enough, the
+> DP_ENHANCED_FRAME_CAP bit does not need to be checked.
+>
+> Some sinks get this bit wrong. The Xiaomi Monitor A24i (P24FBA-RAGL)
+> sets it in the base receiver caps, but clears it in the extended
+> receiver caps at 0x2200, which are the ones we use:
+>
+>   base:     12 0a c4 01 01 00 01 80 02 00 06 00 00 00 81
+>   extended: 14 0a 44 00 01 00 01 80 02 02 06 00 00 00 81
+>
+> Through a USB4 dock (CalDigit Element 5) the link trains without
+> enhanced framing (0x202-0x204: 77 77 81), but the sink never syncs to
+> the stream (SINK_STATUS 0x205: 00) and shows "No signal". Forcing RBR
+> does not change it. Connected directly to the laptop the same sink
+> syncs without enhanced framing, at RBR, HBR and HBR2.
+>
+> Make drm_dp_enhanced_frame_cap() return true for DPCD r1.2+. This
+> changes behaviour for every driver using the helper, but only for sinks
+> which already violate the spec by not setting the bit.
+>
+> Tested on i915 (Arrow Lake-U), with the dock the link now uses enhanced
+> framing (0x101: 84) and the sink syncs (0x205: 03).
+>
+> Fixes: a1d926527b79 ("drm/i915: implement EXTENDED_RECEIVER_CAPABILITY_FIELD_PRESENT")
+> Cc: stable@vger.kernel.org
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/17719
+> Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
+> Signed-off-by: Dmytro Malovanyi <dmitrymalovanyy@gmail.com>
 
-Does it purely mean that the actual hardware operation that the fence
-is guarding is done? In that case the current implementation is fine,
-as the bit is only set after the HW told us that it is done. This is
-the interpretation I would assume was the original intent behind the
-current implementation.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Does it mean that the hardware is done and all registered callbacks
-have been run, even if the actual work is done in a (indefinitely)
-deferred worker? You mentioning explosions caused by the pure signal
-state check outside the lock would imply that some consumers of the
-fence took the signaled state to mean this interpretation.
+I've bounced the series to intel-gfx and intel-xe to get CI results,
+though I don't really expect any regressions.
 
-> Would save us lots of time when those things are discussed >5 years
-> later.
->=20
-> >=20
-> > However, I wonder if this is even an issue anymore with the lock
-> > inlined into the fence structure.
->=20
-> Almost no one uses inline-lock so far. So unfortunately, we might
-> regress old drivers, maybe.
->=20
-> But sounds as if you're in favor of phasing the locklessness out :)
->=20
-I'm in favor of ripping out hard to reason optimizations if they turn
-out to not provide any optimization after all. However, before going in
-either direction we need to clarify the fence signal state interface.=C2=A0
+I'd appreciate acks from other driver vendors too.
 
-Either we keep the (in my interpretation) original intent of the signal
-state only telling about HW progress state and thus declare some
-current uses as wrong usage of the interface, which need to be fixed.
-Or we need to include the SW callbacks too, but then your current lock
-approach only guards against code directly executed in the callback
-functions. If the implementation of the callback defers anything to a
-worker this may still be racy.
-And that's also my criticism to this patchset now that I thought a bit
-more about this: by simply putting things under the lock you serialized
-more of the SW state without actually better defining the guarantees
-that this changed fence interface provides or doesn't provide to the
-consumers.
+> ---
+>  include/drm/display/drm_dp_helper.h | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> index 5b05a7fbe..4f20f60db 100644
+> --- a/include/drm/display/drm_dp_helper.h
+> +++ b/include/drm/display/drm_dp_helper.h
+> @@ -160,6 +160,10 @@ drm_dp_max_lane_count(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+>  static inline bool
+>  drm_dp_enhanced_frame_cap(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+>  {
+> +	/* DP 1.2 2.2.1.1: enhanced framing is mandatory for DPCD r1.2+ */
+> +	if (dpcd[DP_DPCD_REV] >= 0x12)
+> +		return true;
+> +
+>  	return dpcd[DP_DPCD_REV] >= 0x11 &&
+>  		(dpcd[DP_MAX_LANE_COUNT] & DP_ENHANCED_FRAME_CAP);
+>  }
 
-Regards,
-Lucas
+-- 
+Jani Nikula, Intel
