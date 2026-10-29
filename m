@@ -2,168 +2,267 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75DA8606A31D
-	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 15:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149C9606A320
+	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 16:00:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=alum.mit.edu header.i=@alum.mit.edu header.a=rsa-sha256 header.s=selector2 header.b=YXQg4+vZ
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=iw94y/1+
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 558671123EE;
-	Thu, 29 Oct 2026 15:46:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1AC77112429;
+	Thu, 29 Oct 2026 16:00:45 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 02CFE48C02;
-	Thu, 29 Oct 2026 15:27:34 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793287653;
- b=ILjno5qK5+aX28m90RupYhBjM+INDE/vGFUDRlb6gp4742I1ZyVUXcz5pH+vj8ZkWXZMW
- kym7QBzLmwm7lDYYkTWcFjQl7Lln34XTgrtcntxFt/OcjSrpeAcRfiPrTZCx7zgQLmZwvng
- QFXWQMH1HC8Du9kEayGevYPfndUn1kNp0wxcl1d89C7UieKsK4A8XIMXgqaC62z58VDiDjb
- Bbaj6sbNpTFy8zX42Pc81DYjOOW6ulrq1asusu/pcAI66ZuvDszGJ+FEXGdQqiHnuDUmjSb
- Xa8yvI7XUsrqoAAAf5nV0HzRmlb2NZ/MFD+LRrxqn4O6e4fiAhV8Wmhs9WFg==
+	by kara.freedesktop.org (Postfix) with ESMTP id BD75548C03;
+	Thu, 29 Oct 2026 15:41:34 +0000 (UTC)
+ARC-Seal: i=2; cv=fail; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1793288494;
+ b=DVeMGM1aw5R0pKG8zTWEzriZqjQ3s9SNMYBIDTx8/RetPhVfScqr9C0sVt5S4Vy+UOl5G
+ rGqAHh5KmyYjrryfAfbQkcbmi5qa3QLF1xD+fYxmurouXiyfvWg7/xhuMShkQZeHPZ2Bw6T
+ vKmh/USjQv8XlgcOmtmn/8Ht8SF9LbxDNAK9bpKidN270vQE/P3CEweuqdeNi/GNvUGMq29
+ KwoVjw4IvBiH+2/nmxkuesjKCYBbdl2s+GePm0uZsi5PqIi3waqHVSxTeJ3zWsrh2iEH5KD
+ BJg0K6ibiWYlVxswvxnJUyatTTue+zYp3zPrT5howkSlb6Ol2nhpUrZFbUFg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793287653; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793288494; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ay6n7Klbj2VbbNZvY7N3Ue8A/MMbFz94+bzWv97g4Fo=;
- b=fhAa/v4WMQaDyevS2ahFRDR+TX1PfnBP/Z5ppFM189DxpHH7MJKa7Z6AZF3Ww2OvZr7J+
- PYN3KOFKKUn/7bTR2uamSrEftLkUBjs4kJeznOmG2I74O3iXp/HxH+cdzNKLVQj5hGy8WCq
- sf7qpn5GnwDb2GMAS18Rr6DcKC4wBemQct+LZrZN7BNXw01vMTIYhsHV9tfNp1J4DbqXWUq
- D6BpNcl/NRArcwcKBEes4zZGslXVpTBzHsAz8MLtTKXbafuwbqZuVF2LnAMfCfPhoadEZfh
- KvIqo35SuAO+E6QE+bmFaagntOC146yIeCnjF3mIQuaHU7Br4mxDThjn3WQg==
+ bh=++iK9zA7vdSqa2z9khUOayVv3ianUOElr3aNyLxohNs=;
+ b=cOODVUXU5U39PE6rU9sfx6WTef8zgC8y+j1XUrB+BmQ63lw9WdrRi/+mz4PjdsdUvHoqT
+ U10o2L/ALPaVGoFOcvrQY3o2eznMF2tg0vT+D1upvpm3OiWoS9ZKK1ZddxwJbQyjxLq68he
+ Noaz9oSRBCB2Ph7X7l/yvXc+J7XDAb/Kl/dB+nnFkQtZPV7LQHpBKAWcK8T4VgiTiFYLGHc
+ c9T8M1UsJUGiX7ncMwXQbnbTiuKwv9II192xrZKaP5+ZqmZAaIXudOTD3LNXOVjDIZwDGF+
+ wzcQvKXQlEQyOMWYRnyaD96uBs1P0M3n7MumUeQPeDRXi9WGysngHU6pDYIg==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=alum.mit.edu;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=alum.mit.edu
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=alum.mit.edu;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=alum.mit.edu policy.dmarc=reject
+ dkim=pass header.d=intel.com header.i=@intel.com;
+  arc=fail (Most recent ARC-Message-Signature did not validate);
+  dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=intel.com header.i=@intel.com;
+ arc=fail (Most recent ARC-Message-Signature did not validate);
+ dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 1BBAC46BCB
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 15:27:31 +0000 (UTC)
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11020116.outbound.protection.outlook.com [52.101.46.116])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1C4D010E3A8
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 15:46:35 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id DA94646CD7;
+	Thu, 29 Oct 2026 15:41:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B4DDC11240A;
+	Thu, 29 Oct 2026 16:00:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1793289636; x=1824825636;
+  h=date:from:to:cc:subject:message-id:references:
+   in-reply-to:mime-version;
+  bh=1s7rQPzBWfF3kY4Gi4Gs8o36uSP/gZ92/BBROqe3tUA=;
+  b=iw94y/1+GSa38QiXYO7iHgdQM1H1u+uV/uRXhLZ/qgBiL8xx52iOfeX2
+   irU6D2cIH0UUxN4ma4GWTitjgvCO5trpFP7L+f8wxytj7sRHs2jX6gRKW
+   hWdrHLNXfGLPoxAwZSPPevy4XoIvrYzKOULJoKCKuThb0VRI8kBxXC9D3
+   QuLZovFBYWlb8vf0T8qlxy8rf3c/pAuAF0Q2rSndx1JI4kTCr5FkzBQ6S
+   4c6aC12tXma9PYuugXqgk1vUuPUouXEexyI3aaytW3A6F93wlNNmHP4ht
+   NEpPLs17elRcAOlzZ9lCuU+oSBse57XC/28/4AfK4mPNPjO6w0B2QEkqy
+   w==;
+X-CSE-ConnectionGUID: KAWgxIBLQfKK9BkgWcs0fg==
+X-CSE-MsgGUID: Jb6HX69zTP+mA2vC/7wpew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1924331"
+X-IronPort-AV: E=Sophos;i="6.27,184,1787036400";
+   d="scan'208";a="1924331"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2026 09:00:34 -0700
+X-CSE-ConnectionGUID: yvTkDk+tT+OTJ+A6TBHHyA==
+X-CSE-MsgGUID: uKa5PQb6QsebgeeX3ej9Ng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,184,1787036400";
+   d="scan'208";a="5275435"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2026 09:00:32 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Thu, 29 Oct 2026 09:00:31 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Thu, 29 Oct 2026 09:00:31 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.69) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Thu, 29 Oct 2026 09:00:30 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B5qKRRN6lYZKxgNUVY5twmYm3BFHM7qUUlU+xiGBqa+4E6stC62ZZ89820D4rVEHEDR9w+h8ZuPZWUsYQxJ10ZGns6iTGctBT3L3Bjoca0SxrsdobkzdYnprouG56ITdWcn9I2R1ffvXoC7tJKDXEcVON6ygSbqn4Wf5eCrLwOA+7n/EXrGmQ7s5p0+R3KvRReeXtCRoBGhpAPm4xtls9lXXdK2pElkqdcri7LcNUgNIzAvnGOvy5r5TvEWaf6Q6G6OC32yLgMKh9NZ/+Z1/R4b2CfdODpZVfguF9FjdYd0YmuwQGqA3PzUBfpSrC1JodaHb/eVZTS+v8OTcllTWeQ==
+ b=N7dw55R7QH2y/o1H0Krg6QrDe1sXjJtyKa4F5Vrih1n4MfYxcWou3GRsTxhzRyq1iRE+3U1dit0gBpLt+bjF/XnCDvO54GVFGp/vqODW+nfWhVZAPEN5GEPpLXsKlLnuI955r62lE2WhqTKgZncFwenkqrTUa+P9a/nuxpt9Ny7YL1qJOJ2Hy8q8Hm8KRt8TS8NjVADzaji6eRRrZhVV7ZO2GJBQ5nx2oY73Hgp/t6zi825dhD7jK3PnAiI3XgubsA8pS9M7s/fJGYy7h4Wny4kGjK4FLVJInuP3OtGF77AI8S0Dgo/Rd60l0j/sOqtq5hgEQ7VNkPN4vWxE4sZ1rA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ay6n7Klbj2VbbNZvY7N3Ue8A/MMbFz94+bzWv97g4Fo=;
- b=SlvE9kklqp9DUSh+RYXVBAwyWqRgRhG6evWwb4nMmOWeYC0jNlK/iqRkU4i54okRGWaU/alNjrwo3edL5oRESL/1au6tLf/dyRwQ52ZXjt9CXe/NutlFaBYesYFiQI5D8ZL+aeCROhuaElHNWdvSAFDT8Ys4Xb2tACJKFeaFILJF2D+SE/rB7vS1U1XqXI6JGKP6GJ2dyU6FQ+x/rC+Lz27udKd881ebsgPZ3iaptBoUuNGUw/okTThNFO9BBQ+qwPYxgITtkDWMcjlC+2hAqjciKBIbhd3nNTHQ4pEoWx5GU30+nNBkRphZlbwTaF7Ud1oqrY4a0YHGMLoh/jqGSw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 18.7.68.33) smtp.rcpttodomain=lists.freedesktop.org
- smtp.mailfrom=alum.mit.edu; dmarc=pass (p=reject sp=reject pct=100)
- action=none header.from=alum.mit.edu; dkim=none (message not signed);
- arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alum.mit.edu;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ay6n7Klbj2VbbNZvY7N3Ue8A/MMbFz94+bzWv97g4Fo=;
- b=YXQg4+vZ2PxqAyDG/XnYr1tGkSsEvAqvweFiLWSgrWPCLnKVR6uIZIs7AJuQ1NXYeoNKKUZNZmxwsBw5HVck52w2SnQqTqBwYJAtea3G3BInYmcxH5iM9pRo1n6m0d8BcUhQ0HLxP5xGYiHFhBGCYBW5FuuLEv/OGP1Rp00DdTU=
-Received: from SA0PR11CA0158.namprd11.prod.outlook.com (2603:10b6:806:1bb::13)
- by SA0PR12MB7073.namprd12.prod.outlook.com (2603:10b6:806:2d5::8) with
+ bh=++iK9zA7vdSqa2z9khUOayVv3ianUOElr3aNyLxohNs=;
+ b=w+WtNPFR1X0tRSrixPIJjnQVocHwPpYr+kD1XQQ9C9MSsG4uj5pNQpGLbuCXtLqD6/XoKFkUB/WZLoE8mpzxtymqFObJQDf2Kvp2EwQadVfzSphjiVSKVm+4MY91fnii4zIidg+2hYSBUxzYv8k6iE/z17e0UhbI0knZBKWzbEO9PRBrECndUs/Sowi0aErm+TuaD5u55rdEP8wriUof1yMR1vK/wqz5E3sxQVIL6w6Qde1yfgAKoHfq9G1ptd8/992NrCO/y2yxyZ5YwSmt2crMuHC13fc9sZQKfFcgFeEqzpLuye7VDR7Nlt2EkROPaKY1vIExt4lnJo2B2/VHXg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
+ by DS0PR11MB7999.namprd11.prod.outlook.com (2603:10b6:8:123::5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.8; Thu, 29 Oct
- 2026 15:46:33 +0000
-Received: from BN7PEPF00000096.namprd03.prod.outlook.com
- (2603:10b6:806:1bb:cafe::a1) by SA0PR11CA0158.outlook.office365.com
- (2603:10b6:806:1bb::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.569.9 via Frontend Transport; Thu, 29
- Oct 2026 15:46:32 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 18.7.68.33) smtp.mailfrom=alum.mit.edu; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=alum.mit.edu;
-Received-SPF: Pass (protection.outlook.com: domain of alum.mit.edu designates
- 18.7.68.33 as permitted sender) receiver=protection.outlook.com;
- client-ip=18.7.68.33; helo=outgoing-alum.mit.edu; pr=C
-Received: from outgoing-alum.mit.edu (18.7.68.33) by
- BN7PEPF00000096.mail.protection.outlook.com (10.167.245.74) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.569.4 via Frontend Transport; Thu, 29 Oct 2026 15:46:32 +0000
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
- [209.85.218.53])
-	(authenticated bits=0)
-        (User authenticated as imirkin@ALUM.MIT.EDU)
-	by outgoing-alum.mit.edu (8.14.7/8.12.4) with ESMTP id 69TFkUpB013923
-	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Oct 2026 11:46:31 -0400
-Received: by mail-ej1-f53.google.com with SMTP id
- a640c23a62f3a-c3fd91337baso398855966b.3
-        for <nouveau@lists.freedesktop.org>;
- Thu, 29 Oct 2026 08:46:30 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AKwUvBx/wX8ZXurqPzXeNJViYFluRVUWoIgYBLRjlJ5puJJUnTLk1DN/2xMM8+GnPhJn4w9Q8gFrIgND@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYLsnMrM2zR/NBmtlrpl/D5rnMD8q/blQ+AyMcmPI6/K52tmrT6x
-	hxugUdbhVDGYdL6o6/Hz1/edJ+6XAtiQY8DDEm9hwrQZ0Yv6wqchpRGMMeAOe4mHpnJjzY1KM5l
-	BsBBsbjg/BXzRx/kN3q5E1B2Xcm4WpFQ=
-X-Received: by 2002:a17:906:ee8b:b0:c3e:f39b:2286 with SMTP id
- a640c23a62f3a-c49bd9d3f9fmr519577466b.0.1793288789796; Thu, 29 Oct 2026
- 08:46:29 -0700 (PDT)
+ 2026 16:00:20 +0000
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0569.008; Thu, 29 Oct 2026
+ 16:00:19 +0000
+Date: Thu, 29 Oct 2026 09:00:15 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Philipp Stanner <phasta@kernel.org>
+Subject: Re: [RFC PATCH 5/6] dma-buf: dma-fence: Close race in
+ dma_fence_is_signaled() by default
+Message-ID: <auNtj8zYrqwtnXdK@gsse-cloud1.jf.intel.com>
+References: <20261029095542.1526750-3-phasta@kernel.org>
+ <20261029095542.1526750-8-phasta@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20261029095542.1526750-8-phasta@kernel.org>
+X-ClientProxiedBy: MW4PR04CA0044.namprd04.prod.outlook.com
+ (2603:10b6:303:6a::19) To CO1PR11MB4787.namprd11.prod.outlook.com
+ (2603:10b6:303:95::23)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261028185052.54427-1-xnderv@yandex.com>
- <8abb7b92-c16a-47a9-8caf-49773845c246@free.fr>
-In-Reply-To: <8abb7b92-c16a-47a9-8caf-49773845c246@free.fr>
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Date: Thu, 29 Oct 2026 11:46:17 -0400
-X-Gmail-Original-Message-ID: 
- <CAKb7UvgJwO1C4=jR9V9mkbs=JA2wi2ptCOeJdG0-eL+gKoOdaQ@mail.gmail.com>
-X-Gm-Features: AclHuK99tAh5O0h0WiJFsz8HmWSiaOIlv7zjZDPHMJY9_4j6kOE52Wzfhxq1rog
-Message-ID: 
- <CAKb7UvgJwO1C4=jR9V9mkbs=JA2wi2ptCOeJdG0-eL+gKoOdaQ@mail.gmail.com>
-Subject: Re: [RFC] Fermi (GF11x) reclocking: a model of the NVIDIA driver's
- clock management, a lab nouveau module, and a call for NVIDIA 390 traces from
- GDDR5 cards
-To: Martin Roukala <martin.peres@free.fr>
-Content-Type: multipart/alternative; boundary="0000000000004baef4065efc9522"
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN7PEPF00000096:EE_|SA0PR12MB7073:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b5ff337-f343-4e20-a033-08df35d3ce29
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|DS0PR11MB7999:EE_
+X-MS-Office365-Filtering-Correlation-Id: a6a3578e-fddd-4b58-297f-08df35d5babd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|786006|376014|82310400026|36860700016|1800799024|43022699015|41320700013|23010399003|22082099003|18002099003|13003099007|8096899003|56012099006|4143699003|261026121527099003|261021123027099003|261026140227099003|261022105027099003|261022115727099003|261021121427099003|10067099003|261022075727099003|261009223027099003|261028144727099003|15866825006;
+ BCL:0;ARA:13230040|376014|7416014|366016|1800799024|23010399003|18002099003|22082099003|56012099006|11063799006|261026140227099003|4143699003|261021123027099003|261021121427099003|10067099003|261026121527099003|261009223027099003|261022075727099003|261022105027099003|261028144727099003;
 X-Microsoft-Antispam-Message-Info: 
-	KsBG7pZZELqiLoIrA5qLe6sLkWzWQqxanjXwWwQqaC3rKCWVlrB6FuQtV6atAczlOCp9bN04M/PqERH3AoOsjP1VRDhLvpf3Rr7LrgHD1LyX+vY/SwUrmgtpbVUHVIRhscIn6OcnpWu50WV7eTBgB1twvOwOOD8qkkz+EHg4PVSmKfNfesevLBl3SKDOyfIckDqwERiqSORIXbXbnRXDn0V182TjiNj6frD9uhUqfsn1WQzapxtImVVWGMQKFmIH3OZcXiPdizI4CP+H3pl8qNQQrrP9T565wOsAxk6HlaIbhNgKj5v9sN+iAusbj6tx2LZc+WGi9TpPd3MNYhD+fCVj0VaT0Ye4n9zNGfib6Ep7o2DWSos+yrxMnl/RCH98PWhUxWM3hfWJOZs7Ykua+LNVAei6RxYRascl/br9LSnWx+VmXpdFt+KigKvXOC48dAdj69Ijg0vK/mMnAWy1QNtCc8YJoRnpXLA49S9PkAJVP0XytFlhe8sIjbO2BCSbBjgfIqsYpEHvkyffOdFl0R8EYOAC8Hh660wUo8fd3yuyxvzDxCQxUzYYdI/YaLprBw9TsDWJo1KUmB6Tlnq0IPy1NSRmPqiC0dQOPyRz3P00n3lxWfagiUQhGXXlKR4uFmcv0OuPpAoMOieCTEzm3bg74wEV4TGnl9RGKeNosqvD2jlIb83qAhvanlODUZewwpU3vo2i+hHWpjzWVSFh2g==
+ GcA/mTp3EeoLjKo9kf4JRRrRKZLtSlDNaMmvaSH66FCOzpPQZSRs/U5CmyaOEfe85COboqUvFC/IS2XNvmWk0YNjCp1HRjR7+YfGdy5ApnRrM/c67DJNNNEETe1xJ4eXeyYxwYAyvGUWo49j9UYEXcCDfM7TNvUKl7+1BKpFhcPUIHZ7WvA6SMFestx7luxt2me4h/k0MXsnbwVSD6ymbV7F2E5m+M653Aqp6BGQ/Pmr95HLeX7h0n8ZEE8HYdhSLbfaGl/CwOTcphOULwPXNSdQPy6Q/WXlAzgTmEuGea3akpjRVedIkpewnHHLYyTpkxIO3+AhjibRAVaRUb886ft7MLrmdF7945T+lnLtzd/IG2y6aaE/e4VU3HxpkZiV2nWqgMqNc8VXwNa1uxVuRCJQJXU4Y0UObzf1xQsN7ybsDvu6JeegZWipNKVjD7jLbjKyELE0sA095YtYQoMnTWlbavtkL2ZKpCSJsDWUD0zWrlktPcoD/hPddvLuWDqtDsbPcoRuxqgLAOr3uXEK2eLLRbt/8PwA/bocggz5KnHWwSyGSdhUlnDNYwOuZxjvY75hmGX+BOX/YoS8JWi6Gh0w+1MmkT3mzO9G/Wvr9SaMJoNXrUqFSvfDl42XLZeLh0EqVr6DwAWHqeRFrz9VHEFrclPMlQO9kT1wIOCPWjw=
 X-Forefront-Antispam-Report: 
-	CIP:18.7.68.33;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:outgoing-alum.mit.edu;PTR:outgoing-alum.mit.edu;CAT:NONE;SFS:(13230040)(786006)(376014)(82310400026)(36860700016)(1800799024)(43022699015)(41320700013)(23010399003)(22082099003)(18002099003)(13003099007)(8096899003)(56012099006)(4143699003)(261026121527099003)(261021123027099003)(261026140227099003)(261022105027099003)(261022115727099003)(261021121427099003)(10067099003)(261022075727099003)(261009223027099003)(261028144727099003)(15866825006);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4787.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(23010399003)(18002099003)(22082099003)(56012099006)(11063799006)(261026140227099003)(4143699003)(261021123027099003)(261021121427099003)(10067099003)(261026121527099003)(261009223027099003)(261022075727099003)(261022105027099003)(261028144727099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	rBcvasCtH+6iVpVzgVFhZYpSRbSIOKjNfIA9aOX7U8C/epWsX9q+dlcDMpthqw9h9luOrUNBfM79dtzshBKk5Qyu2c6Mbq3ekwNawUt8yBNOTTeMcqreLJSwvaMDJYOXwtMpP10Ke0g06lSbNWU3qH98NhSnFomJhw38J4bh1ZruSwjktcsMogT7txfBoNNzGjxDj2SnSwaNwGFgJED7p/XiRlCmrXsKMF6IfOdbvDora+4y6Unb+oOfA8GNFrzxe93lp3twcpjzkGE5LkdqM49A0d78npCV1kbhNCgZaqbyB9eM0hMi+FwTe/NuN6kz4oemP/MxNsJib0hB47u5tjDeIPQPR+csdqJCmzuAKjrZ1+nhreSx+hy8REY6/RI7S5DAUxFB74c5YCl0aeIG3HoATphm4u/6MlyUQPfJ4dZ0LIax/ToUyY8AiwuYNmB8
-X-OriginatorOrg: alum.mit.edu
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2026 15:46:32.1471
- (UTC)
+ =?us-ascii?Q?yhF8AzJ4SOQZjKgwpgmtJEsmjJJJQZSmg7/qT2hQva1P3tFx5+K7Yuv0XDxE?=
+ =?us-ascii?Q?YGKyP6qm6UBfD/rfkSnzfmOttXOSXlYIgQEY3s/hDdvwREziNUYoATT3VAXg?=
+ =?us-ascii?Q?EyV1ZxkVWVmsB4bf2H1WrARuJ1BWkpzWKvU7vBjZxefHYHIKI9fathPH1BMg?=
+ =?us-ascii?Q?Mk8AL15M9nbE6rGhw7oNayZTS7ulj9k4xfkaWFXyzMAu4HCKl30YA7trp8qR?=
+ =?us-ascii?Q?jE7HPC18lS8DVACLGgnTvAtkJKYeYldgyP7/2baOmlVZJYZD4zmjEQF6QSqd?=
+ =?us-ascii?Q?6AG5+bexZyDihivIA/+1sqYcWy2ZsSKrtf2Sxg7ifGXqaLAO+DVmnpQYAY9u?=
+ =?us-ascii?Q?/0X5ieF1oXhQ5T46RrBIgTTGTU2/rS8fiDlgydqTCFa7GwWpITBfLq5XVMPO?=
+ =?us-ascii?Q?tuGFnYR5vwENoNvaBfimbbK8VFHzDgqWs9jH7vLZIh8JN4RM/3LbhFm0NlsP?=
+ =?us-ascii?Q?Bh/Ji3OtkT/HlQt8VnRQCL7Sa1pkviVpdXMyW63P4TLP4dpOJ/e+rIQps3sc?=
+ =?us-ascii?Q?gzIwLCo/A70cwZq4za64EOGuJYykb7JOEQev2O53+8iLbL0malpFKMc305wl?=
+ =?us-ascii?Q?M6QbbZX91ZcZYPaqYjIQsVkbLkQmuB0oZzvsnJZAUvt26nnRpc1kydEK/slq?=
+ =?us-ascii?Q?Og5hD3gWG0tHqDXZiVDtDYJ+A3NLPdDTX07EOWtGbaxmK8Rha/HeNsdRL7/K?=
+ =?us-ascii?Q?j2TNPOQP67Ce92OnO7VF+uUTKGnkedGKW/CUoArTGCjWOu75p5XfKj1gEqPl?=
+ =?us-ascii?Q?304SJqpFMsjiQkRPrybV2inV6ZIQxkq8thcDad8z+d7JaQw4/HpaiMFW3BPI?=
+ =?us-ascii?Q?Neo+pd7oiPbqwUOrRe/4Wj/uqkDldwF8+C4jPpxRHDcDr7SV2OAXR8DPsuaP?=
+ =?us-ascii?Q?FGZvPuF7Jf3IM7mBUWCev38v+otOOF6M6YCD3RepkIXNGX+mvvCuknak1PGI?=
+ =?us-ascii?Q?6t/URpwMQsZhbz9V5HTyaXIYqz3l4n5ZeaRmyiYnR1h566xM0KnX/+T4tDhC?=
+ =?us-ascii?Q?0+swB0C/53Ez5M8lOitNeERlB7rPLdqLpcENIdKp13fgv3W38Z/ee+MJkVlB?=
+ =?us-ascii?Q?JKKV15VqmaV3s0bu1aEufn8upTr8JsHkYTn4RjWI30HHUodW7Xj9Y8x5XCcD?=
+ =?us-ascii?Q?bScg1/3thW7vKQe5wngY3yBCkNKSJuhyKUoFNQVjFndmpGGpU79MUU56PlOu?=
+ =?us-ascii?Q?tNJCk6cpYJQBOuUan7AtIV8Q53o57SPua3K+laf4u6UsRhT5Egx1tCqG0XJk?=
+ =?us-ascii?Q?5cBrlRrfu0MM+TnKPzwRm3tbpqz/5hk0IwcyAXxs45t/lmMepkczpAbvEVJP?=
+ =?us-ascii?Q?T7Y7tanSinbMf0apgIhDdgGEygGUlX/u0zoCV03VYQFHM9lfHkaLnXNwMC9G?=
+ =?us-ascii?Q?rhBu6/NtP6w8OioKuV00NNXE7dKd2kYgjLklYSMSMlJTQ2HB8jUNBWlgyr0m?=
+ =?us-ascii?Q?OZ1/+zOUR0JwAlj2dSs4xV6HHZ2gHo+pTCZMQBIQ6z29M9SoIJMa7kC3HEWp?=
+ =?us-ascii?Q?ZxsMSwXPnI12wXgMvByM39w2Vafl2SJo3YdZIpnKGzrD7t/PqCyfPWpI+mEk?=
+ =?us-ascii?Q?mrYKJrNxoQPDpTvZPlGgmwyNMUUIsXtYRDjIm5XPzaNV0Q4+YEwCwXidBf2D?=
+ =?us-ascii?Q?znPX9w0PaoOE4qN7f8MBUF+ikYcHBjzyB18ztj7xUE9Cy7CzfcBNVaaZgdy9?=
+ =?us-ascii?Q?cAqGmr6juZ3Fq2qgbs0f0Nt5F1ZQplZE1fN+64VvSX205qGUiLFixjLme0zX?=
+ =?us-ascii?Q?T9a/l0vNZw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: 
+ dLchvVtnFtecCNNV+v+ZIIG05MtGLBr70qRjTdh1vTzrBkOTUKxwylRlWDjcLKwFLSJ56kKgUfTh2ISt5C7dnlfSI8QUelygsNRnwrA7w5ztxSoLpV4FeJzVnQ/+LKkP1gXlMiwGPYbVa3hM4F4Kndc+8hpYKSVMm/Z7iXQByCiaNgp2ptitmUZ/Sk5vegJH521FjaX6x4BPVfva0LiV79JFOG0bRAD3q36M+lFvhAvG6ctR5jjk8jmBJTFuUYZXGKbao5N3CIb1jMvbQBeuEgNy0nbDnhecn8RRqVD7zO76vaxATu4keJHpxP6tIWa9Xqa+DUGAEnb4BQDgohgw4g==
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 6b5ff337-f343-4e20-a033-08df35d3ce29
-X-MS-Exchange-CrossTenant-Id: 3326b102-c043-408b-a990-b89e477d582f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
- TenantId=3326b102-c043-408b-a990-b89e477d582f;Ip=[18.7.68.33];Helo=[outgoing-alum.mit.edu]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	BN7PEPF00000096.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7073
-Message-ID-Hash: SQECWZR7TOC73GU3PGA6ESUWHIJSTWFC
-X-Message-ID-Hash: SQECWZR7TOC73GU3PGA6ESUWHIJSTWFC
-X-MailFrom: imirkin@alum.mit.edu
+ a6a3578e-fddd-4b58-297f-08df35d5babd
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2026 16:00:19.1318
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ +5xI66ER351bw+NXujpvhxkFpRqgB+f3HwPJlr35TdqYCPpvwQDo7vWQUcbhQEiONluhg4IYvB+WQX47sagy2Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7999
+X-OriginatorOrg: intel.com
+Message-ID-Hash: CQYSNDBW3OPRWVJMNOOGZXF6QN5WGSHX
+X-Message-ID-Hash: CQYSNDBW3OPRWVJMNOOGZXF6QN5WGSHX
+X-MailFrom: matthew.brost@intel.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Alex <xnderv@yandex.com>, nouveau@lists.freedesktop.org
+ loop; banned-address; member-moderation
+CC: Min Ma <mamin506@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>,
+ Oded Gabbay <ogabbay@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>,
+ Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+ Karol Wachowski <karol.wachowski@linux.intel.com>,
+ Andrzej Kacprowski <andrzej.kacprowski@linux.intel.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Alessio Belle <alessio.belle@imgtec.com>,
+ Luigi Santivetti <luigi.santivetti@imgtec.com>, Qiang Yu <yuq825@gmail.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>,
+ =?iso-8859-1?Q?Adri=E1n?= Larumbe <adrian.larumbe@collabora.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Dave Airlie <airlied@redhat.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, Natalie Vock <nat@pixelcluster.dev>,
+ Arun Pravin <arunpravin.paneerselvam@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Melissa Wen <mwen@igalia.com>,
+ =?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu <olvaffe@gmail.com>,
+ Zack Rusin <zack.rusin@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Thierry Reding <thierry.reding@kernel.org>,
+ Mikko Perttunen <mperttunen@nvidia.com>, Jonathan Cameron <jic23@kernel.org>,
+ David Lechner <dlechner@baylibre.com>,
+ Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Sunil Khatri <sunil.khatri@amd.com>, Kees Cook <kees@kernel.org>,
+ Jesse Zhang <jesse.zhang@amd.com>,
+ Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Kexin Sun <kexinsun@smail.nju.edu.cn>, Prike Liang <Prike.Liang@amd.com>,
+ David Rosca <david.rosca@amd.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Marco Crivellari <marco.crivellari@suse.com>,
+ Shixiong Ou <oushixiong@kylinos.cn>,
+ Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, Al Viro <viro@zeniv.linux.org.uk>,
+ Neill Kapron <nkapron@google.com>,
+ Michael Bommarito <michael.bommarito@gmail.com>, Sam Day <me@samcday.com>,
+ Gabriel Prostitis <prostitisgabriel@gmail.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ imagination@lists.freedesktop.org, lima@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-usb@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SQECWZR7TOC73GU3PGA6ESUWHIJSTWFC/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CQYSNDBW3OPRWVJMNOOGZXF6QN5WGSHX/>
 Archived-At: 
- <https://lore.freedesktop.org/CAKb7UvgJwO1C4=jR9V9mkbs=JA2wi2ptCOeJdG0-eL+gKoOdaQ@mail.gmail.com/>
+ <https://lore.freedesktop.org/auNtj8zYrqwtnXdK@gsse-cloud1.jf.intel.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -171,217 +270,119 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,HTML_MESSAGE,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---0000000000004baef4065efc9522
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Thu, Oct 29, 2026 at 10:55:42AM +0100, Philipp Stanner wrote:
+> dma_fence_is_signaled() contains a lockless check of the signaled-bit,
+> which is set under lock protection. This is a race condition which makes
+> the API fragile and has caused at least two bugs already, addressed in:
+> 
+> 	commit c8a5d5ea3ba6 ("nouveau: fix client work fence deletion race")
+> 	commit 7c703a7d3f2b ("drm/amdgpu: Fix one use-after-free of VM")
+> 
+> It has been argued by some that this race cannot be closed for the
+> entire kernel through locking because this would lead to a cache line
+> invalidation for all parties reading that fence. While it remains
+> unclear why these parties don't simply let themselves be notified about
+> the fence being signaled instead of checking this repeatedly manually,
+> there is a way to preserve this behavior in any case:
+> 
+> This patch adds a new flag for dma_fence_init(),
+> DMA_FENCE_INIT_FLAG_RACY_SIGNALED_CHECK. If this flag is not set, the
+> spinlock is taken and dma_fence_is_signaled() becomes perfectly
+> synchronized: it can only return true once signaling of the fence is
+> completed.
+> 
+> Disable the racy check for everyone by default. Should some parties
+> really experience severe performance degredations because of this, they
+> can trivially re-enable the race condition for their driver by setting
+> the flag in dma_fence_init().
+> 
 
-Not sure if Ben's still around on this list, but at one point he had a
-non-working fermi reclocking branch. This stuff is complicated
-unfortunately... it worked on (some?) of his boards, but then e.g. on my
-identical Quadro 400 board, it didn't work (but worked on his Quadro 400).
-I did some very basic searching but couldn't find it online, unfortunately
-it looks like cgit.freedesktop.org has died, so finding this stuff is much
-harder now. I have it locally somewhere if it's of interest.
+My 2 cents - anyone arguing about cachelines probably has broken code to
+begin with. I'd say don't give anyone an option to opt into a racey
+check, if this regressing some peoples code the answer is likely
+structurally fix your broken code.
 
-Cheers,
+Matt
 
-  -ilia
-
-On Thu, Oct 29, 2026 at 1:24=E2=80=AFAM Martin Roukala <martin.peres@free.f=
-r> wrote:
-
-> Hi Alex,
->
-> On 28/10/2026 20:50, Alex wrote:
-> > Hi,
-> >
-> > this is a hobby project, not a patch series yet, but it may interest
-> people who still have Fermi cards.
-> >
-> > Since early October we have been recording the NVIDIA 390.157 driver
-> with mmiotrace on a GTX 560 Ti (GF114)
-> > and on a second card (GTS 450, GF106, recorded by its owner), plus the
-> last pre-390 drivers (270.x) on a 2011-era
-> > stand, and turning what the driver does into a written model: which
-> registers it touches in which order, which
-> > waits it makes, and which of those steps are actually necessary (checke=
-d
-> one change at a time, 60+ experiments).
-> > Everything is from our own traces, VBIOS tables and open code (nouveau,
-> NVIDIA's open Tegra/nvgpu code, open-gpu-doc);
-> > no decompilation of the proprietary driver is used, so the results can
-> go upstream if they are good enough.
-> >
-> > What we have so far:
-> > - Core reclocking on GF114 with nouveau's gf100 clock code plus the
-> PTHERM/FSRM "bracket" the NVIDIA driver puts
-> >    around every domain mux switch (slowdown engaged before the switch,
-> released after). Without the bracket the GPC
-> >    mux sticks occasionally on our card; with it and a dwell of ~4 us
-> after the "engaged" flag, 0 stuck in thousands of
-> >    transitions. NVIDIA 390 waits 8 us by its own timer; 270.41.06 wraps
-> only the mux write. Details, numbers and the
-> >    register-level map are in the repository.
->
-> Interesting, I don't remember ever seeing nvidia program the FSRM around
-> reclocking... but I barely looked at Fermi+ reclocking as I was more
-> concerned with the Tesla and under era.
->
-> > - Memory reclocking (GDDR5, 135/324/2004 MHz) by replaying the PMU
-> memory scripts and host writes the NVIDIA driver ran
-> >    on the same card, through nouveau's memx. A generator that derives
-> those scripts from any board's VBIOS reproduces
-> >    88 % of the registers on the second card; the rest is chip-level
-> layout and driver-init bits.
->
->
->
-> > - A VBIOS corpus of 306 Fermi images (with TechPowerUp's permission)
-> that shows what is per-family, per-chip and
-> >    per-board.
->
-> We have a private database of a ton of vbioses + associated mmiotraces,
-> I could give you access if you are interested and the repo still exists
-> somewhere :D
->
-> >
-> > What we are looking for: owners of Fermi cards with GDDR5
-> (GF100/GF104/GF106/GF110/GF114/GF116 - GTX 4xx/5xx,
-> > GTS 450, Quadro 2000-6000) willing to spend one evening recording the
-> NVIDIA 390 driver with our script (needs a spare
-> > disk with 390.157 and a kernel with CONFIG_MMIOTRACE) and to send the
-> trace plus their VBIOS image. In return they get a
-> > build of the lab module with their card's own sequences, and everything
-> learned is published. It is a lab module:
-> > hangs are possible, no warranty, no support promises.
-> >
-> > Repository and the call with details:
-> https://github.com/xnderv/nouveau-fix (issue #2).
-> > Comments on the approach are welcome too, especially on what would be
-> needed for an upstreamable version.
->
-> Seems like a fun project, I wish you a lot of fun with it! If you need
-> historical context, please ping me at `martin.roukala@mupuf.org`, or on
-> IRC (in the #nouveau channel on OFTC, please ping mupuf).
->
-> Cheers,
-> Martin
->
-> >
-> > Thanks,
-> > Alex (xnderv on GitHub)
->
->
-
---0000000000004baef4065efc9522
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Not sure if Ben&#39;s still around on this list, but at on=
-e point he had a non-working fermi reclocking branch. This stuff is complic=
-ated unfortunately... it worked on (some?) of his boards, but then e.g. on =
-my identical Quadro 400 board, it didn&#39;t work (but worked on his Quadro=
- 400). I did some very basic searching but couldn&#39;t find it online, unf=
-ortunately it looks like <a href=3D"http://cgit.freedesktop.org">cgit.freed=
-esktop.org</a> has died, so finding this stuff is much harder now. I have i=
-t locally somewhere if it&#39;s of interest.<div><br></div><div>Cheers,</di=
-v><div><br></div><div>=C2=A0 -ilia</div></div><br><div class=3D"gmail_quote=
- gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 2=
-9, 2026 at 1:24=E2=80=AFAM Martin Roukala &lt;<a href=3D"mailto:martin.pere=
-s@free.fr">martin.peres@free.fr</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">Hi Alex,<br>
-<br>
-On 28/10/2026 20:50, Alex wrote:<br>
-&gt; Hi,<br>
-&gt; <br>
-&gt; this is a hobby project, not a patch series yet, but it may interest p=
-eople who still have Fermi cards.<br>
-&gt; <br>
-&gt; Since early October we have been recording the NVIDIA 390.157 driver w=
-ith mmiotrace on a GTX 560 Ti (GF114)<br>
-&gt; and on a second card (GTS 450, GF106, recorded by its owner), plus the=
- last pre-390 drivers (270.x) on a 2011-era<br>
-&gt; stand, and turning what the driver does into a written model: which re=
-gisters it touches in which order, which<br>
-&gt; waits it makes, and which of those steps are actually necessary (check=
-ed one change at a time, 60+ experiments).<br>
-&gt; Everything is from our own traces, VBIOS tables and open code (nouveau=
-, NVIDIA&#39;s open Tegra/nvgpu code, open-gpu-doc);<br>
-&gt; no decompilation of the proprietary driver is used, so the results can=
- go upstream if they are good enough.<br>
-&gt; <br>
-&gt; What we have so far:<br>
-&gt; - Core reclocking on GF114 with nouveau&#39;s gf100 clock code plus th=
-e PTHERM/FSRM &quot;bracket&quot; the NVIDIA driver puts<br>
-&gt;=C2=A0 =C2=A0 around every domain mux switch (slowdown engaged before t=
-he switch, released after). Without the bracket the GPC<br>
-&gt;=C2=A0 =C2=A0 mux sticks occasionally on our card; with it and a dwell =
-of ~4 us after the &quot;engaged&quot; flag, 0 stuck in thousands of<br>
-&gt;=C2=A0 =C2=A0 transitions. NVIDIA 390 waits 8 us by its own timer; 270.=
-41.06 wraps only the mux write. Details, numbers and the<br>
-&gt;=C2=A0 =C2=A0 register-level map are in the repository.<br>
-<br>
-Interesting, I don&#39;t remember ever seeing nvidia program the FSRM aroun=
-d <br>
-reclocking... but I barely looked at Fermi+ reclocking as I was more <br>
-concerned with the Tesla and under era.<br>
-<br>
-&gt; - Memory reclocking (GDDR5, 135/324/2004 MHz) by replaying the PMU mem=
-ory scripts and host writes the NVIDIA driver ran<br>
-&gt;=C2=A0 =C2=A0 on the same card, through nouveau&#39;s memx. A generator=
- that derives those scripts from any board&#39;s VBIOS reproduces<br>
-&gt;=C2=A0 =C2=A0 88 % of the registers on the second card; the rest is chi=
-p-level layout and driver-init bits.<br>
-<br>
-<br>
-<br>
-&gt; - A VBIOS corpus of 306 Fermi images (with TechPowerUp&#39;s permissio=
-n) that shows what is per-family, per-chip and<br>
-&gt;=C2=A0 =C2=A0 per-board.<br>
-<br>
-We have a private database of a ton of vbioses + associated mmiotraces, <br=
->
-I could give you access if you are interested and the repo still exists <br=
->
-somewhere :D<br>
-<br>
-&gt; <br>
-&gt; What we are looking for: owners of Fermi cards with GDDR5 (GF100/GF104=
-/GF106/GF110/GF114/GF116 - GTX 4xx/5xx,<br>
-&gt; GTS 450, Quadro 2000-6000) willing to spend one evening recording the =
-NVIDIA 390 driver with our script (needs a spare<br>
-&gt; disk with 390.157 and a kernel with CONFIG_MMIOTRACE) and to send the =
-trace plus their VBIOS image. In return they get a<br>
-&gt; build of the lab module with their card&#39;s own sequences, and every=
-thing learned is published. It is a lab module:<br>
-&gt; hangs are possible, no warranty, no support promises.<br>
-&gt; <br>
-&gt; Repository and the call with details: <a href=3D"https://github.com/xn=
-derv/nouveau-fix" rel=3D"noreferrer" target=3D"_blank">https://github.com/x=
-nderv/nouveau-fix</a> (issue #2).<br>
-&gt; Comments on the approach are welcome too, especially on what would be =
-needed for an upstreamable version.<br>
-<br>
-Seems like a fun project, I wish you a lot of fun with it! If you need <br>
-historical context, please ping me at `<a href=3D"mailto:martin.roukala@mup=
-uf.org" target=3D"_blank">martin.roukala@mupuf.org</a>`, or on <br>
-IRC (in the #nouveau channel on OFTC, please ping mupuf).<br>
-<br>
-Cheers,<br>
-Martin<br>
-<br>
-&gt; <br>
-&gt; Thanks,<br>
-&gt; Alex (xnderv on GitHub)<br>
-<br>
-</blockquote></div>
-
---0000000000004baef4065efc9522--
+> Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> ---
+>  drivers/dma-buf/dma-fence.c |  2 ++
+>  include/linux/dma-fence.h   | 22 ++++++++++++++++++++++
+>  2 files changed, 24 insertions(+)
+> 
+> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+> index f7c084926ae6..1ae8c7aade39 100644
+> --- a/drivers/dma-buf/dma-fence.c
+> +++ b/drivers/dma-buf/dma-fence.c
+> @@ -1119,6 +1119,8 @@ dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
+>  	/* Mapp the init_flags to the fence-internal flags. */
+>  	if (test_bit(DMA_FENCE_INIT_FLAG_SEQNO64, &init_flags))
+>  		set_bit(DMA_FENCE_FLAG_SEQNO64_BIT, &fence_flag_bits);
+> +	if (test_bit(DMA_FENCE_INIT_FLAG_RACY_SIGNALED_CHECK, &init_flags))
+> +		set_bit(DMA_FENCE_FLAG_RACY_SIGNALED_CHECK_BIT, &fence_flag_bits);
+>  
+>  	__dma_fence_init(fence, ops, lock, context, seqno, fence_flag_bits);
+>  }
+> diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
+> index 52e7ddfd2d06..ee6e8de3ebc6 100644
+> --- a/include/linux/dma-fence.h
+> +++ b/include/linux/dma-fence.h
+> @@ -115,6 +115,7 @@ enum dma_fence_flag_bits {
+>  	DMA_FENCE_FLAG_SIGNALED_BIT,
+>  	DMA_FENCE_FLAG_TIMESTAMP_BIT,
+>  	DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+> +	DMA_FENCE_FLAG_RACY_SIGNALED_CHECK_BIT,
+>  
+>  	DMA_FENCE_FLAG_USER_BITS, /* must always be last member */
+>  };
+> @@ -124,9 +125,12 @@ enum dma_fence_flag_bits {
+>   * These flags can be passed in dma_fence_init().
+>   *
+>   * @DMA_FENCE_INIT_FLAG_SEQNO64: Use 64-bit sequence numbers.
+> + * @DMA_FENCE_INIT_FLAG_RACY_SIGNALED_CHECK:
+> + * Legacy flag. Enables a race condition in dma_fence_is_signaled().
+>   */
+>  enum dma_fence_init_flags {
+>  	DMA_FENCE_INIT_FLAG_SEQNO64,
+> +	DMA_FENCE_INIT_FLAG_RACY_SIGNALED_CHECK,
+>  
+>  	/* Must always be last member. */
+>  	DMA_FENCE_INIT_FLAG_NR_OF_FLAGs,
+> @@ -568,9 +572,27 @@ dma_fence_is_signaled_locked(struct dma_fence *fence)
+>  static inline bool
+>  dma_fence_is_signaled(struct dma_fence *fence)
+>  {
+> +	const bool racy_check = test_bit(DMA_FENCE_FLAG_RACY_SIGNALED_CHECK_BIT,
+> +					 &fence->flags);
+>  	const struct dma_fence_ops *ops;
+> +	bool signaled = false;
+> +	unsigned long flags;
+>  
+> +	/*
+> +	 * For legacy reasons, there is a race window here against parties
+> +	 * signaling the fence. They might still be doing that right now.
+> +	 *
+> +	 * For most users, this window shall be closed, but there are parties
+> +	 * for whom the cache-line invalidation by taking the lock might be so
+> +	 * significant that they prefer to accept the race at their own risk.
+> +	 */
+> +	if (!racy_check)
+> +		dma_fence_lock_irqsave(fence, flags);
+>  	if (dma_fence_test_signaled_flag(fence))
+> +		signaled = true;
+> +	if (!racy_check)
+> +		dma_fence_unlock_irqrestore(fence, flags);
+> +	if (signaled)
+>  		return true;
+>  
+>  	rcu_read_lock();
+> -- 
+> 2.56.0
+> 
