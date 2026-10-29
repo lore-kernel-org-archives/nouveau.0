@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE53D606A31E
-	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 09:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39ACC606A32C
+	for <nouveau@archiver.kernel.org>; Thu, 29 Oct 2026 10:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=a1/C2J+K
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mMwkC4rb
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8BFC4112199;
-	Thu, 29 Oct 2026 09:59:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1DEDC112190;
+	Thu, 29 Oct 2026 10:00:06 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CB5E148BD9;
-	Thu, 29 Oct 2026 09:40:35 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 50F6248BDA;
+	Thu, 29 Oct 2026 09:40:56 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793266835;
- b=xwxbIfjnuA4oxf0cgE4Tp1qN5y5QH1sATZjFTWyM+SEISIl4QQ12xzs3sa7dP8ZLP+F6M
- ARtGh+mYKPbVDTgIUo87sQc4oETzfgSBJAv5qGrWm0ezFF5cTK/bIc+Y39onotwPKMZp8pl
- 5zshmbCmYQ2euiSMrFH/1ClZv1ptcuYPk9acXn5Fjaqy4qjtFRM27n/2N9UQLMjIGhHTWAh
- w228pF8728BVEr/hjhPJb7o72N/cy/4n8bGQ5aWGrrZIaIJf86SfPi+t5U+B+S+oxsbQgYH
- w2aR2HiwvwiGlhb5N5z+euLLYKdp+gYU/9B2OzfQurNnspTLIycerOTbAwLg==
+ s=20240201; t=1793266856;
+ b=X9trD4UzfW7BUgcC/dqIUoBUyJtFKGdwo9Bat5EyQxkLDo1sxof8lxO6mfJ6m6d/fgsmW
+ L24cF0aXR9eQcFXDLFSYOc2EdSpUegs8ZATs6m0hEt4cxuemGf6P48V+81dSoqAokYgaw/t
+ fGXIKVvSXuVpij/UTFWE+65x8B2dkb5QnSYTTQHirhd51+h6WjrX7MGrg9q9aM89pPICN6n
+ LfCS71DQR93nlkWJUCEExfrQEOYud6YHVYUnlip5dAqXPkcS6vXFpfMIis7tMqju2F9Pld6
+ a5IsQjeK0J0EfO0xjss3K0KcxKUD9jUl3QbhcZWWlmYXkOPflf5Q0mxE4cJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793266835; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793266856; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=IJs4QQIZ91S3U36erLUuV7NVKYoD0Sonhzo5oA3JROw=;
- b=eflQGfUea57CtbsIq0ed7YBNyGXxAtq90ca1SXxnoW+nMnNFbJfLFd20eEVENadsrSfrz
- dLu+h6PE+IGI1unO+c/Ckyo67Olz6AGoz3wVB/HWMfYE60RsFLEPKncF1fHLmov3Dxlw/mX
- vPgmKNE305+S7rviQdH7CbHgMZVnALchUxGULTykM8HTf2/4rUgXoBq1O//3OoQ6ln55BOO
- z+dt+ty1jInsM5Kh4AP6ytdq6OLUm0xtd1PbPcq9hzNT3pzHWTapPAwTSJW9zzkqsCUBV1C
- 3rUrJNVM6AYtQRut5Mr+JO4MrxEIdf1GCOhMMlgY2EYzdPvI4NLptPy1vEjA==
+ bh=BlR02fcSQh6d0JDhMlZWs6ZOUTC1ug5V4gj89nHdCiw=;
+ b=IdQ6Q5xbNToZ1gwbh+nr8A5uHhEjf9l3IlxZGkJsTexo0hrstNoTy3T8JGJwdLeELLTT1
+ ZN/TpY8Vs/i8UEAQ3k9LE71fhIB34Rf1Euwgs56WDHsv2tairybSl19qAj9a3UluB/TJcnm
+ nKhwqTgOgixOYBj6Mhj0VF6jN7iQTd+4cznzCsBDfxz1wcipq51N0Dk06SqMfgUjDbdIvCf
+ ArTyOQ1X55Nra7Lvp+KyrYCnY5LZ1mhVjPZk9oJIwxo9t9WZLiXZz0KD/IAbqaAavrypf4g
+ SXz5czUWZwkTrZqsz0YbP+goFtVka9Wcx9hMSfKNuXcCmRgpqW9JspNqlL/w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,26 +43,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 6DCB746BCB;
-	Thu, 29 Oct 2026 09:40:32 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id E872246BCB;
+	Thu, 29 Oct 2026 09:40:52 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0378311215D;
-	Thu, 29 Oct 2026 09:59:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7F8A111215D;
+	Thu, 29 Oct 2026 09:59:57 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C776640E3D;
+	by sea.source.kernel.org (Postfix) with ESMTP id 6594E400F0;
+	Thu, 29 Oct 2026 09:59:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27E541F01829;
 	Thu, 29 Oct 2026 09:59:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74CED1F01828;
-	Thu, 29 Oct 2026 09:59:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793267976;
-	bh=IJs4QQIZ91S3U36erLUuV7NVKYoD0Sonhzo5oA3JROw=;
+	s=k20260515; t=1793267997;
+	bh=BlR02fcSQh6d0JDhMlZWs6ZOUTC1ug5V4gj89nHdCiw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=a1/C2J+KHqCjKWwVlX/OgeWHD4/i2QFD+UZubRymThh5X7BYWAo+E2CJRJcpseUY6
-	 CSy8IUeXftwAKaPBe6i6yZJcSzmfGwXuBr8BlziukQod4q2yvxUjI+lOd9vG+xOeuC
-	 LtlT7irolbaHY/+qVr6jmKGuFUM6eJm1OwlO7CjL1Efwi5bpU7Jw2DsHDK/3cMK8gT
-	 ONYNR4Y/Ev5CB4M2bHDLe133fQq9agvre0uGIaivEhlL8pSjS6blPVlnLhYKaOMPjC
-	 /RKJIGFCuxwqDjUQGYMKlMF5/61G6kuioOWd4gxQT3gOhfLtF2RcGjH9yZxoWM0XNk
-	 j0+ZKE9xZjTfw==
+	b=mMwkC4rbYBZKFHoDULMbOUQTiMIeewFQtew5dxFsygorpCCeQP4W1KfdBtKUNgajP
+	 FQFHnnpxd/k95t50EJyK0qUoUn8hQUb1P7XqFVBZgnu1mZvr/7WIx9nJ6fp6tO6VEi
+	 XRL8rU1K5ZUOO3EVruDcvEc2vSW/tt7XE/0njpvmEiG1DdePcgXoXTKo9vL+kINANO
+	 Hj8Fz75BHePb3t5otXkRaXAsHnMm/qRPQT8x+z4Y63witomkrevSCxQsCAUXoeHwW+
+	 GTgsVuFIXws3fjsY28HpPEsvEV3VmuhFwTCfl/OcYb3+t+MIjqkaVu55NBl0J/rdU3
+	 8ZcwP03x8rDFg==
 From: Philipp Stanner <phasta@kernel.org>
 To: Min Ma <mamin506@gmail.com>,
 	Lizhi Hou <lizhi.hou@amd.com>,
@@ -146,17 +146,17 @@ To: Min Ma <mamin506@gmail.com>,
 	Michael Bommarito <michael.bommarito@gmail.com>,
 	Sam Day <me@samcday.com>,
 	Gabriel Prostitis <prostitisgabriel@gmail.com>
-Subject: [RFC PATCH 3/6] dma-buf: Port users of dma_fence_init64()
-Date: Thu, 29 Oct 2026 10:55:40 +0100
-Message-ID: <20261029095542.1526750-6-phasta@kernel.org>
+Subject: [RFC PATCH 4/6] dma-buf: dma-fence: remove dma_fence_init64()
+Date: Thu, 29 Oct 2026 10:55:41 +0100
+Message-ID: <20261029095542.1526750-7-phasta@kernel.org>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261029095542.1526750-3-phasta@kernel.org>
 References: <20261029095542.1526750-3-phasta@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: MRRGQVWV577Z4IVDPG6P2DEPHOIGIC22
-X-Message-ID-Hash: MRRGQVWV577Z4IVDPG6P2DEPHOIGIC22
+Message-ID-Hash: 3ZDXOAAEROU46OXKBLJJQZTWM7IBZX4F
+X-Message-ID-Hash: 3ZDXOAAEROU46OXKBLJJQZTWM7IBZX4F
 X-MailFrom: phasta@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -175,9 +175,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MRRGQVWV577Z4IVDPG6P2DEPHOIGIC22/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3ZDXOAAEROU46OXKBLJJQZTWM7IBZX4F/>
 Archived-At: 
- <https://lore.freedesktop.org/20261029095542.1526750-6-phasta@kernel.org/>
+ <https://lore.freedesktop.org/20261029095542.1526750-7-phasta@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -193,82 +193,68 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-dma_fence_init() now natively allows for selecting 64-bit seqno support.
-Port all users of dma_fence_init64() to this unified method.
+All users of dma_fence_init64() have been removed. They now use the
+respective initialization flag in dma_fence_init().
+
+Remove dma_fence_init64().
 
 Signed-off-by: Philipp Stanner <phasta@kernel.org>
 ---
- drivers/dma-buf/dma-fence-chain.c                  | 4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c | 7 ++++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c    | 5 +++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c   | 5 +++--
- 4 files changed, 12 insertions(+), 9 deletions(-)
+ drivers/dma-buf/dma-fence.c | 27 ---------------------------
+ include/linux/dma-fence.h   |  2 --
+ 2 files changed, 29 deletions(-)
 
-diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
-index a588f55ea4d3..706e1f5e3a23 100644
---- a/drivers/dma-buf/dma-fence-chain.c
-+++ b/drivers/dma-buf/dma-fence-chain.c
-@@ -261,8 +261,8 @@ void dma_fence_chain_init(struct dma_fence_chain *chain,
- 			seqno = max(prev->seqno, seqno);
- 	}
+diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+index b11ee52a40d8..f7c084926ae6 100644
+--- a/drivers/dma-buf/dma-fence.c
++++ b/drivers/dma-buf/dma-fence.c
+@@ -1124,33 +1124,6 @@ dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
+ }
+ EXPORT_SYMBOL(dma_fence_init);
  
--	dma_fence_init64(&chain->base, &dma_fence_chain_ops, NULL,
--			 context, seqno);
-+	dma_fence_init(&chain->base, &dma_fence_chain_ops, NULL,
-+		       context, seqno, BIT(DMA_FENCE_INIT_FLAG_SEQNO64));
- 
- 	/*
- 	 * dma_fence_chain_enable_signaling() is invoked while holding
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-index f6b7522c3c82..1337f7f4195f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
-@@ -130,9 +130,10 @@ int amdgpu_evf_mgr_rearm(struct amdgpu_eviction_fence_mgr *evf_mgr,
- 	ev_fence->evf_mgr = evf_mgr;
- 	get_task_comm(ev_fence->timeline_name, current);
- 	spin_lock_init(&ev_fence->lock);
--	dma_fence_init64(&ev_fence->base, &amdgpu_eviction_fence_ops,
--			 &ev_fence->lock, evf_mgr->ev_fence_ctx,
--			 atomic_inc_return(&evf_mgr->ev_fence_seq));
-+	dma_fence_init(&ev_fence->base, &amdgpu_eviction_fence_ops,
-+		       &ev_fence->lock, evf_mgr->ev_fence_ctx,
-+		       atomic_inc_return(&evf_mgr->ev_fence_seq),
-+		       BIT(DMA_FENCE_INIT_FLAG_SEQNO64));
- 
- 	/* Remember it for newly added BOs */
- 	dma_fence_put(evf_mgr->ev_fence);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index 6f1dc813ec5b..199cc1835448 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -274,8 +274,9 @@ static void amdgpu_userq_fence_init(struct amdgpu_usermode_queue *userq,
- 	bool signaled = false;
- 
- 	spin_lock_init(&fence->lock);
--	dma_fence_init64(&fence->base, &amdgpu_userq_fence_ops, &fence->lock,
--			 fence_drv->context, seq);
-+	dma_fence_init(&fence->base, &amdgpu_userq_fence_ops, &fence->lock,
-+		       fence_drv->context, seq,
-+		       BIT(DMA_FENCE_INIT_FLAG_SEQNO64));
- 
- 	/* Make sure the fence is visible to the hang detect worker */
- 	dma_fence_put(userq->last_fence);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
-index b0002c898386..8b9b9368956f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
-@@ -100,8 +100,9 @@ void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev, struct amdgpu_vm *vm
- 	INIT_WORK(&f->work, amdgpu_tlb_fence_work);
- 	spin_lock_init(&f->lock);
- 
--	dma_fence_init64(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
--			 vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
-+	dma_fence_init(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
-+		       vm->tlb_fence_context, atomic64_read(&vm->tlb_seq),
-+		       BIT(DMA_FENCE_INIT_FLAG_SEQNO64));
- 
- 	/* TODO: We probably need a separate wq here */
- 	dma_fence_get(&f->base);
+-/**
+- * dma_fence_init64 - Initialize a custom fence with 64-bit seqno support.
+- * @fence: the fence to initialize
+- * @ops: the dma_fence_ops for operations on this fence
+- * @lock: optional irqsafe spinlock to use for locking this fence
+- * @context: the execution context this fence is run on
+- * @seqno: a linear increasing sequence number for this context
+- *
+- * Initializes an allocated fence, the caller doesn't have to keep its
+- * refcount after committing with this fence, but it will need to hold a
+- * refcount again if &dma_fence_ops.enable_signaling gets called.
+- *
+- * Context and seqno are used for easy comparison between fences, allowing
+- * to check which fence is later by simply using dma_fence_later().
+- *
+- * New users MUST NOT use external locks. Check the documentation in
+- * dma_fence_init() to understand the motives behind the legacy use cases.
+- */
+-void
+-dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
+-		 spinlock_t *lock, u64 context, u64 seqno)
+-{
+-	__dma_fence_init(fence, ops, lock, context, seqno,
+-			 BIT(DMA_FENCE_FLAG_SEQNO64_BIT));
+-}
+-EXPORT_SYMBOL(dma_fence_init64);
+-
+ /**
+  * dma_fence_driver_name - Access the driver name
+  * @fence: the fence to query
+diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
+index 6654bcc2441f..52e7ddfd2d06 100644
+--- a/include/linux/dma-fence.h
++++ b/include/linux/dma-fence.h
+@@ -300,8 +300,6 @@ struct dma_fence_ops {
+ void dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
+ 		    spinlock_t *lock, u64 context, u64 seqno,
+ 		    unsigned long flags);
+-void dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
+-		      spinlock_t *lock, u64 context, u64 seqno);
+ void dma_fence_release(struct kref *kref);
+ void dma_fence_free(struct dma_fence *fence);
+ void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq);
 -- 
 2.56.0
 
