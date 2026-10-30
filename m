@@ -2,171 +2,147 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 838B0606A31A
-	for <nouveau@archiver.kernel.org>; Fri, 30 Oct 2026 15:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F92A606A324
+	for <nouveau@archiver.kernel.org>; Fri, 30 Oct 2026 15:14:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=alum.mit.edu header.i=@alum.mit.edu header.a=rsa-sha256 header.s=selector2 header.b=f68PjsIE
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LTLAk2QQ
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C9F3010E3D2;
-	Fri, 30 Oct 2026 15:06:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 79AA5112889;
+	Fri, 30 Oct 2026 15:14:02 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4333248C19;
-	Fri, 30 Oct 2026 14:47:44 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793371664;
- b=va/KNgokg/G9zP2tGPSMNRuRABfHzqssjtITqU5LB6uhrAxesze0E13BuNs7a/Zu9JNt9
- eVgGd2m3LgjXbUIj9inKthusY7w7uae8Vyv59SWiESNvwyY7TY7UIj0itL2AO7HFdm7wdoV
- Sqaz9ywvEQI++0Y8EdTD60ycSWWsG43aWPFSM8/C1PqFZh1hrzJkYIm8syFO/NRpNEq7DlW
- ymFSYFMUZkKMGetVYv7iD5OEfh9qjBvxb3hPESaONEY2BNvZPDbKRQth3u/cPMSmK4JD5GP
- zWM0YQl07IJw2yW0ECuFvAHbFTB1/bwyQF6YwcLwzx8HahLG/AKpqQMb5l9g==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793371664; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 01E0848C1A;
+	Fri, 30 Oct 2026 14:54:50 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1793372089;
+ b=EJW6elsPnyKfUyKSbwCRR9q9ArpY5LDS8TjrQeqexgkAu60diyBq7rFdHwJLs6DVpaJs4
+ 7T6oPK40WiFFu0Y0DA6uCmF5Mib6COlRhVIuJp7ADgvEsU3BBQccqylZhx8xp/iNe43t9X/
+ uA4GiLkXwGOeCve02FRUWnv1ASDJ515zeyoycR3Rv89SuIGZwa58T8CiL9GNJaG8JB3H/Dy
+ Wr01dH+yiFj11SwY4OJMnYqBWt8J/DO6aH3CPzllibQbVoNmRO7DTo26o5Xud5ZwdO1mmsR
+ vaTJp8rhBdXxSXsxSfkmPgX7SyoH6qZRTlJ1WHX4q+9wLaYt3mG8XtaSpxhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1793372089; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=O8I178rG6MVPUUJ5Lmx+wdoVdvkVKbVNg+SHvw99oek=;
- b=Byl7UHyIDk/jMSgT4Tu4rEAiuQw02yZzt53tlZ/naWtCDTq3WGpYreeuz97StdmSpfcOM
- YiJadUysfUjYhWiEu1uqpxE5T2wzpMbmsA8dVcB6dJ2kubmUoU00CYTUpjwUqpmb+DI/Ywm
- Kh540zyVNm5igXzFlZLrY8aKf72aVjKXcV4vsxn7zyy59wix3GmUjIQShC5tqsteLP7eodd
- AJZq8PlBOTA9WdVtUULu9iuQd/VI4QU8EHhy+pvcQj0U45Eegprp49E1rbENQ1FkT4PePoN
- iIePtJ6pYz+22f8hCyr9vsGkdmCMCnOie9U80AA4S+bM5FFxMu2Dp2OumEYw==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=alum.mit.edu;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=alum.mit.edu
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=alum.mit.edu;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=alum.mit.edu policy.dmarc=reject
+ bh=tE9bdY9RJ4Os2qBL05nMpHueQKuKzNP8e9qxF9mma60=;
+ b=ATIUtm5+1TZWTo8k+RoX1SIGsG0g86jmxhECNWdYojhsi66yXsf293LO589ZYNx0+pJEe
+ 5tAo9UGVc3siMKAt3IS3rhhgk4ERETvEuw9t0s5jfp23rHPmPnz73B5P6NLO5qgVkibLDhJ
+ nzu98fgLgdmqMPQ1K4zKWbzW3AxGMaxqSMvpjQGRjqYQCtXzhEf0mtKfn9wFahJXbQXoWMQ
+ MLcYK1lT+o9LZCF/fS33KpfIvMe+oo0dvh/Qa7kC4dwcGDOaNPuhJrdjD2Fq+g8WhX8XSuC
+ yyblDh6ptIKCKlwMFCjZNVbJ7VzKb4u6KCOL1ibBJcwg+JmPp2DTDvgQGVfQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EB3CC4711B
-	for <nouveau@lists.freedesktop.org>; Fri, 30 Oct 2026 14:47:39 +0000 (UTC)
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11021128.outbound.protection.outlook.com [52.101.62.128])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E83A810E268
-	for <nouveau@lists.freedesktop.org>; Fri, 30 Oct 2026 15:06:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Aii8pgq/JZJLYsYKvw/PSab30QcFQhrkoE6uWqrJqSIUDencNdNCT5I+dhZktN9hAaELjjRcYr5Br8N8p5C0xedjSO8eDGnbVgk0ewS1pgIkNyylvmXTPvoclPTyLYQWcuTfY1satBrTTrBf7tqyuTdQCN7bcKW3H6HR4szJsJMKIZle9iZpFX4+gSeORUKG7Wr15hjlrJZnRV40x7gHO7XKrQ2WmoQc/y3B5G4yhM3pTv7ytPiS3YbIWfOYyMsjxUvhtO/NQ/CE+03mti3fuQ5Pbw2zaVeE0kU6Ar0XJ1fCGoN9fmfZyjdXSHgKiYJtl9DiYI/P+5XyZhRhX7gj4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=O8I178rG6MVPUUJ5Lmx+wdoVdvkVKbVNg+SHvw99oek=;
- b=Ohw8iWaTDNIapgAycq7D+aqk9pw/crKBHpSNSyNHwuohyqsOmEqqXYIb+D5GOv9TXzWEMxZcgUr/AxQZt0mWhxG3uDPoQCZ6P82esSy73eZBod0rrBFSj/Vw8ECIzQb8NXS+3OlxvKjaFpS5mn7sSzQ7IGAzEuCqWH4UzOieR6S69U5PASt9soKO1qYqPO+y2PPEO+yoywq6lvjH2oLw9BYwq8j9xaFiieQWu1zRgwLw4g8Sb9PNquI2t2BUgmWGYbC3akZ0q0m4cuphzrllejQnhgQQCS/uuQkuKG40hHF8j81pO1nS05+Zb9CNag5jHTZca6swaYN0I3Z6wBjhtg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 18.7.68.33) smtp.rcpttodomain=lists.freedesktop.org
- smtp.mailfrom=alum.mit.edu; dmarc=pass (p=reject sp=reject pct=100)
- action=none header.from=alum.mit.edu; dkim=none (message not signed);
- arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alum.mit.edu;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=O8I178rG6MVPUUJ5Lmx+wdoVdvkVKbVNg+SHvw99oek=;
- b=f68PjsIE0Ylx4Ts5SZPI40+PmMFpfndxHOf0lHFUb5T30y6ifD/ILgZX1+ExuDloKIZLxidjbg6xjo89ZEhNOBfdUH65xPXkg1PCO1psE1CzUq6/CYYsrWTx4cukrIyR8hwEcusxl/igOWGKodWsWLmFMy3xEmcaIasX8uL4bes=
-Received: from BN9PR03CA0272.namprd03.prod.outlook.com (2603:10b6:408:f5::7)
- by PH0PR12MB8126.namprd12.prod.outlook.com (2603:10b6:510:299::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.9; Fri, 30 Oct
- 2026 15:06:04 +0000
-Received: from BN5PEPF0004698C.namprd02.prod.outlook.com
- (2603:10b6:408:f5:cafe::4f) by BN9PR03CA0272.outlook.office365.com
- (2603:10b6:408:f5::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.496.5 via Frontend Transport; Fri, 30
- Oct 2026 15:06:04 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 18.7.68.33) smtp.mailfrom=alum.mit.edu; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=alum.mit.edu;
-Received-SPF: Pass (protection.outlook.com: domain of alum.mit.edu designates
- 18.7.68.33 as permitted sender) receiver=protection.outlook.com;
- client-ip=18.7.68.33; helo=outgoing-alum.mit.edu; pr=C
-Received: from outgoing-alum.mit.edu (18.7.68.33) by
- BN5PEPF0004698C.mail.protection.outlook.com (10.167.245.41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.592.5 via Frontend Transport; Fri, 30 Oct 2026 15:06:03 +0000
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
- [209.85.218.53])
-	(authenticated bits=0)
-        (User authenticated as imirkin@ALUM.MIT.EDU)
-	by outgoing-alum.mit.edu (8.14.7/8.12.4) with ESMTP id 69UF6164012648
-	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <nouveau@lists.freedesktop.org>; Fri, 30 Oct 2026 11:06:02 -0400
-Received: by mail-ej1-f53.google.com with SMTP id
- a640c23a62f3a-c4301e334ceso66303766b.1
-        for <nouveau@lists.freedesktop.org>;
- Fri, 30 Oct 2026 08:06:02 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AKwUvByejPOkpPNyAZL/zvc5JZFSFFXJ2qnzcf46ctjZS7zRnehnyZIHh6Ebq215BS+fJhLWwRTYjBAz@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYIIpRRpNn6AtmQDy8DOnwKSgegqRm4NZF97fdpvQkXStOvlhiWk
-	SXxnsDiILPxQ54OZHJS2ie+ohg/rMktjE1JFAKy7j28SEQbxxWzvwpyoE1UkrwTmMxLoB6KSik7
-	EExAUBZC33B6PXhzmbpEdVx6DE1DEM1E=
-X-Received: by 2002:a17:906:9f87:b0:c46:9ca9:f524 with SMTP id
- a640c23a62f3a-c4ca7a6e316mr246665966b.32.1793372761351; Fri, 30 Oct 2026
- 08:06:01 -0700 (PDT)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 16B5D475EA
+	for <nouveau@lists.freedesktop.org>; Fri, 30 Oct 2026 14:54:47 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4CED210E244;
+	Fri, 30 Oct 2026 15:13:54 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id C4BDC42DA3;
+	Fri, 30 Oct 2026 15:13:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DF301F000C1;
+	Fri, 30 Oct 2026 15:13:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793373233;
+	bh=tE9bdY9RJ4Os2qBL05nMpHueQKuKzNP8e9qxF9mma60=;
+	h=From:Subject:Date:To:Cc;
+	b=LTLAk2QQkLlwzQwWKDKCkKVftMpfWOwyXeAs2YdnHWiWzISwSISDRYJev7o/BWAQI
+	 xZPNMmSx/Pzr0jt67t5w5hI9YPjR4n5pNZxafWkFjvLTXGoLGz7slG1ePAIY9X/Vt7
+	 Mv3e+LzSz81zSs3VX3SL9agDu5cZZCS8RU1evP0wEz65Gbv4eGLigsnC4FPB85GUkm
+	 zyC5va+uNRwxsZOgd0Pkb5QM/laWTokdmm8qXRNW1G5dpXOwiKrKVMMXCMPc5eb0Cg
+	 JTC4AvM6enfURzBoA/WgpAwmYVodho++LUm+cBJ+0Q9qRQCRUM/a38y6406b2dncrZ
+	 H25nqRZwUawjw==
+From: Maxime Ripard <mripard@kernel.org>
+Subject: [PATCH v3 00/37] drm/connector: Convert all drivers to
+ atomic_create_state and remove reset
+Date: Fri, 30 Oct 2026 16:13:30 +0100
+Message-Id: 
+ <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261028185052.54427-1-xnderv@yandex.com>
- <8abb7b92-c16a-47a9-8caf-49773845c246@free.fr>
- <CAKb7UvgJwO1C4=jR9V9mkbs=JA2wi2ptCOeJdG0-eL+gKoOdaQ@mail.gmail.com>
- <99331793361990@mail.yandex.ru>
-In-Reply-To: <99331793361990@mail.yandex.ru>
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Date: Fri, 30 Oct 2026 11:05:48 -0400
-X-Gmail-Original-Message-ID: 
- <CAKb7Uvg2By0noK7MCg3Dzk+=zrmuYUr2dx6jq_yQC9SMV8BV2Q@mail.gmail.com>
-X-Gm-Features: AclHuK_qdEavfPypSHrMaqNcJ-qF4Apiw3dsEHK6Fj7dx9DJs_BjZ23YJh6E_IY
-Message-ID: 
- <CAKb7Uvg2By0noK7MCg3Dzk+=zrmuYUr2dx6jq_yQC9SMV8BV2Q@mail.gmail.com>
-Subject: Re: [RFC] Fermi (GF11x) reclocking: a model of the NVIDIA driver's
- clock management, a lab nouveau module, and a call for NVIDIA 390 traces from
- GDDR5 cards
-To: =?UTF-8?B?0JDQu9C10LrRgdCw0L3QtNGAINCU0LXRgNC10LLRj9C90LrQvg==?=
- <xnderv@yandex.com>
-Content-Type: multipart/alternative; boundary="00000000000063ef2b065f102255"
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN5PEPF0004698C:EE_|PH0PR12MB8126:EE_
-X-MS-Office365-Filtering-Correlation-Id: 996e428a-dbd4-4099-f356-08df36975124
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|786006|23010399003|1800799024|376014|43022699015|41320700013|36860700016|82310400026|4143699003|56012099006|261009223027099003|261026121527099003|261026140227099003|261028144727099003|261022115727099003|261021123027099003|261022105027099003|261022075727099003|261021121427099003|10067099003|18002099003|22082099003|13003099007|8096899003|15866825006;
-X-Microsoft-Antispam-Message-Info: 
-	gQ305IQrv6MHaju558Hj98RMqG+u9nB9unhB0gFyOgCqPle03feHkOo3e9cmehleCrqPdAjU92rtiZ6VqrTtTOQIna3T7QwywJNcWyg0YWdusKhMWBK7Yst+seX9QtkpxoWxsN4GYhHzoIaZbbShVAnkAI1wHXTQl25V7/+mlOarvCQhM8l9haWVQcPppauBUGraZxeZV/eCOgkogMtLcSbs0EZ1ry/6NX3xmsFA90wBJCQTKhGOfVQ+PKV1HmVbFzkAc8UFxuCrDjC91YwG6bXzaR5O9LuKc0/M+TyN4P7Pd65f/QZlWOSaRBi14ln8q/M7YRfHFTFFu973YSTKlAHlAKMJ4x9zsjc5M/ph1MJXlTxENDXlvaP0TFi4rmM+WhV3Hr3bj1fOe1yRkiuF+7LH4RDtYDKtuuqRwCG5bD4jgx7XfgxUWLpN9zMwYB04z29pNDrtjRdLHuAUYUsH9jqIicnxll8VHiMpw8QO6i4pd5H+8rF2hqEnkvdtKxyQKN4ET5pddNYCh1zqm6DJ8dieh1Hf9/vm5eafgGYQACKih5u52/0dltnaj/vzRjnu68imNEV8xaWOrqL/XpM5x+3ENbC1z22MgfZgWBnRDu2MJGM8VQ8FDG406vvVjbZ8ftyHfhMV42waiOfqXXVw9+cz5aCcYrDVd2woYDPf+z+HPgCTmk5ZRVXaAZAA/zgxCfRGjC+qZPIhUYMXRTA90g==
-X-Forefront-Antispam-Report: 
-	CIP:18.7.68.33;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:outgoing-alum.mit.edu;PTR:outgoing-alum.mit.edu;CAT:NONE;SFS:(13230040)(786006)(23010399003)(1800799024)(376014)(43022699015)(41320700013)(36860700016)(82310400026)(4143699003)(56012099006)(261009223027099003)(261026121527099003)(261026140227099003)(261028144727099003)(261022115727099003)(261021123027099003)(261022105027099003)(261022075727099003)(261021121427099003)(10067099003)(18002099003)(22082099003)(13003099007)(8096899003)(15866825006);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	T9oZIPH1FE5uOsodiP7IIQN0IgwqC/wX8iOM+xxZDd/LkCHajHaNHa98IunTmEyLciqKUqSSHB5zJHWoUaC/qTHoybEQcB98am/E6+Vq7TQBTwLTaNdkFK/CwuDVY9H1cdO0kgC1Cu7wwiz2Dmc/7YPpA3C/scxinz+APsXSZX1CnBedSfQGk6q6qaxOl/Wkv2gMqGhrOBMnb7qnSkgOt9FJ/PkdPc+nbQjKC4hQgzjSvs7aw8p33ziCB/VysNzT/dko0f33CzCZUkxB1Nw9zaEtOFFbJQlUAy4nfqM0+MN6bKpodgWnHKgRyOjcSq5qhF5/pnMEqa3dyDAfcM7BCzeageGGFbhfsNdnmDo6k+6Mn2FGf8fZulEY5l4CTgOdEGUbm3DsgMIL0eSpohOjFfn/4IF+E8e3yvEpLhiCHeZMpgg1OZg7hgDUsKDl2zbH
-X-OriginatorOrg: alum.mit.edu
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2026 15:06:03.7299
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 996e428a-dbd4-4099-f356-08df36975124
-X-MS-Exchange-CrossTenant-Id: 3326b102-c043-408b-a990-b89e477d582f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
- TenantId=3326b102-c043-408b-a990-b89e477d582f;Ip=[18.7.68.33];Helo=[outgoing-alum.mit.edu]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	BN5PEPF0004698C.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8126
-Message-ID-Hash: TWQX35PK6WXTUBWIK2MIRQYSZPUNYYUG
-X-Message-ID-Hash: TWQX35PK6WXTUBWIK2MIRQYSZPUNYYUG
-X-MailFrom: imirkin@alum.mit.edu
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/33OwW7CMAyA4VeJfMZTYtI26Yn3QDvQ1EC0Ndmcr
+ NqE+u5TywUuHG3Zn/4bFJbIBXp1A+E5lpgT9Gq/UxCup3RhjCP0CkhTqzvtcZQJU8YpC2PIKXG
+ oWVC4cEXbMBs7dqGlADsFX8Ln+Lvpx/f7LPz9E0us9yUMp7Iy0xRrr7w5N8TeO7IDrPfXWGqWv
+ y1uNtvD2mG0sS87ZoMaG9cGHzS1jvaHD5bEn29ZLhs80wNG9Boj1KiHji27ZjDsnrBlWf4BhnZ
+ sDEQBAAA=
+X-Change-ID: 20260709-drm-no-more-connector-reset-45ee14d7c62c
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=8385; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=DZZrNGoYdZWKHOY12EKnVjZERSuJ0LCp6SPnhbDGbgs=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFlPtsiuvPaged7Fn/JHvyf5F52RSjl2f/q+R7OXudiuS
+ k+f8lSgtGMqC4MwJ4OsmCLLE5mw08vbF1c52K/8ATOHlQlkCAMXpwBMZMMMxvr4R378V/fzfz2/
+ 9vgjVtsVOudidZLmHneZ2vlpJVdh+pK+0MzA31Kyu78cObJCK//rsWrGhlOb36bvdfjnbOuiuO+
+ lEWPGC/vHFbd3+fjabWlgmPkqQ3XT0hQvSaZZWqsauVeqLExUBgA=
+X-Developer-Key: i=mripard@kernel.org; a=openpgp;
+ fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
+Message-ID-Hash: X6GXQZCMRCSATXYFFEIJQFBHOCVSR4U5
+X-Message-ID-Hash: X6GXQZCMRCSATXYFFEIJQFBHOCVSR4U5
+X-MailFrom: mripard@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+ loop; banned-address; member-moderation
+CC: dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
+ Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
+ Huacai Chen <chenhuacai@kernel.org>, Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+ Jianmin Lv <lvjianmin@loongson.cn>, Mingcong Bai <jeffbai@aosc.io>,
+ Qianhai Wu <wuqianhai@loongson.cn>, Xi Ruoyao <xry111@xry111.site>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ linux-renesas-soc@vger.kernel.org,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Raphael Gallais-Pou <rgallaispou@gmail.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
+ Alexey Brodkin <abrodkin@synopsys.com>,
+ Alex Lanzano <lanzano.alex@gmail.com>, Chia-I Wu <olvaffe@gmail.com>,
+ David Airlie <airlied@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ virtualization@lists.linux.dev, Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TWQX35PK6WXTUBWIK2MIRQYSZPUNYYUG/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/X6GXQZCMRCSATXYFFEIJQFBHOCVSR4U5/>
 Archived-At: 
- <https://lore.freedesktop.org/CAKb7Uvg2By0noK7MCg3Dzk+=zrmuYUr2dx6jq_yQC9SMV8BV2Q@mail.gmail.com/>
+ <https://lore.freedesktop.org/20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -174,256 +150,157 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,HTML_MESSAGE,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---00000000000063ef2b065f102255
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This is a follow-up to the plane and CRTC reset removal series, and
+part of a larger effort to remove the reset hook from all KMS objects.
 
-Perhaps I got the board model wrong - going from memory. It was a Quadro
-with a GF108 (nvc1) chip - perhaps Quadro 600. I'll track it down over the
-weekend.
+The connector reset hook is overloaded: it is called both at probe
+time to create the initial software state and during suspend/resume to
+reset hardware and software state. These two roles have different
+requirements, and the reset hook is not fallible, making error
+handling difficult for the initial state allocation path.
 
-On Fri, Oct 30, 2026 at 8:07=E2=80=AFAM =D0=90=D0=BB=D0=B5=D0=BA=D1=81=D0=
-=B0=D0=BD=D0=B4=D1=80 =D0=94=D0=B5=D1=80=D0=B5=D0=B2=D1=8F=D0=BD=D0=BA=D0=
-=BE <xnderv@yandex.com>
-wrote:
+While reset has the semantics to reset both the software and hardware
+state, the vast majority of implementations and all the helpers only
+reset the software state, making them equivalent to
+atomic_create_state in practice. The atomic_create_state hook makes
+this explicit: it only allocates and initializes a pristine state
+without any side effect, and returns the state pointer or an ERR_PTR
+on failure.
 
-> Hi Ilia,
->
-> Yes, very much of interest, thank you.
->
-> Whatever is easiest for you: a git bundle or a tarball of the branch, or =
-a
-> push to any public place. If Ben's commit messages or notes say which
-> boards he tried, even better.
->
-> Your Quadro 400 story rings a bell. On our GTX 560 Ti the same core clock
-> switch runs for hours in some boots and gets stuck in others, with the sa=
-me
-> module and the same sequence of writes. We have not found yet what decide=
-s
-> it. If you remember how it failed on your board (a hang at the switch,
-> memory training, corruption on screen?), that would help us compare. Also=
-,
-> if I'm not mistaken the Quadro 400 is a GT216: was that with the GT21x
-> reclocking, or did Ben's Fermi branch cover it too?
->
-> Cheers, Alex
->
-> ----------------
-> =D0=9A=D0=BE=D0=BC=D1=83: Martin Roukala (martin.peres@free.fr);
-> =D0=9A=D0=BE=D0=BF=D0=B8=D1=8F: nouveau@lists.freedesktop.org;
-> =D0=A2=D0=B5=D0=BC=D0=B0: [RFC] Fermi (GF11x) reclocking: a model of the =
-NVIDIA driver's clock
-> management, a lab nouveau module, and a call for NVIDIA 390 traces from
-> GDDR5 cards;
-> 29.10.2026, 18:46, "Ilia Mirkin" <imirkin@alum.mit.edu>:
->
-> Not sure if Ben's still around on this list, but at one point he had a
-> non-working fermi reclocking branch. This stuff is complicated
-> unfortunately... it worked on (some?) of his boards, but then e.g. on my
-> identical Quadro 400 board, it didn't work (but worked on his Quadro 400)=
-.
-> I did some very basic searching but couldn't find it online, unfortunatel=
-y
-> it looks like cgit.freedesktop.org has died, so finding this stuff is
-> much harder now. I have it locally somewhere if it's of interest.
->
-> Cheers,
->
->   -ilia
->
-> On Thu, Oct 29, 2026 at 1:24=E2=80=AFAM Martin Roukala <martin.peres@free=
-.fr>
-> wrote:
->
-> Hi Alex,
->
-> On 28/10/2026 20:50, Alex wrote:
-> > Hi,
-> >
-> > this is a hobby project, not a patch series yet, but it may interest
-> people who still have Fermi cards.
-> >
-> > Since early October we have been recording the NVIDIA 390.157 driver
-> with mmiotrace on a GTX 560 Ti (GF114)
-> > and on a second card (GTS 450, GF106, recorded by its owner), plus the
-> last pre-390 drivers (270.x) on a 2011-era
-> > stand, and turning what the driver does into a written model: which
-> registers it touches in which order, which
-> > waits it makes, and which of those steps are actually necessary (checke=
-d
-> one change at a time, 60+ experiments).
-> > Everything is from our own traces, VBIOS tables and open code (nouveau,
-> NVIDIA's open Tegra/nvgpu code, open-gpu-doc);
-> > no decompilation of the proprietary driver is used, so the results can
-> go upstream if they are good enough.
-> >
-> > What we have so far:
-> > - Core reclocking on GF114 with nouveau's gf100 clock code plus the
-> PTHERM/FSRM "bracket" the NVIDIA driver puts
-> >    around every domain mux switch (slowdown engaged before the switch,
-> released after). Without the bracket the GPC
-> >    mux sticks occasionally on our card; with it and a dwell of ~4 us
-> after the "engaged" flag, 0 stuck in thousands of
-> >    transitions. NVIDIA 390 waits 8 us by its own timer; 270.41.06 wraps
-> only the mux write. Details, numbers and the
-> >    register-level map are in the repository.
->
-> Interesting, I don't remember ever seeing nvidia program the FSRM around
-> reclocking... but I barely looked at Fermi+ reclocking as I was more
-> concerned with the Tesla and under era.
->
-> > - Memory reclocking (GDDR5, 135/324/2004 MHz) by replaying the PMU
-> memory scripts and host writes the NVIDIA driver ran
-> >    on the same card, through nouveau's memx. A generator that derives
-> those scripts from any board's VBIOS reproduces
-> >    88 % of the registers on the second card; the rest is chip-level
-> layout and driver-init bits.
->
->
->
-> > - A VBIOS corpus of 306 Fermi images (with TechPowerUp's permission)
-> that shows what is per-family, per-chip and
-> >    per-board.
->
-> We have a private database of a ton of vbioses + associated mmiotraces,
-> I could give you access if you are interested and the repo still exists
-> somewhere :D
->
-> >
-> > What we are looking for: owners of Fermi cards with GDDR5
-> (GF100/GF104/GF106/GF110/GF114/GF116 - GTX 4xx/5xx,
-> > GTS 450, Quadro 2000-6000) willing to spend one evening recording the
-> NVIDIA 390 driver with our script (needs a spare
-> > disk with 390.157 and a kernel with CONFIG_MMIOTRACE) and to send the
-> trace plus their VBIOS image. In return they get a
-> > build of the lab module with their card's own sequences, and everything
-> learned is published. It is a lab module:
-> > hangs are possible, no warranty, no support promises.
-> >
-> > Repository and the call with details:
-> https://github.com/xnderv/nouveau-fix (issue #2).
-> > Comments on the approach are welcome too, especially on what would be
-> needed for an upstreamable version.
->
-> Seems like a fun project, I wish you a lot of fun with it! If you need
-> historical context, please ping me at `martin.roukala@mupuf.org`, or on
-> IRC (in the #nouveau channel on OFTC, please ping mupuf).
->
-> Cheers,
-> Martin
->
-> >
-> > Thanks,
-> > Alex (xnderv on GitHub)
->
->
->
+This series converts all connector drivers tree-wide from the reset hook
+to atomic_create_state, then removes the reset hook from struct
+drm_connector_funcs entirely. The conversions were done using a
+combination of Coccinelle semantic patches, mechanical one-line
+replacements and manual adjustments.
 
---00000000000063ef2b065f102255
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Maxime Ripard <mripard@kernel.org>
+---
+Changes in v3:
+- Fix error path in dw-hdmi
+- Fix test error path for amdgpu kunit tests
+- Fix nouveau legacy path
+- Link to v2: https://lore.kernel.org/r/20261022-drm-no-more-connector-reset-v2-0-0b7e4e85b1e8@kernel.org
 
-<div dir=3D"ltr">Perhaps I got the board model wrong - going from memory. I=
-t was a Quadro with a GF108 (nvc1) chip - perhaps Quadro 600. I&#39;ll trac=
-k it down over the weekend.</div><br><div class=3D"gmail_quote gmail_quote_=
-container"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 30, 2026 at 8:=
-07=E2=80=AFAM =D0=90=D0=BB=D0=B5=D0=BA=D1=81=D0=B0=D0=BD=D0=B4=D1=80 =D0=94=
-=D0=B5=D1=80=D0=B5=D0=B2=D1=8F=D0=BD=D0=BA=D0=BE &lt;<a href=3D"mailto:xnde=
-rv@yandex.com">xnderv@yandex.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div><div>Hi Ilia,</div><div>=C2=A0</div><=
-div>Yes, very much of interest, thank you.<br><br>Whatever is easiest for y=
-ou: a git bundle or a tarball of the branch, or a push to any public place.=
- If Ben&#39;s commit messages or notes say which boards he tried, even bett=
-er.</div><div>=C2=A0</div><div>Your Quadro 400 story rings a bell. On our G=
-TX 560 Ti the same core clock switch runs for hours in some boots and gets =
-stuck in others, with the same module and the same sequence of writes. We h=
-ave not found yet what decides it. If you remember how it failed on your bo=
-ard (a hang at the switch, memory training, corruption on screen?), that wo=
-uld help us compare. Also, if I&#39;m not mistaken the Quadro 400 is a GT21=
-6: was that with the GT21x reclocking, or did Ben&#39;s Fermi branch cover =
-it too?</div><div>=C2=A0</div><div>Cheers, Alex</div></div><div>=C2=A0</div=
-><div>----------------</div><div>=D0=9A=D0=BE=D0=BC=D1=83: Martin Roukala (=
-<a href=3D"mailto:martin.peres@free.fr" target=3D"_blank">martin.peres@free=
-.fr</a>);</div><div>=D0=9A=D0=BE=D0=BF=D0=B8=D1=8F: <a href=3D"mailto:nouve=
-au@lists.freedesktop.org" target=3D"_blank">nouveau@lists.freedesktop.org</=
-a>;</div><div>=D0=A2=D0=B5=D0=BC=D0=B0: [RFC] Fermi (GF11x) reclocking: a m=
-odel of the NVIDIA driver&#39;s clock management, a lab nouveau module, and=
- a call for NVIDIA 390 traces from GDDR5 cards;</div><div>29.10.2026, 18:46=
-, &quot;Ilia Mirkin&quot; &lt;<a href=3D"mailto:imirkin@alum.mit.edu" targe=
-t=3D"_blank">imirkin@alum.mit.edu</a>&gt;:</div><blockquote><div>Not sure i=
-f Ben&#39;s still around on this list, but at one point he had a non-workin=
-g fermi reclocking branch. This stuff is complicated unfortunately... it wo=
-rked on (some?) of his boards, but then e.g. on my identical Quadro 400 boa=
-rd, it didn&#39;t work (but worked on his Quadro 400). I did some very basi=
-c searching but couldn&#39;t find it online, unfortunately it looks like <a=
- href=3D"http://cgit.freedesktop.org/" rel=3D"noopener noreferrer" target=
-=3D"_blank">cgit.freedesktop.org</a> has died, so finding this stuff is muc=
-h harder now. I have it locally somewhere if it&#39;s of interest.<div>=C2=
-=A0</div><div>Cheers,</div><div>=C2=A0</div><div>=C2=A0 -ilia</div></div>=
-=C2=A0<div><div>On Thu, Oct 29, 2026 at 1:24=E2=80=AFAM Martin Roukala &lt;=
-<a href=3D"mailto:martin.peres@free.fr" rel=3D"noopener noreferrer" target=
-=3D"_blank">martin.peres@free.fr</a>&gt; wrote:</div><blockquote style=3D"b=
-order-left:1px solid rgb(204,204,204);margin:0px 0px 0px 0.8ex;padding-left=
-:1ex">Hi Alex,<br><br>On 28/10/2026 20:50, Alex wrote:<br>&gt; Hi,<br>&gt;<=
-br>&gt; this is a hobby project, not a patch series yet, but it may interes=
-t people who still have Fermi cards.<br>&gt;<br>&gt; Since early October we=
- have been recording the NVIDIA 390.157 driver with mmiotrace on a GTX 560 =
-Ti (GF114)<br>&gt; and on a second card (GTS 450, GF106, recorded by its ow=
-ner), plus the last pre-390 drivers (270.x) on a 2011-era<br>&gt; stand, an=
-d turning what the driver does into a written model: which registers it tou=
-ches in which order, which<br>&gt; waits it makes, and which of those steps=
- are actually necessary (checked one change at a time, 60+ experiments).<br=
->&gt; Everything is from our own traces, VBIOS tables and open code (nouvea=
-u, NVIDIA&#39;s open Tegra/nvgpu code, open-gpu-doc);<br>&gt; no decompilat=
-ion of the proprietary driver is used, so the results can go upstream if th=
-ey are good enough.<br>&gt;<br>&gt; What we have so far:<br>&gt; - Core rec=
-locking on GF114 with nouveau&#39;s gf100 clock code plus the PTHERM/FSRM &=
-quot;bracket&quot; the NVIDIA driver puts<br>&gt;=C2=A0 =C2=A0 around every=
- domain mux switch (slowdown engaged before the switch, released after). Wi=
-thout the bracket the GPC<br>&gt;=C2=A0 =C2=A0 mux sticks occasionally on o=
-ur card; with it and a dwell of ~4 us after the &quot;engaged&quot; flag, 0=
- stuck in thousands of<br>&gt;=C2=A0 =C2=A0 transitions. NVIDIA 390 waits 8=
- us by its own timer; 270.41.06 wraps only the mux write. Details, numbers =
-and the<br>&gt;=C2=A0 =C2=A0 register-level map are in the repository.<br><=
-br>Interesting, I don&#39;t remember ever seeing nvidia program the FSRM ar=
-ound<br>reclocking... but I barely looked at Fermi+ reclocking as I was mor=
-e<br>concerned with the Tesla and under era.<br><br>&gt; - Memory reclockin=
-g (GDDR5, 135/324/2004 MHz) by replaying the PMU memory scripts and host wr=
-ites the NVIDIA driver ran<br>&gt;=C2=A0 =C2=A0 on the same card, through n=
-ouveau&#39;s memx. A generator that derives those scripts from any board&#3=
-9;s VBIOS reproduces<br>&gt;=C2=A0 =C2=A0 88 % of the registers on the seco=
-nd card; the rest is chip-level layout and driver-init bits.<br><br><br><br=
->&gt; - A VBIOS corpus of 306 Fermi images (with TechPowerUp&#39;s permissi=
-on) that shows what is per-family, per-chip and<br>&gt;=C2=A0 =C2=A0 per-bo=
-ard.<br><br>We have a private database of a ton of vbioses + associated mmi=
-otraces,<br>I could give you access if you are interested and the repo stil=
-l exists<br>somewhere :D<br><br>&gt;<br>&gt; What we are looking for: owner=
-s of Fermi cards with GDDR5 (GF100/GF104/GF106/GF110/GF114/GF116 - GTX 4xx/=
-5xx,<br>&gt; GTS 450, Quadro 2000-6000) willing to spend one evening record=
-ing the NVIDIA 390 driver with our script (needs a spare<br>&gt; disk with =
-390.157 and a kernel with CONFIG_MMIOTRACE) and to send the trace plus thei=
-r VBIOS image. In return they get a<br>&gt; build of the lab module with th=
-eir card&#39;s own sequences, and everything learned is published. It is a =
-lab module:<br>&gt; hangs are possible, no warranty, no support promises.<b=
-r>&gt;<br>&gt; Repository and the call with details: <a href=3D"https://git=
-hub.com/xnderv/nouveau-fix" rel=3D"noopener noreferrer" target=3D"_blank">h=
-ttps://github.com/xnderv/nouveau-fix</a> (issue #2).<br>&gt; Comments on th=
-e approach are welcome too, especially on what would be needed for an upstr=
-eamable version.<br><br>Seems like a fun project, I wish you a lot of fun w=
-ith it! If you need<br>historical context, please ping me at `<a href=3D"ma=
-ilto:martin.roukala@mupuf.org" rel=3D"noopener noreferrer" target=3D"_blank=
-">martin.roukala@mupuf.org</a>`, or on<br>IRC (in the #nouveau channel on O=
-FTC, please ping mupuf).<br><br>Cheers,<br>Martin<br><br>&gt;<br>&gt; Thank=
-s,<br>&gt; Alex (xnderv on GitHub)<br>=C2=A0</blockquote></div></blockquote=
-></blockquote></div>
+Changes in v2:
+- Change the parameter order of __drm_atomic_helper_connector_hdmi_state_init
+- Fixed state argument casing for drm_atomic_helper_connector_tv_margins_state_init
+  and drm_atomic_helper_connector_tv_state_init
+- Put atomic_create_state before atomic_duplicate_state
+- Fix state allocation for MST and WB connectors
+- Link to v1:
+  https://lore.kernel.org/r/20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org
 
---00000000000063ef2b065f102255--
+---
+Maxime Ripard (37):
+      drm/amdgpu: vkms: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: analogix-anx6345: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: analogix-anx78xx: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: chrontel-ch7033: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: nxp-ptn3460: Switch to drm_atomic_helper_connector_create_state
+      drm/panel: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: synopsys: dw-hdmi: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: tc358767: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: tda998x: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: ti-tfp410: Switch to drm_atomic_helper_connector_create_state
+      drm/exynos: Switch to drm_atomic_helper_connector_create_state
+      drm/fsl-dcu: Switch to drm_atomic_helper_connector_create_state
+      drm/loongson: Switch to drm_atomic_helper_connector_create_state
+      drm/mipi-dbi: Switch to drm_atomic_helper_connector_create_state
+      drm/renesas: shmobile: Switch to drm_atomic_helper_connector_create_state
+      drm/sitronix: st7571: Switch to drm_atomic_helper_connector_create_state
+      drm/sti: Switch to drm_atomic_helper_connector_create_state
+      drm/sun4i: Switch to drm_atomic_helper_connector_create_state
+      drm/tegra: Switch to drm_atomic_helper_connector_create_state
+      drm/tests: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: arcpgu: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: sharp: Switch to drm_atomic_helper_connector_create_state
+      drm/virtio: Switch to drm_atomic_helper_connector_create_state
+      drm/vkms: Switch to drm_atomic_helper_connector_create_state
+      drm/xen: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: synopsys: dw-hdmi: Convert to atomic_create_state
+      drm/meson: Convert to atomic_create_state
+      drm/sun4i: hdmi: Convert to atomic_create_state
+      drm/sun4i: tv: Convert to atomic_create_state
+      drm/tests: hdmi: Convert to atomic_create_state
+      drm/connector: Remove drm_atomic_helper_connector_reset()
+      drm/amdgpu: dm: Convert to atomic_create_state
+      drm/i915: Convert to atomic_create_state
+      drm/nouveau: Convert to atomic_create_state
+      drm/tegra: Convert to atomic_create_state
+      drm/connector: Remove __drm_atomic_helper_connector_reset()
+      drm/connector: Remove reset
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c           |   2 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_connector.c    |  32 ++---
+ .../amd/display/amdgpu_dm/amdgpu_dm_connector.h    |   3 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    |  11 +-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c   |  17 ++-
+ .../amdgpu_dm/tests/amdgpu_dm_connector_test.c     | 102 +++++++++++-----
+ drivers/gpu/drm/bridge/analogix/analogix-anx6345.c |   2 +-
+ drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c |   2 +-
+ drivers/gpu/drm/bridge/chrontel-ch7033.c           |   2 +-
+ drivers/gpu/drm/bridge/nxp-ptn3460.c               |   2 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |  14 ++-
+ drivers/gpu/drm/bridge/tc358767.c                  |   2 +-
+ drivers/gpu/drm/bridge/tda998x_drv.c               |   2 +-
+ drivers/gpu/drm/bridge/ti-tfp410.c                 |   2 +-
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c    |   3 +-
+ drivers/gpu/drm/drm_atomic_state_helper.c          |  43 -------
+ drivers/gpu/drm/drm_connector.c                    |   8 --
+ drivers/gpu/drm/drm_mode_config.c                  |   4 +-
+ drivers/gpu/drm/drm_panel.c                        |   4 +-
+ drivers/gpu/drm/exynos/exynos_drm_dpi.c            |   2 +-
+ drivers/gpu/drm/exynos/exynos_drm_vidi.c           |   2 +-
+ drivers/gpu/drm/exynos/exynos_hdmi.c               |   2 +-
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c          |   2 +-
+ drivers/gpu/drm/i915/display/intel_connector.c     |   6 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c          |   6 +-
+ drivers/gpu/drm/loongson/lsdc_output_7a1000.c      |   2 +-
+ drivers/gpu/drm/loongson/lsdc_output_7a2000.c      |   4 +-
+ drivers/gpu/drm/meson/meson_encoder_hdmi.c         |  12 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c            |  25 ++--
+ drivers/gpu/drm/nouveau/nouveau_connector.c        | 129 ++++++++++++++++-----
+ drivers/gpu/drm/nouveau/nouveau_connector.h        |   3 +-
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c  |   2 +-
+ drivers/gpu/drm/sitronix/st7571.c                  |   2 +-
+ drivers/gpu/drm/sti/sti_dvo.c                      |   2 +-
+ drivers/gpu/drm/sti/sti_hda.c                      |   2 +-
+ drivers/gpu/drm/sti/sti_hdmi.c                     |   2 +-
+ drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |  16 ++-
+ drivers/gpu/drm/sun4i/sun4i_lvds.c                 |   2 +-
+ drivers/gpu/drm/sun4i/sun4i_rgb.c                  |   2 +-
+ drivers/gpu/drm/sun4i/sun4i_tv.c                   |  16 ++-
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c             |   2 +-
+ drivers/gpu/drm/tegra/dsi.c                        |  17 ++-
+ drivers/gpu/drm/tegra/hdmi.c                       |   2 +-
+ drivers/gpu/drm/tegra/sor.c                        |  13 +--
+ drivers/gpu/drm/tests/drm_atomic_commit_test.c     |   2 +-
+ drivers/gpu/drm/tests/drm_atomic_test.c            |   2 +-
+ drivers/gpu/drm/tests/drm_connector_test.c         |   4 +-
+ drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c |  16 ++-
+ drivers/gpu/drm/tests/drm_probe_helper_test.c      |   2 +-
+ drivers/gpu/drm/tiny/arcpgu.c                      |   2 +-
+ drivers/gpu/drm/tiny/sharp-memory.c                |   2 +-
+ drivers/gpu/drm/virtio/virtgpu_display.c           |   2 +-
+ drivers/gpu/drm/vkms/vkms_connector.c              |   2 +-
+ drivers/gpu/drm/vkms/vkms_writeback.c              |   2 +-
+ drivers/gpu/drm/xen/xen_drm_front_conn.c           |   2 +-
+ include/drm/drm_atomic_state_helper.h              |   3 -
+ include/drm/drm_connector.h                        |  12 --
+ include/drm/drm_mipi_dbi.h                         |   2 +-
+ 58 files changed, 351 insertions(+), 236 deletions(-)
+---
+base-commit: 91f52e99824b0beebb48cad51bbda81437af8664
+change-id: 20260709-drm-no-more-connector-reset-45ee14d7c62c
+
+Best regards,
+-- 
+Maxime Ripard <mripard@kernel.org>
+
