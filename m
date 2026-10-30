@@ -2,139 +2,129 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A7B606A321
-	for <nouveau@archiver.kernel.org>; Sat, 31 Oct 2026 02:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DFA9606A325
+	for <nouveau@archiver.kernel.org>; Sat, 31 Oct 2026 02:09:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=eYPRJGbl
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=JmRRneZH
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 13FC5112A6B;
-	Sat, 31 Oct 2026 02:09:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 58589112A84;
+	Sat, 31 Oct 2026 02:09:31 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9FF5848C24;
-	Sat, 31 Oct 2026 01:50:00 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793411400;
- b=C9nvquQjhIX3y+hMfAkSDhnXJjh4+5LvlaOgKZ6tNxontlMrMEFy/4b1TvcBThZ7HbQcI
- rdUTAfV7TFOySaYqbkN2tqvFeMfhNxfq8nFtCdyEclNxKXpyLIWUXd9RVeuCBV87IUVl07/
- BwqpcURhDfplwRlRj46SSJ0PI1DVwyKtpAg1KK+RsbfWHOJKDEjvwCZVi3RLhTYQCRr4QNr
- SXcFWVm74hrPFN3UA5yCROJWB1hIjUpK6t8sgSJAazUm5JNbm3Q9Me1ffT9eBYkfWfVDq7V
- ia+tja/R9LipmjKX+K3s+tCDjaMln3Z9n0gCWQnPzmlo1ux1YLPnofQpkHwA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793411400; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id E3E7848C27;
+	Sat, 31 Oct 2026 01:50:17 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1793411417;
+ b=iQnx2jO7rWVykiSKORhIID3BjfOZB9aOVSJwDWtsN+hSwwTVVsqM/VnABsrEYrEzAwBFV
+ ur0ThVzSebnMd/oDKwY2geDHpLHcC/Xql2oxZADsfIAl6vW0RVZqdvYjI/ZQkAaHRXEbtrl
+ oJowo8XhjFYrOKJTcA2LdMd7jqU5lIprNej8TE8uUnKQLdQkSItj1WtznNZyoa8m1+cITT2
+ D1BG/bKupv2ylQ5jp1/5dq9mrtURmpPN477+OpwMnu6+vlPhwFNwSC93Q4DOtcfT/bMttuJ
+ CxO6zl+ipEUGrdrtJuPedonnck9bKX6MXhnGwxKHrkb15+3Bzok5RoUiwJsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1793411417; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=IUnZOMuEwAyZgw4JuQeLgbiv3U6p5wn4LjgdqDGJyJU=;
- b=ri0ckhCqzdVkeSXNpgxjeX4fgj7OJYi8HVGWmOH5fi9usa0B3aXdOLWi97sMarijUxVCr
- eLkwJ+cvbzCMi20dW7YW5tCqhmoXbRy4jDxXWEvNk2vd8j8Wn0oCsE2LsabOnlpH3ntUn8y
- O5dxTwXd/LJwRXDIUTFZLA+qrOOczSaWYPiU7oKmDBVk9cP6vrLTf0bhWL5WTjoqFpH8ZWz
- pCjoNR/rXMndeDUx8QYe6wJZHKIanMSLgcet7F9VuMV/x6cPKY3FtY0UTFmoy0blbl3B3Zv
- lC8efcvUTwGErXDSubicjJBAaCI3jkZIMDaw5bwp5KI+ixEqZp1mrDQbqz7Q==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ bh=mL5Q/qru/61qA3CeBuTxFCjV0LvdujInnspbH7ZeU+E=;
+ b=I/Lco4ExEJUUsQ/VxIqsoDB6lbD838ZeveZXqqr5ksKBchZmLIMCfSCP/pWFmoHJsqyO2
+ RTHthx6tNC0qqOpCpa4+i9YckwxxABsiuPTGpImFO0Ip5VGsip3zkKOs2wBmOlB0mjkpulI
+ s5ivxGu18BwQcoZ0eG+9EYyAU5OlOSPCu2+3l+ZLgOGdBe3J6Amcm82NZ+J9YLtXS/3mJJf
+ nGw4PdwOBRY5S1eEX/wZX1fQJpt7DcQ0/jhISMJMzTa8G+Hun+F1dmrerb+AYB01h4AplVJ
+ 1WSU2/W8zNEN5nrfRz9pJ2dhou7EmpSLB6e6ybRBb/x1Gb5rJDJJtMqrMAvA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
-  arc=pass;
+  arc=none (Message is not ARC signed);
   dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 015FC47BC6
-	for <nouveau@lists.freedesktop.org>; Mon, 26 Oct 2026 19:45:53 +0000 (UTC)
-Received: from mail-pz2-f8.google.com (mail-pz2-f8.google.com [74.125.228.8])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id DD61410E354
-	for <nouveau@lists.freedesktop.org>; Mon, 26 Oct 2026 20:04:51 +0000 (UTC)
-Received: by mail-pz2-f8.google.com with SMTP id
- 41be03b00d2f7-cd3da0e82daso724509a12.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id 503854711B
+	for <nouveau@lists.freedesktop.org>; Fri, 30 Oct 2026 20:09:07 +0000 (UTC)
+Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com
+ [74.125.82.173])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1317410E0F8
+	for <nouveau@lists.freedesktop.org>; Fri, 30 Oct 2026 20:28:15 +0000 (UTC)
+Received: by mail-dy1-f173.google.com with SMTP id
+ 5a478bee46e88-36a0f27c9f4so1947184eec.1
         for <nouveau@lists.freedesktop.org>;
- Mon, 26 Oct 2026 13:04:51 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1793045091; cv=none;
-        d=google.com; s=arc-20260327;
-        b=En00XTsv2va58+GJMktOu3h/JVJgxo+Cv7WOe5sM9ydnLxKRbQC/He/jpqGbDAvyE/
-         /tZJ9XR3frZ3mCNYaYnUar9gikYhA1m6UQMqLJxWBeCBgB8RhaK1q0e7yTtPuV4fKe3V
-         R8+2ysrLb+b3l2ZaNn/CeK3z+Tn8FC28O7T2trArTdvL2ougjSwTKvCqe8aY88MBFn8D
-         yH1OL5dUFLpvJwHstXOVlDJqbLXoEJhUlH4KKjkFaeWjwBOse8+BwzlBnPjlaTK/QXYY
-         U/gHolSLaG8745KNvMGQdur/vJSwEZWKEwu01CdTjGA5LwjsZ8NOPB2fw7Vp52GGw5Oz
-         4pWg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327;
-        h=to:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=IUnZOMuEwAyZgw4JuQeLgbiv3U6p5wn4LjgdqDGJyJU=;
-        fh=TvPdpj9s51L+q6iVdWnIf8JRPWtyzFvsSrNX/1hFbzc=;
-        b=hG1eZM00MDUFX3tNSYNF+J4cVTmtmKhanh0blxbePosT1UXjGpYEGCeBWpMpQKl8Sp
-         nc2WEFR3kKua7khQzCp58L0LeGDmzJOCXJf7sfacZDDvvOwI5u0ZOpwvfWCHkuaxh0Pm
-         0c6Eqq7uA6+fOiVbvqdsEVRiZFBju0o5VY3nwwpaOjnLALiff1MYwuuK7xVwfa8Vq1Th
-         CdW5qDuvfbEo+LM8RQ5fiLeQqtUdq5hewr9EkBRo6t7K82mCP+yKX77PMkPkwhO10VWh
-         zaacp9eRjQRoVwcfMJdtl3Z9MWVvCx50tmt2SZl23qS6fcVbqp7yxvmhVN3AKo42i7sg
-         pBkg==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+ Fri, 30 Oct 2026 13:28:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1793045091; x=1793649891;
+        d=gmail.com; s=20260707; t=1793392094; x=1793996894;
  darn=lists.freedesktop.org;
-        h=content-type:to:subject:message-id:date:from:mime-version:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=IUnZOMuEwAyZgw4JuQeLgbiv3U6p5wn4LjgdqDGJyJU=;
-        b=eYPRJGblHJVjX/1CGtDRXty6O8xwxUhYgxbfp+FXMVY7YBtNPgrnBiQfQOAZnPJPWn
-         xZJ2YAqHuISh7ntW9MQ7oGhjCiIgTtAIvJfSpp08jUOOqQURisrdUNPHbyiae0kwRIIB
-         FH4JyR/htIBbXbKzy6u/jNB46YpCzlkHj+J9xyo3Oug0PLyes69hg99j+uRcZEcXY/Uk
-         DAQ8pVYZH/u+tZNmjx/UL1ydWOWnlfePvQhkqY6WRWXCzlhu6IYdfwBDFTikGTGZQhWy
-         Zf3IhLYglP7Q9SPHaQQEawwsdpTxtePSEOYwov7QDn2KLPZdkgVtTCXKDWeGrxCNQuMb
-         bMVQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=mL5Q/qru/61qA3CeBuTxFCjV0LvdujInnspbH7ZeU+E=;
+        b=JmRRneZHUtRlQd7i94O9VPzRgRNuTXLKRXw1oxEkIEDR3ppoSeyMGIMp/i9evUvtk/
+         EnGsm8KI9C3DPXa2+y+oD6KsShcApn1ojSdFuDOfbdH1hqPuDdD7tQHzI+rkr+WP35+T
+         /rpwuySvqCymaUX3XdYgaXroJg2DhcUHfTlZg6Ocv+cOjoXRda+fls/6lI2KWEijsY+3
+         kBH6btgNkAUbWtuJ+AuP/qJ3e1TYeeqZbw8GONkMl/Ai0QG6Wpv29yPZyw1oc6S+4d8/
+         3jONnUoxnyDTk1O+xTcc5zHvT3xVOBc7A+Ga8sqc0J5BSuGWt57upxiohycaFHxpVXfV
+         35aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793045091; x=1793649891;
-        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=IUnZOMuEwAyZgw4JuQeLgbiv3U6p5wn4LjgdqDGJyJU=;
-        b=iKx2CxKYLay7cbtpy1sHslg/6gwCYBzF2FuRgFrK0Qc55phau2Zve3qgOCLjhiwRmX
-         pydZOKiFcxvhHsbQtu+iPeAZrI6gBNDyCX9qOeYFZh3N6KhMm2LqXKrXOXQmijTuiwXJ
-         h7FwXtpgINpueO7o1r/7YrM/vZi6abp8Ww61C3ThIJ/UYZsIR5hRmgH8mRMEvp9XIh2W
-         4MBCniYhyMYgykhpbm7r7m/pLnJK4ssCw7YqVleUPalAjAx+Jy3sMHJXryRJ9VcHgxfY
-         zeb5WAeQRrxByJgXYTMEvp1cW4Cyy067rRcyFNEIvVCdTuJUNJN78Z7HuxBdh8DrXA8e
-         AIAA==
-X-Gm-Message-State: AFq9FYJDLTL1aOWLe+ogwywc9GzG1b3DjODlQx6obdJeA+U2j516HRes
-	8q4v/zG+bTkYpvadCvf6Gp2x5Ct3Bt9ljwDOIKWgKt2F//5lA2Pn3TaBEARpN5Kj0uXGJWdaCUN
-	OG+T9cB+Lr8NbCta8ljU5vBPnUdGgmWpIQSOz
-X-Gm-Gg: AYBFou0/m6GcB4dLWWI8fwfOqsYjv3y7itfODeipXcSmBCr1ez1NizZtMiiASmM8Q99
-	yoOpvOVToJx5mFl3TTF6BmCuWwbSxDJrc50cmWoqe++SWqQ0jA/zaxlPGndogO+arDclVzBxunp
-	l31vb8D5QOIjklwtXBKqgbDss54V/j/sgCksm+kbnjHYdbwiVtHyBQ0qpKZbdfNkSvlQdb78UcB
-	TM5PU2ABm+MRQtYaaUyHdlMQGC5uxOxPMKohM3bUuO/bRKu5IbjYcyVPeNcb8avs5P9YgNSD+g6
-	aQX/7yAWgeNzUeT7OjMvRMDBfDoFXlmJmGtPKMtrn+ee6mnaXY6j5Npu8D4G1LrN1DANB0alr7n
-	5PY5nonEYEkvZ4e3q5c8DafhqPMCt75rMVtxVeZx0GCaN9GV35aBwo1fP5WYyNepPGBfqo7jMAl
-	1iNnOi1hgD1a8u4SSGz9/jOFXOhlYDXVsy2Cp7m7cY5M5f0qWP
-X-Received: by 2002:a05:6a21:4014:b0:3e2:aab8:4ec5 with SMTP id
- adf61e73a8af0-3e7cd503e0emr5827828637.66.1793045090856; Mon, 26 Oct 2026
- 13:04:50 -0700 (PDT)
+        d=1e100.net; s=20260707; t=1793392094; x=1793996894;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=mL5Q/qru/61qA3CeBuTxFCjV0LvdujInnspbH7ZeU+E=;
+        b=c/gQdySh15KLJOlr3irXNS/oUHxxgBO8pYQ2fwC0cCWVpvhaPeV45I8nfXiiO29d/e
+         FKl9OgE3wInvtJkCQp6dlA6ejMz/2aUWte+bDo2xA4MlU6L9lm4bLxEreZaeLkx2cwVl
+         pGVkJOpXQsekjZmlpkmVdK4wXvMRI89Gi6UkKehjWVoGmOw5hctrAOc5S1L3FOrnfbU1
+         qg+il+sj4gD8EQKzRfaQ41NVijvHqefWlw/cHP6yozC/FRu9RTk446g3Rsl9iGp08Pvc
+         e1fiqzsL9NdaeRsZwy3zVpVwLB1tZjuoVVSsmTp78xrL44jdNlzNHNPeZp5MeTIo0u1s
+         TIjA==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBzxsPOXTXpUe1w18BIPcSs82g9E2jW9ENMkWyI1YJ+WhGPmHXX89e/WNyLIrLRSBUFjkcqqroun@lists.freedesktop.org
+X-Gm-Message-State: AFq9FYL0bNBPLip+d6ikz0Ykd2QGad4OsIsTYQdkXlDH3TZEu+Kk+HwD
+	RasBdce1gQVo7U/e4SxSDGs5MBB0zpCoHUtUDwERvJCWCQ8HCqQHZRcc
+X-Gm-Gg: AYBFou2OetIliYYAgfyRwpOyVKbU0mEGS2tApb4XNfutyhsIlmHOQX9lbN6Vrz4ZUF6
+	2JnRrBmr1LIkADPSJe30Se/G4Y/DvnZ1p6DwS2YgbxJd0Rksj5EAFOHMmZ51WaGRn1ILUTSGMvH
+	rmyjpFsPqx8eKstDiM9YWDGJ4i5Xp0vZP2rJ6i/5aiiEMpJyuPPsMuSXGDeVi5C2CC1hXZMn2AI
+	2PAnAn9YCP+DmPOaUQ12Oo8tvIokpb9e4a7zmoaQJaYVYzmx2+ZfhXeAxRUwmTfSqTR68MmiTwI
+	YffqJ9kNn9xioDxuPtqXXFSIZj5ZggfR/A4i/m2uzFgb9zuI8DfCfNU0DLsmDPKD+z2r8kB/sY5
+	2/LKb3SdG+Y1Gz2rCVBdVdeQeJFz5/9Y0t72Oyx95XeQs37VOdRh/93Y3Ya3YGmdjGzpiGIhY7U
+	HFK+f6bCW9REKHDao6O360Fi/w22fuxeRS3a6HbljugoYGl6kKbBBR+Z9O9Dh+iAflASVJ7cfJK
+	CJ49FsSi3UecZcuLKTQJOtZ002mdFgTVVHEgRqiKbOpYWJECKCtaeKD+P+yND18H1zFmNBYqNwV
+	Los3ME2LF5rHyDUWmTYU/hYv7ETZIEOI5omKR/8=
+X-Received: by 2002:a05:693c:41d4:10b0:35c:99e1:c755 with SMTP id
+ 5a478bee46e88-36a4242c0e1mr4738625eec.38.1793392094038;
+        Fri, 30 Oct 2026 13:28:14 -0700 (PDT)
+Received: from munique-a520 ([2804:3bf0:fe29:ac41:2d94:706:4bfd:852e])
+        by smtp.gmail.com with ESMTPSA id
+ 5a478bee46e88-36a42a61a0csm10976489eec.22.2026.10.30.13.28.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Oct 2026 13:28:13 -0700 (PDT)
+From: Munique Feitoza <muniquefeitoz4@gmail.com>
+To: Lyude Paul <lyude@redhat.com>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH] drm/nouveau: Fix CE channel creation on pre-Kepler GPUs
+Date: Fri, 30 Oct 2026 17:28:09 -0300
+Message-ID: <20261030202809.28723-1-muniquefeitoz4@gmail.com>
+X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-From: loong <loong.0x00@gmail.com>
-Date: Tue, 27 Oct 2026 04:04:14 +0800
-X-Gm-Features: AclHuK9U9hYp67C2U8Sx9nWhVGY355tQ3vEIqdJJXIhenopxrEtw7sjjby19_lQ
-Message-ID: 
- <CAFugiW8OPd-OmkWyH4m9S-_-b_4r68EbidW1_NX9YgMPjt3kyA@mail.gmail.com>
-Subject: =?UTF-8?Q?nova=2Dcore_FSP_question=3A_host_BAR0_reads_of_GB202_FSP?=
-	=?UTF-8?Q?_falcon_registers_return_0xBADF5040_=E2=80=94_documented_decoupler?=
-	=?UTF-8?Q?_behavior=3F?=
-To: nouveau@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000b4f508065ec3d778"
-X-MailFrom: loong.0x00@gmail.com
+Content-Transfer-Encoding: 8bit
+X-MailFrom: muniquefeitoz4@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: XBGRKK5PKPTNCHGT3ZRKTGDJEDLZFTQT
-X-Message-ID-Hash: XBGRKK5PKPTNCHGT3ZRKTGDJEDLZFTQT
-X-Mailman-Approved-At: Sat, 31 Oct 2026 01:49:58 +0000
+Message-ID-Hash: D53S2R4HBXAFAI4IKGMGQN4VQIQFJGAW
+X-Message-ID-Hash: D53S2R4HBXAFAI4IKGMGQN4VQIQFJGAW
+X-Mailman-Approved-At: Sat, 31 Oct 2026 01:50:15 +0000
+CC: Simona Vetter <simona@ffwll.ch>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Munique Feitoza <muniquefeitoz4@gmail.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XBGRKK5PKPTNCHGT3ZRKTGDJEDLZFTQT/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/D53S2R4HBXAFAI4IKGMGQN4VQIQFJGAW/>
 Archived-At: 
- <https://lore.freedesktop.org/CAFugiW8OPd-OmkWyH4m9S-_-b_4r68EbidW1_NX9YgMPjt3kyA@mail.gmail.com/>
+ <https://lore.freedesktop.org/20261030202809.28723-1-muniquefeitoz4@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -142,91 +132,75 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=0.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,HTML_MESSAGE,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---000000000000b4f508065ec3d778
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Commit 04e0481526e3 ("nouveau/dmem: Fix privileged error in copy engine
+channel") changed nouveau_accel_ce_init() to unconditionally request a
+privileged channel (priv = true) when calling nouveau_channel_new().
 
-Hello nova-core folks, First: thanks for upstreaming the FSP (Foundation
-Security Processor) support =E2=80=94 falcon/fsp.rs, fsp.rs and regs.rs in
-drivers/gpu/nova-core are great documentation of the Hopper/Blackwell boot
-flow. While studying it against a retail RTX 5090 (GB202, proprietary
-driver 615.78.08 loaded), I mapped the host-visible BAR0 behavior of the
-FSP register blocks and found a very clean split: Readable from the host
-(live values): - NV_PFSP_QUEUE_HEAD/TAIL and NV_PFSP_MSGQ_HEAD/TAIL @
-0x8f2c00 / 0x8f2c80 - NV_PFALCON_FALCON_EMEMC/EMEMD @ 0x8f2ac0/0x8f2ac4
-(EMEMC currently shows blk=3D0, aincr=3D1; EMEMD returns residual message
-bytes) Always return 0xBADF5040 from the host: -
-NV_PFALCON_FALCON_HWCFG1/HWCFG2, CPUCTL, MAILBOX0/1, IMEMC/DMEMC (PFALCON @
-0x8f2000) - FALCON_ENGINE @ 0x8f23c0 - the whole PFALCON2 block (MOD_SEL @
-0x8f3180, RISCV_CPUCTL @ 0x8f3388, CORE_SWITCH_RISCV_STATUS @ 0x8f3240,
-BCR_CTRL @ 0x8f3668) Three questions: 1. Is 0xBADF5040 the documented
-poison value that the BAR0 decoupler returns for falcon-internal registers
-when read from the host on Blackwell? I could not find it in the published
-swref headers. 2. Is this filtering static, or does it arm only after FSP
-secure boot completes =E2=80=94 i.e., is there a window during/after device=
- reset
-(SBR/FLR) where HWCFG1 and friends read back real values from the host? 3.
-Is there any supported host-side way to read FSP engine state (core
-revision, security model, halted status) on GB20x for diagnostics, similar
-to what falcon register dumps give on GA10x? (Context: I'm building a
-hardware diagnostics tool that enumerates engine state. These observations
-come from pure BAR0 reads, no writes were performed.) Thanks a lot! Best
-regards, Loong
+However, privileged channels (func->ramfc->priv) are only supported on
+Kepler (gk104_chan_ramfc) and newer FIFO implementations. On pre-Kepler
+GPUs that expose a Copy Engine runlist, func->ramfc->priv is false,
+which causes nvkm_chan_new_() to reject the channel creation with
+-EINVAL:
 
---000000000000b4f508065ec3d778
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+  nouveau 0000:01:00.0: DRM: failed to create ce channel, -22
 
-<div dir=3D"ltr">Hello nova-core folks,
+Specifically, this affects:
+- Tesla GT215 (NVA3), GT216 (NVA5), GT218 (NVA8), and MCP89 (NVAF)
+  using g84_chan_ramfc (GeForce GT 210/220/240, 310/320M/330M, etc.).
+- Fermi GF100 (NVC0), GF108 (NVC1), GF106 (NVC3), GF104 (NVC4),
+  GF110 (NVC8), GF114 (NVCE), GF116 (NVCF), GF117 (NVD7), and
+  GF119 (NVD9) using gf100_chan_ramfc (GeForce GTX 400/500 series and
+  Fermi-based GeForce GT 600/700 series such as the GT 730).
 
-First: thanks for upstreaming the FSP (Foundation Security Processor) suppo=
-rt =E2=80=94 falcon/fsp.rs, fsp.rs and regs.rs in drivers/gpu/nova-core are=
- great documentation of the Hopper/Blackwell boot flow.
+As a result, drm->cechan remains NULL on Fermi GPUs and TTM buffer moves
+in nouveau_bo_move_init() cannot use the dedicated hardware Copy Engines
+(COPY0/COPY1), falling back to M2MF on the main graphics channel.
 
-While studying it against a retail RTX 5090 (GB202, proprietary driver 615.=
-78.08 loaded), I mapped the host-visible BAR0 behavior of the FSP register =
-blocks and found a very clean split:
+Only request a privileged CE channel when device->info.family >=
+NV_DEVICE_INFO_V0_KEPLER.
 
-Readable from the host (live values):
-- NV_PFSP_QUEUE_HEAD/TAIL and NV_PFSP_MSGQ_HEAD/TAIL @ 0x8f2c00 / 0x8f2c80
-- NV_PFALCON_FALCON_EMEMC/EMEMD @ 0x8f2ac0/0x8f2ac4 (EMEMC currently shows =
-blk=3D0, aincr=3D1; EMEMD returns residual message bytes)
+Fixes: 04e0481526e3 ("nouveau/dmem: Fix privileged error in copy engine channel")
+Signed-off-by: Munique Feitoza <muniquefeitoz4@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-Always return 0xBADF5040 from the host:
-- NV_PFALCON_FALCON_HWCFG1/HWCFG2, CPUCTL, MAILBOX0/1, IMEMC/DMEMC (PFALCON=
- @ 0x8f2000)
-- FALCON_ENGINE @ 0x8f23c0
-- the whole PFALCON2 block (MOD_SEL @ 0x8f3180, RISCV_CPUCTL @ 0x8f3388, CO=
-RE_SWITCH_RISCV_STATUS @ 0x8f3240, BCR_CTRL @ 0x8f3668)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 5e1336615..0a15f1281 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -337,6 +337,7 @@ static void
+ nouveau_accel_ce_init(struct nouveau_drm *drm)
+ {
+ 	struct nvif_device *device = &drm->client.device;
++	bool priv;
+ 	u64 runm;
+ 	int ret = 0;
+ 
+@@ -349,7 +350,13 @@ nouveau_accel_ce_init(struct nouveau_drm *drm)
+ 		return;
+ 	}
+ 
+-	ret = nouveau_channel_new(&drm->client, true, runm, NvDmaFB, NvDmaTT, &drm->cechan);
++	/* nouveau_dmem copies require a privileged channel, which is only
++	 * supported by Kepler and newer FIFO implementations.
++	 */
++	priv = device->info.family >= NV_DEVICE_INFO_V0_KEPLER;
++
++	ret = nouveau_channel_new(&drm->client, priv, runm, NvDmaFB, NvDmaTT,
++				  &drm->cechan);
+ 	if (ret)
+ 		NV_ERROR(drm, "failed to create ce channel, %d\n", ret);
+ }
+-- 
+2.56.0
 
-Three questions:
-
-1. Is 0xBADF5040 the documented poison value that the BAR0 decoupler return=
-s for falcon-internal registers when read from the host on Blackwell? I cou=
-ld not find it in the published swref headers.
-
-2. Is this filtering static, or does it arm only after FSP secure boot comp=
-letes =E2=80=94 i.e., is there a window during/after device reset (SBR/FLR)=
- where HWCFG1 and friends read back real values from the host?
-
-3. Is there any supported host-side way to read FSP engine state (core revi=
-sion, security model, halted status) on GB20x for diagnostics, similar to w=
-hat falcon register dumps give on GA10x?
-
-(Context: I&#39;m building a hardware diagnostics tool that enumerates engi=
-ne state. These observations come from pure BAR0 reads, no writes were perf=
-ormed.)
-
-Thanks a lot!
-
-Best regards,
-Loong</div>
-
---000000000000b4f508065ec3d778--
