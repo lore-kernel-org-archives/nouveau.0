@@ -2,127 +2,147 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FDFA606A31D
-	for <nouveau@archiver.kernel.org>; Fri, 30 Oct 2026 11:44:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030F9606A32A
+	for <nouveau@archiver.kernel.org>; Fri, 30 Oct 2026 12:56:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CYls7XT4
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DbvVbneF
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 330F1112771;
-	Fri, 30 Oct 2026 11:44:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 866EC1127D1;
+	Fri, 30 Oct 2026 12:56:10 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0D0B948C0F;
-	Fri, 30 Oct 2026 11:25:21 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 467E748C14;
+	Fri, 30 Oct 2026 12:36:58 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793359520;
- b=aO3d4YtGoWM0stdZsuz6Hnn6JsT3VUnE5N8T5humdRW9zVMSBwFxRN+5EOweMs+hoxUB8
- TSk1hLwEa1s1PBNrDqiKXzyn5y0Qx5rShAJ5gwjmxDzd2XY+SEM0rn3/Kj1aCOXmcJABh2o
- AGLy/duAzmrupcF32Dw4kgudMIjDCJg0zETGnjxW9yin58IIj1gNlQZ8RVtdwo2lCDdnAVP
- X9O8u8OpS0BjORdjCuqRv37eA27p6dpXP1PrlWFDbfoE4+tu7yhT/wEzP3lCGTvi+BZhz2f
- avMRZNGCisi0lAjjo9WFnR18rJzIr4Qzauq2Lxm8G6XMgXm0fltFwmzWd0XQ==
+ s=20240201; t=1793363818;
+ b=R8vDTr3RVhoOnrPWtG8tC4bid7SJTCTdWJTpTZMSTUektwTHrWaxTc50Ai3idRb8MNcLs
+ Gpm6tjSqwotXGo1xoCrmItwoMIRlHYkwwfL0p9JQYffl07RTETpleLnl2t8ojGwnvqdzMEC
+ +P2c/iIl0qaupoaRmjmNnuBo85rZbPpD8aVgznwGJHK4eyhh0gYlwCXrmhcnNPU/lfm8rfo
+ rkONuc4rlo8LDMb6MF4BQdJFAHfL4JvX5XTOaNPqdr8tgUADCDYgsFJwCUIwlQQp90YBGta
+ DTZEBPBdALpa/zR6+m8qXzpM4/YjEvaFxNEgBJajVf1HIwWVoGQ8cbj1mf4g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793359520; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793363818; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=K2dB0Ql9grwDChzbfX2B4Ey5mwC/vTUQxp839fTyFno=;
- b=agNWxZ1lIiJANtUmyJBTTLUlC/t1ch1CwMAcJHJ8r8TvMHEzuq+fUur1inNbhRVh+/kZK
- nIRm2dD8MR3w+lt/t4Sl0AhCbG0ZUTmBx82hBtqRYCnV3wR0fgOKHAuQxbnuae18Y4Vu1lr
- COjdiVL1XNkjKon80RljK8z+rf6gV9K0V/h3UhzZ8Xj0WsLq/RLqW/XwujHdfvq8dN8ffAf
- dzwzuKNwxBkFUXzCEPxkD45yxff7I3VBdHksDTP2dVJVHYTDBlTcUoQYSTZQUhjVd97V1s6
- 6+s8FLMv2PGQMl/qpJ4bVvp4mKJM7VbYV/vgP86MV+tvAT7sB9ep2sWk1o5A==
+ bh=QEN1UqSia/bSOQapCp3EkqxCvOcE8KsRJXMohGlQcDQ=;
+ b=BfhC/kOhPP6P57WIb51oBKHW1bNjT7zYRZbEW5xhbTfW01NMgcbwvTMrF4CEVOfCXHKVP
+ +VX1M+Jqp2lDErHG3g7dFXZ08DDAP4pw2ARdqrxEk7qlvFE+q+QJnxIelGMznDVW/d2khg+
+ gyopQcBGeW9K0JDCXr0GsQe+B5AuAboFE46zk7BNLmQoLNsjdq3pJd6V8TRAOQq5XMhnOtW
+ sQV8TON6rLbMa7ijY63qpLlvp+jdR1cVZO/9dpTOl+mtSJShpbJCUji6irKdp9A5VSRlQB2
+ 5Fnn3K2Th/vGFsteU0nj//cSzydr88irPsB4Go4QiiVWQcezB+DsK7OpeNPA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
+ dkim=fail header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
+  dmarc=fail (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=fail header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
- policy.dmarc=none
+ dmarc=fail (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 819464711B
-	for <nouveau@lists.freedesktop.org>; Fri, 30 Oct 2026 11:25:18 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5E02E10E279;
-	Fri, 30 Oct 2026 11:44:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1793360665; x=1824896665;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=x8TvwLzSHqdTbx1HgAAtb/ADR1txxIEQrI2u8aFySlM=;
-  b=CYls7XT4FtBzGSHj2wU9DbW89wIHZfPeVF5FqMgn8NqfUGEwU4Zd6hjC
-   rIXf0ZfZg+ynXS1skX35Ithc2FfytK0utj0Xkp2n9wv/KNImj3GE9XNSE
-   mxjSX8+FiAOZMUOOkXLKPHVOCxANiP1jGXJKNzmwKBiUilM3baluiKTN0
-   9eXghTiBcmOjSZ/cwFv9XIIS8ylE9ygsFMlY5YBWfb+AXmSlL1N+/tMoF
-   q0qKGTq0aeqNlmfAtQlYeLIoqcWiy3vDAH42vxvB8kWTPLVZ5TeSuGaRp
-   mM80lQIXcIVLmOvg9dfUMOGN9ETy7py4tJQ6+NjkZeRTdFJzuCPETkB3t
-   A==;
-X-CSE-ConnectionGUID: wPJlFmIyQmCr1QolONuI2w==
-X-CSE-MsgGUID: XqwjpKHXT/ivi0Z6SZhWnQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11950"; a="2153576"
-X-IronPort-AV: E=Sophos;i="6.27,186,1787036400";
-   d="scan'208";a="2153576"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 04:44:25 -0700
-X-CSE-ConnectionGUID: dUGh3GZZSfWnVLY/c5JscA==
-X-CSE-MsgGUID: GtI3xy5jTpm+UPu/72vcvg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,186,1787036400";
-   d="scan'208";a="5755803"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.58])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 04:44:20 -0700
-Date: Fri, 30 Oct 2026 13:44:16 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH v2 1/5] drm/dp: Always use enhanced framing for DPCD r1.2+
-Message-ID: <auSDEOoWZWcgbvzZ@intel.com>
-References: <20261029101826.72773-1-dmitrymalovanyy@gmail.com>
- <20261029101826.72773-2-dmitrymalovanyy@gmail.com>
- <auR8R7G5S8hv5R0e@intel.com>
- <59106a36510e33e851f76c877f41952b11a8c774@intel.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id DDFA1475EA
+	for <nouveau@lists.freedesktop.org>; Fri, 30 Oct 2026 12:36:55 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CEBD71127AF;
+	Fri, 30 Oct 2026 12:56:02 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 8ACC06062F;
+	Fri, 30 Oct 2026 12:56:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 840761F000C1;
+	Fri, 30 Oct 2026 12:56:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793364961;
+	bh=QEN1UqSia/bSOQapCp3EkqxCvOcE8KsRJXMohGlQcDQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=DbvVbneFlRcReg135ryJEYVhhtWakAOVNath1hcKIIXE0a0XxAPDDvNN6T7Uf6+oe
+	 8w5jtD2yqrswAxXmfPTHEdkD7AvDqLamYaTsnJnneKspcbfXmYHU3OGl89jWEz8/U/
+	 /ww4ODFnAJ7tLbMPad8NuI/UAu0PK8s28Ey4jTtat4X8zzsm4uIT7x105xj2SQfJbe
+	 wzxdFTqJOrrKiP1LRPFbbaswMYtV6X09XW80Okkv+fqOYtPGsvIPYCiSGFVMsrui5k
+	 MrMYZoVyeIy+hz3rgx3Z3HJJdqyKirPMRBric5eDJy0W8pHIi0gyTDHmZJorASfuP1
+	 +FvfPpgyOt/TA==
+From: Maxime Ripard <mripard@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maxime Ripard <mripard@kernel.org>
+Subject: Re: (subset) [PATCH v2 00/59] drm/connector: Convert all drivers to
+ atomic_create_state and remove reset
+Date: Fri, 30 Oct 2026 13:55:55 +0100
+Message-ID: <179336494956.280337.14142889938692228617.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: 
+ <20261022-drm-no-more-connector-reset-v2-0-0b7e4e85b1e8@kernel.org>
+References: 
+ <20261022-drm-no-more-connector-reset-v2-0-0b7e4e85b1e8@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <59106a36510e33e851f76c877f41952b11a8c774@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Message-ID-Hash: XEDUXYOQ526ZCIOWE3PQTI6FEUIFW6NB
-X-Message-ID-Hash: XEDUXYOQ526ZCIOWE3PQTI6FEUIFW6NB
-X-MailFrom: ville.syrjala@intel.com
+Message-ID-Hash: AC2WJJL5GRYIKDSSPQ7JCZW6TUUZFCJJ
+X-Message-ID-Hash: AC2WJJL5GRYIKDSSPQ7JCZW6TUUZFCJJ
+X-MailFrom: mripard@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Dmytro Malovanyi <dmitrymalovanyy@gmail.com>,
- dri-devel@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+ loop; banned-address; member-moderation
+CC: dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Ruben Wauters <rubenru09@aol.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>,
+ Dave Airlie <airlied@redhat.com>, Jocelyn Falempe <jfalempe@redhat.com>,
+ Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
+ Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
+ Tian Tao <tiantao6@hisilicon.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Yongbang Shi <shiyongbang@huawei.com>, Paul Kocialkowski <paulk@sys-base.io>,
+ Huacai Chen <chenhuacai@kernel.org>, Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+ Jianmin Lv <lvjianmin@loongson.cn>, Mingcong Bai <jeffbai@aosc.io>,
+ Qianhai Wu <wuqianhai@loongson.cn>, Xi Ruoyao <xry111@xry111.site>,
+ Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
+ virtualization@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>,
+ linux-renesas-soc@vger.kernel.org,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Iker Pedrosa <ikerpedrosam@gmail.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Raphael Gallais-Pou <rgallaispou@gmail.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
+ Alexey Brodkin <abrodkin@synopsys.com>, Hans de Goede <hansg@kernel.org>,
+ LiangCheng Wang <zaq14760@gmail.com>, Alex Lanzano <lanzano.alex@gmail.com>,
+ Sean Paul <sean@poorly.run>, Chia-I Wu <olvaffe@gmail.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XEDUXYOQ526ZCIOWE3PQTI6FEUIFW6NB/>
-Archived-At: <https://lore.freedesktop.org/auSDEOoWZWcgbvzZ@intel.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AC2WJJL5GRYIKDSSPQ7JCZW6TUUZFCJJ/>
+Archived-At: 
+ <https://lore.freedesktop.org/179336494956.280337.14142889938692228617.b4-ty@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -130,88 +150,71 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-6.5 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Oct 30, 2026 at 01:36:31PM +0200, Jani Nikula wrote:
-> On Fri, 30 Oct 2026, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Thu, Oct 29, 2026 at 11:18:22AM +0100, Dmytro Malovanyi wrote:
-> >> DP 1.2 section 2.2.1.1 says "An upstream device interoperating with a
-> >> downstream device with DPCD Revision of 1.2 or higher must enable
-> >> Enhanced Framing Mode". So for r1.2+ the DPCD revision is enough, the
-> >> DP_ENHANCED_FRAME_CAP bit does not need to be checked.
-> >> 
-> >> Some sinks get this bit wrong. The Xiaomi Monitor A24i (P24FBA-RAGL)
-> >> sets it in the base receiver caps, but clears it in the extended
-> >> receiver caps at 0x2200, which are the ones we use:
-> >> 
-> >>   base:     12 0a c4 01 01 00 01 80 02 00 06 00 00 00 81
-> >>   extended: 14 0a 44 00 01 00 01 80 02 02 06 00 00 00 81
-> >> 
-> >> Through a USB4 dock (CalDigit Element 5) the link trains without
-> >> enhanced framing (0x202-0x204: 77 77 81), but the sink never syncs to
-> >> the stream (SINK_STATUS 0x205: 00) and shows "No signal". Forcing RBR
-> >> does not change it. Connected directly to the laptop the same sink
-> >> syncs without enhanced framing, at RBR, HBR and HBR2.
-> >> 
-> >> Make drm_dp_enhanced_frame_cap() return true for DPCD r1.2+. This
-> >> changes behaviour for every driver using the helper, but only for sinks
-> >> which already violate the spec by not setting the bit.
-> >> 
-> >> Tested on i915 (Arrow Lake-U), with the dock the link now uses enhanced
-> >> framing (0x101: 84) and the sink syncs (0x205: 03).
-> >> 
-> >> Fixes: a1d926527b79 ("drm/i915: implement EXTENDED_RECEIVER_CAPABILITY_FIELD_PRESENT")
-> >> Cc: stable@vger.kernel.org
-> >> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/17719
-> >> Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
-> >> Signed-off-by: Dmytro Malovanyi <dmitrymalovanyy@gmail.com>
-> >> ---
-> >>  include/drm/display/drm_dp_helper.h | 4 ++++
-> >>  1 file changed, 4 insertions(+)
-> >> 
-> >> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> >> index 5b05a7fbe..4f20f60db 100644
-> >> --- a/include/drm/display/drm_dp_helper.h
-> >> +++ b/include/drm/display/drm_dp_helper.h
-> >> @@ -160,6 +160,10 @@ drm_dp_max_lane_count(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
-> >>  static inline bool
-> >>  drm_dp_enhanced_frame_cap(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
-> >>  {
-> >> +	/* DP 1.2 2.2.1.1: enhanced framing is mandatory for DPCD r1.2+ */
-> >
-> > DP_ENHANCED_FRAME_CAP is also mandatory so I think this needs
-> > a bit more detailed explanation.
+On Thu, 22 Oct 2026 14:30:59 +0200, Maxime Ripard wrote:
+> This is a follow-up to the plane and CRTC reset removal series, and
+> part of a larger effort to remove the reset hook from all KMS objects.
 > 
-> Commit message not enough?
+> The connector reset hook is overloaded: it is called both at probe
+> time to create the initial software state and during suspend/resume to
+> reset hardware and software state. These two roles have different
+> requirements, and the reset hook is not fallible, making error
+> handling difficult for the initial state allocation path.
+> 
+> [...]
 
-On its face the check looks completely redundant, so without further
-justification someone is likely to just remove it.
+Applied to misc/kernel.git (drm-misc-next)
 
-> 
-> I think the wording in the specs suggest that with DPCD r1.2+ you should
-> just enable enhanced framing regardless of the cap.
-> 
-> BR,
-> Jani.
-> 
-> >
-> >> +	if (dpcd[DP_DPCD_REV] >= 0x12)
-> >> +		return true;
-> >> +
-> >>  	return dpcd[DP_DPCD_REV] >= 0x11 &&
-> >>  		(dpcd[DP_MAX_LANE_COUNT] & DP_ENHANCED_FRAME_CAP);
-> >>  }
-> >> -- 
-> >> 2.50.1 (Apple Git-155)
-> 
-> -- 
-> Jani Nikula, Intel
+[01/59] drm/hdmi: Change __drm_atomic_helper_connector_hdmi_state_init parameter order
+        commit: e8698caa41f659739861f3c5b19070ea973f58ab
+[02/59] drm/atomic-state-helper: Rename connector_tv_margins_reset to state_init
+        commit: 39e8c69f41882b12ffd1cbea39b07923dc430de6
+[03/59] drm/atomic-state-helper: Rename connector_tv_reset to state_init
+        commit: 27411554b73b2de2e230df3fefc6821485b3d509
+[04/59] drm/panel: Add atomic_create_state support
+        commit: a8684a05336c1115172bd5fce9a942d830e11d13
+[06/59] drm/aspeed: Switch to drm_atomic_helper_connector_create_state
+        commit: f88d567860da9e5a5ba0f05424ea4c8321af0467
+[07/59] drm/ast: Switch to drm_atomic_helper_connector_create_state
+        commit: 42572c272e61af9c53162f307c81bb48a0977e5d
+[19/59] drm/hisilicon: hibmc: Switch to drm_atomic_helper_connector_create_state
+        commit: 800edc28eb000fbcb2229d6799ffa5c3831def15
+[20/59] drm/logicvc: Switch to drm_atomic_helper_connector_create_state
+        commit: ec2e19c6518ca8959ca009491e62913ea53be450
+[22/59] drm/mgag200: Switch to drm_atomic_helper_connector_create_state
+        commit: f15c3a86f606c7dd8e057dc7a3d762d634b8fa20
+[24/59] drm/qxl: Switch to drm_atomic_helper_connector_create_state
+        commit: e439361203a610cebd725e068dc1694d585d6ecf
+[27/59] drm/sitronix: st7920: Switch to drm_atomic_helper_connector_create_state
+        commit: 382b5915baae6d289cf550b70e325cd162d140c5
+[33/59] drm/tiny: bochs: Switch to drm_atomic_helper_connector_create_state
+        commit: 6b1c795028b1552f25bc4b707673e0d848786dcb
+[34/59] drm/tiny: cirrus: Switch to drm_atomic_helper_connector_create_state
+        commit: 777642458977878a2e81399adf16b1e23ab57b17
+[35/59] drm/tiny: gm12u320: Switch to drm_atomic_helper_connector_create_state
+        commit: 379d9ab55e5d0453ab744892981f122f8e5614fc
+[36/59] drm/tiny: pixpaper: Switch to drm_atomic_helper_connector_create_state
+        commit: 417ff0dc9d68de04248361c3db10c902e33b87c6
+[37/59] drm/tiny: repaper: Switch to drm_atomic_helper_connector_create_state
+        commit: 7fdf84a3913597bb662a1d1aa37f798576dbd2ed
+[39/59] drm/udl: Switch to drm_atomic_helper_connector_create_state
+        commit: 9b9731aea4920327ec8fb757bcc9fa88c7c8fa45
+[40/59] drm/vboxvideo: Switch to drm_atomic_helper_connector_create_state
+        commit: 8c0c25d8724aa3a0850efac1f117444485ce899c
+[46/59] drm/gud: Convert to atomic_create_state
+        commit: 79363b9b53e285a5f98b95d75e32f889ef3431f3
+[50/59] drm/vc4: hdmi: Convert to atomic_create_state
+        commit: 946c74390c2fe7cc9acedf2d333ca1f924b7eba3
+[51/59] drm/vc4: vec: Convert to atomic_create_state
+        commit: 76000c76a4784e8bc4ea957dcebc93449f762bd7
+[54/59] drm/ast: Convert to atomic_create_state
+        commit: a1e63ab695ad76850ab9787b9eb6aab695dc2965
 
--- 
-Ville Syrjälä
-Intel
+Thanks!
+Maxime
