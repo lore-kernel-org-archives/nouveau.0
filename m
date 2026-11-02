@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17C3E606D830
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62AB608B7F1
 	for <nouveau@archiver.kernel.org>; Mon,  2 Nov 2026 16:49:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gl+5X2Iq
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nN3M0RQu
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 880C510F0DD;
-	Mon,  2 Nov 2026 16:49:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 454C710F0A2;
+	Mon,  2 Nov 2026 16:49:49 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id AAC1548CB4;
-	Mon,  2 Nov 2026 16:30:27 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 1225548CA6;
+	Mon,  2 Nov 2026 16:30:30 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793637027;
- b=rpoDnTdJrmf+4lia/7Rabx4BBzGtjR5+vVPTsVZtpCiN99x705feDomoAcl7N5FTwj1Cp
- qb3EdCn2Fx5MHvXU4i3aAbhZb03Ivt12K+wPvrysqoRZr3lTm5jjqPgG79Em9Xx1yxJXQhO
- RCDcqUfQwsB5G4XyhfoJK272Flzpao3XsMFhmp7W10kZUyBsNUWqg1YWVw16JhvHqSJqDla
- 0VrXNUp4B18C5QtBovbIjZW5CFnjJs8kOWsAJpxlSKD1GgaqGSLfFakUHevdxmo+VJOPpoF
- hYeg5g9nMjRJWqF4zDhkT0I9P62LPClj5hYhHL3w+OVbeDAOvYsOsFV0YhiQ==
+ s=20240201; t=1793637029;
+ b=l2MwRNv8VPyp/1M0y6KqswqmyVKv17AH4JeWO8XViavafwPMIUkQLCcB61db12n7n8mYD
+ 1n4OBqpSUxHZzgnmcNKQt9C9DMnIRYXvic97fUuSHKnrCv4bQ15m5dXUDLuGqmdvtw8eG9X
+ pbTjkwMtRPzHkd+EH7D2K7awfSypXNOy5HqYFW57arxpWLuX+6nMkauedonDBI63msqhoeT
+ 9CgptkapycdWfvbeMndAyPbrEKkfOD2heVNHXj11haJVX7lMEGh2wMXBpCVWZ/0/E5ysgGH
+ mW80ZqhtURaNINDEZ0+tOOKMm03EWj/FK7O2sKj8ey4X7b56G1sSy/HYTjbw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793637027; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793637029; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=iL/9+IJsslM1L/bOs4vmXJGfTH/cgGsVw1HQXn9znPw=;
- b=LzZe9GzoFlBUP+KJFfQOSD8xPAwdNfGz50UuY9fbmQyYQ4Vni3OyoVlLQjB8oFFiKIdqh
- ZLagpPJkcusZ0mpZgdK/CVKNjdaYHTH3UZ1XCxoIsTLO/BjJnYaT8L/A+v7bkEHHmXHEvNG
- HJLcmfAY9fPLYp8KPmiZDpfwUFy6KLvobPteTy/jtB53JOEgynAT7EgoHwTkFupQ/UurWYT
- taOCNctXZZBx2chJIXFKW4X2J+cr40kzRrZZ19Ppo3RMOK7FKIK7ghrP6UbB5Qd1OSZCqsb
- P+QFXoipm/+Ybl0PEXnUTRSc5FaBOvqTiisYCn9eUExCZ7QZ/aWYcGApiOGg==
+ bh=gm4ojsrTq/5JloeBdI2aBnQQnNmA9mtr/wCN2h4c++A=;
+ b=I8+YpIc4CvTF0zMAbBypb+Ut50w5pLejV55l98rIJApswmlpZgi8UoScU2xpXBIzBUTZp
+ crBBmzRqXVwh12jmI1+HEMKNZ2q1ONHdBova9x7sIN0BHrwwU0+Jlfl5cFykEaRMdhiGUSl
+ fuFsQaTP/ntMVitRwL2jIvEWtVDbuqo2gMTWorgFoGPI49Y3hdf7edWFWr8SOO510yl1vLc
+ IKAJhLlHaHm2Xmq7kaWPc3WAf7zcMvFCxlg1jnMTaP2VYZAATqXaXbeobW2v2hwSfINSCQb
+ K8Gl3M3vPeQCXKxeAP8gDMA+Ts2z8WNItl2/YMpKaTLu7rCDBKz/BsNIBMWw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,35 +43,35 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C169448C9E
-	for <nouveau@lists.freedesktop.org>; Mon,  2 Nov 2026 16:30:24 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C27B910F0B3;
-	Mon,  2 Nov 2026 16:49:38 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 4DB5548CA1
+	for <nouveau@lists.freedesktop.org>; Mon,  2 Nov 2026 16:30:27 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3E8FF10F0B7;
+	Mon,  2 Nov 2026 16:49:41 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9F0C540617;
+	by tor.source.kernel.org (Postfix) with ESMTP id B52C760ED9;
+	Mon,  2 Nov 2026 16:49:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C13011F00A16;
 	Mon,  2 Nov 2026 16:49:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F28971F00A1D;
-	Mon,  2 Nov 2026 16:49:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793638178;
-	bh=iL/9+IJsslM1L/bOs4vmXJGfTH/cgGsVw1HQXn9znPw=;
+	s=k20260515; t=1793638180;
+	bh=gm4ojsrTq/5JloeBdI2aBnQQnNmA9mtr/wCN2h4c++A=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=gl+5X2Iqw6X0ig/FCYEyBOCFN41MGtnWyIkIJCI23Fd4KOTIxMBZ7yLq2UkMNDCE3
-	 WUZJ0OQrhopuBh1kHR2F11LIZ/nka0Oh05dwvQuUrPb5g1OVPnQTehI9LijRp/ZX2k
-	 Neef7uqKRxyfcA+PLaXC1lIGWADl4DRRCapCm7yQDXLVqqp13dTsvaO2wqkK5W3AAH
-	 wdSSTRNTUJb0zG1VY0EtJJ4XZK8XD/jw34go3BkH5ejjMHLEgGKsl1H9uVLxWLBLuS
-	 jMcmKaIM8jRLOpuAtvWMIdHiJ3ZsXdF1IR7L0SIMbyawt9hUFoz7s4RRyoniwlxUZf
-	 Efavn+Iza+KKg==
+	b=nN3M0RQu3zDkgG55INL2wRWm1zog1HM/xaYqJSv9uw3KI8OkjPLtjzyplt/QRG7jA
+	 Py/p+j1ChU7CZ98zvlqY7SHanXc72/NnTMksQTheLC80tvXn6ASmVXt8lGwNzSUZhp
+	 4x8CEM2cZn7EzoTrvx9AOdLD9WE6WdyC27GdZNzFsbKD3b4sZ5tRINDE3aELjnZoWV
+	 /vguOFTyquIBUJK948ZSaTk/yLFzKTAvLUbVtbrBNPF6v5npXgL173TTR0Nx01F9kD
+	 YE66H28/RBJLNAYsXw/NRxolGtdsn6R64ElVKFdOPA1FDgscF+5P++g4uqo7yC3eaA
+	 LKh/y+4QkOU/A==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Mon, 02 Nov 2026 10:49:21 -0600
-Subject: [PATCH v10 05/15] drm/amd/display: update KUnit luminance fixtures
+Date: Mon, 02 Nov 2026 10:49:22 -0600
+Subject: [PATCH v10 06/15] drm/i915/display: add luminance property support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 Message-Id: 
- <20261102-superm1-backlight-property-v10-5-b2a6f24131f5@kernel.org>
+ <20261102-superm1-backlight-property-v10-6-b2a6f24131f5@kernel.org>
 References: 
  <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
 In-Reply-To: 
@@ -85,8 +85,8 @@ To: Maxime Ripard <mripard@kernel.org>,
  Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
  Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
 X-Mailer: b4 0.16.0
-Message-ID-Hash: QMSXXFIIAYRIYJV6LTM6CWFXZ2F64VB4
-X-Message-ID-Hash: QMSXXFIIAYRIYJV6LTM6CWFXZ2F64VB4
+Message-ID-Hash: LG2EODXYUSQUQJDKIW7VQ63ROCFFDG37
+X-Message-ID-Hash: LG2EODXYUSQUQJDKIW7VQ63ROCFFDG37
 X-MailFrom: superm1@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -95,14 +95,15 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
 CC: Mario Limonciello <superm1@kernel.org>, Xaver Hugl <xaver.hugl@gmail.com>,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Mario Limonciello <mario.limonciello@amd.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QMSXXFIIAYRIYJV6LTM6CWFXZ2F64VB4/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LG2EODXYUSQUQJDKIW7VQ63ROCFFDG37/>
 Archived-At: 
- <https://lore.freedesktop.org/20261102-superm1-backlight-property-v10-5-b2a6f24131f5@kernel.org/>
+ <https://lore.freedesktop.org/20261102-superm1-backlight-property-v10-6-b2a6f24131f5@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -117,140 +118,201 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Initialize complete DRM connector state in backlight test fixtures so
-the atomic LUMINANCE property can be attached. Check the optional
-property and keep the ABM property expectations correct with either
-interface selected.
+From: Mario Limonciello <mario.limonciello@amd.com>
 
-Also initialize the display-manager lock and mode configuration needed
-by the existing backlight registration test.
+Expose the DRM LUMINANCE connector property for eDP, LVDS, and DSI panels
+when CONFIG_DRM_LUMINANCE is enabled. Keep registering the existing
+backlight class device otherwise, preserving its userspace ABI.
 
-Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
+Use the existing Intel brightness scaling and programming path from
+connector helper callbacks. Apply atomic luminance after modeset enables
+so updates made while a panel is inactive take effect when it is enabled
+again. The shared display code provides the same behavior to i915 and Xe.
+
+Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- .../amdgpu_dm/tests/amdgpu_dm_backlight_test.c     | 43 ++++++++++++++++++----
- .../amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c      |  7 +++-
- 2 files changed, 41 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/Kconfig                   |  2 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c         |  1 +
+ drivers/gpu/drm/i915/display/intel_backlight.c | 20 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_backlight.h |  1 +
+ drivers/gpu/drm/i915/display/intel_display.c   |  2 ++
+ drivers/gpu/drm/i915/display/intel_dp.c        |  1 +
+ drivers/gpu/drm/i915/display/intel_lvds.c      |  1 +
+ drivers/gpu/drm/i915/display/intel_panel.c     |  8 +++++---
+ drivers/gpu/drm/i915/display/vlv_dsi.c         |  1 +
+ drivers/gpu/drm/xe/Kconfig                     |  2 +-
+ 10 files changed, 34 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
-index b21850788f36f..8883010e8af9c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
-@@ -41,12 +41,21 @@ static void setup_test_connector(struct kunit *test,
- 				 struct dm_backlight_connector_fixture *fixture,
- 				 int bl_idx, enum signal_type signal)
+diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+index 71426b9c91f00..720191673a1e7 100644
+--- a/drivers/gpu/drm/i915/Kconfig
++++ b/drivers/gpu/drm/i915/Kconfig
+@@ -26,7 +26,7 @@ config DRM_I915
+ 	select IRQ_WORK
+ 	# i915 depends on ACPI_VIDEO when ACPI is enabled
+ 	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
+-	select BACKLIGHT_CLASS_DEVICE if ACPI
++	select BACKLIGHT_CLASS_DEVICE if ACPI && !DRM_LUMINANCE
+ 	select INPUT if ACPI
+ 	select ACPI_WMI if ACPI
+ 	select ACPI_VIDEO if ACPI
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index ea0cdb7822f39..37ff84c03ce05 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1801,6 +1801,7 @@ static const struct drm_connector_helper_funcs gen11_dsi_connector_helper_funcs
+ 	.get_modes = intel_dsi_get_modes,
+ 	.mode_valid = gen11_dsi_mode_valid,
+ 	.atomic_check = intel_digital_connector_atomic_check,
++	.set_luminance = intel_backlight_set_luminance,
+ };
+ 
+ static int gen11_dsi_host_attach(struct mipi_dsi_host *host,
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index b128896cb1c2d..6d658c7b5d99f 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -9,6 +9,7 @@
+ #include <linux/string_helpers.h>
+ #include <acpi/video.h>
+ 
++#include <drm/drm_connector.h>
+ #include <drm/drm_file.h>
+ #include <drm/drm_print.h>
+ #include <drm/intel/pci_config.h>
+@@ -1670,6 +1671,9 @@ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
  {
--	fixture->adev = kunit_kzalloc(test, sizeof(*fixture->adev), GFP_KERNEL);
--	fixture->aconnector = kunit_kzalloc(test, sizeof(*fixture->aconnector), GFP_KERNEL);
-+	int ret;
-+
-+	fixture->adev = dm_kunit_alloc_adev(test);
-+	ret = drmm_mode_config_init(&fixture->adev->ddev);
-+	KUNIT_ASSERT_EQ(test, ret, 0);
-+
-+	fixture->aconnector = dm_kunit_alloc_connector(test, fixture->adev, NULL);
- 	fixture->link = kunit_kzalloc(test, sizeof(*fixture->link), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, fixture->adev);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, fixture->aconnector);
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, fixture->link);
-+	ret = drmm_connector_init(&fixture->adev->ddev,
-+				  &fixture->aconnector->base,
-+				  &dm_backlight_test_connector_funcs,
-+				  DRM_MODE_CONNECTOR_eDP, NULL);
-+	KUNIT_ASSERT_EQ(test, ret, 0);
-+	drm_atomic_helper_connector_reset(&fixture->aconnector->base);
- 
- 	fixture->aconnector->bl_idx = bl_idx;
- 	fixture->aconnector->dc_link = fixture->link;
-@@ -483,12 +492,17 @@ static void dm_test_register_backlight_device_success(struct kunit *test)
- 	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct drm_minor *primary;
- 	unsigned int max;
-+	int ret;
-+
-+	ret = drmm_mode_config_init(&adev->ddev);
-+	KUNIT_ASSERT_EQ(test, ret, 0);
- 
- 	setup_test_link_service(test, link);
- 	link->dc->link_srv->edp_get_backlight_level = dm_test_get_backlight_level_error;
- 	primary = kunit_kzalloc(test, sizeof(*primary), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, primary);
- 	adev->ddev.primary = primary;
-+	adev->dm.ddev = &adev->ddev;
- 	adev->dm.backlight_link[0] = link;
- 
- 	aconnector = dm_kunit_alloc_connector(test, adev, link);
-@@ -1872,6 +1886,7 @@ static void dm_test_setup_backlight_device_attaches_abm_property(struct kunit *t
- 	struct dc_link *link;
- 	int saved_abm_level = amdgpu_dm_get_abm_level_param();
- 	int saved_backlight = amdgpu_dm_get_backlight_param();
-+	int abm_index;
- 	int old_count;
+ 	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_panel *panel = &connector->panel;
++	struct drm_connector *base = &connector->base;
++	u32 brightness;
++	u32 max;
  	int ret;
  
-@@ -1890,6 +1905,7 @@ static void dm_test_setup_backlight_device_attaches_abm_property(struct kunit *t
- 				   &dm_backlight_test_connector_funcs,
- 				   DRM_MODE_CONNECTOR_eDP, NULL);
- 	KUNIT_ASSERT_EQ(test, ret, 0);
-+	drm_atomic_helper_connector_reset(&aconnector->base);
+ 	if (!connector->panel.vbt.backlight.present) {
+@@ -1703,6 +1707,13 @@ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
  
- 	link = dm_kunit_alloc_link(test);
- 	link->connector_signal = SIGNAL_TYPE_EDP;
-@@ -1900,15 +1916,26 @@ static void dm_test_setup_backlight_device_attaches_abm_property(struct kunit *t
- 	dm->adev = adev;
- 	dm->ddev = &adev->ddev;
- 	old_count = aconnector->base.base.properties->count;
-+	abm_index = old_count + IS_ENABLED(CONFIG_DRM_LUMINANCE);
+ 	panel->backlight.present = true;
  
- 	amdgpu_dm_setup_backlight_device(dm, aconnector);
- 
- 	KUNIT_EXPECT_EQ(test, dm->num_of_edps, 1);
- 	KUNIT_EXPECT_EQ(test, aconnector->bl_idx, 0);
--	KUNIT_EXPECT_EQ(test, aconnector->base.base.properties->count, old_count + 1);
--	KUNIT_EXPECT_PTR_EQ(test, aconnector->base.base.properties->properties[old_count], prop);
--	KUNIT_EXPECT_EQ(test, aconnector->base.base.properties->values[old_count],
--			 (uint64_t)ABM_SYSFS_CONTROL);
-+	KUNIT_EXPECT_EQ(test, aconnector->base.base.properties->count,
-+			old_count + 1 + IS_ENABLED(CONFIG_DRM_LUMINANCE));
++	max = panel->backlight.max;
++	brightness = scale_hw_to_user(connector, panel->backlight.level, max);
 +	if (IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
-+		KUNIT_EXPECT_NOT_NULL(test,
-+				      aconnector->base.luminance_property);
-+		KUNIT_EXPECT_LE(test,
-+				aconnector->base.state->luminance,
-+				(uint64_t)MAX_BACKLIGHT_LEVEL);
++		ret = drm_connector_attach_luminance_property(base, 0, max, brightness);
++		drm_WARN_ON(display->drm, ret);
 +	}
-+	KUNIT_EXPECT_PTR_EQ(test,
-+			    aconnector->base.base.properties->properties[abm_index],
-+			    prop);
-+	KUNIT_EXPECT_EQ(test, aconnector->base.base.properties->values[abm_index],
-+			(uint64_t)ABM_SYSFS_CONTROL);
- 
- 	amdgpu_dm_set_backlight_param(saved_backlight);
- 	amdgpu_dm_set_abm_level_param(saved_abm_level);
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c
-index aad122c7229f5..66c9b2cb70fcd 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c
-@@ -20,6 +20,7 @@
- 
- struct amdgpu_device *dm_kunit_alloc_adev(struct kunit *test)
- {
-+	struct amdgpu_device *adev;
- 	struct drm_device *drm;
- 	struct device *dev;
- 
-@@ -32,7 +33,11 @@ struct amdgpu_device *dm_kunit_alloc_adev(struct kunit *test)
- 						   DRIVER_MODESET | DRIVER_ATOMIC);
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
- 
--	return drm_to_adev(drm);
-+	adev = drm_to_adev(drm);
 +
-+	mutex_init(&adev->dm.dc_lock);
-+
-+	return adev;
+ 	drm_dbg_kms(display->drm,
+ 		    "[CONNECTOR:%d:%s] backlight initialized, %s, brightness %u/%u\n",
+ 		    connector->base.base.id, connector->base.name,
+@@ -1712,6 +1723,15 @@ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
+ 	return 0;
  }
- EXPORT_SYMBOL(dm_kunit_alloc_adev);
  
++void intel_backlight_set_luminance(const struct drm_connector_state *conn_state)
++{
++	struct intel_connector *connector =
++		to_intel_connector(conn_state->connector);
++
++	intel_panel_set_backlight(conn_state, conn_state->luminance,
++				  connector->panel.backlight.max);
++}
++
+ void intel_backlight_destroy(struct intel_panel *panel)
+ {
+ 	/* dispose of the pwm */
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.h b/drivers/gpu/drm/i915/display/intel_backlight.h
+index 339643f638978..1634ce414695a 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.h
++++ b/drivers/gpu/drm/i915/display/intel_backlight.h
+@@ -32,6 +32,7 @@ void intel_backlight_set_acpi(const struct drm_connector_state *conn_state,
+ 			      u32 level, u32 max);
+ void intel_backlight_set_pwm_level(const struct drm_connector_state *conn_state,
+ 				   u32 level);
++void intel_backlight_set_luminance(const struct drm_connector_state *conn_state);
+ u32 intel_backlight_invert_pwm_level(struct intel_connector *connector, u32 level);
+ u32 intel_backlight_level_to_pwm(struct intel_connector *connector, u32 level);
+ u32 intel_backlight_level_from_pwm(struct intel_connector *connector, u32 val);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index d5d4453f283bb..3c81ed630c365 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7696,6 +7696,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
+ 	display->modeset.funcs->commit_modeset_enables(state);
+ 
++	drm_atomic_helper_commit_luminance_enables(&state->base);
++
+ 	intel_display_power_dc3co_compute(state);
+ 
+ 	/* FIXME probably need to sequence this properly */
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index d8c0d9381471d..0b8ca17cc1152 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6883,6 +6883,7 @@ static const struct drm_connector_helper_funcs intel_dp_connector_helper_funcs =
+ 	.get_modes = intel_dp_get_modes,
+ 	.mode_valid = intel_dp_mode_valid,
+ 	.atomic_check = intel_dp_connector_atomic_check,
++	.set_luminance = intel_backlight_set_luminance,
+ };
+ 
+ enum irqreturn
+diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+index 872753478cf21..fa668b1debb21 100644
+--- a/drivers/gpu/drm/i915/display/intel_lvds.c
++++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+@@ -502,6 +502,7 @@ static const struct drm_connector_helper_funcs intel_lvds_connector_helper_funcs
+ 	.get_modes = intel_lvds_get_modes,
+ 	.mode_valid = intel_lvds_mode_valid,
+ 	.atomic_check = intel_digital_connector_atomic_check,
++	.set_luminance = intel_backlight_set_luminance,
+ };
+ 
+ static const struct drm_connector_funcs intel_lvds_connector_funcs = {
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+index 81e638d0c7b33..501573a75b89c 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.c
++++ b/drivers/gpu/drm/i915/display/intel_panel.c
+@@ -610,9 +610,11 @@ int intel_panel_register(struct intel_connector *connector)
+ 	struct intel_panel *panel = &connector->panel;
+ 	int ret;
+ 
+-	ret = intel_backlight_device_register(connector);
+-	if (ret)
+-		return ret;
++	if (!IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
++		ret = intel_backlight_device_register(connector);
++		if (ret)
++			return ret;
++	}
+ 
+ 	if (connector->base.connector_type == DRM_MODE_CONNECTOR_DSI ||
+ 	    connector->base.connector_type == DRM_MODE_CONNECTOR_eDP) {
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 8829f365592ef..7e60407e0af4a 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -1555,6 +1555,7 @@ static const struct drm_connector_helper_funcs intel_dsi_connector_helper_funcs
+ 	.get_modes = intel_dsi_get_modes,
+ 	.mode_valid = vlv_dsi_mode_valid,
+ 	.atomic_check = intel_digital_connector_atomic_check,
++	.set_luminance = intel_backlight_set_luminance,
+ };
+ 
+ static const struct drm_connector_funcs intel_dsi_connector_funcs = {
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 502c7b3c1f16a..6418ccc8e3468 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -26,7 +26,7 @@ config DRM_XE
+ 	select IRQ_WORK
+ 	# xe depends on ACPI_VIDEO when ACPI is enabled
+ 	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
+-	select BACKLIGHT_CLASS_DEVICE if ACPI
++	select BACKLIGHT_CLASS_DEVICE if ACPI && !DRM_LUMINANCE
+ 	select INPUT if ACPI
+ 	select ACPI_VIDEO if ACPI
+ 	select ACPI_WMI if ACPI
 
 -- 
 2.53.0
