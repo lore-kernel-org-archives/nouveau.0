@@ -2,233 +2,200 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65FC2606A327
-	for <nouveau@archiver.kernel.org>; Mon,  2 Nov 2026 08:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 581E8606A977
+	for <nouveau@archiver.kernel.org>; Mon,  2 Nov 2026 13:52:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=aBHI8Bti;
-	dkim=fail reason="signature verification failed" header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=WaP6N4P6;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=aBHI8Bti;
-	dkim=neutral header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=WaP6N4P6
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=PhkJ+RTg
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3E24E10EC35;
-	Mon,  2 Nov 2026 08:42:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 35EC710EE92;
+	Mon,  2 Nov 2026 13:52:27 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id BF1DC48C7B;
-	Mon,  2 Nov 2026 08:23:21 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793607801;
- b=0SdNNqNlxXPfcNImgiFRfWiflioOuP+80Qv6zjFwL9re9FgiaUEMUsGopg9VOl499BiqI
- JLAWJXMXzROgiKSF+LodbOiaf9EBsx/hMfPQJzpZeA6aLHJlhhaj3iijbppWLi4hpCPzkx9
- Q/yPfp+aeVNuRpXrU5vD2foJvRlffCYYZruIgQtnli7QBPDGPxgyXLEjbv9O5aU53YqT+7Y
- Z9dBnBM3k1vuIKdcReSCt5hWzM2/AQsbfRyjHq05qdOkNL5uhxD101/KlYbLTYfykPq5krF
- rC9o9z1nTQ70uyUmUbM8dnrhrnae35R1nihF0MrsPqZsl0R7zhByMhslkdOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793607801; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 3298748C7E;
+	Mon,  2 Nov 2026 13:33:08 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1793626388;
+ b=oxzE641fY4xFNOdOd6WgZNHsKwKIm/ht/Axt+U87NNEVTeJzqoQM9AHBZ1LUlU3GLjp1P
+ NCUUtMJQhhV3qL48XEVQ95+r857hzuoLv0DI268GcNWAZ+bT3dGbkN3kf3fcx5BlcR+kvCv
+ qS6wfACnq6BM11YPEYxIiEzt7xNWEWPP6qJKTRZrQQCA35hivRXUP5bEceKX03X1FI1msQX
+ 3Ivqr3ngpQxmUB+a8wgyOCnViMhpBTfb4kpdlFimKo7/vgcJo6Y9rbIljHoIgvR/hAp4p9l
+ C906jbQoan9N97J+Edc/3odvIdWZEyTpZzzLSoY3hUdUJcn3+TCoKVpNl1vQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1793626388; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=sLYkZIlajO1RP3a6/sXxM1cwXGCi+Yc63O36rVdHkD0=;
- b=nqndX7oe1YHJp/pnfpR7nHTRs0ki74hSkhqNpVOU32/XG3m9VTGaMLuLmUIorE8fHQjYb
- 60iZn9Z9ClR9dceCvHiNDCtopxWpDqx5G5MEHlFaGrQGw1fVCPXoLWaAyRlMK66r55MqUrT
- f0wwQoMpqAcP2WmwZ2JW5h/zEsobgXwKTint11nX+zrtUhGFR1l+Xj8RT44YmqSSmn1HaNg
- pufnJccIOKYC6iOTTztMbs4X2jSYlKGrtPrSL1fZEJ2lAOVXuoiVYgL/2uV2ADDSY8M8Hdz
- xlji/37a4UDcoh+5c2B9H2q4AqJ3lmPphjxhstxY2vTCT4L1h0MCOkN6NKSQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=suse.de;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
+ bh=8q3u5pS+Y65E8Bopb11C+ZzErL0aPrjpl0habtp1hMo=;
+ b=SVEL9WlsxeTMhXbGJD1fm7bN4Wys9l284iKezZroJsF5dnUjQvSPjHqb+bEvZde1aCNP3
+ tVrXmXRSggBWaCwtqqbCwKYtAggco8uRDbF/DEZhwjPJF7mva9uDy1fEHaxJk3tePjY7yZr
+ HJeGxGOFMbGOn6MtsTgnqITR5QiCM91kkUMqsIkwJZDNxPELV72tThgYhG5gby/7ka9Jgrh
+ SPQts4I21v0H+9LU/nJKwa/CWz7yQEZDbjQ1KeANFJXdjzn4BXDFhD3vYHudyRvUjufTTEL
+ KQRtg024YXj4IkD2i5heljUaoK2xnWbQvlIm/Yew5RN4w7lu+FI4hNOaVNfA==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=amd.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=amd.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=amd.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=amd.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A887A4347D
-	for <nouveau@lists.freedesktop.org>; Mon,  2 Nov 2026 08:23:19 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AA5AC10EC2C
-	for <nouveau@lists.freedesktop.org>; Mon,  2 Nov 2026 08:42:27 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 43FAA21F6F;
-	Mon,  2 Nov 2026 08:41:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_rsa;
-	t=1793608913;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=sLYkZIlajO1RP3a6/sXxM1cwXGCi+Yc63O36rVdHkD0=;
-	b=aBHI8Btiv2V3lT1hpQtokRDGhdybXDJ+aalt2MnUuifid0+1yWbNYl3Sk5zpiUWOfb4p6s
-	/BBwCLsmjoi1CFs4iy2HYZ8PWTOqb6YcHB6oZzyYxGWINLaTuxfE7K66nU211Dd2+IhWQ5
-	kggYNi/7lZnxxzCvHFyn7Vsz/AJxp60=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1793608913;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=sLYkZIlajO1RP3a6/sXxM1cwXGCi+Yc63O36rVdHkD0=;
-	b=WaP6N4P6oJzoz4X6ExjjjCP40XnZNhue3dENmIYeXKi8fhZ9mEtwTr+oyw/yj0dUPU5Bdi
-	+OGUUhPDzruR08CA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_rsa;
-	t=1793608913;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=sLYkZIlajO1RP3a6/sXxM1cwXGCi+Yc63O36rVdHkD0=;
-	b=aBHI8Btiv2V3lT1hpQtokRDGhdybXDJ+aalt2MnUuifid0+1yWbNYl3Sk5zpiUWOfb4p6s
-	/BBwCLsmjoi1CFs4iy2HYZ8PWTOqb6YcHB6oZzyYxGWINLaTuxfE7K66nU211Dd2+IhWQ5
-	kggYNi/7lZnxxzCvHFyn7Vsz/AJxp60=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1793608913;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=sLYkZIlajO1RP3a6/sXxM1cwXGCi+Yc63O36rVdHkD0=;
-	b=WaP6N4P6oJzoz4X6ExjjjCP40XnZNhue3dENmIYeXKi8fhZ9mEtwTr+oyw/yj0dUPU5Bdi
-	+OGUUhPDzruR08CA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 7B050134B8;
-	Mon,  2 Nov 2026 08:41:51 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id fYQYCs9M6Gq2PwAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Mon, 02 Nov 2026 08:41:51 +0000
-Message-ID: <aa7ea691-03ec-44b0-85fb-9927f3b4a32b@suse.de>
-Date: Mon, 2 Nov 2026 09:41:50 +0100
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1F29148AAB
+	for <nouveau@lists.freedesktop.org>; Mon,  2 Nov 2026 13:33:04 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011049.outbound.protection.outlook.com
+ [40.93.194.49])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C605210E04A;
+	Mon,  2 Nov 2026 13:52:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WZOv5qvXOl+xnn/Wergl/Kz8fk9NjPLwGbxZE27w283tpqJLlDuujA6Ln4SLOdsIUtlr8JpMJ46/usGYDgZY2QI8VxwMWfAVj85Rs/QooIDkM3gctmFyPbaHpJ5Vc32XBh1e7yMu+yzhufMJk1oFOJK+fynW9KGrDwsVCqA9tILU57r2eE6w3EUXgGP18vWwrvme/6M5EnX+zZGHg4MBAQhOfqjGK4fxg1Aeqx9q7wxgN/E2sm7R3JESxKSkHUOwJ6vsKEsTIO5waBjqa8oow+BMFQP5UNyGbFOvF/bwI4nayiKMAdWrK10ICjBOt153g/W21Ob+vtAoY8INHZavvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8q3u5pS+Y65E8Bopb11C+ZzErL0aPrjpl0habtp1hMo=;
+ b=cINUl31lVZNVCx9Gbew15/VoWUDxpJjwT/uy18SOZxNf+0MHLEbwnlCAFWGilb2/ZN27x08To0sTlgAopHR+V/mhYQpFODeJPtqVZR9DWAyCCVbIIpOIz9t2FhGoz5+dtCnIPiu8NTvWhFDkpG6IY2FUNk4wRxX61P+GTLKObNlM6a95YkH2PV44IUcUI3PDOdwbf+yY13aiV1Hq7Ds4KeJ3MeBteCC9YMSeo82CpcToYCqxlo6orXEwkttWq9CK8xuzl1h8w3wIvDFxxBMPwKKKj2/UDVECreRM4uSQqobMMgO+1P9Sg/tfo6fQ75YDiXnx2BCXg32WMuBZbcQlGg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8q3u5pS+Y65E8Bopb11C+ZzErL0aPrjpl0habtp1hMo=;
+ b=PhkJ+RTg7zo5+f3XBcvevcFTuKlj3ne3tcVdShLAZNIyEfWd4b5vYiMc2V0OOeAmWLnriVk/4ZhU0q49vnUoA9SZ6SXabaiwvTG3Xzj3EAIWk4UC88dUe4zpSRrx0eCyOw0m9Wq8N5ilKZ858vkapGlmqwe9q1N50+lWYE8eckg=
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DS7PR12MB8348.namprd12.prod.outlook.com (2603:10b6:8:e5::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.12; Mon, 2 Nov
+ 2026 13:52:11 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%3]) with mapi id 15.21.0569.011; Mon, 2 Nov 2026
+ 13:52:11 +0000
+Message-ID: <e925fde8-5d07-419f-a25e-4dd0bb90ad46@amd.com>
+Date: Mon, 2 Nov 2026 14:51:58 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] mm/hmm: honor write requests for owned device-private
+ pages
+To: Aveline Noir <jm5905938@gmail.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+References: <179343062238.2.2773026701442863377@gmail.com>
+ <sashiko-outbox-192310@kernel.org>
+ <179352350180.2.12918668886938034091.b4-reply@b4>
+ <179362220860.2958105.9509793190720553695.b4-reply@b4>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <179362220860.2958105.9509793190720553695.b4-reply@b4>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR0P281CA0189.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:ab::20) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/37] drm/connector: Convert all drivers to
- atomic_create_state and remove reset
-To: Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-References: 
- <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: 
- <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Level: 
-X-Spamd-Result: default: False [-11.79 / 50.00];
-	SUSE_INTERNAL_BYPASS(-9.00)[];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
-	TAGGED_RCPT(0.00)[renesas];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,gmail.com,ffwll.ch];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,armlinux.org.uk,samsung.com,kernel.org,linaro.org,vger.kernel.org,nxp.com,agner.ch,iscas.ac.cn,loongson.cn,aosc.io,xry111.site,glider.be,gmail.com,foss.st.com,sholland.org,lists.linux.dev,nvidia.com,synopsys.com,redhat.com,collabora.com,chromium.org,bootlin.com,epam.com,baylibre.com,googlemail.com,lists.infradead.org,igalia.com,linux.intel.com,intel.com,ursulin.net];
-	R_RATELIMIT(0.00)[to_ip_from(RL6e75e7xiqh135443e1d3zo16)];
-	TO_MATCH_ENVRCPT_SOME(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	RCVD_TLS_ALL(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[64];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.com:url,suse.de:email]
-X-Spam-Score: -11.79
-Message-ID-Hash: CNJWW2H53PHGRYKBNY6HDUXG7B3Z6INU
-X-Message-ID-Hash: CNJWW2H53PHGRYKBNY6HDUXG7B3Z6INU
-X-MailFrom: tzimmermann@suse.de
-X-Mailman-Rule-Hits: member-moderation
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS7PR12MB8348:EE_
+X-MS-Office365-Filtering-Correlation-Id: cf739b49-f493-4e31-a969-08df38e87e1e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|366016|23010399003|376014|7416014|1800799024|10067099003|18002099003|22082099003|56012099006|11063799006|4143699003|261021121427099003|261022105027099003|261026121527099003|261026140227099003|261022075727099003|261009223027099003|261028144727099003;
+X-Microsoft-Antispam-Message-Info: 
+	7PhJomOzB1ZVcNR4zVVcPV71oPfOUSyJB9kloBNlOxNSIAKpsROMTJk8aGEP7vGFYyGKj55VR4zH8jBXOX8kmS8DvSrbkuIQDSqpjCZOjYc5Aa/KLZWEHTgT8DXb4xihvSxGw0kBW0hl/ddrA2LkmHAvN+M3F+2R7+XTMdq/7hR9Sa7eGPWab7z+d39quY1BOvzSHRUfqqMKlJcisOSWpMW3qtmUQVmTAW4V4TFoQYRfimvdT34vA4GKM1HlE6RE8jlBKB9fQgYBFagu3MZaWbZELOhtmCPyVLq/nZdEEuKrSGfPTJYTD/krIe9kUNXYULyGRYtbDYolKaVA7lSMBRrUBcUFIb0q5Fs4AnZuKxxi16u7STCktZk1KLvQFAbbnY0B+dp83L96vlp9pSOh65wroNDtFQ7bmdJpTa9Fl0nk3p/nIbGz/YLRkHVQkF5f87XSH7fxOzl2Bg92+pXrJ9Mf5j5N9JOmwWhpWlpUG5ZtbdkaX/z/B/lyX9EvtyfXYyCV0XYPeCGtdac8q32DXML7vLrN3BbYZ79KV8JhwzMdn8bzO3jIQEGFX1lFAFLBAv1vFF7ELCyi99q04HemWn4yTyG6vViBlZX6bifl88s=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB5685.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(376014)(7416014)(1800799024)(10067099003)(18002099003)(22082099003)(56012099006)(11063799006)(4143699003)(261021121427099003)(261022105027099003)(261026121527099003)(261026140227099003)(261022075727099003)(261009223027099003)(261028144727099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?cW5VMml3bXNCMVNyYmU5V1o5TXEyN29oaXRoSDBBc1hSVjZhT0V6MkNQQjlC?=
+ =?utf-8?B?MmNkeVV4WkhiTGxpUVlad2dYd2N3bStWNnIrWCtobERpWVRuWXpsZksraktN?=
+ =?utf-8?B?WXRwOXdPZHAzalNjYWF5ZzVSSW1nbkc1TDd4SGJnbVNHMHlvSGpvMC9VZnBp?=
+ =?utf-8?B?QXhpMXhTc1lwQUM5b1JlYkF0cmNjWXV1bGYvZjhTWCtZcStxL1hVMVFUc3ds?=
+ =?utf-8?B?b2dCQmpsSlc5Qjl3cDJWZk9hSFJiQ1kvaE5CbG5uWEZCNGtIT1RUc2xMQmty?=
+ =?utf-8?B?NmpUZ1NWazdaUHlqNXRoZG5PM1o3TzJ5SVFCM01OY0NaNHUvWlpib1N3T1FW?=
+ =?utf-8?B?aVQyRGpINzRvYU10aWpVSEY0VnJDeU9aMWcxN2Z2M2pQcTkwWGxtYnNZb0hX?=
+ =?utf-8?B?aERCV29YQXo0eGl5Zm92aTlzenVjaGhxaDRrbEJSSTRGcS9YOCtmcklnY3N1?=
+ =?utf-8?B?UEZvaGxoWGNvcSs0dHBRd1FFZDVQQyttU3NERzBnd2tENkllOTVuQ20yN3l5?=
+ =?utf-8?B?NFBTemwzWVJBeUdJb2NXdzhROUZFaGZxNEdQMHlLT1FCMHNzVm56VDRyZXRi?=
+ =?utf-8?B?NFIwYnpJK0hQT1lPQWNIVjBpb24wNEJHK3E2RTJLMWN6TXBXZkQ2enhwVDhj?=
+ =?utf-8?B?NFQ3dHJOSnNMWkRTV0JRZTFLaDVvUmtBaVhRbHVrZTcxTHNXbUh5TmZsdzRW?=
+ =?utf-8?B?NUpOMnpLNzRVR1VvOWJ4ejdnaHpCVmk2aTZwTlRxQlRpVlczNExvK0l5dUYr?=
+ =?utf-8?B?MUtueTl3T0FPY3VXVndoS2hZd1ZRdnBIcTJiWm9tQXhtTVN4b1llckxGZlpZ?=
+ =?utf-8?B?ZUthejFaRlhLOVRjWStKelNhUEtkYTJKWUNrdkhLblMyOWUyRGdNR1EybHo5?=
+ =?utf-8?B?NG1rOUgvTXBobk5zdEZoS0l3dkc3VElkc05YcTlFSDU0bGJQQ0UzcnZ6ckcw?=
+ =?utf-8?B?eURWZmt3V1M4cXlJSkhtS2FsclJobERDcG5YL3FUY0VqYktNZmJjUlh2Wjhs?=
+ =?utf-8?B?UEhqZUtWS3hQV2R6RmpGNmxiS3F4c1Z1dytrZjFadmZDbWxuVStoc1R1dXRO?=
+ =?utf-8?B?WXhpSTkxVUk3NWZCd3lPdEZBRHMwOStBckxKMUdRdzRKM3IzMmVTOWxZZDAz?=
+ =?utf-8?B?Umtnd00zTHppaWY3TW5PQ2U0TGdDZ2tsYmk2VlgxWXhsZ0JFVFUzQTY2VU9z?=
+ =?utf-8?B?ZkhUM2thYmNTNEU0U0VZTll3VG1YdHhOWjgzTUNEa2xKWFNMamdFWGVabzU2?=
+ =?utf-8?B?N3ZzQnlLRnRtQVA4bEZGK0pnekp3bU5LSTA3cUNLRTlOMDZNVWlTMFpZN05y?=
+ =?utf-8?B?cGJ5NXZob0cvaVcxUUY2aGFWYUpMaFZTNHFmSUMyejJwZjFReXNNREdqWUxy?=
+ =?utf-8?B?azN3SFE5MzBmZ09QYml4QmMrcnpzWnR4SDdxbGx6UkU4MVREdmN3bU1QUHI2?=
+ =?utf-8?B?UzFZVnlDY3VNOW5qd3lNZVdLL1NVZENpRmU3a2IrOWhVWXFITHN4ZTBSdytN?=
+ =?utf-8?B?Vjk4NGVWYi92TmQzR2lWaHRpK3pGbVVFZXdkajJFVXhtSlYvVjFibGRKSHhy?=
+ =?utf-8?B?TE9aSnhtRTY5eVdPSDJhYXgrdjZOT1RzaVRRSEx4YnlqYUgzdUpZZGdubFpF?=
+ =?utf-8?B?Z2l4Z1N4MlhBeEczTm5pM3JPeXhZYmpDcmtmQjVBZjdocTJKR3hjbmR1Qmtp?=
+ =?utf-8?B?YWg5YVdvQlVIbkxleTF4aGRZaTduN083bmNEUnJvcUJqWDNCdHplRWJ0YXBi?=
+ =?utf-8?B?T25TeHdsdmJVbG9KRmIxaS9xR2pvQmcrclBnYWl3WFJLUlEyNnBXRnRZVExh?=
+ =?utf-8?B?NVRqKzZTdmJ0MVpkUTVrVGdIazRQelNxb2pjTlBjSEk5VWVRU0NTN01RMVZU?=
+ =?utf-8?B?MndjODJYbHJtWXBoYVlkUEM1cHV4RHo0RHp6QitqSnczdDFPQ0hjQW9OVjA1?=
+ =?utf-8?B?dnF2VlIvRHJtbmNhVDAzekF0dDdCdEFyQ1JVRG5FWDBQRHphUFVvd3BTQnBw?=
+ =?utf-8?B?OEhSWDJyeW5VdnRPcGl1dlNJWTFSMTgrclZnbC9IQTJZYy9TQ0RHMkdidHUy?=
+ =?utf-8?B?TVNCZjlIeURjVEV5aDJmVmw3WDJLRWJ1SjUxMEdNQitZN05VQ0pPMkNoRXEr?=
+ =?utf-8?B?eTB0Rjk5YTZDemljekFvVklONXlCM1lCaDhRMEdlL2tBZ2FYNG5pekMyVWtq?=
+ =?utf-8?B?eE8wUCs1TDNoK1RMNDVPMWt6ak1rNXp1QTlDNGpDUGFFYTZZSDVKRHZxazZW?=
+ =?utf-8?B?UWI1UnVhbTVaN3ZqdjZLM0JGL1V1KzhVOEo3WHh2c3B5eDlUckZ2YjFsUDJo?=
+ =?utf-8?Q?eREMN8QRzG3ZKebURz?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ cf739b49-f493-4e31-a969-08df38e87e1e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2026 13:52:11.0837
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ Yad+RD9Svb4hOML9IswF3mL7R72ighP3dBewQbiIgWaRJdSDPOEjJaL7Ao3+wbpt
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8348
+Message-ID-Hash: ESCGA76QRPWVXL6ISY3QNLQTYXGVJL7L
+X-Message-ID-Hash: ESCGA76QRPWVXL6ISY3QNLQTYXGVJL7L
+X-MailFrom: Christian.Koenig@amd.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
-CC: dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>,
- Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
- Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
- Huacai Chen <chenhuacai@kernel.org>, Icenowy Zheng <zhengxingda@iscas.ac.cn>,
- Jianmin Lv <lvjianmin@loongson.cn>, Mingcong Bai <jeffbai@aosc.io>,
- Qianhai Wu <wuqianhai@loongson.cn>, Xi Ruoyao <xry111@xry111.site>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- linux-renesas-soc@vger.kernel.org,
- Marcus Folkesson <marcus.folkesson@gmail.com>,
- Alain Volmat <alain.volmat@foss.st.com>,
- Raphael Gallais-Pou <rgallaispou@gmail.com>, Chen-Yu Tsai <wens@kernel.org>,
- Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
- Alexey Brodkin <abrodkin@synopsys.com>,
- Alex Lanzano <lanzano.alex@gmail.com>, Chia-I Wu <olvaffe@gmail.com>,
- David Airlie <airlied@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- virtualization@lists.linux.dev, Haneen Mohammed <hamohammed.sa@gmail.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Melissa Wen <melissa.srw@gmail.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: amd-gfx@lists.freedesktop.org, Barry Song <baohua@kernel.org>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Jonathan Corbet <corbet@lwn.net>, Danilo Krummrich <dakr@kernel.org>,
+ David Hildenbrand <david@kernel.org>, Dev Jain <dev.jain@arm.com>,
+ dri-devel@lists.freedesktop.org, Francois Dugast <francois.dugast@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Honglei Huang <honghuan@amd.com>, Jann Horn <jannh@google.com>,
+ Kiryl Shutsemau <kas@kernel.org>, Lance Yang <lance.yang@linux.dev>,
+ Leon Romanovsky <leon@kernel.org>, "Liam R. Howlett" <liam@infradead.org>,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+ Lorenzo Stoakes <ljs@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
+ Michal Hocko <mhocko@suse.com>, Nico Pache <nico.pache@linux.dev>,
+ nouveau@lists.freedesktop.org, Pedro Falcato <pfalcato@suse.de>,
+ Philip Yang <Philip.Yang@amd.com>, Randy Dunlap <rdunlap@infradead.org>,
+ Mike Rapoport <rppt@kernel.org>, Ryan Roberts <ryan.roberts@arm.com>,
+ sashiko-bot@kernel.org, sashiko-reviews@lists.linux.dev,
+ Simona Vetter <simona@ffwll.ch>, Shuah Khan <skhan@linuxfoundation.org>,
+ Sunil Khatri <sunil.khatri@amd.com>, Suren Baghdasaryan <surenb@google.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Usama Arif <usama.arif@linux.dev>, Vlastimil Babka <vbabka@kernel.org>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>, Zi Yan <ziy@nvidia.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CNJWW2H53PHGRYKBNY6HDUXG7B3Z6INU/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ESCGA76QRPWVXL6ISY3QNLQTYXGVJL7L/>
 Archived-At: 
- <https://lore.freedesktop.org/aa7ea691-03ec-44b0-85fb-9927f3b4a32b@suse.de/>
+ <https://lore.freedesktop.org/e925fde8-5d07-419f-a25e-4dd0bb90ad46@amd.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -236,177 +203,75 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Maxime
+Hi Aveline,
 
-Am 30.10.26 um 16:13 schrieb Maxime Ripard:
-> This is a follow-up to the plane and CRTC reset removal series, and
-> part of a larger effort to remove the reset hook from all KMS objects.
->
-> The connector reset hook is overloaded: it is called both at probe
-> time to create the initial software state and during suspend/resume to
-> reset hardware and software state. These two roles have different
-> requirements, and the reset hook is not fallible, making error
-> handling difficult for the initial state allocation path.
->
-> While reset has the semantics to reset both the software and hardware
-> state, the vast majority of implementations and all the helpers only
-> reset the software state, making them equivalent to
-> atomic_create_state in practice. The atomic_create_state hook makes
-> this explicit: it only allocates and initializes a pristine state
-> without any side effect, and returns the state pointer or an ERR_PTR
-> on failure.
->
-> This series converts all connector drivers tree-wide from the reset hook
-> to atomic_create_state, then removes the reset hook from struct
-> drm_connector_funcs entirely. The conversions were done using a
-> combination of Coccinelle semantic patches, mechanical one-line
-> replacements and manual adjustments.
->
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+On 11/2/26 13:23, Aveline Noir wrote:
+> Hi all,
+> 
+> On Sun, 01 Nov 2026 19:58:21 +1100 Aveline Noir wrote:
+> 
+>> Oh, I missed that. I'll try to fix it.
+> 
+> While working on this, I found that the fix reaches well beyond
+> mm/hmm.c and would likely need rework in several subsystems, so I'd
+> like to hear your views before going further. v1 shouldn't be applied
+> as is.
+> 
+> amdkfd holds svms->lock and prange->migrate_mutex across
+> hmm_range_fault(), and svm_migrate_to_ram() needs both, so it can't
+> migrate the page for the validating task. Migrating under those locks
+> can deadlock, since do_swap_page() waits for the device page lock, which
+> a concurrent CPU fault can hold while waiting for svms->lock.
 
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+Yeah those issues are already known.
 
-for the entire series.
+Because of that AMDs KFD team is in the process of replacing the self made KFD based SVN handling with the drm_gpusvm module which is also used by Intels XE driver.
 
-Best regards
-Thomas
+> From
+> reading the code, amdkfd also maps such read-only pages writable today,
+> as it takes GPU write permission from the VMA rather than from
+> HMM_PFN_WRITE, so GPU writes after fork() would be visible to the child.
+> I haven't been able to confirm this on hardware.
 
+That is a new issue as far as I know.
 
-> ---
-> Changes in v3:
-> - Fix error path in dw-hdmi
-> - Fix test error path for amdgpu kunit tests
-> - Fix nouveau legacy path
-> - Link to v2: https://lore.kernel.org/r/20261022-drm-no-more-connector-reset-v2-0-0b7e4e85b1e8@kernel.org
->
-> Changes in v2:
-> - Change the parameter order of __drm_atomic_helper_connector_hdmi_state_init
-> - Fixed state argument casing for drm_atomic_helper_connector_tv_margins_state_init
->    and drm_atomic_helper_connector_tv_state_init
-> - Put atomic_create_state before atomic_duplicate_state
-> - Fix state allocation for MST and WB connectors
-> - Link to v1:
->    https://lore.kernel.org/r/20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org
->
-> ---
-> Maxime Ripard (37):
->        drm/amdgpu: vkms: Switch to drm_atomic_helper_connector_create_state
->        drm/bridge: analogix-anx6345: Switch to drm_atomic_helper_connector_create_state
->        drm/bridge: analogix-anx78xx: Switch to drm_atomic_helper_connector_create_state
->        drm/bridge: chrontel-ch7033: Switch to drm_atomic_helper_connector_create_state
->        drm/bridge: nxp-ptn3460: Switch to drm_atomic_helper_connector_create_state
->        drm/panel: Switch to drm_atomic_helper_connector_create_state
->        drm/bridge: synopsys: dw-hdmi: Switch to drm_atomic_helper_connector_create_state
->        drm/bridge: tc358767: Switch to drm_atomic_helper_connector_create_state
->        drm/bridge: tda998x: Switch to drm_atomic_helper_connector_create_state
->        drm/bridge: ti-tfp410: Switch to drm_atomic_helper_connector_create_state
->        drm/exynos: Switch to drm_atomic_helper_connector_create_state
->        drm/fsl-dcu: Switch to drm_atomic_helper_connector_create_state
->        drm/loongson: Switch to drm_atomic_helper_connector_create_state
->        drm/mipi-dbi: Switch to drm_atomic_helper_connector_create_state
->        drm/renesas: shmobile: Switch to drm_atomic_helper_connector_create_state
->        drm/sitronix: st7571: Switch to drm_atomic_helper_connector_create_state
->        drm/sti: Switch to drm_atomic_helper_connector_create_state
->        drm/sun4i: Switch to drm_atomic_helper_connector_create_state
->        drm/tegra: Switch to drm_atomic_helper_connector_create_state
->        drm/tests: Switch to drm_atomic_helper_connector_create_state
->        drm/tiny: arcpgu: Switch to drm_atomic_helper_connector_create_state
->        drm/tiny: sharp: Switch to drm_atomic_helper_connector_create_state
->        drm/virtio: Switch to drm_atomic_helper_connector_create_state
->        drm/vkms: Switch to drm_atomic_helper_connector_create_state
->        drm/xen: Switch to drm_atomic_helper_connector_create_state
->        drm/bridge: synopsys: dw-hdmi: Convert to atomic_create_state
->        drm/meson: Convert to atomic_create_state
->        drm/sun4i: hdmi: Convert to atomic_create_state
->        drm/sun4i: tv: Convert to atomic_create_state
->        drm/tests: hdmi: Convert to atomic_create_state
->        drm/connector: Remove drm_atomic_helper_connector_reset()
->        drm/amdgpu: dm: Convert to atomic_create_state
->        drm/i915: Convert to atomic_create_state
->        drm/nouveau: Convert to atomic_create_state
->        drm/tegra: Convert to atomic_create_state
->        drm/connector: Remove __drm_atomic_helper_connector_reset()
->        drm/connector: Remove reset
->
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c           |   2 +-
->   .../amd/display/amdgpu_dm/amdgpu_dm_connector.c    |  32 ++---
->   .../amd/display/amdgpu_dm/amdgpu_dm_connector.h    |   3 +-
->   .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    |  11 +-
->   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c   |  17 ++-
->   .../amdgpu_dm/tests/amdgpu_dm_connector_test.c     | 102 +++++++++++-----
->   drivers/gpu/drm/bridge/analogix/analogix-anx6345.c |   2 +-
->   drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c |   2 +-
->   drivers/gpu/drm/bridge/chrontel-ch7033.c           |   2 +-
->   drivers/gpu/drm/bridge/nxp-ptn3460.c               |   2 +-
->   drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |  14 ++-
->   drivers/gpu/drm/bridge/tc358767.c                  |   2 +-
->   drivers/gpu/drm/bridge/tda998x_drv.c               |   2 +-
->   drivers/gpu/drm/bridge/ti-tfp410.c                 |   2 +-
->   drivers/gpu/drm/display/drm_hdmi_state_helper.c    |   3 +-
->   drivers/gpu/drm/drm_atomic_state_helper.c          |  43 -------
->   drivers/gpu/drm/drm_connector.c                    |   8 --
->   drivers/gpu/drm/drm_mode_config.c                  |   4 +-
->   drivers/gpu/drm/drm_panel.c                        |   4 +-
->   drivers/gpu/drm/exynos/exynos_drm_dpi.c            |   2 +-
->   drivers/gpu/drm/exynos/exynos_drm_vidi.c           |   2 +-
->   drivers/gpu/drm/exynos/exynos_hdmi.c               |   2 +-
->   drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c          |   2 +-
->   drivers/gpu/drm/i915/display/intel_connector.c     |   6 +-
->   drivers/gpu/drm/i915/display/intel_sdvo.c          |   6 +-
->   drivers/gpu/drm/loongson/lsdc_output_7a1000.c      |   2 +-
->   drivers/gpu/drm/loongson/lsdc_output_7a2000.c      |   4 +-
->   drivers/gpu/drm/meson/meson_encoder_hdmi.c         |  12 +-
->   drivers/gpu/drm/nouveau/dispnv50/disp.c            |  25 ++--
->   drivers/gpu/drm/nouveau/nouveau_connector.c        | 129 ++++++++++++++++-----
->   drivers/gpu/drm/nouveau/nouveau_connector.h        |   3 +-
->   drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c  |   2 +-
->   drivers/gpu/drm/sitronix/st7571.c                  |   2 +-
->   drivers/gpu/drm/sti/sti_dvo.c                      |   2 +-
->   drivers/gpu/drm/sti/sti_hda.c                      |   2 +-
->   drivers/gpu/drm/sti/sti_hdmi.c                     |   2 +-
->   drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |  16 ++-
->   drivers/gpu/drm/sun4i/sun4i_lvds.c                 |   2 +-
->   drivers/gpu/drm/sun4i/sun4i_rgb.c                  |   2 +-
->   drivers/gpu/drm/sun4i/sun4i_tv.c                   |  16 ++-
->   drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c             |   2 +-
->   drivers/gpu/drm/tegra/dsi.c                        |  17 ++-
->   drivers/gpu/drm/tegra/hdmi.c                       |   2 +-
->   drivers/gpu/drm/tegra/sor.c                        |  13 +--
->   drivers/gpu/drm/tests/drm_atomic_commit_test.c     |   2 +-
->   drivers/gpu/drm/tests/drm_atomic_test.c            |   2 +-
->   drivers/gpu/drm/tests/drm_connector_test.c         |   4 +-
->   drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c |  16 ++-
->   drivers/gpu/drm/tests/drm_probe_helper_test.c      |   2 +-
->   drivers/gpu/drm/tiny/arcpgu.c                      |   2 +-
->   drivers/gpu/drm/tiny/sharp-memory.c                |   2 +-
->   drivers/gpu/drm/virtio/virtgpu_display.c           |   2 +-
->   drivers/gpu/drm/vkms/vkms_connector.c              |   2 +-
->   drivers/gpu/drm/vkms/vkms_writeback.c              |   2 +-
->   drivers/gpu/drm/xen/xen_drm_front_conn.c           |   2 +-
->   include/drm/drm_atomic_state_helper.h              |   3 -
->   include/drm/drm_connector.h                        |  12 --
->   include/drm/drm_mipi_dbi.h                         |   2 +-
->   58 files changed, 351 insertions(+), 236 deletions(-)
-> ---
-> base-commit: 91f52e99824b0beebb48cad51bbda81437af8664
-> change-id: 20260709-drm-no-more-connector-reset-45ee14d7c62c
->
-> Best regards,
+> One option I tried is an opt-in HMM flag that returns -EDEADLK and the
+> page address instead of faulting, so amdkfd can drop its locks, fault
+> the page and validate again. It works with test_hmm, but the amdkfd
+> side grew to about 550 lines across the GPU fault handler, the restore
+> worker and svm_range_set_attr(), and is only compile-tested. Read-only
+> entries also come from NUMA hinting scans and mprotect(), so pages that
+> aren't shared would be moved out of VRAM too, and Xe and nouveau would
+> see their pages migrated in the same cases.
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Stefan Gaiser, Jochen Jaser, Abhinav Puri, (HRB 36809, AG Nürnberg)
+I don't think we should try to fix the KFD SVM code, as said we are already in the process of ditching it because of those problems.
 
+> Would you prefer an opt-in interface like this, a change to the amdkfd
+> locking so that migrate_to_ram() can run during validation, or
+> something else? I can post the amdkfd part as an RFC if that helps.
+> 
+> I also found a few smaller related issues, and I'll send fixes for them
+> separately.
+
+There is also https://gitlab.freedesktop.org/drm/amd/-/work_items/6003 which I'm not sure how to properly handle.
+
+Current AMD GPUs don't have dirty tracking in their GPUVM, so it doesn't really make sense to set the PTE or struct page dirty from the MMU notifier (both data pointers are not around there any more).
+
+We also can't set the page dirty directly after calling hmm_range_fault() because we don't own a page reference and so it could change at any time.
+
+At least for the GFX CS path it would make most sense to set the pages dirty in hmm_range_fault(), not sure about the SVM use case.
+
+Regards,
+Christian.
+
+> 
+> Thanks,
+> Aveline Noir
 
