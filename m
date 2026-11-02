@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEEF6607673B
-	for <nouveau@archiver.kernel.org>; Mon,  2 Nov 2026 16:49:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1A86076F95
+	for <nouveau@archiver.kernel.org>; Mon,  2 Nov 2026 16:49:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WhOtx3Fm
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SGSFp4cg
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 71C1110F0C4;
-	Mon,  2 Nov 2026 16:49:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7051410F0D7;
+	Mon,  2 Nov 2026 16:49:47 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id BA1BC48CAE;
-	Mon,  2 Nov 2026 16:30:21 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 5F89448CAC;
+	Mon,  2 Nov 2026 16:30:26 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793637021;
- b=oX9l9H5MjpWBqIh7vZbqYu8zUV1oSC2DReYgvCsLSNPIeyKZhn1vZHVBIbMFchOUX/DM+
- EEww5x22L7ZpEmURfWwKTvM0ddr1IN1As3twUelb1UVdOutw1MKnQnLgU+E5CJ8BvgvhpO1
- NONyOeV+W579To65Ffp7tBLSTANscLXJ9XEdy0wWyGMEXrgbfh63EbkQzFFzcgrjMFuXsUB
- uh8vTFsLH+nObYkAJBKzWd+TS0VLpfpLjcX7dcEalHvWCio130zb2h+ZCRsSnp6BTHoB8et
- KBzk64+eN5wyGcleRWshgeJPJw36qh10A1L5SVg8gjdaXY8UB8C9Rc7rw9EA==
+ s=20240201; t=1793637026;
+ b=wyqXFxlMobI6+VRdAxbbHdW3cXE0A784zHyFV/MA816ctGOmWu4LGGSeuDEjTwGsPepE3
+ ZD0CvzexCuSeYnRdOWBkDQK5Ev1IcBEpOayWLElpXv84+VqtSvDyh2p2BaAYYIXjN1uoSTo
+ GTAjVgBSIBYCXL4JC9ImQ3StTVoZUdmtLQ1ZUyNu0tMTWGv39iXc6V47E3g7fHTh/ZUDdFw
+ YhsEf7QxfbI00Zgw6OnPDnhGc19NPy9Ym9FsJCsCABbcUDq3gRNuxBE1kDXdLk6tAGmDBq8
+ R4RTaKZJbkT9mHn6uXpCvctOnlTWyxPiNlPUsGYWRuu3dMq6dKkcGO2J5Kew==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793637021; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793637026; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=cvbBm4Tp3/ViJKgby3dRF7WjDg9OW1cC4hM7fJo8a3M=;
- b=KPiGDmxe3ahk0yGoSJitVX/ydGhaZDePxv+ZAAg56e5HaqBTYpWoC2YqX7Dp2CvBPEf/7
- M2dzpbTVN7zIfLwfhsnkoZrc/nJPeaCZV60Nce9q1Fc7UkEDQ40Lyppa7oOcyYKHJA8G/FJ
- ALoSdLgprPXI/P9ARxPRAtOV+ualU1SJq+9o7jtdSC20RbntO6vF82UFvJCUBcSUS95J1e0
- u5jh6NjOjH0R8IKr1RUphibreSmM8SvUFsAGzpnm2l770MlJNtN2qcHwTkKVrdytLz7wQRM
- DINIX0aktNkZDDzfaGEhX3ffdem9DR7t962FEQ0oi/TxsW0pNYlRogS/pUVw==
+ bh=zVpHwEi1acfZUiGgbeCPyTxHSVjEFQmQseYO2YcJPk0=;
+ b=fHgUkp+sI97YG9ExH1j8x/Mo+xTNfltXYSyNV2wUjagDjx7w9x38NpIxKwDH3gSoABh+i
+ B1DKnvtrxd6jjXWe00XAm5op13ktPbHBw7BSfFyRJZdhouo2fIVoPt87rAb2wiOX9H4C/it
+ IWkHrL/adZgzS4mhfweYhXEoKcnhQPDA5LNSu3lew5aJtY04vgXvP/Dl+loICTt9pYv93oO
+ y0kvxv7mK68UwP6MatTbm3NAZjhSAW6le1U1ZjYJmP9cwux8a8JpDWIfPKPcKd+fsyqOiE5
+ CoY17n32rvtEOA3HiURaGw5QXXrNiYfKeKnOHuLjifz8ABO3kr81KVhc+Crw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,36 +43,36 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 32CEF48C9D
-	for <nouveau@lists.freedesktop.org>; Mon,  2 Nov 2026 16:30:20 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 26D2210E676;
-	Mon,  2 Nov 2026 16:49:34 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id E101348CAB
+	for <nouveau@lists.freedesktop.org>; Mon,  2 Nov 2026 16:30:22 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EB33210E6B5;
+	Mon,  2 Nov 2026 16:49:36 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 4F07760C08;
-	Mon,  2 Nov 2026 16:49:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 604F71F00A1A;
-	Mon,  2 Nov 2026 16:49:31 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id D1F1F436A2;
+	Mon,  2 Nov 2026 16:49:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D6701F00A17;
+	Mon,  2 Nov 2026 16:49:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793638173;
-	bh=cvbBm4Tp3/ViJKgby3dRF7WjDg9OW1cC4hM7fJo8a3M=;
+	s=k20260515; t=1793638176;
+	bh=zVpHwEi1acfZUiGgbeCPyTxHSVjEFQmQseYO2YcJPk0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=WhOtx3Fm6Hv32lNSjNjq810YCZ3Pa4vOYTu30yq1tvSCDlN4J7gqTXEMjGbMbFUxz
-	 HE9BEt5A+QDNKrUMcgyqDKdRXjBetosn6IgcIwrj9yjvkshs7wS0grdP8eRjB4LtbI
-	 DU6is3Jd87W4dI8F/MeDlZKZE8LAPJiHvcEh6d20sf0ogzNsAHk8vGNkB2qDDKGDyx
-	 GhqUBenu5GT/YsEdkI3gysDLEFDeyafwgMmLnHCu9xoIeue1yWwS55RgScIuSbL8SH
-	 KpRWsZRa3l9b6QHmh8q9H9ajIl2UI35Wfo2VtA4Sp+d2kHj0pJ7lk5CGSE6t06mHPm
-	 sdAACQ6j/hn9Q==
+	b=SGSFp4cgHWsyT1Zwmaoh2VWhsvYgwsCbG4SdEhQTzPWWYfE/MpDzcaEabYmidhImC
+	 YuNMnzT7zBzsTDKJdwC3wLMp6D1v2uGPmPcS00fNymqTPInndUf9JZ1POxg+FHon/H
+	 zfc0/1OWRILSY7zBBMbgtO2PtDt4Qk3b73tj/l+8NFzDzQR1HE712xDnSp/zL/92oX
+	 23bt69U7Y847IwJZv2MJA316+/YVNEjSl1alG4FlbaqO2CbHIZ/87V5oMJSq31qdUk
+	 v8JUayenlZY+t3zWXddlL1DrucZw9rL60wEb2tBePGWMc3ooSWF/Qh2sdJLyoCuRxz
+	 0kl++LKj1UqIA==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Mon, 02 Nov 2026 10:49:18 -0600
-Subject: [PATCH v10 02/15] drm/amd/display: Pass up errors reading actual
- brightness
+Date: Mon, 02 Nov 2026 10:49:20 -0600
+Subject: [PATCH v10 04/15] drm/amdgpu: Check bios_scratch_reg_offset in
+ backlight level helper
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 Message-Id: 
- <20261102-superm1-backlight-property-v10-2-b2a6f24131f5@kernel.org>
+ <20261102-superm1-backlight-property-v10-4-b2a6f24131f5@kernel.org>
 References: 
  <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
 In-Reply-To: 
@@ -86,8 +86,8 @@ To: Maxime Ripard <mripard@kernel.org>,
  Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
  Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
 X-Mailer: b4 0.16.0
-Message-ID-Hash: 43ORJH3ECDNQ2JREZP4ZPBMZAZXHWAPJ
-X-Message-ID-Hash: 43ORJH3ECDNQ2JREZP4ZPBMZAZXHWAPJ
+Message-ID-Hash: DUNYVAR2MNJQZWAJOUXMOGZW57MKKU6Z
+X-Message-ID-Hash: DUNYVAR2MNJQZWAJOUXMOGZW57MKKU6Z
 X-MailFrom: superm1@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -96,15 +96,14 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
 CC: Mario Limonciello <superm1@kernel.org>, Xaver Hugl <xaver.hugl@gmail.com>,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Mario Limonciello <mario.limonciello@amd.com>
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/43ORJH3ECDNQ2JREZP4ZPBMZAZXHWAPJ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DUNYVAR2MNJQZWAJOUXMOGZW57MKKU6Z/>
 Archived-At: 
- <https://lore.freedesktop.org/20261102-superm1-backlight-property-v10-2-b2a6f24131f5@kernel.org/>
+ <https://lore.freedesktop.org/20261102-superm1-backlight-property-v10-4-b2a6f24131f5@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -119,103 +118,33 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Mario Limonciello <mario.limonciello@amd.com>
+Ensure adev->bios_scratch_reg_offset is non-zero before accessing
+scratch registers in amdgpu_atombios_scratch_regs_set_backlight_level()
+to avoid dereferencing unmapped MMIO offsets.
 
-[Why]
-If the DC API fails to return actual brightness when backlight control
-API requests it, then the wrong value may be returned.
-
-[How]
-Change return type of amdgpu_dm_backlight_get_level() to an integer
-and pass an error code up to the caller.
-
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c | 13 +++++++++----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h |  2 +-
- .../amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c  |  4 ++--
- 3 files changed, 12 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-index cb74b00723fda..0f664c658a127 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-@@ -438,7 +438,7 @@ int amdgpu_dm_backlight_update_status(struct backlight_device *bd)
- EXPORT_IF_KUNIT(amdgpu_dm_backlight_update_status);
- 
- STATIC_IFN_KUNIT
--u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx)
-+int amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
+index 27c0dc8f6137a..2d8c2ba04e670 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
+@@ -1622,7 +1622,12 @@ void amdgpu_atombios_scratch_regs_engine_hung(struct amdgpu_device *adev,
+ void amdgpu_atombios_scratch_regs_set_backlight_level(struct amdgpu_device *adev,
+ 						      u32 backlight_level)
  {
- 	int ret;
- 	struct amdgpu_dm_backlight_caps caps;
-@@ -451,14 +451,14 @@ u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx)
- 		u32 avg, peak;
- 
- 		if (!dc_link_get_backlight_level_nits(link, &avg, &peak))
--			return dm->brightness[bl_idx];
-+			return -EINVAL;
- 		return convert_brightness_to_user(&caps, avg);
- 	}
- 
- 	ret = dc_link_get_backlight_level(link);
- 
- 	if (ret == DC_ERROR_UNEXPECTED)
--		return dm->brightness[bl_idx];
-+		return -EINVAL;
- 
- 	return convert_brightness_to_user(&caps, ret);
- }
-@@ -469,8 +469,13 @@ int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd)
- {
- 	struct amdgpu_display_manager *dm = bl_get_data(bd);
- 	int i = amdgpu_dm_backlight_get_device_index(dm, bd);
-+	int ret;
+-	u32 tmp = RREG32(adev->bios_scratch_reg_offset + 2);
++	u32 tmp;
 +
-+	ret = amdgpu_dm_backlight_get_level(dm, i);
-+	if (ret < 0)
-+		return dm->brightness[i];
++	if (!adev->bios_scratch_reg_offset)
++		return;
++
++	tmp = RREG32(adev->bios_scratch_reg_offset + 2);
  
--	return amdgpu_dm_backlight_get_level(dm, i);
-+	return ret;
- }
- EXPORT_IF_KUNIT(amdgpu_dm_backlight_get_brightness);
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h
-index 9ad888d3ae7b2..891749322191c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h
-@@ -57,7 +57,7 @@ void amdgpu_dm_validate_backlight_caps(struct amdgpu_display_manager *dm, int bl
- struct dc_stream_state *dm_find_stream_with_link(struct amdgpu_display_manager *dm,
- 						 struct dc_link *link);
- int amdgpu_dm_backlight_update_status(struct backlight_device *bd);
--u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx);
-+int amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx);
- int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd);
- ssize_t panel_power_savings_show(struct device *device,
- 				 struct device_attribute *attr,
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
-index 5221050dec2f1..b21850788f36f 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
-@@ -382,7 +382,7 @@ static void dm_test_backlight_get_level_pwm_error(struct kunit *test)
- 	dm->brightness[0] = 4321;
- 	dm->backlight_link[0] = link;
- 
--	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), 4321U);
-+	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), -EINVAL);
- }
- 
- /**
-@@ -424,7 +424,7 @@ static void dm_test_backlight_get_level_aux_error(struct kunit *test)
- 	caps->caps_valid = true;
- 	caps->aux_support = true;
- 
--	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), 6789U);
-+	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), -EINVAL);
- }
- 
- /**
+ 	tmp &= ~ATOM_S2_CURRENT_BL_LEVEL_MASK;
+ 	tmp |= (backlight_level << ATOM_S2_CURRENT_BL_LEVEL_SHIFT) &
 
 -- 
 2.53.0
