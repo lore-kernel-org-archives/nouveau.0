@@ -2,131 +2,202 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0CE3606A324
-	for <nouveau@archiver.kernel.org>; Sun,  1 Nov 2026 20:04:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D075606A324
+	for <nouveau@archiver.kernel.org>; Mon,  2 Nov 2026 08:37:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=M5mUDqQ+
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=NXgjLjZf;
+	dkim=fail reason="signature verification failed" header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=7k/A6mMB;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=cjPW10Q1;
+	dkim=neutral header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=3I6pl88n
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A0B5210E466;
-	Sun,  1 Nov 2026 20:04:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7A98910EC3A;
+	Mon,  2 Nov 2026 08:36:50 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4362C48C6D;
-	Sun,  1 Nov 2026 19:45:23 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 05A2248C74;
+	Mon,  2 Nov 2026 08:17:32 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793562323;
- b=TZfftHM0jj438WeATp3CMAfpxTwQ/P9W6Ds7rnkeynECAOlankHH09DEaxchPnLm6Crxn
- ZcCa0GyNoFoMXxkXUvW8bbWsBsYbz7ISL5qUpCntLsJEf86dKIKyXNCq93G10Xl43dadLw1
- abTokXZu06yHlHIFBLE9q/YajN0w/tsFS066hDOg//F8DhtnrdOzA4uifYhwSqUzQKKBVNw
- tvNcJLk1IcchRhDfZn8qvQF4mksyQP3TdQpTZb+ICbA7uveqGQKfgHfRsLY677kbJJ5Bczv
- wHcSaMOYwz7YGfqjhHhRrEx+IzYWIPCeaoGOyamEuxKm7LOd3Eic75nC2doQ==
+ s=20240201; t=1793607451;
+ b=WOpYhHt6lXx+NvZF/a689jch1nXwoJ9N6Pr6rA7jwA536iNVsEn5uS6evlqNvbgBdXkQm
+ mH9U6jP4YHAbMi/EGiYaVpsw0YdpNcN95hF3yyOm8XLkM1bWCM4Nl20+FiScE/PNN/mtdO2
+ a+OscgEhoHovNrrbLTY+SCQvYivSbwiyZQB823d/p0D+BpBzwKt5sV/m/qGstB5bhtSEQds
+ hd4TQf8o9g9p2An/YoCjb/5caOdkzPiX+Rset5ATtKRI9E2XQh6OKoL4Rom1PknDRAZa4s8
+ bOegoAoDDuoIi7ijVIAVDyod3uO6Sg++wEFa03pbTooidnwM4430RCXvA1Hg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793562323; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793607451; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=EADMVsLqtl7UawIMCnC7ocVxqfEpyyxisoL1Jal/32g=;
- b=vGJokZqjNfobgdqyuP1ou3q0/VsjN1gw0E519K6T2m7l7bmGO9DOz673AclW3slGNXoMp
- KmkKurGGeDWFIxtRPunWskcMGIO5mbZaKCJ6bnp7tzfHdDVi2SYAI0aIpTTlifEvfR+Rnul
- 8AL9z9v9OlO2c381xHVDoIU6p5jndItvYK0jWW9psiILRpaHD/ikdGU2K2kpu5tbRLjkI8M
- N7YWvXSurLTj4d2gvxsi181aWusRCSPlRR8poz+TH40Wrop4S9K5zE9zYTqg1gITo7MHUqi
- TSHG4vCvvUr9Vx2lBUf9EIbMZeC54tDHaTgRNFKJhY6RIJkQj70LfhOUoi7w==
+ bh=PaMnGP+qVZ9H/IkTsdXNRejL6EdgnoVvkvBOAg/mURA=;
+ b=owB/6XjEX6Tx8O5KwlAzaxzwCHYOlasjSiB5a6+4Zv2YunorrH6I3ITZ/Jppu/vSEmqXY
+ PYc2gDlUU6Odv5LeeXTJi3K7acNro+JIGCjERaaidsso6oPWDXK8/p896zLC/kg3/dv71YM
+ ROtLRM6t3DJMZDc3CQ90DF/pVjcujKctLAVI9Q+i5VSfjQUrt30a4bVp5SbnFdWfes5wq1W
+ 2+i5KMISB5jCQSjxKASq/PY8GjhqzUDwSBvraI6ajlR9KE7CdFgcjV3Un6FHm1cVRKDo/Gy
+ 6k2+8TFJAuwAwZoPfXLZvpZpPKZhFE5T701VSiyt1e1X9i0GjXVXdVeGFdjw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=suse.de;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+  dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.de;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=suse.de policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4D8C64347D
-	for <nouveau@lists.freedesktop.org>; Sun,  1 Nov 2026 19:45:20 +0000 (UTC)
-Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com
- [74.125.82.174])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 69D6F10E459
-	for <nouveau@lists.freedesktop.org>; Sun,  1 Nov 2026 20:04:32 +0000 (UTC)
-Received: by mail-dy1-f174.google.com with SMTP id
- 5a478bee46e88-353804b591eso4135402eec.0
-        for <nouveau@lists.freedesktop.org>;
- Sun, 01 Nov 2026 12:04:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1793563472; x=1794168272;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=EADMVsLqtl7UawIMCnC7ocVxqfEpyyxisoL1Jal/32g=;
-        b=M5mUDqQ+dXKyHPBw0BcHCI1P+qffb/kQJksXoMFJ5eXFjN2OfR459QgKljbtW5wIPQ
-         jpvFl1n6fP9lhtJ8n+ChBucg3ECHyfgXYT6Qg/PmpBv74xMp01IT+7NzbW9HvbkUGRKU
-         8c+ZVMLoPhm31xNcm+7bkrZYQTroNIEJp943S3Egh2MoaydKcgxHWClK1tsvv7Knbaix
-         L4EY0+LLCRV41oo/T4vckc+pIJrYVKDlhqOUFWmAbFwIWKn5ddxfpLiDQ7306KUiiFLW
-         DEfZz8rOQKBx9Um/mtCa5DwoQEnTXdZ5NRF9PXKF2sD9O0JEI0C/OaQbQ6jBd517PFFu
-         7khQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793563472; x=1794168272;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=EADMVsLqtl7UawIMCnC7ocVxqfEpyyxisoL1Jal/32g=;
-        b=Vbjv+gGlLcYtbwSNhBPUrKb8CgB0MesUENx2Gsnjumqs0tzQz0YS7fJJnWJrezqOWG
-         cM8bXtfQWrvnntVJyCbvOijq8rsSEtv3nkhvryr2ORnWiksczOBFvIdJs91ssSM3NtRQ
-         NUeI7TFC4n5fmqlaIgMJH4Adu5PGjk9draWwtm1ynlZm957bZQvVff4tDE2qCIP0qMwp
-         D47Pfympnzbf2fRFo/ESCCEzeLZsqWciLq7Z85oXcQ778t4IXttHsrqIoaJyujqL72lv
-         Q/tZvRoiggQRQaCnbXo24SqBTBkyTbk2wTh2VimtJiMvb+7nb94kEj9nX9876GycJa8W
-         pT2g==
-X-Gm-Message-State: APuU4Z9bFiT9KXtL5rPwoYNNBgJ5vokF6rW4N7+Z4Yj5PLlRJpN0TmtJ
-	WNiPel2qTATty1/9uJSoTWfS99K33QUUf06Uh75uDK7+51RA21LzDX8hbtmoCA==
-X-Gm-Gg: AYBFou0PGNUst/P8qYYbWto4cTTapIE50BdWpKZ2np7EnUFw7f+ifTdLcypm6jU7vFp
-	9YrUpuVdAPq5ZZsIDF4RzgTqCszndbAb/v/O5s1B+QdCopo05lqU5qmSxv/hJVjg7L0fpTHUpcP
-	0wgv4Rc8cMc44+aJ6Q7vl+A7RQIUjcrzSZmsKQBoRtvS/Zh3BSutzbsUyOGp6WgKbUmlcYIv2an
-	lYOQtv9hZ8qgMAJwsjOHa9MMhEowFti6Ddl+SaWaLjxgOF9W2vzmOwUsLyYUdn+UocA3dh9LGW8
-	KOhOdUy6655yU9lZM6YtIuyiDCsq9BO3cMgJWQchDNPnYH55sZMNfUvn/Pj9T50zDQjIhJ8pdUt
-	gcd6Eb/rLt1ZEPV1T3I4eQYF2Z39oBv+D9t9QthCNgvG68wA0fniCmdERWKwckiiNdkOY7nVaNV
-	HS36tz2B+YpM92RiuGjHVhqik6MYAj0zbzahinPPfqCq9YleCO/BP91GaZCHQHCv9QYM+zIMgWn
-	5aHMHrpyeuLNKTaveN5C/3Gg/qUOv5buV7sozj47GjY07yFdOm/jA58LhhFljFhfkYu/TNcDj5U
-	d2lNycg1LSsEOBRabEJ0T1JVJQb9NXrKXXY4aVWlydrWcxnlgWvWpEuOHcaQbz65JDHn63cjSoE
-	brTvrhOteJlZB7BgjiakVJnHUCnKSk1aCDT/h3fkb/SN0V022nTIena4KcTYVMgPxj4nQp1jYgS
-	jHaQ==
-X-Received: by 2002:a05:7301:6787:b0:361:306f:c32a with SMTP id
- 5a478bee46e88-36a42345b05mr16145992eec.11.1793563471296;
-        Sun, 01 Nov 2026 12:04:31 -0800 (PST)
-Received: from ryzen.lan ([2601:644:8000:37f::e34])
-        by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-36a42a98f65sm29251211eec.28.2026.11.01.12.04.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Nov 2026 12:04:30 -0800 (PST)
-From: Rosen Penev <rosenp@gmail.com>
-To: nouveau@lists.freedesktop.org
-Subject: [PATCH] drm/nouveau/nvkm: clear use.enabled when subdev init fails
-Date: Sun,  1 Nov 2026 12:04:28 -0800
-Message-ID: <20261101200428.16959-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.56.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 8E67F48637
+	for <nouveau@lists.freedesktop.org>; Mon,  2 Nov 2026 08:17:28 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8B9A310E5B8;
+	Mon,  2 Nov 2026 08:36:36 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id D93391FCF1;
+	Mon,  2 Nov 2026 08:36:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1793608595;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=PaMnGP+qVZ9H/IkTsdXNRejL6EdgnoVvkvBOAg/mURA=;
+	b=NXgjLjZfpaWDy+RFEUbWUWTT11BcSyzUO1G0PysPisEvVg2Ztt+2+TQ9CbYKTZw7+1dUc/
+	FTbZtmjIkjEuMYtS2Q/nO3PiidQqjBmU67opS2NedYz39Z1FOTp9Gwuto0Pyufgyva6rSS
+	DoqptCsFqCjYfL/PkkBQFzUo5pmJe5E=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1793608595;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=PaMnGP+qVZ9H/IkTsdXNRejL6EdgnoVvkvBOAg/mURA=;
+	b=7k/A6mMBET8hMS3SOph4XNwdfRBwo3MaLOuyKFpjCJuB/oaRCw86+IZqF7Uc/hGKf1YBfe
+	vFG/CzMApk8p0MCQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_rsa;
+	t=1793608594;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=PaMnGP+qVZ9H/IkTsdXNRejL6EdgnoVvkvBOAg/mURA=;
+	b=cjPW10Q1xaEEifTk34SRdf9hvwW2uRkFEuosg/NQkF/VEaYe9y1VHWRVZUWlhuszcYwfTW
+	scmmIfi5NLm9+zJXSWjK8IeAkt8FPpakppSiaieL+KZEuXK6Gmn0QloGielhNIEdT2aoBM
+	2IGEzmGeJTmSHs17l5HbSKtNenopgmo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1793608594;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=PaMnGP+qVZ9H/IkTsdXNRejL6EdgnoVvkvBOAg/mURA=;
+	b=3I6pl88ne4Hfd0ksCNd5L561gMJNFmuoPlJfjCvOkmd8jBZ6RW2pmEGeSb1uiVq54aAtMu
+	JRrrv0n3jhCdNdDw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 71D8A134B8;
+	Mon,  2 Nov 2026 08:36:34 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id nSShEZJL6GoyOgAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Mon, 02 Nov 2026 08:36:34 +0000
+Message-ID: <52cafaf3-0d7c-4133-b690-6504a3b9d0c1@suse.de>
+Date: Mon, 2 Nov 2026 09:36:33 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: ACGLQ3XHAP4UZMNMSJVIBWMQIS6GGADT
-X-Message-ID-Hash: ACGLQ3XHAP4UZMNMSJVIBWMQIS6GGADT
-X-MailFrom: rosenp@gmail.com
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Danilo Krummrich <dakr@kernel.org>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 34/37] drm/nouveau: Convert to atomic_create_state
+To: Maxime Ripard <mripard@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Ben Skeggs <bskeggs@redhat.com>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+References: 
+ <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
+ <20261030-drm-no-more-connector-reset-v3-34-30e71d92c327@kernel.org>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: 
+ <20261030-drm-no-more-connector-reset-v3-34-30e71d92c327@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-13.50 / 50.00];
+	SUSE_INTERNAL_BYPASS(-9.00)[];
+	BAYES_HAM(-3.00)[100.00%];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	XM_UA_NO_VERSION(0.01)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,gmail.com,ffwll.ch];
+	MIME_TRACE(0.00)[0:+];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	ARC_NA(0.00)[];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[suse.de:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.com:url]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -13.50
+X-Spam-Level: 
+X-Rspamd-Queue-Id: D93391FCF1
+Message-ID-Hash: 3NSIRE45NEF3K7Q3ZXECEFI5BR63UDDT
+X-Message-ID-Hash: 3NSIRE45NEF3K7Q3ZXECEFI5BR63UDDT
+X-MailFrom: tzimmermann@suse.de
+X-Mailman-Rule-Hits: member-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
+ loop; banned-address
+CC: dri-devel@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
+ nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ACGLQ3XHAP4UZMNMSJVIBWMQIS6GGADT/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3NSIRE45NEF3K7Q3ZXECEFI5BR63UDDT/>
 Archived-At: 
- <https://lore.freedesktop.org/20261101200428.16959-1-rosenp@gmail.com/>
+ <https://lore.freedesktop.org/52cafaf3-0d7c-4133-b690-6504a3b9d0c1@suse.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -134,65 +205,190 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-10.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Kepler boards without the video decode falcon firmware installed
-(msvld/mspdec/msppp), every other VA-API decode attempt binds to an
-engine with no ucode loaded. The submitted work never completes, which
-leads to a context switch timeout, a channel recovery that cannot reset
-the engine, and eviction waits on fences that never signal. The process
-ends up stuck in D state, or killed by SIGBUS when it touches a buffer
-evicted after the wait times out:
+Hi
 
-  msvld: unable to load firmware data
-  msvld: init failed, -19
-  fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-  vo[5444]: channel 14 killed!
-  WARNING: drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c:117 at nvkm_runl_rc+0x2a4/0x3b0 [nouveau]
-  [TTM] Buffer eviction failed
-  WARNING: drivers/gpu/drm/nouveau/nouveau_bo.c:1092 at nouveau_bo_move_ntfy.part.0+0x9b/0x100 [nouveau]
+Am 30.10.26 um 16:14 schrieb Maxime Ripard:
+[...]
+> +struct drm_connector_state *
+> +nouveau_conn_atomic_create_state(struct drm_connector *connector)
+> +{
+> +	struct nouveau_conn_atom *asyc;
+> +
+> +	asyc = kzalloc_obj(*asyc);
+> +	if (WARN_ON(!asyc))
 
-Tracing nvkm_subdev_ref() and nvkm_subdev_init_() shows the pattern:
-a reference taken with enabled=0 runs nvkm_falcon_init(), which
-returns -ENODEV; the next reference sees enabled=1 and succeeds
-without running it.
+Since you're here anyway, please use drm_WARN_ON_ONCE(). Plain WARN_ON() 
+doesn't seem a good fir here.
 
-Clear use.enabled when init() fails, so that every later reference
-retries init and fails cleanly.  The other readers of use.enabled are
-fini() handlers that use it to skip teardown, which they now also do
-after a failed init().
+Best regards
+Thomas
 
-On a GK107 (Quadro K1100M) without video firmware, playing H.264 with
-mpv --hwdec=auto: without this patch the GPU channel is killed within a
-minute and mpv hangs; with it, VA-API decoder creation fails, mpv falls
-back to software decoding, and no faults are logged.
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	__drm_atomic_helper_connector_state_init(&asyc->state, connector);
+> +	nouveau_conn_atom_init(connector, asyc);
+> +
+> +	return &asyc->state;
+> +}
+> +
+>   void
+>   nouveau_conn_attach_properties(struct drm_connector *connector)
+> @@ -1231,5 +1231,47 @@ static const struct drm_connector_funcs
+>   nouveau_connector_funcs = {
+>   	.dpms = drm_helper_connector_dpms,
+> -	.reset = nouveau_conn_reset,
+> +	.detect = nouveau_connector_detect,
+> +	.force = nouveau_connector_force,
+> +	.fill_modes = drm_helper_probe_single_connector_modes,
+> +	.set_property = nouveau_connector_set_property,
+> +	.destroy = nouveau_connector_destroy,
+> +	.atomic_create_state = nouveau_conn_atomic_create_state,
+> +	.atomic_duplicate_state = nouveau_conn_atomic_duplicate_state,
+> +	.atomic_destroy_state = nouveau_conn_atomic_destroy_state,
+> +	.atomic_set_property = nouveau_conn_atomic_set_property,
+> +	.atomic_get_property = nouveau_conn_atomic_get_property,
+> +	.late_register = nouveau_connector_late_register,
+> +	.early_unregister = nouveau_connector_early_unregister,
+> +};
+> +
+> +static const struct drm_connector_funcs
+> +nouveau_connector_funcs_lvds = {
+> +	.dpms = drm_helper_connector_dpms,
+> +	.detect = nouveau_connector_detect_lvds,
+> +	.force = nouveau_connector_force,
+> +	.fill_modes = drm_helper_probe_single_connector_modes,
+> +	.set_property = nouveau_connector_set_property,
+> +	.destroy = nouveau_connector_destroy,
+> +	.atomic_create_state = nouveau_conn_atomic_create_state,
+> +	.atomic_duplicate_state = nouveau_conn_atomic_duplicate_state,
+> +	.atomic_destroy_state = nouveau_conn_atomic_destroy_state,
+> +	.atomic_set_property = nouveau_conn_atomic_set_property,
+> +	.atomic_get_property = nouveau_conn_atomic_get_property,
+> +	.late_register = nouveau_connector_late_register,
+> +	.early_unregister = nouveau_connector_early_unregister,
+> +};
+> +
+> +/*
+> + * Pre-nv50 doesn't support atomic modesetting: the connector property state
+> + * lives in the embedded struct nouveau_connector.properties_state and
+> + * drm_connector.state is left alone, as expected from a legacy driver.
+> + *
+> + * Those connectors must not expose atomic_create_state: the DRM core would
+> + * then install the embedded state into drm_connector.state and eventually
+> + * pass it to atomic_destroy_state, which frees it.
+> + */
+> +static const struct drm_connector_funcs
+> +nouveau_connector_funcs_legacy = {
+> +	.dpms = drm_helper_connector_dpms,
+>   	.detect = nouveau_connector_detect,
+>   	.force = nouveau_connector_force,
+> @@ -1246,7 +1288,6 @@ nouveau_connector_funcs = {
+>   
+>   static const struct drm_connector_funcs
+> -nouveau_connector_funcs_lvds = {
+> +nouveau_connector_funcs_lvds_legacy = {
+>   	.dpms = drm_helper_connector_dpms,
+> -	.reset = nouveau_conn_reset,
+>   	.detect = nouveau_connector_detect_lvds,
+>   	.force = nouveau_connector_force,
+> @@ -1362,5 +1403,7 @@ nouveau_connector_create(struct drm_device *dev, int index)
+>   	struct nouveau_display *disp = nouveau_display(dev);
+>   	struct nouveau_connector *nv_connector = NULL;
+> +	struct drm_connector_state *conn_state;
+>   	struct drm_connector *connector;
+> +	const struct drm_connector_funcs *funcs;
+>   	struct drm_connector_list_iter conn_iter;
+>   	int type, ret = 0;
+> @@ -1459,8 +1502,17 @@ nouveau_connector_create(struct drm_device *dev, int index)
+>   
+>   	type = drm_conntype_from_dcb(nv_connector->type);
+> -	if (type == DRM_MODE_CONNECTOR_LVDS)
+> -		drm_connector_init(dev, connector, &nouveau_connector_funcs_lvds, type);
+> -	else
+> -		drm_connector_init(dev, connector, &nouveau_connector_funcs, type);
+> +	if (type == DRM_MODE_CONNECTOR_LVDS) {
+> +		if (drm_drv_uses_atomic_modeset(dev))
+> +			funcs = &nouveau_connector_funcs_lvds;
+> +		else
+> +			funcs = &nouveau_connector_funcs_lvds_legacy;
+> +	} else {
+> +		if (drm_drv_uses_atomic_modeset(dev))
+> +			funcs = &nouveau_connector_funcs;
+> +		else
+> +			funcs = &nouveau_connector_funcs_legacy;
+> +	}
+> +
+> +	drm_connector_init(dev, connector, funcs, type);
+>   
+>   	switch (type) {
+> @@ -1514,13 +1566,26 @@ nouveau_connector_create(struct drm_device *dev, int index)
+>   						   nouveau_connector_irq, NVIF_CONN_EVENT_V0_IRQ,
+>   						   &nv_connector->irq);
+> -			if (ret) {
+> -				nvif_event_dtor(&nv_connector->hpd);
+> -				nvif_conn_dtor(&nv_connector->conn);
+> +			if (ret)
+>   				goto drm_conn_err;
+> -			}
+>   		}
+>   	}
+>   
+> -	connector->funcs->reset(connector);
+> +	if (drm_drv_uses_atomic_modeset(dev)) {
+> +		conn_state = connector->funcs->atomic_create_state(connector);
+> +		if (IS_ERR(conn_state)) {
+> +			ret = PTR_ERR(conn_state);
+> +			goto drm_conn_err;
+> +		}
+> +		connector->state = conn_state;
+> +	} else {
+> +		/* Pre-nv50 keeps its property state embedded in struct
+> +		 * nouveau_connector: drm_connector.state must remain NULL,
+> +		 * the DRM core expects legacy drivers to use
+> +		 * drm_connector.encoder.
+> +		 */
+> +		nouveau_conn_atom_init(connector,
+> +				       &nv_connector->properties_state);
+> +	}
+> +
+>   	nouveau_conn_attach_properties(connector);
+>   
+> @@ -1567,4 +1632,8 @@ nouveau_connector_create(struct drm_device *dev, int index)
+>   
+>   drm_conn_err:
+> +	nvif_event_dtor(&nv_connector->irq);
+> +	nvif_event_dtor(&nv_connector->hpd);
+> +	cancel_work_sync(&nv_connector->irq_work);
+> +	nvif_conn_dtor(&nv_connector->conn);
+>   	drm_connector_cleanup(connector);
+>   	kfree(nv_connector);
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
+> index eb292d2ba4bc..02f843648eb8 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_connector.h
+> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
+> @@ -217,5 +217,6 @@ extern int nouveau_hdmimhz;
+>   
+>   void nouveau_conn_attach_properties(struct drm_connector *);
+> -void nouveau_conn_reset(struct drm_connector *);
+> +struct drm_connector_state *
+> +nouveau_conn_atomic_create_state(struct drm_connector *);
+>   struct drm_connector_state *
+>   nouveau_conn_atomic_duplicate_state(struct drm_connector *);
+>
 
-Fixes: 8478cd5a740a ("drm/nouveau/nvkm: add locking to subdev/engine init paths")
-Cc: stable@vger.kernel.org
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- drivers/gpu/drm/nouveau/nvkm/core/subdev.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/core/subdev.c b/drivers/gpu/drm/nouveau/nvkm/core/subdev.c
-index aab5a73f467a..ff6858f5e5d3 100644
---- a/drivers/gpu/drm/nouveau/nvkm/core/subdev.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/core/subdev.c
-@@ -157,6 +157,7 @@ nvkm_subdev_init_(struct nvkm_subdev *subdev)
- 		ret = subdev->func->init(subdev);
- 		if (ret) {
- 			nvkm_error(subdev, "init failed, %d\n", ret);
-+			subdev->use.enabled = false;
- 			return ret;
- 		}
- 	}
 -- 
-2.56.0
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Stefan Gaiser, Jochen Jaser, Abhinav Puri, (HRB 36809, AG Nürnberg)
+
 
