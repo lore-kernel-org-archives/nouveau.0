@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 302A7606E028
-	for <nouveau@archiver.kernel.org>; Mon,  2 Nov 2026 16:50:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A24A606E029
+	for <nouveau@archiver.kernel.org>; Mon,  2 Nov 2026 16:50:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RnmXVOH+
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=M/b4hTLF
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EEA6C10F117;
-	Mon,  2 Nov 2026 16:50:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 957BB10F101;
+	Mon,  2 Nov 2026 16:50:03 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id BA93148CBF;
-	Mon,  2 Nov 2026 16:30:41 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 2A77648CC3;
+	Mon,  2 Nov 2026 16:30:44 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793637041;
- b=bmfeQuCfvn/w3y9FR6wdgMTk61uzKXVFw8OcV23P/KHX9beMlYUZ7kOMjUrLjSqf5ZDaK
- L7I3SFEtl7fpTxcGkBxQQym5b8GG45BtZS3/WLL76xRH1ZFtUSMbxAVjgvhsBjCWe+DLGk2
- BHnsN+PIHczF7jngXXSX5QBDiUB3VakwS0vgfIZKDuxbTjtYI69dOGkda2UbBAYSm+RWCl4
- TCk5QZ0ei+nLVgy1IJhUJgFvgRMrSTy9mmCMijNZU9/BlbEkCcXlEcXF1dMQxqrxR7WaIXV
- LjcHHFd+NKbJxSOYDniR71TQV62cedW3UhBtmdEkq13W+QD2zb4lPiziwS4w==
+ s=20240201; t=1793637043;
+ b=aQlhoQds+vavSJdyd8u0TNy5+DfINrurB53W8AUIZ7AHu9rnOMuY6btrSz7IRCprSMR/P
+ QY/wS9z44BSCSzqK3gSLcq3Fi+jLF+623A5c1nz73K/vG59jyowCfqhekb9awoHONN1hO+V
+ SOQ/6n/5UUgld1W4x/pyxI8XDeQNDXZAQKZYLdgQUjiFPPNIA3+KOELg7zxjW/z4nM1PETe
+ IeVi1jEjGqP2DRIsi35B5k0RZB+NUnysGHGQlZ17OSVY++QfQuD6OGLBJgysX5FwN1agoS/
+ mO1EHW8oNaLFSZZw15vzAIMKwFVfPyIqdw1/WvWKt2ZOrKdHQ61D+i3ocfsg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793637041; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793637043; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=CeLtMJy3R9kxJji/8niFyp2uHd5KpQJ0Wu7DMhAOnSE=;
- b=eAuzaz+Ydi6Y1d7+xZiWxBk8AyEj8+1G+kFitIcFLwudsyRzfGiHT9hzbMg/6S4W8XJa1
- ozmeIKH4BoWyd/KO4HXOmbKtJyEYMdXDplFqR/TgnYvjkfv6HlZA1er7qE1tjk8tq0Bcqme
- 9Jps7/IkdRhgdUjSA/Py1+dqLvBHAMIunzfQOIzsIaiKt9BA27KLDMogPeqjNjWOZijfPR9
- Q4aG7gfJU6xOlWVvXeAXZU3lofLR47fiqkSddMGU202FXAqvgUGowTl2Tql2StMDNRGmlfk
- msB1fmzTEDrSeIDUql+Ysl4yUvFChOuB38Vgwfd82nY5Tgn2B7LSavuYDu9g==
+ bh=FPR/Ghg+mbQA5dNcfU/XXlDPhtrJNvT0MIlhCyTMhWk=;
+ b=QPp8EIOxzAVshEZa+PXW6RT5X6edNoj4zg4FyenvcWaO73/8Kp6qN1oUCayfBprG3MtdV
+ 5/8m031lN5X5ttaw6xS4dJgXubL34p6VtqbhdlUJ9mQvxUVXPyCxsuWTaZDH0AJosVfejxM
+ ocO8fje3FOFAUQ6Aph2nQAkveF6ZqTe3maUh0D48Sm/fqQ9isS+9jINVkv9sRuMrk+HiHbt
+ hhbEweXwxkxY+icVwO8g4bnNu+EjJccFFJ+YbpeF7h+ZgFwjPlTAomJM+IzLuWK3FVULqSu
+ s2s8WI8GykQOA0J6I3KcQ4RwA1xgstr00hsvtbsb8IiD4nmXn2F3KpIRaOQw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,35 +43,35 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C078C4347D
-	for <nouveau@lists.freedesktop.org>; Mon,  2 Nov 2026 16:30:38 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A83BE10F0EE;
-	Mon,  2 Nov 2026 16:49:52 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0483848C9A
+	for <nouveau@lists.freedesktop.org>; Mon,  2 Nov 2026 16:30:40 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 081C610F0CC;
+	Mon,  2 Nov 2026 16:49:54 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2B21C60F1F;
+	by sea.source.kernel.org (Postfix) with ESMTP id E50E444608;
+	Mon,  2 Nov 2026 16:49:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20AA01F01578;
 	Mon,  2 Nov 2026 16:49:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 345F71F00A17;
-	Mon,  2 Nov 2026 16:49:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793638191;
-	bh=CeLtMJy3R9kxJji/8niFyp2uHd5KpQJ0Wu7DMhAOnSE=;
+	s=k20260515; t=1793638193;
+	bh=FPR/Ghg+mbQA5dNcfU/XXlDPhtrJNvT0MIlhCyTMhWk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=RnmXVOH+rb1Uh8zAevN2KU4Btz7MUa1RKO1lUYYQ0G7KZwsHWAa4H2t3gHGWUIRpW
-	 wof6sw7RXawOXyqj0spbljNjs3aktMJoIzp2PVGTr7EnAR6WzVM72nGFcG3EW+dUdQ
-	 tN3NfI2gEd7lCD5Za/QknmqhO6iB0j8y9h26gTc8ULWhHk2dBvnYOh9yzQevRORYl2
-	 oyPR6BO2eZEerFlSv0jLsRweDs9BBUT2WxfgYjaAB1r0FAfd3DilWKiH05ppBJpdxP
-	 ShC9nJQpR2db7TIhmcVBzugy4i17FEAaTk3amPRdoUwvKRNmWpbpmGavYQxg2NPkCi
-	 PGiZwUk2dtY2Q==
+	b=M/b4hTLFil05zxZXdOQx4SZVEtBCUUX/YbygJuYYsEIhfhGpWK2FjXjsninOhk8f6
+	 JWZDSKvGwbSER1yxUSbOXHu/UE/2u5L35/9FzLBPA0wuH/vKq0MWtJ5W4VUIXSA36J
+	 YN9g+VHeLOrB0A6DKZnMokcnGC0p2PsVle5cMACRIUJwwqLT/3xT5rSCLruxn4JK/e
+	 jhQCjbDZLbUiAbJht0vfchL98mPc7CRTyW4pbmLojAQk+aytXX86Pw6P4/ugETGCKu
+	 EsKllmGTVplhtfnLVMCnmZHvqhP03dWcq4I6Pt8hEq912alMJBkwFaOjUJAJjxrWRB
+	 /y8zi8X2qGGDg==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Mon, 02 Nov 2026 10:49:28 -0600
-Subject: [PATCH v10 12/15] drm/radeon: add connector luminance support
+Date: Mon, 02 Nov 2026 10:49:29 -0600
+Subject: [PATCH v10 13/15] drm/gma500: add connector luminance support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 Message-Id: 
- <20261102-superm1-backlight-property-v10-12-b2a6f24131f5@kernel.org>
+ <20261102-superm1-backlight-property-v10-13-b2a6f24131f5@kernel.org>
 References: 
  <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
 In-Reply-To: 
@@ -85,8 +85,8 @@ To: Maxime Ripard <mripard@kernel.org>,
  Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
  Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
 X-Mailer: b4 0.16.0
-Message-ID-Hash: JGGLJ2WF5E6GMUYTIA4G4BJSDVDKHQHY
-X-Message-ID-Hash: JGGLJ2WF5E6GMUYTIA4G4BJSDVDKHQHY
+Message-ID-Hash: 2IZAMYIIYEDE7BK64WNZKROEARRTNU24
+X-Message-ID-Hash: 2IZAMYIIYEDE7BK64WNZKROEARRTNU24
 X-MailFrom: superm1@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -101,9 +101,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JGGLJ2WF5E6GMUYTIA4G4BJSDVDKHQHY/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2IZAMYIIYEDE7BK64WNZKROEARRTNU24/>
 Archived-At: 
- <https://lore.freedesktop.org/20261102-superm1-backlight-property-v10-12-b2a6f24131f5@kernel.org/>
+ <https://lore.freedesktop.org/20261102-superm1-backlight-property-v10-13-b2a6f24131f5@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -120,267 +120,177 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-Expose Radeon panel brightness through the connector LUMINANCE property
-when DRM_LUMINANCE is enabled. Reuse the AtomBIOS and legacy hardware
-programming paths and preserve the backlight class interface otherwise.
+Expose GMA500 panel brightness through the connector LUMINANCE property
+when DRM_LUMINANCE is enabled. Route updates through the existing platform
+backlight operations and preserve legacy registration otherwise.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/radeon/Kconfig                  |  2 +-
- drivers/gpu/drm/radeon/atombios_encoders.c      | 32 ++++++++++++++--
- drivers/gpu/drm/radeon/radeon_connectors.c      | 34 +++++++++++++++++
- drivers/gpu/drm/radeon/radeon_legacy_encoders.c | 49 ++++++++++++++++++++-----
- drivers/gpu/drm/radeon/radeon_mode.h            |  2 +
- 5 files changed, 106 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/gma500/Kconfig          |  2 +-
+ drivers/gpu/drm/gma500/backlight.c      | 45 +++++++++++++++++++++------------
+ drivers/gpu/drm/gma500/cdv_intel_lvds.c |  2 ++
+ drivers/gpu/drm/gma500/psb_drv.c        |  2 +-
+ drivers/gpu/drm/gma500/psb_drv.h        |  4 ++-
+ drivers/gpu/drm/gma500/psb_intel_lvds.c |  3 ++-
+ 6 files changed, 38 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/Kconfig b/drivers/gpu/drm/radeon/Kconfig
-index 3cd70aef770e1..2ccad1f2f8cee 100644
---- a/drivers/gpu/drm/radeon/Kconfig
-+++ b/drivers/gpu/drm/radeon/Kconfig
-@@ -17,7 +17,7 @@ config DRM_RADEON
- 	select SND_HDA_COMPONENT if SND_HDA_CORE
- 	select POWER_SUPPLY
- 	select HWMON
--	select BACKLIGHT_CLASS_DEVICE
-+	select BACKLIGHT_CLASS_DEVICE if !DRM_LUMINANCE
- 	select INTERVAL_TREE
- 	select I2C
+diff --git a/drivers/gpu/drm/gma500/Kconfig b/drivers/gpu/drm/gma500/Kconfig
+index dc4c566388192..08871a8f6fa22 100644
+--- a/drivers/gpu/drm/gma500/Kconfig
++++ b/drivers/gpu/drm/gma500/Kconfig
+@@ -9,7 +9,7 @@ config DRM_GMA500
  	select I2C_ALGOBIT
-diff --git a/drivers/gpu/drm/radeon/atombios_encoders.c b/drivers/gpu/drm/radeon/atombios_encoders.c
-index 5b9c72bf40994..e6f762625bf1a 100644
---- a/drivers/gpu/drm/radeon/atombios_encoders.c
-+++ b/drivers/gpu/drm/radeon/atombios_encoders.c
-@@ -227,6 +227,27 @@ void radeon_atom_backlight_init(struct radeon_encoder *radeon_encoder,
- 	memset(&props, 0, sizeof(props));
- 	props.max_brightness = RADEON_MAX_BL_LEVEL;
- 	props.type = BACKLIGHT_RAW;
-+	pdata->encoder = radeon_encoder;
-+	pdata->atom = true;
-+	radeon_encoder->backlight_priv = pdata;
-+
-+	dig = radeon_encoder->enc_priv;
-+	if (IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
-+		props.brightness = atombios_get_backlight_level(radeon_encoder);
-+		if (!props.brightness)
-+			props.brightness = RADEON_MAX_BL_LEVEL;
-+
-+		if (drm_connector_attach_luminance_property(drm_connector, 0,
-+							    props.max_brightness,
-+							     props.brightness))
-+			goto error;
-+
-+		atombios_set_backlight_level(radeon_encoder, props.brightness);
-+		dig->bl_dev = NULL;
-+		rdev->mode_info.bl_encoder = radeon_encoder;
-+		return;
-+	}
-+
- 	snprintf(bl_name, sizeof(bl_name),
- 		 "radeon_bl%d", dev->primary->index);
- 	bd = backlight_device_register(bl_name, drm_connector->kdev,
-@@ -236,9 +257,6 @@ void radeon_atom_backlight_init(struct radeon_encoder *radeon_encoder,
- 		goto error;
- 	}
+ 	# GMA500 depends on ACPI_VIDEO when ACPI is enabled, just like i915
+ 	select ACPI_VIDEO if ACPI
+-	select BACKLIGHT_CLASS_DEVICE if ACPI
++	select BACKLIGHT_CLASS_DEVICE if ACPI && !DRM_LUMINANCE
+ 	select INPUT if ACPI
+ 	select ACPI_WMI if ACPI
+ 	help
+diff --git a/drivers/gpu/drm/gma500/backlight.c b/drivers/gpu/drm/gma500/backlight.c
+index c8f1716a12d52..4bb39fba04539 100644
+--- a/drivers/gpu/drm/gma500/backlight.c
++++ b/drivers/gpu/drm/gma500/backlight.c
+@@ -8,7 +8,6 @@
+  */
  
--	pdata->encoder = radeon_encoder;
+ #include <linux/backlight.h>
 -
--	dig = radeon_encoder->enc_priv;
- 	dig->bl_dev = bd;
+ #include <acpi/video.h>
  
- 	bd->props.brightness = radeon_atom_backlight_get_brightness(bd);
-@@ -258,6 +276,7 @@ void radeon_atom_backlight_init(struct radeon_encoder *radeon_encoder,
- 	return;
+ #include <drm/drm_print.h>
+@@ -73,10 +72,9 @@ static const struct backlight_ops gma_backlight_ops __maybe_unused = {
+ 	.update_status  = gma_backlight_update_status,
+ };
  
- error:
-+	radeon_encoder->backlight_priv = NULL;
- 	kfree(pdata);
- 	return;
- }
-@@ -282,12 +301,19 @@ static void radeon_atom_backlight_exit(struct radeon_encoder *radeon_encoder)
- 	bd = dig->bl_dev;
- 	dig->bl_dev = NULL;
+-int gma_backlight_init(struct drm_device *dev)
++int gma_backlight_init(struct drm_device *dev, struct drm_connector *connector)
+ {
+ 	struct drm_psb_private *dev_priv = to_drm_psb_private(dev);
+-	struct backlight_properties props __maybe_unused = {};
+ 	int ret;
  
-+	if (IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
-+		kfree(radeon_encoder->backlight_priv);
-+		radeon_encoder->backlight_priv = NULL;
-+		return;
-+	}
-+
- 	if (bd) {
- 		struct radeon_legacy_backlight_privdata *pdata;
- 
- 		pdata = bl_get_data(bd);
- 		backlight_device_unregister(bd);
- 		kfree(pdata);
-+		radeon_encoder->backlight_priv = NULL;
- 
- 		DRM_INFO("radeon atom LVDS backlight unloaded\n");
+ 	dev_priv->backlight_enabled = true;
+@@ -92,28 +90,43 @@ int gma_backlight_init(struct drm_device *dev)
+ 		return 0;
  	}
-diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
-index 16b048f58c9be..655361407b819 100644
---- a/drivers/gpu/drm/radeon/radeon_connectors.c
-+++ b/drivers/gpu/drm/radeon/radeon_connectors.c
-@@ -31,6 +31,7 @@
- #include <drm/drm_probe_helper.h>
- #include <drm/radeon_drm.h>
- #include "radeon.h"
-+#include "radeon_asic.h"
- #include "radeon_audio.h"
- #include "atom.h"
  
-@@ -931,11 +932,44 @@ static int radeon_lvds_set_property(struct drm_connector *connector,
+-#ifdef CONFIG_BACKLIGHT_CLASS_DEVICE
+-	props.brightness = dev_priv->backlight_level;
+-	props.max_brightness = PSB_MAX_BRIGHTNESS;
+-	props.type = BACKLIGHT_RAW;
++	if (IS_ENABLED(CONFIG_DRM_LUMINANCE))
++		return drm_connector_attach_luminance_property(connector, 0,
++							 PSB_MAX_BRIGHTNESS,
++							 dev_priv->backlight_level);
++
++	{
++		struct backlight_properties props = {};
+ 
+-	dev_priv->backlight_device =
+-		backlight_device_register(dev_priv->ops->backlight_name,
+-					  dev->dev, dev,
+-					  &gma_backlight_ops, &props);
+-	if (IS_ERR(dev_priv->backlight_device))
+-		return PTR_ERR(dev_priv->backlight_device);
+-#endif
++		props.brightness = dev_priv->backlight_level;
++		props.max_brightness = PSB_MAX_BRIGHTNESS;
++		props.type = BACKLIGHT_RAW;
++
++		dev_priv->backlight_device =
++			backlight_device_register(dev_priv->ops->backlight_name,
++						  dev->dev, dev,
++						  &gma_backlight_ops, &props);
++		if (IS_ERR(dev_priv->backlight_device))
++			return PTR_ERR(dev_priv->backlight_device);
++	}
+ 
  	return 0;
  }
  
-+static void radeon_set_luminance(const struct drm_connector_state *conn_state)
++void gma_connector_set_luminance(const struct drm_connector_state *conn_state)
 +{
-+	struct drm_encoder *encoder = radeon_best_single_encoder(conn_state->connector);
-+	struct radeon_encoder *radeon_encoder;
-+	struct radeon_backlight_privdata *pdata;
-+	u8 level = conn_state->luminance;
-+
-+	if (!encoder)
-+		return;
-+
-+	radeon_encoder = to_radeon_encoder(encoder);
-+	pdata = radeon_encoder->backlight_priv;
-+	if (!pdata)
-+		return;
-+
-+	if (pdata->atom) {
-+		atombios_set_backlight_level(radeon_encoder, level);
-+	} else {
-+		if (pdata->negative)
-+			level = RADEON_MAX_BL_LEVEL - level;
-+		radeon_legacy_set_backlight_level(radeon_encoder, level);
-+	}
++	gma_backlight_set(conn_state->connector->dev, conn_state->luminance);
 +}
 +
-+static void radeon_disable_luminance(const struct drm_connector_state *conn_state)
++void gma_connector_disable_luminance(const struct drm_connector_state *conn_state)
 +{
-+	struct drm_connector_state state = *conn_state;
-+
-+	state.luminance = 0;
-+	radeon_set_luminance(&state);
++	gma_backlight_disable(conn_state->connector->dev);
 +}
- 
- static const struct drm_connector_helper_funcs radeon_lvds_connector_helper_funcs = {
- 	.get_modes = radeon_lvds_get_modes,
- 	.mode_valid = radeon_lvds_mode_valid,
- 	.best_encoder = radeon_best_single_encoder,
-+	.set_luminance = radeon_set_luminance,
-+	.disable_luminance = radeon_disable_luminance,
- };
- 
- static const struct drm_connector_funcs radeon_lvds_connector_funcs = {
-diff --git a/drivers/gpu/drm/radeon/radeon_legacy_encoders.c b/drivers/gpu/drm/radeon/radeon_legacy_encoders.c
-index 1f82e2b57f5d5..96b0dfd8e3521 100644
---- a/drivers/gpu/drm/radeon/radeon_legacy_encoders.c
-+++ b/drivers/gpu/drm/radeon/radeon_legacy_encoders.c
-@@ -403,16 +403,9 @@ void radeon_legacy_backlight_init(struct radeon_encoder *radeon_encoder,
- 	memset(&props, 0, sizeof(props));
- 	props.max_brightness = RADEON_MAX_BL_LEVEL;
- 	props.type = BACKLIGHT_RAW;
--	snprintf(bl_name, sizeof(bl_name),
--		 "radeon_bl%d", dev->primary->index);
--	bd = backlight_device_register(bl_name, drm_connector->kdev,
--				       pdata, &radeon_backlight_ops, &props);
--	if (IS_ERR(bd)) {
--		DRM_ERROR("Backlight registration failed\n");
--		goto error;
--	}
--
- 	pdata->encoder = radeon_encoder;
-+	pdata->atom = false;
-+	radeon_encoder->backlight_priv = pdata;
- 
- 	backlight_level = (RREG32(RADEON_LVDS_GEN_CNTL) >>
- 			   RADEON_LVDS_BL_MOD_LEVEL_SHIFT) & 0xff;
-@@ -441,6 +434,36 @@ void radeon_legacy_backlight_init(struct radeon_encoder *radeon_encoder,
- #endif
- 	}
- 
-+	if (IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
-+		props.brightness = pdata->negative ?
-+			RADEON_MAX_BL_LEVEL - backlight_level : backlight_level;
-+		if (drm_connector_attach_luminance_property(drm_connector, 0,
-+							    props.max_brightness,
-+							     props.brightness))
-+			goto error;
 +
-+		if (rdev->is_atom_bios) {
-+			struct radeon_encoder_atom_dig *lvds = radeon_encoder->enc_priv;
-+
-+			lvds->bl_dev = NULL;
-+		} else {
-+			struct radeon_encoder_lvds *lvds = radeon_encoder->enc_priv;
-+
-+			lvds->bl_dev = NULL;
-+		}
-+		rdev->mode_info.bl_encoder = radeon_encoder;
-+		return;
-+	}
-+
-+	snprintf(bl_name, sizeof(bl_name),
-+		 "radeon_bl%d", dev->primary->index);
-+	bd = backlight_device_register(bl_name, drm_connector->kdev,
-+				       pdata, &radeon_backlight_ops, &props);
-+	if (IS_ERR(bd)) {
-+		DRM_ERROR("Backlight registration failed\n");
-+		goto error;
-+	}
-+
- 	if (rdev->is_atom_bios) {
- 		struct radeon_encoder_atom_dig *lvds = radeon_encoder->enc_priv;
- 		lvds->bl_dev = bd;
-@@ -459,6 +482,7 @@ void radeon_legacy_backlight_init(struct radeon_encoder *radeon_encoder,
- 	return;
+ void gma_backlight_exit(struct drm_device *dev)
+ {
+-#ifdef CONFIG_BACKLIGHT_CLASS_DEVICE
+ 	struct drm_psb_private *dev_priv = to_drm_psb_private(dev);
  
- error:
-+	radeon_encoder->backlight_priv = NULL;
- 	kfree(pdata);
- 	return;
+ 	if (dev_priv->backlight_device)
+ 		backlight_device_unregister(dev_priv->backlight_device);
+-#endif
  }
-@@ -482,12 +506,19 @@ static void radeon_legacy_backlight_exit(struct radeon_encoder *radeon_encoder)
- 		lvds->bl_dev = NULL;
- 	}
- 
-+	if (IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
-+		kfree(radeon_encoder->backlight_priv);
-+		radeon_encoder->backlight_priv = NULL;
-+		return;
-+	}
-+
- 	if (bd) {
- 		struct radeon_backlight_privdata *pdata;
- 
- 		pdata = bl_get_data(bd);
- 		backlight_device_unregister(bd);
- 		kfree(pdata);
-+		radeon_encoder->backlight_priv = NULL;
- 
- 		DRM_INFO("radeon legacy LVDS backlight unloaded\n");
- 	}
-diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeon/radeon_mode.h
-index 6a16d821915d2..1c5b9ed0b6989 100644
---- a/drivers/gpu/drm/radeon/radeon_mode.h
-+++ b/drivers/gpu/drm/radeon/radeon_mode.h
-@@ -284,6 +284,7 @@ struct radeon_mode_info {
- struct radeon_backlight_privdata {
- 	struct radeon_encoder *encoder;
- 	uint8_t negative;
-+	bool atom;
+diff --git a/drivers/gpu/drm/gma500/cdv_intel_lvds.c b/drivers/gpu/drm/gma500/cdv_intel_lvds.c
+index 336ab411d6995..cef97f1532358 100644
+--- a/drivers/gpu/drm/gma500/cdv_intel_lvds.c
++++ b/drivers/gpu/drm/gma500/cdv_intel_lvds.c
+@@ -412,6 +412,8 @@ static const struct drm_connector_helper_funcs
+ 	.get_modes = cdv_intel_lvds_get_modes,
+ 	.mode_valid = cdv_intel_lvds_mode_valid,
+ 	.best_encoder = gma_best_encoder,
++	.set_luminance = gma_connector_set_luminance,
++	.disable_luminance = gma_connector_disable_luminance,
  };
  
- #define MAX_H_CODE_TIMING_LEN 32
-@@ -456,6 +457,7 @@ struct radeon_encoder {
- 	uint32_t underscan_vborder;
- 	struct drm_display_mode native_mode;
- 	void *enc_priv;
-+	struct radeon_backlight_privdata *backlight_priv;
- 	int audio_polling_active;
- 	bool is_ext_encoder;
- 	u16 caps;
+ static const struct drm_connector_funcs cdv_intel_lvds_connector_funcs = {
+diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
+index d17cb5b4a4bf2..5de7af651ac39 100644
+--- a/drivers/gpu/drm/gma500/psb_drv.c
++++ b/drivers/gpu/drm/gma500/psb_drv.c
+@@ -396,7 +396,7 @@ static int psb_driver_load(struct drm_device *dev, unsigned long flags)
+ 
+ 		if (gma_encoder->type == INTEL_OUTPUT_LVDS ||
+ 		    gma_encoder->type == INTEL_OUTPUT_MIPI) {
+-			ret = gma_backlight_init(dev);
++			ret = gma_backlight_init(dev, connector);
+ 			if (ret == 0)
+ 				acpi_video_register_backlight();
+ 			break;
+diff --git a/drivers/gpu/drm/gma500/psb_drv.h b/drivers/gpu/drm/gma500/psb_drv.h
+index db197b865b90a..4fc22c66e6c8f 100644
+--- a/drivers/gpu/drm/gma500/psb_drv.h
++++ b/drivers/gpu/drm/gma500/psb_drv.h
+@@ -604,11 +604,13 @@ int psb_fbdev_driver_fbdev_probe(struct drm_fb_helper *fb_helper,
+ #endif
+ 
+ /* backlight.c */
+-int gma_backlight_init(struct drm_device *dev);
++int gma_backlight_init(struct drm_device *dev, struct drm_connector *connector);
+ void gma_backlight_exit(struct drm_device *dev);
+ void gma_backlight_disable(struct drm_device *dev);
+ void gma_backlight_enable(struct drm_device *dev);
+ void gma_backlight_set(struct drm_device *dev, int v);
++void gma_connector_set_luminance(const struct drm_connector_state *conn_state);
++void gma_connector_disable_luminance(const struct drm_connector_state *conn_state);
+ 
+ /* oaktrail_crtc.c */
+ extern const struct drm_crtc_helper_funcs oaktrail_helper_funcs;
+diff --git a/drivers/gpu/drm/gma500/psb_intel_lvds.c b/drivers/gpu/drm/gma500/psb_intel_lvds.c
+index cd882786d9461..fa0bc8492ff7f 100644
+--- a/drivers/gpu/drm/gma500/psb_intel_lvds.c
++++ b/drivers/gpu/drm/gma500/psb_intel_lvds.c
+@@ -610,6 +610,8 @@ const struct drm_connector_helper_funcs
+ 	.get_modes = psb_intel_lvds_get_modes,
+ 	.mode_valid = psb_intel_lvds_mode_valid,
+ 	.best_encoder = gma_best_encoder,
++	.set_luminance = gma_connector_set_luminance,
++	.disable_luminance = gma_connector_disable_luminance,
+ };
+ 
+ const struct drm_connector_funcs psb_intel_lvds_connector_funcs = {
+@@ -808,4 +810,3 @@ void psb_intel_lvds_init(struct drm_device *dev,
+ err_free_encoder:
+ 	kfree(gma_encoder);
+ }
+-
 
 -- 
 2.53.0
