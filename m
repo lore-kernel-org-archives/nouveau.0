@@ -2,132 +2,108 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37843606A32C
-	for <nouveau@archiver.kernel.org>; Tue,  3 Nov 2026 22:15:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9876D606A32D
+	for <nouveau@archiver.kernel.org>; Tue,  3 Nov 2026 22:42:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=vNHssJDq
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IujG/Pht
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1EC0910E8BF;
-	Tue,  3 Nov 2026 22:15:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EB1DC10F20E;
+	Tue,  3 Nov 2026 22:42:22 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 24BE248CFA;
-	Tue,  3 Nov 2026 21:56:19 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id F031E48CFF;
+	Tue,  3 Nov 2026 22:23:00 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793742979;
- b=eiquCjHTb6gK9PJ/rdWzjY187cw1fd5mPZcnhkXwW882cRI9MoWANsfEbrFa2Pwxoa7CW
- B9RU5pEos6a2FFV7RPrMY0tlnn0jT7dJpI546JMiN1ohJ7VWdr3vYaA0eJEi4DaLdoT6EJL
- np4yaoI5xCtZde9YNJ3jXleaJrE9V+RAF9TG9y2AtBn7McPtDkPw2oatJjXFKDny3TbWAvV
- noJzcmi9DZpDuLcwlKGWdMqG0UKLfTguh/Y9efTAVG/adnqv3lH6Sz0aqjp9lTcE+7H8Xdn
- /fXe4qlaClHqzyUKS/yOFfc/FlbiA8w+YFwaQUXoG0KhPi4MF42Cle7xF+eA==
+ s=20240201; t=1793744580;
+ b=VnilTgqCOLDI6AuAqgMpMxOYKEhLSJ8FfgkR2oDuvNVRkWF4akY2lxfSk2kEDjMf6oS3R
+ /u2yrFVYsEn6R/Iztj99kiS++iwYsENV9YynedCTUSyj91beaW+DWjZ4M8VOZWrE2SYltoO
+ vV/3m5DrjveU8B1JrLxQRQ0PwNQQsSSXyJDf0fTHegceM6P2x0DlB/GL0fcvoxtQWoVt639
+ OR7wa6iVuONeDFPhUyAkjNQ3uueMviWtFx4llh5XGH5gM5KVQkkpzKjuUuDqaE6zxCleAjg
+ h3LAI5JznKXnzmrZVZiixZpX7wwhuXtqLLv34BidOcZcZrtdtPktAjHGzXqA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793742979; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793744580; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=J2v88Y67fGvqGhiKg//IWeUpnVROIgGcFJFgELfIJIY=;
- b=sWyhf+VwmDXUoNzRQMDa9jO3JfgsQjWEpI+IoKV6yABq82Cva3ddeF/WoZMa4PbIrTOsV
- DV3TX7f3S9WjL45Yqa022ue58BCDHobj2zM1jw4Fu1sJ8+VgyoBehHF7E7YIZ7xii7ycenE
- wSa7SNDM6eDwI5wOPCzrcSKXzDmV58zIaelh0DyGVgJiRPetD8z1iJHLB29C2G0WRTYG+XR
- soKcuCa3Dxt/9o/srQXfKXtUBPbttoeHdICBh6cwJY/prshIxWHSXUo3V2ueii13p7Vs+BV
- MU/a1lnoVd5pU7MkOk40I18/6MfV+DsiUcBWycxoB/JzAtRnn0C2mOLCK30w==
+ bh=WxnWKT+9kKH7Du8TkvgtZkUd4TPSXvyu35Kk8ujhBxM=;
+ b=g8R7eMqN5O1D3oBUbPhSxm/+znAKK8Zg9+HmzNqASZKg4JmGeIgs8bA+7ArtDrJviUeg3
+ KYn5i1RaDbsGfVZP4JGDljfoz2LLykU2bY7R8gnDixhAba87v3Gd8CBX/pVmf0iLBT0ylUx
+ 7FDMTz7CheCohM4jTesFv8FcbBPvkYYyScxmX2clAJQ8Azc375ruuG6GibBGd5OOHxKXUnJ
+ hTr6NGKTd3GJywn52HlSBwPVmf7W3gHnBbjigogtdGhAWYh2gUUd5vCwryMlkbzxPeHVxdG
+ vRjVwv6U1E8wWYxxSUGPm6icB7segzZANBjv51mzwGb8Vfq84sU1ZPxA7U9w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4AD2C48A90
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 21:56:15 +0000 (UTC)
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
- [209.85.210.176])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0DD8C10E357
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 22:15:32 +0000 (UTC)
-Received: by mail-pf1-f176.google.com with SMTP id
- d2e1a72fcca58-8a06b436dffso46745b3a.3
-        for <nouveau@lists.freedesktop.org>;
- Tue, 03 Nov 2026 14:15:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1793744131; x=1794348931;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=J2v88Y67fGvqGhiKg//IWeUpnVROIgGcFJFgELfIJIY=;
-        b=vNHssJDqlD+deeJKmXerxaZs1XLqk07QNPW2jqiBwEtOcHPquW8l0+s7olv/hJrtb8
-         dB2KGQJjVKqOrPgl8zii+H17D6S8eu7u0B7L5HfW00SZOtL4wmrSubTKaKsc5j8/hHmN
-         L+ouwL8Mdr4pTRaavArZWTjGjcKyIDLcFGtDVdueZ+gkTXI5BVjtOCP0Q0PZySO5Mbxs
-         XKkKepe7fZiJVHaaI98UhqiXZZ5lI6apFKeorau9MaPAOntKG/bVzQh4YWTkn4779RjI
-         /CHu8h2BQH834i8KNA4PfjVO6QrGxDmq3h6OR4xNghDBMZgQo/DcYxPAiU+QvlMIeaPZ
-         0tmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793744131; x=1794348931;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=J2v88Y67fGvqGhiKg//IWeUpnVROIgGcFJFgELfIJIY=;
-        b=zoxIaSZC8+BuJSapb08rnbmJ/c9vlDNgRIwTKVD5xsw7tUvGFOyRFraO4Zg1WDTPdn
-         XCN9ikCIY5YLTTrO3uyLk7e01wTvPKN/RGK4WJJy+UzPCQ8g66UJb85KIG9A5piGF+Ok
-         MwDq2Y894EhnFOAvo4Er63Sy1ElH1UwSl4aOVfhJ3+chEhMmN0Boa9udYNdBREnCxhgy
-         Rqt8CI9bN5jtTJxUBA53Yriibtml1jdYLXgZGeOUiTrAwMTT4zIm/8fjFURSCd6FYf5/
-         0Lvyo47Xgh0N306G57RbB8X0SZkeacVRm0IfbwXP04YGIlKpYhx4ePTso4OB07HcLSOF
-         jMpA==
-X-Gm-Message-State: APuU4Z+bcNnyMwafGA4iEQqThvD3MiVYA/nITFZZXqsMHEXAVM/zkrfL
-	1+GVsPhKS6apGQU+8YkjqnW9k7NgER+EszFoI44WkluR4z62ttByVh92OqMj/Q==
-X-Gm-Gg: AYBFou3Zm4eoKZ2EXXx4xynBJZeixQ4brP1aw203m0d9YwUDMhG5kQrtKiIYE4KofpA
-	v9HCpKdD+1clju2naqV8r2KDCg4kWP1bc1HQWlpL045hLUNqo7/Clre6FwZyUtFC2RozT/Ln5P5
-	z9nBoC4hJFROVB1HlvZzRRywJBbk8Vf7QusMx1G87H84COY2TbCOdNhDmVxpA2EaTiEBKLeQ/7n
-	5irXHgn203r7nYqebp1j8MGnOupgLJPaCXaJSjMbNUGb7p+OW6LUfUv8m8a2PwHu4kZsu92ZWlq
-	fuGsQ8zkVur6KIdQ7TgpH/XUjPTAmGh6xi3GsAenZ6XxZfYfLhvj7wezwuCz3yp/fIa30GGS57z
-	qvMTVjeVsR0ICesy5t/NnEdE5TCF7TZcLuThDGl56E+b3aVFfkU6Ti86vlu1lX6h7urvjXd9x55
-	00Crhyzdz4rB+ART/TFczpCEVvgbxlzP6RnUCYYbtZU7JZu62AV6n8vsEREqK5shNBRD6sL/a4O
-	mc7cyZ4vT/aT6n9A/7Ivj1s9sYNUNpI4SCDgA6jFABWJFfS0eZImD7fS+gFQXZ7X2FrSQbC7W0k
-	/LdY734+c+5knLZhAj6ywKq1tPJ1aIJv5H55HK3NEkVIt6i5TAnt+TTnsx63xbl4gKJDusRKguq
-	ZUpQww9Q1kF036oB+yAW8j9COTF5KvMKgGu650L3HTVArnKy82SxgLyYx8M6sO7tw3dnjcYrZ3H
-	HPsQ==
-X-Received: by 2002:a05:6a00:4395:b0:89d:a947:9d58 with SMTP id
- d2e1a72fcca58-8a9beb64f99mr10595946b3a.25.1793744131486;
-        Tue, 03 Nov 2026 14:15:31 -0800 (PST)
-Received: from ryzen.lan ([2601:644:8000:37f::e34])
-        by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-8b097fe1076sm143036b3a.3.2026.11.03.14.15.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2026 14:15:30 -0800 (PST)
-From: Rosen Penev <rosenp@gmail.com>
-To: nouveau@lists.freedesktop.org
-Subject: [PATCH] drm/nouveau/fifo: map Kepler video engine contexts
- non-privileged
-Date: Tue,  3 Nov 2026 14:15:29 -0800
-Message-ID: <20261103221529.585436-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.56.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id CF9B645C59
+	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 22:22:58 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9BAC910E1EB;
+	Tue,  3 Nov 2026 22:42:15 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 53EE840A8E;
+	Tue,  3 Nov 2026 22:42:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F6741F000C1;
+	Tue,  3 Nov 2026 22:42:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793745735;
+	bh=WxnWKT+9kKH7Du8TkvgtZkUd4TPSXvyu35Kk8ujhBxM=;
+	h=From:Subject:Date:To:Cc;
+	b=IujG/PhtwVxl+I1yUP06jnUQg/GzV8RFVlD7Puk9oWCBWR9C8j47sZ3NXbftljcfq
+	 lw0hQd7wnM6BZEXdG0a+G8M+d0PgLOfQf7ihWutr+JIQw5WDncLSCqgAYYYwcztc2v
+	 dHK3zZGopufbra8//b4EXrGpbasnrMM22MCXQ2lWk0lxrDPLyApu+MwrfoWRgU34PC
+	 IFVWA+91/85geDcQiXNS9aIk+/EVkvE6pZy4V7ANOLMYU2fRNjzJpPMJlfmE3SRQ12
+	 3wjnsvxKkrM2ZWv9kdFTksl7PUbwqlzgNqZ5W+8tfLNbMKeUvbxz3m/HAfXqYkG3xE
+	 lmLSMG4E8yHjA==
+From: "Mario Limonciello (AMD)" <superm1@kernel.org>
+Subject: [PATCH v11 00/12] Add support for a DRM backlight capability
+Date: Tue, 03 Nov 2026 16:42:01 -0600
+Message-Id: 
+ <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 53XU5P64Y46YVHEGECF2XUZTYCJZXJOD
-X-Message-ID-Hash: 53XU5P64Y46YVHEGECF2XUZTYCJZXJOD
-X-MailFrom: rosenp@gmail.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMwQrCMAyA4VcZORtYyhD0VYaHtotbdG4laUUZe
+ 3erHv//8G1grMIG52YD5aeYrEsNokMDcfLLyChDHeBadyRqCa0k1gdh8PE+yzhlTLrWld9IzKd
+ AvguuG6ACSfkqr5/eX/5tJdw45q8I+/4B5PTr3n8AAAA=
+X-Change-ID: 20261101-superm1-backlight-property-1ee9b1a4b24d
+To: Maxime Ripard <mripard@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
+X-Mailer: b4 0.16.0
+Message-ID-Hash: ZVUFR5RNRWD2YW4SM6B3WYF63UR6RVNJ
+X-Message-ID-Hash: ZVUFR5RNRWD2YW4SM6B3WYF63UR6RVNJ
+X-MailFrom: superm1@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Ben Skeggs <bskeggs@redhat.com>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+CC: Mario Limonciello <superm1@kernel.org>, Xaver Hugl <xaver.hugl@gmail.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Mario Limonciello <mario.limonciello@amd.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/53XU5P64Y46YVHEGECF2XUZTYCJZXJOD/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZVUFR5RNRWD2YW4SM6B3WYF63UR6RVNJ/>
 Archived-At: 
- <https://lore.freedesktop.org/20261103221529.585436-1-rosenp@gmail.com/>
+ <https://lore.freedesktop.org/20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -135,59 +111,197 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-23.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,TRACKER_ID,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Since the engine context rework, gk104_ectx_ctor() maps every engine
-context into the channel's VMM as a privileged page.  The MSVLD,
-MSPDEC and MSPPP falcons on Kepler fetch their context with
-non-privileged requests, so the first method sent to any of them
-faults and the channel is killed:
+At Display Next Hackfest 2026 we reviewed progress moving brightness
+control into the DRM connector properties.
 
-  fifo: fault 00 [READ] at 0000000001050000 engine 10 [MSVLD] client 0d [HUB/MSVLD] reason 05 [PRIV_VIOLATION] on channel 9
-  fifo: fault 00 [READ] at 0000000001051000 engine 14 [MSPDEC] client 0b [HUB/MSPDEC] reason 05 [PRIV_VIOLATION] on channel 10
-  fifo: fault 00 [READ] at 0000000001052000 engine 11 [MSPPP] client 0c [HUB/MSPPP] reason 05 [PRIV_VIOLATION] on channel 11
+There is a range LUMINANCE property that will default to 0->0.
+Once a driver attaches a backlight it will be updated to 1->max.
+If the panel supports the minimum backlight turning off the display
+the range can later be updated to 0->max instead of 1->max.
 
-Before the rework, gk104_fifo_gpfifo_engine_ctor() mapped engine
-contexts without the privileged bit.  Restore that for the three video
-engines, and keep the privileged mapping for everything else.
+Version 8 had a lot of review feedback, and the biggest change is that
+this no longer has the legacy sysfs interface for brightness control.
 
-Fixes: 8ab849d6dd4c ("drm/nouveau/fifo: add new engine context handling")
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
+There is a Kconfig knob introduced that turns on the new API, and when
+the new API is available all drivers will conflict with the old backlight
+control API.
+
+This will allow us to land the new brightness control API and the transition
+to the new API separately.  *This series only tracks the new API itself.*
+
+The following compositors have implemented matching support, although they
+need to be changed again for items modified in v10 (the dropped cap):
+ * Kwin: https://invent.kde.org/plasma/kwin/-/merge_requests/9298
+ * Mutter: https://gitlab.gnome.org/swick/mutter/-/commits/wip/kms-luminance-prop
+ * Wlroots: https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/5384
+
+I've tested this series using modetest on amdgpu.
+
+The series is also available on this branch for easy testing.
+
+https://git.kernel.org/pub/scm/linux/kernel/git/superm1/linux.git/log/?h=superm1/backlight-property-v11
+
+Signed-off-by: Mario Limonciello <superm1@kernel.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Changes in v11:
+ * Rebased on drm-tip (fixes Intel CI failing to apply the KUnit patch)
+ * Squashed the amdgpu KUnit fixture update into the amdgpu luminance
+   patch and moved the bios_scratch_reg_offset fix before it, so every
+   commit builds and passes KUnit
+ * Dropped drm/radeon and drm/gma500 patches: both are non-atomic drivers,
+   so userspace can't use an atomic connector property there (Sashiko)
+ * Restored the unconditional select of BACKLIGHT_CLASS_DEVICE in all
+   migrated drivers, fixing ACPI_VIDEO unmet dependencies and link
+   failures (Sashiko)
+ * Core: don't call .disable_luminance when entering self refresh, and
+   only call .set_luminance when the luminance changes or on a modeset
+   that isn't a self refresh exit (Leo Li, Sashiko)
+ * Drivers on ACPI systems (amdgpu, i915/xe) only attach LUMINANCE when
+   acpi_video_backlight_use_native() allows it, keeping the acpi_video
+   fallback otherwise (Sashiko)
+ * Non-atomic paths (legacy non-DC amdgpu, nouveau NV04 and
+   nouveau.atomic=0) keep the backlight class device (Sashiko)
+ * bridge/panel: removed rebase artifacts from drm_bridge.h/drm_panel.h,
+   fixed an invalid container_of() in the panel bridge, cleaned up the
+   connector on error, and left backlight power to drm_panel_enable()/
+   drm_panel_disable() (Sashiko)
+ * bridge_connector: dropped .disable_luminance, which clobbered the
+   bridge's saved level
+ * amdgpu: restore brightness after GPU reset and modesets for LUMINANCE
+   panels, and skip programming unchanged values (Leo Li, Sashiko)
+ * amdgpu KUnit: fixed connector_type IDA mismatch (Sashiko)
+ * amdgpu: seed LUMINANCE from the hardware level; left the unrelated
+   privacy screen code in commit_tail unchanged
+ * i915: fall back to the backlight class device if attaching LUMINANCE
+   fails
+ * panel: don't attach LUMINANCE for panel bridges attached after device
+   registration, and update brightness under the backlight ops_lock
+ * ps8622: program the committed luminance in pre_enable
+ * i915: enable the backlight at the committed level, and fix the build
+   with BACKLIGHT_CLASS_DEVICE=n (Sashiko)
+ * nouveau: call the luminance helpers from the NV50 commit tail, attach
+   the property before drm_dev_register(), and fix a stale eDP brightness
+   on the class device path (Sashiko)
+ * gud: apply LUMINANCE within the atomic commit instead of a worker,
+   fixing an endless commit loop, a use-after-free on disconnect and
+   brightness clobbering; attach the property at init (Sashiko)
+ * ps8622: track internal PWM mode explicitly and don't touch I2C while
+   powered down (Sashiko)
+ * ssd130x: register the backlight device only without DRM_LUMINANCE,
+   use the committed contrast on enable, don't clobber it on disable,
+   skip writes while unpowered, and unify contrast dispatch (Sashiko)
+ * Known limitation: with DRM_LUMINANCE, amdgpu ATIF firmware brightness
+   requests are not forwarded (i915 OpRegion ASLE requests are already
+   ignored when native backlight control is in use)
+ * Link to v10: https://lore.kernel.org/dri-devel/20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org/
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-index 5655eda52a7b..912eb6c3a13d 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c
-@@ -180,6 +180,19 @@ gk104_ectx_ctor(struct nvkm_engn *engn, struct nvkm_vctx *vctx)
- 	struct gf100_vmm_map_v0 args = { .priv = 1 };
- 	int ret;
- 
-+	/* The video falcons access their context with non-privileged
-+	 * requests, and fault with PRIV_VIOLATION on a privileged mapping.
-+	 */
-+	switch (engn->engine->subdev.type) {
-+	case NVKM_ENGINE_MSVLD:
-+	case NVKM_ENGINE_MSPDEC:
-+	case NVKM_ENGINE_MSPPP:
-+		args.priv = 0;
-+		break;
-+	default:
-+		break;
-+	}
-+
- 	ret = nvkm_vmm_get(vctx->vmm, 12, vctx->inst->size, &vctx->vma);
- 	if (ret)
- 		return ret;
--- 
-2.56.0
+Changes in v10:
+
+* Split patch 7 (panel/bridge connector luminance forwarding) into three
+   separate patches:
+  - drm/bridge: add connector luminance operations
+  - drm/panel: add connector luminance forwarding
+  - drm/bridge_connector: add luminance support
+ * Dropped MIPI-DBI tiny driver migrations and the new mipi_dbi connector
+   luminance helpers (Javier): backlight is always NULL when
+   CONFIG_BACKLIGHT_CLASS_DEVICE is disabled, so these drivers can't
+   support LUMINANCE without DT binding changes or a new
+   CONFIG_BACKLIGHT_SYSFS option. Will revisit later.
+ * Added IS_ENABLED(CONFIG_DRM_LUMINANCE) conditional guards to all
+   individual DRM driver patches that call drm_connector_attach_luminance_property()
+ * Moved the LUMINANCE property patch after the new "Add support for a
+   DRM backlight capability" patch to better separate backlight vs
+   luminance functionality
+ * Link to v9: https://lore.kernel.org/dri-devel/20261002190030.211356-1-mario.limonciello@amd.com/
+
+To: Maxime Ripard <mripard@kernel.org>
+To: Alex Deucher <alexander.deucher@amd.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+To: Javier Martinez Canillas <javierm@redhat.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Harry Wentland <harry.wentland@amd.com>
+To: Leo Li <sunpeng.li@amd.com>
+To: Rodrigo Siqueira <siqueira@igalia.com>
+Cc: Xaver Hugl <xaver.hugl@gmail.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: amd-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+
+---
+Mario Limonciello (11):
+      drm: add connector LUMINANCE property
+      drm/amd/display: Pass up errors reading actual brightness
+      drm/amd: add luminance property support
+      drm/i915/display: add luminance property support
+      drm/bridge: add connector luminance operations
+      drm/panel: add connector luminance forwarding
+      drm/bridge_connector: add luminance support
+      drm/nouveau: add connector luminance support
+      drm/gud: add connector luminance support
+      drm/bridge: add PS8622 connector luminance support
+      drm/solomon: add SSD130x connector luminance support
+
+Mario Limonciello (AMD) (1):
+      drm/amdgpu: Check bios_scratch_reg_offset in backlight level helper
+
+ drivers/gpu/drm/Kconfig                            |  14 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c       |   7 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  16 +--
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h  |   7 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_backlight.c    |  91 +++++++++++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_backlight.h    |   5 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_connector.c    |   5 +-
+ .../amdgpu_dm/tests/amdgpu_dm_backlight_test.c     |  72 ++++++++--
+ .../amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c      |   7 +-
+ drivers/gpu/drm/bridge/parade-ps8622.c             |  66 +++++++--
+ drivers/gpu/drm/display/drm_bridge_connector.c     |  39 ++++++
+ drivers/gpu/drm/drm_atomic_helper.c                |  98 ++++++++++++-
+ drivers/gpu/drm/drm_atomic_state_helper.c          |   7 +
+ drivers/gpu/drm/drm_atomic_uapi.c                  |   5 +
+ drivers/gpu/drm/drm_connector.c                    |  57 ++++++++
+ drivers/gpu/drm/drm_panel.c                        |  93 +++++++++++++
+ drivers/gpu/drm/gud/gud_connector.c                |  20 ++-
+ drivers/gpu/drm/i915/display/icl_dsi.c             |   1 +
+ drivers/gpu/drm/i915/display/intel_backlight.c     |  74 ++++++++--
+ drivers/gpu/drm/i915/display/intel_backlight.h     |   1 +
+ drivers/gpu/drm/i915/display/intel_display.c       |   2 +
+ drivers/gpu/drm/i915/display/intel_dp.c            |   1 +
+ drivers/gpu/drm/i915/display/intel_lvds.c          |   1 +
+ drivers/gpu/drm/i915/display/intel_panel.c         |   8 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c             |   1 +
+ drivers/gpu/drm/nouveau/dispnv50/disp.c            |  13 +-
+ drivers/gpu/drm/nouveau/nouveau_backlight.c        | 152 ++++++++++++++++++---
+ drivers/gpu/drm/nouveau/nouveau_connector.c        |   3 +
+ drivers/gpu/drm/nouveau/nouveau_connector.h        |  23 ++++
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |   6 +
+ drivers/gpu/drm/solomon/ssd130x.c                  | 149 +++++++++++++-------
+ drivers/gpu/drm/solomon/ssd130x.h                  |   2 +
+ drivers/gpu/drm/tests/drm_connector_test.c         |  28 ++++
+ include/drm/drm_atomic_helper.h                    |   3 +
+ include/drm/drm_bridge.h                           |  20 +++
+ include/drm/drm_connector.h                        |  16 +++
+ include/drm/drm_modeset_helper_vtables.h           |  28 ++++
+ include/drm/drm_panel.h                            |   4 +
+ 38 files changed, 1008 insertions(+), 137 deletions(-)
+---
+base-commit: 9f54e1a5b50dc017d371c435b12ddb5300c7d5b2
+change-id: 20261101-superm1-backlight-property-1ee9b1a4b24d
+
+Best regards,
+--  
+Mario Limonciello <superm1@kernel.org>
 
