@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 142E2606A32F
-	for <nouveau@archiver.kernel.org>; Tue,  3 Nov 2026 22:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED3B606A337
+	for <nouveau@archiver.kernel.org>; Tue,  3 Nov 2026 22:42:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=L7N1Rr7Y
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NuFdWfA2
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 788CB10F8EA;
-	Tue,  3 Nov 2026 22:42:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 508A010F8E2;
+	Tue,  3 Nov 2026 22:42:33 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7B5A148D06;
-	Tue,  3 Nov 2026 22:23:14 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id E510448D15;
+	Tue,  3 Nov 2026 22:23:10 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793744594;
- b=t3d1UIhrQor9aDwG919+DsGA5i1AvgHWCMC6bxwkZx2yAQsKCB4KeXNE2O331lWvbzKjZ
- TdtkSwLfdPCHyz0x6V74D0epyvlczo+G2BTHENVJuVs4VAEgCWDZPm0BQQHBTTN6H1pWq8Y
- NT+PEhWglft2c5Lb5Sxh0n07/n9t2fihJxg8h7N3ZEa+Q0pneeh31lZArrPnX3zu1VUo06C
- uTwBZ0OaEoahSbSLkEcNlHH4r49+jqz1eoHL7tWtzfVSePgFrdVDa8thAtcFo3C5knHHhWS
- RucLYvsS7+orlQo3MjfahspzyaGixKLZvC842v+HX2JsU1xWUsmvP0zjjtAg==
+ s=20240201; t=1793744590;
+ b=WKA5h2a85P788nxhT8edenrZfWc29IdltijgmFcRhvhTedJzy+m8oTtE4hkIBP+gXRwFh
+ Fqelp6+Bt3L0YZtDRR0JA2fJNky3K6ruLX4YJ+AMaNcZsI3LOOwH2ywIn/muyAdGcf+8YcP
+ /Ikoisi/dr0CnWSGP56efXbPgzJA0TTlIiAGjsIuQaRAZaUnreoLo1lLoGMMDi+KNe8jkZl
+ qUnRe67ljYF/MU5Fdx8ugZdNyl1k208QNSQoyERu6BzqV2UkahifOVxCwGZeDWNfT/aoE/M
+ 0opLs9/rBmqmK4ei5hzXEF+xQ55TijBefz2L4pHzNzQp6xKX8xZEfOL6dvDA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793744594; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793744590; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=7uMkYbECLUxTM5pa0kbpXZQUVRouDnrW7EIXtuo+nfk=;
- b=EsxPj2dYXN1s0GZqE+D83SGPfMW51KlQKPmUDnJG6BWf4/cMs8iOSqjIMobyEncDAKgd5
- PJYNG1QK0uCUEUJcgPvDsFrUrerhMyh/Xw0YUhr6T60QJ7BQC5UbvkfgG+iw6yyvsYd9e0y
- 9Fx3rRW+SZX5jB7w4YySwQ9lzz+kVxh4ocJ8rcoZWA8PkXcBOd24px6HgTbkQ80KHJkk4GN
- Dy/RXi2bFNlVwYw8E9SPvKufig4ObhUUFJN4bc7VuEM/0R+WsNw7MfrDjq+d3PMJdHdqLd0
- udApTR3MO0pN0R3hp1ppJcKl5EHZ6tteW8YOz0fugbNMRMozpZcooHbhE4xg==
+ bh=RYzRY6pUjO4vR+HoG7+wRVy0VRP9l+RugrUlV/NSiUU=;
+ b=IDREuCyF55ychOTmMs1wfRbOxu6GzGYSU8xu2+aVZw7rz0nDW1Elxl2j4Y+TxNq9YvIrw
+ 6ScULX2JUT94E2fnyAWz6R/LwJhHi15XPa7SRsbj+w0cUPAUFu4M+DJ1ym45XePHOwaMWKN
+ V5CMVeCZlB7DKjpskmhtesbMKLTbyoaeapJN0q72yf7XDIGsMutIF3NeXYr1OUfkC5PICdP
+ AyOUC3Zfh7GKHUaTFjS8/cdWLuub11WcXZ6lB65GAyQzvE4U3BW7UZjY98qdQgMY9p2qjWn
+ QEbzTc4YqJq1D+4rwr7BtjUexEIwHrBmiMcnZeaaPKWqHrWuG1snvyF+EeiQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,35 +43,35 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E6E8A48D16
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 22:23:10 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8A1C010F770;
-	Tue,  3 Nov 2026 22:42:27 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 43F0B48CFB
+	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 22:23:08 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0CEAD10E9CF;
+	Tue,  3 Nov 2026 22:42:25 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0EA4360A90;
-	Tue,  3 Nov 2026 22:42:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1519F1F00A15;
+	by sea.source.kernel.org (Postfix) with ESMTP id E72DA4029D;
 	Tue,  3 Nov 2026 22:42:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 254F51F0093A;
+	Tue,  3 Nov 2026 22:42:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793745746;
-	bh=7uMkYbECLUxTM5pa0kbpXZQUVRouDnrW7EIXtuo+nfk=;
+	s=k20260515; t=1793745744;
+	bh=RYzRY6pUjO4vR+HoG7+wRVy0VRP9l+RugrUlV/NSiUU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=L7N1Rr7YXLGtfentC4e92qKHIdhSAESR8rBOSUSaDNmbU41lY7iWvzXdWmT+2nLcs
-	 DrCzNGclNax/V7Hq1Yl6/+PNjpSC8PGctGeERhD0wdN/5oZIC0faJVkEnVbU3JkPqQ
-	 nPPnzro08OLFCw1TIOA3zKpYa62DNimUl1ISjiq0+YhlMaPo+aY/swuP/Hg3J8z85d
-	 edlbWvL5m+Xsi0dG7yadtPyLCfVcW2TYEoNC0y9dHKqc2pMiBDi31zvk1make2Joao
-	 UrX9eojlOPxY62hz0nPNkf2WadHW2C4BmDZmZk3HgLIOwvACEdJM5QnI2cXiZOZrmI
-	 5gbad6ha0vboA==
+	b=NuFdWfA2tudkpMTd9GfNFj4OB4kkAnEEiRSgwJ9a+QjHepJxsKKG2V5zF8N+edLrp
+	 pOh6woA0/CYHq711JKsg9sQvfmeFQ1A0dl1OP4N4TWcnUJtGK6xgym0M/0y45wN34S
+	 UYDqfPdhUbCxNLtLbcjx2BUbQ2mNr/40pu8czVWPsEsIRDD6aRq8FGsgylHbYvxp1D
+	 NlZ1swLmsOt4se8W0CH2wvWAJM9oiLxiF7He5YrWZI2Vckbnk9zrO3kcvdpG5uS7mE
+	 w1h+B1VzsTe4NfVTx4ZPqAUv0vGF0vMMlHigFLnKrNVIUiVPpOgYsIBBkrhzKuyHwj
+	 2jeWyYQz9pQng==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Tue, 03 Nov 2026 16:42:07 -0600
-Subject: [PATCH v11 06/12] drm/bridge: add connector luminance operations
+Date: Tue, 03 Nov 2026 16:42:06 -0600
+Subject: [PATCH v11 05/12] drm/i915/display: add luminance property support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 Message-Id: 
- <20261103-superm1-backlight-property-v11-6-00cce7b2ba22@kernel.org>
+ <20261103-superm1-backlight-property-v11-5-00cce7b2ba22@kernel.org>
 References: 
  <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
 In-Reply-To: 
@@ -85,8 +85,8 @@ To: Maxime Ripard <mripard@kernel.org>,
  Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
  Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
 X-Mailer: b4 0.16.0
-Message-ID-Hash: K6KUBKZJ4WYRXG44733K4GLZKMY7TFGB
-X-Message-ID-Hash: K6KUBKZJ4WYRXG44733K4GLZKMY7TFGB
+Message-ID-Hash: KHSKF6TWUZGPH2VIDOZT7KA5XZ73ZNEQ
+X-Message-ID-Hash: KHSKF6TWUZGPH2VIDOZT7KA5XZ73ZNEQ
 X-MailFrom: superm1@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -101,9 +101,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/K6KUBKZJ4WYRXG44733K4GLZKMY7TFGB/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KHSKF6TWUZGPH2VIDOZT7KA5XZ73ZNEQ/>
 Archived-At: 
- <https://lore.freedesktop.org/20261103-superm1-backlight-property-v11-6-00cce7b2ba22@kernel.org/>
+ <https://lore.freedesktop.org/20261103-superm1-backlight-property-v11-5-00cce7b2ba22@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -111,74 +111,264 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_PASS,
+	T_SPF_HELO_TEMPERROR,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-Allow bridges that own brightness control to advertise a luminance
-operation and its supported relative range.
+Expose the DRM LUMINANCE connector property for eDP, LVDS, and DSI panels
+when CONFIG_DRM_LUMINANCE is enabled. Keep registering the existing
+backlight class device otherwise, preserving its userspace ABI.
+
+Use the existing Intel brightness scaling and programming path from
+connector helper callbacks. Apply atomic luminance after modeset enables
+so updates made while a panel is inactive take effect when it is enabled
+again. The shared display code provides the same behavior to i915 and Xe.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
 v11:
- * Drop panel bridge declarations re-added by a bad rebase (Sashiko)
- * Document @luminance as the initial level
-v10:
- * Split bridge operations out of the combined panel and bridge patch
+ * Call acpi_video_backlight_use_native() before attaching LUMINANCE and
+   leave the panel to acpi_video otherwise (Sashiko)
+ * Enable the backlight at the committed LUMINANCE level (Sashiko)
+ * Fix build with CONFIG_BACKLIGHT_CLASS_DEVICE=n (Sashiko)
+ * Keep selecting BACKLIGHT_CLASS_DEVICE if ACPI (Sashiko)
+ * Fall back to the backlight class device if attaching LUMINANCE fails
 ---
- include/drm/drm_bridge.h | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ drivers/gpu/drm/i915/display/icl_dsi.c         |  1 +
+ drivers/gpu/drm/i915/display/intel_backlight.c | 74 ++++++++++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_backlight.h |  1 +
+ drivers/gpu/drm/i915/display/intel_display.c   |  2 +
+ drivers/gpu/drm/i915/display/intel_dp.c        |  1 +
+ drivers/gpu/drm/i915/display/intel_lvds.c      |  1 +
+ drivers/gpu/drm/i915/display/intel_panel.c     |  8 +--
+ drivers/gpu/drm/i915/display/vlv_dsi.c         |  1 +
+ 8 files changed, 76 insertions(+), 13 deletions(-)
 
-diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
-index 1981d24a700d2..240a69c1233e7 100644
---- a/include/drm/drm_bridge.h
-+++ b/include/drm/drm_bridge.h
-@@ -62,6 +62,15 @@ enum drm_bridge_attach_flags {
-  * struct drm_bridge_funcs - drm_bridge control functions
-  */
- struct drm_bridge_funcs {
-+	/**
-+	 * @set_luminance:
-+	 *
-+	 * Apply a relative luminance level to a bridge that controls panel
-+	 * emission. Bridges implementing this callback shall set
-+	 * @DRM_BRIDGE_OP_LUMINANCE.
-+	 */
-+	void (*set_luminance)(struct drm_bridge *bridge, unsigned int luminance);
-+
- 	/**
- 	 * @attach:
- 	 *
-@@ -1021,6 +1030,11 @@ enum drm_bridge_ops {
- 	 * &drm_bridge_funcs->hdmi_clear_spd_infoframe callbacks.
- 	 */
- 	DRM_BRIDGE_OP_HDMI_SPD_INFOFRAME = BIT(10),
-+
-+	/**
-+	 * @DRM_BRIDGE_OP_LUMINANCE: The bridge controls panel luminance.
-+	 */
-+	DRM_BRIDGE_OP_LUMINANCE = BIT(11),
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index ea0cdb7822f39..37ff84c03ce05 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1801,6 +1801,7 @@ static const struct drm_connector_helper_funcs gen11_dsi_connector_helper_funcs
+ 	.get_modes = intel_dsi_get_modes,
+ 	.mode_valid = gen11_dsi_mode_valid,
+ 	.atomic_check = intel_digital_connector_atomic_check,
++	.set_luminance = intel_backlight_set_luminance,
  };
  
- /**
-@@ -1071,6 +1085,12 @@ struct drm_bridge {
- 	void *driver_private;
- 	/** @ops: bitmask of operations supported by the bridge */
- 	enum drm_bridge_ops ops;
+ static int gen11_dsi_host_attach(struct mipi_dsi_host *host,
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index b128896cb1c2d..f9e84d17d3fb0 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -9,6 +9,7 @@
+ #include <linux/string_helpers.h>
+ #include <acpi/video.h>
+ 
++#include <drm/drm_connector.h>
+ #include <drm/drm_file.h>
+ #include <drm/drm_print.h>
+ #include <drm/intel/pci_config.h>
+@@ -76,6 +77,16 @@ static u32 clamp_user_to_hw(struct intel_connector *connector,
+ 	return hw_level;
+ }
+ 
++/* Scale user_level in range [0..user_max] to [hw_min..hw_max]. */
++static u32 scale_user_to_hw(struct intel_connector *connector,
++			    u32 user_level, u32 user_max)
++{
++	struct intel_panel *panel = &connector->panel;
 +
-+	/** @luminance_max: Maximum relative luminance level. */
-+	unsigned int luminance_max;
++	return scale(user_level, 0, user_max,
++		     panel->backlight.min, panel->backlight.max);
++}
 +
-+	/** @luminance: Initial relative luminance level. */
-+	unsigned int luminance;
- 	/**
- 	 * @type: Type of the connection at the bridge output
- 	 * (DRM_MODE_CONNECTOR_*). For bridges at the end of this chain this
+ /* Scale hw_level in range [hw_min..hw_max] to [0..user_max]. */
+ static u32 scale_hw_to_user(struct intel_connector *connector,
+ 			    u32 hw_level, u32 user_max)
+@@ -778,6 +789,16 @@ static void __intel_backlight_enable(const struct intel_crtc_state *crtc_state,
+ 
+ 	WARN_ON(panel->backlight.max == 0);
+ 
++	/*
++	 * Enable at the luminance committed in this atomic state, rather than
++	 * at a stale level which would only be corrected afterwards by
++	 * drm_atomic_helper_commit_luminance_enables().
++	 */
++	if (connector->base.luminance_property)
++		panel->backlight.level =
++			scale_user_to_hw(connector, conn_state->luminance,
++					 panel->backlight.max);
++
+ 	if (panel->backlight.level < panel->backlight.min) {
+ 		panel->backlight.level = panel->backlight.min;
+ 		if (panel->backlight.device)
+@@ -831,16 +852,6 @@ static u32 intel_panel_get_backlight(struct intel_connector *connector)
+ 	return val;
+ }
+ 
+-/* Scale user_level in range [0..user_max] to [hw_min..hw_max]. */
+-static u32 scale_user_to_hw(struct intel_connector *connector,
+-			    u32 user_level, u32 user_max)
+-{
+-	struct intel_panel *panel = &connector->panel;
+-
+-	return scale(user_level, 0, user_max,
+-		     panel->backlight.min, panel->backlight.max);
+-}
+-
+ /* set backlight brightness to level in range [0..max], scaling wrt hw min */
+ static void intel_panel_set_backlight(const struct drm_connector_state *conn_state,
+ 				      u32 user_level, u32 user_max)
+@@ -1670,6 +1681,9 @@ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
+ {
+ 	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_panel *panel = &connector->panel;
++	struct drm_connector *base = &connector->base;
++	u32 brightness;
++	u32 max;
+ 	int ret;
+ 
+ 	if (!connector->panel.vbt.backlight.present) {
+@@ -1703,6 +1717,19 @@ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
+ 
+ 	panel->backlight.present = true;
+ 
++	/*
++	 * acpi_video_backlight_use_native() also tells the ACPI video code that
++	 * a native backlight is available. If native control should not be
++	 * used, leave the backlight to acpi_video, which is registered later
++	 * from intel_acpi_video_register().
++	 */
++	if (IS_ENABLED(CONFIG_DRM_LUMINANCE) && acpi_video_backlight_use_native()) {
++		max = panel->backlight.max;
++		brightness = scale_hw_to_user(connector, panel->backlight.level, max);
++		ret = drm_connector_attach_luminance_property(base, 0, max, brightness);
++		drm_WARN_ON(display->drm, ret);
++	}
++
+ 	drm_dbg_kms(display->drm,
+ 		    "[CONNECTOR:%d:%s] backlight initialized, %s, brightness %u/%u\n",
+ 		    connector->base.base.id, connector->base.name,
+@@ -1712,6 +1739,33 @@ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
+ 	return 0;
+ }
+ 
++void intel_backlight_set_luminance(const struct drm_connector_state *conn_state)
++{
++	struct intel_connector *connector =
++		to_intel_connector(conn_state->connector);
++	struct intel_display *display = to_intel_display(connector);
++	struct intel_panel *panel = &connector->panel;
++	u32 hw_level;
++
++	if (!panel->backlight.present)
++		return;
++
++	guard(mutex)(&display->backlight.lock);
++
++	/*
++	 * Nothing to do if __intel_backlight_enable() already programmed this
++	 * level as part of a modeset enable.
++	 */
++	hw_level = scale_user_to_hw(connector, conn_state->luminance,
++				    panel->backlight.max);
++	if (hw_level == panel->backlight.level)
++		return;
++
++	panel->backlight.level = hw_level;
++	if (panel->backlight.enabled)
++		intel_panel_actually_set_backlight(conn_state, hw_level);
++}
++
+ void intel_backlight_destroy(struct intel_panel *panel)
+ {
+ 	/* dispose of the pwm */
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.h b/drivers/gpu/drm/i915/display/intel_backlight.h
+index 339643f638978..1634ce414695a 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.h
++++ b/drivers/gpu/drm/i915/display/intel_backlight.h
+@@ -32,6 +32,7 @@ void intel_backlight_set_acpi(const struct drm_connector_state *conn_state,
+ 			      u32 level, u32 max);
+ void intel_backlight_set_pwm_level(const struct drm_connector_state *conn_state,
+ 				   u32 level);
++void intel_backlight_set_luminance(const struct drm_connector_state *conn_state);
+ u32 intel_backlight_invert_pwm_level(struct intel_connector *connector, u32 level);
+ u32 intel_backlight_level_to_pwm(struct intel_connector *connector, u32 level);
+ u32 intel_backlight_level_from_pwm(struct intel_connector *connector, u32 val);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c1c2b99cfb53b..f87c78e316a5d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7845,6 +7845,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
+ 	display->modeset.funcs->commit_modeset_enables(state);
+ 
++	drm_atomic_helper_commit_luminance_enables(&state->base);
++
+ 	intel_display_power_dc3co_compute(state);
+ 
+ 	/* FIXME probably need to sequence this properly */
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index ef164a7976187..905c8743a2a2b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -7060,6 +7060,7 @@ static const struct drm_connector_helper_funcs intel_dp_connector_helper_funcs =
+ 	.get_modes = intel_dp_get_modes,
+ 	.mode_valid = intel_dp_mode_valid,
+ 	.atomic_check = intel_dp_connector_atomic_check,
++	.set_luminance = intel_backlight_set_luminance,
+ };
+ 
+ enum irqreturn
+diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+index 872753478cf21..fa668b1debb21 100644
+--- a/drivers/gpu/drm/i915/display/intel_lvds.c
++++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+@@ -502,6 +502,7 @@ static const struct drm_connector_helper_funcs intel_lvds_connector_helper_funcs
+ 	.get_modes = intel_lvds_get_modes,
+ 	.mode_valid = intel_lvds_mode_valid,
+ 	.atomic_check = intel_digital_connector_atomic_check,
++	.set_luminance = intel_backlight_set_luminance,
+ };
+ 
+ static const struct drm_connector_funcs intel_lvds_connector_funcs = {
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+index 81e638d0c7b33..9e2a53f300d39 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.c
++++ b/drivers/gpu/drm/i915/display/intel_panel.c
+@@ -610,9 +610,11 @@ int intel_panel_register(struct intel_connector *connector)
+ 	struct intel_panel *panel = &connector->panel;
+ 	int ret;
+ 
+-	ret = intel_backlight_device_register(connector);
+-	if (ret)
+-		return ret;
++	if (!connector->base.luminance_property) {
++		ret = intel_backlight_device_register(connector);
++		if (ret)
++			return ret;
++	}
+ 
+ 	if (connector->base.connector_type == DRM_MODE_CONNECTOR_DSI ||
+ 	    connector->base.connector_type == DRM_MODE_CONNECTOR_eDP) {
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 8829f365592ef..7e60407e0af4a 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -1555,6 +1555,7 @@ static const struct drm_connector_helper_funcs intel_dsi_connector_helper_funcs
+ 	.get_modes = intel_dsi_get_modes,
+ 	.mode_valid = vlv_dsi_mode_valid,
+ 	.atomic_check = intel_digital_connector_atomic_check,
++	.set_luminance = intel_backlight_set_luminance,
+ };
+ 
+ static const struct drm_connector_funcs intel_dsi_connector_funcs = {
 
 -- 
 2.53.0
