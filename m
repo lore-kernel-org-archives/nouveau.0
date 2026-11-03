@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6304D606A32D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48C8D606A329
 	for <nouveau@archiver.kernel.org>; Tue,  3 Nov 2026 19:28:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ACWgK+DF
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Wo41QOxd
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3ED7F10F7F6;
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0F04B10F7EF;
 	Tue,  3 Nov 2026 19:28:32 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B4C6D48CF3;
-	Tue,  3 Nov 2026 19:09:03 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 5C96B48CEF;
+	Tue,  3 Nov 2026 19:09:02 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793732943;
- b=Cmn9GaHoxUCedcVc4QN6XZZHaUE0FN9xV0YFZtxOuy4fqZeeVgjAO2cJGblrOe2D1H5qX
- SzrHMWnYrr5s2q1Pg5zYNJa3ySaSfxlF3m9m///WpkSzFAqHXYBu4pWT7Pey4nRN9T8VxIx
- INEk8pPbWWZjDQortzr9ixIiXlkLBiHZCBxT+63QKtE+wmk3kZXvMpJyLnrB4iBtEQcPv2a
- bk3dUYZkOoMA2sbqMOK7jBSG/f2y9Npq+11caSy5eMofkgDxjb5zG1qQ+22NyHPPMIU8QL2
- TcWGDyCObsI2ZjPaPmDU3gYec4tFx6tTlPbR0vylS5hF7UxO30R/ASgADYdA==
+ s=20240201; t=1793732942;
+ b=fy1oddyp8ZZZwJZ5YgPnmZudLZRz8/2hQXHnJJ+tFNsRSQJW9SZLosb28H+mc6jWbeuLO
+ Vv+4EzMa8J1ZTYRbzBd/4nZ5X4BmcIgMQbt86FLJZQzW/bPAAdfWs3RKb33TJjNLMR6m2ch
+ O4CEPT2ZHe0E/aNYQmm4ZXtQQ5tFhx4T0VLV+c9PQYIKD51VP+JHGvH+mLd1XXUa4JM6pgL
+ FsIA4IyGzd38CjaXRW2HjIs0+iM8mL161A0gJ8ovSk5TFUwVp0wKWt/YCfGN23oh6kEPAEl
+ 2gsgnbufR53KyliClkLF72nm1/SS+toYeYPLlbbjFJgwnFajq3nPLPGCPQMA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793732943; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793732942; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=WJac30W+Zgm/eZyctil4AFCBpQAeJTdsn2sd26VSGS0=;
- b=mkPAka5J4kmaJC1TR1nSGThMW3JNk8aOuZ0fpZdM9TsQj80AHsaD+gFoRtYx3miSmy+Th
- DSBabXgwJNCJy4to4go3Frs27wS4qdednG6lVTl6LFpdQlsxhcWHyFq4gJYBadqWqH2tKUk
- XA/Zf/Kyb/dpzIcuB3lHk/A3m55hvXIn+q/EvKrm9bxIA1+r52M5/RiyaRMXD8AsEMS3i26
- WcebkdKQHRQBfpc3noTMtm7lVTrCyWd8AobIB5e1s+2KmpGl3otIptv4uzS5NnTmyAr6Q5o
- bTVRcrs+Y+eIyB+K2k9yN3mjN0fttl2FIfawHcr7WlAWhalGrTkFpTqrYYHA==
+ bh=zuEYFaLmVg/iLLrHIfXW07NtXiDvrmAt5+qGwHGIFjg=;
+ b=m6FQwGIm+eIcYtn7WLPMdOMRVVVWnkc8owIl0/T1K6luUhrn+qwCPH+q25daE/2NW30eC
+ lKioohoBRQOAALMSPY/1qY6WzadJWI//PNW8L0IIlJhGEwMMid9aZXZYsqqB67lD7w1wLI9
+ 13Y30CmZv3F28W6yLpGZLCxlVkgiBwEwk1PQ5Nt15byf6MymV/OLPM8OoF/CEtsfRQsWsfv
+ m0kCBZxbWBmLj896+saDfX5Ln4Al5OM0hxs/573n3TA9nl809kkAYH9ATQ2qgPMkmdlBZ+1
+ acJaB8geRkkOsn3OmLs7Oov3yhcCyzecUZORga3GeiDkzqTiqVYq1wwHyDiQ==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=fail header.d=kernel.org;
   arc=pass;
@@ -42,33 +42,33 @@ Authentication-Results: mail.freedesktop.org; dkim=fail header.d=kernel.org;
  arc=pass;
  dmarc=fail (Used From Domain Record) header.from=kernel.org policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 6D02348CD5
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3999048CD4
 	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 19:08:59 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CFDC610F7C4;
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9E44710F7B5;
 	Tue,  3 Nov 2026 19:28:15 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 434F560609;
-	Tue,  3 Nov 2026 19:28:15 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id C114160136;
+	Tue,  3 Nov 2026 19:28:14 +0000 (UTC)
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1793734095;
-	b=QBhgSCI2Hq0VS+B8AFy+Bk+X//F2ewkbMVaAIKdtvZ9VlKbLx/PGl9n+4le4xvrWNUyE
-	 FXsdeykC0nhJntfPpwi2+yKMtS/qVqOUTaMKWKOaSfxsMeOZP6XMYY8jxdisI9Upm44WV
-	 Sz488hDFOu060phiHRqRhAso75X0IZSZpFF1x+TBVr2cwJbESUv6SL+rO1tQN+AJq73TQ
-	 io7aYFwYONhkJcce5heSn99wTNkisF6IJjFn0F+msGpJIE/n+TggPI5Y/z0s4SFmsRwIv
-	 YmILhsfDNeqr7hbKvBsjTKg3wUEeJtRfGXrlSWuVONvizF+DQks4y4vjC2PYOUooOEA==
+	t=1793734094;
+	b=s37wJa9wG6OrxU+wBgaXf1Gzhum0+lRqHgxnKl6bDmSIRyImtOWZFX4huxpgyaoWEOGk
+	 D/Tlj5LIN+b4r0CYISQ/oZcuGnBR3WPW9jWShSQNBvs2BUF6HyxM4b8e++S+Ipa+yLru3
+	 xPs8GAMUJaHwET1A85dqNRKX6wE5nBfg1I7hl90vGexvXwJy+IbG/LNp1D7kO21bUaooa
+	 vR2tC1JJk4l2Z53rgT+PRRhIt4TJ6PXjIZluYIeEcF4VRKtmgb9M1mbGW67LCiaRj0nuX
+	 AP37Au8TMdX3qRPaJaDffG0Hpa6elsl6rUgbFP2MhoAmCgDf7WNpwJlY9S9xrOgDUzQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1793734095;
+	c=relaxed/relaxed; t=1793734094;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=WJac30W+Zgm/eZyctil4AFCBpQAeJTdsn2sd26VSGS0=;
-	b=RR7QvcC7C7niCqDKfaaGXmopfIwX6DkO4xIvCTFM8vMlB5lCZdG0+UFK8twhd5hAc+88
-	 FjY/p3JNsoCu2T94AMCyhVIv8IDmrOMAAMCywgEYjOPB3oaCFGG6KC3x8BTiK0O5x0TUI
-	 bjo8iyptpsih2Y+VrU/hOs6jhC67UObEyvlwUZDnkr7N9mRMA+6EDynkDhstj1iGHtSR1
-	 Cq2lgC+sOJKfNIGd6ZaBirFid8xe1FEdHsv02BRBQyGjcJztX4X3uBWnUEkVtdwjgF0vU
-	 CAIIExFi/y2tmnrE1Jedn2kZoWbsxl7uxY8SsmiFpIhm/UIcwhwqfjUpYg9i/nyR8pg==
+	bh=zuEYFaLmVg/iLLrHIfXW07NtXiDvrmAt5+qGwHGIFjg=;
+	b=rgHCy1kTaBIt7i4IbQZbqiSVlERciky/wXR5uafixBwTYRTAd4vSiT/0hlR6v5KBiJvd
+	 seXH3eD+5MtGWpEP0sjaeCPLc4AdYnsnjbrl9CLwcD9AkmWHoDIP8vvdHejrcKMiGuNZc
+	 AzjpO4lS1NxruLOeyfhsxN8VA9vmQcSvBbVmLWd3QJRci8n/nWkDGiWLhlRBcTtYs3mlP
+	 5YCVlVnhymqKEUAu8brLLY8pPQapoElQF5bqWf+xKLdZ50yT8xFReUk/FmR9hz0EYCnTb
+	 j2nd4WyLzl5S/fKCsLcl7aR+hAFn8j+N9Xafn3IrMDxsTA5V+HZUl8hTq1SMo767a9g==
 ARC-Authentication-Results: i=1; smtp.kernel.org;
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
@@ -76,30 +76,30 @@ Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 742611F00A16;
-	Tue,  3 Nov 2026 19:28:14 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 650501F0093A;
+	Tue,  3 Nov 2026 19:28:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1793734094;
-	bh=WJac30W+Zgm/eZyctil4AFCBpQAeJTdsn2sd26VSGS0=;
+	bh=zuEYFaLmVg/iLLrHIfXW07NtXiDvrmAt5+qGwHGIFjg=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=ACWgK+DFSI43P6bcfP9WiqEDfT7y6siosWuGg0YIcQ+iNY6gAE7vb5LHKyfaz8Fxs
-	 fSNagBY+jmB8BhyWafVzntwzP3W7mox6CGbNKOpvNmoF3wduHP1jtzW3akt5c2jGKs
-	 Xu3yUtE2B0QTs60QfJq0J+HJFddW1Br7ij6laNSL8T58mkdtEQI0Md9OkKEWBUBRl5
-	 T6mOP3KLpWx13D1VBufmTnkeIPGrLEE1DGGdL2gbsKRr/KnLDcDbfNdCKhFHl8CS7j
-	 uqtoKNZ8kYHLybhIRpptnSaNfjaSzRonD50PcA8bDl5TWiYK1G8sn0XtRKmK0oQnj/
-	 y15xIytSCdw/g==
+	b=Wo41QOxdi+Rx0EvCtXi4Xw52XSVPn24QYzz6gsylsm2M2rDeytrR1NG3IkPKmAtb2
+	 WL7fB/E2mZrTbREqym+kUtCopGoKYqav1np4jE2NUyJu1Ca2/xNwJW4+W52Pi7hlRQ
+	 484uCrS+/AbwkMolrZIxiYvQu/Iag6/DbsBzl1YSH1bEJ89XmvgxMPssExYFjd4cFR
+	 fRLqZPyBLmGwccCHm5j9WPJZN42e1Rc49pYTzjgtnxTf61ZBa/fkaGxg3OulbO99HC
+	 78divx2sfqf37ZZpiRjHVcfPB1Mnb5PgGVMUz5YnmZAOVFV83od4sYHBfKLcKQ/72Z
+	 kb4o7xpyAd9Mw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 1390946AD3;
-	Tue,  3 Nov 2026 19:28:13 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id E274C46AC7;
+	Tue,  3 Nov 2026 19:28:12 +0000 (UTC)
 From: "David R. Hedges via B4 Relay"
  <devnull+linuxdev844.thelittleman.net@kernel.org>
-Date: Tue, 03 Nov 2026 13:28:05 -0600
-Subject: [PATCH 5/5] drm/nouveau: don't let an IRQ_HPD hide a plug or
- unplug event
+Date: Tue, 03 Nov 2026 13:28:02 -0600
+Subject: [PATCH 2/5] drm/nouveau/gsp: don't report failed DP AUX transfers
+ as completed
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261103-nouveau-dp-fixes-v1-5-892f4bd357cd@thelittleman.net>
+Message-Id: <20261103-nouveau-dp-fixes-v1-2-892f4bd357cd@thelittleman.net>
 References: <20261103-nouveau-dp-fixes-v1-0-892f4bd357cd@thelittleman.net>
 In-Reply-To: <20261103-nouveau-dp-fixes-v1-0-892f4bd357cd@thelittleman.net>
 To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
@@ -108,19 +108,19 @@ To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Dave Airlie <airlied@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1793734092; l=1736;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1793734092; l=2363;
  i=linuxdev844@thelittleman.net; s=20261103; h=from:subject:message-id;
- bh=tP85nBIrptt737aDB86qPgSupi2I6nalDmVpTjCbdVo=;
- b=XrppRfVCwBqBGeUwfkz8GLy3LuTrae24FAi6dAaSGrRH9AN/7b/thlU74Ss42oEYKgGLOI7M+
- be1rwk3vWEvCfRM2HKXHOwK6PvMEO1zHF6IZ3apGnLWEA6nS05gtEAi
+ bh=VnhFFCJgwU5i55xG5SnKSfbRyrndYBR8/9ZzNzwvcvc=;
+ b=FvGKLCExeTq/wzKIWyYwo1rYcl1ZNPwjfmlGJ9iRJBjjjUCu0eUeEa1Bfv5QXetBKXpDgnJXF
+ yayxYdUuTsrDUdBzi3pocWEpW6KG++byU15FYqnfgrHstlChLrGGO5h
 X-Developer-Key: i=linuxdev844@thelittleman.net; a=ed25519;
  pk=Cynzuei/w0GLdh3LuNJdvH7aaszLrHSxY5UyujS7l+g=
 X-Endpoint-Received: by B4 Relay for linuxdev844@thelittleman.net/20261103
  with auth_id=1397
 X-Original-From: "David R. Hedges" <linuxdev844@thelittleman.net>
 Content-Transfer-Encoding: 7bit
-Message-ID-Hash: CTXTA4SQAE3NKTV7TFMQDIUJ5SF4NJDE
-X-Message-ID-Hash: CTXTA4SQAE3NKTV7TFMQDIUJ5SF4NJDE
+Message-ID-Hash: OKLRTTH3QIUVTPVFYEDIO7Z44VEEUHJF
+X-Message-ID-Hash: OKLRTTH3QIUVTPVFYEDIO7Z44VEEUHJF
 X-MailFrom: devnull+linuxdev844.thelittleman.net@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -128,15 +128,15 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  digests; suspicious-header
 CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  linux-kernel@vger.kernel.org,
- "David R. Hedges" <linuxdev844@thelittleman.net>
+ "David R. Hedges" <linuxdev844@thelittleman.net>, stable@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 Reply-To: linuxdev844@thelittleman.net
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CTXTA4SQAE3NKTV7TFMQDIUJ5SF4NJDE/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OKLRTTH3QIUVTPVFYEDIO7Z44VEEUHJF/>
 Archived-At: 
- <https://lore.freedesktop.org/20261103-nouveau-dp-fixes-v1-5-892f4bd357cd@thelittleman.net/>
+ <https://lore.freedesktop.org/20261103-nouveau-dp-fixes-v1-2-892f4bd357cd@thelittleman.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -153,42 +153,56 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: "David R. Hedges" <linuxdev844@thelittleman.net>
 
-nouveau_dp_irq() passes an IRQ_HPD to the HPD worker as
-NVIF_CONN_EVENT_V0_IRQ, adding NVIF_CONN_EVENT_V0_PLUG when the sink
-count has changed, or NVIF_CONN_EVENT_V0_UNPLUG when servicing an MST
-hub fails.  A real plug or unplug can also be pending in the same bits
-by the time the worker runs.  nouveau_display_hpd_work() skips
-connector detection for anything with the IRQ bit set, though, as long
-as nouveau_dp_link_check() reports the link as fine, which it does
-whenever there's no trained link to look at, so those plug and unplug
-events are dropped.
+Commit 9776c0a75a1a ("nouveau/dp: handle retries for AUX CH transfers
+with GSP.") put the NV0073_CTRL_CMD_DP_AUXCH_CTRL call in a retry loop
+and dropped the check for the call failing.  When RM fails it with
+anything other than a retry request, r535_dp_aux_xfer() ignores the
+error and returns the reply fields as if a transaction had completed:
+replyType becomes the AUX reply, and size and data are copied out.
+NVIDIA's own DisplayPort library (EvoAuxBus::transaction() in
+open-gpu-kernel-modules) treats a failed AUXCH_CTRL call as a NACK and
+ignores the reply.
 
-Only take the link check shortcut for an IRQ_HPD on its own.
+RM does fail these calls.  On a GA102 with GSP-RM 570.144, replugging
+a DP monitor that hasn't come back from DPMS off produces bursts of
 
-Fixes: 016dacb60e6d ("drm/nouveau/kms: pass event mask to hpd handler")
+  gsp: cli:0xc1d00001 obj:0x00730000 ctrl cmd:0x00731341 failed: 0x0000ffff
+
+(NV_ERR_GENERIC, occasionally NV_ERR_INVALID_DATA), one per AUX
+transaction, and the DPCD and EDID reads made during a burst are
+judged on whatever the reply fields happen to contain.
+
+Return the error from the control call again, as r535_dp_aux_xfer()
+did before the retry loop was added.
+
+Fixes: 9776c0a75a1a ("nouveau/dp: handle retries for AUX CH transfers with GSP.")
+Cc: stable@vger.kernel.org
+Link: https://gitlab.freedesktop.org/drm/nouveau/-/work_items/515
 Assisted-by: Claude:claude-opus-5-5
 Signed-off-by: David R. Hedges <linuxdev844@thelittleman.net>
 ---
- drivers/gpu/drm/nouveau/nouveau_display.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index d71dcfc6ee66..4398cf0fc541 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -462,7 +462,12 @@ nouveau_display_hpd_work(struct work_struct *work)
- 			    !!(bits & NVIF_CONN_EVENT_V0_UNPLUG),
- 			    !!(bits & NVIF_CONN_EVENT_V0_IRQ));
- 
--		if (bits & NVIF_CONN_EVENT_V0_IRQ) {
-+		/* A plug or unplug event pending alongside the IRQ, such as a
-+		 * sink count change reported by nouveau_dp_irq(), still needs
-+		 * connector detection.
-+		 */
-+		if ((bits & NVIF_CONN_EVENT_V0_IRQ) &&
-+		    !(bits & (NVIF_CONN_EVENT_V0_PLUG | NVIF_CONN_EVENT_V0_UNPLUG))) {
- 			if (nouveau_dp_link_check(nv_connector))
- 				continue;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+index f5f22173fc2c..953392504413 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+@@ -1101,9 +1101,12 @@ r535_dp_aux_xfer(struct nvkm_outp *outp, u8 type, u32 addr, u8 *data, u8 *psize)
+ 			msleep(ctrl->retryTimeMs);
+ 			nvkm_gsp_rm_ctrl_done(&disp->rm.objcom, ctrl);
+ 		} else {
+-			memcpy(data, ctrl->data, size);
+-			*psize = ctrl->size;
+-			ret = ctrl->replyType;
++			/* The reply only describes a transaction if RM completed one. */
++			if (ret == 0) {
++				memcpy(data, ctrl->data, size);
++				*psize = ctrl->size;
++				ret = ctrl->replyType;
++			}
+ 			nvkm_gsp_rm_ctrl_done(&disp->rm.objcom, ctrl);
+ 			break;
  		}
 
 -- 
