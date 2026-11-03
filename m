@@ -2,119 +2,98 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328CB606A31B
-	for <nouveau@archiver.kernel.org>; Wed,  4 Nov 2026 14:33:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CCE3606A329
+	for <nouveau@archiver.kernel.org>; Wed,  4 Nov 2026 14:34:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=smail.nju.edu.cn header.i=@smail.nju.edu.cn header.a=rsa-sha256 header.s=iohv2404 header.b=M2D9lamU
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=thelittleman.net header.i=@thelittleman.net header.a=rsa-sha256 header.s=20140415-thelittleman header.b=OcRk48xl
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 114EC10EF0D;
-	Wed,  4 Nov 2026 14:33:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 585D510F57A;
+	Wed,  4 Nov 2026 14:34:21 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8A9F948D1D;
-	Wed,  4 Nov 2026 14:14:29 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id ED8DA48D20;
+	Wed,  4 Nov 2026 14:14:57 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793801669;
- b=FpFwjs3UIkwl7PyIfw2rEx1XycvJC30YgUBeiudXbQdbQLIbk2kjjNuOU0GPvhKnhMmvM
- q4teMG8MgHAROlsX1w0hHzHWFU0gfkQQIo/wHverRzTT887Ed+DuawBQ3qDlFwScPczEuLF
- JpO7MuZIsizuAYRlwYICCIKRb8e6u4vncdvRbXk1JvG8y5TYRmzqzqPu7lfknqrba56XvZo
- rq5C33/IgflhnOTP6Z9gGHhpCmc2OnzXyOw1Sl70kG52ic0P7V8vN175Mf+xIgm1XXFt4ND
- KQlLPN2zMB+LRwtIV8oTQcatZePEAAOSZOyw5vCGyYIRw7OUIP+XqFcNNROQ==
+ s=20240201; t=1793801697;
+ b=YoweAzOorAIqTbYCzbk2IHQgx/n7NKDrM6y19j2SSTKXjtJlBQ4e68Mvw4hX/Jup+9OVc
+ Qa9NjOwr8yaiaV258bjCBMtiUClr48ZtkMFDE+1vpUJuSneScW6Rlt+xzFqJQr02aD/+v35
+ VOfhbQS9+hOToBHolZ1AoraFnLa9Om9to/IbrTkPoRwRCL9QT4Hk70MDAfrwd0W5onFuP1o
+ 4UbEco7ek/3N1ycI9wzy8HV4SwUxjxwEkXsccgHb08dhG6GUZaOH/p3+k1B4bYYhkCr7LX1
+ w+yWeaq0elBmu92N5HrVEN4NuUocijw9WzRk0QV2mbztILzNP3JMmV1iuRMw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793801669; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793801697; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=+zHiE5XcWww7tLTpXyIARkWQlwlTAcUnLfouLWCJeB4=;
- b=wxrITDcHmLW05rvmWpKi+LpVPD7/6TmrkgQncfZ5NuMnxC4dU5Hwqs0JXU/yv2d7w85tk
- Q2Xg0wsfRQ8a2hQcJC5PBTNHRjyhfFXZkTpM/jJe1pe3W396UxJs5VAKUpt8BG7GWSLhWoC
- rkvRCOVk2kcJQjhiyM7/m0oDm8KbHHTuk+3W9LXin3Z4wJmyA9mtaGIHsgLLiN8qQDQUoPg
- inY+GeowIvT5xSV+CMFjf5CYEYe3nxqWnqqzNdyLhd9nXQjirE3Rsp+MzIl4hNwmABDSCpD
- Is1qYOblM1gn/3qwpnjRUGc+IcTSBZfFSMImMtXSw6QIf4WHznmoiuF8sbmA==
+ bh=z1YZpLjfbu6fNLdkBVvsc4d/vtdUbC5126/UpuwWjT4=;
+ b=Qbs/RJwQw+C2VOSxCw0whi3XdE0VCLm/FdzAfHFjUqxzClQEKUUQ2DfAM0BMzF690XS7/
+ bOcv7gQDdxyVgSc89jHrf8zzvG5xju/fH7L49SLz0oFrOiiooYVkEse8m8UzBRvjE4ErR+b
+ cdn6hgH+UUq4/qMv8R/3m6CGi2AQjDZIC8JVFts2NlI7iuL+uRkPuL98W+eOXiY1bv4Mgi5
+ 0Nic6GQaYXBDXr2GUQ1Yy4Fu0SNlU/Y80mkw46PhIvauIgQ1EBboxOXClo0prS/qn19RV5q
+ POJ7QPXRN17Ga1BIm42RXD6tNv7LoS1B31ztcgstFdkyXjHJ3SXLwcoOIAmg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=smail.nju.edu.cn;
+ dkim=pass header.d=thelittleman.net;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=smail.nju.edu.cn
- policy.dmarc=reject
+  dmarc=pass (Used From Domain Record) header.from=thelittleman.net
+ policy.dmarc=quarantine
 Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=smail.nju.edu.cn; arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=smail.nju.edu.cn
- policy.dmarc=reject
+ dkim=pass header.d=thelittleman.net; arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=thelittleman.net
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A14C545C59
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 11:29:27 +0000 (UTC)
-X-Greylist: delayed 412 seconds by postgrey-1.36 at gabe;
- Tue, 03 Nov 2026 11:48:42 UTC
-Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.64.16])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 16BB410E14F;
-	Tue,  3 Nov 2026 11:48:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smail.nju.edu.cn;
-	s=iohv2404; t=1793706514;
-	bh=+zHiE5XcWww7tLTpXyIARkWQlwlTAcUnLfouLWCJeB4=;
-	h=From:To:Subject:Date:Message-Id:MIME-Version;
-	b=M2D9lamUa9DR6rgvnM/7qabeY43vqLNct7HkjaKLwefpHQh2QZbx21NRFgDksfPsS
-	 Te5GSc7t9CWghNuc6uQFgszJY1LYS7sMme2qwrW/HnpF76coDJMjATMOsjsv9+CJQI
-	 Is2NpQS08dIoT0qnG8pR5x7De1obKn6WSntOp/vg=
-X-QQ-mid: zesmtpip4t1793706059t80501f17
-X-QQ-Originating-IP: 1MCHwRi6gNt0bcBzShi+yjMARG4lYNZkcQfQtp8Ebn4=
-Received: from workstation-Precision-7920-Towe ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with
-	id ; Tue, 03 Nov 2026 19:40:57 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 13736684038379576073
-From: Kang Chen <k.chen@smail.nju.edu.cn>
-To: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau/gsp: validate the ACPI backlight package
-Date: Tue,  3 Nov 2026 19:40:57 +0800
-Message-Id: <20261103114057.73915-1-k.chen@smail.nju.edu.cn>
-X-Mailer: git-send-email 2.34.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id CF91148A90
+	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 20:36:47 +0000 (UTC)
+X-Greylist: delayed 512 seconds by postgrey-1.36 at gabe;
+ Tue, 03 Nov 2026 20:56:04 UTC
+Received: from mail.thelittleman.net (mail.thelittleman.net [91.99.148.243])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 47F5610E172;
+	Tue,  3 Nov 2026 20:56:04 +0000 (UTC)
+Received: from mail.thelittleman.net (localhost [127.0.0.1])
+	by mail.thelittleman.net (Postfix) with ESMTPSA id 8ABDD5F92D;
+	Tue, 03 Nov 2026 20:47:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thelittleman.net;
+	s=20140415-thelittleman; t=1793738849;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=z1YZpLjfbu6fNLdkBVvsc4d/vtdUbC5126/UpuwWjT4=;
+	b=OcRk48xluXvjulj0mjLRYuQOra8JaZF3vUToOHWr1Q9S/Zvjj/ZXd8kEkzDZx0QVp8iLbv
+	o84BgZMFykPizLZQsBd2NY83Ht94mG67fCQQy2A/H+8yRj2whLkruF/hpbuI2Y4n2YxRDG
+	27WRS/3wn/l9qQb1sIoUd0YBFODrAxM=
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:smail.nju.edu.cn:qybglogicsvrgz:qybglogicsvrgz5b-1
-X-QQ-XMAILINFO: N7h1OCCDntujaG65BDQTMdPGBnB7wXQEAgRivP/JDrGe+ed6NUoY1rNK
-	jno1+MoMqUbdCKU8bAkIr2l/yIUcoooq6+tx1Ay7RoxXsGvIkjrThdjvrr1muZfLZYdoAkJ
-	oTWw08nIgkkQjkSdZiiy3j/UtapDAzrBj3PzfEhucAokKtNQhJHmY+HnTYKJgnr/STPaFqN
-	CT2BAQPFsUMN/eFvRYouMaAp3d7bNO4d3WyCikB1zrAp8X35DFiymAyzIgfqm6SaKeIJfW3
-	1Z8wFHe/YIQeTvd3uG0TPe+6+clIigCs0J3gSlzXq36QbdW5l4y9/wkunwt2GHrysIi61R9
-	E2YsWgwItIaoFlKDxbiVa0IkLyhDBLQgkl04u1w7wtlmKoP1rblno1SjeOt/P1oyRUnDoSZ
-	LPcxF36GKtQQDFFY/KfCBLkdrQM19KJ2LC8Kq5tsNWQnUCxEW43teTq/G4tFrxPMKX2T6Jr
-	EdZHuk/+XmqLnyLbJk7mUZOuljNKYvDMmsffMOmbzFNokz4WcyPn24zymjG08DXtKxOaj5v
-	RJTjQSofyZ3zKt/roI7jD3pwSTJ7/6eVrg3iqc+rIhWukaXGB7qOl4LEKQb3b8B634rJZuf
-	nRX7dkGaU4xgjYAXrusYtPViXPdQZeihKMedBq/G0be9MPD/tAmH0iAT+7mN8Ik2RijqU+S
-	EDpuzMVc3ccZMDF9/YIipCa0z54KPR3LXwJoLgr5UYeAjV958ESyr9A564dVsldKkrtxGEb
-	MioM4MJuy9VKSPFI2JH3qOdE1bdOkD5SlVketmgvx3lqhnmadw4RigFvWQm46PTRYrRVD8t
-	MIWryvXSGDfj2G0pB3X7I800FRMZqonfjhY32GNZpuNyt5WvOI26y8d0Ym65b5HBUf0gKps
-	PErXB+WkqaPKDoPoQna//iRgQBZWDqNjyBgEhnfXVqLXqdCiEhVmN4me7UZ4OMUaXIGJVHc
-	EfyO6mvJn991m6NmZEn3ufxOR0Kjxac71AOwRBf6DCZmDhior/YOhrEWUqbBrDw/zSn6VLM
-	BPbf/ltsitnrvus0GLmIW80+Q1P4fdOAScwPdKgXbNNkeo55Gp
-X-QQ-XMRINFO: OWPUhxQsoeAVwkVaQIEGSKwwgKCxK/fD5g==
-X-QQ-RECHKSPAM: 0
-X-MailFrom: k.chen@smail.nju.edu.cn
+Date: Tue, 03 Nov 2026 14:47:29 -0600
+From: "David R. Hedges" <linuxdev844@thelittleman.net>
+To: sashiko-reviews@lists.linux.dev
+Subject: Re: [PATCH 4/5] drm/nouveau/kms/nv50-: don't drive outputs at 0 bpc
+In-Reply-To: <sashiko-outbox-195931@kernel.org>
+References: <20261103-nouveau-dp-fixes-v1-0-892f4bd357cd@thelittleman.net>
+ <20261103-nouveau-dp-fixes-v1-4-892f4bd357cd@thelittleman.net>
+ <sashiko-outbox-195931@kernel.org>
+Message-ID: <f3a2d8f720d1b619210067ad366fe7e9@thelittleman.net>
+X-Sender: linuxdev844@thelittleman.net
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-MailFrom: linuxdev844@thelittleman.net
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: XTUA5Q5WJ5ZTML5GUFLALNQYGITMZIIW
-X-Message-ID-Hash: XTUA5Q5WJ5ZTML5GUFLALNQYGITMZIIW
-X-Mailman-Approved-At: Wed, 04 Nov 2026 14:14:25 +0000
-CC: Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
- Dave Airlie <airlied@redhat.com>, Rosen Penev <rosenp@gmail.com>,
- Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Message-ID-Hash: EHR4YIIGYMYAUB7U3E4RZGTXZT6SQZUP
+X-Message-ID-Hash: EHR4YIIGYMYAUB7U3E4RZGTXZT6SQZUP
+X-Mailman-Approved-At: Wed, 04 Nov 2026 14:14:55 +0000
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XTUA5Q5WJ5ZTML5GUFLALNQYGITMZIIW/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EHR4YIIGYMYAUB7U3E4RZGTXZT6SQZUP/>
 Archived-At: 
- <https://lore.freedesktop.org/20261103114057.73915-1-k.chen@smail.nju.edu.cn/>
+ <https://lore.freedesktop.org/f3a2d8f720d1b619210067ad366fe7e9@thelittleman.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -122,196 +101,29 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The _DSM handler for the internal brightness state load command walks
-the returned package and copies every element into
-ctrl->backLightData without checking the object type, the element type,
-or the size of the destination.  A firmware-provided _DSM method can
-return a non-package object, non-integer elements, or more data than
-the 4 KiB backLightData array holds, causing out-of-bounds writes in
-the RM control buffer.
+On 2026-11-03 13:41 -0600, sashiko-bot@kernel.org wrote:
+> Could unconditionally defaulting asyh->or.bpc to 8 here break 6 bpc eDP 
+> and
+> 18-bit (6 bpc) LVDS panels?
 
-Move the _DSM handling into helpers that validate the package and every
-element, and that refuse to copy past the end of the destination.  The
-destination size is only updated after the whole package has been
-validated, and success is only reported to the RM control command in
-that case.  Use a zeroed buffer for the _DSM input and reject an
-invalid initial data size before subtracting it from the destination
-length.
+Yes. ->detect() replaces the EDID on every probe, which resets
+display_info.bpc, and for a panel whose EDID doesn't give a color depth
+it stays 0 until ->get_modes() runs, so this isn't limited to a lost
+EDID. For those panels, nouveau_connector_detect_depth() picks 6 bpc on
+eDP and starts from 6 bpc on LVDS. Forcing 8 would drive eDP panels at
+24 bpp and make nv50_sor_atomic_enable() override the VBIOS straps on
+18-bit LVDS panels.
 
-Fixes: 9e99444490238 ("drm/nouveau/disp/r535: initial support")
-Signed-off-by: Kang Chen <k.chen@smail.nju.edu.cn>
----
- .../nouveau/nvkm/subdev/gsp/rm/r535/disp.c    | 142 ++++++++++++------
- 1 file changed, 92 insertions(+), 50 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-index f5f22173fc2c..730bd08da911 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-@@ -1467,6 +1467,94 @@ r535_disp_get_static_info(struct nvkm_disp *disp)
- 	return 0;
- }
- 
-+#if defined(CONFIG_ACPI) && defined(CONFIG_X86)
-+static int
-+r535_gsp_backlight_pkg(union acpi_object *obj, u8 *data, u16 *data_size,
-+		       size_t data_len)
-+{
-+	size_t offset = *data_size;
-+	unsigned int i;
-+
-+	if (offset > data_len)
-+		return -EINVAL;
-+
-+	if (obj->type != ACPI_TYPE_PACKAGE)
-+		return -EINVAL;
-+
-+	for (i = 0; i < obj->package.count; i++) {
-+		union acpi_object *elt = &obj->package.elements[i];
-+		u32 size;
-+
-+		if (elt->type != ACPI_TYPE_INTEGER)
-+			return -EINVAL;
-+
-+		if (elt->integer.value & ~0xffffffffULL)
-+			size = 8;
-+		else
-+			size = 4;
-+
-+		if (size > data_len - offset)
-+			return -EINVAL;
-+
-+		memcpy(&data[offset], &elt->integer.value, size);
-+		offset += size;
-+	}
-+
-+	*data_size = offset;
-+
-+	return 0;
-+}
-+
-+static bool
-+r535_gsp_backlight_dsm(struct nvkm_device *device, u8 *data, u16 *data_size,
-+		       size_t data_len)
-+{
-+	const guid_t nbci_dsm_guid =
-+		GUID_INIT(0xD4A50B75, 0x65C7, 0x46F7,
-+			  0xBF, 0xB7, 0x41, 0x51, 0x4C, 0xEA, 0x02, 0x44);
-+	const guid_t nvhg_dsm_guid =
-+		GUID_INIT(0x9D95A0A0, 0x0060, 0x4D48,
-+			  0xB3, 0x4D, 0x7E, 0x5F, 0xEA, 0x12, 0x9F, 0xD4);
-+	acpi_handle handle = ACPI_HANDLE(device->dev);
-+	union acpi_object argv4, *obj;
-+	bool ret = false;
-+	bool nbci, nvhg;
-+
-+	if (!handle || !acpi_has_method(handle, "_DSM"))
-+		return false;
-+
-+	nbci = acpi_check_dsm(handle, &nbci_dsm_guid, 0x00000102,
-+			      1ULL << 0x00000014);
-+	nvhg = acpi_check_dsm(handle, &nvhg_dsm_guid, 0x00000102,
-+			      1ULL << 0x00000014);
-+	if (!nbci && !nvhg)
-+		return false;
-+
-+	argv4.buffer.type = ACPI_TYPE_BUFFER;
-+	argv4.buffer.length = data_len;
-+	argv4.buffer.pointer = kzalloc(data_len, GFP_KERNEL);
-+	if (!argv4.buffer.pointer)
-+		return false;
-+
-+	obj = acpi_evaluate_dsm(handle, nbci ? &nbci_dsm_guid : &nvhg_dsm_guid,
-+				0x00000102, 0x14, &argv4);
-+	if (!obj) {
-+		acpi_handle_info(handle, "failed to evaluate _DSM\n");
-+		goto out_free;
-+	}
-+
-+	if (r535_gsp_backlight_pkg(obj, data, data_size, data_len))
-+		acpi_handle_info(handle, "invalid _DSM response\n");
-+	else
-+		ret = true;
-+
-+	ACPI_FREE(obj);
-+out_free:
-+	kfree(argv4.buffer.pointer);
-+	return ret;
-+}
-+#endif
-+
- static int
- r535_disp_oneinit(struct nvkm_disp *disp)
- {
-@@ -1528,56 +1616,10 @@ r535_disp_oneinit(struct nvkm_disp *disp)
- 
- 		ctrl->status = 0x56; /* NV_ERR_NOT_SUPPORTED */
- 
--		{
--			const guid_t NBCI_DSM_GUID =
--				GUID_INIT(0xD4A50B75, 0x65C7, 0x46F7,
--					  0xBF, 0xB7, 0x41, 0x51, 0x4C, 0xEA, 0x02, 0x44);
--			u64 NBCI_DSM_REV = 0x00000102;
--			const guid_t NVHG_DSM_GUID =
--				GUID_INIT(0x9D95A0A0, 0x0060, 0x4D48,
--					  0xB3, 0x4D, 0x7E, 0x5F, 0xEA, 0x12, 0x9F, 0xD4);
--			u64 NVHG_DSM_REV = 0x00000102;
--			acpi_handle handle = ACPI_HANDLE(device->dev);
--
--			if (handle && acpi_has_method(handle, "_DSM")) {
--				bool nbci = acpi_check_dsm(handle, &NBCI_DSM_GUID, NBCI_DSM_REV,
--						           1ULL << 0x00000014);
--				bool nvhg = acpi_check_dsm(handle, &NVHG_DSM_GUID, NVHG_DSM_REV,
--						           1ULL << 0x00000014);
--
--				if (nbci || nvhg) {
--					union acpi_object argv4 = {
--						.buffer.type    = ACPI_TYPE_BUFFER,
--						.buffer.length  = sizeof(ctrl->backLightData),
--						.buffer.pointer = kmalloc(argv4.buffer.length, GFP_KERNEL),
--					}, *obj;
--
--					obj = acpi_evaluate_dsm(handle, nbci ? &NBCI_DSM_GUID : &NVHG_DSM_GUID,
--								0x00000102, 0x14, &argv4);
--					if (!obj) {
--						acpi_handle_info(handle, "failed to evaluate _DSM\n");
--					} else {
--						for (int i = 0; i < obj->package.count; i++) {
--							union acpi_object *elt = &obj->package.elements[i];
--							u32 size;
--
--							if (elt->integer.value & ~0xffffffffULL)
--								size = 8;
--							else
--								size = 4;
--
--							memcpy(&ctrl->backLightData[ctrl->backLightDataSize], &elt->integer.value, size);
--							ctrl->backLightDataSize += size;
--						}
--
--						ctrl->status = 0;
--						ACPI_FREE(obj);
--					}
--
--					kfree(argv4.buffer.pointer);
--				}
--			}
--		}
-+		if (r535_gsp_backlight_dsm(device, ctrl->backLightData,
-+					   &ctrl->backLightDataSize,
-+					   sizeof(ctrl->backLightData)))
-+			ctrl->status = 0;
- 
- 		ret = nvkm_gsp_rm_ctrl_wr(subdevice, ctrl);
- 		if (ret)
--- 
-2.34.1
-
+v2 will fall back to 6 bpc for eDP and LVDS and 8 bpc for everything
+else, the same defaults nouveau_connector_detect_depth() uses before it
+looks at the straps. On LVDS, that leaves the 18/24-bit choice to the
+straps as 0 did, and eDP gets the depth ->get_modes() would give it
+instead of 0, which trips the same watermark WARN as on DP. Calling
+nouveau_connector_detect_depth() from ->detect() doesn't work for LVDS,
+which needs the native mode that ->get_modes() sets up.
