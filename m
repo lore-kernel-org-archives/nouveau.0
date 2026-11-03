@@ -2,109 +2,119 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66BA4606D802
-	for <nouveau@archiver.kernel.org>; Tue,  3 Nov 2026 22:42:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328CB606A31B
+	for <nouveau@archiver.kernel.org>; Wed,  4 Nov 2026 14:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PbpGCKDK
+	dkim=pass (1024-bit key, unprotected) header.d=smail.nju.edu.cn header.i=@smail.nju.edu.cn header.a=rsa-sha256 header.s=iohv2404 header.b=M2D9lamU
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9D80910F29A;
-	Tue,  3 Nov 2026 22:42:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 114EC10EF0D;
+	Wed,  4 Nov 2026 14:33:53 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id AF27D48D19;
-	Tue,  3 Nov 2026 22:23:25 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 8A9F948D1D;
+	Wed,  4 Nov 2026 14:14:29 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793744605;
- b=KK4BVFbS/W+4upKKDFkiYYeSAsDfOf6B2fpa7krFNSkyqkZAKBw9gP5q6AsCfc9a6Aw9T
- IAThvlUg7kMrSAVlt2O3Lcl6f4IcfhC6X8YaNH+FKQatK0XmmuI74Grf1hVQ4xOseDRNK+n
- u6VVtHiFm551A7+giVwut/jjU05bBTqIyn0eF8OiYZXCnLkhoLr2QC4aTD9OcOoU3KT70mE
- VP26ePu60VDwYrQ204bbBW8kaPnkPncBgxlDfxO3B0QrEJOyXZKQ6/TDoJHYRAKPs3ySsVV
- fMFLxq2ioVAYHwQE7fE8a0NP/ZcK5S8QjlRraGm+SDL/A/4KbzYCD9zdAIcQ==
+ s=20240201; t=1793801669;
+ b=FpFwjs3UIkwl7PyIfw2rEx1XycvJC30YgUBeiudXbQdbQLIbk2kjjNuOU0GPvhKnhMmvM
+ q4teMG8MgHAROlsX1w0hHzHWFU0gfkQQIo/wHverRzTT887Ed+DuawBQ3qDlFwScPczEuLF
+ JpO7MuZIsizuAYRlwYICCIKRb8e6u4vncdvRbXk1JvG8y5TYRmzqzqPu7lfknqrba56XvZo
+ rq5C33/IgflhnOTP6Z9gGHhpCmc2OnzXyOw1Sl70kG52ic0P7V8vN175Mf+xIgm1XXFt4ND
+ KQlLPN2zMB+LRwtIV8oTQcatZePEAAOSZOyw5vCGyYIRw7OUIP+XqFcNNROQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793744605; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793801669; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=qJz4Y3pmBhvfNKPCdS16oXtdOSx6Dt11DR2lDyz2UZg=;
- b=MiJdOXSyStbwxIknmSFDO5jvwiTV9bTHqEGlFSAsxO1KpCtvqVBSIphauVq5I1DYeZ8B+
- OYWUSGX3UW4yRBi7adCgY019podlGyywYotAJiNudp9NGMUVSrepQnVvL5BXNe0qbxZXwUq
- F2yAml7LlRDsHbWOesLDrWT4c+y+NN/7q1a/Kcg1zPAMgDvqNlIrNtCzsdCh1/29WK2FlT/
- BDFqJOInvII67jATaby9GvbzD8bYgI12H0n86/MCK35SZzb7BL10eGjppke1G8Y0wip2LI0
- hBYAEFCLEe8iXEbEhW6CDNxebHPO/GzW37jYLb69ApnAe6IICDpoyGQPoaMQ==
+ bh=+zHiE5XcWww7tLTpXyIARkWQlwlTAcUnLfouLWCJeB4=;
+ b=wxrITDcHmLW05rvmWpKi+LpVPD7/6TmrkgQncfZ5NuMnxC4dU5Hwqs0JXU/yv2d7w85tk
+ Q2Xg0wsfRQ8a2hQcJC5PBTNHRjyhfFXZkTpM/jJe1pe3W396UxJs5VAKUpt8BG7GWSLhWoC
+ rkvRCOVk2kcJQjhiyM7/m0oDm8KbHHTuk+3W9LXin3Z4wJmyA9mtaGIHsgLLiN8qQDQUoPg
+ inY+GeowIvT5xSV+CMFjf5CYEYe3nxqWnqqzNdyLhd9nXQjirE3Rsp+MzIl4hNwmABDSCpD
+ Is1qYOblM1gn/3qwpnjRUGc+IcTSBZfFSMImMtXSw6QIf4WHznmoiuF8sbmA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=smail.nju.edu.cn;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+  dmarc=pass (Used From Domain Record) header.from=smail.nju.edu.cn
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=smail.nju.edu.cn; arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=smail.nju.edu.cn
+ policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id F157248D07
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 22:23:21 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B31C010F8C6;
-	Tue,  3 Nov 2026 22:42:38 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8B70843AA5;
-	Tue,  3 Nov 2026 22:42:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E4D1F00A1F;
-	Tue,  3 Nov 2026 22:42:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793745758;
-	bh=qJz4Y3pmBhvfNKPCdS16oXtdOSx6Dt11DR2lDyz2UZg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=PbpGCKDKxV5hlKimg1geLnJHi7WavKPOJXa+vAu62pVQIReLlYVMnDmyInxzVh8/s
-	 tkQD58PAC3Ao2qq7juLFFN/ziOrBHyyP/66tHsexB1fcrWoTyTNDqTllTuXLf4130n
-	 mbO0sqbRJuvOwlkLvuvtGtI/oCGHQQ7wihTCQR2xaQXyep/HL3wucEOXp0dan53v+p
-	 KsTfm72BNRE5N3RVYCYqZXUq4fNiQZpOopd0pPwI3swJGKdEnmMycwXsN3jnYxn5Pz
-	 C/hhQ+ST1Qt3ZbvyONUjAGq/Ay8Ikf1Uj9dqEgz275dL07Rb9DkcuNlAC6feSr+XzT
-	 ZDIbvvwZTNpqg==
-From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Tue, 03 Nov 2026 16:42:13 -0600
-Subject: [PATCH v11 12/12] drm/solomon: add SSD130x connector luminance
- support
+	by kara.freedesktop.org (Postfix) with ESMTPS id A14C545C59
+	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 11:29:27 +0000 (UTC)
+X-Greylist: delayed 412 seconds by postgrey-1.36 at gabe;
+ Tue, 03 Nov 2026 11:48:42 UTC
+Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.64.16])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 16BB410E14F;
+	Tue,  3 Nov 2026 11:48:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smail.nju.edu.cn;
+	s=iohv2404; t=1793706514;
+	bh=+zHiE5XcWww7tLTpXyIARkWQlwlTAcUnLfouLWCJeB4=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version;
+	b=M2D9lamUa9DR6rgvnM/7qabeY43vqLNct7HkjaKLwefpHQh2QZbx21NRFgDksfPsS
+	 Te5GSc7t9CWghNuc6uQFgszJY1LYS7sMme2qwrW/HnpF76coDJMjATMOsjsv9+CJQI
+	 Is2NpQS08dIoT0qnG8pR5x7De1obKn6WSntOp/vg=
+X-QQ-mid: zesmtpip4t1793706059t80501f17
+X-QQ-Originating-IP: 1MCHwRi6gNt0bcBzShi+yjMARG4lYNZkcQfQtp8Ebn4=
+Received: from workstation-Precision-7920-Towe ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with
+	id ; Tue, 03 Nov 2026 19:40:57 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 13736684038379576073
+From: Kang Chen <k.chen@smail.nju.edu.cn>
+To: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH] drm/nouveau/gsp: validate the ACPI backlight package
+Date: Tue,  3 Nov 2026 19:40:57 +0800
+Message-Id: <20261103114057.73915-1-k.chen@smail.nju.edu.cn>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: 
- <20261103-superm1-backlight-property-v11-12-00cce7b2ba22@kernel.org>
-References: 
- <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
-In-Reply-To: 
- <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
-To: Maxime Ripard <mripard@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
-X-Mailer: b4 0.16.0
-Message-ID-Hash: 2DLPQGOPHCV7W4LEX22QYN46J32B5T6L
-X-Message-ID-Hash: 2DLPQGOPHCV7W4LEX22QYN46J32B5T6L
-X-MailFrom: superm1@kernel.org
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:smail.nju.edu.cn:qybglogicsvrgz:qybglogicsvrgz5b-1
+X-QQ-XMAILINFO: N7h1OCCDntujaG65BDQTMdPGBnB7wXQEAgRivP/JDrGe+ed6NUoY1rNK
+	jno1+MoMqUbdCKU8bAkIr2l/yIUcoooq6+tx1Ay7RoxXsGvIkjrThdjvrr1muZfLZYdoAkJ
+	oTWw08nIgkkQjkSdZiiy3j/UtapDAzrBj3PzfEhucAokKtNQhJHmY+HnTYKJgnr/STPaFqN
+	CT2BAQPFsUMN/eFvRYouMaAp3d7bNO4d3WyCikB1zrAp8X35DFiymAyzIgfqm6SaKeIJfW3
+	1Z8wFHe/YIQeTvd3uG0TPe+6+clIigCs0J3gSlzXq36QbdW5l4y9/wkunwt2GHrysIi61R9
+	E2YsWgwItIaoFlKDxbiVa0IkLyhDBLQgkl04u1w7wtlmKoP1rblno1SjeOt/P1oyRUnDoSZ
+	LPcxF36GKtQQDFFY/KfCBLkdrQM19KJ2LC8Kq5tsNWQnUCxEW43teTq/G4tFrxPMKX2T6Jr
+	EdZHuk/+XmqLnyLbJk7mUZOuljNKYvDMmsffMOmbzFNokz4WcyPn24zymjG08DXtKxOaj5v
+	RJTjQSofyZ3zKt/roI7jD3pwSTJ7/6eVrg3iqc+rIhWukaXGB7qOl4LEKQb3b8B634rJZuf
+	nRX7dkGaU4xgjYAXrusYtPViXPdQZeihKMedBq/G0be9MPD/tAmH0iAT+7mN8Ik2RijqU+S
+	EDpuzMVc3ccZMDF9/YIipCa0z54KPR3LXwJoLgr5UYeAjV958ESyr9A564dVsldKkrtxGEb
+	MioM4MJuy9VKSPFI2JH3qOdE1bdOkD5SlVketmgvx3lqhnmadw4RigFvWQm46PTRYrRVD8t
+	MIWryvXSGDfj2G0pB3X7I800FRMZqonfjhY32GNZpuNyt5WvOI26y8d0Ym65b5HBUf0gKps
+	PErXB+WkqaPKDoPoQna//iRgQBZWDqNjyBgEhnfXVqLXqdCiEhVmN4me7UZ4OMUaXIGJVHc
+	EfyO6mvJn991m6NmZEn3ufxOR0Kjxac71AOwRBf6DCZmDhior/YOhrEWUqbBrDw/zSn6VLM
+	BPbf/ltsitnrvus0GLmIW80+Q1P4fdOAScwPdKgXbNNkeo55Gp
+X-QQ-XMRINFO: OWPUhxQsoeAVwkVaQIEGSKwwgKCxK/fD5g==
+X-QQ-RECHKSPAM: 0
+X-MailFrom: k.chen@smail.nju.edu.cn
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Mario Limonciello <superm1@kernel.org>, Xaver Hugl <xaver.hugl@gmail.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Mario Limonciello <mario.limonciello@amd.com>
+ loop; banned-address; member-moderation
+Message-ID-Hash: XTUA5Q5WJ5ZTML5GUFLALNQYGITMZIIW
+X-Message-ID-Hash: XTUA5Q5WJ5ZTML5GUFLALNQYGITMZIIW
+X-Mailman-Approved-At: Wed, 04 Nov 2026 14:14:25 +0000
+CC: Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
+ Dave Airlie <airlied@redhat.com>, Rosen Penev <rosenp@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2DLPQGOPHCV7W4LEX22QYN46J32B5T6L/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XTUA5Q5WJ5ZTML5GUFLALNQYGITMZIIW/>
 Archived-At: 
- <https://lore.freedesktop.org/20261103-superm1-backlight-property-v11-12-00cce7b2ba22@kernel.org/>
+ <https://lore.freedesktop.org/20261103114057.73915-1-k.chen@smail.nju.edu.cn/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -112,324 +122,196 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Mario Limonciello <mario.limonciello@amd.com>
+The _DSM handler for the internal brightness state load command walks
+the returned package and copies every element into
+ctrl->backLightData without checking the object type, the element type,
+or the size of the destination.  A firmware-provided _DSM method can
+return a non-package object, non-integer elements, or more data than
+the 4 KiB backLightData array holds, causing out-of-bounds writes in
+the RM control buffer.
 
-Expose SSD130x contrast through the connector LUMINANCE property when
-DRM_LUMINANCE is enabled. Program contrast directly and register the
-backlight class device only when DRM_LUMINANCE is disabled, so contrast
-has a single owner.
+Move the _DSM handling into helpers that validate the package and every
+element, and that refuse to copy past the end of the destination.  The
+destination size is only updated after the whole package has been
+validated, and success is only reported to the RM control command in
+that case.  Use a zeroed buffer for the _DSM input and reject an
+invalid initial data size before subtracting it from the destination
+length.
 
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+Fixes: 9e99444490238 ("drm/nouveau/disp/r535: initial support")
+Signed-off-by: Kang Chen <k.chen@smail.nju.edu.cn>
 ---
-v11:
- * Keep selecting BACKLIGHT_CLASS_DEVICE and drop the guards (Sashiko)
- * Register the backlight device only without DRM_LUMINANCE (Sashiko)
- * Initialise the controller with the committed luminance and don't
-   clobber the saved contrast on disable (Sashiko)
- * Skip contrast writes while the controller is powered down (Sashiko)
- * Unify contrast dispatch and backlight ops (Sashiko)
- * Drop Reviewed-by due to the rework
-v10:
- * Guard the backlight operations and registration with
-   BACKLIGHT_CLASS_DEVICE
- * Fix Kconfig recursive issue
- * Add the Reviewed-by tag
----
- drivers/gpu/drm/solomon/ssd130x.c | 149 ++++++++++++++++++++++++--------------
- drivers/gpu/drm/solomon/ssd130x.h |   2 +
- 2 files changed, 98 insertions(+), 53 deletions(-)
+ .../nouveau/nvkm/subdev/gsp/rm/r535/disp.c    | 142 ++++++++++++------
+ 1 file changed, 92 insertions(+), 50 deletions(-)
 
-diff --git a/drivers/gpu/drm/solomon/ssd130x.c b/drivers/gpu/drm/solomon/ssd130x.c
-index ee43cf0da8792..32e892194f578 100644
---- a/drivers/gpu/drm/solomon/ssd130x.c
-+++ b/drivers/gpu/drm/solomon/ssd130x.c
-@@ -627,7 +627,7 @@ static int ssd130x_init(struct ssd130x_device *ssd130x)
- static int ssd132x_init(struct ssd130x_device *ssd130x)
- {
- 	const u8 cmds[] = {
--		2, SSD13XX_CONTRAST, 0x80,
-+		2, SSD13XX_CONTRAST, ssd130x->contrast,
- 		3, SSD132X_SET_COL_RANGE, 0x00, ssd130x->width / SSD132X_SEGMENT_WIDTH - 1,
- 		3, SSD132X_SET_ROW_RANGE, 0x00, ssd130x->height - 1,
- 		/*
-@@ -696,6 +696,18 @@ static int ssd135x_set_contrast(struct ssd130x_device *ssd130x, u32 brightness)
- 	return ssd130x_write_cmd(ssd130x, 4, SSD135X_SET_CONTRAST, a, b, c);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+index f5f22173fc2c..730bd08da911 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+@@ -1467,6 +1467,94 @@ r535_disp_get_static_info(struct nvkm_disp *disp)
+ 	return 0;
  }
  
-+static int ssd130x_set_contrast(struct ssd130x_device *ssd130x, u32 contrast)
++#if defined(CONFIG_ACPI) && defined(CONFIG_X86)
++static int
++r535_gsp_backlight_pkg(union acpi_object *obj, u8 *data, u16 *data_size,
++		       size_t data_len)
 +{
-+	switch (ssd130x->device_info->family_id) {
-+	case SSD133X_FAMILY:
-+		return ssd133x_set_contrast(ssd130x, contrast);
-+	case SSD135X_FAMILY:
-+		return ssd135x_set_contrast(ssd130x, contrast);
-+	default:
-+		return ssd130x_write_cmd(ssd130x, 2, SSD13XX_CONTRAST, contrast);
++	size_t offset = *data_size;
++	unsigned int i;
++
++	if (offset > data_len)
++		return -EINVAL;
++
++	if (obj->type != ACPI_TYPE_PACKAGE)
++		return -EINVAL;
++
++	for (i = 0; i < obj->package.count; i++) {
++		union acpi_object *elt = &obj->package.elements[i];
++		u32 size;
++
++		if (elt->type != ACPI_TYPE_INTEGER)
++			return -EINVAL;
++
++		if (elt->integer.value & ~0xffffffffULL)
++			size = 8;
++		else
++			size = 4;
++
++		if (size > data_len - offset)
++			return -EINVAL;
++
++		memcpy(&data[offset], &elt->integer.value, size);
++		offset += size;
 +	}
++
++	*data_size = offset;
++
++	return 0;
 +}
 +
- static int ssd133x_init(struct ssd130x_device *ssd130x)
- {
- 	int ret;
-@@ -1836,6 +1848,23 @@ static const struct drm_crtc_funcs ssd130x_crtc_funcs = {
- 	.atomic_destroy_state = ssd130x_crtc_destroy_state,
- };
- 
-+/*
-+ * With DRM_LUMINANCE, initialize the controller with the committed connector
-+ * luminance, which may have changed while the display was disabled.
-+ */
-+static void ssd130x_load_luminance(struct ssd130x_device *ssd130x,
-+				   struct drm_atomic_commit *state)
++static bool
++r535_gsp_backlight_dsm(struct nvkm_device *device, u8 *data, u16 *data_size,
++		       size_t data_len)
 +{
-+	struct drm_connector_state *conn_state;
++	const guid_t nbci_dsm_guid =
++		GUID_INIT(0xD4A50B75, 0x65C7, 0x46F7,
++			  0xBF, 0xB7, 0x41, 0x51, 0x4C, 0xEA, 0x02, 0x44);
++	const guid_t nvhg_dsm_guid =
++		GUID_INIT(0x9D95A0A0, 0x0060, 0x4D48,
++			  0xB3, 0x4D, 0x7E, 0x5F, 0xEA, 0x12, 0x9F, 0xD4);
++	acpi_handle handle = ACPI_HANDLE(device->dev);
++	union acpi_object argv4, *obj;
++	bool ret = false;
++	bool nbci, nvhg;
 +
-+	if (!IS_ENABLED(CONFIG_DRM_LUMINANCE))
-+		return;
++	if (!handle || !acpi_has_method(handle, "_DSM"))
++		return false;
 +
-+	conn_state = drm_atomic_get_new_connector_state(state, &ssd130x->connector);
-+	if (conn_state)
-+		ssd130x->contrast = conn_state->luminance;
-+}
++	nbci = acpi_check_dsm(handle, &nbci_dsm_guid, 0x00000102,
++			      1ULL << 0x00000014);
++	nvhg = acpi_check_dsm(handle, &nvhg_dsm_guid, 0x00000102,
++			      1ULL << 0x00000014);
++	if (!nbci && !nvhg)
++		return false;
 +
- static void ssd130x_encoder_atomic_enable(struct drm_encoder *encoder,
- 					  struct drm_atomic_commit *state)
- {
-@@ -1847,12 +1876,16 @@ static void ssd130x_encoder_atomic_enable(struct drm_encoder *encoder,
- 	if (ret)
- 		return;
- 
-+	ssd130x_load_luminance(ssd130x, state);
++	argv4.buffer.type = ACPI_TYPE_BUFFER;
++	argv4.buffer.length = data_len;
++	argv4.buffer.pointer = kzalloc(data_len, GFP_KERNEL);
++	if (!argv4.buffer.pointer)
++		return false;
 +
- 	ret = ssd130x_init(ssd130x);
- 	if (ret)
- 		goto power_off;
- 
- 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_ON);
- 
-+	ssd130x->enabled = true;
-+
- 	backlight_enable(ssd130x->bl_dev);
- 
- 	return;
-@@ -1873,12 +1906,16 @@ static void ssd132x_encoder_atomic_enable(struct drm_encoder *encoder,
- 	if (ret)
- 		return;
- 
-+	ssd130x_load_luminance(ssd130x, state);
-+
- 	ret = ssd132x_init(ssd130x);
- 	if (ret)
- 		goto power_off;
- 
- 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_ON);
- 
-+	ssd130x->enabled = true;
-+
- 	backlight_enable(ssd130x->bl_dev);
- 
- 	return;
-@@ -1898,12 +1935,16 @@ static void ssd133x_encoder_atomic_enable(struct drm_encoder *encoder,
- 	if (ret)
- 		return;
- 
-+	ssd130x_load_luminance(ssd130x, state);
-+
- 	ret = ssd133x_init(ssd130x);
- 	if (ret)
- 		goto power_off;
- 
- 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_ON);
- 
-+	ssd130x->enabled = true;
-+
- 	backlight_enable(ssd130x->bl_dev);
- 
- 	return;
-@@ -1923,12 +1964,16 @@ static void ssd135x_encoder_atomic_enable(struct drm_encoder *encoder,
- 	if (ret)
- 		return;
- 
-+	ssd130x_load_luminance(ssd130x, state);
-+
- 	ret = ssd135x_init(ssd130x);
- 	if (ret)
- 		goto power_off;
- 
- 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_ON);
- 
-+	ssd130x->enabled = true;
-+
- 	backlight_enable(ssd130x->bl_dev);
- 
- 	return;
-@@ -1945,6 +1990,8 @@ static void ssd130x_encoder_atomic_disable(struct drm_encoder *encoder,
- 
- 	backlight_disable(ssd130x->bl_dev);
- 
-+	ssd130x->enabled = false;
-+
- 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_OFF);
- 
- 	ssd130x_power_off(ssd130x);
-@@ -1980,8 +2027,34 @@ static int ssd130x_connector_get_modes(struct drm_connector *connector)
- 	return drm_connector_helper_get_modes_fixed(connector, &ssd130x->mode);
- }
- 
-+static void ssd130x_connector_set_luminance(const struct drm_connector_state *conn_state)
-+{
-+	struct ssd130x_device *ssd130x = drm_to_ssd130x(conn_state->connector->dev);
-+
-+	/*
-+	 * The encoder enable already initialized the controller with the
-+	 * committed luminance. Skip if it failed to power up the controller.
-+	 */
-+	if (!ssd130x->enabled || ssd130x->contrast == conn_state->luminance)
-+		return;
-+
-+	ssd130x->contrast = conn_state->luminance;
-+	ssd130x_set_contrast(ssd130x, ssd130x->contrast);
-+}
-+
-+static void ssd130x_connector_disable_luminance(const struct drm_connector_state *conn_state)
-+{
-+	struct ssd130x_device *ssd130x = drm_to_ssd130x(conn_state->connector->dev);
-+
-+	/* Keep ssd130x->contrast, it is restored when the encoder is enabled */
-+	if (ssd130x->enabled)
-+		ssd130x_set_contrast(ssd130x, 0);
-+}
-+
- static const struct drm_connector_helper_funcs ssd130x_connector_helper_funcs = {
- 	.get_modes = ssd130x_connector_get_modes,
-+	.set_luminance = ssd130x_connector_set_luminance,
-+	.disable_luminance = ssd130x_connector_disable_luminance,
- };
- 
- static const struct drm_connector_funcs ssd130x_connector_funcs = {
-@@ -2016,55 +2089,16 @@ static const struct drm_driver ssd130x_drm_driver = {
- };
- 
- static int ssd130x_update_bl(struct backlight_device *bdev)
--{
--	struct ssd130x_device *ssd130x = bl_get_data(bdev);
--	int brightness = backlight_get_brightness(bdev);
--	int ret;
--
--	ssd130x->contrast = brightness;
--
--	ret = ssd130x_write_cmd(ssd130x, 1, SSD13XX_CONTRAST);
--	if (ret < 0)
--		return ret;
--
--	ret = ssd130x_write_cmd(ssd130x, 1, ssd130x->contrast);
--	if (ret < 0)
--		return ret;
--
--	return 0;
--}
--
--static int ssd133x_update_bl(struct backlight_device *bdev)
--{
--	struct ssd130x_device *ssd130x = bl_get_data(bdev);
--
--	ssd130x->contrast = backlight_get_brightness(bdev);
--
--	return ssd133x_set_contrast(ssd130x, ssd130x->contrast);
--}
--
--static int ssd135x_update_bl(struct backlight_device *bdev)
- {
- 	struct ssd130x_device *ssd130x = bl_get_data(bdev);
- 
- 	ssd130x->contrast = backlight_get_brightness(bdev);
- 
--	return ssd135x_set_contrast(ssd130x, ssd130x->contrast);
-+	return ssd130x_set_contrast(ssd130x, ssd130x->contrast);
- }
- 
--static const struct backlight_ops ssd130xfb_bl_ops[] = {
--	[SSD130X_FAMILY] = {
--		.update_status	= ssd130x_update_bl,
--	},
--	[SSD132X_FAMILY] = {
--		.update_status	= ssd130x_update_bl,
--	},
--	[SSD133X_FAMILY] = {
--		.update_status	= ssd133x_update_bl,
--	},
--	[SSD135X_FAMILY] = {
--		.update_status	= ssd135x_update_bl,
--	},
-+static const struct backlight_ops ssd130xfb_bl_ops = {
-+	.update_status	= ssd130x_update_bl,
- };
- 
- static void ssd130x_parse_properties(struct ssd130x_device *ssd130x)
-@@ -2213,6 +2247,13 @@ static int ssd130x_init_modeset(struct ssd130x_device *ssd130x)
- 	}
- 
- 	drm_connector_helper_add(connector, &ssd130x_connector_helper_funcs);
-+	if (IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
-+		ret = drm_connector_attach_luminance_property(connector, 0,
-+							      MAX_CONTRAST,
-+							      ssd130x->contrast);
-+		if (ret)
-+			return ret;
++	obj = acpi_evaluate_dsm(handle, nbci ? &nbci_dsm_guid : &nvhg_dsm_guid,
++				0x00000102, 0x14, &argv4);
++	if (!obj) {
++		acpi_handle_info(handle, "failed to evaluate _DSM\n");
++		goto out_free;
 +	}
- 
- 	ret = drm_connector_attach_encoder(connector, encoder);
- 	if (ret) {
-@@ -2270,16 +2311,18 @@ struct ssd130x_device *ssd130x_probe(struct device *dev, struct regmap *regmap)
- 	if (ret)
- 		return ERR_PTR(ret);
- 
--	bl = devm_backlight_device_register(dev, dev_name(dev), dev, ssd130x,
--					    &ssd130xfb_bl_ops[ssd130x->device_info->family_id],
--					    NULL);
--	if (IS_ERR(bl))
--		return ERR_PTR(dev_err_probe(dev, PTR_ERR(bl),
--					     "Unable to register backlight device\n"));
--
--	bl->props.brightness = ssd130x->contrast;
--	bl->props.max_brightness = MAX_CONTRAST;
--	ssd130x->bl_dev = bl;
-+	if (!IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
-+		bl = devm_backlight_device_register(dev, dev_name(dev), dev,
-+						    ssd130x, &ssd130xfb_bl_ops,
-+						    NULL);
-+		if (IS_ERR(bl))
-+			return ERR_PTR(dev_err_probe(dev, PTR_ERR(bl),
-+						     "Unable to register backlight device\n"));
 +
-+		bl->props.brightness = ssd130x->contrast;
-+		bl->props.max_brightness = MAX_CONTRAST;
-+		ssd130x->bl_dev = bl;
-+	}
++	if (r535_gsp_backlight_pkg(obj, data, data_size, data_len))
++		acpi_handle_info(handle, "invalid _DSM response\n");
++	else
++		ret = true;
++
++	ACPI_FREE(obj);
++out_free:
++	kfree(argv4.buffer.pointer);
++	return ret;
++}
++#endif
++
+ static int
+ r535_disp_oneinit(struct nvkm_disp *disp)
+ {
+@@ -1528,56 +1616,10 @@ r535_disp_oneinit(struct nvkm_disp *disp)
  
- 	ret = ssd130x_init_modeset(ssd130x);
- 	if (ret)
-diff --git a/drivers/gpu/drm/solomon/ssd130x.h b/drivers/gpu/drm/solomon/ssd130x.h
-index fd81262f2ceb9..536a5649edffc 100644
---- a/drivers/gpu/drm/solomon/ssd130x.h
-+++ b/drivers/gpu/drm/solomon/ssd130x.h
-@@ -100,6 +100,8 @@ struct ssd130x_device {
- 	u32 prechargep2;
+ 		ctrl->status = 0x56; /* NV_ERR_NOT_SUPPORTED */
  
- 	struct backlight_device *bl_dev;
-+	/* Controller is powered and initialized, set from atomic commits */
-+	bool enabled;
- 	struct pwm_device *pwm;
- 	struct gpio_desc *reset;
- 	struct regulator *vcc_reg;
-
+-		{
+-			const guid_t NBCI_DSM_GUID =
+-				GUID_INIT(0xD4A50B75, 0x65C7, 0x46F7,
+-					  0xBF, 0xB7, 0x41, 0x51, 0x4C, 0xEA, 0x02, 0x44);
+-			u64 NBCI_DSM_REV = 0x00000102;
+-			const guid_t NVHG_DSM_GUID =
+-				GUID_INIT(0x9D95A0A0, 0x0060, 0x4D48,
+-					  0xB3, 0x4D, 0x7E, 0x5F, 0xEA, 0x12, 0x9F, 0xD4);
+-			u64 NVHG_DSM_REV = 0x00000102;
+-			acpi_handle handle = ACPI_HANDLE(device->dev);
+-
+-			if (handle && acpi_has_method(handle, "_DSM")) {
+-				bool nbci = acpi_check_dsm(handle, &NBCI_DSM_GUID, NBCI_DSM_REV,
+-						           1ULL << 0x00000014);
+-				bool nvhg = acpi_check_dsm(handle, &NVHG_DSM_GUID, NVHG_DSM_REV,
+-						           1ULL << 0x00000014);
+-
+-				if (nbci || nvhg) {
+-					union acpi_object argv4 = {
+-						.buffer.type    = ACPI_TYPE_BUFFER,
+-						.buffer.length  = sizeof(ctrl->backLightData),
+-						.buffer.pointer = kmalloc(argv4.buffer.length, GFP_KERNEL),
+-					}, *obj;
+-
+-					obj = acpi_evaluate_dsm(handle, nbci ? &NBCI_DSM_GUID : &NVHG_DSM_GUID,
+-								0x00000102, 0x14, &argv4);
+-					if (!obj) {
+-						acpi_handle_info(handle, "failed to evaluate _DSM\n");
+-					} else {
+-						for (int i = 0; i < obj->package.count; i++) {
+-							union acpi_object *elt = &obj->package.elements[i];
+-							u32 size;
+-
+-							if (elt->integer.value & ~0xffffffffULL)
+-								size = 8;
+-							else
+-								size = 4;
+-
+-							memcpy(&ctrl->backLightData[ctrl->backLightDataSize], &elt->integer.value, size);
+-							ctrl->backLightDataSize += size;
+-						}
+-
+-						ctrl->status = 0;
+-						ACPI_FREE(obj);
+-					}
+-
+-					kfree(argv4.buffer.pointer);
+-				}
+-			}
+-		}
++		if (r535_gsp_backlight_dsm(device, ctrl->backLightData,
++					   &ctrl->backLightDataSize,
++					   sizeof(ctrl->backLightData)))
++			ctrl->status = 0;
+ 
+ 		ret = nvkm_gsp_rm_ctrl_wr(subdevice, ctrl);
+ 		if (ret)
 -- 
-2.53.0
+2.34.1
 
