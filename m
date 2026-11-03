@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C42C606A334
-	for <nouveau@archiver.kernel.org>; Tue,  3 Nov 2026 22:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66BA4606D802
+	for <nouveau@archiver.kernel.org>; Tue,  3 Nov 2026 22:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ERNW35KG
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PbpGCKDK
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7357710F904;
-	Tue,  3 Nov 2026 22:42:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9D80910F29A;
+	Tue,  3 Nov 2026 22:42:47 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6C16F48D11;
-	Tue,  3 Nov 2026 22:23:22 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id AF27D48D19;
+	Tue,  3 Nov 2026 22:23:25 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793744602;
- b=oCYaVciUDf8/rMhp0EwwdYaYtHSLRNIisl0L4dco/fRIG4dmV3oFCZ5n4Rp7Humj2xV5M
- N0xDecLG2SbaX6BQ4z+QvNZGXDY3R91/q2uHvw7mVPx8tmiKtDvlxVUdGem6/1zKBaDPG1E
- DKtCqMd7eBQsXP5OzZUr+puf1VTDCcltxcsHg58J+g4Yp0TScIvWZ7ZSZ3oAMQVKLgM1t7s
- HhPcGNh0NBpfCOel5W+oA4ZjaA6Ipu9I+YfUIybevTd/U2SoTZEQyMPeOTzvUfoNscycZXg
- kAIpoSB/HN4Xtq8GfWMOVggvvjwctkSzSX3I6tZRAZXAYq8lcqYgH/Xd/D+A==
+ s=20240201; t=1793744605;
+ b=KK4BVFbS/W+4upKKDFkiYYeSAsDfOf6B2fpa7krFNSkyqkZAKBw9gP5q6AsCfc9a6Aw9T
+ IAThvlUg7kMrSAVlt2O3Lcl6f4IcfhC6X8YaNH+FKQatK0XmmuI74Grf1hVQ4xOseDRNK+n
+ u6VVtHiFm551A7+giVwut/jjU05bBTqIyn0eF8OiYZXCnLkhoLr2QC4aTD9OcOoU3KT70mE
+ VP26ePu60VDwYrQ204bbBW8kaPnkPncBgxlDfxO3B0QrEJOyXZKQ6/TDoJHYRAKPs3ySsVV
+ fMFLxq2ioVAYHwQE7fE8a0NP/ZcK5S8QjlRraGm+SDL/A/4KbzYCD9zdAIcQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793744602; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1793744605; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=JDOFP0lBfi8GeV67m9asGivOpxWxqXgZkhYHVbXSUTg=;
- b=WnyjqMYtoTtM11Azx26xpo8YL4fd/qkd3BH0F7RPXdzeIqy/EbTcSmfNhuV1m+vJsFtgh
- NjnvJqIliYEquJR/wcDyB0snu9Xl66qSWN/5HkCeGLU3yAavJ2fqS7lobtxt4OFt3gMcIyq
- CNU9ULH/nj8UcuSSHfBTd7sBgaI00QQdfISvvVMXcjE3iQmL3GIOK+jNOlOpLkRVHo8Z1db
- PK3/joH378i466yahDkHBAXXfEvFHqXNXf76oJ5gLOsUE6eDfjT1a2+nJemNxY8a2WIVFK9
- 1x+q1tjSY60s3ptPSqi7UDZ5d+MBY0PqK9YX7GAtFhJm8XVUu6Uu4HYmDnFA==
+ bh=qJz4Y3pmBhvfNKPCdS16oXtdOSx6Dt11DR2lDyz2UZg=;
+ b=MiJdOXSyStbwxIknmSFDO5jvwiTV9bTHqEGlFSAsxO1KpCtvqVBSIphauVq5I1DYeZ8B+
+ OYWUSGX3UW4yRBi7adCgY019podlGyywYotAJiNudp9NGMUVSrepQnVvL5BXNe0qbxZXwUq
+ F2yAml7LlRDsHbWOesLDrWT4c+y+NN/7q1a/Kcg1zPAMgDvqNlIrNtCzsdCh1/29WK2FlT/
+ BDFqJOInvII67jATaby9GvbzD8bYgI12H0n86/MCK35SZzb7BL10eGjppke1G8Y0wip2LI0
+ hBYAEFCLEe8iXEbEhW6CDNxebHPO/GzW37jYLb69ApnAe6IICDpoyGQPoaMQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,36 +43,36 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 01C5748D01
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 22:23:20 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id F157248D07
+	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 22:23:21 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C0C3310F8A8;
-	Tue,  3 Nov 2026 22:42:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B31C010F8C6;
+	Tue,  3 Nov 2026 22:42:38 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 937FC41AE6;
+	by sea.source.kernel.org (Postfix) with ESMTP id 8B70843AA5;
+	Tue,  3 Nov 2026 22:42:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E4D1F00A1F;
 	Tue,  3 Nov 2026 22:42:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2BBC1F0093A;
-	Tue,  3 Nov 2026 22:42:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793745756;
-	bh=JDOFP0lBfi8GeV67m9asGivOpxWxqXgZkhYHVbXSUTg=;
+	s=k20260515; t=1793745758;
+	bh=qJz4Y3pmBhvfNKPCdS16oXtdOSx6Dt11DR2lDyz2UZg=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=ERNW35KGsHiVym8/H0/iOko9whJ/J9EGYfN9IFD9bgM6VLE8FcAbzfOHRFKVTiHno
-	 nWEj6ogTZeJ6tXM22S+qUWMJlKfSNMa+RMaQzfsPCkjCLYO0m7vb8HpS49DhiwaA70
-	 8fOb2gTU6o09dPsLWNfOfsaZE48wJuMt1eMdJceMb2OCb0wgvs4ib8efRxrl0PJKcG
-	 FSoL8QhaXx9Gzo23mcNC+Jb4mPm+j0jEeh2S3NE45/gxa92u/3btja60PVh4Ip3+4c
-	 z/q7BPLvalkzh1p10d3J7TBrFjbmg78n6EmoHscHVndp8xxBLop7ZnjAb6SNukDls2
-	 TDwj1S6egLjDw==
+	b=PbpGCKDKxV5hlKimg1geLnJHi7WavKPOJXa+vAu62pVQIReLlYVMnDmyInxzVh8/s
+	 tkQD58PAC3Ao2qq7juLFFN/ziOrBHyyP/66tHsexB1fcrWoTyTNDqTllTuXLf4130n
+	 mbO0sqbRJuvOwlkLvuvtGtI/oCGHQQ7wihTCQR2xaQXyep/HL3wucEOXp0dan53v+p
+	 KsTfm72BNRE5N3RVYCYqZXUq4fNiQZpOopd0pPwI3swJGKdEnmMycwXsN3jnYxn5Pz
+	 C/hhQ+ST1Qt3ZbvyONUjAGq/Ay8Ikf1Uj9dqEgz275dL07Rb9DkcuNlAC6feSr+XzT
+	 ZDIbvvwZTNpqg==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Tue, 03 Nov 2026 16:42:12 -0600
-Subject: [PATCH v11 11/12] drm/bridge: add PS8622 connector luminance
+Date: Tue, 03 Nov 2026 16:42:13 -0600
+Subject: [PATCH v11 12/12] drm/solomon: add SSD130x connector luminance
  support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 Message-Id: 
- <20261103-superm1-backlight-property-v11-11-00cce7b2ba22@kernel.org>
+ <20261103-superm1-backlight-property-v11-12-00cce7b2ba22@kernel.org>
 References: 
  <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
 In-Reply-To: 
@@ -86,8 +86,8 @@ To: Maxime Ripard <mripard@kernel.org>,
  Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
  Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
 X-Mailer: b4 0.16.0
-Message-ID-Hash: KNT74FCIHF3UJNMGLKEXFHAUOO7NZVI3
-X-Message-ID-Hash: KNT74FCIHF3UJNMGLKEXFHAUOO7NZVI3
+Message-ID-Hash: 2DLPQGOPHCV7W4LEX22QYN46J32B5T6L
+X-Message-ID-Hash: 2DLPQGOPHCV7W4LEX22QYN46J32B5T6L
 X-MailFrom: superm1@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -102,9 +102,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KNT74FCIHF3UJNMGLKEXFHAUOO7NZVI3/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2DLPQGOPHCV7W4LEX22QYN46J32B5T6L/>
 Archived-At: 
- <https://lore.freedesktop.org/20261103-superm1-backlight-property-v11-11-00cce7b2ba22@kernel.org/>
+ <https://lore.freedesktop.org/20261103-superm1-backlight-property-v11-12-00cce7b2ba22@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -121,154 +121,314 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-Expose PS8622 brightness through bridge luminance operations when
-DRM_LUMINANCE is enabled. Keep registering the backlight class device
-otherwise.
+Expose SSD130x contrast through the connector LUMINANCE property when
+DRM_LUMINANCE is enabled. Program contrast directly and register the
+backlight class device only when DRM_LUMINANCE is disabled, so contrast
+has a single owner.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
 v11:
- * Track internal PWM mode explicitly so it is still configured with
-   LUMINANCE (Sashiko)
- * Don't access I2C while the bridge is powered down (Sashiko)
- * Keep selecting BACKLIGHT_CLASS_DEVICE (Sashiko)
- * Program the committed luminance in pre_enable
+ * Keep selecting BACKLIGHT_CLASS_DEVICE and drop the guards (Sashiko)
+ * Register the backlight device only without DRM_LUMINANCE (Sashiko)
+ * Initialise the controller with the committed luminance and don't
+   clobber the saved contrast on disable (Sashiko)
+ * Skip contrast writes while the controller is powered down (Sashiko)
+ * Unify contrast dispatch and backlight ops (Sashiko)
+ * Drop Reviewed-by due to the rework
+v10:
+ * Guard the backlight operations and registration with
+   BACKLIGHT_CLASS_DEVICE
+ * Fix Kconfig recursive issue
+ * Add the Reviewed-by tag
 ---
- drivers/gpu/drm/bridge/parade-ps8622.c | 66 +++++++++++++++++++++++++++-------
- 1 file changed, 53 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/solomon/ssd130x.c | 149 ++++++++++++++++++++++++--------------
+ drivers/gpu/drm/solomon/ssd130x.h |   2 +
+ 2 files changed, 98 insertions(+), 53 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/parade-ps8622.c b/drivers/gpu/drm/bridge/parade-ps8622.c
-index 3a2ec482037df..c88bd7a97d4a4 100644
---- a/drivers/gpu/drm/bridge/parade-ps8622.c
-+++ b/drivers/gpu/drm/bridge/parade-ps8622.c
-@@ -45,6 +45,8 @@ struct ps8622_bridge {
- 	struct drm_bridge *panel_bridge;
- 	struct regulator *v12;
- 	struct backlight_device *bl;
-+	u8 brightness;
-+	bool internal_pwm;
- 
- 	struct gpio_desc *gpio_slp;
- 	struct gpio_desc *gpio_rst;
-@@ -268,7 +270,7 @@ static int ps8622_send_config(struct ps8622_bridge *ps8622)
- 		goto error;
- 
- 
--	if (ps8622->bl) {
-+	if (ps8622->internal_pwm) {
- 		/* DPCD720, internal PWM */
- 		err = ps8622_set(cl, 0x01, 0xa5, 0xa0);
- 		if (err)
-@@ -276,7 +278,7 @@ static int ps8622_send_config(struct ps8622_bridge *ps8622)
- 
- 		/* FFh for 100% brightness, 0h for 0% brightness */
- 		err = ps8622_set(cl, 0x01, 0xa7,
--				ps8622->bl->props.brightness);
-+				ps8622->brightness);
- 		if (err)
- 			goto error;
- 	} else {
-@@ -324,6 +326,8 @@ static int ps8622_backlight_update(struct backlight_device *bl)
- 	struct ps8622_bridge *ps8622 = dev_get_drvdata(&bl->dev);
- 	int ret, brightness = backlight_get_brightness(bl);
- 
-+	ps8622->brightness = brightness;
-+
- 	if (!ps8622->enabled)
- 		return -EINVAL;
- 
-@@ -332,6 +336,20 @@ static int ps8622_backlight_update(struct backlight_device *bl)
- 	return ret;
+diff --git a/drivers/gpu/drm/solomon/ssd130x.c b/drivers/gpu/drm/solomon/ssd130x.c
+index ee43cf0da8792..32e892194f578 100644
+--- a/drivers/gpu/drm/solomon/ssd130x.c
++++ b/drivers/gpu/drm/solomon/ssd130x.c
+@@ -627,7 +627,7 @@ static int ssd130x_init(struct ssd130x_device *ssd130x)
+ static int ssd132x_init(struct ssd130x_device *ssd130x)
+ {
+ 	const u8 cmds[] = {
+-		2, SSD13XX_CONTRAST, 0x80,
++		2, SSD13XX_CONTRAST, ssd130x->contrast,
+ 		3, SSD132X_SET_COL_RANGE, 0x00, ssd130x->width / SSD132X_SEGMENT_WIDTH - 1,
+ 		3, SSD132X_SET_ROW_RANGE, 0x00, ssd130x->height - 1,
+ 		/*
+@@ -696,6 +696,18 @@ static int ssd135x_set_contrast(struct ssd130x_device *ssd130x, u32 brightness)
+ 	return ssd130x_write_cmd(ssd130x, 4, SSD135X_SET_CONTRAST, a, b, c);
  }
  
-+static void ps8622_set_luminance(struct drm_bridge *bridge,
-+				 unsigned int luminance)
++static int ssd130x_set_contrast(struct ssd130x_device *ssd130x, u32 contrast)
 +{
-+	struct ps8622_bridge *ps8622 = bridge_to_ps8622(bridge);
-+
-+	ps8622->brightness = luminance;
-+
-+	/* Applied by ps8622_send_config() on the next pre_enable */
-+	if (!ps8622->enabled)
-+		return;
-+
-+	ps8622_set(ps8622->client, 0x01, 0xa7, luminance);
++	switch (ssd130x->device_info->family_id) {
++	case SSD133X_FAMILY:
++		return ssd133x_set_contrast(ssd130x, contrast);
++	case SSD135X_FAMILY:
++		return ssd135x_set_contrast(ssd130x, contrast);
++	default:
++		return ssd130x_write_cmd(ssd130x, 2, SSD13XX_CONTRAST, contrast);
++	}
 +}
 +
- static const struct backlight_ops ps8622_backlight_ops = {
- 	.update_status	= ps8622_backlight_update,
- };
-@@ -340,11 +358,22 @@ static void ps8622_pre_enable(struct drm_bridge *bridge,
- 			      struct drm_atomic_commit *commit)
+ static int ssd133x_init(struct ssd130x_device *ssd130x)
  {
- 	struct ps8622_bridge *ps8622 = bridge_to_ps8622(bridge);
-+	struct drm_connector *connector;
  	int ret;
+@@ -1836,6 +1848,23 @@ static const struct drm_crtc_funcs ssd130x_crtc_funcs = {
+ 	.atomic_destroy_state = ssd130x_crtc_destroy_state,
+ };
  
- 	if (ps8622->enabled)
++/*
++ * With DRM_LUMINANCE, initialize the controller with the committed connector
++ * luminance, which may have changed while the display was disabled.
++ */
++static void ssd130x_load_luminance(struct ssd130x_device *ssd130x,
++				   struct drm_atomic_commit *state)
++{
++	struct drm_connector_state *conn_state;
++
++	if (!IS_ENABLED(CONFIG_DRM_LUMINANCE))
++		return;
++
++	conn_state = drm_atomic_get_new_connector_state(state, &ssd130x->connector);
++	if (conn_state)
++		ssd130x->contrast = conn_state->luminance;
++}
++
+ static void ssd130x_encoder_atomic_enable(struct drm_encoder *encoder,
+ 					  struct drm_atomic_commit *state)
+ {
+@@ -1847,12 +1876,16 @@ static void ssd130x_encoder_atomic_enable(struct drm_encoder *encoder,
+ 	if (ret)
  		return;
  
-+	/* Program the committed luminance from ps8622_send_config() */
-+	connector = drm_atomic_get_new_connector_for_encoder(commit, bridge->encoder);
-+	if (connector && connector->luminance_property) {
-+		const struct drm_connector_state *conn_state =
-+			drm_atomic_get_new_connector_state(commit, connector);
++	ssd130x_load_luminance(ssd130x, state);
 +
-+		if (conn_state)
-+			ps8622->brightness = conn_state->luminance;
-+	}
-+
- 	gpiod_set_value(ps8622->gpio_rst, 0);
+ 	ret = ssd130x_init(ssd130x);
+ 	if (ret)
+ 		goto power_off;
  
- 	if (ps8622->v12) {
-@@ -438,6 +467,7 @@ static const struct drm_bridge_funcs ps8622_bridge_funcs = {
- 	.atomic_disable = ps8622_disable,
- 	.atomic_post_disable = ps8622_post_disable,
- 	.attach = ps8622_attach,
-+	.set_luminance = ps8622_set_luminance,
+ 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_ON);
+ 
++	ssd130x->enabled = true;
++
+ 	backlight_enable(ssd130x->bl_dev);
+ 
+ 	return;
+@@ -1873,12 +1906,16 @@ static void ssd132x_encoder_atomic_enable(struct drm_encoder *encoder,
+ 	if (ret)
+ 		return;
+ 
++	ssd130x_load_luminance(ssd130x, state);
++
+ 	ret = ssd132x_init(ssd130x);
+ 	if (ret)
+ 		goto power_off;
+ 
+ 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_ON);
+ 
++	ssd130x->enabled = true;
++
+ 	backlight_enable(ssd130x->bl_dev);
+ 
+ 	return;
+@@ -1898,12 +1935,16 @@ static void ssd133x_encoder_atomic_enable(struct drm_encoder *encoder,
+ 	if (ret)
+ 		return;
+ 
++	ssd130x_load_luminance(ssd130x, state);
++
+ 	ret = ssd133x_init(ssd130x);
+ 	if (ret)
+ 		goto power_off;
+ 
+ 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_ON);
+ 
++	ssd130x->enabled = true;
++
+ 	backlight_enable(ssd130x->bl_dev);
+ 
+ 	return;
+@@ -1923,12 +1964,16 @@ static void ssd135x_encoder_atomic_enable(struct drm_encoder *encoder,
+ 	if (ret)
+ 		return;
+ 
++	ssd130x_load_luminance(ssd130x, state);
++
+ 	ret = ssd135x_init(ssd130x);
+ 	if (ret)
+ 		goto power_off;
+ 
+ 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_ON);
+ 
++	ssd130x->enabled = true;
++
+ 	backlight_enable(ssd130x->bl_dev);
+ 
+ 	return;
+@@ -1945,6 +1990,8 @@ static void ssd130x_encoder_atomic_disable(struct drm_encoder *encoder,
+ 
+ 	backlight_disable(ssd130x->bl_dev);
+ 
++	ssd130x->enabled = false;
++
+ 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_OFF);
+ 
+ 	ssd130x_power_off(ssd130x);
+@@ -1980,8 +2027,34 @@ static int ssd130x_connector_get_modes(struct drm_connector *connector)
+ 	return drm_connector_helper_get_modes_fixed(connector, &ssd130x->mode);
+ }
+ 
++static void ssd130x_connector_set_luminance(const struct drm_connector_state *conn_state)
++{
++	struct ssd130x_device *ssd130x = drm_to_ssd130x(conn_state->connector->dev);
++
++	/*
++	 * The encoder enable already initialized the controller with the
++	 * committed luminance. Skip if it failed to power up the controller.
++	 */
++	if (!ssd130x->enabled || ssd130x->contrast == conn_state->luminance)
++		return;
++
++	ssd130x->contrast = conn_state->luminance;
++	ssd130x_set_contrast(ssd130x, ssd130x->contrast);
++}
++
++static void ssd130x_connector_disable_luminance(const struct drm_connector_state *conn_state)
++{
++	struct ssd130x_device *ssd130x = drm_to_ssd130x(conn_state->connector->dev);
++
++	/* Keep ssd130x->contrast, it is restored when the encoder is enabled */
++	if (ssd130x->enabled)
++		ssd130x_set_contrast(ssd130x, 0);
++}
++
+ static const struct drm_connector_helper_funcs ssd130x_connector_helper_funcs = {
+ 	.get_modes = ssd130x_connector_get_modes,
++	.set_luminance = ssd130x_connector_set_luminance,
++	.disable_luminance = ssd130x_connector_disable_luminance,
  };
  
- static const struct of_device_id ps8622_devices[] = {
-@@ -502,18 +532,28 @@ static int ps8622_probe(struct i2c_client *client)
- 		ps8622->lane_count = ps8622->max_lane_count;
+ static const struct drm_connector_funcs ssd130x_connector_funcs = {
+@@ -2016,55 +2089,16 @@ static const struct drm_driver ssd130x_drm_driver = {
+ };
+ 
+ static int ssd130x_update_bl(struct backlight_device *bdev)
+-{
+-	struct ssd130x_device *ssd130x = bl_get_data(bdev);
+-	int brightness = backlight_get_brightness(bdev);
+-	int ret;
+-
+-	ssd130x->contrast = brightness;
+-
+-	ret = ssd130x_write_cmd(ssd130x, 1, SSD13XX_CONTRAST);
+-	if (ret < 0)
+-		return ret;
+-
+-	ret = ssd130x_write_cmd(ssd130x, 1, ssd130x->contrast);
+-	if (ret < 0)
+-		return ret;
+-
+-	return 0;
+-}
+-
+-static int ssd133x_update_bl(struct backlight_device *bdev)
+-{
+-	struct ssd130x_device *ssd130x = bl_get_data(bdev);
+-
+-	ssd130x->contrast = backlight_get_brightness(bdev);
+-
+-	return ssd133x_set_contrast(ssd130x, ssd130x->contrast);
+-}
+-
+-static int ssd135x_update_bl(struct backlight_device *bdev)
+ {
+ 	struct ssd130x_device *ssd130x = bl_get_data(bdev);
+ 
+ 	ssd130x->contrast = backlight_get_brightness(bdev);
+ 
+-	return ssd135x_set_contrast(ssd130x, ssd130x->contrast);
++	return ssd130x_set_contrast(ssd130x, ssd130x->contrast);
+ }
+ 
+-static const struct backlight_ops ssd130xfb_bl_ops[] = {
+-	[SSD130X_FAMILY] = {
+-		.update_status	= ssd130x_update_bl,
+-	},
+-	[SSD132X_FAMILY] = {
+-		.update_status	= ssd130x_update_bl,
+-	},
+-	[SSD133X_FAMILY] = {
+-		.update_status	= ssd133x_update_bl,
+-	},
+-	[SSD135X_FAMILY] = {
+-		.update_status	= ssd135x_update_bl,
+-	},
++static const struct backlight_ops ssd130xfb_bl_ops = {
++	.update_status	= ssd130x_update_bl,
+ };
+ 
+ static void ssd130x_parse_properties(struct ssd130x_device *ssd130x)
+@@ -2213,6 +2247,13 @@ static int ssd130x_init_modeset(struct ssd130x_device *ssd130x)
  	}
  
--	if (!of_property_read_bool(dev->of_node, "use-external-pwm")) {
--		ps8622->bl = backlight_device_register("ps8622-backlight",
--				dev, ps8622, &ps8622_backlight_ops,
--				NULL);
--		if (IS_ERR(ps8622->bl)) {
--			DRM_ERROR("failed to register backlight\n");
--			ret = PTR_ERR(ps8622->bl);
--			ps8622->bl = NULL;
--			return ret;
-+	ps8622->brightness = PS8622_MAX_BRIGHTNESS;
-+	ps8622->internal_pwm = !of_property_read_bool(dev->of_node,
-+						      "use-external-pwm");
-+	if (ps8622->internal_pwm) {
-+		if (IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
-+			ps8622->bridge.ops |= DRM_BRIDGE_OP_LUMINANCE;
-+			ps8622->bridge.luminance_max = PS8622_MAX_BRIGHTNESS;
-+			ps8622->bridge.luminance = ps8622->brightness;
-+		} else {
-+			ps8622->bl = backlight_device_register("ps8622-backlight",
-+							       dev, ps8622,
-+							       &ps8622_backlight_ops,
-+							       NULL);
-+			if (IS_ERR(ps8622->bl)) {
-+				DRM_ERROR("failed to register backlight\n");
-+				ret = PTR_ERR(ps8622->bl);
-+				ps8622->bl = NULL;
-+				return ret;
-+			}
-+			ps8622->bl->props.max_brightness = PS8622_MAX_BRIGHTNESS;
-+			ps8622->bl->props.brightness = ps8622->brightness;
- 		}
--		ps8622->bl->props.max_brightness = PS8622_MAX_BRIGHTNESS;
--		ps8622->bl->props.brightness = PS8622_MAX_BRIGHTNESS;
- 	}
+ 	drm_connector_helper_add(connector, &ssd130x_connector_helper_funcs);
++	if (IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
++		ret = drm_connector_attach_luminance_property(connector, 0,
++							      MAX_CONTRAST,
++							      ssd130x->contrast);
++		if (ret)
++			return ret;
++	}
  
- 	ps8622->bridge.type = DRM_MODE_CONNECTOR_LVDS;
+ 	ret = drm_connector_attach_encoder(connector, encoder);
+ 	if (ret) {
+@@ -2270,16 +2311,18 @@ struct ssd130x_device *ssd130x_probe(struct device *dev, struct regmap *regmap)
+ 	if (ret)
+ 		return ERR_PTR(ret);
+ 
+-	bl = devm_backlight_device_register(dev, dev_name(dev), dev, ssd130x,
+-					    &ssd130xfb_bl_ops[ssd130x->device_info->family_id],
+-					    NULL);
+-	if (IS_ERR(bl))
+-		return ERR_PTR(dev_err_probe(dev, PTR_ERR(bl),
+-					     "Unable to register backlight device\n"));
+-
+-	bl->props.brightness = ssd130x->contrast;
+-	bl->props.max_brightness = MAX_CONTRAST;
+-	ssd130x->bl_dev = bl;
++	if (!IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
++		bl = devm_backlight_device_register(dev, dev_name(dev), dev,
++						    ssd130x, &ssd130xfb_bl_ops,
++						    NULL);
++		if (IS_ERR(bl))
++			return ERR_PTR(dev_err_probe(dev, PTR_ERR(bl),
++						     "Unable to register backlight device\n"));
++
++		bl->props.brightness = ssd130x->contrast;
++		bl->props.max_brightness = MAX_CONTRAST;
++		ssd130x->bl_dev = bl;
++	}
+ 
+ 	ret = ssd130x_init_modeset(ssd130x);
+ 	if (ret)
+diff --git a/drivers/gpu/drm/solomon/ssd130x.h b/drivers/gpu/drm/solomon/ssd130x.h
+index fd81262f2ceb9..536a5649edffc 100644
+--- a/drivers/gpu/drm/solomon/ssd130x.h
++++ b/drivers/gpu/drm/solomon/ssd130x.h
+@@ -100,6 +100,8 @@ struct ssd130x_device {
+ 	u32 prechargep2;
+ 
+ 	struct backlight_device *bl_dev;
++	/* Controller is powered and initialized, set from atomic commits */
++	bool enabled;
+ 	struct pwm_device *pwm;
+ 	struct gpio_desc *reset;
+ 	struct regulator *vcc_reg;
 
 -- 
 2.53.0
