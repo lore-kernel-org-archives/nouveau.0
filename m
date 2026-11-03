@@ -2,23 +2,23 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D34D606A32D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E51D6606A324
 	for <nouveau@archiver.kernel.org>; Tue,  3 Nov 2026 22:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nb+ibHK9
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Asgd9/r9
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 019ED10F849;
-	Tue,  3 Nov 2026 22:42:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5C5B810F8F7;
+	Tue,  3 Nov 2026 22:42:38 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C405448D0B;
-	Tue,  3 Nov 2026 22:23:15 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 1333448D11;
+	Tue,  3 Nov 2026 22:23:16 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
  s=20240201; t=1793744595;
- b=zdLOXs34Rh195yjVAmchkTIi0WGzpHYNY4iQhfepA/9yepmMi2yCA5YBPBemPA0qMuIxz
- VvrMrAB/IQ0nPnmg8hTU8W4kjTQaeWX/KUZvPL4Zhl5ZKqwY5Nkzlg2erK3Z/sYWoKcOFDa
- QhNMdGkqlqaKT6sUDXuE2qNLAI1goANDOoy5hjoILb/GXg76L/evIo8ByZdsDPMzD6BdZXf
- 6riJOK+66TG07o+XwRxO7hBVfHXUf7IxM/BcZ92m3qzQR186TjFxeIrnimVlgsBIja773Tc
- AK+WHHl9upCDB+oDDim0d5OXKC/aSmC7EEHqT65A6XbOMwn0Y6gEyGYWWC/A==
+ b=nKh/+x36EIzDVNWsbH95KIl04LDjtN/jQE8HJ8M9ZZkcFl3XeFV+Gg0D8uJ8U74+q1UGy
+ 28TOVULHDeBS8xeTXlqG3rAwC25N1bDuX8qwLJ0t6S4A5cdoJwXEyK+CBzSqTnjmg3lNFqN
+ gTFA3tqO5DTdQBZIn7tL1yGO93lI3JueDmsitorb3T+dMryjeARSpT8G4CRLSLQlGv9aSdH
+ lRkb9LsLHAqHZLgBtx3/txzG5Ew2VaOo4ZbhHx3QF/4/w27x9REgLW29Xom8PTIti9EVweh
+ X1P2+32mHWeEhOAV08ZjPPzvMXxkf9Jl2UFtAO3Lx54woakMcKDQec8OMIiA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  d=lists.freedesktop.org; s=20240201; t=1793744595; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
@@ -27,12 +27,12 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Qcm7dNlNC7FzVRWrzrfVIhHJC+ShPSNQpQhZi/uhkcQ=;
- b=rlVN3T8LuZJnn/jUIvb6U+ldLPtaD2Ct7pJMYm4xJnvXpuj1dQ76SZJfpjr0SOcw3oT/z
- 7UoN90gAvSJozjSVv1mzRSWltC+w8bwZa93u+z+ZoTU7rbYl4RICJm3vvuJ3ZOQsujZacPb
- +gbnlhOg/J8UHpVDBwhvRY25K4eVnb+qIqlQ4hQeWuKheWoXurpDhTMu2geWG5uJurB4z8J
- sWADXPw2w9tPqgiMVYdp4xUZ4BU0WwpismZN7UqmfZ03S22SKZzXQ3uCY0Ol3W+XyJP4+ke
- Zt1IOCaBzeoNERvuo8aD2wJUmnQakJAwqZT0TJh62BWNF+LiGaCPmvDLRUCA==
+ bh=fvn4+ks21SRxa0VzR/PJnePhk9H00+N90WHNmNwJuzg=;
+ b=039rVZyMBeCn8YAsZAObUeKBL4uYjzUeivR2My786qQd+T2ByF8bR3N+oAyDTdRSAOaXa
+ rBh13lpXx56UDQTyONWNb8fyiLoErSDsgTcBft4Yn9qmQReEr8vIxnSZvM3sKpPojCwyy9K
+ 48ek4F4f2jQg4mjKQaSn4KO38CMVTR2JXUlQ/XXFZX9ik0HEQRqwSOFPCZPOxSFqMQ/0tL6
+ lriadJ+aRQwNgdeWtuF1JoyCot6dvblb6/t291Bs4fix3AEV0Kybu3gklVFneGcjAvF38J1
+ qeNuSkGtVARV9Qtg6C4IAYTniSCyXM7B+6bwAd1/a9lmx4sWoxyMRWKNjAJw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,35 +43,35 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D54F148D04
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 22:23:12 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8249E10F8C0;
-	Tue,  3 Nov 2026 22:42:29 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1D9D348CFB
+	for <nouveau@lists.freedesktop.org>; Tue,  3 Nov 2026 22:23:14 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D9AC810F8BE;
+	Tue,  3 Nov 2026 22:42:30 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id F399460416;
+	by sea.source.kernel.org (Postfix) with ESMTP id BF8AD4330D;
+	Tue,  3 Nov 2026 22:42:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E85861F0093A;
 	Tue,  3 Nov 2026 22:42:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02A721F00A20;
-	Tue,  3 Nov 2026 22:42:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793745748;
-	bh=Qcm7dNlNC7FzVRWrzrfVIhHJC+ShPSNQpQhZi/uhkcQ=;
+	s=k20260515; t=1793745750;
+	bh=fvn4+ks21SRxa0VzR/PJnePhk9H00+N90WHNmNwJuzg=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=nb+ibHK9JAbh82K8ggyPNssRjvJVzwveQFWZXv0a6pINFTUP9tD8cpX/SWEYHwTog
-	 QsXQXWHwCtwI+KuFNafJV8v26GgOnqBaPaBlML5QTISqcWa3+bkPovQkgjKppwT3nr
-	 yQafEg9epQjd087eDFrxSaxDWT9tnzbpncSnNpjns3978frYMaqIGG9H/fiXtOlsOi
-	 S/5cVXD4TprlJoxO0wYTbAYxX/UtBMq+CyLJU3idwcC1zQPIThYORvDsLCoGtbov2n
-	 G/U0tBu3xDouJyq6uRXCCxwOg0CwPrXGezP0lbdR9csd5P/xaFU9ENpAyWnplOmQzB
-	 q1V97y6YhhdYQ==
+	b=Asgd9/r90J3R8FJI73oD19Ga27Kg5F5In/D4tHRbxAIur5Bar5CAJ9TEBXUCA0eBI
+	 OpGmg48RJComZWu5vg+M+wvcpwqVHSdcdKcbtxcrCTEwjxMNLJUTCQ5artxEFQG/Q2
+	 shor6Q8/o2M09k0GBA/gxIQiPHu6yQqRk99/fGT2ZMEw6UsyFnGIU9K+E/yq4FlR8s
+	 ChNfOfLiYYkQEhWExaUALO/+8lUBVpIgtQdd9MVfBKrtMBTrPjIsN4nJqxiDQMKboZ
+	 QIETuRfN8axk4ULDKl5czLgT0aj/JTumQRhtSIgBtR9z7ZAxP4PxSZ1N/yBDLhRgeL
+	 4muKao+gO11Sg==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Tue, 03 Nov 2026 16:42:08 -0600
-Subject: [PATCH v11 07/12] drm/panel: add connector luminance forwarding
+Date: Tue, 03 Nov 2026 16:42:09 -0600
+Subject: [PATCH v11 08/12] drm/bridge_connector: add luminance support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 Message-Id: 
- <20261103-superm1-backlight-property-v11-7-00cce7b2ba22@kernel.org>
+ <20261103-superm1-backlight-property-v11-8-00cce7b2ba22@kernel.org>
 References: 
  <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
 In-Reply-To: 
@@ -85,8 +85,8 @@ To: Maxime Ripard <mripard@kernel.org>,
  Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
  Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
 X-Mailer: b4 0.16.0
-Message-ID-Hash: EOXIMYXIDO4OV4JDZ2YYHLGUL2QIIOUV
-X-Message-ID-Hash: EOXIMYXIDO4OV4JDZ2YYHLGUL2QIIOUV
+Message-ID-Hash: YEAVJTVZQI2H6MPBYRXJCOBXTEIYPDAF
+X-Message-ID-Hash: YEAVJTVZQI2H6MPBYRXJCOBXTEIYPDAF
 X-MailFrom: superm1@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -101,9 +101,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EOXIMYXIDO4OV4JDZ2YYHLGUL2QIIOUV/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YEAVJTVZQI2H6MPBYRXJCOBXTEIYPDAF/>
 Archived-At: 
- <https://lore.freedesktop.org/20261103-superm1-backlight-property-v11-7-00cce7b2ba22@kernel.org/>
+ <https://lore.freedesktop.org/20261103-superm1-backlight-property-v11-8-00cce7b2ba22@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -120,182 +120,112 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-Add helpers that expose a panel backlight through the connector
-LUMINANCE property and forward connector updates to the backlight
-backend.
+Discover the last bridge in a chain that owns brightness control, attach
+its relative luminance range to the connector, and forward atomic
+luminance updates to it.
 
-Hook the helpers into panel bridges that create their own connector.
-Panels consumed directly, or by a panel bridge attached with
-DRM_BRIDGE_ATTACH_NO_CONNECTOR, remain unchanged. Turning the backlight
-on and off is left to drm_panel_enable() and drm_panel_disable(), which
-already honour self refresh.
-
-The panel backlight remains the hardware backend and keeps its
-/sys/class/backlight device, which is owned by the backlight driver.
+Do not infer panel luminance support from a terminal panel bridge. Panels
+still have direct consumers, so their connector integration must remain
+explicit.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
 v11:
- * Don't remove drm_panel.h stubs (rebase artifact, Sashiko)
- * Use drm_connector_to_panel() rather than an invalid panel_bridge
-   container_of() (Sashiko)
- * Clean up the connector if attaching the property fails (Sashiko)
- * Drop .disable_luminance and program the committed level before
-   drm_panel_enable() (Sashiko)
- * Don't attach the property when the panel bridge is attached after the
-   device is registered, which would WARN
- * Update brightness under the backlight ops_lock
+ * Drop .disable_luminance, it clobbered the bridge's saved level; the
+   bridge disable path already turns the panel off
+ * Fix checkpatch line length
 v10:
- * Split panel support out of the combined panel and bridge patch
- * Limit integration to panel bridges that own their connector
+ * Split bridge connector integration into a separate patch
+ * Do not special-case panels in the generic bridge connector
 ---
- drivers/gpu/drm/drm_panel.c | 93 +++++++++++++++++++++++++++++++++++++++++++++
- include/drm/drm_panel.h     |  4 ++
- 2 files changed, 97 insertions(+)
+ drivers/gpu/drm/display/drm_bridge_connector.c | 39 ++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
-index 74c96da45b7a5..bbd0e14401c18 100644
---- a/drivers/gpu/drm/drm_panel.c
-+++ b/drivers/gpu/drm/drm_panel.c
-@@ -64,9 +64,18 @@ static int panel_bridge_connector_get_modes(struct drm_connector *connector)
- 	return drm_panel_get_modes(panel, connector);
+diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
+index 2202e60444449..18927fed83732 100644
+--- a/drivers/gpu/drm/display/drm_bridge_connector.c
++++ b/drivers/gpu/drm/display/drm_bridge_connector.c
+@@ -125,6 +125,13 @@ struct drm_bridge_connector {
+ 	 */
+ 	struct drm_bridge *bridge_hdmi_cec;
+ 
++	/**
++	 * @bridge_luminance:
++	 *
++	 * The last bridge in the chain that controls panel luminance.
++	 */
++	struct drm_bridge *bridge_luminance;
++
+ 	/**
+ 	 * @hdmi_funcs:
+ 	 *
+@@ -421,6 +428,17 @@ static int drm_bridge_connector_atomic_check(struct drm_connector *connector,
+ 	return 0;
  }
  
 +static void
-+panel_bridge_connector_set_luminance(const struct drm_connector_state *conn_state)
++drm_bridge_connector_set_luminance(const struct drm_connector_state *conn_state)
 +{
-+	struct drm_panel *panel = drm_connector_to_panel(conn_state->connector);
++	struct drm_bridge_connector *bridge_connector =
++		to_drm_bridge_connector(conn_state->connector);
++	struct drm_bridge *bridge = bridge_connector->bridge_luminance;
 +
-+	drm_panel_set_luminance(panel, conn_state->luminance);
++	if (bridge)
++		bridge->funcs->set_luminance(bridge, conn_state->luminance);
 +}
 +
- static const struct drm_connector_helper_funcs
- panel_bridge_connector_helper_funcs = {
- 	.get_modes = panel_bridge_connector_get_modes,
-+	.set_luminance = panel_bridge_connector_set_luminance,
+ static const struct drm_connector_helper_funcs drm_bridge_connector_helper_funcs = {
+ 	.get_modes = drm_bridge_connector_get_modes,
+ 	.detect_ctx = drm_bridge_connector_detect_ctx,
+@@ -429,6 +447,7 @@ static const struct drm_connector_helper_funcs drm_bridge_connector_helper_funcs
+ 	.enable_hpd = drm_bridge_connector_enable_hpd,
+ 	.disable_hpd = drm_bridge_connector_disable_hpd,
+ 	.atomic_check = drm_bridge_connector_atomic_check,
++	.set_luminance = drm_bridge_connector_set_luminance,
  };
  
- static const struct drm_connector_funcs panel_bridge_connector_funcs = {
-@@ -101,6 +110,12 @@ static int panel_bridge_attach(struct drm_bridge *bridge,
- 
- 	drm_panel_bridge_set_orientation(connector, bridge);
- 
-+	ret = drm_panel_attach_luminance_property(panel, connector);
-+	if (ret) {
-+		drm_connector_cleanup(connector);
-+		return ret;
-+	}
-+
- 	drm_connector_attach_encoder(connector, encoder);
- 
- 	if (bridge->dev->registered) {
-@@ -169,6 +184,19 @@ static void panel_bridge_atomic_enable(struct drm_bridge *bridge,
- 	if (old_crtc_state && old_crtc_state->self_refresh_active)
- 		return;
- 
-+	/*
-+	 * Program the committed luminance before drm_panel_enable() turns the
-+	 * backlight on, so the panel does not light up at a stale level.
-+	 */
-+	if (panel->connector.luminance_property) {
-+		const struct drm_connector_state *conn_state =
-+			drm_atomic_get_new_connector_state(atomic_state,
-+							   &panel->connector);
-+
-+		if (conn_state)
-+			drm_panel_set_luminance(panel, conn_state->luminance);
-+	}
-+
- 	drm_panel_enable(panel);
+ static enum drm_mode_status
+@@ -835,6 +854,7 @@ static void drm_bridge_connector_put_bridges(struct drm_device *dev, void *data)
+ 	drm_bridge_put(bridge_connector->bridge_hdmi_audio);
+ 	drm_bridge_put(bridge_connector->bridge_dp_audio);
+ 	drm_bridge_put(bridge_connector->bridge_hdmi_cec);
++	drm_bridge_put(bridge_connector->bridge_luminance);
  }
  
-@@ -873,6 +901,71 @@ void drm_panel_disable(struct drm_panel *panel)
- }
- EXPORT_SYMBOL(drm_panel_disable);
- 
-+/**
-+ * drm_panel_attach_luminance_property - expose a panel backlight through DRM
-+ * @panel: panel whose backlight is controlled
-+ * @connector: connector on which to expose the property
-+ *
-+ * The backlight class device remains the internal hardware backend. When the
-+ * luminance UAPI is enabled, userspace controls that backend through the DRM
-+ * connector property instead.
-+ *
-+ * Return: 0 on success or a negative error code
-+ */
-+int drm_panel_attach_luminance_property(struct drm_panel *panel,
-+					struct drm_connector *connector)
-+{
-+	struct backlight_device *backlight;
-+
-+	if (!IS_ENABLED(CONFIG_DRM_LUMINANCE) || !panel)
-+		return 0;
-+
-+	backlight = panel->backlight;
-+	if (!backlight)
-+		return 0;
-+
-+	/* Properties can't be created once the device is visible to userspace */
-+	if (connector->dev->registered) {
-+		drm_dbg_kms(connector->dev,
-+			    "[CONNECTOR:%d:%s] registered, not exposing luminance\n",
-+			    connector->base.id, connector->name);
-+		return 0;
-+	}
-+
-+	return drm_connector_attach_luminance_property(connector, 0,
-+					backlight->props.max_brightness,
-+					backlight->props.brightness);
-+}
-+EXPORT_SYMBOL(drm_panel_attach_luminance_property);
-+
-+/**
-+ * drm_panel_set_luminance - set a panel backlight's relative luminance
-+ * @panel: panel whose backlight is controlled
-+ * @luminance: relative luminance level
-+ *
-+ * Updates the backlight brightness without changing its power state, under
-+ * the same lock as brightness changes made through sysfs. Turning
-+ * the backlight on and off is left to drm_panel_enable() and
-+ * drm_panel_disable(), so a level set while the panel is disabled is applied
-+ * when the panel is enabled again.
-+ */
-+void drm_panel_set_luminance(struct drm_panel *panel, unsigned int luminance)
-+{
-+	struct backlight_device *backlight;
-+
-+	if (!panel || !panel->backlight)
-+		return;
-+
-+	backlight = panel->backlight;
-+	guard(mutex)(&backlight->ops_lock);
-+	if (!backlight->ops || luminance > backlight->props.max_brightness)
-+		return;
-+
-+	backlight->props.brightness = luminance;
-+	backlight_update_status(backlight);
-+}
-+EXPORT_SYMBOL(drm_panel_set_luminance);
-+
  /**
-  * drm_panel_get_modes - probe the available display modes of a panel
-  * @panel: DRM panel
-diff --git a/include/drm/drm_panel.h b/include/drm/drm_panel.h
-index 58113ea7d63a0..233d30dd2e182 100644
---- a/include/drm/drm_panel.h
-+++ b/include/drm/drm_panel.h
-@@ -342,6 +342,10 @@ void drm_panel_unprepare(struct drm_panel *panel);
- void drm_panel_enable(struct drm_panel *panel);
- void drm_panel_disable(struct drm_panel *panel);
- 
-+int drm_panel_attach_luminance_property(struct drm_panel *panel,
-+					struct drm_connector *connector);
-+void drm_panel_set_luminance(struct drm_panel *panel, unsigned int luminance);
+@@ -918,6 +938,13 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
+ 			drm_bridge_put(bridge_connector->bridge_detect);
+ 			bridge_connector->bridge_detect = drm_bridge_get(bridge);
+ 		}
++		if (bridge->ops & DRM_BRIDGE_OP_LUMINANCE) {
++			if (!bridge->funcs->set_luminance)
++				return ERR_PTR(-EINVAL);
 +
- int drm_panel_get_modes(struct drm_panel *panel, struct drm_connector *connector);
++			drm_bridge_put(bridge_connector->bridge_luminance);
++			bridge_connector->bridge_luminance = drm_bridge_get(bridge);
++		}
+ 		if (bridge->ops & DRM_BRIDGE_OP_HDMI) {
+ 			if (bridge_connector->bridge_hdmi)
+ 				return ERR_PTR(-EBUSY);
+@@ -1144,6 +1171,18 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
+ 	if (panel_bridge)
+ 		drm_panel_bridge_set_orientation(connector, panel_bridge);
  
- #if defined(CONFIG_OF) && IS_ENABLED(CONFIG_DRM_PANEL)
++	if (IS_ENABLED(CONFIG_DRM_LUMINANCE) &&
++	    bridge_connector->bridge_luminance &&
++	    !connector->luminance_property) {
++		struct drm_bridge *bridge = bridge_connector->bridge_luminance;
++
++		ret = drm_connector_attach_luminance_property(connector, 0,
++							      bridge->luminance_max,
++							      bridge->luminance);
++		if (ret)
++			return ERR_PTR(ret);
++	}
++
+ 	if (support_hdcp && IS_REACHABLE(CONFIG_DRM_DISPLAY_HELPER) &&
+ 	    IS_ENABLED(CONFIG_DRM_DISPLAY_HDCP_HELPER))
+ 		drm_connector_attach_content_protection_property(connector, true);
 
 -- 
 2.53.0
