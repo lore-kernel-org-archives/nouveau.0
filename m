@@ -2,149 +2,135 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE178606A326
-	for <nouveau@archiver.kernel.org>; Thu,  5 Nov 2026 08:42:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0C7C606A326
+	for <nouveau@archiver.kernel.org>; Thu,  5 Nov 2026 09:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=0ih307SX
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bFAS48f0
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BD0D4112261;
-	Thu,  5 Nov 2026 08:41:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 18D6F11228F;
+	Thu,  5 Nov 2026 09:15:21 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id AC35B419A7;
-	Thu,  5 Nov 2026 08:22:30 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1793866950;
- b=iU6jJsDznrT4RjW2LQPEtjqZYp5Qkgd4YCkeaSa+Rr33PaOepMkmBSStTgVSufGmBpcGm
- 7j0wz0D+1lfLoD5mbEdXlAXrb6HLQMC97ZpGJmB0jSvrUfDarslc5nLjWaGlD/fBiBv8O6C
- c9gC1wmV5jqOrZUVYucXOvVY59/IwY42I4u6QlPIYtIl51UIjK3al6dDzYKlxYiVKovqC6o
- 65n1vcG+CVQPlQdjZUiM4sM9dMQIjw0CCCg88AMpO5uUTwFva7oLawHcIEDHGO0OD0oKJFU
- anjgREbTCVcS7stBMK2iTTzvGv7MBPj+YysvGj6vcq/S4kIY1ZmPLHoqZG2Q==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1793866950; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id DB00642407;
+	Thu,  5 Nov 2026 08:55:55 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1793868955;
+ b=E2/QD4UkTCHNouRxXGooSxf6jvzvxDEpsVYBcFVNxosL1PtyLQLp4/t+NYKC+wRAzuytO
+ MvIQFVst5tyXH/ir801Ik4XFnZWhXjTLamS1rgxJY00CuUA2xxCwuIbQkCVa2dkKPHtz1xc
+ EiRFB5Z2Q75Z4bPHRLLd6c3xQME0GcP5L4H6oO/uIdVAbr3n4OnVTCNbDpLPr8pQpQglWdM
+ ooT5jzKzGjTUOmvMaA4Wtceo9HuPQK9N10YS/Ew3xAsG5LUz/SFWYlN24dYoPYsVzC1Albs
+ l+v/b/KTzKu6p9UGlTpVZsaZ2qu3qAYsP6J3ndmyPzsupH9NOQ6NmcbF9CkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1793868955; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=+LZ7gEkfFBWbsyE8LX9YD8wYeXwI3Z2u8xYCO3dSD/0=;
- b=ld2qug9TN5qQ8DHhLgmD+E1UglMjLnRZUPuBnOwmaGLcMex8OJoeVWCw+WkxR635op0Zc
- nV7WOFaA8CKIY6Kjd2CxR2sf4ck6wWGtQuXSNOq29f+vzzJaEQ1xnlmC2EdSehf5bkWhpZH
- xd1mCmbx+t5cNyjPUHhJnXNc3sWRmV6g3Jm9eA7T7lNpWae7v5nNEAvQr/9jwrO7PViG+Gu
- uPBMUgb/2H5EpxWvtj3m9bvKVOH2/HZHDvY63FalicD8VsRYnd5jQE0VSwWrkv9C/c9CUSa
- x0XuHg6Lh2hLCK2JudJ48HXfyS6g3cm4ufiuAHrhHYyI+w7XNvAeRIhDUOKQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ bh=yuu8MRbvZ8Q99gVGDEWGPtvGQgcdEiYL3ohtAsA9Mfg=;
+ b=rWXDr9Tn8IV5qnKT4wlRZ16j1rGmFzEBsSfKyk2FeNEnkBgn/LJHTxeQYZNAzPymkuQKa
+ Qo+9w6c73rxhoncYw9AdU6MwGKkeQiJe1zIFFos7qSJJt3RtuR4sVZdvYekynR44QpqYAZl
+ 3BGbsICc48ZR4gHWO393eWorYt3Zx4Q4IMFTgYeUlNZjAdEqfHCDJeXG2p7DBcWpudkfwwe
+ riBccDdrsYcbxcHA9v9UCHbZbS+VgaDB3OvJFh5iuGJrNyneA/WpomkqBlNmJk0bmvy/TLN
+ K3QIQq/305OsULUhsNfg9rLPKHqVA8k/hktFRJV/D6iBjEwldcBjb7ZYdc7w==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C91F440041
-	for <nouveau@lists.freedesktop.org>; Thu,  5 Nov 2026 08:22:26 +0000 (UTC)
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com
- [209.85.219.54])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B6793112260
-	for <nouveau@lists.freedesktop.org>; Thu,  5 Nov 2026 08:41:46 +0000 (UTC)
-Received: by mail-qv1-f54.google.com with SMTP id
- 6a1803df08f44-917a707f37eso17165016d6.0
-        for <nouveau@lists.freedesktop.org>;
- Thu, 05 Nov 2026 00:41:46 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1793868106; cv=none;
-        d=google.com; s=arc-20260327;
-        b=hs1ZWe8sR1SdyYnQeu7Wq0lRhwXQ3v175uU9YXf8Fm94u1Pz/aqyIwTijTf+ImKAfL
-         jF1mJFRngAmYeGn03RC/v/nCYu9hUNHvvgR90ea0MKu8VIcBk/W7fYwJDlb79eGAGvDQ
-         BWtaLhtX3v/Z8zWeuv1iqIrjC6ieZ7nuOZZ0f+XyABrMvTxyX8TomhnDhhOqsbk+uoLz
-         1r2edGODi/vlMyP/193RrM64PWp+pZqnHpsA8lhLxUHL1RdEfarzHtBsXoN6L08sZIxv
-         cK3iY2Q0EWFDoVZXc53Gy5Xxn0xHr6Y9RPXYS1oqTAXtETY1qOtgNaqVrELMXSJe2Lx4
-         WUiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=+LZ7gEkfFBWbsyE8LX9YD8wYeXwI3Z2u8xYCO3dSD/0=;
-        fh=i9ThHMjMYMQ6lU/gMqu5TWRVGWOM2EWOmnk6P9Kb+wA=;
-        b=syf32xkUJSQeuCS3/sCkfm8fzqd8tKTCrU3EDLo1HapZnb0VtkbrMhvN0J17Aa7OGO
-         1ixVkR+ryvbfweFI+go1BzoKPGGowaYmE8E7kymYKKK192dgGxh3gPkkA3IM2vIgoSZa
-         tnplm/JvQQqH0VA4xcIqpj9UcoP9LElc80yWVAsbLB2Y8zVfSKAimElszRX+/L7yahtz
-         M7rnOketHyY1FSBhbNbV/nsn8jyrR2YY+JCO+IFkD3BVcZ6BXCSo9kvwhm7dU28/EAiN
-         M4baA/vuvOoRStdSQXnFMhb+uJklQ8/WYiuA7PQ1MrJyL4Ibk2gxKJdnwde0Jd51Ysdn
-         yhCg==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1793868106; x=1794472906;
- darn=lists.freedesktop.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=+LZ7gEkfFBWbsyE8LX9YD8wYeXwI3Z2u8xYCO3dSD/0=;
-        b=0ih307SX746IjhIgG7MS7M9B20TtFWgVb+TagZgUrU8yf5cDlTzlqtGrtp5+2T9iyY
-         nGbPEVGltlMFfZMgwdS75PMtQEHN9IbfHIKaFPd06IuNuDgdHl3fjLg5qdUWRY38J7qa
-         y79brkDTQhMCgc+ZjyFdmtgcRipMP4nI6ghrYcTFKP66YqqESyg87EYLpc5i+0uX+vlm
-         snqdBBflbYzkU+ju/TerVrfxonOJDmeXYkWPclPewXYiM0zOBHSvMEgTQe1lrqq++toh
-         zZzQmPdu8aHLPIjkUYdb2PoyyLUYft1HyJ8QGYYplvDqVvuE6vn0zipVFEYbabqzjOFx
-         Ms7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793868106; x=1794472906;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=+LZ7gEkfFBWbsyE8LX9YD8wYeXwI3Z2u8xYCO3dSD/0=;
-        b=aNlXU2VoT4lW5dVziE0P0aUleKbIDd6HbeFzhs3INKk2RsYGPnm6KDzvwjtauy3F8F
-         exS325YTF6dahRxwns+0wRUvIbQbhxQkNbY1agYjI0gtgrvjO3GxATUCFT8ALLE59lyl
-         U0wHN+5S9gMw3KW6DgALMW5kvRrwfEg8zY8Xd1JcGJM7unOdg2DH1jWWOIPJnoKC2BcE
-         pdFUIEHa/RNWmOetfr0ixzbuXw37+m4HjaZkB8k5ftyZCiyqgLkTzHQWnWulS1ipx8V5
-         80IiMHthlY2EvYi0KtDgTJ5n4hjg25T5JDDVuxWa4tvwr2Y9qOi0gZMyLIN56cLJZWKy
-         sQrw==
-X-Gm-Message-State: APuU4Z9PZAxtmT7uglEYzFP0zaj5viYKDNL6b/qDtt1fvNseHH3cdz4C
-	tsaTNVh+tFc1jlv4PzCJ2/Hb470aew1GltoWvfXak9UFPEyXRPT5QbOw6jNOq5LtMFJYZIF4NoJ
-	/zLZDE9cYGk/FU8Q72Ys4QamJC4sag+St7g==
-X-Gm-Gg: AYBFou2g7irltu6by7Xm924ZZKs3aayPzaRU62CQ/7ArLU6K/l1OA0tuBDhQmjy5Ilr
-	UOzEgJoafoQPge8ddQJrTjkUYCcOlAV4DXIgUWH2JbzOSebl9TOUKLo2425TEOEcDl4dcGJx0Iv
-	0r+TmhPCpm3K7c82qu05WyhZAg3FfULlTAwySOpSeRJiV78L+CDq678lEuls14L6CF2CE6FUbhe
-	nMc5m3pboHkLAkIR3IWfXglJlmgldD/tTpg5722TxnEnXuWbiVG5sZG+IbfzO6OdRd2vB9w7pdh
-	+IY2EJg11IPxy4WhkTEFm4CdJaRaI/XTmmmdA75DZ53qUm92I7XsMZ1fNs7tplKdkOhjCJuuCxQ
-	90+B0rNRz+qdDunW/y3duNhY96DhbGSFTz2z656E8g0dY5uFmQhEv1M04s4Ov97VytSBnd9u7Tv
-	pAbszH4NulkgxuLUVFjsnT2Q==
-X-Received: by 2002:a05:6214:5d0a:b0:91e:8cb1:b856 with SMTP id
- 6a1803df08f44-91e8cb1bcb3mr50976416d6.41.1793868105578; Thu, 05 Nov 2026
- 00:41:45 -0800 (PST)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 5E85A40699
+	for <nouveau@lists.freedesktop.org>; Thu,  5 Nov 2026 08:55:53 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3212411225E;
+	Thu,  5 Nov 2026 09:15:13 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 30E8860F3E;
+	Thu,  5 Nov 2026 09:15:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36B561F000C1;
+	Thu,  5 Nov 2026 09:15:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793870111;
+	bh=yuu8MRbvZ8Q99gVGDEWGPtvGQgcdEiYL3ohtAsA9Mfg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=bFAS48f0dLcspAEXkjkArw9f5g1sLZat7q01f+HKggEbmSs8nuly01Er89M9cFC+E
+	 aJelUDSseJymE+2CsLiDv70w3W0f6o/p8FxgDHcsOPwgv1/JMp5POhaS6WYnvYb7K8
+	 zUzkNI/hkDRyloSNnZbNr8XotLbG+h1F+jOL0Hkb0Avr9U7fYBRpfR9C0mcxiQBR3s
+	 vMTD9J5x5SQw0X/qL4Os/hOqj2LHOa1MTSUUKJIb4NDus9wXA/2kpJ9BHnn9SLC4gw
+	 1auncQlq+pWnfmu6Sf7Gd8Hf0QutCtTy+KqQdynzeHMD3cDRsYlcu6hbTs5fM0MRzR
+	 2QGNBnbRrZdUQ==
+Date: Thu, 5 Nov 2026 10:15:08 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>
+Subject: Re: [PATCH v3 00/37] drm/connector: Convert all drivers to
+ atomic_create_state and remove reset
+Message-ID: <auxJBtexUg6oHcs9@houat>
+References: 
+ <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261101200428.16959-1-rosenp@gmail.com>
-In-Reply-To: <20261101200428.16959-1-rosenp@gmail.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Thu, 5 Nov 2026 18:41:33 +1000
-X-Gm-Features: AclHuK9RB4mLTs1goTvN9X54_7uH3Et6Jl_r8Cy2cfziD_nx9SDo27jgCkGyM08
-Message-ID: 
- <CAPM=9tzacWJenKpU_-zbCOSupybgJjXFV7SZLvT+DNBs5fZNEQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/nouveau/nvkm: clear use.enabled when subdev init
- fails
-To: Rosen Penev <rosenp@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Message-ID-Hash: CPGCFCPF5LOLJANPOA4QMRFMMIXOCFS6
-X-Message-ID-Hash: CPGCFCPF5LOLJANPOA4QMRFMMIXOCFS6
-X-MailFrom: airlied@gmail.com
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="2zvnwa2sqytkzb4j"
+Content-Disposition: inline
+In-Reply-To: 
+ <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
+Message-ID-Hash: O2XKRUOVVYJNPXJ2IO363BZOCQZIOMVE
+X-Message-ID-Hash: O2XKRUOVVYJNPXJ2IO363BZOCQZIOMVE
+X-MailFrom: mripard@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: nouveau@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Ben Skeggs <bskeggs@redhat.com>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+ loop; banned-address; member-moderation
+CC: dri-devel@lists.freedesktop.org,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
+ Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
+ Huacai Chen <chenhuacai@kernel.org>, Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+ Jianmin Lv <lvjianmin@loongson.cn>, Mingcong Bai <jeffbai@aosc.io>,
+ Qianhai Wu <wuqianhai@loongson.cn>, Xi Ruoyao <xry111@xry111.site>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ linux-renesas-soc@vger.kernel.org,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Raphael Gallais-Pou <rgallaispou@gmail.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
+ Alexey Brodkin <abrodkin@synopsys.com>,
+ Alex Lanzano <lanzano.alex@gmail.com>, Chia-I Wu <olvaffe@gmail.com>,
+ David Airlie <airlied@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ virtualization@lists.linux.dev, Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CPGCFCPF5LOLJANPOA4QMRFMMIXOCFS6/>
-Archived-At: 
- <https://lore.freedesktop.org/CAPM=9tzacWJenKpU_-zbCOSupybgJjXFV7SZLvT+DNBs5fZNEQ@mail.gmail.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/O2XKRUOVVYJNPXJ2IO363BZOCQZIOMVE/>
+Archived-At: <https://lore.freedesktop.org/auxJBtexUg6oHcs9@houat/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -152,47 +138,62 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-0.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 2 Nov 2026 at 06:04, Rosen Penev <rosenp@gmail.com> wrote:
->
-> On Kepler boards without the video decode falcon firmware installed
-> (msvld/mspdec/msppp), every other VA-API decode attempt binds to an
-> engine with no ucode loaded. The submitted work never completes, which
-> leads to a context switch timeout, a channel recovery that cannot reset
-> the engine, and eviction waits on fences that never signal. The process
-> ends up stuck in D state, or killed by SIGBUS when it touches a buffer
-> evicted after the wait times out:
->
->   msvld: unable to load firmware data
->   msvld: init failed, -19
->   fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
->   vo[5444]: channel 14 killed!
->   WARNING: drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c:117 at nvkm_runl_rc+0x2a4/0x3b0 [nouveau]
->   [TTM] Buffer eviction failed
->   WARNING: drivers/gpu/drm/nouveau/nouveau_bo.c:1092 at nouveau_bo_move_ntfy.part.0+0x9b/0x100 [nouveau]
->
-> Tracing nvkm_subdev_ref() and nvkm_subdev_init_() shows the pattern:
-> a reference taken with enabled=0 runs nvkm_falcon_init(), which
-> returns -ENODEV; the next reference sees enabled=1 and succeeds
-> without running it.
->
-> Clear use.enabled when init() fails, so that every later reference
-> retries init and fails cleanly.  The other readers of use.enabled are
-> fini() handlers that use it to skip teardown, which they now also do
-> after a failed init().
->
-> On a GK107 (Quadro K1100M) without video firmware, playing H.264 with
-> mpv --hwdec=auto: without this patch the GPU channel is killed within a
-> minute and mpv hangs; with it, VA-API decoder creation fails, mpv falls
-> back to software decoding, and no faults are logged.
 
-Appled to drm-misc-fixes.
+--2zvnwa2sqytkzb4j
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 00/37] drm/connector: Convert all drivers to
+ atomic_create_state and remove reset
+MIME-Version: 1.0
 
-Thanks,
-Dave.
+On Fri, Oct 30, 2026 at 04:13:30PM +0100, Maxime Ripard wrote:
+> This is a follow-up to the plane and CRTC reset removal series, and
+> part of a larger effort to remove the reset hook from all KMS objects.
+>=20
+> The connector reset hook is overloaded: it is called both at probe
+> time to create the initial software state and during suspend/resume to
+> reset hardware and software state. These two roles have different
+> requirements, and the reset hook is not fallible, making error
+> handling difficult for the initial state allocation path.
+>=20
+> While reset has the semantics to reset both the software and hardware
+> state, the vast majority of implementations and all the helpers only
+> reset the software state, making them equivalent to
+> atomic_create_state in practice. The atomic_create_state hook makes
+> this explicit: it only allocates and initializes a pristine state
+> without any side effect, and returns the state pointer or an ERR_PTR
+> on failure.
+>=20
+> This series converts all connector drivers tree-wide from the reset hook
+> to atomic_create_state, then removes the reset hook from struct
+> drm_connector_funcs entirely. The conversions were done using a
+> combination of Coccinelle semantic patches, mechanical one-line
+> replacements and manual adjustments.
+>=20
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+
+Applied to drm-misc-next
+
+Maxime
+
+--2zvnwa2sqytkzb4j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCauxJHAAKCRAnX84Zoj2+
+dpi6AYDFcyxVth1IfzYJl7Mk/wdU/UrwZChOoRG3vJ2c4jm3YXPwmaZCDBG4hPm/
+E3dp1WQBf2Htv+GDvQkXS9avpT+uRjkpFRqowDqfaE0gXWHKwBFuo13bOFi12DLC
+XPBNQCk6+w==
+=O+mF
+-----END PGP SIGNATURE-----
+
+--2zvnwa2sqytkzb4j--
