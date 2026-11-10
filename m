@@ -2,147 +2,145 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 951B6606A325
-	for <nouveau@archiver.kernel.org>; Tue, 10 Nov 2026 00:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F31C8606A321
+	for <nouveau@archiver.kernel.org>; Tue, 10 Nov 2026 00:55:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=y3wUuZx7
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=X6eUXvI/
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 26C9F10F5EC;
-	Tue, 10 Nov 2026 00:53:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CC0EE10F5FA;
+	Tue, 10 Nov 2026 00:55:00 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id A2ED74918A;
-	Tue, 10 Nov 2026 00:33:28 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794270808;
- b=X62JKXccBPKCO/2OrG0uQdizUSvLCVlLEB/jbLakVyxKx5I+j/x/DjtukMuZKj5CjO7Yb
- 78I7JrshU9lh/u0+7AWUpmIrugUE7FvxTH5fZA63rmE/P9zzEo9/ENEBv0hZAsig3yvQUM6
- 4uQOFAET0TY9ywQuJ+fj8Llh3d+6fCAdushRLtV6UPf3kFrxQDUAti0K2D97lLLoEylhMLt
- q95YqYGWpP/YEM4JBkfEQnnVRt7m42NYm6i/htvZWlZ9utpxBSnpGfDSSRNwM941hWOmIlp
- o5VrKior1iAgVJFtyY9DVQfe3ou9EQkE5HPCFfa7xWP8ZCUepMh7h5f+elVA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794270808; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 5DC5B4918D;
+	Tue, 10 Nov 2026 00:35:25 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1794270925;
+ b=yLlWsoUBQ8B9CcNpWJwlptpX9S42av8fAd4PmfwaUL+6mnukeSmyoqH2wv4HXL4dGcsPp
+ UPuwxwEZto2gfx/0WQWL9sKZEs7pcbdC+zY5sDD1pLavIMHyNSCw9Ga3Ob1KDzAGynW7Xsb
+ H1aQmeGfnhy4ml5ApSaY8ZkqfBGEv1vkvDq7HuozlSRVFqOB9Ca6p+UVmhHE/Ckai3uc1x4
+ hicWbR1mX7dZdAJ61/RFRGxDlbrKctu72O6ih8AqnAQ6h2xvjpx98HD6oKL4ADF/QIMOEJj
+ dnHa7VwdukLrbUNYKK07aKroPYSVjMZxV0bPqGLaxEZa6OrqJHUUPQdyKAMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1794270925; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=fIHfnj++q/SlsevrSlgQl/5lS3DkgecVq4KF0bU+zN4=;
- b=RuguGnZlNto4Uqtz/CcXq6vVMR9AUia0OxTFYpyIZ6DfOKyB4S/fU8v8LV7qtZR41ynI4
- ufxUKaWCqIF4srNYqudf3A003eK+tlxYbvm8Gye/KASh4zPU0+QX4mvU799scOXqIM/3ojh
- dEuIU2qe3Q3RbmKv2ToA6h1BUYu0oGY6YOVoDcTNzVls7D3sdNi5WF6lf5sExnpA9RrvUlu
- b1dw+cUqLxwyCikWBfTfnSuJqPoW2t/9D5kSZbHeeEcD3yGAMG+zy0Sp4hFgnlOxCFuriks
- +0Wqo6BH/0a6gN7uzq08i9jmNx63fkhu6qyaCs+opeTzVmYv82/ytj2v6HDQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ bh=A19Ni/zmkIEyhl/2qLYVc+r9AINL52wA+SNspZjr3gA=;
+ b=dBHT6GVYCeL+m9sowUFiE0ghg9fe0cpsnoYD+zW6GdUWFXpLD7KIe1znlsj3tlcu0hMDi
+ tWqP54VgWfenD0aBM1VOc+dLZwu80LGr/R8WQhTWVW1LNPqO8xvmVgTNwk/UApwAmH7hsWL
+ fX6nf4ymRvao6cHtI2plnchMyOm4uxdi07qESb0KL6WBQMUpyPReJt7NQ1uJLrjQvJQ4Npb
+ a9OIjx9A/YPOcp+pZJlDciYAnRD/rL1fmZ1PCa7xHHwcuWJU54MSdmH+0YwsJcBbNlUq5LM
+ 97QcigRX73CKIVTDj82fdP1uR809HZXPw5PVFIfH1rs9JF51V8p1SLc+us4g==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A239F47662
-	for <nouveau@lists.freedesktop.org>; Tue, 10 Nov 2026 00:33:25 +0000 (UTC)
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com
- [209.85.222.181])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D43B010F5D9
-	for <nouveau@lists.freedesktop.org>; Tue, 10 Nov 2026 00:52:55 +0000 (UTC)
-Received: by mail-qk1-f181.google.com with SMTP id
- af79cd13be357-93cb9e9405fso78019085a.2
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6EA2A47662
+	for <nouveau@lists.freedesktop.org>; Tue, 10 Nov 2026 00:35:21 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8919010F5DA
+	for <nouveau@lists.freedesktop.org>; Tue, 10 Nov 2026 00:54:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1794272090;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=A19Ni/zmkIEyhl/2qLYVc+r9AINL52wA+SNspZjr3gA=;
+	b=X6eUXvI/Kz3o34CTut4t+LAmRgrKVN80nVjCJlFgEPUWTNVyOI5DwsCuYuyJWHTGOFjzBr
+	pfpKnt7ybgAKWRGhTqTBHoAzmKkVbsAiZUEnPrr260O0xqF/v0hZ05gUHV6QX3R3++ufzg
+	s76eVs4i3tn1x8hLgjnXW3JEoEf0I5k=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-539-4nCBh-aoOwued10DAshMWA-1; Mon, 09 Nov 2026 19:54:45 -0500
+X-MC-Unique: 4nCBh-aoOwued10DAshMWA-1
+X-Mimecast-MFC-AGG-ID: 4nCBh-aoOwued10DAshMWA_1794272084
+Received: by mail-qv1-f70.google.com with SMTP id
+ 6a1803df08f44-91e987a4099so32657736d6.1
         for <nouveau@lists.freedesktop.org>;
- Mon, 09 Nov 2026 16:52:55 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794271974; cv=none;
-        d=google.com; s=arc-20260327;
-        b=PnlQeakFPdPvfncAryqZjwPqiqjO8J01+L1/STWTj7ekmRPAAY+hZ0X962/ajqeUwW
-         vHs82p9WNXBrkW279mJxdMJfc+hZJU3v98nLmlT6q1H7InIT1dcuU8ZZS/wT+7UnC/8A
-         U6TBzivLIugFh7Oq4YjpRvS1fvzJZeAwgGXVQZlvo27A7tufA92G8yYJ+H+bwz/8N8YY
-         +uh6THIBbcL90SzF0IyHEzKMu06V1VkQIxioZrqhtejPSejrp8uTEfQohYUveWPPfez1
-         vYsOG55FfAe0EReiKCqGVszoeJMJjDZrxlz1cmY0mrMExZlh8/7Hk2H+DYKoTXyM7Pr4
-         rkfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=fIHfnj++q/SlsevrSlgQl/5lS3DkgecVq4KF0bU+zN4=;
-        fh=gWXFDn58njjNrktr6dsTmakQmB0pKiErntCX4Uhj3zQ=;
-        b=bYimK6ionOMQWnWN0XXm+HatTcEPdu56lFw2U036f+a/K/pGQ1pxYUmc9GemwKExSw
-         hDt2yVEtkI9Y2PNZi/slTg3VWxndeaUyjVRS384y+G6o8nR/bFGlvgePkfrWYHrD2QJO
-         NimPxqyKR/FgCzALddhhhhNifJjifTkjDjZbLC7nb0tGsrgzofgSbERdC7ok/0yMFN8e
-         VkOJGlYLpf5uo15AHeoVP02nny92jGu3SYuOAjV4BMkwzw0m9qs9IWJKiLVifxsPXwlW
-         5PR4GV499yIU2DAIBADb/Z6oaSe/YSSf673XFKB79U05kGPLcW/lbW6AyT61eTGDH2kI
-         qVaw==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794271974; x=1794876774;
- darn=lists.freedesktop.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=fIHfnj++q/SlsevrSlgQl/5lS3DkgecVq4KF0bU+zN4=;
-        b=y3wUuZx7VhTII2bH7UnzN3FL/soINeG6m3ie4RasDEfWHapDNbEe8iDzHmYQhrILJL
-         QaZ0+RA16sDnLMTjpGW+1zc1hIK3Ok+Iwi+QfIOPoEY4KDkAE3xDFaBUdfvSCQCHOwXi
-         4Br4/MzatfE0Wfx4e/9DTeShti22liQCLl0qxTbuC1woP4/6w+BDXSmhplcKwvWyh/S4
-         cbK6jIweiQWpyqgjXJMT9jitFhiX+JgvcMsxOQnnNRx6RodjSH7+fxc/qj0LNJomucG3
-         0krjuyAAkE/xBFoCZfIbBNPkW0aWPlGoQpa2jPo9Nd+n2MdPyDWrkTqKCCLYzH5CAjvu
-         yYTA==
+ Mon, 09 Nov 2026 16:54:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794271974; x=1794876774;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=fIHfnj++q/SlsevrSlgQl/5lS3DkgecVq4KF0bU+zN4=;
-        b=y7ep95I5oxGrtJwhAmDbkts4kxUTxwycq2R43dWfHL/SqmEwEXkC29V/0Xpv11saPv
-         ZL6zILb0J5cXlBvzKBHrebxl4VUQDJVZoD50n686ci5tM6maXqjQuSiK46D2Yud45for
-         GmLeX5RJjXkq9whInKKwwf8ASySEUvjiZw88+rQLXrqq3pRFi4y634e59vuUAltnBn0X
-         0M79ksX/2ExxX+KM0IebD7s24XMte72c+N6k6wDpLinVYbpD4C6TpLBrE4RI39ZxeH8/
-         yupxyZFP0Xx1S8yI7B6lkrIHzcwrkppaM1Hwqlhs37yxmvZta/xlkiJwtAQOaq/sHA/5
-         nYow==
+        d=1e100.net; s=20260707; t=1794272084; x=1794876884;
+        h=mime-version:user-agent:content-transfer-encoding:content-type
+         :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=A19Ni/zmkIEyhl/2qLYVc+r9AINL52wA+SNspZjr3gA=;
+        b=P0RDvgGItnuSCvTujD2ViZLxAdtvDZgbN3rquISF3ZhMoG/w5oErGbnvdX8Wzasw3H
+         NINKEruNscE10QpvfIub3U3Y/zaCVAke68BVRbB4th55OW0IZy4afr9fRvrP7LYInFof
+         cz+UVAXtEYjKoXJwVa6jB7B3yqfEya+y924pmQddcJWhKYp3ZgIThot5F+WW+JvHL7B4
+         8+dIlc6RC69F4DGEj/jkrEco+HA09S2KATxu4IgWqPiIsVb3nGzUfhAAW9jsiuCcf03q
+         hzSPqtFg4Spl4+jgZkYYdJT8XC2PioQFsl4bei2rT82YSI2ZXwjagKvOCkn+yQnJAgnz
+         e75g==
 X-Forwarded-Encrypted: i=1;
- AL+hErFcdKC6N6hi3E1P/N/ez17/Kszuogp8MXynkRmM/4sNceSHoxKT203WQ4scWV5T8vS4Ilt9F1pz@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z/dQR7iiuY/5Xr3LY28NpYp2IeyWCSMJuvPgXaolXZnzut7zyiU
-	ReX+1JIChs00yNdE1zN53awnNpuJFnbwXEnt2rtrqa5qp3eGp3fvAYv46jGNQfpbFQ2pQlO7dvV
-	T46J4b6As75F1q5xuVvjIa29z3YLIwFB1fSuc
-X-Gm-Gg: AYBFou33SFc2ZAGMenapMqQtpMShDWlXVnemb4Zex8V0twDcQUDcWaK4HeiKTvFodQO
-	hhvwGhqkFWsTUV8iat+Rs1PFwYfi0ZZvA80quyHGk64O/Snotu0KQLKYHyh2WNphgXRP74w+mM2
-	L8LNBnRpW5vzKNVuI1c9PX0KNVxyy9ib9OyQKna3N7F8rdwYch3TN5uLcl5jLdDUA5eaPnorwyY
-	6ZN+gnSTpmoklDTNfesInYI4yYIGnLSod8wKNu6tbkpJd5aLhgtX48G1JnqbmFhRXa592mv58yJ
-	RA0M7pWTslv4JvW8hp/pDygDdT3EGpzAMn6YXwtXK7qBQ0JAy3THPa76HWvXLtBDyca0aAccIfN
-	iyOBuHvh54HIoU/lbLY2CXJsx/Mss3O/7DyWzj+3okGdU/owG7Lco2/2At/bn64mYNXRfLRMXi0
-	f3/iJoSMirKADavg2l98ltPQ==
-X-Received: by 2002:a05:620a:4693:b0:93e:c12c:fbcd with SMTP id
- af79cd13be357-9479f35eedemr193057885a.73.1794271974270; Mon, 09 Nov 2026
- 16:52:54 -0800 (PST)
+ AL+hErGoGVismOLso3VnnL1VZ8dtj+LDNkp8ISn/SgiuWsd4ArdDTIjDN8cWRJaeSG8BB6f8dG3Ry0Ow@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z+D3myPHrxK5aovK6xUXzsAbwRonTKXlSKKvMMsNRaC8o+ZtHI3
+	+QWevL2arMrGqUP/U1J6PSw02JBz67kq7dHd++wmk4B6FKfXHJQoiGVk0xlNqJPqyRbHkJHwMtY
+	GFP1AwoQlpFJRZVyBapr1YFS8gY0+PIHX4jlrYdbSthzEK8hm9OCOiDFGMMNbwiWx4Kk=
+X-Gm-Gg: AYBFou0lhiOePOUDp4KHcMkoFv8/LniiihbIlQQc0/c51H/fNiKsbFPLHXWJal1p5Al
+	kyH8TMbh8Ye6maSQgwG+/UW6abi6OMhMAiEX5gFKcSA44e2Ikl3wfc+HoSyZohTN5YqWRNVY9Es
+	gUg5e7D+4wslDmNsECZ3qFk0hSq4bJNDDyP9fvh0VzubPS2GfHVfRaz4HQrvntl0UWduRWQ8f2J
+	nTKMCHQ6zM239Js7cUL9BtJzcVR/SL/Ideqd58WopOygGIiC5LjGbMO8CtVNehey/C34lw6wbzM
+	qlrJcGOjnPVPBRv9C6bKxccmCdyDxKA5DgJwdV679osGvCtgxr3XbH00rSdjpgAcLzmvqxzCYnB
+	qYF8Y4Dr71/7shjVueLFJ2fz1ys9eB0yaH+bURgyqAMpQ9nLf+0jwtwSPxPIBgkFDWZ4BAg/vp1
+	LRuJFrJEZqP7yS0g==
+X-Received: by 2002:a05:6214:54c8:b0:91e:97f2:6263 with SMTP id
+ 6a1803df08f44-91eef82c22cmr22672656d6.29.1794272084325;
+        Mon, 09 Nov 2026 16:54:44 -0800 (PST)
+X-Received: by 2002:a05:6214:54c8:b0:91e:97f2:6263 with SMTP id
+ 6a1803df08f44-91eef82c22cmr22672416d6.29.1794272083739;
+        Mon, 09 Nov 2026 16:54:43 -0800 (PST)
+Received: from [192.168.5.11] (pool-108-49-8-41.bstnma.east.verizon.net.
+ [108.49.8.41])
+        by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-91ef0501c1csm8604216d6.30.2026.11.09.16.54.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2026 16:54:42 -0800 (PST)
+Message-ID: <b89b83ee3de3ab113820ad94cf09be6b98ec3585.camel@redhat.com>
+Subject: Re: [REGRESSION] drm/nouveau: NULL pointer dereference in
+ drm_atomic_commit during GP107 initialization
+From: lyude@redhat.com
+To: Thorsten Leemhuis <regressions@leemhuis.info>, Eric Kim
+	 <seohyun.kim@outlook.kr>, "regressions@lists.linux.dev"
+	 <regressions@lists.linux.dev>
+Date: Mon, 09 Nov 2026 19:54:40 -0500
+In-Reply-To: <b89c176a-922e-4628-b549-a6d4b7520ec7@leemhuis.info>
+References: 
+ <OS7PR01MB1391484D564CF93DFBB4C1DCE966A2@OS7PR01MB13914.jpnprd01.prod.outlook.com>
+	 <b89c176a-922e-4628-b549-a6d4b7520ec7@leemhuis.info>
+User-Agent: Evolution 3.58.3 (3.58.3-2.fc43)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <629c8bdedca971d38b08ffd32acec1a804ff7d7d.camel.ref@aol.com>
- <629c8bdedca971d38b08ffd32acec1a804ff7d7d.camel@aol.com>
-In-Reply-To: <629c8bdedca971d38b08ffd32acec1a804ff7d7d.camel@aol.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Tue, 10 Nov 2026 10:52:42 +1000
-X-Gm-Features: AclHuK8Ki-kawuemorAfz7rrtZVSws_7w7m2uRxFuzWM_1_yfCTSwNT-D28Rts4
-Message-ID: 
- <CAPM=9tzS3qS=Xn1y+6fveWJxayOsBei9AuygLJV=dw3_H4QY=A@mail.gmail.com>
-Subject: Re: [REGRESSION] nouveau oops on 7.4-rc2
-To: Ruben Wauters <rubenru09@aol.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: cjCAwhL8rBoczx0hPxpYKUrdTFYJZnVYsTIP9xrehfU_1794272084
+X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
-Message-ID-Hash: XJEARZI6ADBU33MSALFDJBQNFLUAZ36A
-X-Message-ID-Hash: XJEARZI6ADBU33MSALFDJBQNFLUAZ36A
-X-MailFrom: airlied@gmail.com
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: MIOMH4UGIC4OH7VTIGJIM44YVL34P57N
+X-Message-ID-Hash: MIOMH4UGIC4OH7VTIGJIM44YVL34P57N
+X-MailFrom: lyude@redhat.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: dakr@kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+ loop; banned-address
+CC: dakr@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ simona@ffwll.ch, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XJEARZI6ADBU33MSALFDJBQNFLUAZ36A/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MIOMH4UGIC4OH7VTIGJIM44YVL34P57N/>
 Archived-At: 
- <https://lore.freedesktop.org/CAPM=9tzS3qS=Xn1y+6fveWJxayOsBei9AuygLJV=dw3_H4QY=A@mail.gmail.com/>
+ <https://lore.freedesktop.org/b89b83ee3de3ab113820ad94cf09be6b98ec3585.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -150,167 +148,157 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-0.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 10 Nov 2026 at 07:06, Ruben Wauters <rubenru09@aol.com> wrote:
->
-> Since 7.4, I have been encountering the following oops when booting my
-> computer. The issue is present in rc1 and rc2, 7.3 boots fine.
-> The kernel booted fine and passed to init, which then tried to start
-> gdm, gdm did not launch, leading me to dig and encounter the following
-> oops in the journal.
->
-> It is worth noting that my laptop, where I encountered this oops, has
-> two gpus in a hybrid system, one intel integrated, and one nvidia.
+Hi - I'm back! Sorry about this, I've been busy moving and only just
+got my machine setup. I will take a look at this tomorrow
 
-Can you boot with drm.debug=0x10 and attach the complete dmesg?
+On Mon, 2026-11-09 at 08:45 +0100, Thorsten Leemhuis wrote:
+> On 11/2/26 13:47, Eric Kim wrote:
+> >=20
+> > On my laptop, which has GP107 GPU with intel graphics and uses
+> > nouveau
+> > driver, booting kernels after commit
+> > 2652aca460dcfdd0d169bbfa358aa15804dc736b causes NULL pointer
+> > dereference
+> > at initialization.
+>=20
+> Thx for your report. Hmm, no reply yet afaics. Wondering if it would
+> have been better to report it at the dedicated place for nouveau
+> kernel
+> bugs: https://gitlab.freedesktop.org/drm/nouveau/-/work_items/
+>=20
+> You thus might want to at least check if any similar reports are
+> found
+> there.
+>=20
+> Would also be good to know if reverting 2652aca460dc ontop of latest
+> mainline fixes this.
+>=20
+> Ciao, Thorsten
+> > [=C2=A0=C2=A0 17.556328] [drm] Initialized nouveau 1.4.3 for 0000:01:00=
+.0 on
+> > minor 0
+> > [=C2=A0=C2=A0 17.556364] nouveau 0000:01:00.0: [drm] No compatible form=
+at
+> > found
+> > [=C2=A0=C2=A0 17.556792] nouveau 0000:01:00.0: [drm] Cannot find any cr=
+tc or
+> > sizes
+> > [=C2=A0=C2=A0 17.557237] BUG: kernel NULL pointer dereference, address:
+> > 0000000000000000
+> > [=C2=A0=C2=A0 17.583880] #PF: supervisor instruction fetch in kernel mo=
+de
+> > [=C2=A0=C2=A0 17.598078] #PF: error_code(0x0010) - not-present page
+> > [=C2=A0=C2=A0 17.601475] PGD 0 P4D 0 [=C2=A0=C2=A0 17.608839] Oops: Oop=
+s: 0010 [#1] SMP
+> > PTI
+> > [=C2=A0=C2=A0 17.608914] CPU: 6 UID: 0 PID: 1443 Comm: modprobe Not tai=
+nted
+> > 7.3.0+
+> > #1 PREEMPT(lazy) [=C2=A0=C2=A0 17.608954] Hardware name: SAMSUNG ELECTR=
+ONICS
+> > CO.,
+> > LTD. 800G5M/800G5W/NT800G5M-X78W, BIOS P11RDV.075.170829.XJ
+> > 08/29/2017
+> > [=C2=A0=C2=A0 17.608990] RIP: 0010:0x0
+> > [=C2=A0=C2=A0 17.609090] Code: Unable to access opcode bytes at
+> > 0xffffffffffffffd6.
+> > [=C2=A0=C2=A0 17.610081] RSP: 0018:ffffca4d86537828 EFLAGS: 00010246
+> > [=C2=A0=C2=A0 17.610135] RAX: 0000000000000000 RBX: ffff89b74dcf1180 RC=
+X:
+> > ffffffffa97d8091
+> > [=C2=A0=C2=A0 17.610172] RDX: 0000000000000000 RSI: ffff89b74dcf1180 RD=
+I:
+> > ffff89b74c466800
+> > [=C2=A0=C2=A0 17.610207] RBP: ffff89b74c466800 R08: ffff89b74dcf1180 R0=
+9:
+> > 0000000000000000
+> > [=C2=A0=C2=A0 17.610245] R10: 0000000000000010 R11: ffffffffa9b65410 R1=
+2:
+> > ffff89b74c466800
+> > [=C2=A0=C2=A0 17.610283] R13: 0000000000000001 R14: ffff89b74c466800 R1=
+5:
+> > ffff89b77f1a2400
+> > [=C2=A0=C2=A0 17.610320] FS:=C2=A0 00007fc4a888d780(0000)
+> > GS:ffff89bac4364000(0000)
+> > knlGS:0000000000000000
+> > [=C2=A0=C2=A0 17.610357] CS:=C2=A0 0010 DS: 0000 ES: 0000 CR0: 00000000=
+80050033
+> > [=C2=A0=C2=A0 17.610414] CR2: ffffffffffffffd6 CR3: 0000000144b20004 CR=
+4:
+> > 00000000003726f0
+> > [=C2=A0=C2=A0 17.610448] Call Trace:
+> > [=C2=A0=C2=A0 17.610483]=C2=A0 <TASK>
+> > [=C2=A0=C2=A0 17.610521]=C2=A0 drm_atomic_commit+0xb1/0xe0
+> > [=C2=A0=C2=A0 17.610558]=C2=A0 ? __pfx___drm_printfn_info+0x10/0x10
+> > [=C2=A0=C2=A0 17.610590]=C2=A0 drm_client_modeset_commit_atomic+0x25c/0=
+x2d0
+> > [=C2=A0=C2=A0 17.610618]=C2=A0 drm_client_modeset_commit_locked+0x5a/0x=
+170
+> > [=C2=A0=C2=A0 17.610647]=C2=A0 ? drm_master_internal_acquire+0x1d/0x40
+> > [=C2=A0=C2=A0 17.610675]=C2=A0 drm_client_modeset_commit+0x25/0x40
+> > [=C2=A0=C2=A0 17.610700]=C2=A0 drm_fb_helper_single_fb_probe+0x1aa/0x1c=
+0
+> > [=C2=A0=C2=A0 17.610729]=C2=A0
+> > __drm_fb_helper_initial_config_and_unlock+0xa8/0x1b0
+> > [=C2=A0=C2=A0 17.610754]=C2=A0 drm_fbdev_client_hotplug+0x79/0xb0
+> > [=C2=A0=C2=A0 17.610782]=C2=A0 ? drm_client_init+0x13e/0x180
+> > [=C2=A0=C2=A0 17.610811]=C2=A0 drm_client_register+0x79/0xc0
+> > [=C2=A0=C2=A0 17.610839]=C2=A0 drm_fbdev_client_setup+0xc9/0x1c0
+> > [=C2=A0=C2=A0 17.610867]=C2=A0 drm_client_setup+0x6a/0x90
+> > [=C2=A0=C2=A0 17.610893]=C2=A0 nouveau_drm_probe+0x15b/0x1e0 [nouveau]
+> > [=C2=A0=C2=A0 17.610922]=C2=A0 local_pci_probe+0x4a/0x90
+> > [=C2=A0=C2=A0 17.610951]=C2=A0 ? cpu_hotplug_disable+0x15/0x30
+> > [=C2=A0=C2=A0 17.610977]=C2=A0 pci_call_probe+0x5a/0x1a0
+> > [=C2=A0=C2=A0 17.611009]=C2=A0 pci_device_probe+0xdb/0x180
+> > [=C2=A0=C2=A0 17.611060]=C2=A0 call_driver_probe+0x23/0x100
+> > [=C2=A0=C2=A0 17.611104]=C2=A0 ? driver_sysfs_add+0x55/0xc0
+> > [=C2=A0=C2=A0 17.611137]=C2=A0 really_probe+0xd7/0x2d0
+> > [=C2=A0=C2=A0 17.611171]=C2=A0 ? __pm_runtime_resume+0x50/0x60
+> > [=C2=A0=C2=A0 17.611220]=C2=A0 __driver_probe_device+0x9c/0x1b0
+> > [=C2=A0=C2=A0 17.611261]=C2=A0 driver_probe_device+0x1f/0x80
+> > [=C2=A0=C2=A0 17.611297]=C2=A0 ? __pfx___driver_attach+0x10/0x10
+> > [=C2=A0=C2=A0 17.611335]=C2=A0 __driver_attach+0xcc/0x200
+> > [=C2=A0=C2=A0 17.611373]=C2=A0 ? __pfx___driver_attach+0x10/0x10
+> > [=C2=A0=C2=A0 17.611409]=C2=A0 bus_for_each_dev+0x97/0x100
+> > [=C2=A0=C2=A0 17.611451]=C2=A0 bus_add_driver+0x1d0/0x280
+> > [=C2=A0=C2=A0 17.611493]=C2=A0 ? __pfx_init_module+0x10/0x10 [nouveau]
+> > [=C2=A0=C2=A0 17.611530]=C2=A0 ? __pfx_init_module+0x10/0x10 [nouveau]
+> > [=C2=A0=C2=A0 17.611567]=C2=A0 driver_register+0x75/0xe0
+> > [=C2=A0=C2=A0 17.611602]=C2=A0 nouveau_drm_init+0x60/0xff0 [nouveau]
+> > [=C2=A0=C2=A0 17.611633]=C2=A0 do_one_initcall+0x89/0x3d0
+> > [=C2=A0=C2=A0 17.611667]=C2=A0 do_init_module+0x8e/0x290
+> > [=C2=A0=C2=A0 17.611703]=C2=A0 init_module_from_file+0xc8/0x180
+> > [=C2=A0=C2=A0 17.611736]=C2=A0 idempotent_init_module+0x23e/0x360
+> > [=C2=A0=C2=A0 17.611773]=C2=A0 __x64_sys_finit_module+0x7f/0x110
+> > [=C2=A0=C2=A0 17.611805]=C2=A0 do_syscall_64+0xbe/0x470
+> > [=C2=A0=C2=A0 17.611844]=C2=A0 ? do_syscall_64+0x37/0x470
+> > [=C2=A0=C2=A0 17.611883]=C2=A0 entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> >=20
+> > It boots without this problem when booting with nouveau.atomic=3D0
+> > kernel parameter.
+> >=20
+> > My guess is that atomic_(commit|check) operation is not present in
+> > nouveau_mode_config_funcs, and commit
+> > 2652aca460dcfdd0d169bbfa358aa15804dc736b enabled
+> > atomic modesetting by default for NV50+ gpus caused
+> > the problem.
+> >=20
+> > Also, drm_helper_(commit|check) was added to
+> > nouveau_mode_config_funcs
+> > at commit 604826acb3f53c6648a7ee99a3914ead680ab7fb, but it was
+> > reverted at commit 6c65db809796717f0a96cf22f80405dbc1a31a4b due to
+> > unreliability.
+> >=20
+> > I hope this problem can be fixed at one of the next releases.
+> >=20
+> > Thanks,
+> > Eric Kim
+> >=20
+> > #regzbot introduced: 2652aca460dc
 
-I've booted a Fedora 44 GP107 laptop this morning with a intel/nvidia
-combo on 7.4-rc2 and not seeing anything, so we will need more info.
-
-Also:
-https://gitlab.freedesktop.org/drm/nouveau/-/work_items?sort=cr
-
-might be an easier place to keep track of things.
-
-Dave.
-
->
-> It looks to me like something return an -ENOPROTOOPT (likely due to the
-> hybrid GPU situation) and then another func tried to deference this
-> without checking for errors.
->
-> Some quick digging shows that it could potentially be related to atomic
-> mode setting being enabled in 7.4, whereas it wasn't before.
->
-> I tried to take a look myself at a patch, but unfortunately I got a bit
-> lost in nouveau, sorry for not being able to fix it, I hope you're able
-> to. If you need any further information, please don't hesitate to
-> contact me.
->
-> Ruben Wauters
->
-> Oops: Oops: 0010 [#1] SMP NOPTI
-> CPU: 6 UID: 0 PID: 464 Comm: (udev-worker) Not tainted 7.4.0-rc2 #1
-> PREEMPT(lazy)
-> Hardware name: ASUSTeK COMPUTER INC. Vivobook_ASUSLaptop
-> X3500PCB_K3500PC/X3500PCB, BIOS X3500PCB.305 10/13/2023
-> RIP: 0010:0x0
-> Code: Unable to access opcode bytes at 0xffffffffffffffd6.
-> RSP: 0018:ffffce1000a37668 EFLAGS: 00010246
-> RAX: 0000000000000000 RBX: ffff8dff8a97d300 RCX: ffffffffaff4b406
-> RDX: 0000000000000000 RSI: ffff8dff8a97d300 RDI: ffff8dff86b91000
-> RBP: ffff8dff86b91000 R08: ffff8dff8a97d300 R09: 0000000000000000
-> R10: 0000000000000010 R11: 0000000000000000 R12: ffff8dff86b91000
-> R13: 0000000000000001 R14: ffff8dff86b91000 R15: ffff8dff8299fa00
-> FS:  00007f9bcede9880(0000) GS:ffff8e0349bd8000(0000)
-> knlGS:0000000000000000
-> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> CR2: ffffffffffffffd6 CR3: 0000000104854004 CR4: 0000000000f72ef0
-> PKRU: 55555554
-> Call Trace:
->  <TASK>
->  drm_atomic_commit+0xb1/0xe0
->  ? __pfx___drm_printfn_info+0x10/0x10
->  drm_client_modeset_commit_atomic+0x25c/0x2d0
->  drm_client_modeset_commit_locked+0x61/0x180
->  ? drm_master_internal_acquire+0x1d/0x40
->  drm_client_modeset_commit+0x25/0x40
->  drm_fb_helper_single_fb_probe+0x1aa/0x1c0 [drm_client_lib]
->  __drm_fb_helper_initial_config_and_unlock+0xa8/0x1b0 [drm_client_lib]
->  drm_fbdev_client_hotplug+0x79/0xb0 [drm_client_lib]
->  ? drm_client_init+0x116/0x150
->  drm_client_register+0x79/0xc0
->  drm_fbdev_client_setup+0xc9/0x1e0 [drm_client_lib]
->  drm_client_setup+0x6a/0x90 [drm_client_lib]
->  nouveau_drm_probe+0x15b/0x1e0 [nouveau]
->  local_pci_probe+0x4a/0x90
->  ? cpu_hotplug_disable+0x15/0x30
->  pci_call_probe+0x5a/0x1a0
->  pci_device_probe+0xdb/0x180
->  call_driver_probe+0x23/0x100
->  ? driver_sysfs_add+0x55/0xc0
->  really_probe+0xd7/0x2d0
->  ? __pm_runtime_resume+0x50/0x60
->  __driver_probe_device+0x9c/0x1b0
->  driver_probe_device+0x1f/0x80
->  ? __pfx___driver_attach+0x10/0x10
->  __driver_attach+0xcc/0x200
->  bus_for_each_dev+0x9c/0x100
->  ? bus_add_driver+0x84/0x280
->  bus_add_driver+0x1d0/0x280
->  ? __pfx_init_module+0x10/0x10 [nouveau]
->  ? __pfx_init_module+0x10/0x10 [nouveau]
->  driver_register+0x75/0xe0
->  nouveau_drm_init+0x60/0xff0 [nouveau]
->  do_one_initcall+0x89/0x340
->  do_init_module+0x8e/0x2b0
->  init_module_from_file+0xfe/0x170
->  idempotent_init_module+0x23e/0x360
->  __x64_sys_finit_module+0x7f/0x110
->  do_syscall_64+0xc2/0x4d0
->  ? switch_fpu_return+0x5e/0xf0
->  ? ksys_pread64+0x61/0xd0
->  ? arch_exit_to_user_mode_prepare.isra.0+0x84/0xa0
->  ? do_syscall_64+0xff/0x4d0
->  ? do_sys_openat2+0x75/0xe0
->  ? switch_fpu_return+0x5e/0xf0
->  ? arch_exit_to_user_mode_prepare.isra.0+0x84/0xa0
->  ? do_syscall_64+0xff/0x4d0
->  ? do_syscall_64+0xff/0x4d0
->  ? clear_bhb_loop+0x60/0xb0
->  ? do_syscall_64+0x37/0x4d0
->  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-> RIP: 0033:0x7f9bce71f95d
-> Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89
-> f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01
-> f0 ff ff 73 01 c3 48 8b 0d 6b 64 0d 00 f7 d8 64 89 01 48
-> RSP: 002b:00007ffdb99bcab8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
-> RAX: ffffffffffffffda RBX: 0000564b33e33130 RCX: 00007f9bce71f95d
-> RDX: 0000000000000000 RSI: 00007f9bced703af RDI: 000000000000004a
-> RBP: 0000000000000000 R08: 0000000000000000 R09: 0000564b33e30d90
-> R10: 0000000000000000 R11: 0000000000000246 R12: 00007f9bced703af
-> R13: 0000000000020000 R14: 0000564b33e2dd30 R15: 0000000000000000
->  </TASK>
-> Modules linked in: drm_gpusvm_helper drm_suballoc_helper snd_hda_intel
-> snd_sof_pci_intel_tgl snd_sof_pci_intel_cnl snd_sof_intel_hda_generic
-> soundwire_intel snd_sof_intel_hda_sdw_bpt snd_sof_intel_hda_common
-> snd_soc_hdac_hda snd_sof_intel_hda_mlink snd_sof_intel_hda
-> soundwire_cadence snd_sof_pci snd_sof_xtensa_dsp snd_sof snd_sof_utils
-> snd_soc_acpi_intel_match vfat snd_soc_acpi_intel_sdca_quirks fat
-> nouveau(+) soundwire_generic_allocation snd_soc_sdw_utils snd_soc_acpi
-> crc8 i915 soundwire_bus snd_soc_sdca intel_rapl_msr
-> intel_uncore_frequency intel_uncore_frequency_common snd_soc_avs
-> intel_tcc_cooling x86_pkg_temp_thermal intel_powerclamp coretemp
-> snd_soc_hda_codec mt7921e snd_hda_ext_core mt7921_common snd_hda_codec
-> kvm_intel mt792x_lib snd_hda_core mt76_connac_lib mt76 snd_intel_dspcfg
-> snd_intel_sdw_acpi snd_hwdep snd_ctl_led kvm snd_soc_core asus_nb_wmi
-> mac80211 snd_compress ac97_bus btusb asus_armoury snd_pcm_dmaengine
-> btmtk irqbypass uvcvideo spi_nor snd_pcm drm_gpuvm btrtl rapl mxm_wmi
-> btbcm
->  intel_cstate mtd uvc drm_ttm_helper firmware_attributes_class iTCO_wdt
-> drm_buddy btintel videobuf2_vmalloc intel_pmc_bxt
-> processor_thermal_device_pci_legacy ttm snd_timer mei_pxp >
->  fsdev_dax ucsi_acpi typec_ucsi typec hid_multitouch i2c_hid_acpi
-> i2c_hid video wmi thunderbolt pinctrl_tigerlake intel_oc_wdt vmd
-> serio_raw rtsx_usb_sdmmc mmc_core rtsx_usb
-> CR2: 0000000000000000
-> ---[ end trace 0000000000000000 ]---
-> RIP: 0010:0x0
-> Code: Unable to access opcode bytes at 0xffffffffffffffd6.
-> RSP: 0018:ffffce1000a37668 EFLAGS: 00010246
-> RAX: 0000000000000000 RBX: ffff8dff8a97d300 RCX: ffffffffaff4b406
-> RDX: 0000000000000000 RSI: ffff8dff8a97d300 RDI: ffff8dff86b91000
-> RBP: ffff8dff86b91000 R08: ffff8dff8a97d300 R09: 0000000000000000
-> R10: 0000000000000010 R11: 0000000000000000 R12: ffff8dff86b91000
-> R13: 0000000000000001 R14: ffff8dff86b91000 R15: ffff8dff8299fa00
-> FS:  00007f9bcede9880(0000) GS:ffff8e0349bd8000(0000)
-> knlGS:0000000000000000
-> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> CR2: ffffffffffffffd6 CR3: 0000000104854004 CR4: 0000000000f72ef0
-> PKRU: 55555554
