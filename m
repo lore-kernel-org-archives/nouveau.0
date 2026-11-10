@@ -2,127 +2,147 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94132606A321
-	for <nouveau@archiver.kernel.org>; Mon,  9 Nov 2026 21:43:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 951B6606A325
+	for <nouveau@archiver.kernel.org>; Tue, 10 Nov 2026 00:53:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=H+3g/JLl
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=y3wUuZx7
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7887510E8F7;
-	Mon,  9 Nov 2026 21:43:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 26C9F10F5EC;
+	Tue, 10 Nov 2026 00:53:04 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 676EB49184;
-	Mon,  9 Nov 2026 21:23:41 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794259421;
- b=K/Ne7YryQTqsEzlOpbeAs3alcXda45FWJGknbFVImUMCcKdF6T0hEoJVFXKSw06nhU5vK
- /yJwFrUha8/ypQPyx0q2QFH/pUOxMDem4DonLKRgvFCqZUltaft23bptJJAb3A65cqhgKR5
- GxIQLU/oszr/j3ZI7tllkoarGwPWj63GdxiaRt63sNZLzh/8/+GdQcm7uUtabTrtQI8AjpW
- oGjZ+8zSvkKjSF9QJsWWRP+UwmhMiEqGrZ0Vnn3K8dchJTT0f3TnPCS83sdC3UJ5E4jq6vo
- aTZYdandJ0HsZTSaz0qs6aUk0qmcymFr3rAAr2wvfmo8Isy+hg/jnb8q7zEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794259421; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id A2ED74918A;
+	Tue, 10 Nov 2026 00:33:28 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1794270808;
+ b=X62JKXccBPKCO/2OrG0uQdizUSvLCVlLEB/jbLakVyxKx5I+j/x/DjtukMuZKj5CjO7Yb
+ 78I7JrshU9lh/u0+7AWUpmIrugUE7FvxTH5fZA63rmE/P9zzEo9/ENEBv0hZAsig3yvQUM6
+ 4uQOFAET0TY9ywQuJ+fj8Llh3d+6fCAdushRLtV6UPf3kFrxQDUAti0K2D97lLLoEylhMLt
+ q95YqYGWpP/YEM4JBkfEQnnVRt7m42NYm6i/htvZWlZ9utpxBSnpGfDSSRNwM941hWOmIlp
+ o5VrKior1iAgVJFtyY9DVQfe3ou9EQkE5HPCFfa7xWP8ZCUepMh7h5f+elVA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1794270808; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=7/Tf8BQkHl6UVzxzkfSyq7osHN9OzzgsIStTSdb69F8=;
- b=QPCKYNuJx8CubTnRmgXk/ihZcCJWhw9Vp6yZ6KKAXjBYqGCHp5c6PZfPjJTyxBlZEXlYe
- x8vI6JDFKPMMdyxocECBqeY95uFNTKn46Ze5VAupwBJTggziEXdUIXbXmD5RAudjW5NOC2o
- /HDf8j3biuVq5T0F86gNTVZ/LWdVkuUWah9l46bxzta3yxhLmn0Pn9fKRW3MdQvXQ/gxPm4
- NRCtzBz8fpiH0qDeQfKZVEz272cpE+x/C7dW5deL+jG0v4cjKcm2+UHz4wteI/z9UXmp6uN
- nQDi/cM9/9RC4R/GVASDasYumEj2H3tvhU+QqzQzn6dBWn2onZBKl5Hs2yDQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ bh=fIHfnj++q/SlsevrSlgQl/5lS3DkgecVq4KF0bU+zN4=;
+ b=RuguGnZlNto4Uqtz/CcXq6vVMR9AUia0OxTFYpyIZ6DfOKyB4S/fU8v8LV7qtZR41ynI4
+ ufxUKaWCqIF4srNYqudf3A003eK+tlxYbvm8Gye/KASh4zPU0+QX4mvU799scOXqIM/3ojh
+ dEuIU2qe3Q3RbmKv2ToA6h1BUYu0oGY6YOVoDcTNzVls7D3sdNi5WF6lf5sExnpA9RrvUlu
+ b1dw+cUqLxwyCikWBfTfnSuJqPoW2t/9D5kSZbHeeEcD3yGAMG+zy0Sp4hFgnlOxCFuriks
+ +0Wqo6BH/0a6gN7uzq08i9jmNx63fkhu6qyaCs+opeTzVmYv82/ytj2v6HDQ==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
-  arc=none (Message is not ARC signed);
+  arc=pass;
   dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 7D0B147584
-	for <nouveau@lists.freedesktop.org>; Mon,  9 Nov 2026 07:21:37 +0000 (UTC)
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
- [209.85.221.53])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 229F710F05A
-	for <nouveau@lists.freedesktop.org>; Mon,  9 Nov 2026 07:41:06 +0000 (UTC)
-Received: by mail-wr1-f53.google.com with SMTP id
- ffacd0b85a97d-48dee593f18so261832f8f.3
+	by kara.freedesktop.org (Postfix) with ESMTPS id A239F47662
+	for <nouveau@lists.freedesktop.org>; Tue, 10 Nov 2026 00:33:25 +0000 (UTC)
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com
+ [209.85.222.181])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D43B010F5D9
+	for <nouveau@lists.freedesktop.org>; Tue, 10 Nov 2026 00:52:55 +0000 (UTC)
+Received: by mail-qk1-f181.google.com with SMTP id
+ af79cd13be357-93cb9e9405fso78019085a.2
         for <nouveau@lists.freedesktop.org>;
- Sun, 08 Nov 2026 23:41:06 -0800 (PST)
+ Mon, 09 Nov 2026 16:52:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794271974; cv=none;
+        d=google.com; s=arc-20260327;
+        b=PnlQeakFPdPvfncAryqZjwPqiqjO8J01+L1/STWTj7ekmRPAAY+hZ0X962/ajqeUwW
+         vHs82p9WNXBrkW279mJxdMJfc+hZJU3v98nLmlT6q1H7InIT1dcuU8ZZS/wT+7UnC/8A
+         U6TBzivLIugFh7Oq4YjpRvS1fvzJZeAwgGXVQZlvo27A7tufA92G8yYJ+H+bwz/8N8YY
+         +uh6THIBbcL90SzF0IyHEzKMu06V1VkQIxioZrqhtejPSejrp8uTEfQohYUveWPPfez1
+         vYsOG55FfAe0EReiKCqGVszoeJMJjDZrxlz1cmY0mrMExZlh8/7Hk2H+DYKoTXyM7Pr4
+         rkfg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=fIHfnj++q/SlsevrSlgQl/5lS3DkgecVq4KF0bU+zN4=;
+        fh=gWXFDn58njjNrktr6dsTmakQmB0pKiErntCX4Uhj3zQ=;
+        b=bYimK6ionOMQWnWN0XXm+HatTcEPdu56lFw2U036f+a/K/pGQ1pxYUmc9GemwKExSw
+         hDt2yVEtkI9Y2PNZi/slTg3VWxndeaUyjVRS384y+G6o8nR/bFGlvgePkfrWYHrD2QJO
+         NimPxqyKR/FgCzALddhhhhNifJjifTkjDjZbLC7nb0tGsrgzofgSbERdC7ok/0yMFN8e
+         VkOJGlYLpf5uo15AHeoVP02nny92jGu3SYuOAjV4BMkwzw0m9qs9IWJKiLVifxsPXwlW
+         5PR4GV499yIU2DAIBADb/Z6oaSe/YSSf673XFKB79U05kGPLcW/lbW6AyT61eTGDH2kI
+         qVaw==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794210064; x=1794814864;
+        d=gmail.com; s=20260707; t=1794271974; x=1794876774;
  darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=7/Tf8BQkHl6UVzxzkfSyq7osHN9OzzgsIStTSdb69F8=;
-        b=H+3g/JLlqpgiKafL0/6mlvOQKkvvfKo2i28QGNb8DWSxq20OECYdZ/pCHJKXeL6HuW
-         8sp16x5q2JEsu6t/FFPNr0X9wUJeIkgCyB7JDD/VES8RIhVSbhfpbWxeV1LZ8XxTbAAJ
-         +5CpLGIHRQ612YvncLOCdrLO1s1/QeSSivy/h/Z1n8F0LkGF58xZlCTlVzHZY2hlJPjg
-         9ZJdoka43wkVfi8qnsdiVie05kFqLlikn3iIxYLc56J2ROhAp0X4MAGGwT2docxcnMWX
-         b5TWuS/sUJ2BC76HwefMQ3I08N8J4Ckpact714w04qqNxoY5Lm2YPTw9GVyfKSJ8Dmc0
-         X1XQ==
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=fIHfnj++q/SlsevrSlgQl/5lS3DkgecVq4KF0bU+zN4=;
+        b=y3wUuZx7VhTII2bH7UnzN3FL/soINeG6m3ie4RasDEfWHapDNbEe8iDzHmYQhrILJL
+         QaZ0+RA16sDnLMTjpGW+1zc1hIK3Ok+Iwi+QfIOPoEY4KDkAE3xDFaBUdfvSCQCHOwXi
+         4Br4/MzatfE0Wfx4e/9DTeShti22liQCLl0qxTbuC1woP4/6w+BDXSmhplcKwvWyh/S4
+         cbK6jIweiQWpyqgjXJMT9jitFhiX+JgvcMsxOQnnNRx6RodjSH7+fxc/qj0LNJomucG3
+         0krjuyAAkE/xBFoCZfIbBNPkW0aWPlGoQpa2jPo9Nd+n2MdPyDWrkTqKCCLYzH5CAjvu
+         yYTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794210064; x=1794814864;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=7/Tf8BQkHl6UVzxzkfSyq7osHN9OzzgsIStTSdb69F8=;
-        b=DcgutoT/KOKAvMUFfD6FKcR3gGvNEHrPkdXnRFO/BvhCLpnQF4W/CzIbMGhX6yZo2o
-         7Qh7AU8OxgwhQSVG662OwSrehSbsbcW+KowqvTqWl+kDplmpheUzmKi907vm863GDXyU
-         nozIpYu7Rt/seTu4NdoZYlZk5ksLgJwFWeU79yIfSL6Y4E3paouh5P1GHEcQewBfrg9M
-         llFwrH3/tiFIsboscS8jArxSVpz0KHEp0+nIne0QsqUiKyG53Ry/PZyu3Hs7xH8TRNrc
-         bh6bnkqmr0GRiAxTOtqYMIptagyzAG/E/aECeZkaYN5rA7Z/8FRD8MMjGTSxuGu8gQHZ
-         aPZA==
-X-Gm-Message-State: APuU4Z9VPCfVd9R1mxD+0iS4/acVe4tqRl5prWR6bAlTsv3Bx+lJWj4n
-	pkNnkykS4KiH85AGhfMREo6OzvCx4PhkaRMTzNnJaKRB3B6bMQ4nkCmgOe2epYNm
-X-Gm-Gg: AYBFou3mGb/abc3EdqeX/orQ1OVvI3e/hAGAmQpxatJQ//KWz51HNvkgyp9WyamTFUU
-	40QJkERQ3PmDtH1ogKh18jYFN7DhTGA7RNdqQJpiUptcysQhWk9nhhbEzsogrq3gtXjGSrE6iad
-	iHk90Z4yNC9e5cgtVB+NvorOaDyICRHC0UhQilf2oEumKDPVHUYNZklpomc8ogS53iruu7Kb8Dz
-	dhr+6CcBkaEbKbW8PnRSmOzOg7Qk8tKwyTIIYJymWOfx2lXUMPeRQFLH4pvDiKXU8q6bRU1eYWX
-	YTOBQb9hcJj61qLlFR3aUlcM5oEJc8l+h0wYIbsCh99e0vTUC+Ri1U3iV5yQ5JgNmlCM8Mso5sK
-	maadSJeiQTpGyhKCkvSbvyZ8MK3ubZa5eHFRLrjZ4P7tSuSBbEZ3qZYCeKRuxoFbuCIs9qHo7xg
-	mkr9TeYcwVIgWZ6BxdIOwpuM2I+P9Z9cMK6HF1SFANwXfGTcVjyphjenJ9bdHEJ+//E40LI7pqZ
-	g2Gof9Me+iTXTGlC23OcrcPZQW0IdtPz2crLzMygW/q9L3I+nEkZ3XXNJgPLxPs8msY0M1slhbh
-	8sIRol3/yOZpzbw1ZKnmH2Xe2Az5DmerI19o5ZNmcF91+GA5Q+WStZrteTbDj9QK8lxaVpP1qbQ
-	ZuzKE9KpY
-X-Received: by 2002:a05:6000:22c1:b0:48c:7387:6b88 with SMTP id
- ffacd0b85a97d-4958b5374bamr7080666f8f.37.1794210064251;
-        Sun, 08 Nov 2026 23:41:04 -0800 (PST)
-Received: from nest.tail012287.ts.net ([176.40.105.129])
-        by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-49597652ca7sm8898526f8f.39.2026.11.08.23.41.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Nov 2026 23:41:03 -0800 (PST)
-From: Yazdan Ghalavand <yazdanghalavand@gmail.com>
-To: nouveau@lists.freedesktop.org
-Subject: [PATCH] drm/nouveau/bios/vmap: only read max2 if the header contains
- it
-Date: Mon,  9 Nov 2026 10:41:02 +0300
-Message-ID: <20261109074102.11997-1-yazdanghalavand@gmail.com>
-X-Mailer: git-send-email 2.56.0
+        d=1e100.net; s=20260707; t=1794271974; x=1794876774;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=fIHfnj++q/SlsevrSlgQl/5lS3DkgecVq4KF0bU+zN4=;
+        b=y7ep95I5oxGrtJwhAmDbkts4kxUTxwycq2R43dWfHL/SqmEwEXkC29V/0Xpv11saPv
+         ZL6zILb0J5cXlBvzKBHrebxl4VUQDJVZoD50n686ci5tM6maXqjQuSiK46D2Yud45for
+         GmLeX5RJjXkq9whInKKwwf8ASySEUvjiZw88+rQLXrqq3pRFi4y634e59vuUAltnBn0X
+         0M79ksX/2ExxX+KM0IebD7s24XMte72c+N6k6wDpLinVYbpD4C6TpLBrE4RI39ZxeH8/
+         yupxyZFP0Xx1S8yI7B6lkrIHzcwrkppaM1Hwqlhs37yxmvZta/xlkiJwtAQOaq/sHA/5
+         nYow==
+X-Forwarded-Encrypted: i=1;
+ AL+hErFcdKC6N6hi3E1P/N/ez17/Kszuogp8MXynkRmM/4sNceSHoxKT203WQ4scWV5T8vS4Ilt9F1pz@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z/dQR7iiuY/5Xr3LY28NpYp2IeyWCSMJuvPgXaolXZnzut7zyiU
+	ReX+1JIChs00yNdE1zN53awnNpuJFnbwXEnt2rtrqa5qp3eGp3fvAYv46jGNQfpbFQ2pQlO7dvV
+	T46J4b6As75F1q5xuVvjIa29z3YLIwFB1fSuc
+X-Gm-Gg: AYBFou33SFc2ZAGMenapMqQtpMShDWlXVnemb4Zex8V0twDcQUDcWaK4HeiKTvFodQO
+	hhvwGhqkFWsTUV8iat+Rs1PFwYfi0ZZvA80quyHGk64O/Snotu0KQLKYHyh2WNphgXRP74w+mM2
+	L8LNBnRpW5vzKNVuI1c9PX0KNVxyy9ib9OyQKna3N7F8rdwYch3TN5uLcl5jLdDUA5eaPnorwyY
+	6ZN+gnSTpmoklDTNfesInYI4yYIGnLSod8wKNu6tbkpJd5aLhgtX48G1JnqbmFhRXa592mv58yJ
+	RA0M7pWTslv4JvW8hp/pDygDdT3EGpzAMn6YXwtXK7qBQ0JAy3THPa76HWvXLtBDyca0aAccIfN
+	iyOBuHvh54HIoU/lbLY2CXJsx/Mss3O/7DyWzj+3okGdU/owG7Lco2/2At/bn64mYNXRfLRMXi0
+	f3/iJoSMirKADavg2l98ltPQ==
+X-Received: by 2002:a05:620a:4693:b0:93e:c12c:fbcd with SMTP id
+ af79cd13be357-9479f35eedemr193057885a.73.1794271974270; Mon, 09 Nov 2026
+ 16:52:54 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MailFrom: yazdanghalavand@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+References: <629c8bdedca971d38b08ffd32acec1a804ff7d7d.camel.ref@aol.com>
+ <629c8bdedca971d38b08ffd32acec1a804ff7d7d.camel@aol.com>
+In-Reply-To: <629c8bdedca971d38b08ffd32acec1a804ff7d7d.camel@aol.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Tue, 10 Nov 2026 10:52:42 +1000
+X-Gm-Features: AclHuK8Ki-kawuemorAfz7rrtZVSws_7w7m2uRxFuzWM_1_yfCTSwNT-D28Rts4
+Message-ID: 
+ <CAPM=9tzS3qS=Xn1y+6fveWJxayOsBei9AuygLJV=dw3_H4QY=A@mail.gmail.com>
+Subject: Re: [REGRESSION] nouveau oops on 7.4-rc2
+To: Ruben Wauters <rubenru09@aol.com>
+Content-Type: text/plain; charset="UTF-8"
+Message-ID-Hash: XJEARZI6ADBU33MSALFDJBQNFLUAZ36A
+X-Message-ID-Hash: XJEARZI6ADBU33MSALFDJBQNFLUAZ36A
+X-MailFrom: airlied@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: ZORWN6K7GUQEIGOZGKYWUEOGVEZXYD3E
-X-Message-ID-Hash: ZORWN6K7GUQEIGOZGKYWUEOGVEZXYD3E
-X-Mailman-Approved-At: Mon, 09 Nov 2026 21:23:38 +0000
-CC: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Danilo Krummrich <dakr@kernel.org>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dakr@kernel.org, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZORWN6K7GUQEIGOZGKYWUEOGVEZXYD3E/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XJEARZI6ADBU33MSALFDJBQNFLUAZ36A/>
 Archived-At: 
- <https://lore.freedesktop.org/20261109074102.11997-1-yazdanghalavand@gmail.com/>
+ <https://lore.freedesktop.org/CAPM=9tzS3qS=Xn1y+6fveWJxayOsBei9AuygLJV=dw3_H4QY=A@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -130,65 +150,167 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-0.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-nvbios_vmap_parse() reads the id of the third "max voltage" entry
-(max2) from offset 0xc of a version 0x20 voltage map table whenever
-the table's *entry* length is at least 0xc. The entry length says
-nothing about the size of the header, though. On a GeForce 710M
-(GF117) the header is only 0xa bytes long while the entries are 0x26
-bytes, so "max2" is actually read from byte 2 of the first voltage map
-entry:
+On Tue, 10 Nov 2026 at 07:06, Ruben Wauters <rubenru09@aol.com> wrote:
+>
+> Since 7.4, I have been encountering the following oops when booting my
+> computer. The issue is present in rc1 and rc2, 7.3 boots fine.
+> The kernel booted fine and passed to init, which then tried to start
+> gdm, gdm did not launch, leading me to dig and encounter the following
+> oops in the journal.
+>
+> It is worth noting that my laptop, where I encountered this oops, has
+> two gpus in a hybrid system, one intel integrated, and one nvidia.
 
-  header:  20 0a 26 12 01 c8 00 ff ff ff
-  entry 0: 01 10 50 f8 0c 00 ...
-                 ^^ read as max2 = 0x50
+Can you boot with drm.debug=0x10 and attach the complete dmesg?
 
-There is no vmap entry 0x50 (the table has 0x12 entries), so
-nvkm_volt_map() falls back to interpreting the id as a voltage in
-10 mV units, and nvkm_cstate_find_best() caps every cstate at 800 mV.
-That is below the boot voltage (850 mV) and below what every cstate of
-the board needs (900-950 mV), so no cstate is ever valid and setting
-any pstate fails with -EINVAL.
+I've booted a Fedora 44 GP107 laptop this morning with a intel/nvidia
+combo on 7.4-rc2 and not seeing anything, so we will need more info.
 
-Check the header length instead of the entry length before reading
-max2.
+Also:
+https://gitlab.freedesktop.org/drm/nouveau/-/work_items?sort=cr
 
-Fermi reclocking is disabled upstream, so on this board the bug is
-only visible with reclocking force-enabled, but the parser runs for
-every GPU with a version 0x20 vmap table, including those where
-reclocking is enabled.
+might be an easier place to keep track of things.
 
-Tested on the GeForce 710M with Fermi reclocking force-enabled locally:
-without this patch, writing pstate 0f fails with -EINVAL; with it, the
-pstate is accepted and the core clock goes to 774 MHz.
+Dave.
 
-Fixes: 4a4555a7f1dd ("drm/nouveau/volt: Parse the max voltage map entries")
-Signed-off-by: Yazdan Ghalavand <yazdanghalavand@gmail.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/vmap.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/vmap.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/vmap.c
-index c228ca1..07b3b47 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/vmap.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/vmap.c
-@@ -68,7 +68,7 @@ nvbios_vmap_parse(struct nvkm_bios *bios, u8 *ver, u8 *hdr, u8 *cnt, u8 *len,
- 	case 0x20:
- 		info->max0 = nvbios_rd08(bios, vmap + 0x7);
- 		info->max1 = nvbios_rd08(bios, vmap + 0x8);
--		if (*len >= 0xc)
-+		if (*hdr > 0xc)
- 			info->max2 = nvbios_rd08(bios, vmap + 0xc);
- 		else
- 			info->max2 = 0xff;
--- 
-2.56.0
-
+>
+> It looks to me like something return an -ENOPROTOOPT (likely due to the
+> hybrid GPU situation) and then another func tried to deference this
+> without checking for errors.
+>
+> Some quick digging shows that it could potentially be related to atomic
+> mode setting being enabled in 7.4, whereas it wasn't before.
+>
+> I tried to take a look myself at a patch, but unfortunately I got a bit
+> lost in nouveau, sorry for not being able to fix it, I hope you're able
+> to. If you need any further information, please don't hesitate to
+> contact me.
+>
+> Ruben Wauters
+>
+> Oops: Oops: 0010 [#1] SMP NOPTI
+> CPU: 6 UID: 0 PID: 464 Comm: (udev-worker) Not tainted 7.4.0-rc2 #1
+> PREEMPT(lazy)
+> Hardware name: ASUSTeK COMPUTER INC. Vivobook_ASUSLaptop
+> X3500PCB_K3500PC/X3500PCB, BIOS X3500PCB.305 10/13/2023
+> RIP: 0010:0x0
+> Code: Unable to access opcode bytes at 0xffffffffffffffd6.
+> RSP: 0018:ffffce1000a37668 EFLAGS: 00010246
+> RAX: 0000000000000000 RBX: ffff8dff8a97d300 RCX: ffffffffaff4b406
+> RDX: 0000000000000000 RSI: ffff8dff8a97d300 RDI: ffff8dff86b91000
+> RBP: ffff8dff86b91000 R08: ffff8dff8a97d300 R09: 0000000000000000
+> R10: 0000000000000010 R11: 0000000000000000 R12: ffff8dff86b91000
+> R13: 0000000000000001 R14: ffff8dff86b91000 R15: ffff8dff8299fa00
+> FS:  00007f9bcede9880(0000) GS:ffff8e0349bd8000(0000)
+> knlGS:0000000000000000
+> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> CR2: ffffffffffffffd6 CR3: 0000000104854004 CR4: 0000000000f72ef0
+> PKRU: 55555554
+> Call Trace:
+>  <TASK>
+>  drm_atomic_commit+0xb1/0xe0
+>  ? __pfx___drm_printfn_info+0x10/0x10
+>  drm_client_modeset_commit_atomic+0x25c/0x2d0
+>  drm_client_modeset_commit_locked+0x61/0x180
+>  ? drm_master_internal_acquire+0x1d/0x40
+>  drm_client_modeset_commit+0x25/0x40
+>  drm_fb_helper_single_fb_probe+0x1aa/0x1c0 [drm_client_lib]
+>  __drm_fb_helper_initial_config_and_unlock+0xa8/0x1b0 [drm_client_lib]
+>  drm_fbdev_client_hotplug+0x79/0xb0 [drm_client_lib]
+>  ? drm_client_init+0x116/0x150
+>  drm_client_register+0x79/0xc0
+>  drm_fbdev_client_setup+0xc9/0x1e0 [drm_client_lib]
+>  drm_client_setup+0x6a/0x90 [drm_client_lib]
+>  nouveau_drm_probe+0x15b/0x1e0 [nouveau]
+>  local_pci_probe+0x4a/0x90
+>  ? cpu_hotplug_disable+0x15/0x30
+>  pci_call_probe+0x5a/0x1a0
+>  pci_device_probe+0xdb/0x180
+>  call_driver_probe+0x23/0x100
+>  ? driver_sysfs_add+0x55/0xc0
+>  really_probe+0xd7/0x2d0
+>  ? __pm_runtime_resume+0x50/0x60
+>  __driver_probe_device+0x9c/0x1b0
+>  driver_probe_device+0x1f/0x80
+>  ? __pfx___driver_attach+0x10/0x10
+>  __driver_attach+0xcc/0x200
+>  bus_for_each_dev+0x9c/0x100
+>  ? bus_add_driver+0x84/0x280
+>  bus_add_driver+0x1d0/0x280
+>  ? __pfx_init_module+0x10/0x10 [nouveau]
+>  ? __pfx_init_module+0x10/0x10 [nouveau]
+>  driver_register+0x75/0xe0
+>  nouveau_drm_init+0x60/0xff0 [nouveau]
+>  do_one_initcall+0x89/0x340
+>  do_init_module+0x8e/0x2b0
+>  init_module_from_file+0xfe/0x170
+>  idempotent_init_module+0x23e/0x360
+>  __x64_sys_finit_module+0x7f/0x110
+>  do_syscall_64+0xc2/0x4d0
+>  ? switch_fpu_return+0x5e/0xf0
+>  ? ksys_pread64+0x61/0xd0
+>  ? arch_exit_to_user_mode_prepare.isra.0+0x84/0xa0
+>  ? do_syscall_64+0xff/0x4d0
+>  ? do_sys_openat2+0x75/0xe0
+>  ? switch_fpu_return+0x5e/0xf0
+>  ? arch_exit_to_user_mode_prepare.isra.0+0x84/0xa0
+>  ? do_syscall_64+0xff/0x4d0
+>  ? do_syscall_64+0xff/0x4d0
+>  ? clear_bhb_loop+0x60/0xb0
+>  ? do_syscall_64+0x37/0x4d0
+>  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> RIP: 0033:0x7f9bce71f95d
+> Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89
+> f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01
+> f0 ff ff 73 01 c3 48 8b 0d 6b 64 0d 00 f7 d8 64 89 01 48
+> RSP: 002b:00007ffdb99bcab8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+> RAX: ffffffffffffffda RBX: 0000564b33e33130 RCX: 00007f9bce71f95d
+> RDX: 0000000000000000 RSI: 00007f9bced703af RDI: 000000000000004a
+> RBP: 0000000000000000 R08: 0000000000000000 R09: 0000564b33e30d90
+> R10: 0000000000000000 R11: 0000000000000246 R12: 00007f9bced703af
+> R13: 0000000000020000 R14: 0000564b33e2dd30 R15: 0000000000000000
+>  </TASK>
+> Modules linked in: drm_gpusvm_helper drm_suballoc_helper snd_hda_intel
+> snd_sof_pci_intel_tgl snd_sof_pci_intel_cnl snd_sof_intel_hda_generic
+> soundwire_intel snd_sof_intel_hda_sdw_bpt snd_sof_intel_hda_common
+> snd_soc_hdac_hda snd_sof_intel_hda_mlink snd_sof_intel_hda
+> soundwire_cadence snd_sof_pci snd_sof_xtensa_dsp snd_sof snd_sof_utils
+> snd_soc_acpi_intel_match vfat snd_soc_acpi_intel_sdca_quirks fat
+> nouveau(+) soundwire_generic_allocation snd_soc_sdw_utils snd_soc_acpi
+> crc8 i915 soundwire_bus snd_soc_sdca intel_rapl_msr
+> intel_uncore_frequency intel_uncore_frequency_common snd_soc_avs
+> intel_tcc_cooling x86_pkg_temp_thermal intel_powerclamp coretemp
+> snd_soc_hda_codec mt7921e snd_hda_ext_core mt7921_common snd_hda_codec
+> kvm_intel mt792x_lib snd_hda_core mt76_connac_lib mt76 snd_intel_dspcfg
+> snd_intel_sdw_acpi snd_hwdep snd_ctl_led kvm snd_soc_core asus_nb_wmi
+> mac80211 snd_compress ac97_bus btusb asus_armoury snd_pcm_dmaengine
+> btmtk irqbypass uvcvideo spi_nor snd_pcm drm_gpuvm btrtl rapl mxm_wmi
+> btbcm
+>  intel_cstate mtd uvc drm_ttm_helper firmware_attributes_class iTCO_wdt
+> drm_buddy btintel videobuf2_vmalloc intel_pmc_bxt
+> processor_thermal_device_pci_legacy ttm snd_timer mei_pxp >
+>  fsdev_dax ucsi_acpi typec_ucsi typec hid_multitouch i2c_hid_acpi
+> i2c_hid video wmi thunderbolt pinctrl_tigerlake intel_oc_wdt vmd
+> serio_raw rtsx_usb_sdmmc mmc_core rtsx_usb
+> CR2: 0000000000000000
+> ---[ end trace 0000000000000000 ]---
+> RIP: 0010:0x0
+> Code: Unable to access opcode bytes at 0xffffffffffffffd6.
+> RSP: 0018:ffffce1000a37668 EFLAGS: 00010246
+> RAX: 0000000000000000 RBX: ffff8dff8a97d300 RCX: ffffffffaff4b406
+> RDX: 0000000000000000 RSI: ffff8dff8a97d300 RDI: ffff8dff86b91000
+> RBP: ffff8dff86b91000 R08: ffff8dff8a97d300 R09: 0000000000000000
+> R10: 0000000000000010 R11: 0000000000000000 R12: ffff8dff86b91000
+> R13: 0000000000000001 R14: ffff8dff86b91000 R15: ffff8dff8299fa00
+> FS:  00007f9bcede9880(0000) GS:ffff8e0349bd8000(0000)
+> knlGS:0000000000000000
+> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> CR2: ffffffffffffffd6 CR3: 0000000104854004 CR4: 0000000000f72ef0
+> PKRU: 55555554
