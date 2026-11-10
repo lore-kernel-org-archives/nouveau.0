@@ -2,25 +2,25 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC674606A320
-	for <nouveau@archiver.kernel.org>; Tue, 10 Nov 2026 21:24:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B79F606A320
+	for <nouveau@archiver.kernel.org>; Tue, 10 Nov 2026 21:24:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=BTmEFNoD
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=RCWrf7xW
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 45E0610F4DE;
-	Tue, 10 Nov 2026 21:23:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7D9DF10F0E4;
+	Tue, 10 Nov 2026 21:24:30 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id F06C7491F4;
-	Tue, 10 Nov 2026 21:04:17 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 3F36C491FA;
+	Tue, 10 Nov 2026 21:04:53 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794344657;
- b=JVNCE7zR206gaT9j4dyaN0lHUM0LTDkA+I1SPLAWsRT+wl/VVcUki9OqZpw0LdTwtkwI3
- pzPcoMpOll89J6iL9qr1BXGaSH3YT2G9sb9LzD0WHlMtGngKtaTnJ+WodXNUfj7LWt2PrVO
- AFoJsbX/QdyxwWAyRidMFVj/UJpmNIJFPvajYOLE1i4bZ9JXAqN3bSY46DgeJ1VifN+ItXL
- 1YKug2+PEZjDIFk9AsYd5MpwRqDtJsT/aAefoS97o1/GHXQ2Kah9SOOO7TVpRWvgLfJS6qx
- EZqZlUbHaPlPflbfQsi/WCfGb9zX3Kpk6muyntDOcxXXdl9iGv31Qk1u+TdQ==
+ s=20240201; t=1794344693;
+ b=iUY3w3TMX73b9WqA6P6iqNpausn1vD+DXubvolb8RWHx2bqPdRyGx7x2aTVDLIIlbqowT
+ wZSLciDpGRP6/XVlh2ISkSgpRUqYDnQOMT9czDY4N8tRk9YHbi2E4buSXvKsscQieuIymYN
+ An8tGqCjB0ct8cZwwtzvpWBF46Ptk5ake9RGt4x4Now50Pe6oMeWyiqK9viGKim5rCwdIAn
+ 5IZou479eRvdSZ8HHM7E5b1bMekjNZCZE1efP5HpWLzjanXZr+WpevDzDaX5FUfJGynaEnO
+ KY88UYuakGjZV8fci0lzdLuCFhJfWc2ACC4Uci1I/5C4jbSxU29u8J6arU7Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794344657; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1794344693; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
@@ -28,11 +28,11 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
  bh=WjjLn9OW/dh8Ooz1Del+NUReCfrVoH+dbIK19cMu41M=;
- b=YZ2bIrZKm99oRCM53ivue1EcIaKFBEMojgAZnVSL+9IHUNvAWsQAKb79At1JMEVFqHAXr
- +04QrtjVuOU7MzFuzYx1nxhQKME3BSB0kpNJue1rNh++3fM3QU+DJgncaPcGkhQ67YIg6Pi
- Qz4y3N7h7bEEWSajIyTxgtRgzQB2D62ygfgUQYXCIOfrPrPzaWBzRnrfoNZ48rdEvlaJ3Z3
- ADpkDuI+1AhzQZW+zMGred2rYhG7ICefv2tzt0rPAS/0XADu+oBhfD+ZdwyBVnLGMofE45i
- JHlx/AWr+53O9SALRsj2zVgEartytkpbITXS06ho9P3VrI3BH8342WvEcqig==
+ b=ozgQgDOCXQSXnvrvEqbMu65i10xX4L8PNpX7s3SHGL13iiYzCVx67qZgtzaJ4tieXdbIy
+ o7A2Bj0GjW8FH3JxRqoprsLbmKI56BhH8H/M9afBXeqomAWIGZSo+OlhzNzcRF+0Hq2eW7T
+ sygVr4zzao7I0zfSdyJCO/6i1/4CfwW0otDeIoF6ygJVmmqzTQImCT7lSdg4Ea6N3m7mSQn
+ bStFJEvL9blpa1Rv4v8TS/GLsrV9DbZR/WUJBTqn2Loy5CT+j9NwWYVZV9yZwXUdh98Q4yb
+ 7GILkvDEclHfhsY6SOcEGJiTROKujP6N0WfTuYANLzU2f0hB+JvYYxrzI1SQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -43,71 +43,71 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4E2B4491E7
-	for <nouveau@lists.freedesktop.org>; Tue, 10 Nov 2026 21:04:15 +0000 (UTC)
-Received: from mail-oi2-f8.google.com (mail-oi2-f8.google.com
- [74.125.231.200])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 67F1110F4AB
-	for <nouveau@lists.freedesktop.org>; Tue, 10 Nov 2026 21:23:47 +0000 (UTC)
-Received: by mail-oi2-f8.google.com with SMTP id
- 5614622812f47-53c4858eb76so1055693b6e.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id 875D5491E7
+	for <nouveau@lists.freedesktop.org>; Tue, 10 Nov 2026 21:04:51 +0000 (UTC)
+Received: from mail-oo2-f5.google.com (mail-oo2-f5.google.com
+ [74.125.231.133])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A339010F006
+	for <nouveau@lists.freedesktop.org>; Tue, 10 Nov 2026 21:24:23 +0000 (UTC)
+Received: by mail-oo2-f5.google.com with SMTP id
+ 46e09a7af769-8458555b6a8so794190a34.0
         for <nouveau@lists.freedesktop.org>;
- Tue, 10 Nov 2026 13:23:47 -0800 (PST)
+ Tue, 10 Nov 2026 13:24:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794345826; x=1794950626;
+        d=gmail.com; s=20260707; t=1794345863; x=1794950663;
  darn=lists.freedesktop.org;
         h=cc:to:message-id:content-transfer-encoding:content-type
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to:content-type;
         bh=WjjLn9OW/dh8Ooz1Del+NUReCfrVoH+dbIK19cMu41M=;
-        b=BTmEFNoDPTHiwZCmteQsr+L/vxYwMwZwrtFgBx5fKjgUnPbJxmnxhg3xqi8uMzpc1j
-         +R9+NOEYGc65iGT2dRxWqgXNurTRsErF21VqtXLj3pV9muSQfzIm/aQeVDZ0YFB7NoL7
-         nt2ckYjFfIRMcGV9xIJ/14OXm1ih8Kpnwj+lzkl53IfAKHZnT6UNxXZe7Z/9fVDtBAFb
-         v4UoyXHgCNAlQOs/PG5K4Gzu1D+nNUma6q+/wqGpIP1Rxtukn5ZWEM1rj5RVshOUs+XP
-         oFfYsEC0Ged8m5znzrUH1mBqEdzuc3GSTeIz7zn2pKHllbBzf9pKEFQy3grDa+63Uy5g
-         ahGA==
+        b=RCWrf7xWgEeisPORpJliRFfYcu3KfDfKADqy18FZDZK1FC0UFiyXI9+ZZFQRfi2FYI
+         pqZNABLfUCv0mbXKF4pF2wIiDxeCo40Z1mhSo6dCaQDGJAeTcaOzGBOizg8p3SKO32g6
+         lCKXGu+m8WXAl+jCigR5rti5GkpRiFfH0itKU9icjJbPOYn3ccpDV+oL5XmWAmGF78y+
+         qS2ebry87QumSyZaHKZ/20H6k3j9nWVHMNpITS21U024k6WZXit4NOlaMl0jbuRVLGhW
+         aZE5l6dF6jkjJyEH8x3eU02ffjBj5xzDBiOGF6bv6g87CSSh+vi9NyDvnhPJXqvPF72+
+         epyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794345826; x=1794950626;
+        d=1e100.net; s=20260707; t=1794345863; x=1794950663;
         h=cc:to:message-id:content-transfer-encoding:content-type
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to:content-type;
         bh=WjjLn9OW/dh8Ooz1Del+NUReCfrVoH+dbIK19cMu41M=;
-        b=tfZGuyHydN6aZAhgYE4V93VmhcGWfxOtn+DVcRr+UNXYaIJh+PNUkvcANDl9n8mp4b
-         O30cFls474xM0Ue0pCV7gU+ft40u3ej0nJZbsVVZh+VczOSCrwkXhYZwRyc/BCPEK014
-         g20KplCk6G+WM8eHgHTFMu8oMDU0sYGFBBNSe7jm408AeyCjL4HnXarVXF1HWDSYx7P8
-         Tq/xnktahuuPEbsUZd5IlT0AS0G9tCG6MGEDLXyzoBtZ2ROqsI8dAtRsli1Hy5tzK6+g
-         gUJ+klhmc8z5CT3wnJzAr/l6RWUQFZMwyLOhuH045PIJHmPXefNYJTAM4eeUXwEn+S8z
-         HIHQ==
+        b=S7Mohhfqezsk/nyGF0KKX4k5pVFL5+JEdlH5o0LgU4rIpXK1C9/U2A5EEXtKo8y5qd
+         ygNWHvayCgL30fGhxA+yj0/iKBdTd8lxDJWydtkoKm1aKlDW32b+Z8xapRu9gV29L6Us
+         pMQj00E4blBCR08cy/Zr8O6vxjbmtXcGbLk8Rtl/JDQBq/PqM30t8ChbLOig4dNeEBYe
+         HbM8/19xDGQcaspOyJC1cPJcyof7ugg6nMJ4o38Wsd0aoWCTM2ECFYuzMT3DdON3TN39
+         ir7LA5068DLFLyhUbtUbyCcBURfsl/7MWKDQReunW3bu6I4XVGjpZKIuxtQ3KUqKjNyf
+         2RkQ==
 X-Forwarded-Encrypted: i=1;
- AL+hErHYbn9DxfJpATSuih1tHzjeOSq6mbrrsvgl1Qb77cN8630dauNyKAbcLm8E8TmPW3LdXzaHiFTm@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z8aQz0Y2tZFI/xh6R9fpV261TziS5ph4B21goeisdi3J95PjFwO
-	jjINbsu6P8h7wnuX91KzY1lbQZ+lpggayZgKa7SiKxALlLntkmr97Duu
-X-Gm-Gg: AYBFou1gMOv69tVaQKWo6QqfadblUOOaqmEvIriXlMeoOPVilVwuvhDvp53MXoh9JGI
-	dg8G/Nco+B9FlqRZS58JWpmwt+hbAAoSd+PqFHdoLeuWV6D3sOPZ35V143OC1KVx7ixda5wftVy
-	mxffYbLm3sXkIUq2H4ftTeM0SQm4/vVJbHy220JIlBkGbIy511JfcnYFnLRCVYzl1XD5sX10ZEL
-	bp9peQTCVYLcLaL7502J3/I3NG28RRi4hJ7+XJq4l6e7NpcZRxhNKOVVgbQQDsNEyoFOahxeFVI
-	dUeEcOO5PxMSj3Z4nH49WqSh14kWsiA8yfZYD1dUpTK1rJtHZUSai3Wy3ogRK9Idadmuxsg87es
-	KAS2nQ2HxYS96QGO+1wWfurhsEGHbpK/vGYaqmZwU3uDD25CeZy1S4/mInNhO7FvOugNVVEkr3K
-	F/ojjWV0EXcvw1DLpWHuA9UK3ORgDT1xB0pIQiN8j1bTLuncQneP99fIPkZhkd2fJyCxhTPB/JB
-	gZRnTCXuk/B9SvihoMhbPfCqti8W7c66DhXPwyvOWKYNlueaHke9mvu4cNtwdeJDKTR15qwsUy+
-	1sEPKeJF4WP//shB1OYMQz706w==
-X-Received: by 2002:a05:6808:c3ea:b0:4ab:230c:5faa with SMTP id
- 5614622812f47-56b963a7115mr210675b6e.18.1794345826045;
-        Tue, 10 Nov 2026 13:23:46 -0800 (PST)
+ AL+hErHU9UsIUroWIXeIbyINHHaxiW8H/WFjyxxdf+zevFBhhJChVxR5dKYwW+fGfDxlMl2+CZ5/Zzv1@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z+J7gnn0C2igaUytW9O0LmjWz/ubjeQ1YdApks3SBNQyO04MSiF
+	/sjJRhEho1saiNcadaCUww7ixDSMHcIVEY3D+vNyJLnHr3GVTS+7kDDp
+X-Gm-Gg: AYBFou1n4SZt6SSm9jZeZwdoNCYoDPa8JfxCnTE3aV1zVecuC9lR9DaOKXQJr/tfoA1
+	A4ycv/GsWY7J+EspHr/QsoroPTo1XVk/zR2PYwe6v/K46RgKTnzq8UtBUNkYoKlFsMP1Tj+ZKr9
+	/PC5nceSI93/tmNtmXlqENShNw2YS6Jxi4zywR+Azuf3adDAz8fvdIHZFJcPPrANW3acRVh2ejO
+	Nkn4u4FWrRZYdmkvDIVvPG04EVe9d7hijH0VAeDu0P8mF/doDvtFTVkgNQ1HwOkFh5ygz+d/az1
+	/u1RuOJ8WYEqlPC7ELibHTM3ZnBwCzf2rDajUjgkueO4xAIqzpQHoJGjQSCHXFKecciTyqrsKQM
+	V+e9lXh3kN88hicZDJbXejAWGY1l5M38GluEyrbS+UKhnutA8MzbaPULGrmM3EO29qLsbCVLcUC
+	K0O57C6ErVQ/Fq229kP+F6oX7X2awStRmQ7whRMGlcRwDjCh0hHPPSW6IYsiCjeUzrXVdFODvO2
+	k+WXbJlGVJJofIMq2tLamXaiWfSIPjf3uU/Q7D7P7qhhcAr67bdBL56Gt4vhUgGB85AgiqfNUgk
+	vkaHhYD44mRK1i6s01dDEoAn9Vi+Ntn3+Fjd1Os/k531VQ==
+X-Received: by 2002:a05:6830:4424:b0:80b:6f52:3629 with SMTP id
+ 46e09a7af769-860f25e8e97mr185419a34.1.1794345862778;
+        Tue, 10 Nov 2026 13:24:22 -0800 (PST)
 Received: from [192.168.18.164] ([2600:8804:5716:d800::f01a])
         by smtp.gmail.com with ESMTPSA id
- 5614622812f47-5690504c276sm3229558b6e.4.2026.11.10.13.23.44
+ 46e09a7af769-860dcb5f7b4sm2845528a34.4.2026.11.10.13.24.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 13:23:45 -0800 (PST)
+        Tue, 10 Nov 2026 13:24:22 -0800 (PST)
 From: Ryan Brue <ryanbrue.dev@gmail.com>
-Date: Tue, 10 Nov 2026 15:23:44 -0600
+Date: Tue, 10 Nov 2026 15:24:16 -0600
 Subject: [PATCH v4] pci: Add broken-GPE quirk for some Lenovo Legions with
  Nvidia GPUs
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-broken-gpe-legion-v4-1-3668ce0c2efd@gmail.com>
+Message-Id: <20261110-broken-gpe-legion-v4-1-c672bb1c4d91@gmail.com>
 X-B4-Tracking: v=1; b=H4sIAAAAAAAA/32OQQ6CMBREr9L8td+0pWBh5T2Mi1p+oQrUtEgkh
  LsbMHHpcpKZN2+BRNFTgootEGnyyYcBKqYODGxrhobQ11AxkFwWgvMcbzE8aMDmSdhR48OApS2
  dPplcl9rCgcEzkvPvnXm5fnN63e5kxw20NVwMPY5tJPNjcy2F5Lzgp2MhRaYECuzmV03nSHVrx
@@ -115,15 +115,15 @@ X-B4-Tracking: v=1; b=H4sIAAAAAAAA/32OQQ6CMBREr9L8td+0pWBh5T2Mi1p+oQrUtEgkh
 X-Change-ID: 20261005-broken-gpe-legion-9c9f87a5898c
 To: Bjorn Helgaas <bhelgaas@google.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794345824; l=6414;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794345860; l=6414;
  i=ryanbrue.dev@gmail.com; s=20260906; h=from:subject:message-id;
  bh=4fzh2Kt6hyJZoUipRYGxY1lLhGP5S0v640iNKn5d27A=;
- b=BreNeT4+5sRjWVoRkW2qHGfabP2EUtz4OE0rjq6itQKYCjr7cFCA+NpiP84bvcym91Vki98hM
- 81kllDoWdsfCN/wa1RID/Ws+3CTH0kaYEW50aB9mvRfV9V82p0OPCD2
+ b=9YJQTspVWw3SNIHz6DL8fo+E22qGFlOGPsa0xkwd+6tDhnlXfgCbGXQcYPGp4N3hDZTZY7I7z
+ YY7fTaOLSYWCVHkiWRKOfP4aVMy0h7QLlgwP6QYEzPL6vHuIQCvyKv/
 X-Developer-Key: i=ryanbrue.dev@gmail.com; a=ed25519;
  pk=KsUvVaP//v/2q+ZBuacc7cLbsyEYn+AD71Sn28oZWKo=
-Message-ID-Hash: C7D3CPNCWRGVLO6G7HJZ6E2BD5BIIUR5
-X-Message-ID-Hash: C7D3CPNCWRGVLO6G7HJZ6E2BD5BIIUR5
+Message-ID-Hash: 3MIXCSM2IFODZWUK22P4N64E2ZKAW5KQ
+X-Message-ID-Hash: 3MIXCSM2IFODZWUK22P4N64E2ZKAW5KQ
 X-MailFrom: ryanbrue.dev@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -137,9 +137,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/C7D3CPNCWRGVLO6G7HJZ6E2BD5BIIUR5/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3MIXCSM2IFODZWUK22P4N64E2ZKAW5KQ/>
 Archived-At: 
- <https://lore.freedesktop.org/20261110-broken-gpe-legion-v4-1-3668ce0c2efd@gmail.com/>
+ <https://lore.freedesktop.org/20261110-broken-gpe-legion-v4-1-c672bb1c4d91@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
