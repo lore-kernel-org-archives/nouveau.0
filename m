@@ -2,152 +2,172 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D18E606A327
-	for <nouveau@archiver.kernel.org>; Wed, 11 Nov 2026 08:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4026606A31C
+	for <nouveau@archiver.kernel.org>; Wed, 11 Nov 2026 08:53:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=kZ0X45s7
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.a=rsa-sha256 header.s=mail20150812 header.b=td12n49U
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1F96410F9B8;
-	Wed, 11 Nov 2026 08:50:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id ADBC110F9B3;
+	Wed, 11 Nov 2026 08:53:51 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E1FDA49218;
-	Wed, 11 Nov 2026 08:30:31 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 53F0E4921C;
+	Wed, 11 Nov 2026 08:34:13 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794385831;
- b=rs0R4GrtbVxbMaB3gEOwXYtTh4dZIR/NXm9b4NDAf4ihTqxldYKtwECC1Yd58o0Z43zdm
- p/hYaJ7/YJ1DAayW+XuH67X+PFLXrQdEYjoqFU1pY2idCYWrV6wFMTI7LHttOb89NkRJTB3
- AU4e5safaKnUCTXBKe/KAufpn8apMcBC/t0VuzYx/I1/gxlKgp7T9ZxKNVSOrEtdoI10RNE
- pY5yuGpc0bvvHbfK9WmT+XM423bOK98H9kX5nbsVCwDFALxuXjVHWoe8YhnyOpwNLlUM9Dh
- NSLl0NL7ElIauBzPNbR+eKDx33xtJW+eNu8CpJEEhDULO2KpDJ0ELo794CqA==
+ s=20240201; t=1794386053;
+ b=CFEMxRWqLij0kHoZ3vn+W8ZDDBMXBXaDSlPLYnSWeuXPtDjlLZNVv0ZvdeY+asV1F5FRC
+ D40yw9JqR8iVCqcgORZYhKAKyw+DVbqReGZ5auR1IUpSHPzzX7gAB01AsYW11TItD6aermo
+ +b4GY1gs7nzHNpBXx784KF9fMY1rZP8iuKPvT8GGxyPd+D8C2a0gugBiY0+IEY6IweREOQ+
+ YJETtgX82jRQnnVn6IqHRpmOYc6twhjRmsecpl65NhOgsKfRG4o0hyAZOJDUzgjSXaU3CS1
+ R+dL6R3JAvObsLIJzWCgFSiMEdH8VXzfCcBZ6lcaDsgAKUsgX6Zhs5nAvqrw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794385831; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1794386053; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Mcw8tiKH/WX7VEn2tZaWKJlFFwouAMdTGd/w0+U3Fi0=;
- b=DqYGf+tdnZB1wbMy2+ksOYy2tE5qxC1DT3FNPgAme4anwDIhJ1HCdggS3gS7sBV6JTQgX
- ZpcxDl7DAMd3cdmZbPeyz1ibQSRHPGFY6RSHxQru3ALwm0MB2mPWUAjCwcLutCpB/nYJzxx
- ks8KEGPDXeFVLxuGqTOCrOxtCzuMr8ndJwGQIrjHUeqZyFucM7Nco435TikcUIIP3Xj1sfN
- uGEPDQytHpWWlvDNXhTGGWOyWrXS3RILGkrZ++f1IpktM2tSVO+ZTQXDCE75phAJJsytxj4
- nL+awxEUXk25PRIFrvP9S1X8yq8t9vrP7D6rcteKtQkeuPOM+DNKXRl0ZWXA==
+ bh=VRiZhzrsDkrLspAml0XRBl5rak3lI4bTzhSsupMJ/y8=;
+ b=Lq3ie6qzbxDyCKyKYg7ujUoqnVN7954DtE391mukLjBJI+yuMysyU1Mip+aekbUiXrCEQ
+ i4Oehz032SCTg4tUJ/2v9kdokxDqrCkLrcIb+3YIoDur3AkavYFwr4oMj1s9FvvedEVi7iQ
+ nNDLBK1ZLJmO0XokhqBkSc90AQmTwWE/ovl6Ufr5DnUZKYLMHVnEdK7DH8oXWSoDLqGQ3S5
+ U7JIUfWBX0r1tOpc50sRqjTD+Q8+qrdmYn2uhyaowYBmwbKMl5SBb41kWRBzbPJuqUzKlUf
+ G3rx/BnoMA63kycfnCavwr0WG1k5cbRtn58nKr7Ruusd9jmbxvIwtKMSW4xw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=baylibre.com;
+ dkim=pass header.d=mailbox.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=baylibre.com
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=baylibre.com;
+  dmarc=pass (Used From Domain Record) header.from=mailbox.org
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=mailbox.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=baylibre.com
- policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=mailbox.org
+ policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 72B114099B
-	for <nouveau@lists.freedesktop.org>; Wed, 11 Nov 2026 08:30:29 +0000 (UTC)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9DFCA10F9A1
-	for <nouveau@lists.freedesktop.org>; Wed, 11 Nov 2026 08:50:02 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-4a59100fa83so25451515e9.0
-        for <nouveau@lists.freedesktop.org>;
- Wed, 11 Nov 2026 00:50:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794387001; x=1794991801;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=Mcw8tiKH/WX7VEn2tZaWKJlFFwouAMdTGd/w0+U3Fi0=;
-        b=kZ0X45s7YZAeveGJ1ijZYfE4YT7gpMqGBSI/VEMMHOKOMexBaTTU1wLdrA/7uE9yRg
-         6bZ94oupjRtpxrfdG7hBSmMAZaiLk+Az9SAOubFOJXeKHoudqiM3DRl8GzK3NGTzCUYq
-         1TL1iw0BSwZy8Am9fGwUcv2J+SNaBclD+5ZUtkW+/vmxtb7ub3AusDb2vmck4s6QXgms
-         7stPwpjWXP4uo1wdbPkuZTuBDSQo/mUV4G0eq14yijWyKp5aLMWg+AVw1WwJSQiSXZuS
-         B4o3JuNC8MLDcHQIj79tMm7ZC0LbVGrtX41A0HlkLlHN56OGAegSlcO2V0H294MlB+U+
-         M0Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794387001; x=1794991801;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Mcw8tiKH/WX7VEn2tZaWKJlFFwouAMdTGd/w0+U3Fi0=;
-        b=E+uJy6ZS0lMXxPvxTsRLJGrWV6W45vt5FN4k1d0lD4xfKNzKPsJRHy7R3N8pSQ8RSn
-         qzWgtPZqBoOLnPPLDA1QvpHEkGXB/SgfajeV2YLgpNk856shesrl6gvYCY4X2deqX0HL
-         R6cHcbqdkyxA64HCZrrt7DG8b+vc+xnYDfrQA85z2wlQ+u616i7xiTVYWxfi/ASJaGSJ
-         5hIvxhLzj5xRIRUemWbkX2ifNlleEX2D50oNfI2NigAlT7L5ywc6E4/26KAZGO4pNXkI
-         JG9dHcACmMloy0mELY0pIVsXOVLkg3mawE5DvnnQbxrNIDju08m5ENqrYmAMbmZ12Bnn
-         zK2Q==
-X-Forwarded-Encrypted: i=1;
- AL+hErE469uGoAKvzlqQy4tW1u4ypiM3QUg3/8eAtxf2nw1Mr0sQm8ydpTG6Zqn2w/7EZSundLdTB/SG@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z9CGyI1J4bC4fsQhwhqTl5RQsQRpxTmbmwkxii+8vP2a4rUu1t7
-	r27yXBDf0Ne2uriZUrrWzQ08urrWbHsQr92F5blweFlXwrYij1N734GyQJuaYuTDuVo=
-X-Gm-Gg: AYBFou3JCp6ffXfDYL3Drmsae0k3nlX0ratXO0FtQUBI44B0SCMtyka7jTt0UngPHkm
-	YlnIjGTTgbf23R9VPPnoTmjn1mKofEWci+SVvhq8eOacuJC3et9T724USZPo2HQjwV2b8CYeSDw
-	Ci7FE7Zb/DPrLYvp4yqFamacVLL6Py6Wv8IEDaBoFYARr2z9nPY3Dnf/X3QVRdMVZHgIGq48WzL
-	Ps1rWXH7uMaRuwfzMft//p/onLnWDMIoNLYSgolP/PH4JL3g4qUUjsFPod9SFrJZMBAbsdxIZ3j
-	eemnYHztxU/8GpvrGp5y9hf6Y+zgJu1B8V/8TyY3+dQDWl9mdkxfqK2Vbix0z+S2VG1mc1ktdyc
-	UW1dRm4xDKKfXd7xgCludGh6UQYacLHLnQ3a/0C+ejb/nAAgqwmQHYsxuwlfDa2RcOKZRgqumit
-	CfBsHjqy5C2+7r+vSjq27r08cnG16fl3kBx1mtzENXhD6tUayUgpe5B/8F4/vgC2P1T4AJpAFIX
-	gm7yNewhC6JanRLebO0M0kOag4rtLb+zRmyrnMy/2M7yHgLOJOpWLgOoW69FGgLeJyShg7GQTb3
-	g9xntC3ywt4t4ExyMG4LKEDiw6YxL/ITaoTsLhwndfDxBFVfrox/mRC+IpDWtG+BEBaXc1pNEmc
-	CW87AecKzPapEOw==
-X-Received: by 2002:a05:600c:1d28:b0:4a1:e6c8:ff74 with SMTP id
- 5b1f17b1804b1-4ba0939db75mr30427005e9.29.1794387001054;
-        Wed, 11 Nov 2026 00:50:01 -0800 (PST)
-Received: from localhost
- (p200300f65f19a90460510dd506fc51af.dip0.t-ipconnect.de.
- [2003:f6:5f19:a904:6051:dd5:6fc:51af])
-        by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-4ba01ff3428sm142236795e9.15.2026.11.11.00.49.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 00:50:00 -0800 (PST)
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?=
- <u.kleine-koenig@baylibre.com>
-To: Lyude Paul <lyude@redhat.com>,
-	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH v3 2/2] drm/nouveau: Use named initializers for i2c_device_id
- arrays
-Date: Wed, 11 Nov 2026 09:49:45 +0100
-Message-ID: 
- <3dd75434da3c0e4b5ade3b802b4ab00a404e8bba.1794386771.git.u.kleine-koenig@baylibre.com>
-X-Mailer: git-send-email 2.56.0.rc1
-In-Reply-To: <cover.1794386771.git.u.kleine-koenig@baylibre.com>
-References: <cover.1794386771.git.u.kleine-koenig@baylibre.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0ED3C48013;
+	Wed, 11 Nov 2026 08:34:10 +0000 (UTC)
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DD74710F99A;
+	Wed, 11 Nov 2026 08:53:42 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits)
+ server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4jPckV706vzKsYn;
+	Wed, 11 Nov 2026 09:53:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812;
+	t=1794387219; h=from:from:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+	 content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VRiZhzrsDkrLspAml0XRBl5rak3lI4bTzhSsupMJ/y8=;
+	b=td12n49UKDo56vCxSTn09U/FbdYGCk/hjrgkPwsYYmfR0Gs5QBppPCBDtVxxLchIEUwdQb
+	qOgaQ7bu4TKe2ydp1VVhzS3MjouOIvhK3svhqAqL4/zeXX6snq3K7vPx9e14jLpaWSPfrN
+	CC8kqaWegcbNN3dhGKGxAUSh8tFn4cT6u0zUeVOhFHv7yRgcI2X3Hx2TJKeot6Qlqt1EwC
+	lXHAwJBaYus+xC2WzZaQgsfOSySsNxfufDkkyksnvgI5eJB6EDfy5i8Q8e6p4IJt1EIvEW
+	KDNGmFpUTrOi351V8lzioglBOuHpSOovM/WIAIwzWjYiS+xktKSPpS25dn1MEg==
+Message-ID: <a2e7519ab463dec876aa806d91961456f31a725a.camel@mailbox.org>
+Subject: Re: [PATCH 0/3] dma-buf: dma-fence: Remove dma_fence_init64()
+From: Philipp Stanner <phasta@mailbox.org>
+To: Philipp Stanner <phasta@kernel.org>, Min Ma <mamin506@gmail.com>, Lizhi
+ Hou	 <lizhi.hou@amd.com>, Oded Gabbay <ogabbay@kernel.org>, "Rob Herring
+ (Arm)"	 <robh@kernel.org>, Tomeu Vizoso <tomeu@tomeuvizoso.net>, Karol
+ Wachowski	 <karol.wachowski@linux.intel.com>, Andrzej Kacprowski	
+ <andrzej.kacprowski@linux.intel.com>, Heiko Stuebner <heiko@sntech.de>,
+ Sumit Semwal <sumit.semwal@linaro.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>,  Felix Kuehling <Felix.Kuehling@amd.com>, Alex
+ Deucher <alexander.deucher@amd.com>, David Airlie	 <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Lucas Stach
+ <l.stach@pengutronix.de>, Russell King	 <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,  Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Alessio Belle	
+ <alessio.belle@imgtec.com>, Luigi Santivetti <luigi.santivetti@imgtec.com>,
+  Qiang Yu <yuq825@gmail.com>, Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov	 <lumag@kernel.org>, Abhinav Kumar
+ <abhinav.kumar@linux.dev>, Jessica Zhang	 <jesszhan0024@gmail.com>, Sean
+ Paul <sean@poorly.run>, Marijn Suijten	 <marijn.suijten@somainline.org>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, Boris
+ Brezillon <boris.brezillon@collabora.com>, Steven Price	
+ <steven.price@arm.com>, =?ISO-8859-1?Q?Adri=E1n?= Larumbe	
+ <adrian.larumbe@collabora.com>, Liviu Dudau <liviu.dudau@arm.com>, Dave
+ Airlie	 <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>, Matthew
+ Brost	 <matthew.brost@intel.com>, Natalie Vock <nat@pixelcluster.dev>, Arun
+ Pravin	 <arunpravin.paneerselvam@amd.com>, Matthew Auld
+ <matthew.auld@intel.com>,  Thomas =?ISO-8859-1?Q?Hellstr=F6m?=	
+ <thomas.hellstrom@linux.intel.com>, Melissa Wen <mwen@igalia.com>,
+ =?ISO-8859-1?Q?Ma=EDra?= Canal	 <mcanal@igalia.com>, Dave Stevenson
+ <dave.stevenson@raspberrypi.com>,  Raspberry Pi Kernel Maintenance	
+ <kernel-list@raspberrypi.com>, Dmitry Osipenko
+ <dmitry.osipenko@collabora.com>,  Gurchetan Singh
+ <gurchetansingh@chromium.org>, Chia-I Wu <olvaffe@gmail.com>, Zack Rusin
+ <zack.rusin@broadcom.com>,  Broadcom internal kernel review list	
+ <bcm-kernel-feedback-list@broadcom.com>, Thierry Reding	
+ <thierry.reding@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>,
+ Jonathan Cameron	 <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Neill Kapron	 <nkapron@google.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Alice Ryhl
+ <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>, Boqun Feng
+ <boqun@kernel.org>,  Gary Guo <gary@garyguo.net>, =?ISO-8859-1?Q?Bj=F6rn?=
+ Roy Baron <bjorn3_gh@protonmail.com>,  Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
+  Daniel Almeida <daniel.almeida@collabora.com>, Tamir Duberstein
+ <tamird@kernel.org>, Alexandre Courbot	 <acourbot@nvidia.com>, Onur
+ =?ISO-8859-1?Q?=D6zkan?= <work@onurozkan.dev>,  Sunil Khatri
+ <sunil.khatri@amd.com>, Prike Liang <Prike.Liang@amd.com>, Vitaly Prosyak	
+ <vitaly.prosyak@amd.com>, Jesse Zhang <Jesse.Zhang@amd.com>, Timur
+ =?ISO-8859-1?Q?Krist=F3f?=	 <timur.kristof@gmail.com>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>,  David Rosca <david.rosca@amd.com>, Marco
+ Crivellari <marco.crivellari@suse.com>, Krzysztof Karas	
+ <krzysztof.karas@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>, Shixiong Ou
+ <oushixiong@kylinos.cn>, Jouni =?ISO-8859-1?Q?H=F6gander?=	
+ <jouni.hogander@intel.com>, Joel Fernandes <joelagnelf@nvidia.com>, Thadeu
+ Lima de Souza Cascardo	 <cascardo@igalia.com>, Pierre-Eric Pelloux-Prayer	
+ <pierre-eric.pelloux-prayer@amd.com>, Al Viro <viro@zeniv.linux.org.uk>,
+ Michael Bommarito <michael.bommarito@gmail.com>, Sam Day <me@samcday.com>,
+ Gabriel Prostitis	 <prostitisgabriel@gmail.com>
+Date: Wed, 11 Nov 2026 09:53:25 +0100
+In-Reply-To: <20261105113529.1989375-2-phasta@kernel.org>
+References: <20261105113529.1989375-2-phasta@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.60.2 (3.60.2-3.fc44) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1714;
- i=u.kleine-koenig@baylibre.com; h=from:subject:message-id;
- bh=L8VndumebZ2MRoqro0RnaUijRD3vijSdtnwN+w0pZyc=;
- b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBq9Cwv5LPQnzIxzz7hUpMPuIVPQccUHI3t5AUhf
- LUDPxo2ybGJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCavQsLwAKCRCPgPtYfRL+
- Tkl9B/4tAll/ivGhonm0x9hqXABDz27C1LzXwKQ99PbJYQrZBYY+O5PpHY1m1fFVrWzFGedo6Yk
- vDO7Up0laCDvG4i2E38rwthFyFcoYsodI0MyYiHrxekWaiOO3klqdFkhUdwZq5f2MDuibrXoIf8
- AeP0wNKhbojgXXe3ZP9MB6HugJr+1doDFSrs1wRPHewnh6pZoyww2mhXKwWyTXgv43vvRj8rEHz
- cWyarlxT7ZQT8MaLjkYzS/F68BnIcYoUaKiTJazI1g6s4G3su8PDhFAP5h4tndnxvLJ/OjOmYhZ
- kH+cA4S+D7FFwqJTuWKVmNQChQwkbcuI86iBs5x5T8BIyn2Z
-X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp;
- fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: DORKMLARVX3LVV5K5JL5R5G3Q5CGFATU
-X-Message-ID-Hash: DORKMLARVX3LVV5K5JL5R5G3Q5CGFATU
-X-MailFrom: ukleinek@baylibre.com
-X-Mailman-Rule-Hits: nonmember-moderation
+X-MBO-RS-ID: bc6accce8d8b9e73737
+X-MBO-RS-META: pdph9mgme6uj6kihqyt55uq9zqcpmeni
+Message-ID-Hash: 6W5OOJFMX2FYT7IAJ5NIAADC4JKADZKU
+X-Message-ID-Hash: 6W5OOJFMX2FYT7IAJ5NIAADC4JKADZKU
+X-MailFrom: phasta@mailbox.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ imagination@lists.freedesktop.org, lima@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-usb@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: phasta@kernel.org
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DORKMLARVX3LVV5K5JL5R5G3Q5CGFATU/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6W5OOJFMX2FYT7IAJ5NIAADC4JKADZKU/>
 Archived-At: 
- <https://lore.freedesktop.org/3dd75434da3c0e4b5ade3b802b4ab00a404e8bba.1794386771.git.u.kleine-koenig@baylibre.com/>
+ <https://lore.freedesktop.org/a2e7519ab463dec876aa806d91961456f31a725a.camel@mailbox.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -155,53 +175,42 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Named initializers are better readable and more robust to changes of the
-struct definition. This robustness is relevant for a planned change to
-struct platform_device_id replacing .driver_data by an anonymous union.
-(Though these drivers don't use .driver_data, so this patch isn't
-strictly needed, but still good for consistency.)
+On Thu, 2026-11-05 at 12:35 +0100, Philipp Stanner wrote:
+> We recently had a discussion about reworking dma_fence init to close a
+> race-window [1].
+>=20
+> The community agreement seems to have been that we can get rid of
+> dma_fence_init64(), so let's do that already. In the meantime we can
+> continue our discussions regarding the race in [1].
+>=20
+> This also touches the Rust dma_fence, which actually should use 64-bit
+> seqnos (was forgotten so far). Rust fence has no users currently, so
+> needs no backporting, so I would like to address that in a distinct
+> patch.
+>=20
+> Tested on Nouveau with and without the SEQNO64 flag. Nouveau also uses
+> the USER flag, so I hope we're fine.
+>=20
+>=20
+> P.
+>=20
+> [1] https://lore.kernel.org/dri-devel/20261029095542.1526750-3-phasta@ker=
+nel.org/
+>=20
+>=20
+> Philipp Stanner (3):
+> =C2=A0 dma-buf: dma-fence: Add flags parameter to dma_fence_init()
+> =C2=A0 dma-buf: Port users of dma_fence_init64()
+> =C2=A0 dma-buf: dma-fence: Remove dma_fence_init64()
 
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Acked-by: Danilo Krummrich <dakr@kernel.org>
-Signed-off-by: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
----
- drivers/gpu/drm/nouveau/dispnv04/i2c/ch7006_drv.c | 2 +-
- drivers/gpu/drm/nouveau/dispnv04/i2c/sil164_drv.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+@Christian, what do you think, shall we go on with this one?
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/i2c/ch7006_drv.c b/drivers/gpu/drm/nouveau/dispnv04/i2c/ch7006_drv.c
-index 976ed59a86e4..96dabdb38c4b 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/i2c/ch7006_drv.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/i2c/ch7006_drv.c
-@@ -486,7 +486,7 @@ static int ch7006_encoder_init(struct i2c_client *client,
- }
- 
- static const struct i2c_device_id ch7006_ids[] = {
--	{ "ch7006" },
-+	{ .name = "ch7006" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, ch7006_ids);
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/i2c/sil164_drv.c b/drivers/gpu/drm/nouveau/dispnv04/i2c/sil164_drv.c
-index 7f402b901977..2324507eb5f3 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/i2c/sil164_drv.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/i2c/sil164_drv.c
-@@ -414,7 +414,7 @@ sil164_encoder_init(struct i2c_client *client,
- }
- 
- static const struct i2c_device_id sil164_ids[] = {
--	{ "sil164" },
-+	{ .name = "sil164" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, sil164_ids);
--- 
-2.56.0.rc1
 
+P.
