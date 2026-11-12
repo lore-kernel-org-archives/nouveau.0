@@ -2,133 +2,132 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EABD606A327
-	for <nouveau@archiver.kernel.org>; Thu, 12 Nov 2026 17:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 471C6606A321
+	for <nouveau@archiver.kernel.org>; Thu, 12 Nov 2026 21:40:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Xi1M0Wrq
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=gS6/WmEB
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0D813112280;
-	Thu, 12 Nov 2026 17:18:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1447311238C;
+	Thu, 12 Nov 2026 21:40:33 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B0CA9492DE;
-	Thu, 12 Nov 2026 16:58:23 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4F124492E3;
+	Thu, 12 Nov 2026 21:20:51 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794502703;
- b=kwy6R4GcLh85znCIzp/BtXH0oIAvaxDyeAM+IYZththfWxr+cv4GsEUpYL7bH4e23UKvH
- B9LB66rdooz7colbdyfLVbpeLUBrgFVhBhUhcHohV0GOyip6JxB9AZvlS3rmVoYAyuC8LMf
- pjD1Drhm43uFWZLX2OB2iCaXnLqeq1lprAUMVX9ZRxS/mxKcmQuNYt0zY9o8Pkt/HwLAXe4
- 3O8Ucnmkf9UwKZRevE/9usZiKGDLwcblXJtupZj3nh0dLrUuSv7LXWWw+eK9ZuYevWWcILj
- lyOZl1nWm7E52G96WZdzon6+7UdH+0JZIi7ud2HlCxhrjQi7IAQ1fYhr4VNw==
+ s=20240201; t=1794518451;
+ b=CsqhcR4mOACu4VZGjLHKjKayktltWbCo6rr/PaHHPsCFE+nl7OLmaYtwxSzGChiELCDY8
+ rhzS3Ipdxx5yhGoFq/L5wztC+60wBxh1FSJ957EEib0hcXxJ8k2kUvKeF6HtyXJZCaLpMrK
+ 5N4arYV/18xcHtqjVwPV/hsBufBslzjqJi6wL6dKsTXBpUDpFSCnS02vTUWqNq+yL4chnH+
+ yit+ohzMOH0UOhzfblIEUur+12F2QpUwi7X6LafWSns1PwLM/Z39tJq2eU5iMIVNMzpSrGB
+ 48BFimMCOCGAbQjBsmwT2T4E2KAV8zzr0g9/q0tSl8KXvwhueW7srmuEGoEA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794502703; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1794518451; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=VMi+hIkLWXT7siLEN9ATyCll+A1V4GrHFAEeCBcDPio=;
- b=WQ0Ki2DP98qEA857ZjnBsez9OSTf5e9Wiy528c7dievhjqWxQ0cq2ZiGkLvlcAGQQ8Yqy
- iMkS8svYcotcka/7aNx2ADHHvXXdHS6KRZ+7gMEO4Kt5kyJwDfYfxPBj15kjCtEqV90YIZf
- LdjYKFLdc/KX3pTju4Ltobg7w5jsVE+qkk7qLNH/3Yc4DWtRXqwopYntyw/xxv+opKiOXOp
- H6p9kaZaOVdQ/gra5Fpf3gYY5I4eNbzCHzn4BC7voXuaJU/eMt8QMZGrplrIgIzcJnQ1beo
- bW9rdkgvDXHBRSq9xjRlZBlXKMfbBwHuqll0KiWMHpajj+IlJO4sbkDIVGTQ==
+ bh=r7tUMESnGuHT04Vkq8tfouLXmNvcHODCZ4NpjFvO4WY=;
+ b=LTDub0WcBi40bA5QfPlpx9Y9amyutvt2RTIU2mfRBpdKEpM6dRNCyejoR5gAZCHJxdecl
+ dArSgK8trthnPpv2RnITzGRZSMbjzgKvTXqr0j3lg5eQ4lble41tfuS9homXoj1GnboB2yR
+ p5YJm1AXRQk4cNH55rpkPj1HZbzxK5DDuF2DsjHJr6NRpsD5R/kcnPBc5K8aBqqiBGbR25W
+ pbxDg6wL1A9CEXoOlkE+P4RokuAY97Y9nXbjstkHr9dUr18KiRpDY1xrrrdZi6EZSj2ZwZs
+ oqbs2r9sGY63UrLp3HOf2/EG4cZoCrrE8fxO5vwb9XluKV/DoPDawFe5xTCA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 771ED492B0
-	for <nouveau@lists.freedesktop.org>; Thu, 12 Nov 2026 16:58:20 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9475F11225B;
-	Thu, 12 Nov 2026 17:17:56 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 441464233C;
-	Thu, 12 Nov 2026 17:17:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 179EA1F000C4;
-	Thu, 12 Nov 2026 17:17:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794503876;
-	bh=VMi+hIkLWXT7siLEN9ATyCll+A1V4GrHFAEeCBcDPio=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Xi1M0WrqH5bMvx0n0pi4w5v7a8qJzrxjW4xzgjyJBTk4w5Ha9LDFHd8Q2SIO4bI0/
-	 R1AH44wKcxNJXbaWLeAun1BY623lBE7mWeM8MlocaX0VT4oGCtm1o/G3AsbPIXS1Ln
-	 HAfe4Gi1tJJQuDHDrzTAcmJcvP7xkP9KNg6uFt8kIbAQS0k0mQOiMe1zrTRcGbMEAP
-	 QjV4y8GkI+IFa+IR6J9g75IGth5ijUGZ2Wd4tjx81In8/mDCI0Hl19n37GOo0mpyES
-	 RMm1owYYSjXmybNXysJzMRsSMwbMIAEWBzrarLAWP33yYlnJBqzwDlRjfOGVF8svjx
-	 eUQ0ymv8EqhZg==
-Date: Thu, 12 Nov 2026 09:17:55 -0800
-From: Kees Cook <kees@kernel.org>
-To: Bence Csokas <bence.csokas@arm.com>
-Subject: Re: [PATCH v2 0/2] Add struct_offsetofend() for pointer arithmetic
-Message-ID: <202611120916.3619B95@keescook>
-References: <20261112-offsetof-v2-0-276ede839967@arm.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 70AEA492C8
+	for <nouveau@lists.freedesktop.org>; Thu, 12 Nov 2026 21:20:48 +0000 (UTC)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
+ [209.85.221.45])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id F2B2E10EBBB
+	for <nouveau@lists.freedesktop.org>; Thu, 12 Nov 2026 21:40:24 +0000 (UTC)
+Received: by mail-wr1-f45.google.com with SMTP id
+ ffacd0b85a97d-49355a50d11so12120f8f.2
+        for <nouveau@lists.freedesktop.org>;
+ Thu, 12 Nov 2026 13:40:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794519623; x=1795124423;
+ darn=lists.freedesktop.org;
+        h=mime-version:content-transfer-encoding:content-type:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=r7tUMESnGuHT04Vkq8tfouLXmNvcHODCZ4NpjFvO4WY=;
+        b=gS6/WmEBJLa+4fjNsEhKnlHKhgKZ3N6DabfpCPE1MvDbiamzBg1O9E3VBhUb2+7319
+         aSkenE6vIIOo7KLXOYa7Cq0T7+9PbwNcndmCCziOSy1Nyda4Qa5/SGwoq8oa+ESStpvq
+         tTRqN+jzmTD4mP2h9+gxtYSvWnu3kQz9Ssf879WXcseAfbHyoNUBDETi8lbBGY5e5JLp
+         o5YqcdXWzhJz3f3OQcB6ZOH0BH88lfAMNvxzKpnAQYvWhuXBB1xVbIW6dtvdcbGWK48C
+         yg7qkcywzNLbO9RQakp1JZh6/aXw+450gmpNCD0Op/K398ytz+NLrIjUkyBQEQpMyfJ+
+         jIIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794519623; x=1795124423;
+        h=mime-version:content-transfer-encoding:content-type:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=r7tUMESnGuHT04Vkq8tfouLXmNvcHODCZ4NpjFvO4WY=;
+        b=LLAu8aWE+fxUhL5HnULQUZwfHknWtUCdZNtI1S3H2IDiPh60CZ0uckEg09xbZ+89pj
+         utz4iwH09HBU6d34ceKbDCvN+lHYTwZp7XzlVOda6U/fUCFF26WmYEC8IXy5bnC+6Qli
+         VNy6sRQBtSwPDNGNZTq6Cyc15Ynyvmuf5bAjw7o3y5AGzaaOY5x5ee4FwPXrSFZslLUt
+         IzoeW4hwB1IwFh4IspBQGRrMXnpVM7XCT+lLEYA8LMdvRMlVGPGRd5Pep3MjesUy89qV
+         SDl0RHELmwaYToB1ArlHCuqlsmPDUIhQz/VTafxYblTKtIJvKty9fGg7MxtDQEEPYPTE
+         qOsQ==
+X-Gm-Message-State: APuU4Z+UhPMPZOKdBlb6lWMLOmtrYQJJa6FJXjrFRkUPy5guirgDOLrS
+	NwkWArOROqm9pEWv5yBsVEAlR3duyu6ZVDve4XMIjWvzlp2eLa1T+nFJ
+X-Gm-Gg: AYBFou0C5JL6pcu/Gy3MGUXtyB8PiewZjrvTCFpDH53mWWBCbppDcuCEoGEY4MnaomY
+	9l3rc/tH+gUSv+Kko7XFqiSq0zl4USNGijVQ9WXLu6V58dKnPcUWtjNjh5OwVXHyP/VyW+fqRLc
+	nK9Qi0GuisWU3h6vQPDjgfe2go6iJU/I8FE2m0FoKbzE21cHS4HXAoTO+1Ezw+fCOv0C7uxUTtV
+	yk65rWdcKJ+Nz8lXRG3yxPAKklWh7p7v+Y21n7ZWhylmFsoFp5/HKruemNK/k7xTvUsql/dsA45
+	d1lVyT1G1MCnWl0BDQBbwLPnuE8NtxOEoQwYv8/6kwZJGSbITQl9zEapPVbGmKu3xnGv43fQNWD
+	tsYKJD91AkCMyiItbVc+KQ7f7sDkv1dTAuvEud3YJIMfzuP8tLfffX368rj6sBG38LmfF+GYAB+
+	O6LYhqlFQTw/w2UcPxS66XHMst74wWzod6/Z0UuukzrmqEeEWimpet6SAf47rK4SMQ1tipkRR7a
+	uXIE1Zx5UxATteVrTSr430Rq8H+mwm1gHcvUf9CTrt278qG+wEOnZ+iz5N+ELthKhSaubR3Lao3
+	7wLViiY4f6Zc3qkTFkEss+dOIpbkVUHuyDfNs1fWqNpXhX6D2db53Ot3dCC4Q+lmv4pTMDA5XCn
+	9uGpcXqY=
+X-Received: by 2002:a05:6000:40cd:b0:492:b1c5:6dc3 with SMTP id
+ ffacd0b85a97d-49c723fc6f9mr1514901f8f.6.1794519623235;
+        Thu, 12 Nov 2026 13:40:23 -0800 (PST)
+Received: from [127.0.0.1] (ip-109-193-028-127.um39.pools.vodafone-ip.de.
+ [109.193.28.127])
+        by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-49c60021375sm1279890f8f.29.2026.11.12.13.40.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Nov 2026 13:40:22 -0800 (PST)
+From: Marek Czernohous <mczernohous@gmail.com>
+To: Beomseok Kim <dilddream31@gmail.com>
+Subject: Re: [PATCH] drm/nouveau: Clear fence channel in no-signaling path
+Date: Thu, 12 Nov 2026 22:40:21 +0100
+Message-ID: <179451962164.1494544.10983579250194846394@gmail.com>
+In-Reply-To: <20260928081450.19340-1-dilddream31@gmail.com>
+References: <20260928081450.19340-1-dilddream31@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261112-offsetof-v2-0-276ede839967@arm.com>
-Message-ID-Hash: QRLXFDKQWNX6N66AEY4GG4XFEXLXYDOT
-X-Message-ID-Hash: QRLXFDKQWNX6N66AEY4GG4XFEXLXYDOT
-X-MailFrom: kees@kernel.org
+Message-ID-Hash: YN2VEPFPWJ34SUZ26AR2GN7F6Y72OELG
+X-Message-ID-Hash: YN2VEPFPWJ34SUZ26AR2GN7F6Y72OELG
+X-MailFrom: mczernohous@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Philipp Stanner <phasta@kernel.org>, Sudeep Holla <sudeep.holla@kernel.org>,
- Cristian Marussi <cristian.marussi@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Danilo Krummrich <dakr@kernel.org>, Zack Rusin <zack.rusin@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- Selvin Xavier <selvin.xavier@broadcom.com>,
- Kalesh AP <kalesh-anakkur.purayil@broadcom.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- Chengchang Tang <tangchengchang@huawei.com>,
- Junxian Huang <huangjunxian6@hisilicon.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Hans de Goede <hansg@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>,
- Dexuan Cui <decui@microsoft.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Miri Korenblit <miriam.rachel.korenblit@intel.com>,
- Jes Sorensen <Jes.Sorensen@gmail.com>, Ping-Ke Shih <pkshih@realtek.com>,
- Johannes Berg <johannes@sipsolutions.net>,
- Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>,
- Guenter Roeck <groeck@chromium.org>, Nilesh Javali <njavali@marvell.com>,
- GR-QLogic-Storage-Upstream@marvell.com,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K. Petersen" <mkp@kernel.org>, linux-hardening@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, arm-scmi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- linux-hyperv@vger.kernel.org, netdev@vger.kernel.org,
- linux-wireless@vger.kernel.org, chrome-platform@lists.linux.dev,
- linux-scsi@vger.kernel.org
+ loop; banned-address; member-moderation
+CC: nouveau@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, simona@ffwll.ch,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, Fab Stz <fabstz-it@yahoo.fr>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QRLXFDKQWNX6N66AEY4GG4XFEXLXYDOT/>
-Archived-At: <https://lore.freedesktop.org/202611120916.3619B95@keescook/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YN2VEPFPWJ34SUZ26AR2GN7F6Y72OELG/>
+Archived-At: 
+ <https://lore.freedesktop.org/179451962164.1494544.10983579250194846394@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,152 +135,53 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.5 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 10:29:32AM +0100, Bence Csokas wrote:
-> A common usage pattern for offsetof() is the following:
-> 
->   offsetof(typeof(*ptr), member)
-> 
-> This is exactly the definition of struct_offset(). Some call sites use
-> offsetofend() instead of offsetof(). Add this variant, then replace all
-> call sites with the corresponding macros.
+On Mon, 28 Sep 2026 17:14:50 +0900, Beomseok Kim <dilddream31@gmail.com> wrote:
+> nouveau_fence_signal() clears fence->channel before dropping its
+> reference.  nouveau_fence_no_signaling(), however, removes an already
+> signaled fence from fctx->pending without clearing the pointer.
 
-Yeah, I think this is reasonable. I'd prefer to see the Coccinelle
-script explicitly added to tools/coccinelle/api/ though, so it can be
-trivially re-run as needed.
+[...]
 
-Also, while Alejandro is right about the needless outer parens, I think
-I'd like to keep them just to match the other define, and they do no
-harm.
+> @@ -488,6 +488,7 @@ static bool nouveau_fence_no_signaling(struct dma_fence *f)
+>  	 */
+>  	if (nouveau_fence_is_signaled(f)) {
+>  		list_del(&fence->head);
+> +		rcu_assign_pointer(fence->channel, NULL);
 
--Kees
+I think this patch fixes drm/nouveau#443 [1]. The nouveau_fence_sync()
+oopses there and in the reporter's thread [2] (MCP79, Debian 6.12.43,
+6.12.90 and 7.0.10) all fault at CR2 0x40 on the prev->cli->drm load,
+with prev taken from f->channel and prev->cli NULL. A channel's cli is
+never cleared, so prev most likely points to a freed channel. That is
+the stale pointer described above: the no-signaling path is the only
+way off fctx->pending that leaves fence->channel set, and
+nouveau_fence_context_kill() only walks fctx->pending.
 
-> 
-> Signed-off-by: Bence Csokas <bence.csokas@arm.com>
-> ---
-> Changes in v2:
-> - Use struct_offset() instead of reinventing it
-> - Rename offsetofendp() to struct_offsetofend()
-> - Merge the two treewide patches
-> - Link to v1: https://patch.msgid.link/20261105-offsetof-v1-0-4153f5c10edc@arm.com
-> 
-> To: Kees Cook <kees@kernel.org>
-> To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-> To: Marcel Holtmann <marcel@holtmann.org>
-> To: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-> To: Sumit Semwal <sumit.semwal@linaro.org>
-> To: Christian König <christian.koenig@amd.com>
-> To: Philipp Stanner <phasta@kernel.org>
-> To: Sudeep Holla <sudeep.holla@kernel.org>
-> To: Cristian Marussi <cristian.marussi@arm.com>
-> To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> To: Maxime Ripard <mripard@kernel.org>
-> To: Thomas Zimmermann <tzimmermann@suse.de>
-> To: David Airlie <airlied@gmail.com>
-> To: Simona Vetter <simona@ffwll.ch>
-> To: Jani Nikula <jani.nikula@linux.intel.com>
-> To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> To: Tvrtko Ursulin <tursulin@ursulin.net>
-> To: Lyude Paul <lyude@redhat.com>
-> To: Danilo Krummrich <dakr@kernel.org>
-> To: Zack Rusin <zack.rusin@broadcom.com>
-> To: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-> To: Selvin Xavier <selvin.xavier@broadcom.com>
-> To: Kalesh AP <kalesh-anakkur.purayil@broadcom.com>
-> To: Jason Gunthorpe <jgg@ziepe.ca>
-> To: Leon Romanovsky <leon@kernel.org>
-> To: Chengchang Tang <tangchengchang@huawei.com>
-> To: Junxian Huang <huangjunxian6@hisilicon.com>
-> To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> To: Hans de Goede <hansg@kernel.org>
-> To: Mauro Carvalho Chehab <mchehab@kernel.org>
-> To: Haiyang Zhang <haiyangz@microsoft.com>
-> To: Wei Liu <wei.liu@kernel.org>
-> To: Dexuan Cui <decui@microsoft.com>
-> To: Andrew Lunn <andrew+netdev@lunn.ch>
-> To: "David S. Miller" <davem@davemloft.net>
-> To: Eric Dumazet <edumazet@kernel.org>
-> To: Jakub Kicinski <kuba@kernel.org>
-> To: Paolo Abeni <pabeni@redhat.com>
-> To: Miri Korenblit <miriam.rachel.korenblit@intel.com>
-> To: Jes Sorensen <Jes.Sorensen@gmail.com>
-> To: Ping-Ke Shih <pkshih@realtek.com>
-> To: Johannes Berg <johannes@sipsolutions.net>
-> To: Benson Leung <bleung@chromium.org>
-> To: Tzung-Bi Shih <tzungbi@kernel.org>
-> To: Guenter Roeck <groeck@chromium.org>
-> To: Nilesh Javali <njavali@marvell.com>
-> To: GR-QLogic-Storage-Upstream@marvell.com
-> To: "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>
-> To: "Martin K. Petersen" <mkp@kernel.org>
-> Cc: linux-hardening@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-bluetooth@vger.kernel.org
-> Cc: linux-media@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linaro-mm-sig@lists.linaro.org
-> Cc: arm-scmi@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Cc: linux-rdma@vger.kernel.org
-> Cc: linux-hyperv@vger.kernel.org
-> Cc: netdev@vger.kernel.org
-> Cc: linux-wireless@vger.kernel.org
-> Cc: chrome-platform@lists.linux.dev
-> Cc: linux-scsi@vger.kernel.org
-> 
-> ---
-> Bence Csokas (2):
->       stddef: Add offsetofend() variant of struct_offset()
->       treewide: Use struct_offset()
-> 
->  drivers/bluetooth/btmrvl_main.c                    | 12 +++++-----
->  drivers/dma-buf/dma-resv.c                         |  2 +-
->  drivers/firmware/arm_scmi/base.c                   |  2 +-
->  drivers/gpu/drm/drm_edid.c                         | 26 +++++++++++-----------
->  drivers/gpu/drm/i915/gem/i915_gem_object.c         |  4 ++--
->  drivers/gpu/drm/i915/i915_active.c                 |  2 +-
->  drivers/gpu/drm/i915/i915_sw_fence_work.c          |  2 +-
->  .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c  |  2 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c            | 12 +++++-----
->  drivers/infiniband/hw/bnxt_re/qplib_fp.c           |  2 +-
->  drivers/infiniband/hw/hns/hns_roce_cq.c            |  4 ++--
->  drivers/infiniband/hw/hns/hns_roce_qp.c            |  6 ++---
->  drivers/media/usb/uvc/uvc_v4l2.c                   |  4 ++--
->  drivers/net/hyperv/rndis_filter.c                  |  2 +-
->  drivers/net/wireless/intel/iwlwifi/iwl-drv.c       |  2 +-
->  drivers/net/wireless/intel/iwlwifi/mvm/rs-fw.c     |  2 +-
->  drivers/net/wireless/intel/iwlwifi/mvm/rs.c        |  2 +-
->  .../net/wireless/intel/iwlwifi/pcie/ctxt-info-v2.c |  5 ++---
->  drivers/net/wireless/realtek/rtl8xxxu/core.c       |  2 +-
->  drivers/net/wireless/realtek/rtw88/fw.c            |  2 +-
->  drivers/net/wireless/realtek/rtw89/core.c          |  2 +-
->  drivers/net/wireless/realtek/rtw89/fw.c            |  8 +++----
->  drivers/net/wireless/virtual/mac80211_hwsim_main.c |  4 ++--
->  drivers/platform/chrome/cros_ec_lightbar.c         |  4 ++--
->  drivers/scsi/qla2xxx/qla_gs.c                      |  2 +-
->  drivers/scsi/qla2xxx/qla_mbx.c                     |  2 +-
->  drivers/scsi/qla2xxx/qla_os.c                      |  2 +-
->  drivers/scsi/qla2xxx/qla_tmpl.c                    |  4 ++--
->  drivers/scsi/scsi_transport_fc.c                   |  2 +-
->  include/linux/overflow.h                           | 12 ++++++++++
->  30 files changed, 75 insertions(+), 64 deletions(-)
-> ---
-> base-commit: 9d66f26fefacebfeed15de31c1123451a17ff119
-> change-id: 20261105-offsetof-f62aa6348f0d
-> 
-> Best regards,
-> --  
-> Bence Csokas <bence.csokas@arm.com>
-> 
+The fix looks right to me. enable_signaling runs under the fence lock
+(&fctx->lock) while the fence is still on fctx->pending, so the new
+store happens before nouveau_fence_context_kill() takes that lock, and
+thus before the synchronize_rcu() in nouveau_fence_context_del(). With
+fence->channel NULL, nouveau_fence_sync() falls back to dma_fence_wait()
+on an already signaled fence.
 
--- 
-Kees Cook
+Emmanuel Fleury's prev->cli check for the same oops [3] only helps when
+the freed memory reads back as zero, so I prefer this patch.
+
+The patch applies to 6.12.y with an offset; compile-tested there with
+W=1 only. I have asked the reporter (Cc'd) to test it.
+
+I did this review with help from Claude (claude-opus-5-5).
+
+Reviewed-by: Marek Czernohous <marek@czernohous.de>
+
+[1] https://gitlab.freedesktop.org/drm/nouveau/-/issues/443
+[2] https://lore.freedesktop.org/nouveau/b7f523dc-fe41-4514-a1a5-747005311cbe@yahoo.fr/
+[3] https://lore.freedesktop.org/nouveau/1690ea65-a1e0-4a34-bde1-bdd26e31c6c4@u-bordeaux.fr/
