@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A04606A32A
-	for <nouveau@archiver.kernel.org>; Mon, 16 Nov 2026 09:28:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DE4606A31C
+	for <nouveau@archiver.kernel.org>; Mon, 16 Nov 2026 09:29:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=BwZcJYhj
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=EreqnY2u
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D340E10EE97;
-	Mon, 16 Nov 2026 09:28:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3619410EEE0;
+	Mon, 16 Nov 2026 09:29:13 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7379449421;
-	Mon, 16 Nov 2026 09:08:34 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id CA32F49425;
+	Mon, 16 Nov 2026 09:09:23 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794820114;
- b=ehzjdoFl+LXcSejgrEXLkvDpE9faExsrK5vy38TL1Oaey5bk/KlTVS72fuK1zUtpnNOaT
- 8FZOPU2kqELztKcSM1Ym4qeiyDKiRj/IcJPeYTwelAL3SrCXvnZ5r/quxR7T239A63R8GDM
- a8S00VxhxUJCjBPxWohmXY2+l41cl3H3TZRHLY8houOqSvDi6xJTcQNzHhy5RAiasiymgAA
- HbQt0LGRGUhxvf3mqDY/OuYOtyL/LJrRkrfNQAgobQwVkKT1b8rTgK9kFupbUeDY/rvntZH
- +VoDFHDILC4xOhO5BqSvnkgVUnHIRfDzbdNx+IT76rDhYJtK1dAfS9S7wdnw==
+ s=20240201; t=1794820163;
+ b=rjKRK89comHbax0EpVU7gMg8VYfRSsS20g8XpQWIwbkb2J8OGip1ReFtvVIbgD3Wu3wmh
+ 6VMX9Q8rLUdPpb34bvusZw8TcoxU897wjTxl+Q0Yr8jbsBilBoFJbaZVd4BoLJWs/Sn0Ttj
+ sq4ZsyRA3vWArm1ZkF6hZl1iroQpeW3yemP/3coN2/Z7u5yCRmewYHFCS07oyk3jSdRW677
+ RtP9FsadN0RrkRbl7FKH3474lQ+DhahljEjYx4ITm1cUyN6Q/HhvUoxWgMfCR4tIoZOuylb
+ IHrFKOC35ADQhY3IvW6JWjyZ9RpqOw13e9Cob7jCkiRIv6NwL/pU2qBMcd8w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794820114; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1794820163; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=6O5L7vNOw9tqxoH8eLe9M+49Omq2w8inLzq+ECt/NxU=;
- b=cxaQqCzvAdGLys5MkTI4YbckW68tHnXLlm96hxVDD12NA2N3MNACJFe4BUM86VivjYyQ1
- ZQkeH72ej6BLdyE4O8uhCq2+SdNh1LHeAUvWGATRKralv2AQ21btYTPPXAMY2c214H2aYYh
- Z8G+mTZVEzoAnNKwLOrEO+5ZCayIC0inLx1KXUZZCLlhWJ7JZTU1i0pf5EmcXJrSTYga6ut
- zWNx4LUnI3d2g+41K58mFfFhwwisDv0O7q91irJ3PY2A71eetkWlbsuMMohtaaNPZGlmOma
- TqK+vsF8nlex/T1pgUvHFQgz2y9vGmGpTbIdRbbaeVPjR7wgRkFTV49VJwEQ==
+ bh=wFbznQG0d5IonVOFhnusqlVdFzPG48oiZmmSS9tPXTU=;
+ b=KkjkZIk8FIc+mzfHIIvkT1uCIOxS+G74i2mmOtx7o2XCUilnWY1ngEe3mDWZNKzzEtiei
+ wBEnmmG6ukfWQ30aQgOetJytI+8dk1yZzrEhYytEoqh4nkXnDMJmUplQTTzBifAJLnuQ1If
+ OTXM3wq24/LifC6F3WY4So1Gc7PjKn5eu/iapDBjZ/Oo6ghkJWMvG/s5GzoWZio+2X6gnGd
+ YDHBttsFnZOz0aTG9oEI7o0Td+TvefTJhTONdo4jmQm78xZ0RHULQujkUHp3OOcQIrmREG8
+ b7DGvfnDiNxK7dvOGLIOUjjNpN0BZ0KQfVMY7Kp6yWEBpvRzapn0wd/whDgg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -43,66 +43,66 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3BD6D49418
-	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 09:08:31 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3F1EE49418
+	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 09:09:21 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 498FB10EE7C
-	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 09:28:15 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 486A610EEDD
+	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 09:29:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1794821294;
+	s=mimecast20190719; t=1794821344;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=6O5L7vNOw9tqxoH8eLe9M+49Omq2w8inLzq+ECt/NxU=;
-	b=BwZcJYhjRymcmBgjCmkbZqbD3p/7Z5yUIbI7BWl3csiyfQr4n5j8UxnyHgnvYPgRmKRnVI
-	8qhDedUnvU1+nud8PS3oufxHCj8E+8P8mdtSVHVs0BjFS5TtBpFXyjxiVJRjnXYD//WsVJ
-	t3KBHJmGz0jx44PKQ0LKGNP8xprcRUs=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=wFbznQG0d5IonVOFhnusqlVdFzPG48oiZmmSS9tPXTU=;
+	b=EreqnY2uGsPcGB08CysgsQlx2r4/WZU1DJtu10NyBFowSXSRQwTr+DDZ5u4hEu8Vvrf2VL
+	T2HA1h/5StAh4rLX6cK0x6E/6USu1TwtXzonLSXLJ+6m+hDOcsVfH/CQWfq8AAP6EgT9B/
+	0TGalq8gj1Y5x0gaJwlsRwjRFpJ6+bg=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-196-YZLSXiLAPVK_Y0oYF9Rp7w-1; Mon, 16 Nov 2026 04:28:11 -0500
-X-MC-Unique: YZLSXiLAPVK_Y0oYF9Rp7w-1
-X-Mimecast-MFC-AGG-ID: YZLSXiLAPVK_Y0oYF9Rp7w_1794821290
-Received: by mail-wm1-f71.google.com with SMTP id
- 5b1f17b1804b1-4ad3d35e899so21062505e9.1
+ us-mta-581-bWXoxoRwMfa7HMpOyxuEGQ-1; Mon, 16 Nov 2026 04:29:03 -0500
+X-MC-Unique: bWXoxoRwMfa7HMpOyxuEGQ-1
+X-Mimecast-MFC-AGG-ID: bWXoxoRwMfa7HMpOyxuEGQ_1794821342
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-4a35e1d2dddso24287695e9.0
         for <nouveau@lists.freedesktop.org>;
- Mon, 16 Nov 2026 01:28:11 -0800 (PST)
+ Mon, 16 Nov 2026 01:29:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794821290; x=1795426090;
+        d=1e100.net; s=20260707; t=1794821342; x=1795426142;
         h=content-type:mime-version:message-id:date:references:in-reply-to
          :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=6O5L7vNOw9tqxoH8eLe9M+49Omq2w8inLzq+ECt/NxU=;
-        b=z/9dDFOfCyZLU4VQNvm/PrsZHZji3mKBaYij3yJXAYzc3jF2GA/0Iw60qGeYQe6i6y
-         Nrv5uk2OOuGS8RwvwTXbMvLCt0k1xmXP2nyc2EgCbIHf+mS6VXxrarWDRvpubBZ6NB9X
-         V3AiEh2eXhi5narU3HkSPagwMGLLpslO7gRkac98lR44UyZWtOjSLi4JpBHFUal0fyKX
-         j5CMA43nI4e2XCpySmUBdA9P4TuhNlYer8ZNEzXqCeSofX/UNzOoVwtyZzY3+FQNXLgv
-         PIHgXA/hG4iWM9qb/IUAHg6suuYTkpTFC3pX8TLztJ7hAqv1SpQGDLA5CeZwSf32DCU1
-         B41Q==
+        bh=wFbznQG0d5IonVOFhnusqlVdFzPG48oiZmmSS9tPXTU=;
+        b=W48mgS0Zk5d67FUdyBQYGiI8duW+vBLYMu4p+QUn5zPYFmT+HfjSOZC2pwQiAyCcj0
+         jPLiD1Vt8yujh380QCADQyGHP4U21KMzRs1YpJiqrDSfXfMGERtfyxnFcWHAvpQqBinQ
+         3v69CU1ImtDWjvKL49SfMxR8ouR/nKP7d31sW+IcotAF/TaHDHJjYKCdFdXTnsotfgNc
+         RWbe9om0DkYTD83GQVtram7Sh082qs+ELZRtMMCIgCfw7zWhbKy9biBmVmTrjtNczIeZ
+         LfUqBXrDFef5Fi+YgWUXCIbFOfpqjTd89nCaHwurehBdZZig3RJWKZ5p/90jQcevZmRA
+         0erg==
 X-Forwarded-Encrypted: i=1;
- AL+hErHy5e7jdzSGcOagUO+n4hmKXPH34VI/VvOueDKFmvnmuBjtTmyin+aSVxzO5TpdprXUxY2Q9rN3@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z9PdWONcg0E9ZqIqysnLGg7VckH/6dgaoM3XuxhDwQg918AzOKy
-	CQNAD/GKHly/TfFMJrbLQADEieZyAfrHFnctPFZarZ+YuwcOwaZM27LNeHYldIgxNbj+YaqrNfE
-	eMOqcgmxTuJd/Bt0M1wTatNBqPJTa1PErX3uST3wHSfa81VS3Y58TdYxSkWtfgKJMXRU=
-X-Gm-Gg: AYBFou3asmV0KcYkagVPYtOi3A6cWZZ7udzmDuOYcM+Rwk7fUpbeJJKLwLiqE6urXUm
-	w7wmk68amlbpVRYUsrF+LOnV3MpK7l9zA5EjRGPilVLwY9ru+OTsLKeQ8pOvwPpbQcnedmKOFnz
-	I7lUxEPvMuMcFf92/j5kEwRZPIbxrFTu9580d7iU3ER5J6mwgZNQ1yFDhb88Bln09UJrFIFowHd
-	3jPsG9yLa2DLwC70B73YGmqlu6/So0CBRMxhmDWQL2HVNl1ABMyR0eXgifPLRRVOyBoZ67zxdAv
-	1cv7R+Sp3oqdGkzMnd3YqsBYYQQNEffyaot4MlPNjtBOldta0s/iwVu32xijQid+SgCQHNxsef2
-	VIO4a1F7934uC7OskUcBG10h01Ky4d59LDUIGyuaXVBICg1z2fGEn95S9a/Tkv/CgCNS6NT6wMB
-	vjGOnKy9Y03ekuQFF9IzxLciWs95CfhLsYLILUbxY=
-X-Received: by 2002:a05:600c:1993:b0:4bb:659c:b8db with SMTP id
- 5b1f17b1804b1-4bb659cb9e8mr125482055e9.12.1794821289833;
-        Mon, 16 Nov 2026 01:28:09 -0800 (PST)
-X-Received: by 2002:a05:600c:1993:b0:4bb:659c:b8db with SMTP id
- 5b1f17b1804b1-4bb659cb9e8mr125481505e9.12.1794821289312;
-        Mon, 16 Nov 2026 01:28:09 -0800 (PST)
+ AL+hErFZuVwAn94t4SLKHRW1ODD2HdBbZL4Mzzshpninup3+s+HbIjkvRrGzqiMPOf7pHeQmzptgQ/CM@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z9ah8+pTgYknNICM7Iv4RKYa1KgiuV5AJrHZIu2yXzpDLcejjfk
+	tXXfe7t4FTBHHx5XJP8d3vp3InydxzbFEe+WayPoJojqmUb2Hn61VyEgDhESgaOjTe8RHtbJktk
+	wZNDMjdwTCY3p0polnGVtZbXrTqHptwz49VgbBQZvnOzxlM4jQlJaNrCseOTC3VsIA68=
+X-Gm-Gg: AYBFou3Gxv4zyVpJCABmdi+qZQbg+tWEI4Oi4w7CoGa4nf7kYW/gvkNpc5xT2yLugFy
+	vsVQdekV7byI+iLR25xFO+FvO5tTTQzm2RunaNQVLg55dPwzroKO7k/XZxbLn/w2RipW65vi2wZ
+	UJ6rbyl9j897Ioow0xZNNFC4+6HLczZr0xK5iDVbP3gXxciVFfxNETBUlq8fCjfrUBeC1ZTv86L
+	YNugNQZbmzW9DKyUwm1qQ/crjs1rnSn+2+1LrR6L8RveZsoH3SGKgZWue/S+xovMIz59A6XFn3z
+	rI3g3+JSlr2KrPHLKqpWcpUlrFv0px0OLW1g00P7fVW1do6YllxDRIolmy41e3pSyLuuyRVBMD8
+	pC/Jz1jlN5OmVy50hszzNe2LvYBjaP1i6kE9vJ7xcClykynWga3In3NfXWE5atDLKYghM62RbL8
+	couwJzuyEzP6LZ6pNUSo68j78GeZVREZucuO+uM6Q=
+X-Received: by 2002:a05:600d:41c9:b0:4bb:60bd:5398 with SMTP id
+ 5b1f17b1804b1-4bb60bd5507mr133776655e9.10.1794821341839;
+        Mon, 16 Nov 2026 01:29:01 -0800 (PST)
+X-Received: by 2002:a05:600d:41c9:b0:4bb:60bd:5398 with SMTP id
+ 5b1f17b1804b1-4bb60bd5507mr133775995e9.10.1794821341249;
+        Mon, 16 Nov 2026 01:29:01 -0800 (PST)
 Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4bb5720f6basm139362015e9.4.2026.11.16.01.28.08
+ 5b1f17b1804b1-4bb675200e4sm115370395e9.0.2026.11.16.01.29.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 01:28:08 -0800 (PST)
+        Mon, 16 Nov 2026 01:29:00 -0800 (PST)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: "Mario Limonciello (AMD)" <superm1@kernel.org>, Maxime Ripard
  <mripard@kernel.org>, Alex Deucher <alexander.deucher@amd.com>, Jani
@@ -111,22 +111,23 @@ To: "Mario Limonciello (AMD)" <superm1@kernel.org>, Maxime Ripard
  <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
  <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>, Leo Li
  <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
-Subject: Re: [PATCH v11 08/12] drm/bridge_connector: add luminance support
+Subject: Re: [PATCH v11 11/12] drm/bridge: add PS8622 connector luminance
+ support
 In-Reply-To: 
- <20261103-superm1-backlight-property-v11-8-00cce7b2ba22@kernel.org>
+ <20261103-superm1-backlight-property-v11-11-00cce7b2ba22@kernel.org>
 References: 
  <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
- <20261103-superm1-backlight-property-v11-8-00cce7b2ba22@kernel.org>
-Date: Mon, 16 Nov 2026 10:28:07 +0100
-Message-ID: <xlv1o6bpruqg.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
+ <20261103-superm1-backlight-property-v11-11-00cce7b2ba22@kernel.org>
+Date: Mon, 16 Nov 2026 10:28:59 +0100
+Message-ID: <xlv1ld6trup0.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: SMojx2AFrms8DOihbr2yKUS5DgMNM0GLHnyK6Tees58_1794821290
+X-Mimecast-MFC-PROC-ID: veyINsx4PEKAyyAFQJTKtaIu0HcNlfHsyh7XdpLBBB8_1794821342
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain
-Message-ID-Hash: QPSHMY2WA6S52PLABKD2ON6V6NIXHYU7
-X-Message-ID-Hash: QPSHMY2WA6S52PLABKD2ON6V6NIXHYU7
+Message-ID-Hash: 42YMQVD32YOIZEOM3TONGRYSNMOFYXAU
+X-Message-ID-Hash: 42YMQVD32YOIZEOM3TONGRYSNMOFYXAU
 X-MailFrom: fmartine@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -141,9 +142,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QPSHMY2WA6S52PLABKD2ON6V6NIXHYU7/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/42YMQVD32YOIZEOM3TONGRYSNMOFYXAU/>
 Archived-At: 
- <https://lore.freedesktop.org/xlv1o6bpruqg.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb/>
+ <https://lore.freedesktop.org/xlv1ld6trup0.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -162,15 +163,12 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 > From: Mario Limonciello <mario.limonciello@amd.com>
 >
-> Discover the last bridge in a chain that owns brightness control, attach
-> its relative luminance range to the connector, and forward atomic
-> luminance updates to it.
->
-> Do not infer panel luminance support from a terminal panel bridge. Panels
-> still have direct consumers, so their connector integration must remain
-> explicit.
+> Expose PS8622 brightness through bridge luminance operations when
+> DRM_LUMINANCE is enabled. Keep registering the backlight class device
+> otherwise.
 >
 > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> ---
 
 Acked-by: Javier Martinez Canillas <javierm@redhat.com>
 
