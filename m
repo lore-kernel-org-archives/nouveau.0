@@ -2,149 +2,189 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1AE606A31C
-	for <nouveau@archiver.kernel.org>; Mon, 16 Nov 2026 09:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5BDE606A31C
+	for <nouveau@archiver.kernel.org>; Mon, 16 Nov 2026 10:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=TSgJLCeF
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=A4AF64nu
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D84AC10EDF0;
-	Mon, 16 Nov 2026 09:39:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8868310EEEF;
+	Mon, 16 Nov 2026 10:21:14 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 5E3D94942E;
-	Mon, 16 Nov 2026 09:19:28 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 0381049451;
+	Mon, 16 Nov 2026 10:01:25 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794820768;
- b=aSO6Xi6L5FHNHLvYtIQ2CHEONpQy47LnQ3gwZcS4/YdJMUZsTicZi5L7yyd/MkDM2qjDO
- azHYb5d1coXVI+Jo3ENLUUDXzbGv6M/Zlt7gJktY+CLsRI+V0Oij1JX9zUHa3ydlhr/4f+O
- m2Q5I76RA9C3Z5179M3lOvMsaGcFwR141N8YwiSo2OD1PZrhfVCVR+4FRqNcrYpx2ZtGN0O
- 4hTWIIotfC+wYRy9xUrd9p7nNffCLkk1Wqne8ItJKyBAUH8RfG8TaxZqqD11VG9cFJUh2wY
- mFr6pgdiGcOuDe0RpxaMxDeRDUxx7ZJr+aG7xjh2qEn2eApoLkHZd796iaZw==
+ s=20240201; t=1794823284;
+ b=aD/Fw0mS4mrDRF9OgB6k9Kjw7KQOvFyqQlCM+k818Ord+XJ7EFPSaDCRZtBBy5fJTPWF6
+ TYzJZekusoO80LppU81zqfT5pSQgrA5MM1TJ9hvJVEp8TKa2NfDdVqWj36iAXKrWFyMDGrf
+ OeQoPU5LaSOfKwaDavoEZDmL4Cr9m0XDWnhIgyizynesap772sTx/eIXefibcDhpsiXhIVq
+ TlNZNK4vulfKNaUjNTPdJU6E/t7eAYoEZaUCPrD979PnCftQyNRhakidtyQFYKiDTND/syb
+ 3lzfL6lbRaTO3vmLc1l0db+L14EVpr3CU1QTAr9m/+NPbqUq076CJtjjnu2w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794820768; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1794823284; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=vfDtkcqPvV+2k9dyjsvEmJCR0/Gq1KXbglEhzSUqmq4=;
- b=lSAe8SuDaFYDRjX9jg3S/oANqKshoJPQoOaelafoW+rqmIg7FLianPzUtc6OAEyh8E0BS
- rh050y8ndBZYZFO2CHihuutrMnF9eUGGZsaic/sqWJW3HW1wOEZIxpYvfTSa3YUDdXa3TWb
- s6tei63xJmSCC58831g/PbImevgH0SMki+WqOf3NxaMzPrTPHP/VRB+z7wf7sWGVVg8/5N3
- Q5373kEDkTarLU04m9ZRT1XBjfFChcmD4c/4FRZ9RaO1Nmo2It3+5JOWdAj1XJ0pD0JZPGo
- UyzABGYfP5vRjPwS3WaiL0WJVl6rgMY0qmI0OBF1ROu9HGBhSaz5EtbPpBIw==
+ bh=eCrA9mVjaBK8MAY40JPU1DywzMNRUcfqehnrbY/XXEA=;
+ b=VZTU0HSI9VL+H43u7Vwyt0GcVfaeqLzGj5H7tfOx3cx2ztzEvlDQ+DHuaE2wu1CfeEtda
+ OAN94rV8NAku1jCkskLTZwHLe/bYMkX7VyrhjqLfQPEXOJTM+UzHNHtMyD1QiWRDlk6ErgQ
+ PlY3ujs7MoEqcolZ+LXXjhFgTEfiY0LnoRilncI9C5A2TDT9SQ2zrjCR5PQynlICQf9fG8p
+ IAcSiudUXknbFpwc6jByCv65LC+ksVXMQb3jlRINAY5CbLXnmlrY0k930B2/sVyYgWoXTyV
+ v/jF7vegm/fAfU1MuRwdHpCclRkKFEcxk+DlEvuXByeWbt3KXr4rffblwj9Q==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 423D44942E
-	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 09:19:25 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5A2F110EDBD
-	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 09:39:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1794821948;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vfDtkcqPvV+2k9dyjsvEmJCR0/Gq1KXbglEhzSUqmq4=;
-	b=TSgJLCeFDC+7XOHzSGCuBkK1Tffv4W6F0ZOw1rXgig+s3ADuWPrHqktz/3DfCJIliwG9uw
-	JBw/I/KcpFSC6vSjyE2PGbH6TlwOR1fj8BVSNwiUTnhHZH5vyDCcqzY1clhfR+qbeMQWfW
-	ruIGC/X78G0LIVGL+GgO6wPBFykJ+P8=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-121-t_gnPiSpNgmXnkyOedUh9Q-1; Mon, 16 Nov 2026 04:39:07 -0500
-X-MC-Unique: t_gnPiSpNgmXnkyOedUh9Q-1
-X-Mimecast-MFC-AGG-ID: t_gnPiSpNgmXnkyOedUh9Q_1794821946
-Received: by mail-wr1-f70.google.com with SMTP id
- ffacd0b85a97d-490d2ac331bso3058979f8f.0
-        for <nouveau@lists.freedesktop.org>;
- Mon, 16 Nov 2026 01:39:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794821946; x=1795426746;
-        h=content-type:mime-version:message-id:date:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=vfDtkcqPvV+2k9dyjsvEmJCR0/Gq1KXbglEhzSUqmq4=;
-        b=Tzy0a92cc59VhyptN/p+tSnyolDtgeB/+kUAANBZBy7hkjCKMk7Cmn9VpDDIaneWc8
-         zQGpHpgqgf1CR2hxVu6uzcNrC6BvJe1DqoWPt/F+KivEv/CovfJ35lFjgkJX7RTu6I0M
-         SEtTSCwKNu4eR9NFQH4DO29f7eg4ILpPCWBBsfQxWB7fPAKe+l7GWDsYTpI+JmGzd3UR
-         ZV5JbJatqHUirfJO4MBCCy41ah1qv8MiE+RbbRo0DZoC70hRcXlPX+5/f2amI58aPiCV
-         o7pTC9U6TpsAUHv4KKwN8UTGZW/MxDqXbmcys/YpIRS/Nu/lzHWwUSVQZXNeTA6q4199
-         TDuA==
-X-Forwarded-Encrypted: i=1;
- AL+hErHeYNoa/BC6gX+gVS07NYOnSldbS4oAPnn/N00A/ZwOQniAOUwkSKqeqvMqw5GZoAWfhyrXfSTB@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z89kvM/AaYZ6KbqQ73Wg0KqWECi8Ow2UumEKo/vYJY+NoTASzs9
-	UCqz1rlg7QVnXHGL1HFYjZ7VM0x34xQHNBHeN4BRaRkBENm2Sb+hjuGNifd1obII7+XlJG7M9Mj
-	eyvwHHjgG+m9G6afRsFkajlcTGwThqMztX7uGKdYfFq/a/be7H5Sy+7/CYBIhdRCMKyg=
-X-Gm-Gg: AZFdTZfWPyVT+Rf66l8GfcfdV7nCTvQRxPsWaT8DJwhKCCqQf4c1WLQ3rYlAmf1SG/g
-	ayjXaYvwQgMmDy970Np4eZCreaelWmM/yuS1/HqptBXGwKq3TMkg7JSFdPaa5bj/2ZDAWd/QDDH
-	uVCRdiZlbwivVekYu+YpS5oFdWN4dfFCMqoq0QGYj7Xg+7NJWj0fX9ezCi5roZ9KXH7pRYslcN7
-	pdBgWT185g0sn4GEM+TMiV2ZXdvH6PoIy8dA0+Ds99c5PxtBb3xuzL7+jf3cE4xAerEkZjPQlG2
-	SPqGq4El/Q26ssWtKgaDWvRGuw5J98HrnVQTVYqp7lCY/DYX4nooxXzmQpXk+pOpkd/SfcKTJ/5
-	5SY7iNk0nXrTeTTvqolVejW7gOz7nm6+FkyuXzc42hXBU3Y1sjbMUpXGfYIeMwl5MbR11dU2HTL
-	Wey6AQIY1lqupwu8LiHMpnUpMFuPkNREU4hUFbb2A=
-X-Received: by 2002:a05:6000:25c1:b0:4a1:486b:4eb9 with SMTP id
- ffacd0b85a97d-4a1486b53eemr6359106f8f.40.1794821945592;
-        Mon, 16 Nov 2026 01:39:05 -0800 (PST)
-X-Received: by 2002:a05:6000:25c1:b0:4a1:486b:4eb9 with SMTP id
- ffacd0b85a97d-4a1486b53eemr6359053f8f.40.1794821945065;
-        Mon, 16 Nov 2026 01:39:05 -0800 (PST)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
-        by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-49c7da37b19sm21564920f8f.5.2026.11.16.01.39.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 01:39:04 -0800 (PST)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: "Mario Limonciello (AMD)" <superm1@kernel.org>, Maxime Ripard
- <mripard@kernel.org>, Alex Deucher <alexander.deucher@amd.com>, Jani
- Nikula <jani.nikula@linux.intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>, Leo Li
- <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
-Subject: Re: [PATCH v11 12/12] drm/solomon: add SSD130x connector luminance
- support
-In-Reply-To: 
- <20261103-superm1-backlight-property-v11-12-00cce7b2ba22@kernel.org>
-References: 
- <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
- <20261103-superm1-backlight-property-v11-12-00cce7b2ba22@kernel.org>
-Date: Mon, 16 Nov 2026 10:39:03 +0100
-Message-ID: <xlv1ik1xru88.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3ADBB49418
+	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 10:01:22 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6A64510EED8;
+	Mon, 16 Nov 2026 10:21:06 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 607C462887;
+	Mon, 16 Nov 2026 10:21:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4BA51F000C6;
+	Mon, 16 Nov 2026 10:21:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794824465;
+	bh=eCrA9mVjaBK8MAY40JPU1DywzMNRUcfqehnrbY/XXEA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=A4AF64nuBLP4D/WB5XYrARCuvN2Uya+3U/WL8n/jma9gny6IDC2hNd/K8trp//kOW
+	 03vAkDVhr12heLXIsz1vZ3Lizif1tDNSK+WI9rfYCraTnB+tG780UlFvGKGfeYW4Yj
+	 /IGW6YDtveTz1JbN3vYsZvH06G36SZgQ90exTJ8WtMz1sp4PXUGZOa7wDC7+oNODEN
+	 esEoQ++w65AfXmz1JPtKklbmO8G8ttx+3dNK4t7h98eTe2QMB5YoB+XXQnlZYrcWRj
+	 ZrIAkdIqvc1bQVWn9O14VYmxY1+VqEs5E6zOpHJTbvhSY+cUGEVijNGts5/I2lDndf
+	 xBytnwQqkpBDA==
+From: Maxime Ripard <mripard@kernel.org>
+To: David Airlie <airlied@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Maxime Ripard <mripard@kernel.org>
+Subject: Re: (subset) [PATCH RESEND 00/83] drm: Switch drivers to
+ drm_mode_config_create_initial_state
+Date: Mon, 16 Nov 2026 11:20:59 +0100
+Message-ID: <179482445067.74579.7064780976000809844.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261105-drm-no-more-config-reset-v1-0-1f58d1e33380@kernel.org>
+References: <20261105-drm-no-more-config-reset-v1-0-1f58d1e33380@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: oYZx9JoPgeqoqst_phfiGTkTIWHe62I27dW8jSrJwyU_1794821946
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
-Message-ID-Hash: ZTPCUVZUH5H3S6NZRN7WURVT4JPYTDGZ
-X-Message-ID-Hash: ZTPCUVZUH5H3S6NZRN7WURVT4JPYTDGZ
-X-MailFrom: fmartine@redhat.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: KJMP42Z7HVLW24BX2D5QNKUSWG3IIEW4
+X-Message-ID-Hash: KJMP42Z7HVLW24BX2D5QNKUSWG3IIEW4
+X-MailFrom: mripard@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Mario Limonciello <superm1@kernel.org>, Xaver Hugl <xaver.hugl@gmail.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Mario Limonciello <mario.limonciello@amd.com>
+ loop; banned-address; member-moderation
+CC: dri-devel@lists.freedesktop.org, Janne Grunau <j@jannau.net>,
+ Sasha Finkelstein <k@chaosmail.tech>, asahi@lists.linux.dev,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Aun-Ali Zaidi <admin@kodeit.net>, Liviu Dudau <liviu.dudau@arm.com>,
+ Russell King <linux@armlinux.org.uk>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>,
+ Dave Airlie <airlied@redhat.com>, Jocelyn Falempe <jfalempe@redhat.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Dharma Balasubiramani <dharma.b@microchip.com>,
+ Manikandan Muralidharan <manikandan.m@microchip.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
+ Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
+ Ruben Wauters <rubenru09@aol.com>, Tian Tao <tiantao6@hisilicon.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Yongbang Shi <shiyongbang@huawei.com>, John Stultz <jstultz@google.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Xinliang Liu <xinliang.liu@linaro.org>, Yongqin Liu <yongqin.liu@linaro.org>,
+ Dexuan Cui <decui@microsoft.com>, Long Li <longli@microsoft.com>,
+ Saurabh Sengar <ssengar@linux.microsoft.com>, linux-hyperv@vger.kernel.org,
+ Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+ Liu Ying <victor.liu@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Lucas Stach <l.stach@pengutronix.de>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Paul Cercueil <paul@crapouillou.net>, linux-mips@vger.kernel.org,
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+ Paul Kocialkowski <paulk@sys-base.io>, Huacai Chen <chenhuacai@kernel.org>,
+ Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>,
+ Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>,
+ Xi Ruoyao <xry111@xry111.site>, Linus Walleij <linusw@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ Marek Vasut <marex@denx.de>, Danilo Krummrich <dakr@kernel.org>,
+ nouveau@lists.freedesktop.org,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
+ virtualization@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+ =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+ Sandy Huang <hjc@rock-chips.com>, linux-rockchip@lists.infradead.org,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ David Lechner <david@lechnology.com>, Iker Pedrosa <ikerpedrosam@gmail.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Orson Zhai <orsonzhai@gmail.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Raphael Gallais-Pou <rgallaispou@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+ Yannick Fertre <yannick.fertre@foss.st.com>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
+ Jyri Sarha <jyri.sarha@iki.fi>, Alexey Brodkin <abrodkin@synopsys.com>,
+ Hans de Goede <hansg@kernel.org>,
+ Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
+ Alex Lanzano <lanzano.alex@gmail.com>, LiangCheng Wang <zaq14760@gmail.com>,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Zack Rusin <zack.rusin@broadcom.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Michal Simek <michal.simek@amd.com>, Aditya Garg <aditya.garg@linux.dev>,
+ Andy Yan <andyshrk@163.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZTPCUVZUH5H3S6NZRN7WURVT4JPYTDGZ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KJMP42Z7HVLW24BX2D5QNKUSWG3IIEW4/>
 Archived-At: 
- <https://lore.freedesktop.org/xlv1ik1xru88.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb/>
+ <https://lore.freedesktop.org/179482445067.74579.7064780976000809844.b4-ty@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -152,69 +192,27 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-6.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-"Mario Limonciello (AMD)" <superm1@kernel.org> writes:
+On Thu, 05 Nov 2026 16:29:09 +0100, Maxime Ripard wrote:
+> drm_mode_config_reset() has a dual role: it creates the initial KMS
+> state at probe time, and resets hardware and software state during
+> suspend/resume cycles. However, the two roles need different
+> behaviors, notably for objects like drm_private_obj that must persist
+> across suspend/resume and are excluded from drm_mode_config_reset()
+> by design.
+> 
+> [...]
 
-Hello Mario,
+Applied to misc/kernel.git (drm-misc-next)
 
-> From: Mario Limonciello <mario.limonciello@amd.com>
->
-> Expose SSD130x contrast through the connector LUMINANCE property when
-> DRM_LUMINANCE is enabled. Program contrast directly and register the
-> backlight class device only when DRM_LUMINANCE is disabled, so contrast
-> has a single owner.
->
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> ---
-> v11:
->  * Keep selecting BACKLIGHT_CLASS_DEVICE and drop the guards (Sashiko)
->  * Register the backlight device only without DRM_LUMINANCE (Sashiko)
->  * Initialise the controller with the committed luminance and don't
->    clobber the saved contrast on disable (Sashiko)
->  * Skip contrast writes while the controller is powered down (Sashiko)
->  * Unify contrast dispatch and backlight ops (Sashiko)
->  * Drop Reviewed-by due to the rework
-> v10:
->  * Guard the backlight operations and registration with
->    BACKLIGHT_CLASS_DEVICE
->  * Fix Kconfig recursive issue
->  * Add the Reviewed-by tag
-> ---
->  drivers/gpu/drm/solomon/ssd130x.c | 149 ++++++++++++++++++++++++--------------
->  drivers/gpu/drm/solomon/ssd130x.h |   2 +
->  2 files changed, 98 insertions(+), 53 deletions(-)
+[45/83] drm/sti: Switch to drm_mode_config_create_initial_state
+        commit: a8670a2ab1a81dc3fc30093e47c23b83244ca4d0
 
-[...]
-
-> +static void ssd130x_connector_set_luminance(const struct drm_connector_state *conn_state)
-> +{
-> +	struct ssd130x_device *ssd130x = drm_to_ssd130x(conn_state->connector->dev);
-> +
-> +	/*
-> +	 * The encoder enable already initialized the controller with the
-> +	 * committed luminance. Skip if it failed to power up the controller.
-> +	 */
-> +	if (!ssd130x->enabled || ssd130x->contrast == conn_state->luminance)
-> +		return;
-> +
-
-Is not clear to me why you need this enabled field? I would prefer to not
-keep that state if possible.
-
-The changes look good to me though:
-
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+Thanks!
+Maxime
