@@ -2,223 +2,153 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A870B606A32C
-	for <nouveau@archiver.kernel.org>; Tue, 17 Nov 2026 15:33:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C15D1606A31C
+	for <nouveau@archiver.kernel.org>; Tue, 17 Nov 2026 15:34:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=columbia.edu header.i=@columbia.edu header.a=rsa-sha256 header.s=pps01 header.b=iYLVIb4e;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=columbia.edu header.i=@columbia.edu header.a=rsa-sha256 header.s=lionmail header.b=2yf8L0WY
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=yLSnr85G
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8E13010EAB1;
-	Tue, 17 Nov 2026 15:33:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 95AA910E9AC;
+	Tue, 17 Nov 2026 15:33:58 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6A9BC494B4;
-	Tue, 17 Nov 2026 15:13:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id B06EF494BB;
+	Tue, 17 Nov 2026 15:13:58 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794928436;
- b=efynv1Mz8IHS6kR+dFacCaU4M1ZZel5cLXTb71zYi7JKZp5RL4XX2Ex2I1ccGCJQYxiK1
- bUq0dhrGkWka2mmqN4mfF9ddJiaZCfyzby4o5NZwYSAOXWneNPU0Osk5xRVecNNRHgo4Q/D
- ylLM0CNzK/qjX3dkEouBOIOK6MfnpuG7bX0Oj4VyVxk8Y/qH6u5pzsnPkEqyMxYz2lD+ghP
- RNrHOu7bI93lquzgj02pZpVoTU3VHoVfFlrY76FCb25vXnW9MoOMeeQDTlRx9kA/su+LDv4
- 3FXpYYArIbV/52EkRxtjrf6q1O5A7qk9zwBuEGFHrxEHN0GAnBDktMvhjrDg==
+ s=20240201; t=1794928438;
+ b=KHFz7cm28X8l5J77NfO0KJrOlifgYuCZW/LHWWkFyY3vk9jurixvb812cppOlR7HSZtwa
+ Nk72yiIUuUmupmGPG1oIxhRcyzmdNxprseaJHyKAlB0YWQawxveA88RFutb6XBiRFe7hxbj
+ KQ6XChqXSLOv5TR4LS1PbgK7IHhlaJJt0HX0+hz8yerJUg5rCd1OUtM/X8mfcCfgyzmwXnP
+ yRX4y8sXvuXzcwPWyFRybCgbOzwPru4Kczmg1YSv7foRfMlV5OnG8HwxQ0gqLIRHLdLSxhv
+ Qqc+w80fqx6+nA0CKUzNFNj40L0PpZiOwOMcZUNUqp8kZI+zJP3cAEClQgmA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794928436; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1794928438; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=shtRRPv4sO05cfKy9jDsVgauLpUzE/l0Te4xSbg74SE=;
- b=z40luO3+M0bBOxo+8Izp2sLg66cuo5ajhXcerOpbIdLEp8IRYPUFHB+lmFPET9egH7Tv+
- uqJt8klBv9ugSJRXSQO0nQ09wkzYmwc80CQNziVMg87UcHZ7mDvUicLTePoq05dXusOGx4J
- Uw+6kzI1zXn7PQOhp05n/3aJvCe+SEfYWq8I6eeLAmAUjf+rdYCpdSoRDOYJJ5hSosf5U7Q
- aRFhWYLTZaRpDHsn2dyPKHN7waONU+rmLBn42Lj2RlV5Ym1bUSgFQYy6CNipVxvjswoJIO3
- gkDE/9f9voOHOfJyKpMYbWdOOeqz0l001kRYxHD8p8gJFhyZndWukKlZ8hYQ==
+ bh=ohJe8BJBCDffCZ4MuZ0uQ527x40SLHyvNrdc9OJlZqQ=;
+ b=nIiPLt0cnxekRQGNgIso57YZeNyYw7wvHgAQYhaiZPM3MaaKwxYPdwGJy4hM6K7GFloCY
+ R1/sDcb5YURbr8QhKt4R/yp30zvxNeJUTBCUb+2KEBO81Wx1Zm/+SKBOIqGmQddaTF5zrS4
+ DXkvaZoXkGnwuZwN3T/uvlwiWW5w3oUHMSzqUpwR0AaF4kA5qWn5o+Za2pzE7wkOn+cZQ+H
+ J9pSBvAfPxUTBx9jEq/Nfqlf11oNSquxst4pq3hT3o0pQC8LzcemhAyxfLP8KieoA816Pte
+ vrIylgOZAkk2eu2d/5ZgSSiVNuwBoENj8Ynzy881AkTeD8Ak31DNUENCgKfA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=fail header.d=columbia.edu;
+ dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=columbia.edu
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=fail header.d=columbia.edu;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=columbia.edu
- policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id DC9C249405
-	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 22:47:08 +0000 (UTC)
-Received: from mx0b-00364e01.pphosted.com (mx0b-00364e01.pphosted.com
- [148.163.139.74])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA0A10F4B9
-	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 23:06:49 +0000 (UTC)
-Received: from pps.filterd (m0499198.ppops.net [127.0.0.1])
-	by mx0b-00364e01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 6AGLYsOT238447
-	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 18:06:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=columbia.edu; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pps01; bh=shtR
-	RPv4sO05cfKy9jDsVgauLpUzE/l0Te4xSbg74SE=; b=iYLVIb4eyo24+udnvs3G
-	MJgMkShakHkhAOAO9CCgFnM6i8wa3coBagtc8oRa+Lz6Z+MsbX20IDG3LJDy0vFX
-	Z0Yjgn48CeEZWOfHZUatppMpD+9lfvTeu1uj/3fqHOBdXDNgGL9YK9AfIpsuUf6b
-	JdLsR/VkazINFOI0UV6cZ08cE5if7g0pIqYZr6Tij0qLt8/TfT5VCHu0/nirog4e
-	J04gsFT5b3xlACp4HxuRzGUOdy0q0fmWzSUnd1tqycWphXxfpPmPT2mfDAxLoHOg
-	MM4XfQsJlIgAnl7FQPviBjf51Fu25cAE/NqerET3PQEQk5MvIcw/7mao9MSb59qZ
-	Lw==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70])
-	by mx0b-00364e01.pphosted.com (PPS) with ESMTPS id 4j059dkryn-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 18:06:47 -0500 (EST)
-Received: by mail-qv1-f70.google.com with SMTP id
- 6a1803df08f44-91eb7d1472cso78187276d6.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1EB7E49468
+	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 18:09:57 +0000 (UTC)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 273FB10F3B2
+	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 18:29:42 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-4ba013938d7so40212305e9.2
         for <nouveau@lists.freedesktop.org>;
- Mon, 16 Nov 2026 15:06:47 -0800 (PST)
+ Mon, 16 Nov 2026 10:29:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=columbia.edu; s=lionmail; t=1794870407; x=1795475207;
+        d=gmail.com; s=20260707; t=1794853780; x=1795458580;
  darn=lists.freedesktop.org;
         h=content-transfer-encoding:content-type:in-reply-to:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=shtRRPv4sO05cfKy9jDsVgauLpUzE/l0Te4xSbg74SE=;
-        b=2yf8L0WYBYN1i5CdFMfs6juxWDHJycWymrDEAm4SHsqdOATgbGuoNrsWZOe1k1klrE
-         jO2i0n8DRIIyIXTB/j40eBB4TUpS+a2PYG3IXNIfEWZRicE/Pfu2WcDXFr9Dl4WVIQwl
-         hxck0pTnsb1+kCqR/POE3av8ruxAZR4jmWkZ+ajTYe6/MA2BWbIVkRxbbEW3UiLAmHo5
-         fMvoDXisG91r8o6O31pqTKOVIWCFPWwz5p+cfgAkAbdizx2/jMbB2ZFiMrr0eknulp0y
-         amlSZn5pQrUbz9yxxAsWE+gaWfMZMGli+k/imxoL10+25d7QCl70ymQJBTtGDkNmfEm6
-         3zTg==
+        bh=ohJe8BJBCDffCZ4MuZ0uQ527x40SLHyvNrdc9OJlZqQ=;
+        b=yLSnr85G4Y819zUrmY63pK4JuRVM7bzKsBBYekOBnKl9IQgpWHAyvva1DrgDLB5vDa
+         6jmnWEqJLEV8ArMo4x6pljeLAav8AsBZhLLbka+Cw8B0g33Ksf+YQrBbv9Cukn0HCICs
+         Ufb2E58oFmVT2LtTpg2JgWuDAGpyD4VhtRYAD0me33K4s73WK+kGoHKg910Mptcs4PIx
+         T5IgwnZkSOBZX9RicW3gi7BMh3k0lFBPvmapDoZTekMGEOaY70r6ao08xwrZ5MpaBfTQ
+         HuOa5OrDVzKgS7lm4EILmb8Ap8rxCRurqBy9Ghl6HGYxIrRByvIEnYXH7Zs6b3clb4/5
+         oPUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794870407; x=1795475207;
+        d=1e100.net; s=20260707; t=1794853780; x=1795458580;
         h=content-transfer-encoding:content-type:in-reply-to:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=shtRRPv4sO05cfKy9jDsVgauLpUzE/l0Te4xSbg74SE=;
-        b=dXMpwYzD7svUd/fTcITXZS+RgjYBiNRUMM0GBtC5ddmC8ZWwWZLJB5HNrv6/6yULNr
-         CwYvGgavkILcMghAPtMB2LOYjzCPL2xtdGfxAZL4CWMfM3X6U9M+nx9GxaZzYrzyBL4G
-         QOj+jAKFdxuwHqDa0neSNY2UmPtMlaPtzqSWjrbOM740N2I+kvrAOPK54129sNtX+Ate
-         KF1vWwg8Y5DdtSRyRxiKwUVPSKuk1yas765hGParNOxpIHjSmZknoihrH92WAzKWOpxB
-         JgDdAWIhqHaHK3YHVGx2OsSzKiBqToy5WUsSxc3OZSkr/kjmUp1MpJJ3XWSrk3wSGlkw
-         u00g==
+        bh=ohJe8BJBCDffCZ4MuZ0uQ527x40SLHyvNrdc9OJlZqQ=;
+        b=ftw/fmpyNluP5zffujxbNjUsFhtSnSUpZt6K35eDyMqe9Op4kAyThDBLZFttf8bjh3
+         4B/MPae2SnlzXkD1NUrVR0+mJbmrQOYTf/osQZzqNfhW3pz2/NEYh+8eSPEXD4dp7XcJ
+         gN5l0lym8JmrXll65Gc43DL+ghjRx9aAW5sk4s+9uXUrIIsOAO5GGK0fds5Pw2mX9vih
+         3+esV87/TUcGHDhZlBO7GMUf4riXj37zsHQJSl2BUASjyQobmINvOCi3kESUEW3UPdw6
+         iFNcAyCBvCaqKpOUsdFzF5v/GqmvFdGWHEoa4HJDNmbMiaE7LnoqnYT7vJ22kJdMppQv
+         Yqcw==
 X-Forwarded-Encrypted: i=1;
- AL+hErGryapMXxrbb9mZpTGC8Nbv+KCcj9MDM5Xwi+70XvUH7aFpB139orvtGhzaOjnHy3+Ot1BpMjdQ@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z+NBWfflLYwu40dYV+6HD/hVZOt8cjbe6vFJp7Fd+WYfi3tuQkE
-	YBZhIMyFg5StSPpfboJ/QEUdDnFlwOTKWGMld50IdjA1OdsEMcEUr01uBDJJ3qDQOWKr0y/u4St
-	6bjnwNVVFmVvi82wk8c3BivKXHmDVvliJMCll9/OzUNlp4WDiwlUzpbVIgfeEHJk=
-X-Gm-Gg: AZFdTZecI71TkgcybZdp5UUiZWnId3HNHMV3LERvumWryaTRy63vZPBv5Uf8n58rtUW
-	M8nJx/yDdR99uz4Cs9xf8Pk1O79jXKvLWzeIRRnRX4rxYZnn+KF4ZlXyWMYUwWlt6ZC+AhzF/Um
-	M1LpVxV9ljzRB1YTvn1rdnOvbfXG81XMClapaSOJxl/TNNfOcK6tx4n9lXYOK+Nb9l2HWLGIFEJ
-	Unmesv78XrBxQ1Xve9g6B1WbkpfAePuhSwnS9scfHXLEkjgCI4wtPR9COvGsYKK30C6y218Gp96
-	PYiCE3dh4ohER9i3Lz8WDsi5rZWmZYXlwaPeMYdKU02LMfRyPifoQLivRHpa5u/W9hOxOAL2iMx
-	UjE8i+G5J5W9SJwGpEnafSB6ruwLj5GRmJ8zASVpSmCW9QDyFHQSSIgtyWXC4tcaPnA9AYnryo6
-	eu1q1wVFyBdOM7cTjI1SSMO1dn
-X-Received: by 2002:a05:6214:486:b0:91e:cb85:f84c with SMTP id
- 6a1803df08f44-91f241ce6admr203454416d6.27.1794870407337;
-        Mon, 16 Nov 2026 15:06:47 -0800 (PST)
-X-Received: by 2002:a05:6214:486:b0:91e:cb85:f84c with SMTP id
- 6a1803df08f44-91f241ce6admr203453936d6.27.1794870406649;
-        Mon, 16 Nov 2026 15:06:46 -0800 (PST)
-Received: from [10.207.2.125] (nat-128-59-176-174.net.columbia.edu.
- [128.59.176.174])
+ AL+hErH0Y/LMrnQtDjzbruSCpB9RsbEMbh+mUt1rj4/xT7ttdazJe9F5JhQMCxCbYC06MjHAJzEXXOnH@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z9Jgt2e7kC5AVcBn2E6HQBFhvuoLzKk+og/cR09/SsYkVa+ujs4
+	khDGhBGdr0ER/0GrmbN3vQDMfkG0PEUDXbyqWWhMM0SMdqnVDMViUxQu
+X-Gm-Gg: AYBFou3Vf1DHfChe4GGa/Mnjl7vNk6fGkYWkwogVE3Ukc2autZs+iJ6gCW6Tl46GSU7
+	e5xCVS3cQzW1bpnu8flKQwV1JUmtpcowPnag8lORZKLfuXdjJZSwp3cVAZU9P9vM62YuVwa0hae
+	vDWAYPk6MPNjPnz5bFwVbJpLmSCxskPGdcJ2PgvuaV/sq8un7G+lQi+U8NgPcTfYCAyUy4ag5qj
+	1NO10fR3OImm/B4V8Tszt3nSwCToLaoH7609apxHYwlT0Xb+qXRZjnDdysFQqKMOpYbxsiwy8cf
+	opFlypYOz5ZKIkh+JpvOPDyRqFKCKIiPZ6o3RnujpQtnSL+aiwEz/BE3A9qC7ThxpN5RE9hznA6
+	ZdNYbR4UJ7pCKqVc7GuaGIimtWwaH45F49lQ2qpd9StsNXBdcll/jykjLnpGvhCUlrG/PdIXr3o
+	Z57fgoO1+mA1eUCGKpRSzoI9sAeD3ioBOhxeLlf7CeifkNtYzjF+PDDSBNUvgh6iRbc3DqERFFa
+	Xq9kNO4JVV1Vn1vv77m4fH9LX2iExPuIKaV1F26Vn2wrzIsO321ITkc0+fO+CijbIC+AkaFrb7h
+	Bl7LXaoZcRRuPde40cOSql14+HlMrIU4NoF8cLniwJgOet3tbl8=
+X-Received: by 2002:a05:600c:46c9:b0:4a3:d327:6ed with SMTP id
+ 5b1f17b1804b1-4bb55a5fdf6mr254839115e9.17.1794853780298;
+        Mon, 16 Nov 2026 10:29:40 -0800 (PST)
+Received: from [10.155.107.148] ([147.88.200.116])
         by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-91f23d459c6sm97731756d6.14.2026.11.16.15.06.45
+ 5b1f17b1804b1-4bb783965d4sm7171285e9.7.2026.11.16.10.29.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Nov 2026 15:06:46 -0800 (PST)
-Message-ID: <71aa028f-c753-40d5-a8e4-8daef5aea3aa@columbia.edu>
-Date: Mon, 16 Nov 2026 18:06:44 -0500
+        Mon, 16 Nov 2026 10:29:39 -0800 (PST)
+Message-ID: <1b7a7d94-e349-4f3c-b973-c365041c15f2@gmail.com>
+Date: Mon, 16 Nov 2026 18:29:38 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 8/9] mm/migrate_device: do not migrate a uffd-protected
- zero page
-To: "David Hildenbrand (Arm)" <david@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@kernel.org>, Peter Xu <peterx@redhat.com>,
-        James Houghton <jthoughton@google.com>,
-        Andrea Arcangeli <aarcange@redhat.com>,
-        Suren Baghdasaryan <surenb@google.com>,
-        Balbir Singh <balbirs@nvidia.com>,
-        "Liam R. Howlett" <liam@infradead.org>,
-        Lorenzo Stoakes <ljs@kernel.org>, Vlastimil Babka <vbabka@kernel.org>,
-        Jann Horn <jannh@google.com>, Pedro Falcato <pfalcato@suse.de>,
-        Michal Hocko <mhocko@suse.com>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        Andrei Vagin <avagin@gmail.com>,
-        Muhammad Usama Anjum <usama.anjum@arm.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
- Arnd Bergmann <arnd@arndb.de>,
-        Zi Yan <ziy@nvidia.com>, Matthew Brost <matthew.brost@intel.com>,
-        Joshua Hahn <joshua.hahnjy@gmail.com>,
-        Byungchul Park <byungchul@sk.com>, Gregory Price <gourry@gourry.net>,
-        Ying Huang
- <ying.huang@linux.alibaba.com>,
-        Alistair Popple <apopple@nvidia.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Nico Pache <nico.pache@linux.dev>,
- Ryan Roberts <ryan.roberts@arm.com>,
-        Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>,
-        Lance Yang <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>,
-        Kiryl Shutsemau <kas@kernel.org>, Muchun Song <muchun.song@linux.dev>,
-        Oscar Salvador <osalvador@suse.de>,
-        =?UTF-8?Q?Miko=C5=82aj_Lenczewski?= <miko.lenczewski@arm.com>
-References: <20261116-uffd-state-fixes-v2-0-4397a0196479@columbia.edu>
- <20261116-uffd-state-fixes-v2-8-4397a0196479@columbia.edu>
- <a384d75c-2134-407a-924f-ee511f65a2d1@kernel.org>
+Subject: Re: [PATCH 00/12] drm/atomic: Try to make atomic+async usable, and
+ clear up the "async update" helper confusion
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+References: <20261116091130.13950-1-ville.syrjala@linux.intel.com>
 Content-Language: en-US
-From: Tal Zussman <tz2294@columbia.edu>
-In-Reply-To: <a384d75c-2134-407a-924f-ee511f65a2d1@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From: Erwin Springer <aot.lerwin@gmail.com>
+In-Reply-To: <20261116091130.13950-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: Gi7_SzXjcT7v7f_vyd5Vvtkhc-b6RX5w
-X-Authority-Analysis: v=2.4 cv=Utf2pOwB c=1 sm=1 tr=0 ts=6afb8c88 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=KPY1cyGZ6h6m4ASiENTC8Q==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=x7bEGLp0ZPQA:10 a=A0y_DWxS2BwA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Da8U98TiO7q1upZEImrf:22 a=BpGzv1V74M3SfeTrGa8v:22
- a=QyXUC8HyAAAA:8 a=20KFwNOVAAAA:8 a=VwQbUJbxAAAA:8 a=zd2uoN0lAAAA:8
- a=9jRdOu3wAAAA:8 a=e5mUnYsNAAAA:8 a=Ikd4Dj_1AAAA:8 a=zEWuSTdDNGilpxNPLJEA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
- a=ZE6KLimJVUuLrTuGpvhn:22 a=Vxmtnl_E_bksehYqCbjh:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE2MDA5MiBTYWx0ZWRfXyoHC0hxeLmny
- vz11HvZHiec8xWBbWdHnDexS88bxYT+3qcKU4eYJmJUsGyTuBG96Ezi+PQXnA+Ecvt1ZbFpNOfp
- 3T6GDtkegc/jsfVZgnfMH8rgAxBRHS9sOYZ1mHzVnBpu5KvTqLGj+EWL0CpBG6ORG2h44qewtiY
- CnX9v9QRHizPtSd2umFSu1o2+a/tr5GOeA1gVL5DYa3p0Le9o2tF0fjxvEAhq743qlCXF+ZQb+X
- +sf0vmOiI371uWVKN2HPXOPsoriWV/fdgeThlILaw/X3SfVQuPerROK75py+j8IbKiEY4imS+ms
- nhtIkw4jYgseOsM5lySrXTODnDU8o8C47vmSw3pzqiUCvQ1QVRqOjbkzRxcnQbT+ollApEJxiBq
- AbK4683oVrlvqIVzNZgFzvUefgHUgI0tk6fGq4ilKiRzG/lwO7hdFGXY/T01y+c5TbeEYMV3fNQ
- R59OHaxQbz/1GUSVmlg==
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE2MDA5MiBTYWx0ZWRfX5R+XIt1MBLNT
- JWcq7n5Am6i3YSR/3+rZ3X86vPo6QgtFfWKEQxMl5X7UoAspAzJkUMBdZuXSR09QX2BqJreGz8R
- kwwxB01FCMp4vbtnf3IggPmnMYXBvFAY//UwYp1nHnhUeqc3EF7j
-X-Proofpoint-ORIG-GUID: Gi7_SzXjcT7v7f_vyd5Vvtkhc-b6RX5w
-X-Proofpoint-Virus-Version: vendor=nai engine=6900 definitions=11968
- signatures=596817
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 bulkscore=10 spamscore=0 adultscore=0
- clxscore=1015 impostorscore=10 suspectscore=0 lowpriorityscore=10
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611160092
-X-MailFrom: tz2294@columbia.edu
+X-MailFrom: aot.lerwin@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: DOAZV2IKRURTZ3OBEJX4FNM5YNB3LVOQ
-X-Message-ID-Hash: DOAZV2IKRURTZ3OBEJX4FNM5YNB3LVOQ
-X-Mailman-Approved-At: Tue, 17 Nov 2026 15:13:54 +0000
-CC: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
- linux-fsdevel@vger.kernel.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Danilo Krummrich <dakr@kernel.org>, Felix Kuehling <Felix.Kuehling@amd.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Message-ID-Hash: UJA5JXMPIVZAU6N35I7YH4CGWGRLRSBC
+X-Message-ID-Hash: UJA5JXMPIVZAU6N35I7YH4CGWGRLRSBC
+X-Mailman-Approved-At: Tue, 17 Nov 2026 15:13:57 +0000
+CC: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
+ Boris Brezillon <bbrezillon@kernel.org>,
+ Christopher Snowhill <chris@kode54.net>,
+ Dharma Balasubiramani <dharma.b@microchip.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, freedreno@lists.freedesktop.org,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Huacai Chen <chenhuacai@kernel.org>, Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+ Jianmin Lv <lvjianmin@loongson.cn>, linux-arm-msm@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, Liviu Dudau <liviu.dudau@arm.com>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Manikandan Muralidharan <manikandan.m@microchip.com>,
+ Maxime Ripard <mripard@kernel.org>, Mingcong Bai <jeffbai@aosc.io>,
+ nouveau@lists.freedesktop.org, Qianhai Wu <wuqianhai@loongson.cn>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Simon Ser <contact@emersion.fr>, wayland-devel@lists.freedesktop.org,
+ Xaver Hugl <xaver.hugl@kde.org>, Xi Ruoyao <xry111@xry111.site>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DOAZV2IKRURTZ3OBEJX4FNM5YNB3LVOQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/UJA5JXMPIVZAU6N35I7YH4CGWGRLRSBC/>
 Archived-At: 
- <https://lore.freedesktop.org/71aa028f-c753-40d5-a8e4-8daef5aea3aa@columbia.edu/>
+ <https://lore.freedesktop.org/1b7a7d94-e349-4f3c-b973-c365041c15f2@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -226,83 +156,51 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-7.0 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/16/26 3:45 PM, David Hildenbrand (Arm) wrote:
-> On 11/16/26 21:02, Tal Zussman wrote:
->> Device migration replaces a PTE that maps the zero page with a new PTE
->> that is built only from the VMA flags, so its userfaultfd WP or RWP
->> protection is lost. The same applies to the huge zero PMD. Writes and
->> accesses to the page are then no longer reported to userfaultfd.
->> 
->> To fix it, do not migrate a uffd-protected zero page. Skip it during
->> collection, and check again under the page table lock before inserting,
->> as another thread can protect the page after it was collected.
->> 
->> The alternative would be to carry the uffd state over to the new entry,
->> but a uffd-protected zero page in a range that a driver migrates should
->> be rare.
->> 
->> Fixes: 292924b26024 ("userfaultfd: wp: apply _PAGE_UFFD_WP bit")
->> Fixes: a30b48bf1b24 ("mm/migrate_device: implement THP migration of zone device pages")
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Lyude Paul <lyude@redhat.com>
->> Cc: Danilo Krummrich <dakr@kernel.org>
->> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
->> Cc: Jason Gunthorpe <jgg@ziepe.ca>
->> Cc: Leon Romanovsky <leon@kernel.org>
->> Cc: dri-devel@lists.freedesktop.org
->> Cc: intel-xe@lists.freedesktop.org
->> Cc: nouveau@lists.freedesktop.org
->> Cc: amd-gfx@lists.freedesktop.org
->> Reviewed-by: Alistair Popple <apopple@nvidia.com>
->> Signed-off-by: Tal Zussman <tz2294@columbia.edu>
->> ---
->>  mm/migrate_device.c | 23 +++++++++++++++++++++--
->>  1 file changed, 21 insertions(+), 2 deletions(-)
->> 
->> diff --git a/mm/migrate_device.c b/mm/migrate_device.c
->> index 9e19fadfa65c..140b99f72508 100644
->> --- a/mm/migrate_device.c
->> +++ b/mm/migrate_device.c
->> @@ -159,7 +159,16 @@ static int migrate_vma_collect_huge_pmd(pmd_t *pmdp, unsigned long start,
->>  
->>  		folio = pmd_folio(*pmdp);
->>  		if (is_huge_zero_folio(folio)) {
->> +			/*
->> +			 * Nothing carries the uffd state of the zero page
->> +			 * over, so skip it if its uffd bit is set.
->> +			 */
->> +			bool protected = userfaultfd_protected(walk->vma) &&
->> +					 pmd_uffd(*pmdp);
-> 
-> Now that I read it 3 times in a row below, these needs a helper.
-> 
-> userfaultfd_pte_protected() ? userfaultfd_pte?
-> 
-> That might help you to get rid of the local variable (that should have been
-> called something that includes uffd and should have been const)
-> 
-> 
-> Maybe just add a simple helper for the pmd as well and use it below.
-> 
 
-Will do. I'll do userfaultfd_pte_protected() and userfaultfd_huge_pmd_protected()
-to match the existing wp and rwp helpers.
+Am 16.11.2026 um 10:11 schrieb Ville Syrjala:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>
+> The weird uapi semantics of the atomic async flip support make it
+> really hard for drivers to implement. Try to fix that by filtering
+> out the no-op junk from the commit that userspace likes to put there.
+>
+> Also a lot of people are apparently confusing the
+> .atomic_async_{update,check}() hack with async flips. The two
+> are completely orthogonal, so try to clear up that mess by
+> renaming the hack to .atomic_bypass_{update,check}().
+>
+> TODO: atomic+async is in serious need to proper tests, somehow
+>        all that seems to have gotten skipped when the feature
+>        was added :(
 
-Re: the local variable, I'll rid of it and just call spin_unlock() in
-both branches, which is a little ugly.
+thanks, this fixes the KWin case for me, so my patch is no longer
+needed..
 
-> 
-> -- 
-> Cheers,
-> 
-> David
-> 
+tested on Raptor Lake-U (Iris Xe) with unmodified KWin 6.8.2 and a
+fullscreen client that requests tearing through wp_tearing_control_v1,
+without my patch. I applied the series to the CachyOS 7.3.4 kernel,
+the only conflicts were the renames in amdgpu and msm.
+
+Before, none of about 350 frames per run was presented without vsync.
+With the series 3330 of 3336 frames tear over four runs (with and
+without CCS modifiers), and the "async flip not supported" message is
+gone. What is still rejected is the first flip after the modifier or
+format changed, once per run, as intended, and in three of the runs
+one commit that touches the cursor plane, which can't do async flips:
+
+   [PLANE:146:cursor A] does not support async flips
+No warnings and no flip_done timeouts in the log.
+
+If you think it fits, feel free to add:
+
+Reported-by: Erwin Springer <aot.lerwin@gmail.com>
+Tested-by: Erwin Springer <aot.lerwin@gmail.com>
 
