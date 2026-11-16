@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1869606A336
-	for <nouveau@archiver.kernel.org>; Mon, 16 Nov 2026 09:13:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76304606A880
+	for <nouveau@archiver.kernel.org>; Mon, 16 Nov 2026 09:13:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RPj3y5Vs
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=K7KYmL/+
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7EAEF10EE36;
-	Mon, 16 Nov 2026 09:13:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 17A8310EE4B;
+	Mon, 16 Nov 2026 09:13:18 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2583149382;
-	Mon, 16 Nov 2026 08:53:12 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A73EC493A1;
+	Mon, 16 Nov 2026 08:53:21 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794819191;
- b=UjBMMxotZ3qc+v+8yzT4U9Hfc1TI0FLn3Exn6zENhZiU+RwfugG3N5NYAF7jT2g1mT0hi
- /XN7Ws/Ff9CYU8hnfCm9T9qaPOjMrePgXlTE8CVy2ArD9CsuCKWI6peCUJQXH+MOnWFL4Gc
- 8d+hMt75OQodR8b7T6qlWu6rNbvY07PawPx1jbKBOyGzsq9vkugQ+SPzWk1oJ1anVa3ZGYS
- p2O0rWqhdPjiAIlBkNSW7uubJfL3MFZZXN5adi8MVL2lU2zvaPfklPb+ImE4zDI8n0Q7rwI
- W1EnEouIe1Ft5BlBrp9DWUGPJiTcjcwTWE5Pur69A+R1MuyDeWF4vb+QL9WA==
+ s=20240201; t=1794819201;
+ b=I8eq7jMHlQRHc51FAvCiX7x1Nx4/k7WPiQeqjQ9pPiW2EBQX/LbjvK2QedFZ/SLJsaru6
+ XwhqdgLBCGpnsjyX6sEJMG/tywVPoNx9gz1T0iZyLe4bsUtdJRrNu8WJM36GniXxW6MUV3J
+ b3Q1OU1Vifntpz1JPR3h3UoX61Ete0o2LuOpIxjjjvSm7QsrSCHn6Yej7yB3eA7Rl44DVPs
+ g34fk/PHny8NDgWypThit4aIA8z+9AAtFj5nrw+zYD4X/bB64UtJJLhVs/PZpvSjQgN3jGf
+ 28yp0pH0rajRk8sVX+A1rFwIjur+0zpiR+RPSuxbIy9uUswXDAgFkM1WLDfA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794819191; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1794819201; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=LaPawNG6lVfcrIoq+MIVkHWBmNB3i0kILRqRDxDrrDQ=;
- b=RuxkaMteb1TBZIIyur7m2qkTeZZnlGEkz3lIbHGJMkHv9VtPJBS+nI7BlKkB5OqRfONb9
- 59cFKLPJR96EEfwKBRM6E+rxtLWS9GKZ5mOSQQCeKYGzqmnlpcGcD2cAlBhP6qKigvszu40
- JxThFLwu4BVBwg1ySwl5U8XkEe7n1bpKiyxCWWYOUgxjjDJrab2U3rkHwub2eSCLDeVtylw
- UadGuSx3QfQS11y7KIlD//iN6Y/oPiIFBqU+6960P9KuIW6muq/83UfScbEO4xsJx0vX0qM
- S7dhSAB9VmgbcJdovVM3Cy0cg+6ceDpJ59I5ZHu1pQ0a8CJzZAKUOxXXrsEQ==
+ bh=wfQFJgN09n6YBy/Daf3IIALw6X6KhFq9Ni70FfSI+3Y=;
+ b=gCYoxugaqT1BPlf38wdo71lV9Lg6mjKiHK3laoYaE8OIlC3z4mCX2BVYWrAc7F3V09fGd
+ GnTTdJSfyXqpeFm5+czL4NWI8iDJdtEH2JhX7ocyPoSQI22w3Ns7d/6CyeaLFqyMJqLQ1Gy
+ vaDEqYsyBYaxFKMVU0DC8pncgVoA9o3y3kXwZQKgvTNVj/cIwjBO0ftD9zcyhs5pKkzmxZW
+ YRA3vOiZEMno2b2dP+eBiL1bawT2TQHTAJqTPOuuCoDk8skbi7rmGIXnCuV56E2x0v1Roxb
+ gvgNixmZWkgw+69sZuCmDVsJznCmrYAadXwaKLaLI8b2t10mOHUkrI5sj+Zw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=intel.com header.i=@intel.com;
   arc=none (Message is not ARC signed);
@@ -44,47 +44,47 @@ Authentication-Results: mail.freedesktop.org;
  dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
  policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 6A65549335;
-	Mon, 16 Nov 2026 08:53:09 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2706049390;
+	Mon, 16 Nov 2026 08:53:20 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6EC9410EDC1;
-	Mon, 16 Nov 2026 09:12:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 28DF710ED92;
+	Mon, 16 Nov 2026 09:13:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794820373; x=1826356373;
+  t=1794820384; x=1826356384;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=lgXiNcTty7xTAzrRCls8eXQdKOJV57lUY6JX7ooMS6s=;
-  b=RPj3y5VshtFG5SgaEJ+cweHMvY6kWspgC/uGE9a61Ty6Q7xW87sLnQ5t
-   4ivOj0hadsymn+1JOsoH3GtLtYmdMDuLZk6thTTtz0GVHHXcN+kGVrA1m
-   q28Aj2ZaUGV5asGQd3YH9v66j4npmd04aJ09/ZPTdDqyAeD4aiL/dMpEy
-   f2gm7Ndv3FudA46tsVvMVLbJJAshBfZMG6GS7lEr/rsDZaQnG7dIAypJt
-   T4RtqOjd6B+BN5qJxsecxXuGZgbZ5g8RR2kSw1VCmFHfuY0/YZPpffkFW
-   bL6Dw7V0QFfIcc7AMyoGhKwj4xQ0GT63zOl12O2eZrO0MezlakjpG09+e
-   Q==;
-X-CSE-ConnectionGUID: VFQUDXrARLyd/oY9zsA20g==
-X-CSE-MsgGUID: or3Ym2SSQR+C0sl5T6qv3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3443439"
+  bh=S5+QBdtzFuG1IgfXisOS9Q/+F8LHAa5I2PukkMFG620=;
+  b=K7KYmL/+xjJjIzCLOby2YMx8cFhOVAohgbjok0dxd56pyLzYrL+p9tWV
+   h3EmuYfLd6rj6MQf4T0GF59olz7x17YAZU2eOB1fqIZtfM4IzvNYMLQUP
+   p6EfGhbfjduH1Jc3I13MdKk3S5vOdL6OAqh5q+qIhlU1/sEd9qFmdZYC/
+   bBR4YguXYIcP1BEyL/L65ffHuyWun5wmZJ5NeiUrf2ObJyLXGg1bdTMxU
+   IzOIeRuURYHfNtkuQJeFumyMx0ucyh43CMv/C8f2Av4Nblz87lVcnaLgE
+   F18Hn6gt/xCsmUKA5SUUijKGjZpsKu9LpeJ07gC6uTabYKSIoK/xy73tI
+   A==;
+X-CSE-ConnectionGUID: cxJXxiH0TF+LEYcSlyUDFw==
+X-CSE-MsgGUID: XBmrtAVeRiu9TYPLbluNsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3443471"
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400";
-   d="scan'208";a="3443439"
+   d="scan'208";a="3443471"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
   by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 01:12:52 -0800
-X-CSE-ConnectionGUID: MbF+WPQPQreUpryutwuyyw==
-X-CSE-MsgGUID: Mfg8cZhcS0ynPIvV9t4bKw==
+ 16 Nov 2026 01:13:03 -0800
+X-CSE-ConnectionGUID: c7lMIM38S3al4Q++ns5YpQ==
+X-CSE-MsgGUID: TXHuWpbRTv+ZkikzxiX0lw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400";
-   d="scan'208";a="9909164"
+   d="scan'208";a="9909191"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.93])
   by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 01:12:45 -0800
+ 16 Nov 2026 01:12:56 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 07/12] drm/atomic/uapi: Document the non-obvious fence/fb_id
- prop behaviour
-Date: Mon, 16 Nov 2026 11:11:25 +0200
-Message-ID: <20261116091130.13950-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 08/12] drm/atomic/uapi: Add a FIXME about colorop vs. async
+ flips
+Date: Mon, 16 Nov 2026 11:11:26 +0200
+Message-ID: <20261116091130.13950-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261116091130.13950-1-ville.syrjala@linux.intel.com>
 References: <20261116091130.13950-1-ville.syrjala@linux.intel.com>
@@ -94,8 +94,8 @@ Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 3YXSSVFKQ46PSNREHCJOBJ3U3JZA2FJK
-X-Message-ID-Hash: 3YXSSVFKQ46PSNREHCJOBJ3U3JZA2FJK
+Message-ID-Hash: AJBHKK3HWKIHP3AG5OHYXPIHYH6AYWHG
+X-Message-ID-Hash: AJBHKK3HWKIHP3AG5OHYXPIHYH6AYWHG
 X-MailFrom: ville.syrjala@intel.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -124,9 +124,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3YXSSVFKQ46PSNREHCJOBJ3U3JZA2FJK/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AJBHKK3HWKIHP3AG5OHYXPIHYH6AYWHG/>
 Archived-At: 
- <https://lore.freedesktop.org/20261116091130.13950-8-ville.syrjala@linux.intel.com/>
+ <https://lore.freedesktop.org/20261116091130.13950-9-ville.syrjala@linux.intel.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -143,11 +143,9 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The atomic async flip checks want to compare the old vs. new
-property values. For normal properties that is all perfectly
-clear, but for the fence/fb_id properties the old value is
-not what one might expect. Add some notes to remind the reader
-what is happening.
+The colorop stuff in the atomic ioctl handler is completely
+missing any async flip handling. Add a FIXME in the hopes
+that someone will fix it.
 
 Cc: amd-gfx@lists.freedesktop.org
 Cc: André Almeida <andrealmeid@igalia.com>
@@ -181,52 +179,22 @@ Cc: Xaver Hugl <xaver.hugl@kde.org>
 Cc: Xi Ruoyao <xry111@xry111.site>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/drm_atomic_uapi.c | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/drm_atomic_uapi.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index aad71d3e2105..cf1edcb242cc 100644
+index cf1edcb242cc..7517950d2e51 100644
 --- a/drivers/gpu/drm/drm_atomic_uapi.c
 +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -1225,6 +1225,11 @@ int drm_atomic_set_property(struct drm_atomic_commit *state,
- 			if (ret)
- 				break;
+@@ -1352,6 +1352,8 @@ int drm_atomic_set_property(struct drm_atomic_commit *state,
+ 		struct drm_colorop_state *colorop_state;
+ 		bool replaced = false;
  
-+			/*
-+			 * Note that for WRITEBACK_FB_ID and WRITEBACK_OUT_FENCE_PTR
-+			 * the old value will always be 0. So any commit that sets either
-+			 * property to any other value will not be considered a no-op.
-+			 */
- 			if (old_val != prop_value) {
- 				drm_dbg_atomic(prop->dev,
- 					       "[CONNECTOR:%d:%s][PROP:%d:%s] Unsupported property change during async flip\n",
-@@ -1256,6 +1261,11 @@ int drm_atomic_set_property(struct drm_atomic_commit *state,
- 			if (ret)
- 				break;
- 
-+			/*
-+			 * Note that for OUT_FENCE_PTR the old value will always be 0.
-+			 * So any commit that sets the property to any other value
-+			 * will not be considered a no-op.
-+			 */
- 			if (old_val != prop_value) {
- 				drm_dbg_atomic(prop->dev,
- 					       "[CRTC:%d:%s][PROP:%d:%s] Unsupported property change during async flip\n",
-@@ -1289,7 +1299,13 @@ int drm_atomic_set_property(struct drm_atomic_commit *state,
- 			if (ret)
- 				break;
- 
--			/* fail everything that isn't no-op or a pure flip */
-+			/*
-+			 * Fail everything that isn't no-op or a pure flip.
-+			 *
-+			 * Note that for IN_FENCE_FD the old value will always be -1.
-+			 * So any commit that sets the property to any other value
-+			 * will not be considered a no-op.
-+			 */
- 			if (old_val != prop_value &&
- 			    prop != config->prop_fb_id &&
- 			    prop != config->prop_in_fence_fd &&
++		/* FIXME async flip checks completely missing here */
++
+ 		colorop_state = drm_atomic_get_colorop_state(state, colorop);
+ 		if (IS_ERR(colorop_state)) {
+ 			ret = PTR_ERR(colorop_state);
 -- 
 2.56.0
 
