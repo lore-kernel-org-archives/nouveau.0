@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DE4606A31C
-	for <nouveau@archiver.kernel.org>; Mon, 16 Nov 2026 09:29:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1AE606A31C
+	for <nouveau@archiver.kernel.org>; Mon, 16 Nov 2026 09:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=EreqnY2u
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=TSgJLCeF
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3619410EEE0;
-	Mon, 16 Nov 2026 09:29:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D84AC10EDF0;
+	Mon, 16 Nov 2026 09:39:17 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CA32F49425;
-	Mon, 16 Nov 2026 09:09:23 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 5E3D94942E;
+	Mon, 16 Nov 2026 09:19:28 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794820163;
- b=rjKRK89comHbax0EpVU7gMg8VYfRSsS20g8XpQWIwbkb2J8OGip1ReFtvVIbgD3Wu3wmh
- 6VMX9Q8rLUdPpb34bvusZw8TcoxU897wjTxl+Q0Yr8jbsBilBoFJbaZVd4BoLJWs/Sn0Ttj
- sq4ZsyRA3vWArm1ZkF6hZl1iroQpeW3yemP/3coN2/Z7u5yCRmewYHFCS07oyk3jSdRW677
- RtP9FsadN0RrkRbl7FKH3474lQ+DhahljEjYx4ITm1cUyN6Q/HhvUoxWgMfCR4tIoZOuylb
- IHrFKOC35ADQhY3IvW6JWjyZ9RpqOw13e9Cob7jCkiRIv6NwL/pU2qBMcd8w==
+ s=20240201; t=1794820768;
+ b=aSO6Xi6L5FHNHLvYtIQ2CHEONpQy47LnQ3gwZcS4/YdJMUZsTicZi5L7yyd/MkDM2qjDO
+ azHYb5d1coXVI+Jo3ENLUUDXzbGv6M/Zlt7gJktY+CLsRI+V0Oij1JX9zUHa3ydlhr/4f+O
+ m2Q5I76RA9C3Z5179M3lOvMsaGcFwR141N8YwiSo2OD1PZrhfVCVR+4FRqNcrYpx2ZtGN0O
+ 4hTWIIotfC+wYRy9xUrd9p7nNffCLkk1Wqne8ItJKyBAUH8RfG8TaxZqqD11VG9cFJUh2wY
+ mFr6pgdiGcOuDe0RpxaMxDeRDUxx7ZJr+aG7xjh2qEn2eApoLkHZd796iaZw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794820163; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1794820768; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=wFbznQG0d5IonVOFhnusqlVdFzPG48oiZmmSS9tPXTU=;
- b=KkjkZIk8FIc+mzfHIIvkT1uCIOxS+G74i2mmOtx7o2XCUilnWY1ngEe3mDWZNKzzEtiei
- wBEnmmG6ukfWQ30aQgOetJytI+8dk1yZzrEhYytEoqh4nkXnDMJmUplQTTzBifAJLnuQ1If
- OTXM3wq24/LifC6F3WY4So1Gc7PjKn5eu/iapDBjZ/Oo6ghkJWMvG/s5GzoWZio+2X6gnGd
- YDHBttsFnZOz0aTG9oEI7o0Td+TvefTJhTONdo4jmQm78xZ0RHULQujkUHp3OOcQIrmREG8
- b7DGvfnDiNxK7dvOGLIOUjjNpN0BZ0KQfVMY7Kp6yWEBpvRzapn0wd/whDgg==
+ bh=vfDtkcqPvV+2k9dyjsvEmJCR0/Gq1KXbglEhzSUqmq4=;
+ b=lSAe8SuDaFYDRjX9jg3S/oANqKshoJPQoOaelafoW+rqmIg7FLianPzUtc6OAEyh8E0BS
+ rh050y8ndBZYZFO2CHihuutrMnF9eUGGZsaic/sqWJW3HW1wOEZIxpYvfTSa3YUDdXa3TWb
+ s6tei63xJmSCC58831g/PbImevgH0SMki+WqOf3NxaMzPrTPHP/VRB+z7wf7sWGVVg8/5N3
+ Q5373kEDkTarLU04m9ZRT1XBjfFChcmD4c/4FRZ9RaO1Nmo2It3+5JOWdAj1XJ0pD0JZPGo
+ UyzABGYfP5vRjPwS3WaiL0WJVl6rgMY0qmI0OBF1ROu9HGBhSaz5EtbPpBIw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -43,66 +43,66 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3F1EE49418
-	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 09:09:21 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 423D44942E
+	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 09:19:25 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 486A610EEDD
-	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 09:29:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5A2F110EDBD
+	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 09:39:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1794821344;
+	s=mimecast20190719; t=1794821948;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=wFbznQG0d5IonVOFhnusqlVdFzPG48oiZmmSS9tPXTU=;
-	b=EreqnY2uGsPcGB08CysgsQlx2r4/WZU1DJtu10NyBFowSXSRQwTr+DDZ5u4hEu8Vvrf2VL
-	T2HA1h/5StAh4rLX6cK0x6E/6USu1TwtXzonLSXLJ+6m+hDOcsVfH/CQWfq8AAP6EgT9B/
-	0TGalq8gj1Y5x0gaJwlsRwjRFpJ6+bg=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=vfDtkcqPvV+2k9dyjsvEmJCR0/Gq1KXbglEhzSUqmq4=;
+	b=TSgJLCeFDC+7XOHzSGCuBkK1Tffv4W6F0ZOw1rXgig+s3ADuWPrHqktz/3DfCJIliwG9uw
+	JBw/I/KcpFSC6vSjyE2PGbH6TlwOR1fj8BVSNwiUTnhHZH5vyDCcqzY1clhfR+qbeMQWfW
+	ruIGC/X78G0LIVGL+GgO6wPBFykJ+P8=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-581-bWXoxoRwMfa7HMpOyxuEGQ-1; Mon, 16 Nov 2026 04:29:03 -0500
-X-MC-Unique: bWXoxoRwMfa7HMpOyxuEGQ-1
-X-Mimecast-MFC-AGG-ID: bWXoxoRwMfa7HMpOyxuEGQ_1794821342
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-4a35e1d2dddso24287695e9.0
+ us-mta-121-t_gnPiSpNgmXnkyOedUh9Q-1; Mon, 16 Nov 2026 04:39:07 -0500
+X-MC-Unique: t_gnPiSpNgmXnkyOedUh9Q-1
+X-Mimecast-MFC-AGG-ID: t_gnPiSpNgmXnkyOedUh9Q_1794821946
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-490d2ac331bso3058979f8f.0
         for <nouveau@lists.freedesktop.org>;
- Mon, 16 Nov 2026 01:29:02 -0800 (PST)
+ Mon, 16 Nov 2026 01:39:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794821342; x=1795426142;
+        d=1e100.net; s=20260707; t=1794821946; x=1795426746;
         h=content-type:mime-version:message-id:date:references:in-reply-to
          :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=wFbznQG0d5IonVOFhnusqlVdFzPG48oiZmmSS9tPXTU=;
-        b=W48mgS0Zk5d67FUdyBQYGiI8duW+vBLYMu4p+QUn5zPYFmT+HfjSOZC2pwQiAyCcj0
-         jPLiD1Vt8yujh380QCADQyGHP4U21KMzRs1YpJiqrDSfXfMGERtfyxnFcWHAvpQqBinQ
-         3v69CU1ImtDWjvKL49SfMxR8ouR/nKP7d31sW+IcotAF/TaHDHJjYKCdFdXTnsotfgNc
-         RWbe9om0DkYTD83GQVtram7Sh082qs+ELZRtMMCIgCfw7zWhbKy9biBmVmTrjtNczIeZ
-         LfUqBXrDFef5Fi+YgWUXCIbFOfpqjTd89nCaHwurehBdZZig3RJWKZ5p/90jQcevZmRA
-         0erg==
+        bh=vfDtkcqPvV+2k9dyjsvEmJCR0/Gq1KXbglEhzSUqmq4=;
+        b=Tzy0a92cc59VhyptN/p+tSnyolDtgeB/+kUAANBZBy7hkjCKMk7Cmn9VpDDIaneWc8
+         zQGpHpgqgf1CR2hxVu6uzcNrC6BvJe1DqoWPt/F+KivEv/CovfJ35lFjgkJX7RTu6I0M
+         SEtTSCwKNu4eR9NFQH4DO29f7eg4ILpPCWBBsfQxWB7fPAKe+l7GWDsYTpI+JmGzd3UR
+         ZV5JbJatqHUirfJO4MBCCy41ah1qv8MiE+RbbRo0DZoC70hRcXlPX+5/f2amI58aPiCV
+         o7pTC9U6TpsAUHv4KKwN8UTGZW/MxDqXbmcys/YpIRS/Nu/lzHWwUSVQZXNeTA6q4199
+         TDuA==
 X-Forwarded-Encrypted: i=1;
- AL+hErFZuVwAn94t4SLKHRW1ODD2HdBbZL4Mzzshpninup3+s+HbIjkvRrGzqiMPOf7pHeQmzptgQ/CM@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z9ah8+pTgYknNICM7Iv4RKYa1KgiuV5AJrHZIu2yXzpDLcejjfk
-	tXXfe7t4FTBHHx5XJP8d3vp3InydxzbFEe+WayPoJojqmUb2Hn61VyEgDhESgaOjTe8RHtbJktk
-	wZNDMjdwTCY3p0polnGVtZbXrTqHptwz49VgbBQZvnOzxlM4jQlJaNrCseOTC3VsIA68=
-X-Gm-Gg: AYBFou3Gxv4zyVpJCABmdi+qZQbg+tWEI4Oi4w7CoGa4nf7kYW/gvkNpc5xT2yLugFy
-	vsVQdekV7byI+iLR25xFO+FvO5tTTQzm2RunaNQVLg55dPwzroKO7k/XZxbLn/w2RipW65vi2wZ
-	UJ6rbyl9j897Ioow0xZNNFC4+6HLczZr0xK5iDVbP3gXxciVFfxNETBUlq8fCjfrUBeC1ZTv86L
-	YNugNQZbmzW9DKyUwm1qQ/crjs1rnSn+2+1LrR6L8RveZsoH3SGKgZWue/S+xovMIz59A6XFn3z
-	rI3g3+JSlr2KrPHLKqpWcpUlrFv0px0OLW1g00P7fVW1do6YllxDRIolmy41e3pSyLuuyRVBMD8
-	pC/Jz1jlN5OmVy50hszzNe2LvYBjaP1i6kE9vJ7xcClykynWga3In3NfXWE5atDLKYghM62RbL8
-	couwJzuyEzP6LZ6pNUSo68j78GeZVREZucuO+uM6Q=
-X-Received: by 2002:a05:600d:41c9:b0:4bb:60bd:5398 with SMTP id
- 5b1f17b1804b1-4bb60bd5507mr133776655e9.10.1794821341839;
-        Mon, 16 Nov 2026 01:29:01 -0800 (PST)
-X-Received: by 2002:a05:600d:41c9:b0:4bb:60bd:5398 with SMTP id
- 5b1f17b1804b1-4bb60bd5507mr133775995e9.10.1794821341249;
-        Mon, 16 Nov 2026 01:29:01 -0800 (PST)
+ AL+hErHeYNoa/BC6gX+gVS07NYOnSldbS4oAPnn/N00A/ZwOQniAOUwkSKqeqvMqw5GZoAWfhyrXfSTB@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z89kvM/AaYZ6KbqQ73Wg0KqWECi8Ow2UumEKo/vYJY+NoTASzs9
+	UCqz1rlg7QVnXHGL1HFYjZ7VM0x34xQHNBHeN4BRaRkBENm2Sb+hjuGNifd1obII7+XlJG7M9Mj
+	eyvwHHjgG+m9G6afRsFkajlcTGwThqMztX7uGKdYfFq/a/be7H5Sy+7/CYBIhdRCMKyg=
+X-Gm-Gg: AZFdTZfWPyVT+Rf66l8GfcfdV7nCTvQRxPsWaT8DJwhKCCqQf4c1WLQ3rYlAmf1SG/g
+	ayjXaYvwQgMmDy970Np4eZCreaelWmM/yuS1/HqptBXGwKq3TMkg7JSFdPaa5bj/2ZDAWd/QDDH
+	uVCRdiZlbwivVekYu+YpS5oFdWN4dfFCMqoq0QGYj7Xg+7NJWj0fX9ezCi5roZ9KXH7pRYslcN7
+	pdBgWT185g0sn4GEM+TMiV2ZXdvH6PoIy8dA0+Ds99c5PxtBb3xuzL7+jf3cE4xAerEkZjPQlG2
+	SPqGq4El/Q26ssWtKgaDWvRGuw5J98HrnVQTVYqp7lCY/DYX4nooxXzmQpXk+pOpkd/SfcKTJ/5
+	5SY7iNk0nXrTeTTvqolVejW7gOz7nm6+FkyuXzc42hXBU3Y1sjbMUpXGfYIeMwl5MbR11dU2HTL
+	Wey6AQIY1lqupwu8LiHMpnUpMFuPkNREU4hUFbb2A=
+X-Received: by 2002:a05:6000:25c1:b0:4a1:486b:4eb9 with SMTP id
+ ffacd0b85a97d-4a1486b53eemr6359106f8f.40.1794821945592;
+        Mon, 16 Nov 2026 01:39:05 -0800 (PST)
+X-Received: by 2002:a05:6000:25c1:b0:4a1:486b:4eb9 with SMTP id
+ ffacd0b85a97d-4a1486b53eemr6359053f8f.40.1794821945065;
+        Mon, 16 Nov 2026 01:39:05 -0800 (PST)
 Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4bb675200e4sm115370395e9.0.2026.11.16.01.29.00
+ ffacd0b85a97d-49c7da37b19sm21564920f8f.5.2026.11.16.01.39.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 01:29:00 -0800 (PST)
+        Mon, 16 Nov 2026 01:39:04 -0800 (PST)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: "Mario Limonciello (AMD)" <superm1@kernel.org>, Maxime Ripard
  <mripard@kernel.org>, Alex Deucher <alexander.deucher@amd.com>, Jani
@@ -111,23 +111,23 @@ To: "Mario Limonciello (AMD)" <superm1@kernel.org>, Maxime Ripard
  <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
  <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>, Leo Li
  <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
-Subject: Re: [PATCH v11 11/12] drm/bridge: add PS8622 connector luminance
+Subject: Re: [PATCH v11 12/12] drm/solomon: add SSD130x connector luminance
  support
 In-Reply-To: 
- <20261103-superm1-backlight-property-v11-11-00cce7b2ba22@kernel.org>
+ <20261103-superm1-backlight-property-v11-12-00cce7b2ba22@kernel.org>
 References: 
  <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
- <20261103-superm1-backlight-property-v11-11-00cce7b2ba22@kernel.org>
-Date: Mon, 16 Nov 2026 10:28:59 +0100
-Message-ID: <xlv1ld6trup0.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
+ <20261103-superm1-backlight-property-v11-12-00cce7b2ba22@kernel.org>
+Date: Mon, 16 Nov 2026 10:39:03 +0100
+Message-ID: <xlv1ik1xru88.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: veyINsx4PEKAyyAFQJTKtaIu0HcNlfHsyh7XdpLBBB8_1794821342
+X-Mimecast-MFC-PROC-ID: oYZx9JoPgeqoqst_phfiGTkTIWHe62I27dW8jSrJwyU_1794821946
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain
-Message-ID-Hash: 42YMQVD32YOIZEOM3TONGRYSNMOFYXAU
-X-Message-ID-Hash: 42YMQVD32YOIZEOM3TONGRYSNMOFYXAU
+Message-ID-Hash: ZTPCUVZUH5H3S6NZRN7WURVT4JPYTDGZ
+X-Message-ID-Hash: ZTPCUVZUH5H3S6NZRN7WURVT4JPYTDGZ
 X-MailFrom: fmartine@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -142,9 +142,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/42YMQVD32YOIZEOM3TONGRYSNMOFYXAU/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZTPCUVZUH5H3S6NZRN7WURVT4JPYTDGZ/>
 Archived-At: 
- <https://lore.freedesktop.org/xlv1ld6trup0.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb/>
+ <https://lore.freedesktop.org/xlv1ik1xru88.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -152,25 +152,64 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 "Mario Limonciello (AMD)" <superm1@kernel.org> writes:
 
+Hello Mario,
+
 > From: Mario Limonciello <mario.limonciello@amd.com>
 >
-> Expose PS8622 brightness through bridge luminance operations when
-> DRM_LUMINANCE is enabled. Keep registering the backlight class device
-> otherwise.
+> Expose SSD130x contrast through the connector LUMINANCE property when
+> DRM_LUMINANCE is enabled. Program contrast directly and register the
+> backlight class device only when DRM_LUMINANCE is disabled, so contrast
+> has a single owner.
 >
 > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 > ---
+> v11:
+>  * Keep selecting BACKLIGHT_CLASS_DEVICE and drop the guards (Sashiko)
+>  * Register the backlight device only without DRM_LUMINANCE (Sashiko)
+>  * Initialise the controller with the committed luminance and don't
+>    clobber the saved contrast on disable (Sashiko)
+>  * Skip contrast writes while the controller is powered down (Sashiko)
+>  * Unify contrast dispatch and backlight ops (Sashiko)
+>  * Drop Reviewed-by due to the rework
+> v10:
+>  * Guard the backlight operations and registration with
+>    BACKLIGHT_CLASS_DEVICE
+>  * Fix Kconfig recursive issue
+>  * Add the Reviewed-by tag
+> ---
+>  drivers/gpu/drm/solomon/ssd130x.c | 149 ++++++++++++++++++++++++--------------
+>  drivers/gpu/drm/solomon/ssd130x.h |   2 +
+>  2 files changed, 98 insertions(+), 53 deletions(-)
 
-Acked-by: Javier Martinez Canillas <javierm@redhat.com>
+[...]
+
+> +static void ssd130x_connector_set_luminance(const struct drm_connector_state *conn_state)
+> +{
+> +	struct ssd130x_device *ssd130x = drm_to_ssd130x(conn_state->connector->dev);
+> +
+> +	/*
+> +	 * The encoder enable already initialized the controller with the
+> +	 * committed luminance. Skip if it failed to power up the controller.
+> +	 */
+> +	if (!ssd130x->enabled || ssd130x->contrast == conn_state->luminance)
+> +		return;
+> +
+
+Is not clear to me why you need this enabled field? I would prefer to not
+keep that state if possible.
+
+The changes look good to me though:
+
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
 -- 
 Best regards,
