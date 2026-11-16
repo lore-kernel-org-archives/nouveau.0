@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C35F606A8A2
-	for <nouveau@archiver.kernel.org>; Mon, 16 Nov 2026 20:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9885606A322
+	for <nouveau@archiver.kernel.org>; Mon, 16 Nov 2026 20:45:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cqKhH4UF
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=drc8du8+
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0687910F44F;
-	Mon, 16 Nov 2026 20:29:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D1DFC10F456;
+	Mon, 16 Nov 2026 20:45:34 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8C1E949471;
-	Mon, 16 Nov 2026 20:10:02 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 524E449476;
+	Mon, 16 Nov 2026 20:25:44 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794859802;
- b=feed70cDMMC/sTaFUXMx7214Z5mHui6k3o09hHcFdTFldIVLawPfxAU02QrAA1dyg/962
- JMFz3jWvq+7AFKl0GLq0NmlhiKBY1Wndu9/voHmTI6+qrNjtuUvXcOW8kLfPKrMS36X2UE8
- Hwu0BKvHJ2g3ltbFc2Jku4t2m0qHuFmwF3qlSdwUk+XHsuqBax6GTcX4rljPdHY1TmgvY1A
- BCimPZEeZgO6Cw/H46eiHn63bH1DKMA4HZYUZ3pcaUUsbLuN/hDrQZGF3KSXMra2P4LDEhU
- fBbYzHyxUF3MuTzOT3aWRQ5Yi0epX5sOgRPTYTPtDDPnzVO+gQDRx9zWxt/Q==
+ s=20240201; t=1794860744;
+ b=Tj2w7c8bluxTSeNpeRoj4Hylq7fzl8LuHKKGNYT2MvaQNvfmCz0ESQuh339uXj8N/H5wk
+ NnlhI31SkneiT+zvMJo7cl7Rgox+jjjGxH5b6j0QMQTLQJCfP69gEMy9VdWukfdmhRdllsq
+ cIUicC11an0GjprddoNXKhe7LbIAPZrHx5VzJfoLguVCR91OepbhVwniP2YiQXKGVNL6djg
+ dTUI9zC8vUZRbZgCSJ3zAA9e19Z+eDGd0nu24aXDAfXSJRoYp2M9oYz4/WzD0VmH8mMQmkp
+ AM/yDolnFe6CNyXDfbuajxtpg7Jw6WPBEb8kNg+LkW/YphIxJ6yIw6IXxmSw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794859802; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1794860744; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=bxiPwN4xhxQXi/k20R2XiKg45rKq5gXPBhnO4j3LjxU=;
- b=HmjF09k9FbaOow6lmCklIpZGe8EC3n6QheIWuOui0PeDAEOvSVNBqc9zdZ0WFuW1efR1H
- 3UrOcbBAa01AMbw6G45KCNGaTqD36ey2wGeEg5XXz2HL9uxQWdTCk/0fzCCkdrIQWqx1wA3
- 3szFJgzSd5qLS+RUKJM2J4az83U9Vyo0ivUs3ZLUbklQrGkzDDRAhfhvzebXUmJzZ+sP+CU
- D9gYNE/boOaGmyeyYLBHxCVR8WK3obc+6vCwilLGfeLKEKctPvZpBNYORrbFT+Bm22dNVcJ
- K+IxqpVbGZQnX2FOoctcobrsH2bo0UGbia1VOs/xzUdjdG1WthGhjgrd+J1Q==
+ bh=rwV+CduKpWQJoCRPZIlILxfKvb0nTXIIWgUe+Ye3x2A=;
+ b=XO5KkYwBgdH2a3au3D69k4Ox7hqacRi96+li7KmBmwCy83Pv+8CvNVndJ7fc29u7zwprY
+ pzNyHoy3DZ1NLAcPqYZA39wiRVm+CtWx4AoqjRPNJMgxGfaujc5TBWNU226od81WXzd4Ij3
+ 0RBGEqO7anC4kQZSDXu0BtTLwS7W0gWjbcIE7NUOb9NEwnHh0mJ1MFFsAnW3MX89jlNW39Q
+ wYxcnahjkX9kzc+vowiT5kJmyRc/IYTMuT/Yb8NSMJz3IqxSss7s5gz8ra/IZf2jkLwhRsl
+ 1XApdvzRKi8MMEcOm6fo8ZLnNtC4+biGgatM3ZX4uG+F+4VSdJi8lU2YJ2hg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,55 +43,127 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 1DA3649468
-	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 20:10:00 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5703B10E446;
-	Mon, 16 Nov 2026 20:29:45 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0ED0249468
+	for <nouveau@lists.freedesktop.org>; Mon, 16 Nov 2026 20:25:41 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3C28310E439;
+	Mon, 16 Nov 2026 20:45:26 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0FCBB433A0;
-	Mon, 16 Nov 2026 20:29:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B64681F000C4;
-	Mon, 16 Nov 2026 20:29:44 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 384E5631A9;
+	Mon, 16 Nov 2026 20:45:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D470D1F000CA;
+	Mon, 16 Nov 2026 20:45:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794860984;
-	bh=bxiPwN4xhxQXi/k20R2XiKg45rKq5gXPBhnO4j3LjxU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To;
-	b=cqKhH4UFdHcS1XNAmkgRAjHPI0hPd8pVumH1s9HS4uN/+N3NmJfo7nDTt4gct0A5c
-	 G3bue/CmliRS7IMuccEh6c2htg/w8sxldqsRNXUml+J8Id6t5PmICIdbBQeR/EChzy
-	 MQnAXZqeDF4C7UovAy1T33BjAqAicUoRZpImDbISiHgUzCyQs6Jr8PDLOcnYnibaWr
-	 /2/t7Wb0wn5T/eeZa8PXTRoQ7IWKpH0bB56AGZB9RxWy7bE0xYqUlZU05Ln9WfJc52
-	 RzM96hOgCsBCKSE0dD43KPAdAr4z8GABU/jU4eCBdQaUh0byG2ufaPL1AwByulASbV
-	 q2lcNNnnh60tw==
-Date: Mon, 16 Nov 2026 14:29:43 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Kean Ren <rh_king@163.com>
-Subject: Re: [PATCH v3] PCI: Disable spurious s2idle wake from the NVMe root
- port on ThinkPad P1 Gen 9
-Message-ID: <20261116202943.GA204660@bhelgaas>
+	s=k20260515; t=1794861924;
+	bh=rwV+CduKpWQJoCRPZIlILxfKvb0nTXIIWgUe+Ye3x2A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=drc8du8++3DkBV0wEc8BrSLfGdJOp8FtwbC3YENA2Lky1R9FhvCqiSAuzQFLSVUhr
+	 vyA4Q4SY9Mt/s2oHHgA4lj/MoKO19wdGpeh1IHLrbx7epjumZGDslX2kLig4qgnz/D
+	 TNhAuJWMWbKcZEzpu4N746szAsNL/oJjtbRW3rH3yEx3rv5uyzwidt2MDo4B5rQf/O
+	 Hbutp48StX5eHKHJPSiRVcePHW5covIW4ENkIN1IdHqve5H/HinPQfIppc2tm98SJn
+	 glfg6yXixuedKpcW6/AK0NiiitVTRpigvbkASaq01nj87X113X36Sh9LYR1bItCz4Z
+	 WMGfkA17HtPUg==
+Message-ID: <a384d75c-2134-407a-924f-ee511f65a2d1@kernel.org>
+Date: Mon, 16 Nov 2026 21:45:09 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261116065612.230481-1-rh_king@163.com>
-Message-ID-Hash: EK7W3QJNBUA4AUFEQE3J3TL3T26GT3X3
-X-Message-ID-Hash: EK7W3QJNBUA4AUFEQE3J3TL3T26GT3X3
-X-MailFrom: helgaas@kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 8/9] mm/migrate_device: do not migrate a uffd-protected
+ zero page
+To: Tal Zussman <tz2294@columbia.edu>,
+ Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>,
+ Peter Xu <peterx@redhat.com>, James Houghton <jthoughton@google.com>,
+ Andrea Arcangeli <aarcange@redhat.com>,
+ Suren Baghdasaryan <surenb@google.com>, Balbir Singh <balbirs@nvidia.com>,
+ "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ Vlastimil Babka <vbabka@kernel.org>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, Michal Hocko <mhocko@suse.com>,
+ =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+ Andrei Vagin <avagin@gmail.com>, Muhammad Usama Anjum <usama.anjum@arm.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>, Arnd Bergmann <arnd@arndb.de>,
+ Zi Yan <ziy@nvidia.com>, Matthew Brost <matthew.brost@intel.com>,
+ Joshua Hahn <joshua.hahnjy@gmail.com>, Byungchul Park <byungchul@sk.com>,
+ Gregory Price <gourry@gourry.net>, Ying Huang
+ <ying.huang@linux.alibaba.com>, Alistair Popple <apopple@nvidia.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Nico Pache <nico.pache@linux.dev>, Ryan Roberts <ryan.roberts@arm.com>,
+ Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>,
+ Lance Yang <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>,
+ Kiryl Shutsemau <kas@kernel.org>, Muchun Song <muchun.song@linux.dev>,
+ Oscar Salvador <osalvador@suse.de>,
+ =?UTF-8?Q?Miko=C5=82aj_Lenczewski?= <miko.lenczewski@arm.com>
+References: <20261116-uffd-state-fixes-v2-0-4397a0196479@columbia.edu>
+ <20261116-uffd-state-fixes-v2-8-4397a0196479@columbia.edu>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <20261116-uffd-state-fixes-v2-8-4397a0196479@columbia.edu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: PKCFWCQ5ZRA5RAAWYRMEA7LCWC5HCD2Q
+X-Message-ID-Hash: PKCFWCQ5ZRA5RAAWYRMEA7LCWC5HCD2Q
+X-MailFrom: david@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ryan Brue <ryanbrue.dev@gmail.com>,
- "Derek J. Clark" <derekjohn.clark@gmail.com>,
- Mark Pearson <mpearson-lenovo@squebb.ca>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org
+CC: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Danilo Krummrich <dakr@kernel.org>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EK7W3QJNBUA4AUFEQE3J3TL3T26GT3X3/>
-Archived-At: <https://lore.freedesktop.org/20261116202943.GA204660@bhelgaas/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PKCFWCQ5ZRA5RAAWYRMEA7LCWC5HCD2Q/>
+Archived-At: 
+ <https://lore.freedesktop.org/a384d75c-2134-407a-924f-ee511f65a2d1@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -99,124 +171,73 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+X-Spam-Status: No, score=-15.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-[+cc others from https://lore.kernel.org/linux-pci/20261110-broken-gpe-legion-v4-1-c672bb1c4d91@gmail.com/;
-is this the same issue?  That is for GPUs, not NVMe, but sounds similar]
-
-On Mon, Nov 16, 2026 at 02:56:12PM +0800, Kean Ren wrote:
-> On Lenovo ThinkPad P1 Gen 9 (21UF, Panther Lake), firmware enables the
-> ACPI wake capability (_PRW) of PCIe root port 00:1c.4, which is the root
-> port of the primary NVMe SSD.  When the NVMe controller is put into D3
-> during system suspend, a spurious PME is raised on that root port, which
-> sets ACPI GPE 0x6F (SCI).  The SCI fires during the noirq suspend phase
-> and aborts s2idle before it reaches the low-power state: every suspend
-> is followed by a wake within ~2.5 seconds with practically zero s2idle
-> residency.
+On 11/16/26 21:02, Tal Zussman wrote:
+> Device migration replaces a PTE that maps the zero page with a new PTE
+> that is built only from the VMA flags, so its userfaultfd WP or RWP
+> protection is lost. The same applies to the huge zero PMD. Writes and
+> accesses to the page are then no longer reported to userfaultfd.
 > 
-> The downstream NVMe device is not a wake source (its own ACPI wake is
-> disabled), so the spurious event comes from the root port's wake/PME
-> path.  Disable the root port's wake capability as well.
+> To fix it, do not migrate a uffd-protected zero page. Skip it during
+> collection, and check again under the page table lock before inserting,
+> as another thread can protect the page after it was collected.
 > 
-> No firmware with a fix is available: the issue reproduces with BIOS
-> N4SET31W (1.10) and N4SET32W (1.11), the latest version at the time of
-> writing.  Match the 21UF model prefix; all 21UF SKUs share the same
-> platform and firmware, and the remaining MTM characters encode the
-> factory configuration and region.  If a fixed BIOS is released later,
-> this quirk can be removed or restricted to the affected BIOS versions.
+> The alternative would be to carry the uffd state over to the new entry,
+> but a uffd-protected zero page in a range that a driver migrates should
+> be rare.
 > 
-> Verified on 21UFZE0PCN:
->  - gpe6F increments by one per suspend/resume on both BIOS versions;
->  - masking gpe6F, or disabling RP05 wake via /proc/acpi/wakeup, makes
->    s2idle stay asleep;
->  - with this quirk, /proc/acpi/wakeup reports RP05 as disabled and
->    gpe6F no longer increments across repeated suspends.
-> 
-> Signed-off-by: Kean Ren <rh_king@163.com>
+> Fixes: 292924b26024 ("userfaultfd: wp: apply _PAGE_UFFD_WP bit")
+> Fixes: a30b48bf1b24 ("mm/migrate_device: implement THP migration of zone device pages")
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> Cc: Leon Romanovsky <leon@kernel.org>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: intel-xe@lists.freedesktop.org
+> Cc: nouveau@lists.freedesktop.org
+> Cc: amd-gfx@lists.freedesktop.org
+> Reviewed-by: Alistair Popple <apopple@nvidia.com>
+> Signed-off-by: Tal Zussman <tz2294@columbia.edu>
 > ---
-> Changes in v3:
-> - Check device_may_wakeup() instead of device_can_wakeup(): the latter is
->   set for all PME-capable devices, whether or not wakeup is enabled, so the
->   quirk could log a disable that did not actually happen.  Drop the
->   corresponding warning; there is nothing to do if wakeup is not enabled.
+>  mm/migrate_device.c | 23 +++++++++++++++++++++--
+>  1 file changed, 21 insertions(+), 2 deletions(-)
 > 
-> Changes in v2:
-> - Match the 21UF model prefix instead of the full 21UFZE0PCN MTM so the
->   quirk also covers the other ThinkPad P1 Gen 9 factory configurations
->   that share the same platform and firmware.
-> 
->  drivers/pci/quirks.c | 56 ++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 56 insertions(+)
-> 
-> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-> index 7f1f47ea2ee4..6ede2ea49b3a 100644
-> --- a/drivers/pci/quirks.c
-> +++ b/drivers/pci/quirks.c
-> @@ -6595,3 +6595,59 @@ static void pci_mask_replay_timer_timeout(struct pci_dev *pdev)
->  DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_GLI, 0x9750, pci_mask_replay_timer_timeout);
->  DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_GLI, 0x9755, pci_mask_replay_timer_timeout);
->  #endif
-> +
-> +/*
-> + * Lenovo ThinkPad P1 Gen 9 (21UF): the firmware enables the ACPI wake
-> + * capability of PCIe root port 00:1c.4, which is the root port of the
-> + * primary NVMe SSD.  When the NVMe controller is put into D3 during
-> + * system suspend, a spurious PME is raised on that root port, which in
-> + * turn fires ACPI GPE 0x6F (SCI) and aborts s2idle before the system
-> + * reaches the low-power state.  The NVMe device itself is not a wake
-> + * source (its own ACPI wake is disabled), so disable the root port's
-> + * wake capability as well.
-> + *
-> + * No firmware with a fix is available: the issue reproduces with BIOS
-> + * N4SET31W (1.10) and N4SET32W (1.11), the latest version at the time
-> + * of writing.  Match the 21UF model prefix (the remaining MTM
-> + * characters encode the factory configuration and region); if a fixed
-> + * BIOS is released later, this quirk can be removed or restricted to
-> + * the affected BIOS versions.
-> + */
-> +static const struct dmi_system_id p1g9_rp05_wakeup_dmi[] __initconst = {
-> +	{
-> +		.ident = "Lenovo ThinkPad P1 Gen 9 (21UF)",
-> +		.matches = {
-> +			DMI_MATCH(DMI_SYS_VENDOR, "LENOVO"),
-> +			/* 21UF = ThinkPad P1 Gen 9 model; suffix is the SKU. */
-> +			DMI_MATCH(DMI_PRODUCT_NAME, "21UF"),
-> +		},
-> +	},
-> +	{ }
-> +};
-> +
-> +static int __init pci_fixup_p1g9_rp05_wakeup(void)
-> +{
-> +	struct pci_dev *rp;
-> +
-> +	if (!dmi_check_system(p1g9_rp05_wakeup_dmi))
-> +		return 0;
-> +
-> +	/* Root port of the primary NVMe SSD (05:00.0). */
-> +	rp = pci_get_domain_bus_and_slot(0, 0, PCI_DEVFN(0x1c, 4));
-> +	if (!rp)
-> +		return 0;
-> +
-> +	/*
-> +	 * Disable wakeup only if it is enabled: device_can_wakeup() is set
-> +	 * for all PME-capable devices, even when wakeup is disabled.
-> +	 */
-> +	if (device_may_wakeup(&rp->dev)) {
-> +		device_set_wakeup_enable(&rp->dev, false);
-> +		pci_info(rp, "disabled spurious s2idle wake (BIOS %s)\n",
-> +			 dmi_get_system_info(DMI_BIOS_VERSION));
-> +	}
-> +	pci_dev_put(rp);
-> +
-> +	return 0;
-> +}
-> +late_initcall(pci_fixup_p1g9_rp05_wakeup);
-> -- 
-> 2.43.0
-> 
+> diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+> index 9e19fadfa65c..140b99f72508 100644
+> --- a/mm/migrate_device.c
+> +++ b/mm/migrate_device.c
+> @@ -159,7 +159,16 @@ static int migrate_vma_collect_huge_pmd(pmd_t *pmdp, unsigned long start,
+>  
+>  		folio = pmd_folio(*pmdp);
+>  		if (is_huge_zero_folio(folio)) {
+> +			/*
+> +			 * Nothing carries the uffd state of the zero page
+> +			 * over, so skip it if its uffd bit is set.
+> +			 */
+> +			bool protected = userfaultfd_protected(walk->vma) &&
+> +					 pmd_uffd(*pmdp);
+
+Now that I read it 3 times in a row below, these needs a helper.
+
+userfaultfd_pte_protected() ? userfaultfd_pte?
+
+That might help you to get rid of the local variable (that should have been
+called something that includes uffd and should have been const)
+
+
+Maybe just add a simple helper for the pmd as well and use it below.
+
+
+-- 
+Cheers,
+
+David
