@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 725E2606A323
-	for <nouveau@archiver.kernel.org>; Mon, 16 Nov 2026 09:12:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24DB8606A32A
+	for <nouveau@archiver.kernel.org>; Mon, 16 Nov 2026 09:12:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=YgGa5GCv
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=X3LBCbS4
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 376CD10EDCF;
-	Mon, 16 Nov 2026 09:12:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0C20E10EDDA;
+	Mon, 16 Nov 2026 09:12:35 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4F5784935B;
-	Mon, 16 Nov 2026 08:52:34 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A1B224936A;
+	Mon, 16 Nov 2026 08:52:45 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794819154;
- b=MWd67h1qRJy4dK12mPa0gXgWTt3C1BTSZ0S5oABuquoOuciAvsJpHkI34rNXdGLb+YMp5
- DSnMCq5HjZj0bQml8d8FR05jWu7zwc6lWEhOKOupF1q+2U1fIN8u62kKS8aQxM0hPrAH8ze
- gWffrIoBOM8dyUypYqHTZpOHppe+/ZwU+LS6F98eRiljMCgvo9t1fnLmdkv38dkabj/X7RH
- bfsGwESJG4U99+Dn5Kq7Krhj2tE6zpaPmVNg6ln5X3YkvCXzFiQU8HRyWXEUFx1St0n+1l7
- xLzsqF/JaDAWtaAzl8tc+6n84v+somZegfqJGUTjhHtuI21Vs+E6zc0/W2pA==
+ s=20240201; t=1794819165;
+ b=V6Cxtv6bhvtrXEFccsvJ9/76pA1U4bTTl4N1FIo5O6lMeIHtXfjkSDUekO0vZgBZYPMuQ
+ MiGLUg7pG7Dhw/2bZQTLjPswf9oW2u8AHevHoV87PHA0WU+IdC+23PbnYv1hx5MJEKkGfcP
+ cQxmXy1KOcV+jWOyOyfIrPgVx6Yv5Sn2qVwt6iLczYRyw1KkXUACQwS9060ngz2Oh3h6gba
+ 1LO0laYh2NnKPxSVJI/2DTvsmgBSVuLYsDd17vPW/xt3oWi5SGmsFIDjGRirnOxOyNIMaFD
+ ykPblC2Ie3junL0NpaD+nF1kD9viaRtrOqj26axB9fhHH63caI/ILze1Wqpg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794819154; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1794819165; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=HCZA7h4dhtZFsDeAg5DlvyxhK/gg8Zq5jpN13t+4dmw=;
- b=VHJMKkJYh3LxbLDF0MTQuxqF6GBpktI6Pz6hUhTQg3Tb6/aiBLDGiwOpq+fula39ZzfJO
- zjq460revuQV00VxeglvHpiY8KrJKCLHVVSWWcXzs0vkvf8FiB9Iszeiefd9gb+AP2cB6kt
- 4Ophaxl8zkJTcmxtDDZQ8fhuII49Timc3GpgtbCx/Wopz1UPJ9UQ1cmsXcMjXHSF2I/+7cP
- rNV0DUKZMWPS1QV3i5ErEvWt4B/Y31ijAvv3BZ3VQ5A27i1cbG6qsJV81TPrslaoj1wnpyU
- nC5eEBi8GgkyUHyuy+JyMAy9tE5sgBrmY45CK7Upmi6Q2fudBX5nIAb5heWg==
+ bh=TFvQP8aoubAPDYf0wglCKRKdVUTp2ONcSkD8GwBBfng=;
+ b=Ai+RXZLYkvAMxWLIVHAzRIxzROzE1zOPwFOGe27MBhbK3CmKPuJ2VT34BoL20jckSlAhN
+ mvO72IUORzZfJgYNkOzjUWC0HnzW8j8PUUUPLbfZVhfiYOh9AIcEEYfZXIaKJNI9ov/Xv+d
+ UXWZULgQzA6Y99NI4zqw6xDFUOQsmFbkvuBjkm4hsouuRq8Go270IvzcSxR446ZeglV1bWb
+ XUQEc3lQcHNqAvFBp1FGgCaEUAEp7NCtiwvZCx6Mvddw2Xw5AGmVgL3vUJzSrUWrhmB2aaj
+ d0sf4xN2Q323xEGVsw8wVN4vQzQO/WkHJm1WGAInrwjOsVq78MJVupbHdiXA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=intel.com header.i=@intel.com;
   arc=none (Message is not ARC signed);
@@ -44,47 +44,46 @@ Authentication-Results: mail.freedesktop.org;
  dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
  policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9C60E49317;
-	Mon, 16 Nov 2026 08:52:31 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AC19210EDD5;
-	Mon, 16 Nov 2026 09:12:15 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id B22CB49336;
+	Mon, 16 Nov 2026 08:52:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A5D3210EDA3;
+	Mon, 16 Nov 2026 09:12:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794820336; x=1826356336;
+  t=1794820347; x=1826356347;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=GQ6nvZncaJPWB21Rm55NWdBG4xu4kDWV0iEJex5xTMo=;
-  b=YgGa5GCvjmGSd01v/19GlSqLiPK+ifhA+AsOzbGUxZi5HOCmHdZMcnAe
-   bcrLE3oELJHAQ+3z5xgGBEEMslb+k6lsXUaxaLmNHeQ9qyuBHsEAfPvDa
-   5ZmrHtNV1PxSeHjL63EsGX6AHP311X9k7LOjYkLKBZr4z4/2Y2x3SnqcW
-   91UXgZtRmkeMPozVR3nUgE3deGoBPufEN2hsP4xRCBkJCZ1k5K8hJOMRW
-   6LnGWzEXVBUvv09MAYWdhqu+wv991d6HkwPv6xd+4MXkAqJU76A81ombV
-   4+DWC7a2ONZqQubldYu+pdGaGcnqbfKkAShtmkTs/uiSqxEYz3mSMeTgm
-   w==;
-X-CSE-ConnectionGUID: ZFm5w+7kQHOSy5lY2+rXEg==
-X-CSE-MsgGUID: slrcWXtTSoWC3SpRyJ/v0g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3428573"
+  bh=JGdJovIRxiswmzQ/OVHyoYBXcmjw0GscVzdw8XDjrRY=;
+  b=X3LBCbS4sc4JXyPJNWSe8/J34ohQ8mZ7K7tAc0pD8ozZfSc08+f3Cn/p
+   LmPxaaoOpoLMPSQOrU6aoVwe8p7bWqdO7930toihQkyQSwgGnnz5Xji+9
+   pnneD10fE8+lB6WY7XqOHxB/XjeM+TxWGdAvMqfdm4XCjbc0lWnyGtPmu
+   KtM+piYQaNAAjiqXTF76gB6AmtsBIsyKWAIYWPUwjL76YFniuFLQpcviv
+   7+I7VehdDPuTj/3dM0PXyC9WX8RnBphoDMvLaOw9sTHEExC4rXzCP8MvU
+   LTT31YTfbfKGZTCm0rM0VVX5/9HHujbKffchXDjXlD4t++BjKFlQ80mS5
+   A==;
+X-CSE-ConnectionGUID: i5EYWpxoT6KS7KWP6tL0EQ==
+X-CSE-MsgGUID: nmW9RUYzS16JBw1dW47a3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3590920"
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400";
-   d="scan'208";a="3428573"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 01:12:16 -0800
-X-CSE-ConnectionGUID: kZCPs1nAQZOSz0ZFfl6zzQ==
-X-CSE-MsgGUID: 8V2PE1BoR/CxCzo6AyKZPw==
+   d="scan'208";a="3590920"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2026 01:12:26 -0800
+X-CSE-ConnectionGUID: J66DpBJ2RRW4yBSWi6jh6g==
+X-CSE-MsgGUID: 0uoTtDp2RV+r35svTUE34g==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400";
-   d="scan'208";a="9486461"
+   d="scan'208";a="9826077"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.93])
   by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 01:12:08 -0800
+ 16 Nov 2026 01:12:19 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 03/12] drm/atomic: Add FIXMEs around the incorrect use of the
- .atomic_bypass_check() for async flips
-Date: Mon, 16 Nov 2026 11:11:21 +0200
-Message-ID: <20261116091130.13950-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH 04/12] drm/atomic: Highlight that bypass commits need care
+Date: Mon, 16 Nov 2026 11:11:22 +0200
+Message-ID: <20261116091130.13950-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261116091130.13950-1-ville.syrjala@linux.intel.com>
 References: <20261116091130.13950-1-ville.syrjala@linux.intel.com>
@@ -94,8 +93,8 @@ Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: R6OBWMULREOYEV3KMD4XEGOD6OW6WEAJ
-X-Message-ID-Hash: R6OBWMULREOYEV3KMD4XEGOD6OW6WEAJ
+Message-ID-Hash: HIAJMC3VNBLS7GDW3ML5D73D7TTA2UQV
+X-Message-ID-Hash: HIAJMC3VNBLS7GDW3ML5D73D7TTA2UQV
 X-MailFrom: ville.syrjala@intel.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -124,9 +123,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/R6OBWMULREOYEV3KMD4XEGOD6OW6WEAJ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HIAJMC3VNBLS7GDW3ML5D73D7TTA2UQV/>
 Archived-At: 
- <https://lore.freedesktop.org/20261116091130.13950-4-ville.syrjala@linux.intel.com/>
+ <https://lore.freedesktop.org/20261116091130.13950-5-ville.syrjala@linux.intel.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -143,22 +142,9 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The "bypass update" stuff has nothing to do with async vs.
-sync updates as far as the hardware is concerned (as in
-tearing vs. not). What it does is bypass the normal commit
-machinery and just let the driver directly perform the
-update (as it sees fit) and swap the plane state without
-involving the whole crtc commit machinery.
-
-The actual hardware update it does could be an async flip
-(as in tearing) or a mailbox flip, depending on how the
-driver decides to do it.
-
-The use of bypass updates vs. not is a driver decision, and
-the high level atomic code should not be making incorrect
-assumptions about it. Toss in some FIXMEs in the hopes
-that people will relocate this stuff to a more appropriate
-place.
+Document the fact that implementing bypass commits
+need actual care and attention to make sure the
+effective commit reordering is actually safe.
 
 Cc: amd-gfx@lists.freedesktop.org
 Cc: André Almeida <andrealmeid@igalia.com>
@@ -192,44 +178,26 @@ Cc: Xaver Hugl <xaver.hugl@kde.org>
 Cc: Xi Ruoyao <xry111@xry111.site>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/drm_atomic_uapi.c        | 6 ++++++
- include/drm/drm_modeset_helper_vtables.h | 4 ++--
- 2 files changed, 8 insertions(+), 2 deletions(-)
+ include/drm/drm_modeset_helper_vtables.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index 04fcaa72c46f..eb002799497c 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -1290,6 +1290,12 @@ int drm_atomic_set_property(struct drm_atomic_commit *state,
- 				break;
- 			}
- 
-+			/*
-+			 * FIXME this is in the wrong place. Whether to do a
-+			 * bypass commit for async flips would is a driver
-+			 * decision. Drivers that want this need to just do
-+			 * these checks themselves somewhere.
-+			 */
- 			if (ret && plane->type != DRM_PLANE_TYPE_PRIMARY) {
- 				/* ask the driver if this non-primary plane is supported */
- 				if (plane_funcs && plane_funcs->atomic_bypass_check)
 diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_modeset_helper_vtables.h
-index cc511068f53a..d28d8ffc66b4 100644
+index d28d8ffc66b4..1036744b9922 100644
 --- a/include/drm/drm_modeset_helper_vtables.h
 +++ b/include/drm/drm_modeset_helper_vtables.h
-@@ -1430,10 +1430,10 @@ struct drm_plane_helper_funcs {
+@@ -1430,6 +1430,12 @@ struct drm_plane_helper_funcs {
  	 * given update can be committed bypassing the atomic commit machinery.
  	 * That is, if it can jump ahead of the state currently queued for update.
  	 *
--	 * This function is also used by drm_atomic_set_property() to determine
-+	 * This function is also abused by drm_atomic_set_property() to determine
++	 * Extreme care is needed to make this safe as the already queued commits
++	 * will not be aware of the bypass commit that overtook them. And the
++	 * state that the bypass commit will observe is the final already queued
++	 * state, not the current state at the point when the bypass commit
++	 * will actually execute.
++	 *
+ 	 * This function is also abused by drm_atomic_set_property() to determine
  	 * if the plane can be flipped in async. The flip flag is used to
  	 * distinguish if the function is used for just the plane state or for a
--	 * flip.
-+	 * flip. FIXME this is wrong, and needs to be moved into the drivers.
- 	 *
- 	 * RETURNS:
- 	 *
 -- 
 2.56.0
 
