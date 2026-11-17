@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8437606A331
-	for <nouveau@archiver.kernel.org>; Tue, 17 Nov 2026 21:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9790606A32C
+	for <nouveau@archiver.kernel.org>; Tue, 17 Nov 2026 21:44:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=U6hFVOnc
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qyTbe6qK
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B802310F97F;
-	Tue, 17 Nov 2026 21:44:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 065B010F98A;
+	Tue, 17 Nov 2026 21:44:46 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 072D1494CD;
-	Tue, 17 Nov 2026 21:24:47 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4950E494D4;
+	Tue, 17 Nov 2026 21:24:53 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794950686;
- b=B0dAIA0BUt7adFrk9a25nGcrePJXNUNSOffMx+dewcclwnoI02DT9wYd86XyoxzN9o7hF
- uB0dGArjtaUT6KENpA+3yIB1yFyK9fy8JlEsjjFXh2PtvBDVduf0BXZ6n3a2jxWwwwOOeFh
- VprgjF77aG15zsNCzcPwyG7wIO0V8DHPddBDsnD5TELepKNJuHxdOD0D1l/R00pqiynMkag
- 0RsZaptIXC3qpUxpXnAW7tGFCS/XTvxSywgAN2JjHCi89nZT5ezuCrQTZxf0HK04n18khnz
- a4KNWe0TRQrJGZnuRbfZoseuesxQS9O2/i+IAED5vtuDrtH4RG8G/4FUSs1g==
+ s=20240201; t=1794950693;
+ b=DUDapoZtKsbLL4rNuIYqT/y1ZPAuWW1Q2viv2/IbSK4KCd09h4nhYCj4ZRGWFwv6TfXiO
+ vnFtEf3movOh0FloCkHcPP9MGluyz77UyPkOkkHG/zM11eBXtQ5xYn69hOElLqdv5cbaNm7
+ woxIEcgbSt3TrKqxhDCc70MqqNfqgkvY3TRaiTEO2hK28GjETDAKBIQ7Y3xsODku6+tZyZn
+ zY7xRrpPV9sttKUOO43Y59Y1lGxYdHNnXb9wdQvB+iI5S3668W4LX5vWtBEtpHLfUchvD/i
+ 5ICsscI+AwCBuDQT9Rzmd+MOx1FMz9pPBQCvVH+3JwcMkfoeCAuyiace5CBA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794950686; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1794950693; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=d6UTl8IcRMHJ8o1AzBnaOrrvZJhPc7DJaM7kqbvB2L0=;
- b=zUJaYU9NUjH2yiSu+41EG2DVC+HAWcVCS+Z4gj961az6VJt4uJEwkqSJ2dhHROp2y+mrP
- GZLebFvU5TFgT/ybW2Or1F8CC5x3WtCgOrEFNZqeYQYPbmqcYYgFxW4sNeBWpMsAYNFO8HU
- 4C+g8U1XnyOdJwecYRKBirpkSQMr+BZ691aTjHg6rPkM+PDZ+7KqsVF0h4dcoEeHcuyEmFA
- aAjKhjh2aGcGaOZdvQ28/CZSJGKH5tQBk/VC7Qxb+uFk8gNlKYDOWSyhzJd0/GuQTUNDn5Y
- S/cOG6SPmiaBkSDS/b695SwxM+2kMAOgmkUSIqix+7JkLZ38EUCmioXpjQ1Q==
+ bh=nw08AhRQS1eFzAKtcGRxJRAZrCmSi0ARu0NkX4yj1hM=;
+ b=EdAkd7ohOxd6avxxuZMY7/SVqD6xZGgxqRzhZDNJpVlaBsTJupKWLmMDF5oGjM8rlJ6pu
+ qusHF+w2rXSDAH5p35X2xlf4Q9iYqOUBxe1cqGClPm5IhzroUB1O11EBg5ige5CmpIz1M7v
+ Hs4r4mQSb3mKPdRQXLP7j6J4gIaZmJ0XC+5GvR3daYaSpANd4BlRhuel4lrtoAVDe00yPNF
+ 8I3lZ4bUUdJMh1anpMb27KLpM0UfVSND8ggp2tcnneuxBTAfUb5TmQkSekfVaZdOZiF39Uv
+ RbMA3k/tNsEjaC7SVANC8rhiGW53JotEKE1BOrTOn79g/uMwnGf4INPqb4ew==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -43,76 +43,76 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 6F733494CA
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Nov 2026 21:24:43 +0000 (UTC)
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0CC6E10E6BE
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Nov 2026 21:44:31 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-4bb70074ab2so3508475e9.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 524FC494CA
+	for <nouveau@lists.freedesktop.org>; Tue, 17 Nov 2026 21:24:50 +0000 (UTC)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DDD9410E6AC
+	for <nouveau@lists.freedesktop.org>; Tue, 17 Nov 2026 21:44:37 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-4bb70074ab2so3508945e9.0
         for <nouveau@lists.freedesktop.org>;
- Tue, 17 Nov 2026 13:44:30 -0800 (PST)
+ Tue, 17 Nov 2026 13:44:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794951869; x=1795556669;
+        d=gmail.com; s=20260707; t=1794951876; x=1795556676;
  darn=lists.freedesktop.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=d6UTl8IcRMHJ8o1AzBnaOrrvZJhPc7DJaM7kqbvB2L0=;
-        b=U6hFVOnck9D5kaa+omcNDYwbmurHh/5XNs7lfOKHpd7ZhTHCCl5tBMwTCabw3+HOhB
-         VSlJV5Mc8dK5MK/W+ETBVzLulOqS9AxJi53eNp8NMUBP+c4xVBeQUzIT+Y/FveZDLk2n
-         GmSLu+rv9OPCdCWxFL+wKfWP4BTuXB3PAJMt+862tR3WvTtwdqx2JwAk3SsKQC6jUPFZ
-         ZDMRKBjxo6UhSbT7U8DWc1kdu4RnHpvCAwWwfcaHVLZrM1MEJ1qqH54LCy3jRMGG/h+f
-         wMc0fRSOhPZoicCMYkgaKMMZDC3IvGJKexgGS7jWZ23gv37tqEG+A5vnDiOaidbdQ+kD
-         TfAw==
+        bh=nw08AhRQS1eFzAKtcGRxJRAZrCmSi0ARu0NkX4yj1hM=;
+        b=qyTbe6qKddiVdyIr72d/Nrh0YmmiOP4bQoI0aELPTwd9j3BTSSUEgkA9BTIzZGaVxR
+         HC7/hJYMVp9qm0LO9II0qiK6nVPxvjj4kZgLw1ZicVz5XD9qd9iHKqgNr0y1Nbl5SSyi
+         T4kWQgCe1O6VYndI4ypS9dlv9wWyeCRwLynN78zF+pdUkChEVeMhI9r1d1lUM0eYNVeJ
+         qmh9npp3BLvE+6DyR+Ts16P8Fc5mXow+8Zs754/JAvj94bypDGKNvcpsSJxL6KuxWgOq
+         TJVfrsNsFXY8zSXHYc6DJ1kk9Po3ozRL9nzmRLNx+tBR8USV+iFbC3Fg87NJBRGRRS8s
+         nmtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794951869; x=1795556669;
+        d=1e100.net; s=20260707; t=1794951876; x=1795556676;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=d6UTl8IcRMHJ8o1AzBnaOrrvZJhPc7DJaM7kqbvB2L0=;
-        b=IVvfC7CFnPSXROH+vS0X3QfC5pp1UGOQTpIl63BXlZaDHUsnHNHXuUA57Z9rQxr+y8
-         Nf7RS+xNxilNH97M5t/JTO8wNURawl2TW8LdDSjdJBhiR1uFfMOJSiPnraf4NMzPBtA4
-         XRSIv3yQijIj7Orp2xELQ1/pdrabVu0TDhyFpS8XZyBHgb1GZvItET5SQZeohM+HcBbH
-         dtUiZL3lBE/2sVAXZgvWTwGWiJRSpzJu09xwGXZEf3MmL2EIKk900NaX6BGrz6fBfv0M
-         FQAASz2ZsPtOAUg3qHaymWB1+ILk+qS1FxXuggXCRaP7DdHY+Slnwy8UwzzPV6JlT9Fs
-         NPtw==
+        bh=nw08AhRQS1eFzAKtcGRxJRAZrCmSi0ARu0NkX4yj1hM=;
+        b=JVhwuh3DeujmOh61RZ9Kgjv1W6a076bL1h/9efLQj8SD/bKyrvi7RtHu0f7cvQQ8lK
+         2tnK7v8Q3ab2aos+x01Vsh3id9zplbUqOFKxVQmS1yYzLfTfxb7u639jQPU1q+ezBW5n
+         JxILyeY19QwQeAsc/Iy1AUFRjUmb/4QcipM7ehwmHKzYol2o1H7CWmRMXD919qhke41G
+         lRQWRrGERmJPexFRR8qe14rcMKj76dwsfPDWGMnWFTC2gpSmE1/EwHWcdYIdJ7mt1IHt
+         N2XjFoQlloNiX7M3DDjMdKPEHxD8LO24aofm/G8OzjGv28PhROdF1AUcDDzodZvdHBJZ
+         EBuA==
 X-Forwarded-Encrypted: i=1;
- AL+hErFolG8JItShTCIYlkAQL+BdIURTFWoPF3dfFC8a3HHxjgfaMdzsxoIPtpXAkA0eyGUno97KnHJu@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z/vhV+1hbORJXEpvO4aXpucUOYoHJXZnnp4MP+AXEO+awgXxXoi
-	sWHOuG0BPKrfgNoJZ8jj/rNo6LfxjJVHcepCbEgLkfnY6XOxV4dhS4rZ
-X-Gm-Gg: AYBFou0tIUBTk/tsoliz4j5eeAImpnVlZxTPm8nQwr6Meeu5G9ZoJaH8Pz4D6bzieqa
-	rXwjfQRw/ikg5v3FquTFaHGzHl3fFLo0ZvaUJ4O6DNUFTVWnhDlPor7a8l4IINN2S87PJcLXCEC
-	Opk8ywR1/FfZMgs/2+06VeWBftpM4OhrT23mFAPT6rovQPpCgZhcCbt5N9gt8A6mTW43w8ef9iw
-	mIvJMMENqhI5FoIgdzpyPR3524lmtn0y9E5j3pEF42qDi4uAaE/uKOQYuP5FRwKiZ7k0ZHWcF3g
-	D3vFb1FoJCt6xWDc82JR6YxZYZvcWkoolQ8SQZ9qpeFefw5xDGuPw8ct4RUOAvxl77GK/yJEGFE
-	p8neVOCiOErs/Np3vyfsNDmObJGqGkQQVQrNdaOIjuwE8fjch4aVCfpHBrKWb4advTST7nHLNQb
-	vQV0Iz5WWLt/BTZCcQySyc4XgH7Z/MQqnMVTcH3aHWmMvXusQ5OPTlR9WKd2BXFsEK9cQ9rGaX0
-	Ep7vUfiQTVP+miJmtdA6jct6PZKEgHRXybRE2bsfz4QKWd4B5T4x7ycSx45NXwutzLJ+lfCylTd
-	pGhax3gsGBVUDEFNWl+nhowm14deljUZ64Uc1lxFPcr2tO/lBhYjBKX0HlyQsw==
-X-Received: by 2002:a05:600c:524d:b0:4a3:59c9:a758 with SMTP id
- 5b1f17b1804b1-4bb7da46d69mr8423315e9.32.1794951869309;
-        Tue, 17 Nov 2026 13:44:29 -0800 (PST)
+ AL+hErFqnYpSrHcLdyFJ4gy4vWA8seDiZViYfGJom1jtQ/5QUJ7EkQSA3U061aFRY+RK3mN/xsGZ3L81@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z914FRk6WAtFHraXD5BHkE2vO5r2bvW07AsrL07O0gDLjYaexaL
+	VYor/N4bIHo19SO5HDZAch4kcTmei/5RShEytszDps8Su3PrT3tkg4id
+X-Gm-Gg: AYBFou1ij3FjgIJMItJU/fX0hSw2Ilk96qCVbPonGXLclKK5oCaphCbhFTEXkZn4QDL
+	QPJQfHqXFvT1A0/kn/4qeW/rNP65lJiw8ta4byl/Svg+s1klj67hhcYZ/L0cIRszgd5qKmeZmfC
+	R8Q7blLgySzIbGcsG7mWflmUyBPyGBoWyrrU4v+L8j2K1zPAsraMoGeOpiR2whVQw7wOupmv2hC
+	ZqcJ2rJSMoJ0WZ1DwOKILxUKcwCN41NDi4ew6cAfqH8nORwpbDQj6qAZg1ubGqTjvFTQdTpPomY
+	WnJeGpq2Wnr4RVXP8XOdWSzO6dn/VHuRmt0xafjtQhlYP/1o/UTupNKH9rnwnhujliETNwJ9Kcu
+	0LTiLxIkF5hQo5tWVyyMKAIK1ddEq0IwUvvye6PJ56G/nn7XXrwWwq3QLHmBaj5kjM5OfBR5dZz
+	Fvy9M47BmbJEVEb+Th6J6FO2eEgyFwXkcK3tuKB6lu6lJEDD0T23gbxhdFFG2Q/A5m3PV+SzbtF
+	8hlkShF5AEhfHcXey83TeFfdPSl1wKofPMSkR0rqNGnPWK367kQwgjdDCTP6u/0+e2SjWoCN7Rr
+	8Xtbmz3jMqXQjhM+qf4qw5hRo7yzUuMT37oNFn5WM0G4QtBQ5kcOHDImMKS+yQ==
+X-Received: by 2002:a05:600c:4fc5:b0:4a2:392:9de2 with SMTP id
+ 5b1f17b1804b1-4bb7da3ad9fmr9007535e9.28.1794951876264;
+        Tue, 17 Nov 2026 13:44:36 -0800 (PST)
 Received: from fedora ([94.200.248.157])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4bb784231basm95069675e9.11.2026.11.17.13.44.24
+ 5b1f17b1804b1-4bb784231basm95069675e9.11.2026.11.17.13.44.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Nov 2026 13:44:27 -0800 (PST)
+        Tue, 17 Nov 2026 13:44:35 -0800 (PST)
 From: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] drm/nouveau: do not return early from a synchronous
- VM_BIND
-Date: Wed, 18 Nov 2026 01:43:50 +0400
-Message-ID: <20261117214352.337961-2-mohamedahmedegypt2001@gmail.com>
+Subject: [PATCH 2/3] drm/nouveau/bar: take the GSP-RM flush pointer from the
+ BAR2 io_mapping
+Date: Wed, 18 Nov 2026 01:43:51 +0400
+Message-ID: <20261117214352.337961-3-mohamedahmedegypt2001@gmail.com>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261117214352.337961-1-mohamedahmedegypt2001@gmail.com>
 References: <20261117214352.337961-1-mohamedahmedegypt2001@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: SP2SJO2YYEUHKY4XOE7X5F4RGN4THXFS
-X-Message-ID-Hash: SP2SJO2YYEUHKY4XOE7X5F4RGN4THXFS
+Message-ID-Hash: AB2R7F2RGXON3BXMCK3E24BJXEO7SGFG
+X-Message-ID-Hash: AB2R7F2RGXON3BXMCK3E24BJXEO7SGFG
 X-MailFrom: mohamedahmedegypt2001@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -128,9 +128,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SP2SJO2YYEUHKY4XOE7X5F4RGN4THXFS/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AB2R7F2RGXON3BXMCK3E24BJXEO7SGFG/>
 Archived-At: 
- <https://lore.freedesktop.org/20261117214352.337961-2-mohamedahmedegypt2001@gmail.com/>
+ <https://lore.freedesktop.org/20261117214352.337961-3-mohamedahmedegypt2001@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -147,38 +147,169 @@ X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A synchronous VM_BIND waits for its job with an interruptible wait and
-ignores the result. On a signal the ioctl returns 0 while the job is
-still queued. Userspace can then use the new mappings before the page
-tables are written, and the channel can take an MMU fault.
+r535_bar_new_() maps the first page of BAR2 with ioremap(), to flush
+BAR2 writes with a read while flushFBZero is not mapped. On x86 with
+PAT, a mapping that overlaps an existing one gets its type. The instmem
+io_mapping is created later, so with GSP-RM it is also mapped UC- and
+its writes are not write-combined.
 
-Wait uninterruptibly. A synchronous job takes no syncobjs, so only the
-jobs queued before it on the same scheduler can delay it.
+Take the flush pointer from the io_mapping. A new bar2.oneinit hook
+sets it up once the BAR2 page tables are bootstrapped and the
+io_mapping exists.
 
-Fixes: b88baab82871 ("drm/nouveau: implement new VM_BIND uAPI")
+Fixes: 34e27b90552a ("nouveau/instmem: use iomapping interface for instmem handling")
 Signed-off-by: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
 Tested-by: Thomas Andersen <phomes@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_sched.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ .../gpu/drm/nouveau/nvkm/subdev/bar/gf100.c   |  6 ++++
+ .../gpu/drm/nouveau/nvkm/subdev/bar/priv.h    |  1 +
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r535/bar.c | 32 ++++++++++++++-----
+ .../drm/nouveau/nvkm/subdev/instmem/nv50.c    |  8 +++++
+ .../drm/nouveau/nvkm/subdev/instmem/priv.h    |  3 ++
+ 5 files changed, 42 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
-index b3f02c490ecb..680ddffefca1 100644
---- a/drivers/gpu/drm/nouveau/nouveau_sched.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
-@@ -328,7 +328,11 @@ nouveau_job_submit(struct nouveau_job *job)
- 	mutex_unlock(&sched->mutex);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bar/gf100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bar/gf100.c
+index a1fa1b0c8954..6950801d2e03 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/bar/gf100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bar/gf100.c
+@@ -133,6 +133,12 @@ gf100_bar_oneinit(struct nvkm_bar *base)
+ 		if (ret)
+ 			return ret;
  
- 	if (done_fence) {
--		dma_fence_wait(done_fence, true);
-+		/* The job is queued and its VA space changes are applied. It
-+		 * can neither be restarted nor reported as failed, so wait
-+		 * until it has run.
-+		 */
-+		dma_fence_wait(done_fence, false);
- 		dma_fence_put(done_fence);
++		if (bar->base.func->bar2.oneinit) {
++			ret = bar->base.func->bar2.oneinit(&bar->base);
++			if (ret)
++				return ret;
++		}
++
+ 		bar->base.subdev.oneinit = true;
+ 		nvkm_bar_bar2_init(bar->base.subdev.device);
  	}
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bar/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/bar/priv.h
+index d0168e0b78fb..5774bfa8d96d 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/bar/priv.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bar/priv.h
+@@ -16,6 +16,7 @@ struct nvkm_bar_func {
+ 	void (*init)(struct nvkm_bar *);
  
+ 	struct {
++		int (*oneinit)(struct nvkm_bar *);
+ 		void (*init)(struct nvkm_bar *);
+ 		void (*fini)(struct nvkm_bar *);
+ 		void (*wait)(struct nvkm_bar *);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/bar.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/bar.c
+index fae08ac3b18c..9b907d9e80af 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/bar.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/bar.c
+@@ -24,9 +24,11 @@
+ #include <core/mm.h>
+ #include <subdev/fb.h>
+ #include <subdev/gsp.h>
+-#include <subdev/instmem.h>
++#include <subdev/instmem/priv.h>
+ #include <subdev/mmu/vmm.h>
+ 
++#include <linux/io-mapping.h>
++
+ #include "nvrm/bar.h"
+ #include "nvrm/rpcfn.h"
+ 
+@@ -65,6 +67,25 @@ r535_bar_bar2_update_pde(struct nvkm_gsp *gsp, u8 page_shift, u64 pdbe)
+ 	return nvkm_gsp_rpc_wr(gsp, rpc, NVKM_GSP_RPC_REPLY_RECV);
+ }
+ 
++static int
++r535_bar_bar2_oneinit(struct nvkm_bar *bar)
++{
++	struct io_mapping *iomap = nv50_instmem_bar2_iomap(bar->subdev.device->imem);
++
++	if (!iomap)
++		return -ENOMEM;
++
++	/* BAR2 writes are flushed by a read. While flushFBZero is not mapped,
++	 * read the first page of the BAR2 io_mapping.
++	 */
++	bar->flushBAR2PhysMode = io_mapping_map_wc(iomap, 0, PAGE_SIZE);
++	if (!bar->flushBAR2PhysMode)
++		return -ENOMEM;
++
++	bar->flushBAR2 = bar->flushBAR2PhysMode;
++	return 0;
++}
++
+ static void
+ r535_bar_bar2_fini(struct nvkm_bar *bar)
+ {
+@@ -155,7 +176,7 @@ r535_bar_dtor(struct nvkm_bar *bar)
+ 	nvkm_memory_unref(&bar->flushFBZero);
+ 
+ 	if (bar->flushBAR2PhysMode)
+-		iounmap(bar->flushBAR2PhysMode);
++		io_mapping_unmap(bar->flushBAR2PhysMode);
+ 
+ 	kfree(bar->func);
+ 	return data;
+@@ -178,6 +199,7 @@ r535_bar_new_(const struct nvkm_bar_func *hw, struct nvkm_device *device,
+ 	rm->bar1.fini = r535_bar_bar1_fini;
+ 	rm->bar1.wait = r535_bar_bar1_wait;
+ 	rm->bar1.vmm = hw->bar1.vmm;
++	rm->bar2.oneinit = r535_bar_bar2_oneinit;
+ 	rm->bar2.init = r535_bar_bar2_init;
+ 	rm->bar2.fini = r535_bar_bar2_fini;
+ 	rm->bar2.wait = r535_bar_bar2_wait;
+@@ -191,12 +213,6 @@ r535_bar_new_(const struct nvkm_bar_func *hw, struct nvkm_device *device,
+ 	}
+ 	*pbar = bar;
+ 
+-	bar->flushBAR2PhysMode = ioremap(device->func->resource_addr(device, NVKM_BAR2_INST), PAGE_SIZE);
+-	if (!bar->flushBAR2PhysMode)
+-		return -ENOMEM;
+-
+-	bar->flushBAR2 = bar->flushBAR2PhysMode;
+-
+ 	gf100_bar(*pbar)->bar2_halve = true;
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c
+index 22b0fde6ba34..1b4be4b1f0bb 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c
+@@ -436,6 +436,14 @@ nv50_instmem_dtor(struct nvkm_instmem *base)
+ 	return imem;
+ }
+ 
++struct io_mapping *
++nv50_instmem_bar2_iomap(struct nvkm_instmem *base)
++{
++	struct nv50_instmem *imem = nv50_instmem(base);
++
++	return imem->iomap.size ? &imem->iomap : NULL;
++}
++
+ static const struct nvkm_instmem_func
+ nv50_instmem = {
+ 	.dtor = nv50_instmem_dtor,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/priv.h
+index b423f01f5fcd..88990adda766 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/priv.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/priv.h
+@@ -4,6 +4,8 @@
+ #define nvkm_instmem(p) container_of((p), struct nvkm_instmem, subdev)
+ #include <subdev/instmem.h>
+ 
++struct io_mapping;
++
+ struct nvkm_instmem_func {
+ 	void *(*dtor)(struct nvkm_instmem *);
+ 	int (*oneinit)(struct nvkm_instmem *);
+@@ -27,6 +29,7 @@ int nv50_instobj_new(struct nvkm_instmem *, u32 size, u32 align, bool zero,
+ int nv50_instobj_wrap(struct nvkm_instmem *, struct nvkm_memory *vram,
+ 		      struct nvkm_memory **bar2);
+ void *nv50_instmem_dtor(struct nvkm_instmem *base);
++struct io_mapping *nv50_instmem_bar2_iomap(struct nvkm_instmem *base);
+ 
+ void nvkm_instmem_ctor(const struct nvkm_instmem_func *, struct nvkm_device *,
+ 		       enum nvkm_subdev_type, int, struct nvkm_instmem *);
 -- 
 2.56.1
 
