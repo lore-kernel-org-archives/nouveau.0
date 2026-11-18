@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85F45606B58D
-	for <nouveau@archiver.kernel.org>; Wed, 18 Nov 2026 16:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D774F606A334
+	for <nouveau@archiver.kernel.org>; Wed, 18 Nov 2026 16:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.a=rsa-sha256 header.s=mail header.b=IoPwM4/+
+	dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.a=rsa-sha256 header.s=mail header.b=BadVSQLR
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5A72B10FEA0;
-	Wed, 18 Nov 2026 16:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A939D10FEA3;
+	Wed, 18 Nov 2026 16:54:22 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CF97F49548;
-	Wed, 18 Nov 2026 16:34:13 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 32DF04954A;
+	Wed, 18 Nov 2026 16:34:28 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795019653;
- b=uSfIYDHE3Juxp2c+Q08SVGsxqnrWAFEZDzLoFxXVpH65ewzV2FUKkDPobuUb6F8eZxhkH
- FCCgkPhaBMpUmCQKc2n4rWoPVUNu0K9pLoy+35ObqicYnSQYVCrUY9zcQCWdYjOp/Em0ErB
- JPgHRAOVIxAIGoBWOrupkQP2d5xqLi3JrYtvDeOkFngQHrNXLK2puWCZLLK5jDdZILZOEw4
- IUE2io1EBHP28Ye2q2gwhFLOmYHl4ELWcqGXBuok7Ob0sOdrdnIJ0SKnaMVGIlvRvW3ZwER
- mvfd+q2UNazg77PV/RRrA6aot/pd1n9nVeg1WwH90ZVsN0+Dc4c+5Mp9tOgA==
+ s=20240201; t=1795019668;
+ b=Trj4p/40B7w4z8gQ97nGRWuDUeOUYjfv4KID77eSawPA9k02WQnwAaCsyXgdTkdrNNDCI
+ Qw+jhniiW2M5ZIWAYiz1Wa6oeEnfclqV/z8KmDOA/qE8I4bHbctiocsO6Fsden9FyQdHj7G
+ KIURdmlOe9P9PLEd0TsK/OOzpxiy1WhOdU0ztvreV0xrbwapE1cYQZxO9BAcN0zIyB/HBpD
+ 7RlVtPyd3lk5dMdxGLdOvQ74L373dTlSDryOQ9a87vKrBnUiegwIVuCxYTn0MFPLp9bEWOz
+ q5IRpXKRMHkj1nKKXC+kUoMXKCWFyS8cvxoZ56y9MEPJDFNla8vjWDwtlzaQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795019653; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795019668; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=EOJ8Sv/YlC8vz0y+8TQ4TF7t2l9IIfJq2FXNg6WSXn8=;
- b=pylkB8uE6eBXPkLTy33qEseqW9PEQJIFt23vGggmVcq9NVv52vmBZt3B6Cbmi3afBhvsR
- qOEbDNaqC/DZgUV9yZ/UY5ZMseBLgdqxpkaalzvCJS7h6K6jktqcgW9I0KHrstpe7a/KAKB
- nY/Ykzg9JtJcqjIeR+5zUPqOHS43RKvRA4RS10JMcsT7CgWf3uSJH1BLJsBUZc+CqYBFEBB
- VTucABbIjCp5w8qAgfYcu9bOPfHviPOlGivndXv7FCatFUc3mIAsU7Ti2IsQhWOGBmmhdgw
- YC6VFrlj66gVNP7L6sMOqqj8BvRUTUqzmXitF3pL7IUvA82pjpClXC9xFXvQ==
+ bh=yD1/OR6ajdIF7WPOaJ7OQK9lcxiyH/vK4kcEYe1fozU=;
+ b=YP+DI8qr/YfEEpBzVEEUkWpSyJb8D59LULA8l8j+hT41eB1Vur2+O88KDNThPSHXs4xfs
+ ziE4V+y65yCdED/uDvEoZo02xI9vlFydLx9G4fwS13V/2wCZCAhE9EpQlweyimp4Q2XsPQH
+ kZEvRykbIn7EKeMlypoBu5ALcm8Z5VdbYtaQyCqy/mBcIczEYqRaFApsUdy0t1UbqPyZKhb
+ u4ZdGHO9RSHtSgmWV9a6k6jRWN9dcfFQ/wKVsARcUdHqbdoVpBk78n4xzTTFlX+4g9thRU2
+ 2zfa7TfZL0X29f/LC6v+nwRqcxng8nF6HLGvXCIHmPJFdxuLBn1eSGrG8bwg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=yandex.com;
   arc=none (Message is not ARC signed);
@@ -42,55 +42,56 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=yandex.com;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=yandex.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 31EDD4668B
-	for <nouveau@lists.freedesktop.org>; Wed, 18 Nov 2026 16:34:09 +0000 (UTC)
-Received: from forward105d.mail.yandex.net (forward105d.mail.yandex.net
- [51.250.60.165])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 51AD610FE84;
-	Wed, 18 Nov 2026 16:53:58 +0000 (UTC)
-Received: from mail-nwsmtp-smtp-production-main-66
- (mail-nwsmtp-smtp-production-main-66.yp-c.yandex.net)
-	by forward105d.mail.yandex.net (postfix) with ESMTPS id 37EBB100036;
-	Wed, 18 Nov 2026 19:53:55 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-66 with ESMTPSA id
- YrdcVw0j54Y0-vlfv0vrV;
-	Wed, 18 Nov 2026 19:53:54 +0300
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1F9824668B
+	for <nouveau@lists.freedesktop.org>; Wed, 18 Nov 2026 16:34:25 +0000 (UTC)
+Received: from forward102d.mail.yandex.net (forward102d.mail.yandex.net
+ [51.250.60.162])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 499BF10FEA7;
+	Wed, 18 Nov 2026 16:54:14 +0000 (UTC)
+Received: from mail-nwsmtp-smtp-production-main-94
+ (mail-nwsmtp-smtp-production-main-94.yp-c.yandex.net)
+	by forward102d.mail.yandex.net (postfix) with ESMTPS id C9819C00C6;
+	Wed, 18 Nov 2026 19:54:11 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-94 with ESMTPSA id
+ 6sdtri0d1Ko0-vPZdlYXj;
+	Wed, 18 Nov 2026 19:54:11 +0300
 X-Yandex-Fwd: 1
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
-	t=1795020834; bh=EOJ8Sv/YlC8vz0y+8TQ4TF7t2l9IIfJq2FXNg6WSXn8=;
+	t=1795020851; bh=yD1/OR6ajdIF7WPOaJ7OQK9lcxiyH/vK4kcEYe1fozU=;
 	h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
-	b=IoPwM4/+G6iuBYnsqs6wPD1Mec6CqC38mgXduK3ckxC8/7q2aZJEurdTHiHuxi43S
-	 PpK2fLEqUxSU7yojJa8TJAlERPg8rM5Zt0ywQL9DBGpyB91anpM61xuQURfBl7gi0E
-	 bqJV+oqtUGAb4P1MSObTvsB9m3TPvvSRqJVfvJiM=
+	b=BadVSQLR+kBn5498Kt1JFpF1P9/hCWn312ACxj1yA1JxmYjRVTBPBOe9cuZqQAuHy
+	 yHX048ViUFKo72m+HcxA+EUoyExYlmEyhScZc0Naj5D0ZQEy85Ty85BpJEI/yWIv0s
+	 oVrViHJ0AEgbHEpoEbQ5FpENkKkaLvc/6KAAeiBI=
 From: Alex <xnderv@yandex.com>
 To: Lyude Paul <lyude@redhat.com>,
 	Danilo Krummrich <dakr@kernel.org>
-Subject: Re: [PATCH v2] drm/nouveau: idle the channel before destroying an
- engine object via abi16
-Date: Wed, 18 Nov 2026 19:53:28 +0300
-Message-ID: <20261118165328.53341-1-xnderv@yandex.com>
+Subject: Re: [PATCH v2] drm/nouveau/therm: mask the update bit when reading
+ back the fan PWM duty
+Date: Wed, 18 Nov 2026 19:54:02 +0300
+Message-ID: <20261118165402.53610-1-xnderv@yandex.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261023152332.9420-2-xnderv@yandex.com>
-References: <20261023152332.9420-2-xnderv@yandex.com>
+In-Reply-To: <20261029130012.21738-1-xnderv@yandex.com>
+References: <20261029130012.21738-1-xnderv@yandex.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: ISWRRLPSUGMIXWWZBU4F6HYFEMI7ZRCF
-X-Message-ID-Hash: ISWRRLPSUGMIXWWZBU4F6HYFEMI7ZRCF
+Message-ID-Hash: RLMSDC7TURCXTVDKFBJRA325Z2YYKMD6
+X-Message-ID-Hash: RLMSDC7TURCXTVDKFBJRA325Z2YYKMD6
 X-MailFrom: xnderv@yandex.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
 CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, xnderv@yandex.com
+ linux-kernel@vger.kernel.org, Martin Roukala <martin.roukala@mupuf.org>,
+ stable@vger.kernel.org, xnderv@yandex.com
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ISWRRLPSUGMIXWWZBU4F6HYFEMI7ZRCF/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RLMSDC7TURCXTVDKFBJRA325Z2YYKMD6/>
 Archived-At: 
- <https://lore.freedesktop.org/20261118165328.53341-1-xnderv@yandex.com/>
+ <https://lore.freedesktop.org/20261118165402.53610-1-xnderv@yandex.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -108,11 +109,9 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 Hi,
 
-Gentle ping on this one. v2 addresses the review comment on v1 (wait for
-the scheduler job queue to drain before idling the channel). It still
-applies cleanly to current mainline (checked today, 2026-11-18).
-
-Is there anything else you would like me to change?
+Gentle ping on this one. v2 trims the commit message as Martin asked
+and carries his Acked-by. It still applies cleanly to current mainline
+(checked today, 2026-11-18).
 
 Thanks,
 Alex
