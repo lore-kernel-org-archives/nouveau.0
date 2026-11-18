@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67168606A32A
-	for <nouveau@archiver.kernel.org>; Wed, 18 Nov 2026 15:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6732606A32A
+	for <nouveau@archiver.kernel.org>; Wed, 18 Nov 2026 15:22:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AhFelVEj
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Zatd8Vt0
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3845510FDCD;
-	Wed, 18 Nov 2026 15:21:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8518010FDDC;
+	Wed, 18 Nov 2026 15:21:59 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D06204952E;
-	Wed, 18 Nov 2026 15:01:24 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 2FEF149533;
+	Wed, 18 Nov 2026 15:02:05 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795014084;
- b=d15laIrVxZY6fpnD5fLUh9FH57Zfo6PFpaci/m2BW9/IpSSwn/SqmdApriLnAZ7w5JKDI
- xAeJyl04G5BGGX9n1fB2jZWfuBBLy92Mj4N7iMK1t0Zn9AAbTPsKEsXq0Vzo7QDQRoEb38j
- +2H1iVJa5osr13lSQPIUWdf4X8ezs9iQQxWeRxRgwLfurtNEOmn3Fno5H1uEvvcQOTUnCkt
- FpPXPOIErPWhKcmADGDkVIqi3/IlvRGvTFKXAmr9HgICwMQtn7MpjL8aHfukSs5YLiO3D6l
- /DU+/6xGkOmdZ05e1Ud3Tvm8ts0C40wZJvhNu1P6ZxDJoDB4LGMyuJ31+NHw==
+ s=20240201; t=1795014125;
+ b=MtB7gxiLed0W5B2AbLEsWJ4OtClotpe3AXiEOu7fssRmL/1diD34aHUPbPY/NPVGZNzf6
+ YyhQKgegnl7DGnTqVTnXxfVfLI6mc05RxlavSyG/2LpxNz5uIIvJ0+yh6NZu/0fb2ATTtQX
+ C/X0OqumXXm3vVP6RXV4W9mX/u57MtnyGKGIIYQ82DjgcrdpIBXl0Ei5Y2iMj0oMNxZzTDg
+ AqzGDRYlkQXW1PoWyll4LJIPWX4ju4HSz/k3xCdHPpslvsuo/8xqiD9jgevT7UgNcBBh9zp
+ z3QqZw1I6UY3dVlhJE9Kigd+8peXbZ/NFRaYrXEXniKYr43oAUAQzvc59D0Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795014084; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795014125; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=1shZqnP71Ukitlfj99kedJcZBJQFJWYHeZCXEuiVk/I=;
- b=RBpwEG0SwcEe27ZRhZXOYrND5oGST+2qYVApQBhBI1Y6DSQXyfmGf8rVVHsYUte6chXaO
- kIgwBu1CAZ7B2c102jL4Df6ogZeP8wUtJNNtsSv2mzUGEWxPgypQ2jdk/m2K6eNlrL1Mk4i
- DVupeWV9xDRI1KErrEN4WYreoWR1Tgmh6DDXLWbIMO50hPYgzaii595xFJ9lzthDYThD1dH
- dXsP2Azq6nGrOhWe9b2j+fIj1ctOr1CAoOj80zlxOE6R5kx9q/XjmVpvWlVJJ5SJ9dDMyjS
- g7uOD7QAe0N6+XZN3Y4pgM+qyrYtFKpuVxkAc/ugD0/kf9xkkURnR+B5ousA==
+ bh=zjHf/N+E74CHlMypQ6kG0MO/j1AaxlMnO45unT7fRs8=;
+ b=e/5BLmOovakeloqrrDPVNHxSw4zIo8Gxeb4tZkwRcbVaIDM44Og+vG11DKOJJ+xUZBsT4
+ uAr+icb0drDP7q+cDR0LGrhRQFjbizGRK+AiNCAEvvdVOt7UEtBJIkJ3UUWBwAWFY4T9F5T
+ bL8e5V+1n4qwJda5hnREvljU3/s/XWpD4o77hv4xgI6tHNTfY3c43D2Q43sI+OHUuLeO2Ct
+ trWkWPduebGfUErWmCN5Tc8Y6QIv0dTEY5GY1ASi04x+mKJgxvxlA3vt3nZG60qgO5Bq18y
+ E+Mnb7FyYTPztK0yUpT/1K277MlHjYHtit3BZhqZBFemIzWbJMTTUqIwnmhw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -43,26 +43,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 024774668B
-	for <nouveau@lists.freedesktop.org>; Wed, 18 Nov 2026 15:01:21 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 32F104668B
+	for <nouveau@lists.freedesktop.org>; Wed, 18 Nov 2026 15:02:02 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 306D810FDC4;
-	Wed, 18 Nov 2026 15:21:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6117410E534;
+	Wed, 18 Nov 2026 15:21:51 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C75DF4387A;
-	Wed, 18 Nov 2026 15:21:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE1F51F000C5;
-	Wed, 18 Nov 2026 15:20:57 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 46F7340601;
+	Wed, 18 Nov 2026 15:21:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 587FD1F000C4;
+	Wed, 18 Nov 2026 15:21:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795015269;
-	bh=1shZqnP71Ukitlfj99kedJcZBJQFJWYHeZCXEuiVk/I=;
+	s=k20260515; t=1795015311;
+	bh=zjHf/N+E74CHlMypQ6kG0MO/j1AaxlMnO45unT7fRs8=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=AhFelVEjfmme1YPI9SS+ALRaQvFt+2IMeiCSN+WgOjeEnv+/SuTNf01cZy6ptDUYR
-	 qv/tiHy46NDQyvohLFArJuLSsfy6vAVfAjVqoLBPTlszEbf04FN8CMxzRsJ9d1yi7R
-	 brtXqyu94yBnimenwmhETIFopB0rebgPYtlPWVNdluMDvPyVu17HWeotXEe7kmazyQ
-	 HNRJ/F03FfU1PSeSYm1vlKEpMz6j4DKS/RCdxpK0FURFwbqKlYl3v8M1e9YzI023ra
-	 ifwZgVYhoaeH5afzbCuCVdd7EprCvOeqhwy3A/kfibbP3cMGU1Y7oDipu3gRnSFzLC
-	 3i7iv0Q6NGlsg==
+	b=Zatd8Vt0ywkplJtY52sv1C6gqcSe5RQKIFV+5E71Yls+0SNUpVBiJwgzdPLtELYUe
+	 lMEeHjRrAnWCh2jU/xSsBaecsX4m19vZToDTdpSksFBkKQ+BznUVf+kzqQpRE594cl
+	 xI8Xzi02t1DvZZ4QYsxI3pXSUlMMlXjiS6thpbcD+kd0ditk+o0zuiajNisMWqprBJ
+	 /63zF2q7x1g0nOMjPpptKxP3+nsGFzPTU+2b5WqClj1L/DhevvwIx0kJR7RAEdV+V1
+	 Jl3RUAzke75z/aoxyBUnO1R5v5m1VuTsvFwkZGVLKCc2UzrfJ4Rc20DHv+e1oARAVi
+	 NavFFG/ZUVtzw==
 From: David Hildenbrand <david@kernel.org>
 To: Andrew Morton <akpm@linux-foundation.org>,
  Mike Rapoport <rppt@kernel.org>, Peter Xu <peterx@redhat.com>,
@@ -92,15 +92,15 @@ To: Andrew Morton <akpm@linux-foundation.org>,
 In-Reply-To: <20261117-uffd-state-fixes-v3-0-b617009d1a4a@columbia.edu>
 References: <20261117-uffd-state-fixes-v3-0-b617009d1a4a@columbia.edu>
 Subject: Re: (subset) [PATCH v3 0/9] userfaultfd: assorted fixes (part 1)
-Message-Id: <179501525761.13527.5348420494097607881.b4-ty@b4>
-Date: Wed, 18 Nov 2026 16:20:57 +0100
+Message-Id: <179501529906.13844.1913398195867025027.b4-ty@b4>
+Date: Wed, 18 Nov 2026 16:21:39 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.16.0
-Message-ID-Hash: JEEEEYVWZAYMXXJRLZIAFKBFVY7P45K6
-X-Message-ID-Hash: JEEEEYVWZAYMXXJRLZIAFKBFVY7P45K6
+Message-ID-Hash: CPOBBJOD5W3T3NNLWUBL7GT3FVPHPVHU
+X-Message-ID-Hash: CPOBBJOD5W3T3NNLWUBL7GT3FVPHPVHU
 X-MailFrom: david@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -118,9 +118,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JEEEEYVWZAYMXXJRLZIAFKBFVY7P45K6/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CPOBBJOD5W3T3NNLWUBL7GT3FVPHPVHU/>
 Archived-At: 
- <https://lore.freedesktop.org/179501525761.13527.5348420494097607881.b4-ty@b4/>
+ <https://lore.freedesktop.org/179501529906.13844.1913398195867025027.b4-ty@b4/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -153,7 +153,7 @@ On Tue, 17 Nov 2026 23:28:40 -0500, Tal Zussman wrote:
 Applied, thanks!
 
 tree: mm/core.git
-branch: thp-7.5.misc
+branch: migrate-7.5.misc
 
 Applied patches will appear soon in mm-next, followed by linux-next.
 
@@ -168,8 +168,8 @@ Note that commit hashes shown below are subject to change due to rebase,
 trailer updates or similar. Further, this is not a guarantee that the
 patches will go upstream. If in doubt, please check the listed branch.
 
-[6/9] mm/huge_memory: build the moved huge zero PMD from the destination VMA
-      https://git.kernel.org/mm/core/c/ec36bf72
+[8/9] mm/migrate_device: do not migrate a uffd-protected zero page
+      https://git.kernel.org/mm/core/c/a37a6cf0
 
 -- 
 Cheers,
