@@ -2,74 +2,73 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19EFF606A31C
-	for <nouveau@archiver.kernel.org>; Wed, 18 Nov 2026 09:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04610606A32A
+	for <nouveau@archiver.kernel.org>; Wed, 18 Nov 2026 09:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KJ6PUV62
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=B64ocKDl
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3089610F701;
-	Wed, 18 Nov 2026 09:41:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7C81710F78F;
+	Wed, 18 Nov 2026 09:42:22 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4CD62494F5;
-	Wed, 18 Nov 2026 09:21:12 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A99E9494FA;
+	Wed, 18 Nov 2026 09:22:28 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794993672;
- b=RxbMd7jBWc7irdSB25UwE+t0XJe9OW5pkVqqXu3UZYZjD5fBG5GKBn8i6KJXRBA/HD2N7
- WxOL7IiSIqjEjXRM+Crs9xUY+CCFJL002TNGIG1m/FvSpASMEzD/Nu8loiXiPzBWrVAiVJw
- UNnW2wfToWDUB1vcGIEMY3dqbohbueZUWSCROpx1k/xfmQP3Q3bpgWKNplFt4sqrSZeF92T
- xyKAM3HNiZV1JsCkaBh2smGROXEgGwQb1dMFR2Ovt/kQnMC7ssfjPqSs0GUUgTEyuoYEGrk
- 8doqec8gtKcPaU1GHW86yqUg28d4gaWByKZmaP3fKgNi2Gk21+gBH8Rw1qnQ==
+ s=20240201; t=1794993748;
+ b=TnIlTuKaW8fI3lRr99M9x8sOfcWdqhluY33da/yCS3HW3wAMEuNyC5PPrlt0Tv2hORicE
+ by01rnSynCWrvSBtW+THJQ3oKla7q2Y1mJHLAfQ9cA9QzSIAJ7cFH5/BcPrQiDdAxoSRNSI
+ 3Te8NYs7JGK+92aSoLYM8CmDHMmwT7O/7OAt6OXpNJXq+j30oLCXGLxDNtdMflJW4UBSyzP
+ 3fx/HsCr0r2I5YOaThNCKfAT3LXQlN7JJNkYjRnHX8tjUmoOSFk1QUBYMuhs7LdPucFq3kf
+ 6E/D1Vg9fBNHxB5JT1qGPbiK5HjNEuFFT9zXUc+jG4mzkvLJEfjgQ/Z+u8Jw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794993672; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1794993748; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Ec0U4HkUVJSX9L9MyZXzeYkA6/IHQ00seYG0+mz4u74=;
- b=MXjRiEIUMdOSdfLd2McIGu7ruO1nkS9IcHhuGpkU3hM59LILebNlKIjHoGyEbcIgIkqHP
- l1Qu/ju2b2LeRlogbWO4mQFEu5RwS/bFOYXznQ9mvYzdarn8N9TAykefyMBnQihF4NYDxeI
- 3rbRbXUDzlxq/DfyXiq2Y9oXCTuljPqbwZuPL/u9DQBFqavPAKJ5pJVZHt5LoVdQSnReHR+
- jIwvsup91BJwri+ZsuSmRuK4G3CeH4pWYHNGmTw/oBtYj15h3sm9FHXtkWnlZdVQ7FWyMol
- XDtE3j+H0J2M6YGZZq8w8M98zuBaRMozAydQim4hBFQjv0R+0hvOQQu0RP6Q==
+ bh=9ATyR+9qHOct/xUnPH9mJnbBD7GZTG+HINgSyr3PxaI=;
+ b=IzWJfGIxjwOsKLQZzqmDxCPS0N9EiEBx7HsWstzQL0+faMlPx3V5jtYJf2dRLgNyBQZk2
+ 3ULA8w3JOxJWCX5GQGIBSdPu2ZxTHUXficKGbOg86aKyf8rt3wbDWCTpxQ+wZ75YrT4INsp
+ cMexMK+2yuaJvqGBy790n7hnqwNXezmr2hUgSqSXhvrZfbUNSaD6LAMLDs8VVv7Kh62Gxia
+ 5S11+tU6QSfw+B3DHLdrCtkOilXH93ItqyuHy5q2N+sXyDt/gEiyvPpvZjlLHZRQQlDM0z2
+ pK1ERnu/1uPEygoxozCboKfbUmgkUZRla5OZSQv5y/BNXIhbhj3ex89FUDqQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=fail header.d=kernel.org;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=kernel.org
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail header.d=kernel.org;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=kernel.org
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id ABDD64801A
-	for <nouveau@lists.freedesktop.org>; Wed, 18 Nov 2026 09:21:09 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id D33804801A
+	for <nouveau@lists.freedesktop.org>; Wed, 18 Nov 2026 09:22:26 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3D70A10E7A7;
-	Wed, 18 Nov 2026 09:40:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6CCE810F693;
+	Wed, 18 Nov 2026 09:42:15 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 373F86204E;
-	Wed, 18 Nov 2026 09:40:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1BB11F000C4;
-	Wed, 18 Nov 2026 09:40:42 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 9B8FB62081;
+	Wed, 18 Nov 2026 09:42:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0951F1F000C6;
+	Wed, 18 Nov 2026 09:41:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794994856;
-	bh=Ec0U4HkUVJSX9L9MyZXzeYkA6/IHQ00seYG0+mz4u74=;
+	s=k20260515; t=1794994934;
+	bh=9ATyR+9qHOct/xUnPH9mJnbBD7GZTG+HINgSyr3PxaI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=KJ6PUV621t2eK5Gd4c4EeynJ0kIbkgTVZK/76IYhM0+gtvO6/c0znmcSzDjyfNF8h
-	 pSKnG0Q0TbODfyVQnR1FlxNE0Ew1PAO3Awl1Z3CRIUvHYcERq8D1+P1eG6EQlrC8F7
-	 eDo2hb+vilHkKcmeA8D7ikXn1Xz7VOPZx6ta4Mys+YmQ0N+BqwNtxx0YnINJXRo1hu
-	 DCenhMOqjYuGs81iYBmB3Ik63Fc8ycNR9Lh8Mf1A2sirKs3eaVs2W3e+Ylu3MB2jdn
-	 4O+5mRQkH9z3XxseghRTfsYKz566j2CtOfIZCpQJZFGNGHgAWGA82LAcR8mL4MIez5
-	 fEyBMvUGcYYug==
-Message-ID: <d6692c11-df29-4ab6-a578-f86712abbdcf@kernel.org>
-Date: Wed, 18 Nov 2026 10:40:39 +0100
+	b=B64ocKDlyHLo7JKiB71qN7xPUGSas5O496TWP1Vb9kTdaWOBu3xdB4W0dYEjMGJF6
+	 wg63AHZj+PtfQQoLIvdVK5b0Pn24hBYJyxfSpX6Pbdx7+0UD7pxzuycdP5058yMa2/
+	 ETsOGLXBxuNitQ/Kl8b79+0Jb6zJ/9tkNCkDoeOp1+TbzpuDHZ0n4zlZoqpl87gr1W
+	 pPJbvsAYwFFaxlR7b0zjG5AJvUmmyOwORf3q9TMKLI+0tgiC27CXTjuz/JPWS1M1Zv
+	 +10DRh/IigcridN5ngx3Cid6k5sD2VJJyvtymSBjTvvQczytGNBB7uRDQaOstIJFHh
+	 AG2gXV+iJZLJg==
+Message-ID: <4f23b0bc-b89a-46c1-b8cd-853e7815b7ac@kernel.org>
+Date: Wed, 18 Nov 2026 10:41:55 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 8/9] mm/migrate_device: do not migrate a uffd-protected
- zero page
+Subject: Re: [PATCH v3 0/9] userfaultfd: assorted fixes (part 1)
 To: Tal Zussman <tz2294@columbia.edu>,
  Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>,
  Peter Xu <peterx@redhat.com>, James Houghton <jthoughton@google.com>,
@@ -93,7 +92,6 @@ To: Tal Zussman <tz2294@columbia.edu>,
  Oscar Salvador <osalvador@suse.de>,
  =?UTF-8?Q?Miko=C5=82aj_Lenczewski?= <miko.lenczewski@arm.com>
 References: <20261117-uffd-state-fixes-v3-0-b617009d1a4a@columbia.edu>
- <20261117-uffd-state-fixes-v3-8-b617009d1a4a@columbia.edu>
 From: "David Hildenbrand (Arm)" <david@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=david@kernel.org; keydata=
@@ -140,18 +138,19 @@ Autocrypt: addr=david@kernel.org; keydata=
  3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
  CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
  qIws/H2t
-In-Reply-To: <20261117-uffd-state-fixes-v3-8-b617009d1a4a@columbia.edu>
+In-Reply-To: <20261117-uffd-state-fixes-v3-0-b617009d1a4a@columbia.edu>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: J2EWNPJGNSNLZ6XILGTVIAI4IMQIMZ2E
-X-Message-ID-Hash: J2EWNPJGNSNLZ6XILGTVIAI4IMQIMZ2E
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: HHL4W2LXB4J476LJLN5NVWPQ5RS76BJ7
+X-Message-ID-Hash: HHL4W2LXB4J476LJLN5NVWPQ5RS76BJ7
 X-MailFrom: david@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
 CC: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
- linux-fsdevel@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, stable@vger.kernel.org,
+ Breno Leitao <leitao@debian.org>,
  =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Danilo Krummrich <dakr@kernel.org>, Felix Kuehling <Felix.Kuehling@amd.com>,
  Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
@@ -161,9 +160,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/J2EWNPJGNSNLZ6XILGTVIAI4IMQIMZ2E/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HHL4W2LXB4J476LJLN5NVWPQ5RS76BJ7/>
 Archived-At: 
- <https://lore.freedesktop.org/d6692c11-df29-4ab6-a578-f86712abbdcf@kernel.org/>
+ <https://lore.freedesktop.org/4f23b0bc-b89a-46c1-b8cd-853e7815b7ac@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -171,47 +170,125 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 11/18/26 05:28, Tal Zussman wrote:
-> Device migration replaces a PTE that maps the zero page with a new PTE
-> that is built only from the VMA flags, so its userfaultfd WP or RWP
-> protection is lost. The same applies to the huge zero PMD. Writes and
-> accesses to the page are then no longer reported to userfaultfd.
+> This is a first batch of userfaultfd fixes, with more to come.
 > 
-> To fix it, do not migrate a uffd-protected zero page. Skip it during
-> collection, and check again under the page table lock before inserting,
-> as another thread can protect the page after it was collected.
+> These were found by a mix of regular old LLM review and by having an LLM
+> write a TLA+ model of uffd interactions with PTE bits and other state
+> and seeing what issues fell out.
 > 
-> The alternative would be to carry the uffd state over to the new entry,
-> but a uffd-protected zero page in a range that a driver migrates should
-> be rare.
+> Most of these fix places where mm code loses uffd-wp or RWP protection
+> while moving or migrating an entry. Userspace then either misses writes
+> and accesses, or gets pages reported that nobody touched.
+> There is also a hang in UFFDIO_MOVE, and UFFDIO_ZEROPAGE modifying a
+> file through a private mapping.
 > 
-> While at it, read the PMD once with pmdp_get() in
-> migrate_vma_collect_huge_pmd().
+> Patches 1-2:   UFFDIO_ZEROPAGE and UFFDIO_MOVE fixes, cc stable
+> Patch 3:       PAGEMAP_SCAN write-protect vs. writable migration
+>                entries, cc stable
+> Patch 4:       warn on a writable migration entry with the uffd bit set
+> Patch 5:       PAGEMAP_SCAN write-protect vs. device-private THPs
+> Patch 6:       UFFDIO_MOVE of the huge zero page from an RWP source
+> Patch 7:       mremap() losing uffd state when a move fails halfway
+> Patch 8:       migrate_vma losing uffd state of a zero page
+> Patch 9:       hugetlb alignment checks in UFFDIO_REGISTER and
+>                UFFDIO_UNREGISTER
 > 
-> Fixes: 292924b26024 ("userfaultfd: wp: apply _PAGE_UFFD_WP bit")
-> Fixes: a30b48bf1b24 ("mm/migrate_device: implement THP migration of zone device pages")
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Leon Romanovsky <leon@kernel.org>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Cc: amd-gfx@lists.freedesktop.org
-> Reviewed-by: Alistair Popple <apopple@nvidia.com>
-> Signed-off-by: Tal Zussman <tz2294@columbia.edu>
+> A few of the fixes change what userspace sees:
+> 
+>  - UFFDIO_ZEROPAGE on a private file mapping no longer fails with
+>    -EEXIST where the file already has a page, on an mm that cannot use
+>    the zero page (patch 1)
+>  - UFFDIO_MOVE returns -EEXIST for any huge destination PMD, not only
+>    for a present THP (patch 2)
+>  - UFFDIO_UNREGISTER with a misaligned hugetlb end fails before
+>    unregistering anything, also if that hugetlb VMA is not registered
+>    (patch 9)
+>  - UFFDIO_REGISTER and UFFDIO_UNREGISTER accept a misaligned start that
+>    lies in a gap before the first hugetlb VMA of the range (patch 9)
+>  - UFFDIO_REGISTER returns -EINVAL rather than -EPERM for a misaligned
+>    end in a hugetlb VMA without VM_MAYWRITE (patch 9)
+> 
+> Patch 6 has little user impact on its own. It is included because,
+> together with patch 7, it allows removing clear_uffd_wp_pmd().
+> 
+> Patch 7 adds spurious write faults on shmem and hugetlb after mremap():
+> when dropping uffd protection there, change_protection() makes writable
+> pages that were never protected read-only. UFFDIO_UNREGISTER and
+> UFFDIO_WRITEPROTECT already behave this way and lead to the same
+> spurious faults. This will be fixed in change_protection() in a separate
+> series.
+> 
+> Based on mm-new.
+> 
+> ---
+> Changes in v3:
+> - Collect tags (Thanks David!)
+> - Patch 1: use vma_is_cow_mapping(), per David
+> - Patch 4: warn on a writable migration entry with the uffd bit set, and
+>   make the PMD path match the PTE path, per David.
+> - Patch 4: Drop the Fixes: tag and the review tags due to changes
+> - Patch 8: add helpers and read the PMD once with pmdp_get(), per
+>   David
+> - Patch 9: move the hugetlb alignment checks into a helper and use it in
+>   both ioctls, per David
+> - Link to v2: https://patch.msgid.link/20261116-uffd-state-fixes-v2-0-4397a0196479@columbia.edu
+> 
+> Changes in v2:
+> - Collect tags (Thanks Kiryl, Lorenzo, Gregory, Alistair!)
+> - Patch 2: say "softleaf entry" in the commit message, per Lorenzo
+> - Patch 3: add softleaf_is_writable() and softleaf_mkreadable() to
+>   leafops.h and rename the helpers to say softleaf, per Lorenzo
+> - Patch 3: add Reported-by and Closes for Breno's report, and cc stable
+> - Patch 4: explain in the commit message how PAGEMAP_SCAN set the uffd
+>   bit on writable migration entries, per Lorenzo
+> - Patch 5: use pmd_is_valid_softleaf() rather than open-coding it, per
+>   Lorenzo
+> - Patch 7: say "write faults" rather than "minor faults" in the commit
+>   message, per Kiryl
+> - Patch 7: trim the commit message, per Lorenzo and Gregory
+> - Patch 8: trim the commit message, per Gregory
+> - Patch 8: Cc the GPU driver maintainers and lists, per Gregory and
+>   Alistair
+> - Patch 9: use IS_ALIGNED() and a local variable for the VMA's ctx, and
+>   shorten the comment, per Lorenzo
+> - Drop the three guard region patches, per Lorenzo
+> - Link to v1: https://patch.msgid.link/20261111-uffd-state-fixes-v1-0-00713d368976@columbia.edu
+> 
 > ---
 
-Acked-by: David Hildenbrand (Arm) <david@kernel.org>
+So, I would be picking up ...
+
+> Tal Zussman (9):
+>       userfaultfd: use anonymous memory for UFFDIO_ZEROPAGE on private file mappings
+>       userfaultfd: refuse UFFDIO_MOVE into a non-present huge destination PMD
+>       fs/proc/task_mmu: downgrade writable migration entries in PAGEMAP_SCAN write-protect
+>       mm/migrate: warn on a writable migration entry with the uffd bit set
+
+This
+
+>       fs/proc/task_mmu: write-protect device-private THPs in PAGEMAP_SCAN
+>       mm/huge_memory: build the moved huge zero PMD from the destination VMA
+
+This
+
+>       mm/mremap: resolve uffd state when the context is dropped, not during the move
+>       mm/migrate_device: do not migrate a uffd-protected zero page
+
+This
+
+>       mm/userfaultfd: check the hugetlb alignment of every VMA in the pre-scan
+
+
+After waiting a bit longer for more review. Andrew can take the rest.
+
 
 -- 
 Cheers,
