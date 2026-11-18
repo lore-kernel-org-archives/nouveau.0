@@ -2,167 +2,264 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04610606A32A
-	for <nouveau@archiver.kernel.org>; Wed, 18 Nov 2026 09:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B34606A331
+	for <nouveau@archiver.kernel.org>; Wed, 18 Nov 2026 11:51:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=B64ocKDl
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=LBpdmgSU;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=LBpdmgSU
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7C81710F78F;
-	Wed, 18 Nov 2026 09:42:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A221F10FB62;
+	Wed, 18 Nov 2026 11:51:28 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id A99E9494FA;
-	Wed, 18 Nov 2026 09:22:28 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1794993748;
- b=TnIlTuKaW8fI3lRr99M9x8sOfcWdqhluY33da/yCS3HW3wAMEuNyC5PPrlt0Tv2hORicE
- by01rnSynCWrvSBtW+THJQ3oKla7q2Y1mJHLAfQ9cA9QzSIAJ7cFH5/BcPrQiDdAxoSRNSI
- 3Te8NYs7JGK+92aSoLYM8CmDHMmwT7O/7OAt6OXpNJXq+j30oLCXGLxDNtdMflJW4UBSyzP
- 3fx/HsCr0r2I5YOaThNCKfAT3LXQlN7JJNkYjRnHX8tjUmoOSFk1QUBYMuhs7LdPucFq3kf
- 6E/D1Vg9fBNHxB5JT1qGPbiK5HjNEuFFT9zXUc+jG4mzkvLJEfjgQ/Z+u8Jw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1794993748; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 90B03494FD;
+	Wed, 18 Nov 2026 11:31:34 +0000 (UTC)
+ARC-Seal: i=3; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1795001494;
+ b=UA1m0xFb+b0oaIMS9YfOCxeAOmwSmWXyccmck0Fxt5ANKav7PXg+Uh3X9otkZCJYZcWz3
+ DjRA10JjYuInVH4N1Y9t0ktazYFD/t5fem6PLGok0y4OyYDvEzrefWRNZ+fxVu5Ob2ZaoZm
+ T5JRijIo6EC/sfzhY0zP09gNss9W+85nEhXomAmpGzdlil+bdpyo87O56h/2CObqeunZewJ
+ qiZn8hnqfTQ0l68Zm0iWo/Ko8IvyoVGPGrFaD/5oQsr4rYFveeYUnPoRhPRjiHGd/Ps24m4
+ k1jCRzgK1WQqYEr4qU0yFPqRbTHtDq032xMpQ+ESTLKG065y1zGhqB9X/apw==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1795001494; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=9ATyR+9qHOct/xUnPH9mJnbBD7GZTG+HINgSyr3PxaI=;
- b=IzWJfGIxjwOsKLQZzqmDxCPS0N9EiEBx7HsWstzQL0+faMlPx3V5jtYJf2dRLgNyBQZk2
- 3ULA8w3JOxJWCX5GQGIBSdPu2ZxTHUXficKGbOg86aKyf8rt3wbDWCTpxQ+wZ75YrT4INsp
- cMexMK+2yuaJvqGBy790n7hnqwNXezmr2hUgSqSXhvrZfbUNSaD6LAMLDs8VVv7Kh62Gxia
- 5S11+tU6QSfw+B3DHLdrCtkOilXH93ItqyuHy5q2N+sXyDt/gEiyvPpvZjlLHZRQQlDM0z2
- pK1ERnu/1uPEygoxozCboKfbUmgkUZRla5OZSQv5y/BNXIhbhj3ex89FUDqQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ bh=sBiLiVHJZt1pubTAm+ktmHAi06mJEUhVPswX+ta/qkI=;
+ b=aibAdtY2Auy/ZdhWu7LRs8Zx3okjZf3vwC1JQEA9rcaxF/2J4q4CzM+yLr+siKvg0lWfB
+ Rj03oTR3SBl9YLnq5zuu8WG9sgoS/SFKPz88ITjeYJtYkBKo7zo3SqXXPPkkiG6DzSD2cvy
+ JuH1KhhiU4yNE3Ric2aGBE2NarBewqy8fgigN7OKM3I6ZZY2NBR+WauPFDVdswx0+j3N0lj
+ nVTPhFC0gGkmr55bfuvYeP37mn/y+/SO+cnir0/4op9uJq6jeFjnBDrd9RpCtOdkqS/PBdO
+ c1IxMpP102h7NHeqovjSVB48mZhGZQqSGJyRURnSzezF3/yFpzDcDBzAC9BQ==
+ARC-Authentication-Results: i=3; mail.freedesktop.org;
+ dkim=pass header.d=arm.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=arm.com policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=arm.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=arm.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D33804801A
-	for <nouveau@lists.freedesktop.org>; Wed, 18 Nov 2026 09:22:26 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6CCE810F693;
-	Wed, 18 Nov 2026 09:42:15 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9B8FB62081;
-	Wed, 18 Nov 2026 09:42:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0951F1F000C6;
-	Wed, 18 Nov 2026 09:41:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794994934;
-	bh=9ATyR+9qHOct/xUnPH9mJnbBD7GZTG+HINgSyr3PxaI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=B64ocKDlyHLo7JKiB71qN7xPUGSas5O496TWP1Vb9kTdaWOBu3xdB4W0dYEjMGJF6
-	 wg63AHZj+PtfQQoLIvdVK5b0Pn24hBYJyxfSpX6Pbdx7+0UD7pxzuycdP5058yMa2/
-	 ETsOGLXBxuNitQ/Kl8b79+0Jb6zJ/9tkNCkDoeOp1+TbzpuDHZ0n4zlZoqpl87gr1W
-	 pPJbvsAYwFFaxlR7b0zjG5AJvUmmyOwORf3q9TMKLI+0tgiC27CXTjuz/JPWS1M1Zv
-	 +10DRh/IigcridN5ngx3Cid6k5sD2VJJyvtymSBjTvvQczytGNBB7uRDQaOstIJFHh
-	 AG2gXV+iJZLJg==
-Message-ID: <4f23b0bc-b89a-46c1-b8cd-853e7815b7ac@kernel.org>
-Date: Wed, 18 Nov 2026 10:41:55 +0100
+	by kara.freedesktop.org (Postfix) with ESMTPS id D0E994668B
+	for <nouveau@lists.freedesktop.org>; Wed, 18 Nov 2026 11:31:31 +0000 (UTC)
+Received: from MRWPR03CU001.outbound.protection.outlook.com
+ (mail-francesouthazon11011006.outbound.protection.outlook.com [40.107.130.6])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6688710E6CB;
+	Wed, 18 Nov 2026 11:51:15 +0000 (UTC)
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=Hz4DCRTYlwSwwx3bFq0zECVYjZ+dIvaUFxUs0B3vmIgc76LVSdq5KAnmGtyHSm7zbhp+MtR+1nLbgJqx/gxPrKzL047/8Pkv280w/CxgoXporXR75nY+LMT+d3lRqLxfTfZsI3UDBx0/DhZtU/wXsHNSBnCrZNGsWxBNkbZRl/0PW5ro7p8MCSIU3va1MvX3/6XcAmmE9UxeVA+Y6873kSTa2afVaK0eVjv4AdUJcc27C9LUuB08DCg3aodLTxdq5Y5T6lx4KRjOEfo/M0YFLc/bOpZAG+Ck5ZvBxVd3ZsOFbKXBLQA5DB3e1HydBEyVX8mDaaMFHUUu7Aa3e3ZXxA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sBiLiVHJZt1pubTAm+ktmHAi06mJEUhVPswX+ta/qkI=;
+ b=g7mGrlWmee7KMgAPu6JkRVscnAUpBWjipUR7VMo0CgX1QGyyrH7tV4s7ArovnGTibYFPExVaWg4rFrxyHxiIprO1XUzdwckOkSLZWpAwLWL1FVX8zVOvPlriV67N+Skzb5sUCj36EXdgRezgxj9uxZz1qJyMjk3Ur0vx+X8KmdF+KfTA8+eDCDOI80TF1ONT6Ne+O9B281V885HtHOmSK4ZubzUKUwDqQA7mWehOp8D31mtbWDH/Bg5GWlQoPAsUg+i5dwDnlpRC+E0bvijmg8uMxQmjswMYrOwjYpaTnNXYAIVLCuHdPL97ArdJOgeescUmJ77qfOg2LMJkb7WRrA==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 4.158.2.129) smtp.rcpttodomain=huawei.com smtp.mailfrom=arm.com; dmarc=pass
+ (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
+ (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
+ spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
+ dmarc=[1,1,header.from=arm.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sBiLiVHJZt1pubTAm+ktmHAi06mJEUhVPswX+ta/qkI=;
+ b=LBpdmgSUBwA4sxM5dN7If9+dgFpFneuwAe0qXlYVTKUm9wISiJflr52JQp30ebgmmwN28cp9XpW07rN9IQ7+hkojCs/ZXKA+15m9YHXAgXE0TCyqZbUG5bJ8DnIQsQCuqSBTMnGL69H5c8ndg/SqM191w4K+xxzDpeJ54mL+9QU=
+Received: from DU2P250CA0012.EURP250.PROD.OUTLOOK.COM (2603:10a6:10:231::17)
+ by MI9PR08MB207860.eurprd08.prod.outlook.com (2603:10a6:290:87::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Wed, 18 Nov
+ 2026 11:51:08 +0000
+Received: from DB1PEPF000509E7.eurprd03.prod.outlook.com
+ (2603:10a6:10:231:cafe::65) by DU2P250CA0012.outlook.office365.com
+ (2603:10a6:10:231::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.14 via Frontend Transport; Wed,
+ 18 Nov 2026 11:51:08 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=arm.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
+ client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
+Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
+ DB1PEPF000509E7.mail.protection.outlook.com (10.167.242.57) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.4
+ via Frontend Transport; Wed, 18 Nov 2026 11:51:07 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=I0IPzJGMWGSU92326zf4gjel7617TXbguAPuNMVsuXVoQLz/bCGb245A1KzI3EMD2z3hwQyzq5dkiSJ6J0aZXyWZKVJc+MQypvZ32LL+2rLeIZC99Qc/nk1D0NHIa5NJ6EXER0iEaK29ZIZe9/su9e6vmr8h8+OusCLBRZWlS66gp7IcFZBGzwdhMvs4fPlZhRDdbseuQqLFt8l5l5iClspEQGyDiFNYccHBk7guQYsVuw1cm4JDfyo+RcEW27YYfN1LKsw2fMa3meOI4I7vJPy+TiM4QoeZ7FYJVKXX4bWwwOq5oCkYds0eXwgA9TJ6sqKAVIcjDTsVVU4lp+KOfQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sBiLiVHJZt1pubTAm+ktmHAi06mJEUhVPswX+ta/qkI=;
+ b=BV6RIhAY71rWVJ7FfTUURGo/COstLstirD3tfhREVZIEyg+RLPnrR3CUkPbf+B+EzS6bG/MA4doLS6DJ4et0tKxHZkeelN7g1Oqj/RcHVFMXNFW4OICACeMMifENTi0YdobJ3SAzc+KWUClNp7IHsJXuPhiXKwiwVVzIFU0KV48kxIbZGA27AMDwmYUU/8DQ3Cc6cbAn8iKhO6KtFvKZMISBTUi+EjEjsYdJQlvayVkiI7u80WVPgpX8gEc2K6yAYLlIeJv7V2URgWb0e6RPpuyoGkDBYkM2KhWqXsURnXf4Q1dVthLcfqoX3s8Ikr9/8BB2eVxkmex9pYMHyluO1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sBiLiVHJZt1pubTAm+ktmHAi06mJEUhVPswX+ta/qkI=;
+ b=LBpdmgSUBwA4sxM5dN7If9+dgFpFneuwAe0qXlYVTKUm9wISiJflr52JQp30ebgmmwN28cp9XpW07rN9IQ7+hkojCs/ZXKA+15m9YHXAgXE0TCyqZbUG5bJ8DnIQsQCuqSBTMnGL69H5c8ndg/SqM191w4K+xxzDpeJ54mL+9QU=
+Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
+ signed) header.d=none;dmarc=none action=none header.from=arm.com;
+Received: from AS8PR08MB10291.eurprd08.prod.outlook.com
+ (2603:10a6:20b:629::15) by PA4PR08MB5918.eurprd08.prod.outlook.com
+ (2603:10a6:102:e7::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Wed, 18 Nov
+ 2026 11:50:31 +0000
+Received: from AS8PR08MB10291.eurprd08.prod.outlook.com
+ ([fe80::9f01:508:17aa:279c]) by AS8PR08MB10291.eurprd08.prod.outlook.com
+ ([fe80::9f01:508:17aa:279c%6]) with mapi id 15.21.0615.013; Wed, 18 Nov 2026
+ 11:50:30 +0000
+From: Bence Csokas <bence.csokas@arm.com>
+Subject: [PATCH v4 0/2] Add struct_offsetofend() for pointer arithmetic
+Date: Wed, 18 Nov 2026 12:50:07 +0100
+Message-Id: <20261118-offsetof-v4-0-95b385c10b22@arm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAPCQ/WoC/23OzQ7CIAwH8FcxnMXwsbHNk+9hPDAoDpMNA0g0y
+ 95dmAdn4vHf9td2RgG8hYCOuxl5SDZYN+VQ7XdIDXK6ArY6Z8QIE5SSGjtjAkRnsBFMSsGr1hC
+ N8vjdg7HPddX58snh0d9AxeLLRC8D4N7LSQ2lNMoQwZfGYEN0/rU+kWhZ8Odeopjgitbc1IoS0
+ Ook/XhQbkTlWmIbRtmGscxYI0BDy7tONL+MbxnfMJ5ZQyttGlLztuNftizLGxTLjMU3AQAA
+X-Change-ID: 20261105-offsetof-f62aa6348f0d
+To: Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Philipp Stanner <phasta@kernel.org>, Sudeep Holla <sudeep.holla@kernel.org>,
+ Cristian Marussi <cristian.marussi@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>, Zack Rusin <zack.rusin@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Selvin Xavier <selvin.xavier@broadcom.com>,
+ Kalesh AP <kalesh-anakkur.purayil@broadcom.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
+ Chengchang Tang <tangchengchang@huawei.com>,
+ Junxian Huang <huangjunxian6@hisilicon.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans de Goede <hansg@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>,
+ Dexuan Cui <decui@microsoft.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Miri Korenblit <miriam.rachel.korenblit@intel.com>,
+ Jes Sorensen <Jes.Sorensen@gmail.com>, Ping-Ke Shih <pkshih@realtek.com>,
+ Johannes Berg <johannes@sipsolutions.net>,
+ Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>,
+ Guenter Roeck <groeck@chromium.org>, Nilesh Javali <njavali@marvell.com>,
+ GR-QLogic-Storage-Upstream@marvell.com,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "Martin K. Petersen" <mkp@kernel.org>, Julia Lawall <Julia.Lawall@inria.fr>,
+ Nicolas Palix <nicolas.palix@imag.fr>,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
+ Paulo Alcantara <pc@manguebit.org>, Namjae Jeon <linkinjeon@kernel.org>,
+ Ronnie Sahlberg <ronniesahlberg@gmail.com>,
+ Shyam Prasad N <sprasad@microsoft.com>, Tom Talpey <tom@talpey.com>,
+ Bharath SM <bharathsm@microsoft.com>, Carlos Maiolino <cem@kernel.org>,
+ Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Peter Zijlstra <peterz@infradead.org>, Darren Hart <dvhart@infradead.org>,
+ Davidlohr Bueso <dave@stgolabs.net>,
+ =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
+ Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
+ Andrii Nakryiko <andrii@kernel.org>, Eduard Zingerman <eddyz87@gmail.com>,
+ Kumar Kartikeya Dwivedi <memxor@gmail.com>,
+ Martin KaFai Lau <martin.lau@linux.dev>, Song Liu <song@kernel.org>,
+ Yonghong Song <yonghong.song@linux.dev>, Jiri Olsa <jolsa@kernel.org>,
+ Emil Tsalapatis <emil@etsalapatis.com>,
+ Ihor Solodrai <ihor.solodrai@linux.dev>, Simon Horman <horms@kernel.org>,
+ David Ahern <dsahern@kernel.org>, Ido Schimmel <idosch@nvidia.com>,
+ Willem de Bruijn <willemdebruijn.kernel@gmail.com>,
+ Steffen Klassert <steffen.klassert@secunet.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ =?utf-8?q?Micka=C3=ABl_Sala=C3=BCn?= <mic@digikod.net>,
+ =?utf-8?q?G=C3=BCnther_Noack?= <gnoack@google.com>,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E. Hallyn" <serge@hallyn.com>, "Geoffrey D. Bennett" <g@b4.vu>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+X-Mailer: b4 0.15.2
+X-ClientProxiedBy: LO4P265CA0199.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:318::16) To AS8PR08MB10291.eurprd08.prod.outlook.com
+ (2603:10a6:20b:629::15)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/9] userfaultfd: assorted fixes (part 1)
-To: Tal Zussman <tz2294@columbia.edu>,
- Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>,
- Peter Xu <peterx@redhat.com>, James Houghton <jthoughton@google.com>,
- Andrea Arcangeli <aarcange@redhat.com>,
- Suren Baghdasaryan <surenb@google.com>, Balbir Singh <balbirs@nvidia.com>,
- "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>,
- Vlastimil Babka <vbabka@kernel.org>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>, Michal Hocko <mhocko@suse.com>,
- =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
- Andrei Vagin <avagin@gmail.com>, Muhammad Usama Anjum <usama.anjum@arm.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>, Arnd Bergmann <arnd@arndb.de>,
- Zi Yan <ziy@nvidia.com>, Matthew Brost <matthew.brost@intel.com>,
- Joshua Hahn <joshua.hahnjy@gmail.com>, Byungchul Park <byungchul@sk.com>,
- Gregory Price <gourry@gourry.net>, Ying Huang
- <ying.huang@linux.alibaba.com>, Alistair Popple <apopple@nvidia.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Nico Pache <nico.pache@linux.dev>, Ryan Roberts <ryan.roberts@arm.com>,
- Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>,
- Lance Yang <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>,
- Kiryl Shutsemau <kas@kernel.org>, Muchun Song <muchun.song@linux.dev>,
- Oscar Salvador <osalvador@suse.de>,
- =?UTF-8?Q?Miko=C5=82aj_Lenczewski?= <miko.lenczewski@arm.com>
-References: <20261117-uffd-state-fixes-v3-0-b617009d1a4a@columbia.edu>
-From: "David Hildenbrand (Arm)" <david@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=david@kernel.org; keydata=
- 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
- qIws/H2t
-In-Reply-To: <20261117-uffd-state-fixes-v3-0-b617009d1a4a@columbia.edu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: HHL4W2LXB4J476LJLN5NVWPQ5RS76BJ7
-X-Message-ID-Hash: HHL4W2LXB4J476LJLN5NVWPQ5RS76BJ7
-X-MailFrom: david@kernel.org
+X-MS-TrafficTypeDiagnostic: 
+	AS8PR08MB10291:EE_|PA4PR08MB5918:EE_|DB1PEPF000509E7:EE_|MI9PR08MB207860:EE_
+X-MS-Office365-Filtering-Correlation-Id: dbe1ec71-b0ce-4139-2323-08df456a3b7a
+x-checkrecipientrouted: true
+NoDisclaimer: true
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: 
+ BCL:0;ARA:13230040|1800799024|376014|23010399003|7416014|366016|261009223027099003|6133799003|18002099003|261009220027099003|261009221227099003|261009221727099003|261009223327099003|3023799007|921020|56012099006|11063799006|261026140227099003|261102123227099003|261028144727099003|261022075727099003|261022115727099003|261021123027099003|261026121527099003|261021135927099003|261021121427099003|261022105027099003|10067099003;
+X-Microsoft-Antispam-Message-Info-Original: 
+ oLwuc5b/edBhVMqP8hQFu4yLstH5AtnnXrYm/Li/ikj1YuORIDG6smOeeWJcPZ1XyYqEaBM0VW3GRV0lHSLtE+HG0IQ5bCh7jQeLT1/Qc1hGCazrdUKQiAIuy0CgQKEgS/R7yQYeT32JETtZBOJLTqsRKGp9hlnv1S1lh3hASsM0ml2rW3giVCDr9mHzEPGMzRbqmSBTolnDOsu2SolytM1JfHh2SAKiK82WXQGYAX7IIkFyDNu0/3Pbw2/8YvWqFx455x8ubTue9ji8jxTmVkYg8FqsjZJVZph1PhyMzqL7dRVnhohJHt9aIV7o30rFWk87DD7V60yrZan/GfutZH6cQZninIPnVC/2H63CAx9jIEQP/hE8ZF3O7LvBwAagDcJaUTm2iey+ApD/0zq5OBJnJWUaFAApHVpft4vs2bsNvkjs47PwVd2xIwQr5DyoRbw0LVTiiPND6bSYTWudaIY5Z/v06Lt+QX9j2auoo4N3rDMQjISRXtQJmesuUfk6Vlssouo1emVpL2dYNnBUrEMMvGPmEQqSTBY/TSjKXLRr7FZ6AAAXERUMPwcggHvj5+TCEPdGwLCJQZEYR62HIlekNtqPHF83zskanxIblsxY3PiCH7m5/PnEX8YKr0IconjWmE9n5GYXpSuMGugFXWE3wX1A5cyUycAEO5U1xfU=
+X-Forefront-Antispam-Report-Untrusted: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR08MB10291.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(23010399003)(7416014)(366016)(261009223027099003)(6133799003)(18002099003)(261009220027099003)(261009221227099003)(261009221727099003)(261009223327099003)(3023799007)(921020)(56012099006)(11063799006)(261026140227099003)(261102123227099003)(261028144727099003)(261022075727099003)(261022115727099003)(261021123027099003)(261026121527099003)(261021135927099003)(261021121427099003)(261022105027099003)(10067099003);DIR:OUT;SFP:1101;
+X-Exchange-RoutingPolicyChecked: 
+ aOXmkKx4aDCJhKDBub4F5KcGjFaYPGczWj5EPgfxxO2F+aO3ocmB91VVJFPKyjaUXs7C09HV842802+7fVLfP3j22xYHr6f0q2YjhJWSw1hTauRX80Ksm+t6/riuTqoxsqe0dS2f3jxdEJpevbryRgdJr3L+FXFvRcTQAElFf/QhDK7D7b1YAjdFgRZvsOGnOol9CpocG4Qiq8Q7kkux8Zbif/x01xCg2lBFS4d4fn+dxM0vo1ELliZjhXgV8sqIsfMjONUlB9wNfVlCJ5Gqm3SniFJA39CztMRkREYji4ty4JcF9kEOmZhsmywzzscyKNi6KgZnf39nRMYT/pIi+g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR08MB5918
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
+ DB1PEPF000509E7.eurprd03.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 
+	10554276-ef6e-4e25-9cf3-08df456a252c
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700016|7416014|376014|23010399003|14060799003|35042699022|261009221727099003|6133799003|18002099003|261009220027099003|261009221227099003|261009223327099003|261009223027099003|3023799007|921020|56012099006|11063799006|261026121527099003|261102123227099003|261028144727099003|261026140227099003|261022115727099003|261021121427099003|261022105027099003|261022075727099003|261021135927099003|261021123027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: 
+	MfN4LbV10QD9hp/5aoCJL8g8XjGsMkK/dh+KM4UPKNuS4jCjRtADQnOYAmoxyuBWVk10ywzsFBA2Y3mTUDyuQqCoudlPtujHsre5nqzBAmIPGOkS2tBDhFpH9KSxPuTl5pG6NZsO5ack1OSluywx4bvfHFN8t5lrbMTVWC7XRgJHknEC53i7o+u1knl6MPCC5oZAWxLJuvTPfJjYbFVuIXPtiBAYq60AeGwX4a/A/RhfDlxUDaj7oNLrYVKgF9UmgvsBXHm5lNzBarGxQdBEAapwNEKPXAENYZk3Z2MTupPgopNOFzH4RU4POYINCBfCiheLsuVr3Zg1LJnYDwbMaF7K0l6N7oF7795vO1jZ4B1ASWeKrW9ZGFV6mqGvMXO98i3GpXz+sfKMtN6iFINK8uc7WbCH/zO5znZXRgrhOAvdaya5tO6eTbT7aBF8ARHn+vmQvuQeRjSygpRPoNI9bKuUjaWpyqvEYinoHF17FoMoJVhJbItECG3ZhtBJrrjjrRhcjvznbAMD+u9n7p6MxblelFE6rYOg87J7O5W4xKyA70l8hEf3FtGXzF1MI9B1b3aMThmJCR+Ynx8QxV1AvXuggJ9nrCYj/tezywYcGfkGTXCk6DKhf9d+wnjm5H0qwVdqlsHlxkTHD2SVGC1N2JJA+jNzc5HD2+ebK5WCCMOOsoPKi+mmi1MTIXThdZqRHk/pmIHKeyJFjmAd7y8Fpw==
+X-Forefront-Antispam-Report: 
+	CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(7416014)(376014)(23010399003)(14060799003)(35042699022)(261009221727099003)(6133799003)(18002099003)(261009220027099003)(261009221227099003)(261009223327099003)(261009223027099003)(3023799007)(921020)(56012099006)(11063799006)(261026121527099003)(261102123227099003)(261028144727099003)(261026140227099003)(261022115727099003)(261021121427099003)(261022105027099003)(261022075727099003)(261021135927099003)(261021123027099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	iqMG4qCTeGbYdVnddfDTtIICjDDCIxtAuA1Ic09K7JEkl4jNkUiGfm2g5AuT7+386N9rbida+i2QLWhqZNB1XXHnFkYrmup+TJ4DQZnb1djTrCzl8k7fhKTS6DWqnr8X66+UX23caWhsVyDReKbsbjg/jqunwvUzeoeVGK4xKdYH2etoYJJBxE+3aE3HO8BFpOYAsoZX4Akl0NzdxbDMxPlEwGGoWVTQ8lio8YIkQ07IcnF86lML6VvD38LV0V8hXAw1L5yHybFG+6FR5DGHsWO+bvvGI3TRtloVE8LDA8ot8gzB0tT2ep8hM57tjGjxsa8rlSrH6K8yp4nTvv3aSTvzaH6mn4aCbhBrm/fZdeLWh0r8u4EyhZQSvgr3IAaBAxRlq6hDLl0RWmQoKmmoivNKhBB0hcxjAXqbAGDcmVTp1zIjPllhkuVoDrc05yt2
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2026 11:51:07.4212
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ dbe1ec71-b0ce-4139-2323-08df456a3b7a
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
+ TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	DB1PEPF000509E7.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MI9PR08MB207860
+Message-ID-Hash: OVFCMMN7VRGDZOST4F4MDYL5NYA7HDYO
+X-Message-ID-Hash: OVFCMMN7VRGDZOST4F4MDYL5NYA7HDYO
+X-MailFrom: Bence.Csokas@arm.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, stable@vger.kernel.org,
- Breno Leitao <leitao@debian.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Danilo Krummrich <dakr@kernel.org>, Felix Kuehling <Felix.Kuehling@amd.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+ loop; banned-address; member-moderation
+CC: Bence Csokas <bence.csokas@arm.com>, linux-hardening@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, arm-scmi@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, chrome-platform@lists.linux.dev,
+ linux-scsi@vger.kernel.org, cocci@inria.fr, linux-fsdevel@vger.kernel.org,
+ linux-cifs@vger.kernel.org, samba-technical@lists.samba.org,
+ linux-xfs@vger.kernel.org, bpf@vger.kernel.org, ipsec@lists.linux.dev,
+ linux-security-module@vger.kernel.org, linux-sound@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HHL4W2LXB4J476LJLN5NVWPQ5RS76BJ7/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OVFCMMN7VRGDZOST4F4MDYL5NYA7HDYO/>
 Archived-At: 
- <https://lore.freedesktop.org/4f23b0bc-b89a-46c1-b8cd-853e7815b7ac@kernel.org/>
+ <https://lore.freedesktop.org/20261118-offsetof-v4-0-95b385c10b22@arm.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -170,127 +267,228 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-5.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/18/26 05:28, Tal Zussman wrote:
-> This is a first batch of userfaultfd fixes, with more to come.
-> 
-> These were found by a mix of regular old LLM review and by having an LLM
-> write a TLA+ model of uffd interactions with PTE bits and other state
-> and seeing what issues fell out.
-> 
-> Most of these fix places where mm code loses uffd-wp or RWP protection
-> while moving or migrating an entry. Userspace then either misses writes
-> and accesses, or gets pages reported that nobody touched.
-> There is also a hang in UFFDIO_MOVE, and UFFDIO_ZEROPAGE modifying a
-> file through a private mapping.
-> 
-> Patches 1-2:   UFFDIO_ZEROPAGE and UFFDIO_MOVE fixes, cc stable
-> Patch 3:       PAGEMAP_SCAN write-protect vs. writable migration
->                entries, cc stable
-> Patch 4:       warn on a writable migration entry with the uffd bit set
-> Patch 5:       PAGEMAP_SCAN write-protect vs. device-private THPs
-> Patch 6:       UFFDIO_MOVE of the huge zero page from an RWP source
-> Patch 7:       mremap() losing uffd state when a move fails halfway
-> Patch 8:       migrate_vma losing uffd state of a zero page
-> Patch 9:       hugetlb alignment checks in UFFDIO_REGISTER and
->                UFFDIO_UNREGISTER
-> 
-> A few of the fixes change what userspace sees:
-> 
->  - UFFDIO_ZEROPAGE on a private file mapping no longer fails with
->    -EEXIST where the file already has a page, on an mm that cannot use
->    the zero page (patch 1)
->  - UFFDIO_MOVE returns -EEXIST for any huge destination PMD, not only
->    for a present THP (patch 2)
->  - UFFDIO_UNREGISTER with a misaligned hugetlb end fails before
->    unregistering anything, also if that hugetlb VMA is not registered
->    (patch 9)
->  - UFFDIO_REGISTER and UFFDIO_UNREGISTER accept a misaligned start that
->    lies in a gap before the first hugetlb VMA of the range (patch 9)
->  - UFFDIO_REGISTER returns -EINVAL rather than -EPERM for a misaligned
->    end in a hugetlb VMA without VM_MAYWRITE (patch 9)
-> 
-> Patch 6 has little user impact on its own. It is included because,
-> together with patch 7, it allows removing clear_uffd_wp_pmd().
-> 
-> Patch 7 adds spurious write faults on shmem and hugetlb after mremap():
-> when dropping uffd protection there, change_protection() makes writable
-> pages that were never protected read-only. UFFDIO_UNREGISTER and
-> UFFDIO_WRITEPROTECT already behave this way and lead to the same
-> spurious faults. This will be fixed in change_protection() in a separate
-> series.
-> 
-> Based on mm-new.
-> 
-> ---
-> Changes in v3:
-> - Collect tags (Thanks David!)
-> - Patch 1: use vma_is_cow_mapping(), per David
-> - Patch 4: warn on a writable migration entry with the uffd bit set, and
->   make the PMD path match the PTE path, per David.
-> - Patch 4: Drop the Fixes: tag and the review tags due to changes
-> - Patch 8: add helpers and read the PMD once with pmdp_get(), per
->   David
-> - Patch 9: move the hugetlb alignment checks into a helper and use it in
->   both ioctls, per David
-> - Link to v2: https://patch.msgid.link/20261116-uffd-state-fixes-v2-0-4397a0196479@columbia.edu
-> 
-> Changes in v2:
-> - Collect tags (Thanks Kiryl, Lorenzo, Gregory, Alistair!)
-> - Patch 2: say "softleaf entry" in the commit message, per Lorenzo
-> - Patch 3: add softleaf_is_writable() and softleaf_mkreadable() to
->   leafops.h and rename the helpers to say softleaf, per Lorenzo
-> - Patch 3: add Reported-by and Closes for Breno's report, and cc stable
-> - Patch 4: explain in the commit message how PAGEMAP_SCAN set the uffd
->   bit on writable migration entries, per Lorenzo
-> - Patch 5: use pmd_is_valid_softleaf() rather than open-coding it, per
->   Lorenzo
-> - Patch 7: say "write faults" rather than "minor faults" in the commit
->   message, per Kiryl
-> - Patch 7: trim the commit message, per Lorenzo and Gregory
-> - Patch 8: trim the commit message, per Gregory
-> - Patch 8: Cc the GPU driver maintainers and lists, per Gregory and
->   Alistair
-> - Patch 9: use IS_ALIGNED() and a local variable for the VMA's ctx, and
->   shorten the comment, per Lorenzo
-> - Drop the three guard region patches, per Lorenzo
-> - Link to v1: https://patch.msgid.link/20261111-uffd-state-fixes-v1-0-00713d368976@columbia.edu
-> 
-> ---
+A common usage pattern for offsetof() is the following:
 
-So, I would be picking up ...
+  offsetof(typeof(*ptr), member)
 
-> Tal Zussman (9):
->       userfaultfd: use anonymous memory for UFFDIO_ZEROPAGE on private file mappings
->       userfaultfd: refuse UFFDIO_MOVE into a non-present huge destination PMD
->       fs/proc/task_mmu: downgrade writable migration entries in PAGEMAP_SCAN write-protect
->       mm/migrate: warn on a writable migration entry with the uffd bit set
+This is exactly the definition of struct_offset(). Some call sites use
+offsetofend() instead of offsetof(). Add this variant, then replace all
+call sites with the corresponding macros.
 
-This
+Signed-off-by: Bence Csokas <bence.csokas@arm.com>
+---
+Changes in v4:
+- Fix more Sashiko issues
+  - Add `virtual patch` to cocci file
+  - Skip tools/ directory
+  - Remove redundant parens
+- Regen treewide patch with coccicheck
+  - Except arch/arc, as I can't test that
+- Fix (preexisting) style issues in treewide patch too
+  - Except for CAMELCASE, which cannot be trivially fixed
+- Link to v3: https://patch.msgid.link/20261113-offsetof-v3-0-714df7053893@arm.com
 
->       fs/proc/task_mmu: write-protect device-private THPs in PAGEMAP_SCAN
->       mm/huge_memory: build the moved huge zero PMD from the destination VMA
+Changes in v3:
+- Add Coccinelle patch to tree instead of just the commit msg
+- Fix Sashiko issues in prefix, commit msg and doc-comment
+- Link to v2: https://patch.msgid.link/20261112-offsetof-v2-0-276ede839967@arm.com
 
-This
+Changes in v2:
+- Use struct_offset() instead of reinventing it
+- Rename offsetofendp() to struct_offsetofend()
+- Merge the two treewide patches
+- Link to v1: https://patch.msgid.link/20261105-offsetof-v1-0-4153f5c10edc@arm.com
 
->       mm/mremap: resolve uffd state when the context is dropped, not during the move
->       mm/migrate_device: do not migrate a uffd-protected zero page
+To: Kees Cook <kees@kernel.org>
+To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+To: Marcel Holtmann <marcel@holtmann.org>
+To: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+To: Sumit Semwal <sumit.semwal@linaro.org>
+To: Christian König <christian.koenig@amd.com>
+To: Philipp Stanner <phasta@kernel.org>
+To: Sudeep Holla <sudeep.holla@kernel.org>
+To: Cristian Marussi <cristian.marussi@arm.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Tvrtko Ursulin <tursulin@ursulin.net>
+To: Lyude Paul <lyude@redhat.com>
+To: Danilo Krummrich <dakr@kernel.org>
+To: Zack Rusin <zack.rusin@broadcom.com>
+To: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+To: Selvin Xavier <selvin.xavier@broadcom.com>
+To: Kalesh AP <kalesh-anakkur.purayil@broadcom.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+To: Leon Romanovsky <leon@kernel.org>
+To: Chengchang Tang <tangchengchang@huawei.com>
+To: Junxian Huang <huangjunxian6@hisilicon.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Hans de Goede <hansg@kernel.org>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Haiyang Zhang <haiyangz@microsoft.com>
+To: Wei Liu <wei.liu@kernel.org>
+To: Dexuan Cui <decui@microsoft.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>
+To: "David S. Miller" <davem@davemloft.net>
+To: Eric Dumazet <edumazet@kernel.org>
+To: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+To: Miri Korenblit <miriam.rachel.korenblit@intel.com>
+To: Jes Sorensen <Jes.Sorensen@gmail.com>
+To: Ping-Ke Shih <pkshih@realtek.com>
+To: Johannes Berg <johannes@sipsolutions.net>
+To: Benson Leung <bleung@chromium.org>
+To: Tzung-Bi Shih <tzungbi@kernel.org>
+To: Guenter Roeck <groeck@chromium.org>
+To: Nilesh Javali <njavali@marvell.com>
+To: GR-QLogic-Storage-Upstream@marvell.com
+To: "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>
+To: "Martin K. Petersen" <mkp@kernel.org>
+To: Julia Lawall <Julia.Lawall@inria.fr>
+To: Nicolas Palix <nicolas.palix@imag.fr>
+To: Alexander Viro <viro@zeniv.linux.org.uk>
+To: Christian Brauner <brauner@kernel.org>
+To: Jan Kara <jack@suse.cz>
+To: Paulo Alcantara <pc@manguebit.org>
+To: Namjae Jeon <linkinjeon@kernel.org>
+To: Ronnie Sahlberg <ronniesahlberg@gmail.com>
+To: Shyam Prasad N <sprasad@microsoft.com>
+To: Tom Talpey <tom@talpey.com>
+To: Bharath SM <bharathsm@microsoft.com>
+To: Carlos Maiolino <cem@kernel.org>
+To: Thomas Gleixner <tglx@kernel.org>
+To: Ingo Molnar <mingo@redhat.com>
+To: Peter Zijlstra <peterz@infradead.org>
+To: Darren Hart <dvhart@infradead.org>
+To: Davidlohr Bueso <dave@stgolabs.net>
+To: André Almeida <andrealmeid@igalia.com>
+To: Alexei Starovoitov <ast@kernel.org>
+To: Daniel Borkmann <daniel@iogearbox.net>
+To: Andrii Nakryiko <andrii@kernel.org>
+To: Eduard Zingerman <eddyz87@gmail.com>
+To: Kumar Kartikeya Dwivedi <memxor@gmail.com>
+To: Martin KaFai Lau <martin.lau@linux.dev>
+To: Song Liu <song@kernel.org>
+To: Yonghong Song <yonghong.song@linux.dev>
+To: Jiri Olsa <jolsa@kernel.org>
+To: Emil Tsalapatis <emil@etsalapatis.com>
+To: Ihor Solodrai <ihor.solodrai@linux.dev>
+To: Simon Horman <horms@kernel.org>
+To: David Ahern <dsahern@kernel.org>
+To: Ido Schimmel <idosch@nvidia.com>
+To: Willem de Bruijn <willemdebruijn.kernel@gmail.com>
+To: Steffen Klassert <steffen.klassert@secunet.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>
+To: Mickaël Salaün <mic@digikod.net>
+To: Günther Noack <gnoack@google.com>
+To: Paul Moore <paul@paul-moore.com>
+To: James Morris <jmorris@namei.org>
+To: "Serge E. Hallyn" <serge@hallyn.com>
+To: "Geoffrey D. Bennett" <g@b4.vu>
+To: Jaroslav Kysela <perex@perex.cz>
+To: Takashi Iwai <tiwai@suse.com>
+Cc: linux-hardening@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-bluetooth@vger.kernel.org
+Cc: linux-media@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linaro-mm-sig@lists.linaro.org
+Cc: arm-scmi@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Cc: linux-rdma@vger.kernel.org
+Cc: linux-hyperv@vger.kernel.org
+Cc: netdev@vger.kernel.org
+Cc: linux-wireless@vger.kernel.org
+Cc: chrome-platform@lists.linux.dev
+Cc: linux-scsi@vger.kernel.org
+Cc: cocci@inria.fr
+Cc: linux-fsdevel@vger.kernel.org
+Cc: linux-cifs@vger.kernel.org
+Cc: samba-technical@lists.samba.org
+Cc: linux-xfs@vger.kernel.org
+Cc: bpf@vger.kernel.org
+Cc: ipsec@lists.linux.dev
+Cc: linux-security-module@vger.kernel.org
+Cc: linux-sound@vger.kernel.org
 
-This
+---
+Bence Csokas (2):
+      overflow: Add offsetofend() variant of struct_offset()
+      treewide: Use struct_offset()
 
->       mm/userfaultfd: check the hugetlb alignment of every VMA in the pre-scan
+ drivers/bluetooth/btmrvl_main.c                    | 12 +++++-----
+ drivers/dma-buf/dma-resv.c                         |  2 +-
+ drivers/firmware/arm_scmi/base.c                   |  2 +-
+ drivers/gpu/drm/drm_edid.c                         | 28 ++++++++++++----------
+ drivers/gpu/drm/i915/gem/i915_gem_object.c         |  4 ++--
+ drivers/gpu/drm/i915/i915_active.c                 |  2 +-
+ drivers/gpu/drm/i915/i915_sw_fence_work.c          |  2 +-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c  |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c            | 12 +++++-----
+ drivers/infiniband/hw/bnxt_re/qplib_fp.c           |  2 +-
+ drivers/infiniband/hw/hns/hns_roce_cq.c            |  4 ++--
+ drivers/infiniband/hw/hns/hns_roce_qp.c            |  6 ++---
+ drivers/media/usb/uvc/uvc_v4l2.c                   |  4 ++--
+ drivers/net/hyperv/rndis_filter.c                  |  2 +-
+ drivers/net/wireless/intel/iwlwifi/iwl-drv.c       |  2 +-
+ drivers/net/wireless/intel/iwlwifi/mvm/rs-fw.c     |  2 +-
+ drivers/net/wireless/intel/iwlwifi/mvm/rs.c        |  2 +-
+ .../net/wireless/intel/iwlwifi/pcie/ctxt-info-v2.c |  5 ++--
+ drivers/net/wireless/realtek/rtl8xxxu/core.c       |  2 +-
+ drivers/net/wireless/realtek/rtw88/fw.c            |  2 +-
+ drivers/net/wireless/realtek/rtw89/core.c          |  2 +-
+ drivers/net/wireless/realtek/rtw89/fw.c            |  8 +++----
+ drivers/net/wireless/virtual/mac80211_hwsim_main.c |  4 ++--
+ drivers/platform/chrome/cros_ec_lightbar.c         |  4 ++--
+ drivers/scsi/qla2xxx/qla_gs.c                      |  2 +-
+ drivers/scsi/qla2xxx/qla_mbx.c                     |  2 +-
+ drivers/scsi/qla2xxx/qla_os.c                      |  2 +-
+ drivers/scsi/qla2xxx/qla_tmpl.c                    |  4 ++--
+ drivers/scsi/scsi_transport_fc.c                   |  2 +-
+ fs/readdir.c                                       |  2 +-
+ fs/smb/client/cifssmb.c                            |  4 ++--
+ fs/smb/client/reparse.c                            |  3 ++-
+ fs/xfs/scrub/attr.c                                |  4 ++--
+ fs/xfs/scrub/attr_repair.c                         |  4 ++--
+ fs/xfs/scrub/dir.c                                 |  4 ++--
+ fs/xfs/scrub/dir_repair.c                          |  4 ++--
+ include/linux/overflow.h                           | 12 ++++++++++
+ kernel/futex/core.c                                |  3 ++-
+ net/bpf/test_run.c                                 |  2 +-
+ net/ipv4/ip_output.c                               |  4 ++--
+ net/ipv4/udp.c                                     |  4 ++--
+ net/ipv6/udp.c                                     |  4 ++--
+ net/key/af_key.c                                   |  2 +-
+ net/mac80211/agg-rx.c                              |  3 +--
+ net/mac80211/agg-tx.c                              |  3 +--
+ net/mac80211/parse.c                               |  2 +-
+ net/mac80211/tdls.c                                |  4 ++--
+ net/wireless/nl80211.c                             |  2 +-
+ net/wireless/reg.c                                 |  2 +-
+ net/wireless/scan.c                                |  2 +-
+ scripts/coccinelle/api/struct_offsetof.cocci       | 18 ++++++++++++++
+ security/landlock/net.c                            |  4 ++--
+ sound/usb/mixer_scarlett2.c                        |  2 +-
+ 53 files changed, 129 insertions(+), 98 deletions(-)
+---
+base-commit: 20eef29b7c8465ac98d7dd6d6f2ac07a8d8056ca
+change-id: 20261105-offsetof-f62aa6348f0d
 
+Best regards,
+--  
+Bence Csokas <bence.csokas@arm.com>
 
-After waiting a bit longer for more review. Andrew can take the rest.
-
-
--- 
-Cheers,
-
-David
