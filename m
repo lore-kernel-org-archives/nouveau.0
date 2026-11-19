@@ -2,117 +2,148 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84E57606A32A
-	for <nouveau@archiver.kernel.org>; Thu, 19 Nov 2026 01:27:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA327606A330
+	for <nouveau@archiver.kernel.org>; Thu, 19 Nov 2026 01:38:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=n5rcT0Zl
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hudzPn6J
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1F9B91120F3;
-	Thu, 19 Nov 2026 01:27:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AF42F112114;
+	Thu, 19 Nov 2026 01:38:48 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id ED19D47E7C;
-	Thu, 19 Nov 2026 01:27:17 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795051637;
- b=yGSdeDUVmf42SB2ICw3V1Bm1Hwvhf1edUr+c3CaQvaGnBRZZWM3ZaRfVBwn1RxVHk3H5u
- rppo2yuNNIThnjX9Q9a1Tpb+7K7AmoYJx6BV2Kjlo/9NFl4z/8E7Aqic/kg4ZmpNrWiQPDT
- oJw13AI+8uOFqJqosutVdkEKaPq+/5LP/AEGZyGt3yK4hpj+BuYlnFGm/lGmy8iMRHGAEN4
- elkwX+3iawZKBwCBZ/x02hUklB9mi55oLbvnokVFg0yEictKyg+cuU+eex8gUveNvlbFlA4
- P+MYvhUoXxiciQIRGq7UaFEwkPLXMPqLAqimrblVWv/etChbwoWmZOdDofKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795051637; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 881F749572;
+	Thu, 19 Nov 2026 01:38:48 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1795052328;
+ b=ycMhLg26bwx5t86uSrgs2fdpaRl5jGJgaugN8J8/0Q8tRCalH0UohTpYvt5Miu7cyViaY
+ ToRhIOMRhWUf2R1e0WtoRp5B7uT/qkQGL7HS6jmNYTRSxjvfIaxoEJu5z9Hh7vwclKagMOU
+ dhpiBvpMpnncBecCgRR9/ZCdieTDOhJuNM+5Cc2gPKtj0gDnJ2Gv4t8i4g+72100BTwfOmD
+ nom2KeyI8oDtzdUXPOGWuSvpapfBuO1z4hdI5Z+Ody1lPXMiNKEv9IWFp8Cftd2ilSj3Fax
+ A+yVklrd9zlSXECeTuiFzNIkhtx+pUj3Q7OMVxBqzX89PVPD2cfTOzFgMIzg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1795052328; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=OprzOyo9+JassEd1TEvafiLmaglW2JAX08bz3qXzH+M=;
- b=trskZkp7gLl11uo4lrLjHUXrORJFo3sCeisGIzH8CJ6CRuN3ura5XPapEXs3K51qcv7Bl
- bBdxneb3IVvIIdf3EE4ujXaXlFw6AbdPwnnuDSeobAdyYMCN/h0//d52tt9V2+NCo2paUbq
- Hj3XodO/suaT3A2XeJyhPyADQiyc/28Inl4bu0bOmBySaRlYvia/HqYCJwNzJ+uXvNvgqgx
- e+fs5E6bV9AiisZV1Qp9nR9bDvV7i+/AcPdwZkYPfKfcHcrFdamJ9gUnSn5WuFmpRsow7Rd
- 4i10BAl9sGaoBACSKUL7Otz1iNEitusq55K/8j18KHkIRXi7ZJkrgCBclz8Q==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ bh=ovGdiYBMeTx1zN0ULwKyloFOLqLaBSuDGpKTNG0CTCI=;
+ b=BHjDhN2X42iJiXxtfqWQtuzXh08LjnbGxuGMHaip4MT/QarwD36K2Rk/bOP6q/XP31w0l
+ RkESeLp7t/LK1Z2YaMNsQmSSgpNiYrQusagTewvQRDxXU9doFGC+vVE9gSJlUFTC8UFlt0Q
+ xPhvGJvWYfkf4erRaGt2u7TUvq7Keg8R0YGqoN/jQvEdXwySAqxeADIOaCMl/oxmq7UPcMh
+ PDhW3drsulF2GKQgw1RsWy/GhZgUHPYd7LbgJp3NwADnA5U7OgeLUH4B7MMD6dN9wigotEM
+ oixXLkSd1/1GfpJ4eXGyC07ZIoUuVjoB7/RoMFDicGLazdOyVUVbRLSP0B9A==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
-  arc=none (Message is not ARC signed);
+  arc=pass;
   dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=kernel.org policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 994C647E7C;
-	Thu, 19 Nov 2026 01:27:14 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 783DA10ECD2;
-	Thu, 19 Nov 2026 01:27:09 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id DF73A40026
+	for <nouveau@lists.freedesktop.org>; Thu, 19 Nov 2026 01:38:46 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D0B2E11210A;
+	Thu, 19 Nov 2026 01:38:41 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 69306645CA;
-	Thu, 19 Nov 2026 01:27:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F3471F000C5;
-	Thu, 19 Nov 2026 01:27:05 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 6466643BD3;
+	Thu, 19 Nov 2026 01:38:41 +0000 (UTC)
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795052321;
+	b=ABb7CQ6XWmIevRjQixmfkSH4qTD4iI0xMd8rnQzv1JatxkfxDmlpypICTOj/N9IwemKD
+	 +vtf48GtZk90lRVf508MV7UlCB8lJLD3Uo9G+Eu84DtrT7XQmNPNSRWBtzMkCgUwM809z
+	 p/Wg9mv4ZcfZ0RnU2baYijsdQGMWakaNU2YqHsONNy01zU+j5fslKeRCjfHMNHnv5Dcqe
+	 UAWjvjTXGQbPt6le3H+VOuNwyw9hhTOWlwp8v1Q8HzFKG2o5IyHluxJEuRPugRk0Gg1z5
+	 V4tXuk8rNjWJfGQjPmF5oKKrsLQv7THxMJktJMSPQikXmDyTAJviDh3vyxKS+0zUq1A==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795052321;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=ovGdiYBMeTx1zN0ULwKyloFOLqLaBSuDGpKTNG0CTCI=;
+	b=meVscExcxAM34OmKMpYswbg3bUzC0BxGOUpwvfZ9F45pv3tTTNOiATRPMSc/HYz5hKXv
+	 JWu6O2iTKYVtPrPiU5R9yWQmkjBDqSin+XSshKfOfCtrXl8T1pmC4fwbs/LcOcbMxeRkZ
+	 McsCyZ+WkPpQl3fZz+og3vq+fKws2TYypcfdV6Cqx7BpPaNAcfG7onq2lVeXfgrpH44sS
+	 upxWJ3hQ2ShKEUXRcpAEx5fMouHAMSuamSd6/aFRzmG22GiXS+FgVi92WY+zg0OBWcr3l
+	 beLuYThHcx+m+oyzvrDh/WgNQGC1zFzmhga4gi8Zyw29zMjydkY+iRSayfzoBt0M8TQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org;
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest
+ SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id DBB6C1F000CF;
+	Thu, 19 Nov 2026 01:38:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795051628;
-	bh=OprzOyo9+JassEd1TEvafiLmaglW2JAX08bz3qXzH+M=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=n5rcT0Zl/SE9jHWi65HwpiTbSdysgFWjql0ekarf62v72raja8OOgMi+64tXtTKOa
-	 M5ygoG/bvHgzz8ZIeXIs2ivMgUwHgIEgn7GOBgW3ty0l2awMnvQY9owfOlmYKZD2uU
-	 2IaJgO1zVeoXLDsLzuDkE2VXP7vdpkj0WzaTyH9BUuFigeLVhYz3ZCFE4AeDGyxyAR
-	 U67BOybTOTaQp+T1SaHwEyeHtKvyxjFWydFbtpqNlmTQHU1xt3xlJ8+WoBg8WNChOH
-	 xTcGI0Ji3/zNwyOnhcai3ZPaEx93fKbvlJNQHZs67FMZkQmqfPD+REcBrIBi9qpXuS
-	 REEkUUwWsOnzw==
-Date: Thu, 19 Nov 2026 01:27:00 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Philipp Stanner <phasta@kernel.org>
-Subject: Re: [PATCH v2 1/3] dma-buf: dma-fence: Add flags parameter to
- dma_fence_init()
-Message-ID: <20261119012700.2980cbe3@jic23-hlaptop>
-In-Reply-To: <20261118134522.1646892-3-phasta@kernel.org>
-References: <20261118134522.1646892-2-phasta@kernel.org>
-	<20261118134522.1646892-3-phasta@kernel.org>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20260515; t=1795052321;
+	bh=ovGdiYBMeTx1zN0ULwKyloFOLqLaBSuDGpKTNG0CTCI=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=hudzPn6J0bUS18VyUGznGkbPeAuz4ZMwVa5OEgVlGo7KD9aC81b531lgOGT5TfJK8
+	 DvAp9t+lDn4IsYR05nf1jhLW5kO//WR80as756NnStcKv1eCcbj5DNxIkJI244NbhC
+	 kcs6p8qSONWP1hsJuITvUwdluREXek7/zLNPKjUl3ksdF3ragvh7pCenCUBT+sR8A8
+	 qvh7PMyJZsF8DFp37Q8ReL/3U97ckXxcX/fCYZYZr6MlIqqDGfwDMzZr4Il4HY1sFZ
+	 XixiBnch37TtCUrmWyucOosTELFChcamOFg2pjql6Z28HwilHUC39vIM4Ii82hYOqH
+	 nJ3iVfgwAJq+w==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 349334B072;
+	Thu, 19 Nov 2026 01:38:38 +0000 (UTC)
+From: Dave Airlie via B4 Relay <devnull+airlied.redhat.com@kernel.org>
+Subject: [PATCH 0/2] nova/nouveau: add configs/module options to control
+ binding behaviour
+Date: Thu, 19 Nov 2026 11:38:23 +1000
+Message-Id: <20261119-nova-nouveau-gsp-v1-0-4cde2bc41132@redhat.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: PNVG63T4YEO5BSHBH5M4NPRNLKVOPI4O
-X-Message-ID-Hash: PNVG63T4YEO5BSHBH5M4NPRNLKVOPI4O
-X-MailFrom: jic23@kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MQQqAIBAAvxJ7TnBFyvpKdJBabS8aShKIf0+6D
+ MxhpkKmxJRhHSokKpw5hi44DnBcNngSfHYHJdWEiIsIsdiOp5B9hM+3QOnMbJReDGno2Z3I8fs
+ vt721D0uK5XpiAAAA
+X-Change-ID: 20261119-nova-nouveau-gsp-10f8782498e4
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1451; i=airlied@redhat.com;
+ h=from:subject:message-id;
+ bh=a4R+CA33McYCg3MsCLoZGkMds+XhCjyC2e9aLNwAvnk=;
+ b=owEBbQKS/ZANAwAKAQx081l5xIa+AcsmYgBq/lMX3zuL8Y2AWISRh7ealRDpz9EVaxPcLG55H
+ GUDkx93P6OJAjMEAAEKAB0WIQQQptkdobBb0p9t66wMdPNZecSGvgUCav5TFwAKCRAMdPNZecSG
+ vnCHD/9A8JSADHK6u4S3PFnLGfl3AlKX1XQ/M3NgiCJ2C/H5ixG2dGNm+EU58QykVRu8LBs8hBT
+ DVTXl9Z5O/Wj+pNBCvAKcHj7cF9Ies0wFE1AkGjUm9pYKt+elLDwaihXjU6JQZ05GSQoixtIpdP
+ +bIS/iGqbXI02QUT7fAtUCkMiMdsqpor38Xp4ZQ11BKKbafgkctr7eRydHvfpZLDCKL+7fD68tD
+ gpjxuXUQ5bOj0qKuHKfFoBdpnMTvwZ86Jj5efdQl/5KVLKslE2B1aYZR767NZCNNqLso617eddz
+ j5IZCQxTQMIgZMBJQOnvHyl1jRUiTCyJCSXHjR9X1XL6o67hVKPtp3haObrG6cf2Qbn3VODEG+n
+ H3dTFbLKcxYfHdn8pvKprQEVjdhU/wP50jIRiPl3ckqjPnaZZ2F6sF88D2ei1NDLqgagJIFND+D
+ +gNRwqw9mad0BWBAVqSOiGATCKeaSnqVKKPQzB40/aM3naGzV6punmsu5Rh937al3PI5MKm9wN/
+ PZttHKHlHh8zd0TSojV05nk3uKLIWY+mxL/wAsJL9TpVXIbHSNRVVpKxzQfJ7upeirLgk5VKO8H
+ fxIlao9BYQNitFgWVoL7qaQqK6uBCU2/37rHGjdJcCbzWO3RDUJEgMdJ+AuQFdpnTT7IWb7y+RG
+ sNmVVxMYIFcsV8A==
+X-Developer-Key: i=airlied@redhat.com; a=openpgp;
+ fpr=10A6D91DA1B05BD29F6DEBAC0C74F35979C486BE
+X-Endpoint-Received: by B4 Relay for airlied@redhat.com/default with
+ auth_id=1321
+X-Original-From: Dave Airlie <airlied@redhat.com>
+Message-ID-Hash: 5EKCKREMSPGCBDMD4LZOXC5XZ4MVWVE7
+X-Message-ID-Hash: 5EKCKREMSPGCBDMD4LZOXC5XZ4MVWVE7
+X-MailFrom: devnull+airlied.redhat.com@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Simona Vetter <simona@ffwll.ch>,
- Sunil Khatri <sunil.khatri@amd.com>, Vitaly Prosyak <vitaly.prosyak@amd.com>,
- Prike Liang <Prike.Liang@amd.com>,
- Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- David Rosca <david.rosca@amd.com>,
- Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>,
- Maxime Ripard <mripard@kernel.org>,
- =?UTF-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- imagination@lists.freedesktop.org, lima@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-usb@vger.kernel.org, rust-for-linux@vger.kernel.or
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ nova-gpu@lists.linux.dev, Dave Airlie <airlied@redhat.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: airlied@redhat.com
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PNVG63T4YEO5BSHBH5M4NPRNLKVOPI4O/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5EKCKREMSPGCBDMD4LZOXC5XZ4MVWVE7/>
 Archived-At: 
- <https://lore.freedesktop.org/20261119012700.2980cbe3@jic23-hlaptop/>
+ <https://lore.freedesktop.org/20261119-nova-nouveau-gsp-v1-0-4cde2bc41132@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -120,32 +151,43 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 18 Nov 2026 14:45:21 +0100
-Philipp Stanner <phasta@kernel.org> wrote:
+We want to be able to build both nova and nouveau and maintain the
+status quo for now of nouveau binding to all GSP enabled GPUs.
 
-> Currently, there are two init functions for dma_fence, dma_fence_init()
-> and dma_fence_init64().
->=20
-> Since more future user options for dma_fence initialization would
-> require distinct init functions, too, it is better to do this in a
-> unified way.
->=20
-> Add a flags field to dma_fence_init(). Adjust all affected drivers,
-> preserving the old behavior.
->=20
-> Support the SEQNO64 flag, and add a check-function so that the user only
-> sets valid bits.
->=20
-> Signed-off-by: Philipp Stanner <phasta@kernel.org>
-> Reviewed-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-For IIO,
+In the future we may suggest switching the default to nova, but
+for now the default is to let users use command line options for testing
+and developers building their own kernel can set the kconfig.
 
-Acked-by: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
+Signed-off-by: Dave Airlie <airlied@redhat.com>
+---
+Dave Airlie (2):
+      drm/nouveau: add option to leave GSP-capable GPUs to other drivers
+      nova-core: only bind to GPUs when explicitly requested
+
+ drivers/gpu/drm/nouveau/Kconfig                    | 17 +++++++++++++++++
+ drivers/gpu/drm/nouveau/include/nvkm/core/pci.h    |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |  9 ++++++++-
+ drivers/gpu/drm/nouveau/nvkm/engine/device/base.c  | 16 +++++++++++++++-
+ drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c   |  4 ++--
+ drivers/gpu/drm/nouveau/nvkm/engine/device/priv.h  |  2 +-
+ drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c |  5 ++++-
+ drivers/gpu/nova-core/Kconfig                      | 21 +++++++++++++++++++++
+ drivers/gpu/nova-core/driver.rs                    | 13 +++++++++++++
+ drivers/gpu/nova-core/nova_core.rs                 |  4 ++++
+ 10 files changed, 86 insertions(+), 7 deletions(-)
+---
+base-commit: e55a991e09e3b44f0b0d8206bb523dc57c086341
+change-id: 20261119-nova-nouveau-gsp-10f8782498e4
+
+Best regards,
+-- 
+Dave Airlie <airlied@redhat.com>
+
+
