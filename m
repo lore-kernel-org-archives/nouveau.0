@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57E49606A320
-	for <nouveau@archiver.kernel.org>; Thu, 19 Nov 2026 21:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55991606A320
+	for <nouveau@archiver.kernel.org>; Thu, 19 Nov 2026 21:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=wX45sKT/
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=AILszQfw
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3A61B11273E;
-	Thu, 19 Nov 2026 21:26:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3B2FA112751;
+	Thu, 19 Nov 2026 21:27:00 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 838D4404F7;
-	Thu, 19 Nov 2026 21:26:46 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 6D83640570;
+	Thu, 19 Nov 2026 21:26:51 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795123606;
- b=uLGGFB1WoxchjQ9NJwFyWCbZlTfa4qkp/+Oluhsvxeb3S4wg5BTrNl8jtnZEHlANPFW0W
- nttfZIoKTSxE6cp2TgZkSLG9ASWxpuu57LgJAcltFo+h+JqWBSZ6a8K+31KDg+aSSJIUatK
- 0WFk7SOfBlx0ZiRwGQZBVkonRgbfXGO9tmxqEkPul6UKLIDAV58g/Rap84DMrTABMsJSE7N
- MJ7QTsIvZVEKF8lgwgPxKXEJV6qum7GH7DQrDyeqJFrO3TB9PsjyelcXU2IxOJWo+fPgp9Q
- Nac4/g9tlfhd74bMtX4DwYBHej/h5D4z9+eSWu3lFrFkX5PmNpXSGtE/2v1Q==
+ s=20240201; t=1795123610;
+ b=n0LXPFVRobJen7Ov6sFxi4DfMIEwRncBiQ/xYll2tL28rN0C9FkopwE4rMg27W0mpzMk8
+ BIQPZ3WCEoPz3T3T6Gemj08A+aqOqHIZKSuXboPudMJJWn3l+Z3YyYyOLn0cQ+pferJBZ2g
+ YsnDc2Y3A/W3fNIroccC95jePjNl4UVRRXVvUGz9jEtZo756idKX9EcG+2/cCoSI39eSFiP
+ DPzaHwbowd7gAj6uMx1HxOGHWfJUA45wny7PNjwJy/CeB99cM4ju6F8hnGD1YUtdFEmf/no
+ Oy/j8XadmX5vkUaJCXnJqOjd7HO1vDbZ7BVxCql2Nc+B/eSXh6wbmzMDEwng==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795123606; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795123610; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=u/T6aa6iCWFrqHcoyuakH1O4XrX3XcHQl1IIpLYEGug=;
- b=dmk2YYju0VGNWq72TkD0NG35Hwf9QTGN0NbOeteNXWJRIXPbdTzg+MellxrNKyfPTcHea
- k2xJxwuQfg6ykUYeb/t3fzmNrbYPkeZoT5S5952EtYj4xDGVzcjjCLYS+Wv+oaez2CIt3mv
- SF1Szyq61uKnKt4N1Ch3oztD4r1k+uH/eeWj2R/8cWABSJWdJkdedKGVys5r5ITfRtR13V1
- qXsiqK1L9lIf43Z2nusDMqFMVc0iTbY5d00VqO3sM/7AoTsr2Y8KsTnSpFWmVlpVGYL9pHf
- jmcF0QG+DpEDoNWtUTikc8ydoAoGktbx6ddgIZ6SFRApAeiA+mJMPJffgaEw==
+ bh=vY24YozXGGsZy0MbrhPHZ+OQZbKbtp3K5o/Zm2P/mac=;
+ b=ZUeSdeOIGWVAPUTgFqZXopPhqFO/EslYCf7p41JZ0GJapJfj9lxcMqBY8lNyT5wI4IPVd
+ 6/+9EVUMNaEb5yW0sdFEhtjqjWU68Bd+qxmwjlTofTxF3Ll6V0dMhmmJkuMgwkq43i0ZKgr
+ 0aruLSjuAVkpnEYo6Wc8M5i0aotrLfjaimS9YfAYGduG/dEkytPMYtJUAWhyYVkoBDwdwH9
+ saqPJwSm2j8Ntpnhcz+XLnwYnc+iDtT0lr/uIACvjyMbN5UPLQRiAwTLHwH6zp+bWezbMmT
+ /GvVJyIMW9SCA49H2rmGr3EPWDaNwm8qPH1pC6ebaNBlws+MC9w1ALE81HIw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
  arc=none;
@@ -42,73 +42,73 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B130240409
-	for <nouveau@lists.freedesktop.org>; Thu, 19 Nov 2026 21:26:42 +0000 (UTC)
-Received: from mail-yx1-f44.google.com (mail-yx1-f44.google.com
- [74.125.224.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AA04F10ED03
-	for <nouveau@lists.freedesktop.org>; Thu, 19 Nov 2026 21:26:37 +0000 (UTC)
-Received: by mail-yx1-f44.google.com with SMTP id
- 956f58d0204a3-67db23d8892so355261d50.2
+	by kara.freedesktop.org (Postfix) with ESMTPS id 4A2AB404BF
+	for <nouveau@lists.freedesktop.org>; Thu, 19 Nov 2026 21:26:47 +0000 (UTC)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com
+ [209.85.128.180])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4D39910EFED
+	for <nouveau@lists.freedesktop.org>; Thu, 19 Nov 2026 21:26:40 +0000 (UTC)
+Received: by mail-yw1-f180.google.com with SMTP id
+ 00721157ae682-8b2d14968c9so2425597b3.0
         for <nouveau@lists.freedesktop.org>;
- Thu, 19 Nov 2026 13:26:37 -0800 (PST)
+ Thu, 19 Nov 2026 13:26:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795123596; x=1795728396;
+        d=gmail.com; s=20260707; t=1795123599; x=1795728399;
  darn=lists.freedesktop.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=u/T6aa6iCWFrqHcoyuakH1O4XrX3XcHQl1IIpLYEGug=;
-        b=wX45sKT/EjD7M/w5RtM1ffurmZTs8VP/DMlP7YhoGUCmQvvab3LvfqOO7NdZ0LOr6x
-         fJS6l+hWRXl0igoyAt+uxxPkTPrG+gg4S2sMYIeRk5ztokC8t3bFYHTJ39SxHSt9jmHw
-         JzEA9utWLrtDJ4RmGBkjCAGFh3/vZuoXFDxgwC6mjRicP24BScCQgVMPszIHwToaxZgg
-         jl/3RvpHfW8Y8erToXBtHmus90UIa2eUAtA71cPPDMqHWCEAOlOa2c4WdTLv3jp2IzQy
-         +DfiXnSdD0FDVxGxA3iEkOp3FBr3/hpM4o1kkZ1zFKEAVR4EhPF1Eb62IEDxzgPUytFV
-         x/rQ==
+        bh=vY24YozXGGsZy0MbrhPHZ+OQZbKbtp3K5o/Zm2P/mac=;
+        b=AILszQfweAah0skn796ecmiCmetuAvQqB+lOZHYIEJjR35qPISsXJL3w0mcpphh2gP
+         C2Tj0h2dJYVnFuxU2O4/XccGIqFkwFUzI/MyGZnYQ4rkvhLm53Vsw27Ca4uehzcAZUM9
+         yTYj1hzLF6PR40Y4g0G/MaZ6yW+VKYcveVU0ZiJS1NFrm0kkjDUHhdA5FA0zm5mfH+O6
+         w5g9c6dh8Td931hC+iYYL1OiW2uXNjLZRm38yPTUri3RrzWKDs8JpwXIZrfSYjKN2APZ
+         TwPmRKGb+90W4BALdPkpRDAh7L0/Sbay8EUGzGMWkxZc7rQijBJSNLdGWTrZ5SxraSWa
+         asSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795123596; x=1795728396;
+        d=1e100.net; s=20260707; t=1795123599; x=1795728399;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=u/T6aa6iCWFrqHcoyuakH1O4XrX3XcHQl1IIpLYEGug=;
-        b=tMpmvb+OH9g9WDvOW+SX2XPyWLdkV5YvENS6LaE+W3zl7csdO3WShTkio9U5P0vyhC
-         672c+cGka95E7fjk7UtnHQXP0TMcIPXrW9gJ2IKYLwAGo/wZNI1BMnvLSHjyZKRR+kNA
-         A2coI8kM5SppOfqd1iZsBSPVZW7oEkz82jw803ludYPFvVXNdh2Z4LBEc12w/Gu2hnkf
-         lWah2NBQdtMh2SLhnWiPOuadVNW79WTHL437WqLRy38yk2dQ4Ep92f31F+Xl3un2qvHb
-         42pMLlRKLEGUfwREiaScSKS1N+DrCNbYA62O8gWTyv56cbK4NWIpiuLWzMiDkh9ZG/hY
-         f9/w==
+        bh=vY24YozXGGsZy0MbrhPHZ+OQZbKbtp3K5o/Zm2P/mac=;
+        b=DlQEh5+Hb3XXBoIcMWlDFUo3jnkUCKk7GsfevTBV4z2j5G5Nlz4pb6k6rtDg09aEM/
+         lqcUZh5u07foPInD/pEFNw1ABRybPPiOtkx58klklfyuZYUORfQU8b37COpQ9y+DWpqU
+         KCB36LssbWVZy6rWQqjYtBHZgcik2WrIwJqvWuiwpQwIl+wjT/K3FTiLjXElUCVjLMFP
+         LTynLFVNXeUcL5RGE/clVVeFUKuDq+eL3wuDI7AS7c1b/akebtFjrAN38vdpMptwp2qb
+         yXgVtHyoL7LMd/zdQZ/6Te3po138aBGJxoXu0YtvACuD0Nh2aSB5YcdLISPAXj5KIJsp
+         pZNg==
 X-Forwarded-Encrypted: i=1;
- AL+hErHzPEdUJkdEQevnJIrXvVlmx31uqttNvbu9BYw/tp4dlqpK3ZTOwi1jAkPW7IUhpbTxmFls5nRg@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z+gjzwO29iqjQ9GsjV8ja+7pxEFYXKkZZVmZk80qixpeot2Of1u
-	uAPXqmRYoZO/pie7J9Iis3va9bVxyra5DEekgoYvwYGZMqdv0G6HNNNd
-X-Gm-Gg: AZFdTZcLQgzYmLgRxWz83/sFD/eVCW0W52B1aPxSMD+gEzzuLJMYsKq8V2UzOW5qoLt
-	sQCbiYBfE3pgYcIhGkmI2dZDAd3UVmoPJqGAKTnBjqbkXdQnVJ51ldzUlRdbZct3eUU/i3I5ksz
-	MgHKQjvutoYzwDhJL1C4Uzf7oM2Me9h8rXReT7GbaQEljHRvoP70L81rh9h3jvRCW/9buNBJSu5
-	IGK7oD4VT+fZJXxM0mTqxEYDu7/05vb9WGM35S6TXU7X8OLtdXm+P79NZaRr8MAXVK7C1W0hAj5
-	l+tebz5siST94XWivV567SjW7OtFhrWMpzKCoi9R1dJcAfMbRT2Iaii8Y4CkICv99qQWSYzpGrB
-	htRW1l1YDRrzG9zOFOxwyMy0BnJlx2jdDCJWB9ArbchVNvv/ZBnNA39xNK9iGq2ic2KQ7mmiheh
-	F7hGLqyQkEaSr1vPuvgI9raj+ggZFqhTJEMuFEu9oHP3JohK5YrPU4K0Z1QjdNO/IEwjKTkHX5Z
-	GTtv1y/UWE5wirb+SwA3ledqjxuqrBUm2gd1i9k6lGSt4ZtpP10kr/5J5ZdFeVgogMh65gR3LqS
-	n1H6gBN6bKIrc3u7tPTtCKTMu+x/LXUl5HfVqyyrSqP1alKRRm1OMEUZUgwekgS/z5dYtEWoQoa
-	vRuB9jSBU7OgKFjtqVMhUBvprcc7JOc6E0u76vUalr/Jh73FfQU+S3K2qj2gGy+M=
-X-Received: by 2002:a05:690e:1094:10b0:67d:bdd4:e44 with SMTP id
- 956f58d0204a3-67df44b0b15mr275383d50.98.1795123596293;
-        Thu, 19 Nov 2026 13:26:36 -0800 (PST)
+ AL+hErGDWyArTIUoEDnUPwaRUOBz8RiCPV79S5ls++W/zkyjUZF9i1Exxm9SPmho5+wbjwGR3u6oA/5f@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z/l7UaFN/EjoZyn7TLLkNK9noqBdJwz2YFha1E3lWqg1/POFsKV
+	4Mmk7Gg6hJ42vIn20VGCAevkDq7ULJauYzfNW5KeM0nNMav5AbOJJi7X
+X-Gm-Gg: AZFdTZfwhzfCTkgKuGRYbtW2QjbL1O5qUmpkt+eMmlju3XqdPe9MQMI81rplLdSi24a
+	s+m5xQupvjXT44I0xvz64mdo1CI1e60YuPO1jxbccN7eDjBKavhYDOUHk+ggp+DVOp95J3Rdtjc
+	s555bIvZMR8odwuhdmYYP3qLLfFGq5n7NBJ6+Z5Wfd9udvsS3IyVWoBVOCn2+hhnrbwIMHyGUKP
+	We1tq2n1WTLjViisBz+O0P0Ws1oONt13eLj1SH6uLg2UMs5XyXGqcX9YNtaLvKnaHYkFmd4tMpl
+	eqA/RGUNyyXosP08/s6MBKvJKQ8QPArjQZltWF5+nQLdcy8VL11y2Km2rg0APDfVYdSKupmqdap
+	wgOrlDgdO+0sCHvNnGCB0L62TUfCHqDMyhJlTqFGE4w43aVQKYewUG/3XCCBD2oIAOdNeWBr57V
+	HkzrCY6+svBHVLedqf2L2hCTbmk/gBxNlIFgQbpHNqgoA+nIyVyTwybMEJmB8SJe80zzwcOOfPX
+	ESbiwO006GHqjenlSV4lCgSFYknCKxxre2o5L1/8k7T2RPMgjJkBVtPsms/wXhNmJEn4RhGbg//
+	2DhXjZv2eMDXsdMcF3F0RReyGPygO33PrkAFtZEndufpzuJe1dFAOxhClVel2m+9fu4Vvg91pOu
+	xxX2T6sof2DhB15CUPiZHguzkE9NWQfPTH7tKSk4Iyw==
+X-Received: by 2002:a05:690c:316:b0:8b3:5f18:7f81 with SMTP id
+ 00721157ae682-8b52050fc52mr3650177b3.65.1795123599062;
+        Thu, 19 Nov 2026 13:26:39 -0800 (PST)
 Received: from localhost ([2600:1702:7a90:6f9f:66f3:d5d6:2d12:d460])
         by smtp.gmail.com with ESMTPSA id
- 956f58d0204a3-67df338e8fesm658337d50.16.2026.11.19.13.26.34
+ 00721157ae682-8b52034f7absm5433547b3.41.2026.11.19.13.26.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 13:26:35 -0800 (PST)
+        Thu, 19 Nov 2026 13:26:37 -0800 (PST)
 From: Matt Turner <mattst88@gmail.com>
-Date: Thu, 19 Nov 2026 16:26:32 -0500
-Subject: [PATCH 1/2] drm/nouveau/dispnv04: Restore Apple backlight PWM on
- resume
+Date: Thu, 19 Nov 2026 16:26:33 -0500
+Subject: [PATCH 2/2] drm/nouveau/dispnv04: Allow PMU sleep on iMac G4 with
+ NV34M
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261119-nouveau-pmac-sleep-v1-1-360c08654a25@gmail.com>
+Message-Id: <20261119-nouveau-pmac-sleep-v1-2-360c08654a25@gmail.com>
 References: <20261119-nouveau-pmac-sleep-v1-0-360c08654a25@gmail.com>
 In-Reply-To: <20261119-nouveau-pmac-sleep-v1-0-360c08654a25@gmail.com>
 To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
@@ -117,18 +117,18 @@ To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Ben Skeggs <bskeggs@nvidia.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4744; i=mattst88@gmail.com;
- h=from:subject:message-id; bh=uadQHS718gQ/DHTMJAZSo4vKONsVxecudR5BmvozqCU=;
- b=owGbwMvMwCW25rVmCc8sv+mMp9WSGLL+Z3asXt6nLdEw84Wu9+Lqyb4fdrte3rwmRutwtxvns
- sAXfFMXdHxkYRDjYpgppsgSt16RZVbbjqU+p6V/wcxhZQIZIi3SwAAELAx8uYl5pUY6Rnqm2oZ6
- hkCGjlE8RE6PQSOzuLg0tUg3raDIIS+/JLEkMz+vWC+/IDWvIL1ALy0zrSQjI7+oOBVohF5eaom
- pq6ObkaGBiaWjhZmThaOpibOzk6GTm6Ojs6uTkaW5iYGzpaOJq6U5AxenAMw1+xYzMnQ3J7f+3s
- 5yVrVA4PK7EOX4NXbX09fYRkWnZLN8u65cuI2R4a/M+jMr05lOJaZVOrmsLHhjG96WOOlwXu5y2
- 5nWdne1GAA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2178; i=mattst88@gmail.com;
+ h=from:subject:message-id; bh=jUk7WaGILTaMpFlfNkLk0zUgL4/Qx/PtclGtgMowS9g=;
+ b=owGbwMvMwCW25rVmCc8sv+mMp9WSGLL+Z3ZYpb/48E8ur2630aPo/M74qovXY81+e/7wfLG9Y
+ eszTpmpHR9ZGMS4GGaKKbLErVdkmdW2Y6nPaelfMHNYmUCGSIs0MAABCwNfbmJeqZGOkZ6ptqGe
+ IZChYxQPkdNj0MgsLi5NLdJNKyhyyMsvSSzJzM8r1ssvSM0rSC/QS8tMK8nIyC8qTgUaoZeXWmL
+ q6uhmZGhgYuloYeZk4Whq4uzsZOjk5ujo7OpkZGluYuBs6WjiamnOwMUpAHPN1XqGX0xMx6zelE
+ 0P35yvGG3dEMGy8orEjJUFomuu6JspK+/5I8HI0Lom0KPKNuDA5levn8l/2ax5PGOvlOPbc99Lz
+ 7/RErnizAYA
 X-Developer-Key: i=mattst88@gmail.com; a=openpgp;
  fpr=3BB639E56F861FA2E86505690FDD682D974CA72A
-Message-ID-Hash: IEASTVQJFPFOFM5JZNDKIHTQEB4L4KDH
-X-Message-ID-Hash: IEASTVQJFPFOFM5JZNDKIHTQEB4L4KDH
+Message-ID-Hash: VZRFIYPUM2RMO3UFMDA4QDDEMFOAUTDJ
+X-Message-ID-Hash: VZRFIYPUM2RMO3UFMDA4QDDEMFOAUTDJ
 X-MailFrom: mattst88@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; emergency; member-moderation; nonmember-moderation;
@@ -140,9 +140,9 @@ X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IEASTVQJFPFOFM5JZNDKIHTQEB4L4KDH/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VZRFIYPUM2RMO3UFMDA4QDDEMFOAUTDJ/>
 Archived-At: 
- <https://lore.freedesktop.org/20261119-nouveau-pmac-sleep-v1-1-360c08654a25@gmail.com/>
+ <https://lore.freedesktop.org/20261119-nouveau-pmac-sleep-v1-2-360c08654a25@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -158,129 +158,63 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On the Apple GPUs handled by nv04_dfp_update_backlight(), the panel
-backlight PWM lives in NV_PBUS_DEBUG_DUALHEAD_CTL. Open Firmware sets
-it up and nouveau only toggles bit 31.
+PowerMac6,1 and similar boards are flagged PMAC_MB_MAY_SLEEP. They
+only offer PMU sleep (mem_sleep "deep") once a video driver calls
+pmac_call_feature(PMAC_FTR_DEVICE_CAN_WAKE) to say it can bring the
+display back after the GPU loses power. radeonfb and aty128fb do this,
+nouveau does not, so with nouveau only s2idle is available.
 
-nouveau runs the VBIOS init tables on every resume, whether or not the
-GPU lost power, and on the iMac G4 (PowerMac6,1, NV34M 10de:0329) they
-write 0x7fff to that register. It reads 0x83e60535 at boot and
-0x80007fff after waking from PMU sleep: backlight enabled at zero
-brightness, so the panel stays dark although the display is otherwise
-working.
+nouveau resumes the NV34M (10de:0329) in the iMac G4 correctly: it runs
+the VBIOS init tables and restores the mode. With the previous patch,
+the backlight PWM is restored too. Make the call for that GPU.
 
-Save the register when suspending and restore it on resume.
+Other GPUs are left out because they have not been tested.
 
-Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
+When nouveau is built in it probes before via-pmu registers its
+suspend ops, so "deep" is offered from boot. With nouveau as a module
+it is not, because the valid states are computed only once, in
+suspend_set_ops(). radeonfb as a module has the same limitation.
+
+Tested on an iMac G4 (PowerMac6,1, 7448, NV34M) with nouveau built in:
+one suspend to RAM, woken with the power button. The console came back
+with the backlight on and no errors in dmesg.
+
 Signed-off-by: Matt Turner <mattst88@gmail.com>
 ---
- drivers/gpu/drm/nouveau/dispnv04/dfp.c  |  6 +-----
- drivers/gpu/drm/nouveau/dispnv04/disp.c | 27 +++++++++++++++++++++++++++
- drivers/gpu/drm/nouveau/dispnv04/disp.h |  2 ++
- 3 files changed, 30 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv04/disp.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/dfp.c b/drivers/gpu/drm/nouveau/dispnv04/dfp.c
-index 00eb2aacbe93..33b5a3398460 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/dfp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/dfp.c
-@@ -485,16 +485,13 @@ static void nv04_dfp_commit(struct drm_encoder *encoder)
- 
- static void nv04_dfp_update_backlight(struct drm_encoder *encoder, int mode)
- {
--#ifdef __powerpc__
- 	struct drm_device *dev = encoder->dev;
- 	struct nvif_object *device = &nouveau_drm(dev)->client.device.object;
--	struct pci_dev *pdev = to_pci_dev(dev->dev);
- 
- 	/* BIOS scripts usually take care of the backlight, thanks
- 	 * Apple for your consistency.
- 	 */
--	if (pdev->device == 0x0174 || pdev->device == 0x0179 ||
--	    pdev->device == 0x0189 || pdev->device == 0x0329) {
-+	if (nv04_display_has_apple_backlight(dev)) {
- 		if (mode == DRM_MODE_DPMS_ON) {
- 			nvif_mask(device, NV_PBUS_DEBUG_DUALHEAD_CTL, 1 << 31, 1 << 31);
- 			nvif_mask(device, NV_PCRTC_GPIO_EXT, 3, 1);
-@@ -503,7 +500,6 @@ static void nv04_dfp_update_backlight(struct drm_encoder *encoder, int mode)
- 			nvif_mask(device, NV_PCRTC_GPIO_EXT, 3, 0);
- 		}
- 	}
--#endif
- }
- 
- static inline bool is_powersaving_dpms(int mode)
 diff --git a/drivers/gpu/drm/nouveau/dispnv04/disp.c b/drivers/gpu/drm/nouveau/dispnv04/disp.c
-index f71199a39bc4..7d44d18e1b88 100644
+index 7d44d18e1b88..b4f522fbaf64 100644
 --- a/drivers/gpu/drm/nouveau/dispnv04/disp.c
 +++ b/drivers/gpu/drm/nouveau/dispnv04/disp.c
-@@ -35,6 +35,20 @@
+@@ -35,6 +35,10 @@
  
  #include <nvif/if0004.h>
  
-+/* Apple GPUs whose panel backlight is a PWM in NV_PBUS_DEBUG_DUALHEAD_CTL. */
-+bool
-+nv04_display_has_apple_backlight(struct drm_device *dev)
-+{
-+#ifdef __powerpc__
-+	struct pci_dev *pdev = to_pci_dev(dev->dev);
-+
-+	return pdev->device == 0x0174 || pdev->device == 0x0179 ||
-+	       pdev->device == 0x0189 || pdev->device == 0x0329;
-+#else
-+	return false;
++#ifdef CONFIG_PPC_PMAC
++#include <asm/pmac_feature.h>
 +#endif
-+}
 +
- struct nouveau_connector *
- nv04_encoder_get_connector(struct nouveau_encoder *encoder)
- {
-@@ -74,6 +88,15 @@ nv04_display_fini(struct drm_device *dev, bool runtime, bool suspend)
- 	if (!suspend)
- 		return;
+ /* Apple GPUs whose panel backlight is a PWM in NV_PBUS_DEBUG_DUALHEAD_CTL. */
+ bool
+ nv04_display_has_apple_backlight(struct drm_device *dev)
+@@ -330,5 +334,15 @@ nv04_display_create(struct drm_device *dev)
  
+ 	nouveau_overlay_init(dev);
+ 
++#ifdef CONFIG_PPC_PMAC
 +	/*
-+	 * The VBIOS init tables, which run on resume, reset the backlight
-+	 * PWM that Open Firmware programmed. Save it to restore on resume.
++	 * PMAC_MB_MAY_SLEEP boards only offer PMU sleep once the video driver
++	 * says it can restore the display. Resume has only been tested on the
++	 * NV34M.
 +	 */
-+	if (nv04_display_has_apple_backlight(dev))
-+		disp->saved_backlight_pwm =
-+			nvif_rd32(&drm->client.device.object,
-+				  NV_PBUS_DEBUG_DUALHEAD_CTL);
++	if (to_pci_dev(dev->dev)->device == 0x0329)
++		pmac_call_feature(PMAC_FTR_DEVICE_CAN_WAKE, NULL, 0, 1);
++#endif
 +
- 	/* Un-pin FB and cursors so they'll be evicted to system memory. */
- 	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
- 		struct drm_framebuffer *fb = crtc->primary->fb;
-@@ -126,6 +149,10 @@ nv04_display_init(struct drm_device *dev, bool resume, bool runtime)
- 	if (!resume)
- 		return 0;
- 
-+	if (nv04_display_has_apple_backlight(dev))
-+		nvif_wr32(&drm->client.device.object, NV_PBUS_DEBUG_DUALHEAD_CTL,
-+			  disp->saved_backlight_pwm);
-+
- 	/* Re-pin FB/cursors. */
- 	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
- 		struct drm_framebuffer *fb = crtc->primary->fb;
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/disp.h b/drivers/gpu/drm/nouveau/dispnv04/disp.h
-index 85ec0f534392..2f84287a3521 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/disp.h
-+++ b/drivers/gpu/drm/nouveau/dispnv04/disp.h
-@@ -88,6 +88,7 @@ struct nv04_display {
- 	struct nouveau_bo *image[2];
- 	struct nvif_event flip;
- 	struct nouveau_drm *drm;
-+	u32 saved_backlight_pwm;
- };
- 
- static inline struct nv04_display *
-@@ -98,6 +99,7 @@ nv04_display(struct drm_device *dev)
- 
- /* nv04_display.c */
- int nv04_display_create(struct drm_device *);
-+bool nv04_display_has_apple_backlight(struct drm_device *dev);
- struct nouveau_connector *
- nv04_encoder_get_connector(struct nouveau_encoder *nv_encoder);
- 
+ 	return 0;
+ }
 
 -- 
 2.56.1
