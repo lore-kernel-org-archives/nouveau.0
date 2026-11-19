@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF3660A2609
-	for <nouveau@archiver.kernel.org>; Thu, 19 Nov 2026 23:28:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ECAF606A32A
+	for <nouveau@archiver.kernel.org>; Thu, 19 Nov 2026 23:28:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=n3ppcRm6
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=EDoswsbS
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 44F2D112804;
-	Thu, 19 Nov 2026 23:28:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3784A1127DE;
+	Thu, 19 Nov 2026 23:28:29 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4D2AB4062B;
-	Thu, 19 Nov 2026 23:28:08 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id E31E640641;
+	Thu, 19 Nov 2026 23:28:09 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795130888;
- b=IcL8QPAW2NmN1d63T4rtazmaLjGfDyp3IsFpnRAQWXhW3ZvNIhZ3t1cKNCBeyc8oD7ahA
- ADcJG+4BmuuQ3NpU5x1n9ZabwjgIoTnBH1W3lD+lFm4YU6DtYCGiX8Y3u/v9lhX6W+fTI8x
- w+e0XBsj0jH+MRlFe1nsTcErtG4fJA5BgG86T7bs9jSZsoDHWn3XjoUUUchtW5A+cvk+OgV
- qgpposKEqkHUiYhzHuy9WqIOZvmjBXaFzZowcUnhZUG8ifESr88ppFU48GhUCfunw7AKXcI
- QRmQtOp1vE+msVVem/173F/pJ2r/DF/9EjOZso87F26qLvLEgH/tg4akhDEw==
+ s=20240201; t=1795130889;
+ b=zsXfi457Wyz0GrSDEFolxCUWWV+R65qFdHjnZ7IiEkO6Nr2Dnd8xYvRWL5xLXRSD6aYz2
+ n2lJDdfvHNcwziBCFYi47WHIyqBO4bzhE0drUuyVrnnUNeESpYhaOF/fhgp6u3Z29CezbJw
+ elIqVUaoouPh0HGYkmliuax5aezibrzbKpmrVoA2JTpzWIlKaiXBAWUYqXrZyRljCqRkEt/
+ daFLqBI2p5bCr3yHI9mORVXXfznD438UQoIpssLlam4UA545QTzb/SXZgWRlmqgvH7thzvf
+ OUyzOcodUo9MIyjm1Gm88VubpMgO0BTa2WOm7wEqLknWM+UUlXFct22uEBJA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795130888; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795130889; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=QmJMMAft6CLxi0zA5TafEWpZP2dC9+3XGI1TVc9rhCg=;
- b=tpInPBUQnDkhM5nC3gHFdSWWCutZm7ezL1Wi9v79NJa/hC59EfZu0zQx3bH/FGzERcfOY
- yQ73Dw5WhKObVcQ2qQiSqASdnDNh5L5nVQIzeqdu/p6mF4RV0q6ybLYOotJaD7EJYFs+Hzu
- JrTqDub6566As2pwUQF9jidWdAYCS1psEzwTUCB9ye9Yb5qiBHs4uCamZccgn/mLixw4YK4
- YxEA7pSIiQAGaV6GWpnuRcNzQe9GWStM3MufY/VhAELONmyP5Oig3HQvs6muv5dFLWwyta9
- zxzY3bXF4QmMeptRIpsmquZTQjijZUKi/1tYfmKpxI/1CTac954VZYu/HmPw==
+ bh=5OYgJybG4FW3tJBnFrBkzQMca/Hpd3EtbC6Qsv+IUGg=;
+ b=Szpr/ShfRpL+L1cSRSpSJtsJMNVjFUCp7ZkGi4rhw3JN8HtdomuDHauWTF4i7xRijYfOC
+ lqmt96TKD4mMO/t2HOZH0nb2Q+bKU8VaQOhzR5YE0Jn32yDMqTvOTlBDdjU5hIpPjBjjm8V
+ IzHetaN6sHGnDwyyQYVY4lqlY1LXt8qDA5V/wynxwyCRh/ui4qEv5TEhb9coS9m7pOov8f4
+ T+8xuwSiH5dylzLY+PQKi7tPbsglJvyv8f80yOOnDMGBzRdASL7huW6kRDwATGLpn9x7zXQ
+ U5Eue8LNTfwo9A/0GbswBs/3pSfHyioslakvTTaroiTEn5/LW5Fp5oB+o+dg==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=amd.com;
  arc=pass;
@@ -41,37 +41,37 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=amd.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=amd.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id CEFFA405C5
-	for <nouveau@lists.freedesktop.org>; Thu, 19 Nov 2026 23:28:04 +0000 (UTC)
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012024.outbound.protection.outlook.com [52.101.53.24])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A043310E801;
-	Thu, 19 Nov 2026 23:27:59 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1EADC405A0
+	for <nouveau@lists.freedesktop.org>; Thu, 19 Nov 2026 23:28:06 +0000 (UTC)
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010001.outbound.protection.outlook.com [52.101.85.1])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CA5D910E071;
+	Thu, 19 Nov 2026 23:28:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P2aAwE0zXcvTkIjWjEV0t4szxyQ8BRm0XvZSenFt14lFlsNQxlmvhqMuAjrgTKdcAwFF6Uo/lzxKdWZuKkgh/WsM9Ufubc+338b2JMHDUu+nablcTE4zGkxv9i+9J+CYOb9/W1+5VHMTEYvVWhA+lnmJY8x7JT2r4G3TNmEr6Niw5/+FZ2jRK3c2jTUT7X5yMNU4a9LPAwS52SzbHQJh3NEghabGZaetoVyOuyMb8T1LYIjuSxRTKsyavONkmRQkaEjdyIDCGop8tYxpTazkgZ4pQI5Y0UMpV4Z6gORBkHXYVxuanD98zXTjBsgUw/IAaqMshPfpevLvbtRVTJDYjg==
+ b=tSAIg/BOR5xkBxVdGtqmZTiEt8zTmDvpNqNyas7i/1+KmGZDRNjTOtvX/+0gbrmxGpPYPJ1gW9C9I3OkNwTHZl9R3o2CvnGK/JI6ySy8bk6J1z3kRajlv8+tX/qB90EDOjwjc7jUsAnWpXjFfDZbU8IjvHDvJ4q5pNpBwhY8vNeu8vb97YNIgUz9nZ/G7Z5BwTpy0OTDgtPcGeFszz3RC4LRoqKAbg2PdBrT83mq8+F3m8jWiWrC8dcsXrov+1Xz0k/habBVD4YkR6YYQzpQR8QAnw5UiJ8q3peCs0rXv2gcLsLKc/rf1NQUL7TsKTq+jp1w60qKhWFQh6+Iof16Dw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QmJMMAft6CLxi0zA5TafEWpZP2dC9+3XGI1TVc9rhCg=;
- b=Gn5I/LBOk0hlYCjc2dHlEtuvyyvhPZ8Q85jW/leTkSwY7C8JNU520IWdJgu4Sd7yAZsJDgThUlcKJLc5hRErGMZus0d27SOTShXrOdaP2Lv8PonKrjBNXqyDI4AF3WGjzG1jvSLASc6ANZNluiYTFetG5SnIZRdDyvaTF/9+uez1rAMoed6goEoXpi1ckGRMlUlMfqv257p6zomVTszLFonmgYjtFLh0fKrNuDGz6S8SsRaXYKQeOf1CI3uMiu42qFvzlm2ignpwvwsOakcUf4o8Z0nhEjLVKbQbpQjGSQIIJLBkEaYtu18OURybic0zR+ii3ufQJyyBjgaznHXJCg==
+ bh=5OYgJybG4FW3tJBnFrBkzQMca/Hpd3EtbC6Qsv+IUGg=;
+ b=ewGeMkMW6xVHhJuUmFLri80W9RxfTFiP6Y1wYcJaV5ilJNC4kCuyz6feokzc5oZ92eN1zC5CkbKD0X7d4dnLebThXGouFy4uvKZFxoCw2rA1lJUsl07a0qnFdwYkTFVuCiJoJB4tJLC0tyefAAEh8ARA3xm3pvpFtZQwrpHBa2nz9+yzRHwFs2xA6o62SNhsSEoXSR6S2Z+kTJcvYrlHXGlf0NgBpItqWkIU5SyIFgp0v8Ms+NvlyQhTzbBTLoiDQy3S/uKaG8zkuX09mRpbH85AZT74bGkedbWhC580YeaDkhm4flfr2XImBzMGHlC92ULX+zq40/t6qnR/v4OK6A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=linux.intel.com smtp.mailfrom=amd.com;
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QmJMMAft6CLxi0zA5TafEWpZP2dC9+3XGI1TVc9rhCg=;
- b=n3ppcRm6suPklvGeLCb61CJuwducc03FV8d5+cvEofOm6mQU2kHa61EK4AFA6h7mURAkI9qfxu6FJN+UDX4qH3Yk56bjKGsHO1YT+1aeGTpKNVOl4Zx97l9/Lc7NOIRNWQyKheRssQdpVGraTJ3PKqDcSpWLynKhRT0vvMPttFI=
-Received: from SJ0PR03CA0100.namprd03.prod.outlook.com (2603:10b6:a03:333::15)
- by DS0PR12MB6414.namprd12.prod.outlook.com (2603:10b6:8:cd::12) with
+ bh=5OYgJybG4FW3tJBnFrBkzQMca/Hpd3EtbC6Qsv+IUGg=;
+ b=EDoswsbSIWb5W8AfsxvQju/h4bSDCQZZb5KO+klhuvT884L9bNRcE04pU9XaIlk8jv6yQlCfuA1maxEJTRDVYK46a/16qILYHk2rYyRVKVx7VnjY0IzMmgWwGbUOrJRCOUZIuWl8dSiDHzfnavYHMTgEPyCgp7KbLHa/G4veGbc=
+Received: from SJ0PR03CA0092.namprd03.prod.outlook.com (2603:10b6:a03:333::7)
+ by MW4PR12MB6705.namprd12.prod.outlook.com (2603:10b6:303:1e3::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Thu, 19 Nov
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
  2026 23:27:53 +0000
 Received: from PH7PEPF0000000B.namprd04.prod.outlook.com
- (2603:10b6:a03:333:cafe::1e) by SJ0PR03CA0100.outlook.office365.com
- (2603:10b6:a03:333::15) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:a03:333:cafe::3b) by SJ0PR03CA0092.outlook.office365.com
+ (2603:10b6:a03:333::7) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.8 via Frontend Transport; Thu, 19
- Nov 2026 23:27:52 +0000
+ Nov 2026 23:27:53 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
  is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -81,19 +81,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  PH7PEPF0000000B.mail.protection.outlook.com (10.167.243.42) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 23:27:52 +0000
+ 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 23:27:53 +0000
 Received: from [127.0.1.1] (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Thu, 19 Nov
- 2026 17:27:49 -0600
+ 2026 17:27:51 -0600
 From: Mario Limonciello <mario.limonciello@amd.com>
-Date: Thu, 19 Nov 2026 17:27:33 -0600
-Subject: [PATCH v12 06/12] drm/bridge: add connector luminance operations
+Date: Thu, 19 Nov 2026 17:27:34 -0600
+Subject: [PATCH v12 07/12] drm/panel: add connector luminance forwarding
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20261119-superm1-backlight-property-v12-6-89d5217d3618@amd.com>
+Message-ID: <20261119-superm1-backlight-property-v12-7-89d5217d3618@amd.com>
 References: <20261119-superm1-backlight-property-v12-0-89d5217d3618@amd.com>
 In-Reply-To: <20261119-superm1-backlight-property-v12-0-89d5217d3618@amd.com>
 To: Maxime Ripard <mripard@kernel.org>, Alex Deucher
@@ -108,24 +108,24 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PEPF0000000B:EE_|DS0PR12MB6414:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8d8dced0-afa0-4d97-d4c4-08df4694bb82
+X-MS-TrafficTypeDiagnostic: PH7PEPF0000000B:EE_|MW4PR12MB6705:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5a6123ea-4c93-4a9e-4217-08df4694bc2c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
- BCL:0;ARA:13230040|82310400026|1800799024|23010399003|7416014|376014|36860700016|22082099003|18002099003|6133799003|261009223027099003|3023799007|921020|56012099006|261102123227099003|261026121527099003|261026140227099003|261022105027099003|261021121427099003|261028144727099003|11063799006|10067099003;
+ BCL:0;ARA:13230040|23010399003|36860700016|1800799024|7416014|82310400026|376014|921020|10067099003|11063799006|56012099006|261026121527099003|261028144727099003|261026140227099003|261022075727099003|261021121427099003|261102123227099003|261022105027099003|261102130727099003|261009223027099003|261009221227099003|22082099003|18002099003|6133799003;
 X-Microsoft-Antispam-Message-Info: 
- Wh+HEoe1JlYFoTcEvI+rpG4GOhFF4vxQiGOSV9WgOGkckr0CTT1lMIWz6KT+EhRVL2nNV0vZp0n1TYaAHYFqQZxt91vfWEwNBz4INVv4CPHn8Ub1+R4cHGZh655hzJaRAJD2cQVZ9ntq5vvr3/REJRH+gOoVvjBrVCvra2WCkUIYmaVw2SF8i5qaIVH7AE+VEVJhKfkgNkCz6XG4R3XmvkXLSblPq4wITuu3pNBmyiVZZvJL4t9iuVYhHn3AKawMMAujT7XdjvOaN9cc02sXvn67ma4Z1UHE3C+2RchKtBYFxm3w6ZRvOkx7nI9kASJw2Jo0iZ6GxmJ2DgFjw+FRosCbYubsN+Ve8jWNtAq1ms2DNTuYno6RGVq/j9u4oFt6Sdkk5Udg52fhUjC9HgGyCSc6VTnfbA6Ip0ji+ypblSgckggw5GLq/j0FX68aMnePjIuyru3iSufI2dnuv9+pIGptSk1xU09C9xHV/+u6MUqg0Ku/j4Uh36g/Ym5F1damDhn2K3KhbtOsIYLi5hGbxIYLj3/HOB1BhSnwfotegpOo2wnUodxeXDFGUn+hJsFAqPV/EJi5CIDLBJRtsT5VUPMj64ptn4/w5W9+XnUpeNF/6Gev4hEqKDwTVJBbeuIivzjXW3qGaSqNv5lhdD0//IcBwmVXyRD39es8k77gg36H99RP7WtbK/i64AdbAZO43kh2YjMYZ3rj6OAxwyKZMdCFU1k+uSxt5eQXAqIUGWWY+3tXUYUnBWHIP9Zs73cy
+ cFbd1MZXz97cJzgxBz6SPrlJaFeOVdcIKkKHs54WMyyVB3gr3FqEwcmDoKii09xpGCjmqlcHXI85kNMgUCPQqoS8rKCGChXh3qsRqzYCmHFkny5d9IoZAwDFOL/Iz4NOdr+9qP+lcx6IiZIjedh2g8l4pewVezEZQ2jJidrqiB7U3UpPLiuHUBa9YnriTlPwNYA4BOo3Kk9hB28zSQHvYjJSapexraH+FzhRvFuKveM9qh0SMEv8NRpF7KpsBgVotavtzPlC+2Y73vHJGsui4hDdcya0p4yliXJaubsr2SDojj4va+duyeVtRO8GqBfFrbywkPnOZFvOrDvti/IYK2fWXZeTMjTxkZnJ6zDzdvsryrZEv6awlXBOExbbQKO6Km8675e+cIxzY/Kfe4P3iuuEUufQdaHrMT4LPK1mOxq/Tsl9knQE5ZaPxhj4JgdWlycnWNC5gJ6kSVdC3BGXnN8KrTZjRfI4sYzX8yVfaVbi4z2X8DzKVsahaRbacdd2RbuBX+J/Prldtq07iAYehFXJvawcHvPCY4pd4JNrggNhe5YJWUrVHJuQ0/3JoPAstZ/H3wlMUhU3/Aknjr996dIOc8oaHy/Y3+l70oQw3x0gIIhNquF7ukT+YlmPj4Od1ZQoXgM+6ui1RmEd7SUjWHDWyUrpTEsh3i+1GX/1ylr9MNprYciwhd5jHSEyogleDPhn3Kfx8Aq4xFfhqdfYsp1XEvCBC1uNwmEr9WGUumdPan0MkU9wKW00VXSh3vlL
 X-Forefront-Antispam-Report: 
- CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(23010399003)(7416014)(376014)(36860700016)(22082099003)(18002099003)(6133799003)(261009223027099003)(3023799007)(921020)(56012099006)(261102123227099003)(261026121527099003)(261026140227099003)(261022105027099003)(261021121427099003)(261028144727099003)(11063799006)(10067099003);DIR:OUT;SFP:1101;
+ CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(1800799024)(7416014)(82310400026)(376014)(921020)(10067099003)(11063799006)(56012099006)(261026121527099003)(261028144727099003)(261026140227099003)(261022075727099003)(261021121427099003)(261102123227099003)(261022105027099003)(261102130727099003)(261009223027099003)(261009221227099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
- 7ZHcwE3ZyJOG04gzqIC1hP3OChIK5ykSvegC3xgjWzqzM+Y5SkKw0CBsVJcJDFlpaBiP2ehtI3C6IIkiLDrwRZqXtP7x7GNo0pPotxaoLqIMAAKjK6mLkpQB55sDQycBb1CbvTTn3vlzHn3hK0CvGPgxcZHFBi2cy1yPpR5/XM2/3jCajMaU+4mkXRt521GZhZir+Efnxy0BS00SQKbxJiMHDVjYVHYI1LVAp1fJTJO/wW1BqMWaoWCJZgLnSMKA9OtvZGdGHnZubrOd4hGZhtATiIriOPOrdvLi+ssk2enpQuHkoWxe1HHD/3JY2A4sQygTjT3FCmTCJf0SXACzQa+UtohcnnUWcnjix+vWm1y8Qbx/l9aFPRhjnTH5fV9uxB18rTclPVVRbI89U35xzep586xYtcgfx4a0OU7WvzGAgHGeQ52GnW3dME89q3kD
+ 8P+/hTXZjwMR02KvPUndHCwpvfeDCTqsgAXXRNpZ3Lho734GoAFfEwlL53kuisK4HYV/+XpOjIm99ytosEPcWEqnS7axsTkJA3Ys7zUfupMRrVlTV+3l0TSlsGCAujSaL1mtYO/3yAn3rjvgEZtqqTTl7wFYPlkr6xrwA+90MxO3SBvwQQKRgR4gklPxLUWgJgSAPvPVRpQKCFwYy+VH7VQ/g35sAbBwQVs21C48c+XOdVa8zvYJ27h/MzCc472XzYYCGYiT9f61H8+wP3VtnQJJugyKtsKHH4LFMSK5opFLUZUBxPvSRQBSIWr0zHY3i0dOZnNbgKVenkZqalF6BJtd7P84u59rtPXay9HHdi/8vAi7LAmXTkMpGQiZkYO9tXwHoNaxaRJhR0Y4J4iLbzJrs6v9s3g+BvHjy6uVLst9/f4jkkavxkVH1GDdkI+r
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 23:27:52.3737
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 23:27:53.4838
  (UTC)
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 8d8dced0-afa0-4d97-d4c4-08df4694bb82
+ 5a6123ea-4c93-4a9e-4217-08df4694bc2c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
  TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
@@ -133,9 +133,9 @@ X-MS-Exchange-CrossTenant-AuthSource:
  PH7PEPF0000000B.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6414
-Message-ID-Hash: GEJZHDMZ77NYIJSYLISABML4GFEY4IDF
-X-Message-ID-Hash: GEJZHDMZ77NYIJSYLISABML4GFEY4IDF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6705
+Message-ID-Hash: PLIDSNAVJHBC5R7FPNIH4FUOEEH5ZCJJ
+X-Message-ID-Hash: PLIDSNAVJHBC5R7FPNIH4FUOEEH5ZCJJ
 X-MailFrom: Mario.Limonciello@amd.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; emergency; member-moderation; nonmember-moderation;
@@ -150,9 +150,9 @@ X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GEJZHDMZ77NYIJSYLISABML4GFEY4IDF/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PLIDSNAVJHBC5R7FPNIH4FUOEEH5ZCJJ/>
 Archived-At: 
- <https://lore.freedesktop.org/20261119-superm1-backlight-property-v12-6-89d5217d3618@amd.com/>
+ <https://lore.freedesktop.org/20261119-superm1-backlight-property-v12-7-89d5217d3618@amd.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -168,69 +168,196 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Allow bridges that own brightness control to advertise a luminance
-operation and its supported relative range.
+Add helpers that expose a panel backlight through the connector
+LUMINANCE property and forward connector updates to the backlight
+backend.
+
+Hook the helpers into panel bridges that create their own connector.
+Panels consumed directly, or by a panel bridge attached with
+DRM_BRIDGE_ATTACH_NO_CONNECTOR, remain unchanged. Turning the backlight
+on and off is left to drm_panel_enable() and drm_panel_disable(), which
+already honour self refresh.
+
+The panel backlight remains the hardware backend and keeps its
+/sys/class/backlight device, which is owned by the backlight driver.
 
 Acked-by: Javier Martinez Canillas <javierm@redhat.com>
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 
 ---
 v12:
+ * Only store the brightness while the panel is disabled, leaving the
+   hardware update to backlight_enable() in drm_panel_enable(), and skip
+   the update when the brightness is unchanged (Sashiko)
+ * Clamp the initial brightness to the maximum before attaching the
+   property
  * Add tag
 v11:
- * Drop panel bridge declarations re-added by a bad rebase (Sashiko)
- * Document @luminance as the initial level
+ * Don't remove drm_panel.h stubs (rebase artifact, Sashiko)
+ * Use drm_connector_to_panel() rather than an invalid panel_bridge
+   container_of() (Sashiko)
+ * Clean up the connector if attaching the property fails (Sashiko)
+ * Drop .disable_luminance and program the committed level before
+   drm_panel_enable() (Sashiko)
+ * Don't attach the property when the panel bridge is attached after the
+   device is registered, which would WARN
+ * Update brightness under the backlight ops_lock
 v10:
- * Split bridge operations out of the combined panel and bridge patch
+ * Split panel support out of the combined panel and bridge patch
+ * Limit integration to panel bridges that own their connector
 ---
- include/drm/drm_bridge.h | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ drivers/gpu/drm/drm_panel.c | 98 +++++++++++++++++++++++++++++++++++++++++++++
+ include/drm/drm_panel.h     |  4 ++
+ 2 files changed, 102 insertions(+)
 
-diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
-index 1981d24a700d2..240a69c1233e7 100644
---- a/include/drm/drm_bridge.h
-+++ b/include/drm/drm_bridge.h
-@@ -62,6 +62,15 @@ enum drm_bridge_attach_flags {
-  * struct drm_bridge_funcs - drm_bridge control functions
-  */
- struct drm_bridge_funcs {
-+	/**
-+	 * @set_luminance:
-+	 *
-+	 * Apply a relative luminance level to a bridge that controls panel
-+	 * emission. Bridges implementing this callback shall set
-+	 * @DRM_BRIDGE_OP_LUMINANCE.
-+	 */
-+	void (*set_luminance)(struct drm_bridge *bridge, unsigned int luminance);
+diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
+index 74c96da45b7a5..1a08351b2ef77 100644
+--- a/drivers/gpu/drm/drm_panel.c
++++ b/drivers/gpu/drm/drm_panel.c
+@@ -64,9 +64,18 @@ static int panel_bridge_connector_get_modes(struct drm_connector *connector)
+ 	return drm_panel_get_modes(panel, connector);
+ }
+ 
++static void
++panel_bridge_connector_set_luminance(const struct drm_connector_state *conn_state)
++{
++	struct drm_panel *panel = drm_connector_to_panel(conn_state->connector);
 +
- 	/**
- 	 * @attach:
- 	 *
-@@ -1021,6 +1030,11 @@ enum drm_bridge_ops {
- 	 * &drm_bridge_funcs->hdmi_clear_spd_infoframe callbacks.
- 	 */
- 	DRM_BRIDGE_OP_HDMI_SPD_INFOFRAME = BIT(10),
++	drm_panel_set_luminance(panel, conn_state->luminance);
++}
 +
-+	/**
-+	 * @DRM_BRIDGE_OP_LUMINANCE: The bridge controls panel luminance.
-+	 */
-+	DRM_BRIDGE_OP_LUMINANCE = BIT(11),
+ static const struct drm_connector_helper_funcs
+ panel_bridge_connector_helper_funcs = {
+ 	.get_modes = panel_bridge_connector_get_modes,
++	.set_luminance = panel_bridge_connector_set_luminance,
  };
  
+ static const struct drm_connector_funcs panel_bridge_connector_funcs = {
+@@ -101,6 +110,12 @@ static int panel_bridge_attach(struct drm_bridge *bridge,
+ 
+ 	drm_panel_bridge_set_orientation(connector, bridge);
+ 
++	ret = drm_panel_attach_luminance_property(panel, connector);
++	if (ret) {
++		drm_connector_cleanup(connector);
++		return ret;
++	}
++
+ 	drm_connector_attach_encoder(connector, encoder);
+ 
+ 	if (bridge->dev->registered) {
+@@ -169,6 +184,19 @@ static void panel_bridge_atomic_enable(struct drm_bridge *bridge,
+ 	if (old_crtc_state && old_crtc_state->self_refresh_active)
+ 		return;
+ 
++	/*
++	 * Store the committed luminance before drm_panel_enable() turns the
++	 * backlight on, so the panel does not light up at a stale level.
++	 */
++	if (panel->connector.luminance_property) {
++		const struct drm_connector_state *conn_state =
++			drm_atomic_get_new_connector_state(atomic_state,
++							   &panel->connector);
++
++		if (conn_state)
++			drm_panel_set_luminance(panel, conn_state->luminance);
++	}
++
+ 	drm_panel_enable(panel);
+ }
+ 
+@@ -873,6 +901,76 @@ void drm_panel_disable(struct drm_panel *panel)
+ }
+ EXPORT_SYMBOL(drm_panel_disable);
+ 
++/**
++ * drm_panel_attach_luminance_property - expose a panel backlight through DRM
++ * @panel: panel whose backlight is controlled
++ * @connector: connector on which to expose the property
++ *
++ * The backlight class device remains the internal hardware backend. When the
++ * luminance UAPI is enabled, userspace controls that backend through the DRM
++ * connector property instead.
++ *
++ * Return: 0 on success or a negative error code
++ */
++int drm_panel_attach_luminance_property(struct drm_panel *panel,
++					struct drm_connector *connector)
++{
++	struct backlight_device *backlight;
++
++	if (!IS_ENABLED(CONFIG_DRM_LUMINANCE) || !panel)
++		return 0;
++
++	backlight = panel->backlight;
++	if (!backlight)
++		return 0;
++
++	/* Properties can't be created once the device is visible to userspace */
++	if (connector->dev->registered) {
++		drm_dbg_kms(connector->dev,
++			    "[CONNECTOR:%d:%s] registered, not exposing luminance\n",
++			    connector->base.id, connector->name);
++		return 0;
++	}
++
++	/* The backlight core doesn't clamp a driver seeded brightness */
++	return drm_connector_attach_luminance_property(connector, 0,
++					backlight->props.max_brightness,
++					min(backlight->props.brightness,
++					    backlight->props.max_brightness));
++}
++EXPORT_SYMBOL(drm_panel_attach_luminance_property);
++
++/**
++ * drm_panel_set_luminance - set a panel backlight's relative luminance
++ * @panel: panel whose backlight is controlled
++ * @luminance: relative luminance level
++ *
++ * Updates the backlight brightness without changing its power state, under
++ * the same lock as brightness changes made through sysfs. Turning
++ * the backlight on and off is left to drm_panel_enable() and
++ * drm_panel_disable(). While the panel is disabled only the brightness is
++ * stored, so the hardware is not touched before the panel's enable sequence
++ * has completed, and the level is applied when the panel is enabled again.
++ */
++void drm_panel_set_luminance(struct drm_panel *panel, unsigned int luminance)
++{
++	struct backlight_device *backlight;
++
++	if (!panel || !panel->backlight)
++		return;
++
++	backlight = panel->backlight;
++	guard(mutex)(&backlight->ops_lock);
++	if (!backlight->ops || luminance > backlight->props.max_brightness ||
++	    backlight->props.brightness == luminance)
++		return;
++
++	backlight->props.brightness = luminance;
++	if (panel->enabled)
++		backlight_update_status(backlight);
++}
++EXPORT_SYMBOL(drm_panel_set_luminance);
++
  /**
-@@ -1071,6 +1085,12 @@ struct drm_bridge {
- 	void *driver_private;
- 	/** @ops: bitmask of operations supported by the bridge */
- 	enum drm_bridge_ops ops;
+  * drm_panel_get_modes - probe the available display modes of a panel
+  * @panel: DRM panel
+diff --git a/include/drm/drm_panel.h b/include/drm/drm_panel.h
+index 58113ea7d63a0..233d30dd2e182 100644
+--- a/include/drm/drm_panel.h
++++ b/include/drm/drm_panel.h
+@@ -342,6 +342,10 @@ void drm_panel_unprepare(struct drm_panel *panel);
+ void drm_panel_enable(struct drm_panel *panel);
+ void drm_panel_disable(struct drm_panel *panel);
+ 
++int drm_panel_attach_luminance_property(struct drm_panel *panel,
++					struct drm_connector *connector);
++void drm_panel_set_luminance(struct drm_panel *panel, unsigned int luminance);
 +
-+	/** @luminance_max: Maximum relative luminance level. */
-+	unsigned int luminance_max;
-+
-+	/** @luminance: Initial relative luminance level. */
-+	unsigned int luminance;
- 	/**
- 	 * @type: Type of the connection at the bridge output
- 	 * (DRM_MODE_CONNECTOR_*). For bridges at the end of this chain this
+ int drm_panel_get_modes(struct drm_panel *panel, struct drm_connector *connector);
+ 
+ #if defined(CONFIG_OF) && IS_ENABLED(CONFIG_DRM_PANEL)
 
 -- 
 2.43.0
