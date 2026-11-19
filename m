@@ -2,146 +2,122 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF7E860A2615
-	for <nouveau@archiver.kernel.org>; Thu, 19 Nov 2026 01:39:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 294AE606A324
+	for <nouveau@archiver.kernel.org>; Thu, 19 Nov 2026 10:20:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=V3BM/itH
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.a=rsa-sha256 header.s=mail20150812 header.b=wrFrTipr
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3955C112124;
-	Thu, 19 Nov 2026 01:38:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 14086112277;
+	Thu, 19 Nov 2026 10:20:36 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 11DE84956F;
-	Thu, 19 Nov 2026 01:38:55 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795052334;
- b=nmsmk+fnAcaAtG0lKLZfl8L6g3U7LfyEi6MDTHqZJVDAqaGE9BgOkHjVru9aATzzxsInP
- pF3JXwGHxHs4x3wgelZniR5gNwK2kH8z6k39YDlyPhQ/eDafI9Ait9MTv7fDf1ER/2s7TgD
- OZlTZmoDORoMNTuTwhzoqgvTp2Qipa1EoPZHXW8yb3gJjaljjk0zP4o5ifhz3wIOI81oVA+
- 59otHsflctrIwKH+tw3dcfsbH3p+hTcaGAtvGEdGmWhRw0H/PPT9OVjr7AtzRv92QzLFLRv
- 9I4nKrziYzCMKVe6XRJblrU4L2dW8DtSQiGEafDNLuuyp3Psv7yg2/51IcXg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795052334; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id F41944044A;
+	Thu, 19 Nov 2026 10:20:30 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1795083630;
+ b=Hr/navqcBn7J4kUGlE0ySEpp831GIoDL0//vvDocJh4CBgjjmmE3ecCFdm8lf4ueU1QQT
+ qWcK8w/PQEJWRcietZgLQEPNQjHbeaB6umeCLGDmqIU08P02hkdhiHXy4rjsXw7c7vdEQXp
+ 6rH2USyCZdn7O2oPSiV+d3IqnASAyTO8NrVpklCFbnr0qySKHAw7vH6dpDRBjme4aunL6lz
+ HWHxDU+UD/5Oada9WdMunevRlkI2Fr+P6zPwMzNzz3+MXOIW+UOZG22vc5shk1YeKOZvjns
+ TwSWwwGqvk/AhvS2cb1mv0/YnhQmqmPSRiGR9hbsw7dDr74oTebJ7MMoS+4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1795083630; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=J067H1Ipyt4hys73NJvFPKP/LuFNnnSPrBgTMOHIEWw=;
- b=p/PKgQ7UVAIt65vcMKWRjc/v0mm90tbKZ+z5tCCfJMqfA+L4SYwDxynoEdRKjt2BDvrqC
- 4LtDHFP+PNiYBu+RzHzw7zTAXIPDFxCM56tuArU7OG0vc5xPUaV86qhlj7sW7/2KfI6T+2c
- Iy19SkuePZMQfABtNUREQIzUzANJ1YwR1FZsP9ump4CtesvRY0hChkIsrVYxe8UrTK5CgvB
- C0xswyEK5n6mo9+EZDG3MWQeQQQYRWWdvlPBF5kga+sxfAAbPPEttXsHaPxi6wAIi0rAMLg
- E/Fc39zS24IQaSpgDlKM66UjhkddrvgDbQRWfaJm3LsjjAehpXZGclkyrmKg==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=kernel.org policy.dmarc=quarantine
+ bh=kMLYuvKF8dKdiwmDA59a1qSto363i7DFLCqovWncpVM=;
+ b=gTi48jzcngF1fbW3Nq0FZzRc3orKY5nFoH+dX5tbKc8CkiWuSNg4wcblZnmUc4abo5ukE
+ qvsVSAq/Ma/6Aad4ZsKQuFRqa4aTYB+ntkFjn3/qW+5w4utQRaD076bh1s6gV252svyAtcb
+ eiKno4q11Ow8jQWvZRyWBtqKwT5sveDlVltP1Eg/A2Nx8gKQ+sPdBl6U8h+gyyvBCc5Jlzi
+ 18dHt+ds/vLkVmSbWRXat4xm+DFRvsTPSUwcZ8HmvEAQ8an1IXvR1QIcaz73BVlK0Y2VOC1
+ KDudeh3iGmtl+HaNhZzQo6xdpIH+Xp9R4Mxu1JswQqFCA0cfTiQV8F3q0pFQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=mailbox.org;
+ arc=none;
+ dmarc=pass header.from=mailbox.org policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=mailbox.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=mailbox.org
+ policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 7CB5947E7C
-	for <nouveau@lists.freedesktop.org>; Thu, 19 Nov 2026 01:38:52 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 701D411210A;
-	Thu, 19 Nov 2026 01:38:47 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5478D470A6;
-	Thu, 19 Nov 2026 01:38:47 +0000 (UTC)
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795052327;
-	b=EDjMITMXs3yH9YzPVR8PL0E8u0T4WEZpG5YCCny8/9EnDvirmZxnWimuuQngsVsWoKtq
-	 KJztLh56yEkYUlgPIdpTdhVsMJ9XvqH1uc5NXaCwfRs4+ZPJV+CpqpzJH9vzZQnB9CQwP
-	 hyHf1MUmC4ZyPkYy4x65hfIPb2W92Ey03j/LPujQe/7PSwaznGHTww/B9Nbep957FKvz1
-	 PgKR/4zqW89TgOLfWNc050lvH+4uy/sTmn0WTmjBg+SH77sbwsj//rpxdHuot/P+LMQdv
-	 uLmL/HINjfOP0vO6fPqmTHjvmeq9r8UHfZH+snO/Ueb/SqplQnfdFkS+ADGzzDxjDHg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795052327;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=J067H1Ipyt4hys73NJvFPKP/LuFNnnSPrBgTMOHIEWw=;
-	b=xvv3jVboOAF7gxPMX46zatrNcKpsfQtf0e/l7d0KMRoi6A7ECFWViKseiJ9OTT3NH1Ei
-	 F7xN2QswrNU2D0fKmCXoKRXuTxKUDEwhWv4cihO1M+glidHdkrZJThnXGQL8VdMHJ5bdZ
-	 ZC1az2vxleFfso2c9KgmHeWKvcYNPDzDLHyjVzxTMf3SAxNOXxyb2sosjDY80Nd0VSJvK
-	 B4w3vKuZBtRd4yFveitWvKJVGaD2oRl0VxR9iyHd7c8ztbY/Kn6iQOSl3o1VZsAnjlJqO
-	 gfxG041j4NGHdBrhp1BI3YuD6HHlYSEXNvCBx/RrPKdRhI4AJFRUIJqEf2M5ulx9vqQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org;
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	by kara.freedesktop.org (Postfix) with ESMTPS id DD3104020E;
+	Thu, 19 Nov 2026 10:20:27 +0000 (UTC)
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9E93310E680;
+	Thu, 19 Nov 2026 10:20:22 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest
- SHA256)
+	 key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits)
+ server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id DC11F1F000D0;
-	Thu, 19 Nov 2026 01:38:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795052327;
-	bh=J067H1Ipyt4hys73NJvFPKP/LuFNnnSPrBgTMOHIEWw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=V3BM/itHzfyUcFJ844/H3eWnHqn8FNSQfMRceNqE2qY3p7RzthH9lYRXVPQTyGpHc
-	 LbkgQKvhGEQxO7LEaMv0jmJTwiB8fi3tDyNIc+zlTzEkAKOso+1OkY1Gyg1gbXOo+2
-	 /XNDujyHgRFwuXF7xMuC4dPc4N4lRbNago37MfwAddp4fDc7XRe9Xt9AMGfzvWLzVw
-	 GOhwO2MtNPZ+0L9W+g62llSEv/ojRjxVa27SUr0gPbnAkg+V/GkhjQVgU2dnoz8kMX
-	 OkjCkzYHu1q1Tfa5HNLFeMZD3OR2cNFp0jGrSUYqmq2UrG0xte3PoTQ2FnV0/qYiAU
-	 enKieykcQfmZQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 545834B068;
-	Thu, 19 Nov 2026 01:38:38 +0000 (UTC)
-From: Dave Airlie via B4 Relay <devnull+airlied.redhat.com@kernel.org>
-Date: Thu, 19 Nov 2026 11:38:24 +1000
-Subject: [PATCH 1/2] drm/nouveau: add option to leave GSP-capable GPUs to
- other drivers
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4jVZGq6rjlzMm1S;
+	Thu, 19 Nov 2026 11:20:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812;
+	t=1795083620; h=from:from:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+	 content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kMLYuvKF8dKdiwmDA59a1qSto363i7DFLCqovWncpVM=;
+	b=wrFrTiprp0Ygwj7fisQqKLfMWazzJwQS8HPNFqbCcn3xMC23c+XlYnmWGpPY6OwTsCFYcG
+	pjdBV2XlPMgXizD5IHA860ywzUkD+zPnBEGC3P1iYty0h7dFnuiza4M6w6o0En4MdrFa29
+	+z8/8pstoFJyzCxAaLcosYSfYnFvqRobT36nmnUt0/xlqfaGVRZ2fcD0Ifm0zgDEtu/5+n
+	P8Q5PrjWKULrK0PMh7Putf64gTqx4d0cgQar9yKkwd/OUN6051FoFULV5Tr2btX33lJYti
+	3up4UWipIuXn1wiDtyGvTg7fYqQDSjJUVFutoAn1IjQz0zTDogOUfQ0NPiL7ZQ==
+Message-ID: <11c1451c97fa27ec3379965d13a6eea64e386cc3.camel@mailbox.org>
+Subject: Re: [PATCH v2 0/3] dma-buf: dma-fence: Remove dma_fence_init64()
+From: Philipp Stanner <phasta@mailbox.org>
+To: Philipp Stanner <phasta@kernel.org>, Sumit Semwal
+ <sumit.semwal@linaro.org>,  Christian =?ISO-8859-1?Q?K=F6nig?=	
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Sunil Khatri
+ <sunil.khatri@amd.com>,  Vitaly Prosyak <vitaly.prosyak@amd.com>, Prike
+ Liang <Prike.Liang@amd.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=	
+ <thomas.hellstrom@linux.intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>,  David Rosca <david.rosca@amd.com>, Timur
+ =?ISO-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>, Maxime Ripard
+ <mripard@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?ISO-8859-1?Q?Ma=EDra?= Canal	 <mcanal@igalia.com>, Raspberry Pi Kernel
+ Maintenance	 <kernel-list@raspberrypi.com>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>
+Date: Thu, 19 Nov 2026 11:20:14 +0100
+In-Reply-To: <20261118134522.1646892-2-phasta@kernel.org>
+References: <20261118134522.1646892-2-phasta@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.60.2 (3.60.2-3.fc44) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261119-nova-nouveau-gsp-v1-1-4cde2bc41132@redhat.com>
-References: <20261119-nova-nouveau-gsp-v1-0-4cde2bc41132@redhat.com>
-In-Reply-To: <20261119-nova-nouveau-gsp-v1-0-4cde2bc41132@redhat.com>
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8567; i=airlied@redhat.com;
- h=from:subject:message-id;
- bh=dB5GifNeSDXgxZcLfO6q1mzq1gCWPBoE6fWDut9Ef/A=;
- b=owEBbQKS/ZANAwAKAQx081l5xIa+AcsmYgBq/lMcSmexeaDEa1HhdYoj6sgGcSIZskQfxrRUt
- 1uZTxeNlhOJAjMEAAEKAB0WIQQQptkdobBb0p9t66wMdPNZecSGvgUCav5THAAKCRAMdPNZecSG
- vglFD/4nel/N7ZGLwolyMIZGScNX71Xu1MVv6GjdzQIdp09iUU+M/9ToBsX2Kci4iP5XVKXlzp3
- yUD+PjY83295KbammngjqTPdiHi97OsLAJeEMWxyCY5eBOKaGvV3Mjd2PupmTwx/UDuuZ/a1mES
- L+hfYPtmv+7IGaQSdNPsicAtgUvgZ8UAdQ09/0bXYbEBoStWEon99GXSZLrnWQiDVFal8edtDLa
- bKJc7AEYvdlZEbOuOteEj9RfvUffpAKMWecKsptPhfK76ZsxRi4ioapTxm1SGBOWN8cmqLf/Ny3
- ZkfRgCtZv2NVHhhgdwmIX8dPhWgHiB48oegEn0DQUSd7maGIkTSKyJf5UBhOrZkeaZlxiDk6PZt
- 21QlbJYzFWImS9PYEkxklAWyn6uqqoSwoKieatq9miV5BzlwvaL7m2TbLTXFsM9Pb5dxJWGqAqv
- UXRejJzTz5CLhOc8DO2i6SIC4Dny2aLmq0s7D7gRoFMhSejm9uwxVT9vaEP7/QMbLWRRw6Spaw9
- AGug2Exhre+ze56KIF3mQsaQT2Q9OMz7RYsCRDWMdMn3rlG2rC/uSgDHc3fRrCg2w23dsATj56M
- I5/wqW4bz1Sukxe8Ag8IIYbNFNI3mnmPaEI2Dz4TRJdI9XpoKsnCUb3hmyeMBWIUFjX38iXBYcC
- gc/d49VS8nCntzg==
-X-Developer-Key: i=airlied@redhat.com; a=openpgp;
- fpr=10A6D91DA1B05BD29F6DEBAC0C74F35979C486BE
-X-Endpoint-Received: by B4 Relay for airlied@redhat.com/default with
- auth_id=1321
-X-Original-From: Dave Airlie <airlied@redhat.com>
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: 4KBVLB5JQINTUBJWNHD4LKMR4L2NDEJU
-X-Message-ID-Hash: 4KBVLB5JQINTUBJWNHD4LKMR4L2NDEJU
-X-MailFrom: devnull+airlied.redhat.com@kernel.org
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- nova-gpu@lists.linux.dev, Dave Airlie <airlied@redhat.com>
-X-Mailman-Version: 3.3.8
+X-MBO-RS-ID: e0df46cc69f1b87359b
+X-MBO-RS-META: 4qqptwxqro4tns8nyafutn165yabqokk
+Message-ID-Hash: 4V2SLWS3LNYRTLZYZFBHNPNFYP3GECRQ
+X-Message-ID-Hash: 4V2SLWS3LNYRTLZYZFBHNPNFYP3GECRQ
+X-MailFrom: phasta@mailbox.org
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
+ banned-address; emergency; member-moderation; nonmember-moderation;
+ administrivia; implicit-dest; max-recipients; max-size; news-moderation;
+ no-subject; digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ imagination@lists.freedesktop.org, lima@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-usb@vger.kernel.org, rust-for-linux@vger.kernel.org
+X-Mailman-Version: 3.3.10
 Precedence: list
-Reply-To: airlied@redhat.com
+Reply-To: phasta@kernel.org
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4KBVLB5JQINTUBJWNHD4LKMR4L2NDEJU/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4V2SLWS3LNYRTLZYZFBHNPNFYP3GECRQ/>
 Archived-At: 
- <https://lore.freedesktop.org/20261119-nova-nouveau-gsp-v1-1-4cde2bc41132@redhat.com/>
+ <https://lore.freedesktop.org/11c1451c97fa27ec3379965d13a6eea64e386cc3.camel@mailbox.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -149,207 +125,21 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Dave Airlie <airlied@redhat.com>
+On Wed, 2026-11-18 at 14:45 +0100, Philipp Stanner wrote:
+> Philipp Stanner (3):
+> =C2=A0 dma-buf: dma-fence: Add flags parameter to dma_fence_init()
+> =C2=A0 dma-buf: Port users of dma_fence_init64()
+> =C2=A0 dma-buf: dma-fence: Remove dma_fence_init64()
 
-nouveau currently binds to every NVIDIA GPU it encounters. The
-nova-core driver is being written for GSP-capable (Turing and later)
-GPUs, so the two drivers compete for the same devices, with whichever
-registers first winning.
+Applied to drm-misc-next with the Rbs.
 
-Add the DRM_NOUVEAU_BIND_GSP Kconfig option (default y) and a bind_gsp
-module parameter, defaulting to the Kconfig value and able to override
-it in both directions, controlling whether nouveau claims GSP-capable
-GPUs.
+Thx guys.
 
-When binding is disabled, the GPU is rejected in nvkm_device_ctor(),
-right after the chipset has been identified and before any subdevs are
-constructed; constructing subdevs would already load GSP firmware for
-a GPU that is not going to be used. Pre-Turing GPUs are always bound,
-as no other driver claims them, and Tegra platform devices are
-unaffected since nova-core only handles PCI devices.
-
-Distributions that want nova-core to be the default driver for
-GSP-capable GPUs can set CONFIG_DRM_NOUVEAU_BIND_GSP=n; the
-nouveau.bind_gsp=0 kernel command line parameter switches it at boot
-time.
-
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/nouveau/Kconfig                    | 17 +++++++++++++++++
- drivers/gpu/drm/nouveau/include/nvkm/core/pci.h    |  2 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c              |  9 ++++++++-
- drivers/gpu/drm/nouveau/nvkm/engine/device/base.c  | 16 +++++++++++++++-
- drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c   |  4 ++--
- drivers/gpu/drm/nouveau/nvkm/engine/device/priv.h  |  2 +-
- drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c |  5 ++++-
- 7 files changed, 48 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
-index 3b5757aed9c8..863cc235838b 100644
---- a/drivers/gpu/drm/nouveau/Kconfig
-+++ b/drivers/gpu/drm/nouveau/Kconfig
-@@ -120,3 +120,20 @@ config DRM_NOUVEAU_SIL164
- 	help
- 	  Support for sil164 and similar single-link (or dual-link
- 	  when used in pairs) TMDS transmitters.
-+
-+config DRM_NOUVEAU_BIND_GSP
-+	bool "Make nouveau the default driver for GSP-capable GPUs"
-+	depends on DRM_NOUVEAU
-+	default y
-+	help
-+	  Make nouveau bind to all NVIDIA GPUs by default, as it always
-+	  has.
-+
-+	  If another NVIDIA driver, such as nova-core, should claim the
-+	  GSP-capable (Turing and later) GPUs instead, say N here; nouveau
-+	  then leaves those GPUs to other drivers and continues to bind to
-+	  older GPUs itself. nouveau can also be prevented from binding to
-+	  GSP-capable GPUs at boot with nouveau.bind_gsp=0 on the kernel
-+	  command line.
-+
-+	  If unsure, say Y.
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/pci.h b/drivers/gpu/drm/nouveau/include/nvkm/core/pci.h
-index 7444c4d59e09..075fe192b26f 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/core/pci.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/core/pci.h
-@@ -10,5 +10,5 @@ struct nvkm_device_pci {
- };
- 
- int nvkm_device_pci_new(struct pci_dev *, const char *cfg, const char *dbg,
--			struct nvkm_device **);
-+			bool bind_gsp, struct nvkm_device **);
- #endif
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 5e1336615cf6..582eb0c91b10 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -112,6 +112,11 @@ MODULE_PARM_DESC(runpm, "disable (0), force enable (1), optimus only default (-1
- static int nouveau_runtime_pm = -1;
- module_param_named(runpm, nouveau_runtime_pm, int, 0400);
- 
-+MODULE_PARM_DESC(bind_gsp, "bind to GSP-capable (Turing and later) GPUs "
-+		 "(0 = leave them to other drivers, e.g. nova)");
-+static bool nouveau_bind_gsp = IS_ENABLED(CONFIG_DRM_NOUVEAU_BIND_GSP);
-+module_param_named(bind_gsp, nouveau_bind_gsp, bool, 0400);
-+
- static const struct drm_driver driver_legacy_kms;
- static const struct drm_driver driver_atomic_kms;
- 
-@@ -881,7 +886,8 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
- 	/* We need to check that the chipset is supported before booting
- 	 * fbdev off the hardware, as there's no way to put it back.
- 	 */
--	ret = nvkm_device_pci_new(pdev, nouveau_config, nouveau_debug, &device);
-+	ret = nvkm_device_pci_new(pdev, nouveau_config, nouveau_debug,
-+				  nouveau_bind_gsp, &device);
- 	if (ret)
- 		return ret;
- 
-@@ -1460,6 +1466,7 @@ static void nouveau_display_options(void)
- 	DRM_DEBUG_DRIVER("... runpm        : %d\n", nouveau_runtime_pm);
- 	DRM_DEBUG_DRIVER("... vram_pushbuf : %d\n", nouveau_vram_pushbuf);
- 	DRM_DEBUG_DRIVER("... hdmimhz      : %d\n", nouveau_hdmimhz);
-+	DRM_DEBUG_DRIVER("... bind_gsp      : %d\n", nouveau_bind_gsp);
- }
- 
- static const struct dev_pm_ops nouveau_pm_ops = {
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-index a2ed8c4fe52a..a027860fa869 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-@@ -3143,7 +3143,7 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
- 		 const struct nvkm_device_quirk *quirk,
- 		 struct device *dev, enum nvkm_device_type type, u64 handle,
- 		 const char *name, const char *cfg, const char *dbg,
--		 struct nvkm_device *device)
-+		 bool bind_gsp, struct nvkm_device *device)
- {
- 	struct nvkm_subdev *subdev;
- 	u64 mmio_base, mmio_size;
-@@ -3381,6 +3381,20 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
- 		goto done;
- 	}
- 
-+	/* Unless nouveau is the default NVIDIA driver, leave GSP-capable
-+	 * (Turing and later) PCI GPUs to other drivers, such as nova-core.
-+	 * Older GPUs are always bound.
-+	 *
-+	 * Reject before subdevs are constructed, as that would already load
-+	 * GSP firmware for GPUs that are not going to be used.
-+	 */
-+	if (device->func->pci && device->card_type >= TU100 && !bind_gsp) {
-+		nvdev_info(device, "leaving GSP-capable GPU to other drivers "
-+			   "(bind_gsp=0)\n");
-+		ret = -ENODEV;
-+		goto done;
-+	}
-+
- 	/* read strapping information */
- 	strap = nvkm_rd32(device, 0x101000);
- 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c
-index 248623b91e29..1477a2fff51f 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c
-@@ -1650,7 +1650,7 @@ nvkm_device_pci_func = {
- 
- int
- nvkm_device_pci_new(struct pci_dev *pci_dev, const char *cfg, const char *dbg,
--		    struct nvkm_device **pdevice)
-+		    bool bind_gsp, struct nvkm_device **pdevice)
- {
- 	const struct nvkm_device_quirk *quirk = NULL;
- 	const struct nvkm_device_pci_device *pcid;
-@@ -1703,7 +1703,7 @@ nvkm_device_pci_new(struct pci_dev *pci_dev, const char *cfg, const char *dbg,
- 				    pci_dev->bus->number << 16 |
- 				    PCI_SLOT(pci_dev->devfn) << 8 |
- 				    PCI_FUNC(pci_dev->devfn), name,
--			       cfg, dbg, &pdev->device);
-+			       cfg, dbg, bind_gsp, &pdev->device);
- 
- 	if (ret)
- 		return ret;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/priv.h b/drivers/gpu/drm/nouveau/nvkm/engine/device/priv.h
-index d0c40f034244..a462051d2977 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/priv.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/priv.h
-@@ -54,7 +54,7 @@ int  nvkm_device_ctor(const struct nvkm_device_func *,
- 		      const struct nvkm_device_quirk *,
- 		      struct device *, enum nvkm_device_type, u64 handle,
- 		      const char *name, const char *cfg, const char *dbg,
--		      struct nvkm_device *);
-+		      bool bind_gsp, struct nvkm_device *);
- int  nvkm_device_init(struct nvkm_device *);
- int  nvkm_device_fini(struct nvkm_device *, enum nvkm_suspend_state suspend);
- #endif
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-index 3c8d0878891a..1e69662f91cd 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-@@ -329,9 +329,12 @@ nvkm_device_tegra_new(const struct nvkm_device_tegra_func *func,
- 
- 	tdev->gpu_speedo = tegra_sku_info.gpu_speedo_value;
- 	tdev->gpu_speedo_id = tegra_sku_info.gpu_speedo_id;
-+	/* Platform devices are always bound, regardless of the bind_gsp
-+	 * policy for PCI devices.
-+	 */
- 	ret = nvkm_device_ctor(&nvkm_device_tegra_func, NULL, &pdev->dev,
- 			       NVKM_DEVICE_TEGRA, pdev->id, NULL,
--			       cfg, dbg, &tdev->device);
-+			       cfg, dbg, true, &tdev->device);
- 	if (ret)
- 		goto powerdown;
- 
-
--- 
-2.56.1
-
-
+P.
