@@ -2,112 +2,122 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFDE606A325
-	for <nouveau@archiver.kernel.org>; Fri, 20 Nov 2026 05:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB92D606A606
+	for <nouveau@archiver.kernel.org>; Fri, 20 Nov 2026 16:42:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Se+8VKle
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=QTTxjt7B
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id F41CE10FFC2;
-	Fri, 20 Nov 2026 05:34:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B57DE112C01;
+	Fri, 20 Nov 2026 16:41:59 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id DE0DB404BF;
-	Fri, 20 Nov 2026 05:34:20 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 9EC2740110;
+	Fri, 20 Nov 2026 16:41:54 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795152860;
- b=KpcfRG/pQeqsXBOARXzEN9/phLq0FQM/lui8UtCgu8NInvP1jUGdNFtMZ24xkre1cPJoU
- WgPgsoXm6Sixn8GIhOgGUTJ8cek96qRhJkkGsv4DPEqXf5wk4/QojH6CBOWaku2BnpLpy28
- ISO9q3EjH/Hbsc6SSN9/tuhRAbcI/qwj+KSYvY08gT13pi5KsOM2bQjkwFN4EPuQVbAJPqD
- hCPXehDCAusIroTcaC9GHX1vm+SOs567ASsNEfmcW6I2QA+K8x7nNlyqlttsre770MJKP1A
- Rg4kWr+SNcM0OCCeNMU1pqKn+kvXZDMVaTuVYZNvkx9itHgSujKZGAHp/v7w==
+ s=20240201; t=1795192914;
+ b=ajMqwgvXhnfxYAKcjxypcYZQJXR4Mj2rhi5OYxLMUOL7T+46Q1+4okhWoTIvyRi5hn5F5
+ fU0ltG7p17+xksGStqceXlePllMYPHe3cxLYA8J9NpnytI1c19nzbib+JwA0J4mmEhC59Lq
+ xHGJ4pVi6Ghj9umPY/iZzk3VtMvuURMnYb8ku2hzfoshp7ehAW9OunmNQd2AgKzd7aJO1O6
+ jPBbfxd4mCgLfaIdO7mh+thXA0hfPkXqGsiuIrLfk+VM3ihsHGZ+FuAZGc88a3AAU5XY+Pd
+ VK9VsJeW2D9S+dm0jQ3r8kB0UtZMkVHeFihDdJp/aQIE5a1j15tTIgxBffVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795152860; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795192914; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=gzHY8FQ+NrEVRH2IMQxm2M/u6YGcUwpzTFex5Db/fio=;
- b=WjWskXlJXt+HoTj9ZCyL5fmA2OD1fks2wre6xX2QcENb73DdG/AFXFQkSV0Y7WFfFygaZ
- KS1ks6zSWxWkDiM0nObNr7ZBNPqS1nvK9ckTArvlwa/rYjVgov85esav4IuaS+3mxqgPUtJ
- SulS2qoHDS5ZitwD13I4fd2HK0jAZJOFEnY5rFDKf0NcSpssjgDwct/J0/VJQL9F56mYos/
- Fy8MpzYoe7Ra1mlirJmdJtoOoXitLJu8T8rUiYBP71RKZkQK0kuRb+4q08fxvkPGi4KXEd9
- xD7mDYdFO+gNQDLerq3+Swus2gCi1GlmIA0Th61gMWkxUsCdpRGLFMKAVQKQ==
+ bh=6wlmw4As4I8rmN0wK02hXCau5KdxeTaHKwKPRf8LsWg=;
+ b=xyb9GVIKTnAOzPFcW53rAyLBkYbH2nehONYuY8KNV4eunZYEp8C5AT6VpvWO3Sq50aY5f
+ 7nOlswK60lUuJM1au8Mpm5+v5YWeBXR2lTCQrdMMo8hPWwan6otUwCD81XoFWDlnNNRFqJ4
+ bzbPiEGT1XYdAWOb5/Aa4zhUCTPEbFhOsTFn6gQ1nj0y1sMpyLdNgj47QZS76i3QVADYK0M
+ r2mD+7p25QeOHlmw5csiY0zD/MBxrshw84S1SpO2GddKyuShihn5lavMsXn5OGiUONVEGyR
+ rA/pugHTMNuST/YV4Y6RGxpupp9UMfyiqArj6ZemGZKDrEze/HHQcpAfgiOA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=intel.com header.i=@intel.com;
  arc=none;
- dmarc=pass header.from=intel.com policy.dmarc=none
+ dmarc=pass header.from=linux.intel.com policy.dmarc=none
 Authentication-Results: mail.freedesktop.org;
  dkim=pass header.d=intel.com header.i=@intel.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
+ dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 97EE040064
-	for <nouveau@lists.freedesktop.org>; Fri, 20 Nov 2026 05:34:18 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6E9BA10E547;
-	Fri, 20 Nov 2026 05:34:13 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2E64340006
+	for <nouveau@lists.freedesktop.org>; Fri, 20 Nov 2026 16:41:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 01FDA112B8B;
+	Fri, 20 Nov 2026 16:41:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795152854; x=1826688854;
+  t=1795192906; x=1826728906;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OCVdDxMr1t8M6dHp++0c2NOjv52F3+0v0dMULJONneI=;
-  b=Se+8VKledSyLPsq8TRDNBJGaVjJpmt6hPIVSnQLXmuDdDbf/QWALMxU0
-   B6r8/btG4At5XhdVPQ4JSg9h1DRf9W4elT6sdJfIlrfTwjmwM/dLyASWS
-   roBcWRdUrh4ZGMqjSeRWoI/LxgqMiHe8ZpopFcvRjVmdRh8I98XDqFOcY
-   3Z+UoWvKfMepyRx+HvpVw0zATKUWkiJ/smAW18D5fnx3HMTiqzMDrqoCS
-   euBKnPK+zFkVSeeyG+U3ykOex+JgSD5ZAH0JozOL9crNcisqQxSBGmAR8
-   Z0pStrSCHN4AXPRmWS97+DIywPmq6R7kmHbrnQS5OMpN/p0I1AVtLHDSG
-   g==;
-X-CSE-ConnectionGUID: w6ftqdIKSumBMFbnE1aEPQ==
-X-CSE-MsgGUID: Dx46SQH7SQm3Azmw8q95FQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4031998"
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400";
-   d="scan'208";a="4031998"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 21:34:13 -0800
-X-CSE-ConnectionGUID: hAI4nHgNSKCbgnGuJPNlMA==
-X-CSE-MsgGUID: +H9SVWYHQuKgfc2f9usO8A==
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=Mt37fmIUELj0xI9G800lQNgzenR8tQzCZwNS3sQls6s=;
+  b=QTTxjt7Bn70kAaH3QBpJgl1Dr5vtXilZO7jNDhEPPTNsnghTwJG21lPM
+   Et9dKaYxxWbcZnAgbTFgCs5OFqY/hxSqnOFhePgUOQ0whRjL0WesKFWDK
+   HFMjRgWT6IVriI9/Ztj/GHfEhq7p+9xsB+vFoC/m9wruUDFB6z55nsmDe
+   KPSOMTYIPaMezrXcKoMAS7bcvXebmPXt5gaToaN9jGrYZ3SSu04u6aLXm
+   E+DD94s/DNAnqzStkQdOBCoBt0fUI0prcPziYsOj9bk1CGQ8ol0oPN2Ge
+   sPXWutwj5HlegjO9qImjR3Z02AoxQE7cPi2pY0T1IsPH1xypbRz04uX+q
+   A==;
+X-CSE-ConnectionGUID: 8P90kWWLSHWPQAoKZkkXsA==
+X-CSE-MsgGUID: A22u1h1BTzquax9w5wqTZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="3957333"
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400";
+   d="scan'208";a="3957333"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2026 08:41:46 -0800
+X-CSE-ConnectionGUID: eqDDr+zvTM+bRtypcysw+w==
+X-CSE-MsgGUID: 01oe9egoQMy1BFDCeS6wYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400";
-   d="scan'208";a="10612149"
-Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 19 Nov 2026 21:34:12 -0800
-Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1xUHGC-00000001HAZ-3rSc;
-	Fri, 20 Nov 2026 05:34:08 +0000
-Date: Fri, 20 Nov 2026 13:33:54 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 19/20] drm/nouveau: Allow platform driver build with
- COMPILE_TEST=y
-Message-ID: <202611201357.plofVxy6-lkp@intel.com>
-References: <20261118214518.29317-20-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400";
+   d="scan'208";a="11087115"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.66])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2026 08:41:41 -0800
+Date: Fri, 20 Nov 2026 18:41:37 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Mario Limonciello <mario.limonciello@amd.com>
+Subject: Re: [PATCH v12 01/12] drm: add connector LUMINANCE property
+Message-ID: <awB4Qe83u0l0XPKA@intel.com>
+References: <20261119-superm1-backlight-property-v12-0-89d5217d3618@amd.com>
+ <20261119-superm1-backlight-property-v12-1-89d5217d3618@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20261118214518.29317-20-ville.syrjala@linux.intel.com>
-Message-ID-Hash: PKYGPHCJ4UKFRRTSXXSURXOGXL6MSNPA
-X-Message-ID-Hash: PKYGPHCJ4UKFRRTSXXSURXOGXL6MSNPA
-X-MailFrom: lkp@intel.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261119-superm1-backlight-property-v12-1-89d5217d3618@amd.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Message-ID-Hash: YIDPQ22E2Z72QPVVMLWE64ZTGEZWURBV
+X-Message-ID-Hash: YIDPQ22E2Z72QPVVMLWE64ZTGEZWURBV
+X-MailFrom: ville.syrjala@intel.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; emergency; member-moderation; nonmember-moderation;
  administrivia; implicit-dest; max-recipients; max-size; news-moderation;
  no-subject; digests; suspicious-header
-CC: oe-kbuild-all@lists.linux.dev, Danilo Krummrich <dakr@kernel.org>,
- nouveau@lists.freedesktop.org
+CC: Maxime Ripard <mripard@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Mario Limonciello <superm1@kernel.org>, Xaver Hugl <xaver.hugl@gmail.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PKYGPHCJ4UKFRRTSXXSURXOGXL6MSNPA/>
-Archived-At: 
- <https://lore.freedesktop.org/202611201357.plofVxy6-lkp@intel.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YIDPQ22E2Z72QPVVMLWE64ZTGEZWURBV/>
+Archived-At: <https://lore.freedesktop.org/awB4Qe83u0l0XPKA@intel.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -115,63 +125,87 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Ville,
+On Thu, Nov 19, 2026 at 05:27:28PM -0600, Mario Limonciello wrote:
+> Panel brightness is a property of a display, and thus of a DRM
+> connector. Add an atomic per-connector LUMINANCE range property so
+> compositors can manage relative panel luminance together with the rest
+> of the display state.
+> 
+> Keep the core backend-agnostic. Drivers create the property with their
+> hardware range and implement connector helper callbacks to set luminance
+> or disable panel emission. The atomic helpers sequence those callbacks
+> around pipeline enable and disable, including luminance-only commits.
+> The panel is left lit when the pipeline enters self refresh, and the
+> luminance is only reprogrammed when it changes or a modeset enables the
+> pipeline.
+> 
+> The stored property value is independent of display power. A commit made
+> while the connector is inactive is retained and applied on the next
+> enable; disabling the pipeline does not overwrite it.
+> 
+> LUMINANCE values are relative, driver-defined levels rather than
+> absolute luminance in cd/m^2. The interface supports emissive panels as
+> well as panels with a separate backlight.
+> 
+> Keep the interface behind a default-off DRM_LUMINANCE option. Migrated
+> drivers retain their legacy backlight class ABI unless the new interface
+> is explicitly selected, allowing the DRM UAPI and legacy compatibility
+> policy to remain separate.
+> 
+> Acked-by: Javier Martinez Canillas <javierm@redhat.com>
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> ---
+> v11:
+>  * Don't call .disable_luminance when the CRTC enters self refresh (Sashiko)
+>  * Only call .set_luminance when the luminance changes or on a modeset
+>    that isn't a self refresh exit (Leo Li, Sashiko)
+>  * Fix the .set_luminance self refresh documentation
+> v10:
+>  * Add tag
+> ---
+>  drivers/gpu/drm/Kconfig                    | 14 +++++
+>  drivers/gpu/drm/drm_atomic_helper.c        | 98 +++++++++++++++++++++++++++++-
+>  drivers/gpu/drm/drm_atomic_state_helper.c  |  7 +++
+>  drivers/gpu/drm/drm_atomic_uapi.c          |  5 ++
+>  drivers/gpu/drm/drm_connector.c            | 57 +++++++++++++++++
+>  drivers/gpu/drm/tests/drm_connector_test.c | 28 +++++++++
+>  include/drm/drm_atomic_helper.h            |  3 +
+>  include/drm/drm_connector.h                | 16 +++++
+>  include/drm/drm_modeset_helper_vtables.h   | 28 +++++++++
+>  9 files changed, 255 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index 61111d50b1c65..1bbe2c2d7c76f 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -33,6 +33,20 @@ endmenu
+>  
+>  if DRM
+>  
+> +config DRM_LUMINANCE
+> +	bool "DRM connector luminance support"
+> +	help
+> +	  Expose relative luminance as an atomic DRM connector property. Values
+> +	  are driver-defined levels rather than absolute luminance in cd/m^2.
+> +	  Drivers provide connector helper callbacks to program their hardware;
+> +	  the DRM core does not depend on a particular backend.
+> +
+> +	  Drivers migrated to this interface will use it instead of registering
+> +	  a legacy backlight class device. Leave this disabled to preserve the
+> +	  de-facto userspace ABI in /sys/class/backlight.
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on drm-misc/drm-misc-next]
-[also build test ERROR on next-20261116]
-[cannot apply to linus/master v7.4-rc3]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ville-Syrjala/drm-tilcdc-Allow-build-without-__iowmb/20261118-234458
-base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
-patch link:    https://lore.kernel.org/r/20261118214518.29317-20-ville.syrjala%40linux.intel.com
-patch subject: [PATCH v4 19/20] drm/nouveau: Allow platform driver build with COMPILE_TEST=y
-config: i386-buildonly-randconfig-1002-20261120 (https://download.01.org/0day-ci/archive/20261120/202611201357.plofVxy6-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261120/202611201357.plofVxy6-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202611201357.plofVxy6-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   drivers/gpu/drm/nouveau/nouveau_platform.c: In function 'nouveau_platform_resume':
->> drivers/gpu/drm/nouveau/nouveau_platform.c:53:37: error: incompatible type for argument 1 of 'gk20a_devfreq_resume'
-      53 |         return gk20a_devfreq_resume(dev);
-         |                                     ^~~
-         |                                     |
-         |                                     struct device *
-   In file included from drivers/gpu/drm/nouveau/nouveau_platform.c:24:
-   drivers/gpu/drm/nouveau/nvkm/subdev/clk/gk20a_devfreq.h:20:54: note: expected 'struct device' but argument is of type 'struct device *'
-      20 | static inline int gk20a_devfreq_resume(struct device dev) { return 0; }
-         |                                        ~~~~~~~~~~~~~~^~~
->> drivers/gpu/drm/nouveau/nouveau_platform.c:54:1: warning: control reaches end of non-void function [-Wreturn-type]
-      54 | }
-         | ^
-
-
-vim +/gk20a_devfreq_resume +53 drivers/gpu/drm/nouveau/nouveau_platform.c
-
-6ca1701cecdb2de Aaron Kling 2025-09-06  50  
-6ca1701cecdb2de Aaron Kling 2025-09-06  51  static int nouveau_platform_resume(struct device *dev)
-6ca1701cecdb2de Aaron Kling 2025-09-06  52  {
-6ca1701cecdb2de Aaron Kling 2025-09-06 @53  	return gk20a_devfreq_resume(dev);
-6ca1701cecdb2de Aaron Kling 2025-09-06 @54  }
-6ca1701cecdb2de Aaron Kling 2025-09-06  55  
+I don't think this will fly if it breaks the backlight class interface.
+No one can actually enable this outside of some niche embedded use
+cases where backwards compatibility is not an issue. I think what
+you need is a generic backlight class implementation on top of this.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Ville Syrjälä
+Intel
