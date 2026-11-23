@@ -2,151 +2,107 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0E9B606A31E
-	for <nouveau@archiver.kernel.org>; Tue, 24 Nov 2026 01:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EABB606A31E
+	for <nouveau@archiver.kernel.org>; Tue, 24 Nov 2026 02:13:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=PjtWr9eW
+	dkim=pass (2048-bit key, unprotected) header.d=cirad.fr header.i=@cirad.fr header.a=rsa-sha256 header.s=573E3878-7916-11F1-BF4B-F68474317960 header.b=ltNriqoc
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C923110F2E8;
-	Tue, 24 Nov 2026 01:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 84B2210F304;
+	Tue, 24 Nov 2026 02:13:11 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9BD28403B8;
-	Tue, 24 Nov 2026 01:54:03 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795485243;
- b=Jg0yoPaSeA/OsQFlA6I2oi77AP9O3NWupwDK4czkACpiM+kFQBRWWKdcq4aWOXXkHPMHR
- jjZHd+FLvTSO1pUkz7Hz+d8FspaB2Fdq8uQ5pc/VK1fRfISI0M7mMeTjR+jFfv8UOAKbfxp
- FrDSo1FANN9m6GdpOaxTsuJzwhM8IPaqtfNeu+PLEX9z5CQA3w4oNIffESfNk0cNq3DwBRe
- yzk9P9B7yNxtCbGfTzlymZchh//Zcm66KFgS0nTKIwy0jcH9dmT8zBJi3iKW83me7eNlXj8
- yfMK9mmX8wPmaSnZbAP4j8AcgUPjmxoEoFqYNhf5C+3UW57UTvIRFqMHrayw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795485243; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 68116403B8;
+	Tue, 24 Nov 2026 02:13:06 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1795486386;
+ b=kbDyfAL2XoVCMKJrNQQNLpRhvfgQD8mk3z8n7p4xeJvYTjgy/+2I1kCRyB2aUIEp5cmN2
+ bUXtqbO2hE+1/3bpCBN0fKhziRQuLS/nKt4BNM1tBIfBSARZYeVG4JJ/002EjKQSwt6Zsxi
+ QC49EHHWVfdw+qW/ydWFdYardxyGICpWCw0yQ181uI+4/5J7SMmuWVH+H84ymtB5FIJzcY8
+ LNoE/HS10Ee/0Bnc6j7sIrKSdO01P1Im/pdPhVAskItkBVyhq1JzqvDNVMbeORF/PFSQLOd
+ aC8+J3XemJV/CPCEAmhsvsDMn6Lx0BQ/yaNlmY74AG3x0pLYA+G4r423uUog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1795486386; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=cqXrnujEt5rPik7Z3L5BcXXRInlNZ0roSGhQAAJNBos=;
- b=bO4GOxt/DRKujHScJRFZT1qekW5BAc7XaWZ5XDY1Gr6y1rDgnYeDD9yln5JhSplfFu8OK
- dG2mpc1pHilIFO1NLhU/bX98G0juTo1Xx4D488NB6dTL4sgcFI6XjzYKynFzkIjM+sy0GKZ
- dJUNysjxCfnJkf8d3yBy1kjwxcrqciNscfPdOjABijYF2baF023w2djTncTxqd3Afn7AUW7
- 0WCqVgR1W8jQXhZtbHsYiGOlSxVX/z0BeDkAJzxSJMZnntOWW12TULqxxfMxI1pqE4wCtjf
- cKxJ2GNkdh0lzcD4GcGegnkfTPkzLQfNMf6m2RFJa8EtQTkJHrqIw3bbmO9w==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass header.from=gmail.com policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+ bh=xZtjDxWgaBdvhVoJSv/HBBvu1unqWARIW7iSyxAGJGI=;
+ b=IsTWtZUwwWJFCtH3HdYwX10N/54SnRnZgj7mJHJK0Z6gpexaF/N7ry504GrajujVN3+74
+ yltmzDXZ7ATmG27AyBFxha2yItojZM85xTNcWT1Gb9//JYdjwJ+fxY317VLHT8x5tttj+Vt
+ ATzbT41876Z0cLqTtjUFllZJ4tNJJMtFMVDRHqFZ5F/NBmum4iBoUoyRhNSdI9/DDaWuQqM
+ N1KI9eKeb2fl7Gy8pvlEYxvcsjVtRyknJoH1w/iY9hwivzOCSXqN6YAphMPSwb1GFlODvTD
+ p9gY//0HmA87nYUcWal7HRttBGwdLwO1l5DOy2R460UpkxFTJO1ok8qmjT2w==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=cirad.fr;
+ arc=none;
+ dmarc=pass header.from=cirad.fr policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=cirad.fr;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=cirad.fr policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id CDC7340264
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 01:54:00 +0000 (UTC)
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com
- [209.85.219.47])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BA63510ED1C
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 01:53:55 +0000 (UTC)
-Received: by mail-qv1-f47.google.com with SMTP id
- 6a1803df08f44-92123f02faeso41482926d6.1
-        for <nouveau@lists.freedesktop.org>;
- Mon, 23 Nov 2026 17:53:55 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795485235; cv=none;
-        d=google.com; s=arc-20260327;
-        b=X0/IZosqxzrkYuuZxpYSxTJqRpqko7NNY0nKm9nVks2Cj21WjrBLJElIO33wOeMES/
-         mqbYK+JsvlD30saDjFDapVnYqOatNaNd8pNe5u8W3jO6KwWUo76E9gvWwML+FoqjHF/U
-         oDSRdflKWiZCZAp2iI5V8yX6zVsPKmkqoWj1evVtc8sEXjPjDOadMICgvGZdL8ezoHSX
-         Sk7i7P4wtLULGmCO6zLdz80+aiReQg+a0AE9Hl6cerZ7DWAd9uGhNUnloENFFttvhwKQ
-         jXTr/u8Wx7hWU7CcFNA52ReAb/jIH2+CjriAZxZvNqhrJfUq+wEuSzFjf5UP03V5pDUk
-         HbNg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=cqXrnujEt5rPik7Z3L5BcXXRInlNZ0roSGhQAAJNBos=;
-        fh=AUhxdm2b17CfxAaYQsUQXm3y5OBUBHwAUk4x50SriOY=;
-        b=bNcZfZU29LKfopGEhWkIbRao6Faopb2uGoENJ09PW/OFsWbofA7A9GDMeZ8rVleRAo
-         qqFsfdWjZv2doIeZ5OaXUcc2uXIUAp9w/X1uigIsFVilbF3zUyzK3ooHxuiHnIH3HrBr
-         cCOla3lDbEeEMb0rcbPWI2AvuD2hE4JcADvhsMpA5mdhXlq3FCIlD9Wyx7HIO9rX1A9n
-         EpRWdIHXZjvx2GZK7W3fivqz0atMjk/clStS9jlUlDfnaXQTtDZl/omRQkBoHPoUdmev
-         XZ6atPTsrALVU3Of1nnO2UyVpM6J4R+aWZqmBOC7CqVZjUhVXi1bQbMLpcgCwjISLHAg
-         y1kQ==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795485235; x=1796090035;
- darn=lists.freedesktop.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=cqXrnujEt5rPik7Z3L5BcXXRInlNZ0roSGhQAAJNBos=;
-        b=PjtWr9eWB0ttFaPALTbT55U0MMM2ewHbPJ8PjKWwQ0Mh1JMuhhphen8TKqfSeCWere
-         dvdwgQLPBvWxE2GcX3YIsNR5L8P/Pr7cdCkCKCRSxoeAKKs0W7d4ZNbEuPPlNIZYDhvw
-         mBOHFnl2mb6c16zT5ajMzBIi+XFUSEOhXVEkYrHEmX9WNNCASmve/R1IMHDyuyskzQvs
-         OUEO9OqK1U+t0gOT2YFXJ7JahfcFmu9AyqtCq2kP7GefY3Bg2QFATuI7L7rc2DQs5o5x
-         +iIztq1Qog4K3ZRe5KY90YfXjvhX6WzV29SPN1S9RyGsp52TnU/PheGFpQDmz5lsKZbj
-         TsTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795485235; x=1796090035;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=cqXrnujEt5rPik7Z3L5BcXXRInlNZ0roSGhQAAJNBos=;
-        b=i/p+s7P8Zzkpc0TdlUivBOPs0oGl+3NL+/YVx3MCEZdqVHBS9NoYDxWz1Az7vNKb5T
-         i8Nk4EU2lhsbrhPy423IBA9EYDiSVqJ6n9UqqZRxDVKtIOw1RZldhy0+o5cFIXBprbhO
-         xfjGIv7oT5rx2+nyJrEan+VLl9H4cYcn+Pev4WA0HHOud7MjCgde5EBi2LzaP5V9gw7E
-         DU9BFqhhIKoyQHB2HifqrT4Y8qyT46/EFQZiDOsfhN8ilLOkFkNwcYHD+Z3TjtV6dLV8
-         Brp1sdN02UhDcZ8xCSipi5zU2bMaCPQAlFZYHOEz1ugcFRgp2/WxQvkVgkjGeXrEZYko
-         E/LA==
-X-Forwarded-Encrypted: i=1;
- AL+hErGruEXQeQlgZzgcg7wlIjwML9RMAEGzcsqqtgMfrahLll9F1bfCiGJ+cBvVBYYoC3wA/WnGD14E@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z9Lcvl4JA9eO+k+vGqZ+uyyKLI2ASlUps8yTyBCFuQOECkDqu9I
-	rV1sgOL8rgcmJapT3JiSrxQeN44DnL1msfhmTh0175OwJ47oR8S+p7/iuMoV6u1ezxi9gHp5D0d
-	rVCh0mpD6mo9wwwnpj34C41wwT56cdEM=
-X-Gm-Gg: AZFdTZdXMmzkzafrJ+UwjZOiFBHBnbZrTyqYn1DNgGirRAutKaGyJTu4GQJGyzlCIg4
-	FO6Nq32uANKjl0QWHp+qBab0bGKz35dS22c+mDclFYHt09meAckCJPH753CnML0765Jh2vZ/dQt
-	ZfIkEol/mRriRsHIT1y/ao5C2tuf+MC5eIJC9H27WYlxgJGw1I6Job0A3e+opz36lXZ1/mDxyxj
-	K2a23yxkCKgpt+x5sBn+Owz9ZJEJPLoJCbHhiYUm2aHYtfvTiMtAEQs5EeItKLCt2Ct+3UfbZJv
-	uMYkatxpfS/w7snpDtVNgJjv7Ym/D/fxofmpNqhMDKxmUOHlMLH8lKkQ+7ff4bOLBbTSd889sDT
-	/6I6bpyXpcWZqUeI50RvCzneK8dFBOQV8CilTSHRfnYPYvjeAH8d+M7eVeDnqMC/QI+xHUFy+BC
-	4sxe7qPWkzM5qoJ2EexcDo9w==
-X-Received: by 2002:a05:6214:496:b0:921:425e:ce17 with SMTP id
- 6a1803df08f44-921425ece58mr177583616d6.53.1795485234693; Mon, 23 Nov 2026
- 17:53:54 -0800 (PST)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 00DF1402F0
+	for <nouveau@lists.freedesktop.org>; Mon, 23 Nov 2026 10:24:59 +0000 (UTC)
+X-Greylist: delayed 447 seconds by postgrey-1.36 at gabe;
+ Mon, 23 Nov 2026 10:24:54 UTC
+Received: from retz.cirad.fr (retz.cirad.fr [194.199.235.221])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BF08310EBB6
+	for <nouveau@lists.freedesktop.org>; Mon, 23 Nov 2026 10:24:54 +0000 (UTC)
+Received: from retz.cirad.fr (localhost [127.0.0.1])
+	by retz.cirad.fr (Postfix) with ESMTPS id 502F720DC66A;
+	Mon, 23 Nov 2026 11:17:26 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by retz.cirad.fr (Postfix) with ESMTP id 2BA5520DB5CD;
+	Mon, 23 Nov 2026 11:17:26 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 retz.cirad.fr 2BA5520DB5CD
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirad.fr;
+	s=573E3878-7916-11F1-BF4B-F68474317960; t=1795429046;
+	bh=xZtjDxWgaBdvhVoJSv/HBBvu1unqWARIW7iSyxAGJGI=;
+	h=From:To:Date:Message-ID:MIME-Version;
+	b=ltNriqociDIdSw8OBwTy69Ydwa3Z+ctzA6Z3JR0pdcbCIhUFmRLmW8QzbiRlu5PQc
+	 PIwcdb4VMUGYxSaLEAcPdT6bglfb+pdQAzNRqFKOe7L6mPhuojfHzhBK58kHjZki3S
+	 VthqfFL6B6zveL1xT0NEvl1r02bdav1jI4u5ZHgAz6lpwsTClwRH1pMc+F0PEENPb1
+	 GnRjCGj7Eumv2JgPX0JfHwkpRAhJl3Kd3LK1C2erN9FWsXXze06S654c5Szl4gA+Fd
+	 0x1YPghZqi5uwvOqeQOgo8XpL64zmGT3IExv09lfvbZ3GqJPJc5KQs+FZqK28dDRON
+	 2xDSEkA1nYUUA==
+X-Virus-Scanned: amavis at retz.cirad.fr
+Received: from retz.cirad.fr ([127.0.0.1])
+ by localhost (retz.cirad.fr [127.0.0.1]) (amavis, port 10026) with ESMTP
+ id oIUaWpyusZaM; Mon, 23 Nov 2026 11:17:26 +0100 (CET)
+Received: from localhost.localdomain (78-196-243-100.subs.proxad.net
+ [78.196.243.100])
+	by retz.cirad.fr (Postfix) with ESMTPSA id A75BE20DC66A;
+	Mon, 23 Nov 2026 11:17:25 +0100 (CET)
+From: =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20Mah=C3=A9?= <frederic.mahe@cirad.fr>
+To: nouveau@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/nouveau/disp/nv50-: don't divide by zero when the DP
+ link is not trained
+Date: Mon, 23 Nov 2026 11:16:58 +0100
+Message-ID: <20261123101659.600247-2-frederic.mahe@cirad.fr>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261123101659.600247-1-frederic.mahe@cirad.fr>
+References: <20261123101659.600247-1-frederic.mahe@cirad.fr>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261123-nova-nouveau-gsp-v2-0-5e8c27aa8555@redhat.com>
- <20261123-nova-nouveau-gsp-v2-3-5e8c27aa8555@redhat.com>
- <DN2OVF03FAL6.2EKLEYINW79YO@kernel.org>
- <DN2QWVWVB2FP.2DL4ZSBMYRXEC@kernel.org>
-In-Reply-To: <DN2QWVWVB2FP.2DL4ZSBMYRXEC@kernel.org>
-From: Dave Airlie <airlied@gmail.com>
-Date: Tue, 24 Nov 2026 11:53:43 +1000
-X-Gm-Features: Aa3M54oEI4QoCcO0MeXwp_iIffckWQaTxkpH1_V4RY3XhRFR0hSACFK4S3mzVE0
-Message-ID: 
- <CAPM=9tw4_Kn2+q0JTZ5Y6+m6PFORJSgq4qSrqtutwWJniusgvQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] nova-core: only bind to GPUs when explicitly
- requested
-To: Danilo Krummrich <dakr@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Message-ID-Hash: CUBX6S3XKKICS66L4RXCVRN2YWT3S7B4
-X-Message-ID-Hash: CUBX6S3XKKICS66L4RXCVRN2YWT3S7B4
-X-MailFrom: airlied@gmail.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-MailFrom: frederic.mahe@cirad.fr
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
- banned-address; emergency; member-moderation; nonmember-moderation;
- administrivia; implicit-dest; max-recipients; max-size; news-moderation;
- no-subject; digests; suspicious-header
-CC: Dave Airlie via B4 Relay <devnull+airlied.redhat.com@kernel.org>,
- airlied@redhat.com, Alexandre Courbot <acourbot@nvidia.com>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- nova-gpu@lists.linux.dev
+ banned-address; emergency; member-moderation
+Message-ID-Hash: QG3WJRYRSGWUPFZ23EFAZSK3TTXJHOUR
+X-Message-ID-Hash: QG3WJRYRSGWUPFZ23EFAZSK3TTXJHOUR
+X-Mailman-Approved-At: Tue, 24 Nov 2026 02:13:04 +0000
+CC: dri-devel@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
+ =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20Mah=C3=A9?= <frederic.mahe@cirad.fr>,
+ stable@vger.kernel.org
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CUBX6S3XKKICS66L4RXCVRN2YWT3S7B4/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QG3WJRYRSGWUPFZ23EFAZSK3TTXJHOUR/>
 Archived-At: 
- <https://lore.freedesktop.org/CAPM=9tw4_Kn2+q0JTZ5Y6+m6PFORJSgq4qSrqtutwWJniusgvQ@mail.gmail.com/>
+ <https://lore.freedesktop.org/20261123101659.600247-2-frederic.mahe@cirad.fr/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -154,56 +110,69 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 24 Nov 2026 at 02:54, Danilo Krummrich <dakr@kernel.org> wrote:
->
-> On Mon Nov 23, 2026 at 4:18 PM CET, Danilo Krummrich wrote:
-> > On Mon Nov 23, 2026 at 3:50 AM CET, Dave Airlie via B4 Relay wrote:
-> >> @@ -30,3 +30,24 @@ config NOVA_CORE_SELFTESTS
-> >>        logs its failure and lets the probe continue.
-> >>
-> >>        If unsure, say N.
-> >> +
-> >> +config NOVA_CORE_BIND_GSP
-> >> +    bool "Make nova-core the default driver for GSP-capable GPUs"
-> >> +    depends on NOVA_CORE
-> >> +    default n
-> >> +    help
-> >> +      Make nova-core bind to all NVIDIA GPUs it supports by default.
-> >> +
-> >> +      By default nova-core does not bind to any GPU and leaves NVIDIA
-> >> +      GPUs to other drivers, such as nouveau. Say Y here, or boot with
-> >> +      nova-core.bind_gsp=1, to make nova-core claim NVIDIA GPUs
-> >> +      instead.
-> >> +
-> >> +      nova-core is work in progress and may not be functional, so this
-> >> +      is intended for nova developers and testers only. When enabled,
-> >> +      nouveau must not bind to the same (GSP-capable) GPUs, i.e.
-> >> +      CONFIG_DRM_NOUVEAU_BIND_GSP=N or nouveau.bind_gsp=0 is required.
-> >> +      Otherwise both drivers compete for the same devices and
-> >> +      whichever is loaded first wins.
-> >
-> > I think this is a bit unsatisfying, for the Kconfig at least it would be nice to
-> > avoid the possibility of being able to configure
-> >
-> >       - NOVA_CORE_BIND_GSP=y && DRM_NOUVEAU_BIND_GSP=y
-> >
-> >       - NOVA_CORE_BIND_GSP=n && DRM_NOUVEAU_BIND_GSP=n
-> >
-> > since I wouldn't consider them valid combinations of Kconfig options.
+Since link training moved out of the supervisor, ior->dp.nr is copied
+from the lane count chosen by the DRM side, and it stays 0 when training
+fails: no lane/rate combination fits the mode, or the sink does not
+answer on AUX.  nouveau_dp_train()'s result is ignored by
+nv50_sor_atomic_enable(), so the modeset goes on, and supervisor 2.2
+divides by ior->dp.nr in nv50_disp_super_2_2_dp():
 
-While I like the idea, expressing this sort of thing in Kconfig seems
-to never end well, I'd prefer to just keep them separate until we can
-figure out scenarios where it's screwed up.
+  Oops: divide error: 0000 [#1] SMP PTI
+  Workqueue: nvkm-disp nv50_disp_super [nouveau]
+  RIP: 0010:nv50_disp_super_2_2_dp+0xa4/0x340 [nouveau]
+   nv50_disp_super_2_2+0xcc/0x140 [nouveau]
+   nv50_disp_super+0x137/0x250 [nouveau]
 
-I'll think about it a bit more, but I'd rather not encode too much
-complexity here for fear of one or two people screwing it up and not
-reading dmesg.
+Seen on a Quadro 600 (GF108) when Xorg set 3840x2160@60 (533 MHz) on a
+DP 1.1 output, and when setting 1024x768 on a forced-on DP connector
+whose monitor was asleep.
 
-Dave.
+Skip the transfer unit and watermark setup with a warning when the link
+has no lanes.  Before the change below, the training loop never left
+ior->dp.nr at 0.
+
+Written with help from Claude (Anthropic); reviewed and tested on hardwar=
+e.
+
+Fixes: 3147ce0d07aa ("drm/nouveau/disp: move link training out of supervi=
+sor")
+Cc: stable@vger.kernel.org
+Signed-off-by: Fr=C3=A9d=C3=A9ric Mah=C3=A9 <frederic.mahe@cirad.fr>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c b/drivers/gp=
+u/drm/nouveau/nvkm/engine/disp/nv50.c
+index 03a5f88..778559d 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c
+@@ -1166,6 +1166,16 @@ nv50_disp_super_2_2_dp(struct nvkm_head *head, str=
+uct nvkm_ior *ior)
+ 	u32 best_diff =3D 64 * symbol;
+ 	u64 h, v;
+=20
++	/* Link training failed or was never done (e.g. mode too fast for the
++	 * link, or no sink answering): there is no link to configure, and
++	 * the calculations below would divide by zero.
++	 */
++	if (!ior->dp.nr || !ior->dp.bw) {
++		nvkm_warn(subdev, "head-%d: DP link not trained (nr %d bw %d)\n",
++			  head->id, ior->dp.nr, ior->dp.bw);
++		return;
++	}
++
+ 	/* symbols/hblank - algorithm taken from comments in tegra driver */
+ 	h =3D head->asy.hblanke + head->asy.htotal - head->asy.hblanks - 7;
+ 	h =3D h * linkKBps;
+--=20
+2.53.0
+
