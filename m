@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12775606A327
-	for <nouveau@archiver.kernel.org>; Mon, 23 Nov 2026 00:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D5FF606A31A
+	for <nouveau@archiver.kernel.org>; Mon, 23 Nov 2026 02:51:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AKfIg4+T
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=U+poj7FV
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id F064510EB05;
-	Mon, 23 Nov 2026 00:25:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6C32B10E58C;
+	Mon, 23 Nov 2026 02:50:55 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D2D864035E;
-	Mon, 23 Nov 2026 00:25:47 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4FE2E40364;
+	Mon, 23 Nov 2026 02:50:50 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795393547;
- b=Kq+p07pXRARSTiqPJUMj033VTkDgYh8Nn/lsDuquE7hQ4I7xK1I99hYAqYST3YTqHncKw
- oD+sBkh1A9LdLfHhLbf5fqWI3dsRK+/lmXZcBLA4j72mQxG3YRmu+tbxYxxZt2Pv7JXF6YD
- mxemX/RTd/JvMHwyy1wfa6MrK0wr/hvic/zoDPtpzBdvOf3wrPmRUUpx3QhmW507WLWL2UL
- uwFOQZiuqn9Q4sLRjlxWjQGM4H7THcdN+lNyXLRaveGfADEPHSSpPeKXch+5shxypqEF14T
- fYXYYpjcunsf23HEf39IpVxPJTWawUA6UqMvCGSDEgsOwhLYTfopFkE5zqvg==
+ s=20240201; t=1795402250;
+ b=UMmchu1eIIjp0UnPGtyhabJ4YLViZmsnx8DGLSFJiyC4vtvT9ajBbv3cAyBIYNKIBoj8m
+ UwPk5dAe00Wld/BhJri4hYEZ+nmVwdrPlDtbE2YlI++tzSWFRVb26PgVjYy6SK/lETaXlTE
+ IaF1SHgTtHa5rsuKLb9a4nl9wLxGb4SynywEo1BhLppRnIZDezkM0A5EvCZ1wZhUsfyoeSE
+ FlTdD0Uo1359NykqpcXMGv5iPznKMVxqj5fGU/nXZlmg4BcOoMQWNP82D94xjsiMAgrNmOi
+ 8ONvt1CTBTvHeQxV+oYv0iPYIE/TxPLeQlPwkY4t3xqm6fSsMs2eTNf5pSjg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795393547; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795402250; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=+fTRlpWPAGw65ywOTuFMTMS1pyXlFiqbrJNGcRe7pm8=;
- b=Ck+XLFdVN9rMpnN4DZKNHYbowGCdqFmTs5yO3G8DUobPhrPBEBfvdJmIfoqZ4lgMt1wNi
- YmbaOiVo5xz5pChoSHsJPBNFcCkCWGc4S6hlythJutcasgRY23XmdkMphz8sihPIccEG5G9
- IWG+lrZzzTcaquJea+uA9XPbWLSFYEgAd1f61zcJRMSqvIgtoz3DRwZMdtWg5U/eUI2Bks0
- TmeUPNJnikA1jdcAxRaCK3gHBW057C7HOBEF2xhZxPQ+mzRbaiElDeIo3Yt8MBi5SDYrqxE
- q8fwBP+1h1fBMign1yclRgPqAFkcwyT6LFtzbwPSPORKEU+iaVessbBwi0Gg==
+ bh=PCPIjJCy6tJ4SlAiHcYkV3EDM20q6q8/lAdEekmMG0g=;
+ b=JgcGA3QfOp9sUOlWpAwcgFS8FPejkc+mT6r5baOccVz0dXKNaZSn3xp0hCFr416pEAkrc
+ Iy+sMsAQOWMCIRzl+P27bbH3Uh8lH4p0904yZzBJpCxP0tBQrf8+ZRw82F0G3x6mq45Ma2+
+ uXM/AJS5pkwBixBzccme6s5F1xZVg97wg/hlRtbf8Uhr4pZnwXAoQA8/dInLqBoCgVInVTT
+ meB8oYOrSmMFFSO1/N2KUd0Icve93BC0njYGqhpTfh/wesyPdfSDskYGlhJ2qui4R95xGNP
+ CR2H9lvgj8ZavWrMImiWzNh9H1UQPqqrnnZA8bH6nbSDs7rKk14zJxSG308Q==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
  arc=pass;
@@ -41,33 +41,33 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=kernel.org policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A151C40218
-	for <nouveau@lists.freedesktop.org>; Mon, 23 Nov 2026 00:25:44 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7408410E098;
-	Mon, 23 Nov 2026 00:25:39 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 4D37D40218
+	for <nouveau@lists.freedesktop.org>; Mon, 23 Nov 2026 02:50:46 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 338DB10E15E;
+	Mon, 23 Nov 2026 02:50:41 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7C01061811;
-	Mon, 23 Nov 2026 00:25:38 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 0599941E98;
+	Mon, 23 Nov 2026 02:50:41 +0000 (UTC)
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795393538;
-	b=ng66N8noSd7TP7mn547F+IOwNf7WsOAsMJhDITEQsZ/sSwAZKeGu8RMdbhYyMaeHzxfj
-	 QGO/VHSP2ziqFUgVB70WpgAURB+K0Ry5Y+SvuDhAXNWH889eZnNGsemBSmQi5oov2td/j
-	 LbqaI+dQCI5OvOopBFjVKPO3PYz90mUfds8fQHmn5VRvOxqfg7IK7od1WzsP9yrgI176y
-	 HAfqyjeB/JYNt8EJ5u2eIgqLU9FrquTUid3vBTrDK8/s/NqtH01JdTzc49eodihQ3KjpU
-	 NW40b2Vzmb8GrNpYxV8CAc4cIRQKkh7rohORh3TpR2OvGdQf4NI9QKE9wVUs/URtdsA==
+	t=1795402240;
+	b=zrMAUkPgD5aVRe0teqkdHc+2inj/pbmExokRB7dpizoh7Y/JBOKCTNntRdKpmm7w8YOD
+	 0nPyA+qR8riEFwPmFAHGsQ5F1TLEA5iVRFp+JEndfQWvC/+Y5yYjsO+6CARfrzI78zGaB
+	 NW8pxHpsKmJuj85SGkJRHSPSPXEC+w6PIjSV/lOYKuFVBL+qpIdjUAp2iMPECPghfrz2R
+	 y0IqKD77F3m22TM4UcBd6+mv4htSVd9UJouZ4kOYzTHEC4Y4wV5v+i19p9ypTnL5jXsPD
+	 ylFSQgSxtA2Vl/R7AGQdQcAi1IxDOgnd1ztyq1jwAQpujAttJoBozxKOMWZCJzsuHmQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795393538;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=+fTRlpWPAGw65ywOTuFMTMS1pyXlFiqbrJNGcRe7pm8=;
-	b=YDEKSKsiRyTL6RW5lwZXpvfQqq66rp3KkMJDCow1qTe7fPvhM+bDJMGm7W66hB2sqY2N
-	 lTVFW5mMERWfK2OfbvmQWpb6qJDilYSrz26BYll1xzfvYU5YVs7z3ACITeIJTmj8uCzE7
-	 D+uHmiDphqkyxgavyfKaGrjWKfMMandgsyqIg18gDVvbZvjN18IONViRCW4KgDVodRrKR
-	 5VngWE7yCj9y8AeaKNzYt00E3Z2QVodJic9cuqX389+0GE0zPo6rzRNZV9LfNuK43HHs4
-	 k32Sy38EAJjxJsZ21Ohjzf10CMbW839ebiW8CHjW9ARtolowWfen8pMS6+eXRTb6wrA==
+	c=relaxed/relaxed; t=1795402240;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=PCPIjJCy6tJ4SlAiHcYkV3EDM20q6q8/lAdEekmMG0g=;
+	b=BkNc18ktxrzUJM7V+WVCM+Dv+c74dK9Fn0DiQNJmMSYmKa1aLjH/eEq82w1VXBF/D4WO
+	 hl25JjhNpiZ0L0IEH6Q0vWuLy0++0F0PWwtMRm1YKg5Nxm46LbqjSmQ0jMEXy5AHPTby3
+	 PFRKVDwhCS7AYd6hl+lHVap+V2sASRH9Yy1y3nLupMDQ8UcgZVSAODhHtL/R5fIH/U0e7
+	 SAQzFUfURI8WYiajTPNiHnTP/v78587CuSoqMFHjKABDdaGAbiSrBjJWcWokHDxYL+KJP
+	 3djfZtV4x5aEvuitf9sfwXgOolnkvmTBplft80jarLHnw8zAwHlj+F0AcgVPCn+OCHg==
 ARC-Authentication-Results: i=1; smtp.kernel.org;
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
@@ -75,72 +75,74 @@ Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id D4F021F000D4;
-	Mon, 23 Nov 2026 00:25:33 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 5EFED1F000D2;
+	Mon, 23 Nov 2026 02:50:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795393538;
-	bh=+fTRlpWPAGw65ywOTuFMTMS1pyXlFiqbrJNGcRe7pm8=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=AKfIg4+Ts8rnb55XWxA6N68f8jzuRWtRuw9xtMSgWkHqYgfq9NC6z0MVPgXbegk2R
-	 X1si7PmfdOx2TGDf1Ta+mXoi0skPN1lwurJmWH5z4LW9BXYnyz/ClVqK+Nyul+cx1B
-	 cCJ/i/J3lPF3t5S6qy7qcctLhI/5G/5naRUSryrWaJLuy2Rwr5hlDkPnWi/y16Ppwe
-	 JomadweDfwiY5simOh5Z1Z9SxhGe9wO5rlyY0UTaZpDaFLk6Y+KVZmpkSxHa7j1FbG
-	 ndIGXdIDh5BibiynUvBq1hXJLZDb0/ZRui6E6ijmVXDJMrc5aOT5qgIhHrH0U7w9E8
-	 Al+anoY1cXoBw==
+	s=k20260515; t=1795402240;
+	bh=PCPIjJCy6tJ4SlAiHcYkV3EDM20q6q8/lAdEekmMG0g=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=U+poj7FVuwIL+/6T64sfZEtmoUvDEIdtgCO/j4fnMY4tJiTPK+ES2m0AZbkZnMmg9
+	 7qZRZ/Z2HKcX5YkHT3SADHMuvi3ke1UVusatkaK5oM1r6mY8gpZ3rWsfhZsSXBaP5F
+	 swQEQzcCGE8n8LQXpMIAh2TBwUs2UGdcHuKSzJjDoqaQZuwQAX4gjtJnOV17ldv/kV
+	 qSBEZmR44IU7+8m7TxEQxLpGdzNEsGojT1coLXenAnJvDIJWfYNzBqqD3+poS/pu06
+	 e0DzVmfrPLo4+NJqKw7eWZ4AMx3ZZSHHpaVAekULtpVxKiYoXlAm10986J+mxaWWi4
+	 ODjcNBwRnzFYg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 663F74C243;
-	Mon, 23 Nov 2026 00:25:33 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id B205B4C2F8;
+	Mon, 23 Nov 2026 02:50:35 +0000 (UTC)
 From: Dave Airlie via B4 Relay <devnull+airlied.redhat.com@kernel.org>
-Date: Mon, 23 Nov 2026 10:25:26 +1000
-Subject: [PATCH] drm/nouveau/devinit/gf100-: fix double vbios init checks
+Subject: [PATCH v2 0/3] nova/nouveau: add configs/module options to control
+ binding behaviour (v2)
+Date: Mon, 23 Nov 2026 12:50:26 +1000
+Message-Id: <20261123-nova-nouveau-gsp-v2-0-5e8c27aa8555@redhat.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-nouveau-fix-disp-v1-1-ebdc525287ce@redhat.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MQQqAIBAAvyJ7biGNBPtKdJBcay8qihGIf086D
- sNMg0KZqcAmGmR6uHAMA+Qk4LxtuAjZDQY1Ky2lWjDE+pCt6PlFxyWhVn413hntiWBkKdNw/3I
- /ev8Aaxn27mIAAAA=
-X-Change-ID: 20261123-nouveau-fix-disp-62f59fd96fee
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32NQQ7CIBREr9L8tRg+EqWueg/TBcJvYSE00BJNw
+ 93FHsDNJG+SebNDpuQpw73bIVHx2cfQQJw6ME6HmZi3jUFwcUXEnoVYdIutkN7YnBeGfFI3JWS
+ vSEKbLYkm/z6Uj7Gx83mN6XM8FPy1f2QFGWfSWBJPIxEvYkhknV7PJr5grLV+AUqGK1mxAAAA
+X-Change-ID: 20261119-nova-nouveau-gsp-10f8782498e4
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1444; i=airlied@redhat.com;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1789; i=airlied@redhat.com;
  h=from:subject:message-id;
- bh=fLgUkfu8VDBsHKAcmadqaVH0gSOhunpVuhNXOsf7LQ0=;
- b=owEBbQKS/ZANAwAKAQx081l5xIa+AcsmYgBrA4f4Li9p2SfqLVkMRYpuSKzNDxRgsYBBuKP6r
- yBJoSLEYqqJAjMEAAEKAB0WIQQQptkdobBb0p9t66wMdPNZecSGvgUCawOH+AAKCRAMdPNZecSG
- vtJUEACnc96+K4mI4B03aLzxP3BEnCThCmG7zw4qa85DUJtAyA0go0Tklhwt4lkU7b6UQMTt4Vh
- g2AFJzUNF2h8874mF91QgkbVP601i4jXjboTZX6l0FcGYj479/LIwaWgkah1CEGC/VOLv7ZwLyN
- GT315QlkK97hwrc8K2YmKLj9fqO8Fk4fNg+EQZJSg5ipS2akDolnKW+267Yugu9M4n2Jwhol6IF
- 7U23DJyqNq7XvLww2quVo1Jd6/La0NZbaihOeo9Z476Y7o3Ns43ZEEnxPAFhC2KgI2g0qM8ge/k
- 1puseARHoo/x0hg86LahzQCI8brwk9NOwXufCISXCvU9gizPY4WP/XewKFDw2w/BYMqKNfMJgLm
- gK/CffNVkrl3g13YFWZp+6LaLBrT2C7YKc9o6uUcTs3cmILZ/JvGVC9fne+TDtQDFP5l0qEtfsw
- O00LVRmsU7utMy5/R2f7XkuTo/bQ3bKpW9GDOuShsq8LsCPLUth8xorDn7UH60J3Vt1Pnm3yqJx
- sBycnRlMO9HpJPDARAKEf0IQIzWRDcOWfId7FX0TNgcvdD+K+qqixjw5aoZADi+xpFj4z5VKqi5
- GMb90cCLJyRNS8Tm0Z9cmxzIl70mA4RLAeau+1N7rmuCQAdt60OWeO6dRsiF8sIecKL+UkXbGaY
- TUUJE1ZfqkRcjbQ==
+ bh=IQCBoG1+S/7f8h44/YGxX/CWODzrYVl8kCsL3KZ4I/k=;
+ b=owEBbQKS/ZANAwAKAQx081l5xIa+AcsmYgBrA6n1R6zlkhvEaaCyFyedYEwVHp1wtW+AkOVc9
+ 7oo+hB3yPSJAjMEAAEKAB0WIQQQptkdobBb0p9t66wMdPNZecSGvgUCawOp9QAKCRAMdPNZecSG
+ vtiVD/9mqrXacWm7aSQDVc5zvQqY304JMu/3BpMdQpx4kB4xbHO+kBdTPFoTvdo62Jehv2N02q/
+ sCH7tp+qWk3jFaHcgIuNRn2qR6J12HOuDMNohpcBTotg7BWxjOQhonGxVe/VH6nNwub/f0lL1rA
+ jTBOPMpikuD4A1ZN9xAxw3PFG1uRVhpTYoi54HSG62m/NNNNEMwApeatvTZ0OLebCgAdZcu7SBI
+ BT5fopdwVmNF/DdIuKKX5eLMcCtJMEbB6X9h2wC3OawrhFrltQCbe9GkWzMAN3yjsRoUVSGBiOB
+ VYdW9i7ISn/Z60qgphBZxXR6XIecq+7EzbhxRCY2mP8tzQHp6lYyYRSzzm0lcYXQtUJI4vUCeav
+ ctpMeK89B6ekxielkKgJ7UZojWYniOFoL6Xt8tuL8JDDpC3BI4lCYr9BQVIL4TDpWqicQvg4Xeu
+ KKoUalumlPR6SbgXtJXUsia47qUZUR8kFE6WS5oMbzbiAvBQuMRErFaW0xs2ViFr/CTSCtfIcix
+ nUaK0zQfw0lnYWB0UjHHgu1OdyU+IfQX3LnqvLLVMgk6VcosdF8xcKBsXGabPtrmMBFMVjG1GJH
+ usuGV0zBJpHSe3AagqGmTP10zA2iFm/KKZllfctGDGqBBH/fCVuPMx4LG+6fOK5nF2VSaRWlok8
+ aUZg+xrKXqc8TwQ==
 X-Developer-Key: i=airlied@redhat.com; a=openpgp;
  fpr=10A6D91DA1B05BD29F6DEBAC0C74F35979C486BE
 X-Endpoint-Received: by B4 Relay for airlied@redhat.com/default with
  auth_id=1321
 X-Original-From: Dave Airlie <airlied@redhat.com>
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: 4DWGKMTOR4RL6B7LR2TSKAOKZGXFDYEA
-X-Message-ID-Hash: 4DWGKMTOR4RL6B7LR2TSKAOKZGXFDYEA
+Message-ID-Hash: IHV3LFG3ICYP4QQCBLPTJDJVQGJHZGGG
+X-Message-ID-Hash: IHV3LFG3ICYP4QQCBLPTJDJVQGJHZGGG
 X-MailFrom: devnull+airlied.redhat.com@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; emergency; member-moderation; nonmember-moderation;
  administrivia; implicit-dest; max-recipients; max-size; news-moderation;
  no-subject; digests; suspicious-header
 CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Dave Airlie <airlied@redhat.com>
+ nova-gpu@lists.linux.dev, Dave Airlie <airlied@redhat.com>
 X-Mailman-Version: 3.3.10
 Precedence: list
 Reply-To: airlied@redhat.com
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4DWGKMTOR4RL6B7LR2TSKAOKZGXFDYEA/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IHV3LFG3ICYP4QQCBLPTJDJVQGJHZGGG/>
 Archived-At: 
- <https://lore.freedesktop.org/20261123-nouveau-fix-disp-v1-1-ebdc525287ce@redhat.com/>
+ <https://lore.freedesktop.org/20261123-nova-nouveau-gsp-v2-0-5e8c27aa8555@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -151,47 +153,45 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Dave Airlie <airlied@redhat.com>
+We want to be able to build both nova and nouveau and maintain the
+status quo for now of nouveau binding to all GSP enabled GPUs.
 
-The initial fix from 2017 wasn't updated for modern nouveau devinit
-disable paths.
+In the future we may suggest switching the default to nova, but
+for now the default is to let users use command line options for testing
+and developers building their own kernel can set the kconfig.
 
-Fix that and just check if display exists instead.
+This contains a precursor patch to fix the nouveau device cleanup paths.
 
-Fixes: 2139cb633d48 ("drm/nouveau/devinit/gf100-: try to avoid double-running vbios scripts")
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
-index 186e09ea0cb1..b256404c2454 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
-@@ -107,12 +107,12 @@ gf100_devinit_preinit(struct nvkm_devinit *base)
- 	 * VBIOS multiple times may have detrimental effects.
- 	 */
- 	if (base->post) {
--		u64 disable = nvkm_devinit_disable(base);
-+		nvkm_devinit_disable(base);
- 		/* magic to detect whether or not x86 vbios code has
- 		 * executed the devinit scripts to initialise the
- 		 * board. only works if there's a display engine.
- 		 */
--		if (!(disable & (1ULL << NVKM_ENGINE_DISP))) {
-+		if (device->disp) {
- 			if (nvkm_rdvgac(device, 0, 0x00) ||
- 			    nvkm_rdvgac(device, 0, 0x1a)) {
- 				base->post = false;
+Changes in v2:
+- nouveau dtor path is broken, so fix that before adding the new code. (Sashiko)
+- Link to v1: https://lore.kernel.org/r/20261119-nova-nouveau-gsp-v1-0-4cde2bc41132@redhat.com
 
 ---
-base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
-change-id: 20261123-nouveau-fix-disp-62f59fd96fee
+Dave Airlie (3):
+      drm/nouveau/nvkm: fix device leak on ctor failure
+      drm/nouveau: add option to leave GSP-capable GPUs to other drivers
+      nova-core: only bind to GPUs when explicitly requested
+
+ drivers/gpu/drm/nouveau/Kconfig                    | 17 +++++++++++++
+ drivers/gpu/drm/nouveau/include/nvkm/core/pci.h    |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |  9 ++++++-
+ drivers/gpu/drm/nouveau/nvkm/engine/device/base.c  | 29 +++++++++++++++++++---
+ drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c   |  8 +++---
+ drivers/gpu/drm/nouveau/nvkm/engine/device/priv.h  |  2 +-
+ drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 18 ++++++++++----
+ drivers/gpu/nova-core/Kconfig                      | 21 ++++++++++++++++
+ drivers/gpu/nova-core/driver.rs                    | 13 ++++++++++
+ drivers/gpu/nova-core/nova_core.rs                 |  4 +++
+ 10 files changed, 108 insertions(+), 15 deletions(-)
+---
+base-commit: e55a991e09e3b44f0b0d8206bb523dc57c086341
+change-id: 20261119-nova-nouveau-gsp-10f8782498e4
 
 Best regards,
 -- 
