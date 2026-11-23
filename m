@@ -2,87 +2,71 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7864A606A31A
-	for <nouveau@archiver.kernel.org>; Mon, 23 Nov 2026 09:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591B5606A31A
+	for <nouveau@archiver.kernel.org>; Mon, 23 Nov 2026 09:30:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nxpEGBlQ
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=As8kJMj+
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF2310EB8E;
-	Mon, 23 Nov 2026 09:16:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 40CDE10EBCB;
+	Mon, 23 Nov 2026 09:30:22 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4CD764038F;
-	Mon, 23 Nov 2026 09:16:06 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 31A264038F;
+	Mon, 23 Nov 2026 09:30:17 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795425366;
- b=GtQkRvZNyzaZZmDtUZUd1FLVAXIwFbxIlbEp+kMoI3Wj4RPCGLZ6knQm7wZWb0Hhy+5YI
- 0f8IroKBDWqLdXkbmXB02oY/P5U/M3+ZmzUJpYJs9adqHGoXAomaPxuOac1OzfgASMm75Gj
- tM2deEDpSE1331O7gw9VAqca1ZrnrwoHZ+V3fdyuB984nn3JrUhBREhBtWVG+UQy6PNS7+b
- epOiKBNccyWfTl6Mcn5uV3/MU7Tx5BZZUBYbTfkqQC3dcOqjSVEYS4xl9fexwdTZ0A6+AUx
- o18AEqJIj1qR1NrFKpD2YNUb0RWoxY76Xp2kl9iywnQzXXOHiYb/UgQbaQiA==
+ s=20240201; t=1795426216;
+ b=yKHQq81ytfKrCID1DoEi6EdaKNJs9Pvy6sITJtH9/Pf2PvcniE/qF34nVqyfQ+tScfYYR
+ EjwoJFqxNAi6BTk/4Ea6QK35zmhkWwTApWMHYFJrPZxegFAHb7+CuNrJYotSWlwWFlX+m/o
+ +UNtTQR3cnVqZYu8wz9JuMrWC8Y9cxWRiENBRkoD4UNbUX61M3yJvAcz71qVLE11zk/jOpK
+ J1Nj3AYhSE8Otyg5ALctd8W79o6GiebAgffaFcimZramg2aTb6M205xPEoA6K8hj8LXpEUa
+ ltqRr/zey9zovp2tsbD/vqDlewGKjBpsaprd38VIMpUQvsxDdTGn0c1V+yNg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795425366; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795426216; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=2UZvRr8mhRP2KvD6Z7G011qbkGeyKbl87v5tzJwVEeE=;
- b=qjR03xme9Yb77uRsku79jA89fI6Lv8Gk2+xhCKL1G5LzXcObxcbK7r7qCyrkqnIFlq4NG
- WRoL35VrHcv5tfvnx4BvkBhzvYaQuyBV5NTWzaWQoaSVSogXmR3/fPWNrOrbHp6pgATOypO
- LF6bIEeGpV6FucdAjHee/LkQkwjlllHN402KsEunQshIgWKb9M1vzYIa435k9qZuinieNat
- JtQEo1Ytq91QcXZUrBVLg46b3UoUL7bhD54KzC4WMRx8UX697QMo1nf3fDbcEp1fDqWfxGk
- rAOsAhB2/y2mJPdMhqBSvjC8N96vFy7Az0qFWNTE1X6IdbaP8alj7CNr6LqA==
+ bh=t4U+ldndWXYiv8sPaqw7sW8lRoYP2EKLyk9iA28Ai0s=;
+ b=V9JAhxJ4ZOYZalM5cDZh8HlL8EPLoqaTz7dYjaBIvnXohAgpT5IBbJrNFNcq2qbAPCs4I
+ ZYeGkQ8gTrrCbTKigk1/R+gOGweLEnkOBnCku8DO+jPjtGHfKpBPdw6V4Y5vtye7fPB/o7B
+ rBOF40L+j9nxdg0JbyIB449uXkiA4IHfDMQOpW07vgVlbNRa+iLJOpshac/JDIU9y5Ps79n
+ O0DeZv89mw8x9zXsqaJXef6cjYmpjNdO21HJypJQ0IlSH0/qWYhTpg3PsfwvcWG3sLfc1O4
+ Aoqt82BqN/E93mg8nNwlJjgw3M+8SjO/reJiSTKcis3130qaGYQXaqBNb0ew==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
+ dkim=pass header.d=kernel.org;
  arc=none;
- dmarc=pass header.from=linux.intel.com policy.dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
+ dmarc=pass header.from=kernel.org policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
- policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 13F2D402E9
-	for <nouveau@lists.freedesktop.org>; Mon, 23 Nov 2026 09:16:03 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AB80D10EB6E;
-	Mon, 23 Nov 2026 09:15:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795425358; x=1826961358;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=tCXTt1BZvzc8YRzd9KmnA/oLaDWMTmO2bfjAj0UbYm8=;
-  b=nxpEGBlQGyU7BPzxlApiSkhrlk0kPhtavyurUcls+ffeGKUqUGUaXfVa
-   /lPG12MqoBTr1akSEwH53DkIrJPGFj8dPFvvgujH2AjvkgMIxrTyJD5dZ
-   Fp+JOsiZ0pGI9/UtQEDZD90PnEYZdCW8pc1CR+fxQPm19e8LwFXj0bBK8
-   g8gAc/YV8zaOCKsFDgXbK6Jff5jnCRJqDxxOlBTYmCGA1SuEollkZ1Sot
-   h7XuOekUzmmaNZeURA7G292lYWJXGlAeqT4Oeh1QweVg5m274dqBGhnOg
-   +HAUwxrC0uMwqqSrYIpb50SyjiZDZ5MBQh6JlpNDiI2o2rkDzkSXjTb3K
-   g==;
-X-CSE-ConnectionGUID: VSy3h5b+QbqM/vFxZAsWDA==
-X-CSE-MsgGUID: eYku3pfbQFu7sC6eCWAC8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11974"; a="4098317"
-X-IronPort-AV: E=Sophos;i="6.27,227,1787036400";
-   d="scan'208";a="4098317"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 01:15:42 -0800
-X-CSE-ConnectionGUID: 9Df7dFYZSkSpEbrPMoGiMQ==
-X-CSE-MsgGUID: S2TeOW5yTICwzaMMVGjoJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,227,1787036400";
-   d="scan'208";a="11572127"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.170])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 01:15:36 -0800
-Date: Mon, 23 Nov 2026 11:15:33 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maxime Ripard <mripard@kernel.org>
+	by kara.freedesktop.org (Postfix) with ESMTPS id EE646402E9
+	for <nouveau@lists.freedesktop.org>; Mon, 23 Nov 2026 09:30:13 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D39E710EB95;
+	Mon, 23 Nov 2026 09:30:08 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 77C1E401CD;
+	Mon, 23 Nov 2026 09:30:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA18D1F000C6;
+	Mon, 23 Nov 2026 09:30:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795426208;
+	bh=t4U+ldndWXYiv8sPaqw7sW8lRoYP2EKLyk9iA28Ai0s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=As8kJMj+D8cbkW8Y/3kujuVU1nEpni9qbmetR+F67FjFi1i4FzY669m04DvTtv34D
+	 UbK5WYzNqTLHFOhddaows9iinulzDzs3W1gbRicH15wJk4Sx2OfqqNeZ1ioz4qf2tq
+	 ov0eF2fzTnjETRuOG0oq9efrzqt6n0queknW/xs0rQkX81Nv5DPQUlAVAAHb0ki86W
+	 3d/Luz4ygugGwnOK/3H/ylIIwNyMIzA4DxBn6ST57ruH06dt/80YWoS5Sr/iwD6g9g
+	 URV/h6w6UyBt5NKjCq+K8CAW3CtjH8Abng0oU+GOzwHDQq6tjYJfMk8m3QICP2l/2l
+	 t3zg+q93JTJ7A==
+Date: Mon, 23 Nov 2026 10:30:05 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Subject: Re: [PATCH v12 01/12] drm: add connector LUMINANCE property
-Message-ID: <awQENQN5SswJRtWw@intel.com>
+Message-ID: <awQGSuf2UJjItcO0@houat>
 References: <20261119-superm1-backlight-property-v12-0-89d5217d3618@amd.com>
  <20261119-superm1-backlight-property-v12-1-89d5217d3618@amd.com>
  <awB4Qe83u0l0XPKA@intel.com>
@@ -92,22 +76,19 @@ References: <20261119-superm1-backlight-property-v12-0-89d5217d3618@amd.com>
  <awP0nasqAc4pAeMR@houat>
  <awP8hAy3Gim4eNxz@intel.com>
  <awQAlSSks2We5h2z@houat>
+ <awQENQN5SswJRtWw@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="krfptbljx3eyphdm"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <awQAlSSks2We5h2z@houat>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Message-ID-Hash: OWDR3PHJATVAX6ABUQR6JWM3P654GCZR
-X-Message-ID-Hash: OWDR3PHJATVAX6ABUQR6JWM3P654GCZR
-X-MailFrom: ville.syrjala@intel.com
+In-Reply-To: <awQENQN5SswJRtWw@intel.com>
+Message-ID-Hash: 6BJWZPFZQXY7YUNL2XHBINM2EBGSX3ZY
+X-Message-ID-Hash: 6BJWZPFZQXY7YUNL2XHBINM2EBGSX3ZY
+X-MailFrom: mripard@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
- banned-address; emergency; member-moderation; nonmember-moderation;
- administrivia; implicit-dest; max-recipients; max-size; news-moderation;
- no-subject; digests; suspicious-header
+ banned-address; emergency; member-moderation
 CC: Mario Limonciello <mario.limonciello@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
@@ -123,8 +104,8 @@ X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OWDR3PHJATVAX6ABUQR6JWM3P654GCZR/>
-Archived-At: <https://lore.freedesktop.org/awQENQN5SswJRtWw@intel.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6BJWZPFZQXY7YUNL2XHBINM2EBGSX3ZY/>
+Archived-At: <https://lore.freedesktop.org/awQGSuf2UJjItcO0@houat/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -139,136 +120,214 @@ X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 10:03:50AM +0100, Maxime Ripard wrote:
-> On Mon, Nov 23, 2026 at 10:42:44AM +0200, Ville Syrjälä wrote:
-> > On Mon, Nov 23, 2026 at 09:10:17AM +0100, Maxime Ripard wrote:
-> > > On Mon, Nov 23, 2026 at 10:05:04AM +0200, Ville Syrjälä wrote:
-> > > > On Mon, Nov 23, 2026 at 08:50:29AM +0100, Maxime Ripard wrote:
-> > > > > On Fri, Nov 20, 2026 at 11:19:13AM -0600, Mario Limonciello wrote:
-> > > > > > 
-> > > > > > 
-> > > > > > On 11/20/26 10:41, Ville Syrjälä wrote:
-> > > > > > > On Thu, Nov 19, 2026 at 05:27:28PM -0600, Mario Limonciello wrote:
-> > > > > > > > Panel brightness is a property of a display, and thus of a DRM
-> > > > > > > > connector. Add an atomic per-connector LUMINANCE range property so
-> > > > > > > > compositors can manage relative panel luminance together with the rest
-> > > > > > > > of the display state.
-> > > > > > > > 
-> > > > > > > > Keep the core backend-agnostic. Drivers create the property with their
-> > > > > > > > hardware range and implement connector helper callbacks to set luminance
-> > > > > > > > or disable panel emission. The atomic helpers sequence those callbacks
-> > > > > > > > around pipeline enable and disable, including luminance-only commits.
-> > > > > > > > The panel is left lit when the pipeline enters self refresh, and the
-> > > > > > > > luminance is only reprogrammed when it changes or a modeset enables the
-> > > > > > > > pipeline.
-> > > > > > > > 
-> > > > > > > > The stored property value is independent of display power. A commit made
-> > > > > > > > while the connector is inactive is retained and applied on the next
-> > > > > > > > enable; disabling the pipeline does not overwrite it.
-> > > > > > > > 
-> > > > > > > > LUMINANCE values are relative, driver-defined levels rather than
-> > > > > > > > absolute luminance in cd/m^2. The interface supports emissive panels as
-> > > > > > > > well as panels with a separate backlight.
-> > > > > > > > 
-> > > > > > > > Keep the interface behind a default-off DRM_LUMINANCE option. Migrated
-> > > > > > > > drivers retain their legacy backlight class ABI unless the new interface
-> > > > > > > > is explicitly selected, allowing the DRM UAPI and legacy compatibility
-> > > > > > > > policy to remain separate.
-> > > > > > > > 
-> > > > > > > > Acked-by: Javier Martinez Canillas <javierm@redhat.com>
-> > > > > > > > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> > > > > > > > ---
-> > > > > > > > v11:
-> > > > > > > >   * Don't call .disable_luminance when the CRTC enters self refresh (Sashiko)
-> > > > > > > >   * Only call .set_luminance when the luminance changes or on a modeset
-> > > > > > > >     that isn't a self refresh exit (Leo Li, Sashiko)
-> > > > > > > >   * Fix the .set_luminance self refresh documentation
-> > > > > > > > v10:
-> > > > > > > >   * Add tag
-> > > > > > > > ---
-> > > > > > > >   drivers/gpu/drm/Kconfig                    | 14 +++++
-> > > > > > > >   drivers/gpu/drm/drm_atomic_helper.c        | 98 +++++++++++++++++++++++++++++-
-> > > > > > > >   drivers/gpu/drm/drm_atomic_state_helper.c  |  7 +++
-> > > > > > > >   drivers/gpu/drm/drm_atomic_uapi.c          |  5 ++
-> > > > > > > >   drivers/gpu/drm/drm_connector.c            | 57 +++++++++++++++++
-> > > > > > > >   drivers/gpu/drm/tests/drm_connector_test.c | 28 +++++++++
-> > > > > > > >   include/drm/drm_atomic_helper.h            |  3 +
-> > > > > > > >   include/drm/drm_connector.h                | 16 +++++
-> > > > > > > >   include/drm/drm_modeset_helper_vtables.h   | 28 +++++++++
-> > > > > > > >   9 files changed, 255 insertions(+), 1 deletion(-)
-> > > > > > > > 
-> > > > > > > > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> > > > > > > > index 61111d50b1c65..1bbe2c2d7c76f 100644
-> > > > > > > > --- a/drivers/gpu/drm/Kconfig
-> > > > > > > > +++ b/drivers/gpu/drm/Kconfig
-> > > > > > > > @@ -33,6 +33,20 @@ endmenu
-> > > > > > > >   if DRM
-> > > > > > > > +config DRM_LUMINANCE
-> > > > > > > > +	bool "DRM connector luminance support"
-> > > > > > > > +	help
-> > > > > > > > +	  Expose relative luminance as an atomic DRM connector property. Values
-> > > > > > > > +	  are driver-defined levels rather than absolute luminance in cd/m^2.
-> > > > > > > > +	  Drivers provide connector helper callbacks to program their hardware;
-> > > > > > > > +	  the DRM core does not depend on a particular backend.
-> > > > > > > > +
-> > > > > > > > +	  Drivers migrated to this interface will use it instead of registering
-> > > > > > > > +	  a legacy backlight class device. Leave this disabled to preserve the
-> > > > > > > > +	  de-facto userspace ABI in /sys/class/backlight.
-> > > > > > > 
-> > > > > > > I don't think this will fly if it breaks the backlight class interface.
-> > > > > > > No one can actually enable this outside of some niche embedded use
-> > > > > > > cases where backwards compatibility is not an issue. I think what
-> > > > > > > you need is a generic backlight class implementation on top of this.
-> > > > > > > 
-> > > > > > 
-> > > > > > The idea with this was:
-> > > > > > 1) to get the series landed
-> > > > > > 2) let compositors merge solutions around it.
-> > > > > > 3) Then add backwards compatibility to kernel so we can flip the Kconfig
-> > > > > > default.
-> > > > > 
-> > > > > I said this a few times already, but we keep having those discussions
-> > > > > while the backlight sysfs handling is far from being the main point. You
-> > > > > should *really* consider adding support for the luminance property for
-> > > > > something that isn't tied to that interface (like DDC/CI for HDMI), and
-> > > > > treat the sysfs API as a sysfs series.
-> > > > > 
-> > > > > It looks like people just have conflicting opinions on this particular
-> > > > > part that isn't going to solve itself easily. You should not treat this
-> > > > > sysfs discussion as a blocker for the infrastructure work.
-> > > > 
-> > > > You want to be sure backwards compatibility with the backlight
-> > > > class is a solvable problem before you land *anything*. Otherwise
-> > > > you might just paint yourself into a corner with no way out.
-> > > 
-> > > I disagree. The luminance property is more useful than *just* for
-> > > backlights but is also useful for HDMI, DP, and MIPI-DSI that would all
-> > > use it.
-> > 
-> > DSI and eDP are all over the place when it comes how backlight
-> > is implemented, so very much would not all use it. Some HDMI and
-> > external DP displays might have DDC/CI support, so I'll give you
-> > those.
-> >  
-> > > If that's the corner we paint ourselves into, it's still a pretty nice
-> > > corner.
-> > 
-> > Separate APIs for different outputs on different drivers is just
-> > a bad idea. Every userspace implementation will have to support
-> > all of them until the end of the world.
-> 
-> I agree, but then there's an easy answer: don't enable it on drivers
-> that would expose it on both APIs. We do have a lot of drivers where
-> there's just no backlight involved and would greatly benefit from these,
-> and without the history of i915 or amdgpu to deal with.
 
-It's not the history of the drivers you need to worry about. It's
-the history of userspace that actually matters. All existing
-userspace expects a working backlight class interface. And if you
-don't care about userspace compatibility then we're very much
-back in the "only usable in niche embedded use cases" or "only
-usable on external displays" territories.
+--krfptbljx3eyphdm
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v12 01/12] drm: add connector LUMINANCE property
+MIME-Version: 1.0
 
--- 
-Ville Syrjälä
-Intel
+On Mon, Nov 23, 2026 at 11:15:33AM +0200, Ville Syrj=E4l=E4 wrote:
+> On Mon, Nov 23, 2026 at 10:03:50AM +0100, Maxime Ripard wrote:
+> > On Mon, Nov 23, 2026 at 10:42:44AM +0200, Ville Syrj=E4l=E4 wrote:
+> > > On Mon, Nov 23, 2026 at 09:10:17AM +0100, Maxime Ripard wrote:
+> > > > On Mon, Nov 23, 2026 at 10:05:04AM +0200, Ville Syrj=E4l=E4 wrote:
+> > > > > On Mon, Nov 23, 2026 at 08:50:29AM +0100, Maxime Ripard wrote:
+> > > > > > On Fri, Nov 20, 2026 at 11:19:13AM -0600, Mario Limonciello wro=
+te:
+> > > > > > >=20
+> > > > > > >=20
+> > > > > > > On 11/20/26 10:41, Ville Syrj=E4l=E4 wrote:
+> > > > > > > > On Thu, Nov 19, 2026 at 05:27:28PM -0600, Mario Limonciello=
+ wrote:
+> > > > > > > > > Panel brightness is a property of a display, and thus of =
+a DRM
+> > > > > > > > > connector. Add an atomic per-connector LUMINANCE range pr=
+operty so
+> > > > > > > > > compositors can manage relative panel luminance together =
+with the rest
+> > > > > > > > > of the display state.
+> > > > > > > > >=20
+> > > > > > > > > Keep the core backend-agnostic. Drivers create the proper=
+ty with their
+> > > > > > > > > hardware range and implement connector helper callbacks t=
+o set luminance
+> > > > > > > > > or disable panel emission. The atomic helpers sequence th=
+ose callbacks
+> > > > > > > > > around pipeline enable and disable, including luminance-o=
+nly commits.
+> > > > > > > > > The panel is left lit when the pipeline enters self refre=
+sh, and the
+> > > > > > > > > luminance is only reprogrammed when it changes or a modes=
+et enables the
+> > > > > > > > > pipeline.
+> > > > > > > > >=20
+> > > > > > > > > The stored property value is independent of display power=
+=2E A commit made
+> > > > > > > > > while the connector is inactive is retained and applied o=
+n the next
+> > > > > > > > > enable; disabling the pipeline does not overwrite it.
+> > > > > > > > >=20
+> > > > > > > > > LUMINANCE values are relative, driver-defined levels rath=
+er than
+> > > > > > > > > absolute luminance in cd/m^2. The interface supports emis=
+sive panels as
+> > > > > > > > > well as panels with a separate backlight.
+> > > > > > > > >=20
+> > > > > > > > > Keep the interface behind a default-off DRM_LUMINANCE opt=
+ion. Migrated
+> > > > > > > > > drivers retain their legacy backlight class ABI unless th=
+e new interface
+> > > > > > > > > is explicitly selected, allowing the DRM UAPI and legacy =
+compatibility
+> > > > > > > > > policy to remain separate.
+> > > > > > > > >=20
+> > > > > > > > > Acked-by: Javier Martinez Canillas <javierm@redhat.com>
+> > > > > > > > > Signed-off-by: Mario Limonciello <mario.limonciello@amd.c=
+om>
+> > > > > > > > > ---
+> > > > > > > > > v11:
+> > > > > > > > >   * Don't call .disable_luminance when the CRTC enters se=
+lf refresh (Sashiko)
+> > > > > > > > >   * Only call .set_luminance when the luminance changes o=
+r on a modeset
+> > > > > > > > >     that isn't a self refresh exit (Leo Li, Sashiko)
+> > > > > > > > >   * Fix the .set_luminance self refresh documentation
+> > > > > > > > > v10:
+> > > > > > > > >   * Add tag
+> > > > > > > > > ---
+> > > > > > > > >   drivers/gpu/drm/Kconfig                    | 14 +++++
+> > > > > > > > >   drivers/gpu/drm/drm_atomic_helper.c        | 98 +++++++=
+++++++++++++++++++++++-
+> > > > > > > > >   drivers/gpu/drm/drm_atomic_state_helper.c  |  7 +++
+> > > > > > > > >   drivers/gpu/drm/drm_atomic_uapi.c          |  5 ++
+> > > > > > > > >   drivers/gpu/drm/drm_connector.c            | 57 +++++++=
+++++++++++
+> > > > > > > > >   drivers/gpu/drm/tests/drm_connector_test.c | 28 +++++++=
+++
+> > > > > > > > >   include/drm/drm_atomic_helper.h            |  3 +
+> > > > > > > > >   include/drm/drm_connector.h                | 16 +++++
+> > > > > > > > >   include/drm/drm_modeset_helper_vtables.h   | 28 +++++++=
+++
+> > > > > > > > >   9 files changed, 255 insertions(+), 1 deletion(-)
+> > > > > > > > >=20
+> > > > > > > > > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kc=
+onfig
+> > > > > > > > > index 61111d50b1c65..1bbe2c2d7c76f 100644
+> > > > > > > > > --- a/drivers/gpu/drm/Kconfig
+> > > > > > > > > +++ b/drivers/gpu/drm/Kconfig
+> > > > > > > > > @@ -33,6 +33,20 @@ endmenu
+> > > > > > > > >   if DRM
+> > > > > > > > > +config DRM_LUMINANCE
+> > > > > > > > > +	bool "DRM connector luminance support"
+> > > > > > > > > +	help
+> > > > > > > > > +	  Expose relative luminance as an atomic DRM connector =
+property. Values
+> > > > > > > > > +	  are driver-defined levels rather than absolute lumina=
+nce in cd/m^2.
+> > > > > > > > > +	  Drivers provide connector helper callbacks to program=
+ their hardware;
+> > > > > > > > > +	  the DRM core does not depend on a particular backend.
+> > > > > > > > > +
+> > > > > > > > > +	  Drivers migrated to this interface will use it instea=
+d of registering
+> > > > > > > > > +	  a legacy backlight class device. Leave this disabled =
+to preserve the
+> > > > > > > > > +	  de-facto userspace ABI in /sys/class/backlight.
+> > > > > > > >=20
+> > > > > > > > I don't think this will fly if it breaks the backlight clas=
+s interface.
+> > > > > > > > No one can actually enable this outside of some niche embed=
+ded use
+> > > > > > > > cases where backwards compatibility is not an issue. I thin=
+k what
+> > > > > > > > you need is a generic backlight class implementation on top=
+ of this.
+> > > > > > > >=20
+> > > > > > >=20
+> > > > > > > The idea with this was:
+> > > > > > > 1) to get the series landed
+> > > > > > > 2) let compositors merge solutions around it.
+> > > > > > > 3) Then add backwards compatibility to kernel so we can flip =
+the Kconfig
+> > > > > > > default.
+> > > > > >=20
+> > > > > > I said this a few times already, but we keep having those discu=
+ssions
+> > > > > > while the backlight sysfs handling is far from being the main p=
+oint. You
+> > > > > > should *really* consider adding support for the luminance prope=
+rty for
+> > > > > > something that isn't tied to that interface (like DDC/CI for HD=
+MI), and
+> > > > > > treat the sysfs API as a sysfs series.
+> > > > > >=20
+> > > > > > It looks like people just have conflicting opinions on this par=
+ticular
+> > > > > > part that isn't going to solve itself easily. You should not tr=
+eat this
+> > > > > > sysfs discussion as a blocker for the infrastructure work.
+> > > > >=20
+> > > > > You want to be sure backwards compatibility with the backlight
+> > > > > class is a solvable problem before you land *anything*. Otherwise
+> > > > > you might just paint yourself into a corner with no way out.
+> > > >=20
+> > > > I disagree. The luminance property is more useful than *just* for
+> > > > backlights but is also useful for HDMI, DP, and MIPI-DSI that would=
+ all
+> > > > use it.
+> > >=20
+> > > DSI and eDP are all over the place when it comes how backlight
+> > > is implemented, so very much would not all use it. Some HDMI and
+> > > external DP displays might have DDC/CI support, so I'll give you
+> > > those.
+> > > =20
+> > > > If that's the corner we paint ourselves into, it's still a pretty n=
+ice
+> > > > corner.
+> > >=20
+> > > Separate APIs for different outputs on different drivers is just
+> > > a bad idea. Every userspace implementation will have to support
+> > > all of them until the end of the world.
+> >=20
+> > I agree, but then there's an easy answer: don't enable it on drivers
+> > that would expose it on both APIs. We do have a lot of drivers where
+> > there's just no backlight involved and would greatly benefit from these,
+> > and without the history of i915 or amdgpu to deal with.
+>=20
+> It's not the history of the drivers you need to worry about. It's
+> the history of userspace that actually matters. All existing
+> userspace expects a working backlight class interface. And if you
+> don't care about userspace compatibility then we're very much
+> back in the "only usable in niche embedded use cases" or "only
+> usable on external displays" territories.
+
+Depending on what your perspective is, fastboot was "only usable in
+niche i915 use cases" just like color management for amdgpu or leases
+were. Let's not be judgemental and / or dismiss others use cases.
+
+If some established driver like, say, vc4 that only has external
+displays can pave the way for everyone else to use them eventually, how
+is it a downside that it's only usable on external displays?
+
+And even if it's still usable by less established drivers, slow-rolling
+it into more drivers, fixing the bugs, rough edges, etc. while
+consolidating the code still has a lot of value. Just like it had for
+color management or fastboot.
+
+Maxime
+
+--krfptbljx3eyphdm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCawQHnQAKCRAnX84Zoj2+
+dv/IAX9eEMFvOITWTZmbmaZRs5cttfIv53qo1lTfjicUHXYndBi+lFMhUfQkVVAu
+QasRx0cBgJfCcGl18yTL+HrxkoGnsNUdtOCnuw4m8Ib6T9gnf+Fb2mCiowaup437
+90mwIf/Gpw==
+=oDlh
+-----END PGP SIGNATURE-----
+
+--krfptbljx3eyphdm--
