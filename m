@@ -2,130 +2,118 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E78A5606A32C
-	for <nouveau@archiver.kernel.org>; Mon, 23 Nov 2026 10:42:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B163A606A31A
+	for <nouveau@archiver.kernel.org>; Mon, 23 Nov 2026 10:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mtZqZ3u3
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.a=rsa-sha256 header.s=key2 header.b=LQfu8CMo
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C6A8710EC55;
-	Mon, 23 Nov 2026 10:42:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9C61C10ECD1;
+	Mon, 23 Nov 2026 10:57:18 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B3B5B40393;
-	Mon, 23 Nov 2026 10:42:27 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 796E84038F;
+	Mon, 23 Nov 2026 10:57:13 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795430547;
- b=ynbpkmYHY0Qb0nfkrlUEXW/q3Mt6RMv63W8mvk4QiF9RxCMOoe/3kyg3KVMYJD78y4AWC
- 9JXS/g5CC3lGK/0HgJVm7gqVt5+41TO3uosIMNoq33cKAJvQYTzXrdaMWHhRGR8xFCU4mUy
- Up6cFnFPx3rI28g9gB+sTZIwVslnkePjNdDqKJr/YhYWhv1cAbz/ejzT2CUt1KsR0ocgEQ3
- wfQvrJlc+1szysdMssahsUCYT9zYboV9LjODtGiqrhlLtf56Rq4k3GJG4AsneO08gMvupik
- +b84dKsTOSWFZ8BS3/zACUroAPadtMtVw9yz9QQc+TMkHdGoJnXzBTdxrMjQ==
+ s=20240201; t=1795431433;
+ b=Ni/5jla59c7j9gVXESgd7AOEwh0VfhhrSyibC5If2yZuTosDn0zpB4Zlq371989PJXbv5
+ SZJ2g0SZqOX6UYoJFWZR4KAbFVLGZylsKd82xb9lJR+N3iMvJBDaU7kvR5+TBK66PzPwlG8
+ rjhlU37SDT/B0+ZWYzXVD5PcwFu52fObr9vJOfIL26Fh1us7nPmu34oFsZ8f4Lh3FOcTF2k
+ Oq0EKMpYh8hmAT9ySj4p9LaTYsumkFfzy/YQFvt4Irfe2QOIVHylslYaSSh62RcfhXZwTKY
+ 9uQH6Ee3BlcJOjKnOaH8+ePEyVKLdyID8MqxmVEIufBPTZtaIcQ7V6//f63A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795430547; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795431433; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=N+nCfVUtrVjunKdjrRoAbdycizCCNxwXyMjD41LbAvc=;
- b=XeMBfmG5YQ2gtwospp/Q/WFb6RViEwjYjPn7E3xOiObwTDTC8VboLyjc21HQ3Ck/tjc34
- PnG8buZhj/46iytQ8/BdgNt14WrOog/0POHdOHLC9Q0qrw4O1V42KLpjaYPXlsG3iOQ1YGy
- EeBqXVaKZj7tIJc8s97FN3yHrl3iqkPrwFTYqzx6hhb176pbSD8Rptd+1e+xFCK8SVfOplV
- NsWdCV/8LHzCeNx3rPdoK9k0ImMV2COwdC//DdD2ozyG148m6jBSBAotwcd8L5SiiKSpZTP
- K8eywqPbeHnKQobkAELcKS8j/xRqjQvGPg9zH9rUe0Z9oF4A4yZxjCJmbYwg==
+ bh=X5svZ998AfK7SFajFSBgAeoI0l40RLsVySjObineKnM=;
+ b=Dh44h1znUFdvEo0K35ztad+9niLtR9JRTKR1FEufs5/UxJLZl7zOBa3yWgU85opfbbqaM
+ ZWJ1dCO5MwZWidCQ9ba7iYvkEHbh5H+kyhska1oRlTJrIc5yqp4xgpI4oSCY/133hnYSPbQ
+ r7f8v7sjpu79GbcBA4I8PCKt/Kor3PPYIEXl28BWfwlU0XKXy38WT7GufP69aFRQ7CR8APF
+ ma2ptBoKQjmggu2ZF2n3Tn86IoPWXgilbW4oAa/yX9rWRresRQdPMXJoYzPRHoWGvtGm9YA
+ AmUpSbXuPSyl+uEj94Uicd/q8B4P6ICDVgshMdKYEDyWN4Se7agcl7/1kbzg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
+ dkim=pass header.d=leemhuis.info;
  arc=none;
- dmarc=pass header.from=linux.intel.com policy.dmarc=none
+ dmarc=pass header.from=leemhuis.info policy.dmarc=quarantine
 Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
- policy.dmarc=none
+ dkim=pass header.d=leemhuis.info; arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=leemhuis.info
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C0A75402F0
-	for <nouveau@lists.freedesktop.org>; Mon, 23 Nov 2026 10:42:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8794B10E04B;
-	Mon, 23 Nov 2026 10:42:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795430538; x=1826966538;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=gApZ5DZSU116umgI7/UqdlLpi26Oe/ElEASRU8KMngs=;
-  b=mtZqZ3u3yJTHPsBEux8WHHJqtIgQYN3p+7mP8LPddIZJl2oect2v4/dG
-   plcbgf2ldICJWs75TgEpbH7lyEXuJYSiIg9BT4HNmaIa0c3U+QfSx2caa
-   MsZ6fyHuP8G2Uz6W3k5YXbFqqtb0MgCNjrHO7IUUehZasrc8FMIJRRV2U
-   HXtXNhmk4XH6cBAq56EqSrBFcP2296liWCpgq6vDORDQkN6XOfEodyz3/
-   EgoMd38WBfAd3CuPJfQjZYUW3oBn/p1gx9u5E/qPd172UFDC6aMHw6q59
-   GT/GJd1133rbUeJ1GJH0iDCeIoFyzJfCzLF0nPcHqHfka40WbB16i/26i
-   Q==;
-X-CSE-ConnectionGUID: YEetge+hSzq12nTGFaQQlA==
-X-CSE-MsgGUID: +s4/6XgbSOmdIdxd0AhNbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11974"; a="4080652"
-X-IronPort-AV: E=Sophos;i="6.27,227,1787036400";
-   d="scan'208";a="4080652"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 02:42:17 -0800
-X-CSE-ConnectionGUID: 57RXYtU6TtaTrmuR1q7InA==
-X-CSE-MsgGUID: XgJn0jIOT4aBigTgKpItoQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,227,1787036400";
-   d="scan'208";a="11586140"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.170])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 02:42:13 -0800
-Date: Mon, 23 Nov 2026 12:42:09 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH v12 01/12] drm: add connector LUMINANCE property
-Message-ID: <awQYgTQWOiK66m99@intel.com>
-References: <20261119-superm1-backlight-property-v12-1-89d5217d3618@amd.com>
- <awB4Qe83u0l0XPKA@intel.com>
- <8713bae1-9782-41d4-b09c-f14031203e88@amd.com>
- <awPvoLCDeq1YFLE_@houat>
- <awPzsMWZ7e0i6i54@intel.com>
- <awP0nasqAc4pAeMR@houat>
- <awP8hAy3Gim4eNxz@intel.com>
- <awQAlSSks2We5h2z@houat>
- <awQENQN5SswJRtWw@intel.com>
- <awQGSuf2UJjItcO0@houat>
+	by kara.freedesktop.org (Postfix) with ESMTPS id D11B2402F0
+	for <nouveau@lists.freedesktop.org>; Mon, 23 Nov 2026 10:57:09 +0000 (UTC)
+Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
+ [185.244.194.184])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABF010E375
+	for <nouveau@lists.freedesktop.org>; Mon, 23 Nov 2026 10:57:04 +0000 (UTC)
+Received: from relay01-mors.netcup.net (localhost [127.0.0.1])
+	by relay01-mors.netcup.net (Postfix) with ESMTPS id 4jY2st2bTXz9HF1;
+	Mon, 23 Nov 2026 11:55:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
+	s=key2; t=1795431346;
+	bh=rxwxq7gPotnmPGcefVQ3QwGpF3KbLCwKtYmRQBY/L+E=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LQfu8CMomI9wbHqn9dA9sjkUsdWTqhpkd+3BKy5iWLoMX+iwvR0ZQ0V1EXK/X/TNa
+	 x2U+T1sXkHnQNvsFqIYnmojLzz16FGlzNUSsp+EHJ5PYf2rOvrtHoPNK3QE9RiJUMr
+	 L1HHRvnQ3OjK0g9Q4rU4yazQxkDAujbJ3oUg2pqtf3SkUwNWfazJI1zW8xjHB2o1Zz
+	 YXo5efkCLW9Kpvt11ezv0rsOmBPIy/kvHLAmiGqM13ctF64DxkmF8LmGp4+FvsHBlg
+	 P5/aSCfRVfNsd2woY6bvvntlFmwZwpml1S8YwvYyxNC+RFvdrDSFDAKDX2naR4GKAo
+	 5gSQtkUzNcygA==
+Received: from policy02-mors.netcup.net (unknown [46.38.225.35])
+	by relay01-mors.netcup.net (Postfix) with ESMTPS id 4jY2st1tkpz7vRN;
+	Mon, 23 Nov 2026 11:55:46 +0100 (CET)
+Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits)
+ server-digest SHA256)
+	(No client certificate requested)
+	by policy02-mors.netcup.net (Postfix) with ESMTPS id 4jY2sq21vTz8svc;
+	Mon, 23 Nov 2026 11:55:43 +0100 (CET)
+Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
+ [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
+	by mxe9fb.netcup.net (Postfix) with ESMTPSA id 4E55B5F8B0;
+	Mon, 23 Nov 2026 11:55:27 +0100 (CET)
+Received-SPF: pass (mxe9fb: connection is authenticated)
+Message-ID: <b2c5e6b7-d579-449c-b894-ee162230e328@leemhuis.info>
+Date: Mon, 23 Nov 2026 11:55:26 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [REGRESSION] drm/nouveau: NULL pointer dereference in
+ drm_atomic_commit during GP107 initialization
+To: lyude@redhat.com
+References: 
+ <OS7PR01MB1391484D564CF93DFBB4C1DCE966A2@OS7PR01MB13914.jpnprd01.prod.outlook.com>
+ <b89c176a-922e-4628-b549-a6d4b7520ec7@leemhuis.info>
+ <b89b83ee3de3ab113820ad94cf09be6b98ec3585.camel@redhat.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Content-Language: de-DE, en-US
+In-Reply-To: <b89b83ee3de3ab113820ad94cf09be6b98ec3585.camel@redhat.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <awQGSuf2UJjItcO0@houat>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Message-ID-Hash: ZXOGVWYM3CLBYLSNBPJNR52SXA7WBC6L
-X-Message-ID-Hash: ZXOGVWYM3CLBYLSNBPJNR52SXA7WBC6L
-X-MailFrom: ville.syrjala@intel.com
+X-PPP-Message-ID: <179543132790.1428421.6043635296124573607@mxe9fb.netcup.net>
+X-NC-CID: ykwqwavNXtJHKi1LboJkRmODmsG3XG50Gpsc1NWLrA1tquAvwVc=
+Message-ID-Hash: 3ON3IJ7MT5IGA44O3LKFVQ2DOTWEWFWD
+X-Message-ID-Hash: 3ON3IJ7MT5IGA44O3LKFVQ2DOTWEWFWD
+X-MailFrom: regressions@leemhuis.info
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; emergency; member-moderation; nonmember-moderation;
  administrivia; implicit-dest; max-recipients; max-size; news-moderation;
  no-subject; digests; suspicious-header
-CC: Mario Limonciello <mario.limonciello@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Mario Limonciello <superm1@kernel.org>, Xaver Hugl <xaver.hugl@gmail.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org
+CC: dakr@kernel.org,
+ "regressions@lists.linux.dev" <regressions@lists.linux.dev>,
+ maarten.lankhorst@linux.intel.com, Eric Kim <seohyun.kim@outlook.kr>,
+ mripard@kernel.org, simona@ffwll.ch, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZXOGVWYM3CLBYLSNBPJNR52SXA7WBC6L/>
-Archived-At: <https://lore.freedesktop.org/awQYgTQWOiK66m99@intel.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3ON3IJ7MT5IGA44O3LKFVQ2DOTWEWFWD/>
+Archived-At: 
+ <https://lore.freedesktop.org/b2c5e6b7-d579-449c-b894-ee162230e328@leemhuis.info/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -133,176 +121,150 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 10:30:05AM +0100, Maxime Ripard wrote:
-> On Mon, Nov 23, 2026 at 11:15:33AM +0200, Ville Syrj�l� wrote:
-> > On Mon, Nov 23, 2026 at 10:03:50AM +0100, Maxime Ripard wrote:
-> > > On Mon, Nov 23, 2026 at 10:42:44AM +0200, Ville Syrj�l� wrote:
-> > > > On Mon, Nov 23, 2026 at 09:10:17AM +0100, Maxime Ripard wrote:
-> > > > > On Mon, Nov 23, 2026 at 10:05:04AM +0200, Ville Syrj�l� wrote:
-> > > > > > On Mon, Nov 23, 2026 at 08:50:29AM +0100, Maxime Ripard wrote:
-> > > > > > > On Fri, Nov 20, 2026 at 11:19:13AM -0600, Mario Limonciello wrote:
-> > > > > > > > 
-> > > > > > > > 
-> > > > > > > > On 11/20/26 10:41, Ville Syrj�l� wrote:
-> > > > > > > > > On Thu, Nov 19, 2026 at 05:27:28PM -0600, Mario Limonciello wrote:
-> > > > > > > > > > Panel brightness is a property of a display, and thus of a DRM
-> > > > > > > > > > connector. Add an atomic per-connector LUMINANCE range property so
-> > > > > > > > > > compositors can manage relative panel luminance together with the rest
-> > > > > > > > > > of the display state.
-> > > > > > > > > > 
-> > > > > > > > > > Keep the core backend-agnostic. Drivers create the property with their
-> > > > > > > > > > hardware range and implement connector helper callbacks to set luminance
-> > > > > > > > > > or disable panel emission. The atomic helpers sequence those callbacks
-> > > > > > > > > > around pipeline enable and disable, including luminance-only commits.
-> > > > > > > > > > The panel is left lit when the pipeline enters self refresh, and the
-> > > > > > > > > > luminance is only reprogrammed when it changes or a modeset enables the
-> > > > > > > > > > pipeline.
-> > > > > > > > > > 
-> > > > > > > > > > The stored property value is independent of display power. A commit made
-> > > > > > > > > > while the connector is inactive is retained and applied on the next
-> > > > > > > > > > enable; disabling the pipeline does not overwrite it.
-> > > > > > > > > > 
-> > > > > > > > > > LUMINANCE values are relative, driver-defined levels rather than
-> > > > > > > > > > absolute luminance in cd/m^2. The interface supports emissive panels as
-> > > > > > > > > > well as panels with a separate backlight.
-> > > > > > > > > > 
-> > > > > > > > > > Keep the interface behind a default-off DRM_LUMINANCE option. Migrated
-> > > > > > > > > > drivers retain their legacy backlight class ABI unless the new interface
-> > > > > > > > > > is explicitly selected, allowing the DRM UAPI and legacy compatibility
-> > > > > > > > > > policy to remain separate.
-> > > > > > > > > > 
-> > > > > > > > > > Acked-by: Javier Martinez Canillas <javierm@redhat.com>
-> > > > > > > > > > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> > > > > > > > > > ---
-> > > > > > > > > > v11:
-> > > > > > > > > >   * Don't call .disable_luminance when the CRTC enters self refresh (Sashiko)
-> > > > > > > > > >   * Only call .set_luminance when the luminance changes or on a modeset
-> > > > > > > > > >     that isn't a self refresh exit (Leo Li, Sashiko)
-> > > > > > > > > >   * Fix the .set_luminance self refresh documentation
-> > > > > > > > > > v10:
-> > > > > > > > > >   * Add tag
-> > > > > > > > > > ---
-> > > > > > > > > >   drivers/gpu/drm/Kconfig                    | 14 +++++
-> > > > > > > > > >   drivers/gpu/drm/drm_atomic_helper.c        | 98 +++++++++++++++++++++++++++++-
-> > > > > > > > > >   drivers/gpu/drm/drm_atomic_state_helper.c  |  7 +++
-> > > > > > > > > >   drivers/gpu/drm/drm_atomic_uapi.c          |  5 ++
-> > > > > > > > > >   drivers/gpu/drm/drm_connector.c            | 57 +++++++++++++++++
-> > > > > > > > > >   drivers/gpu/drm/tests/drm_connector_test.c | 28 +++++++++
-> > > > > > > > > >   include/drm/drm_atomic_helper.h            |  3 +
-> > > > > > > > > >   include/drm/drm_connector.h                | 16 +++++
-> > > > > > > > > >   include/drm/drm_modeset_helper_vtables.h   | 28 +++++++++
-> > > > > > > > > >   9 files changed, 255 insertions(+), 1 deletion(-)
-> > > > > > > > > > 
-> > > > > > > > > > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> > > > > > > > > > index 61111d50b1c65..1bbe2c2d7c76f 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/Kconfig
-> > > > > > > > > > +++ b/drivers/gpu/drm/Kconfig
-> > > > > > > > > > @@ -33,6 +33,20 @@ endmenu
-> > > > > > > > > >   if DRM
-> > > > > > > > > > +config DRM_LUMINANCE
-> > > > > > > > > > +	bool "DRM connector luminance support"
-> > > > > > > > > > +	help
-> > > > > > > > > > +	  Expose relative luminance as an atomic DRM connector property. Values
-> > > > > > > > > > +	  are driver-defined levels rather than absolute luminance in cd/m^2.
-> > > > > > > > > > +	  Drivers provide connector helper callbacks to program their hardware;
-> > > > > > > > > > +	  the DRM core does not depend on a particular backend.
-> > > > > > > > > > +
-> > > > > > > > > > +	  Drivers migrated to this interface will use it instead of registering
-> > > > > > > > > > +	  a legacy backlight class device. Leave this disabled to preserve the
-> > > > > > > > > > +	  de-facto userspace ABI in /sys/class/backlight.
-> > > > > > > > > 
-> > > > > > > > > I don't think this will fly if it breaks the backlight class interface.
-> > > > > > > > > No one can actually enable this outside of some niche embedded use
-> > > > > > > > > cases where backwards compatibility is not an issue. I think what
-> > > > > > > > > you need is a generic backlight class implementation on top of this.
-> > > > > > > > > 
-> > > > > > > > 
-> > > > > > > > The idea with this was:
-> > > > > > > > 1) to get the series landed
-> > > > > > > > 2) let compositors merge solutions around it.
-> > > > > > > > 3) Then add backwards compatibility to kernel so we can flip the Kconfig
-> > > > > > > > default.
-> > > > > > > 
-> > > > > > > I said this a few times already, but we keep having those discussions
-> > > > > > > while the backlight sysfs handling is far from being the main point. You
-> > > > > > > should *really* consider adding support for the luminance property for
-> > > > > > > something that isn't tied to that interface (like DDC/CI for HDMI), and
-> > > > > > > treat the sysfs API as a sysfs series.
-> > > > > > > 
-> > > > > > > It looks like people just have conflicting opinions on this particular
-> > > > > > > part that isn't going to solve itself easily. You should not treat this
-> > > > > > > sysfs discussion as a blocker for the infrastructure work.
-> > > > > > 
-> > > > > > You want to be sure backwards compatibility with the backlight
-> > > > > > class is a solvable problem before you land *anything*. Otherwise
-> > > > > > you might just paint yourself into a corner with no way out.
-> > > > > 
-> > > > > I disagree. The luminance property is more useful than *just* for
-> > > > > backlights but is also useful for HDMI, DP, and MIPI-DSI that would all
-> > > > > use it.
-> > > > 
-> > > > DSI and eDP are all over the place when it comes how backlight
-> > > > is implemented, so very much would not all use it. Some HDMI and
-> > > > external DP displays might have DDC/CI support, so I'll give you
-> > > > those.
-> > > >  
-> > > > > If that's the corner we paint ourselves into, it's still a pretty nice
-> > > > > corner.
-> > > > 
-> > > > Separate APIs for different outputs on different drivers is just
-> > > > a bad idea. Every userspace implementation will have to support
-> > > > all of them until the end of the world.
-> > > 
-> > > I agree, but then there's an easy answer: don't enable it on drivers
-> > > that would expose it on both APIs. We do have a lot of drivers where
-> > > there's just no backlight involved and would greatly benefit from these,
-> > > and without the history of i915 or amdgpu to deal with.
-> > 
-> > It's not the history of the drivers you need to worry about. It's
-> > the history of userspace that actually matters. All existing
-> > userspace expects a working backlight class interface. And if you
-> > don't care about userspace compatibility then we're very much
-> > back in the "only usable in niche embedded use cases" or "only
-> > usable on external displays" territories.
+On 11/10/26 01:54, lyude@redhat.com wrote:
+> Hi - I'm back! Sorry about this, I've been busy moving and only just
+> got my machine setup. I will take a look at this tomorrow
+
+Any progress on this? Looks like nothing happened, but it's easy to miss
+something from the outside.
+
+Just wondering: should we maybe just revert the culprit for now and
+retry in a later cycle?
+
+Ciao, Thorsten
+> On Mon, 2026-11-09 at 08:45 +0100, Thorsten Leemhuis wrote:
+>> On 11/2/26 13:47, Eric Kim wrote:
+>>>
+>>> On my laptop, which has GP107 GPU with intel graphics and uses
+>>> nouveau
+>>> driver, booting kernels after commit
+>>> 2652aca460dcfdd0d169bbfa358aa15804dc736b causes NULL pointer
+>>> dereference
+>>> at initialization.
+>>
+>> Thx for your report. Hmm, no reply yet afaics. Wondering if it would
+>> have been better to report it at the dedicated place for nouveau
+>> kernel
+>> bugs: https://gitlab.freedesktop.org/drm/nouveau/-/work_items/
+>>
+>> You thus might want to at least check if any similar reports are
+>> found
+>> there.
+>>
+>> Would also be good to know if reverting 2652aca460dc ontop of latest
+>> mainline fixes this.
+>>
+>> Ciao, Thorsten
+>>> [   17.556328] [drm] Initialized nouveau 1.4.3 for 0000:01:00.0 on
+>>> minor 0
+>>> [   17.556364] nouveau 0000:01:00.0: [drm] No compatible format
+>>> found
+>>> [   17.556792] nouveau 0000:01:00.0: [drm] Cannot find any crtc or
+>>> sizes
+>>> [   17.557237] BUG: kernel NULL pointer dereference, address:
+>>> 0000000000000000
+>>> [   17.583880] #PF: supervisor instruction fetch in kernel mode
+>>> [   17.598078] #PF: error_code(0x0010) - not-present page
+>>> [   17.601475] PGD 0 P4D 0 [   17.608839] Oops: Oops: 0010 [#1] SMP
+>>> PTI
+>>> [   17.608914] CPU: 6 UID: 0 PID: 1443 Comm: modprobe Not tainted
+>>> 7.3.0+
+>>> #1 PREEMPT(lazy) [   17.608954] Hardware name: SAMSUNG ELECTRONICS
+>>> CO.,
+>>> LTD. 800G5M/800G5W/NT800G5M-X78W, BIOS P11RDV.075.170829.XJ
+>>> 08/29/2017
+>>> [   17.608990] RIP: 0010:0x0
+>>> [   17.609090] Code: Unable to access opcode bytes at
+>>> 0xffffffffffffffd6.
+>>> [   17.610081] RSP: 0018:ffffca4d86537828 EFLAGS: 00010246
+>>> [   17.610135] RAX: 0000000000000000 RBX: ffff89b74dcf1180 RCX:
+>>> ffffffffa97d8091
+>>> [   17.610172] RDX: 0000000000000000 RSI: ffff89b74dcf1180 RDI:
+>>> ffff89b74c466800
+>>> [   17.610207] RBP: ffff89b74c466800 R08: ffff89b74dcf1180 R09:
+>>> 0000000000000000
+>>> [   17.610245] R10: 0000000000000010 R11: ffffffffa9b65410 R12:
+>>> ffff89b74c466800
+>>> [   17.610283] R13: 0000000000000001 R14: ffff89b74c466800 R15:
+>>> ffff89b77f1a2400
+>>> [   17.610320] FS:  00007fc4a888d780(0000)
+>>> GS:ffff89bac4364000(0000)
+>>> knlGS:0000000000000000
+>>> [   17.610357] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+>>> [   17.610414] CR2: ffffffffffffffd6 CR3: 0000000144b20004 CR4:
+>>> 00000000003726f0
+>>> [   17.610448] Call Trace:
+>>> [   17.610483]  <TASK>
+>>> [   17.610521]  drm_atomic_commit+0xb1/0xe0
+>>> [   17.610558]  ? __pfx___drm_printfn_info+0x10/0x10
+>>> [   17.610590]  drm_client_modeset_commit_atomic+0x25c/0x2d0
+>>> [   17.610618]  drm_client_modeset_commit_locked+0x5a/0x170
+>>> [   17.610647]  ? drm_master_internal_acquire+0x1d/0x40
+>>> [   17.610675]  drm_client_modeset_commit+0x25/0x40
+>>> [   17.610700]  drm_fb_helper_single_fb_probe+0x1aa/0x1c0
+>>> [   17.610729] 
+>>> __drm_fb_helper_initial_config_and_unlock+0xa8/0x1b0
+>>> [   17.610754]  drm_fbdev_client_hotplug+0x79/0xb0
+>>> [   17.610782]  ? drm_client_init+0x13e/0x180
+>>> [   17.610811]  drm_client_register+0x79/0xc0
+>>> [   17.610839]  drm_fbdev_client_setup+0xc9/0x1c0
+>>> [   17.610867]  drm_client_setup+0x6a/0x90
+>>> [   17.610893]  nouveau_drm_probe+0x15b/0x1e0 [nouveau]
+>>> [   17.610922]  local_pci_probe+0x4a/0x90
+>>> [   17.610951]  ? cpu_hotplug_disable+0x15/0x30
+>>> [   17.610977]  pci_call_probe+0x5a/0x1a0
+>>> [   17.611009]  pci_device_probe+0xdb/0x180
+>>> [   17.611060]  call_driver_probe+0x23/0x100
+>>> [   17.611104]  ? driver_sysfs_add+0x55/0xc0
+>>> [   17.611137]  really_probe+0xd7/0x2d0
+>>> [   17.611171]  ? __pm_runtime_resume+0x50/0x60
+>>> [   17.611220]  __driver_probe_device+0x9c/0x1b0
+>>> [   17.611261]  driver_probe_device+0x1f/0x80
+>>> [   17.611297]  ? __pfx___driver_attach+0x10/0x10
+>>> [   17.611335]  __driver_attach+0xcc/0x200
+>>> [   17.611373]  ? __pfx___driver_attach+0x10/0x10
+>>> [   17.611409]  bus_for_each_dev+0x97/0x100
+>>> [   17.611451]  bus_add_driver+0x1d0/0x280
+>>> [   17.611493]  ? __pfx_init_module+0x10/0x10 [nouveau]
+>>> [   17.611530]  ? __pfx_init_module+0x10/0x10 [nouveau]
+>>> [   17.611567]  driver_register+0x75/0xe0
+>>> [   17.611602]  nouveau_drm_init+0x60/0xff0 [nouveau]
+>>> [   17.611633]  do_one_initcall+0x89/0x3d0
+>>> [   17.611667]  do_init_module+0x8e/0x290
+>>> [   17.611703]  init_module_from_file+0xc8/0x180
+>>> [   17.611736]  idempotent_init_module+0x23e/0x360
+>>> [   17.611773]  __x64_sys_finit_module+0x7f/0x110
+>>> [   17.611805]  do_syscall_64+0xbe/0x470
+>>> [   17.611844]  ? do_syscall_64+0x37/0x470
+>>> [   17.611883]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+>>>
+>>> It boots without this problem when booting with nouveau.atomic=0
+>>> kernel parameter.
+>>>
+>>> My guess is that atomic_(commit|check) operation is not present in
+>>> nouveau_mode_config_funcs, and commit
+>>> 2652aca460dcfdd0d169bbfa358aa15804dc736b enabled
+>>> atomic modesetting by default for NV50+ gpus caused
+>>> the problem.
+>>>
+>>> Also, drm_helper_(commit|check) was added to
+>>> nouveau_mode_config_funcs
+>>> at commit 604826acb3f53c6648a7ee99a3914ead680ab7fb, but it was
+>>> reverted at commit 6c65db809796717f0a96cf22f80405dbc1a31a4b due to
+>>> unreliability.
+>>>
+>>> I hope this problem can be fixed at one of the next releases.
+>>>
+>>> Thanks,
+>>> Eric Kim
+>>>
+>>> #regzbot introduced: 2652aca460dc
 > 
-> Depending on what your perspective is, fastboot was "only usable in
-> niche i915 use cases" just like color management for amdgpu or leases
-> were. Let's not be judgemental and / or dismiss others use cases.
 
-Fastboot didn't require a new uapi (or intentionally break existing
-userspace). You have to be diligent when adding new uapis or else
-you end up adding ones that don't actually work.
-
-> 
-> If some established driver like, say, vc4 that only has external
-> displays can pave the way for everyone else to use them eventually, how
-> is it a downside that it's only usable on external displays?
-> 
-> And even if it's still usable by less established drivers, slow-rolling
-> it into more drivers, fixing the bugs, rough edges, etc. while
-> consolidating the code still has a lot of value. Just like it had for
-> color management or fastboot.
-
-My *points* were:
-a) you can't just hook this up and break existing usersapce,
-   which seems to have been the approach here
-b) you want to be sure you have a way to hook it up later
-   without breaking userspace
-
-The best way to insure b) is by actually doing it.
-
-The alternative of course is that you later add yet another uapi
-for the cases where b) failed. And then userspace gets to deal
-with three backlight interfaces instead of two. I'm sure they'll
-appreciate that.
-
--- 
-Ville Syrj�l�
-Intel
