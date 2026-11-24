@@ -2,128 +2,119 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E6B2606A327
-	for <nouveau@archiver.kernel.org>; Tue, 24 Nov 2026 21:35:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F845606A321
+	for <nouveau@archiver.kernel.org>; Tue, 24 Nov 2026 22:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qQkI5z2W
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.a=rsa-sha256 header.s=korg header.b=ugOr/v4c
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EC4AF10F0F1;
-	Tue, 24 Nov 2026 21:34:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E247A10F89C;
+	Tue, 24 Nov 2026 22:27:20 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CB695403B8;
-	Tue, 24 Nov 2026 21:34:50 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id D5B27403BA;
+	Tue, 24 Nov 2026 22:27:15 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795556090;
- b=rZQOAILSnOjruCnRlkYHHRK/JKfhUMTNPGaMVntFtX33m5M3C3+dwesXUIjwNpeKlGEr6
- oKpziMYthU3cCCE3ETB8eXAf7yW+wwqd3PWteaU65eAyyxLl0YMLD//SYUCkrTJ8n01rN6k
- 2ibC+PKxpzgy42Caf+tHWruEN/4TDlxeHD5pdhO+jnO+xHdNo2u3eBOLL8pTlS5a6XWwMjj
- WHgc7fedO9debM0HVtvI6B8J7gpLAUYSh6yZ0zdt2ru2MINjgI7faECnUxjQlqDSZKb/LaR
- uOQCBy9EAn22LXqp9Ko3mKu8r0AXkXYfU7gtNth1+lj+gg392tLCMfvVDXVA==
+ s=20240201; t=1795559235;
+ b=nR29iGOkKaGcWuUXABOwp9r1KBUzdIz4ZySx1uG2wA2qQ02tak+PwDUcvqhRUtMgN281p
+ JJpFY5FgnW8Hl59mKluIWTInytXiofKXr9Zi/Z8JUZEFjV1DJN7hb6QIHs6Kh94Q0G8rvyD
+ d7Wd6Cfdvh9rSYWWmo3aVWn+vfnOlkeRsfcOK1ILy5jHfVEUbIk/gFHK80VTOiO6mVzOMCq
+ 6T+jjwjQvbqA5G6pVWvFTaqYW2R6Q5UBDN0JKeciHQlauJRrjBMALjK2WOcPSf/x5HWXsGr
+ IVTAIW2/dsw6LIPoQNsBNUc3helWPm6OZGgCm46WW+3xI5blVNsJJMfxM5vA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795556090; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795559235; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=PyyQwKmFe9iM2Cp50Hb1UepVeU0i/+dyb3nhRaBGF3U=;
- b=XtO2TcVHQFlFpVhJvoIL55amI/DcJGw3aeO8jenysfX5pRSz5jJysI9KzJq3y6lToqwL4
- qODMefIV+R3WZcM7+nNdkDsqMhTwfgP75LZMUfpDDsOTkIhz5OHVjKu77ltoBTdt4LUX+sp
- pDA+wQM52/pKeujCHFytJRWfYrBOGAzV7fpALQ7YMo/XDnqi1XZqHoYhFVFpeOH37Mob7ln
- ewQhk0wrYPTt0nGEnKHqlobNL1RWH+0CVASYwiH8fuIMGgtLp1dsEiuBclY7w8e1QO4Pazc
- l4G+oi6W5ShxixOiTS0JJXBEe+I0s/Po4iZGuzo3/gTHj3mAXZNWS7eUwNLQ==
+ bh=dtMZbHm3lkM6o/yW+HmQOChZENqEt7jGlIYiYyXmUrc=;
+ b=v7TdKdv59q2xeEvIY1OBGxFyhjffOssmKOitk4SGwTk4YvUPIGc8GrYPp9oUrRG59osrR
+ +ZE1CQspOS+Zx+3kf44zB84bmXx1EKU5plwhCpMu43R0bh9g041GNGFtTx51BaguPpRVV8v
+ dQ9bVYggCy+IkYsc6dnmXZj+T8bFpwaPegCDNd2ZV/B37SwgbEW5hoUfJb+g5IGpPZ0WPrn
+ BDdug8Jel+ljKOO5Kgh0Lvaf7eeiZU6LqAF7AlkjgUY//HlTGOBfDxDAulmkXodpIqNpEDQ
+ yJHoSMljzegcegaj3fW8EsgCOw7z1hbmcJUe5NpQLfGXoMD1YHxHe+80dfoA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=linux-foundation.org;
  arc=none;
- dmarc=pass header.from=gmail.com policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+ dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=linux-foundation.org;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 30429402F9
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 21:34:48 +0000 (UTC)
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1F10610E5A0
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 21:34:43 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-4a5b2be99a8so43325785e9.2
-        for <nouveau@lists.freedesktop.org>;
- Tue, 24 Nov 2026 13:34:43 -0800 (PST)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 7EE2C402F9
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 22:27:12 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 60BF310EFED;
+	Tue, 24 Nov 2026 22:27:07 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 910B540E04;
+	Tue, 24 Nov 2026 22:27:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B5741F000ED;
+	Tue, 24 Nov 2026 22:27:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795556081; x=1796160881;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=PyyQwKmFe9iM2Cp50Hb1UepVeU0i/+dyb3nhRaBGF3U=;
-        b=qQkI5z2WvQaleb3qgq9ltd1CIj8V2hvbMrX4p+XcyPOuLwbzQTWYJQkfdyO7o77D+e
-         C7eLE4InAZ2O7X7vXMCFqYnW9vLkPk5QeRToCt0e5IoGauFlESYYdC6tugM6USou6AEV
-         fkxxB3/I4gts7xto/7jAAieljsfp+4uMf8JGsnQm4Jgjymg+HcdGYOuQmK4ahWpB/a3s
-         vKKNwGPIhCNPhfwNDShZxjuWTWdBv+cPSxbU9tDVQor5ORH6xPgWQx7ZGkbWFXq2vu/H
-         HihdVnzZLcfGS+PX4QSQKuQ5Fy0d2K29SrKqGFqg3YI+zBCfg7KgRMkfxfXCqwhLlCN0
-         0nBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795556081; x=1796160881;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=PyyQwKmFe9iM2Cp50Hb1UepVeU0i/+dyb3nhRaBGF3U=;
-        b=WLyzMAQqgE/wB3DsItLQuDyfWTP4iKaTwtAbdjip2AkJT7yoWwFZBQtY3hCdZ3EdMp
-         FMT5SCUfTTs7xJsoTKezbEOVBOvTrcJz+5RDI4s7PmmK3lLgmFHTCgaqtSWKov8DnYJZ
-         ETMbVPhVitDkJr7Tb9vFgLGlzcU8v4xAE3yEkEDjUZXreG7N8TElG78qo9A8MFV4e5a3
-         4hOObzY0XjHq7H5wJWx2avwjcIMFTk1yMhPm+BjYDpX9iP5+qqUKktvQN0tkNonxwkkA
-         x+PR8Z1oQPYe+zqpvoUzatzqsq6zUOJnTl5wbegl9E/+93Mtk4plasMyTx84SXUjGxxE
-         kAPw==
-X-Forwarded-Encrypted: i=1;
- AL+hErEo9UiaJJ9XMb3ZRi+25EuTL/7E8XdsXMQz+YEbDm2FggifWYBazDNn+y2aCEfafoBRHLelxOMQ@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z/tNR33B01ShG2+SO9sI9aDJy9DDhPVKkVs1qRiu1Y7aSkCfpeo
-	mvfsRfWM98OgGpD1PJJ48typCJxHDwipWxJaF6DrZg02ZTHfBxDv2Uf6
-X-Gm-Gg: AZFdTZdDESzXDkhqWoPI0qo32ktLVqU0yes1NtLqa7y68m3RcXDpYD+owWRtnfsYLQH
-	THymajPZmjz/o9xmvQ7JzOrWJXQMDg0cvQ4VsI9sIGGgAnOae3Wbwkffmsi0gnrxZJLYIgwWQ/x
-	mUd5Z40LXFH+OxQ+/7DHzj8wP3PcPzYOx79rdnRpF6LN/fKNJ49JwsSvg2MKd8Xzl/InYKS/bGL
-	NGWNWtJdfH/18zmjBnau9nOpgV7ZdTOPBf4qUeI4d2bwtOJ3DTCYhA6hapGWs/urYO+ru/lLqiZ
-	wTmF8byXfmwdn+JQdTPHi5rov3muhl1yXVTiqzA8QEBYfU6HINMJGB0YpUSkMZ0CmklEVi1x1be
-	xGgu4iL76WUw4zpzNm4KYl9DOB2WeE/PQKolCFye0+q53EyYTQdQrEGtcWnTuMN5w3xcrOgCuNS
-	fdc1DG8z8I/kOGG/mzLSzfeVbtwx5Q/JvHWnNRMrXSDuYeL5WMQAdbXtO10C5hjoq4WHhKA1AvP
-	RSMq7lMC5OK7aCgR94wswO2mFAWc81jLRr33Lwbpqpg6a9aOjTL+TEgqphGjeD7NLzBuWggWyhT
-	ZJwIa+gcajHqSiigNVAxU3JVWTjSng==
-X-Received: by 2002:a05:600c:800e:b0:4bb:7757:fe58 with SMTP id
- 5b1f17b1804b1-4bb8881b9d7mr328897525e9.19.1795556081300;
-        Tue, 24 Nov 2026 13:34:41 -0800 (PST)
-Received: from fra-x8664 ([151.83.244.218])
-        by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4bb90660cb4sm403974515e9.2.2026.11.24.13.34.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 13:34:40 -0800 (PST)
-From: Francesco Magazzu <postadelmaga@gmail.com>
-To: Lyude Paul <lyude@redhat.com>,
-	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH] drm/nouveau/devinit/gf100-: fix POST being skipped on GPUs
- without display
-Date: Tue, 24 Nov 2026 22:34:30 +0100
-Message-ID: <20261124213430.9525-1-postadelmaga@gmail.com>
-X-Mailer: git-send-email 2.56.1
+	d=linux-foundation.org; s=korg; t=1795559226;
+	bh=dtMZbHm3lkM6o/yW+HmQOChZENqEt7jGlIYiYyXmUrc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=ugOr/v4ceQqckoPQJ/g4UCaTyO+koHIT2A4RUIfXBsU1JVNTjLPiYJiVbIG3PBhXs
+	 cQ9UXFCWsh7ke9FpqJnH2bUu4Jume8Vz7EZPuKtb9E8g8EMBIGl7EyVWY/I16PMPbn
+	 B5BPEJXFGwvq3OGEHbKmuOIcSyHevi31Sq/46n4I=
+Date: Tue, 24 Nov 2026 14:27:03 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Tal Zussman <tz2294@columbia.edu>
+Subject: Re: [PATCH v3 0/9] userfaultfd: assorted fixes (part 1)
+Message-Id: <20261124142703.8b6e07eabcd510e9b99b03a4@linux-foundation.org>
+In-Reply-To: <3ebb01ea-fe77-4467-a1de-7f30a91593f3@columbia.edu>
+References: <20261117-uffd-state-fixes-v3-0-b617009d1a4a@columbia.edu>
+	<4f23b0bc-b89a-46c1-b8cd-853e7815b7ac@kernel.org>
+	<3ebb01ea-fe77-4467-a1de-7f30a91593f3@columbia.edu>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: ZMXD2NXKKXRQ2CY2TBSM7UDKP5BJZHCU
-X-Message-ID-Hash: ZMXD2NXKKXRQ2CY2TBSM7UDKP5BJZHCU
-X-MailFrom: postadelmaga@gmail.com
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: MCG2EO2GHGFT7VQCA5VCHVMRLUGE2BU5
+X-Message-ID-Hash: MCG2EO2GHGFT7VQCA5VCHVMRLUGE2BU5
+X-MailFrom: akpm@linux-foundation.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; emergency; member-moderation
-CC: Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- regressions@lists.linux.dev, stable@vger.kernel.org
+CC: "David Hildenbrand (Arm)" <david@kernel.org>,
+ Mike Rapoport <rppt@kernel.org>, Peter Xu <peterx@redhat.com>,
+ James Houghton <jthoughton@google.com>,
+ Andrea Arcangeli <aarcange@redhat.com>,
+ Suren Baghdasaryan <surenb@google.com>,
+ "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ Vlastimil Babka <vbabka@kernel.org>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, Michal Hocko <mhocko@suse.com>,
+ =?UTF-8?Q?Micha=C5=82_Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
+ Andrei Vagin <avagin@gmail.com>, Muhammad Usama Anjum <usama.anjum@arm.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>, Arnd Bergmann <arnd@arndb.de>,
+ Zi Yan <ziy@nvidia.com>, Matthew Brost <matthew.brost@intel.com>,
+ Joshua Hahn <joshua.hahnjy@gmail.com>, Byungchul Park <byungchul@sk.com>,
+ Gregory Price <gourry@gourry.net>, Ying Huang <ying.huang@linux.alibaba.com>,
+ Alistair Popple <apopple@nvidia.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Nico Pache <nico.pache@linux.dev>, Ryan Roberts <ryan.roberts@arm.com>,
+ Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>,
+ Lance Yang <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>,
+ Kiryl Shutsemau <kas@kernel.org>, Muchun Song <muchun.song@linux.dev>,
+ Oscar Salvador <osalvador@suse.de>,
+ =?UTF-8?Q?Miko=C5=82aj?= Lenczewski <miko.lenczewski@arm.com>,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, stable@vger.kernel.org,
+ Breno Leitao <leitao@debian.org>,
+ Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Danilo Krummrich <dakr@kernel.org>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZMXD2NXKKXRQ2CY2TBSM7UDKP5BJZHCU/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MCG2EO2GHGFT7VQCA5VCHVMRLUGE2BU5/>
 Archived-At: 
- <https://lore.freedesktop.org/20261124213430.9525-1-postadelmaga@gmail.com/>
+ <https://lore.freedesktop.org/20261124142703.8b6e07eabcd510e9b99b03a4@linux-foundation.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -131,75 +122,57 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+X-Spam-Status: No, score=-5.3 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Commit 2139cb633d48 ("drm/nouveau/devinit/gf100-: try to avoid
-double-running vbios scripts") skips devinit if VGA CRTC register 0x00
-or 0x1a is non-zero, unless the display engine is disabled.  It detects
-the latter from the return value of nvkm_devinit_disable(), which is
-always 0: the strapped-off engines are removed with
-nvkm_subdev_disable() instead.  So the VGA registers are always read.
+On Tue, 24 Nov 2026 14:37:11 -0500 Tal Zussman <tz2294@columbia.edu> wrote:
 
-On a GM108 (GeForce 940MX: no display engine, not POSTed by the
-firmware) those reads fault and return 0x13.  devinit is skipped, the
-GPU is used uninitialised and the machine panics at boot:
+> 
+> 
+> On 11/18/26 4:41 AM, David Hildenbrand (Arm) wrote:
+> ...
+> > 
+> > So, I would be picking up ...
+> > 
+> >> Tal Zussman (9):
+> >>       userfaultfd: use anonymous memory for UFFDIO_ZEROPAGE on private file mappings
+> >>       userfaultfd: refuse UFFDIO_MOVE into a non-present huge destination PMD
+> >>       fs/proc/task_mmu: downgrade writable migration entries in PAGEMAP_SCAN write-protect
+> >>       mm/migrate: warn on a writable migration entry with the uffd bit set
+> > 
+> > This
 
-  nouveau 0000:01:00.0: fifo: fault 01 [WRITE] at 00000000001a1000 engine 05 [BAR2] client 08 [HUB/HOST_CPU_NB] reason 04 [UNBOUND_INST_BLOCK] on channel -1
-  mce: CPUs not responding to MCE broadcast (may include false positives): 1,3
-  Kernel panic - not syncing: Timeout: Not all CPUs entered broadcast exception handler
+1
 
-Check device->disp instead, once nvkm_devinit_disable() has removed the
-disabled engines, like nv50_devinit_preinit() does.
+> >>       fs/proc/task_mmu: write-protect device-private THPs in PAGEMAP_SCAN
+> >>       mm/huge_memory: build the moved huge zero PMD from the destination VMA
+> > 
+> > This
 
-Fixes: 2139cb633d48 ("drm/nouveau/devinit/gf100-: try to avoid double-running vbios scripts")
-Cc: stable@vger.kernel.org
-Assisted-by: Claude:claude-fable-5-2
-Signed-off-by: Francesco Magazzu <postadelmaga@gmail.com>
----
+2
 
-Notes:
-    v7.3.4 boots on this machine; v7.3.5, which has the stable backport
-    (992f7f5f34f8), panics.  Tested on v7.3.5: with this patch the GM108 is
-    POSTed again at probe and on runtime resume.  Not tested on a board
-    that has a display engine.
-    
-    Read at preinit on this board: 0x2240c = 0x00000000, CR00 = CR1A = 0x13,
-    0x021c04 = 0x00000001 (display strapped off).
-    
-    The regression was analysed and the patch drafted with an AI coding
-    assistant (Claude Code); I tested it on the hardware above.
+> >>       mm/mremap: resolve uffd state when the context is dropped, not during the move
+> >>       mm/migrate_device: do not migrate a uffd-protected zero page
+> > 
+> > This
 
- drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+3
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
-index 186e09ea0c..b256404c24 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
-@@ -107,12 +107,12 @@ gf100_devinit_preinit(struct nvkm_devinit *base)
- 	 * VBIOS multiple times may have detrimental effects.
- 	 */
- 	if (base->post) {
--		u64 disable = nvkm_devinit_disable(base);
-+		nvkm_devinit_disable(base);
- 		/* magic to detect whether or not x86 vbios code has
- 		 * executed the devinit scripts to initialise the
- 		 * board. only works if there's a display engine.
- 		 */
--		if (!(disable & (1ULL << NVKM_ENGINE_DISP))) {
-+		if (device->disp) {
- 			if (nvkm_rdvgac(device, 0, 0x00) ||
- 			    nvkm_rdvgac(device, 0, 0x1a)) {
- 				base->post = false;
+> >>       mm/userfaultfd: check the hugetlb alignment of every VMA in the pre-scan
+> > 
+> > 
+> > After waiting a bit longer for more review. Andrew can take the rest.
+> > 
+> > 
+> 
+> @Andrew, could you pick up the rest of these (everything but 4 and 8)?
 
-base-commit: 8d7fe9885c62fc9a95bf55d9db244d9672a8aadc
--- 
-2.56.1
+9-3 != 9-2
+
+np, I grabbed 1,2,3,5,6,7,9 (whatever isn't in other-peoples-trees) and
+massaged the cover letter a bit.
 
