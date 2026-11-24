@@ -2,145 +2,100 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FC2B606A33C
-	for <nouveau@archiver.kernel.org>; Tue, 24 Nov 2026 05:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 283AE606A31E
+	for <nouveau@archiver.kernel.org>; Tue, 24 Nov 2026 11:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mu/3iqGL
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AGWcwVqO
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0A90C10ED9B;
-	Tue, 24 Nov 2026 05:50:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0F7C510F52F;
+	Tue, 24 Nov 2026 11:56:07 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7FE9C40482;
-	Tue, 24 Nov 2026 05:50:31 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795499431;
- b=iSkIUPvqFW/pUQQxJU5nBAGukpoP0huYA8e+DvlIGHzRczv4WYsoBwZYUpQKmgXYnUW5X
- 0WtE/AHDn5HzMzmmYn0SgP610/2erYx/xTPsk7o6F5gzav4is1enJEEOltraTGxompCLWi1
- itrh1Fw3Q9TTDtDA+cqO+km1ZVXMZL96fQvGonikliFzmZVfT7xNQD7CmO7YYBqsxBSqCv5
- 1qtxQUAnfErm1I96wtWptYl87VRpdGBUvhCHkeaJ54ojd0vh1okXJ5lXY76HEIZ/Pw5COI/
- /mBzCupy8BxUfCiIw2bLm324R/UL6Q+1Yd7ONB/LNioxksDgCHkoLMRCYYag==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795499431; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id E2B15403B8;
+	Tue, 24 Nov 2026 11:56:02 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1795521362;
+ b=ruKm/HZXJS1xPps1t1ne5dzrRXcVjNsWCMgSnOj6JJ+xGEaRZDd2C5tK6dqL7OPHrz+YG
+ 3nwkgCHBqSkY/2gSatbnbMW1a7ucR+su9Fpqge/BIIcSeNpx2xwFMPjAw9UYnsSZyvWfsZZ
+ KMcN1wFNTRlSk1iw4fpbrvyXvFTx2ZnEUJJPejgzuImYIn/7G0S6BHLlgyNuFhaOpW6AxMw
+ OXj2QHlh9Z+5qloN6RANvbiG4pJxUOYHJEnVZ5PdVTRO/law1xA8qA8vo4KjzZVP3Kn/a8Y
+ zfPjRm/p7vz+8PayWqI3lze0uufeaAzDdwl+agote8+wdFPcUGy+usk5TLcQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1795521362; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=f8TFiNqrsqE0EW+GIUSbAYI7CaPwbfLMW8LoVa3cWZA=;
- b=mWU6nN5iKE2HNR3dXlMxKlj0kLoVGUmoshbeclGwRdve0HVtwvRcMqO5tawswelB+rKWP
- 0v3SPm72iaLwe17DcV3QxNC4UehOr4Gqq1KC3WNSUPDjyJ8ihvE2jucIurOzQoxvLg+xo0r
- 8ap62lgRGr1yUqbM89hIB8tW4cnZ6Mdt8JNSc8l5QwHEJOEwczb4h0aNKYBLlcrIsL6LW29
- +CaBcdJRoBhdK/B5mPp52RRhUsJhPr2HjRphIBOftjbLZLud3DXWvrqXjqO0HwBoQhSsZJ5
- LhnqrZ3ENETuWbSmfv7mlFroXEnxFMyh0OAHP/T3HLFAsc+1endxqwS+hXjw==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ bh=FCk4hJGWPUnhJXWJTDgKqX8nTAjZ6DEdTfpvOFD9mxw=;
+ b=wp/cBSRA3u6/UAky1KYNlNog8k7GyqI+ZfjJFfjW3RQZ3Zn2zBXcK/O1kBjl40sgupFFk
+ M4eU+fEIPseeK36FG+s2h4cIjJiVbJ9hAaiJW0kWQtFU99L9tW3SDgtkqplm9ij0PTXc7Gs
+ aG3RI5fYooDheBHv7KJknQVvx0hBQZf5FPB7LJ1VcRvj6rulgEFoLcULptBeiGbVsBUwm9M
+ 6ch6FhPqf8T+KOZzH1VOsxOX8FAVy1hDBZyn+5MP6U/pernnQ8CYCDHRU4ytGNUm0Q6E1uz
+ ymLeY1s2MriR316QNNVn+VjsXYyUxPvg66hmQIJWFpf/fFyTH4HToD53JT7g==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
- arc=pass;
+ arc=none;
  dmarc=pass header.from=kernel.org policy.dmarc=quarantine
 Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=kernel.org policy.dmarc=quarantine
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 73590402ED
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 05:50:28 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 31BF340218
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 11:56:00 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 536C310E754;
-	Tue, 24 Nov 2026 05:50:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 057FD10F508;
+	Tue, 24 Nov 2026 11:55:55 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B8C56609FC;
-	Tue, 24 Nov 2026 05:50:22 +0000 (UTC)
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795499422;
-	b=cjNedvTn8ci1WrEmeIfylljgxbyTc9fwQDN/2CKEwqS19CJtiA4V9bvUsb2MZic5hwgG
-	 oJgF1lF5sU6nFyv97FugE/yYsZv3DXaqO94OkWDs4DoAO8ShDto5b+0ZtgZs8c3DW7PE1
-	 D/igmFzxLfAffYp6uGpnwUDML6Nc//uJuY2mg6kMDN0GyoE8Bnk57AolZ7km948Dt4tk1
-	 LQy4StcQcEnIP4AzbeeyG89NXeB7IUXGMTdbBFSQBIBTb+dVo4392ZW0ED9gVr3Njm0cw
-	 XPhPjKn7WiUa0eV4tydSLNqx8D6RIrijowNUqFhe7SNjxpCEyrpGfv0fWjc30dZ1mnA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795499422;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=f8TFiNqrsqE0EW+GIUSbAYI7CaPwbfLMW8LoVa3cWZA=;
-	b=HkureUzhFcNJcBHu7GnC+04EnlT99dsAQj15LfH3vNPQWN/xHHVYgOmU0YoiZqZjoZdN
-	 QCLg/5NmPneL3F2v4yONApqJAUpAfLmssgOAw4Zik3sqkJ+dNiGHwZFVO3zUBfeJ2WDhj
-	 vbbOHhzRQmP9dPbA/M1QtQ/GoDH4ar79IitcupZ3/LltPWSCG+PkD+NH//TwAOPPfQS9U
-	 JhNXZwJrkzfUW6j1wUPU6WCAem5/tKQzidt9Q6T8VkZyxDSZ5OZmoU/N/w66Hw93+GOUx
-	 DaMYOSRMWgJEr1clPOQYbyOnWRzARkeLQtv39rkBTeuGx/+fW1dsgzoASKXavXX7vFw==
-ARC-Authentication-Results: i=1; smtp.kernel.org;
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest
- SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 8BFBB1F000C6;
-	Tue, 24 Nov 2026 05:50:12 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id D961762614;
+	Tue, 24 Nov 2026 11:55:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBB161F000C0;
+	Tue, 24 Nov 2026 11:55:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795499421;
-	bh=f8TFiNqrsqE0EW+GIUSbAYI7CaPwbfLMW8LoVa3cWZA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=mu/3iqGLBBWg+jvXIQzIpkoH6Xxi+xlVejYUxQexFXIh30P2k9TlpQTjf56EMdFJz
-	 yLgG8KGhJQKWQDRkwbYLiVVQcXxnZoP2YOp3SCaVOUnBGck8VgbsQPbaplfjk61ZsA
-	 MUGDzAUdjw/UTJnWdxSU86tXdSqAqQICMVcP1uuiPlAjdnqG1zEUp0LSmSZdhPNOMi
-	 dStbtmuiV80CVeP/SRiSDj9emV7KR5m/L5DN+G6HQYlCKfNaSzHywEhSQ3ctycRMnA
-	 4iiog/gL8SoZrew94gA0DBsRIFflP/aLI3sojOVcZZZKD5dTFqCV9FzFCTeBW8t/uD
-	 uzVlYKJ4jrhmQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 0C51F4C8D2;
-	Tue, 24 Nov 2026 05:50:12 +0000 (UTC)
-From: Dave Airlie via B4 Relay <devnull+airlied.redhat.com@kernel.org>
-Date: Tue, 24 Nov 2026 15:50:02 +1000
-Subject: [PATCH v3 1/2] drm/nouveau: add option to leave GSP-capable GPUs
- to other drivers
+	s=k20260515; t=1795521353;
+	bh=FCk4hJGWPUnhJXWJTDgKqX8nTAjZ6DEdTfpvOFD9mxw=;
+	h=Date:From:Subject:Cc:To:References:In-Reply-To;
+	b=AGWcwVqOwcJ6k3arIAzYlO9cpSUxeGk9cZPoWHw7uVO8GhDTUho/5pxLOX4Z+pSEm
+	 oNnRJHGLiW52Y8pLS4JzH3xmeJ2hgT990g8+NnhslrZDLXkH/JemRE/zie3Y5DOriE
+	 yCplNT4VpMlbCOgvGtrHkzuH563IEwGja23JKNhbIJx28Y1oqbvaVXvVOe2+EjJSGS
+	 TYUpWSlpa90tBIPQLeD3dvXzEEObPyP+YhcZafpbdA7ZzmwOT4twe7DvCxYap0IEng
+	 yn+5GohlXJPjek9mNpC1hSc0dE4VSIk2IHzXja+jJUeUEo40ucs0w/DhuW1YQTxuRL
+	 6Yz6rWD4EuFNw==
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261124-nova-nouveau-gsp-v3-1-e1440479ded6@redhat.com>
-References: <20261124-nova-nouveau-gsp-v3-0-e1440479ded6@redhat.com>
-In-Reply-To: <20261124-nova-nouveau-gsp-v3-0-e1440479ded6@redhat.com>
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9632; i=airlied@redhat.com;
- h=from:subject:message-id;
- bh=0MtPXBWLiOMLBzUoc9IAaznSPBKyhIWsf41ES/eP2j4=;
- b=owEBbQKS/ZANAwAKAQx081l5xIa+AcsmYgBrBSWSdvR+rZuOx71GAfHJqvBB6SFXDKm1Jh7+D
- rkq7aMZY4mJAjMEAAEKAB0WIQQQptkdobBb0p9t66wMdPNZecSGvgUCawUlkgAKCRAMdPNZecSG
- vpn5EACBGYhJE9OsM7Si25pdcQ2V8umg4TrzI/zvEGICtgjZzgkdvaCt3GgRT0eLssSwWyDuogr
- daCrIiWirWBGGX59bYMLnQsgm1mdqpsHVstgST624xbu2Vmv7d+YGq6JKcba/AtXQl5qnh58XJV
- ICe0dV2ufnGZq6k8D2TskaSDSxYqOqT7g875YfDnVXcXC/bcDqJ+GrqMBh+DD2RxfwpNWXHP9dF
- GHW/mLVJ8yuUX+a2vHhpxGL9eZsuFXsEk8S0BBTTI7UUR8MbUd/go3UIAiHfugRF67XNKjtcZK2
- kDbk9KVh0cj3xtyZ9LvlYEN+S+LAsGHqn1jzbQ3dJcY9Q6TcRxFTyIkXUqALDvobNLEtHW8gvnc
- GxMAoNfbeJ66DEi1UB+iADtJgOImhbYO9dcI6YHbWCAWlLxrmVQzz3UAGfubfnvEv4OucCaYncp
- E4F+ujLrYmnJC8csf5BkaGOBQjvWtKSAzYB47OVgI2zMvbJqLErMN6qZ6+1wMq+YO6tjjgQLuLa
- YM7dTe6cJCEAdsXBwIRGTuQKIkZ6q2DeVw5Fh6VmkoIJ5ZpAM0qY6jrKwVUbZcfEX6YVuJiYCRS
- ASQCxLfx2OAgnFyCQzllA/1+EB3SEhd+KjzzGAID2tegxFzcAEjPC5DPOqpD/YUFnbGIcnDYD2r
- 0i3TkS/qLeskTSg==
-X-Developer-Key: i=airlied@redhat.com; a=openpgp;
- fpr=10A6D91DA1B05BD29F6DEBAC0C74F35979C486BE
-X-Endpoint-Received: by B4 Relay for airlied@redhat.com/default with
- auth_id=1321
-X-Original-From: Dave Airlie <airlied@redhat.com>
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: 45Y3S4Q6EFSQDOUHHXZKRIU52FVSFPQ2
-X-Message-ID-Hash: 45Y3S4Q6EFSQDOUHHXZKRIU52FVSFPQ2
-X-MailFrom: devnull+airlied.redhat.com@kernel.org
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 24 Nov 2026 12:55:50 +0100
+Message-Id: <DN3F7521O232.LXJ8JBRTSTPQ@kernel.org>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v2 3/3] nova-core: only bind to GPUs when explicitly
+ requested
+To: "Dave Airlie" <airlied@gmail.com>
+References: <20261123-nova-nouveau-gsp-v2-0-5e8c27aa8555@redhat.com>
+ <20261123-nova-nouveau-gsp-v2-3-5e8c27aa8555@redhat.com>
+ <DN2OVF03FAL6.2EKLEYINW79YO@kernel.org>
+ <DN2QWVWVB2FP.2DL4ZSBMYRXEC@kernel.org>
+ <CAPM=9tw4_Kn2+q0JTZ5Y6+m6PFORJSgq4qSrqtutwWJniusgvQ@mail.gmail.com>
+In-Reply-To: 
+ <CAPM=9tw4_Kn2+q0JTZ5Y6+m6PFORJSgq4qSrqtutwWJniusgvQ@mail.gmail.com>
+Message-ID-Hash: NDBDYRNTX3TYYYIO2YFCEWTY4XGVAN24
+X-Message-ID-Hash: NDBDYRNTX3TYYYIO2YFCEWTY4XGVAN24
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
- banned-address; emergency; member-moderation; nonmember-moderation;
- administrivia; implicit-dest; max-recipients; max-size; news-moderation;
- no-subject; digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- nova-gpu@lists.linux.dev, Dave Airlie <airlied@redhat.com>
+ banned-address; emergency; member-moderation
+CC: Dave Airlie via B4 Relay <devnull+airlied.redhat.com@kernel.org>,
+ airlied@redhat.com, Alexandre Courbot <acourbot@nvidia.com>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ nova-gpu@lists.linux.dev
 X-Mailman-Version: 3.3.10
 Precedence: list
-Reply-To: airlied@redhat.com
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/45Y3S4Q6EFSQDOUHHXZKRIU52FVSFPQ2/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NDBDYRNTX3TYYYIO2YFCEWTY4XGVAN24/>
 Archived-At: 
- <https://lore.freedesktop.org/20261124-nova-nouveau-gsp-v3-1-e1440479ded6@redhat.com/>
+ <https://lore.freedesktop.org/DN3F7521O232.LXJ8JBRTSTPQ@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -148,281 +103,87 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Dave Airlie <airlied@redhat.com>
+On Tue Nov 24, 2026 at 2:53 AM CET, Dave Airlie wrote:
+> On Tue, 24 Nov 2026 at 02:54, Danilo Krummrich <dakr@kernel.org> wrote:
+>>
+>> On Mon Nov 23, 2026 at 4:18 PM CET, Danilo Krummrich wrote:
+>> > On Mon Nov 23, 2026 at 3:50 AM CET, Dave Airlie via B4 Relay wrote:
+>> >> @@ -30,3 +30,24 @@ config NOVA_CORE_SELFTESTS
+>> >>        logs its failure and lets the probe continue.
+>> >>
+>> >>        If unsure, say N.
+>> >> +
+>> >> +config NOVA_CORE_BIND_GSP
+>> >> +    bool "Make nova-core the default driver for GSP-capable GPUs"
+>> >> +    depends on NOVA_CORE
+>> >> +    default n
+>> >> +    help
+>> >> +      Make nova-core bind to all NVIDIA GPUs it supports by default.
+>> >> +
+>> >> +      By default nova-core does not bind to any GPU and leaves NVIDI=
+A
+>> >> +      GPUs to other drivers, such as nouveau. Say Y here, or boot wi=
+th
+>> >> +      nova-core.bind_gsp=3D1, to make nova-core claim NVIDIA GPUs
+>> >> +      instead.
+>> >> +
+>> >> +      nova-core is work in progress and may not be functional, so th=
+is
+>> >> +      is intended for nova developers and testers only. When enabled=
+,
+>> >> +      nouveau must not bind to the same (GSP-capable) GPUs, i.e.
+>> >> +      CONFIG_DRM_NOUVEAU_BIND_GSP=3DN or nouveau.bind_gsp=3D0 is req=
+uired.
+>> >> +      Otherwise both drivers compete for the same devices and
+>> >> +      whichever is loaded first wins.
+>> >
+>> > I think this is a bit unsatisfying, for the Kconfig at least it would =
+be nice to
+>> > avoid the possibility of being able to configure
+>> >
+>> >       - NOVA_CORE_BIND_GSP=3Dy && DRM_NOUVEAU_BIND_GSP=3Dy
+>> >
+>> >       - NOVA_CORE_BIND_GSP=3Dn && DRM_NOUVEAU_BIND_GSP=3Dn
+>> >
+>> > since I wouldn't consider them valid combinations of Kconfig options.
+>
+> While I like the idea, expressing this sort of thing in Kconfig seems
+> to never end well, I'd prefer to just keep them separate until we can
+> figure out scenarios where it's screwed up.
 
-nouveau currently binds to every NVIDIA GPU it encounters. The
-nova-core driver is being written for GSP-capable (Turing and later)
-GPUs, so the two drivers compete for the same devices, with whichever
-registers first winning.
+Kconfig can be tricky in some (or actually many) cases, but this one seems
+simple and correct to me.
 
-Add the DRM_NOUVEAU_BIND_GSP Kconfig option (default y) and a bind_gsp
-module parameter, defaulting to the Kconfig value and able to override
-it in both directions, controlling whether nouveau claims GSP-capable
-GPUs.
+Is there a specific concern?
 
-This fixes a bunch some bugs in the ctor failure paths to ensure
-clean teardown if the device isn't bound.
+> I'll think about it a bit more, but I'd rather not encode too much
+> complexity here for fear of one or two people screwing it up and not
+> reading dmesg.
 
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/nouveau/Kconfig                   | 17 ++++++
- drivers/gpu/drm/nouveau/include/nvkm/core/pci.h   |  6 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c             |  9 ++-
- drivers/gpu/drm/nouveau/nvkm/engine/device/base.c | 67 ++++++++++++++++++-----
- drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c  | 11 +++-
- 5 files changed, 91 insertions(+), 19 deletions(-)
+Honestly, I think that the proposed approach is even simpler, because it
+constrains the Kconfig to exactly the case we want it to exist for in the f=
+irst
+place.
 
-diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
-index 3b5757aed9c8..45e217cc8ec3 100644
---- a/drivers/gpu/drm/nouveau/Kconfig
-+++ b/drivers/gpu/drm/nouveau/Kconfig
-@@ -120,3 +120,20 @@ config DRM_NOUVEAU_SIL164
- 	help
- 	  Support for sil164 and similar single-link (or dual-link
- 	  when used in pairs) TMDS transmitters.
-+
-+config DRM_NOUVEAU_BIND_GSP
-+	bool "Make nouveau the default driver for GSP-capable GPUs"
-+	depends on DRM_NOUVEAU
-+	default y
-+	help
-+	  Make nouveau bind to all NVIDIA GPUs by default, as it always
-+	  has.
-+
-+	  If another NVIDIA driver, such as nova-core, should claim the
-+	  GSP-capable (Turing and later) GPUs instead, say N here; nouveau
-+	  then leaves those GPUs alone and continues to bind to pre-Turing
-+	  GPUs itself. nouveau can also be prevented from binding to
-+	  GSP-capable GPUs at boot with nouveau.bind_gsp=0 on the kernel
-+	  command line.
-+
-+	  If unsure, say Y.
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/pci.h b/drivers/gpu/drm/nouveau/include/nvkm/core/pci.h
-index 7444c4d59e09..4ba9313a736b 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/core/pci.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/core/pci.h
-@@ -7,8 +7,12 @@ struct nvkm_device_pci {
- 	struct nvkm_device device;
- 	struct pci_dev *pdev;
- 	bool suspend;
-+	/* GSP-capable (Turing and later) GPUs may be bound; mirrors the
-+	 * bind_gsp module parameter.
-+	 */
-+	bool bind_gsp;
- };
- 
- int nvkm_device_pci_new(struct pci_dev *, const char *cfg, const char *dbg,
--			struct nvkm_device **);
-+			bool bind_gsp, struct nvkm_device **);
- #endif
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 5e1336615cf6..582eb0c91b10 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -112,6 +112,11 @@ MODULE_PARM_DESC(runpm, "disable (0), force enable (1), optimus only default (-1
- static int nouveau_runtime_pm = -1;
- module_param_named(runpm, nouveau_runtime_pm, int, 0400);
- 
-+MODULE_PARM_DESC(bind_gsp, "bind to GSP-capable (Turing and later) GPUs "
-+		 "(0 = leave them to other drivers, e.g. nova)");
-+static bool nouveau_bind_gsp = IS_ENABLED(CONFIG_DRM_NOUVEAU_BIND_GSP);
-+module_param_named(bind_gsp, nouveau_bind_gsp, bool, 0400);
-+
- static const struct drm_driver driver_legacy_kms;
- static const struct drm_driver driver_atomic_kms;
- 
-@@ -881,7 +886,8 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
- 	/* We need to check that the chipset is supported before booting
- 	 * fbdev off the hardware, as there's no way to put it back.
- 	 */
--	ret = nvkm_device_pci_new(pdev, nouveau_config, nouveau_debug, &device);
-+	ret = nvkm_device_pci_new(pdev, nouveau_config, nouveau_debug,
-+				  nouveau_bind_gsp, &device);
- 	if (ret)
- 		return ret;
- 
-@@ -1460,6 +1466,7 @@ static void nouveau_display_options(void)
- 	DRM_DEBUG_DRIVER("... runpm        : %d\n", nouveau_runtime_pm);
- 	DRM_DEBUG_DRIVER("... vram_pushbuf : %d\n", nouveau_vram_pushbuf);
- 	DRM_DEBUG_DRIVER("... hdmimhz      : %d\n", nouveau_hdmimhz);
-+	DRM_DEBUG_DRIVER("... bind_gsp      : %d\n", nouveau_bind_gsp);
- }
- 
- static const struct dev_pm_ops nouveau_pm_ops = {
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-index a2ed8c4fe52a..9d8e82781a25 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-@@ -25,6 +25,7 @@
- #include "acpi.h"
- 
- #include <core/option.h>
-+#include <core/pci.h>
- 
- #include <subdev/bios.h>
- #include <subdev/therm.h>
-@@ -3081,22 +3082,37 @@ nvkm_device_init(struct nvkm_device *device)
- 	return ret;
- }
- 
-+/* Release the state constructed by nvkm_device_ctor(), apart from the
-+ * resources owned by the caller (bus-specific state and the container
-+ * allocation).
-+ *
-+ * Must be called with nv_devices_mutex held.
-+ */
-+static void
-+nvkm_device_dtor(struct nvkm_device *device)
-+{
-+	struct nvkm_subdev *subdev, *tmp;
-+
-+	nvkm_intr_dtor(device);
-+
-+	list_for_each_entry_safe_reverse(subdev, tmp, &device->subdev, head)
-+		nvkm_subdev_del(&subdev);
-+
-+	if (device->pri)
-+		iounmap(device->pri);
-+
-+	list_del(&device->head);
-+}
-+
- void
- nvkm_device_del(struct nvkm_device **pdevice)
- {
- 	struct nvkm_device *device = *pdevice;
--	struct nvkm_subdev *subdev, *subtmp;
-+
- 	if (device) {
- 		mutex_lock(&nv_devices_mutex);
- 
--		nvkm_intr_dtor(device);
--
--		list_for_each_entry_safe_reverse(subdev, subtmp, &device->subdev, head)
--			nvkm_subdev_del(&subdev);
--
--		if (device->pri)
--			iounmap(device->pri);
--		list_del(&device->head);
-+		nvkm_device_dtor(device);
- 
- 		if (device->func->dtor)
- 			*pdevice = device->func->dtor(device);
-@@ -3152,6 +3168,14 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
- 	unsigned chipset;
- 
- 	mutex_lock(&nv_devices_mutex);
-+
-+	/* Initialize the state that the failure unwinding at done: relies
-+	 * on, so that it is safe to run on every error path.
-+	 */
-+	INIT_LIST_HEAD(&device->head);
-+	INIT_LIST_HEAD(&device->subdev);
-+	nvkm_intr_ctor(device);
-+
- 	if (nvkm_device_find_locked(handle))
- 		goto done;
- 
-@@ -3165,7 +3189,6 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
- 	device->name = name;
- 	list_add_tail(&device->head, &nv_devices);
- 	device->debug = nvkm_dbgopt(device->dbgopt, "device");
--	INIT_LIST_HEAD(&device->subdev);
- 
- 	mmio_base = device->func->resource_addr(device, NVKM_BAR0_PRI);
- 	mmio_size = device->func->resource_size(device, NVKM_BAR0_PRI);
-@@ -3381,6 +3404,21 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
- 		goto done;
- 	}
- 
-+	/* Unless nouveau is the default NVIDIA driver, leave GSP-capable
-+	 * (Turing and later) PCI GPUs to other drivers, such as nova-core.
-+	 * Older GPUs are always bound.
-+	 *
-+	 * Reject before subdevs are constructed, as that would already load
-+	 * GSP firmware for GPUs that are not going to be used.
-+	 */
-+	if (device->func->pci && device->card_type >= TU100 &&
-+	    !device->func->pci(device)->bind_gsp) {
-+		nvdev_info(device, "leaving GSP-capable GPU to other drivers "
-+			   "(bind_gsp=0)\n");
-+		ret = -ENODEV;
-+		goto done;
-+	}
-+
- 	/* read strapping information */
- 	strap = nvkm_rd32(device, 0x101000);
- 
-@@ -3402,7 +3440,6 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
- 		device->name = device->chip->name;
- 
- 	mutex_init(&device->mutex);
--	nvkm_intr_ctor(device);
- 
- #define NVKM_LAYOUT_ONCE(type,data,ptr)                                                      \
- 	if (device->chip->ptr.inst) {                                                        \
-@@ -3446,9 +3483,11 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
- 
- 	ret = nvkm_intr_install(device);
- done:
--	if (ret && device->pri) {
--		iounmap(device->pri);
--		device->pri = NULL;
-+	if (ret) {
-+		/* Unwind the partially constructed device, so that the caller
-+		 * only has to release the resources it allocated itself.
-+		 */
-+		nvkm_device_dtor(device);
- 	}
- 	mutex_unlock(&nv_devices_mutex);
- 	return ret;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c
-index 248623b91e29..7e0127ff415f 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c
-@@ -1650,7 +1650,7 @@ nvkm_device_pci_func = {
- 
- int
- nvkm_device_pci_new(struct pci_dev *pci_dev, const char *cfg, const char *dbg,
--		    struct nvkm_device **pdevice)
-+		    bool bind_gsp, struct nvkm_device **pdevice)
- {
- 	const struct nvkm_device_quirk *quirk = NULL;
- 	const struct nvkm_device_pci_device *pcid;
-@@ -1692,8 +1692,8 @@ nvkm_device_pci_new(struct pci_dev *pci_dev, const char *cfg, const char *dbg,
- 		pci_disable_device(pci_dev);
- 		return -ENOMEM;
- 	}
--	*pdevice = &pdev->device;
- 	pdev->pdev = pci_dev;
-+	pdev->bind_gsp = bind_gsp;
- 
- 	ret = nvkm_device_ctor(&nvkm_device_pci_func, quirk, &pci_dev->dev,
- 			       pci_is_pcie(pci_dev) ? NVKM_DEVICE_PCIE :
-@@ -1705,8 +1705,13 @@ nvkm_device_pci_new(struct pci_dev *pci_dev, const char *cfg, const char *dbg,
- 				    PCI_FUNC(pci_dev->devfn), name,
- 			       cfg, dbg, &pdev->device);
- 
--	if (ret)
-+	if (ret) {
-+		pci_disable_device(pci_dev);
-+		kfree(pdev);
- 		return ret;
-+	}
-+
-+	*pdevice = &pdev->device;
- 
- 	/* Set DMA mask based on capabilities reported by the MMU subdev. */
- 	if (pdev->device.mmu && !pdev->device.pci->agp.bridge)
+In addition to the two odd cases I mentioned above, each driver exposes its
+binding-default option even when the other driver isn't configured, althoug=
+h
+there is no choice between them.
 
--- 
-2.56.1
+Consequently, we also force that nova-core defaults to not binding even if =
+it is
+the only driver configured.
 
+This is not the end of the world, but it's another inconvenience and also
+becomes a bit odd once vGPU works.
 
+I think the proposed option is sound; it is only available when both compet=
+ing
+drivers are configured (either m or y) and defaults to nouveau.
