@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BF6E606A321
-	for <nouveau@archiver.kernel.org>; Tue, 24 Nov 2026 14:26:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2732606A334
+	for <nouveau@archiver.kernel.org>; Tue, 24 Nov 2026 14:28:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=garyguo.net header.i=@garyguo.net header.a=rsa-sha256 header.s=selector1 header.b=sNDPj5ym
+	dkim=pass (1024-bit key, unprotected) header.d=garyguo.net header.i=@garyguo.net header.a=rsa-sha256 header.s=selector1 header.b=r9nItJqk
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 360FF10F6CB;
-	Tue, 24 Nov 2026 14:26:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 920D910F6DE;
+	Tue, 24 Nov 2026 14:27:58 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 1DCF9403B8;
-	Tue, 24 Nov 2026 14:26:04 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 87A07403C3;
+	Tue, 24 Nov 2026 14:27:53 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795530363;
- b=VRC7VwHfNjt9FGpulDsY+z54KZfWOokcoZAcwjV0AZX+vcHuYL5boH2zJ8YzQluuBi+mi
- TmcBBTp3gXArTI/037ek0NZuLzrhdtdmV+rUtlhfXYofa5EC1kxza8j8AsK1yqAhjQVWQvK
- n0F+7Ld52a9lJ4Zh2g+He5N2fHVItn47FN7hUEXMIh3sJUX9VVQ0mS/lSSroekDcQkTqnYV
- n+XEds4ObuACZrIriQxvNVI8K9jSqzCbFQxIVP6Hs0l20xW17VgSM89iQTZ2wCcuWv5/v8U
- +OvvYP6GCXyUxmsy/AvsgRlE+2Ia46sUdQxlrqOJ/9QjUvUOJNwmZezMyHjg==
+ s=20240201; t=1795530473;
+ b=IurKE4gLvTK59n6KFuR5xnXR0BWS0qrMAStiasDKs69oWjJqA4q94M6OIqftm4IwHWUYX
+ tRvEkEcWE0xjko+zHzl7Tc2UT6ZGjA2SRJEW4/WLrtP5cKfFo5F0PnlPHS7jB6bqalL9G7+
+ 8pGtlL9Rp9iJtE3XYHmZgVuJWQPHsQmuMTLWqVx6snXgjDi1F2UBjEEBYEDRTAltj1s1BpO
+ 4u4ZOMxGijjD7QanDRowj4tW2q/RHWT9Ckvg0gDY0wthKQt70N4uKDh9Tcj6xCRFW2msq4x
+ U3mHqd1j+y+pVbX2RlA1Wy+EJeQQg8LY2nfGaiVYPJUATv+UzdSB4TXaMhZg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795530363; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795530473; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=PIXpKIqMq5WzTh0eCDO0ZwzHqfN1E/57FC3UrKQYTtU=;
- b=Cv/yEb/31SejvwpB5uAXZXIesKC3nGcub4oi3A+E3H8jO92loUNvuESKANHLJgRezF4yt
- x8DXmmyp0IV3dAB7pMKPjS2Y59GAREMe2xVLGjgrdPjGrABDx+C93YShH3Z+iQUC/1KWQpq
- S8P8AhbkeuWszT4/gAVOiYbrGEjoXTGDOHOx0a8M7lIqV4+Z6oP/2FDkv5xtKKXIcYta9+w
- Oy3Bb32ciAs12cfTUmnj1NmHQKtyfDnRG3XAAegAjIw7hkBRIW8DRQcu7VQ3E7Qlgw9c4v4
- rCjNuKcYZx2pxqBwq10VSQHoGg0aoEVHjnapUe++yNqm9Dvl4NAEUaqXkBuA==
+ bh=sKOfwbAt+heR0dKtHu4cuRxNVAdSjSTo5ad6JHQB+Wk=;
+ b=XB8yby/4XeKsQjHjffpbxZ5+4a6dGgC7xZleeHGSJs6t/sWZGhCA5PWdOsmjYkMPVwMF7
+ 033x/CD6q1DdFrUBpsrhG77zhyhRZx608sSptJRfA9QBM6Ye9o6xD07mSrDOZkA40dc8App
+ UxtT8Fec/77qOjemmZIvZOeHNG5sxxmUZEtnNhTEO+PEWt6k3mdqRSql+TbHfZQd+UqU5rs
+ GGAmfNFomRpsvSGsc/rFIATLT1M6R8yD702z6yhVYgkRuvOMAlGQNl7lT8H1lBgo3jHz5qF
+ jDhba2YHlYmuNh8EYm70Pi+N7Vs95I1hynXvgdql9bOMsJu/DkgBUhBEi5XQ==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=garyguo.net;
  arc=pass;
@@ -41,121 +41,120 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 97E9B40218
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 14:26:00 +0000 (UTC)
-Received: from LO0P265CU003.outbound.protection.outlook.com
- (mail-uksouthazon11022121.outbound.protection.outlook.com [52.101.96.121])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 630BC10F6A9;
-	Tue, 24 Nov 2026 14:25:55 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2446D40218
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 14:27:51 +0000 (UTC)
+Received: from CWXP265CU009.outbound.protection.outlook.com
+ (mail-ukwestazon11021131.outbound.protection.outlook.com [52.101.100.131])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EC73110F6C4;
+	Tue, 24 Nov 2026 14:27:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MleEJdpvdZ1RZpWL9A3UqmjgG8ioE30YQIryZRr8OLFSK6oT1a7fU9i9XhhfcgTm1UaPyW+0hXx4csyGhZY72dHrrhlLj4wN0zfLOT98gjEIFMysP/wMN7ZcpEjTUXIzKG34fe3ZaCdj0zA99jeBw3FQ4qO/l7xD2ru3+Voe/cH4+1JoD4bAGc5VXWXspefvVkcUruR9ZsUW6uc+uDGi3hie7ol0F+D8yVnE5GlnSItPt/4aKg++TsW9/XOzzNYZNt6oQ9XZk0g8QvZEmDBm6XulGWB/I3JmmJd9ymxR2JdCR7ty9d7iwASqaou/qtMJhfBVkldxds9yIM7B2X9RaQ==
+ b=V+EIL6u3NarJ6J+i8cFocwSgz3rn7xjPI1hlsQtfTbS870rnWgkV+cJv1RNQRcJHWT8IKXAGh1ZEsY4pW5LT0jQP9+LMbdSERRb0x1/X7tQG5jmDb1ZkcWD2GqtQqIu911HMUzHvl/EbPJm0DgFQBdrzQgHH46WMqLayloEzYJQfTAYESOCFhksIwhOc7AgGbWb+JZIAe5w/mOdayjvxbHi8V3aM3YBULylDrYDdp9+EqI5akwOARzitmBqgvMfN8VGLR6NYB+5y9la/O5r2fEHUbCPklO5Yw/uux8PS26R4SXof7xrM3lKhNDfyOT7LDwGv34qDE00B4k7j6KbQvQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PIXpKIqMq5WzTh0eCDO0ZwzHqfN1E/57FC3UrKQYTtU=;
- b=hqiU1bgsXd+mnfCvAFqnWQSfXpxhf/LcyNs8XQ5AxZUNwMqGwP/JvuCPnmHh8C3lpg42VqvClKw0yrKWNh9/lbZ3M+swwi3EgZc8Vzev7is9Y/EELkdrvMJ/Tb6TscW+89K/7PdxBnI7J6ZBnVHv2HdAcPzOo5q0WW9ad1R2suVwF2u4/IL5wtPTtcsH7JLcQp6Nlt8uVFAof+NR8y9bK3aR9VdlZFznYtkBeUmqsafnXcXhswkZ0kf2T1SpxX94QUrAkBdobj5VpwVPmnPFYtR4vL/JszFyfqrYlEQPgmzfbhla1Oot/0xH1tVzmqfygZ8mc5YUuK8Tm56CkIKtVQ==
+ bh=sKOfwbAt+heR0dKtHu4cuRxNVAdSjSTo5ad6JHQB+Wk=;
+ b=wxUuMChiBx8XvDeiwHGk7Q48vaWwiEnoIZdGgBCvwPXWmkVZ2DnG/1leJTNzJIACisMbM343XfGXJbaaSi1SPXJjdtRnsRAuXz7CPgN7lNGmEJPpocEbaBlrZto1SDHsMJcTjZjCT+J56IUJg5hWd69FVlJ7ei1a3n0NALznw7GSLJh/bDh4Mo0Q/QA7s+rP3o6I0DpDtjeVoFEqOuZnkDUarc3N1HlvkVGD5u0IKEK4M+UnqFCb/BnpQ8LlCQr2UUX235X7epYbwwuo+PSRvaxIAaFIdDXhH5Wib3Qu6QHKyVBTLBI3KxhsBpSlnJXd7MEo3VeB+TOK/es1Zthe8w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
  dkim=pass header.d=garyguo.net; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PIXpKIqMq5WzTh0eCDO0ZwzHqfN1E/57FC3UrKQYTtU=;
- b=sNDPj5ymK0fc9vVePl9SXYdHa91Ya1ZZb/zISUMQFPEr6Ytk4k4HAKsJY5xI5OKiJhqIKBkq81We0dk0I4VImne/zf6Nlto4/HpKLM5uBh7vFUMEiQ/uYJ/8RPFwfvPJ661VBN8gIbbhVoXIcJkwnIJvYI5RhA4Y/svwpcB8RRk=
+ bh=sKOfwbAt+heR0dKtHu4cuRxNVAdSjSTo5ad6JHQB+Wk=;
+ b=r9nItJqklXwKm2gXkxOx8CK3IEC0T3rz1F3XpZmUsVNeNTCCNxGB6sH9TRvdHtgvvO/scqAHQZ+wQqWI+bALl1bYsEWIlyClWXCwpT+ED7lnoBsNHeRrMLYbe0z8QBxUBkv/aNfn+8PB9qtsr7s8JiajSRefYGVE8JiQ6ZXrBeU=
 Received: from CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:1cb::9)
  by CWXP265MB2581.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:ab::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
- 2026 14:25:50 +0000
+ 2026 14:27:43 +0000
 Received: from CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM
  ([fe80::55f6:f98b:7fad:c6e3]) by CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM
  ([fe80::55f6:f98b:7fad:c6e3%2]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
- 14:25:50 +0000
+ 14:27:43 +0000
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 24 Nov 2026 14:25:49 +0000
-Message-Id: <DN3IDZ94G4NN.1FUTSE7B4G1ZK@garyguo.net>
-Subject: Re: [PATCH v3 2/2] nova-core: only bind to GPUs when explicitly
- requested
+Date: Tue, 24 Nov 2026 14:27:41 +0000
+Message-Id: <DN3IFEONQXEX.3471DEAR6S0W0@garyguo.net>
 From: "Gary Guo" <gary@garyguo.net>
 To: <airlied@redhat.com>, "Lyude Paul" <lyude@redhat.com>, "Danilo
  Krummrich" <dakr@kernel.org>, "Alexandre Courbot" <acourbot@nvidia.com>
+Subject: Re: [PATCH v3 0/2] nova/nouveau: add configs/module options to
+ control binding behaviour (v2)
 X-Mailer: aerc 0.22.0
 References: <20261124-nova-nouveau-gsp-v3-0-e1440479ded6@redhat.com>
- <20261124-nova-nouveau-gsp-v3-2-e1440479ded6@redhat.com>
-In-Reply-To: <20261124-nova-nouveau-gsp-v3-2-e1440479ded6@redhat.com>
-X-ClientProxiedBy: LO4P123CA0138.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:193::17) To CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM
+In-Reply-To: <20261124-nova-nouveau-gsp-v3-0-e1440479ded6@redhat.com>
+X-ClientProxiedBy: PA7P264CA0477.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:102:3dc::7) To CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM
  (2603:10a6:400:1cb::9)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CWLP265MB6051:EE_|CWXP265MB2581:EE_
-X-MS-Office365-Filtering-Correlation-Id: be345a8a-4380-47a8-acb7-08df4a36d699
+X-MS-Office365-Filtering-Correlation-Id: 9fd00e37-e926-45cc-8313-08df4a3719a7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
- BCL:0;ARA:13230040|376014|366016|23010399003|10070799003|1800799024|10067099003|5023799004|4143699003|56012099006|261022105027099003|261026121527099003|261022113327099003|261022075727099003|261021121427099003|261026140227099003|261009223027099003|261102123227099003|261028144727099003|6133799003|22082099003|18002099003|3023799007;
+ BCL:0;ARA:13230040|376014|366016|23010399003|10070799003|1800799024|10067099003|5023799004|261021123027099003|56012099006|261022105027099003|261026121527099003|261022075727099003|261021121427099003|261026140227099003|261009223327099003|261009223027099003|261009221727099003|261102123227099003|261009221227099003|261028144727099003|261009220027099003|6133799003|22082099003|18002099003;
 X-Microsoft-Antispam-Message-Info: 
- DjsY4QVMw+Nhj6CxDVBC8ivopGMzhqIoakXUlxoAmeFQJlWsCxMabIwd+HjfJQ2brYdODwxSOUarNCDMHTelnW9uDl6CqkzmO3b/MZnmaBs0yTvHxD0yA/1uKkDq/WmygGYFyauqDDkK93ZjEOucPE1gv9lil6sXexRwFDZkEG+lOSJ3zhVIyMVGR9bOAw0I3b50vQvRgw69+InNY8yaGJHTPsHvnKgPMkfFTmMw1BdfkYyq9kDtTdlVYVYt1dNy46ea/lUZpcfAo61KSbP0Ggn+a9prWey269XctVck0JVUtC1XpbDrQFjq3+3nKYa8pTbNIeROnmHJFf6SE4p17uGKOtqPGL+yZNs2n5Q0kR87Qjoq9JRxeLIZHFmvu4kFSeVtkHB3ra6ydYh4Re7ak/lvknzOUkJpGa2hEJTL5O4kd8iRP/soka05q7HmIiCiltOpiM31+8G9UfPzGc22x5JrApd6/iLzOUi8FfSHzcQgfrrSyk63FXD0zo7V4jnSCiJZnCBBHQa2zgXUcqO2z679xFxiwY4oM/23uQ0SX5AZ6v/7ZaHnTQTBMwhAinZPyd2bHNYupJilvXtQh/zdkvEllkQun0+Mf/An1NR8b4uggjbU7thAmszhCmg33+STHxy1hsaDXJM2/iOyFR8zGFmXIfjVina16aCK4354pWU=
+ GfCRwyJp5jc03S6rXFn3f01+f098H5jTycEamC5m4BJNhPLKgAvsnGKCPDalY7chy3xmBFZ8m9HMvuUieOzE9vGrgnX1rU2MkGTDDDr+OGuKtgyPZxn5n0/7Uh5oUtGGD7Si2JSF/T99PuHg/EkI99X4gws93cpIiKISs8TeBCgr7zMfY3pdRKxiv5y11ptmO57Uu0foA4fF4/AESdfK27mb1ZYtUiaXuwW6TeHu0yCfHeUM2imim/BX8nZQqiywI6n1lD/SvNab7kAjlWPoSGoqvvH4zF/iriEzgdcB8xwBDpJ49tQriF6i3xb0QrBBSrUslPQTvjbHK8QtuQcYgl3Y/G+XQ0i7B9/GU0i3IvSCy5lzo+3D7W03i8L3Rz3dfXVYssDsn9vTFITpfblnnD38TxfMkGBCSSDBbtVNuwKAJJSr+wdvq3xmmyRSf9aXSlNZxVdiOhhkX/PqrdJ5hEdha2uV2/UJVbi+xZIqse5RC/QRStnZwjtn+/dJsPbwu1I/w5dGdK+w9Vho64UV2Kie83j18NRb46CZezEEOcsL+odVHpbX6KZgxF+zcLOYN7rv/Sq0OYBtVrvYm/j7mxD2PvBcRWalPVgCB0iq98MF8Pca4/6avkhqhvRufn/7
 X-Forefront-Antispam-Report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(23010399003)(10070799003)(1800799024)(10067099003)(5023799004)(4143699003)(56012099006)(261022105027099003)(261026121527099003)(261022113327099003)(261022075727099003)(261021121427099003)(261026140227099003)(261009223027099003)(261102123227099003)(261028144727099003)(6133799003)(22082099003)(18002099003)(3023799007);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(23010399003)(10070799003)(1800799024)(10067099003)(5023799004)(261021123027099003)(56012099006)(261022105027099003)(261026121527099003)(261022075727099003)(261021121427099003)(261026140227099003)(261009223327099003)(261009223027099003)(261009221727099003)(261102123227099003)(261009221227099003)(261028144727099003)(261009220027099003)(6133799003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
- =?utf-8?B?cU5xK1RNRXVFcjRZRm9oaHRuM1hETHhoY2pwMGVValhPcFJTdkJaU2RBaFQv?=
- =?utf-8?B?VXY0bFl1ckt1c2YwK3JwTDJ4Q0ZCR1JLc3hYYjFBSk4zem12T0lzbHp6NGZP?=
- =?utf-8?B?YkM4NmU4dWFTaXdORnhJNUF4Ykk4c3lmMW5ydDBMa0hpbVh2Yk9qNnVwaFEw?=
- =?utf-8?B?QURBRENZcy96QS80cDlKRkJURE1WOGlwSTZZNG00WW91eDhtODdiM2VqVTE2?=
- =?utf-8?B?ckg2NTRZQnY2OWw5RjU4c1Y5L2xFZ0ZDaENVaWxGNjM5eWxqRjlIS3ZTUVlw?=
- =?utf-8?B?ZVJDR3BHa0E3N0U0dlNhMkd6RGhaeldLQ1JDdFJFTVl6dG4vUU12R25XRW5L?=
- =?utf-8?B?dXRsSDBVY1AxQTFLa1FYd3dLRDVWN09IcnlIb3J4S1BGR2RvTkxPanp1MWJz?=
- =?utf-8?B?ZlRRNG9FOHlCSnZXYnhRbFpVcUU1S0NpSlZGdlM4YUFMNWNnM2Q3d1NFTnpK?=
- =?utf-8?B?V1NSQUtyVEM0QWxUejIxUHA5ZE1RcER4RXVETGluazVXd0hjdm1pNVd3OHN6?=
- =?utf-8?B?bjRWaS9jT0RsbXo2M2J2aXNSSEtpTFBGem45WlV2TzJrUE42dHpEb0NES3JQ?=
- =?utf-8?B?S2FFa3FOQ04vNStpRmVBSncyalpBWmpiUFJFNitVeDZucng1T0Z6dysxcjVm?=
- =?utf-8?B?cTVaa01WNnRrWDV0Z2JUNE9sOVUzdlU5dTBtQW94ZldUdlJUSW8wNmVGSE9R?=
- =?utf-8?B?RE5mM1ZmamJQVitMUURnNGpMUndEeHFrSXlXa3ZkOTRFTW1LdU5hdUpSSWo5?=
- =?utf-8?B?UzFSdU01WFVSYThLbEVzVE5QZFZHS3lsU3ZLSzRPOUY3WHdDUjB5OGZGbFdr?=
- =?utf-8?B?alZZOVM1ZUNCWjBRS0x3cURiQk9STEx3czNjSjNMa251dGZrZU43K3pYUVZi?=
- =?utf-8?B?bTlZeDk0NTFnaDhzdnpTWE1mUFVhYXV2NGViMnRlZUdjYTdWNWZVdGFlVHha?=
- =?utf-8?B?QnRVUkQwSDZWN2hDVmMwZkdzbm0xeFBYRmpxMStLUldaMkdRQTlPVkZZTjJw?=
- =?utf-8?B?TkJvRXZqS1RscmIzU3RsWWNYbUpsMVppWXM3R1haRlJaVEFBU2s2WTBKbkZ4?=
- =?utf-8?B?dnQyMUZKL3BVNjJJVWhQcEFOL3ZxZEpWck5QT05RMDRjcUNuVCt0ZmVOTlRW?=
- =?utf-8?B?TjRtTFJhNHhBRnNMZTVhSjMvSlFvUXJtbFAwaFlhdThKVkhNdDVaeEpvYUdE?=
- =?utf-8?B?UGg4cVNpdm40ZEhWYVN0OHVDL1lGR2VicnpmWUxwdVZTMktXaUxTaFd4RW1X?=
- =?utf-8?B?dWNTWTltOEdrYkdlWUdBQlA5Wlc5SFlManVUMGprTGZ6TG1hYVRwWmhlK2gz?=
- =?utf-8?B?TTJJQTQrQkVHOTRFbjZBTWpHZThNWkswNEQrWU1QaVJXcXd5dUw4SE16TzBP?=
- =?utf-8?B?ZTF4bjhXUjJvbEp0M3p0OWhtbU5oL3VPdGoxZWorQ3pPSkRiTVNyTnZVS1lI?=
- =?utf-8?B?M3EzdUJjMjZsVlVYd1NJZ0N2Nko2Nk9WelpiVUVEYnVwM1laWVZWbzE3eGNl?=
- =?utf-8?B?VFRlSElFQ1I3dm1aTEgrbWxOUUFSY2I4YkR3WERpOG12Tk1DOVNpTC9wNVZu?=
- =?utf-8?B?Tm1VOCs0dm9lZmxqTlRwQ0R2alh5YlJUYW1qQkJvak5uc0VWaUNGZ0w3MmQr?=
- =?utf-8?B?RkhRWUFtRVFoTFlTOWgrWXVhV0t2SGFSN1ZrNDJQd0IyYkVycjFMbVFpeUdO?=
- =?utf-8?B?SERDVk94M2RXS2g5WThXeFFLaFByS0lIdmRCdHhqeDdCeW9BU1R0YWtNRGoz?=
- =?utf-8?B?ZkdBZEdCMTkxTU9ZZStqdjJmSDNxTlRjOHhzV0V6Q1ZQRy83dDdLZjlNNlhG?=
- =?utf-8?B?N2JEZE1WNmhUVmVUQTlESlNYT2ZFVmx4Y1gyNlQwNFNJazdoNDZxcWdaM3pU?=
- =?utf-8?B?eHo0Smd4NndoMWJsdk9yd1lLQjJTdlZIZUtTYWJYUm9DUjhxdy83K1NvUFJx?=
- =?utf-8?B?RTFjNjVLQjFGOTZTOXg3VnBWSmNmOGRJZE5RMGtBd2JRc0dGRktqZGNaLy9N?=
- =?utf-8?B?ZW5zV3JCTHFSaGgwemdsMXZyUVcvVWUzejRKM2gvZE5mNjAvK2dqbDJOM3dW?=
- =?utf-8?B?ZnF4Ulo4QmFobFlNeXJsZTRBU0lFckpCQUxDaWNNTUtEUHVHdFFmZXRSWlZz?=
- =?utf-8?B?UGZMSE1FVTlVY25Tb0xQakJpNjhxbDM2RzhIRXBHdC9NRERLMlhzUXhUcHVB?=
- =?utf-8?B?Qk5KeUI1QVJDM1IySXNhYkJGbUJZMUdIZk1NV1VWWnBmcDVBQzhHSjIwL1h0?=
- =?utf-8?B?MzYrdCtrakxFdVNEVSt0cm1ISVMwQis1TUw1TzFuOFduU2xGYWhJcG92ZHV5?=
- =?utf-8?B?YlN5TTdBMVl3am5tWFVqaUlmR0dzTjlDYnllTTR2VjQrd1I2N0NBZz09?=
+ =?utf-8?B?aUNaYWl6cVNrcHRlbGRXbDRzVVd6NlIwWDNOUmR6RjU3WVZUVVBmeElXMXlx?=
+ =?utf-8?B?RklWNkZFV0pNTWdTTHo2TWNFZkZocHcxVGpoZzJCOWRCRUp2Z3dLZTZuemN5?=
+ =?utf-8?B?V3NOd1VJdU4zNEFwWXRMWmZOL1F0bFFkV25jd2ZpOXplSEhSd2Q2OHhVZnB2?=
+ =?utf-8?B?TTlaOFN5dnVIMCtmOUd5S0d1ZlcwMkIvL3lKakxpc3A5Vm4wTGUvNzU2RGJF?=
+ =?utf-8?B?NXliSFc0TjYrOStoS0FBZHNFQXBTVVRyN2grWThiUjMwODljTmFVZE5QaExw?=
+ =?utf-8?B?SUMraFhEejdGS2RhWmJHQm80RUU0UkJQQmNBcDhVMGJMOTNmRTdUVEF4SHFF?=
+ =?utf-8?B?UTJueEc2dTRqbGFIeGlYa2pqdnVkM0pJZnh3MTg3Zk1YNHJsa3BmaWRKNDM4?=
+ =?utf-8?B?NUcvR2hBbENNejhYSVJoS2d1MW12b1lvMzZWWDFFc1JKbUsxNk1wSHBEUmgy?=
+ =?utf-8?B?bUhDOGxCQ3FLcUhMOVp1OGNyRUVBS2dLbkI5VTlJOVd2UjQ4YXNZRG5lR2di?=
+ =?utf-8?B?bHhEQzYrTjVMRUpnRHNQNklieXltdlpFUUxpejlLVmdiaVY4SDhFNWYrbHFX?=
+ =?utf-8?B?SGJTeXgyejhqZk4vYmtlSkdWTE13bnl4aU9PYVNiN3R6QVZMZ2RjTHBSU2N2?=
+ =?utf-8?B?WXd2VjZSLzFwTmVIUDdVWDMvMVg2WjF2Zm5hRUlNRjVUMVVFMXM4Yld0U0hh?=
+ =?utf-8?B?dGhkUlhaUVM4ZTZGM2ZVT08yb0Naem5maXZydjA2MEZZQUxldWRrZWU5bVFU?=
+ =?utf-8?B?K3h4RTN2Y1RIbVA2RXgzV0lENnRYMWhvNVJVWlZjRjMzLytRdlBpWUM2a0Jm?=
+ =?utf-8?B?OVJyelNySk80eXlkK2RHRzFGMDJCT292dVk2bEdGSEdUVWRRZmJEVkY2NUo1?=
+ =?utf-8?B?eVQxb3VydWt2eDkyQnJOWE9XOFFIQjhkblBYL3FvcElMRjdTMkhzTFVNYnh6?=
+ =?utf-8?B?M1NFc1FJZmhBa3FOUVU3ckZnYS91MEVEcHZkVEs4Z0FjaWFJdjNkOWRJNUdz?=
+ =?utf-8?B?SDZhcnRkSEZudlV6UzQ3T1VxYUloWktKUFhMY1ZFRFlUS3ZFV0FZT05DNUpY?=
+ =?utf-8?B?WkdCYlRNQVF6TUhUNzJhYjRLNFllOEM5eHl4bWNmRXdKakV5RDBZQWNzWDgz?=
+ =?utf-8?B?anZoNmVWb0h3bkEwSHhsUFVNV093UUJTMld6VjJZeHRDeHlkQkVHNG1mN3Z4?=
+ =?utf-8?B?a0RuSUpyNGtXdmFCS29RMURlZlBmdHlTSFNIWTBNckVzNkRudjVac24xK1hW?=
+ =?utf-8?B?TmFKWWRLdE0zM1J1cTFmZ0tiSm9NNDlZemQ1Skh6RnVNMUxxREEyVmNmNGFw?=
+ =?utf-8?B?VUZETFdHUFBIb2NVSE1hV2NwYlVkcU1HSWR3VmR2bmsxUUl0T3JmV3UxK1RJ?=
+ =?utf-8?B?V0RCeUNRaFNPRGs1OE1Vc0xzZXJSdE5wc242enNiUnV5Z29ZMlBlNVhmaGFO?=
+ =?utf-8?B?dXJBQjFTSUFHaTNjc2JkZGtkYVljTFBha08yQTFrRDlRbDVDOVVQcHpHU0lH?=
+ =?utf-8?B?bDFGSWs1My96WXN6clRLcmhNa3dYemRvcE9RVjgrSW9hR3BPanpDb0dWM2Vq?=
+ =?utf-8?B?YWFleUFldU9OaCttOTA1bktWSklnLzlFYU5hMmg1Z1Z4MG9ZNDN2RUNuVXVv?=
+ =?utf-8?B?R0V6MENlU3ViV0RYT0xTczdQRWNod2hWTHlhbG1jbVJpbkhWWlBqZ1ZxV0Z4?=
+ =?utf-8?B?RzJOS0YxdDN0QzZFc1NtU3RaRW82TGZSOElTU2dnOW81eUtUbngxN2ZGcUZ4?=
+ =?utf-8?B?VzAyMVNYcUFXaFI5dm9uK3lQYXp2QW5DVncyUjF1dzYrVkhmamtWQStKSG1a?=
+ =?utf-8?B?NVRqMzZMWmJ4UHJrVytUT2pqNk13WXJML2MwNksyYzZYY1FKK1RuaVo3Nzdz?=
+ =?utf-8?B?Y1g0S0F0TnJ5VGduRjRVYk5wcDhWOE5GYXdCUFdidGdieFBWTC92NlpNMTQ2?=
+ =?utf-8?B?QXZ3UTlOcU40NXY3Tzk5cGZXWTlVQWFpaDJmcjg0b0tHTWNtaUF4NExVeUtj?=
+ =?utf-8?B?S3dNSmVVTzZRMW1yd0Y2Zk5xZ1BGTlV0cXROUUh3RFUyY1ROVlByQ0duRXkw?=
+ =?utf-8?B?aDFmNnloTGwzMmRuQ2lKMFlpVDh3c2RxK0V2VWtxWDhzVWYzdmFrTDJRa2Zo?=
+ =?utf-8?B?dFVNWGxldG9oRkpkUWROQTJvaUxnTjdOYUhmRjdGYXphOUdKUkh2VWFERGdx?=
+ =?utf-8?B?MXBqZmoyaHVUMWEzNC9MWkJndDBvQmliRmpVdnE1ejBlTG15MlJwRWFFR0tn?=
+ =?utf-8?B?ZGdUQU50NXNqT0Ewc1BkN2hsNnczNW96WStPQkYrbHR6SmlyQU1mdUY5YXUv?=
+ =?utf-8?B?WlVmYktvMTV5T0p5eDZZbW9NNmRkbXBZNE1ET1BQemg3eWhFd2cyQT09?=
 X-OriginatorOrg: garyguo.net
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- be345a8a-4380-47a8-acb7-08df4a36d699
+ 9fd00e37-e926-45cc-8313-08df4a3719a7
 X-MS-Exchange-CrossTenant-AuthSource: CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 14:25:50.1446
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 14:27:42.8642
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- heBlfZrIYlSQCqZZQ6e7arFPUsB6fMHqPnAW27iEHv3NqS3lOewgOh6OLJTyvuyWZCwkuIhrZnXuroGdXPJ5lA==
+ fGoc39S7VRbI9Sl9ET4jVD17ZFCtdCdzNeGaNWtT0KDIb5h4DKY6VyAnH78hLZI57zHqhHTQ/O9JtcCuzWw8+w==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB2581
-Message-ID-Hash: JKE7I5QQVOUZPCB7MDE5BI4HNTU7Q7UU
-X-Message-ID-Hash: JKE7I5QQVOUZPCB7MDE5BI4HNTU7Q7UU
+Message-ID-Hash: ISH6BT3ITG6RXX36B3AV2N4LVLVQIBVD
+X-Message-ID-Hash: ISH6BT3ITG6RXX36B3AV2N4LVLVQIBVD
 X-MailFrom: gary@garyguo.net
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
@@ -166,9 +165,9 @@ X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JKE7I5QQVOUZPCB7MDE5BI4HNTU7Q7UU/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ISH6BT3ITG6RXX36B3AV2N4LVLVQIBVD/>
 Archived-At: 
- <https://lore.freedesktop.org/DN3IDZ94G4NN.1FUTSE7B4G1ZK@garyguo.net/>
+ <https://lore.freedesktop.org/DN3IFEONQXEX.3471DEAR6S0W0@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -184,140 +183,59 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On Tue Nov 24, 2026 at 5:50 AM GMT, Dave Airlie via B4 Relay wrote:
-> From: Dave Airlie <airlied@redhat.com>
+> We want to be able to build both nova and nouveau and maintain the
+> status quo for now of nouveau binding to all GSP enabled GPUs.
 >
-> nova-core currently binds to every NVIDIA GPU it supports
-> (GSP-capable, Turing and later GPUs), competing with nouveau for the
-> same devices.
+> In the future we may suggest switching the default to nova, but
+> for now the default is to let users use command line options for testing
+> and developers building their own kernel can set the kconfig.
 >
-> Add the NOVA_CORE_BIND_GSP Kconfig option (default n) and a bind_gsp
-> module parameter, defaulting to the Kconfig value and able to override
-> it in both directions. Unless one of them requests binding, probe()
-> rejects the GPU with -ENODEV and leaves the device to other drivers,
-> such as nouveau. The PCI driver still registers, so module autoloading
-> via modalias keeps working when binding is disabled.
->
-> Signed-off-by: Dave Airlie <airlied@redhat.com>
-> ---
->  drivers/gpu/nova-core/Kconfig      | 21 +++++++++++++++++++++
->  drivers/gpu/nova-core/driver.rs    |  4 ++++
->  drivers/gpu/nova-core/nova_core.rs | 23 +++++++++++++++++++++++
->  3 files changed, 48 insertions(+)
->
-> diff --git a/drivers/gpu/nova-core/Kconfig b/drivers/gpu/nova-core/Kconfi=
-g
-> index 2e11e46c99c7..058742d50692 100644
-> --- a/drivers/gpu/nova-core/Kconfig
-> +++ b/drivers/gpu/nova-core/Kconfig
-> @@ -30,3 +30,24 @@ config NOVA_CORE_SELFTESTS
->  	  logs its failure and lets the probe continue.
-> =20
->  	  If unsure, say N.
-> +
-> +config NOVA_CORE_BIND_GSP
-> +	bool "Make nova-core the default driver for GSP-capable GPUs"
-> +	depends on NOVA_CORE
-> +	default n
+> This contains a precursor patch to fix the nouveau device cleanup paths.
 
-Quite a few distros have script that automatically select Y regardless defa=
-ults.
-What about just using !NOUVEAU_CORE_BIND_GSP?
-
-> +	help
-> +	  Make nova-core bind to all NVIDIA GPUs it supports by default.
-> +
-> +	  By default nova-core does not bind to any GPU and leaves NVIDIA
-> +	  GPUs to other drivers, such as nouveau. Say Y here, or boot with
-> +	  nova-core.bind_gsp=3D1, to make nova-core claim NVIDIA GPUs
-> +	  instead.
-> +
-> +	  nova-core is work in progress and may not be functional, so this
-> +	  is intended for nova developers and testers only. When enabled,
-> +	  nouveau must not bind to the same (GSP-capable) GPUs, i.e.
-> +	  CONFIG_DRM_NOUVEAU_BIND_GSP=3DN or nouveau.bind_gsp=3D0 is required.
-> +	  Otherwise both drivers compete for the same devices and
-> +	  whichever is loaded first wins.
-> +
-> +	  If unsure, say N.
-> diff --git a/drivers/gpu/nova-core/driver.rs b/drivers/gpu/nova-core/driv=
-er.rs
-> index d6bc972d47c7..e89967ef0cd5 100644
-> --- a/drivers/gpu/nova-core/driver.rs
-> +++ b/drivers/gpu/nova-core/driver.rs
-> @@ -105,6 +105,10 @@ fn probe<'bound>(
->          dev_dbg!(pdev, "Probe Nova Core GPU driver.\n");
-> =20
->          try_pin_init!(NovaCore {
-> +            _: {
-> +                crate::NovaCoreModule::check_bind_allowed(pdev)?;
-> +            },
-> +
->              _: {
->                  pdev.enable_device_mem()?;
->                  pdev.set_master();
-> diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/n=
-ova_core.rs
-> index 84f777844592..483e5c1d427b 100644
-> --- a/drivers/gpu/nova-core/nova_core.rs
-> +++ b/drivers/gpu/nova-core/nova_core.rs
-> @@ -68,6 +68,25 @@ pub(crate) fn debugfs_data<'a>(_dev: &'a device::Devic=
-e<device::Bound>) -> &'a D
->      }
->  }
-> =20
-> +impl NovaCoreModule {
-> +    /// Check whether nova-core is allowed to bind to GPUs.
-> +    ///
-> +    /// Binding needs to be requested explicitly, either through the
-> +    /// NOVA_CORE_BIND_GSP Kconfig option or the `bind_gsp` module param=
-eter.
-> +    /// Otherwise, NVIDIA GPUs are left to other drivers, such as nouvea=
-u.
-> +    pub(crate) fn check_bind_allowed(pdev: &pci::Device<device::Core<'_>=
->) -> Result {
-> +        if crate::module_parameters::bind_gsp.value() {
-> +            return Ok(());
-> +        }
-
-This will reject binding via sysfs, which I think should still be allowed
-despite CONFIG_NOVA_CORE_BIND_GSP. I wonder if we can support such cases ju=
-st by
-setting ID table to override_only if the config option is set?
-
-If module parameter is set, then we can pci_add_dynid to add a match withou=
-t
-override_only being set.
+The patch series say "[PATCH v3]" and "(v2)". Any reason to append the vers=
+ion
+number? It seems redundant (and can get out of sync).
 
 Best,
 Gary
 
-> +
-> +        dev_info!(
-> +            pdev,
-> +            "Not binding to GPU; enable with CONFIG_NOVA_CORE_BIND_GSP=
-=3Dy or nova-core.bind_gsp=3D1\n"
-> +        );
-> +        Err(ENODEV)
-> +    }
-> +}
-> +
->  impl InPlaceModule for NovaCoreModule {
->      fn init(module: &'static kernel::ThisModule) -> impl PinInit<Self, E=
-rror> {
->          try_pin_init!(Self {
-> @@ -97,6 +116,10 @@ fn init(module: &'static kernel::ThisModule) -> impl =
-PinInit<Self, Error> {
->              default: false,
->              description: "Keep the GSP-RM log buffers in debugfs after t=
-heir GPU is unbound",
->          },
-> +        bind_gsp: bool {
-> +            default: cfg!(CONFIG_NOVA_CORE_BIND_GSP),
-> +            description: "Bind to GSP-capable GPUs, making nova-core the=
- default NVIDIA driver",
-> +        },
->      },
->  }
-> =20
+>
+> Signed-off-by: Dave Airlie <airlied@redhat.com>
+> ---
+> Changes in v3:
+> - back to single nouveau patch
+>   - fixes ctor teardown path (Danilo)
+>   - fixes passing bind_gsp flag (John)
+> - nova
+>   - move to using a function (Danilo)
+> - Link to v2: https://lore.kernel.org/r/20261123-nova-nouveau-gsp-v2-0-5e=
+8c27aa8555@redhat.com
+>
+> Changes in v2:
+> - nouveau dtor path is broken, so fix that before adding the new code. (S=
+ashiko)
+> - Link to v1: https://lore.kernel.org/r/20261119-nova-nouveau-gsp-v1-0-4c=
+de2bc41132@redhat.com
+>
+> ---
+> Dave Airlie (2):
+>       drm/nouveau: add option to leave GSP-capable GPUs to other drivers
+>       nova-core: only bind to GPUs when explicitly requested
+>
+>  drivers/gpu/drm/nouveau/Kconfig                   | 17 ++++++
+>  drivers/gpu/drm/nouveau/include/nvkm/core/pci.h   |  6 +-
+>  drivers/gpu/drm/nouveau/nouveau_drm.c             |  9 ++-
+>  drivers/gpu/drm/nouveau/nvkm/engine/device/base.c | 67 +++++++++++++++++=
++-----
+>  drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c  | 11 +++-
+>  drivers/gpu/nova-core/Kconfig                     | 21 +++++++
+>  drivers/gpu/nova-core/driver.rs                   |  4 ++
+>  drivers/gpu/nova-core/nova_core.rs                | 23 ++++++++
+>  8 files changed, 139 insertions(+), 19 deletions(-)
+> ---
+> base-commit: e55a991e09e3b44f0b0d8206bb523dc57c086341
+> change-id: 20261119-nova-nouveau-gsp-10f8782498e4
+>
+> Best regards,
 
 
