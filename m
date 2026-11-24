@@ -2,141 +2,128 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8983606A31E
-	for <nouveau@archiver.kernel.org>; Tue, 24 Nov 2026 20:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E6B2606A327
+	for <nouveau@archiver.kernel.org>; Tue, 24 Nov 2026 21:35:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FQucDsST
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qQkI5z2W
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C0B2310F0F9;
-	Tue, 24 Nov 2026 20:59:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EC4AF10F0F1;
+	Tue, 24 Nov 2026 21:34:55 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B20C2403B8;
-	Tue, 24 Nov 2026 20:58:58 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795553938;
- b=z97eF4rNGLDIns7DnuwQ4c4RKdSnR0sDZzbPx7+xfQ3v8+a7bzYQ0sxCETMyuGppeRQxv
- VSRWBseV3d5sqV00eBHTo6/wfbEdpGszRDEE9dxwotZQw010S0VIjL78Y6XvBb5Bys0dT+5
- nVSaOVjPjN0Z78VtaVRE5/XEA9OX2w+xoU/fexP7w+XiC/4IW7X9iHY3DlgbWcZF/dlPuou
- nBUxJzQI/W/CblLLe0+gjBsY7+CKMq28jwuEEFCqbDUq+SM4h1euQ6YeP/TaAGi6WUvk8mz
- 1gdzBR2cqUAoEUmp30Cp4cyElOPrfqDCNe990cUjpS1AKPc3mzu7H+5gKgBg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795553938; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id CB695403B8;
+	Tue, 24 Nov 2026 21:34:50 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1795556090;
+ b=rZQOAILSnOjruCnRlkYHHRK/JKfhUMTNPGaMVntFtX33m5M3C3+dwesXUIjwNpeKlGEr6
+ oKpziMYthU3cCCE3ETB8eXAf7yW+wwqd3PWteaU65eAyyxLl0YMLD//SYUCkrTJ8n01rN6k
+ 2ibC+PKxpzgy42Caf+tHWruEN/4TDlxeHD5pdhO+jnO+xHdNo2u3eBOLL8pTlS5a6XWwMjj
+ WHgc7fedO9debM0HVtvI6B8J7gpLAUYSh6yZ0zdt2ru2MINjgI7faECnUxjQlqDSZKb/LaR
+ uOQCBy9EAn22LXqp9Ko3mKu8r0AXkXYfU7gtNth1+lj+gg392tLCMfvVDXVA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1795556090; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=RUxIdsT2a3GEPLS3xlx8PCm2RFieqaaoaw9EPeeADkM=;
- b=D6+tK5av1aQJmEcWAwHDJiu6aUEfWo2QqI5fQSc2lJEhNUFXB3WEflRrrIZRfFdqu/Opu
- 8PaerduDS24dAvBmmN/lYsXw7ZAjTik9QlAFWqqGZXKIYHcDYWqFUkgD31ysfp1FOBAxoMy
- vXC/9h3Y6z6Pfaq0EmoZuoe9etD1CHeYF5/csLcRZ7u2Xp+OmzCgLaaPYIUalgTKn3sXEsf
- Ry47GhetHFmKtcNFNl/r7gmau46DyrQPoDy54E0SWJ6DlBJ8GOVHVLcEZGcRQdvgqZ3oZx2
- 6Nl0F68adod2yqDwIgtVfZ/X1mYfCABC96kZRH4rUrc0dzfKMY3pmrlgFMkA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
- arc=pass;
- dmarc=pass header.from=kernel.org policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=kernel.org policy.dmarc=quarantine
+ bh=PyyQwKmFe9iM2Cp50Hb1UepVeU0i/+dyb3nhRaBGF3U=;
+ b=XtO2TcVHQFlFpVhJvoIL55amI/DcJGw3aeO8jenysfX5pRSz5jJysI9KzJq3y6lToqwL4
+ qODMefIV+R3WZcM7+nNdkDsqMhTwfgP75LZMUfpDDsOTkIhz5OHVjKu77ltoBTdt4LUX+sp
+ pDA+wQM52/pKeujCHFytJRWfYrBOGAzV7fpALQ7YMo/XDnqi1XZqHoYhFVFpeOH37Mob7ln
+ ewQhk0wrYPTt0nGEnKHqlobNL1RWH+0CVASYwiH8fuIMGgtLp1dsEiuBclY7w8e1QO4Pazc
+ l4G+oi6W5ShxixOiTS0JJXBEe+I0s/Po4iZGuzo3/gTHj3mAXZNWS7eUwNLQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=gmail.com;
+ arc=none;
+ dmarc=pass header.from=gmail.com policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A960E402F9
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 20:58:56 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9643210E7A8;
-	Tue, 24 Nov 2026 20:58:51 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 16F9A4358E;
-	Tue, 24 Nov 2026 20:58:51 +0000 (UTC)
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795553930;
-	b=X+9eV0evgExdJYRiuFSXjIJi6i8T2Xkbli1VpEwJ/zCudG77elDD1Ao6jX1H0YmEtv3o
-	 OFANXstXYuyxODDHPrbSKHpe5lckfM6EqlntJ3YXEKZ16rkMeEvqun8JUU28Gi/w7UVBD
-	 f0+tVnKTDeZaA2pMj675TLGB3jvXwWHvKC1/1hrxHB8wGaWOxkYiSBFCrAas0pb3e+fmi
-	 t1YCzzGUIizgSd7hsLX8igRouKC3U5a7TBTCVwzyRFPiQAOVcTMFnhCEFDDq27KNrFwzH
-	 /nU0ROtFTqfGL+7rLv3a8sIGzlahOo0bcUVypT8rrRYJuHiuMQ+Fbt/xejTOjOL195A==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795553930;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:
-	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=RUxIdsT2a3GEPLS3xlx8PCm2RFieqaaoaw9EPeeADkM=;
-	b=ruVr25W9BM/SMNGzdj3t5nUhebeiQff474y9FtvIlZsWWAcBV+5fojodIUF7vxsR/VAZ
-	 vnlRupH52K/Xc7Ue2kwvaEkOxjsTXNcY2mcMwcFdXYLRgMVFtNU/UY7yhdMqlT0yOQg91
-	 Tqsat5/E3kMtM+3QNfd1/4DppG45Ni5dwOU6sMRRvw8AiO9LeLrK7OMRg8psjSELIzJu5
-	 rW8DHOUzrOWcpVhRyj9WdwwxR4cccoeIpdE7TDY4VOfGCYBUwjpPUFOtsiWKl3bLByAfy
-	 WDmsXyaG8LG+lpHtMtnTuiFs38TGGQ0c6H67DFC2heFl2uGIEdreZS3OurQ7XmSXCaw==
-ARC-Authentication-Results: i=1; smtp.kernel.org;
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest
- SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 1F9B01F000C6;
-	Tue, 24 Nov 2026 20:58:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795553930;
-	bh=RUxIdsT2a3GEPLS3xlx8PCm2RFieqaaoaw9EPeeADkM=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=FQucDsSTJ+ItwyP1Tj789PzZvJIY6XpS9jR87MxZHHXPQ5FuO9gcrO51dKumfgzX3
-	 8FL199lUz8RG7eSp4Hz7FC/hvSGa3o2fBT57EkF8DPn7GbIYE0rxd4YIgla2q3dspr
-	 eSvXX8TBiCVQg8l452TIjYTzI/E1F5fv9U3/w2esxaY/3nZw1ebwPKJTQrhfvj/Koy
-	 sYsMa6lrT3C7pWSXCQx81VX4bB/PikX13L4f8WEAtYRTKNkX06aPLiMJQ41Z2L7iW1
-	 dBLCH0xZX5pAHzt2lymSIE0Wt/W1o90Pd22hSIsWCvuimq3NrQD+O08zu2CVwBIgbu
-	 gPMeV+o6hKOCw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A44484CB90;
-	Tue, 24 Nov 2026 20:58:44 +0000 (UTC)
-From: Mahdi Salimi via B4 Relay
- <devnull+mahdisalimikingmallo.gmail.com@kernel.org>
-Date: Wed, 25 Nov 2026 00:28:42 +0330
-Subject: [PATCH] drm/nouveau/fb/ramnv50: Fixed DDR2 reclocking on NV50
- architectures
+	by kara.freedesktop.org (Postfix) with ESMTPS id 30429402F9
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 21:34:48 +0000 (UTC)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1F10610E5A0
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 21:34:43 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-4a5b2be99a8so43325785e9.2
+        for <nouveau@lists.freedesktop.org>;
+ Tue, 24 Nov 2026 13:34:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795556081; x=1796160881;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=PyyQwKmFe9iM2Cp50Hb1UepVeU0i/+dyb3nhRaBGF3U=;
+        b=qQkI5z2WvQaleb3qgq9ltd1CIj8V2hvbMrX4p+XcyPOuLwbzQTWYJQkfdyO7o77D+e
+         C7eLE4InAZ2O7X7vXMCFqYnW9vLkPk5QeRToCt0e5IoGauFlESYYdC6tugM6USou6AEV
+         fkxxB3/I4gts7xto/7jAAieljsfp+4uMf8JGsnQm4Jgjymg+HcdGYOuQmK4ahWpB/a3s
+         vKKNwGPIhCNPhfwNDShZxjuWTWdBv+cPSxbU9tDVQor5ORH6xPgWQx7ZGkbWFXq2vu/H
+         HihdVnzZLcfGS+PX4QSQKuQ5Fy0d2K29SrKqGFqg3YI+zBCfg7KgRMkfxfXCqwhLlCN0
+         0nBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795556081; x=1796160881;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=PyyQwKmFe9iM2Cp50Hb1UepVeU0i/+dyb3nhRaBGF3U=;
+        b=WLyzMAQqgE/wB3DsItLQuDyfWTP4iKaTwtAbdjip2AkJT7yoWwFZBQtY3hCdZ3EdMp
+         FMT5SCUfTTs7xJsoTKezbEOVBOvTrcJz+5RDI4s7PmmK3lLgmFHTCgaqtSWKov8DnYJZ
+         ETMbVPhVitDkJr7Tb9vFgLGlzcU8v4xAE3yEkEDjUZXreG7N8TElG78qo9A8MFV4e5a3
+         4hOObzY0XjHq7H5wJWx2avwjcIMFTk1yMhPm+BjYDpX9iP5+qqUKktvQN0tkNonxwkkA
+         x+PR8Z1oQPYe+zqpvoUzatzqsq6zUOJnTl5wbegl9E/+93Mtk4plasMyTx84SXUjGxxE
+         kAPw==
+X-Forwarded-Encrypted: i=1;
+ AL+hErEo9UiaJJ9XMb3ZRi+25EuTL/7E8XdsXMQz+YEbDm2FggifWYBazDNn+y2aCEfafoBRHLelxOMQ@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z/tNR33B01ShG2+SO9sI9aDJy9DDhPVKkVs1qRiu1Y7aSkCfpeo
+	mvfsRfWM98OgGpD1PJJ48typCJxHDwipWxJaF6DrZg02ZTHfBxDv2Uf6
+X-Gm-Gg: AZFdTZdDESzXDkhqWoPI0qo32ktLVqU0yes1NtLqa7y68m3RcXDpYD+owWRtnfsYLQH
+	THymajPZmjz/o9xmvQ7JzOrWJXQMDg0cvQ4VsI9sIGGgAnOae3Wbwkffmsi0gnrxZJLYIgwWQ/x
+	mUd5Z40LXFH+OxQ+/7DHzj8wP3PcPzYOx79rdnRpF6LN/fKNJ49JwsSvg2MKd8Xzl/InYKS/bGL
+	NGWNWtJdfH/18zmjBnau9nOpgV7ZdTOPBf4qUeI4d2bwtOJ3DTCYhA6hapGWs/urYO+ru/lLqiZ
+	wTmF8byXfmwdn+JQdTPHi5rov3muhl1yXVTiqzA8QEBYfU6HINMJGB0YpUSkMZ0CmklEVi1x1be
+	xGgu4iL76WUw4zpzNm4KYl9DOB2WeE/PQKolCFye0+q53EyYTQdQrEGtcWnTuMN5w3xcrOgCuNS
+	fdc1DG8z8I/kOGG/mzLSzfeVbtwx5Q/JvHWnNRMrXSDuYeL5WMQAdbXtO10C5hjoq4WHhKA1AvP
+	RSMq7lMC5OK7aCgR94wswO2mFAWc81jLRr33Lwbpqpg6a9aOjTL+TEgqphGjeD7NLzBuWggWyhT
+	ZJwIa+gcajHqSiigNVAxU3JVWTjSng==
+X-Received: by 2002:a05:600c:800e:b0:4bb:7757:fe58 with SMTP id
+ 5b1f17b1804b1-4bb8881b9d7mr328897525e9.19.1795556081300;
+        Tue, 24 Nov 2026 13:34:41 -0800 (PST)
+Received: from fra-x8664 ([151.83.244.218])
+        by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4bb90660cb4sm403974515e9.2.2026.11.24.13.34.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 13:34:40 -0800 (PST)
+From: Francesco Magazzu <postadelmaga@gmail.com>
+To: Lyude Paul <lyude@redhat.com>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH] drm/nouveau/devinit/gf100-: fix POST being skipped on GPUs
+ without display
+Date: Tue, 24 Nov 2026 22:34:30 +0100
+Message-ID: <20261124213430.9525-1-postadelmaga@gmail.com>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-ramnv50-ddr2-reclock-v1-1-64f046c1c95d@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/x3MUQrCMAwG4KuE/3mBtlLBXkV8qE02g9pJCkMYu
- 7vgd4Bvx1A3HSi0w3WzYWtHoTgR2qP2RdkEhZBCOseYMnt99y0HFvHEru21tiffT6HVi2QVFUy
- Ej+ts3397vR3HD1iWqldmAAAA
-X-Change-ID: 20261125-ramnv50-ddr2-reclock-b30ca9d5eded
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795553923; l=1573;
- i=mahdisalimikingmallo@gmail.com; s=20261125; h=from:subject:message-id;
- bh=1K/6Wu8e0J2XN3Xm9Hku5Ij7+tN+riEcZySH53+Mfuw=;
- b=CtKj6j0bbn9Ur2HFfZapsXTVU8AiohiH+Ee8Xyg1ckdaHO1RCinKAGomZD2IWX8esLRom+QH7
- NBCX01rpnBcDVPAmsvG9KWRpsmskn1efsZ/Qvx6sjQ1afCF3OtO0WaH
-X-Developer-Key: i=mahdisalimikingmallo@gmail.com; a=ed25519;
- pk=kJgQkgLnEIBLRzYOU2pUvQKBck8dX2HvJdCy3M3tDoc=
-X-Endpoint-Received: by B4 Relay for
- mahdisalimikingmallo@gmail.com/20261125 with auth_id=1631
-X-Original-From: Mahdi Salimi <mahdisalimikingmallo@gmail.com>
-Message-ID-Hash: QCHYLMKS6VOSZBLNBEZQNJIEEI2YTAIB
-X-Message-ID-Hash: QCHYLMKS6VOSZBLNBEZQNJIEEI2YTAIB
-X-MailFrom: devnull+mahdisalimikingmallo.gmail.com@kernel.org
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: ZMXD2NXKKXRQ2CY2TBSM7UDKP5BJZHCU
+X-Message-ID-Hash: ZMXD2NXKKXRQ2CY2TBSM7UDKP5BJZHCU
+X-MailFrom: postadelmaga@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
- banned-address; emergency; member-moderation; nonmember-moderation;
- administrivia; implicit-dest; max-recipients; max-size; news-moderation;
- no-subject; digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Jonathan Fouquart <jfouquart@hotmail.fr>, Karol Herbst <kherbst@redhat.com>,
- Mahdi Salimi <mahdisalimikingmallo@gmail.com>
+ banned-address; emergency; member-moderation
+CC: Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ regressions@lists.linux.dev, stable@vger.kernel.org
 X-Mailman-Version: 3.3.10
 Precedence: list
-Reply-To: mahdisalimikingmallo@gmail.com
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QCHYLMKS6VOSZBLNBEZQNJIEEI2YTAIB/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZMXD2NXKKXRQ2CY2TBSM7UDKP5BJZHCU/>
 Archived-At: 
- <https://lore.freedesktop.org/20261125-ramnv50-ddr2-reclock-v1-1-64f046c1c95d@gmail.com/>
+ <https://lore.freedesktop.org/20261124213430.9525-1-postadelmaga@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -144,54 +131,75 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-13.5 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_INVALID,DKIM_SIGNED,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Jonathan Fouquart <jfouquart@hotmail.fr>
+Commit 2139cb633d48 ("drm/nouveau/devinit/gf100-: try to avoid
+double-running vbios scripts") skips devinit if VGA CRTC register 0x00
+or 0x1a is non-zero, unless the display engine is disabled.  It detects
+the latter from the return value of nvkm_devinit_disable(), which is
+always 0: the strapped-off engines are removed with
+nvkm_subdev_disable() instead.  So the VGA registers are always read.
 
-Call nvkm_sddr2_calc when calculating the DDR2 memory clock frequency on
-NV50 architectures. With this change, there are no more errors when
-reclocking, the DDR2 memory frequency is correctly calculated, and there
-are a performance gain of around 30% on glxgears.
+On a GM108 (GeForce 940MX: no display engine, not POSTed by the
+firmware) those reads fault and return 0x13.  devinit is skipped, the
+GPU is used uninitialised and the machine panics at boot:
 
-Signed-off-by: Jonathan Fouquart <jfouquart@hotmail.fr>
-Reviewed-by: Karol Herbst <kherbst@redhat.com>
-Link: https://gitlab.freedesktop.org/drm/nouveau/-/merge_requests/23
-Tested-by: Mahdi Salimi <mahdisalimikingmallo@gmail.com>
-Signed-off-by: Mahdi Salimi <mahdisalimikingmallo@gmail.com>
+  nouveau 0000:01:00.0: fifo: fault 01 [WRITE] at 00000000001a1000 engine 05 [BAR2] client 08 [HUB/HOST_CPU_NB] reason 04 [UNBOUND_INST_BLOCK] on channel -1
+  mce: CPUs not responding to MCE broadcast (may include false positives): 1,3
+  Kernel panic - not syncing: Timeout: Not all CPUs entered broadcast exception handler
+
+Check device->disp instead, once nvkm_devinit_disable() has removed the
+disabled engines, like nv50_devinit_preinit() does.
+
+Fixes: 2139cb633d48 ("drm/nouveau/devinit/gf100-: try to avoid double-running vbios scripts")
+Cc: stable@vger.kernel.org
+Assisted-by: Claude:claude-fable-5-2
+Signed-off-by: Francesco Magazzu <postadelmaga@gmail.com>
 ---
-Forwarding Jonathan's reviewed patch from GitLab MR !23 as Lyude
-requested. Tested on an NVIDIA G96 with DDR2 memory (reclocking works
-without errors).
----
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv50.c | 3 +++
- 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv50.c
-index be15519d0..d013a2fd2 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv50.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv50.c
-@@ -288,6 +288,9 @@ nv50_ram_calc(struct nvkm_ram *base, u32 freq)
- 	ram->base.mr[2] = ram_rd32(hwsq, mr[2]);
- 
- 	switch (ram->base.type) {
-+	case NVKM_RAM_TYPE_DDR2:
-+		ret = nvkm_sddr2_calc(&ram->base);
-+		break;
- 	case NVKM_RAM_TYPE_GDDR3:
- 		ret = nvkm_gddr3_calc(&ram->base);
- 		break;
+Notes:
+    v7.3.4 boots on this machine; v7.3.5, which has the stable backport
+    (992f7f5f34f8), panics.  Tested on v7.3.5: with this patch the GM108 is
+    POSTed again at probe and on runtime resume.  Not tested on a board
+    that has a display engine.
+    
+    Read at preinit on this board: 0x2240c = 0x00000000, CR00 = CR1A = 0x13,
+    0x021c04 = 0x00000001 (display strapped off).
+    
+    The regression was analysed and the patch drafted with an AI coding
+    assistant (Claude Code); I tested it on the hardware above.
 
----
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
+index 186e09ea0c..b256404c24 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
+@@ -107,12 +107,12 @@ gf100_devinit_preinit(struct nvkm_devinit *base)
+ 	 * VBIOS multiple times may have detrimental effects.
+ 	 */
+ 	if (base->post) {
+-		u64 disable = nvkm_devinit_disable(base);
++		nvkm_devinit_disable(base);
+ 		/* magic to detect whether or not x86 vbios code has
+ 		 * executed the devinit scripts to initialise the
+ 		 * board. only works if there's a display engine.
+ 		 */
+-		if (!(disable & (1ULL << NVKM_ENGINE_DISP))) {
++		if (device->disp) {
+ 			if (nvkm_rdvgac(device, 0, 0x00) ||
+ 			    nvkm_rdvgac(device, 0, 0x1a)) {
+ 				base->post = false;
+
 base-commit: 8d7fe9885c62fc9a95bf55d9db244d9672a8aadc
-change-id: 20261125-ramnv50-ddr2-reclock-b30ca9d5eded
-
-Best regards,
 -- 
-Mahdi Salimi <mahdisalimikingmallo@gmail.com>
-
+2.56.1
 
