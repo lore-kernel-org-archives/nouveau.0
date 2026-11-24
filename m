@@ -2,172 +2,215 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2732606A334
-	for <nouveau@archiver.kernel.org>; Tue, 24 Nov 2026 14:28:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C636C606A31E
+	for <nouveau@archiver.kernel.org>; Tue, 24 Nov 2026 19:37:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=garyguo.net header.i=@garyguo.net header.a=rsa-sha256 header.s=selector1 header.b=r9nItJqk
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=columbia.edu header.i=@columbia.edu header.a=rsa-sha256 header.s=pps01 header.b=ArQqb01A;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=columbia.edu header.i=@columbia.edu header.a=rsa-sha256 header.s=lionmail header.b=dDI9CewA
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 920D910F6DE;
-	Tue, 24 Nov 2026 14:27:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B01B410F083;
+	Tue, 24 Nov 2026 19:37:38 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 87A07403C3;
-	Tue, 24 Nov 2026 14:27:53 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795530473;
- b=IurKE4gLvTK59n6KFuR5xnXR0BWS0qrMAStiasDKs69oWjJqA4q94M6OIqftm4IwHWUYX
- tRvEkEcWE0xjko+zHzl7Tc2UT6ZGjA2SRJEW4/WLrtP5cKfFo5F0PnlPHS7jB6bqalL9G7+
- 8pGtlL9Rp9iJtE3XYHmZgVuJWQPHsQmuMTLWqVx6snXgjDi1F2UBjEEBYEDRTAltj1s1BpO
- 4u4ZOMxGijjD7QanDRowj4tW2q/RHWT9Ckvg0gDY0wthKQt70N4uKDh9Tcj6xCRFW2msq4x
- U3mHqd1j+y+pVbX2RlA1Wy+EJeQQg8LY2nfGaiVYPJUATv+UzdSB4TXaMhZg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795530473; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id A3796403AC;
+	Tue, 24 Nov 2026 19:37:28 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1795549048;
+ b=wOvz8Dc57/+sZhaOvoO3LBtHAGLGQfppT43t5RrBZePPXM/IHKiSzSQEc+cVazPZMr3X6
+ Xk+r4evVyHbvruGl8x+KLHJHN1R+Iaylf2gfiZQd0kxla0fMjkI3sjGmjl9oaLZ+fUMHDIh
+ 0g0TCfFg3tGxDPrQLNSqCqyhwrG0PkX6xl7QdZ93LToEn0HQj3nGcPzrhn9SMuKfGvTSR6I
+ x7uc2+ckP6IuNzG5S+ceIBAN5ubwSoEmGi4Lg2yuCHBaHFrP51wesmFCpFVVq5s5rcjDl0n
+ 2qwl48nHoBmS6KlswF6uiaqJO15J5Cqw2ZK0jJ91WRhKO97YD8CuGAylQM0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1795549048; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=sKOfwbAt+heR0dKtHu4cuRxNVAdSjSTo5ad6JHQB+Wk=;
- b=XB8yby/4XeKsQjHjffpbxZ5+4a6dGgC7xZleeHGSJs6t/sWZGhCA5PWdOsmjYkMPVwMF7
- 033x/CD6q1DdFrUBpsrhG77zhyhRZx608sSptJRfA9QBM6Ye9o6xD07mSrDOZkA40dc8App
- UxtT8Fec/77qOjemmZIvZOeHNG5sxxmUZEtnNhTEO+PEWt6k3mdqRSql+TbHfZQd+UqU5rs
- GGAmfNFomRpsvSGsc/rFIATLT1M6R8yD702z6yhVYgkRuvOMAlGQNl7lT8H1lBgo3jHz5qF
- jDhba2YHlYmuNh8EYm70Pi+N7Vs95I1hynXvgdql9bOMsJu/DkgBUhBEi5XQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
- arc=pass;
- dmarc=pass header.from=garyguo.net policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ bh=OMjgnMOdm5LC9Ve7tJbATj56ZsHM2zVs1s6tMJ9jz2Y=;
+ b=MO7b/xagG1WTEQ5xrsbkJASVG3Ku4Cl17i7xy6f4n0mYAdPhvtaPyz/ZXbrS8tWQa4Yne
+ n4YHxP8cIDfwhj5jnelPBOaUOKU254mREWfd54TD+6zycaH5MF754kMgmqXRUQsh6tvZcB+
+ sj9ScHzYzC8Ms4Ov6vyTx3pCucOwuvqvoIJOHGRrfRBuokQajlBBRDIej6hiG7EOSMLVHNG
+ 9vkROf9QQ0w/l+B3BQMoH5HA7sTrPQssjJFhIgqQt1q1Q/m5yXhri38lxA6qkm2T+v2z2Oc
+ ouA2KOUSwOzUOvwgqLvSQDb31Uka7I7hRHOtFulS7SZcosBfyrhWlKjpUpKw==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=fail header.d=columbia.edu;
+ arc=none;
+ dmarc=fail header.from=columbia.edu policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=fail header.d=columbia.edu;
+ arc=none (Message is not ARC signed);
+ dmarc=fail (Used From Domain Record) header.from=columbia.edu
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 2446D40218
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 14:27:51 +0000 (UTC)
-Received: from CWXP265CU009.outbound.protection.outlook.com
- (mail-ukwestazon11021131.outbound.protection.outlook.com [52.101.100.131])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EC73110F6C4;
-	Tue, 24 Nov 2026 14:27:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=V+EIL6u3NarJ6J+i8cFocwSgz3rn7xjPI1hlsQtfTbS870rnWgkV+cJv1RNQRcJHWT8IKXAGh1ZEsY4pW5LT0jQP9+LMbdSERRb0x1/X7tQG5jmDb1ZkcWD2GqtQqIu911HMUzHvl/EbPJm0DgFQBdrzQgHH46WMqLayloEzYJQfTAYESOCFhksIwhOc7AgGbWb+JZIAe5w/mOdayjvxbHi8V3aM3YBULylDrYDdp9+EqI5akwOARzitmBqgvMfN8VGLR6NYB+5y9la/O5r2fEHUbCPklO5Yw/uux8PS26R4SXof7xrM3lKhNDfyOT7LDwGv34qDE00B4k7j6KbQvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sKOfwbAt+heR0dKtHu4cuRxNVAdSjSTo5ad6JHQB+Wk=;
- b=wxUuMChiBx8XvDeiwHGk7Q48vaWwiEnoIZdGgBCvwPXWmkVZ2DnG/1leJTNzJIACisMbM343XfGXJbaaSi1SPXJjdtRnsRAuXz7CPgN7lNGmEJPpocEbaBlrZto1SDHsMJcTjZjCT+J56IUJg5hWd69FVlJ7ei1a3n0NALznw7GSLJh/bDh4Mo0Q/QA7s+rP3o6I0DpDtjeVoFEqOuZnkDUarc3N1HlvkVGD5u0IKEK4M+UnqFCb/BnpQ8LlCQr2UUX235X7epYbwwuo+PSRvaxIAaFIdDXhH5Wib3Qu6QHKyVBTLBI3KxhsBpSlnJXd7MEo3VeB+TOK/es1Zthe8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sKOfwbAt+heR0dKtHu4cuRxNVAdSjSTo5ad6JHQB+Wk=;
- b=r9nItJqklXwKm2gXkxOx8CK3IEC0T3rz1F3XpZmUsVNeNTCCNxGB6sH9TRvdHtgvvO/scqAHQZ+wQqWI+bALl1bYsEWIlyClWXCwpT+ED7lnoBsNHeRrMLYbe0z8QBxUBkv/aNfn+8PB9qtsr7s8JiajSRefYGVE8JiQ6ZXrBeU=
-Received: from CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:1cb::9)
- by CWXP265MB2581.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:ab::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
- 2026 14:27:43 +0000
-Received: from CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM
- ([fe80::55f6:f98b:7fad:c6e3]) by CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM
- ([fe80::55f6:f98b:7fad:c6e3%2]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
- 14:27:43 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 24 Nov 2026 14:27:41 +0000
-Message-Id: <DN3IFEONQXEX.3471DEAR6S0W0@garyguo.net>
-From: "Gary Guo" <gary@garyguo.net>
-To: <airlied@redhat.com>, "Lyude Paul" <lyude@redhat.com>, "Danilo
- Krummrich" <dakr@kernel.org>, "Alexandre Courbot" <acourbot@nvidia.com>
-Subject: Re: [PATCH v3 0/2] nova/nouveau: add configs/module options to
- control binding behaviour (v2)
-X-Mailer: aerc 0.22.0
-References: <20261124-nova-nouveau-gsp-v3-0-e1440479ded6@redhat.com>
-In-Reply-To: <20261124-nova-nouveau-gsp-v3-0-e1440479ded6@redhat.com>
-X-ClientProxiedBy: PA7P264CA0477.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:102:3dc::7) To CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:400:1cb::9)
+	by kara.freedesktop.org (Postfix) with ESMTPS id A3A5740218
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 19:37:25 +0000 (UTC)
+Received: from mx0b-00364e01.pphosted.com (mx0b-00364e01.pphosted.com
+ [148.163.139.74])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7341E10E270
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 19:37:15 +0000 (UTC)
+Received: from pps.filterd (m0167073.ppops.net [127.0.0.1])
+	by mx0b-00364e01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 6AOJYISP2923112
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 14:37:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=columbia.edu; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pps01; bh=OMjg
+	nMOdm5LC9Ve7tJbATj56ZsHM2zVs1s6tMJ9jz2Y=; b=ArQqb01Alvqy+ezQ3O+b
+	wFGaLKLkRPslDfTTnR/1n3YHEnzFvpSAXsSLtAema3OMBGvQTr8MjsfnQdizF1DR
+	Y35c9K1YbdbrokVp6lJBFIYVrUHqLLS3WYYBtEDDKg/6m1bODWncA+LZwiNP1MH8
+	Z3bx2LUxG6sfpmxDdUI+/kyZI7guQlRgIUWOBYQ6reZ57nqjYw3JFREOmJXGhsy0
+	5UyyJqrfI8VjX2MlX1xqtk46jQix4pqRNZv16i1aL2PIz3aAJytU8fQlN33iF7Uo
+	xruvXaD2EFNKvtzNiOaeLj7AUiUNlwagsbKMIv+l5TRcoparlTssaELubPi31AEG
+	DQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199])
+	by mx0b-00364e01.pphosted.com (PPS) with ESMTPS id 4j5fa7h01k-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Nov 2026 14:37:14 -0500 (EST)
+Received: by mail-qt1-f199.google.com with SMTP id
+ d75a77b69052e-536778a8137so87210761cf.2
+        for <nouveau@lists.freedesktop.org>;
+ Tue, 24 Nov 2026 11:37:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=columbia.edu; s=lionmail; t=1795549034; x=1796153834;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=OMjgnMOdm5LC9Ve7tJbATj56ZsHM2zVs1s6tMJ9jz2Y=;
+        b=dDI9CewADpfltMyOctEQPXef6qPnURtuo0OcT6SbxH3+FlE/qJUYzqIk1vx6CB7hPF
+         m6heUBxPsiywc1A4mOJnWGJwRRXEqaqBogcevklS8h/hpO3VLwG7q3GE941ZMYkFoo9i
+         XahTHRfSjvaBgI6h8sX5v34XHSjDDnj0zvhERWBJ0HHcphspAyPUoVsNvhy9yTd6ETuN
+         RM7j+08t2tuHma+g4qDjVAmbDUS1peebrC/jMUMIUPcW8QYTTw2zc8RAMZREcvdTfTd5
+         IuyZ8DVXX3Zm6RdVgJIsaAuaftrJbgRWsBdsmotXmbtpQZc14BWHCN7sfRk56hHDtw2E
+         w4lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795549034; x=1796153834;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=OMjgnMOdm5LC9Ve7tJbATj56ZsHM2zVs1s6tMJ9jz2Y=;
+        b=mdQ/f+kyblJGo9FIoRNXO6NUmAWzPkIZ+w+gWKMA7gV8sWrewbvxufjTYPT/H/NEFO
+         RNlpD9FxeA3DcG1wPY1jPr931K1+fgkRvtOb0O3E+Lw78uhh5OwZdkUKf+hOHxEFerqz
+         hfSndlcv2R5uAtVMgfuXQxS6GFDNadL5Ni0GKLyWCHPC2e3vWVzaPvhqT9Ai8zh4TD1q
+         bMKYKoHSHCiqDdfihjCvsA8/jQq2/bX2AVX6LWgEXKcD2dsa07urz3iHBc2ZVoRBQ2Np
+         AU7aasAOGoTEaZTVA8jvbknpUMu7YWVjYzNKg8LgCAmzweY5+cyz1BXJmfl+VYwvDogA
+         YDhQ==
+X-Forwarded-Encrypted: i=1;
+ AL+hErGjHrGt6FvUfEq7H/pAV7rW2uQPkjqRKSBJIzUmMuy+tt8rQ/rzEYMU5t3jNlEgCj8pRrdvtzhE@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z9Ddtj/Z+8cAO9AEi1NpfXQ0AO4K77HWKtESai6lcIy5m/qR/gn
+	GtbxPDmkhMlNLQP5+MYmXjHg86H/P4z75z5XX0v+W8VRNLhDGXh1UY3yFduxofYrTrj5VBVvDPo
+	QC712NCkLapUmaGeX+9CmvpVPORodL87kYwcEryUqhu6Cscdro7DszlZHU3GuOsc=
+X-Gm-Gg: AZFdTZdPkOGuPJjCHgj6OYuNz++c/HKrycK4yxsCWgl4qRbxyjuTijKTO3d1y4G4rqk
+	BXdIjFLJjTrAG+GXSQxItKkwEhgUAhg82fY5S2HZSbVwxOHHk2HLe2vJrs9kjp2MYYbVpPm3Gp1
+	4KCejMFhdZSJOhhuXp4uDDw42F0KMxZ00Ict5sRWRy+SrlhaKrAIPhvEhYXJzsWWHIZTpukUqOC
+	u3t47Jak+BhwMqUvAHnHiUW1S2ZZ+Ee6jDnZsmG9dzf2ZVAqM+JcCBwA3mHBYCvyfYwTv8b70MS
+	CttwDq/pmWbEez1GwT3aCPxaNmeuhXto0b5kZLe6CF+7PD928OkaagO9bLD7t5nOkthtrHqy5Th
+	hscTsNo8DqQRLQEPTyTcxjzkckXC4/7pnhBqgZi5HJP+2PuzX5gUL0wsTuJDivFjgDg==
+X-Received: by 2002:a05:622a:313:b0:55d:1944:a2ab with SMTP id
+ d75a77b69052e-55d76a5af8dmr288718291cf.49.1795549033813;
+        Tue, 24 Nov 2026 11:37:13 -0800 (PST)
+X-Received: by 2002:a05:622a:313:b0:55d:1944:a2ab with SMTP id
+ d75a77b69052e-55d76a5af8dmr288717631cf.49.1795549033344;
+        Tue, 24 Nov 2026 11:37:13 -0800 (PST)
+Received: from [10.206.101.158] ([129.236.231.128])
+        by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-9213515f467sm140631006d6.41.2026.11.24.11.37.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Nov 2026 11:37:12 -0800 (PST)
+Message-ID: <3ebb01ea-fe77-4467-a1de-7f30a91593f3@columbia.edu>
+Date: Tue, 24 Nov 2026 14:37:11 -0500
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CWLP265MB6051:EE_|CWXP265MB2581:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9fd00e37-e926-45cc-8313-08df4a3719a7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
- BCL:0;ARA:13230040|376014|366016|23010399003|10070799003|1800799024|10067099003|5023799004|261021123027099003|56012099006|261022105027099003|261026121527099003|261022075727099003|261021121427099003|261026140227099003|261009223327099003|261009223027099003|261009221727099003|261102123227099003|261009221227099003|261028144727099003|261009220027099003|6133799003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 
- GfCRwyJp5jc03S6rXFn3f01+f098H5jTycEamC5m4BJNhPLKgAvsnGKCPDalY7chy3xmBFZ8m9HMvuUieOzE9vGrgnX1rU2MkGTDDDr+OGuKtgyPZxn5n0/7Uh5oUtGGD7Si2JSF/T99PuHg/EkI99X4gws93cpIiKISs8TeBCgr7zMfY3pdRKxiv5y11ptmO57Uu0foA4fF4/AESdfK27mb1ZYtUiaXuwW6TeHu0yCfHeUM2imim/BX8nZQqiywI6n1lD/SvNab7kAjlWPoSGoqvvH4zF/iriEzgdcB8xwBDpJ49tQriF6i3xb0QrBBSrUslPQTvjbHK8QtuQcYgl3Y/G+XQ0i7B9/GU0i3IvSCy5lzo+3D7W03i8L3Rz3dfXVYssDsn9vTFITpfblnnD38TxfMkGBCSSDBbtVNuwKAJJSr+wdvq3xmmyRSf9aXSlNZxVdiOhhkX/PqrdJ5hEdha2uV2/UJVbi+xZIqse5RC/QRStnZwjtn+/dJsPbwu1I/w5dGdK+w9Vho64UV2Kie83j18NRb46CZezEEOcsL+odVHpbX6KZgxF+zcLOYN7rv/Sq0OYBtVrvYm/j7mxD2PvBcRWalPVgCB0iq98MF8Pca4/6avkhqhvRufn/7
-X-Forefront-Antispam-Report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(23010399003)(10070799003)(1800799024)(10067099003)(5023799004)(261021123027099003)(56012099006)(261022105027099003)(261026121527099003)(261022075727099003)(261021121427099003)(261026140227099003)(261009223327099003)(261009223027099003)(261009221727099003)(261102123227099003)(261009221227099003)(261028144727099003)(261009220027099003)(6133799003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
- =?utf-8?B?aUNaYWl6cVNrcHRlbGRXbDRzVVd6NlIwWDNOUmR6RjU3WVZUVVBmeElXMXlx?=
- =?utf-8?B?RklWNkZFV0pNTWdTTHo2TWNFZkZocHcxVGpoZzJCOWRCRUp2Z3dLZTZuemN5?=
- =?utf-8?B?V3NOd1VJdU4zNEFwWXRMWmZOL1F0bFFkV25jd2ZpOXplSEhSd2Q2OHhVZnB2?=
- =?utf-8?B?TTlaOFN5dnVIMCtmOUd5S0d1ZlcwMkIvL3lKakxpc3A5Vm4wTGUvNzU2RGJF?=
- =?utf-8?B?NXliSFc0TjYrOStoS0FBZHNFQXBTVVRyN2grWThiUjMwODljTmFVZE5QaExw?=
- =?utf-8?B?SUMraFhEejdGS2RhWmJHQm80RUU0UkJQQmNBcDhVMGJMOTNmRTdUVEF4SHFF?=
- =?utf-8?B?UTJueEc2dTRqbGFIeGlYa2pqdnVkM0pJZnh3MTg3Zk1YNHJsa3BmaWRKNDM4?=
- =?utf-8?B?NUcvR2hBbENNejhYSVJoS2d1MW12b1lvMzZWWDFFc1JKbUsxNk1wSHBEUmgy?=
- =?utf-8?B?bUhDOGxCQ3FLcUhMOVp1OGNyRUVBS2dLbkI5VTlJOVd2UjQ4YXNZRG5lR2di?=
- =?utf-8?B?bHhEQzYrTjVMRUpnRHNQNklieXltdlpFUUxpejlLVmdiaVY4SDhFNWYrbHFX?=
- =?utf-8?B?SGJTeXgyejhqZk4vYmtlSkdWTE13bnl4aU9PYVNiN3R6QVZMZ2RjTHBSU2N2?=
- =?utf-8?B?WXd2VjZSLzFwTmVIUDdVWDMvMVg2WjF2Zm5hRUlNRjVUMVVFMXM4Yld0U0hh?=
- =?utf-8?B?dGhkUlhaUVM4ZTZGM2ZVT08yb0Naem5maXZydjA2MEZZQUxldWRrZWU5bVFU?=
- =?utf-8?B?K3h4RTN2Y1RIbVA2RXgzV0lENnRYMWhvNVJVWlZjRjMzLytRdlBpWUM2a0Jm?=
- =?utf-8?B?OVJyelNySk80eXlkK2RHRzFGMDJCT292dVk2bEdGSEdUVWRRZmJEVkY2NUo1?=
- =?utf-8?B?eVQxb3VydWt2eDkyQnJOWE9XOFFIQjhkblBYL3FvcElMRjdTMkhzTFVNYnh6?=
- =?utf-8?B?M1NFc1FJZmhBa3FOUVU3ckZnYS91MEVEcHZkVEs4Z0FjaWFJdjNkOWRJNUdz?=
- =?utf-8?B?SDZhcnRkSEZudlV6UzQ3T1VxYUloWktKUFhMY1ZFRFlUS3ZFV0FZT05DNUpY?=
- =?utf-8?B?WkdCYlRNQVF6TUhUNzJhYjRLNFllOEM5eHl4bWNmRXdKakV5RDBZQWNzWDgz?=
- =?utf-8?B?anZoNmVWb0h3bkEwSHhsUFVNV093UUJTMld6VjJZeHRDeHlkQkVHNG1mN3Z4?=
- =?utf-8?B?a0RuSUpyNGtXdmFCS29RMURlZlBmdHlTSFNIWTBNckVzNkRudjVac24xK1hW?=
- =?utf-8?B?TmFKWWRLdE0zM1J1cTFmZ0tiSm9NNDlZemQ1Skh6RnVNMUxxREEyVmNmNGFw?=
- =?utf-8?B?VUZETFdHUFBIb2NVSE1hV2NwYlVkcU1HSWR3VmR2bmsxUUl0T3JmV3UxK1RJ?=
- =?utf-8?B?V0RCeUNRaFNPRGs1OE1Vc0xzZXJSdE5wc242enNiUnV5Z29ZMlBlNVhmaGFO?=
- =?utf-8?B?dXJBQjFTSUFHaTNjc2JkZGtkYVljTFBha08yQTFrRDlRbDVDOVVQcHpHU0lH?=
- =?utf-8?B?bDFGSWs1My96WXN6clRLcmhNa3dYemRvcE9RVjgrSW9hR3BPanpDb0dWM2Vq?=
- =?utf-8?B?YWFleUFldU9OaCttOTA1bktWSklnLzlFYU5hMmg1Z1Z4MG9ZNDN2RUNuVXVv?=
- =?utf-8?B?R0V6MENlU3ViV0RYT0xTczdQRWNod2hWTHlhbG1jbVJpbkhWWlBqZ1ZxV0Z4?=
- =?utf-8?B?RzJOS0YxdDN0QzZFc1NtU3RaRW82TGZSOElTU2dnOW81eUtUbngxN2ZGcUZ4?=
- =?utf-8?B?VzAyMVNYcUFXaFI5dm9uK3lQYXp2QW5DVncyUjF1dzYrVkhmamtWQStKSG1a?=
- =?utf-8?B?NVRqMzZMWmJ4UHJrVytUT2pqNk13WXJML2MwNksyYzZYY1FKK1RuaVo3Nzdz?=
- =?utf-8?B?Y1g0S0F0TnJ5VGduRjRVYk5wcDhWOE5GYXdCUFdidGdieFBWTC92NlpNMTQ2?=
- =?utf-8?B?QXZ3UTlOcU40NXY3Tzk5cGZXWTlVQWFpaDJmcjg0b0tHTWNtaUF4NExVeUtj?=
- =?utf-8?B?S3dNSmVVTzZRMW1yd0Y2Zk5xZ1BGTlV0cXROUUh3RFUyY1ROVlByQ0duRXkw?=
- =?utf-8?B?aDFmNnloTGwzMmRuQ2lKMFlpVDh3c2RxK0V2VWtxWDhzVWYzdmFrTDJRa2Zo?=
- =?utf-8?B?dFVNWGxldG9oRkpkUWROQTJvaUxnTjdOYUhmRjdGYXphOUdKUkh2VWFERGdx?=
- =?utf-8?B?MXBqZmoyaHVUMWEzNC9MWkJndDBvQmliRmpVdnE1ejBlTG15MlJwRWFFR0tn?=
- =?utf-8?B?ZGdUQU50NXNqT0Ewc1BkN2hsNnczNW96WStPQkYrbHR6SmlyQU1mdUY5YXUv?=
- =?utf-8?B?WlVmYktvMTV5T0p5eDZZbW9NNmRkbXBZNE1ET1BQemg3eWhFd2cyQT09?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 9fd00e37-e926-45cc-8313-08df4a3719a7
-X-MS-Exchange-CrossTenant-AuthSource: CWLP265MB6051.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 14:27:42.8642
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- fGoc39S7VRbI9Sl9ET4jVD17ZFCtdCdzNeGaNWtT0KDIb5h4DKY6VyAnH78hLZI57zHqhHTQ/O9JtcCuzWw8+w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB2581
-Message-ID-Hash: ISH6BT3ITG6RXX36B3AV2N4LVLVQIBVD
-X-Message-ID-Hash: ISH6BT3ITG6RXX36B3AV2N4LVLVQIBVD
-X-MailFrom: gary@garyguo.net
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/9] userfaultfd: assorted fixes (part 1)
+To: "David Hildenbrand (Arm)" <david@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@kernel.org>, Peter Xu <peterx@redhat.com>,
+        James Houghton <jthoughton@google.com>,
+        Andrea Arcangeli <aarcange@redhat.com>,
+        Suren Baghdasaryan <surenb@google.com>,
+        Balbir Singh <balbirs@nvidia.com>,
+        "Liam R. Howlett" <liam@infradead.org>,
+        Lorenzo Stoakes <ljs@kernel.org>, Vlastimil Babka <vbabka@kernel.org>,
+        Jann Horn <jannh@google.com>, Pedro Falcato <pfalcato@suse.de>,
+        Michal Hocko <mhocko@suse.com>,
+        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        Andrei Vagin <avagin@gmail.com>,
+        Muhammad Usama Anjum <usama.anjum@arm.com>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+ Arnd Bergmann <arnd@arndb.de>,
+        Zi Yan <ziy@nvidia.com>, Matthew Brost <matthew.brost@intel.com>,
+        Joshua Hahn <joshua.hahnjy@gmail.com>,
+        Byungchul Park <byungchul@sk.com>, Gregory Price <gourry@gourry.net>,
+        Ying Huang
+ <ying.huang@linux.alibaba.com>,
+        Alistair Popple <apopple@nvidia.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Nico Pache <nico.pache@linux.dev>,
+ Ryan Roberts <ryan.roberts@arm.com>,
+        Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>,
+        Lance Yang <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>,
+        Kiryl Shutsemau <kas@kernel.org>, Muchun Song <muchun.song@linux.dev>,
+        Oscar Salvador <osalvador@suse.de>,
+        =?UTF-8?Q?Miko=C5=82aj_Lenczewski?= <miko.lenczewski@arm.com>
+References: <20261117-uffd-state-fixes-v3-0-b617009d1a4a@columbia.edu>
+ <4f23b0bc-b89a-46c1-b8cd-853e7815b7ac@kernel.org>
+Content-Language: en-US
+From: Tal Zussman <tz2294@columbia.edu>
+In-Reply-To: <4f23b0bc-b89a-46c1-b8cd-853e7815b7ac@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: kP7Bx5rIQrk524xe9ryTnY-Gk4UGibG2
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI0MDA3NiBTYWx0ZWRfX9VVub6UDb7uH
+ Isdf5Rv+ThPWmexpNXSyTHbigBFiJtFQpwNraxRpEAV2PgdxEahxEXAbu31tTf0fUqQdTHN21ZW
+ KAjqPqawiLHN/sj4Y0kKcBwEN7xq5zWS01S4aeT8Tz0T42E3u7qt
+X-Proofpoint-ORIG-GUID: kP7Bx5rIQrk524xe9ryTnY-Gk4UGibG2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI0MDA3NiBTYWx0ZWRfX9+WP1roP6Dua
+ unwqst0UAdxUOM6lv2/WlYfZFZzThb3KSrkjEJq41jihkhU6JAo3YjAbOaMlIpLdWq6tDgZuf6N
+ Tgtqg68CX1N6jJUJB2Ihrmy7UOjdpZBskpcXht4Yo47U32HtOwt22ngWS2JPCNh/7WUj8ouqjQH
+ x8N95NU+ZQGg8/f81u4R3O2sYqEYgUJouY7Rh/gqvxM0US2+sbmArjPftsdKQieeSe4jwg4hkOB
+ 0rsn9BTueMUMPDHFlJot3QDXtIVkmCs8W9NXRflAqqG33KKZBEXtbtKey/qL+AwlC48C9Y9lc9r
+ raMIbGaeb8BKfoAExmk/pYo1U7hNVeqpwsMHQ0M+HlEBL6hKaKPSr1Cc7PpR1FC3+ku2w0h65ks
+ Oh9449R2DcvXtW+wnhplorWYSUNO4Os6jOrvT4idTmIRTn3Pg2iar0qeNyLtH+KDbo1LYk5393N
+ 0G9Y1ErCE7Yovu2jESg==
+X-Authority-Analysis: v=2.4 cv=NdZzRGD4 c=1 sm=1 tr=0 ts=6b05e76a cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=LNQXEAmb7IHcZyFqmLK0PA==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=x7bEGLp0ZPQA:10 a=A0y_DWxS2BwA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Da8U98TiO7q1upZEImrf:22 a=jHxIr1HyPKZ_Q5_91PL3:22
+ a=Z7cX3StJxvrjZLnT-lEA:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Virus-Version: vendor=nai engine=6900 definitions=11976
+ signatures=596817
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=10 adultscore=0 phishscore=0 clxscore=1015
+ malwarescore=0 spamscore=0 priorityscore=1501 lowpriorityscore=10
+ impostorscore=10 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611240076
+Message-ID-Hash: GDT3MDXZXPAKQYV4KOLQJDZOFMD6T4DD
+X-Message-ID-Hash: GDT3MDXZXPAKQYV4KOLQJDZOFMD6T4DD
+X-MailFrom: tz2294@columbia.edu
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; emergency; member-moderation
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- nova-gpu@lists.linux.dev
+CC: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, stable@vger.kernel.org,
+ Breno Leitao <leitao@debian.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Danilo Krummrich <dakr@kernel.org>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ISH6BT3ITG6RXX36B3AV2N4LVLVQIBVD/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GDT3MDXZXPAKQYV4KOLQJDZOFMD6T4DD/>
 Archived-At: 
- <https://lore.freedesktop.org/DN3IFEONQXEX.3471DEAR6S0W0@garyguo.net/>
+ <https://lore.freedesktop.org/3ebb01ea-fe77-4467-a1de-7f30a91593f3@columbia.edu/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -175,67 +218,48 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue Nov 24, 2026 at 5:50 AM GMT, Dave Airlie via B4 Relay wrote:
-> We want to be able to build both nova and nouveau and maintain the
-> status quo for now of nouveau binding to all GSP enabled GPUs.
->
-> In the future we may suggest switching the default to nova, but
-> for now the default is to let users use command line options for testing
-> and developers building their own kernel can set the kconfig.
->
-> This contains a precursor patch to fix the nouveau device cleanup paths.
 
-The patch series say "[PATCH v3]" and "(v2)". Any reason to append the vers=
-ion
-number? It seems redundant (and can get out of sync).
 
-Best,
-Gary
+On 11/18/26 4:41 AM, David Hildenbrand (Arm) wrote:
+...
+> 
+> So, I would be picking up ...
+> 
+>> Tal Zussman (9):
+>>       userfaultfd: use anonymous memory for UFFDIO_ZEROPAGE on private file mappings
+>>       userfaultfd: refuse UFFDIO_MOVE into a non-present huge destination PMD
+>>       fs/proc/task_mmu: downgrade writable migration entries in PAGEMAP_SCAN write-protect
+>>       mm/migrate: warn on a writable migration entry with the uffd bit set
+> 
+> This
+> 
+>>       fs/proc/task_mmu: write-protect device-private THPs in PAGEMAP_SCAN
+>>       mm/huge_memory: build the moved huge zero PMD from the destination VMA
+> 
+> This
+> 
+>>       mm/mremap: resolve uffd state when the context is dropped, not during the move
+>>       mm/migrate_device: do not migrate a uffd-protected zero page
+> 
+> This
+> 
+>>       mm/userfaultfd: check the hugetlb alignment of every VMA in the pre-scan
+> 
+> 
+> After waiting a bit longer for more review. Andrew can take the rest.
+> 
+> 
 
->
-> Signed-off-by: Dave Airlie <airlied@redhat.com>
-> ---
-> Changes in v3:
-> - back to single nouveau patch
->   - fixes ctor teardown path (Danilo)
->   - fixes passing bind_gsp flag (John)
-> - nova
->   - move to using a function (Danilo)
-> - Link to v2: https://lore.kernel.org/r/20261123-nova-nouveau-gsp-v2-0-5e=
-8c27aa8555@redhat.com
->
-> Changes in v2:
-> - nouveau dtor path is broken, so fix that before adding the new code. (S=
-ashiko)
-> - Link to v1: https://lore.kernel.org/r/20261119-nova-nouveau-gsp-v1-0-4c=
-de2bc41132@redhat.com
->
-> ---
-> Dave Airlie (2):
->       drm/nouveau: add option to leave GSP-capable GPUs to other drivers
->       nova-core: only bind to GPUs when explicitly requested
->
->  drivers/gpu/drm/nouveau/Kconfig                   | 17 ++++++
->  drivers/gpu/drm/nouveau/include/nvkm/core/pci.h   |  6 +-
->  drivers/gpu/drm/nouveau/nouveau_drm.c             |  9 ++-
->  drivers/gpu/drm/nouveau/nvkm/engine/device/base.c | 67 +++++++++++++++++=
-+-----
->  drivers/gpu/drm/nouveau/nvkm/engine/device/pci.c  | 11 +++-
->  drivers/gpu/nova-core/Kconfig                     | 21 +++++++
->  drivers/gpu/nova-core/driver.rs                   |  4 ++
->  drivers/gpu/nova-core/nova_core.rs                | 23 ++++++++
->  8 files changed, 139 insertions(+), 19 deletions(-)
-> ---
-> base-commit: e55a991e09e3b44f0b0d8206bb523dc57c086341
-> change-id: 20261119-nova-nouveau-gsp-10f8782498e4
->
-> Best regards,
+@Andrew, could you pick up the rest of these (everything but 4 and 8)?
+I'd like to send the next batch of uffd fixes I have on top of these.
 
+Thanks,
+Tal
 
