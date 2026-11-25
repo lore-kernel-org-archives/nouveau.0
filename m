@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA719606A321
-	for <nouveau@archiver.kernel.org>; Thu, 26 Nov 2026 22:04:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD46D606A327
+	for <nouveau@archiver.kernel.org>; Thu, 26 Nov 2026 22:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=npnm.eu header.i=@npnm.eu header.a=rsa-sha256 header.s=ovhmo-selector-1 header.b=ilWLcnUR
+	dkim=pass (2048-bit key, unprotected) header.d=npnm.eu header.i=@npnm.eu header.a=rsa-sha256 header.s=ovhmo-selector-1 header.b=cwZmxiBC
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B32E0112783;
-	Thu, 26 Nov 2026 22:04:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B5E3711278B;
+	Thu, 26 Nov 2026 22:04:25 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id A29D140516;
-	Thu, 26 Nov 2026 22:04:20 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 1953240572;
+	Thu, 26 Nov 2026 22:04:25 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795730660;
- b=opRZByqYe8KqVOHXsajXb8qkN60tM0JWoIdfk3o/1STzzOWbH3+TzDGnDNZoCCHOiBs7+
- N0wDm0bYmH5Wck5jdOokCdBvcESa7F5bvMEJ2RP8U8nc6mMAhwex5hfeQsrXTV/6zw+mjMz
- SCZGYDTgjHF12sbVe4CpsVDAAoz89nktHtRrKo3BURlU9bjMJqq2Xqy6bFlUlcy3QW4aFtl
- MDIPmW0Qe1lIqqIpjKzkPFjijjecA3O1ycEvVRNmN1EYvZrshNkkSmanvBErXSkLTCuTWJn
- +HxX0M+ysPaJ+ONbwfdINErsI7BQQhFgN8lFiJ1wNqoa9pIiiSj3hduLDbjA==
+ s=20240201; t=1795730664;
+ b=n0F/jPBFtkDuGhynXmSfEoQ2fQT835i8maSoSpr5sZgpCXOmvup/GE8nJ/hpDks4rgsPB
+ b8/Zb3vD/1DTGMp0DIj34bpg9PRQJnj54qBApufUoZOO/o+akcAuj6HxW6crby//Tz1dmeK
+ 6DR/LTody3DRb/ggIuX/pUGGQNgUEmj87sUHNxYPg6O50c9QFm6knobtvPDWLfr/HBihCyq
+ 3rrNZdy2JGD6IQ0PicR0s1EFUdfQh/sYl7Wvxv5MsMgv/YqR0A9KqSu8x7GcQQU8iz+d7b6
+ PxpeXkws5+bj6o/u2gj6P6vA5YgYNnD2WzgJFykYMm9N4BH/uRtuIMOeUe6A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795730660; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795730664; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=tXDq0dHDb60xtUR4vcFNtDp4bKp7Sqhh3a8eRQ7O4ws=;
- b=HtLEi+XTINCgWCJ+TtoeSI1Fd/bv0l4ka1ysKMzEQeUBeluLV5GfmJz7X6daVWtPTJnI4
- CDyCFVEbx3KNyiiePIn2LOgHnx4Gq5AP2m6eZOeYhBqoAO8+lnStioqrzlXx+Bce/gm3cbC
- qsiYcvigTOOyaShf35ut2zT+c/GRYZfmkGX7A32sYLFQl0/3/vCPAijyIGqFE4zsAzFjauF
- q3jZHlBfA+MhRCU3ikgY6tK+yiZaAoI+TiwA/QzDSMe7Cy/McJ/qcmd+0vBNWfQIoITmqqu
- YoLCkJ52/40D7gJ9Yk+YmIFBzwiqbsTqadEvETXOqIFdgmQ9SFqH7mPrb3DA==
+ bh=nIXjdY+s7dzCHv/uIbUCu21b90ESHTVqSZ/MoDaIrVg=;
+ b=wGrxUPyrRDvOUw12KVTFR4p3tZp3LUkkKMw+SLbQPUw4uMWWDKx1TdKc1/xdKEjfWTESC
+ fRpSrsE2kDca+jGVBfn7HMXj8CDf2F2KtzSbl9ro3EEnrEMDf3rJLlPUChdWhHOMn7HBUb6
+ 1Eni+QfWOAO0fKB0ojWmA35hYRmHXs6u6CCYBmny5usoGock+k2j5OuIFEAEvIWCbqAyMYW
+ qAaqOEu0CN3WgWy8yEymMRNrPYCjXVxW/jmF0LIkQXqs1KbzTszQYcBFuVpJr9zz8v+nvKr
+ CWEwx5JdErkj7N484miwR7YVJhEJ+1KVpe1iIga7h/iqELNhoXgiCslyRlxw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=npnm.eu;
  arc=none;
@@ -40,31 +40,31 @@ ARC-Authentication-Results: i=1; mail.freedesktop.org;
 Authentication-Results: mail.freedesktop.org; dkim=pass header.d=npnm.eu;
  arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 863C240026
-	for <nouveau@lists.freedesktop.org>; Wed, 25 Nov 2026 11:37:41 +0000 (UTC)
-X-Greylist: delayed 1076 seconds by postgrey-1.36 at gabe;
- Wed, 25 Nov 2026 11:37:36 UTC
-Received: from 6.mo2.mail-out.ovh.net (6.mo2.mail-out.ovh.net
- [178.33.109.252])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 480A310E3F2
-	for <nouveau@lists.freedesktop.org>; Wed, 25 Nov 2026 11:37:36 +0000 (UTC)
-Received: from director6.derp.mail-out.ovh.net
- (director6.derp.mail-out.ovh.net [79.137.60.226])
-	by mo2.mail-out.ovh.net (Postfix) with ESMTPS id 4jZHJT2Vx4z42sj;
-	Wed, 25 Nov 2026 11:19:37 +0000 (UTC)
-Received: from director6.derp.mail-out.ovh.net
- (director6.derp.mail-out.ovh.net. [127.0.0.1])
-        by director6.derp.mail-out.ovh.net (inspect_sender_mail_agent) with
+	by kara.freedesktop.org (Postfix) with ESMTPS id C2C3840026
+	for <nouveau@lists.freedesktop.org>; Wed, 25 Nov 2026 11:28:14 +0000 (UTC)
+X-Greylist: delayed 507 seconds by postgrey-1.36 at gabe;
+ Wed, 25 Nov 2026 11:28:09 UTC
+Received: from smtpout10.mo536.mail-out.ovh.net
+ (smtpout10.mo536.mail-out.ovh.net [51.210.91.19])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8CB5B10FBA4
+	for <nouveau@lists.freedesktop.org>; Wed, 25 Nov 2026 11:28:09 +0000 (UTC)
+Received: from director3.derp.mail-out.ovh.net
+ (director3.derp.mail-out.ovh.net [79.137.60.223])
+	by mo536.mail-out.ovh.net (Postfix) with ESMTPS id 4jZHJX4W28z88bc;
+	Wed, 25 Nov 2026 11:19:40 +0000 (UTC)
+Received: from director3.derp.mail-out.ovh.net
+ (director3.derp.mail-out.ovh.net. [127.0.0.1])
+        by director3.derp.mail-out.ovh.net (inspect_sender_mail_agent) with
  SMTP
-        for <1155040@bugs.debian.org>; Wed, 25 Nov 2026 11:19:37 +0000 (UTC)
-Received: from mta7.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.37.2])
-	by director6.derp.mail-out.ovh.net (Postfix) with ESMTPS id 4jZHJT0m7kz46XV;
-	Wed, 25 Nov 2026 11:19:37 +0000 (UTC)
+        for <1155040@bugs.debian.org>; Wed, 25 Nov 2026 11:19:40 +0000 (UTC)
+Received: from mta7.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.43.211])
+	by director3.derp.mail-out.ovh.net (Postfix) with ESMTPS id 4jZHJX3TYlz1xqX;
+	Wed, 25 Nov 2026 11:19:40 +0000 (UTC)
 Received: from npnm.eu (unknown [10.1.6.13])
 	(Authenticated sender: laniel_francis@npnm.eu)
 	by mta7.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id
- 171BAB82109;
-	Wed, 25 Nov 2026 11:19:34 +0000 (UTC)
+ 6DB39B82109;
+	Wed, 25 Nov 2026 11:19:38 +0000 (UTC)
 X-OVh-ClientIp: 159.26.112.96
 From: Francis Laniel <laniel_francis@npnm.eu>
 To: Karol Herbst <kherbst@redhat.com>,
@@ -72,44 +72,46 @@ To: Karol Herbst <kherbst@redhat.com>,
 	Danilo Krummrich <dakr@redhat.com>,
 	David Airlie <airlied@gmail.com>,
 	Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH v1 0/1] drm/nouveau/devinit/gf100-: fix display engine check
+Subject: [PATCH v1 1/1] drm/nouveau/devinit/gf100-: fix display engine check
  in preinit
-Date: Wed, 25 Nov 2026 13:19:24 +0200
-Message-ID: <20261125111925.8651-1-laniel_francis@npnm.eu>
+Date: Wed, 25 Nov 2026 13:19:25 +0200
+Message-ID: <20261125111925.8651-2-laniel_francis@npnm.eu>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261125111925.8651-1-laniel_francis@npnm.eu>
+References: <20261125111925.8651-1-laniel_francis@npnm.eu>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-x-ovh-tracer-id: 14143836106114344252
+x-ovh-tracer-id: 14144680531608151323
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
 X-VR-SPAMCAUSE: 
- dmFkZTEcHrqxdzJyPztlHChyTZRU5dOLXv3zrJhq6H5KWOPBBWzGNMq6wp3m9Oo9qgmsL1Y1qkHtRdNFJEg4YJZWkvxL/edUtxrctHSC5fzgJP2iUEqicmDUaKNXlmOAThrnMxBQ2XWWR2h7MqzpX1OFIVDbLbVzT8EhhACr2ay+I+WJsLqCXPkOchF2Gc3xu8DYjTyoK51Q2tV/OneOawz4W4BIoOUXChUV/+vxBWJ3bBh8ki8re5GajIgwydp0aaQboxHWj8KaDEapLlOvIr3/fAiW/6rmDYpLdnooqCD7P7haLZXZw7Q9G4ntfKPYKbpO4wio07R0WvGRlwfE5SIgeMCrAeavK/VhLLYYBCuX+Dhvw1u7LK79rGEe7CfDnMxSQKgvq7Uo/FPRcNxcMrE1aOtPv8/aac78Kb5Qz3Z97P49RO+PUmbHX2TUd1LygQIuv2U7j/OUTNCS0DColoyF1ZoH0PTOAYN5/KdeDJekLdaR/kLd7q6OwBReoVhhrZtj8TlIOEhxND/wDfhRvz1vfFsYXOaYN5s8H4COi1lizdfBuR3ZtBSw+8LAPe3/mnQu/pAeHuzzj4jCWQrOMqgYVv101KH9NIZw9Q+RL9b3RbaxZ7lUXBnV2UJwApCFeTWRT1elO5B3RBArXF6yOeo5W0RxZhzOtXwjtUZxzfCLq9G+Gg
-DKIM-Signature: a=rsa-sha256; bh=tXDq0dHDb60xtUR4vcFNtDp4bKp7Sqhh3a8eRQ7O4ws=;
- c=relaxed/relaxed; d=npnm.eu; h=From; s=ovhmo-selector-1; t=1795605577;
+ dmFkZTFvQbUJYIcUoSinD64wBIOXnZ0R6y0F7nBAi9RKTCBNAamHynnXH411qTPLrjKo5AP6V1tSFboz5qTrBmw4T49lBJ1rdaKNeT8cgCdmuBn1dVgm25rvAirENQ79G0gDjDEigetq86Y5N37isyzXvIUR+2dVZSYYIPn6AfCU2Fe1U4ATqOGoNvUQ0UkKc6sXeuqzQ8FT/mu3XNK5sNzmknEDLD9QqtDXhqUXFnbdjDU0Dy2qt/EWJu/YxBt1bP5CdyAdsyLs/i2hWt1+oV0llxuccs1SheIGdYPiofHF/T1WBDRuxZ1Q8cIf0i/fvToQxIuAgNScmTRqMEAa44nd7TtRaci+0Cj55Fo6FTy3hdlWcoEur135UioeAkYkTTqKNQd1ap3nuaqHdPcgHkGm7c5t2BZcMBBJ+s7hXhOYcfmvNFhL0ppgKZGB2VuIBPT2coyD69gcSaOViPpIFHv6OAW2YfNryXMWvvdeMD6gK8uMEEexLErIzNRAc0fffcBf2xIACxkK9Va2PjmC61NcXXeLA5jEVoGzH+SOPfyBYISy93WNtjl9hRBIdkFBB7Q1ZdG+uA0Fwn0W07/0rzSQ3/UPmpfaPw0PVqY5X5GhzTaOUbHlUUR+YF2TjDQacBiM6R3VFyZGdRdhiKIF8l7hFocEVuGJurtY7AzwRQp9TfvWnw
+DKIM-Signature: a=rsa-sha256; bh=nIXjdY+s7dzCHv/uIbUCu21b90ESHTVqSZ/MoDaIrVg=;
+ c=relaxed/relaxed; d=npnm.eu; h=From; s=ovhmo-selector-1; t=1795605581;
  v=1;
- b=ilWLcnURliH2sog1uhrIF4oxCTNCBSIIeCwEXuYx3M/SDDMtcrTvSOCB99BtD1BjsvIZDFfS
- OQkI5GSjdYFB+SwC8UhoT+Bksvjd2fGSw7m01v2qBNOgtrXvNQMCVcSyCFONlR8hsPVfgL9+b1s
- FFdI9kARlSn+Fs3wos2UDxcJWR5z2hmR7CSrVJMvh0tQ1AnvykFWyYYNxSvkSEbCF1gqdBUfH5z
- veRXGqnW1+SDvRxt0APHH90RPVJ3g/d1zQ/BBvbp9oe9AA9L3p2EDJZWqEm2tt2GqBgt+xSR6pG
- MDrdeKzBsyb/ITeanmOhyQcgdfdnS5PsJbzeY5isJw+4A==
+ b=cwZmxiBCo9Jkb6d01t4Lsvv5yv/MME8123Ujmx7hOwZK4rAory6ZK9hU1EoF1uZx857+rQfj
+ xaOVle19tcdBwwAPW2F2gCSdtA8BLRNdrWMc2RoSbSjHTKpzI7yxejQk4m/fOJ7eBiQVujhW7Jw
+ 5XYJFJAlGOblQ1nmOfWnmS2XN1Oyk6J8CmNn6xyFX9MVxRqDerWJ+/erM4h0saphifhbFNMA1Db
+ VGlgpUifEaehwGnlwsEMG2GdXGjuYeWXsesetiCZDKY+0WVIN0gMxGHtoK31nV5QsBgiItJyxSx
+ KkYEhQzcGRm1CtbDA3n2JKD49bHSllygnVHuz5k7YGq2Q==
 X-MailFrom: laniel_francis@npnm.eu
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; emergency; member-moderation
-Message-ID-Hash: O24EXSAM4NFJRWAUHGBKXGG3W5SUQYYN
-X-Message-ID-Hash: O24EXSAM4NFJRWAUHGBKXGG3W5SUQYYN
-X-Mailman-Approved-At: Thu, 26 Nov 2026 22:04:17 +0000
+Message-ID-Hash: CVYURDKDQX3U46I4Q3TCRST52W664P2O
+X-Message-ID-Hash: CVYURDKDQX3U46I4Q3TCRST52W664P2O
+X-Mailman-Approved-At: Thu, 26 Nov 2026 22:04:23 +0000
 CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, 1155040@bugs.debian.org,
- Francis Laniel <laniel_francis@npnm.eu>
+ Francis Laniel <laniel_francis@npnm.eu>, stable@vger.kernel.org
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/O24EXSAM4NFJRWAUHGBKXGG3W5SUQYYN/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CVYURDKDQX3U46I4Q3TCRST52W664P2O/>
 Archived-At: 
- <https://lore.freedesktop.org/20261125111925.8651-1-laniel_francis@npnm.eu/>
+ <https://lore.freedesktop.org/20261125111925.8651-2-laniel_francis@npnm.eu/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -117,135 +119,56 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+Commit 2139cb633d48 ("drm/nouveau/devinit/gf100-: try to avoid double-running vbios scripts")
+checks the return value of nvkm_devinit_disable() for the DISP engine bit.
+Since commit da2b1a0a40d8 ("drm/nouveau/devinit: Convert function disable() to be void"),
+that function always returns 0 and disabled engines are
+removed via nvkm_subdev_disable(), which clears device->disp.
 
-I had a problem booting 6.12.118 kernel with NVIDIA GP108GLM [Quadro P520]:
-...
-[    1.657796] nouveau 0000:2d:00.0: fb: 0 MiB GDDR5
-...
-[    2.590323] BUG: unable to handle page fault for address: ffffcdd5c1400000
-[    2.590326] #PF: supervisor read access in kernel mode
-[    2.590328] #PF: error_code(0x0000) - not-present page
-[    2.590330] PGD 100000067 P4D 100000067 PUD 100203067 PMD 101f29067 PTE 0
-[    2.590334] Oops: Oops: 0000 [#1] PREEMPT SMP NOPTI
-[    2.590337] CPU: 7 UID: 0 PID: 223 Comm: (udev-worker) Not tainted 6.12.118+deb13-amd64 #1  Debian 6.12.118-1
-[    2.590340] Hardware name: LENOVO 20S4001JFR/20S4001JFR, BIOS N2XET27W (1.17 ) 12/10/2020
-[    2.590342] RIP: 0010:ioread32+0x32/0x60
-[    2.590347] Code: ff 03 00 77 25 48 81 ff 00 00 01 00 76 08 89 fa ed c3 cc cc cc cc 8b 05 6c e5 6f 01 85 c0 75 11 b8 ff ff ff ff c3 cc cc cc cc <8b> 07 e9 d7 d4 66 00 83 e8 01 48 89 fe 48 c7 c2 72 53 51 b2 48 c7
-[    2.590350] RSP: 0018:ffffcdd5c1137338 EFLAGS: 00010292
-[    2.590353] RAX: ffffffffc0a55890 RBX: ffff8aa642386c00 RCX: 0000000000000000
-[    2.590355] RDX: 00000000bad0ac3c RSI: ffffcdd5c1400000 RDI: ffffcdd5c1400000
-[    2.590357] RBP: ffffcdd5c1137374 R08: 000000000000a500 R09: 0000000000000000
-[    2.590359] R10: ffffcdd5c1380000 R11: ffffcdd5c13fffff R12: ffffcdd5c1137470
-[    2.590360] R13: ffff8aa642386cb0 R14: ffffcdd5c1137380 R15: 0000000000000000
-[    2.590362] FS:  00007fa0fa647980(0000) GS:ffff8aad4d780000(0000) knlGS:0000000000000000
-[    2.590365] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[    2.590367] CR2: ffffcdd5c1400000 CR3: 000000010b472002 CR4: 00000000003706f0
-[    2.590369] Call Trace:
-[    2.590371]  <TASK>
-[    2.590373]  gp102_acr_wpr_patch+0xaf/0x1a0 [nouveau]
-[    2.590477]  nvkm_acr_oneinit+0x3bc/0x600 [nouveau]
-[    2.590550]  nvkm_subdev_oneinit_+0x42/0x90 [nouveau]
-[    2.590620]  ? ktime_get+0x3a/0xd0
-[    2.590624]  nvkm_subdev_init_+0x30/0xa0 [nouveau]
-[    2.590692]  ? nvkm_intr_rearm+0xc7/0x1c0 [nouveau]
-[    2.590759]  nvkm_subdev_init+0x48/0x60 [nouveau]
-[    2.590827]  nvkm_device_init+0x16b/0x1f0 [nouveau]
-[    2.590936]  nvkm_udevice_init+0x47/0x70 [nouveau]
-[    2.591044]  nvkm_object_init+0x41/0x120 [nouveau]
-[    2.591115]  nvkm_ioctl_new+0x160/0x220 [nouveau]
-[    2.591182]  ? __pfx_nvkm_client_child_new+0x10/0x10 [nouveau]
-[    2.591249]  ? __pfx_nvkm_udevice_new+0x10/0x10 [nouveau]
-[    2.593234]  nvkm_ioctl+0xa6/0x140 [nouveau]
-[    2.593305]  nvif_object_ctor+0x11a/0x1a0 [nouveau]
-[    2.593371]  nvif_device_ctor+0x2e/0x70 [nouveau]
-[    2.593438]  nouveau_drm_device_new+0x170/0x300 [nouveau]
-[    2.594065]  ? __pci_set_master+0x36/0xd0
-[    2.594068]  nouveau_drm_probe+0xc2/0x1e0 [nouveau]
-[    2.594167]  local_pci_probe+0x42/0x90
-[    2.594171]  pci_device_probe+0x25b/0x290
-[    2.594173]  really_probe+0xde/0x340
-[    2.594177]  ? pm_runtime_barrier+0x54/0x90
-[    2.594180]  ? __pfx___driver_attach+0x10/0x10
-[    2.594182]  __driver_probe_device+0x84/0x140
-[    2.594184]  driver_probe_device+0x1f/0xa0
-[    2.594186]  __driver_attach+0xbc/0x1d0
-[    2.594187]  bus_for_each_dev+0x8c/0xe0
-[    2.594190]  bus_add_driver+0x112/0x1f0
-[    2.594193]  driver_register+0x72/0xd0
-[    2.594195]  ? __pfx_nouveau_drm_init+0x10/0x10 [nouveau]
-[    2.594261]  do_one_initcall+0x5b/0x310
-[    2.594265]  do_init_module+0x60/0x230
-[    2.594269]  init_module_from_file+0x89/0xe0
-[    2.594272]  idempotent_init_module+0x11e/0x310
-[    2.594276]  __x64_sys_finit_module+0x5e/0xb0
-[    2.594278]  do_syscall_64+0x87/0x1b0
-[    2.594281]  ? filemap_read+0x340/0x370
-[    2.594285]  ? vfs_read+0x24d/0x370
-[    2.594288]  ? __x64_sys_pread64+0x98/0xd0
-[    2.594291]  ? arch_exit_to_user_mode_prepare.isra.0+0x16/0xa0
-[    2.594293]  ? syscall_exit_to_user_mode+0x37/0x1b0
-[    2.594295]  ? do_syscall_64+0x93/0x1b0
-[    2.594297]  ? do_sys_openat2+0x9c/0xe0
-[    2.594300]  ? arch_exit_to_user_mode_prepare.isra.0+0x16/0xa0
-[    2.594302]  ? arch_exit_to_user_mode_prepare.isra.0+0x16/0xa0
-[    2.594304]  ? syscall_exit_to_user_mode+0x37/0x1b0
-[    2.594306]  ? do_syscall_64+0x93/0x1b0
-[    2.594307]  ? do_syscall_64+0x93/0x1b0
-[    2.594309]  ? __flush_tlb_all+0x13/0x30
-[    2.594311]  ? __flush_smp_call_function_queue+0xab/0x410
-[    2.594314]  ? syscall_exit_to_user_mode+0x37/0x1b0
-[    2.594316]  ? clear_bhb_loop+0x70/0xc0
-[    2.594319]  ? clear_bhb_loop+0x70/0xc0
-[    2.594321]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-[    2.594323] RIP: 0033:0x7fa0fb1ad6b9
-[    2.594325] Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 27 67 0d 00 f7 d8 64 89 01 48
-[    2.594329] RSP: 002b:00007ffc9ccb2f38 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
-[    2.594332] RAX: ffffffffffffffda RBX: 000055dd07c93360 RCX: 00007fa0fb1ad6b9
-[    2.594334] RDX: 0000000000000004 RSI: 00007fa0f98d544d RDI: 000000000000001d
-[    2.594336] RBP: 0000000000000004 R08: 0000000000000000 R09: 000055dd07c6f130
-[    2.594338] R10: 0000000000000000 R11: 0000000000000246 R12: 00007fa0f98d544d
-[    2.594339] R13: 0000000000020000 R14: 000055dd07c912d0 R15: 0000000000000000
-[    2.594342]  </TASK>
-[    2.594343] Modules linked in: hid_generic usbhid hid i915(+) nouveau(+) mxm_wmi drm_gpuvm drm_exec gpu_sched drm_buddy i2c_algo_bit drm_display_helper crct10dif_pclmul crc32_pclmul cec crc32c_intel ghash_clmulni_intel rc_core drm_ttm_helper sha512_ssse3 iTCO_wdt ttm sha256_ssse3 intel_pmc_bxt xhci_pci sha1_ssse3 ucsi_acpi iTCO_vendor_support xhci_hcd rtsx_pci_sdmmc watchdog aesni_intel drm_kms_helper typec_ucsi nvme mmc_core gf128mul usbcore typec nvme_core i2c_i801 psmouse drm crypto_simd roles thunderbolt e1000e video serio_raw rtsx_pci i2c_smbus nvme_auth cryptd usb_common battery wmi button
-[    2.594376] CR2: ffffcdd5c1400000
-[    2.594378] ---[ end trace 0000000000000000 ]---
+As a result the VGA CRTC heuristic is also used on display-less GPUs
+(Optimus "3D controllers"), where it wrongly concludes the board was
+already POSTed. Devinit is skipped and the GPU stays uninitialised,
+leading to "fb: 0 MiB", PRIVRING faults and an oops in
+gp102_acr_wpr_patch(), or a hang during boot.
 
-With the following patch, the kernel was succesfull booting:
-[    1.404564] nouveau: loading out-of-tree module taints kernel.
-[    1.404624] nouveau: module verification failed: signature and/or required key missing - tainting kernel
-[    1.739550] nouveau: detected PR support, will not use DSM
-[    1.739571] nouveau 0000:2d:00.0: enabling device (0006 -> 0007)
-[    1.739648] nouveau 0000:2d:00.0: NVIDIA GP108 (138000a1)
-[    1.776320] nouveau 0000:2d:00.0: bios: version 86.08.3e.00.26
-[    1.776582] nouveau 0000:2d:00.0: pmu: firmware unavailable
-[    1.860292] nouveau 0000:2d:00.0: fb: 2048 MiB GDDR5
-[    1.897865] nouveau 0000:2d:00.0: drm: VRAM: 2048 MiB
-[    1.897868] nouveau 0000:2d:00.0: drm: GART: 536870912 MiB
-[    1.897869] nouveau 0000:2d:00.0: drm: BIT table 'A' not found
-[    1.897871] nouveau 0000:2d:00.0: drm: BIT table 'L' not found
-[    1.897871] nouveau 0000:2d:00.0: drm: Pointer to TMDS table not found
-[    1.902700] nouveau 0000:2d:00.0: drm: MM: using COPY for buffer copies
-[    1.902820] [drm] Initialized nouveau 1.4.0 for 0000:2d:00.0 on minor 0
-[    1.902908] nouveau 0000:2d:00.0: [drm] No compatible format found
-[    1.902910] nouveau 0000:2d:00.0: [drm] Cannot find any crtc or sizes
+Check device->disp instead, as nv50_devinit_preinit() does.
 
-Basically, the patch mimics behavior existing in nv50_devinit_preinit().
-
-Francis Laniel (1):
-  drm/nouveau/devinit/gf100-: fix display engine check in preinit
-
+Fixes: 2139cb633d48 ("drm/nouveau/devinit/gf100-: try to avoid double-running vbios scripts")
+Link: https://bugs.debian.org/1155040
+Cc: stable@vger.kernel.org
+Signed-off-by: Francis Laniel <laniel_francis@npnm.eu>
+Tested-by: Francis Laniel <laniel_francis@npnm.eu>
+---
  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-Best regards,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
+index 186e09ea0cb1..b256404c2454 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
+@@ -107,12 +107,12 @@ gf100_devinit_preinit(struct nvkm_devinit *base)
+ 	 * VBIOS multiple times may have detrimental effects.
+ 	 */
+ 	if (base->post) {
+-		u64 disable = nvkm_devinit_disable(base);
++		nvkm_devinit_disable(base);
+ 		/* magic to detect whether or not x86 vbios code has
+ 		 * executed the devinit scripts to initialise the
+ 		 * board. only works if there's a display engine.
+ 		 */
+-		if (!(disable & (1ULL << NVKM_ENGINE_DISP))) {
++		if (device->disp) {
+ 			if (nvkm_rdvgac(device, 0, 0x00) ||
+ 			    nvkm_rdvgac(device, 0, 0x1a)) {
+ 				base->post = false;
 -- 
 2.47.3
 
