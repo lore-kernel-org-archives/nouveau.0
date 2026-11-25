@@ -2,148 +2,114 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BFBD606A31E
-	for <nouveau@archiver.kernel.org>; Thu, 26 Nov 2026 22:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA719606A321
+	for <nouveau@archiver.kernel.org>; Thu, 26 Nov 2026 22:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=r8hx3Ln2
+	dkim=pass (2048-bit key, unprotected) header.d=npnm.eu header.i=@npnm.eu header.a=rsa-sha256 header.s=ovhmo-selector-1 header.b=ilWLcnUR
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 313BE112767;
-	Thu, 26 Nov 2026 22:04:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B32E0112783;
+	Thu, 26 Nov 2026 22:04:20 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2D376404F7;
-	Thu, 26 Nov 2026 22:04:09 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795730648;
- b=VHukK+YNK+ed5Facx4UXkfo4gTUR1FPSr5OxKFMhiYn3s7x2+GuVh6FI8id3PLS+kEROt
- sGfa6wU+M+CAvrBydNqFkpPK8CT6Wj80VPFJkyAf0m7IIGfSHzkTOZMkxSvxamOf/a/fbk5
- sx67tqURcf3t6teH5JviKSKlAD1smBxjJJWagt30nZ0ZxZWD4or4xZvs3jG5fcT2dUsJlF/
- 0lTnOLl8NBBXlGB5LZrsS1i7+eF9vTdf1Dj0rKeUh1LnqeOnGnUlBkL/T7BHnm32JF64KiE
- Xn3OG2BT6aWqWDdOFmRncQBhtp27KAdGSggC9xipoUHhDA03gjGUNYA0FZGg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795730648; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id A29D140516;
+	Thu, 26 Nov 2026 22:04:20 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1795730660;
+ b=opRZByqYe8KqVOHXsajXb8qkN60tM0JWoIdfk3o/1STzzOWbH3+TzDGnDNZoCCHOiBs7+
+ N0wDm0bYmH5Wck5jdOokCdBvcESa7F5bvMEJ2RP8U8nc6mMAhwex5hfeQsrXTV/6zw+mjMz
+ SCZGYDTgjHF12sbVe4CpsVDAAoz89nktHtRrKo3BURlU9bjMJqq2Xqy6bFlUlcy3QW4aFtl
+ MDIPmW0Qe1lIqqIpjKzkPFjijjecA3O1ycEvVRNmN1EYvZrshNkkSmanvBErXSkLTCuTWJn
+ +HxX0M+ysPaJ+ONbwfdINErsI7BQQhFgN8lFiJ1wNqoa9pIiiSj3hduLDbjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1795730660; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=2nBUpJc5iHflZDRwAMX6vbv2TQ3IkJKSBfDxCvYqDt8=;
- b=gZHzn4uxSDDJkdkLCY0ulvcfFtuD30oHiR/XW+ynhS/qpef2cJ95kFmQ2G7iH2iAW70AR
- p5pbGZiXu0a80NVAF01/LGZWazYSnH3RaS+cKSmCQM8w21u47c3j8SoOrHLKiJMxZpEqG/y
- tS6Sm9pnU67gIQvmnG/mwMWdjl0jVtlvE+8rzJAxtL2Nbwkeu1D2kuj00JzoArHBK6PoNps
- vroqp4Ws7UhUtQt7nMPHD9Fp7l0ClUeoueoBK69A99VdJZin4gIxGkRM5MJwPNy7OrJ4/9e
- 30UPGy/8Oqxo/pXrkx1wrECEC0evlZY3guMo7qA82NnYIQLH02bzF9gYifIQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass header.from=gmail.com policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+ bh=tXDq0dHDb60xtUR4vcFNtDp4bKp7Sqhh3a8eRQ7O4ws=;
+ b=HtLEi+XTINCgWCJ+TtoeSI1Fd/bv0l4ka1ysKMzEQeUBeluLV5GfmJz7X6daVWtPTJnI4
+ CDyCFVEbx3KNyiiePIn2LOgHnx4Gq5AP2m6eZOeYhBqoAO8+lnStioqrzlXx+Bce/gm3cbC
+ qsiYcvigTOOyaShf35ut2zT+c/GRYZfmkGX7A32sYLFQl0/3/vCPAijyIGqFE4zsAzFjauF
+ q3jZHlBfA+MhRCU3ikgY6tK+yiZaAoI+TiwA/QzDSMe7Cy/McJ/qcmd+0vBNWfQIoITmqqu
+ YoLCkJ52/40D7gJ9Yk+YmIFBzwiqbsTqadEvETXOqIFdgmQ9SFqH7mPrb3DA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=npnm.eu;
+ arc=none;
+ dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=npnm.eu;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D286040026
-	for <nouveau@lists.freedesktop.org>; Wed, 25 Nov 2026 12:39:59 +0000 (UTC)
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
- [209.85.218.52])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B946310E539
-	for <nouveau@lists.freedesktop.org>; Wed, 25 Nov 2026 12:39:54 +0000 (UTC)
-Received: by mail-ej1-f52.google.com with SMTP id
- a640c23a62f3a-c4cac7a7d3cso840896066b.3
-        for <nouveau@lists.freedesktop.org>;
- Wed, 25 Nov 2026 04:39:54 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795610393; cv=none;
-        d=google.com; s=arc-20260327;
-        b=IVxL2cKyVAOB+QfVwdHLBz45BLp7TMPcR02/Fpp9KLk+AjiJH7tAwm6tPt29gitFpu
-         Uz7dF4WlONwW8hugacdEahCwbUNMzMKiIE2aP+tngGyNK+mAirN1s7hKnKw3L0Vu/zIj
-         3+Ok1VUF6sDWrrW5WR495WywstgBY/WFJZ4QEhD06jAJolYtK9YnqlZ4Mvcb+2DycTmZ
-         zP3A91vpwdAwXeSDos+DcIMvmlH856wUJXsMDuyJOCz1sypPkL2ZlRmpYJ8ZORtC7hg7
-         IC3c//Rd0za2EBWxPvPrWYtEMRS3hf9AJZ9VDJcrkSuoCht3dVC2TNiuGMQflKhb9SqZ
-         Octg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=2nBUpJc5iHflZDRwAMX6vbv2TQ3IkJKSBfDxCvYqDt8=;
-        fh=+wm5cRTrjvA0dhwVjWOEQHO9sgEGU5eyjxPeAwMggzE=;
-        b=KfBCUyra+fRgMq/o6M/K4Wj4nvkuYyRYG9n0pVwLJmt2SRSX28vfi6G70wAJXYjdja
-         5oWOSBlJp3STL3JcAryhpgAIds+hX8unQvX5R+KItW4BQqI1ZloEhFesDC47YTx0dLfB
-         vK5tNnC3jjJ3JdNVgYBH5deWkKr2BhCOmWf1NYC/ZnYgllCZVyBVQmNDCvsp7gUdH3R0
-         9j/+iTwn+PffxDcOFbtAcjNd32oTr3Ut0hCQMqq42rV6CLluE+nwF6BNiZ/MTDMvFDRv
-         5BaMWw1FcgtQAYJJCU3ZVwDmOy2fpBr1hys+p2YbSIfdsTKf9bQq9kuoiBZU33YqgYod
-         wYvg==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795610393; x=1796215193;
- darn=lists.freedesktop.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=2nBUpJc5iHflZDRwAMX6vbv2TQ3IkJKSBfDxCvYqDt8=;
-        b=r8hx3Ln2vA3enquiohyZo3l60LDljrdaAo80U75UV7ItUoIqy428aNkqZEBDTum7uA
-         WjomydO9rBFbU9iuJF1+qLvsQa9r3BZ6u3m+ZfoZAZlcFmI0kgUD83+YKwJscXJ5aSpd
-         S4k1Z9ef5S6ZhVvlHCMmEm0jAZFlR5jClxa93D2mS4cc2tRRnlJtBZddM+gCY8joc9Mk
-         mQ7/kHizgIyQqOyzrc8jGpIMcD2TTndGTM04AlTuM4gJrOVb72fU0edE5lzGq6vyML6+
-         M1YD/wxr+68HNh6pMebaXhtolxaqmeWxrQETzpKhXUJAfKDlJ2UpyD6mB6DwvqIh5EYP
-         L9Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795610393; x=1796215193;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=2nBUpJc5iHflZDRwAMX6vbv2TQ3IkJKSBfDxCvYqDt8=;
-        b=LWgwCByiSsBj/anb1Ok9sMjABdy+GlaqFT5Q6VFW45Lju6Gdvk6mBVuRewQC5LGADx
-         PgELiMoJ92R4p3IbssQ9PNUysIqXhrE54Jd94tc33/ovu9MUOCBiFPzHmlcKFQOeF8zI
-         rRcX0kMYPp7uMb2Jga7gMIfkxYusNZcPBX8qiDfYTu52NDJyrI0E33Dj7QLN4I0FMtSH
-         cCi0cNgRnntMMSVQl2MvLs8kJjn4kg9iAy+fWzeZEU0UpObdQOYzCbx56MouG/htuZjy
-         VjSFmn6+h6CYOkcYuJvOuCz+9t4sCsHMfm607My0r8ChrJc0PPLzycIAYbq8XiEyoP3i
-         Dyog==
-X-Forwarded-Encrypted: i=1;
- AL+hErG6PBuiu39bR9RA8e6DvzP5SRZeDWYQI6UfIQJBFHXCNdIGvYcccT9sgGN5uIjFdP3B8TcDDNYK@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z92CnESNU9iVYn7ILTCL9aPqf2ooHGzwpKjW8P7tqAT8F+QcIO7
-	EW6WUlpfgzHwC/1A+q9tfbQ2q/yVwdUdqZI3CXfnM0fzj5iIUf0zQYvYqHaj/SQ8yIso++zCo6e
-	xWpuLZUNB78MLkKBj5Jdz+wZCPibbvaw=
-X-Gm-Gg: AZFdTZdBAFyprl9h18iJ7b85rUmeLpIMs9EsYZSo/C1GZI+THfuZBWkvsuLfP0S2+Ku
-	kM6D+T7SEObUKc8fpef2hhSS/1chipI8tuAr7o7tOgAAdXGDqOeoWJxSbkEIznX9bkH1dBjA1Y4
-	JkrFhoHZhAYEM+iu94BWlP0QRuLXGWZUg/EXW4SS+E6z+cm4xwZXzg35vPp1nQDvzDECw/duV38
-	7BRST7lsUBPURi8/PZsA1Ixau27YkrljtwMmxjraeY+N/3dfClpPRRv/PHzrYPoNBzD7nJSGL12
-	Tz5Z5pt1YUUVqIhQyRDmVJYqTqtcNQ8LRTMIR3Hcn1LHU/p+xNxFNPHk9JUdi0fsJ1/fVOyTiFk
-	zFLhxeZwOwASTZQMmPc6mnegjl7VmHmwlyg7ZSzhgszOwhwP/mm+gRmA0BBm/HCiCVC9y
-X-Received: by 2002:a17:906:68db:b0:c4d:4ce5:7733 with SMTP id
- a640c23a62f3a-c513ab060aamr1110265566b.30.1795610392711; Wed, 25 Nov 2026
- 04:39:52 -0800 (PST)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 863C240026
+	for <nouveau@lists.freedesktop.org>; Wed, 25 Nov 2026 11:37:41 +0000 (UTC)
+X-Greylist: delayed 1076 seconds by postgrey-1.36 at gabe;
+ Wed, 25 Nov 2026 11:37:36 UTC
+Received: from 6.mo2.mail-out.ovh.net (6.mo2.mail-out.ovh.net
+ [178.33.109.252])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 480A310E3F2
+	for <nouveau@lists.freedesktop.org>; Wed, 25 Nov 2026 11:37:36 +0000 (UTC)
+Received: from director6.derp.mail-out.ovh.net
+ (director6.derp.mail-out.ovh.net [79.137.60.226])
+	by mo2.mail-out.ovh.net (Postfix) with ESMTPS id 4jZHJT2Vx4z42sj;
+	Wed, 25 Nov 2026 11:19:37 +0000 (UTC)
+Received: from director6.derp.mail-out.ovh.net
+ (director6.derp.mail-out.ovh.net. [127.0.0.1])
+        by director6.derp.mail-out.ovh.net (inspect_sender_mail_agent) with
+ SMTP
+        for <1155040@bugs.debian.org>; Wed, 25 Nov 2026 11:19:37 +0000 (UTC)
+Received: from mta7.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.37.2])
+	by director6.derp.mail-out.ovh.net (Postfix) with ESMTPS id 4jZHJT0m7kz46XV;
+	Wed, 25 Nov 2026 11:19:37 +0000 (UTC)
+Received: from npnm.eu (unknown [10.1.6.13])
+	(Authenticated sender: laniel_francis@npnm.eu)
+	by mta7.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id
+ 171BAB82109;
+	Wed, 25 Nov 2026 11:19:34 +0000 (UTC)
+X-OVh-ClientIp: 159.26.112.96
+From: Francis Laniel <laniel_francis@npnm.eu>
+To: Karol Herbst <kherbst@redhat.com>,
+	Lyude Paul <lyude@redhat.com>,
+	Danilo Krummrich <dakr@redhat.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>
+Subject: [PATCH v1 0/1] drm/nouveau/devinit/gf100-: fix display engine check
+ in preinit
+Date: Wed, 25 Nov 2026 13:19:24 +0200
+Message-ID: <20261125111925.8651-1-laniel_francis@npnm.eu>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20260514174008.4515-1-ms.bulatov7@gmail.com>
-In-Reply-To: <20260514174008.4515-1-ms.bulatov7@gmail.com>
-From: =?UTF-8?B?0JzQsNGA0Log0JHRg9C70LDRgtC+0LI=?= <ms.bulatov7@gmail.com>
-Date: Wed, 25 Nov 2026 15:39:41 +0300
-X-Gm-Features: Aa3M54ooH0fBlRnsQWPqp9LUdwyGUdym9a8GOlUrF5Dq30Z5TrH6wJZYpixCM7E
-Message-ID: 
- <CAEyM3Y07hTKVVzVehHUT34XWT5g1uMvAaJGGwshgxFzPeRbYmw@mail.gmail.com>
-Subject: Re: [PATCH] drm/nouveau: handle nouveau_hw_get_clock() return value
-To: Lyude Paul <lyude@redhat.com>
-Content-Type: multipart/alternative; boundary="0000000000009cd7f40661191f1d"
-X-MailFrom: ms.bulatov7@gmail.com
+Content-Transfer-Encoding: 8bit
+x-ovh-tracer-id: 14143836106114344252
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: 
+ dmFkZTEcHrqxdzJyPztlHChyTZRU5dOLXv3zrJhq6H5KWOPBBWzGNMq6wp3m9Oo9qgmsL1Y1qkHtRdNFJEg4YJZWkvxL/edUtxrctHSC5fzgJP2iUEqicmDUaKNXlmOAThrnMxBQ2XWWR2h7MqzpX1OFIVDbLbVzT8EhhACr2ay+I+WJsLqCXPkOchF2Gc3xu8DYjTyoK51Q2tV/OneOawz4W4BIoOUXChUV/+vxBWJ3bBh8ki8re5GajIgwydp0aaQboxHWj8KaDEapLlOvIr3/fAiW/6rmDYpLdnooqCD7P7haLZXZw7Q9G4ntfKPYKbpO4wio07R0WvGRlwfE5SIgeMCrAeavK/VhLLYYBCuX+Dhvw1u7LK79rGEe7CfDnMxSQKgvq7Uo/FPRcNxcMrE1aOtPv8/aac78Kb5Qz3Z97P49RO+PUmbHX2TUd1LygQIuv2U7j/OUTNCS0DColoyF1ZoH0PTOAYN5/KdeDJekLdaR/kLd7q6OwBReoVhhrZtj8TlIOEhxND/wDfhRvz1vfFsYXOaYN5s8H4COi1lizdfBuR3ZtBSw+8LAPe3/mnQu/pAeHuzzj4jCWQrOMqgYVv101KH9NIZw9Q+RL9b3RbaxZ7lUXBnV2UJwApCFeTWRT1elO5B3RBArXF6yOeo5W0RxZhzOtXwjtUZxzfCLq9G+Gg
+DKIM-Signature: a=rsa-sha256; bh=tXDq0dHDb60xtUR4vcFNtDp4bKp7Sqhh3a8eRQ7O4ws=;
+ c=relaxed/relaxed; d=npnm.eu; h=From; s=ovhmo-selector-1; t=1795605577;
+ v=1;
+ b=ilWLcnURliH2sog1uhrIF4oxCTNCBSIIeCwEXuYx3M/SDDMtcrTvSOCB99BtD1BjsvIZDFfS
+ OQkI5GSjdYFB+SwC8UhoT+Bksvjd2fGSw7m01v2qBNOgtrXvNQMCVcSyCFONlR8hsPVfgL9+b1s
+ FFdI9kARlSn+Fs3wos2UDxcJWR5z2hmR7CSrVJMvh0tQ1AnvykFWyYYNxSvkSEbCF1gqdBUfH5z
+ veRXGqnW1+SDvRxt0APHH90RPVJ3g/d1zQ/BBvbp9oe9AA9L3p2EDJZWqEm2tt2GqBgt+xSR6pG
+ MDrdeKzBsyb/ITeanmOhyQcgdfdnS5PsJbzeY5isJw+4A==
+X-MailFrom: laniel_francis@npnm.eu
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; emergency; member-moderation
-Message-ID-Hash: BOFWNPOI4EILZHM2QA5F6E62LNMIGFSX
-X-Message-ID-Hash: BOFWNPOI4EILZHM2QA5F6E62LNMIGFSX
-X-Mailman-Approved-At: Thu, 26 Nov 2026 22:04:07 +0000
-CC: Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Message-ID-Hash: O24EXSAM4NFJRWAUHGBKXGG3W5SUQYYN
+X-Message-ID-Hash: O24EXSAM4NFJRWAUHGBKXGG3W5SUQYYN
+X-Mailman-Approved-At: Thu, 26 Nov 2026 22:04:17 +0000
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 1155040@bugs.debian.org,
+ Francis Laniel <laniel_francis@npnm.eu>
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BOFWNPOI4EILZHM2QA5F6E62LNMIGFSX/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/O24EXSAM4NFJRWAUHGBKXGG3W5SUQYYN/>
 Archived-At: 
- <https://lore.freedesktop.org/CAEyM3Y07hTKVVzVehHUT34XWT5g1uMvAaJGGwshgxFzPeRbYmw@mail.gmail.com/>
+ <https://lore.freedesktop.org/20261125111925.8651-1-laniel_francis@npnm.eu/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -151,131 +117,135 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-7.5 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,HTML_MESSAGE,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---0000000000009cd7f40661191f1d
-Content-Type: text/plain; charset="UTF-8"
-
 Hi,
-Gentle ping on this patch. Please let me know if any changes or further
-information are needed.
-Thanks,
-Mark.
 
-On Thu, 14 May 2026 at 20:41, Bulatov Mark <ms.bulatov7@gmail.com> wrote:
+I had a problem booting 6.12.118 kernel with NVIDIA GP108GLM [Quadro P520]:
+...
+[    1.657796] nouveau 0000:2d:00.0: fb: 0 MiB GDDR5
+...
+[    2.590323] BUG: unable to handle page fault for address: ffffcdd5c1400000
+[    2.590326] #PF: supervisor read access in kernel mode
+[    2.590328] #PF: error_code(0x0000) - not-present page
+[    2.590330] PGD 100000067 P4D 100000067 PUD 100203067 PMD 101f29067 PTE 0
+[    2.590334] Oops: Oops: 0000 [#1] PREEMPT SMP NOPTI
+[    2.590337] CPU: 7 UID: 0 PID: 223 Comm: (udev-worker) Not tainted 6.12.118+deb13-amd64 #1  Debian 6.12.118-1
+[    2.590340] Hardware name: LENOVO 20S4001JFR/20S4001JFR, BIOS N2XET27W (1.17 ) 12/10/2020
+[    2.590342] RIP: 0010:ioread32+0x32/0x60
+[    2.590347] Code: ff 03 00 77 25 48 81 ff 00 00 01 00 76 08 89 fa ed c3 cc cc cc cc 8b 05 6c e5 6f 01 85 c0 75 11 b8 ff ff ff ff c3 cc cc cc cc <8b> 07 e9 d7 d4 66 00 83 e8 01 48 89 fe 48 c7 c2 72 53 51 b2 48 c7
+[    2.590350] RSP: 0018:ffffcdd5c1137338 EFLAGS: 00010292
+[    2.590353] RAX: ffffffffc0a55890 RBX: ffff8aa642386c00 RCX: 0000000000000000
+[    2.590355] RDX: 00000000bad0ac3c RSI: ffffcdd5c1400000 RDI: ffffcdd5c1400000
+[    2.590357] RBP: ffffcdd5c1137374 R08: 000000000000a500 R09: 0000000000000000
+[    2.590359] R10: ffffcdd5c1380000 R11: ffffcdd5c13fffff R12: ffffcdd5c1137470
+[    2.590360] R13: ffff8aa642386cb0 R14: ffffcdd5c1137380 R15: 0000000000000000
+[    2.590362] FS:  00007fa0fa647980(0000) GS:ffff8aad4d780000(0000) knlGS:0000000000000000
+[    2.590365] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    2.590367] CR2: ffffcdd5c1400000 CR3: 000000010b472002 CR4: 00000000003706f0
+[    2.590369] Call Trace:
+[    2.590371]  <TASK>
+[    2.590373]  gp102_acr_wpr_patch+0xaf/0x1a0 [nouveau]
+[    2.590477]  nvkm_acr_oneinit+0x3bc/0x600 [nouveau]
+[    2.590550]  nvkm_subdev_oneinit_+0x42/0x90 [nouveau]
+[    2.590620]  ? ktime_get+0x3a/0xd0
+[    2.590624]  nvkm_subdev_init_+0x30/0xa0 [nouveau]
+[    2.590692]  ? nvkm_intr_rearm+0xc7/0x1c0 [nouveau]
+[    2.590759]  nvkm_subdev_init+0x48/0x60 [nouveau]
+[    2.590827]  nvkm_device_init+0x16b/0x1f0 [nouveau]
+[    2.590936]  nvkm_udevice_init+0x47/0x70 [nouveau]
+[    2.591044]  nvkm_object_init+0x41/0x120 [nouveau]
+[    2.591115]  nvkm_ioctl_new+0x160/0x220 [nouveau]
+[    2.591182]  ? __pfx_nvkm_client_child_new+0x10/0x10 [nouveau]
+[    2.591249]  ? __pfx_nvkm_udevice_new+0x10/0x10 [nouveau]
+[    2.593234]  nvkm_ioctl+0xa6/0x140 [nouveau]
+[    2.593305]  nvif_object_ctor+0x11a/0x1a0 [nouveau]
+[    2.593371]  nvif_device_ctor+0x2e/0x70 [nouveau]
+[    2.593438]  nouveau_drm_device_new+0x170/0x300 [nouveau]
+[    2.594065]  ? __pci_set_master+0x36/0xd0
+[    2.594068]  nouveau_drm_probe+0xc2/0x1e0 [nouveau]
+[    2.594167]  local_pci_probe+0x42/0x90
+[    2.594171]  pci_device_probe+0x25b/0x290
+[    2.594173]  really_probe+0xde/0x340
+[    2.594177]  ? pm_runtime_barrier+0x54/0x90
+[    2.594180]  ? __pfx___driver_attach+0x10/0x10
+[    2.594182]  __driver_probe_device+0x84/0x140
+[    2.594184]  driver_probe_device+0x1f/0xa0
+[    2.594186]  __driver_attach+0xbc/0x1d0
+[    2.594187]  bus_for_each_dev+0x8c/0xe0
+[    2.594190]  bus_add_driver+0x112/0x1f0
+[    2.594193]  driver_register+0x72/0xd0
+[    2.594195]  ? __pfx_nouveau_drm_init+0x10/0x10 [nouveau]
+[    2.594261]  do_one_initcall+0x5b/0x310
+[    2.594265]  do_init_module+0x60/0x230
+[    2.594269]  init_module_from_file+0x89/0xe0
+[    2.594272]  idempotent_init_module+0x11e/0x310
+[    2.594276]  __x64_sys_finit_module+0x5e/0xb0
+[    2.594278]  do_syscall_64+0x87/0x1b0
+[    2.594281]  ? filemap_read+0x340/0x370
+[    2.594285]  ? vfs_read+0x24d/0x370
+[    2.594288]  ? __x64_sys_pread64+0x98/0xd0
+[    2.594291]  ? arch_exit_to_user_mode_prepare.isra.0+0x16/0xa0
+[    2.594293]  ? syscall_exit_to_user_mode+0x37/0x1b0
+[    2.594295]  ? do_syscall_64+0x93/0x1b0
+[    2.594297]  ? do_sys_openat2+0x9c/0xe0
+[    2.594300]  ? arch_exit_to_user_mode_prepare.isra.0+0x16/0xa0
+[    2.594302]  ? arch_exit_to_user_mode_prepare.isra.0+0x16/0xa0
+[    2.594304]  ? syscall_exit_to_user_mode+0x37/0x1b0
+[    2.594306]  ? do_syscall_64+0x93/0x1b0
+[    2.594307]  ? do_syscall_64+0x93/0x1b0
+[    2.594309]  ? __flush_tlb_all+0x13/0x30
+[    2.594311]  ? __flush_smp_call_function_queue+0xab/0x410
+[    2.594314]  ? syscall_exit_to_user_mode+0x37/0x1b0
+[    2.594316]  ? clear_bhb_loop+0x70/0xc0
+[    2.594319]  ? clear_bhb_loop+0x70/0xc0
+[    2.594321]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[    2.594323] RIP: 0033:0x7fa0fb1ad6b9
+[    2.594325] Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 27 67 0d 00 f7 d8 64 89 01 48
+[    2.594329] RSP: 002b:00007ffc9ccb2f38 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+[    2.594332] RAX: ffffffffffffffda RBX: 000055dd07c93360 RCX: 00007fa0fb1ad6b9
+[    2.594334] RDX: 0000000000000004 RSI: 00007fa0f98d544d RDI: 000000000000001d
+[    2.594336] RBP: 0000000000000004 R08: 0000000000000000 R09: 000055dd07c6f130
+[    2.594338] R10: 0000000000000000 R11: 0000000000000246 R12: 00007fa0f98d544d
+[    2.594339] R13: 0000000000020000 R14: 000055dd07c912d0 R15: 0000000000000000
+[    2.594342]  </TASK>
+[    2.594343] Modules linked in: hid_generic usbhid hid i915(+) nouveau(+) mxm_wmi drm_gpuvm drm_exec gpu_sched drm_buddy i2c_algo_bit drm_display_helper crct10dif_pclmul crc32_pclmul cec crc32c_intel ghash_clmulni_intel rc_core drm_ttm_helper sha512_ssse3 iTCO_wdt ttm sha256_ssse3 intel_pmc_bxt xhci_pci sha1_ssse3 ucsi_acpi iTCO_vendor_support xhci_hcd rtsx_pci_sdmmc watchdog aesni_intel drm_kms_helper typec_ucsi nvme mmc_core gf128mul usbcore typec nvme_core i2c_i801 psmouse drm crypto_simd roles thunderbolt e1000e video serio_raw rtsx_pci i2c_smbus nvme_auth cryptd usb_common battery wmi button
+[    2.594376] CR2: ffffcdd5c1400000
+[    2.594378] ---[ end trace 0000000000000000 ]---
 
-> From: Mark Bulatov <ms.bulatov7@gmail.com>
->
-> In the nv04_update_arb() function, MClk and NVClk are passed to
-> nv04_calc_arb() or nv10_calc_arb(), where they are used as divisors.
-> MClk and NVClk are calculated using nouveau_hw_get_clock(), which, via
-> nouveau_hw_pllvals_to_clk(), can return 0, resulting in division by 0.
->
-> The result of nouveau_hw_get_pllvals() in the nouveau_hw_get_clock()
-> function can also return -ENOENT, which is not checked anywhere.
->
-> Fix all this by adding a check.
->
-> Found by Linux Verification Center (linuxtesting.org) with SVACE.
->
-> Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
-> Signed-off-by: Mark Bulatov <ms.bulatov7@gmail.com>
-> ---
->  drivers/gpu/drm/nouveau/dispnv04/arb.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/nouveau/dispnv04/arb.c
-> b/drivers/gpu/drm/nouveau/dispnv04/arb.c
-> index 1d3542d6006b..2f59b8739fc1 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv04/arb.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv04/arb.c
-> @@ -202,6 +202,9 @@ nv04_update_arb(struct drm_device *dev, int VClk, int
-> bpp,
->         uint32_t cfg1 = nvif_rd32(device, NV04_PFB_CFG1);
->         struct pci_dev *pdev = to_pci_dev(dev->dev);
->
-> +       if (MClk <= 0 || NVClk <= 0)
-> +               return;
-> +
->         sim_data.pclk_khz = VClk;
->         sim_data.mclk_khz = MClk;
->         sim_data.nvclk_khz = NVClk;
-> --
-> 2.39.5
->
->
+With the following patch, the kernel was succesfull booting:
+[    1.404564] nouveau: loading out-of-tree module taints kernel.
+[    1.404624] nouveau: module verification failed: signature and/or required key missing - tainting kernel
+[    1.739550] nouveau: detected PR support, will not use DSM
+[    1.739571] nouveau 0000:2d:00.0: enabling device (0006 -> 0007)
+[    1.739648] nouveau 0000:2d:00.0: NVIDIA GP108 (138000a1)
+[    1.776320] nouveau 0000:2d:00.0: bios: version 86.08.3e.00.26
+[    1.776582] nouveau 0000:2d:00.0: pmu: firmware unavailable
+[    1.860292] nouveau 0000:2d:00.0: fb: 2048 MiB GDDR5
+[    1.897865] nouveau 0000:2d:00.0: drm: VRAM: 2048 MiB
+[    1.897868] nouveau 0000:2d:00.0: drm: GART: 536870912 MiB
+[    1.897869] nouveau 0000:2d:00.0: drm: BIT table 'A' not found
+[    1.897871] nouveau 0000:2d:00.0: drm: BIT table 'L' not found
+[    1.897871] nouveau 0000:2d:00.0: drm: Pointer to TMDS table not found
+[    1.902700] nouveau 0000:2d:00.0: drm: MM: using COPY for buffer copies
+[    1.902820] [drm] Initialized nouveau 1.4.0 for 0000:2d:00.0 on minor 0
+[    1.902908] nouveau 0000:2d:00.0: [drm] No compatible format found
+[    1.902910] nouveau 0000:2d:00.0: [drm] Cannot find any crtc or sizes
 
---0000000000009cd7f40661191f1d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Basically, the patch mimics behavior existing in nv50_devinit_preinit().
 
-<div dir=3D"ltr"><div class=3D"gmail-n6owBd gmail-awi2gc" style=3D"font-fam=
-ily:&quot;Google Sans&quot;,Arial,sans-serif,&quot;Noto Color Emoji&quot;;f=
-ont-size:16px;margin:0px;border-bottom:0px rgb(10,10,10)">Hi,</div><div cla=
-ss=3D"gmail-n6owBd gmail-awi2gc" style=3D"font-family:&quot;Google Sans&quo=
-t;,Arial,sans-serif,&quot;Noto Color Emoji&quot;;font-size:16px;margin:0px;=
-border-bottom:0px rgb(10,10,10)">Gentle ping on this patch. Please let me k=
-now if any changes or further<br style=3D"margin:0px;border-bottom:0px rgb(=
-10,10,10)">information are needed.</div><div class=3D"gmail-n6owBd gmail-aw=
-i2gc" style=3D"font-family:&quot;Google Sans&quot;,Arial,sans-serif,&quot;N=
-oto Color Emoji&quot;;font-size:16px;margin:0px;border-bottom:0px rgb(10,10=
-,10)">Thanks,<br style=3D"margin:0px;border-bottom:0px rgb(10,10,10)">Mark.=
-</div></div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Thu, 14 May 2026 at 20:41, Bulatov Mark &l=
-t;<a href=3D"mailto:ms.bulatov7@gmail.com">ms.bulatov7@gmail.com</a>&gt; wr=
-ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">From: Mark =
-Bulatov &lt;<a href=3D"mailto:ms.bulatov7@gmail.com" target=3D"_blank">ms.b=
-ulatov7@gmail.com</a>&gt;<br>
-<br>
-In the nv04_update_arb() function, MClk and NVClk are passed to<br>
-nv04_calc_arb() or nv10_calc_arb(), where they are used as divisors.<br>
-MClk and NVClk are calculated using nouveau_hw_get_clock(), which, via<br>
-nouveau_hw_pllvals_to_clk(), can return 0, resulting in division by 0.<br>
-<br>
-The result of nouveau_hw_get_pllvals() in the nouveau_hw_get_clock()<br>
-function can also return -ENOENT, which is not checked anywhere.<br>
-<br>
-Fix all this by adding a check.<br>
-<br>
-Found by Linux Verification Center (<a href=3D"http://linuxtesting.org" rel=
-=3D"noreferrer" target=3D"_blank">linuxtesting.org</a>) with SVACE.<br>
-<br>
-Fixes: 6ee738610f41 (&quot;drm/nouveau: Add DRM driver for NVIDIA GPUs&quot=
-;)<br>
-Signed-off-by: Mark Bulatov &lt;<a href=3D"mailto:ms.bulatov7@gmail.com" ta=
-rget=3D"_blank">ms.bulatov7@gmail.com</a>&gt;<br>
----<br>
-=C2=A0drivers/gpu/drm/nouveau/dispnv04/arb.c | 3 +++<br>
-=C2=A01 file changed, 3 insertions(+)<br>
-<br>
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/arb.c b/drivers/gpu/drm/nouve=
-au/dispnv04/arb.c<br>
-index 1d3542d6006b..2f59b8739fc1 100644<br>
---- a/drivers/gpu/drm/nouveau/dispnv04/arb.c<br>
-+++ b/drivers/gpu/drm/nouveau/dispnv04/arb.c<br>
-@@ -202,6 +202,9 @@ nv04_update_arb(struct drm_device *dev, int VClk, int b=
-pp,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 uint32_t cfg1 =3D nvif_rd32(device, NV04_PFB_CF=
-G1);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct pci_dev *pdev =3D to_pci_dev(dev-&gt;dev=
-);<br>
-<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0if (MClk &lt;=3D 0 || NVClk &lt;=3D 0)<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br>
-+<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 sim_data.pclk_khz =3D VClk;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 sim_data.mclk_khz =3D MClk;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 sim_data.nvclk_khz =3D NVClk;<br>
--- <br>
-2.39.5<br>
-<br>
-</blockquote></div>
+Francis Laniel (1):
+  drm/nouveau/devinit/gf100-: fix display engine check in preinit
 
---0000000000009cd7f40661191f1d--
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+Best regards,
+-- 
+2.47.3
+
