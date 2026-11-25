@@ -2,190 +2,117 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F600606A31E
-	for <nouveau@archiver.kernel.org>; Wed, 25 Nov 2026 07:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD4C6606A321
+	for <nouveau@archiver.kernel.org>; Wed, 25 Nov 2026 15:59:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=OUTLOOK.KR header.i=@OUTLOOK.KR header.a=rsa-sha256 header.s=selector1 header.b=oNbpHRuO
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bI8w4cs2
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 620C010F9B7;
-	Wed, 25 Nov 2026 07:30:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A668B10FD95;
+	Wed, 25 Nov 2026 15:59:34 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4C0C3403CB;
-	Wed, 25 Nov 2026 07:29:55 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795591795;
- b=MKCcEbA/99FnYBPXbvR/9LqjYkhj08A38SH0qigjd648u8Q69q3hIaA283qQ3pZwryQBh
- lB5xztpQjug6+GO4eGRv7wgq6YISc2ACny9HrqsQf3CHrqXRn03IiYdN7Hxd1QkGL3vso9n
- QSZtJzKdf+EIZNYsky9ip74MD2+XJYa5Gv9S+t7ZRELwmfn98fWDQzduwaUhRsuuyxiD20D
- 9cOwoDFP0QUvVTDx4D0jel3UuetU57L8z6Nq+DSWhYLVjJ9kXuUY7JvfC5NrnSVmPAxPJqg
- kcCzhsxnG8jfdcnOyJeKZWOPQsh7/C2A5tpRgbwUBMf0BW8VjGyztf0MwNvg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795591795; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 866A5403BE;
+	Wed, 25 Nov 2026 15:59:29 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1795622369;
+ b=WZlvSVOfovOv1cNMYlURD4hnRE2X2GpEelGauqYihJTJvcEHm+aj3keZ9L7doKs/7j5FR
+ Q6baDkJLr29iQhsz10ZOKijPiWEr0Cw8iz9ow6oLbyIDrxFjvP5FAw9bu8v/Abn3Z+3W/p2
+ /8jrI4kygqk0SQL3pu/Ery/Gy+A37QG4dvDeG9dwAWmZeD7FoKDfimX9sAzrxqay2rfpERI
+ XVLyIVuY6AK6bx2I1VUXcJPGdFFP3EpzLmFJeUAj2kjwoMZm6qXBdbvTkzLyRFhFcKKHF5Z
+ JUVoNMpo7d1C2D16l0GSkFGTnzG+Vb7i2R1SBJbQWwWCaPIlGfQz2yQcVg1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1795622369; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=UJrdepwTh8OEpNHr+yCZuIYtbbBoKKauFEWOvyWn1v0=;
- b=XvSqRjaGMkl70qas/FxeGhQ2eV93Avw8JTBO4VfUx4vRf1FLkJbz/u1lkSXtRGTzLyKai
- 3DjSrJizcsZOiaeLlOGePlnjYUFwYnAkulGPhaJbzBKeH6uV6VgkKBXayS3U6M1XbAxV4JP
- tqKXNnL3KwzjRJeEup6ldutcUP6YCmrDbuxpMc6WXsDhstR3UsZ3dh3apgnK7U/RZU//Jo/
- F3OwIR+htL+Cb9+wFEhjez8QCBE5XylhtAcxsrkvljPgssJFeVO1yQIm/U9fUDWOtE+/Ief
- 3Lu1dS64drEMBrXQXyEfjV82LTYA3QBRL3K9VHZPp3hzEg2cHfm7kCyNcgWA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=OUTLOOK.KR;
- arc=pass;
- dmarc=pass header.from=outlook.kr policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=OUTLOOK.KR;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=outlook.kr policy.dmarc=none
+ bh=gzngZnWeVoBNyK0vM3pG68W1a+Vad3Q5z/6OD0OHXJ0=;
+ b=c7ITJoTRvquR1qCrHeb83u9xu0jGBxfr0VlLtPZDt/ndG1xxbmCMVQsL+IovHXcBPb7Jv
+ 50wIa8LO6reMcPpwkr/EGEBmE18yNiw991jtO83wTPltuvMVPHjI9TqozL5ZVv0u7dHg74K
+ UAiHbkreV6JVsZsWwmg/uJ7p7Glx2Cu0VTMy1Wzj4PlZncyz2ST4EHJOt8ADTrlxsnHYtoQ
+ NWc6qs3Fh/QZHgrkv9FQwjgF7G8HZgXnmWDR1pP16yO3wXk4ojLeBRTbSrz68KfEBxlhLih
+ IEu3pB7KybwCorFjQah7qeMUZEDPK16O2YjZI6ej1i8ZuS1YnuOMWIemb/eg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=intel.com header.i=@intel.com;
+ arc=none;
+ dmarc=pass header.from=linux.intel.com policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=intel.com header.i=@intel.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 20B3440026
-	for <nouveau@lists.freedesktop.org>; Wed, 25 Nov 2026 07:29:53 +0000 (UTC)
-Received: from TY3P286CU002.outbound.protection.outlook.com
- (mail-japaneastazolkn19010005.outbound.protection.outlook.com [52.103.43.5])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id ECAEA10E1D0
-	for <nouveau@lists.freedesktop.org>; Wed, 25 Nov 2026 07:29:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bsYqKOxf3re5+LuaKBGmUrLQ0o9G0gKsfC0FqboouveKebvW1X1SRezp6VtT1k0A2qXTs/fz/eediwt1JMIvhpWMyGwYgOWcAFLrripcRozVNiL5tFvdEZ9nXMfYgOn5fixAiUOoTk7Jd3sANqwLVnPoKXD2K6aacctvO+JfBT+INZjjmUyXs24XHA1LbbzEBhI25dVRbz+vG+YEpuI+lN77v3BvamyaavJkd5S0lCfDP4gL5x1r2MBcfU2bj4h2H14gbI1poWif2qHwv7IsDcdGi4Q4rsR2nujSCTg/tMf3EcMjJWovzPu/DUHhElFq8np3xDcBoG6cMZDaxixoYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UJrdepwTh8OEpNHr+yCZuIYtbbBoKKauFEWOvyWn1v0=;
- b=P9eC3x3RZ+mAnNGtsRygrIyZmudBnFNQkjIR9ejGgOi8EJ4o7eCYbhS6yVrLQ32AN/oAVEYiU1mTFNq1gLYBrY/hR+xw32/nukeYOec+oSouGS2gOVV5D1bWhFcuk5vfoTBuWLtlCp2I2lKyABi3Wmk6ALXppdTLYANeF8sTeMI5objQCbtbMY+IU4DfWx72MkUx6Skloc+93Y5J+qfz702ihdUHjD2gAvanTDg82XgT7NtzawSB9f0rben+GPBNsfSEP0r7r3yvUkUM75m8Ajv5hPdu6oTwqWUeqJuM7zaksSBzIAkyVcHJMqoOuyknLJJeMkBNJqfbAn3uVixvdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=OUTLOOK.KR;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UJrdepwTh8OEpNHr+yCZuIYtbbBoKKauFEWOvyWn1v0=;
- b=oNbpHRuO5G3dA4Jw72EgejkihVqihnlPzQfEENHg4JFKkaSV91BDJT7NV834fKrmatqJHQ7H1La9ewUsKAyJpDMuU0apopaEHyOpGAZnDC3Bzors9prtOI7CcE+2HFfN5IYHo8xsvzbyVayfX7/ZQ22Wc69OP7WRNM320X2kSqyYvFxdUaHbevt5DzHhoJl7j1jxGQP2qT2WEtuh+K514PxUM7DR0+xa2t9ieF4y4lyL0K3IGqEnpKe9SdxQg814oq30KsXg/DS0wWZQUX+mXGzLUhYjWKW7TP26lBVkH1e1h9OEgmdQQVMo91KwLr21ZRaIwkkAhThwPuzExwigmA==
-Received: from OS7PR01MB13914.jpnprd01.prod.outlook.com
- (2603:1096:604:36b::13) by TYRPR01MB15632.jpnprd01.prod.outlook.com
- (2603:1096:405:285::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.5; Wed, 25 Nov
- 2026 07:29:43 +0000
-Received: from OS7PR01MB13914.jpnprd01.prod.outlook.com
- ([fe80::641e:83cf:743b:85bc]) by OS7PR01MB13914.jpnprd01.prod.outlook.com
- ([fe80::641e:83cf:743b:85bc%7]) with mapi id 15.21.0662.004; Wed, 25 Nov 2026
- 07:29:43 +0000
-Message-ID: 
- <OS7PR01MB139145F4FF9A86B5BDD7B428696432@OS7PR01MB13914.jpnprd01.prod.outlook.com>
-Date: Wed, 25 Nov 2026 16:29:41 +0900
-User-Agent: Mozilla Thunderbird
-Subject: Re: [REGRESSION] drm/nouveau: NULL pointer dereference in
- drm_atomic_commit during GP107 initialization
-From: Eric Kim <seohyun.kim@outlook.kr>
-To: "regressions@lists.linux.dev" <regressions@lists.linux.dev>
-References: 
- <OS7PR01MB1391484D564CF93DFBB4C1DCE966A2@OS7PR01MB13914.jpnprd01.prod.outlook.com>
-Content-Language: en-US
-In-Reply-To: 
- <OS7PR01MB1391484D564CF93DFBB4C1DCE966A2@OS7PR01MB13914.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SL2P216CA0132.KORP216.PROD.OUTLOOK.COM
- (2603:1096:101:1::11) To OS7PR01MB13914.jpnprd01.prod.outlook.com
- (2603:1096:604:36b::13)
-X-Microsoft-Original-Message-ID: 
- <efc06d8c-400d-4388-a2a9-2914ec93e037@outlook.kr>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 17BA940026
+	for <nouveau@lists.freedesktop.org>; Wed, 25 Nov 2026 15:59:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BFA7110FD4A;
+	Wed, 25 Nov 2026 15:59:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795622361; x=1827158361;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=6UmMlg9QQaOS1il33yRRnEhhIt7G/Cm/OZEfblVd9Mg=;
+  b=bI8w4cs2xwXOYx6+3S4eaHNiJlBFpe7edeQ9aDgjalVT6S4L/fOJrPRu
+   A+f+w1B7bivnaVOMeZrle/C0s6HJTlr3JHwhFSOBNcfmJSGYwlo09Cyon
+   PSiDTpuykLMzLoF+XvJ9l+Ei5Q4nBUAiwOpnVBIMfVklnSqM2QYo5FlrC
+   zhptYWaZi/ZARwDnSjbhuZFhBYdH06ZgOZJMzPk8PFxvm/uaBbMxnoAji
+   6ofxcZUmiS/CwdL/wprfXwECVGae5hU1boIkFe7EZj43or/x5lpTKSO5v
+   Au4ibRydB8hlNzjuDdzfRFKdyq6UsnZnCgBy3/H8Nt7F0IpgjaU4KUdt8
+   Q==;
+X-CSE-ConnectionGUID: fQsPHp4uQLCPdqFJc4HO1g==
+X-CSE-MsgGUID: wQzH1wV4QZ2SK0sER1yTAg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4563336"
+X-IronPort-AV: E=Sophos;i="6.27,233,1787036400";
+   d="scan'208";a="4563336"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2026 07:41:49 -0800
+X-CSE-ConnectionGUID: bLRALCkxRbmeWeMo+EtOZA==
+X-CSE-MsgGUID: BsA3SM6yTjyQu96dFq5UXA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,233,1787036400";
+   d="scan'208";a="13698968"
+Received: from inaky-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.245.244.100])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2026 07:41:47 -0800
+Date: Wed, 25 Nov 2026 17:41:43 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: M Henning <mhenning@darkrefraction.com>
+Subject: Re: [PATCH v3 1/2] drm/nouveau: add option to leave GSP-capable GPUs
+ to other drivers
+Message-ID: <awcBt3KD-j1sOzhE@intel.com>
+References: <20261124-nova-nouveau-gsp-v3-0-e1440479ded6@redhat.com>
+ <20261124-nova-nouveau-gsp-v3-1-e1440479ded6@redhat.com>
+ <CAAgWFh2VmmZfdEM1hDB+8921ktfRrD81kXFqEc6dJ3ys+=vJYw@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OS7PR01MB13914:EE_|TYRPR01MB15632:EE_
-X-MS-Office365-Filtering-Correlation-Id: e0cfc076-e44a-415a-1279-08df4ac5df78
-X-Microsoft-Antispam: 
- BCL:0;ARA:14566002|15080799012|12121999013|41001999006|23021999003|6090799003|25031999004|5072599009|24021099003|51005399006|25010399006|19110799012|8060799015|3412199025|4302099013|440099028|1602099012|10035399007|40105399003;
-X-Microsoft-Antispam-Message-Info: 
- =?utf-8?B?Ukh4elUyYnFubkRGaVNNWGM2aW1HYmNQbW80aXpQZFo0MGJNSjQ4b3A2emV4?=
- =?utf-8?B?cVBWdnVMUjRrNmJmZHFRYitBdTY4bGU1ZmcyUW5DQ1UwamYycXNTbU5pckdX?=
- =?utf-8?B?dmUvbTNTcVVVMWRVNXhlQ1lFR1FHbzZOMG96ZDdEZmVKM3kwSUtpSVdLTWE5?=
- =?utf-8?B?dk1ZK2UwMGk0bTc2TkM2QmlzbjdYWnYrME1QN296KzRqY2lXVVc1L3gvLy9O?=
- =?utf-8?B?MVkxdEVZK3pvK1VSb0h4YUxpMzQzNHVmR2xkSzEvdTU3K1BYalNMMTBpVFdx?=
- =?utf-8?B?d0hiRFJYSFFHT3MrRVpjVDRkMU84d2VURlFSenNsRkJxTDh1aWVmbFhxMGJI?=
- =?utf-8?B?NHVLeC9WZXpLNmpZZkVQYmp1Zm10MGo4SGF3WmxPclFmSEsyU0lISERrOVJV?=
- =?utf-8?B?Sk5rY3dra1hLa0NlYU5rSzJCdEowZ3BicEc4eENQM2xDZHpJdU9lTkNhZ0NW?=
- =?utf-8?B?UFpLRVdjcmxPRjVCUXZQOWhLay9CRktBaWNwN1ZHMC9oM2dYZVNKb0wxVzBG?=
- =?utf-8?B?dEFkWURqRy9OTmMzWkZrTHF5UEFSM1dyMnRvRFd2ZjdQZ09SZGk2RFdSU1lx?=
- =?utf-8?B?NmZHcGlGazN5MGs5UlloK2s0aHFYdHdLZTRHYUFWUmJEcCtsamNlQ2VaZnhP?=
- =?utf-8?B?RDE0OUN3TVJNN1BpalBjaytlWGU3Vm40Q2thUmF5OEd4REZwekwrNFlUZVJ2?=
- =?utf-8?B?c1pGT0FKMDlZRUlZTXhxQk5wTnF3Q1VPWWY0L2dhajB3OG1VNkpxY05QZHB3?=
- =?utf-8?B?K0dWb2ZKYlM4NkZ4VGVuMmtYYTU1Mkh1WTNpQkhibWlBVnEvZmZQeFZtZ2Ju?=
- =?utf-8?B?aThxK2VDZWhsS28zMWNLYVNMeG9RZ1FreVhBZWtSMERqZ0xtdDB0MVpZUDZE?=
- =?utf-8?B?bGpCdlhINVlaMFloR3BRWWpiczJkOTN2TUpvTWNvU1NHNHRNRFdIUVA3U3Ay?=
- =?utf-8?B?Q2xIL0hwVzBsRVlESjZnYUJyTDIyOGx6cUVWTE83blBYMG1OYWd2RGtxcHpy?=
- =?utf-8?B?ZjlQdkdIWlRGMVhMQm5Qa0FtRjAxUFlVUlpKRy9EWXNwNVNZZzZ1eDRSZ2Jw?=
- =?utf-8?B?MW1qV1JKZnVhU1g4RTFnTHVKYUNQVkNJU0NwaXRBdVhIWlo1TmErSWgvTzNx?=
- =?utf-8?B?bFZ2RXJDcXA2N3FyUkxncFNObmRyc1prRVVvRi9VZk9NNXVaS0ZLckxJbzhI?=
- =?utf-8?B?RkFHaXFrRGlZUDFQeTVKWUxhcENMcTRXSGxXdWplWTV4WWVmV0M0UXJvVmsr?=
- =?utf-8?B?QU5MeU14YWtDQkhVSmNTQlBBTmtQZmFrRVhyL24rYnE0THk0T2J5R296VGlK?=
- =?utf-8?B?YWllNnRGd00xS2R3WFVhcjJ6dXdycTZYcnRUTWoxSjVzM1J0YjVWOUdOZTdQ?=
- =?utf-8?B?TU02SGQzL0Q3dlpJU3Q4K2RnZllpVjMwUktPY2JKc1Bham5Va2ZuVWZpTy9Y?=
- =?utf-8?B?aGdWK2tkWWpscHFPOGozUFF6UXR2azVvVmdDR0VTR3lXbTdRK3pNQXVpVzBh?=
- =?utf-8?Q?RRHgAM=3D?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
- =?utf-8?B?Tm8vK2phZlJoWFNDNG1PV0pYNGVVK3FxTVhaaDE1MDljaFlzaUpmSzg2RVFj?=
- =?utf-8?B?eTNvbHgxb3pnR29kcGhyZjE2TWN0OExCYWlVWjFCbzIwNExqRGxQQnNLNXo1?=
- =?utf-8?B?WGZpOWp2RWZiU08wWitlVE54a2M4aHA2Z0ZydDl2Tm51T1YvM01OanhsZWpQ?=
- =?utf-8?B?UUVuSXRYU05XOTN6dXJpUVhXK3A1S0xOWmdIRExUZldoZjFrSGxXdU0zZmtw?=
- =?utf-8?B?cXBKSENwL0JTUFA3SDJPdGRTOEVwenpaa1A1ZUEweG4vdDZUNHR6aytOYUJo?=
- =?utf-8?B?LzUvRU01bUJIZXF1bm54TUhneGhDa0gzSnBjNHVoVFR3dW1MK05TY3ExdU1I?=
- =?utf-8?B?TUN5TUdTMGQranEyTjAzSmFnU01IaTJpWWVBd1VUUkY4VTd6eFhqcnZwdklv?=
- =?utf-8?B?dzJmZDRqT29TcmtUcUdQT1pxZS9GTUgzcDZRcHVxUGI1cENaeUNMWm9XNnM3?=
- =?utf-8?B?b3FkY2NPWFNTMDU2eWF5ZjFWb3BVODAySEpNVGc4Q0tsbjVMRGc4VTg4MEp0?=
- =?utf-8?B?emdVa1hRTzJUV1ozMFVuRXRzRG1OYzhQRGdBazFWWFNhMjk2WksxeGRqVWtB?=
- =?utf-8?B?bk9kaU4reTN2TFVhakZhUk9FaVcvV1FxNy80Q2ppU01EY290WTUzMGRlM1BK?=
- =?utf-8?B?Ykd2cDVtK3F3YkJLZUlLbUY2a2RkZ0trejg4WmdJSEgwME00eVo5Y3lyTVBy?=
- =?utf-8?B?bkZFekw2S2RycXRsYlo5dUVuSFlRS28wUUM3ME44c0syWXNVN3A0SmJCZzRF?=
- =?utf-8?B?UUhidHpTYkZvOHFmYWFOM3g4VDlaNDdlcTdhZ3ZxT1B6YSs0WkcrMFFtYVN3?=
- =?utf-8?B?K0FKMWV3U1dtL05zTzF1OHVsZDJoOWNQWG40ekM2VDlUY3BtY1EzMlBoUXhJ?=
- =?utf-8?B?aHhIb2VUOGpKaFpqNUczU1dkSjh0UW5ENEJGaExFUmdETWxkS25DYm0vcExu?=
- =?utf-8?B?aVNGRjF4cVRCVk1Qa0RuREFsMzhzMHZUV0g1RStiMkJoUGJ0WUpGelpES3Fp?=
- =?utf-8?B?VjBJbkdtNllIUE1aamp0YnVLdEhoMml3T3pmT2NDWlFvQ3hiYjQzdlpTNEhY?=
- =?utf-8?B?MHo0Tzk2K0YwM21rdmdmdnhNVlVuVDVPRnhoWmJrUS9SS2JDM0tOdFpkUWRr?=
- =?utf-8?B?dkJrenZSazV4WHExR2dla3ZXVW1ubnBnTzF0MmxnSDQxNjh0U0NJSHRjY0pD?=
- =?utf-8?B?My92a2I1b0phTUxOVGs1VjdnSXpLQ1RYSkU5Nk8vcFR1Z2hEL1VvcStNVWhB?=
- =?utf-8?B?T2pqNk5qVGtSTC9VOERXT0grNDh2YnM4YUNkQUtXQkZUb0g0bmRkc1d2aGlR?=
- =?utf-8?B?UGRrTDYrRVlub2tqRWh0Q2RMR2owRHhaMHhuZ0pvWWZuQ2tTandDazRrcXFn?=
- =?utf-8?B?UWZJTk1oTVlnVkxieUI4THE3QU1yWUFkeVhYeGJ6L3grVVN3WHZ1bGZVZWNT?=
- =?utf-8?B?YnNRaFI1dEJsbGtLQnhyN0JvOVJyR2pGT3Mxc0k3UFQvZlUzRnRncXB1RWl4?=
- =?utf-8?B?WHUwNHQ1by90VytTZFRhQVhoWTV0QytySDM4QUo4YklTakZjN1Aya1VXZCtm?=
- =?utf-8?B?KytQYnJUU0xPZkZHeGsybCtoN0JFY3A5a2NWcVFJK1VXMXJ0NS8rd080MlNC?=
- =?utf-8?B?enNIRXI4VzZyTS9Da2RxOUVrZDN4UTlEdXU3RGVHTlkxcUFNRG42NUNIWVFi?=
- =?utf-8?B?TDJ2c0lJbWxaOFpYSmZZKy83cG45WitvY1ZNUFQ0MVBZWS9YZ2YzMk9Fd3A4?=
- =?utf-8?B?Y20rWnlDdlBLR2JlQko4ZFcvR0lxQ2loZC9RRFhtbVlobEZBalo2NWMzU1BF?=
- =?utf-8?B?Wkw3bmRJNlBXdFh2K1FPWWVpVFRPbEFBa0ZxZGtwM3VQaWxXWStuZmpLTmFV?=
- =?utf-8?Q?kXmiP5LEl9ou8?=
-X-OriginatorOrg: sct-15-20-9412-3-msonline-outlook-b83fc.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- e0cfc076-e44a-415a-1279-08df4ac5df78
-X-MS-Exchange-CrossTenant-AuthSource: OS7PR01MB13914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 07:29:43.0619
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
- 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYRPR01MB15632
-Message-ID-Hash: CQUTHM7LRCYUVHT7BSTBFQDI3GD6JNI3
-X-Message-ID-Hash: CQUTHM7LRCYUVHT7BSTBFQDI3GD6JNI3
-X-MailFrom: seohyun.kim@outlook.kr
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: 
+ <CAAgWFh2VmmZfdEM1hDB+8921ktfRrD81kXFqEc6dJ3ys+=vJYw@mail.gmail.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Message-ID-Hash: BRWFVJPKHD6H62E7XDDAWXW5IBUVUHEF
+X-Message-ID-Hash: BRWFVJPKHD6H62E7XDDAWXW5IBUVUHEF
+X-MailFrom: ville.syrjala@intel.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
- banned-address; emergency; member-moderation
-CC: dakr@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- simona@ffwll.ch, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+ banned-address; emergency; member-moderation; nonmember-moderation;
+ administrivia; implicit-dest; max-recipients; max-size; news-moderation;
+ no-subject; digests; suspicious-header
+CC: airlied@redhat.com, Danilo Krummrich <dakr@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, nova-gpu@lists.linux.dev
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CQUTHM7LRCYUVHT7BSTBFQDI3GD6JNI3/>
-Archived-At: 
- <https://lore.freedesktop.org/OS7PR01MB139145F4FF9A86B5BDD7B428696432@OS7PR01MB13914.jpnprd01.prod.outlook.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BRWFVJPKHD6H62E7XDDAWXW5IBUVUHEF/>
+Archived-At: <https://lore.freedesktop.org/awcBt3KD-j1sOzhE@intel.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -193,127 +120,40 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-9.2 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The regression has been fixed by the following commit, which has been
-merged into mainline:
+On Tue, Nov 24, 2026 at 11:43:59PM -0500, M Henning wrote:
+> On Tue, Nov 24, 2026 at 12:50 AM Dave Airlie via B4 Relay
+> <devnull+airlied.redhat.com@kernel.org> wrote:
+> > +config DRM_NOUVEAU_BIND_GSP
+> > +       bool "Make nouveau the default driver for GSP-capable GPUs"
+> > +       depends on DRM_NOUVEAU
+> > +       default y
+> > +       help
+> > +         Make nouveau bind to all NVIDIA GPUs by default, as it always
+> > +         has.
+> > +
+> > +         If another NVIDIA driver, such as nova-core, should claim the
+> > +         GSP-capable (Turing and later) GPUs instead, say N here; nouveau
+> > +         then leaves those GPUs alone and continues to bind to pre-Turing
+> > +         GPUs itself. nouveau can also be prevented from binding to
+> > +         GSP-capable GPUs at boot with nouveau.bind_gsp=0 on the kernel
+> > +         command line.
+> > +
+> > +         If unsure, say Y.
+> 
+> Maybe the documentation should make this option sound a little
+> scarier? Right now all this does is break nouveau (unless you're a
+> nova developer),. We really don't want users or distros turning it on.
 
-Fixing commit: ed7fb901fce31588bd12ab95adc36ebcb51bc8ea
-Link: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ed7fb901fce31588bd12ab95adc36ebcb51bc8ea
+I doubt people actually read these descriptions with any real though,
+if at all. My suggestion for an option that breaks existing setups is
+to mark it BROKEN, or at the very least EXPERT.
 
---
-Cheers,
-Eric Kim
-
-#regzbot fix: ed7fb901fce31588bd12ab95adc36ebcb51bc8ea
-
-On 11/2/26 9:47 PM, Eric Kim wrote:
-
-> Hi,
->
-> On my laptop, which has GP107 GPU with intel graphics and uses nouveau 
-> driver, booting kernels after commit 
-> 2652aca460dcfdd0d169bbfa358aa15804dc736b causes NULL pointer 
-> dereference at initialization.
->
-> [   17.556328] [drm] Initialized nouveau 1.4.3 for 0000:01:00.0 on 
-> minor 0
-> [   17.556364] nouveau 0000:01:00.0: [drm] No compatible format found
-> [   17.556792] nouveau 0000:01:00.0: [drm] Cannot find any crtc or sizes
-> [   17.557237] BUG: kernel NULL pointer dereference, address: 
-> 0000000000000000
-> [   17.583880] #PF: supervisor instruction fetch in kernel mode
-> [   17.598078] #PF: error_code(0x0010) - not-present page
-> [   17.601475] PGD 0 P4D 0 [   17.608839] Oops: Oops: 0010 [#1] SMP PTI
-> [   17.608914] CPU: 6 UID: 0 PID: 1443 Comm: modprobe Not tainted 
-> 7.3.0+ #1 PREEMPT(lazy) [   17.608954] Hardware name: SAMSUNG 
-> ELECTRONICS CO., LTD. 800G5M/800G5W/NT800G5M-X78W, BIOS 
-> P11RDV.075.170829.XJ 08/29/2017
-> [   17.608990] RIP: 0010:0x0
-> [   17.609090] Code: Unable to access opcode bytes at 0xffffffffffffffd6.
-> [   17.610081] RSP: 0018:ffffca4d86537828 EFLAGS: 00010246
-> [   17.610135] RAX: 0000000000000000 RBX: ffff89b74dcf1180 RCX: 
-> ffffffffa97d8091
-> [   17.610172] RDX: 0000000000000000 RSI: ffff89b74dcf1180 RDI: 
-> ffff89b74c466800
-> [   17.610207] RBP: ffff89b74c466800 R08: ffff89b74dcf1180 R09: 
-> 0000000000000000
-> [   17.610245] R10: 0000000000000010 R11: ffffffffa9b65410 R12: 
-> ffff89b74c466800
-> [   17.610283] R13: 0000000000000001 R14: ffff89b74c466800 R15: 
-> ffff89b77f1a2400
-> [   17.610320] FS:  00007fc4a888d780(0000) GS:ffff89bac4364000(0000) 
-> knlGS:0000000000000000
-> [   17.610357] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [   17.610414] CR2: ffffffffffffffd6 CR3: 0000000144b20004 CR4: 
-> 00000000003726f0
-> [   17.610448] Call Trace:
-> [   17.610483]  <TASK>
-> [   17.610521]  drm_atomic_commit+0xb1/0xe0
-> [   17.610558]  ? __pfx___drm_printfn_info+0x10/0x10
-> [   17.610590]  drm_client_modeset_commit_atomic+0x25c/0x2d0
-> [   17.610618]  drm_client_modeset_commit_locked+0x5a/0x170
-> [   17.610647]  ? drm_master_internal_acquire+0x1d/0x40
-> [   17.610675]  drm_client_modeset_commit+0x25/0x40
-> [   17.610700]  drm_fb_helper_single_fb_probe+0x1aa/0x1c0
-> [   17.610729] __drm_fb_helper_initial_config_and_unlock+0xa8/0x1b0
-> [   17.610754]  drm_fbdev_client_hotplug+0x79/0xb0
-> [   17.610782]  ? drm_client_init+0x13e/0x180
-> [   17.610811]  drm_client_register+0x79/0xc0
-> [   17.610839]  drm_fbdev_client_setup+0xc9/0x1c0
-> [   17.610867]  drm_client_setup+0x6a/0x90
-> [   17.610893]  nouveau_drm_probe+0x15b/0x1e0 [nouveau]
-> [   17.610922]  local_pci_probe+0x4a/0x90
-> [   17.610951]  ? cpu_hotplug_disable+0x15/0x30
-> [   17.610977]  pci_call_probe+0x5a/0x1a0
-> [   17.611009]  pci_device_probe+0xdb/0x180
-> [   17.611060]  call_driver_probe+0x23/0x100
-> [   17.611104]  ? driver_sysfs_add+0x55/0xc0
-> [   17.611137]  really_probe+0xd7/0x2d0
-> [   17.611171]  ? __pm_runtime_resume+0x50/0x60
-> [   17.611220]  __driver_probe_device+0x9c/0x1b0
-> [   17.611261]  driver_probe_device+0x1f/0x80
-> [   17.611297]  ? __pfx___driver_attach+0x10/0x10
-> [   17.611335]  __driver_attach+0xcc/0x200
-> [   17.611373]  ? __pfx___driver_attach+0x10/0x10
-> [   17.611409]  bus_for_each_dev+0x97/0x100
-> [   17.611451]  bus_add_driver+0x1d0/0x280
-> [   17.611493]  ? __pfx_init_module+0x10/0x10 [nouveau]
-> [   17.611530]  ? __pfx_init_module+0x10/0x10 [nouveau]
-> [   17.611567]  driver_register+0x75/0xe0
-> [   17.611602]  nouveau_drm_init+0x60/0xff0 [nouveau]
-> [   17.611633]  do_one_initcall+0x89/0x3d0
-> [   17.611667]  do_init_module+0x8e/0x290
-> [   17.611703]  init_module_from_file+0xc8/0x180
-> [   17.611736]  idempotent_init_module+0x23e/0x360
-> [   17.611773]  __x64_sys_finit_module+0x7f/0x110
-> [   17.611805]  do_syscall_64+0xbe/0x470
-> [   17.611844]  ? do_syscall_64+0x37/0x470
-> [   17.611883]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
->
-> It boots without this problem when booting with nouveau.atomic=0
-> kernel parameter.
->
-> My guess is that atomic_(commit|check) operation is not present in 
-> nouveau_mode_config_funcs, and commit
-> 2652aca460dcfdd0d169bbfa358aa15804dc736b enabled
-> atomic modesetting by default for NV50+ gpus caused
-> the problem.
->
-> Also, drm_helper_(commit|check) was added to nouveau_mode_config_funcs
-> at commit 604826acb3f53c6648a7ee99a3914ead680ab7fb, but it was
-> reverted at commit 6c65db809796717f0a96cf22f80405dbc1a31a4b due to
-> unreliability.
->
-> I hope this problem can be fixed at one of the next releases.
->
-> Thanks,
-> Eric Kim
->
-> #regzbot introduced: 2652aca460dc
+-- 
+Ville Syrjälä
+Intel
