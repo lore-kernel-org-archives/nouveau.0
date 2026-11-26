@@ -2,111 +2,110 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEAB7606A31E
-	for <nouveau@archiver.kernel.org>; Thu, 26 Nov 2026 22:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A3B7606A31E
+	for <nouveau@archiver.kernel.org>; Thu, 26 Nov 2026 22:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=npnm.eu header.i=@npnm.eu header.a=rsa-sha256 header.s=ovhmo-selector-1 header.b=XoUVzbg0
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=ideco.ru header.i=@ideco.ru header.a=rsa-sha256 header.s=ics header.b=Klx2pfGi
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D61C3112764;
-	Thu, 26 Nov 2026 22:03:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6A27C112758;
+	Thu, 26 Nov 2026 22:03:39 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 02F8440412;
-	Thu, 26 Nov 2026 22:03:20 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 6A4D6403E1;
+	Thu, 26 Nov 2026 22:03:34 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795730599;
- b=Pbi7Vu6nrp3oIC2H5lnJMg+gtQrrEocouU9WJcWtCrBF5JRD90GR7wYBGugkpJHgzQcur
- U/DPzq6APZv6StMC3ULqLlll37lkFhPB+OUjeUd7W1Pif3yAD+IFZEXTpqXDBpSYPpISslv
- LwYFuuVWw2E+W14beQunO+BX4mwGkA6nchJNJ4kGuAdfFfebTXCTly4AdYwY6s3VCEwgAh9
- xinidgY7eC4xIGdWYZPE3uH97kY1GMf9/OUNU/f+BIKi+r6As9W9A37hkurfWyg528aTH+D
- k6PojlVT7dUKTNj/VSW3PL7aAtSZ240551M6Qjc/Wpf/S3n+CcLJukLBizWA==
+ s=20240201; t=1795730614;
+ b=NfIFPxRMsMEhPPXpgdaHiYOzW3Mdz+yY0hiJUkG3yTSAvwyMid5ggoQTgxB0EspWBcTJy
+ CohKVkwwEbKP6Ul50lliRVy5JpIW7NAnRqxFr3HKu/y5m36Q09G82MRnflZHP0g94fxYKfE
+ 53vxpQIWt88NaS3K3RJ8pdkCB+V16ZT6JtlsCyOObbg+eInrtzf0u+28TMVrZCV5K+WHROq
+ 32BNl4pMo4b5bDf9QnY6gByeU94tzFRQ2vLfTELge06fdV3pmoAmu2B7EOIiVY6/gMrqPAv
+ aIrwM8CdtgQpf+fVMkeUhq9Uw/pEoGRCgbQm8Ftk51vR4OuAAr53S6T43U5g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795730599; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795730614; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=RQkJfhAebHnDToX49dPcuad16KB6cMedVUuroADXyWg=;
- b=XtEmhwf7oXrlI2ocsWGQVz7AvKh1JJImDBhPSOTusFl0jxSc5SP2JS645RmrE8RKjFizu
- rdV+AXadcNTzJLIYH2UE0zFF2ruGGGNzdTMsBLD4CYzRHOTUxzq8YKszQB6X7GlcCTSn9v4
- NH2YWaPVNFUDnuL4NMwynW+7wDZBNRourYFsdJxeAlwPlqbhnp//xA/NqQZ8RxTXHHoD+vN
- nwQQIk25oL2bpv8F5iZx6y7AaFZ10oT4HXMXF4jyyrbuulUINmRAlqUnWjA/fl6r19D9M5f
- qSOPGLsu2dHDiSgHZKaw1CK8uKkhwUiMezqmriNz0/4beE2hKjGqUmhzi1qw==
+ bh=r3XTDI4uvFScG85tMDMU/IHVWWOtOx9qSgxsnYpPNkY=;
+ b=dMrS0NuL1K/FBKNAVJS2XQswQgeUmbFghVf+RDExuDaQTeElaIPaD231OdJB2towwJhni
+ yRHeEosXrMVzjJ5/oeI/RUUAasb1t/eTA5z/af9lE1/Pkcb8RXVL0YmKCPEc5YHPuqOL4vs
+ dXWiAqntKz/CzklWgiy6VbBlCediKULXKuUt3x8mY+W/qy0hX3bO944mlpUYBXyYn8vCXam
+ 74JhOd/q//wWLgYGtKe5mCI9XDJW9CAtS0fRxX8YdRZQOGk+LtkGNvLiUO62ijdSG8e/Em0
+ UuDWFzVBjrgA8eI7CR09HIJcY+LOF4LWKLBefAhIXwMqptyM4avQhwZ/Edjw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=npnm.eu;
+ dkim=pass header.d=ideco.ru;
  arc=none;
- dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=npnm.eu;
- arc=none (Message is not ARC signed); dmarc=none
+ dmarc=pass header.from=ideco.ru policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=ideco.ru;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=ideco.ru policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 0A05C40382
-	for <nouveau@lists.freedesktop.org>; Thu, 26 Nov 2026 12:37:26 +0000 (UTC)
-Received: from smtpout6.mo538.mail-out.ovh.net
- (smtpout6.mo538.mail-out.ovh.net [51.210.91.35])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C5EDB10E2FD
-	for <nouveau@lists.freedesktop.org>; Thu, 26 Nov 2026 12:37:20 +0000 (UTC)
-Received: from director5.derp.mail-out.ovh.net
- (director5.derp.mail-out.ovh.net [79.137.60.225])
-	by mo538.mail-out.ovh.net (Postfix) with ESMTPS id 4jZwzf16w0z67Hf;
-	Thu, 26 Nov 2026 12:37:18 +0000 (UTC)
-Received: from director5.derp.mail-out.ovh.net
- (director5.derp.mail-out.ovh.net. [127.0.0.1])
-        by director5.derp.mail-out.ovh.net (inspect_sender_mail_agent) with
- SMTP
-        for <simona@ffwll.ch>; Thu, 26 Nov 2026 12:37:17 +0000 (UTC)
-Received: from mta7.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.109.254.138])
-	by director5.derp.mail-out.ovh.net (Postfix) with ESMTPS id 4jZwzd6G2Wz6MYl;
-	Thu, 26 Nov 2026 12:37:17 +0000 (UTC)
-Received: from npnm.eu (unknown [10.1.6.3])
-	(Authenticated sender: laniel_francis@npnm.eu)
-	by mta7.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id
- 2F7BAB82161;
-	Thu, 26 Nov 2026 12:37:16 +0000 (UTC)
-X-OVh-ClientIp: 159.26.112.43
-From: Francis Laniel <laniel_francis@npnm.eu>
-To: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Subject: Re: [PATCH v1 0/1] drm/nouveau/devinit/gf100-: fix display engine
- check in
- preinit
-Date: Thu, 26 Nov 2026 14:37:14 +0200
-Message-ID: <2858204.mvXUDI8C0e@pmachine>
-In-Reply-To: <20261125111925.8651-1-laniel_francis@npnm.eu>
-References: <20261125111925.8651-1-laniel_francis@npnm.eu>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 018AB40348
+	for <nouveau@lists.freedesktop.org>; Thu, 26 Nov 2026 08:35:06 +0000 (UTC)
+Received: from smtp.ideco.ru (smtp.ideco.ru [51.250.56.165])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BA79F11214E;
+	Thu, 26 Nov 2026 08:35:00 +0000 (UTC)
+Received: from [169.254.254.254] (localhost [127.0.0.1])
+	by smtp.ideco.ru (Postfix) with ESMTP id 66818202F354;
+	Thu, 26 Nov 2026 13:25:10 +0500 (+05)
+Received: from fedora (5cfcd9fa.dynamic.mv.ru [92.252.217.250])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by smtp.ideco.ru (Postfix) with ESMTPSA id 868242032A51;
+	Thu, 26 Nov 2026 13:16:40 +0500 (+05)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.ideco.ru 868242032A51
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ideco.ru; s=ics;
+	t=1795681003; bh=r3XTDI4uvFScG85tMDMU/IHVWWOtOx9qSgxsnYpPNkY=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=Klx2pfGi/iKt+nQoFHAuol3STv+RiQlnGrsgpoZkOD9ypvD74RT3MrGINtzkuZRkY
+	 uotvHdF3hQ0Hs88riF2MMVTO2K34NQcgNCWtsXlBfykVsf5GVD2D7CwYzYIeHeZWZS
+	 JyDuoiww+sUw1tyx/ZQM/W2SJ2Lue8Qi5v0dO5uFBxJQzmVQQKJruUctiy5VBBNVOk
+	 WhI6ahgQG0qewFWzTe+S60LlRThJ2UVejU++xzkPl9yMS8BhXjDzIqmkZbvGoP3yGA
+	 Mp8y37P2xHUcmxSHdD2+5gTNolNRhP86JiJkaYS6KhEMRRyp7AQKPcRCgqogpq7v5Q
+	 hQlQgLGrOJsHg==
+From: Alex Kazinsky <a.kazinsky@ideco.ru>
+To: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 4/5] drm/connector: Handle scaling mode property allocation
+ failures
+Date: Thu, 26 Nov 2026 12:15:59 +0400
+Message-ID: <20261126081602.2901498-5-a.kazinsky@ideco.ru>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261126081602.2901498-1-a.kazinsky@ideco.ru>
+References: <20261126081602.2901498-1-a.kazinsky@ideco.ru>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-x-ovh-tracer-id: 2881459338773603644
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: 
- dmFkZTE1qDi0Soti/4tnUiSxQb2gQr7FxqvYVam6SEq/87eXXB81y5tpavkUrC7wdjB7Tkj4LqTCiFvsbz+ZaKkSYpljATzQIRbSsbgqUHzEd/XZqIdaByia5otWAqBgf2yH9BXOVmbuPvB8WaW2DSjvUNHxhHSz9DzJUCumBiD3AVJQNrcx/FMleRUSKGfFNZQ/n86IjCTvcEkNjLqwnlLHVMTkH7DxSxLE0QfZ3jQ39ZhrPUdngP0f+5cd3TUef3RiE7fSph0RyHiMGsR90mu+ReEZzXXJctFiyi0hMMNQ2SDbrE1NsmhfDhlfjeopTcAsdHvbAMOp2tMNnfBqkvk8KP23jMbtxusYe6uWuCS4xn6TTMyrh84BUiNxxIUzdywRDu5+N8jA0Su4Yo1geUm4x01eL7r7kxAQm+5oQXcROlToQWLWZP2Z2/louvzRxkSaQy7wMs+d9Vyel3EgoSVRiVPBrD1raTPPtSiQ9Vgb7m31pJDRz8/1EhRfPF/ASVa0re0YoSqDGh/ziskt1mL6t3hopNAINw7x0y9GtNKFCCiuReZIkLWRQTs1V8G6SnYseJ351Tpka8pgC0JB5DBbV7fG3P4OoB+8FkIEWc3lrOVyHqtgYegUQf1XPwcZvCVZgK+QVvg2TG2B+pVif/7rZ/Y2SyKAa/9rXimeEZU0gZPosg
-DKIM-Signature: a=rsa-sha256; bh=RQkJfhAebHnDToX49dPcuad16KB6cMedVUuroADXyWg=;
- c=relaxed/relaxed; d=npnm.eu; h=From; s=ovhmo-selector-1; t=1795696638;
- v=1;
- b=XoUVzbg0mjfIRCIBeqGf5+qGvpx5E4ZmWX/+DLDqQr0k8RH0q2oj35btQG15D5NKf0hiKMeJ
- 3s9F2Ru2O20+oU/7efKOl8N8VY6prQ9EuT1Ih1JFIX3qagbYpkO10FkuibgavKnKQ/T4xMpx9tY
- DYWj0l36FWF6LFeIy/30Xm9jseWTEVfzv+fBNeO8arsbWEfvL7+bJD4sXW918b207MPGmPNOnfm
- 8l1j6WZetI080VCTP7woiJ8tXSA1PNt0LWFQDr6cTxzUcP+EMwi9jhjhJLbnZF6ptjKvXdD3Azp
- Z6OuPqhQYB3JdepPUuN1s2aNy3InFPTCcXzCTfkzAzq/g==
-X-MailFrom: laniel_francis@npnm.eu
+Content-Transfer-Encoding: 8bit
+X-MailFrom: a.kazinsky@ideco.ru
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; emergency; member-moderation
-Message-ID-Hash: 3HFG3BSOLHK23RVV2IAZQANGOJVRU5VX
-X-Message-ID-Hash: 3HFG3BSOLHK23RVV2IAZQANGOJVRU5VX
-X-Mailman-Approved-At: Thu, 26 Nov 2026 22:03:18 +0000
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Message-ID-Hash: KM2UXSY7HIMV6RIZJ2CT7NREYVSANFCN
+X-Message-ID-Hash: KM2UXSY7HIMV6RIZJ2CT7NREYVSANFCN
+X-Mailman-Approved-At: Thu, 26 Nov 2026 22:03:30 +0000
+CC: Alex Kazinsky <a.kazinsky@ideco.ru>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Danilo Krummrich <dakr@kernel.org>, Lu Yao <yaolu@kylinos.cn>,
+ Jani Nikula <jani.nikula@intel.com>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Dave Airlie <airlied@redhat.com>, Eric Anholt <eric@anholt.net>,
+ Jesse Barnes <jbarnes@virtuousgeek.org>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ lvc-project@linuxtesting.org, stable@vger.kernel.org
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3HFG3BSOLHK23RVV2IAZQANGOJVRU5VX/>
-Archived-At: <https://lore.freedesktop.org/2858204.mvXUDI8C0e@pmachine/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KM2UXSY7HIMV6RIZJ2CT7NREYVSANFCN/>
+Archived-At: 
+ <https://lore.freedesktop.org/20261126081602.2901498-5-a.kazinsky@ideco.ru/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -114,172 +113,214 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Le mercredi 25 novembre 2026, 13:19:24 heure normale d=E2=80=99Europe de l=
-=E2=80=99Est Francis Laniel a =C3=A9crit :
-> Hi,
->=20
-> I had a problem booting 6.12.118 kernel with NVIDIA GP108GLM [Quadro P520=
-]:
-> ...
-> [    1.657796] nouveau 0000:2d:00.0: fb: 0 MiB GDDR5
-> ...
-> [    2.590323] BUG: unable to handle page fault for address: ffffcdd5c140=
-0000
-> [    2.590326] #PF: supervisor read access in kernel mode
-> [    2.590328] #PF: error_code(0x0000) - not-present page
-> [    2.590330] PGD 100000067 P4D 100000067 PUD 100203067 PMD 101f29067 PT=
-E 0
-> [    2.590334] Oops: Oops: 0000 [#1] PREEMPT SMP NOPTI
-> [    2.590337] CPU: 7 UID: 0 PID: 223 Comm: (udev-worker) Not tainted 6.1=
-2.118+deb13-amd64 #1  Debian 6.12.118-1
-> [    2.590340] Hardware name: LENOVO 20S4001JFR/20S4001JFR, BIOS N2XET27W=
- (1.17 ) 12/10/2020
-> [    2.590342] RIP: 0010:ioread32+0x32/0x60
-> [    2.590347] Code: ff 03 00 77 25 48 81 ff 00 00 01 00 76 08 89 fa ed c=
-3 cc cc cc cc 8b 05 6c e5 6f 01 85 c0 75 11 b8 ff ff ff ff c3 cc cc cc cc <=
-8b> 07 e9 d7 d4 66 00 83 e8 01 48 89 fe 48 c7 c2 72 53 51 b2 48 c7
-> [    2.590350] RSP: 0018:ffffcdd5c1137338 EFLAGS: 00010292
-> [    2.590353] RAX: ffffffffc0a55890 RBX: ffff8aa642386c00 RCX: 000000000=
-0000000
-> [    2.590355] RDX: 00000000bad0ac3c RSI: ffffcdd5c1400000 RDI: ffffcdd5c=
-1400000
-> [    2.590357] RBP: ffffcdd5c1137374 R08: 000000000000a500 R09: 000000000=
-0000000
-> [    2.590359] R10: ffffcdd5c1380000 R11: ffffcdd5c13fffff R12: ffffcdd5c=
-1137470
-> [    2.590360] R13: ffff8aa642386cb0 R14: ffffcdd5c1137380 R15: 000000000=
-0000000
-> [    2.590362] FS:  00007fa0fa647980(0000) GS:ffff8aad4d780000(0000) knlG=
-S:0000000000000000
-> [    2.590365] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [    2.590367] CR2: ffffcdd5c1400000 CR3: 000000010b472002 CR4: 000000000=
-03706f0
-> [    2.590369] Call Trace:
-> [    2.590371]  <TASK>
-> [    2.590373]  gp102_acr_wpr_patch+0xaf/0x1a0 [nouveau]
-> [    2.590477]  nvkm_acr_oneinit+0x3bc/0x600 [nouveau]
-> [    2.590550]  nvkm_subdev_oneinit_+0x42/0x90 [nouveau]
-> [    2.590620]  ? ktime_get+0x3a/0xd0
-> [    2.590624]  nvkm_subdev_init_+0x30/0xa0 [nouveau]
-> [    2.590692]  ? nvkm_intr_rearm+0xc7/0x1c0 [nouveau]
-> [    2.590759]  nvkm_subdev_init+0x48/0x60 [nouveau]
-> [    2.590827]  nvkm_device_init+0x16b/0x1f0 [nouveau]
-> [    2.590936]  nvkm_udevice_init+0x47/0x70 [nouveau]
-> [    2.591044]  nvkm_object_init+0x41/0x120 [nouveau]
-> [    2.591115]  nvkm_ioctl_new+0x160/0x220 [nouveau]
-> [    2.591182]  ? __pfx_nvkm_client_child_new+0x10/0x10 [nouveau]
-> [    2.591249]  ? __pfx_nvkm_udevice_new+0x10/0x10 [nouveau]
-> [    2.593234]  nvkm_ioctl+0xa6/0x140 [nouveau]
-> [    2.593305]  nvif_object_ctor+0x11a/0x1a0 [nouveau]
-> [    2.593371]  nvif_device_ctor+0x2e/0x70 [nouveau]
-> [    2.593438]  nouveau_drm_device_new+0x170/0x300 [nouveau]
-> [    2.594065]  ? __pci_set_master+0x36/0xd0
-> [    2.594068]  nouveau_drm_probe+0xc2/0x1e0 [nouveau]
-> [    2.594167]  local_pci_probe+0x42/0x90
-> [    2.594171]  pci_device_probe+0x25b/0x290
-> [    2.594173]  really_probe+0xde/0x340
-> [    2.594177]  ? pm_runtime_barrier+0x54/0x90
-> [    2.594180]  ? __pfx___driver_attach+0x10/0x10
-> [    2.594182]  __driver_probe_device+0x84/0x140
-> [    2.594184]  driver_probe_device+0x1f/0xa0
-> [    2.594186]  __driver_attach+0xbc/0x1d0
-> [    2.594187]  bus_for_each_dev+0x8c/0xe0
-> [    2.594190]  bus_add_driver+0x112/0x1f0
-> [    2.594193]  driver_register+0x72/0xd0
-> [    2.594195]  ? __pfx_nouveau_drm_init+0x10/0x10 [nouveau]
-> [    2.594261]  do_one_initcall+0x5b/0x310
-> [    2.594265]  do_init_module+0x60/0x230
-> [    2.594269]  init_module_from_file+0x89/0xe0
-> [    2.594272]  idempotent_init_module+0x11e/0x310
-> [    2.594276]  __x64_sys_finit_module+0x5e/0xb0
-> [    2.594278]  do_syscall_64+0x87/0x1b0
-> [    2.594281]  ? filemap_read+0x340/0x370
-> [    2.594285]  ? vfs_read+0x24d/0x370
-> [    2.594288]  ? __x64_sys_pread64+0x98/0xd0
-> [    2.594291]  ? arch_exit_to_user_mode_prepare.isra.0+0x16/0xa0
-> [    2.594293]  ? syscall_exit_to_user_mode+0x37/0x1b0
-> [    2.594295]  ? do_syscall_64+0x93/0x1b0
-> [    2.594297]  ? do_sys_openat2+0x9c/0xe0
-> [    2.594300]  ? arch_exit_to_user_mode_prepare.isra.0+0x16/0xa0
-> [    2.594302]  ? arch_exit_to_user_mode_prepare.isra.0+0x16/0xa0
-> [    2.594304]  ? syscall_exit_to_user_mode+0x37/0x1b0
-> [    2.594306]  ? do_syscall_64+0x93/0x1b0
-> [    2.594307]  ? do_syscall_64+0x93/0x1b0
-> [    2.594309]  ? __flush_tlb_all+0x13/0x30
-> [    2.594311]  ? __flush_smp_call_function_queue+0xab/0x410
-> [    2.594314]  ? syscall_exit_to_user_mode+0x37/0x1b0
-> [    2.594316]  ? clear_bhb_loop+0x70/0xc0
-> [    2.594319]  ? clear_bhb_loop+0x70/0xc0
-> [    2.594321]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-> [    2.594323] RIP: 0033:0x7fa0fb1ad6b9
-> [    2.594325] Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 4=
-8 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <=
-48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 27 67 0d 00 f7 d8 64 89 01 48
-> [    2.594329] RSP: 002b:00007ffc9ccb2f38 EFLAGS: 00000246 ORIG_RAX: 0000=
-000000000139
-> [    2.594332] RAX: ffffffffffffffda RBX: 000055dd07c93360 RCX: 00007fa0f=
-b1ad6b9
-> [    2.594334] RDX: 0000000000000004 RSI: 00007fa0f98d544d RDI: 000000000=
-000001d
-> [    2.594336] RBP: 0000000000000004 R08: 0000000000000000 R09: 000055dd0=
-7c6f130
-> [    2.594338] R10: 0000000000000000 R11: 0000000000000246 R12: 00007fa0f=
-98d544d
-> [    2.594339] R13: 0000000000020000 R14: 000055dd07c912d0 R15: 000000000=
-0000000
-> [    2.594342]  </TASK>
-> [    2.594343] Modules linked in: hid_generic usbhid hid i915(+) nouveau(=
-+) mxm_wmi drm_gpuvm drm_exec gpu_sched drm_buddy i2c_algo_bit drm_display_=
-helper crct10dif_pclmul crc32_pclmul cec crc32c_intel ghash_clmulni_intel r=
-c_core drm_ttm_helper sha512_ssse3 iTCO_wdt ttm sha256_ssse3 intel_pmc_bxt =
-xhci_pci sha1_ssse3 ucsi_acpi iTCO_vendor_support xhci_hcd rtsx_pci_sdmmc w=
-atchdog aesni_intel drm_kms_helper typec_ucsi nvme mmc_core gf128mul usbcor=
-e typec nvme_core i2c_i801 psmouse drm crypto_simd roles thunderbolt e1000e=
- video serio_raw rtsx_pci i2c_smbus nvme_auth cryptd usb_common battery wmi=
- button
-> [    2.594376] CR2: ffffcdd5c1400000
-> [    2.594378] ---[ end trace 0000000000000000 ]---
->=20
-> With the following patch, the kernel was succesfull booting:
-> [    1.404564] nouveau: loading out-of-tree module taints kernel.
-> [    1.404624] nouveau: module verification failed: signature and/or requ=
-ired key missing - tainting kernel
-> [    1.739550] nouveau: detected PR support, will not use DSM
-> [    1.739571] nouveau 0000:2d:00.0: enabling device (0006 -> 0007)
-> [    1.739648] nouveau 0000:2d:00.0: NVIDIA GP108 (138000a1)
-> [    1.776320] nouveau 0000:2d:00.0: bios: version 86.08.3e.00.26
-> [    1.776582] nouveau 0000:2d:00.0: pmu: firmware unavailable
-> [    1.860292] nouveau 0000:2d:00.0: fb: 2048 MiB GDDR5
-> [    1.897865] nouveau 0000:2d:00.0: drm: VRAM: 2048 MiB
-> [    1.897868] nouveau 0000:2d:00.0: drm: GART: 536870912 MiB
-> [    1.897869] nouveau 0000:2d:00.0: drm: BIT table 'A' not found
-> [    1.897871] nouveau 0000:2d:00.0: drm: BIT table 'L' not found
-> [    1.897871] nouveau 0000:2d:00.0: drm: Pointer to TMDS table not found
-> [    1.902700] nouveau 0000:2d:00.0: drm: MM: using COPY for buffer copies
-> [    1.902820] [drm] Initialized nouveau 1.4.0 for 0000:2d:00.0 on minor 0
-> [    1.902908] nouveau 0000:2d:00.0: [drm] No compatible format found
-> [    1.902910] nouveau 0000:2d:00.0: [drm] Cannot find any crtc or sizes
->=20
-> Basically, the patch mimics behavior existing in nv50_devinit_preinit().
->=20
-> Francis Laniel (1):
->   drm/nouveau/devinit/gf100-: fix display engine check in preinit
->=20
->  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> Best regards,
->=20
+drm_mode_create_scaling_mode_property() returns success even when
+drm_property_create_enum() fails. Drivers then continue initialization
+and may pass the NULL property to drm_object_attach_property(), causing
+a NULL pointer dereference.
 
-Sorry for the noise, a patch was already posted some days ago:
-https://lore.kernel.org/all/20261123-nouveau-fix-disp-v1-1-ebdc525287ce@red=
-hat.com/
+Return -ENOMEM if the property cannot be created and handle the error
+in Nouveau, AMDGPU, Radeon and GMA500 before creating connectors.
+
+In GMA500, create the property during modeset initialization and
+propagate failures to the driver load path. Remove the redundant
+creation call from the Cedarview output initialization.
+
+Fixes: f453ba046074 ("DRM: add mode setting support")
+Cc: stable@vger.kernel.org
+Signed-off-by: Alex Kazinsky <a.kazinsky@ideco.ru>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c |  6 ++++--
+ drivers/gpu/drm/drm_connector.c             |  5 ++++-
+ drivers/gpu/drm/gma500/cdv_device.c         |  2 --
+ drivers/gpu/drm/gma500/framebuffer.c        | 17 +++++++++++------
+ drivers/gpu/drm/gma500/psb_drv.c            |  4 +++-
+ drivers/gpu/drm/gma500/psb_drv.h            |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_display.c   |  5 +++--
+ drivers/gpu/drm/radeon/radeon_display.c     |  6 ++++--
+ 8 files changed, 30 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+index 677d199ca931..79ce4414a32f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+@@ -1576,7 +1576,7 @@ static int amdgpu_display_setup_abm_prop(struct amdgpu_device *adev)
+ 
+ int amdgpu_display_modeset_create_props(struct amdgpu_device *adev)
+ {
+-	int sz;
++	int sz, ret;
+ 
+ 	adev->mode_info.coherent_mode_property =
+ 		drm_property_create_range(adev_to_drm(adev), 0, "coherent", 0, 1);
+@@ -1588,7 +1588,9 @@ int amdgpu_display_modeset_create_props(struct amdgpu_device *adev)
+ 	if (!adev->mode_info.load_detect_property)
+ 		return -ENOMEM;
+ 
+-	drm_mode_create_scaling_mode_property(adev_to_drm(adev));
++	ret = drm_mode_create_scaling_mode_property(adev_to_drm(adev));
++	if (ret)
++		return ret;
+ 
+ 	sz = ARRAY_SIZE(amdgpu_underscan_enum_list);
+ 	adev->mode_info.underscan_property =
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 5ab121860050..af3dbdcaaca5 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -2495,7 +2495,8 @@ EXPORT_SYMBOL(drm_mode_create_tv_properties);
+  * instead to correctly assign &drm_connector_state.scaling_mode
+  * in the atomic state.
+  *
+- * Returns: %0
++ * Returns:
++ * Zero on success, negative errno on failure.
+  */
+ int drm_mode_create_scaling_mode_property(struct drm_device *dev)
+ {
+@@ -2508,6 +2509,8 @@ int drm_mode_create_scaling_mode_property(struct drm_device *dev)
+ 		drm_property_create_enum(dev, 0, "scaling mode",
+ 				drm_scaling_mode_enum_list,
+ 				    ARRAY_SIZE(drm_scaling_mode_enum_list));
++	if (!scaling_mode)
++		return -ENOMEM;
+ 
+ 	dev->mode_config.scaling_mode_property = scaling_mode;
+ 
+diff --git a/drivers/gpu/drm/gma500/cdv_device.c b/drivers/gpu/drm/gma500/cdv_device.c
+index fd6ea8998dbe..2a9e9b323005 100644
+--- a/drivers/gpu/drm/gma500/cdv_device.c
++++ b/drivers/gpu/drm/gma500/cdv_device.c
+@@ -41,8 +41,6 @@ static int cdv_output_init(struct drm_device *dev)
+ {
+ 	struct drm_psb_private *dev_priv = to_drm_psb_private(dev);
+ 
+-	drm_mode_create_scaling_mode_property(dev);
+-
+ 	cdv_disable_vga(dev);
+ 
+ 	cdv_intel_crt_init(dev, &dev_priv->mode_dev);
+diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
+index 37a9f666c0f2..02d892a146fc 100644
+--- a/drivers/gpu/drm/gma500/framebuffer.c
++++ b/drivers/gpu/drm/gma500/framebuffer.c
+@@ -43,8 +43,6 @@ static void psb_setup_outputs(struct drm_device *dev)
+ 	struct drm_connector_list_iter conn_iter;
+ 	struct drm_connector *connector;
+ 
+-	drm_mode_create_scaling_mode_property(dev);
+-
+ 	/* It is ok for this to fail - we just don't get backlight control */
+ 	if (!dev_priv->backlight_property)
+ 		dev_priv->backlight_property = drm_property_create_range(dev, 0,
+@@ -98,14 +96,19 @@ static void psb_setup_outputs(struct drm_device *dev)
+ 	drm_connector_list_iter_end(&conn_iter);
+ }
+ 
+-void psb_modeset_init(struct drm_device *dev)
++int psb_modeset_init(struct drm_device *dev)
+ {
+ 	struct drm_psb_private *dev_priv = to_drm_psb_private(dev);
+ 	struct psb_intel_mode_device *mode_dev = &dev_priv->mode_dev;
+-	int i;
++	int i, ret;
++
++	ret = drmm_mode_config_init(dev);
++	if (ret)
++		return ret;
+ 
+-	if (drmm_mode_config_init(dev))
+-		return;
++	ret = drm_mode_create_scaling_mode_property(dev);
++	if (ret)
++		return ret;
+ 
+ 	dev->mode_config.min_width = 0;
+ 	dev->mode_config.min_height = 0;
+@@ -125,6 +128,8 @@ void psb_modeset_init(struct drm_device *dev)
+ 	        dev_priv->ops->errata(dev);
+ 
+         dev_priv->modeset = true;
++
++	return 0;
+ }
+ 
+ void psb_modeset_cleanup(struct drm_device *dev)
+diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
+index d17cb5b4a4bf..6321cbc305bf 100644
+--- a/drivers/gpu/drm/gma500/psb_drv.c
++++ b/drivers/gpu/drm/gma500/psb_drv.c
+@@ -386,7 +386,9 @@ static int psb_driver_load(struct drm_device *dev, unsigned long flags)
+ 
+ 	dev->max_vblank_count = 0xffffff; /* only 24 bits of frame count */
+ 
+-	psb_modeset_init(dev);
++	ret = psb_modeset_init(dev);
++	if (ret)
++		goto out_err;
+ 	drm_kms_helper_poll_init(dev);
+ 
+ 	/* Only add backlight support if we have LVDS or MIPI output */
+diff --git a/drivers/gpu/drm/gma500/psb_drv.h b/drivers/gpu/drm/gma500/psb_drv.h
+index db197b865b90..416c9db65e5a 100644
+--- a/drivers/gpu/drm/gma500/psb_drv.h
++++ b/drivers/gpu/drm/gma500/psb_drv.h
+@@ -589,7 +589,7 @@ struct psb_ops {
+ };
+ 
+ /* modesetting */
+-extern void psb_modeset_init(struct drm_device *dev);
++int psb_modeset_init(struct drm_device *dev);
+ extern void psb_modeset_cleanup(struct drm_device *dev);
+ 
+ /* fbdev */
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 04e9a512eaec..1e24829e0eac 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -656,8 +656,9 @@ nouveau_display_create(struct drm_device *dev)
+ 		return -ENOMEM;
+ 
+ 	drm_mode_config_init(dev);
+-	drm_mode_create_scaling_mode_property(dev);
+-	ret = drm_mode_create_dvi_i_properties(dev);
++	ret = drm_mode_create_scaling_mode_property(dev);
++	if (!ret)
++		ret = drm_mode_create_dvi_i_properties(dev);
+ 	if (ret) {
+ 		drm_mode_config_cleanup(dev);
+ 		drm->display = NULL;
+diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
+index aac6733ddd82..c4397edc5913 100644
+--- a/drivers/gpu/drm/radeon/radeon_display.c
++++ b/drivers/gpu/drm/radeon/radeon_display.c
+@@ -1410,7 +1410,7 @@ static const struct drm_prop_enum_list radeon_output_csc_enum_list[] =
+ 
+ static int radeon_modeset_create_props(struct radeon_device *rdev)
+ {
+-	int sz;
++	int sz, ret;
+ 
+ 	if (rdev->is_atom_bios) {
+ 		rdev->mode_info.coherent_mode_property =
+@@ -1432,7 +1432,9 @@ static int radeon_modeset_create_props(struct radeon_device *rdev)
+ 	if (!rdev->mode_info.load_detect_property)
+ 		return -ENOMEM;
+ 
+-	drm_mode_create_scaling_mode_property(rdev_to_drm(rdev));
++	ret = drm_mode_create_scaling_mode_property(rdev_to_drm(rdev));
++	if (ret)
++		return ret;
+ 
+ 	sz = ARRAY_SIZE(radeon_tv_std_enum_list);
+ 	rdev->mode_info.tv_std_property =
+-- 
+2.56.0
 
 
