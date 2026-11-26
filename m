@@ -2,117 +2,102 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34643606A321
-	for <nouveau@archiver.kernel.org>; Thu, 26 Nov 2026 08:00:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 182A0606A31C
+	for <nouveau@archiver.kernel.org>; Thu, 26 Nov 2026 17:56:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.a=rsa-sha256 header.s=key2 header.b=XjiAXlsa
+	dkim=pass (2048-bit key) header.d=cirad.fr header.i=@cirad.fr header.a=rsa-sha256 header.s=573E3878-7916-11F1-BF4B-F68474317960 header.b=gaGmKrxl
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1B1511120E3;
-	Thu, 26 Nov 2026 08:00:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A19F3112687;
+	Thu, 26 Nov 2026 17:56:10 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 05CDD403E1;
-	Thu, 26 Nov 2026 08:00:10 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 89F15403E1;
+	Thu, 26 Nov 2026 17:56:05 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795680009;
- b=yt8ZEQCVejgEURolBpv9GbhOCPj1CqCm4+uXk5W323OeM7ihNAq5CQAeFOi5aeQ68+uy9
- RlKHnWa11MwTEZbC+paVkvqW9fxIevp8MLcSzu/s8ZsPZcgED5mBXyZnMFzyH4oOh7/40l7
- I4x/aV0Nh2fxiBAkdeZHfZxZWG19SdnwuyModQexaBKHsk8luXfVmUci+UVghNbeVadptDn
- JRtwQmv6fAb+8Aozs3JO481Olva2vY7y+Ng8Nl2RsZYhy5kmp4tAfkWB+tSoRgndv64v15S
- swvD5jncVr1OlWcYE21OZE3VV3cxQjI77a37QdS7VHYzBQyaQXQ8EuAnddLA==
+ s=20240201; t=1795715765;
+ b=vJ3Nk+kMP5meztM/3aXPSPGHirzYZreqrLqD9qlwBM3kDmWLl3EtMdFcH7xk/vCRU7k14
+ L05HfzE/BtRn9Yl5VTYA1+N6SjcMDW+sABEb0dX9b9YR9YXaP2D82gjbaYKMtK8rWJT0vhv
+ cXkfja4LJKCey2gAdCQR0VKESzNAAtB0aD5B1++8pdEF/ozrYRmWm95b+kIjRp3cCAfy2OB
+ 3F++IVQ774FUoo9VMJFvfaqOKhCJjuT4BL9jENlh3vace9JblWhFcxX4Qc1ZSNCSunKDYC4
+ bUbncp/8Ma5Ve8iOJ9L5jz2HRK7oHw4x7+1KRWDSXBh4EXfC2KcINTp3btyw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795680009; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795715765; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=v2cBIwuwZTTpBiqR0454ouMWhhQaLHGEGIiKzwAP7HU=;
- b=U90zIvpgVpO9cjOc7FLOCEBdlWCkei48XUScsRoC2JKIxshCH7DNCv7P5EJZ5WhJKOPV7
- k5ZZW3W84yi2RGPcnM7fwBrLBhN/87gP3sR6cGga43AsCcx78YeZt3oqasWHJW17kGtUDOs
- NObFOeS6ljx/Foqmlfwyfku3uVjUhQMiFFkcob6Rk3hvPEtYHcrH2oS2CZTTWbDFILnIsaR
- 6qowteVbBkJ6Ju8EH39y5ZDGpSpwv7oU7mDCDWiMywVByUHpMCv4l25RE4LgPjx+1WmCSdz
- Ij3lOrhrZv1xEC1kzPtH2AQdZ8faLQ5UawAZ2B584RLA6fgjJpbUDx0PdoEw==
+ bh=CHLgaJFPBR8IktC1roGL62X+2xMi1bLnLcLfpf/cxsc=;
+ b=BDI0f6RdddnDe13vojerMkYu30sY341IK1Q1heRrkk9nJrieYSmsYwYAdW+Gb3bklBTGG
+ 7uu5dFub5cQ5kFttiDwKtBlTBmCEg11KcW/+FfavdJXiwDue5NBJ7vGs0Md6Pb1AS0L0HPY
+ F/+wbNQXDArS28KUnvSLkFaODgVGMJsM/V8bwNJ+CntN1q4DmetTKnobvi1TcNTgJZBHk/z
+ NNP2xNsq/ZAeVS7RuTj07sKOyJoZo92r49E2rhgfVmiSKyz3/lbfwn2JNhMKS0NH+36Rzrj
+ oYp7+beXyXlrBjTkD/Heh3FAPeoMR9cK3ERfDecs8JTP9sPftRK/evSRd6Rw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=leemhuis.info;
+ dkim=pass header.d=cirad.fr;
  arc=none;
- dmarc=pass header.from=leemhuis.info policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=leemhuis.info; arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=leemhuis.info
- policy.dmarc=quarantine
+ dmarc=pass header.from=cirad.fr policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=cirad.fr;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=cirad.fr policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 7259240393
-	for <nouveau@lists.freedesktop.org>; Thu, 26 Nov 2026 08:00:04 +0000 (UTC)
-Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
- [188.68.63.102])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E570F10E344;
-	Thu, 26 Nov 2026 07:59:58 +0000 (UTC)
-Received: from mors-relay-2502.netcup.net (localhost [127.0.0.1])
-	by mors-relay-2502.netcup.net (Postfix) with ESMTPS id 4jZppy209gz6TSp;
-	Thu, 26 Nov 2026 08:59:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
-	s=key2; t=1795679962;
-	bh=ij3hnJcC4WfaTRrqHQlqNFWDVnAM9xmzZit58oeLRAY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XjiAXlsaMm8yVPMQlY5bRRl4kOrJxoy2KIgKiSkCty6+c8TeMvO3ItDQ60LMlkFo/
-	 A5pEPVsEdszn57IArzsNSpWrBiKyoWTwjqalB/17XKb680TXWCZ3w+zlCqu0KyisKM
-	 U1ceAxfBRjfP6GKBsX/PSaXl5lEbAblNr+E+pE9sAnxLz/66mX4y6Ie+3yeVhOPKCW
-	 2GaCU2lv+pOik7gOIlPZkqeUiwt+5hnuo1uRCFth5DcHL5zsGDUK1dZMxmDs7ZePA/
-	 W6h2PidiKyG0hE8ssjZwEiahC4Gbo4ko8xLGqpR8CvgBzxDzGmH22Xkk/5P68fUjZN
-	 WdB++PNjsWcMQ==
-Received: from policy02-mors.netcup.net (unknown [46.38.225.35])
-	by mors-relay-2502.netcup.net (Postfix) with ESMTPS id 4jZppy1CQfz4xp1;
-	Thu, 26 Nov 2026 08:59:22 +0100 (CET)
-Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits)
- server-digest SHA256)
-	(No client certificate requested)
-	by policy02-mors.netcup.net (Postfix) with ESMTPS id 4jZppw1rNtz8svJ;
-	Thu, 26 Nov 2026 08:59:19 +0100 (CET)
-Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
- [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
-	by mxe9fb.netcup.net (Postfix) with ESMTPSA id 5AA525F949;
-	Thu, 26 Nov 2026 08:58:50 +0100 (CET)
-Received-SPF: pass (mxe9fb: connection is authenticated)
-Message-ID: <b27e10f8-840b-47ca-a5e6-50db3a73313d@leemhuis.info>
-Date: Thu, 26 Nov 2026 08:58:47 +0100
+	by kara.freedesktop.org (Postfix) with ESMTPS id 87F1440382
+	for <nouveau@lists.freedesktop.org>; Thu, 26 Nov 2026 17:56:02 +0000 (UTC)
+Received: from retz.cirad.fr (retz.cirad.fr [194.199.235.221])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4D6B7112665;
+	Thu, 26 Nov 2026 17:55:57 +0000 (UTC)
+Received: from retz.cirad.fr (localhost [127.0.0.1])
+	by retz.cirad.fr (Postfix) with ESMTPS id 1E536210CB3E;
+	Thu, 26 Nov 2026 18:55:55 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by retz.cirad.fr (Postfix) with ESMTP id F04D320DCBF3;
+	Thu, 26 Nov 2026 18:55:54 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 retz.cirad.fr F04D320DCBF3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirad.fr;
+	s=573E3878-7916-11F1-BF4B-F68474317960; t=1795715755;
+	bh=CHLgaJFPBR8IktC1roGL62X+2xMi1bLnLcLfpf/cxsc=;
+	h=From:To:Date:Message-ID:MIME-Version;
+	b=gaGmKrxlj0lxigTnISIKPREc/Ebl3W/C2QC727F7fxE777pAT6bef9eCJ9sezD6/6
+	 YiBNJOzqwu2RWCcauW539roWsWwBci2Oo5xITLSomjKz5LlnjpEmEDg6RYFuVe6NJ5
+	 kQ5HEGkvH9XdYuQhl+fqXEtOIGkVxEWOi5VBshVzaxRtLHd6ZlnQns+e/vgxoDap65
+	 p2HmdSlOgALBCYaPGAh+n0jVL1f6iywMZqsgL43w3YT2rgIGc77I3v8N74/q9HQpRL
+	 66++QzuhrFKwL4DC9iKpIEJBycPPzy3X1os6lI1NOvl1oqZ0+Fs6FGVlp5VzUomolC
+	 DscTSchBYA1hg==
+X-Virus-Scanned: amavis at retz.cirad.fr
+Received: from retz.cirad.fr ([127.0.0.1])
+ by localhost (retz.cirad.fr [127.0.0.1]) (amavis, port 10026) with ESMTP
+ id JxldicDjRCxF; Thu, 26 Nov 2026 18:55:54 +0100 (CET)
+Received: from localhost.localdomain (78-196-243-100.subs.proxad.net
+ [78.196.243.100])
+	by retz.cirad.fr (Postfix) with ESMTPSA id 8EEF9210CB3E;
+	Thu, 26 Nov 2026 18:55:54 +0100 (CET)
+From: =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20Mah=C3=A9?= <frederic.mahe@cirad.fr>
+To: nouveau@lists.freedesktop.org
+Subject: [PATCH] drm/nouveau/fifo/gf100-: reset the faulting engine even if it
+ switched channels
+Date: Thu, 26 Nov 2026 18:55:31 +0100
+Message-ID: <20261126175531.916097-1-frederic.mahe@cirad.fr>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Revert "nouveau: pci: quiesce GPU on shutdown"
-To: David Airlie <airlied@gmail.com>
-References: <20261025213027.842978-1-marex@nabladev.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-Content-Language: de-DE, en-US
-In-Reply-To: <20261025213027.842978-1-marex@nabladev.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-PPP-Message-ID: <179567993099.1392972.9410511653682031592@mxe9fb.netcup.net>
-X-NC-CID: K/re8fuSYYOPP20M4/d2Cw5ZAXW/LSShXsWb7axahBVqe8RiaKI=
-Message-ID-Hash: PWHHD2R2HWWN3XTYQCMGSQVMRIDOJTAJ
-X-Message-ID-Hash: PWHHD2R2HWWN3XTYQCMGSQVMRIDOJTAJ
-X-MailFrom: regressions@leemhuis.info
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: XF4MOFTINFLTBXFPI23WKXI3VUTJ6KZH
+X-Message-ID-Hash: XF4MOFTINFLTBXFPI23WKXI3VUTJ6KZH
+X-MailFrom: frederic.mahe@cirad.fr
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
- banned-address; emergency; member-moderation; nonmember-moderation;
- administrivia; implicit-dest; max-recipients; max-size; news-moderation;
- no-subject; digests; suspicious-header
+ banned-address; emergency; member-moderation
 CC: dri-devel@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
- Marek Vasut <marex@nabladev.com>, Li Chen <me@linux.beauty>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Ole Carlsen <ole.carlsen@tutamail.com>,
- Simona Vetter <simona@ffwll.ch>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- Linux kernel regressions list <regressions@lists.linux.dev>
+ =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20Mah=C3=A9?= <frederic.mahe@cirad.fr>,
+ stable@vger.kernel.org
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PWHHD2R2HWWN3XTYQCMGSQVMRIDOJTAJ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XF4MOFTINFLTBXFPI23WKXI3VUTJ6KZH/>
 Archived-At: 
- <https://lore.freedesktop.org/b27e10f8-840b-47ca-a5e6-50db3a73313d@leemhuis.info/>
+ <https://lore.freedesktop.org/20261126175531.916097-1-frederic.mahe@cirad.fr/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -120,118 +105,147 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/25/26 22:30, Marek Vasut wrote:
-> This reverts commit 310326bb7df4bba094a3fc60364c641c547fd923.
-> 
-> This breaks shutdown on ThinkPad W510, without the offending commit
-> the system normally powers off, with the offending commit the system
-> ends up spinning indefinitely and the CPU fan goes full throttle on
-> shutdown.
-> 
-> The behavior was already reported in debian bugtracker multiple times
-> for various other computers too, and git bisect lands as this commit.
-> https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1141969
-> https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1146033
+When an engine reports an MMU fault, recovery flags the faulting
+channel group and nvkm_runl_rc() resets only the engines whose current
+context (cxid) belongs to a flagged group.  On Fermi the fault can be
+reported after GR has started switching to another channel: the engine
+status then reads e.g. 0x01140003 (not busy, chid 3) while channel 4
+faulted, so GR is not reset, stays stalled on the fault, and the
+runlist update never completes:
 
-@airlied: given that you recently applied a few nouveau bugfixes, could
-you maybe pick this one up, too?
+  fifo: fault 01 [WRITE] at 0 engine 00 [PGRAPH] client 0f [GPC0/PROP] re=
+ason 02 [PAGE_NOT_PRESENT] on channel 4
+  object-namespac[1768]: channel 4 killed!
+  fifo:000000:00[      gr]: 01140003: busy 0 save 1 unk0 0 unk1 0 chid 3
+  fifo:000000:00[      gr]: cxid not valid
+  WARNING: drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv50.c:228 at nv50_ru=
+nl_wait+0xe8/0x100 [nouveau]
+  fifo: SCHED_ERROR 0d []
+  WARNING: drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c:251 at nvkm_ru=
+nl_preempt_wait+0xf7/0x110 [nouveau]
 
-I'd even say it's eligible for -fixes, as I'd say this is still a
-somewhat recent regressions and the fix hence "should be expedited", as
-Linus said some time ago[1].
+After that no channel makes progress: the whole GPU is dead until a
+reboot, and processes using it hang in D state.
 
-And to make it obvious: this will reintroduce warnings during kexec the
-commit being reverted tried to fix. YMMV, but that seems like the
-smaller problem.
+Remember which engine reported the fault, and reset it during recovery
+regardless of what its status says.  Resetting GR may discard the context
+being switched in, but that is far better than losing the GPU.
 
-Ciao, Thorsten
+Tested on a Quadro 600 (GF108): a program that faults (piglit
+"object-namespace-pollution glClearTexSubImage texture") while three
+other processes keep GR busy hangs the GPU within one to three faults
+without this patch.  With it, 20 of 20 faults recovered (15 of them hit
+the state above), with no runlist timeouts, and the GPU kept working.
+On an NVS 315 (GF119) the same test hangs the GPU at the first fault
+without this patch; with it, 20 of 20 rounds completed, every fault was
+recovered, and the GPU kept working.
 
-[1]
-https://lore.kernel.org/all/CAHk-=wis_qQy4oDNynNKi5b7Qhosmxtoj1jxo5wmB6SRUwQUBQ@mail.gmail.com/
+Written with help from Claude (Anthropic); reviewed and tested on hardwar=
+e.
 
-> I tested the revert with Linux 7.2.12 from debian unstable, not next
-> or drm trees, mainly because it was easier with debian test-patches
-> script on that machine.
-> 
-> Signed-off-by: Marek Vasut <marex@nabladev.com>
-> ---
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Li Chen <me@linux.beauty>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Ole Carlsen <ole.carlsen@tutamail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Uwe Kleine-König <ukleinek@debian.org>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: nouveau@lists.freedesktop.org
-> ---
-> NOTE: Maybe the revert is not the ideal solution, but it does fix my
->       problem, and I think being able to shut computer down is a good
->       functionality to have.
-> ---
->  drivers/gpu/drm/nouveau/nouveau_drm.c | 32 ---------------------------
->  1 file changed, 32 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> index 5e1336615cf6d..36c74f9edaa83 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> @@ -1090,37 +1090,6 @@ nouveau_pmops_resume(struct device *dev)
->  	return ret;
->  }
->  
-> -static void
-> -nouveau_drm_shutdown(struct pci_dev *pdev)
-> -{
-> -	struct nouveau_drm *drm = pci_get_drvdata(pdev);
-> -	int ret;
-> -
-> -	if (!drm)
-> -		return;
-> -
-> -	if (drm->dev->switch_power_state == DRM_SWITCH_POWER_OFF ||
-> -	    drm->dev->switch_power_state == DRM_SWITCH_POWER_DYNAMIC_OFF)
-> -		return;
-> -
-> -	ret = nouveau_do_suspend(drm, false);
-> -	if (ret)
-> -		NV_ERROR(drm, "shutdown suspend failed with: %d\n", ret);
-> -
-> -	pci_save_state(pdev);
-> -	pci_disable_device(pdev);
-> -	pci_set_power_state(pdev, PCI_D3hot);
-> -	/*
-> -	 *  This is just to give the pci power transition time to settle
-> -	 *  before an immediate kexec jump. it’s mirroring the existing
-> -	 *  nouveau_pmops_suspend() behavior, which already does
-> -	 *  udelay(200) right after pci_set_power_state(..., pci_d3hot). In
-> -	 *  ->shutdown() we’re allowed to sleep, so I used usleep_range()
-> -	 *  instead of a busy-wait udelay().
-> -	 */
-> -	usleep_range(200, 400);
-> -}
-> -
->  static int
->  nouveau_pmops_freeze(struct device *dev)
->  {
-> @@ -1480,7 +1449,6 @@ nouveau_drm_pci_driver = {
->  	.id_table = nouveau_drm_pci_table,
->  	.probe = nouveau_drm_probe,
->  	.remove = nouveau_drm_remove,
-> -	.shutdown = nouveau_drm_shutdown,
->  	.driver.pm = &nouveau_pm_ops,
->  };
->  
+Fixes: 4d60100a23ec ("drm/nouveau/fifo: add common channel recovery")
+Cc: stable@vger.kernel.org
+Signed-off-by: Fr=C3=A9d=C3=A9ric Mah=C3=A9 <frederic.mahe@cirad.fr>
+---
+Tested on GF108 and GF119 only. gf100_fifo_mmu_fault_recover() is also us=
+ed by
+gk104, gm107, gv100 and tu102 (non-GSP), so the change applies to those
+too; feedback from such hardware is welcome.
+
+A small libdrm program reproduces this without Mesa or piglit
+(nv-mmu-fault.c, available on request):
+
+  nv-mmu-fault -e noctx
+
+sends one graphics method on a channel that has no graphics object.
+PGRAPH's context-switch unit then faults (READ at 0, HUB/CTXCTL)
+while the engine status no longer names the channel. On an NVS 315
+(GF119), without this patch the GPU is dead after the first run;
+with it, 60 of 60 runs recovered. "nv-mmu-fault -e gr" in a loop
+with three processes keeping PGRAPH busy gives the WRITE fault of
+the log above: dead at the 4th fault without the patch, 40 of 40
+recovered with it.
+
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c | 11 +++++++++--
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c  | 11 ++++++++---
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.h  |  1 +
+ 3 files changed, 18 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c b/drivers/g=
+pu/drm/nouveau/nvkm/engine/fifo/gf100.c
+index e4a4fad..4f221c0 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
+@@ -597,9 +597,16 @@ gf100_fifo_mmu_fault_recover(struct nvkm_fifo *fifo,=
+ struct nvkm_fault_data *inf
+ 		   info->reason, er ? er->name : "",
+ 		   chan ? chan->id : -1, info->inst, chan ? chan->name : "unknown");
+=20
+-	/* Handle host/engine faults. */
+-	if (chan)
++	/* Handle host/engine faults.  The engine that reported the fault must
++	 * be reset even if it has already switched to another channel (its
++	 * status then no longer points at the faulting channel), otherwise it
++	 * stays stalled and the runlist update never completes.
++	 */
++	if (chan) {
++		if (engine)
++			atomic_set(&engn->rc_reset, 1);
+ 		nvkm_runl_rc_cgrp(chan->cgrp);
++	}
+=20
+ 	nvkm_chan_put(&chan, flags);
+ }
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c b/drivers/gp=
+u/drm/nouveau/nvkm/engine/fifo/runl.c
+index 2092521..76fabe8 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
+@@ -99,14 +99,19 @@ nvkm_runl_rc(struct nvkm_runl *runl)
+=20
+ 	/* Look for engines that are still on flagged channel groups - reset th=
+em. */
+ 	nvkm_runl_foreach_engn_cond(engn, runl, engn->func->cxid) {
++		bool faulted =3D atomic_xchg(&engn->rc_reset, 0);
++
+ 		cgrp =3D nvkm_engn_cgrp_get(engn, &flags);
+-		if (!cgrp) {
++		if (!cgrp && !faulted) {
+ 			ENGN_DEBUG(engn, "cxid not valid");
+ 			continue;
+ 		}
+=20
+-		reset =3D atomic_read(&cgrp->rc) =3D=3D NVKM_CGRP_RC_RUNNING;
+-		nvkm_cgrp_put(&cgrp, flags);
++		reset =3D faulted;
++		if (cgrp) {
++			reset |=3D atomic_read(&cgrp->rc) =3D=3D NVKM_CGRP_RC_RUNNING;
++			nvkm_cgrp_put(&cgrp, flags);
++		}
+ 		if (!reset) {
+ 			ENGN_DEBUG(engn, "cxid not in recovery");
+ 			continue;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.h b/drivers/gp=
+u/drm/nouveau/nvkm/engine/fifo/runl.h
+index 19e6772..08ba44d 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.h
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.h
+@@ -28,6 +28,7 @@ struct nvkm_engn {
+ 	struct nvkm_engine *engine;
+=20
+ 	int fault;
++	atomic_t rc_reset; /* engine reported a fault: reset it during RC */
+=20
+ 	struct {
+ 		u32 desc;
+--=20
+2.53.0
 
