@@ -2,102 +2,110 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 182A0606A31C
-	for <nouveau@archiver.kernel.org>; Thu, 26 Nov 2026 17:56:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBCB1606A31E
+	for <nouveau@archiver.kernel.org>; Thu, 26 Nov 2026 22:03:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirad.fr header.i=@cirad.fr header.a=rsa-sha256 header.s=573E3878-7916-11F1-BF4B-F68474317960 header.b=gaGmKrxl
+	dkim=pass (2048-bit key, unprotected) header.d=npnm.eu header.i=@npnm.eu header.a=rsa-sha256 header.s=ovhmo-selector-1 header.b=lbTKHwFE
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A19F3112687;
-	Thu, 26 Nov 2026 17:56:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C1D0A112734;
+	Thu, 26 Nov 2026 22:03:18 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 89F15403E1;
-	Thu, 26 Nov 2026 17:56:05 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A2D64403CE;
+	Thu, 26 Nov 2026 22:03:13 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795715765;
- b=vJ3Nk+kMP5meztM/3aXPSPGHirzYZreqrLqD9qlwBM3kDmWLl3EtMdFcH7xk/vCRU7k14
- L05HfzE/BtRn9Yl5VTYA1+N6SjcMDW+sABEb0dX9b9YR9YXaP2D82gjbaYKMtK8rWJT0vhv
- cXkfja4LJKCey2gAdCQR0VKESzNAAtB0aD5B1++8pdEF/ozrYRmWm95b+kIjRp3cCAfy2OB
- 3F++IVQ774FUoo9VMJFvfaqOKhCJjuT4BL9jENlh3vace9JblWhFcxX4Qc1ZSNCSunKDYC4
- bUbncp/8Ma5Ve8iOJ9L5jz2HRK7oHw4x7+1KRWDSXBh4EXfC2KcINTp3btyw==
+ s=20240201; t=1795730593;
+ b=j+D5XIQeqksCqCo+jRfcYBvkHMg60cIiuUlh8YzpITzPAMZPOyYjsY46vezrfcpuueaco
+ jF3i2+NI02LBGV8xg4cOMrLmbNTVhlOCUdIJ9TzOzdrJxeDj0/BYJzt7I6sz3Xv7+Gd66bv
+ w8TYafkpmCPYxX8V3txle9rTMQpcGivgVEc4ilVdCUvaDmKalp5G9p0oTQ9Ejhnp3p2sCdu
+ yB5BCnARoG4R30qJlLa0lQjN84pBKwCnIqxlmteBPLsQfoBtLsLlCHItelDP7hWrNarICQi
+ ZM55X/eDmTxpgA7riR9bgJ1lcL77EyiWQ3PeJwPxtqzbtsvH60GEg74Ika2A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795715765; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795730593; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=CHLgaJFPBR8IktC1roGL62X+2xMi1bLnLcLfpf/cxsc=;
- b=BDI0f6RdddnDe13vojerMkYu30sY341IK1Q1heRrkk9nJrieYSmsYwYAdW+Gb3bklBTGG
- 7uu5dFub5cQ5kFttiDwKtBlTBmCEg11KcW/+FfavdJXiwDue5NBJ7vGs0Md6Pb1AS0L0HPY
- F/+wbNQXDArS28KUnvSLkFaODgVGMJsM/V8bwNJ+CntN1q4DmetTKnobvi1TcNTgJZBHk/z
- NNP2xNsq/ZAeVS7RuTj07sKOyJoZo92r49E2rhgfVmiSKyz3/lbfwn2JNhMKS0NH+36Rzrj
- oYp7+beXyXlrBjTkD/Heh3FAPeoMR9cK3ERfDecs8JTP9sPftRK/evSRd6Rw==
+ bh=t19ExeCYrk4svaMovrOfWcyhStdg0gO19dQd849gvH8=;
+ b=RntPz6bwlXUqtc/xBWRmJXD1X+qaxW76s3UgjvOuRnkr+f1lHYbntYIC22yAe3HX2Zqjm
+ 14Q1lISmK5Namxs+RYY+yIgwVRy0RoyYc9zwFHcxoDAQ6hHi6gAvhp9zujk3YgHtomgOjg9
+ Plkp0KSPF0WD1mNCbqsCyF2YTbdGFQSG9G1xiJ732WbFhZ23uGKXmKzeanyfWQLRQ/90vwT
+ ur7edHgRWnVEllZyDsG6MCrwjgrOm22e7/+iLM8qzIyXqLAn4WUH/zZhqo7tlqGyDF+fUPq
+ ukZ3YYnvpMFIw8r9RGxNjF49KUYYO8gKK0OxxLXdlPG9UPERbGgNcQgQ0TGA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=cirad.fr;
+ dkim=pass header.d=npnm.eu;
  arc=none;
- dmarc=pass header.from=cirad.fr policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=cirad.fr;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=cirad.fr policy.dmarc=none
+ dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=npnm.eu;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 87F1440382
-	for <nouveau@lists.freedesktop.org>; Thu, 26 Nov 2026 17:56:02 +0000 (UTC)
-Received: from retz.cirad.fr (retz.cirad.fr [194.199.235.221])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4D6B7112665;
-	Thu, 26 Nov 2026 17:55:57 +0000 (UTC)
-Received: from retz.cirad.fr (localhost [127.0.0.1])
-	by retz.cirad.fr (Postfix) with ESMTPS id 1E536210CB3E;
-	Thu, 26 Nov 2026 18:55:55 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by retz.cirad.fr (Postfix) with ESMTP id F04D320DCBF3;
-	Thu, 26 Nov 2026 18:55:54 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.10.3 retz.cirad.fr F04D320DCBF3
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirad.fr;
-	s=573E3878-7916-11F1-BF4B-F68474317960; t=1795715755;
-	bh=CHLgaJFPBR8IktC1roGL62X+2xMi1bLnLcLfpf/cxsc=;
-	h=From:To:Date:Message-ID:MIME-Version;
-	b=gaGmKrxlj0lxigTnISIKPREc/Ebl3W/C2QC727F7fxE777pAT6bef9eCJ9sezD6/6
-	 YiBNJOzqwu2RWCcauW539roWsWwBci2Oo5xITLSomjKz5LlnjpEmEDg6RYFuVe6NJ5
-	 kQ5HEGkvH9XdYuQhl+fqXEtOIGkVxEWOi5VBshVzaxRtLHd6ZlnQns+e/vgxoDap65
-	 p2HmdSlOgALBCYaPGAh+n0jVL1f6iywMZqsgL43w3YT2rgIGc77I3v8N74/q9HQpRL
-	 66++QzuhrFKwL4DC9iKpIEJBycPPzy3X1os6lI1NOvl1oqZ0+Fs6FGVlp5VzUomolC
-	 DscTSchBYA1hg==
-X-Virus-Scanned: amavis at retz.cirad.fr
-Received: from retz.cirad.fr ([127.0.0.1])
- by localhost (retz.cirad.fr [127.0.0.1]) (amavis, port 10026) with ESMTP
- id JxldicDjRCxF; Thu, 26 Nov 2026 18:55:54 +0100 (CET)
-Received: from localhost.localdomain (78-196-243-100.subs.proxad.net
- [78.196.243.100])
-	by retz.cirad.fr (Postfix) with ESMTPSA id 8EEF9210CB3E;
-	Thu, 26 Nov 2026 18:55:54 +0100 (CET)
-From: =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20Mah=C3=A9?= <frederic.mahe@cirad.fr>
-To: nouveau@lists.freedesktop.org
-Subject: [PATCH] drm/nouveau/fifo/gf100-: reset the faulting engine even if it
- switched channels
-Date: Thu, 26 Nov 2026 18:55:31 +0100
-Message-ID: <20261126175531.916097-1-frederic.mahe@cirad.fr>
-X-Mailer: git-send-email 2.47.3
+	by kara.freedesktop.org (Postfix) with ESMTPS id 58FFF40382
+	for <nouveau@lists.freedesktop.org>; Thu, 26 Nov 2026 14:32:42 +0000 (UTC)
+X-Greylist: delayed 97502 seconds by postgrey-1.36 at gabe;
+ Thu, 26 Nov 2026 14:32:37 UTC
+Received: from 10.mo2.mail-out.ovh.net (10.mo2.mail-out.ovh.net
+ [46.105.35.249])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 21E3210E3DB
+	for <nouveau@lists.freedesktop.org>; Thu, 26 Nov 2026 14:32:37 +0000 (UTC)
+Received: from director2.derp.mail-out.ovh.net
+ (director2.derp.mail-out.ovh.net [79.137.60.36])
+	by mo2.mail-out.ovh.net (Postfix) with ESMTPS id 4jZz6y3XYKz42f5;
+	Thu, 26 Nov 2026 14:13:46 +0000 (UTC)
+Received: from director2.derp.mail-out.ovh.net
+ (director2.derp.mail-out.ovh.net. [127.0.0.1])
+        by director2.derp.mail-out.ovh.net (inspect_sender_mail_agent) with
+ SMTP
+        for <dakr@kernel.org>; Thu, 26 Nov 2026 14:13:46 +0000 (UTC)
+Received: from mta3.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.0.169])
+	by director2.derp.mail-out.ovh.net (Postfix) with ESMTPS id 4jZz6y1nR6z1xxH;
+	Thu, 26 Nov 2026 14:13:46 +0000 (UTC)
+Received: from npnm.eu (unknown [10.1.6.2])
+	(Authenticated sender: laniel_francis@npnm.eu)
+	by mta3.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id
+ 0A214942153;
+	Thu, 26 Nov 2026 14:13:44 +0000 (UTC)
+X-OVh-ClientIp: 159.26.112.43
+From: Francis Laniel <laniel_francis@npnm.eu>
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Dave Airlie <airlied@redhat.com>
+Subject: Re: [PATCH] drm/nouveau/devinit/gf100-: fix double vbios init checks
+Date: Thu, 26 Nov 2026 16:13:43 +0200
+Message-ID: <5119322.GXAFRqVoOG@pmachine>
+In-Reply-To: <20261123-nouveau-fix-disp-v1-1-ebdc525287ce@redhat.com>
+References: <20261123-nouveau-fix-disp-v1-1-ebdc525287ce@redhat.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: XF4MOFTINFLTBXFPI23WKXI3VUTJ6KZH
-X-Message-ID-Hash: XF4MOFTINFLTBXFPI23WKXI3VUTJ6KZH
-X-MailFrom: frederic.mahe@cirad.fr
+Content-Type: text/plain; charset="utf-8"
+x-ovh-tracer-id: 4510917978956178936
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: 
+ dmFkZTF0IONlquxZNWUhUvGZyMCQXwLelxUagklbWqSogw585TOg8zBW1CXrB92mV4jjXV3xgsW9KNCjNOU2FP4N2sOsLHXD2JkUaStcOk0tHwOBS1rDF8lJXebPmbJHI5BQHECQxVUqh8A1xD/LbSiVu0myBy2GK/chXDQUDhckvyOPbUk56Gnybx+ycusaZrrBCiaIndF4UCka36c8sE67FTXvTKQiexPtYoxEqJKxz842l394MvKAYXw3L1ajM9osvTqYMXRqP39heWExXTZvm2OucXnxFDdV4DfbByzTqzu2x9+pDYVDfK1NsEdqd0DPhURYd34+bl9x4U0biz9H2u4ahDWdGaOWawiI+IU6KnDDFUF+esdL/XkjxfANAxW1WzxNiUt1yJFksOl1p8SKdCAMcXNWTVQgBRK1HazAHOCwVn/dsnvNSrbTjHxTsJvptUzRPYNJ/RLVKNvWMNcQ2Lo979mjkNl5DakGfX05vjaBeGHcJE4l6qyC4+zByzLI/hlngq/XDyrkE/uGwm4Rd2DCf7sWSfYpI9rk7H88JiLCJBjAhdUg6Xj37axj3iSJ3nuTk1p3XfFJyWQa+mPB07DLABk/COxyZ97tuDYplEOMQW5qPIHuQoRPYIW5fXEE35oSL4r/OAGN/+aWK3mYmqPbzYPQh5JODJ14Z7xOt5KNRw
+DKIM-Signature: a=rsa-sha256; bh=t19ExeCYrk4svaMovrOfWcyhStdg0gO19dQd849gvH8=;
+ c=relaxed/relaxed; d=npnm.eu; h=From; s=ovhmo-selector-1; t=1795702426;
+ v=1;
+ b=lbTKHwFEwZUcmaVMfjG8WspeQFR97ebVOsWV22ndDSxiTmfmlIaohr3Hz53ZLG6IKGvEGpX5
+ p9JrQULNOC80AfMLMhVSnic4g8ugQHJG9GlyJt1sB/+mmf7kIsaKPj2ZWMrthCxJZ2w0FQRL+wG
+ uD44kMy9fflDA9nBV8L53BrMajwaNgTX0n36Cyz2hCbOkRAFQhDCL8MSYKc3zj2Qred4B4SiA8N
+ Ba5sisDd4xwPgZ08/+o26ljee/WBmSuxEsnPrMHBdLZ53WRpk9HuHA8xjxETWb6ne8v9u4HH6Ak
+ r9smHq2/wrZudq8izON0yXuziNE1h2P/Gef6K1jxpGjAw==
+X-MailFrom: laniel_francis@npnm.eu
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; emergency; member-moderation
-CC: dri-devel@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
- =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20Mah=C3=A9?= <frederic.mahe@cirad.fr>,
- stable@vger.kernel.org
+Message-ID-Hash: L3LEP7BXVMC3KQRNI2CUPWQSWTLP4G5B
+X-Message-ID-Hash: L3LEP7BXVMC3KQRNI2CUPWQSWTLP4G5B
+X-Mailman-Approved-At: Thu, 26 Nov 2026 22:03:10 +0000
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XF4MOFTINFLTBXFPI23WKXI3VUTJ6KZH/>
-Archived-At: 
- <https://lore.freedesktop.org/20261126175531.916097-1-frederic.mahe@cirad.fr/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/L3LEP7BXVMC3KQRNI2CUPWQSWTLP4G5B/>
+Archived-At: <https://lore.freedesktop.org/5119322.GXAFRqVoOG@pmachine/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -105,147 +113,90 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When an engine reports an MMU fault, recovery flags the faulting
-channel group and nvkm_runl_rc() resets only the engines whose current
-context (cxid) belongs to a flagged group.  On Fermi the fault can be
-reported after GR has started switching to another channel: the engine
-status then reads e.g. 0x01140003 (not busy, chid 3) while channel 4
-faulted, so GR is not reset, stays stalled on the fault, and the
-runlist update never completes:
+Hi,
 
-  fifo: fault 01 [WRITE] at 0 engine 00 [PGRAPH] client 0f [GPC0/PROP] re=
-ason 02 [PAGE_NOT_PRESENT] on channel 4
-  object-namespac[1768]: channel 4 killed!
-  fifo:000000:00[      gr]: 01140003: busy 0 save 1 unk0 0 unk1 0 chid 3
-  fifo:000000:00[      gr]: cxid not valid
-  WARNING: drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv50.c:228 at nv50_ru=
-nl_wait+0xe8/0x100 [nouveau]
-  fifo: SCHED_ERROR 0d []
-  WARNING: drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c:251 at nvkm_ru=
-nl_preempt_wait+0xf7/0x110 [nouveau]
+Le lundi 23 novembre 2026, 02:25:26 heure normale d=E2=80=99Europe de l=E2=
+=80=99Ouest Dave Airlie a =C3=A9crit :
+> The initial fix from 2017 wasn't updated for modern nouveau devinit
+> disable paths.
+>=20
+> Fix that and just check if display exists instead.
+>=20
+> Fixes: 2139cb633d48 ("drm/nouveau/devinit/gf100-: try to avoid double-run=
+ning vbios scripts")
+> Signed-off-by: Dave Airlie <airlied@redhat.com>
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c b/driver=
+s/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
+> index 186e09ea0cb1..b256404c2454 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.c
+> @@ -107,12 +107,12 @@ gf100_devinit_preinit(struct nvkm_devinit *base)
+>  	 * VBIOS multiple times may have detrimental effects.
+>  	 */
+>  	if (base->post) {
+> -		u64 disable =3D nvkm_devinit_disable(base);
+> +		nvkm_devinit_disable(base);
+>  		/* magic to detect whether or not x86 vbios code has
+>  		 * executed the devinit scripts to initialise the
+>  		 * board. only works if there's a display engine.
+>  		 */
+> -		if (!(disable & (1ULL << NVKM_ENGINE_DISP))) {
+> +		if (device->disp) {
+>  			if (nvkm_rdvgac(device, 0, 0x00) ||
+>  			    nvkm_rdvgac(device, 0, 0x1a)) {
+>  				base->post =3D false;
+>=20
+> ---
+> base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
+> change-id: 20261123-nouveau-fix-disp-62f59fd96fee
+>=20
+> Best regards,
+>=20
 
-After that no channel makes progress: the whole GPU is dead until a
-reboot, and processes using it hang in D state.
+Thank you for the patch! I tested it, and I can now boot my laptop with it:
+[    1.404564] nouveau: loading out-of-tree module taints kernel.
+[    1.404624] nouveau: module verification failed: signature and/or requir=
+ed key missing - tainting kernel
+[    1.739550] nouveau: detected PR support, will not use DSM
+[    1.739571] nouveau 0000:2d:00.0: enabling device (0006 -> 0007)
+[    1.739648] nouveau 0000:2d:00.0: NVIDIA GP108 (138000a1)
+[    1.776320] nouveau 0000:2d:00.0: bios: version 86.08.3e.00.26
+[    1.776582] nouveau 0000:2d:00.0: pmu: firmware unavailable
+[    1.860292] nouveau 0000:2d:00.0: fb: 2048 MiB GDDR5
+[    1.897865] nouveau 0000:2d:00.0: drm: VRAM: 2048 MiB
+[    1.897868] nouveau 0000:2d:00.0: drm: GART: 536870912 MiB
+[    1.897869] nouveau 0000:2d:00.0: drm: BIT table 'A' not found
+[    1.897871] nouveau 0000:2d:00.0: drm: BIT table 'L' not found
+[    1.897871] nouveau 0000:2d:00.0: drm: Pointer to TMDS table not found
+[    1.902700] nouveau 0000:2d:00.0: drm: MM: using COPY for buffer copies
+[    1.902820] [drm] Initialized nouveau 1.4.0 for 0000:2d:00.0 on minor 0
+[    1.902908] nouveau 0000:2d:00.0: [drm] No compatible format found
+[    1.902910] nouveau 0000:2d:00.0: [drm] Cannot find any crtc or sizes
 
-Remember which engine reported the fault, and reset it during recovery
-regardless of what its status says.  Resetting GR may discard the context
-being switched in, but that is far better than losing the GPU.
+Tested-by: Francis Laniel <laniel_francis@npnm.eu>
 
-Tested on a Quadro 600 (GF108): a program that faults (piglit
-"object-namespace-pollution glClearTexSubImage texture") while three
-other processes keep GR busy hangs the GPU within one to three faults
-without this patch.  With it, 20 of 20 faults recovered (15 of them hit
-the state above), with no runlist timeouts, and the GPU kept working.
-On an NVS 315 (GF119) the same test hangs the GPU at the first fault
-without this patch; with it, 20 of 20 rounds completed, every fault was
-recovered, and the GPU kept working.
+As 2139cb633d48 ("drm/nouveau/devinit/gf100-: try to avoid double-running v=
+bios scripts")
+is part of stable kernel, at least 6.12.118, I am wondering if this should =
+be also posted to stable?
+Particularly as some other debian users are hit by this:
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D+1155040
+What do you think?
 
-Written with help from Claude (Anthropic); reviewed and tested on hardwar=
-e.
+Best regards,
 
-Fixes: 4d60100a23ec ("drm/nouveau/fifo: add common channel recovery")
-Cc: stable@vger.kernel.org
-Signed-off-by: Fr=C3=A9d=C3=A9ric Mah=C3=A9 <frederic.mahe@cirad.fr>
----
-Tested on GF108 and GF119 only. gf100_fifo_mmu_fault_recover() is also us=
-ed by
-gk104, gm107, gv100 and tu102 (non-GSP), so the change applies to those
-too; feedback from such hardware is welcome.
 
-A small libdrm program reproduces this without Mesa or piglit
-(nv-mmu-fault.c, available on request):
 
-  nv-mmu-fault -e noctx
 
-sends one graphics method on a channel that has no graphics object.
-PGRAPH's context-switch unit then faults (READ at 0, HUB/CTXCTL)
-while the engine status no longer names the channel. On an NVS 315
-(GF119), without this patch the GPU is dead after the first run;
-with it, 60 of 60 runs recovered. "nv-mmu-fault -e gr" in a loop
-with three processes keeping PGRAPH busy gives the WRITE fault of
-the log above: dead at the 4th fault without the patch, 40 of 40
-recovered with it.
-
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c | 11 +++++++++--
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c  | 11 ++++++++---
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.h  |  1 +
- 3 files changed, 18 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c b/drivers/g=
-pu/drm/nouveau/nvkm/engine/fifo/gf100.c
-index e4a4fad..4f221c0 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
-@@ -597,9 +597,16 @@ gf100_fifo_mmu_fault_recover(struct nvkm_fifo *fifo,=
- struct nvkm_fault_data *inf
- 		   info->reason, er ? er->name : "",
- 		   chan ? chan->id : -1, info->inst, chan ? chan->name : "unknown");
-=20
--	/* Handle host/engine faults. */
--	if (chan)
-+	/* Handle host/engine faults.  The engine that reported the fault must
-+	 * be reset even if it has already switched to another channel (its
-+	 * status then no longer points at the faulting channel), otherwise it
-+	 * stays stalled and the runlist update never completes.
-+	 */
-+	if (chan) {
-+		if (engine)
-+			atomic_set(&engn->rc_reset, 1);
- 		nvkm_runl_rc_cgrp(chan->cgrp);
-+	}
-=20
- 	nvkm_chan_put(&chan, flags);
- }
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c b/drivers/gp=
-u/drm/nouveau/nvkm/engine/fifo/runl.c
-index 2092521..76fabe8 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
-@@ -99,14 +99,19 @@ nvkm_runl_rc(struct nvkm_runl *runl)
-=20
- 	/* Look for engines that are still on flagged channel groups - reset th=
-em. */
- 	nvkm_runl_foreach_engn_cond(engn, runl, engn->func->cxid) {
-+		bool faulted =3D atomic_xchg(&engn->rc_reset, 0);
-+
- 		cgrp =3D nvkm_engn_cgrp_get(engn, &flags);
--		if (!cgrp) {
-+		if (!cgrp && !faulted) {
- 			ENGN_DEBUG(engn, "cxid not valid");
- 			continue;
- 		}
-=20
--		reset =3D atomic_read(&cgrp->rc) =3D=3D NVKM_CGRP_RC_RUNNING;
--		nvkm_cgrp_put(&cgrp, flags);
-+		reset =3D faulted;
-+		if (cgrp) {
-+			reset |=3D atomic_read(&cgrp->rc) =3D=3D NVKM_CGRP_RC_RUNNING;
-+			nvkm_cgrp_put(&cgrp, flags);
-+		}
- 		if (!reset) {
- 			ENGN_DEBUG(engn, "cxid not in recovery");
- 			continue;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.h b/drivers/gp=
-u/drm/nouveau/nvkm/engine/fifo/runl.h
-index 19e6772..08ba44d 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.h
-@@ -28,6 +28,7 @@ struct nvkm_engn {
- 	struct nvkm_engine *engine;
-=20
- 	int fault;
-+	atomic_t rc_reset; /* engine reported a fault: reset it during RC */
-=20
- 	struct {
- 		u32 desc;
---=20
-2.53.0
 
