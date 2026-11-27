@@ -2,37 +2,37 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55F1C606A31E
-	for <nouveau@archiver.kernel.org>; Fri, 27 Nov 2026 11:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A80606A321
+	for <nouveau@archiver.kernel.org>; Fri, 27 Nov 2026 11:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirad.fr header.i=@cirad.fr header.a=rsa-sha256 header.s=573E3878-7916-11F1-BF4B-F68474317960 header.b=Gr1hLz/7
+	dkim=pass (2048-bit key) header.d=cirad.fr header.i=@cirad.fr header.a=rsa-sha256 header.s=573E3878-7916-11F1-BF4B-F68474317960 header.b=XuFVFQdE
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 40066112A5E;
-	Fri, 27 Nov 2026 11:29:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A1892112A84;
+	Fri, 27 Nov 2026 11:30:35 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 1D1A9403E1;
-	Fri, 27 Nov 2026 11:29:49 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 843BC403F6;
+	Fri, 27 Nov 2026 11:30:30 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1795778988;
- b=DhyLo2asRLsYLxYsBnuhQw/3+tDYcvux8yg2VLuGOteTqDOxEv/dB3lJzqW9a1TS6LC2D
- RAXQeFhk1FKqGc8+tctx+Lw8u3ZWOUz1PhOaR4/zuxPFOnfgx8rOebB48LClCSsM4fV3YwT
- +KT48u0nnrvSrkp+iX6ZAtlVr9P0mVG7Vfm7qr00zRZNoIawzGbGycgvQXejDcjd+LWo+4/
- 3qcILm2rbkM7mZpof632T3v4KXKHkDFzFE8664TiB1AwBr8eyxCIV+xOdtCBLPVE2smqNor
- MXJHb86QZw8Z97mXcsuWsxp+tjvrd6tFOYlRJxsgW8tyoJKkbDN1acbpZWZA==
+ s=20240201; t=1795779030;
+ b=YdrOOqoAEfF0upGP7h9wFjK4p1V1+vb2QnRCzksT+ePC6fsEsVNkdQAJpkovHHx+hWHi6
+ WpbuBkNVsC6pUxgylYQ1qMxmZJv16ut1kOIhjmO5dtOdPk77ZGR0GTeTaantqxIPB+bR1Ic
+ 8/YMAemrTscsHvI2zwFPEk25kF8Vre1w7Vn03oDjmHx/j4cbgrDaXyYd0ulT778O/aFCQ7f
+ JWobj1McSaZoMrzHBnma8EEspbjwhRvgBIqI5qoXh2X44Mdkgdh+Ef3EW3sG/dBtKOIluVc
+ RH5TWAxumkcAB5OJ7ZTvLL6RIqR0JhyJmQgbYBbfpoEPhmUCDBCxGTgwcYqw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1795778988; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1795779030; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ORsmi8rn4wC5wIc9Ndp8PeBaNOlh/oiUbZBQYpF8ip8=;
- b=qO6Vv0YmkLZrwTjQUzdZ4h9lTAdgBJ+DKO2OdFfNXKutvZnMAuxE+108w95ZIsY5PpG/Y
- Aj6NVmvgd0C3O+y8KK7gPRJcbhbdhjSv2oRH3kZruN//JkxBNNd96NJlPKBoGs5i5RIfL0Y
- jDuA6pXV0A/oFb0C2X+/0RrQhi8ev7grS41lGQKIJSkgCCzyVtRsvnJE7CH+hO7lyTgtW2z
- JCvIZzAtrrzq5cnzYI1eTat9jLDh7Ol0jTOHq8yNdxnOkkZCPBhGztBlFB6p3hAD+HdPPMK
- xzXUsWW5PM0mdDbHG/fZznTw6tzxKDYOs4Kl1Y54Ha6ZLESF5H0yx/uADckg==
+ bh=K5Swrz1cA4/FZhj9LgmmqfX1toxT4yNd5HBltxE7hfU=;
+ b=VuUWySv2qub9gu+vropawpPZpG8rBk5f80jvL1hfN1f+0K4CdroSJPwfJGJw484NJjyjQ
+ qz7sdUyhNwZC3vF5apg/FaoMKONCtrbPPOYw2JIk0nTWO+T3MUCJG2isDTlCaMYGSGDu0/w
+ V8Dxxnm+BbFIq5iKrNNvoU42FK+7O3PqwLW4GmF6M7+XgbqC/zcgtM4pdEuP3x3mSbzzzJz
+ /ebH14xJ1kqs5N77ykO3eQZ4ZXkeekKAZWLuC78L6M/ym4H+NohyyVlLlQn+5g54VC8WG4j
+ NJImIb7gvXy95Dy0c+qIfnIOYddQfSyl+NFd9pJh26khJAgv6o33fbn3/S/Q==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=cirad.fr;
  arc=none;
@@ -41,63 +41,63 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=cirad.fr;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=cirad.fr policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 6349C40264
-	for <nouveau@lists.freedesktop.org>; Fri, 27 Nov 2026 11:29:46 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id DEAD840264
+	for <nouveau@lists.freedesktop.org>; Fri, 27 Nov 2026 11:30:27 +0000 (UTC)
 Received: from retz.cirad.fr (retz.cirad.fr [194.199.235.221])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2D5C310E045;
-	Fri, 27 Nov 2026 11:29:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B2FE510E045;
+	Fri, 27 Nov 2026 11:30:22 +0000 (UTC)
 Received: from retz.cirad.fr (localhost [127.0.0.1])
-	by retz.cirad.fr (Postfix) with ESMTPS id A436220DC832;
-	Fri, 27 Nov 2026 12:29:39 +0100 (CET)
+	by retz.cirad.fr (Postfix) with ESMTPS id 653A520DC832;
+	Fri, 27 Nov 2026 12:30:21 +0100 (CET)
 Received: from localhost (localhost [127.0.0.1])
-	by retz.cirad.fr (Postfix) with ESMTP id 80F8D20F06F3;
-	Fri, 27 Nov 2026 12:29:39 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.10.3 retz.cirad.fr 80F8D20F06F3
+	by retz.cirad.fr (Postfix) with ESMTP id 3FF9320DC64F;
+	Fri, 27 Nov 2026 12:30:21 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 retz.cirad.fr 3FF9320DC64F
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirad.fr;
-	s=573E3878-7916-11F1-BF4B-F68474317960; t=1795778979;
-	bh=ORsmi8rn4wC5wIc9Ndp8PeBaNOlh/oiUbZBQYpF8ip8=;
+	s=573E3878-7916-11F1-BF4B-F68474317960; t=1795779021;
+	bh=K5Swrz1cA4/FZhj9LgmmqfX1toxT4yNd5HBltxE7hfU=;
 	h=From:To:Date:Message-ID:MIME-Version;
-	b=Gr1hLz/7rH7+l2dRR/Wwg4uT/bEX4UeHCoDfmgRUImB974+y4NYYHQrk/oZGePW3z
-	 1NHLL/wIorroCZcNFtluwaTEw1WMog9HqGWX3FPhadImk3HI8pISMxQlt+v8b+1Fs5
-	 wpFHvd1A60CSu8YB+Jd6hJ6vZtzx3UwrWHZOGGYAnFtfxxJ7Fatf/1nzDbIeyigfqk
-	 KExGAtVIJeAalKAMMJF2cNYTHqzb4+hCp1x5ISwc9Z2le7vjYQOR4VKRCj9Muxrzta
-	 BChL+GnEeVV5PQbu/zF35SvjGj6c4W9SJAF4qsQjclFr6rqorQyox71wHPxHqR9u6s
-	 8cOVm05w+/O7Q==
+	b=XuFVFQdETYRurfvSIC5qxXpI0J3JWM1KxGu6CKVm8B24p0OzAIO4CdmfHuEo2cG47
+	 pCzshr0OSXqA1ZyiJ2sxQN1Vd993ZrcSox0RH+ktSSqS4lfOKn8XTqhb6n/O2zbCbu
+	 Vgd9fUCz84SrmPBgFRL8aX0roGhygn/xqFbaD7xyspPEJhhqnSJIV2hM9uODeGWQ/L
+	 OWVimU2+Ind7OPjyHfRXvbXcDNHT2uzfiih0s3HVgotlNNbwik5btXfaxNNT0jVrAi
+	 /EBFv5rGEPJH5L9k1t4E/tPtzUFAbXZWNii2EHrO4WzpUSCZxJ5VfnXszCufLc9AFl
+	 krk5ytvI4MSyA==
 X-Virus-Scanned: amavis at retz.cirad.fr
 Received: from retz.cirad.fr ([127.0.0.1])
  by localhost (retz.cirad.fr [127.0.0.1]) (amavis, port 10026) with ESMTP
- id jdae3Ts8Fw6Y; Fri, 27 Nov 2026 12:29:39 +0100 (CET)
+ id Fz9y9CjViu0B; Fri, 27 Nov 2026 12:30:21 +0100 (CET)
 Received: from localhost.localdomain (78-196-243-100.subs.proxad.net
  [78.196.243.100])
-	by retz.cirad.fr (Postfix) with ESMTPSA id 368E020DC832;
-	Fri, 27 Nov 2026 12:29:39 +0100 (CET)
+	by retz.cirad.fr (Postfix) with ESMTPSA id D751920DC832;
+	Fri, 27 Nov 2026 12:30:20 +0100 (CET)
 From: =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20Mah=C3=A9?= <frederic.mahe@cirad.fr>
 To: nouveau@lists.freedesktop.org
-Subject: Re: [PATCH] drm/nouveau/fifo/gf100-: reset the faulting engine even
- if it switched channels
-Date: Fri, 27 Nov 2026 12:29:26 +0100
-Message-ID: <20261127112927.981649-1-frederic.mahe@cirad.fr>
+Subject: [PATCH v2] drm/nouveau/fifo/gf100-: reset the faulting engine even if
+ it switched channels
+Date: Fri, 27 Nov 2026 12:30:05 +0100
+Message-ID: <20261127113005.981725-1-frederic.mahe@cirad.fr>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <sashiko-outbox-235999@kernel.org>
-References: <sashiko-outbox-235999@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: O62EWBE7HO3IWSNYE3OONMGEUCB5NVZA
-X-Message-ID-Hash: O62EWBE7HO3IWSNYE3OONMGEUCB5NVZA
+Message-ID-Hash: EXFIFYW75JQ2LWR5PPNOV56VJ3FHEDRJ
+X-Message-ID-Hash: EXFIFYW75JQ2LWR5PPNOV56VJ3FHEDRJ
 X-MailFrom: frederic.mahe@cirad.fr
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; loop;
  banned-address; emergency; member-moderation
-CC: dri-devel@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>
+CC: dri-devel@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
+ =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20Mah=C3=A9?= <frederic.mahe@cirad.fr>,
+ stable@vger.kernel.org
 X-Mailman-Version: 3.3.10
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/O62EWBE7HO3IWSNYE3OONMGEUCB5NVZA/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EXFIFYW75JQ2LWR5PPNOV56VJ3FHEDRJ/>
 Archived-At: 
- <https://lore.freedesktop.org/20261127112927.981649-1-frederic.mahe@cirad.fr/>
+ <https://lore.freedesktop.org/20261127113005.981725-1-frederic.mahe@cirad.fr/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -105,61 +105,207 @@ List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
 List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
-X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 26 Nov 2026 18:11:26 +0000, sashiko-bot@kernel.org wrote:
-> [Severity: High]
-> Can setting engn->rc_reset before nvkm_runl_rc_cgrp() leave a stale
-> rc_reset flag armed when cgrp->rc has already left NVKM_CGRP_RC_NONE?
+When an engine reports an MMU fault, recovery flags the faulting
+channel group and nvkm_runl_rc() resets only the engines whose current
+context (cxid) belongs to a flagged group.  On Fermi the fault can be
+reported after GR has started switching to another channel: the engine
+status then reads e.g. 0x01140003 (not busy, chid 3) while channel 4
+faulted, so GR is not reset, stays stalled on the fault, and the
+runlist update never completes:
 
-Yes. A second fault for a group that is already in recovery sets the
-flag, nvkm_runl_rc_cgrp() schedules nothing, and the flag waits for the
-next recovery on that runlist, which then resets the engine on behalf of
-a group it is not recovering. A duplicate fault entry for one fault is
-the likely way to get there (fault buffer on gv100+); on Fermi I only
-ever saw one fault per channel kill.
+  fifo: fault 01 [WRITE] at 0 engine 00 [PGRAPH] client 0f [GPC0/PROP] re=
+ason 02 [PAGE_NOT_PRESENT] on channel 4
+  object-namespac[1768]: channel 4 killed!
+  fifo:000000:00[      gr]: 01140003: busy 0 save 1 unk0 0 unk1 0 chid 3
+  fifo:000000:00[      gr]: cxid not valid
+  WARNING: drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv50.c:228 at nv50_ru=
+nl_wait+0xe8/0x100 [nouveau]
+  fifo: SCHED_ERROR 0d []
+  WARNING: drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c:251 at nvkm_ru=
+nl_preempt_wait+0xf7/0x110 [nouveau]
 
-> Conversely, if a second engine in the same channel group faults after
-> nvkm_runl_rc() has already passed the engine reset loop for the first
-> fault, [...] leaving the second engine stalled.
+After that no channel makes progress: the whole GPU is dead until a
+reboot, and processes using it hang in D state.
 
-That case is not recovered without the patch either: the group is
-already in recovery, so nothing is scheduled. The patch does not make it
-worse, but it does not fix it.
+Record in the channel group which engines reported a fault for it.  The
+recovery pass that takes the group from pending to running collects
+that mask, and resets those engines regardless of what their status
+says.  Resetting GR may discard the context being switched in, but that
+is far better than losing the GPU.
 
-> And if an unrelated channel group cgrpB faults on engn while
-> nvkm_runl_rc() is already past the cgrp loop [...] the in-progress pass
-> will consume engn->rc_reset and reset engn before cgrpB's channels have
-> been disabled and removed from the runlist.
+Faults reported for a group whose recovery is already running are
+recorded but never acted on: as before, such a group is not recovered
+again, and keeping the mask with the group means a later recovery of
+another group cannot reset an engine on its behalf.
 
-Right, the flag is not tied to the pass that recovers the group.
+Tested on a Quadro 600 (GF108): a program that faults (piglit
+"object-namespace-pollution glClearTexSubImage texture") while three
+other processes keep GR busy hangs the GPU within one to three faults
+without this patch.  With it, 20 of 20 faults recovered (17 of them hit
+the state above), with no runlist timeouts, and the GPU kept working.
+On an NVS 315 (GF119) the same test hangs the GPU at the first fault
+without this patch; with it, 20 of 20 rounds completed, every fault was
+recovered, and the GPU kept working.
 
-v2 keeps the faulting engines in the channel group (a mask, rc_engm)
-instead of a per-engine flag. The recovery pass collects the mask of
-each group it moves from PENDING to RUNNING, after the cmpxchg, and only
-resets those engines (plus, as before, engines whose context belongs to
-a group in recovery). So:
+Written with help from Claude (Anthropic); reviewed and tested on hardwar=
+e.
 
-- a fault for a group already in recovery only adds to that group's
-  mask, which no later pass reads, as the group never returns to
-  PENDING;
-- a pass in progress cannot pick up the mask of a group it did not take
-  into recovery; that group's own pass gets it after removing its
-  channels.
+Fixes: 4d60100a23ec ("drm/nouveau/fifo: add common channel recovery")
+Cc: stable@vger.kernel.org
+Signed-off-by: Fr=C3=A9d=C3=A9ric Mah=C3=A9 <frederic.mahe@cirad.fr>
+---
+v2: keep the faulting engines in the channel group (cgrp->rc_engm)
+instead of a per-engine flag, and consume them only in the recovery
+pass that takes that group into recovery.  v1 could leave the flag set
+when a second fault arrived for a group already in recovery, so that a
+later recovery of another group would reset the engine; it could also
+let a pass already in progress reset an engine for a group whose
+channels it had not removed yet.  Both reported by the Sashiko review of
+v1.  rc_engm is initialised explicitly, as nvkm_cgrp_new() uses kmalloc.
+v2 was tested again on the Quadro 600 (GF108): the piglit test above
+recovered 20 of 20 faults (17 in the state above); "nv-mmu-fault -e
+noctx" (below) recovered 60 of 60 runs, plus 20 of 20 with fifo debug
+output, where GR was reset every time through the new mask (its status
+held no valid context); "-e gr" under load recovered 2 x 40 of 40.  No
+runlist timeouts.  The NVS 315 numbers are from v1.
+v1: https://lore.kernel.org/nouveau/20261126175531.916097-1-frederic.mahe=
+@cirad.fr/
 
-The mask is written before nvkm_runl_rc_cgrp() (atomic_or, then the
-cmpxchg NONE -> PENDING), and read after the PENDING -> RUNNING cmpxchg,
-so a pass that takes the group always sees the engines that faulted
-before it.
+Tested on GF108 and GF119 only. gf100_fifo_mmu_fault_recover() is also us=
+ed by
+gk104, gm107, gv100 and tu102 (non-GSP), so the change applies to those
+too; feedback from such hardware is welcome.
 
-v2 has been through the same tests as v1 on a Quadro 600 (GF108),
-with no failure (numbers in its changelog); I am sending it now.
+A small libdrm program reproduces this without Mesa or piglit
+(nv-mmu-fault.c, available on request):
 
-Analysis done with the help of Claude (AI assistant).
+  nv-mmu-fault -e noctx
 
-Fr=C3=A9d=C3=A9ric Mah=C3=A9
+sends one graphics method on a channel that has no graphics object.
+PGRAPH's context-switch unit then faults (READ at 0, HUB/CTXCTL)
+while the engine status no longer names the channel. On an NVS 315
+(GF119), without this patch the GPU is dead after the first run;
+with it, 60 of 60 runs recovered. "nv-mmu-fault -e gr" in a loop
+with three processes keeping PGRAPH busy gives the WRITE fault of
+the log above: dead at the 4th fault without the patch, 40 of 40
+recovered with it.
+
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/cgrp.c  |  1 +
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/cgrp.h  |  1 +
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c | 11 +++++++++--
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c  | 15 ++++++++++++---
+ 4 files changed, 23 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/cgrp.c b/drivers/gp=
+u/drm/nouveau/nvkm/engine/fifo/cgrp.c
+index 7e2d5711a..93b79bcaf 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/cgrp.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/cgrp.c
+@@ -241,6 +241,7 @@ nvkm_cgrp_new(struct nvkm_runl *runl, const char *nam=
+e, struct nvkm_vmm *vmm, bo
+ 	INIT_LIST_HEAD(&cgrp->vctxs);
+ 	mutex_init(&cgrp->mutex);
+ 	atomic_set(&cgrp->rc, NVKM_CGRP_RC_NONE);
++	atomic_set(&cgrp->rc_engm, 0);
+=20
+ 	if (runl->cgid) {
+ 		cgrp->id =3D nvkm_chid_get(runl->cgid, cgrp);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/cgrp.h b/drivers/gp=
+u/drm/nouveau/nvkm/engine/fifo/cgrp.h
+index 5f6abd59a..e7e6abe9e 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/cgrp.h
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/cgrp.h
+@@ -50,6 +50,7 @@ struct nvkm_cgrp {
+ #define NVKM_CGRP_RC_PENDING 1
+ #define NVKM_CGRP_RC_RUNNING 2
+ 	atomic_t rc;
++	atomic_t rc_engm; /* engines that faulted on the group, reset during it=
+s RC */
+=20
+ 	struct list_head head;
+ };
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c b/drivers/g=
+pu/drm/nouveau/nvkm/engine/fifo/gf100.c
+index e4a4fad2e..b12f7d396 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.c
+@@ -597,9 +597,16 @@ gf100_fifo_mmu_fault_recover(struct nvkm_fifo *fifo,=
+ struct nvkm_fault_data *inf
+ 		   info->reason, er ? er->name : "",
+ 		   chan ? chan->id : -1, info->inst, chan ? chan->name : "unknown");
+=20
+-	/* Handle host/engine faults. */
+-	if (chan)
++	/* Handle host/engine faults.  The engine that reported the fault must
++	 * be reset even if it has already switched to another channel (its
++	 * status then no longer points at the faulting channel), otherwise it
++	 * stays stalled and the runlist update never completes.
++	 */
++	if (chan) {
++		if (engine && engn->runl =3D=3D chan->cgrp->runl && !WARN_ON(engn->id =
+>=3D 32))
++			atomic_or(BIT(engn->id), &chan->cgrp->rc_engm);
+ 		nvkm_runl_rc_cgrp(chan->cgrp);
++	}
+=20
+ 	nvkm_chan_put(&chan, flags);
+ }
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c b/drivers/gp=
+u/drm/nouveau/nvkm/engine/fifo/runl.c
+index 209252105..daddc2080 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.c
+@@ -63,6 +63,7 @@ nvkm_runl_rc(struct nvkm_runl *runl)
+ 	struct nvkm_engn *engn;
+ 	unsigned long flags;
+ 	int rc, state, i;
++	u32 engm =3D 0;
+ 	bool reset;
+=20
+ 	/* Runlist is blocked before scheduling recovery - fetch count. */
+@@ -75,6 +76,9 @@ nvkm_runl_rc(struct nvkm_runl *runl)
+ 	nvkm_runl_foreach_cgrp_safe(cgrp, gtmp, runl) {
+ 		state =3D atomic_cmpxchg(&cgrp->rc, NVKM_CGRP_RC_PENDING, NVKM_CGRP_RC=
+_RUNNING);
+ 		if (state =3D=3D NVKM_CGRP_RC_PENDING) {
++			/* Collect the engines that reported a fault for the group. */
++			engm |=3D atomic_xchg(&cgrp->rc_engm, 0);
++
+ 			/* Disable all channels in them, and remove from runlist. */
+ 			nvkm_cgrp_foreach_chan_safe(chan, ctmp, cgrp) {
+ 				nvkm_chan_error(chan, false);
+@@ -99,14 +103,19 @@ nvkm_runl_rc(struct nvkm_runl *runl)
+=20
+ 	/* Look for engines that are still on flagged channel groups - reset th=
+em. */
+ 	nvkm_runl_foreach_engn_cond(engn, runl, engn->func->cxid) {
++		bool faulted =3D engn->id < 32 && (engm & BIT(engn->id));
++
+ 		cgrp =3D nvkm_engn_cgrp_get(engn, &flags);
+-		if (!cgrp) {
++		if (!cgrp && !faulted) {
+ 			ENGN_DEBUG(engn, "cxid not valid");
+ 			continue;
+ 		}
+=20
+-		reset =3D atomic_read(&cgrp->rc) =3D=3D NVKM_CGRP_RC_RUNNING;
+-		nvkm_cgrp_put(&cgrp, flags);
++		reset =3D faulted;
++		if (cgrp) {
++			reset |=3D atomic_read(&cgrp->rc) =3D=3D NVKM_CGRP_RC_RUNNING;
++			nvkm_cgrp_put(&cgrp, flags);
++		}
+ 		if (!reset) {
+ 			ENGN_DEBUG(engn, "cxid not in recovery");
+ 			continue;
+--=20
+2.53.0
+
